@@ -2,19 +2,20 @@ import ReactPDF, {
 	Document,
 	Font,
 	Image,
+	Link,
 	Page,
 	StyleSheet,
 	Text,
 	View,
-	Link,
 } from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/URSSAF.png'
-import FieldsPDF, { FieldsPDFProps, styles as fieldStyles } from './FieldsPDF'
+import { RuleNode } from 'publicodes'
+import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'
 import robotoUrl from './Roboto-Regular.ttf'
 
 export type PDFDocumentProps = {
-	fields: FieldsPDFProps['fields']
+	fields: Array<RuleNode>
 	signatureURL?: ReactPDF.SourceObject | false
 	place?: string
 }
@@ -33,8 +34,8 @@ export default function PDFDocument({
 				<View>
 					<Text style={styles.title}>
 						{fields.find(({ dottedName }) => dottedName === 'détachement')
-							? 'Demande de détachement en Europe'
-							: "Demande d'activité transfrontalière simultanée en Europe"}
+							? 'Demande de détachement'
+							: "Demande d'activité transfrontalière"}
 					</Text>
 					<Text style={styles.texte}>
 						Afin d’examiner votre situation au regard des règlements

@@ -76,7 +76,7 @@ export default function Explanation({ node }) {
 	// On ne veut pas (pour l'instant) déclencher une évaluation juste pour
 	// l'affichage.
 	// A voir si cela doit évoluer...
-	const displayedNode = node.evaluationId ? engine.evaluateNode(node) : node
+	const displayedNode = node.evaluationId ? engine.evaluate(node) : node
 
 	const Component = UIComponents[visualisationKind]
 	if (!Component) {

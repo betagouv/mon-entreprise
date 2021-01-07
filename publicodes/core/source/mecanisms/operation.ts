@@ -1,7 +1,7 @@
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -43,9 +43,10 @@ const parseOperation = (k, symbol) => (v, context) => {
 }
 
 const evaluate: EvaluationFunction<'operation'> = function (node) {
-	const explanation = node.explanation.map((node) =>
-		this.evaluateNode(node)
-	) as [EvaluatedNode, EvaluatedNode]
+	const explanation = node.explanation.map((node) => this.evaluate(node)) as [
+		EvaluatedNode,
+		EvaluatedNode
+	]
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 
@@ -60,8 +61,8 @@ const evaluate: EvaluationFunction<'operation'> = function (node) {
 				node1 = convertNodeToUnit(node2.unit, node1)
 			}
 		} catch (e) {
-			typeWarning(
-				this.cache._meta.contextRule,
+			warning(
+				this.options.logger,
 				`Dans l'expression '${
 					node.operator
 				}', la partie gauche (unité: ${serializeUnit(

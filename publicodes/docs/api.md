@@ -10,14 +10,14 @@ Crée un moteur d'évaluation avec les règles publicodes données en argument.
 
 -   `rules` : les règles publicodes utilisée. Ces dernières peuvent-être sous la
     forme d'une chaine de caractère `yaml` publicodes (ou d'un object javascript
-    correspondant). Elle peuvent aussi être sous la forme de règles publicodes déjà parsées (voir [`parsePublicode`](#parsePublicode))
+    correspondant). Elle peuvent aussi être sous la forme de règles publicodes déjà parsées
 
 **Retourne**
 Un moteur d'évaluation qui expose les fonctions suivantes :
 
 -   setSituation
 -   evaluate
--   getParsedRules
+-   getRule
 
 ### _method_ `engine.setSituation(situation)`
 

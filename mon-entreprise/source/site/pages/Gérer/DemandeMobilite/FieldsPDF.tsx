@@ -1,47 +1,51 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
-import { formatValue, EvaluatedRule } from 'publicodes'
+import Value from 'Components/EngineValue'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { formatValue } from 'publicodes'
+import { RuleNode } from 'publicodes/dist/types/rule'
+import { useContext } from 'react'
 
-export type FieldsPDFProps = {
-	fields: Array<EvaluatedRule<string>>
+type FieldsPDFProps = {
+	fields: Array<RuleNode>
 }
 
 export default function FieldsPDF({ fields }: FieldsPDFProps) {
+	const engine = useContext(EngineContext)
 	return (
 		<>
-			{fields.map((field) => (
-				<View style={styles.field} key={field.dottedName} wrap={false}>
-					{field.type === 'groupe' ? (
-						<>
-							<Text style={styles.subtitle}>
-								{field.title}{' '}
-								{field.note && (
-									<Text style={styles.fieldNumber}>({field.note})</Text>
-								)}
-							</Text>
-						</>
-					) : (
-						<>
-							<Text style={styles.name}>
-								{field.question ?? field.title}{' '}
-								{field.note && (
-									<Text style={styles.fieldNumber}>({field.note})</Text>
-								)}
-							</Text>
-							{field.nodeValue != null && (
-								<Text style={styles.value}>
-									{formatValue(field) +
-										(field.API === 'commune'
-											? ` (${
-													(field.nodeValue as Record<string, unknown>)
-														.codePostal as string
-											  })`
-											: '')}
+			{fields.map(
+				({ rawNode: { type, question, note, API }, title, dottedName }) => (
+					<View style={styles.field} key={dottedName} wrap={false}>
+						{type === 'groupe' ? (
+							<>
+								<Text style={styles.subtitle}>
+									{title}{' '}
+									{note && <Text style={styles.fieldNumber}>({note})</Text>}
 								</Text>
-							)}
-						</>
-					)}
-				</View>
-			))}
+							</>
+						) : (
+							<>
+								<Text style={styles.name}>
+									{question ?? title}{' '}
+									{note && <Text style={styles.fieldNumber}>({note})</Text>}
+								</Text>
+
+								<Text style={styles.value}>
+									{formatValue(engine.evaluate(dottedName)) +
+										(API === 'commune'
+											? ` (${
+													(engine.evaluate(dottedName).nodeValue as Record<
+														string,
+														unknown
+													>)?.codePostal as string
+											  })`
+											: '')}{' '}
+								</Text>
+							</>
+						)}
+					</View>
+				)
+			)}
 		</>
 	)
 }

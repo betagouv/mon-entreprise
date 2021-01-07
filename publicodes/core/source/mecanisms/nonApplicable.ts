@@ -13,10 +13,10 @@ export type NonApplicableSiNode = {
 }
 
 const evaluate: EvaluationFunction<'non applicable si'> = function (node) {
-	const condition = this.evaluateNode(node.explanation.condition)
+	const condition = this.evaluate(node.explanation.condition)
 	let valeur = node.explanation.valeur
 	if (condition.nodeValue === false || condition.nodeValue === null) {
-		valeur = this.evaluateNode(valeur)
+		valeur = this.evaluate(valeur)
 	}
 	return {
 		...node,

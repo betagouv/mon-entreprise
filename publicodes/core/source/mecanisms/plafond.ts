@@ -1,6 +1,7 @@
+import { last } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -15,18 +16,19 @@ export type PlafondNode = {
 }
 
 const evaluate: EvaluationFunction<'plafond'> = function (node) {
-	const valeur = this.evaluateNode(node.explanation.valeur)
+	const valeur = this.evaluate(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue
 	let plafond = node.explanation.plafond
 	if (nodeValue !== false) {
-		const evaluatedPlafond = this.evaluateNode(plafond)
+		const evaluatedPlafond = this.evaluate(plafond)
 		if (valeur.unit) {
 			try {
 				plafond = convertNodeToUnit(valeur.unit, evaluatedPlafond)
 			} catch (e) {
-				typeWarning(
-					this.cache._meta.contextRule,
+				warning(
+					this.options.logger,
+					this.cache._meta.ruleStack[0],
 					"L'unité du plafond n'est pas compatible avec celle de la valeur à encadrer",
 					e
 				)

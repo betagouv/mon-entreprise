@@ -13,6 +13,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
+import { RuleNode } from 'publicodes/dist/types/rule'
 
 export const SECTION_ORDER = [
 	'protection sociale . santé',
@@ -27,7 +28,7 @@ export const SECTION_ORDER = [
 
 type Section = typeof SECTION_ORDER[number]
 
-function getSection(rule: ASTNode & { nodeKind: 'rule' }): Section {
+function getSection(rule: RuleNode): Section {
 	const section = ('protection sociale . ' +
 		rule.rawNode.cotisation?.branche) as Section
 	if (SECTION_ORDER.includes(section)) {
@@ -181,7 +182,7 @@ export default function PaySlip() {
 
 function findReferenceInNode(
 	dottedName: DottedName,
-	node: EvaluatedNode
+	node: ASTNode
 ): EvaluatedNode | null {
 	return reduceAST<(EvaluatedNode & { nodeKind: 'reference' }) | null>(
 		(acc, node) => {
@@ -201,16 +202,20 @@ function findReferenceInNode(
 function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-	const cotisationsSalariales = engine.evaluateNode(
-		engine.getParsedRules()['contrat salarié . cotisations . salariales']
+	const partSalariale = engine.evaluate(
+		findReferenceInNode(
+			dottedName,
+			engine.getRule('contrat salarié . cotisations . salariales')
+		) ?? '0'
 	)
-	const cotisationsPatronales = engine.evaluateNode(
-		engine.getParsedRules()['contrat salarié . cotisations . patronales']
+	const partPatronale = engine.evaluate(
+		findReferenceInNode(
+			dottedName,
+			engine.getRule('contrat salarié . cotisations . patronales')
+		) ?? '0'
 	)
-	const partSalariale = findReferenceInNode(dottedName, cotisationsSalariales)
-	const partPatronale = findReferenceInNode(dottedName, cotisationsPatronales)
 
-	if (!partPatronale?.nodeValue && !partSalariale?.nodeValue) {
+	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
 		return null
 	}
 	return (

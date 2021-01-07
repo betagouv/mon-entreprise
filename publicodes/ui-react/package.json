@@ -9,6 +9,7 @@
 	"scripts": {
 		"clean": "rimraf dist node_modules",
 		"build": "tsc",
+		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run build",
 		"test": "echo \"Error: no test specified\""
 	},

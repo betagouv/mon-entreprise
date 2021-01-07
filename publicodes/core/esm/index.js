@@ -8,4 +8,6 @@ export const reduceAST = publicodes.reduceAST
 export const transformAST = publicodes.transformAST
 export const formatValue = publicodes.formatValue
 export const utils = publicodes.utils
+export const UNSAFE_isNotApplicable = publicodes.UNSAFE_isNotApplicable
+export const mecanismsDoc = publicodes.mecanismsDoc
 export const evaluateRule = publicodes.evaluateRule

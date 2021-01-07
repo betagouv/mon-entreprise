@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
-import { simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
-import parsePublicodes, {
-	Context,
-	disambiguateReference,
-} from './parsePublicodes'
+import parsePublicodes, { disambiguateReference } from './parsePublicodes'
 import {
 	getReplacements,
 	inlineReplacements,
@@ -14,17 +11,16 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
-import { reduceAST } from './AST'
-import mecanismsDoc from '../../docs/mecanisms.yaml'
+import { getUnitKey } from './units'
 
 const emptyCache = () => ({
-	_meta: { contextRule: [] },
+	_meta: { ruleStack: [] },
 	nodes: new Map(),
 })
 
 type Cache = {
 	_meta: {
-		contextRule: Array<string>
+		ruleStack: Array<string>
 		parentEvaluationStack?: Array<string>
 		inversionFail?:
 			| {
@@ -35,25 +31,35 @@ type Cache = {
 		inRecalcul?: boolean
 		filter?: string
 	}
-	nodes: Map<ASTNode, EvaluatedNode>
+	nodes: Map<PublicodesExpression | ASTNode, EvaluatedNode>
 }
 
 export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { reduceAST, transformAST } from './AST/index'
+export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
 export * as cyclesLib from './AST/graph'
+export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
-export { formatValue, capitalise0 } from './format'
-export { serializeUnit } from './units'
+export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
-export { ASTNode, EvaluatedNode }
-export { parsePublicodes }
-export { mecanismsDoc }
-export { utils }
-export { Rule }
+export { serializeUnit } from './units'
+export { parsePublicodes, utils }
+export { Rule, RuleNode, ASTNode, EvaluatedNode }
 
+type PublicodesExpression = string | Record<string, unknown> | number
+
+export type Logger = {
+	log(message: string): void
+	warn(message: string): void
+	error(message: string): void
+}
+
+type Options = {
+	logger: Logger
+	getUnitKey?: getUnitKey
+}
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
@@ -67,32 +73,33 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
-	options: Context['options']
-	private warnings: Array<string> = []
+	options: Options
 
 	constructor(
 		rules: string | Record<string, Rule> | ParsedRules<Name>,
-		options: Context['options'] = {}
+		options: Partial<Options> = {}
 	) {
+		this.options = { ...options, logger: options.logger ?? console }
 		if (typeof rules === 'string') {
-			this.parsedRules = parsePublicodes(rules, {
-				options,
-			}) as ParsedRules<Name>
+			rules = parsePublicodes(rules, this.options) as ParsedRules<Name>
 		}
 		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
 		if (
-			typeof firstRuleObject === 'object' &&
-			firstRuleObject != null &&
-			'nodeKind' in firstRuleObject
+			typeof firstRuleObject !== 'object' ||
+			firstRuleObject == null ||
+			!('nodeKind' in firstRuleObject)
 		) {
-			this.parsedRules = rules as ParsedRules<Name>
-			return
+			rules = parsePublicodes(
+				rules as Record<string, Rule>,
+				this.options
+			) as ParsedRules<Name>
 		}
-		this.options = options
-		this.parsedRules = parsePublicodes(rules as Record<string, Rule>, {
-			options,
-		}) as ParsedRules<Name>
+		this.parsedRules = rules as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
+	}
+
+	setOptions(options: Partial<Options>) {
+		this.options = { ...this.options, ...options }
 	}
 
 	resetCache() {
@@ -100,18 +107,21 @@ export default class Engine<Name extends string = string> {
 	}
 
 	setSituation(
-		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
+		situation: Partial<Record<Name, PublicodesExpression | ASTNode>> = {}
 	) {
 		this.resetCache()
 		this.parsedSituation = Object.fromEntries(
 			Object.entries(situation).map(([key, value]) => {
+				if (value && typeof value === 'object' && 'nodeKind' in value) {
+					return [key, value as ASTNode]
+				}
 				const parsedValue =
 					value && typeof value === 'object' && 'nodeKind' in value
 						? (value as ASTNode)
 						: this.parse(value, {
 								dottedName: `situation [${key}]`,
 								parsedRules: {},
-								options: this.options,
+								...this.options,
 						  })
 				return [key, parsedValue]
 			})
@@ -120,77 +130,70 @@ export default class Engine<Name extends string = string> {
 	}
 
 	private parse(...args: Parameters<typeof parse>) {
-		return inlineReplacements(this.replacements)(
-			disambiguateReference(this.parsedRules)(parse(...args))
-		)
-	}
-
-	evaluate(expression: string | Object): EvaluatedNode {
-		/*
-			TODO
-			EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker console.warn
-		*/
-		const originalWarn = console.warn
-
-		console.warn = (warning: string) => {
-			this.warnings.push(warning)
-			originalWarn(warning)
-		}
-		const result = this.evaluateNode(
-			this.parse(expression, {
-				dottedName: "evaluation'''",
-				parsedRules: {},
-				options: this.options,
-			})
-		)
-		console.warn = originalWarn
-		return result
-	}
-
-	getWarnings() {
-		return this.warnings
+		return inlineReplacements(
+			this.replacements,
+			this.options.logger
+		)(disambiguateReference(this.parsedRules)(parse(...args)))
 	}
 
 	inversionFail(): boolean {
 		return !!this.cache._meta.inversionFail
 	}
 
+	getRule(dottedName: Name): ParsedRules<Name>[Name] {
+		if (!(dottedName in this.parsedRules)) {
+			throw new Error(`La règle '${dottedName}' n'existe pas`)
+		}
+		return this.parsedRules[dottedName]
+	}
+
 	getParsedRules(): ParsedRules<Name> {
 		return this.parsedRules
 	}
 
-	evaluateNode<N extends ASTNode = ASTNode>(
-		node: N & { evaluationId?: string }
-	): N & EvaluatedNode {
-		if (!node.nodeKind) {
-			throw Error('The provided node must have a "nodeKind" attribute')
-		} else if (!evaluationFunctions[node.nodeKind]) {
-			throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
+	evaluate<N extends ASTNode = ASTNode>(value: N): N & EvaluatedNode
+	evaluate(value: PublicodesExpression): EvaluatedNode
+	evaluate(value: PublicodesExpression | ASTNode): EvaluatedNode {
+		const cachedNode = this.cache.nodes.get(value)
+		if (cachedNode !== undefined) {
+			return cachedNode
 		}
-		let result = this.cache.nodes.get(node)
-		if (result === undefined) {
-			result = evaluationFunctions[node.nodeKind].call(this, node)
+
+		let parsedNode: ASTNode
+		if (!value || typeof value !== 'object' || !('nodeKind' in value)) {
+			parsedNode = this.parse(value, {
+				dottedName: 'evaluation',
+				parsedRules: {},
+				...this.options,
+			})
+		} else {
+			parsedNode = value as ASTNode
 		}
-		this.cache.nodes.set(node, result!)
-		return result as N & EvaluatedNode
+
+		if (!evaluationFunctions[parsedNode.nodeKind]) {
+			throw Error(`Unknown "nodeKind": ${parsedNode.nodeKind}`)
+		}
+
+		const evaluatedNode = evaluationFunctions[parsedNode.nodeKind].call(
+			this,
+			parsedNode
+		)
+		this.cache.nodes.set(value, evaluatedNode)
+		return evaluatedNode
 	}
 }
 
-// This function is an util for allowing smother migration to the new Engine API
-export function evaluateRule<DottedName extends string = string>(
-	engine: Engine<DottedName>,
-	dottedName: DottedName,
-	modifiers: Object = {}
-): EvaluatedRule<DottedName> {
-	const evaluation = simplifyNodeUnit(
-		engine.evaluate({ valeur: dottedName, ...modifiers })
-	)
-	const rule = engine.getParsedRules()[dottedName] as RuleNode & {
-		dottedName: DottedName
-	}
+/**
+ 	This function allows to mimic the former 'isApplicable' property on evaluatedRules
 
-	// HACK while waiting for applicability to have its own type
-	const isNotApplicable = reduceAST<boolean>(
+	It will be deprecated when applicability will be encoded as a Literal type
+*/
+export function UNSAFE_isNotApplicable<DottedName extends string = string>(
+	engine: Engine<DottedName>,
+	dottedName: DottedName
+): boolean {
+	const rule = engine.getRule(dottedName)
+	return reduceAST<boolean>(
 		function (isNotApplicable, node, fn) {
 			if (isNotApplicable) return isNotApplicable
 			if (!('nodeValue' in node)) {
@@ -205,10 +208,13 @@ export function evaluateRule<DottedName extends string = string>(
 				)
 			}
 			if (node.nodeKind === 'reference' && node.dottedName === dottedName) {
-				return fn(engine.evaluateNode(rule))
+				return fn(engine.evaluate(rule))
 			}
 			if (node.nodeKind === 'applicable si') {
-				return (node.explanation.condition as any).nodeValue === false
+				return (
+					(node.explanation.condition as any).nodeValue === false ||
+					fn(node.explanation.valeur)
+				)
 			}
 			if (node.nodeKind === 'non applicable si') {
 				return (
@@ -216,25 +222,14 @@ export function evaluateRule<DottedName extends string = string>(
 					(node.explanation.condition as any).nodeValue !== null
 				)
 			}
+			if (node.nodeKind === 'rule') {
+				return (
+					(node.explanation.parent as any).nodeValue === false ||
+					fn(node.explanation.valeur)
+				)
+			}
 		},
 		false,
-		evaluation
+		engine.evaluate(dottedName)
 	)
-	return {
-		isNotApplicable,
-		...rule.rawNode,
-		...rule,
-		...evaluation,
-	} as EvaluatedRule<DottedName>
 }
-
-export type EvaluatedRule<Name extends string = string> = EvaluatedNode &
-	Omit<
-		(ASTNode & {
-			nodeKind: 'rule'
-		}) &
-			(ASTNode & {
-				nodeKind: 'rule'
-			})['rawNode'] & { dottedName: Name; isNotApplicable: boolean },
-		'nodeKind'
-	>

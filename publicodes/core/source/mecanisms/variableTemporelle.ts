@@ -25,11 +25,10 @@ const evaluate: EvaluationFunction<'variable temporelle'> = function (
 ) {
 	const start =
 		node.explanation.period.start &&
-		this.evaluateNode(node.explanation.period.start)
+		this.evaluate(node.explanation.period.start)
 	const end =
-		node.explanation.period.end &&
-		this.evaluateNode(node.explanation.period.end)
-	const value = this.evaluateNode(node.explanation.value)
+		node.explanation.period.end && this.evaluate(node.explanation.period.end)
+	const value = this.evaluate(node.explanation.value)
 	const period = {
 		start: start?.nodeValue || null,
 		end: end?.nodeValue || null,

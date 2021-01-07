@@ -57,8 +57,7 @@ export function DistributionBranch({
 	icon,
 	maximum,
 }: DistributionBranchProps) {
-	const rules = useContext(EngineContext).getParsedRules()
-	const branche = rules[dottedName]
+	const branche = useContext(EngineContext).getRule(dottedName)
 
 	return (
 		<BarChartBranch

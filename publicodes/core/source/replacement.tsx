@@ -1,3 +1,4 @@
+import { Logger } from '.'
 import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
@@ -100,7 +101,8 @@ export function getReplacements(
 }
 
 export function inlineReplacements(
-	replacements: Record<string, Array<ReplacementRule>>
+	replacements: Record<string, Array<ReplacementRule>>,
+	logger: Logger
 ): (n: ASTNode) => ASTNode {
 	return transformAST((n, fn) => {
 		if (
@@ -126,14 +128,15 @@ export function inlineReplacements(
 			if (!n.dottedName) {
 				throw new InternalError(n)
 			}
-			return replace(n, replacements[n.dottedName] ?? [])
+			return replace(n, replacements[n.dottedName] ?? [], logger)
 		}
 	})
 }
 
 function replace(
 	node: ASTNode & { nodeKind: 'reference' }, //& { dottedName: string },
-	replacements: Array<ReplacementRule>
+	replacements: Array<ReplacementRule>,
+	logger: Logger
 ): ASTNode {
 	// TODO : handle transitivité
 
@@ -171,6 +174,7 @@ function replace(
 	}
 	if (applicableReplacements.length > 1) {
 		warning(
+			logger,
 			node.contextDottedName,
 			`
 Il existe plusieurs remplacements pour la référence '${node.dottedName}'.

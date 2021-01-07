@@ -26,7 +26,7 @@ registerEvaluationFunction('reference', function evaluateReference(node) {
 	if (!node.dottedName) {
 		throw new InternalError(node)
 	}
-	const explanation = this.evaluateNode(this.parsedRules[node.dottedName])
+	const explanation = this.evaluate(this.parsedRules[node.dottedName])
 	return {
 		...node,
 		missingVariables: explanation.missingVariables,

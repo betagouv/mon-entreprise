@@ -3,11 +3,11 @@ import Simulation from 'Components/Simulation'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
+import { useEngine } from 'Components/utils/EngineContext'
+import { DottedName } from 'modele-social'
+import { formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import styled from 'styled-components'
 
 declare global {
@@ -73,27 +73,11 @@ function ExplanationSection() {
 	} = useTranslation()
 
 	const engine = useEngine()
-	const net = evaluateRule(engine, 'contrat salarié . rémunération . net')
-	const netHabituel = evaluateRule(
-		engine,
-		'chômage partiel . revenu net habituel'
-	)
-	const totalEntreprise = evaluateRule(
-		engine,
-		'contrat salarié . prix du travail'
-	)
-	const totalEntrepriseHabituel = evaluateRule(
-		engine,
-		'chômage partiel . coût employeur habituel'
-	)
-	if (
-		typeof net?.nodeValue !== 'number' ||
-		typeof netHabituel?.nodeValue !== 'number' ||
-		typeof totalEntreprise?.nodeValue !== 'number' ||
-		typeof totalEntrepriseHabituel?.nodeValue !== 'number'
-	) {
-		return null
-	}
+	const net = 'contrat salarié . rémunération . net'
+	const netHabituel = 'chômage partiel . revenu net habituel'
+	const totalEntreprise = 'contrat salarié . prix du travail'
+	const totalEntrepriseHabituel = 'chômage partiel . coût employeur habituel'
+
 	return (
 		<Animate.fromTop>
 			<div
@@ -113,17 +97,20 @@ function ExplanationSection() {
 						rows={[
 							['', t('Habituellement'), t('Avec chômage partiel')],
 							[
-								net,
-								netHabituel,
+								{ dottedName: net },
+								{ dottedName: netHabituel },
 								{
-									...net,
+									dottedName: net,
 									additionalText: language === 'fr' && (
 										<span data-test-id="comparaison-net">
 											Soit{' '}
 											<strong>
 												{formatValue(
-													(net.nodeValue / netHabituel.nodeValue) * 100,
-													{ displayedUnit: '%', precision: 0 }
+													engine.evaluate({
+														valeur: `${net} / ${netHabituel}`,
+														unité: '%',
+														arrondi: 'oui',
+													})
 												)}
 											</strong>{' '}
 											du revenu net
@@ -132,22 +119,20 @@ function ExplanationSection() {
 								},
 							],
 							[
-								totalEntreprise,
-								totalEntrepriseHabituel,
+								{ dottedName: totalEntreprise },
+								{ dottedName: totalEntrepriseHabituel },
 								{
-									...totalEntreprise,
+									dottedName: totalEntreprise,
 									additionalText: language === 'fr' && (
 										<span data-test-id="comparaison-total">
 											Soit{' '}
 											<strong>
 												{formatValue(
-													(totalEntreprise.nodeValue /
-														totalEntrepriseHabituel.nodeValue) *
-														100,
-													{
-														displayedUnit: '%',
-														precision: 0,
-													}
+													engine.evaluate({
+														valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
+														unité: '%',
+														arrondi: 'oui',
+													})
 												)}
 											</strong>{' '}
 											du coût habituel
@@ -167,11 +152,10 @@ type ComparaisonTableProps = {
 	rows: [Array<string>, ...Array<Line>]
 }
 
-type Line = Array<
-	EvaluatedRule<DottedName> & {
-		additionalText?: React.ReactNode
-	}
->
+type Line = Array<{
+	dottedName: DottedName
+	additionalText?: React.ReactNode
+}>
 
 function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	const columns = head.filter((x) => x !== '')
@@ -245,11 +229,12 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	)
 }
 
-function ValueWithLink(rule: EvaluatedRule<DottedName>) {
+function ValueWithLink({ dottedName }: { dottedName: DottedName }) {
 	const { language } = useTranslation().i18n
+	const engine = useEngine()
 	return (
-		<RuleLink dottedName={rule.dottedName}>
-			{formatValue(rule, {
+		<RuleLink dottedName={dottedName}>
+			{formatValue(engine.evaluate(dottedName), {
 				language,
 				displayedUnit: '€',
 				precision: 0,
@@ -258,7 +243,8 @@ function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 	)
 }
 
-function RowLabel(target: EvaluatedRule<DottedName>) {
+function RowLabel({ dottedName }: { dottedName: DottedName }) {
+	const target = useEngine().getRule(dottedName)
 	return (
 		<>
 			{' '}
@@ -269,7 +255,7 @@ function RowLabel(target: EvaluatedRule<DottedName>) {
 			>
 				{target.title}
 			</div>
-			<p className="ui__ notice">{target.résumé}</p>
+			<p className="ui__ notice">{target.rawNode.résumé}</p>
 		</>
 	)
 }

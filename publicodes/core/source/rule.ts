@@ -23,6 +23,7 @@ export type Rule = {
 	résumé?: string
 	icônes?: string
 	titre?: string
+	sévérité?: string
 	cotisation?: {
 		branche: string
 	}
@@ -121,18 +122,18 @@ registerEvaluationFunction('rule', function evaluate(node) {
 	}
 	const explanation = { ...node.explanation }
 
-	const verifyParentApplicability = !this.cache._meta.contextRule.includes(
+	const verifyParentApplicability = !this.cache._meta.ruleStack.includes(
 		node.dottedName
 	)
-	this.cache._meta.contextRule.push(node.dottedName)
+	this.cache._meta.ruleStack.unshift(node.dottedName)
 	let parent: EvaluatedNode | null = null
 	if (explanation.parent && verifyParentApplicability) {
-		parent = this.evaluateNode(explanation.parent) as EvaluatedNode
+		parent = this.evaluate(explanation.parent) as EvaluatedNode
 		explanation.parent = parent
 	}
 	let valeur: EvaluatedNode | null = null
 	if (!parent || parent.nodeValue !== false) {
-		valeur = this.evaluateNode(explanation.valeur) as EvaluatedNode
+		valeur = this.evaluate(explanation.valeur) as EvaluatedNode
 		explanation.valeur = valeur
 	}
 	const evaluation = {
@@ -145,7 +146,7 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		),
 		...(valeur && 'unit' in valeur && { unit: valeur.unit }),
 	}
-	this.cache._meta.contextRule.pop()
+	this.cache._meta.ruleStack.shift()
 	this.cache[node.dottedName] = evaluation
 	return evaluation
 })

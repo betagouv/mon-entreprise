@@ -1,5 +1,6 @@
 import { setActiveTarget, updateSituation } from 'Actions/actions'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
 import Animate from 'Components/ui/animate'
@@ -11,13 +12,14 @@ import {
 	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { DottedName } from 'modele-social'
+import { Names } from 'modele-social/dist/names'
 import {
 	ASTNode,
 	EvaluatedNode,
-	EvaluatedRule,
-	evaluateRule,
 	formatValue,
 	reduceAST,
+	RuleNode,
 } from 'publicodes'
 import { isNil } from 'ramda'
 import { Fragment, useCallback, useContext } from 'react'
@@ -26,7 +28,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
@@ -85,13 +86,20 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 type TargetProps = {
 	dottedName: DottedName
 }
+type TargetType = EvaluatedNode &
+	RuleNode['rawNode'] &
+	RuleNode & { dottedName: DottedName }
+
 const Target = ({ dottedName }: TargetProps) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
 	const engine = useEngine()
-	const target = evaluateRule(engine, dottedName, {
+	const rule = engine.getRule(dottedName)
+	const evaluation = engine.evaluate({
+		valeur: dottedName,
 		unité: useSelector(targetUnitSelector),
 		arrondi: 'oui',
 	})
+	const target: TargetType = { ...evaluation, ...rule.rawNode, ...rule }
 	const dispatch = useDispatch()
 	const onSuggestionClick = useCallback(
 		(value) => {
@@ -157,7 +165,7 @@ const Target = ({ dottedName }: TargetProps) => {
 	)
 }
 
-const Header = ({ target }: { target: EvaluatedRule<DottedName> }) => {
+const Header = ({ target }: { target: TargetType }) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	const { pathname } = useLocation()
@@ -181,7 +189,7 @@ const Header = ({ target }: { target: EvaluatedRule<DottedName> }) => {
 }
 
 type TargetInputOrValueProps = {
-	target: EvaluatedRule<DottedName>
+	target: TargetType
 	isActiveInput: boolean
 	isSmallTarget: boolean
 }
@@ -268,54 +276,42 @@ function TargetInputOrValue({
 }
 function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const { language } = useTranslation().i18n
-
-	const titresRestaurant = evaluateRule(
-		useEngine(),
-		'contrat salarié . frais professionnels . titres-restaurant . montant',
-		{
-			unité: targetUnit,
-			arrondi: 'oui',
-		}
-	)
-
-	if (!titresRestaurant?.nodeValue) return null
+	const dottedName =
+		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	return (
-		<Animate.fromTop>
-			<div className="aidesGlimpse">
-				<RuleLink dottedName={titresRestaurant.dottedName}>
-					+{' '}
-					<strong>
-						{formatValue(titresRestaurant, { displayedUnit: '€', language })}
-					</strong>{' '}
-					<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
-				</RuleLink>
-			</div>
-		</Animate.fromTop>
+		<Condition expression={dottedName}>
+			<Animate.fromTop>
+				<div className="aidesGlimpse">
+					<RuleLink dottedName={dottedName}>
+						+{' '}
+						<strong>
+							<Value
+								expression={dottedName}
+								displayedUnit="€"
+								unit={targetUnit}
+							/>
+						</strong>{' '}
+						<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
+					</RuleLink>
+				</div>
+			</Animate.fromTop>
+		</Condition>
 	)
 }
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const { language } = useTranslation().i18n
-	const dottedName = 'contrat salarié . aides employeur'
+	const dottedName = 'contrat salarié . aides employeur' as Names
 	const engine = useEngine()
-	const aides = evaluateRule(engine, dottedName, {
-		unité: targetUnit,
-		arrondi: 'oui',
-	})
-
-	if (!aides?.nodeValue) return null
-
+	const aides = engine.getRule(dottedName)
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous
 	// faisons un lien direct vers cette aide, plutôt qu'un lien vers la liste qui
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
 	const aideLink = reduceAST(
 		(acc, node) => {
 			if (node.nodeKind === 'somme') {
-				const aidesNotNul = (node.explanation as EvaluatedNode[]).filter(
-					({ nodeValue }) => nodeValue !== false
-				)
-				console.log('aidesNotNul', aidesNotNul, node.explanation)
+				const aidesNotNul = node.explanation
+					.map((n) => engine.evaluate(n))
+					.filter(({ nodeValue }) => nodeValue !== false)
 				if (aidesNotNul.length === 1) {
 					return (aidesNotNul[0] as ASTNode & { nodeKind: 'reference' })
 						.dottedName as DottedName
@@ -324,20 +320,26 @@ function AidesGlimpse() {
 				}
 			}
 		},
-		aides.dottedName,
-		engine.evaluateNode(engine.getParsedRules()[dottedName])
+		dottedName,
+		aides
 	)
 	return (
-		<Animate.fromTop>
-			<div className="aidesGlimpse">
-				<RuleLink dottedName={aideLink}>
-					<Trans>en incluant</Trans>{' '}
-					<strong>
-						<span>{formatValue(aides, { displayedUnit: '€', language })}</span>
-					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides.icônes ?? '')}
-				</RuleLink>
-			</div>
-		</Animate.fromTop>
+		<Condition expression={dottedName}>
+			<Animate.fromTop>
+				<div className="aidesGlimpse">
+					<RuleLink dottedName={aideLink}>
+						<Trans>en incluant</Trans>{' '}
+						<strong>
+							<Value
+								expression={dottedName}
+								displayedUnit="€"
+								unit={targetUnit}
+							/>
+						</strong>{' '}
+						<Trans>d'aides</Trans> {emoji(aides.rawNode.icônes ?? '')}
+					</RuleLink>
+				</div>
+			</Animate.fromTop>
+		</Condition>
 	)
 }

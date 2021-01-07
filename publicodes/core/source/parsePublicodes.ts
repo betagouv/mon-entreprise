@@ -1,5 +1,5 @@
 import yaml from 'yaml'
-import { ParsedRules } from '.'
+import { ParsedRules, Logger } from '.'
 import { transformAST, traverseParsedRules } from './AST'
 import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
@@ -11,9 +11,8 @@ export type Context = {
 	dottedName: string
 	parsedRules: Record<string, RuleNode>
 	ruleTitle?: string
-	options?: {
-		getUnitKey?: getUnitKey
-	}
+	getUnitKey?: getUnitKey
+	logger: Logger
 }
 
 type RawRule = Omit<Rule, 'nom'> | string | undefined | number
@@ -39,7 +38,8 @@ export default function parsePublicodes(
 	const context: Context = {
 		dottedName: partialContext.dottedName ?? '',
 		parsedRules: partialContext.parsedRules ?? {},
-		options: partialContext.options ?? {},
+		logger: partialContext.logger ?? console,
+		getUnitKey: partialContext.getUnitKey ?? ((x) => x),
 	}
 
 	Object.entries(rules).forEach(([dottedName, rule]) => {
@@ -64,7 +64,7 @@ export default function parsePublicodes(
 	// STEP 5: Inline replacements
 	const replacements = getReplacements(parsedRules)
 	parsedRules = traverseParsedRules(
-		inlineReplacements(replacements),
+		inlineReplacements(replacements, context.logger),
 		parsedRules
 	)
 

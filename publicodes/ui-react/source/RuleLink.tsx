@@ -25,7 +25,7 @@ export function RuleLink<Name extends string>({
 	children,
 	...props
 }: RuleLinkProps<Name>) {
-	const rule = engine.getParsedRules()[dottedName]
+	const rule = engine.getRule(dottedName)
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
 	// There is a problem with this line of code : we loose the information

@@ -15,9 +15,6 @@ export const engineOptions = {
 			.replace(/_plural$/, '')
 		return key || unit
 	},
-	formatUnit(unit: string, count: number): string {
-		return i18n?.t(`units:${unit}`, { count })
-	},
 }
 
 export function useEngine(): Engine<DottedName> {

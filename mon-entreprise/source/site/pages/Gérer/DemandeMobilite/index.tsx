@@ -1,19 +1,20 @@
 import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
+import { Condition } from 'Components/EngineValue'
 import * as Animate from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
-import Engine, { evaluateRule, EvaluatedRule } from 'publicodes'
-import { equals } from 'ramda'
+import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
+import { equals, isEmpty } from 'ramda'
 import {
-	lazy,
 	createElement,
+	lazy,
 	Suspense,
 	useCallback,
-	useState,
 	useContext,
+	useState,
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../utils'
@@ -91,21 +92,24 @@ export default function FormulaireMobilitéIndépendant() {
 
 const useFields = (
 	engine: Engine<string>,
-	fieldNames: Array<string>,
-	situation: Record<string, unknown>
-): Array<EvaluatedRule> => {
-	const fields = fieldNames
-		.map((name) => evaluateRule(engine, name))
-		.filter(
-			(node: EvaluatedRule) =>
-				node.isNotApplicable !== true &&
-				// TODO change this when not applicable value can be differenciated from false value
-				(equals(node.missingVariables, { [node.dottedName]: 1 }) ||
-					node.dottedName in situation ||
-					(node.nodeValue !== false && node.nodeValue !== null)) &&
-				(node.question || ((node.type || node.API) && node.nodeValue !== false))
-		)
-	return fields
+	fieldNames: Array<string>
+): Array<ReturnType<Engine['getRule']>> => {
+	return fieldNames
+		.filter((dottedName) => {
+			const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
+			const evaluation = engine.evaluate(dottedName)
+			const rule = engine.getRule(dottedName)
+			return (
+				isNotApplicable === false &&
+				(equals(evaluation.missingVariables, { [dottedName]: 1 }) ||
+					isEmpty(evaluation.missingVariables)) &&
+				(rule.rawNode.question ||
+					rule.rawNode.API ||
+					rule.rawNode.type ||
+					rule.rawNode.description)
+			)
+		})
+		.map((dottedName) => engine.getRule(dottedName))
 }
 
 const VERSION = hash(JSON.stringify(formulaire))
@@ -133,64 +137,66 @@ function FormulairePublicodes() {
 	}, [clearFieldsKey, setSituation])
 
 	engine.setSituation(situation)
-	const fields = useFields(engine, Object.keys(formulaire), situation)
-	const missingValues = fields.filter(
-		({ dottedName, type }) =>
-			type !== 'groupe' &&
-			(situation[dottedName] == null || situation[dottedName] === '')
+	const fields = useFields(engine, Object.keys(formulaire))
+
+	const isMissingValues = fields.some(
+		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
 	)
-	const isMissingValues = !!missingValues.length
 	return (
 		<Animate.fromTop key={clearFieldsKey}>
-			{fields.map((field) => (
-				<Animate.fromTop key={field.dottedName}>
-					{field.type === 'groupe' ? (
-						<>
-							{createElement(
-								`h${Math.min(field.dottedName.split(' . ').length + 1, 6)}`,
-								{},
-								field.title
-							)}
-							{field.description && <Markdown source={field.description} />}
-						</>
-					) : field.type === 'notification' && field.nodeValue === true ? (
-						<small
-							css={`
-								color: #ff2d96;
-							`}
-						>
-							{field.description}
-						</small>
-					) : (
-						<>
-							<label htmlFor={field.dottedName}>
-								{field.question ? (
-									<span
-										css={`
-											margin-top: 0.6rem;
-										`}
-									>
-										{field.question}
-									</span>
-								) : (
-									<small>{field.title}</small>
-								)}{' '}
-							</label>
-							{field.description && (
-								<Explicable>
-									<h3>{field.title}</h3>
-									<Markdown source={field.description} />
-								</Explicable>
-							)}
-							<RuleInput
-								id={field.dottedName}
-								dottedName={field.dottedName}
-								onChange={(value) => onChange(field.dottedName, value)}
-							/>
-						</>
-					)}
-				</Animate.fromTop>
-			))}
+			{fields.map(
+				({ rawNode: { description, type, question }, title, dottedName }) => (
+					<Animate.fromTop key={dottedName}>
+						{type === 'groupe' ? (
+							<>
+								{createElement(
+									`h${Math.min(dottedName.split(' . ').length + 1, 6)}`,
+									{},
+									title
+								)}
+								{description && <Markdown source={description} />}
+							</>
+						) : type === 'notification' ? (
+							<Condition expression={dottedName}>
+								<small
+									css={`
+										color: #ff2d96;
+									`}
+								>
+									{description}
+								</small>
+							</Condition>
+						) : (
+							<>
+								<label htmlFor={dottedName}>
+									{question ? (
+										<span
+											css={`
+												margin-top: 0.6rem;
+											`}
+										>
+											{question}
+										</span>
+									) : (
+										<small>{title}</small>
+									)}{' '}
+								</label>
+								{description && (
+									<Explicable>
+										<h3>{title}</h3>
+										<Markdown source={description} />
+									</Explicable>
+								)}
+								<RuleInput
+									id={dottedName}
+									dottedName={dottedName}
+									onChange={(value) => onChange(dottedName, value)}
+								/>
+							</>
+						)}
+					</Animate.fromTop>
+				)
+			)}
 
 			<Suspense fallback={null}>
 				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />

@@ -6,8 +6,8 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Engine, { evaluateRule } from 'publicodes'
 import rules from 'modele-social'
+import Engine from 'publicodes'
 import { engineOptions } from '../../source/components/utils/EngineContext'
 import artisteAuteurConfig from '../../source/site/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/site/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -18,8 +18,8 @@ import professionLibéraleConfig from '../../source/site/pages/Simulateurs/confi
 import aideDéclarationConfig from '../../source/site/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
-import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import independentSituations from './simulations-indépendant.yaml'
+import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import employeeSituations from './simulations-salarié.yaml'
 import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
@@ -41,9 +41,11 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			const res = targets.map((target) => engine.evaluate(target).nodeValue)
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
-				.filter((rule) => rule.rawNode['type'] === 'notification')
-				.map((node) => evaluateRule(engine, node.dottedName))
-				.filter((node) => !!node.nodeValue)
+				.filter(
+					(rule) =>
+						rule.rawNode['type'] === 'notification' &&
+						!!engine.evaluate(rule.dottedName).nodeValue
+				)
 				.map((node) => node.dottedName)
 
 			const snapshotedDisplayedNotifications = evaluatedNotifications.length

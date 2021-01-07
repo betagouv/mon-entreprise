@@ -293,9 +293,9 @@ export function Leaf(
 ) {
 	const engine = useContext(EngineContext)
 	const { dottedName, nodeValue, unit } = node
-	const rule = engine?.getParsedRules()[node.dottedName]
+	const rule = engine?.getRule(node.dottedName)
 	if (!rule) {
-		throw new Error(`Unknown node`)
+		throw new Error('Unknown node')
 	}
 
 	const [folded, setFolded] = useState(true)
@@ -350,7 +350,7 @@ export function Leaf(
 					}}
 				>
 					<UnfoldIsEnabledContext.Provider value={false}>
-						<Explanation node={engine?.evaluateNode(rule).explanation.valeur} />
+						<Explanation node={engine?.evaluate(rule).explanation.valeur} />
 					</UnfoldIsEnabledContext.Provider>
 				</div>
 			)}

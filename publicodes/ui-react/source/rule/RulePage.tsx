@@ -1,13 +1,14 @@
-import React from 'react'
-import { Trans } from 'react-i18next'
 import Engine, {
+	EvaluatedNode,
 	formatValue,
-	utils,
+	RuleNode,
 	serializeUnit,
 	simplifyNodeUnit,
+	utils,
 } from 'publicodes'
+import React from 'react'
+import { Trans } from 'react-i18next'
 import Explanation from '../Explanation'
-import {} from 'publicodes'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
 import RuleHeader from './Header'
@@ -15,10 +16,11 @@ import References from './References'
 import RuleSource from './RuleSource'
 
 export default function Rule({ dottedName, engine, language }) {
-	if (!engine.getParsedRules()[dottedName]) {
+	if (!(dottedName in engine.getParsedRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
+	const rule = engine.evaluate(engine.getRule(dottedName)) as EvaluatedNode &
+		RuleNode
 	// TODO affichage inline vs page
 
 	const { description, question } = rule.rawNode

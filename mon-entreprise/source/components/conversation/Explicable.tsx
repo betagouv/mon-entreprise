@@ -10,13 +10,13 @@ import './Explicable.css'
 import usePortal from 'react-useportal'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
-	const rules = useContext(EngineContext).getParsedRules()
+	const engine = useContext(EngineContext)
 	const tracker = useContext(TrackerContext)
 	const dispatch = useDispatch()
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) return null
-	const rule = rules[dottedName]
+	const rule = engine.getRule(dottedName)
 
 	if (rule.rawNode.description == null) return null
 

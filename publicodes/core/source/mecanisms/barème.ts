@@ -1,8 +1,8 @@
 import { EvaluationFunction } from '..'
-import { evaluationError } from '../error'
-import parse from '../parse'
+import { ASTNode } from '../AST/types'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -15,7 +15,6 @@ import {
 	parseTranches,
 	TrancheNodes,
 } from './trancheUtils'
-import { ASTNode } from '../AST/types'
 
 // Barème en taux marginaux.
 export type BarèmeNode = {
@@ -46,12 +45,6 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 			return { ...tranche, nodeValue: 0 }
 		}
 		const taux = evaluate(tranche.taux)
-		if (taux.temporalValue) {
-			evaluationError(
-				cache._meta.contextRule,
-				"Le taux d'une tranche ne peut pas être une valeur temporelle"
-			)
-		}
 
 		if (
 			[
@@ -81,26 +74,22 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 	})
 }
 const evaluate: EvaluationFunction<'barème'> = function (node) {
-	const evaluateNode = this.evaluateNode.bind(this)
-	const assiette = this.evaluateNode(node.explanation.assiette)
-	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
+	const evaluate = this.evaluate.bind(this)
+	const assiette = this.evaluate(node.explanation.assiette)
+	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
-			evaluatePlafondUntilActiveTranche(
-				evaluateNode,
-				{
-					parsedTranches: node.explanation.tranches,
-					assiette,
-					multiplicateur,
-				},
-				this.cache
-			),
+			evaluatePlafondUntilActiveTranche.call(this, {
+				parsedTranches: node.explanation.tranches,
+				assiette,
+				multiplicateur,
+			}),
 		liftTemporalNode(assiette as any),
 		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = liftTemporal2(
 		(tranches, assiette) =>
-			evaluateBarème(tranches, assiette, evaluateNode, this.cache),
+			evaluateBarème(tranches, assiette, evaluate, this.cache),
 		temporalTranchesPlafond,
 		liftTemporalNode(assiette as any)
 	)

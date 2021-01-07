@@ -20,8 +20,8 @@ const objectShape = {
 	"jusqu'à": defaultNode(todayString),
 }
 const evaluate: EvaluationFunction<'durée'> = function (node) {
-	const from = this.evaluateNode(node.explanation.depuis)
-	const to = this.evaluateNode(node.explanation["jusqu'à"])
+	const from = this.evaluate(node.explanation.depuis)
+	const to = this.evaluate(node.explanation["jusqu'à"])
 	let nodeValue
 	if ([from, to].some(({ nodeValue }) => nodeValue === null)) {
 		nodeValue = null

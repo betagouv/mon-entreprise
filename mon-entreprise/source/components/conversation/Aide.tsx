@@ -11,14 +11,14 @@ import { EngineContext } from 'Components/utils/EngineContext'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
-	const rules = useContext(EngineContext).getParsedRules()
+	const engine = useContext(EngineContext)
 	const dispatch = useDispatch()
 
 	const stopExplaining = () => dispatch(explainVariable())
 
 	if (!explained) return null
 
-	const rule = rules[explained],
+	const rule = engine.getRule(explained),
 		text = rule.rawNode.description,
 		refs = rule.rawNode.références
 

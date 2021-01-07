@@ -1,10 +1,13 @@
 import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { EvaluatedNode, EvaluatedRule } from 'publicodes'
+import { Names } from 'modele-social/dist/names'
+import { EvaluatedNode } from 'publicodes'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
-import { DottedName } from 'modele-social'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
 	display: flex;
@@ -134,17 +137,20 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 }
 
 type StackedRulesChartProps = {
-	data: Array<{ color?: string } & EvaluatedRule<DottedName>>
+	data: Array<{ color?: string; dottedName: Names; title?: string }>
 }
 
 export default function StackedRulesChart({ data }: StackedRulesChartProps) {
+	const engine = useEngine()
+	const targetUnit = useSelector(targetUnitSelector)
 	return (
 		<StackedBarChart
-			data={data.map((rule) => ({
-				...rule,
-				key: rule.dottedName,
-				value: rule.nodeValue,
-				legend: <RuleLink dottedName={rule.dottedName} />,
+			data={data.map(({ dottedName, title, color }) => ({
+				key: dottedName,
+				value: engine.evaluate({ valeur: dottedName, unité: targetUnit })
+					.nodeValue,
+				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
+				color,
 			}))}
 		/>
 	)

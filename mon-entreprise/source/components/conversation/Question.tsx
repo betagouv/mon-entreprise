@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
-import { ASTNode } from 'publicodes'
+import { RuleNode } from 'publicodes'
 import { References } from 'publicodes-react'
 import { Rule } from 'publicodes/dist/types/rule'
 import { useCallback, useEffect, useState } from 'react'
@@ -25,7 +25,7 @@ import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
 
 */
 
-export type Choice = ASTNode & { nodeKind: 'rule' } & {
+export type Choice = RuleNode & {
 	canGiveUp?: boolean
 	children: Array<Choice>
 }

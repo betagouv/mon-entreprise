@@ -6,18 +6,12 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
-import {
-	ASTNode,
-	EvaluatedRule,
-	evaluateRule,
-	formatValue,
-	ParsedRules,
-	reduceAST,
-} from 'publicodes'
+import { DottedName } from 'modele-social'
+import Engine, { ASTNode, formatValue, reduceAST } from 'publicodes'
 import { Evaluation } from 'publicodes/dist/types/AST/types'
+import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -39,7 +33,8 @@ export type InputCommonProps<Name extends string = string> = Pick<
 	RuleInputProps<Name>,
 	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
+	Pick<RuleNode, 'title' | 'suggestions'> & {
+		question: RuleNode['rawNode']['question']
 		key: string
 		id: string
 		value: any //TODO EvaluatedRule['nodeValue']
@@ -67,43 +62,44 @@ export default function RuleInput<Name extends string = DottedName>({
 	onSubmit = () => null,
 }: RuleInputProps<Name>) {
 	const engine = useContext(EngineContext)
-	const rule = evaluateRule(engine, dottedName)
-
+	const rule = engine.getRule(dottedName)
+	const evaluation = engine.evaluate(dottedName)
 	const language = useTranslation().i18n.language
-	const value = rule.nodeValue
+	const value = evaluation.nodeValue
 	const commonProps: InputCommonProps<Name> = {
 		key: dottedName,
 		dottedName,
 		value,
-		missing: !!rule.missingVariables[dottedName],
+		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
 		autoFocus,
 		className,
 		title: rule.title,
 		id: id ?? dottedName,
-		question: rule.question,
+		question: rule.rawNode.question,
 		suggestions: rule.suggestions,
 		required: true,
 	}
-	if (getVariant(engine.getParsedRules()[dottedName])) {
+	if (getVariant(engine.getRule(dottedName))) {
 		return (
 			<Question
 				{...commonProps}
 				onSubmit={onSubmit}
-				choices={buildVariantTree(engine.getParsedRules(), dottedName)}
+				choices={buildVariantTree(engine, dottedName)}
 			/>
 		)
 	}
-	if (rule.API && rule.API === 'commune')
+	if (rule.rawNode.API && rule.rawNode.API === 'commune')
 		return <SelectCommune {...commonProps} />
-	if (rule.API && rule.API === 'pays européen')
+	if (rule.rawNode.API && rule.rawNode.API === 'pays européen')
 		return <SelectEuropeCountry {...commonProps} />
-	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
+	if (rule.rawNode.API)
+		throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
 		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
 
-	if (rule.type === 'date') {
+	if (rule.rawNode.type === 'date') {
 		return (
 			<DateInput
 				{...commonProps}
@@ -116,9 +112,9 @@ export default function RuleInput<Name extends string = DottedName>({
 	}
 
 	if (
-		rule.unit == null &&
-		(rule.type === 'booléen' || rule.type == undefined) &&
-		typeof rule.nodeValue !== 'number'
+		evaluation.unit == null &&
+		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
+		typeof evaluation.nodeValue !== 'number'
 	) {
 		return useSwitch ? (
 			<ToggleSwitch
@@ -139,9 +135,9 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 	}
 
-	if (rule.unit?.numerators.includes('€') && isTarget) {
+	if (evaluation.unit?.numerators.includes('€') && isTarget) {
 		const unité = formatValue(
-			{ nodeValue: value ?? 0, unit: rule.unit },
+			{ nodeValue: value ?? 0, unit: evaluation.unit },
 			{ language }
 		)
 			.replace(/[\d,.]/g, '')
@@ -160,13 +156,13 @@ export default function RuleInput<Name extends string = DottedName>({
 			</>
 		)
 	}
-	if (rule.unit?.numerators.includes('%') && isTarget) {
+	if (evaluation.unit?.numerators.includes('%') && isTarget) {
 		return <PercentageField {...commonProps} debounce={600} />
 	}
-	if (rule.type === 'texte') {
+	if (rule.rawNode.type === 'texte') {
 		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
-	if (rule.type === 'paragraphe') {
+	if (rule.rawNode.type === 'paragraphe') {
 		return (
 			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
 		)
@@ -176,13 +172,13 @@ export default function RuleInput<Name extends string = DottedName>({
 		<Input
 			{...commonProps}
 			onSubmit={onSubmit}
-			unit={rule.unit}
+			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>
 	)
 }
 
-const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
+const getVariant = (node: RuleNode) =>
 	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(
 		(_, node) => {
 			if (node.nodeKind === 'une possibilité') {
@@ -192,11 +188,12 @@ const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
 		false,
 		node
 	)
+
 export const buildVariantTree = <Name extends string>(
-	allRules: ParsedRules<Name>,
+	engine: Engine<Name>,
 	path: Name
 ): Choice => {
-	const node = allRules[path]
+	const node = engine.getRule(path)
 	if (!node) throw new Error(`La règle ${path} est introuvable`)
 	const variant = getVariant(node)
 	const canGiveUp =
@@ -210,7 +207,7 @@ export const buildVariantTree = <Name extends string>(
 					children: (variant.explanation as (ASTNode & {
 						nodeKind: 'reference'
 					})[]).map(({ dottedName }) =>
-						buildVariantTree(allRules, dottedName as Name)
+						buildVariantTree(engine, dottedName as Name)
 					),
 			  }
 			: null

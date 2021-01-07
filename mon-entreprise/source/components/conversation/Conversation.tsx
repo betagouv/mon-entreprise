@@ -26,7 +26,7 @@ export type ConversationProps = {
 
 export default function Conversation({ customEndMessages }: ConversationProps) {
 	const dispatch = useDispatch()
-	const rules = useContext(EngineContext).getParsedRules()
+	const engine = useContext(EngineContext)
 	const currentQuestion = useNextQuestions()[0]
 	const situation = useSelector(situationSelector)
 	const currentQuestionIsAnswered = situation[currentQuestion] != null
@@ -77,7 +77,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				<Animate.fadeIn>
 					<div className="step">
 						<h3>
-							{rules[currentQuestion].rawNode.question}{' '}
+							{engine.getRule(currentQuestion).rawNode.question}{' '}
 							<ExplicableRule dottedName={currentQuestion} />
 						</h3>
 

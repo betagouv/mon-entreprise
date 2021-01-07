@@ -10,18 +10,16 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
 import * as logosSrc from 'Images/logos-cnavpl'
 import urssafSrc from 'Images/urssaf.svg'
-import { evaluateRule } from 'publicodes'
+import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import AidesCovid from './AidesCovid'
 
 export default function IndépendantExplanation() {
-	const engine = useEngine()
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -37,16 +35,17 @@ export default function IndépendantExplanation() {
 					<StackedBarChart
 						data={[
 							{
-								...evaluateRule(engine, 'revenu net après impôt'),
+								dottedName: 'revenu net après impôt',
 								title: t('Revenu disponible'),
 								color: palettes[0][0],
 							},
-							{ ...evaluateRule(engine, 'impôt'), color: palettes[1][0] },
 							{
-								...evaluateRule(
-									engine,
-									'dirigeant . indépendant . cotisations et contributions'
-								),
+								dottedName: 'impôt',
+								color: palettes[1][0],
+							},
+							{
+								dottedName:
+									'dirigeant . indépendant . cotisations et contributions',
 								title: t('Cotisations'),
 								color: palettes[1][1],
 							},
@@ -143,7 +142,7 @@ function CaisseRetraite() {
 		<>
 			{caisses.map((caisse) => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = evaluateRule(engine, dottedName)
+				const { description, références } = engine.getRule(dottedName).rawNode
 				return (
 					<Condition expression={dottedName} key={caisse}>
 						<div className="ui__  card box">
@@ -255,8 +254,7 @@ function DistributionBranch({
 	icon,
 	maximum,
 }: DistributionBranchProps) {
-	const rules = useContext(EngineContext).getParsedRules()
-	const branche = rules[dottedName]
+	const branche = useContext(EngineContext).getRule(dottedName)
 
 	return (
 		<BarChartBranch

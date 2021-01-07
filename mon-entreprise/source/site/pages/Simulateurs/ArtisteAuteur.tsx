@@ -7,11 +7,11 @@ import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { evaluateRule } from 'publicodes'
+import { DottedName } from 'modele-social'
+import { UNSAFE_isNotApplicable } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
@@ -64,13 +64,15 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const rule = evaluateRule(engine, dottedName)
+	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
+	const evaluation = engine.evaluate(dottedName)
+	const rule = engine.getRule(dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	if (
-		rule.isNotApplicable === true ||
+		isNotApplicable === true ||
 		(!(dottedName in situation) &&
-			rule.nodeValue === false &&
-			!(dottedName in rule.missingVariables))
+			evaluation.nodeValue === false &&
+			!(dottedName in evaluation.missingVariables))
 	) {
 		return null
 	}
@@ -81,8 +83,10 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
-							<span className="optionTitle">{rule.question || rule.title}</span>
-							<p className="ui__ notice">{rule.résumé}</p>
+							<span className="optionTitle">
+								{rule.rawNode.question || rule.title}
+							</span>
+							<p className="ui__ notice">{rule.rawNode.résumé}</p>
 						</label>
 					</div>
 					<div className="targetInputOrValue">
@@ -105,11 +109,13 @@ type WarningProps = {
 }
 
 function Warning({ dottedName }: WarningProps) {
-	const warning = evaluateRule(useContext(EngineContext), dottedName)
-	if (!warning.nodeValue) {
-		return null
-	}
-	return <li>{warning.description}</li>
+	const description = useContext(EngineContext).getRule(dottedName).rawNode
+		.description
+	return (
+		<Condition expression={dottedName}>
+			<li>{description}</li>
+		</Condition>
+	)
 }
 
 const ResultLine = styled.div`
