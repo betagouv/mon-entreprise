@@ -1,7 +1,23 @@
+import { wrap } from 'comlink'
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
-import { DottedName } from 'modele-social'
+import rules, { DottedName } from 'modele-social'
 import i18n from '../../locales/i18n'
+import EngineWorker from 'worker-loader!./EngineWorker.js'
+
+async function init() {
+	const AsyncEngine = wrap<typeof Engine>(new EngineWorker())
+	const asyncEngine = await new AsyncEngine(rules)
+	const smic = await asyncEngine.evaluate('SMIC horaire')
+	console.log('SMIC horaire: ', smic.nodeValue)
+	await asyncEngine.setSituation({
+		'contrat salarié . rémunération . brut de base': '2500 €/mois',
+	})
+	const net = await asyncEngine.evaluate('contrat salarié . rémunération . net')
+	console.log('Net: ', net.nodeValue)
+}
+
+init()
 
 export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
