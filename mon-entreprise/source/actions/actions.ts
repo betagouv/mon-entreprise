@@ -61,20 +61,6 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	} as const)
 
-export const validateStepWithValue = (
-	dottedName: DottedName,
-	value: unknown
-): ThunkResult<void> => (dispatch) => {
-	if (value !== undefined) {
-		dispatch(updateSituation(dottedName, value))
-	}
-	dispatch({
-		type: 'STEP_ACTION',
-		name: 'fold',
-		step: dottedName,
-	})
-}
-
 export const setSituationBranch = (id: number) =>
 	({
 		type: 'SET_SITUATION_BRANCH',
