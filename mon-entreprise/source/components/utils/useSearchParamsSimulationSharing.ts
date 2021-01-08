@@ -75,7 +75,7 @@ export default function useSearchParamsSimulationSharing() {
 }
 
 const objectifsOfConfig = (config: Partial<SimulationConfig>) =>
-	(config.objectifs as Objectifs).flatMap((objectifOrSection) => {
+	(config.objectifs ?? ([] as Objectifs)).flatMap((objectifOrSection) => {
 		if (typeof objectifOrSection === 'string') {
 			return [objectifOrSection]
 		}
