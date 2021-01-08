@@ -147,7 +147,10 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, entreprise . seuil de franchise de TVA dépassé"
 `;
 
-exports[`calculate simulations-impot-société: bénéfices 1`] = `"[0,0]"`;
+exports[`calculate simulations-impot-société: bénéfices 1`] = `
+"[0,0]
+Notifications affichées : entreprise . bénéfice . information sur le report de déficit"
+`;
 
 exports[`calculate simulations-impot-société: bénéfices 2`] = `"[0,0]"`;
 

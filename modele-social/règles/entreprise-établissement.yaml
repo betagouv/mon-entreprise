@@ -116,6 +116,15 @@ entreprise . bénéfice:
   résumé: Imposable à l'impôt sur les sociétés
   formule: chiffre d'affaires - charges dont rémunération dirigeant
 
+entreprise . bénéfice . information sur le report de déficit:
+  type: notification
+  formule: bénéfice < 0 €/an
+  # TODO: Support des références dans les notifications
+  description: |
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+
+    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+
 entreprise . résultat net:
   résumé: Ce qu'il reste après impôt sur les sociétés
   formule: bénéfice - impôt sur les sociétés

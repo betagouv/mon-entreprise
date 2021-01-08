@@ -5937,6 +5937,23 @@ entreprise . bénéfice:
   résumé.fr: Imposable à l'impôt sur les sociétés
   titre.en: '[automatic] Profit for the year'
   titre.fr: Bénéfice de l'exercice
+entreprise . bénéfice . information sur le report de déficit:
+  description.en: >
+    [automatic] Deficits incurred in one year can be carried forward to
+    subsequent years (carry-forward), or carried back to the previous year only
+    (carry-back).
+
+
+    [More info on service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  description.fr: >
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les
+    exercices suivants (report en avant), ou sur le seul exercice précédent
+    (report en arrière).
+
+
+    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  titre.en: '[automatic] deficit carry forward information'
+  titre.fr: information sur le report de déficit
 entreprise . catégorie d'activité:
   description.en: Your activity category will determine a large part of the
     calculations of contribution, contribution and tax.
