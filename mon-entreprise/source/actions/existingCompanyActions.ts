@@ -1,53 +1,13 @@
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
-import { fetchCompanyDetails } from '../api/sirene'
 
-const fetchCommuneDetails = function (codeCommune: string) {
-	return fetch(
-		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
-	).then((response) => {
-		return response.json()
-	})
-}
-
-export type ActionExistingCompany =
-	| ReturnType<typeof specifyIfAutoEntrepreneur>
-	| ReturnType<typeof specifyIfDirigeantMajoritaire>
-	| ReturnType<typeof resetEntreprise>
-	| {
-			type: 'EXISTING_COMPANY::SET_SIREN'
-			siren: string
-	  }
-	| {
-			type: 'EXISTING_COMPANY::SET_DETAILS'
-			catégorieJuridique: string
-			dateDeCréation: string
-	  }
-	| {
-			type: 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS'
-			details: ApiCommuneJson
-	  }
-
-export const setEntreprise = (siren: string) => async (
-	dispatch: (action: ActionExistingCompany) => void
-) => {
-	dispatch({
-		type: 'EXISTING_COMPANY::SET_SIREN',
-		siren,
-	} as ActionExistingCompany)
-	const companyDetails = await fetchCompanyDetails(siren)
-	dispatch({
-		type: 'EXISTING_COMPANY::SET_DETAILS',
-		catégorieJuridique: companyDetails.categorie_juridique,
-		dateDeCréation: companyDetails.date_creation,
-	})
-	const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
-		companyDetails.etablissement_siege.code_commune
-	)
-	dispatch({
-		type: 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS',
-		details: communeDetails,
-	} as ActionExistingCompany)
-}
+export type ActionExistingCompany = ReturnType<
+	| typeof specifyIfAutoEntrepreneur
+	| typeof specifyIfDirigeantMajoritaire
+	| typeof resetEntreprise
+	| typeof setSiren
+	| typeof setCompanyDetails
+	| typeof addCommuneDetails
+>
 
 export const specifyIfAutoEntrepreneur = (isAutoEntrepreneur: boolean) =>
 	({
@@ -66,4 +26,26 @@ export const specifyIfDirigeantMajoritaire = (
 export const resetEntreprise = () =>
 	({
 		type: 'EXISTING_COMPANY::RESET',
+	} as const)
+
+export const setSiren = (siren: string) =>
+	({
+		type: 'EXISTING_COMPANY::SET_SIREN',
+		siren,
+	} as const)
+
+export const setCompanyDetails = (
+	catégorieJuridique: string,
+	dateDeCréation: string
+) =>
+	({
+		type: 'EXISTING_COMPANY::SET_DETAILS',
+		catégorieJuridique,
+		dateDeCréation,
+	} as const)
+
+export const addCommuneDetails = (details: ApiCommuneJson) =>
+	({
+		type: 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS',
+		details,
 	} as const)
