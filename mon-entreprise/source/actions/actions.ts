@@ -1,9 +1,5 @@
-import { SitePaths } from 'Components/utils/SitePathsContext'
-import { History } from 'history'
-import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
-import { ThunkAction } from 'redux-thunk'
+import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { DottedName } from 'modele-social'
-import { deletePersistedSimulation } from '../storage/persistSimulation'
 import { CompanyStatusAction } from './companyStatusActions'
 
 export type Action =
@@ -19,13 +15,6 @@ export type Action =
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
 	| CompanyStatusAction
-
-export type ThunkResult<R = void> = ThunkAction<
-	R,
-	RootState,
-	{ history: History; sitePaths: SitePaths },
-	Action
->
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -92,15 +81,6 @@ export const updateUnit = (targetUnit: string) =>
 		type: 'UPDATE_TARGET_UNIT',
 		targetUnit,
 	} as const)
-
-export const goBackToSimulation = (): ThunkResult<void> => (
-	_,
-	getState,
-	{ history }
-) => {
-	const url = getState().simulation?.url
-	url && history.push(url)
-}
 
 export function loadPreviousSimulation() {
 	return {

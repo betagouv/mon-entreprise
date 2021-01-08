@@ -11361,11 +11361,6 @@ redux-sentry-middleware@^0.1.8:
   resolved "https://registry.yarnpkg.com/redux-sentry-middleware/-/redux-sentry-middleware-0.1.8.tgz#29f71821c1fb87d4ebcb8f76067fea3c3738a64c"
   integrity sha512-xubpYH9RgE31tZUESeRW5agwQa19Yd6Gy+4iO09raW/2TITPO5fhJdXpVwJfpGMbIYhEmHFqE2wD5Lnz7YtAeA==
 
-redux-thunk@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
-  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
-
 redux@>=3.7.2, redux@^4.0.0, redux@^4.0.4:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"

@@ -5,16 +5,14 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
+import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
 import Animate from 'Components/ui/animate'
 import créerSvg from './créer.svg'
 
 export default function Créer() {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-	const nextQuestionUrl = useSelector((state: RootState) =>
-		nextQuestionUrlSelector(state, { sitePaths })
-	)
+	const nextQuestionUrl = useNextQuestionUrl()
 	const guideAlreadyStarted = useSelector(
 		(state: RootState) =>
 			!!Object.keys(state.inFranceApp.companyLegalStatus).length
