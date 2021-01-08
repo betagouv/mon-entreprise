@@ -1,4 +1,3 @@
-import { setSimulationConfig } from 'Actions/actions'
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur,
@@ -19,6 +18,7 @@ import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
 import { engineOptions, useEngine } from './utils/EngineContext'
 import { DottedName } from 'modele-social'
+import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -29,10 +29,8 @@ export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
+	useSimulationConfig(dirigeantComparaison)
 	const dispatch = useDispatch()
-	useEffect(() => {
-		dispatch(setSimulationConfig(dirigeantComparaison))
-	}, [])
 	const engine = useEngine()
 	const plafondAutoEntrepreneurDépassé =
 		engine.evaluate(

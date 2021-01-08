@@ -1,6 +1,6 @@
 import { SitePaths } from 'Components/utils/SitePathsContext'
 import { History } from 'history'
-import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'modele-social'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
@@ -34,17 +34,11 @@ type StepAction = {
 	step: DottedName
 }
 
-type SetSimulationConfigAction = {
-	type: 'SET_SIMULATION'
-	url: string
-	config: SimulationConfig
-	useCompanyDetails: boolean
-}
-
 type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
+type SetSimulationConfigAction = ReturnType<typeof setSimulationConfig>
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
 type UpdateSituationAction = ReturnType<typeof updateSituation>
@@ -89,19 +83,15 @@ export const setSituationBranch = (id: number) =>
 
 export const setSimulationConfig = (
 	config: SimulationConfig,
-	useCompanyDetails = false
-): ThunkResult<void> => (dispatch, getState, { history }): void => {
-	if (getState().simulation?.config === config) {
-		return
-	}
-	const url = history.location.pathname
-	dispatch({
+	url: string,
+	initialSituation?: Situation
+) =>
+	({
 		type: 'SET_SIMULATION',
 		url,
-		useCompanyDetails,
 		config,
-	})
-}
+		initialSituation,
+	} as const)
 
 export const setActiveTarget = (targetName: DottedName) =>
 	({
