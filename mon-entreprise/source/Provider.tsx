@@ -9,7 +9,6 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
-import thunk from 'redux-thunk'
 import Tracker from './Tracker'
 import { inIframe } from './utils'
 
@@ -57,7 +56,7 @@ export type ProviderProps = {
 export default function Provider({
 	tracker = new Tracker(),
 	basename,
-	reduxMiddlewares,
+	reduxMiddlewares = [],
 	initialStore,
 	onStoreCreated,
 	children,
@@ -77,16 +76,7 @@ export default function Provider({
 		}
 	})
 
-	const storeEnhancer = composeEnhancers(
-		applyMiddleware(
-			// Allows us to painlessly do route transition in action creators
-			thunk.withExtraArgument({
-				history,
-				sitePaths,
-			}),
-			...(reduxMiddlewares ?? [])
-		)
-	)
+	const storeEnhancer = applyMiddleware(...reduxMiddlewares)
 
 	// Hack: useMemo is used to persist the store across hot reloads.
 	const store = useMemo(() => {

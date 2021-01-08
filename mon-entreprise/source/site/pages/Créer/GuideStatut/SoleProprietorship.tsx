@@ -1,10 +1,12 @@
-import { isSoleProprietorship } from 'Actions/companyStatusActions'
+import {
+	isSoleProprietorship,
+	useDispatchAndGoToNextQuestion,
+} from 'Actions/companyStatusActions'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 
 export default function SoleProprietorship() {
-	const dispatch = useDispatch()
+	const dispatch = useDispatchAndGoToNextQuestion()
 	const { t } = useTranslation()
 	return (
 		<>

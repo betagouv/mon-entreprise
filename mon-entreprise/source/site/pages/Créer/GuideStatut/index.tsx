@@ -1,9 +1,9 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { toPairs } from 'ramda'
+import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
 import Animate from 'Components/ui/animate'
 import AutoEntrepreneur from './AutoEntrepreneur'
@@ -13,11 +13,15 @@ import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
 import PreviousAnswers from './PreviousAnswers'
 import SoleProprietorship from './SoleProprietorship'
+import { RootState } from 'Reducers/rootReducer'
 
 const useResetFollowingAnswers = () => {
 	const dispatch = useDispatch()
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
+	const answeredQuestion = useSelector((state: RootState) =>
+		Object.keys(state.inFranceApp.companyLegalStatus)
+	)
 	useEffect(() => {
 		const companyStatusCurrentQuestionName = (toPairs(
 			sitePaths.créer.guideStatut
@@ -25,7 +29,15 @@ const useResetFollowingAnswers = () => {
 		if (!companyStatusCurrentQuestionName) {
 			return
 		}
-		dispatch(resetCompanyStatusChoice(companyStatusCurrentQuestionName))
+
+		const answersToReset = dropWhile(
+			(a) => a !== companyStatusCurrentQuestionName,
+			answeredQuestion
+		)
+		if (!answersToReset.length) {
+			return
+		}
+		dispatch(resetCompanyStatusChoice(answersToReset))
 	}, [location.pathname, dispatch, sitePaths.créer.guideStatut])
 }
 

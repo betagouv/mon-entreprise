@@ -1,11 +1,13 @@
-import { directorIsInAMinority } from 'Actions/companyStatusActions'
+import {
+	directorIsInAMinority,
+	useDispatchAndGoToNextQuestion,
+} from 'Actions/companyStatusActions'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 
 export default function MinorityDirector() {
 	const { t } = useTranslation()
-	const dispatch = useDispatch()
+	const dispatch = useDispatchAndGoToNextQuestion()
 	return (
 		<>
 			<Helmet>

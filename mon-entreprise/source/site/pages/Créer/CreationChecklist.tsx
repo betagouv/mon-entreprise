@@ -2,7 +2,7 @@ import {
 	checkCompanyCreationItem,
 	initializeCompanyCreationChecklist,
 } from 'Actions/companyCreationChecklistActions'
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
+import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -10,7 +10,7 @@ import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import GuideAutoEntrepreneurUrl from './Guide_Auto-Entrepreneur.pdf'
@@ -30,6 +30,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		(state: RootState) => state.inFranceApp.companyCreationChecklist
 	)
 	const dispatch = useDispatch()
+	const history = useHistory()
 
 	// TODO : add this logic inside selector
 	const isAutoentrepreneur = statut.startsWith('auto-entrepreneur')
@@ -77,7 +78,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			<Scroll.toTop />
 			<div css="transform: translateY(2rem);">
 				<button
-					onClick={() => dispatch(goToCompanyStatusChoice())}
+					onClick={() => {
+						dispatch(resetCompanyStatusChoice())
+						history.push(sitePaths.créer.index)
+					}}
 					className="ui__ simple small push-left button"
 				>
 					<Trans i18nKey="entreprise.retour">← Choisir un autre statut</Trans>

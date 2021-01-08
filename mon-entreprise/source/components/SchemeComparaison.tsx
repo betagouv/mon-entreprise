@@ -1,6 +1,7 @@
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur,
+	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
@@ -12,7 +13,7 @@ import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
@@ -30,7 +31,7 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
 	useSimulationConfig(dirigeantComparaison)
-	const dispatch = useDispatch()
+	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
 	const plafondAutoEntrepreneurDépassé =
 		engine.evaluate(

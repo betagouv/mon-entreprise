@@ -1,4 +1,4 @@
-import { SitePaths } from 'Components/utils/SitePathsContext'
+import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import {
 	add,
 	any,
@@ -12,6 +12,8 @@ import {
 	mergeWith,
 	sortBy,
 } from 'ramda'
+import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatusRequirements, State } from '../types/companyTypes'
 
@@ -167,11 +169,9 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 	return sortedPossibleNextQuestions[0]
 }
 
-export const nextQuestionUrlSelector = (
-	state: RootState,
-	{ sitePaths }: { sitePaths: SitePaths }
-) => {
-	const nextQuestion = nextQuestionSelector(state)
+export const useNextQuestionUrl = () => {
+	const nextQuestion = useSelector(nextQuestionSelector)
+	const sitePaths = useContext(SitePathsContext)
 	if (!nextQuestion) {
 		return sitePaths.créer.guideStatut.liste
 	}
