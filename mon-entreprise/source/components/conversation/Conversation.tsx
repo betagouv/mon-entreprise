@@ -1,8 +1,4 @@
-import {
-	goToQuestion,
-	updateSituation,
-	validateStepWithValue,
-} from 'Actions/actions'
+import { goToQuestion, updateSituation } from 'Actions/actions'
 import RuleInput, { RuleInputProps } from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
@@ -36,25 +32,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-
 	const setDefault = () =>
-		dispatch(
-			// TODO: Skiping a question shouldn't be equivalent to answering the
-			// default value (for instance the question shouldn't appear in the
-			// answered questions).
-			validateStepWithValue(
-				currentQuestion, //TODO
-				undefined
-			)
-		)
-	// TODO: Skiping a question shouldn't be equivalent to answering the
-	// default value (for instance the question shouldn't appear in the
-	// answered questions).
-	dispatch({
-		type: 'STEP_ACTION',
-		name: 'fold',
-		step: currentQuestion,
-	})
+		// TODO: Skiping a question shouldn't be equivalent to answering the
+		// default value (for instance the question shouldn't appear in the
+		// answered questions).
+		dispatch({
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: currentQuestion,
+		})
 
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
