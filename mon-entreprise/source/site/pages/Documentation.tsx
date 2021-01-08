@@ -5,16 +5,20 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
-import { useCallback, useContext, useMemo } from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import SearchBar from 'Components/SearchBar'
+import { ThemeColorsProvider } from 'Components/utils/colors'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
+	)
+	const documentationColor = useSelector(
+		(state: RootState) => state.simulation?.config.color
 	)
 	const engine = useEngine()
 	const documentationPath = useContext(SitePathsContext).documentation.index
@@ -34,23 +38,25 @@ export default function RulePage() {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop key={pathname} />
-			<div
-				css={`
-					display: flex;
-					margin-top: 2rem;
-					justify-content: space-between;
-				`}
-			>
-				{currentSimulation ? <BackToSimulation /> : <span />}
-				<SearchButton key={pathname} />
-			</div>
-			<Documentation
-				language={i18n.language as 'fr' | 'en'}
-				engine={engine}
-				documentationPath={documentationPath}
-				referenceImages={referencesImages}
-			/>
-			{/* <button>Voir l</button> */}
+			<ThemeColorsProvider color={documentationColor}>
+				<div
+					css={`
+						display: flex;
+						margin-top: 2rem;
+						justify-content: space-between;
+					`}
+				>
+					{currentSimulation ? <BackToSimulation /> : <span />}
+					<SearchButton key={pathname} />
+				</div>
+				<Documentation
+					language={i18n.language as 'fr' | 'en'}
+					engine={engine}
+					documentationPath={documentationPath}
+					referenceImages={referencesImages}
+				/>
+				{/* <button>Voir l</button> */}
+			</ThemeColorsProvider>
 		</Animate.fromBottom>
 	)
 }

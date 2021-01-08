@@ -78,6 +78,7 @@ export default function Simulateurs() {
 					<Trans>Autres outils</Trans>
 				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
+					<SimulateurCard {...simulators['is']} />
 					{language === 'fr' && (
 						<SimulateurCard {...simulators['demande-mobilité']} />
 					)}

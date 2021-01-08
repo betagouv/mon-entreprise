@@ -69,6 +69,7 @@ const sitePathsFr = {
 			index: '/économie-collaborative',
 			votreSituation: '/votre-situation',
 		},
+		is: '/impot-societe',
 	},
 	nouveautés: '/nouveautés',
 	stats: '/stats',
@@ -128,6 +129,7 @@ const sitePathsEn = {
 			index: '/sharing-economy',
 			votreSituation: '/your-situation',
 		},
+		is: '/corporate-tax',
 	},
 	nouveautés: '/news',
 	integration: {

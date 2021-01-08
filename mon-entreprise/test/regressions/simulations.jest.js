@@ -21,6 +21,7 @@ import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
+import impotSocieteSituations from './simulations-impôt-société.yaml'
 import employeeSituations from './simulations-salarié.yaml'
 import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 
@@ -149,4 +150,11 @@ it('calculate simulations-professions-libérales', () => {
 			"entreprise . catégorie d'activité . libérale règlementée": 'oui',
 		}
 	)
+})
+
+it('calculate simulations-impot-société', () => {
+	runSimulations(impotSocieteSituations, [
+		'entreprise . impôt sur les sociétés',
+		'entreprise . impôt sur les sociétés . contribution sociale',
+	])
 })

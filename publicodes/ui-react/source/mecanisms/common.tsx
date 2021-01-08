@@ -51,25 +51,28 @@ type NodeValuePointerProps = {
 	unit: Unit | undefined
 }
 
-export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
-	<small
-		className="nodeValue"
-		style={{
-			background: 'white',
-			borderBottom: '0 !important',
-			margin: '0 0.2rem',
-			padding: '0 0.2rem',
-			textDecoration: 'none !important',
-			boxShadow: '0px 1px 2px 1px #d9d9d9, 0 0 0 1px #d9d9d9',
-			lineHeight: '1.6em',
-			borderRadius: '0.2rem',
-		}}
-	>
-		{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
-			language: 'fr',
-		})}
-	</small>
-)
+export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => {
+	const engine = useContext(EngineContext)
+	return (
+		<small
+			className="nodeValue"
+			style={{
+				background: 'white',
+				borderBottom: '0 !important',
+				margin: '0 0.2rem',
+				padding: '0 0.2rem',
+				textDecoration: 'none !important',
+				boxShadow: '0px 1px 2px 1px #d9d9d9, 0 0 0 1px #d9d9d9',
+				lineHeight: '1.6em',
+				borderRadius: '0.2rem',
+			}}
+		>
+			{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
+				formatUnit: engine?.options?.formatUnit,
+			})}
+		</small>
+	)
+}
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 type NodeProps = {

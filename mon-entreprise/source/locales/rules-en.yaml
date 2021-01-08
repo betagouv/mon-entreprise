@@ -2580,8 +2580,6 @@ contrat salarié . prix du travail:
   résumé.fr: Dépensé par l'entreprise
   titre.en: labor cost
   titre.fr: Coût total
-  identifiant court.en: employee-laborcost
-  identifiant court.fr: salarie-coutembauche
 contrat salarié . profession spécifique:
   question.en: '[automatic] Does the employee work in one of the following professions?'
   question.fr: Le salarié exerce t-il l'une des professions suivantes ?
@@ -3046,8 +3044,6 @@ contrat salarié . rémunération . brut de base:
   suggestions.salaire médian.fr: salaire médian
   titre.en: Gross salary
   titre.fr: Salaire brut
-  identifiant court.en: employee-brut
-  identifiant court.fr: salarie-brut
 contrat salarié . rémunération . brut de base . équivalent temps plein:
   question.en: What is the full-time equivalent salary?
   question.fr: Quel est le salaire en équivalent temps plein ?
@@ -3105,8 +3101,6 @@ contrat salarié . rémunération . net:
   résumé.fr: Salaire net avant impôt
   titre.en: Net salary
   titre.fr: Salaire net
-  identifiant court.en: employee-net
-  identifiant court.fr: salarie-net
 contrat salarié . rémunération . net après impôt:
   description.en: >-
     Net salary after deduction of the **neutral** income tax (also called
@@ -3132,8 +3126,6 @@ contrat salarié . rémunération . net après impôt:
   résumé.fr: Versé sur le compte bancaire
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
-  identifiant court.en: employee-netaftertax
-  identifiant court.fr: salarie-netapresimpot
 contrat salarié . rémunération . net avec revenus de remplacement:
   titre.en: '[automatic] net with replacement income'
   titre.fr: net avec revenus de remplacement
@@ -3292,8 +3284,6 @@ contrat salarié . rémunération . total:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
   titre.fr: Total chargé
-  identifiant court.fr: salarie-total
-  identifiant court.en: employee-total
 contrat salarié . salarié majeur:
   question.en: Is the employee over 18 (age of majority)?
   question.fr: Le salarié est-il majeur ?
@@ -3989,8 +3979,6 @@ dirigeant . auto-entrepreneur . net après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   titre.en: net income after tax
   titre.fr: revenu net après impôt
-  identifiant court.en: auto-entrepreneur-netaftertax
-  identifiant court.fr: auto-entrepreneur-netapresimpot
 dirigeant . auto-entrepreneur . net de cotisations:
   description.en:
     This is the income net of contributions and expenses, before the
@@ -4003,8 +3991,6 @@ dirigeant . auto-entrepreneur . net de cotisations:
   résumé.fr: Avant impôt
   titre.en: Net contribution income
   titre.fr: Revenu net de cotisations
-  identifiant court.en: auto-entrepreneur-net
-  identifiant court.fr: auto-entrepreneur-net
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   description.en: >
     [automatic] The ACRE rate used is the one corresponding to the current
@@ -5776,8 +5762,6 @@ dirigeant . indépendant . revenu net de cotisations:
   résumé.fr: Avant déduction de l'impôt sur le revenu
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
-  identifiant court.en: independant-net
-  identifiant court.fr: independant-net
 dirigeant . indépendant . revenu professionnel:
   description.en: >
     This is the income net of deductible contributions of the self-employed
@@ -5858,8 +5842,6 @@ dirigeant . rémunération totale:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Director total income
   titre.fr: rémunération totale
-  identifiant court.en: director-total
-  identifiant court.fr: dirigeant-total
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -5951,8 +5933,27 @@ entreprise . auto entreprise impossible:
   titre.en: auto enterprise impossible
   titre.fr: auto entreprise impossible
 entreprise . bénéfice:
-  titre.en: profit
-  titre.fr: bénéfice
+  résumé.en: '[automatic] Taxable for corporate income tax purposes'
+  résumé.fr: Imposable à l'impôt sur les sociétés
+  titre.en: '[automatic] Profit for the year'
+  titre.fr: Bénéfice de l'exercice
+entreprise . bénéfice . information sur le report de déficit:
+  description.en: >
+    [automatic] Deficits incurred in one year can be carried forward to
+    subsequent years (carry-forward), or carried back to the previous year only
+    (carry-back).
+
+
+    [More info on service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  description.fr: >
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les
+    exercices suivants (report en avant), ou sur le seul exercice précédent
+    (report en arrière).
+
+
+    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  titre.en: '[automatic] deficit carry forward information'
+  titre.fr: information sur le report de déficit
 entreprise . catégorie d'activité:
   description.en: Your activity category will determine a large part of the
     calculations of contribution, contribution and tax.
@@ -6164,8 +6165,6 @@ entreprise . charges:
   résumé.fr: Toutes les dépenses nécessaires à l'entreprise
   titre.en: expenses
   titre.fr: charges de fonctionnement
-  identifiant court.en: company-expenses
-  identifiant court.fr: entreprise-charges
 entreprise . charges dont rémunération dirigeant:
   titre.en: expenses of which executive compensation
   titre.fr: charges dont rémunération dirigeant
@@ -6176,8 +6175,6 @@ entreprise . chiffre d'affaires:
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
-  identifiant court.en: company-turnover
-  identifiant court.fr: entreprise-ca
 entreprise . chiffre d'affaires de société:
   titre.en: company turnover
   titre.fr: chiffre d'affaires de société
@@ -6191,8 +6188,6 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
-  identifiant court.en: company-turnover-min
-  identifiant court.fr: entreprise-ca-min
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
@@ -6286,6 +6281,44 @@ entreprise . effectif . seuil . moins de 50:
 entreprise . effectif . seuil . plus de 250:
   titre.en: '[automatic] 251 and more'
   titre.fr: 251 et plus
+entreprise . exercice:
+  titre.en: '[automatic] exercise'
+  titre.fr: exercice
+entreprise . exercice . date trop ancienne:
+  description.en:
+    '[automatic] The date entered is too old. The simulator does not
+    integrate the scales until 2018.'
+  description.fr: La date saisie est trop ancienne. Le simulateur n'intègre pas
+    les barèmes avant 2018.
+  titre.en: '[automatic] too old date'
+  titre.fr: date trop ancienne
+entreprise . exercice . date trop éloignée:
+  description.en: '[automatic] The date entered is too far in the future. The
+    simulator does not integrate scales beyond 2022.'
+  description.fr: La date saisie est trop éloignée. Le simulateur n'intègre pas
+    les barèmes au delà de 2022.
+  titre.en: '[automatic] date too far in the future'
+  titre.fr: date trop éloignée
+entreprise . exercice . durée:
+  titre.en: '[automatic] fiscal year'
+  titre.fr: durée de l'exercice
+entreprise . exercice . durée maximale:
+  description.en: '[automatic] The maximum length of a fiscal year is 24 months.'
+  description.fr: La durée maximale d'un exercice comptable est de 24 mois.
+  titre.en: '[automatic] maximal duration'
+  titre.fr: durée maximale
+entreprise . exercice . début:
+  titre.en: '[automatic] start'
+  titre.fr: début
+entreprise . exercice . début après la fin:
+  description.en: '[automatic] The end of the fiscal year must be after the
+    beginning of the fiscal year.'
+  description.fr: La fin de l'exercice doit être postérieure à son début.
+  titre.en: '[automatic] start after completion'
+  titre.fr: début après la fin
+entreprise . exercice . fin:
+  titre.en: '[automatic] end'
+  titre.fr: fin
 entreprise . franchise de TVA:
   description.en: |
     [automatic] The VAT exemption is a device that exempts businesses from the
@@ -6351,6 +6384,41 @@ entreprise . imposition . IS . notification IS non intégré:
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
+entreprise . impôt sur les sociétés . contribution sociale:
+  description.en: >
+    [automatic] The social contribution on profits is a tax separate from the
+    corporate tax. Its amount is not deductible from profits.
+
+
+    The tax base benefits from a significant reduction, and only companies making more than EUR 2,3 million in profits are concerned by this contribution.
+  description.fr: >
+    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
+    sur les sociétés. Son montant n’est pas déductible des résultats.
+
+
+    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
+  titre.en: '[automatic] social contribution'
+  titre.fr: contribution sociale
+entreprise . impôt sur les sociétés . plafond taux réduit 1:
+  titre.en: '[automatic] ceiling reduced rate 1'
+  titre.fr: plafond taux réduit 1
+entreprise . impôt sur les sociétés . plafond taux réduit 2:
+  titre.en: '[automatic] ceiling reduced rate 2'
+  titre.fr: plafond taux réduit 2
+entreprise . impôt sur les sociétés . prorata temporis:
+  description.en: >
+    [automatic] When the duration of the fiscal year is not equal to one year,
+    we pro-rate the
+
+    ceilings used in the corporate tax scale.
+  description.fr: |
+    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+  titre.en: '[automatic] prorata temporis'
+  titre.fr: prorata temporis
+entreprise . impôt sur les sociétés . éligible taux réduit:
+  titre.en: '[automatic] eligible reduced rate'
+  titre.fr: éligible taux réduit
 entreprise . non assujettie à TVA:
   description.en: >
     [automatic] Some businesses are not subject to VAT. 
@@ -7264,8 +7332,6 @@ revenu net après impôt:
   résumé.fr: Disponible sur votre compte en banque
   titre.en: Net income after tax
   titre.fr: revenu net après impôt
-  identifiant court.en: netaftertax
-  identifiant court.fr: netapresimpot
 revenus net de cotisations:
   description.en: |
     l'impôt sur le revenu.
