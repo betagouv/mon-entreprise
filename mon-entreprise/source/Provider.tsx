@@ -76,7 +76,7 @@ export default function Provider({
 		}
 	})
 
-	const storeEnhancer = applyMiddleware(...reduxMiddlewares)
+	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
 
 	// Hack: useMemo is used to persist the store across hot reloads.
 	const store = useMemo(() => {

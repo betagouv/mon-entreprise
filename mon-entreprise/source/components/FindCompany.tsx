@@ -1,10 +1,26 @@
-import { setEntreprise } from 'Actions/existingCompanyActions'
+import {
+	addCommuneDetails,
+	setCompanyDetails,
+	setSiren,
+} from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
+import {
+	Etablissement,
+	fetchCompanyDetails,
+	searchDenominationOrSiren,
+} from '../api/sirene'
 import { debounce } from '../utils'
+import { ApiCommuneJson } from './conversation/select/SelectCommune'
+
+const fetchCommuneDetails = async function (codeCommune: string) {
+	const response = await fetch(
+		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
+	)
+	return await response.json()
+}
 
 export default function Search() {
 	const [
@@ -26,6 +42,21 @@ export default function Search() {
 		handleSearch,
 	])
 	const dispatch = useDispatch()
+
+	const setEntreprise = async (siren: string) => {
+		dispatch(setSiren(siren))
+		const companyDetails = await fetchCompanyDetails(siren)
+		dispatch(
+			setCompanyDetails(
+				companyDetails.categorie_juridique,
+				companyDetails.date_creation
+			)
+		)
+		const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
+			companyDetails.etablissement_siege.code_commune
+		)
+		dispatch(addCommuneDetails(communeDetails))
+	}
 	return (
 		<>
 			<h1>
@@ -77,7 +108,7 @@ export default function Search() {
 			{searchResults &&
 				searchResults.map(({ siren, denomination }) => (
 					<button
-						onClick={() => dispatch(setEntreprise(siren))}
+						onClick={() => setEntreprise(siren)}
 						key={siren}
 						css={`
 							text-align: left;

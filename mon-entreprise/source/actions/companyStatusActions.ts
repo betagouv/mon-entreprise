@@ -1,54 +1,32 @@
-import { dropWhile } from 'ramda'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
-import { Action, ThunkResult } from './actions'
+import { Action } from './actions'
 
-export type CompanyStatusAction =
-	| CompanyIsSoleProprietorshipAction
-	| DefineDirectorStatusAction
-	| MultipleAssociatesAction
-	| CompanyIsMicroentrepriseAction
-	| SpecifyDirectorsShareAction
-	| ResetCompanyStatusChoiceAction
+export type CompanyStatusAction = ReturnType<
+	| typeof isSoleProprietorship
+	| typeof defineDirectorStatus
+	| typeof companyHasMultipleAssociates
+	| typeof isAutoentrepreneur
+	| typeof directorIsInAMinority
+	| typeof resetCompanyStatusChoice
+>
 
-type CompanyIsSoleProprietorshipAction = {
-	type: 'COMPANY_IS_SOLE_PROPRIETORSHIP'
-	isSoleProprietorship?: boolean
-}
-
-type DefineDirectorStatusAction = {
-	type: 'DEFINE_DIRECTOR_STATUS'
-	status: DirectorStatus
-}
-
-type MultipleAssociatesAction = {
-	type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES'
-	multipleAssociates?: boolean
-}
-
-type CompanyIsMicroentrepriseAction = {
-	type: 'COMPANY_IS_MICROENTERPRISE'
-	autoEntrepreneur?: boolean
-}
-
-type SpecifyDirectorsShareAction = {
-	type: 'SPECIFY_DIRECTORS_SHARE'
-	minorityDirector?: boolean
-}
-
-type ResetCompanyStatusChoiceAction = {
-	type: 'RESET_COMPANY_STATUS_CHOICE'
-	answersToReset?: string[]
-}
-
+// This feels hacky, we should express this "dispatch and navigate" in another way
 export const useDispatchAndGoToNextQuestion = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const nextQuestion = useNextQuestionUrl()
+	const [dispatched, setDispatched] = useState(false)
+	useEffect(() => {
+		if (dispatched) {
+			history.push(nextQuestion)
+		}
+	}, [dispatched])
 	return (action: Action) => {
 		dispatch(action)
-		history.push(nextQuestion)
+		setDispatched(true)
 	}
 }
 

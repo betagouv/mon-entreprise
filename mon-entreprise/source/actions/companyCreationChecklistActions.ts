@@ -1,14 +1,7 @@
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 
-export type Action =
-	| InitializeCompanyCreationChecklistAction
-	| CheckCompanyCreationItemAction
-
-type InitializeCompanyCreationChecklistAction = ReturnType<
-	typeof initializeCompanyCreationChecklist
->
-type CheckCompanyCreationItemAction = ReturnType<
-	typeof checkCompanyCreationItem
+export type CompanyCreationAction = ReturnType<
+	typeof initializeCompanyCreationChecklist | typeof checkCompanyCreationItem
 >
 
 export const initializeCompanyCreationChecklist = (

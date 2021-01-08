@@ -1,37 +1,29 @@
 import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { DottedName } from 'modele-social'
+import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'
+import { ActionExistingCompany } from './existingCompanyActions'
+import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
-	| ResetSimulationAction
-	| StepAction
-	| UpdateAction
-	| SetSimulationConfigAction
-	| ExplainVariableAction
-	| UpdateSituationAction
-	| HideNotificationAction
-	| LoadPreviousSimulationAction
-	| SetSituationBranchAction
-	| UpdateTargetUnitAction
-	| SetActiveTargetAction
+	| ReturnType<
+			| typeof explainVariable
+			| typeof goToQuestion
+			| typeof hideNotification
+			| typeof loadPreviousSimulation
+			| typeof resetSimulation
+			| typeof setActiveTarget
+			| typeof setSimulationConfig
+			| typeof setSituationBranch
+			| typeof stepAction
+			| typeof updateSituation
+			| typeof updateSituation
+			| typeof updateUnit
+	  >
+	| CompanyCreationAction
 	| CompanyStatusAction
-
-type StepAction = {
-	type: 'STEP_ACTION'
-	name: 'fold' | 'unfold'
-	step: DottedName
-}
-
-type SetSimulationConfigAction = ReturnType<typeof setSimulationConfig>
-type ResetSimulationAction = ReturnType<typeof resetSimulation>
-type UpdateAction = ReturnType<typeof updateSituation>
-type UpdateSituationAction = ReturnType<typeof updateSituation>
-type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
-type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
-type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
-type HideNotificationAction = ReturnType<typeof hideNotification>
-type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
+	| ActionExistingCompany
+	| HiringChecklistAction
 
 export const resetSimulation = () =>
 	({
@@ -43,6 +35,14 @@ export const goToQuestion = (question: DottedName) =>
 		type: 'STEP_ACTION',
 		name: 'unfold',
 		step: question,
+	} as const)
+
+export const stepAction = (step: DottedName, source?: string) =>
+	({
+		type: 'STEP_ACTION',
+		name: 'fold',
+		step,
+		source,
 	} as const)
 
 export const setSituationBranch = (id: number) =>

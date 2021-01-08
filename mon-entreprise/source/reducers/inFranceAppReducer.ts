@@ -1,20 +1,9 @@
-import { Action as CreationChecklistAction } from 'Actions/companyCreationChecklistActions'
-import { ActionExistingCompany } from 'Actions/existingCompanyActions'
-import { Action as HiringChecklist } from 'Actions/hiringChecklistAction'
+import { Action } from 'Actions/actions'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
-import {
-	Action as CompanyStatusAction,
-	LegalStatusRequirements,
-} from 'Types/companyTypes'
-
-type Action =
-	| CompanyStatusAction
-	| CreationChecklistAction
-	| HiringChecklist
-	| ActionExistingCompany
+import { LegalStatusRequirements } from 'Types/companyTypes'
 
 function companyLegalStatus(
 	state: LegalStatusRequirements = {},
