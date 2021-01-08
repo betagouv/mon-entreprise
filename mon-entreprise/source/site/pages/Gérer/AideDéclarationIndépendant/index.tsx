@@ -1,4 +1,4 @@
-import { setSimulationConfig, updateSituation } from 'Actions/actions'
+import { updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
@@ -11,6 +11,7 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext, useEffect } from 'react'
@@ -24,15 +25,13 @@ import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 
 export default function AideDéclarationIndépendant() {
+	useSimulationConfig(simulationConfig)
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
-	useEffect(() => {
-		dispatch(setSimulationConfig(simulationConfig, true))
-	}, [dispatch])
 
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
 		threshold: 0.5,

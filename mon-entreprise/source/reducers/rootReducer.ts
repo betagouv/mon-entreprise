@@ -7,6 +7,8 @@ import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
+import { Names } from 'modele-social/dist/names'
+import { getCompanySituation } from 'Components/utils/useSimulationConfig'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -48,18 +50,18 @@ type QuestionsKind =
 	| 'liste'
 	| 'liste noire'
 
-export type SimulationConfig = {
-	objectifs?:
+export type SimulationConfig = Partial<{
+	objectifs:
 		| Array<DottedName>
 		| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
 	'objectifs cachés'?: Array<DottedName>
 	situation: Simulation['situation']
-	bloquant?: Array<DottedName>
-	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
-	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
+	bloquant: Array<DottedName>
+	questions: Partial<Record<QuestionsKind, Array<DottedName>>>
+	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
 	'unité par défaut': string
-	color?: string
-}
+	color: string
+}>
 
 export type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
@@ -72,44 +74,25 @@ export type Simulation = {
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 }
-function getCompanySituation(company: Company | null): Situation {
-	return {
-		...(company?.localisation && {
-			'établissement . localisation': { objet: company.localisation },
-		}),
-		...(company?.dateDeCréation && {
-			'entreprise . date de création': company.dateDeCréation.replace(
-				/(.*)-(.*)-(.*)/,
-				'$3/$2/$1'
-			),
-		}),
-	}
-}
 
 function simulation(
 	state: Simulation | null = null,
-	action: Action,
-	existingCompany: Company
+	action: Action
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
-		if (state && state.config === action.config) {
-			return state
-		}
-		const companySituation = action.useCompanyDetails
-			? getCompanySituation(existingCompany)
-			: {}
-		const { config, url } = action
+		const { config, url, initialSituation } = action
 		return {
 			config,
 			url,
 			hiddenNotifications: [],
-			situation: companySituation,
-			initialSituation: companySituation,
+			situation: initialSituation ?? {},
+			initialSituation: initialSituation ?? {},
 			targetUnit: config['unité par défaut'] || '€/mois',
-			foldedSteps: Object.keys(companySituation) as Array<DottedName>,
+			foldedSteps: Object.keys(initialSituation ?? {}) as Array<Names>,
 			unfoldedStep: null,
 		}
 	}
+
 	if (state === null) {
 		return state
 	}
@@ -188,22 +171,19 @@ const existingCompanyReducer = (state: RootState, action: Action) => {
 	}
 	return state
 }
-const mainReducer = (state: any, action: Action) =>
-	combineReducers({
-		explainedVariable,
-		// We need to access the `rules` in the simulation reducer
-		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
-			simulation(a, b, state?.inFranceApp?.existingCompany),
-		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
-		situationBranch,
-		activeTargetInput,
-		inFranceApp: inFranceAppReducer,
-	})(state, action)
+const mainReducer = combineReducers({
+	explainedVariable,
+	simulation,
+	previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
+	situationBranch,
+	activeTargetInput,
+	inFranceApp: inFranceAppReducer,
+})
 
 export default reduceReducers<RootState>(
-	mainReducer as any,
-	existingCompanyReducer as any,
-	storageRootReducer as any
+	mainReducer,
+	existingCompanyReducer as Reducer<RootState>,
+	storageRootReducer as Reducer<RootState>
 ) as Reducer<RootState>
 
 export type RootState = ReturnType<typeof mainReducer>

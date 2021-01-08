@@ -36,6 +36,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
+
 	const setDefault = () =>
 		dispatch(
 			// TODO: Skiping a question shouldn't be equivalent to answering the
@@ -46,6 +47,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				undefined
 			)
 		)
+	// TODO: Skiping a question shouldn't be equivalent to answering the
+	// default value (for instance the question shouldn't appear in the
+	// answered questions).
+	dispatch({
+		type: 'STEP_ACTION',
+		name: 'fold',
+		step: currentQuestion,
+	})
+
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 

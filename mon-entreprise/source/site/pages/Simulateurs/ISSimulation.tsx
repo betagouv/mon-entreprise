@@ -1,4 +1,4 @@
-import { setSimulationConfig, updateSituation } from 'Actions/actions'
+import { updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import Value from 'Components/EngineValue'
 import Notifications from 'Components/Notifications'
@@ -6,27 +6,20 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { useContext, useEffect } from 'react'
+import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 
-const config = {
-	color: '',
-	'unité par défaut': '€/an',
-	situation: {},
-}
 export default function ISSimulation() {
-	const dispatch = useDispatch()
 	const { color } = useContext(ThemeColorsContext)
-	useEffect(() => {
-		// HACK The config is mutated to avoid reseting the situation everytime the
-		// component is loaded. `setSimulationConfig` relies on config object
-		// equality. The `setSimulationConfig` design should be improved.
-		config.color = color
-		dispatch(setSimulationConfig(config))
-	}, [])
+	useSimulationConfig({
+		color,
+		'unité par défaut': '€/an',
+		situation: {},
+	})
 
 	return (
 		<>

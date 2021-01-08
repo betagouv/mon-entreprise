@@ -1,4 +1,4 @@
-import { setSimulationConfig } from 'Actions/actions'
+import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DistributionBranch } from 'Components/Distribution'
 import Value, { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -16,10 +16,7 @@ import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
 
 export default function ArtisteAuteur() {
-	const dispatch = useDispatch()
-	useEffect(() => {
-		dispatch(setSimulationConfig(config))
-	}, [])
+	useSimulationConfig(config)
 
 	return (
 		<>

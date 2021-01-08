@@ -1,9 +1,8 @@
-import { setSimulationConfig } from 'Actions/actions'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
+import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { SimulatorData } from './metadata'
 
@@ -16,14 +15,8 @@ export default function SimulateurPage({
 	seoExplanations,
 }: SimulatorData[keyof SimulatorData]) {
 	const inIframe = useContext(IsEmbeddedContext)
-	const dispatch = useDispatch()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
-	useEffect(() => {
-		if (!config) {
-			return
-		}
-		dispatch(setSimulationConfig(config, fromGérer))
-	}, [config])
+	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
 
 	return (
 		<>
