@@ -9,11 +9,6 @@ export default (state: RootState, action: Action): RootState => {
 				...state,
 				...createStateFromSavedSimulation(state),
 			}
-		case 'DELETE_PREVIOUS_SIMULATION':
-			return {
-				...state,
-				previousSimulation: null,
-			}
 		default:
 			return state
 	}

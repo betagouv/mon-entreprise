@@ -11,7 +11,6 @@ export type Action =
 	| StepAction
 	| UpdateAction
 	| SetSimulationConfigAction
-	| DeletePreviousSimulationAction
 	| ExplainVariableAction
 	| UpdateSituationAction
 	| HideNotificationAction
@@ -32,10 +31,6 @@ type StepAction = {
 	type: 'STEP_ACTION'
 	name: 'fold' | 'unfold'
 	step: DottedName
-}
-
-type DeletePreviousSimulationAction = {
-	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
 type SetSimulationConfigAction = ReturnType<typeof setSimulationConfig>
@@ -84,13 +79,6 @@ export const setActiveTarget = (targetName: DottedName) =>
 		type: 'SET_ACTIVE_TARGET_INPUT',
 		name: targetName,
 	} as const)
-
-export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
-	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION',
-	})
-	deletePersistedSimulation()
-}
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
