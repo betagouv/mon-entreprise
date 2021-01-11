@@ -1,26 +1,9 @@
-import {
-	addCommuneDetails,
-	setCompanyDetails,
-	setSiren,
-} from 'Actions/existingCompanyActions'
+import { useSetEntreprise } from 'Actions/companyStatusActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import {
-	Etablissement,
-	fetchCompanyDetails,
-	searchDenominationOrSiren,
-} from '../api/sirene'
+import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
-import { ApiCommuneJson } from './conversation/select/SelectCommune'
-
-const fetchCommuneDetails = async function (codeCommune: string) {
-	const response = await fetch(
-		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
-	)
-	return await response.json()
-}
 
 export default function Search() {
 	const [
@@ -41,22 +24,8 @@ export default function Search() {
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
 		handleSearch,
 	])
-	const dispatch = useDispatch()
+	const setEntreprise = useSetEntreprise()
 
-	const setEntreprise = async (siren: string) => {
-		dispatch(setSiren(siren))
-		const companyDetails = await fetchCompanyDetails(siren)
-		dispatch(
-			setCompanyDetails(
-				companyDetails.categorie_juridique,
-				companyDetails.date_creation
-			)
-		)
-		const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
-			companyDetails.etablissement_siege.code_commune
-		)
-		dispatch(addCommuneDetails(communeDetails))
-	}
 	return (
 		<>
 			<h1>
