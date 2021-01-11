@@ -8,7 +8,7 @@ import ReactPDF, {
 	Text,
 	View,
 } from '@react-pdf/renderer'
-import urssafPng from 'Images/destinataires/URSSAF.png'
+import urssafPng from 'Images/destinataires/Urssaf.png'
 import { RuleNode } from 'publicodes'
 import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'

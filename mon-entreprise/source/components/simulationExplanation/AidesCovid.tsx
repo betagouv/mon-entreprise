@@ -36,7 +36,7 @@ export default function AidesCovid({ aidesRule }: AidesCovidProps) {
 							<h4>Déduction de chiffre d'affaire</h4>
 							<p className="ui__ notice">
 								Les conditions et modalités de la réduction "covid" sont
-								présentées sur le site de l'URSSAF.
+								présentées sur le site de l'Urssaf.
 							</p>
 							<a
 								className="ui__ small simple button"

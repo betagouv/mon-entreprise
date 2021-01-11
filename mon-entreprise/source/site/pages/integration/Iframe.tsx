@@ -3,7 +3,7 @@ import {
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import urssafLogo from 'Images/urssaf.svg'
+import urssafLogo from 'Images/Urssaf.svg'
 import React, { Suspense, useContext, useMemo, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'

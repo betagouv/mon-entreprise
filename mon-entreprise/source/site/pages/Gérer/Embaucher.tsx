@@ -201,7 +201,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						Utiliser un logiciel de paie pour calculer les cotisations sociales
 						et les transmettre via la déclaration sociale nominative (DSN).
 						<br />
-						Certaines offres de service de l’URSSAF comme le{' '}
+						Certaines offres de service de l’Urssaf comme le{' '}
 						<a href="https://www.letese.urssaf.fr" target="_blank">
 							titre emploi service entreprise (Tese)
 						</a>{' '}

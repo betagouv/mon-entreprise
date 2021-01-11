@@ -39,11 +39,11 @@ simulateur et une expérimentation sur la paie.
 En 2020, le budget de **250 000 € HT** est reconduit. Il est pris en charge à
 100% par l’[ACOSS](https://www.acoss.fr). En plus de cette contribution
 financière, l’ACOSS fournit des ressources métier expertes provenant du réseau
-des URSSAF.
+des Urssaf.
 
 Une enveloppe de **41 667 € HT** est allouée pour expérimenter la transformation
 du moteur de simulations en moteur de paie complète. La solution proposée ne
-sera finalement pas retenue pour la refonte des offres de service de l'URSSAF.
+sera finalement pas retenue pour la refonte des offres de service de l'Urssaf.
 Voir le [compte-rendu de
 l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 
@@ -81,7 +81,7 @@ programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 -   **Déplacements 🚅**
 
-    Le réseau des URSSAF est présent dans toute la France. Nous organisons
+    Le réseau des Urssaf est présent dans toute la France. Nous organisons
     plusieurs fois par an des ateliers avec des experts en région sur des
     thématiques particulières. Sont aussi inclus dans cette catégorie la prise en
     charge des frais de déplacement des développeurs qui ne sont pas situés en

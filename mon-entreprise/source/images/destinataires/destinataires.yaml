@@ -1,9 +1,9 @@
 OPCA:
   nom: Organisme paritaire collecteur agréé
   lien: https://fr.wikipedia.org/wiki/Organisme_paritaire_collecteur_agréé
-URSSAF:
-  image: URSSAF.png
-  lien: https://fr.wikipedia.org/wiki/URSSAF
+Urssaf:
+  image: Urssaf.svg
+  lien: https://fr.wikipedia.org/wiki/Urssaf
 salarié:
   nom: Le salarié
   image: salarié.png
@@ -15,4 +15,5 @@ AGFF:
   lien: http://www.agff-info.fr/
 CNAV:
   image: cnav.png
-  lien: https://fr.wikipedia.org/wiki/Caisse_nationale_de_l%27assurance_vieillesse_des_travailleurs_salari%C3%A9s
+  lien:
+  https://fr.wikipedia.org/wiki/Caisse_nationale_de_l%27assurance_vieillesse_des_travailleurs_salari%C3%A9s
