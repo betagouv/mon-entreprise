@@ -1,8 +1,15 @@
+import { fetchCompanyDetails } from '../api/sirene'
+import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
 import { Action } from './actions'
+import {
+	addCommuneDetails,
+	setCompanyDetails,
+	setSiren,
+} from './existingCompanyActions'
 
 export type CompanyStatusAction = ReturnType<
 	| typeof isSoleProprietorship
@@ -67,3 +74,28 @@ export const resetCompanyStatusChoice = (answersToReset?: string[]) =>
 		type: 'RESET_COMPANY_STATUS_CHOICE',
 		answersToReset,
 	} as const)
+
+const fetchCommuneDetails = async function (codeCommune: string) {
+	const response = await fetch(
+		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
+	)
+	return await response.json()
+}
+
+export const useSetEntreprise = () => {
+	const dispatch = useDispatch()
+	return async (siren: string) => {
+		dispatch(setSiren(siren))
+		const companyDetails = await fetchCompanyDetails(siren)
+		dispatch(
+			setCompanyDetails(
+				companyDetails.categorie_juridique,
+				companyDetails.date_creation
+			)
+		)
+		const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
+			companyDetails.etablissement_siege.code_commune
+		)
+		dispatch(addCommuneDetails(communeDetails))
+	}
+}
