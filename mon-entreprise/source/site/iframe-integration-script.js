@@ -1,7 +1,7 @@
 import { iframeResizer } from 'iframe-resizer'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoFrSvg from 'Images/logo.svg'
-import urssafSvg from 'Images/urssaf.svg'
+import urssafSvg from 'Images/Urssaf.svg'
 
 let script =
 		document.getElementById('script-monentreprise') ||
@@ -67,15 +67,15 @@ url.pathname = '/'
 const monEntrepriseUrl = url.toString()
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
-	Ce simulateur a été créé par  
+	Ce simulateur a été créé par
 	<a href="${simulateurURL}">
 		mon-entreprise.fr
 	</a><br/>
 	Découvrez l'ensemble des simulateurs disponibles <a href="${simulateursURL}">ici</a><br/>
-	
+
 	<a href="${monEntrepriseUrl}">
 			<img
-				style="height: 25px; margin: 10px"
+				style="height: 40px; margin: 10px"
 				src="${process.env.FR_SITE.replace(
 					'${path}',
 					'/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)
@@ -85,7 +85,7 @@ links.innerHTML = `
 		</a>
 		<a href="https://www.urssaf.fr">
 			<img
-				style="height: 25px; margin: 10px"
+				style="height: 40px; margin: 10px"
 				src="${urssafSvg}"
 				alt="un service fourni par l'Urssaf"
 			/>

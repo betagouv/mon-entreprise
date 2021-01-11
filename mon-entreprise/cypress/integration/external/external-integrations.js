@@ -8,7 +8,7 @@ describe('Pole emploi', function () {
 	})
 })
 
-describe('URSSAF', function () {
+describe('Urssaf', function () {
 	it('should display an iframe of the simulateur', function () {
 		cy.visit(
 			'https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html'

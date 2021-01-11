@@ -75,7 +75,7 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
 
 dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié
-  remplace: 
+  remplace:
     règle: entreprise . imposition
     # TODO devrait remplacer par l'option micro-BNC
     par: "'IR'"
@@ -233,7 +233,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   formule:
     variations:
       - si: entreprise . ACRE
-        alors: 
+        alors:
           produit:
             assiette: base des cotisations
             taux: taux ACRE * taux de cotisation
@@ -296,7 +296,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
                 plafond: 3 ans
       - sinon: 50%
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
     FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
@@ -435,10 +435,10 @@ dirigeant . rémunération totale:
               - entreprise . chiffre d'affaires
               - auto-entrepreneur . net après impôt
       - si: assimilé salarié
-        alors: 
-          somme: 
+        alors:
+          somme:
             - contrat salarié . rémunération . total
-            # TODO : ajouter la taxe sur les salaires ici. 
+            # TODO : ajouter la taxe sur les salaires ici.
             # Pour l'instant commenté car elle crée une boucle à cause de la franchise de TVA
             # - entreprise . taxe sur les salaires
 
@@ -535,7 +535,7 @@ dirigeant . indépendant . cotisations et contributions . aide indépendant covi
     (contribution aux unions régionales des professionnels de santé).
   formule:
     variations:
-      - si: 
+      - si:
           une de ces conditions:
             - établissement . secteur d'activité covid = 'S1'
             - établissement . secteur d'activité covid = 'S1-bis'
@@ -576,7 +576,7 @@ dirigeant . indépendant . résultat fiscal:
       - revenu professionnel
       - contrats madelin . montant
   références:
-    Portail URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
+    Portail Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
 
 dirigeant . indépendant . revenu professionnel:
   unité: €/an
@@ -837,7 +837,7 @@ dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
   question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
   par défaut: non
-  
+
 dirigeant . indépendant . contrats madelin . montant:
   titre: Somme des cotisations à contrats Madelin
   formule:
@@ -937,7 +937,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
     versé.
   formule:
     produit:
-      assiette: 
+      assiette:
         valeur: assiette des cotisations
         plancher [ref]: 40% * plafond sécurité sociale temps plein
       taux [ref]: 0.85%
@@ -1006,7 +1006,6 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux:
   références:
     Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
-    
 
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   formule:
@@ -1077,7 +1076,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
         - attributs:
             nom: déductible
             arrondi: oui
-          composantes: 
+          composantes:
             - taux: 6.8%
             - attributs:
                 nom: revenus de remplacement
@@ -1085,7 +1084,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
               taux: 3.8%
 
   références:
-    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
     IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
 
@@ -1121,7 +1120,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   produit:
-    assiette: plafond sécurité sociale temps plein 
+    assiette: plafond sécurité sociale temps plein
     taux:
       variations:
         - si: entreprise . catégorie d'activité = 'artisanale'
@@ -1135,8 +1134,8 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
 
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
-    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
-    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-indépendant/transfert-du-recouvrement-de-la.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
+    brève Urssaf pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-indépendant/transfert-du-recouvrement-de-la.html
 
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   formule:

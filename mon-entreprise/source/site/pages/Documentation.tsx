@@ -90,8 +90,8 @@ function DocumentationLanding() {
 
 const referencesImages = {
 	'service-public.fr': 'images/références/marianne.png',
-	'urssaf.fr': 'images/références/URSSAF.png',
-	'secu-independants.fr': 'images/références/URSSAF.png',
+	'urssaf.fr': 'images/références/Urssaf.svg',
+	'secu-independants.fr': 'images/références/Urssaf.svg',
 	'gouv.fr': 'images/références/marianne.png',
 	'agirc-arrco.fr': 'images/références/agirc-arrco.png',
 	'pole-emploi.fr': 'images/références/pole-emploi.png',

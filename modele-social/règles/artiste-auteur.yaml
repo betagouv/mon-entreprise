@@ -34,7 +34,6 @@ artiste-auteur . revenus . BNC . contrôle micro-bnc:
       - recettes > 72500 €/an
 
 artiste-auteur . revenus . BNC . recettes:
-  
   titre: Revenu en BNC
   par défaut: 0 €/an
   résumé: Le montant de vos recettes brutes hors TVA
@@ -56,7 +55,7 @@ artiste-auteur . cotisations:
       - CSG-CRDS
       - formation professionnelle
   références:
-    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
+    Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
 
 artiste-auteur . cotisations . assiette:
   description: Les revenus des artistes-auteurs peuvent être catégorisés soit comme des traitements et salaires, soit comme des bénéfices non commerciaux. Les cotisations sociales sont payées sur la somme des revenus de ces deux catégories.
@@ -78,8 +77,7 @@ artiste-auteur . cotisations . option surcotisation:
   résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
   par défaut: non
   références:
-    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
-
+    Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
 artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
 
@@ -151,7 +149,7 @@ artiste-auteur . réduction de cotisations covid 2020:
     La prise en charge est automatique et vous n'avez pas de démarche a
     effectuer. Vous bénéficierez de cette aide après la déclaration annuelle de
     revenus 2020, soit au second trimestre 2021.
-  applicable si: 
+  applicable si:
     toutes ces conditions:
       - période . fin d'année = 31/12/2020
       - cotisations . assiette >= 3000 €/an

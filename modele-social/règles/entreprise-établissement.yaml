@@ -345,9 +345,9 @@ entreprise . ACRE par défaut:
           toutes ces conditions:
             - dirigeant . auto-entrepreneur
             - une de ces conditions:
-              # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
-              - entreprise . date de création < 01/01/2019
-              - entreprise . date de création > 31/12/2019
+                # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
+                - entreprise . date de création < 01/01/2019
+                - entreprise . date de création > 31/12/2019
         alors: non
       - sinon: oui
 
@@ -386,7 +386,7 @@ entreprise . franchise de TVA:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . seuil de franchise de TVA dépassé :
+entreprise . seuil de franchise de TVA dépassé:
   type: notification
   formule: chiffre d'affaires > franchise de TVA
   description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
@@ -457,14 +457,14 @@ entreprise . association non lucrative:
     - contrat salarié . taxe d'apprentissage
 
 entreprise . non assujettie à TVA:
-  question: L'entreprise est-elle non assujettie à la TVA ? 
+  question: L'entreprise est-elle non assujettie à la TVA ?
   par défaut: non
   description: |
     Certaines entreprises ne sont pas assujetties à la TVA. 
     Elles payent la taxe sur les salaires en contrepartie.
 
     C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
-  references: 
+  references:
     Fiche economie.gouv.fr: https://www.economie.gouv.fr/entreprises/taxe-salaires
 
 entreprise . taxe sur les salaires . montant avant décote:
@@ -478,12 +478,11 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
-  non applicable si: 
+  non applicable si:
     une de ces conditions:
       - association non lucrative
       - entreprise . non assujettie à TVA
-  description:
-    Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
+  description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
     Entre 1200 €/an et 2400 €/an une décote s'applique.
   formule:
@@ -594,7 +593,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-
 entreprise . catégorie d'activité . débit de tabac:
   applicable si: catégorie d'activité = 'commerciale ou industrielle'
   question: Exercez-vous une activité de vente de tabac ?
@@ -604,7 +602,7 @@ entreprise . rattachée à la CIPAV:
   # TODO implémenter un nouveau mécanisme
   # TODO consolider la formule :
   # Nous avons deux listes possibles
-  # A) Voilà la liste de l'URSSAF
+  # A) Voilà la liste de l'Urssaf
   question: La profession libérale règlementée est-elle rattachée à la CIPAV ?
   par défaut: non
   description: |
@@ -633,7 +631,7 @@ entreprise . auto entreprise impossible:
       - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
-établissement: 
+établissement:
   formule: oui
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
@@ -717,7 +715,7 @@ entreprise . auto entreprise impossible:
   description: |
     Les conditions d'éligibilité aux aides "covid" dépendent du secteur
     d'activité de l'établissement. 
-    
+
     Les hôtels, restaurants, bars, etc. sont dans
     la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
 
@@ -729,7 +727,7 @@ entreprise . auto entreprise impossible:
     sont éligibles aux aides à condition d'avoir subit une fermeture
     administrative.
 
-    Les modalités sont précisées sur le site de l'URSSAF.
+    Les modalités sont précisées sur le site de l'Urssaf.
   références:
     Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
   par défaut: non

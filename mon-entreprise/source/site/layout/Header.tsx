@@ -2,7 +2,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/urssaf.svg'
+import urssafSvg from 'Images/Urssaf.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -24,7 +24,7 @@ export default function Header() {
 					<img
 						alt="logo mon-entreprise.fr"
 						style={{
-							padding: '0.5rem 0',
+							padding: '0.4rem 0',
 							height: '100%',
 						}}
 						src={language === 'fr' ? logoSvg : logoEnSvg}
@@ -36,7 +36,7 @@ export default function Header() {
 					target="_blank"
 					style={{
 						height: '4rem',
-						padding: '1rem',
+						padding: '0.8rem',
 					}}
 				>
 					<img
@@ -50,7 +50,7 @@ export default function Header() {
 					target="_blank"
 					style={{
 						height: '4rem',
-						padding: '1rem',
+						padding: '0.8rem',
 					}}
 					className="landing-header__institutional-logo"
 				>

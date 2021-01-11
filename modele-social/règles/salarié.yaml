@@ -391,9 +391,9 @@ contrat salarié . activité partielle . secteur d'activité restreint:
 
     Il concerne notamment les secteurs de l'hôtellerie-restauration, du sport,
     de la culture et de l’événementiel.
-    
+
     Les autres entreprises bénéficient d'un taux d'indemnité de droit commun.
-  références: 
+  références:
     Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
     Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A14386
 
@@ -477,7 +477,7 @@ contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   # inférieure à un mois
   formule: 10 € / durée contrat
   références:
-    URSSAF.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taxe-forfaitaire-sur-les-cdd-dus.html
+    Urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taxe-forfaitaire-sur-les-cdd-dus.html
 
 contrat salarié . CDD . CPF:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
@@ -689,7 +689,7 @@ contrat salarié . ATMP:
   cotisation:
     dû par: employeur
     branche: accidents du travail et maladies professionnelles
-    destinataire: URSSAF
+    destinataire: Urssaf
     responsable: CARSAT
   formule:
     produit:
@@ -699,11 +699,10 @@ contrat salarié . ATMP:
           - si: taux réduit
             alors: 0.8%
           - si: taux connu
-            alors: taux personnalisé 
+            alors: taux personnalisé
           - sinon: ATMP . taux collectif ATMP
   références:
     taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
-
 
 contrat salarié . ATMP . taux minimum:
   description: >-
@@ -735,21 +734,21 @@ contrat salarié . ATMP . taux connu:
   par défaut: non
   description: |
     Le taux de la cotisation Accident du Travail et Maladie Professionnel varie selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels sont exposé leur salariés.
-    
+
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
-    
+
     A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
-    
+
     Entre les deux, le taux est modulé.
 
     Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
-  références: 
-    Description compte ATMP : https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
+  références:
+    Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
     Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
-  
+
 contrat salarié . ATMP . taux personnalisé:
-  question: Quel est le taux AT/MP de l'entreprise ? 
-  description : >
+  question: Quel est le taux AT/MP de l'entreprise ?
+  description: >
     Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter le taux qui la
   par défaut: taux moyen
 
@@ -1054,7 +1053,6 @@ contrat salarié . apprentissage . ancienneté . moins de quatre ans:
     La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
     travailleur handicapé est reconnue à l'apprenti.
 
-
 contrat salarié . professionnalisation:
   description: |
     Le contrat de professionnalisation est un contrat de travail en alternance
@@ -1071,7 +1069,6 @@ contrat salarié . professionnalisation:
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
-
 contrat salarié . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t'il moins de 30 ans ?
   par défaut: oui
@@ -1080,7 +1077,6 @@ contrat salarié . professionnalisation . salarié de 45 ans et plus:
   non applicable si: jeune de moins de 30 ans
   question: Le salarié embauché a-t'il 45 ans ou plus ?
   par défaut: non
-
 
 contrat salarié . stage:
   description: |
@@ -1155,7 +1151,7 @@ contrat salarié . cotisations . assiette:
   titre: Assiette des cotisations sociales
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
-  références: 
+  références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
     allègement:
@@ -1181,7 +1177,7 @@ contrat salarié . cotisations . assiette . salariale:
   description: |
     Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
   références:
-    URSSAF: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
   formule:
     variations:
       - si: apprentissage
@@ -1266,7 +1262,6 @@ contrat salarié . rémunération . taux horaire . heures supplémentaires:
     supplémentaires. Il intègre les avantages en nature et les primes
     constituant la contrepartie d'un travail fourni.
   unité: €/heure
-
   formule: (assiette de vérification du SMIC + primes . fin d'année) / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
@@ -1277,7 +1272,6 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
   description: >
     C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
   unité: €/mois
-
   formule:
     somme:
       - brut de base
@@ -1449,7 +1443,6 @@ contrat salarié . avantages sociaux:
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
     Ils sont soumis à l'impôt sur le revenu.
   unité: €/mois
-
   formule:
     somme:
       - prévoyance . employeur
@@ -1617,7 +1610,6 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
   remplace:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
-
 
 contrat salarié . SMIC contractuel:
   description: >
@@ -2127,9 +2119,9 @@ contrat salarié . temps de travail . temps partiel:
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   par défaut: 32 heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
-  suggestions: 
+  suggestions:
     4 jours / semaine: base légale * 4 / 5
-    mi-temps:  base légale / 2
+    mi-temps: base légale / 2
 
 contrat salarié . temps de travail . temps partiel . contrôle temps min:
   type: notification
@@ -2500,7 +2492,6 @@ contrat salarié . retraite supplémentaire:
       - nom: salarié
         valeur: 0€/mois
 
-
 contrat salarié . retraite supplémentaire . part déductible:
   formule:
     allègement:
@@ -2716,7 +2707,7 @@ contrat salarié . régime alsace moselle:
 contrat salarié . contribution au dialogue social:
   cotisation:
     dû par: employeur
-    collecteur: URSSAF
+    collecteur: Urssaf
   description: |
     Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
 
@@ -2734,7 +2725,7 @@ contrat salarié . contribution au dialogue social:
 contrat salarié . CSG et CRDS:
   cotisation:
     dû par: salarié
-    collecteur: URSSAF
+    collecteur: Urssaf
   description: >-
     La CSG et la CRDS sont dues par tous les salariés remplissant les deux
     conditions suivantes :
@@ -2767,7 +2758,8 @@ contrat salarié . CSG et CRDS . assiette de base:
 contrat salarié . CSG et CRDS . assiette abattue totale:
   formule:
     barème:
-      assiette: cotisations . assiette
+      assiette:
+        cotisations . assiette
         # - rémunération . revenus de remplacement
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
@@ -2818,24 +2810,24 @@ contrat salarié . CSG et CRDS . CSG:
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
     également le fonds de solidarité vieillesse
   formule:
-        multiplication:
-          assiette: assiette de base
+    multiplication:
+      assiette: assiette de base
+      composantes:
+        - attributs:
+            nom: déductible
+          taux:
+            nom: taux
+            valeur: 6.8%
+        - attributs:
+            nom: non déductible
           composantes:
-            - attributs:
-                nom: déductible
-              taux: 
+            - taux:
                 nom: taux
-                valeur: 6.8%
+                valeur: 2.4%
             - attributs:
-                nom: non déductible
-              composantes:
-                - taux: 
-                    nom: taux
-                    valeur: 2.4%
-                - attributs:
-                    nom: heures supplémentaires et complémentaires défiscalisées
-                  assiette: assiette heures supplémentaires et complémentaires défiscalisées
-                  taux: déductible . taux + non déductible . taux
+                nom: heures supplémentaires et complémentaires défiscalisées
+              assiette: assiette heures supplémentaires et complémentaires défiscalisées
+              taux: déductible . taux + non déductible . taux
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -2852,7 +2844,6 @@ contrat salarié . CSG et CRDS . CSG:
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
 
-
 contrat salarié . CSG et CRDS . CRDS:
   cotisation:
     impôt: oui
@@ -2864,7 +2855,7 @@ contrat salarié . CSG et CRDS . CRDS:
         somme:
           - assiette de base
           - assiette heures supplémentaires et complémentaires défiscalisées
-      taux: 
+      taux:
         nom: taux
         valeur: 0.5%
 
@@ -2893,14 +2884,14 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
       - rémunération . revenus de remplacement
       - (- SMIC temps plein)
     plancher: 0€/mois
-  note: 
+  note:
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
   produit:
     assiette: CSG et CRDS . assiette revenu remplacements
     taux: CSG . non déductible . taux
-  plafond [ref]: 
+  plafond [ref]:
     valeur: CSG déductible . plafond - CSG déductible
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
@@ -2908,7 +2899,7 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   produit:
     assiette: assiette revenu remplacements
     taux: CRDS . taux
-  plafond: 
+  plafond:
     valeur: CSG non déductible . plafond - CSG non déductible
 
 contrat salarié . FNAL:
@@ -2917,7 +2908,7 @@ contrat salarié . FNAL:
     Le fonds national d’aide au logement (Fnal) est une contribution qui assure le financement de l’allocation logement.
   cotisation:
     dû par: employeur
-    destinataire: URSSAF
+    destinataire: Urssaf
     branche: famille
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
@@ -2929,10 +2920,10 @@ contrat salarié . FNAL:
           - si: éligible taux réduit
             alors: 0.1%
           - sinon: 0.5%
-      plafond: 
+      plafond:
         applicable si: éligible taux réduit
         valeur: plafond sécurité sociale
-    
+
   exemples:
     - nom: SMIC
       situation:
@@ -3007,7 +2998,7 @@ contrat salarié . maladie:
             nom: salarié
             titre: maladie, maternité, invalidité, décès salarié
           taux: taux salarié
-        
+
 contrat salarié . maladie . taux solidarité autonomie:
   acronyme: CSA
   formule: 0.3%
@@ -3077,7 +3068,6 @@ contrat salarié . prévoyance:
         formule: 0 €/mois
       - nom: salarié
         formule: 0 €/mois
-
 
 contrat salarié . prévoyance . part déductible:
   formule:
@@ -3361,7 +3351,7 @@ contrat salarié . taxe sur les salaires:
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . taxe sur les salaires
   formule: entreprise . taxe sur les salaires * 1 employé / entreprise . effectif
-  note: | 
+  note: |
     Nous supposons ici que tous les salariés de l'entreprise ont la même rémunération
     Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
   exemples:
@@ -3403,7 +3393,7 @@ contrat salarié . versement transport:
 contrat salarié . vieillesse:
   cotisation:
     branche: retraite
-    collecteur: URSSAF
+    collecteur: Urssaf
     destinataire: CNAV
     # CTP: 100
   description: Cotisation au régime de retraite de base des salariés.
@@ -3452,11 +3442,11 @@ contrat salarié . forfait social:
   applicable si: entreprise . effectif > 10
   cotisation:
     branche: retraite
-    collecteur: URSSAF
+    collecteur: Urssaf
     destinataire: CNAV
     dû par: employeur
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
   formule:
@@ -3533,7 +3523,7 @@ contrat salarié . lodeom . réduction outre-mer:
         - sinon: multiplicateur * écart au plafond de l'assiette
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   références:
-    Estimateur URSSAF: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
+    Estimateur Urssaf: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
 
 contrat salarié . lodeom . plafond de l'assiette:
   formule: borne supérieure * SMIC
@@ -3554,7 +3544,7 @@ contrat salarié . lodeom . éligible barème compétitivité:
   formule: oui
 
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
 
 contrat salarié . lodeom . secteurs d'activité:
   applicable si: zone un
@@ -3583,7 +3573,7 @@ contrat salarié . lodeom . éligible barème compétitivité renforcée:
     - En Guyane, les employeurs ayant une activité principale relevant de l’un des secteurs d’activité éligibles à la réduction d’impôt prévue à l’article 199 undecies B du code général des impôts, ou correspondant à l’une des activités suivantes : comptabilité, conseil aux entreprises, ingénierie ou études techniques.
   par défaut: non
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
 
 contrat salarié . lodeom . éligible barème innovation et croissance:
   applicable si: zone un
@@ -3604,7 +3594,7 @@ contrat salarié . lodeom . éligible barème innovation et croissance:
     - Sont donc exclues les fonctions supports : tâches administratives financières, logistiques et de ressources humaines.
   par défaut: non
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
 
 contrat salarié . lodeom . borne inférieure:
   formule:
