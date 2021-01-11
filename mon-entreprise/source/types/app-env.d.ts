@@ -15,4 +15,8 @@ declare namespace NodeJS {
 		DEEPL_API_SECRET: string
 		INSEE_SIRENE_API_SECRET: string
 	}
+
+	interface Global {
+		SC_DISABLE_SPEEDY: boolean
+	}
 }
