@@ -86,7 +86,7 @@ links.innerHTML = `
 		<a href="https://www.urssaf.fr">
 			<img
 				style="height: 40px; margin: 10px"
-				src="${urssafSvg}"
+				src="${process.env.FR_SITE.replace('${path}', '/' + urssafSvg)}"
 				alt="un service fourni par l'Urssaf"
 			/>
 		</a>
