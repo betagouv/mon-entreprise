@@ -30,11 +30,11 @@ const prerenderConfig = () => ({
 		$('#outdated-browser').after(`
 			<style>
 				#js {
+					animation: appear 0.5s;
 					opacity: 1;
-					transform: translateY(0px);
 				}
 				#loading {
-					display: none;
+					display: none !important;
 				}
 			</style>
 		`)
