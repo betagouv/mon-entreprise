@@ -2,7 +2,6 @@ import { dissoc, scan } from 'ramda'
 import emoji from 'react-easy-emoji'
 import yaml from 'yaml'
 import Engine, { formatValue, reduceAST, utils } from 'publicodes'
-import { LaunchButton } from '../PublicodesBlock'
 const { encodeRuleName } = utils
 
 const getParents = (dottedName) =>
@@ -81,15 +80,15 @@ export default function RuleSource({ engine, dottedName }: Props) {
 		location.hostname === 'localhost' ? '/publicodes' : 'https://publi.codes'
 	return (
 		<div style={{ textAlign: 'right' }}>
-			<LaunchButton
+			<a
 				className="ui__ simple small button"
 				target="_blank"
 				href={`${baseURL}/studio/${encodeRuleName(
 					dottedName
 				)}?code=${encodeURIComponent(source)}`}
 			>
-				{emoji('✍️')} Voir la règle publicodes
-			</LaunchButton>
+				{emoji('✍️')} Voir la règle dans le bac à sable Publicodes
+			</a>
 		</div>
 	)
 }
