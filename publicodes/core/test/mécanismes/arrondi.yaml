@@ -1,4 +1,25 @@
-cotisation retraite:
+
+arrondi oui:
+  formule:
+    valeur: 30.4167 jours
+    arrondi: oui
+  exemples:
+    - valeur attendue: 30
+      unité attendue: jours
+
+arrondi non:
+  formule:
+    valeur: 30.4167 jours
+    arrondi: non
+  exemples:
+    - valeur attendue: 30.4167
+
+arrondi décimales:
+  formule:
+    valeur: 30.4167 jours
+    arrondi: 2 décimales
+  exemples:
+    - valeur attendue: 30.42
 
 demie part:
   formule:
@@ -7,13 +28,22 @@ demie part:
   exemples:
     - valeur attendue: 50
 
-arrondi avec pourcentage:
+demie part avec pourcentage:
   formule:
-    valeur: 50% * 9.8€
+    valeur: 50% * 100.2€
     arrondi: oui
   exemples:
-    - valeur attendue: 5
-      unité attendue: €
+    - valeur attendue: 50
+
+arrondi de pourcentage:
+  formule:
+    valeur: 50.5%
+    arrondi: oui
+  exemples:
+    - valeur attendue: 51
+      unité attendue: '%'
+
+cotisation retraite:
 
 Arrondi:
   formule:
@@ -48,24 +78,10 @@ Arrondi avec precision:
         nombre de décimales: 2
       valeur attendue: 1200.21
 
-arrondi nouvelle ecriture 1:
+arrondi avec conversion d'unités:
   formule:
-    valeur: 30.4167 jours
+    valeur: 12.5 €/mois
+    unité: €/an
     arrondi: oui
   exemples:
-    - valeur attendue: 30
-      unité attendue: jours
-
-arrondi nouvelle ecriture 2:
-  formule:
-    valeur: 30.4167 jours
-    arrondi: non
-  exemples:
-    - valeur attendue: 30.4167
-
-arrondi nouvelle ecriture 3:
-  formule:
-    valeur: 30.4167
-    arrondi: 2 décimales
-  exemples:
-    - valeur attendue: 30.42
+    - valeur attendue: 150
