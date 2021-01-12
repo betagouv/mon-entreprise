@@ -1,4 +1,4 @@
-import { EvaluationFunction } from '..'
+import { EvaluationFunction, simplifyNodeUnit } from '..'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -17,7 +17,9 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 }
 
 const evaluate: EvaluationFunction<'arrondi'> = function (node) {
-	const valeur = this.evaluate(node.explanation.valeur)
+	// We need to simplify the node unit to correctly round values containing
+	// percentages units, see #1358
+	const valeur = simplifyNodeUnit(this.evaluate(node.explanation.valeur))
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
 	if (nodeValue !== false) {
