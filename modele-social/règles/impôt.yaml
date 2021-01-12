@@ -75,21 +75,17 @@ impôt . revenu imposable:
           - contrat salarié . rémunération . net imposable
           - dirigeant . indépendant . résultat fiscal
           - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      abattement: abattement contrat court / 1 an
+      abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
-  unité: €
-
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
   applicable si:
     toutes ces conditions:
       - méthode de calcul . taux neutre
-      - contrat salarié
-      - contrat salarié . CDD
       - contrat salarié . CDD . durée contrat <= 2 mois
   formule:
-    valeur: 50% * SMIC temps plein . net imposable * 1 mois
-    arrondi: oui 
+    valeur: 50% * SMIC temps plein . net imposable * 1 mois/an
+    arrondi: oui
   note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
   références:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
