@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 import Explanation from '../Explanation'
 import styled from 'styled-components'
 import { Mecanism, NodeValuePointer } from './common'
-import { parseUnit } from 'publicodes/source/units'
+import { parseUnit } from 'publicodes'
 
 export default function Barème({ nodeValue, explanation, unit }) {
 	return (
