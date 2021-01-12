@@ -44,7 +44,7 @@ export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
-export { serializeUnit } from './units'
+export { parseUnit, serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
 export { default as serializeEvaluation } from './serializeEvaluation'
