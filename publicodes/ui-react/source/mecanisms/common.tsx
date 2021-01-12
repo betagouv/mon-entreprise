@@ -319,18 +319,8 @@ export function Leaf(
 		return <Explanation node={rule} />
 	}
 	return (
-		<div
-			style={{
-				display: 'inline-flex',
-				flexDirection: 'column',
-			}}
-		>
-			<span
-				style={{
-					display: 'flex',
-					alignItems: 'baseline',
-				}}
-			>
+		<div style={{ display: 'inline' }}>
+			<span>
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
 						{rule.rawNode.acronyme ? (
