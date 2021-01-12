@@ -7,6 +7,14 @@ demie part:
   exemples:
     - valeur attendue: 50
 
+arrondi avec pourcentage:
+  formule:
+    valeur: 50% * 9.8€
+    arrondi: oui
+  exemples:
+    - valeur attendue: 5
+      unité attendue: €
+
 Arrondi:
   formule:
     valeur: cotisation retraite

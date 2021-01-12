@@ -255,29 +255,20 @@ export function simplifyUnit(unit: Unit): Unit {
 	if (numerators.length && numerators.every((symb) => symb === '%')) {
 		return { numerators: ['%'], denominators }
 	}
-	return {
-		numerators: removePercentages(numerators),
-		denominators: removePercentages(denominators),
-	}
+	return removePercentages({ numerators, denominators })
 }
 function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
-	const { denominators, numerators } = unit
-
-	const factor = unitsConversionFactor(numerators, denominators)
+	const factor = unitsConversionFactor(unit.numerators, unit.denominators)
 	return [
-		simplify(
-			{
-				numerators: removePercentages(numerators),
-				denominators: removePercentages(denominators),
-			},
-			areSameClass
-		),
+		simplify(removePercentages(unit), areSameClass),
 		value ? round(value * factor) : value,
 	]
 }
 
-const removePercentages = (array: Array<string>) =>
-	array.filter((e) => e !== '%')
+const removePercentages = (unit: Unit): Unit => ({
+	numerators: unit.numerators.filter((e) => e !== '%'),
+	denominators: unit.denominators.filter((e) => e !== '%'),
+})
 
 export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 	if (a == null || b == null) {
