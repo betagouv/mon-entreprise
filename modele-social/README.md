@@ -24,4 +24,5 @@ console.log(formatValue(net));
 
 ```
 
-[Voir le tutoriel complet](https://mon-entreprise.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul)
+
+👉 **[Voir le tutoriel complet](https://mon-entreprise.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul)**
