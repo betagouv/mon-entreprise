@@ -1,8 +1,7 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
-import { RuleNode } from 'publicodes'
+import { RuleNode, serializeEvaluation, EvaluatedNode, Rule } from 'publicodes'
 import { References } from 'publicodes-react'
-import { Rule } from 'publicodes/dist/types/rule'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -44,7 +43,9 @@ export default function Question({
 	value: currentValue,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(
-		missing ? null : `'${currentValue}'`
+		missing
+			? null
+			: serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode)
 	)
 	const handleChange = useCallback(
 		(value) => {
