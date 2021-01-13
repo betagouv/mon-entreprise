@@ -173,18 +173,21 @@ function replace(
 		return node
 	}
 	if (applicableReplacements.length > 1) {
-		warning(
-			logger,
-			node.contextDottedName,
-			`
-Il existe plusieurs remplacements pour la référence '${node.dottedName}'.
-Lors de l'execution, ils seront résolus dans l'odre suivant :
-${applicableReplacements.map(
-	(replacement) =>
-		`\n\t- Celui définit dans la règle '${replacement.definitionRule.dottedName}'`
-)}
-`
-		)
+		const displayVerboseWarning = false
+		if (displayVerboseWarning) {
+			warning(
+				logger,
+				node.contextDottedName,
+				`
+				Il existe plusieurs remplacements pour la référence '${node.dottedName}'.
+				Lors de l'execution, ils seront résolus dans l'odre suivant :
+				${applicableReplacements.map(
+					(replacement) =>
+						`\n\t- Celui définit dans la règle '${replacement.definitionRule.dottedName}'`
+				)}
+					`
+			)
+		}
 	}
 
 	const applicableReplacementsCacheKey = applicableReplacements
