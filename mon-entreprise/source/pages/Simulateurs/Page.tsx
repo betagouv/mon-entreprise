@@ -12,13 +12,13 @@ export default function SimulateurPage({
 	title,
 	config,
 	tooltip,
+	description,
 	component: Component,
 	seoExplanations,
 }: SimulatorData[keyof SimulatorData]) {
 	const inIframe = useContext(IsEmbeddedContext)
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
 	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
-
 	return (
 		<>
 			{meta && <Meta {...meta} />}
@@ -36,6 +36,7 @@ export default function SimulateurPage({
 					)}
 				</>
 			)}
+			{description && !inIframe && description}
 
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />

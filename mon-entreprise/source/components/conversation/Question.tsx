@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
+import { DottedName } from 'modele-social'
 import { RuleNode, serializeEvaluation, EvaluatedNode, Rule } from 'publicodes'
 import { References } from 'publicodes-react'
 import { useCallback, useEffect, useState } from 'react'
@@ -31,6 +32,7 @@ export type Choice = RuleNode & {
 
 type QuestionProps = InputCommonProps & {
 	onSubmit: (source: string) => void
+	dottedName: DottedName
 	choices: Choice | typeof binaryQuestion
 }
 

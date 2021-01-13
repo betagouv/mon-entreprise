@@ -47,6 +47,7 @@ export default function Simulateurs() {
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
+					<SimulateurCard {...simulators['aides-embauche']} />
 				</div>
 
 				<HeadingWithAnchorLink level={2}>
