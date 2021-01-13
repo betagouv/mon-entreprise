@@ -35,6 +35,7 @@ import SalariéSimulation from './SalariéSimulation'
 import ISSimulation from './ISSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
+import AidesEmbauche from './AidesEmbauche'
 
 const simulateurs = [
 	'salarié',
@@ -56,6 +57,7 @@ const simulateurs = [
 	'expert-comptable',
 	'pamc',
 	'is',
+	'aides-embauche',
 ] as const
 
 export type SimulatorData = Record<
@@ -75,6 +77,7 @@ export type SimulatorData = Record<
 		tooltip?: string
 		iframe?: string
 		title?: string
+		description?: React.ReactNode
 		config?: SimulationConfig
 		seoExplanations?: React.ReactNode
 		private?: true
@@ -750,6 +753,29 @@ export function getSimulatorsData({
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
 			component: PAMCHome,
+		},
+		'aides-embauche': {
+			icône: '🎁',
+			meta: {
+				title: 'Aides à l’embauche',
+				description:
+					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.',
+				color: '#16a385',
+			},
+			path: sitePaths.simulateurs['aides-embauche'],
+			iframe: 'aides-embauche',
+			shortName: 'Aides à l’embauche',
+			title: "Aides à l'embauche",
+			description: (
+				<p>
+					Les employeurs peuvent bénéficier d'une aide financière pour
+					l'embauche de certains publics prioritaires. Découvrez les dispositifs
+					existants et estimez le montant de l'aide en répondant aux questions.
+					<br />
+					<br />
+				</p>
+			),
+			component: AidesEmbauche,
 		},
 		is: {
 			icône: '🗓',

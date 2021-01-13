@@ -32,7 +32,7 @@ export type RuleInputProps<Name extends string = DottedName> = {
 
 export type InputCommonProps<Name extends string = string> = Pick<
 	RuleInputProps<Name>,
-	'dottedName' | 'onChange' | 'autoFocus' | 'className'
+	'onChange' | 'autoFocus' | 'className'
 > &
 	Pick<RuleNode, 'title' | 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
@@ -52,7 +52,7 @@ export const binaryQuestion = [
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput<Name extends string = DottedName>({
+export default function RuleInput({
 	dottedName,
 	onChange,
 	useSwitch = false,
@@ -62,15 +62,14 @@ export default function RuleInput<Name extends string = DottedName>({
 	required = true,
 	className,
 	onSubmit = () => null,
-}: RuleInputProps<Name>) {
+}: RuleInputProps) {
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
-	const commonProps: InputCommonProps<Name> = {
+	const commonProps: InputCommonProps = {
 		key: dottedName,
-		dottedName,
 		value,
 		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
@@ -86,6 +85,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		return (
 			<Question
 				{...commonProps}
+				dottedName={dottedName}
 				onSubmit={onSubmit}
 				choices={buildVariantTree(engine, dottedName)}
 			/>
@@ -128,6 +128,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		) : (
 			<Question
 				{...commonProps}
+				dottedName={dottedName}
 				choices={[
 					{ value: 'oui', label: 'Oui' },
 					{ value: 'non', label: 'Non' },
@@ -144,13 +145,14 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 			.replace(/[\d,.]/g, '')
 			.trim()
+
 		return (
 			<>
 				<CurrencyInput
 					{...commonProps}
 					language={language}
 					debounce={750}
-					value={value as string}
+					value={value}
 					name={dottedName}
 					className="targetInput"
 					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
