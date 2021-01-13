@@ -32,12 +32,10 @@ const evaluate: EvaluationFunction<'une de ces conditions'> = function (node) {
 						: evaluatedNode.nodeValue === null
 						? null
 						: acc.nodeValue,
-					missingVariables: evaluatedNode.nodeValue
-						? {}
-						: mergeMissing(
-								acc.missingVariables,
-								evaluatedNode.missingVariables
-						  ),
+					missingVariables: mergeMissing(
+						acc.missingVariables,
+						evaluatedNode.missingVariables
+					),
 					explanation: [...acc.explanation, evaluatedNode],
 				}
 			}

@@ -1,11 +1,10 @@
 import Engine, {
-	EvaluatedNode,
 	formatValue,
-	RuleNode,
 	serializeUnit,
 	simplifyNodeUnit,
 	utils,
 } from 'publicodes'
+import { isEmpty } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import Explanation from '../Explanation'
@@ -19,9 +18,7 @@ export default function Rule({ dottedName, engine, language }) {
 	if (!(dottedName in engine.getParsedRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluate(engine.getRule(dottedName)) as EvaluatedNode &
-		RuleNode
-	// TODO affichage inline vs page
+	const rule = engine.evaluate(engine.getRule(dottedName))
 
 	const { description, question } = rule.rawNode
 	const { parent, valeur } = rule.explanation
@@ -63,8 +60,25 @@ export default function Rule({ dottedName, engine, language }) {
 
 			<h2>Comment cette donnée est-elle calculée ?</h2>
 			<Explanation node={valeur} />
-
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
+
+			{!isEmpty(rule.missingVariables) && (
+				<>
+					<h3>Données manquantes</h3>
+					<p className="ui__ notice">
+						Les règles suivantes sont nécessaires pour le calcul mais n'ont pas
+						été saisies dans la situation. Leur valeur par défaut est utilisée.
+					</p>
+
+					<ul>
+						{Object.keys(rule.missingVariables).map((dottedName) => (
+							<li>
+								<RuleLinkWithContext dottedName={dottedName} />
+							</li>
+						))}
+					</ul>
+				</>
+			)}
 			{!!rule.replacements.length && (
 				<>
 					<h3>Effets </h3>

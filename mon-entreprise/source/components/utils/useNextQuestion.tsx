@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import {
 	add,
 	countBy,
@@ -12,7 +13,6 @@ import {
 	length,
 	map,
 	mergeWith,
-	negate,
 	pair,
 	pipe,
 	reduce,
@@ -25,7 +25,6 @@ import {
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
 import {
 	answeredQuestionsSelector,
 	configSelector,
