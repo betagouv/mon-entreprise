@@ -1,6 +1,7 @@
 Ce repo contient : 
 - Le code source du site [mon-entreprise.fr](https://mon-entreprise.fr)
 - La documentation et le code source du langage [publicodes](https://publi.codes)
+- Les [règles publicodes](https://github.com/betagouv/mon-entreprise/tree/master/modele-social) pour le calcul des cotisations sociales, des impôts et des droits sociaux.
 
 ## <a href="https://mon-entreprise.fr"><img src="https://mon-entreprise.fr/images/logo.svg" alt="mon-entreprise.fr" width="200"/></a>
 
