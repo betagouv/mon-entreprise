@@ -620,12 +620,12 @@ entreprise:
         </3>
       titre: Publish a notice of creation in a newspaper
     nom:
-      description: >
-        <0><0>The corporate name</0> ("dénomination sociale") is the legal name
-        of your company, written on all of your administrative papers. It can be
-        different from the trade name (used for commercial purpose).</0>
-
-        <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
+      description: <0><0>The corporate name</0> is the name of your company in the
+        eyes of the law, written on all your administrative documents. It can be
+        different from your business name.</0><1>It is advisable to check that
+        the name is available, i.e. that it does not infringe on a name already
+        protected by a trademark, a company name, a trade name, an internet
+        domain name, etc. You can check in the <1>INPI database</1>.</1>
       titre: Find a corporate name
     objetSocial:
       description: The <1>corporate purpose</1> of the company ("objet social") is the
@@ -1121,18 +1121,19 @@ pages:
         optional basis for certain other kind of companies (EIRL, EURL, SNC,
         etc.).</1><2>It is calculated on the basis of the profits made in France
         during the financial year. The duration of a financial year is normally
-        12 months but it may be shorter or longer (in particular at the beginning
-        of activity or on the dissolution of the company). In this case, the tax
-        scale is scaled according to the length of the fiscal year, which is
-        taken into account in the simulator by changing the start and end dates
-        of the fiscal year.</2><3>Reduced rate and specific regimes</3><4>“TPE”
-        with a turnover of less than €7.63 million and 75% of their capital
-        owned by individuals benefit from a reduced corporate tax rate. This
-        rate is taken into account on the simulator and it is currently not
-        possible to simulate ineligibility for the reduced rates.</4><5>Finally,
-        there are specific tax regimes with dedicated rates for certain types of
-        capital gains (transfer of securities, transfer of patents). These
-        regimes are not included in the simulator.</5>
+        12 months but it may be shorter or longer (in particular at the
+        beginning of activity or on the dissolution of the company). In this
+        case, the tax scale is scaled according to the length of the fiscal
+        year, which is taken into account in the simulator by changing the start
+        and end dates of the fiscal year.</2><3>Reduced rate and specific
+        regimes</3><4>“TPE” with a turnover of less than €7.63 million and 75%
+        of their capital owned by individuals benefit from a reduced corporate
+        tax rate. This rate is taken into account on the simulator and it is
+        currently not possible to simulate ineligibility for the reduced
+        rates.</4><5>Finally, there are specific tax regimes with dedicated
+        rates for certain types of capital gains (transfer of securities,
+        transfer of patents). These regimes are not included in the
+        simulator.</5>
     médecin:
       shortname: Doctor
       title: Income simulator for private practitioners
