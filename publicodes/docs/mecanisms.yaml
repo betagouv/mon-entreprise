@@ -400,16 +400,28 @@ composantes:
           prix = prix . HT + prix . TVA 
 
 abattement:
+  chainable: oui
   description: >-
-    Permet de réduire le montant d'une variable.
+    Permet de réduire le montant d'une valeur.
 
-    Très utilisé dans le contexte des impôts.
+    Le résultat vaudra toujours au moins zéro, y compris quand le montant de l'abattement est plus grand que le montant abattu.
+
+    Il est possible d'utiliser le mécanisme `abattement` de deux manières :
+      - soit en indiquant un montant de la même unité que la valeur, qui lui sera alors soustrait
+      - soit en indiquant un pourcentage qui sera utilisé pour calculer l'abattement de manière relative
   exemples:
-    base: >-
-      impôt . revenu abattu:
-        valeur: base des cotisations
-        abattement: abattement
-
+    abattement simple: >-
+      revenu imposable:
+        valeur: 10000€
+        abattement: 2000€
+    abattement supérieur à la valeur: >-
+      revenu imposable:
+        valeur: 1000€
+        abattement: 2000€
+    abattement relatif: >-
+      revenu imposable:
+        valeur: 2000€
+        abattement: 10%
 
 plancher:
   chainable: oui
