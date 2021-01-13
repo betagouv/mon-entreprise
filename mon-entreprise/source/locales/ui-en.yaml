@@ -1387,8 +1387,8 @@ simulateurs:
         applicable regulatory elements and the elements that you have entered,
         but it does not take into account your entire situation. The actual
         amount of your contributions may therefore be different.
-      '2': This simulator allows you to estimate the amount of your contributions for
-        the year 2020 based on your projected income.
+      '2': This simulator allows you to estimate the amount of your contributions
+        based on your projected income.
     auto-entrepreneur: ' Self-entrepreneurs cannot deduct their expenses from their
       turnover. Therefore, <3>all costs related to the business</3> must be
       <3>netted out to obtain the income actually received</3>.'

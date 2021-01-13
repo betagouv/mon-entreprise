@@ -86,8 +86,8 @@ export default function SimulateurWarning({
 						</li>
 						<li>
 							<Trans i18nKey="simulateurs.warning.artiste-auteur.2">
-								Ce simulateur permet d'estimer le montant de vos cotisations
-								pour l'année 2020 à partir de votre revenu projeté
+								Ce simulateur permet d'estimer le montant de vos cotisations à
+								partir de votre revenu projeté
 							</Trans>
 						</li>
 					</>
