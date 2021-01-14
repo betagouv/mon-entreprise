@@ -1,13 +1,16 @@
 objectifs:
-  - entreprise . chiffre d'affaires
+  - dirigeant . auto-entrepreneur . chiffre d'affaires
+  - entreprise . chiffre d'affaires . vente restauration hébergement
+  - entreprise . chiffre d'affaires . prestations de service . BIC
+  - entreprise . chiffre d'affaires . prestations de service . BNC
   - dirigeant . auto-entrepreneur . cotisations et contributions
   - dirigeant . auto-entrepreneur . net de cotisations
-  - impôt
+  - dirigeant . auto-entrepreneur . net après impôt . impôt
   - dirigeant . auto-entrepreneur . net après impôt
 
 questions:
   à l'affiche:
-    Type d'activité: entreprise . catégorie d'activité
+    Type d'activité: entreprise . activité
     Versement libératoire: dirigeant . auto-entrepreneur . impôt . versement libératoire
     Impôt sur le revenu: impôt . méthode de calcul
     ACRE: entreprise . ACRE
@@ -21,7 +24,10 @@ questions:
     - établissement . localisation
   liste noire:
     - entreprise . charges
-
+    - entreprise . chiffre d'affaires . vente restauration hébergement
+    - entreprise . chiffre d'affaires . prestations de service . BIC
+    - entreprise . chiffre d'affaires . prestations de service . BNC
 unité par défaut: €/an
 situation:
+  entreprise . activité . mixte: oui
   dirigeant: "'auto-entrepreneur'"

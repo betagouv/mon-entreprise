@@ -18,7 +18,7 @@ aides:
 
 impôt sur le revenu:
   - dirigeant . auto-entrepreneur . net de cotisations: 25000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
+    entreprise . activité: "'libérale'"
     dirigeant . auto-entrepreneur . impôt . versement libératoire: oui
 
 ACRE:

@@ -10,7 +10,7 @@ protection sociale . retraite:
   résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   non applicable si:
     toutes ces conditions:
-      - entreprise . catégorie d'activité = 'libérale'
+      - entreprise . activité = 'libérale'
       - dirigeant . indépendant . PL . régime général = non
   description: |
     Tous les travailleurs en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
@@ -120,55 +120,44 @@ protection sociale . retraite . trimestres validés . trimestres auto-entreprene
   applicable si: dirigeant . auto-entrepreneur
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   unité: trimestres validés/an
-  formule:
-    variations:
-      - si: entreprise . catégorie d'activité = 'libérale'
-        alors:
-          grille:
-            unité: trimestres validés/an
-            assiette: entreprise . chiffre d'affaires
-            tranches:
-              - montant: 0
-                plafond: 2880 €/an
-              - montant: 1
-                plafond: 5062 €/an
-              - montant: 2
-                plafond: 7266 €/an
-              - montant: 3
-                plafond: 9675 €/an
-              - montant: 4
-      - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement
-        alors:
-          grille:
-            unité: trimestres validés/an
-            assiette: entreprise . chiffre d'affaires
-            tranches:
-              - montant: 0
-                plafond: 4137 €/an
-              - montant: 1
-                plafond: 7286 €/an
-              - montant: 2
-                plafond: 10426 €/an
-              - montant: 3
-                plafond: 20740 €/an
-              - montant: 4
-      - sinon:
-          grille:
-            unité: trimestres validés/an
-            assiette: entreprise . chiffre d'affaires
-            tranches:
-              - montant: 0
-                plafond: 2412 €/an
-              - montant: 1
-                plafond: 4239 €/an
-              - montant: 2
-                plafond: 6071 €/an
-              - montant: 3
-                plafond: 12030 €/an
-              - montant: 4
+  somme:
+    - grille:
+        assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+        tranches:
+          - montant: 0
+            plafond: 4137 €/an
+          - montant: 1
+            plafond: 7286 €/an
+          - montant: 2
+            plafond: 10426 €/an
+          - montant: 3
+            plafond: 20740 €/an
+          - montant: 4
+    - grille:
+        assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+        tranches:
+          - montant: 0
+            plafond: 2880 €/an
+          - montant: 1
+            plafond: 5062 €/an
+          - montant: 2
+            plafond: 7266 €/an
+          - montant: 3
+            plafond: 9675 €/an
+          - montant: 4
+    - grille:
+        unité: trimestres validés/an
+        assiette: entreprise . chiffre d'affaires . prestations de service . BIC
+        tranches:
+          - montant: 0
+            plafond: 2412 €/an
+          - montant: 1
+            plafond: 4239 €/an
+          - montant: 2
+            plafond: 6071 €/an
+          - montant: 3
+            plafond: 12030 €/an
+          - montant: 4
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
 
@@ -181,7 +170,7 @@ protection sociale . revenu moyen:
     plancher: 0 €/mois
     le maximum de:
       - dirigeant . indépendant . revenu professionnel
-      - dirigeant . auto-entrepreneur . impôt . revenu abattu
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
       - contrat salarié . rémunération . brut
 
 protection sociale . retraite . mois cotisés:
@@ -228,7 +217,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
       assiette:
         somme:
           - dirigeant . indépendant . cotisations et contributions . retraite complémentaire
-          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          # - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
@@ -278,7 +267,7 @@ protection sociale . santé . indemnités journalières:
     brut et versées tous les 14 jours en moyenne.
   non applicable si:
     toutes ces conditions:
-      - entreprise . catégorie d'activité = 'libérale'
+      - entreprise . activité = 'libérale'
       - dirigeant . indépendant . PL . régime général = non
   unité: €/jour
   note: |

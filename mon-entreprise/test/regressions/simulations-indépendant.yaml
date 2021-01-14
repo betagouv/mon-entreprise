@@ -27,9 +27,9 @@ cotisations minimales:
 
 activité:
   - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
+    entreprise . activité: "'libérale'"
   - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
-    entreprise . catégorie d'activité: "'artisanale'"
+    entreprise . activité: "'artisanale'"
 
 acre:
   - dirigeant . indépendant . revenu net de cotisations: 50000 €/an

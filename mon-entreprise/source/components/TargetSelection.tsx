@@ -22,13 +22,17 @@ import {
 	RuleNode,
 } from 'publicodes'
 import { isNil } from 'ramda'
-import { Fragment, useCallback, useContext } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import {
+	firstStepCompletedSelector,
+	situationSelector,
+	targetUnitSelector,
+} from 'Selectors/simulationSelectors'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
@@ -91,7 +95,6 @@ type TargetType = EvaluatedNode &
 	RuleNode & { dottedName: DottedName }
 
 const Target = ({ dottedName }: TargetProps) => {
-	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({
@@ -99,6 +102,8 @@ const Target = ({ dottedName }: TargetProps) => {
 		unité: useSelector(targetUnitSelector),
 		arrondi: 'oui',
 	})
+	const situation = useSelector(situationSelector)
+
 	const target: TargetType = { ...evaluation, ...rule.rawNode, ...rule }
 	const dispatch = useDispatch()
 	const onSuggestionClick = useCallback(
@@ -107,16 +112,19 @@ const Target = ({ dottedName }: TargetProps) => {
 		},
 		[target.dottedName, dispatch]
 	)
+	const isActive =
+		dottedName in situation || Object.keys(situation).length === 0
 
 	const isSmallTarget =
-		!target.question || !!target.question !== !!target.formule
+		!rule.rawNode.question ||
+		(dottedName in evaluation.missingVariables &&
+			Object.keys(evaluation.missingVariables).length === 1)
 	if (
 		target.nodeValue === false ||
 		(isSmallTarget && !target.question && !target.nodeValue)
 	) {
 		return null
 	}
-	const isActiveInput = activeInput === target.dottedName
 	return (
 		<li
 			key={target.dottedName}
@@ -125,12 +133,7 @@ const Target = ({ dottedName }: TargetProps) => {
 			<Animate.appear unless={!isSmallTarget}>
 				<div>
 					<div className="main">
-						<Header
-							{...{
-								target,
-								isActiveInput,
-							}}
-						/>
+						<Header target={target} />
 						{isSmallTarget && (
 							<span
 								style={{
@@ -144,12 +147,12 @@ const Target = ({ dottedName }: TargetProps) => {
 						<TargetInputOrValue
 							{...{
 								target,
-								isActiveInput,
+								isActive,
 								isSmallTarget,
 							}}
 						/>
 					</div>
-					{isActiveInput && (
+					{isActive && (
 						<Animate.fromTop>
 							<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
 								<InputSuggestions
@@ -190,18 +193,20 @@ const Header = ({ target }: { target: TargetType }) => {
 
 type TargetInputOrValueProps = {
 	target: TargetType
-	isActiveInput: boolean
+	isActive: boolean
 	isSmallTarget: boolean
 }
 
 function TargetInputOrValue({
 	target,
-	isActiveInput,
+	isActive,
 	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
+	const [isActiveOrFocused, setActive] = useState(isActive)
+	useEffect(() => setActive(isActive), [isActive])
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const value =
@@ -210,7 +215,7 @@ function TargetInputOrValue({
 			unité: targetUnit,
 			arrondi: 'oui',
 		}).nodeValue as number) ?? undefined
-	const blurValue = useInversionFail() && !isActiveInput
+	const blurValue = useInversionFail() && !isActiveOrFocused
 
 	const onChange = useCallback(
 		(evt) =>
@@ -229,7 +234,7 @@ function TargetInputOrValue({
 		>
 			{target.question ? (
 				<>
-					{!isActiveInput && <AnimatedTargetValue value={value} />}
+					{!isActiveOrFocused && <AnimatedTargetValue value={value} />}
 					<CurrencyInput
 						style={{
 							color: colors.textColor,
@@ -239,7 +244,7 @@ function TargetInputOrValue({
 						name={target.dottedName}
 						value={value}
 						className={
-							isActiveInput ||
+							isActiveOrFocused ||
 							isNil(value) ||
 							(target.question && isSmallTarget)
 								? 'targetInput'
@@ -247,8 +252,7 @@ function TargetInputOrValue({
 						}
 						onChange={onChange}
 						onFocus={() => {
-							if (isSmallTarget) return
-							dispatch(setActiveTarget(target.dottedName))
+							setActive(true)
 						}}
 						language={language}
 					/>

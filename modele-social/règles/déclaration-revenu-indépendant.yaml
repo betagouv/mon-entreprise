@@ -6,7 +6,7 @@ aide déclaration revenu indépendant 2020:
     fiscale des indépendants de 2021 sur les revenus 2020
   formule: non
 aide déclaration revenu indépendant 2020 . nature de l'activité:
-  remplace: entreprise . catégorie d'activité
+  remplace: entreprise . activité
   question: Quelle est la nature de votre activité ?
   formule:
     une possibilité:
@@ -59,7 +59,7 @@ aide déclaration revenu indépendant 2020 . ACRE:
 
 aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   rend non applicable: dirigeant . indépendant . PL . CIPAV
-  remplace: entreprise . catégorie d'activité . libérale
+  remplace: entreprise . activité . libérale
   formule: nature de l'activité = 'libérale'
   titre: Libérale rattachée au régime général
   description: |
@@ -72,8 +72,13 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
 
+<<<<<<< HEAD
 aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle:
   remplace: entreprise . catégorie d'activité . commerciale ou industrielle
+=======
+aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
+  remplace: entreprise . activité . commerciale ou industrielle
+>>>>>>> 76a45672 ((auto-entrepreneur) Ajoute les revenus mixtes)
   formule: nature de l'activité = 'commerciale ou industrielle'
   description: |
     ### Activité commerciale
@@ -86,7 +91,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale
 
 aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
   formule: nature de l'activité = 'artisanale'
-  remplace: entreprise . catégorie d'activité . artisanale
+  remplace: entreprise . activité . artisanale
   description: |
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 

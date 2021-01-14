@@ -10,9 +10,9 @@ questions:
   liste noire:
     - entreprise . charges
   liste:
-    - entreprise . catégorie d'activité
+    - entreprise . activité
     - dirigeant . indépendant . PL . métier
-    - entreprise . date de création 
+    - entreprise . date de création
     - dirigeant . indépendant
     - entreprise
     - établissement
@@ -27,5 +27,5 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'indépendant'"
-  entreprise . catégorie d'activité: "'libérale'"
+  entreprise . activité: "'libérale'"
   entreprise . imposition: "'IR'"
