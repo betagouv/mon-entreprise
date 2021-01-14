@@ -104,7 +104,12 @@ function simulation(
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = without(
-				['entreprise . charges'],
+				[
+					'entreprise . charges',
+					"entreprise . chiffre d'affaires . prestations de service . BIC",
+					"entreprise . chiffre d'affaires . prestations de service . BNC",
+					"entreprise . chiffre d'affaires . vente restauration hébergement",
+				],
 				objectifsSelector({ simulation: state } as RootState)
 			)
 			const situation = state.situation

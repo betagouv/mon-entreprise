@@ -56,8 +56,162 @@ entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  formule: dirigeant . rémunération totale + charges
+  somme:
+    - vente restauration hébergement
+    - prestations de service
   identifiant court: ca
+
+entreprise . chiffre d'affaires . vente restauration hébergement:
+  applicable si:
+    une de ces conditions:
+      - activité . service ou vente = 'vente'
+      - activité . mixte
+  titre: Vente de biens, restauration, hebergement
+  par défaut:
+    le maximum de:
+      - dirigeant . auto-entrepreneur . chiffre d'affaires
+      - 0 €/an
+  résumé: Chiffre d'affaires hors taxe
+  question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
+  unité: €/an
+  plancher: 0€/an
+  inversion numérique:
+    avec:
+      - dirigeant . auto-entrepreneur . net de cotisations
+      - dirigeant . auto-entrepreneur . net après impôt
+  abattement:
+    applicable si: activité . mixte
+    valeur: 2 / 3
+    unité: '%'
+  description: |
+    ### Vente de biens 
+    Il s’agit du chiffre d'affaires de toutes les opérations comportant
+    transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
+    existence matérielle. 
+
+    ### Restauration et hébergement
+    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
+    ou hebergement (hors meublé de tourisme classé)
+
+    Ces revenus sont imposable au régime BIC
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+    définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . chiffre d'affaires . prestations de service:
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle)
+  unité: €/an
+  somme:
+    - BIC
+    - BNC
+
+entreprise . chiffre d'affaires . prestations de service . BIC:
+  applicable si:
+    une de ces conditions:
+      - activité . service ou vente = 'service'
+      - activité . mixte
+  unité: €/an
+  par défaut:
+    le maximum de:
+      - dirigeant . auto-entrepreneur . chiffre d'affaires
+      - 0 €/an
+  plancher: 0€/an
+  inversion numérique:
+    avec:
+      - dirigeant . auto-entrepreneur . net de cotisations
+      - dirigeant . auto-entrepreneur . net après impôt
+  abattement:
+    applicable si: activité . mixte
+    valeur: 2 / 3
+    unité: '%'
+  résumé: Chiffre d'affaires hors taxe
+  titre: Prestations de service commerciales ou artisanales
+  question: Quel est le chiffre d'affaires issus de prestations de service commerciales ou artisanales ?
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle), dont
+    l'activité manuelle joue le principal rôle.
+
+    Pour simplifier on pourrait dire que ce sont toutes les prestations de
+    services qui nécessite plus qu'un ordinateur pour être effectuées.
+
+    **Exemples** : transports, service à la personne, réparation etc.
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+
+entreprise . chiffre d'affaires . prestations de service . BNC:
+  titre: Prestations de service libérale
+  résumé: Chiffre d'affaires hors taxe
+  question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
+  par défaut:
+    le maximum de:
+      - dirigeant . auto-entrepreneur . chiffre d'affaires
+      - 0 €/an
+  applicable si:
+    une de ces conditions:
+      - activité = 'libérale'
+      - activité . mixte
+  plancher: 0€/an
+  inversion numérique:
+    avec:
+      - dirigeant . auto-entrepreneur . net de cotisations
+      - dirigeant . auto-entrepreneur . net après impôt
+  abattement:
+    applicable si: activité . mixte
+    valeur: 2 / 3
+    unité: '%'
+  description: |
+    Ce sont toutes les opérations dont l'activité intellectuelle tient
+    un rôle essentiel. 
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+
+  références:
+    liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . chiffre d'affaires . franchise de TVA dépassé:
+  description: |
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
+
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  une de ces conditions:
+    - vente restauration hébergement > seuil vente
+    - prestations de service > seuil service
+  note: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil vente:
+  variations:
+    - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+      alors: 110000 €/an
+    - sinon: 94300 €/an
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil service:
+  variations:
+    - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+      alors: 60000 €/an
+    - si: dirigeant . indépendant . PL . métier = 'avocat'
+      alors: 44500 €
+    - sinon: 36500 €/an
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . chiffre d'affaires . franchise de TVA dépassé . notification:
+  type: notification
+  formule: oui
+  description: |
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 entreprise . chiffre d'affaires minimum:
   identifiant court: entreprise-ca-min
@@ -65,12 +219,6 @@ entreprise . chiffre d'affaires minimum:
   question: Quel est votre chiffre d'affaires minimum envisagé ?
   unité: €/an
   formule: chiffre d'affaires
-
-entreprise . chiffre d'affaires de société:
-  formule:
-    somme:
-      - dirigeant . rémunération totale / rémunération du dirigeant
-      - charges
 
 entreprise . rémunération du dirigeant:
   description: |
@@ -350,46 +498,6 @@ entreprise . ACRE par défaut:
         alors: non
       - sinon: oui
 
-entreprise . franchise de TVA:
-  description: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaires annuel dépendant de l'activité.
-
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  formule:
-    variations:
-      - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
-        alors:
-          variations:
-            - si: entreprise . catégorie d'activité . service ou vente = 'service'
-              alors: 60000 €/an
-            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
-              alors: 110000 €/an
-      - sinon:
-          variations:
-            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
-              alors: 94300 €/an
-            - si: entreprise . catégorie d'activité . service ou vente = 'service'
-              alors: 36500 €/an
-            - si: entreprise . catégorie d'activité = 'libérale'
-              alors:
-                variations:
-                  - si: dirigeant . indépendant . PL . métier = 'avocat'
-                    alors: 44500 €/an
-                  - sinon: 36500 €/an
-  note: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
-
-entreprise . seuil de franchise de TVA dépassé:
-  type: notification
-  formule: chiffre d'affaires > franchise de TVA
-  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-
 entreprise . effectif:
   unité: employé
   formule:
@@ -493,10 +601,10 @@ entreprise . taxe sur les salaires:
   références:
     Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
-entreprise . catégorie d'activité:
+entreprise . activité:
   titre: nature de l'activité
-  question: Quelle est la nature de votre activité ?
-  description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
+  question: Quelle est la nature de votre activité principale ?
+  description: Votre type d'activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
   par défaut: "'commerciale ou industrielle'"
   formule:
     une possibilité:
@@ -510,7 +618,7 @@ entreprise . catégorie d'activité:
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
-entreprise . catégorie d'activité . libérale:
+entreprise . activité . libérale:
   description: |
     Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
 
@@ -521,7 +629,7 @@ entreprise . catégorie d'activité . libérale:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . commerciale ou industrielle:
+entreprise . activité . commerciale ou industrielle:
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
@@ -531,7 +639,7 @@ entreprise . catégorie d'activité . commerciale ou industrielle:
 
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 
-entreprise . catégorie d'activité . artisanale:
+entreprise . activité . artisanale:
   description: |
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 
@@ -542,44 +650,10 @@ entreprise . catégorie d'activité . artisanale:
   références:
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
-entreprise . catégorie d'activité . service ou vente:
-  applicable si:
-    une de ces conditions:
-      - catégorie d'activité = 'artisanale'
-      - catégorie d'activité = 'commerciale ou industrielle'
-  question: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - service
-        - vente
-  par défaut: "'vente'"
-
-entreprise . catégorie d'activité . service ou vente . vente:
-  titre: vente de biens
-  description: |
-    Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
-  références:
-    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
-
-entreprise . catégorie d'activité . service ou vente . service:
-  titre: prestation de service
-  description: |
-    Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
-  références:
-    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
-
-entreprise . catégorie d'activité . restauration ou hébergement:
-  applicable si: service ou vente = 'service'
-  description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
-  question: Est-ce une activité de restauration ou d'hébergement ?
-  par défaut: non
-
-entreprise . catégorie d'activité . libérale règlementée:
+entreprise . activité . libérale règlementée:
   question: Est-ce une activité libérale règlementée ?
   par défaut: non
-  applicable si: catégorie d'activité = 'libérale'
+  applicable si: activité = 'libérale'
   description: |
     Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
 
@@ -591,43 +665,65 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . débit de tabac:
-  applicable si: catégorie d'activité = 'commerciale ou industrielle'
+entreprise . activité . débit de tabac:
+  applicable si: activité = 'commerciale ou industrielle'
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 
-entreprise . rattachée à la CIPAV:
-  # TODO implémenter un nouveau mécanisme
-  # TODO consolider la formule :
-  # Nous avons deux listes possibles
-  # A) Voilà la liste de l'Urssaf
-  question: La profession libérale règlementée est-elle rattachée à la CIPAV ?
-  par défaut: non
-  description: |
-    Les auto-entrepreneurs exerçant une activité de profession libérale règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales règlementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
-
-    formule:
-      inclusion:
-        de: entreprise . catégorie d'activité . type d'activité libérale règlementée
-        dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
-          - Architecte
-          - Architecte d'intérieur
-          - Chiropracteur
-          - Diététicien
-          - Ergothérapeute
-          - Expert devant les tribunaux
-          - Géomètre-expert
-          - Mandataire judiciaire à la protecion des majeurs
-          - Ostéopathe
-          - Psychologue
-          - Psychothérapeute
-
-entreprise . auto entreprise impossible:
+entreprise . activité . service ou vente:
+  non applicable si: mixte
+  applicable si:
+    une de ces conditions:
+      - activité = 'artisanale'
+      - activité = 'commerciale ou industrielle'
+  question: Quelle est le type d'activité de l'entreprise ?
   formule:
-    toutes ces conditions:
-      - entreprise . catégorie d'activité . libérale règlementée
-      - rattachée à la CIPAV != oui
-  note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - vente
+        - service
+  par défaut: "'vente'"
+
+entreprise . activité . service ou vente . vente:
+  titre: vente de biens, restauration ou hébergement
+  description: |
+    Il s’agit de toute opération comportant transfert de propriété d'un bien
+    corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
+    toutes les activités de restauration et d'hébergement.
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . activité . service ou vente . service:
+  titre: prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle).
+
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
+
+entreprise . activité . mixte:
+  #TODO non applicable si:
+  titre: Activités mixtes
+  question: Votre entreprise a-t-elle plusieurs types d'activités ?
+  description: |
+    Il est possible d'avoir plusieurs activités avec des types de revenus
+    différents pour une même entreprise. 
+
+    Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
+    robinet a un CA de type vente de materiel (le robinet) et prestation de
+    service (la pose)
+
+    Il existe trois principales familles de revenus au yeux de l'administration
+    fiscale et sociale :
+
+    - [Ventes de biens, restauration et hébergement](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
+    - [Prestation de service commerciale ou artisanale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
+    - [Prestation de service libérale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+
+    Si votre entreprise a des activités correspondants à plus d'un type de
+    revenus, répondez oui à cette question.
 
 établissement:
   formule: oui
@@ -709,7 +805,7 @@ entreprise . auto entreprise impossible:
   # Pas d'inigibilité explicite des PL réglementés à ce dispositif, mais il
   # apparaît que les métiers concernés (médecins, avocats...) sont incompatibles
   # avec les secteurs d'activités concernés par l'aide (hôtels, restaurants...)
-  non applicable si: entreprise . catégorie d'activité . libérale règlementée
+  non applicable si: entreprise . activité . libérale règlementée
   description: |
     Les conditions d'éligibilité aux aides "covid" dépendent du secteur
     d'activité de l'établissement. 

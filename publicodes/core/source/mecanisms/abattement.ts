@@ -34,7 +34,7 @@ const evaluateAbattement: EvaluationFunction<'abattement'> = function (node) {
 
 	const assietteValue = assiette.nodeValue as number | null
 	const abattementValue = abattement.nodeValue as number | null
-	const nodeValue = abattement
+	const nodeValue = abattementValue
 		? assietteValue == null
 			? null
 			: abattementValue == null

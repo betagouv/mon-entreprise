@@ -136,7 +136,7 @@ export default function AideDéclarationIndépendant() {
 							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 							{/* PLNR */}
 							<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
-								<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
+								<SimpleField dottedName="entreprise . activité . débit de tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 							</Condition>

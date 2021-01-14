@@ -27,19 +27,19 @@ ACRE:
 
 activités:
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
+    entreprise . activité: "'libérale'"
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
-    entreprise . catégorie d'activité . libérale règlementée: oui
+    entreprise . activité: "'libérale'"
+    entreprise . activité . libérale règlementée: oui
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'artisanale'"
+    entreprise . activité: "'artisanale'"
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'commerciale ou industrielle'"
-    entreprise . catégorie d'activité . service ou vente: "'vente'"
+    entreprise . activité: "'commerciale ou industrielle'"
+    entreprise . activité . service ou vente: "'vente'"
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'commerciale ou industrielle'"
-    entreprise . catégorie d'activité . service ou vente: "'service'"
-    entreprise . catégorie d'activité . restauration ou hébergement: oui
+    entreprise . activité: "'commerciale ou industrielle'"
+    entreprise . activité . service ou vente: "'service'"
+    entreprise . activité . restauration ou hébergement: oui
 
 Contrats Madelin:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de

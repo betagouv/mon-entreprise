@@ -155,8 +155,8 @@ const chainableMecanisms = [
 	unité,
 	plancher,
 	plafond,
-	abattement,
 	situation,
+	abattement,
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {
 	const parseFn = chainableMecanisms.find((fn) => fn.nom in rawNode)

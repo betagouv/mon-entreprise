@@ -26,7 +26,7 @@ export default function IndépendantExplanation() {
 
 	return (
 		<>
-			<Condition expression="entreprise . catégorie d'activité . libérale règlementée">
+			<Condition expression="entreprise . activité . libérale règlementée">
 				<PLExplanation />
 			</Condition>
 			<AidesCovid aidesRule="dirigeant . indépendant . cotisations et contributions . aides covid 2020" />

@@ -13,7 +13,7 @@ questions:
   liste:
     - dirigeant . rémunération totale
     - entreprise . charges
-    - entreprise . catégorie d'activité
+    - entreprise . activité
 unité par défaut: €/an
 situation:
   dirigeant: "'auto-entrepreneur'"

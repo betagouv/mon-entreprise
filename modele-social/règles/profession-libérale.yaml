@@ -1,11 +1,11 @@
 # TODO: rules have a lot to share with artiste-author (BNC-regime) and independant
 dirigeant . indépendant . PL:
   titre: Profession libérale
-  applicable si: entreprise . catégorie d'activité = 'libérale'
+  applicable si: entreprise . activité = 'libérale'
   formule: oui
 
 dirigeant . indépendant . PL . métier:
-  applicable si: entreprise . catégorie d'activité . libérale règlementée
+  applicable si: entreprise . activité . libérale règlementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   formule:
@@ -105,7 +105,7 @@ dirigeant . indépendant . PL . métier . expert-comptable:
 dirigeant . indépendant . PL . option régime général:
   applicable si:
     toutes ces conditions:
-      - entreprise . catégorie d'activité . libérale règlementée = non
+      - entreprise . activité . libérale règlementée = non
       - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: |
@@ -140,7 +140,7 @@ dirigeant . indépendant . PL . régime général:
   formule:
     toutes ces conditions:
       - CIPAV = non
-      - entreprise . catégorie d'activité . libérale règlementée = non
+      - entreprise . activité . libérale règlementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
@@ -237,7 +237,7 @@ dirigeant . indépendant . PL . CIPAV:
       - toutes ces conditions:
           - entreprise . date de création < 01/2019
           - option régime général = non
-          - entreprise . catégorie d'activité . libérale règlementée = non
+          - entreprise . activité . libérale règlementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
@@ -373,7 +373,7 @@ dirigeant . indépendant . PL . PAMC:
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
-    - entreprise . franchise de TVA
+    - entreprise . chiffre d'affaires . franchise de TVA dépassé
     - dirigeant . indépendant . revenus étrangers
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui

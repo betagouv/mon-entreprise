@@ -6116,7 +6116,7 @@ entreprise . bénéfice . information sur le report de déficit:
     [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
   titre.en: '[automatic] deficit carry forward information'
   titre.fr: information sur le report de déficit
-entreprise . catégorie d'activité:
+entreprise . activité:
   description.en: Your activity category will determine a large part of the
     calculations of contribution, contribution and tax.
   description.fr: Votre catégorie d'activité va déterminer une grande partie des
@@ -6125,7 +6125,7 @@ entreprise . catégorie d'activité:
   question.fr: Quelle est la nature de votre activité ?
   titre.en: '[automatic] nature of business'
   titre.fr: nature de l'activité
-entreprise . catégorie d'activité . artisanale:
+entreprise . activité . artisanale:
   description.en: >
     It is an activity of service, production, processing, or by a qualified
     professional, and which requires specific skills and know-how.
@@ -6151,7 +6151,7 @@ entreprise . catégorie d'activité . artisanale:
     - Les activités artisanales sont répertoriées par un décret
   titre.en: Craft
   titre.fr: artisanale
-entreprise . catégorie d'activité . commerciale ou industrielle:
+entreprise . activité . commerciale ou industrielle:
   description.en: >
     ### Commercial activity
 
@@ -6178,12 +6178,12 @@ entreprise . catégorie d'activité . commerciale ou industrielle:
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: commercial or industrial
   titre.fr: commerciale ou industrielle
-entreprise . catégorie d'activité . débit de tabac:
+entreprise . activité . débit de tabac:
   question.en: '[automatic] Do you engage in tobacco sales?'
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: tobacco shop
   titre.fr: débit de tabac
-entreprise . catégorie d'activité . libérale:
+entreprise . activité . libérale:
   description.en: >
     These are the "intellectual" professions: doctors, midwife, physiotherapist,
     lawyer, but also consultant, developer, designer...
@@ -6202,7 +6202,7 @@ entreprise . catégorie d'activité . libérale:
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
   titre.en: liberal
   titre.fr: libérale
-entreprise . catégorie d'activité . libérale règlementée:
+entreprise . activité . libérale règlementée:
   description.en: >
     Some liberal professions have been classified in the liberal field by law
     and their title is protected. Their members must respect strict ethical
@@ -6235,7 +6235,7 @@ entreprise . catégorie d'activité . libérale règlementée:
   question.fr: Est-ce une activité libérale règlementée ?
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-entreprise . catégorie d'activité . restauration ou hébergement:
+entreprise . activité . restauration ou hébergement:
   description.en: Your profits are classified in BIC - provision of housing or
     accommodation food.
   description.fr: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
@@ -6243,12 +6243,12 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   question.fr: Est-ce une activité de restauration ou d'hébergement ?
   titre.en: food or accommodation
   titre.fr: restauration ou hébergement
-entreprise . catégorie d'activité . service ou vente:
+entreprise . activité . service ou vente:
   question.en: Is it a service activity, or the purchase and sale of goods?
   question.fr: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
   titre.en: service or sale
   titre.fr: service ou vente
-entreprise . catégorie d'activité . service ou vente . service:
+entreprise . activité . service ou vente . service:
   description.en: >
     This refers to any transaction that does not involve a transfer of ownership
     of tangible property (i.e., having a material existence).
@@ -6257,7 +6257,7 @@ entreprise . catégorie d'activité . service ou vente . service:
     biens corporels (c'est-à-dire ayant une existence matérielle).
   titre.en: service provision
   titre.fr: prestation de service
-entreprise . catégorie d'activité . service ou vente . vente:
+entreprise . activité . service ou vente . vente:
   description.en: >
     This refers to any transaction involving the transfer of ownership of
     tangible property, i.e. property having a material existence. All other
@@ -6447,8 +6447,7 @@ entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . exercice . date trop ancienne:
-  description.en:
-    '[automatic] The date entered is too old. The simulator does not
+  description.en: '[automatic] The date entered is too old. The simulator does not
     integrate the scales until 2018.'
   description.fr: La date saisie est trop ancienne. Le simulateur n'intègre pas
     les barèmes avant 2018.
@@ -6643,7 +6642,7 @@ entreprise . rattachée à la CIPAV:
 
     formule:
       inclusion:
-        de: entreprise . catégorie d'activité . type d'activité libérale règlementée
+        de: entreprise . activité . type d'activité libérale règlementée
         dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
           - Architecte
           - Architecte d'intérieur
