@@ -14,5 +14,5 @@
 		"noEmit": true,
 		"strict": true
 	},
-	"include": ["types", "source"]
+	"include": ["types", "source", "dev-server.js"]
 }

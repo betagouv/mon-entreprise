@@ -20,20 +20,20 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import Provider, { ProviderProps } from '../Provider'
+import Provider, { ProviderProps } from './Provider'
 import {
 	persistEverything,
 	retrievePersistedState,
-} from '../storage/persistEverything'
+} from './storage/persistEverything'
 import {
 	persistSimulation,
 	retrievePersistedSimulation,
-} from '../storage/persistSimulation'
-import Tracker, { devTracker } from '../Tracker'
+} from './storage/persistSimulation'
+import Tracker, { devTracker } from './Tracker'
 import './App.css'
-import Footer from './layout/Footer/Footer'
-import Header from './layout/Header'
-import trackSimulatorActions from './middlewares/trackSimulatorActions'
+import Footer from 'Components/layout/Footer/Footer'
+import Header from 'Components/layout/Header'
+import trackSimulatorActions from './trackSimulatorActions'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Créer'
 import IntegrationTest from './pages/Dev/IntegrationTest'

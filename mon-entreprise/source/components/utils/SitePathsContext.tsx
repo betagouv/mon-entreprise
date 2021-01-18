@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { SitePathsType } from 'site/sitePaths'
+import { SitePathsType } from 'sitePaths'
 
 export const SitePathsContext = createContext<SitePathsType>(
 	{} as SitePathsType

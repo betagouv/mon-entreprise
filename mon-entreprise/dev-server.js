@@ -3,11 +3,11 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 
 const app = express()
-const config = require('../webpack.dev.js')
+const config = require('./webpack.dev.js')
 const compiler = webpack(config)
 const history = require('connect-history-api-fallback')
 
-const { watchDottedNames } = require('../../modele-social/build')
+const { watchDottedNames } = require('../modele-social/build')
 watchDottedNames()
 
 const rewrite = (basename) => ({
