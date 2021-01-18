@@ -17,7 +17,7 @@ import {
 	useState,
 } from 'react'
 import emoji from 'react-easy-emoji'
-import { hash } from '../../../../utils'
+import { hash } from '../../../utils'
 import formulaire from './formulaire-détachement.yaml'
 
 const LazyEndBlock = lazy(() => import('./EndBlock'))

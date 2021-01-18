@@ -8,7 +8,7 @@ import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import useSWR from 'swr'
-import { determinant, hideNewsBanner } from '../../layout/NewsBanner'
+import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 
 const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')

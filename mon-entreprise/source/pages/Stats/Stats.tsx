@@ -20,9 +20,9 @@ import {
 	YAxis,
 } from 'recharts'
 import styled from 'styled-components'
-import statsJson from '../../../data/stats.json'
-import { capitalise0 } from '../../../utils'
-import Privacy from '../../layout/Footer/Privacy'
+import statsJson from '../../data/stats.json'
+import { capitalise0 } from '../../utils'
+import Privacy from 'Components/layout/Footer/Privacy'
 import useSimulatorsData from '../Simulateurs/metadata'
 
 const stats: StatsData = statsJson as any

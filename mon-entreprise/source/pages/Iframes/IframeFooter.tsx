@@ -1,4 +1,4 @@
-import Privacy from '../../layout/Footer/Privacy'
+import Privacy from 'Components/layout/Footer/Privacy'
 
 export default function IframeFooter() {
 	return (

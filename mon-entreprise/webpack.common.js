@@ -18,10 +18,9 @@ module.exports.default = {
 		extensions: ['.js', '.ts', '.tsx'],
 	},
 	entry: {
-		'mon-entreprise': './source/site/entry.fr.tsx',
-		infrance: './source/site/entry.en.tsx',
-		'simulateur-iframe-integration':
-			'./source/site/iframe-integration-script.js',
+		'mon-entreprise': './source/entry.fr.tsx',
+		infrance: './source/entry.en.tsx',
+		'simulateur-iframe-integration': './source/iframe-integration-script.js',
 		publicodes: '../publicodes/site/entry.tsx',
 	},
 	output: {
@@ -41,15 +40,15 @@ module.exports.default = {
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			{
-				from: './source/site/robots.txt',
+				from: './source/robots.txt',
 				to: 'robots.infrance.txt',
 			},
 			{
-				from: './source/site/sitemap.fr.txt',
+				from: './source/sitemap.fr.txt',
 				to: 'sitemap.infrance.fr.txt',
 			},
 			{
-				from: './source/site/sitemap.en.txt',
+				from: './source/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt',
 			},
 			{
@@ -61,7 +60,7 @@ module.exports.default = {
 				to: 'data',
 			},
 			{
-				from: './source/site/favicon',
+				from: './source/images/favicon',
 				to: 'favicon',
 			},
 		]),
