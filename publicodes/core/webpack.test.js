@@ -1,23 +1,12 @@
-const { commonLoaders } = require('../../webpack/common')
 const { EnvironmentPlugin } = require('webpack')
+const prodConfig = require('./webpack.config')
 
 module.exports = {
-	resolve: {
-		extensions: ['.ts', '.tsx', '.js'],
-	},
+	...prodConfig,
+	mode: 'development',
 	output: {
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]',
 		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-	},
-	mode: 'development',
-	module: {
-		rules: [
-			...commonLoaders(),
-			{
-				test: /\.css$/,
-				use: ['css-loader', 'postcss-loader'],
-			},
-		],
 	},
 	plugins: [
 		new EnvironmentPlugin({

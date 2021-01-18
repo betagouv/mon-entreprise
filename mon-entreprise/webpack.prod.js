@@ -1,7 +1,11 @@
 /* eslint-env node */
 
-const { HTMLPlugins, default: common } = require('./webpack.common')
-const { commonLoaders, styleLoader } = require('../webpack/common')
+const {
+	HTMLPlugins,
+	styleLoader,
+	commonLoaders,
+	default: common,
+} = require('./webpack.common')
 
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
