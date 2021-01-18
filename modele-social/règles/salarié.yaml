@@ -1375,23 +1375,21 @@ contrat salarié . rémunération . primes . fin d'année . treizième mois:
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
-  formule:
-    # Pour les frais professionnels, et les cotisations de prévoyance facultative
-    # et de retraite complémentaire on ne ré-intègre ici que la part employeur
-    # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
-    # base` dont elle vient en déduction).
-    valeur:
-      somme:
-        - rémunération . brut de base
-        - avantages en nature . montant
-        - primes
-        - CDD . indemnités salarié
-        - heures supplémentaires
-        - heures complémentaires
-        - frais professionnels
-        - prévoyance . employeur
-        - retraite supplémentaire . employeur
-    abattement: activité partielle . retrait absence
+  # Pour les frais professionnels, et les cotisations de prévoyance facultative
+  # et de retraite complémentaire on ne ré-intègre ici que la part employeur
+  # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
+  # base` dont elle vient en déduction).
+  somme:
+    - rémunération . brut de base
+    - avantages en nature . montant
+    - primes
+    - CDD . indemnités salarié
+    - heures supplémentaires
+    - heures complémentaires
+    - frais professionnels
+    - prévoyance . employeur
+    - retraite supplémentaire . employeur
+  abattement: activité partielle . retrait absence
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1632,47 +1630,45 @@ contrat salarié . cotisations . réductions de cotisations:
 contrat salarié . cotisations . salariales:
   titre: cotisations salariales
 
-  formule:
-    somme:
-      - vieillesse . salarié
-      - maladie . salarié
-      - retraite complémentaire . salarié
-      - contribution d'équilibre général . salarié
-      - contribution d'équilibre technique . salarié
-      - chômage . salarié
-      - CSG et CRDS
-      - APEC . salarié
-      - complémentaire santé . salarié
-      - conventionnelles
-      - (- réductions de cotisations)
+  somme:
+    - vieillesse . salarié
+    - maladie . salarié
+    - retraite complémentaire . salarié
+    - contribution d'équilibre général . salarié
+    - contribution d'équilibre technique . salarié
+    - chômage . salarié
+    - CSG et CRDS
+    - APEC . salarié
+    - complémentaire santé . salarié
+    - conventionnelles
+  abattement: réductions de cotisations
 
 contrat salarié . cotisations . patronales:
   titre: cotisations patronales
-  formule:
-    somme:
-      - maladie . employeur
-      - ATMP
-      - prévoyance obligatoire cadre
-      - vieillesse . employeur
-      - retraite complémentaire . employeur
-      - complémentaire santé . employeur
-      - contribution d'équilibre général . employeur
-      - contribution d'équilibre technique . employeur
-      - allocations familiales
-      - chômage . employeur
-      - APEC . employeur
-      - AGS
-      - FNAL
-      - participation effort de construction
-      - contribution au dialogue social
-      - formation professionnelle
-      - versement transport
-      - taxe d'apprentissage
-      - CDD . taxe forfaitaire sur les CDD d'usage
-      - CDD . CPF
-      - forfait social
-      - conventionnelles
-      - (- réductions de cotisations)
+  somme:
+    - maladie . employeur
+    - ATMP
+    - prévoyance obligatoire cadre
+    - vieillesse . employeur
+    - retraite complémentaire . employeur
+    - complémentaire santé . employeur
+    - contribution d'équilibre général . employeur
+    - contribution d'équilibre technique . employeur
+    - allocations familiales
+    - chômage . employeur
+    - APEC . employeur
+    - AGS
+    - FNAL
+    - participation effort de construction
+    - contribution au dialogue social
+    - formation professionnelle
+    - versement transport
+    - taxe d'apprentissage
+    - CDD . taxe forfaitaire sur les CDD d'usage
+    - CDD . CPF
+    - forfait social
+    - conventionnelles
+  abattement: réductions de cotisations
 
 contrat salarié . rémunération:
   formule: oui
