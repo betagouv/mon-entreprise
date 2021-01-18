@@ -78,7 +78,7 @@ export default class Engine<Name extends string = string> {
 	options: Options
 
 	constructor(
-		rules: string | Record<string, Rule> | ParsedRules<Name>,
+		rules: string | Record<string, Rule> | ParsedRules<Name> = {},
 		options: Partial<Options> = {}
 	) {
 		this.options = { ...options, logger: options.logger ?? console }
