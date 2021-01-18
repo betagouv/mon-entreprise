@@ -32,11 +32,13 @@ const evaluateAbattement: EvaluationFunction<'abattement'> = function (node) {
 		}
 	}
 
-	const assietteValue = assiette.nodeValue as number
+	const assietteValue = assiette.nodeValue as number | null
 	const abattementValue = abattement.nodeValue as number | null
 	const nodeValue = abattement
-		? abattementValue == null
-			? assietteValue === 0
+		? assietteValue == null
+			? null
+			: abattementValue == null
+			? assietteValue == 0
 				? 0
 				: null
 			: serializeUnit(abattement.unit) === '%'

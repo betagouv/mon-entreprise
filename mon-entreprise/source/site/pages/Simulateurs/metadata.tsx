@@ -730,6 +730,7 @@ export function getSimulatorsData({
 		pamc: {
 			private: true,
 			iframe: 'pamc',
+			path: 'pamc',
 			config: professionLibéraleConfig,
 			icône: '🏥',
 			meta: {
