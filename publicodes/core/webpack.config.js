@@ -1,7 +1,26 @@
 /* eslint-env node */
 
 const path = require('path')
-const { commonLoaders } = require('../../webpack/common')
+
+const babelLoader = {
+	loader: 'babel-loader',
+	options: {
+		cacheDirectory: true,
+		rootMode: 'upward',
+		presets: [
+			[
+				'@babel/preset-env',
+				{
+					targets: {
+						esmodules: true,
+					},
+					useBuiltIns: 'entry',
+					corejs: '3',
+				},
+			],
+		],
+	},
+}
 
 const common = {
 	resolve: {
@@ -10,30 +29,39 @@ const common = {
 	mode: process.env.NODE_ENV,
 	entry: path.resolve(__dirname, 'source', 'index.ts'),
 	module: {
-		rules: commonLoaders({ file: false }),
+		rules: [
+			{
+				test: /\.(js|ts|tsx)$/,
+				use: babelLoader,
+				exclude: /node_modules|dist/,
+			},
+			{
+				test: /\.ne$/,
+				use: [babelLoader, 'nearley-loader'],
+			},
+			{
+				test: /\.yaml$/,
+				use: ['json-loader', 'yaml-loader'],
+			},
+		],
 	},
 }
 
-module.exports = [
-	// Config for UMD export (browser / node)
-	{
-		...common,
-		output: {
-			filename: 'index.js',
-			library: 'publicodes',
-			libraryTarget: 'umd',
-			globalObject: 'this',
-		},
-		externals:
-			// Every non-relative module is external
-			/^[a-z\-0-9]+$/,
-	},
-	process.env.NODE_ENV === 'production' && {
-		...common,
-		output: {
-			filename: 'publicodes.min.js',
-			library: 'publicodes',
-			libraryTarget: 'global',
-		},
-	},
-].filter(Boolean)
+const output =
+	process.env.NODE_ENV === 'production'
+		? {
+				filename: 'publicodes.min.js',
+				library: 'publicodes',
+				libraryTarget: 'global',
+		  }
+		: {
+				filename: 'index.js',
+				library: 'publicodes',
+				libraryTarget: 'umd',
+				globalObject: 'this',
+		  }
+
+module.exports = {
+	...common,
+	output,
+}
