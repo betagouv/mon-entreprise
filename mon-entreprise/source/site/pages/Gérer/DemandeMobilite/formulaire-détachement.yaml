@@ -360,7 +360,7 @@ activité transfrontalière simultanée . activité non salariée . pays centre 
     une de ces conditions:
       - part subtentielle France
       - activité salariée . activité substantielle
-  applicable si: nombre >= 2
+  applicable si: nombre >= 1
   description: >-
     Pour determiner votre pays "centre d'intêret", vous devez prendre en compte
     un ensemble d'éléments de votre activité professionelle :
@@ -393,7 +393,6 @@ activité transfrontalière simultanée . activité non salariée . pays centre 
   applicable si: pays = 'Autre'
   titre: Nom du pays
   type: texte
-
 commentaires additionnels:
   type: groupe
   formule: oui
