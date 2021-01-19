@@ -46,6 +46,12 @@ describe('Units handling', () => {
 				{ formatUnit }
 			)
 		).to.equal('7 jours / semaine')
+		expect(
+			formatValue({
+				nodeValue: 441,
+				unit: parseUnit('%.kgCO2e'),
+			})
+		).to.equal('4.41 kgCO2e')
 	})
 })
 
