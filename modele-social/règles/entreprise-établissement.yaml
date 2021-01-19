@@ -243,12 +243,12 @@ entreprise . impôt sur les sociétés . prorata temporis:
   # ce nombre et 30. »
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
-    
+
 entreprise . impôt sur les sociétés . contribution sociale:
   # description: |
   #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
 
-  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution. 
+  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution.
   description: |
     La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur les sociétés. Son montant n’est pas déductible des résultats.
 
@@ -256,7 +256,7 @@ entreprise . impôt sur les sociétés . contribution sociale:
   formule:
     produit:
       taux: 3.3%
-      assiette: 
+      assiette:
         valeur: impôt sur les sociétés
         abattement: 763000 €/an * prorata temporis
   références:
@@ -455,12 +455,12 @@ entreprise . association non lucrative:
   rend non applicable:
     - contrat salarié . taxe d'apprentissage
 
-entreprise . non assujettie à TVA:
-  question: L'entreprise est-elle non assujettie à la TVA ?
+entreprise . exonérée de TVA:
+  question: L'entreprise est-elle exonérée de TVA (hors franchise de base) ?
   par défaut: non
   description: |
-    Certaines entreprises ne sont pas assujetties à la TVA. 
-    Elles payent la taxe sur les salaires en contrepartie.
+    Certains types d'entreprises ne sont pas assujetties à la TVA. 
+    Ces dernières payent la taxe sur les salaires en contrepartie.
 
     C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
   references:
@@ -476,10 +476,10 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
-  non applicable si:
+  applicable si:
     une de ces conditions:
       - association non lucrative
-      - entreprise . non assujettie à TVA
+      - entreprise . exonérée de TVA
   description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
     Entre 1200 €/an et 2400 €/an une décote s'applique.

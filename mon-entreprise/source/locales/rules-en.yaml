@@ -6319,6 +6319,25 @@ entreprise . exercice . début après la fin:
 entreprise . exercice . fin:
   titre.en: '[automatic] end'
   titre.fr: fin
+entreprise . exonérée de TVA:
+  description.en: >
+    [automatic] Certain types of businesses are not subject to VAT. 
+
+    They pay payroll tax in return.
+
+
+    This is the case, for example, with banking, financial or insurance institutions.
+  description.fr: >
+    Certains types d'entreprises ne sont pas assujetties à la TVA. 
+
+    Ces dernières payent la taxe sur les salaires en contrepartie.
+
+
+    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
+  question.en: '[automatic] Is the company exempt from VAT (excluding the basic exemption)?'
+  question.fr: L'entreprise est-elle exonérée de TVA (hors franchise de base) ?
+  titre.en: '[automatic] VAT-exempt'
+  titre.fr: exonérée de TVA
 entreprise . franchise de TVA:
   description.en: |
     [automatic] The VAT exemption is a device that exempts businesses from the
@@ -6419,25 +6438,6 @@ entreprise . impôt sur les sociétés . prorata temporis:
 entreprise . impôt sur les sociétés . éligible taux réduit:
   titre.en: '[automatic] eligible reduced rate'
   titre.fr: éligible taux réduit
-entreprise . non assujettie à TVA:
-  description.en: >
-    [automatic] Some businesses are not subject to VAT. 
-
-    They pay payroll tax in return.
-
-
-    This is the case, for example, with banking, financial or insurance institutions.
-  description.fr: >
-    Certaines entreprises ne sont pas assujetties à la TVA. 
-
-    Elles payent la taxe sur les salaires en contrepartie.
-
-
-    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
-  question.en: '[automatic] Is the company not subject to VAT?'
-  question.fr: L'entreprise est-elle non assujettie à la TVA ?
-  titre.en: '[automatic] non-VAT taxable'
-  titre.fr: non assujettie à TVA
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
