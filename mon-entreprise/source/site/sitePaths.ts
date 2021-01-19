@@ -53,6 +53,7 @@ const sitePathsFr = {
 		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
+		pamc: '/pamc',
 		salarié: '/salaire-brut-net',
 		'artiste-auteur': '/artiste-auteur',
 		'profession-libérale': {
@@ -112,6 +113,7 @@ const sitePathsEn = {
 		SASU: '/sasu-chairman',
 		indépendant: '/independant',
 		'auto-entrepreneur': '/auto-entrepreneur',
+		pamc: '/pamc',
 		comparaison: '/social-scheme-comparaison',
 		salarié: '/salary',
 		'artiste-auteur': '/artist-author',

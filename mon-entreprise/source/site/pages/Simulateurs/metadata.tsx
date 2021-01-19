@@ -730,7 +730,12 @@ export function getSimulatorsData({
 		pamc: {
 			private: true,
 			iframe: 'pamc',
-			path: 'pamc',
+			title: t(
+				'pages.simulateurs.pamc.title',
+
+				'PAMC : simulateurs de cotisations et de revenu'
+			),
+			path: sitePaths.simulateurs.pamc,
 			config: professionLibéraleConfig,
 			icône: '🏥',
 			meta: {
@@ -760,7 +765,7 @@ export function getSimulatorsData({
 			},
 			shortName: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
 			title: t(
-				'pages.simulateurs.is.meta.title',
+				'pages.simulateurs.is.title',
 				"Simulateur d'impôt sur les sociétés"
 			),
 			component: ISSimulation,
