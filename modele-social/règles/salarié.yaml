@@ -117,7 +117,7 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
     plafond:
       produit:
         assiette: nombre
-        facteur: 5.54 €/titres-restaurant
+        facteur: 5.55 €/titres-restaurant
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
