@@ -1,4 +1,7 @@
 objectifs:
+  - dirigeant . auto-entrepreneur . chiffre d'affaires
+  - dirigeant . auto-entrepreneur . net de cotisations
+  - dirigeant . auto-entrepreneur . net après impôt
   - dirigeant . auto-entrepreneur . cotisations et contributions
   - dirigeant . auto-entrepreneur . net après impôt . impôt
 
@@ -23,5 +26,5 @@ questions:
     - entreprise . chiffre d'affaires . prestations de service . BNC
 unité par défaut: €/an
 situation:
-  entreprise . activité . mixte: oui
+  entreprise . activité . mixte: non
   dirigeant: "'auto-entrepreneur'"

@@ -68,22 +68,19 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
       - activité . service ou vente = 'vente'
       - activité . mixte
   titre: Vente de biens, restauration, hebergement
-  par défaut:
-    le maximum de:
-      - dirigeant . auto-entrepreneur . chiffre d'affaires
-      - 0 €/an
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
   unité: €/an
+  par défaut: 
+    produit:
+      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
+      facteur: 
+        variations: 
+          - si: activité = 'libérale'
+            alors: 30%
+          - sinon: 70%
+  arrondi: oui
   plancher: 0€/an
-  inversion numérique:
-    avec:
-      - dirigeant . auto-entrepreneur . net de cotisations
-      - dirigeant . auto-entrepreneur . net après impôt
-  abattement:
-    applicable si: activité . mixte
-    valeur: 2 / 3
-    unité: '%'
   description: |
     ### Vente de biens 
     Il s’agit du chiffre d'affaires de toutes les opérations comportant
@@ -114,19 +111,16 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
       - activité . service ou vente = 'service'
       - activité . mixte
   unité: €/an
-  par défaut:
-    le maximum de:
-      - dirigeant . auto-entrepreneur . chiffre d'affaires
-      - 0 €/an
+  par défaut: 
+    produit:
+      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
+      facteur: 
+        variations: 
+          - si: activité = 'libérale'
+            alors: 0
+          - sinon: 30%
   plancher: 0€/an
-  inversion numérique:
-    avec:
-      - dirigeant . auto-entrepreneur . net de cotisations
-      - dirigeant . auto-entrepreneur . net après impôt
-  abattement:
-    applicable si: activité . mixte
-    valeur: 2 / 3
-    unité: '%'
+  arrondi: oui
   résumé: Chiffre d'affaires hors taxe
   titre: Prestations de service commerciales ou artisanales
   question: Quel est le chiffre d'affaires issus de prestations de service commerciales ou artisanales ?
@@ -146,23 +140,21 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
   titre: Prestations de service libérale
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
-  par défaut:
-    le maximum de:
-      - dirigeant . auto-entrepreneur . chiffre d'affaires
-      - 0 €/an
+  par défaut: 
+    produit:
+      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
+      facteur: 
+        variations: 
+          - si: activité = 'libérale'
+            alors: 70%
+          - sinon: 0.0000001% # On veut qu'elle reste manquante en fonction du CA
+  arrondi: oui
   applicable si:
     une de ces conditions:
       - activité = 'libérale'
       - activité . mixte
   plancher: 0€/an
-  inversion numérique:
-    avec:
-      - dirigeant . auto-entrepreneur . net de cotisations
-      - dirigeant . auto-entrepreneur . net après impôt
-  abattement:
-    applicable si: activité . mixte
-    valeur: 2 / 3
-    unité: '%'
+  
   description: |
     Ce sont toutes les opérations dont l'activité intellectuelle tient
     un rôle essentiel. 

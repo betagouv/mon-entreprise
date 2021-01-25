@@ -8,7 +8,7 @@ import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, { ASTNode, formatValue, reduceAST } from 'publicodes'
-import { Evaluation } from 'publicodes/dist/types/AST/types'
+import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,30 +17,23 @@ import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import TextInput from './TextInput'
 
-type Value = any
-export type RuleInputProps<Name extends string = DottedName> = {
+export type Props<Name extends string = DottedName> = Omit<
+	React.HTMLAttributes<HTMLInputElement>,
+	'onChange' | 'defaultValue'
+> & {
+	required?: boolean
 	dottedName: Name
-	onChange: (value: Value | null) => void
+	onChange: (value: Parameters<Engine<Name>['evaluate']>[0]) => void
 	useSwitch?: boolean
 	isTarget?: boolean
-	autoFocus?: boolean
-	required?: boolean
-	id?: string
-	className?: string
 	onSubmit?: (source: string) => void
 }
 
-export type InputCommonProps<Name extends string = string> = Pick<
-	RuleInputProps<Name>,
-	'onChange' | 'autoFocus' | 'className'
-> &
+export type InputProps<Name extends string = string> = Props<Name> &
 	Pick<RuleNode, 'title' | 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
-		key: string
-		id: string
-		value: any //TODO EvaluatedRule['nodeValue']
+		value: EvaluatedNode['nodeValue']
 		missing: boolean
-		required: boolean
 	}
 
 export const binaryQuestion = [
@@ -56,30 +49,25 @@ export default function RuleInput({
 	dottedName,
 	onChange,
 	useSwitch = false,
-	id,
 	isTarget = false,
-	autoFocus = false,
-	required = true,
-	className,
 	onSubmit = () => null,
-}: RuleInputProps) {
+	...props
+}: Props<DottedName>) {
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
-	const commonProps: InputCommonProps = {
-		key: dottedName,
+	const commonProps: InputProps<DottedName> = {
+		dottedName,
 		value,
 		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
-		autoFocus,
-		className,
-		required,
 		title: rule.title,
-		id: id ?? dottedName,
+		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
 		suggestions: rule.suggestions,
+		...props,
 	}
 	if (getVariant(engine.getRule(dottedName))) {
 		return (
@@ -149,12 +137,12 @@ export default function RuleInput({
 		return (
 			<>
 				<CurrencyInput
-					{...commonProps}
+					className="targetInput"
 					language={language}
 					debounce={750}
-					value={value as any}
 					name={dottedName}
-					className="targetInput"
+					{...commonProps}
+					value={value as number}
 					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
 				/>
 			</>

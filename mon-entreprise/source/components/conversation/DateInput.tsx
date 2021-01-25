@@ -1,20 +1,7 @@
-import {
-	InputCommonProps,
-	RuleInputProps,
-} from 'Components/conversation/RuleInput'
-import { RuleNode } from 'publicodes'
+import { InputProps } from 'Components/conversation/RuleInput'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
-
-type DateInputProps = {
-	onChange: InputCommonProps['onChange']
-	id: InputCommonProps['id']
-	onSubmit: RuleInputProps['onSubmit']
-	value: InputCommonProps['value']
-	suggestions: RuleNode['suggestions']
-	required: RuleInputProps['required']
-}
 
 export default function DateInput({
 	suggestions,
@@ -23,7 +10,7 @@ export default function DateInput({
 	onSubmit,
 	required,
 	value,
-}: DateInputProps) {
+}: InputProps) {
 	const dateValue = useMemo(() => {
 		if (!value || typeof value !== 'string') return undefined
 		const [day, month, year] = value.split('/')
