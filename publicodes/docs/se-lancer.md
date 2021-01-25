@@ -22,6 +22,7 @@ import Engine from 'publicodes'
 
 // On définit une liste de règles publicodes
 const rules = `
+prix:
 prix . carottes: 2€/kg
 prix . champignons: 5€/kg
 prix . avocat: 2€/avocat
