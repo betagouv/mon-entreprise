@@ -128,6 +128,7 @@ dirigeant . auto-entrepreneur . seuils dépassés . notification:
 dirigeant . auto-entrepreneur . net de cotisations:
   titre: Revenu net de cotisations
   arrondi: oui
+  unité: €/an
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -234,10 +235,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
         - sinon: 0.1%
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires ?
-  résumé: Montant total des recettes brutes
+  résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   arrondi: oui
-  non applicable si: entreprise . activité . mixte
   inversion numérique:
     avec:
       - net de cotisations

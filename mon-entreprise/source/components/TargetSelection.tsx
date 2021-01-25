@@ -1,5 +1,5 @@
-import { setActiveTarget, updateSituation } from 'Actions/actions'
-import InputSuggestions from 'Components/conversation/InputSuggestions'
+import { updateSituation } from 'Actions/actions'
+import classnames from 'classnames'
 import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
@@ -21,18 +21,17 @@ import {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import { isNil } from 'ramda'
-import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
-	firstStepCompletedSelector,
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
+import InputSuggestions from './conversation/InputSuggestions'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
@@ -102,19 +101,7 @@ const Target = ({ dottedName }: TargetProps) => {
 		unité: useSelector(targetUnitSelector),
 		arrondi: 'oui',
 	})
-	const situation = useSelector(situationSelector)
-
 	const target: TargetType = { ...evaluation, ...rule.rawNode, ...rule }
-	const dispatch = useDispatch()
-	const onSuggestionClick = useCallback(
-		(value) => {
-			dispatch(updateSituation(dottedName, value))
-		},
-		[target.dottedName, dispatch]
-	)
-	const isActive =
-		dottedName in situation || Object.keys(situation).length === 0
-
 	const isSmallTarget =
 		!rule.rawNode.question ||
 		(dottedName in evaluation.missingVariables &&
@@ -134,34 +121,14 @@ const Target = ({ dottedName }: TargetProps) => {
 				<div>
 					<div className="main">
 						<Header target={target} />
-						{isSmallTarget && (
-							<span
-								style={{
-									flex: 1,
-									borderBottom: '1px dashed #ffffff91',
-									marginLeft: '1rem',
-								}}
-							/>
-						)}
-
+						{isSmallTarget && <span className="guide-lecture" />}
 						<TargetInputOrValue
 							{...{
 								target,
-								isActive,
 								isSmallTarget,
 							}}
 						/>
 					</div>
-					{isActive && (
-						<Animate.fromTop>
-							<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
-								<InputSuggestions
-									suggestions={target.suggestions}
-									onFirstClick={onSuggestionClick}
-								/>
-							</div>
-						</Animate.fromTop>
-					)}
 				</div>
 			</Animate.appear>
 		</li>
@@ -193,30 +160,35 @@ const Header = ({ target }: { target: TargetType }) => {
 
 type TargetInputOrValueProps = {
 	target: TargetType
-	isActive: boolean
 	isSmallTarget: boolean
 }
 
 function TargetInputOrValue({
 	target,
-	isActive,
 	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
-	const [isActiveOrFocused, setActive] = useState(isActive)
-	useEffect(() => setActive(isActive), [isActive])
+	const [isFocused, setFocused] = useState(false)
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
+	const situation = useSelector(situationSelector)
 	const value =
 		(engine.evaluate({
 			valeur: target.dottedName,
 			unité: targetUnit,
 			arrondi: 'oui',
 		}).nodeValue as number) ?? undefined
-	const blurValue = useInversionFail() && !isActiveOrFocused
-
+	const blurValue = useInversionFail() && !isFocused
+	const onSuggestionClick = useCallback(
+		(value) => {
+			dispatch(updateSituation(target.dottedName, value))
+		},
+		[target.dottedName, dispatch]
+	)
+	const isSituationEmpty = Object.keys(situation).length === 0
+	const isActive = target.dottedName in situation
 	const onChange = useCallback(
 		(evt) =>
 			dispatch(
@@ -228,54 +200,68 @@ function TargetInputOrValue({
 		[targetUnit, target, dispatch]
 	)
 	return (
-		<span
-			className="targetInputOrValue"
-			style={blurValue ? { filter: 'blur(3px)' } : {}}
-		>
-			{target.question ? (
-				<>
-					{!isActiveOrFocused && <AnimatedTargetValue value={value} />}
-					<CurrencyInput
-						style={{
-							color: colors.textColor,
-							borderColor: colors.textColor,
-						}}
-						debounce={750}
-						name={target.dottedName}
-						value={value}
-						className={
-							isActiveOrFocused ||
-							isNil(value) ||
-							(target.question && isSmallTarget)
-								? 'targetInput'
-								: 'editableTarget'
-						}
-						onChange={onChange}
-						onFocus={() => {
-							setActive(true)
-						}}
-						language={language}
-					/>
-					<span className="targetInputBottomBorder">
-						{formatValue(value, { language, displayedUnit: '€' })}
+		<>
+			<span
+				className="targetInputOrValue"
+				style={blurValue ? { filter: 'blur(3px)' } : {}}
+			>
+				{target.question ? (
+					<>
+						{!isFocused && <AnimatedTargetValue value={value} />}
+						<CurrencyInput
+							style={{
+								color: colors.textColor,
+								borderColor: colors.textColor,
+							}}
+							debounce={750}
+							name={target.dottedName}
+							value={value}
+							className={classnames(
+								isFocused ||
+									isActive ||
+									isSituationEmpty ||
+									(target.question && isSmallTarget)
+									? 'targetInput'
+									: 'editableTarget',
+								{ focused: isFocused }
+							)}
+							onChange={onChange}
+							onFocus={() => {
+								setFocused(true)
+							}}
+							onBlur={() => setTimeout(() => setFocused(false), 100)}
+							language={language}
+						/>
+					</>
+				) : (
+					<span>
+						{value && Number.isNaN(value) ? (
+							'—'
+						) : (
+							<RuleLink dottedName={target.dottedName}>
+								{formatValue(value, { displayedUnit: '€', language })}
+							</RuleLink>
+						)}
 					</span>
-				</>
-			) : (
-				<span>
-					{value && Number.isNaN(value) ? (
-						'—'
-					) : (
-						<RuleLink dottedName={target.dottedName}>
-							{formatValue(value, { displayedUnit: '€', language })}
-						</RuleLink>
-					)}
-				</span>
+				)}
+				{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
+				{target.dottedName === 'contrat salarié . rémunération . net' && (
+					<TitreRestaurant />
+				)}
+			</span>
+			{(isActive || isFocused) && (
+				<div style={{ minWidth: '100%' }}>
+					<Animate.fromTop>
+						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
+							<InputSuggestions
+								suggestions={target.suggestions}
+								onFirstClick={onSuggestionClick}
+							/>
+						</div>
+					</Animate.fromTop>
+				</div>
 			)}
-			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
-			{target.dottedName === 'contrat salarié . rémunération . net' && (
-				<TitreRestaurant />
-			)}
-		</span>
+		</>
 	)
 }
 function TitreRestaurant() {

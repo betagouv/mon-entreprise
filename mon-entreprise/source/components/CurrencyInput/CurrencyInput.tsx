@@ -18,12 +18,16 @@ export default function CurrencyInput({
 	currencySymbol = '€',
 	onChange,
 	language,
+	missing,
 	className,
+	style,
+	dottedName,
 	...forwardedProps
 }: CurrencyInputProps) {
 	const valueProp = value ?? ''
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
+
 	const onChangeDebounced = useMemo(
 		() =>
 			debounceTimeout && onChange
@@ -48,7 +52,10 @@ export default function CurrencyInput({
 		// Only trigger the `onChange` event if the value has changed -- and not
 		// only its formating, we don't want to call it when a dot is added in `12.`
 		// for instance
-		if (!nextValue.current || /(\.$)|(^\.)|(-$)/.exec(nextValue.current)) {
+		if (
+			!nextValue.current ||
+			/(\.$)|(^\.)|(-$)|(^0+$)/.exec(nextValue.current)
+		) {
 			return
 		}
 		event.persist()
@@ -68,14 +75,13 @@ export default function CurrencyInput({
 	// Autogrow the input
 	const valueLength = currentValue.toString().length
 	const width = `${5 + (valueLength - 5) * 0.75}em`
-
 	return (
 		<div
 			className={classnames(className, 'currencyInput__container')}
-			{...(valueLength > 5 ? { style: { width } } : {})}
+			style={{ ...(valueLength > 5 ? { width } : {}), ...style }}
+			onFocus={() => inputRef.current?.select()}
 			onClick={() => inputRef.current?.focus()}
 		>
-			{!currentValue && isCurrencyPrefixed && currencySymbol}
 			<NumberFormat
 				{...forwardedProps}
 				thousandSeparator={thousandSeparator}
@@ -93,7 +99,7 @@ export default function CurrencyInput({
 					//.replace(/^0+/, '')
 				}}
 				onChange={handleChange}
-				value={currentValue ? +currentValue : ''}
+				value={currentValue != null ? currentValue : ''}
 				autoComplete="off"
 			/>
 			{!isCurrencyPrefixed && <>&nbsp;€</>}

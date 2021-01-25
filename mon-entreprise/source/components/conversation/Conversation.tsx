@@ -1,5 +1,5 @@
-import { stepAction, goToQuestion, updateSituation } from 'Actions/actions'
-import RuleInput, { RuleInputProps } from 'Components/conversation/RuleInput'
+import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
+import RuleInput, { InputProps } from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
@@ -41,7 +41,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		dispatch(stepAction(currentQuestion, source))
 	}
 
-	const onChange: RuleInputProps['onChange'] = (value) => {
+	const onChange: InputProps['onChange'] = (value) => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 

@@ -72,13 +72,8 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
 
-<<<<<<< HEAD
 aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle:
-  remplace: entreprise . catégorie d'activité . commerciale ou industrielle
-=======
-aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
   remplace: entreprise . activité . commerciale ou industrielle
->>>>>>> 76a45672 ((auto-entrepreneur) Ajoute les revenus mixtes)
   formule: nature de l'activité = 'commerciale ou industrielle'
   description: |
     ### Activité commerciale

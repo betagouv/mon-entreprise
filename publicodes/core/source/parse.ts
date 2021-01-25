@@ -150,11 +150,11 @@ ${e.message}`
 const chainableMecanisms = [
 	applicable,
 	nonApplicable,
-	parDéfaut,
 	arrondi,
 	unité,
 	plancher,
 	plafond,
+	parDéfaut,
 	situation,
 	abattement,
 ]

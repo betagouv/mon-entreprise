@@ -1,6 +1,7 @@
 import { updateSituation } from 'Actions/actions'
+import Conversation from 'Components/conversation/Conversation'
 import { Condition } from 'Components/EngineValue'
-import RuleLink from 'Components/RuleLink'
+import SearchButton from 'Components/SearchButton'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
@@ -12,41 +13,47 @@ import { useDispatch } from 'react-redux'
 import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 export default function AutoEntrepreneur() {
-	const dispatch = useDispatch()
-
 	return (
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
-			<SimulationGoals className="plain">
-				<ActivitéMixte />
+			<SearchButton invisibleButton />
 
+			<SimulationGoals className="plain">
 				<Condition expression="entreprise . activité . mixte = non">
 					<SimulationGoal
+						appear={false}
 						labelWithTitle
 						dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires"
 					/>
+					<ActivitéMixte />
 				</Condition>
 				<Condition expression="entreprise . activité . mixte">
-					<h2 className="optionTitle">
-						<RuleLink dottedName="entreprise . chiffre d'affaires" />
-					</h2>
-
 					<SimulationGoal
-						small
+						appear={false}
+						editable={false}
 						labelWithTitle
-						dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
+						dottedName="entreprise . chiffre d'affaires"
 					/>
-					<SimulationGoal
-						labelWithTitle
-						small
-						titleLevel={3}
-						dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
-					/>
-					<SimulationGoal
-						labelWithTitle
-						small
-						dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
-					/>
+					<ActivitéMixte />
+					<li>
+						<ul>
+							<SimulationGoal
+								small
+								labelWithTitle
+								dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
+							/>
+							<SimulationGoal
+								labelWithTitle
+								small
+								dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
+							/>
+							<SimulationGoal
+								labelWithTitle
+								small
+								dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
+							/>
+						</ul>
+					</li>
 				</Condition>
 
 				<SimulationGoal
@@ -58,6 +65,7 @@ export default function AutoEntrepreneur() {
 					dottedName="dirigeant . auto-entrepreneur . net après impôt"
 				/>
 			</SimulationGoals>
+			<Conversation />
 			<Explanation />
 		</>
 	)
@@ -67,22 +75,37 @@ function ActivitéMixte() {
 	const defaultCheked = !!useEngine().evaluate('entreprise . activité . mixte')
 		.nodeValue
 	const dispatch = useDispatch()
+
 	return (
-		<label>
-			Activité mixte{' '}
-			<input
-				type="checkbox"
-				defaultChecked={defaultCheked}
-				onChange={(evt) =>
-					dispatch(
-						updateSituation(
-							'entreprise . activité . mixte',
-							evt.target.checked ? 'oui' : 'non'
+		<li
+			className="ui__ notice small-target"
+			css={`
+				margin-top: -0.4rem;
+			`}
+		>
+			<label
+				css={`
+					display: flex;
+					align-items: center;
+				`}
+			>
+				Activité mixte&nbsp;{' '}
+				<input
+					type="checkbox"
+					defaultChecked={defaultCheked}
+					onChange={(evt) =>
+						setTimeout(() =>
+							dispatch(
+								updateSituation(
+									'entreprise . activité . mixte',
+									evt.target.checked ? 'oui' : 'non'
+								)
+							)
 						)
-					)
-				}
-			/>
-		</label>
+					}
+				/>{' '}
+			</label>
+		</li>
 	)
 }
 
