@@ -127,12 +127,12 @@ dirigeant . auto-entrepreneur . seuils dépassés . notification:
 
 dirigeant . auto-entrepreneur . net de cotisations:
   titre: Revenu net de cotisations
+  arrondi: oui
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule: entreprise . chiffre d'affaires - cotisations et contributions
-  unité: €/mois
 
 dirigeant . auto-entrepreneur . cotisations et contributions:
   unité: €/mois
@@ -236,10 +236,12 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires ?
   résumé: Montant total des recettes brutes
   unité: €/an
+  arrondi: oui
   non applicable si: entreprise . activité . mixte
   inversion numérique:
     avec:
       - net de cotisations
+      - net après impôt
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une
@@ -385,6 +387,7 @@ dirigeant . auto-entrepreneur . net après impôt:
   identifiant court: auto-entrepreneur-net-apres-impot
   résumé: Avant déduction des dépenses liées à l'activité
   unité: €/an
+  arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt 
