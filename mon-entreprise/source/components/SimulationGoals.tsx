@@ -1,12 +1,12 @@
 import { updateSituation } from 'Actions/actions'
+import Animate from 'Components/ui/animate'
 import { DottedName } from 'modele-social'
 import { UNSAFE_isNotApplicable } from 'publicodes'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import RuleInput, { RuleInputProps } from './conversation/RuleInput'
+import RuleInput from './conversation/RuleInput'
 import { useEngine } from './utils/EngineContext'
-import Animate from 'Components/ui/animate'
-import { useState, useEffect, createContext, useContext } from 'react'
 
 type SimulationGoalsProps = {
 	className?: string
@@ -42,11 +42,16 @@ function useInitialRender() {
 
 type SimulationGoalProps = {
 	dottedName: DottedName
-} & Omit<RuleInputProps, 'onChange'>
+	labelWithTitle?: boolean
+	small?: boolean
+	titleLevel?: number
+}
 
 export function SimulationGoal({
 	dottedName,
-	...otherProps
+	labelWithTitle = false,
+	small = false,
+	titleLevel = 2,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -65,13 +70,13 @@ export function SimulationGoal({
 	}
 
 	return (
-		<li>
+		<li className={small ? 'small-target' : ''}>
 			<Animate.appear unless={initialRender}>
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
 							<span className="optionTitle">
-								{rule.rawNode.question || rule.title}
+								{(!labelWithTitle && rule.rawNode.question) || rule.title}
 							</span>
 							<p className="ui__ notice">{rule.rawNode.résumé}</p>
 						</label>

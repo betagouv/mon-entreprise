@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import React, { useMemo, useRef, useState } from 'react'
 import NumberFormat, { NumberFormatProps } from 'react-number-format'
-import { debounce, currencyFormat } from '../../utils'
+import { currencyFormat, debounce } from '../../utils'
 import './CurrencyInput.css'
 
 type CurrencyInputProps = NumberFormatProps & {
@@ -13,7 +13,7 @@ type CurrencyInputProps = NumberFormatProps & {
 }
 
 export default function CurrencyInput({
-	value: valueProp = '',
+	value,
 	debounce: debounceTimeout,
 	currencySymbol = '€',
 	onChange,
@@ -21,6 +21,7 @@ export default function CurrencyInput({
 	className,
 	...forwardedProps
 }: CurrencyInputProps) {
+	const valueProp = value ?? ''
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
 	const onChangeDebounced = useMemo(

@@ -56,6 +56,7 @@ entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
+  arrondi: oui
   somme:
     - vente restauration hébergement
     - prestations de service
