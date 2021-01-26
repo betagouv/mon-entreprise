@@ -14,7 +14,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { Fragment, useCallback, useContext, useEffect } from 'react'
+import { Fragment, useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,7 +52,7 @@ export default function AideDéclarationIndépendant() {
 		<div>
 			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
-				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
+				<h1>Aide à la déclaration de revenus au titre de l'année 2020</h1>
 				<p>
 					Cet outil est une aide aux déclarations fiscale (revenu) et sociale (
 					<abbr title="Déclaration Sociale des Indépendants">DSI</abbr>) à
@@ -96,7 +96,7 @@ export default function AideDéclarationIndépendant() {
 					</Warning>
 				</div>
 				<h2>
-					Quel est votre résultat fiscal en 2019 ?<br />
+					Quel est votre résultat fiscal en 2020 ?<br />
 					<small>
 						Charges sociales et exonérations fiscales non incluses{' '}
 						<ExplicationsResultatFiscal />
@@ -133,9 +133,9 @@ export default function AideDéclarationIndépendant() {
 								<CompanySection company={company} />
 							</div>
 							<SimpleField dottedName="entreprise . date de création" />
-							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 							{/* PLNR */}
-							<Condition expression="aide déclaration revenu indépendant 2019 . nature de l'activité">
+							<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
 								<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
@@ -151,7 +151,7 @@ export default function AideDéclarationIndépendant() {
 							<h2>
 								<Trans>Exonérations</Trans>
 							</h2>
-							<SimpleField dottedName="aide déclaration revenu indépendant 2019 . ACRE" />
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
 								hideTitle
