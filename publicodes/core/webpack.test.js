@@ -1,9 +1,10 @@
 const { EnvironmentPlugin } = require('webpack')
-const prodConfig = require('./webpack.config')
+const config = require('./webpack.config')
 
 module.exports = {
-	...prodConfig,
-	mode: 'development',
+	...config[0],
+	externals: [],
+	target: 'node',
 	output: {
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]',
 		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
