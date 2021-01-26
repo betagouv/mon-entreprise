@@ -1,14 +1,28 @@
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
-"<0><0></0> Erratum : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
+"<0><0></0> Erratum : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
   
   high an amount for the total employer cost. This is now corrected. We
   apologize for the inconvenienceundefined high an amount for the total employer
-  cost. This is now corrected. We apologize for the inconvenience."
-"<0><0></0> Erratum du 19/01/21 : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum of 19/01/21: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
+  cost. This is now corrected. We apologize for the inconvenienceundefined high
+  an amount for the total employer cost. This is now corrected. We apologize for
+  the inconvenienceundefined high an amount for the total employer cost. This is
+  now corrected. We apologize for the inconvenienceundefined high an amount for
+  the total employer cost. This is now corrected. We apologize for the
+  inconvenienceundefined high an amount for the total employer cost. This is now
+  corrected. We apologize for the inconvenienceundefined high an amount for the
+  total employer cost. This is now corrected. We apologize for the
+  inconvenienceundefined high an amount for the total employer cost. This is now
+  corrected. We apologize for the inconvenience."
+"<0><0></0> Erratum du 19/01/21 : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum of 19/01/21: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
   
   gave too high an amount for the total employer cost. This is now corrected. We
+  apologize for the inconvenienceundefined gave too high an amount for the total
+  employer cost. This is now corrected. We apologize for the
+  inconvenienceundefined gave too high an amount for the total employer cost.
+  This is now corrected. We apologize for the inconvenienceundefined gave too
+  high an amount for the total employer cost. This is now corrected. We
   apologize for the inconvenience."
 "<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
@@ -81,7 +95,9 @@ Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
 Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
+"Gérant majoritaire ": "Majority Manager "
 Gérant minoritaire: Managing director
+Gérant minoritaire ou égalitaire: Minority or equal manager
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes

@@ -64,7 +64,7 @@ export default function MinorityDirector() {
 					}}
 					className="ui__ button"
 				>
-					<Trans>Gérant minoritaire</Trans>
+					<Trans>Gérant minoritaire ou égalitaire</Trans>
 				</button>
 			</div>
 		</>
