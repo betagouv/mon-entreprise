@@ -9,16 +9,15 @@ SMIC temps plein . net imposable:
   description.fr: Montant du SMIC net imposable pour un temps plein.
   titre.en: '[automatic] minimum net taxable income'
   titre.fr: SMIC net imposable
-aide déclaration revenu indépendant 2019:
+aide déclaration revenu indépendant 2020:
   description.en: '[automatic] These rules calculate the amounts claimed in the
-    2020 social and tax returns of self-employed persons on the 2019 income
-    2019'
+    2021 social and tax returns of self-employed persons on 2020 income'
   description.fr:
     Ces règles calculent les montants demandés dans les déclarations
-    sociale et fiscale des indépendants de 2020 sur les revenus 2019
-  titre.en: '[automatic] self-employment income assistance 2019'
-  titre.fr: aide déclaration revenu indépendant 2019
-aide déclaration revenu indépendant 2019 . ACRE:
+    sociale et fiscale des indépendants de 2021 sur les revenus 2020
+  titre.en: '[automatic] assistance declaration independent income 2020'
+  titre.fr: aide déclaration revenu indépendant 2020
+aide déclaration revenu indépendant 2020 . ACRE:
   description.en: >-
     [automatic] The aid for the creation or takeover of a business (Acre)
     consists of a partial exemption from social security contributions, known as
@@ -28,7 +27,7 @@ aide déclaration revenu indépendant 2019 . ACRE:
     It is automatic for companies and sole proprietorships (under certain conditions, such as not having benefited from it in the last three years).
 
 
-    Moreover, for classic self-employed workers it is necessary to respect the condition of being considered as a creator in the sense of [article R131-3 of the Social Security Code](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582idTexte=LEGITEXT000006073189ateTexte=20170511).
+    Moreover, for classic self-employed workers it is necessary to respect the condition of being considered as a creator in the sense of [article R131-3 of the Social Security Code](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&amp;cidTexte=LEGITEXT000006073189&amp;dateTexte=20170511).
 
 
     ### Details
@@ -75,25 +74,28 @@ aide déclaration revenu indépendant 2019 . ACRE:
   question.fr: Votre entreprise bénéficie-t'elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
-aide déclaration revenu indépendant 2019 . CFP:
+aide déclaration revenu indépendant 2020 . CFP:
   résumé.en: '[automatic] contribution to vocational training [D]'
   résumé.fr: contribution à la formation professionnelle [D]
   titre.en: '[automatic] PSC'
   titre.fr: CFP
-aide déclaration revenu indépendant 2019 . CSG déductible:
+aide déclaration revenu indépendant 2020 . CSG déductible:
   résumé.en: '[automatic] [B]'
   résumé.fr: '[B]'
   titre.en: '[automatic] deductible MSA'
   titre.fr: CSG déductible
-aide déclaration revenu indépendant 2019 . SMIC 2019:
-  titre.en: '[automatic] MINIMUM WAGE 2019'
-  titre.fr: SMIC 2019
-aide déclaration revenu indépendant 2019 . assiette sociale:
-  résumé.en: '[automatic] for information [A - (B + C + D)].'
+aide déclaration revenu indépendant 2020 . PRCI:
+  titre.en: '[automatic] PRCI'
+  titre.fr: PRCI
+aide déclaration revenu indépendant 2020 . SMIC 2020:
+  titre.en: '[automatic] MINIMUM WAGE 2020'
+  titre.fr: SMIC 2020
+aide déclaration revenu indépendant 2020 . assiette sociale:
+  résumé.en: '[automatic] for your information [A - (B + C + D)].'
   résumé.fr: pour information [A - (B + C + D)]
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
+aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
   description.en: '[automatic] Amount to be reported in Box XI of your social
     security return and Item 326 of Form 2033-D-SD (for the simplified actual)
     or Item A5 of Form 2053-SD (for the normal actual) of your tax return.'
@@ -105,19 +107,19 @@ aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
   résumé.fr: '[C]'
   titre.en: '[automatic] deductible compulsory social security contributions'
   titre.fr: cotisations sociales obligatoires déductibles
-aide déclaration revenu indépendant 2019 . nature de l'activité:
+aide déclaration revenu indépendant 2020 . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
   titre.en: '[automatic] nature of business'
   titre.fr: nature de l'activité
-aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
   description.en: >
     [automatic] It is a service, production, transformation, or repair activity
     carried out by a qualified professional, and which requires specific skills
     and know-how.
 
 
-    &gt; For example: works, activities related to the building, repair of products supplied by the client, hairdressers, etc.
+    &gt; For example: works, activities related to building, repair of products supplied by the client, hairdressers...
 
 
     - The company must not employ more than 10 employees (the activity becomes commercial beyond that).
@@ -137,11 +139,11 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
     - Les activités artisanales sont répertoriées par un décret
   titre.en: '[automatic] artisanal'
   titre.fr: artisanale
-? aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle
+? aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle
 : description.en: >
     [automatic] ### Commercial activity
 
-    - Purchases of goods for resale in the same condition (wholesale or retail trade)
+    - Purchases of goods for resale in the same condition (wholesale or retail)
 
     - Sale of commercial services (equipment rental, transport, real estate agency, hotel and catering, entertainment business, private security activity, rental, etc.).
 
@@ -164,7 +166,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: '[automatic] commercial or industrial'
   titre.fr: commerciale ou industrielle
-aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
+aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   description.en: >
     [automatic] These are the "intellectual" professions, which are not attached
     to any
@@ -174,32 +176,32 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
 
     This has been the case for all unregulated professions since the
 
-    January 1, 2019.
+    1 January 2020.
   description.fr: |
     Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
     caisse spécifique de retraite.
 
     C'est le cas de toutes les professions libérale non reglementée depuis le
-    1er janvier 2019.
+    1er janvier 2020.
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
-aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
-  titre.en: '[automatic] social security ceiling 2019'
-  titre.fr: plafond sécurité sociale 2019
-aide déclaration revenu indépendant 2019 . période:
+aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
+  titre.en: '[automatic] social security ceiling 2020'
+  titre.fr: plafond sécurité sociale 2020
+aide déclaration revenu indépendant 2020 . période:
   titre.en: '[automatic] period'
   titre.fr: période
-aide déclaration revenu indépendant 2019 . revenu net fiscal:
+aide déclaration revenu indépendant 2020 . revenu net fiscal:
   résumé.en: '[automatic] before deduction of social security charges and tax
-    exemptions [A].'
+    exemptions [A]'
   résumé.fr: avant déduction des charges sociales et exonérations fiscales [A]
   titre.en: '[automatic] net taxable income'
   titre.fr: revenu net fiscal
-aide déclaration revenu indépendant 2019 . total charges sociales déductible:
+aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   description.en:
     '[automatic] Amount to be reported in Item 252 of Form 2033-B-SD
-    (for Simplified Actual) or Item FZ of Form 2052-SD (for Regular Actual) on
-    your tax return.'
+    (for Simplified Actual) or in Item FZ of Form 2052-SD (for Regular Actual)
+    of your tax return.'
   description.fr:
     Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD
     (pour le réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le
@@ -5241,32 +5243,62 @@ dirigeant . indépendant . assiette des cotisations:
   titre.en: '[automatic] contribution base'
   titre.fr: assiette des cotisations
 dirigeant . indépendant . avertissement base forfaitaire:
-  description.en: >-
-    [automatic] When you start your activity, as your professional income is not
-    known, the contributions and fees for the first two years are calculated on
-    a flat-rate basis.
+  description.en: >
+    [automatic] When you start your business, your professional income
+
+    not being known, the dues and contributions of the first two
+
+    years are calculated on a flat-rate basis.
 
 
-    This base amounts to 19% of the annual Social Security ceiling for the first and second year of activity.
+
+    This base amounts to 19% of the annual Social Security ceiling for
+
+    in the first and second year of operation.
 
 
-    There is an adjustment in the second year based on the actual income reported for the previous year.
+
+    There is an adjustment in the second year based on the
+
+    actual income reported for the previous year. In most cases, 
+
+    the amount of provisional contributions will be significantly higher.
 
 
-    This simulator calculates the contributions to the **cruise speed** (after regularization). It thus enables you to know the amount to be provisioned for the regularization.
-  description.fr: >-
-    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
-    pas connus, les cotisations et contributions des deux premières années sont
-    calculées sur une base forfaitaire.
+
+    This simulator calculates the **cruising speed** contributions (after
+
+    regularization). It therefore allows you to anticipate the amount of this accrual/deferral.
+
+    and plan your cash flow accordingly.
+  description.fr: >
+    Lorsque vous commencez votre activité, vos revenus professionnels
+
+    n’étant pas connus, les cotisations et contributions des deux premières
+
+    années sont calculées sur une base forfaitaire.
 
 
-    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de la première et de la deuxième année d’activité.
+
+    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
+
+    la première et de la deuxième année d’activité.
 
 
-    Il y a un ajustement au cours de la deuxième année en fonction des revenus réels déclarés pour l'année précédente.
+
+    Il y a un ajustement au cours de la deuxième année en fonction des
+
+    revenus réels déclarés pour l'année précédente. Dans la majeure partie des cas, 
+
+    le montant des cotisations provisionnelles sera significativement plus élevé.
 
 
-    Ce simulateur calcule les cotisations au **régime de croisière** (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
+
+    Ce simulateur calcule les cotisations au **régime de croisière** (après
+
+    régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
+
+    et de plannifier votre trésorerie en conséquence.
   titre.en: '[automatic] flat-rate warning'
   titre.fr: avertissement base forfaitaire
 dirigeant . indépendant . conjoint collaborateur:
@@ -7136,14 +7168,14 @@ protection sociale . retraite . complémentaire salarié:
   titre.en: supplementary pension for employees
   titre.fr: complémentaire salarié
 protection sociale . retraite . complémentaire salarié . points acquis:
+  note.en: >
+    [automatic] It is based on a constant value of the point, except that this
+    value changes from year to year, so this value is a rough approximation.
+  note.fr: >
+    On se base sur une valeur constante du point, hors cette dernière change
+    d'année en année, cette valeure est donc une grossière approximation
   titre.en: acquired points
   titre.fr: points acquis
-protection sociale . retraite . complémentaire salarié . points acquis par mois:
-  titre.en: acquired points per month
-  titre.fr: points acquis par mois
-protection sociale . retraite . complémentaire salarié . prix d'achat du point:
-  titre.en: buying cost of the point
-  titre.fr: prix d'achat du point
 protection sociale . retraite . complémentaire salarié . valeur du point:
   titre.en: value of the point
   titre.fr: valeur du point
