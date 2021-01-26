@@ -2045,7 +2045,7 @@ contrat salarié . frais professionnels:
       - the application of a specific lump-sum deduction from the salary subject to contributions; this possibility is only open to certain professions.
 
 
-    Professional expenses are generally excluded from the basis of calculation of social security contributions and CSG-CRDS, except in the case of exceeding the ceiling for flat-rate reimbursements (bicycle mileage allowance, basket costs, restaurant vouchers, etc.).
+    Professional expenses are generally excluded from the basis of calculation of social security contributions and CSG-CRDS, except where the ceiling for lump-sum reimbursements is exceeded (bicycle mileage allowance, basket costs, meal vouchers, etc.).
   description.fr: >-
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont
@@ -2061,9 +2061,49 @@ contrat salarié . frais professionnels:
       - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursement forfaitaires (indemnité kilométrique vélo, frais de panier, titres-restaurant...).
+    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires (indemnité kilométrique vélo, frais de panier, titres-restaurant...).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
+contrat salarié . frais professionnels . abonnement transports publics:
+  titre.en: '[automatic] public transport pass'
+  titre.fr: abonnement transports publics
+? contrat salarié . frais professionnels . abonnement transports publics . montant
+: description.en: >
+    [automatic] The employer must pay 50% of the amount spent by the employee on
+    public transport to work.
+
+
+    This coverage (up to 50% of the amount) is exempt from social security contributions and income tax.
+
+
+    In the case of part-time work, the rate of coverage will be the same for one half or more. Below that, the rate of coverage will be proportional.
+  description.fr: >
+    L'employeur doit prendre en charge 50% du montant dépensé par le salarié
+    pour les transports publics lui permettant de se rendre sur son lieu de
+    travail.
+
+
+    Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
+
+
+    Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+  question.en:
+    '[automatic] How much does the employee spend on a public transport
+    season ticket each month?'
+  question.fr: Quel montant le salarié dépense-t-il en abonnement aux transports
+    publics chaque mois ?
+  titre.en: '[automatic] Public transport season ticket'
+  titre.fr: Abonnement aux transports publics
+? contrat salarié . frais professionnels . abonnement transports publics . prise en charge
+: titre.en: "[automatic] Public transport season ticket, employer's share (deductible)"
+  titre.fr: Abonnement transports publics, part prise en charge par l'employeur
+    (déductible)
+? contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur
+: titre.en: '[automatic] employer participation rate'
+  titre.fr: taux de participation employeur
+? contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge
+: titre.en: Employer's share
+  titre.fr: Taux de prise en charge
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
   description.en: >
     [automatic] This allowance is currently not mandatory.

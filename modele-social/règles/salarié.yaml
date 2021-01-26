@@ -59,12 +59,13 @@ contrat salarié . frais professionnels:
 
     Les frais professionnels sont généralement exclus de la base de calcul des
     cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de
-    dépassement de plafond pour les remboursement forfaitaires (indemnité
+    dépassement de plafond pour les remboursements forfaitaires (indemnité
     kilométrique vélo, frais de panier, titres-restaurant...).
   formule:
     somme:
       - indemnité kilométrique vélo . montant
       - titres-restaurant . montant . employeur
+      - abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . part déductible:
   titre: Frais professionnels déductibles
@@ -75,6 +76,7 @@ contrat salarié . frais professionnels . part déductible:
     somme:
       - indemnité kilométrique vélo . part déductible
       - titres-restaurant . part déductible
+      - abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . titres-restaurant:
   icônes: 🍽️
@@ -158,6 +160,43 @@ contrat salarié . frais professionnels . titres-restaurant . contrôle taux emp
   sévérité: avertissement
   formule: taux participation employeur > 60%
   description: La part employeur du titre-restaurant doit être de 60% au maximum
+
+contrat salarié . frais professionnels . abonnement transports publics:
+  icônes: 🚍
+  valeur: oui
+
+contrat salarié . frais professionnels . abonnement transports publics . montant:
+  titre: Abonnement aux transports publics
+  question: Quel montant le salarié dépense-t-il en abonnement aux transports publics chaque mois ?
+  unité: €/mois
+  par défaut: 0 €/mois
+  description: |
+    L'employeur doit prendre en charge 50% du montant dépensé par le salarié pour les transports publics lui permettant de se rendre sur son lieu de travail.
+    
+    Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
+
+    Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+  références:
+    Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
+    Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+
+contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
+  valeur: 50%
+
+contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge:
+  titre: Taux de prise en charge
+  valeur:
+    produit:
+      assiette: 
+        le minimum de:
+          - temps de travail . quotité de travail
+          - 50%
+      taux: 2 * taux de participation employeur
+
+contrat salarié . frais professionnels . abonnement transports publics . prise en charge:
+  titre: Abonnement transports publics, part prise en charge par l'employeur (déductible)
+  unité: €/mois
+  valeur: taux de prise en charge * montant
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
   icônes: 🚴
