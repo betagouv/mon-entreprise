@@ -450,7 +450,7 @@ dirigeant . indépendant . avertissement base forfaitaire:
   formule:
     toutes ces conditions:
       - entreprise . durée d'activité . en fin d'année < 2 ans
-  description: >|
+  description: |
     Lorsque vous commencez votre activité, vos revenus professionnels
     n’étant pas connus, les cotisations et contributions des deux premières
     années sont calculées sur une base forfaitaire.
@@ -468,8 +468,6 @@ dirigeant . indépendant . avertissement base forfaitaire:
     Ce simulateur calcule les cotisations au **régime de croisière** (après
     régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
     et de plannifier votre trésorerie en conséquence.
-
-
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
