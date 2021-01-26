@@ -280,6 +280,11 @@ exports[`calculate simulations-professions-libérales: médecin 5`] = `
 Notifications affichées : entreprise . seuil de franchise de TVA dépassé"
 `;
 
+exports[`calculate simulations-professions-libérales: médecin 6`] = `
+"[50000,0,10676,39324,4841,34483]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+`;
+
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,12384,37617,4638,32979]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
