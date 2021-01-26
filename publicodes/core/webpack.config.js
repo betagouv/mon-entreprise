@@ -46,21 +46,26 @@ const common = {
 	},
 }
 
-const output =
-	process.env.NODE_ENV === 'production'
-		? {
-				filename: 'publicodes.min.js',
-				library: 'publicodes',
-				libraryTarget: 'global',
-		  }
-		: {
-				filename: 'index.js',
-				library: 'publicodes',
-				libraryTarget: 'umd',
-				globalObject: 'this',
-		  }
-
-module.exports = {
-	...common,
-	output,
-}
+module.exports = [
+	{
+		...common,
+		output: {
+			filename: 'index.js',
+			library: 'publicodes',
+			libraryTarget: 'umd',
+			globalObject: 'this',
+		},
+		externals:
+			// Every non-relative module is external
+			/^[a-z\-0-9]+$/,
+	},
+	// Add a .min.js version for browser in production mode
+	process.env.NODE_ENV === 'production' && {
+		...common,
+		output: {
+			filename: 'publicodes.min.js',
+			library: 'publicodes',
+			libraryTarget: 'global',
+		},
+	},
+].filter(Boolean)

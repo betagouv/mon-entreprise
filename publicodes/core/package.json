@@ -26,7 +26,11 @@
 	],
 	"private": false,
 	"devDependencies": {
-		"@dagrejs/graphlib": "^2.1.4"
+		"@dagrejs/graphlib": "^2.1.4",
+		"chai": "^4.2.0",
+		"intl": "^1.2.5",
+		"typescript": "3.4.3",
+		"dedent-js":"1.0.1"
 	},
 	"dependencies": {
 		"moo": "^0.5.1",
@@ -38,7 +42,7 @@
 		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run rimraf dist && yarn run build",
 		"build": "yarn run webpack --config webpack.config.js && yarn run tsc",
-		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
+		"test:file": "yarn mocha-webpack --include test/setupIntl.js --webpack-config ./webpack.test.js ",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
 	},
 	"engines": {
