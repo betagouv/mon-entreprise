@@ -26,11 +26,11 @@
 	],
 	"private": false,
 	"devDependencies": {
-		"@dagrejs/graphlib": "^2.1.4",
 		"chai": "^4.2.0",
 		"intl": "^1.2.5",
 		"typescript": "3.4.3",
-		"dedent-js":"1.0.1"
+		"dedent-js":"1.0.1",
+		"@dagrejs/graphlib": "^2.1.4"
 	},
 	"dependencies": {
 		"moo": "^0.5.1",
@@ -38,7 +38,7 @@
 		"yaml": "^1.9.2"
 	},
 	"scripts": {
-		"prepublishOnly": "yarn test && yarn run build",
+		"prepublishOnly": "yarn test && NODE_ENV=production yarn run build",
 		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run rimraf dist && yarn run build",
 		"build": "yarn run webpack --config webpack.config.js && yarn run tsc",
