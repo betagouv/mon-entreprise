@@ -171,8 +171,8 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
 
 dirigeant . indépendant . PL . maladie:
   titre: maladie (taux PLR)
-  non applicable si: 
-    une de ces conditions: 
+  non applicable si:
+    une de ces conditions:
       - régime général
       - PAMC
   remplace: cotisations et contributions . maladie
@@ -325,7 +325,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     une de ces conditions:
       - régime général
       - PL . CNBF
-  
+
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -352,10 +352,10 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
 
-#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore 
+#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . retraite CNAVPL . remplace:
   titre: retraite de base (CNAVPL)
-  non applicable si: CARMF . retraite CNAVPL 
+  non applicable si: CARMF . retraite CNAVPL
   remplace: cotisations et contributions . retraite de base
   formule: retraite CNAVPL
 
@@ -765,13 +765,16 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     aux revenus nets d'activité indépendante de 2018 plafonnés, sans
     régularisation ultérieure, avec une cotisation maximale de 14 110 €.
   titre: retraite complémentaire (CARMF)
-  applicable si: entreprise . durée d'activité . en fin d'année > 2 ans
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      plafond: 3.5 * plafond sécurité sociale temps plein
-      taux: 9.80%
-    arrondi: oui
+  arrondi: oui
+  variations:
+    - si: entreprise . durée d'activité . en fin d'année <= 2 ans
+      alors: 0€/an
+    - sinon:
+        produit:
+          assiette: assiette des cotisations
+          plafond: 3.5 * plafond sécurité sociale temps plein
+          taux: 9.80%
+
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
@@ -891,7 +894,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     pour la retraite complémentaire si vous en faites la demande. [En savoir
     plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   type: notification
-
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
   applicable si: réduction applicable

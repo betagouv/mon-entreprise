@@ -21,6 +21,10 @@ médecin:
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération totale: 120000 €/an
     dirigeant . indépendant . PL . métier . secteur médecin: "'non conventionné'"
+  - # < 2 ans exercice
+    entreprise . date de création: 01/01/2021
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération totale: 50000 €/an
 
 sage-femme:
   - dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
