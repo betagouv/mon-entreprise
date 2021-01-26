@@ -1,6 +1,6 @@
 {
 	"name": "publicodes",
-	"version": "1.0.0-beta.8",
+	"version": "1.0.0-beta.9",
 	"description": "A declarative language for encoding public algorithm",
 	"main": "dist/index.js",
 	"types": "dist/types/index.d.ts",
