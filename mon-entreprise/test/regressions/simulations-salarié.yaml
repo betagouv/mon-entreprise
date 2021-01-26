@@ -271,6 +271,19 @@ frais pro - titres restaurant:
     contrat salarié . frais professionnels . titres-restaurant: oui
     contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 55%
 
+frais pro - abonnement transports publics:
+  - contrat salarié . rémunération . brut de base: 3200 €/mois
+  - contrat salarié . rémunération . brut de base: 3200 €/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
+  - contrat salarié . rémunération . brut de base: 3200 €/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 1500€/mois
+  - contrat salarié . rémunération . brut de base: 3200 €/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
+    contrat salarié . temps de travail . quotité de travail: 50%
+  - contrat salarié . rémunération . brut de base: 3200 €/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
+    contrat salarié . temps de travail . quotité de travail: 20%
+
 frais pro - IKV:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
     contrat salarié . frais professionnels . indemnité kilométrique vélo: oui

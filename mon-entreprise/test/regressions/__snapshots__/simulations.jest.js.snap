@@ -686,6 +686,16 @@ exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4347,0,3200,25
 
 exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2752,0,2151,1681,1630]"`;
 
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 1`] = `"[4347,0,3200,2511,2314]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 2`] = `"[4387,0,3200,2551,2354]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 3`] = `"[5097,0,3200,3261,3064]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 4`] = `"[4387,0,3200,2551,2354]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 5`] = `"[4363,0,3200,2527,2330]"`;
+
 exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2506,0,2000,1521,1487]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 2`] = `"[4308,0,3000,2134,1944]"`;
