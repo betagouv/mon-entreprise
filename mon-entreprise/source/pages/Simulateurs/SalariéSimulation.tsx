@@ -14,16 +14,6 @@ export default function SalariéSimulation() {
 
 	return (
 		<>
-			<p className="ui__ notice">
-				<Trans>
-					<strong>
-						<Emoji emoji="🙈" /> Erratum du 19/01/21 :{' '}
-					</strong>{' '}
-					Depuis deux semaines, les simulations donnaient un montant trop élevé
-					pour le coût total employeur. C'est maintenant corrigé. Veuillez nous
-					excuser pour la gêne occasionnée.
-				</Trans>
-			</p>
 			<Simulation
 				explanations={<SalaryExplanation />}
 				showLinkToForm={language === 'fr'}
