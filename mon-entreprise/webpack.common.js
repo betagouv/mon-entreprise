@@ -110,7 +110,7 @@ module.exports.default = {
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/'),
+			Images: path.resolve('source/static/images/'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
 	},
@@ -135,30 +135,10 @@ module.exports.default = {
 			GITHUB_SHA: '',
 		}),
 		new CopyPlugin([
-			'./manifest.webmanifest',
-			{
-				from: './source/robots.txt',
-				to: 'robots.infrance.txt',
-			},
-			{
-				from: './source/sitemap.fr.txt',
-				to: 'sitemap.infrance.fr.txt',
-			},
-			{
-				from: './source/sitemap.en.txt',
-				to: 'sitemap.infrance.en.txt',
-			},
-			{
-				from: './source/images',
-				to: 'images',
-			},
+			'./source/static',
 			{
 				from: './source/data',
 				to: 'data',
-			},
-			{
-				from: './source/images/favicon',
-				to: 'favicon',
 			},
 		]),
 	],
