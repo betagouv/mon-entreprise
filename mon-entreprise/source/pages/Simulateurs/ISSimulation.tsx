@@ -1,4 +1,5 @@
 import { updateSituation } from 'Actions/actions'
+import Conversation from 'Components/conversation/Conversation'
 import RuleInput from 'Components/conversation/RuleInput'
 import Value from 'Components/EngineValue'
 import Notifications from 'Components/Notifications'
@@ -6,6 +7,7 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { useEngine } from 'Components/utils/EngineContext'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -18,7 +20,11 @@ export default function ISSimulation() {
 	useSimulationConfig({
 		color,
 		'unité par défaut': '€/an',
+		objectifs: ['entreprise . impôt sur les sociétés'],
 		situation: {},
+		questions: {
+			liste: ['entreprise . impôt sur les sociétés . éligible taux réduit'],
+		},
 	})
 
 	return (
@@ -37,6 +43,7 @@ export default function ISSimulation() {
 			<SimulationGoals className="plain">
 				<SimulationGoal dottedName="entreprise . bénéfice" autoFocus={true} />
 			</SimulationGoals>
+			<Conversation />
 			<Explanations />
 		</>
 	)
@@ -85,6 +92,12 @@ function ExerciceDate() {
 
 function Explanations() {
 	const situation = useSelector(situationSelector)
+	const engine = useEngine()
+	console.log(
+		engine.evaluate(
+			'entreprise . impôt sur les sociétés . plafond taux réduit 1'
+		)
+	)
 	const showResult = situation['entreprise . bénéfice']
 	if (!showResult) {
 		return null

@@ -43,11 +43,6 @@ export type InputCommonProps<Name extends string = string> = Pick<
 		required: boolean
 	}
 
-export const binaryQuestion = [
-	{ value: 'oui', label: 'Oui' },
-	{ value: 'non', label: 'Non' },
-] as const
-
 // This function takes the unknown rule and finds which React component should
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
@@ -118,6 +113,10 @@ export default function RuleInput<Name extends string = DottedName>({
 		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
+		// TODO : super hacky, we need to find a way to read the missing variables
+		// of the 'par défaut' expression
+		const defaultValueIsAnswerable =
+			typeof rule.rawNode?.['par défaut'] === 'object'
 		return useSwitch ? (
 			<ToggleSwitch
 				defaultChecked={value === true}
@@ -131,6 +130,9 @@ export default function RuleInput<Name extends string = DottedName>({
 				choices={[
 					{ value: 'oui', label: 'Oui' },
 					{ value: 'non', label: 'Non' },
+					...(defaultValueIsAnswerable
+						? [{ value: null, label: 'Je ne sais pas' }]
+						: []),
 				]}
 				onSubmit={onSubmit}
 			/>

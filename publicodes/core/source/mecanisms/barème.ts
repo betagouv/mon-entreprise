@@ -39,7 +39,7 @@ export default function parseBarème(v, context): BarèmeNode {
 	}
 }
 
-function evaluateBarème(tranches, assiette, evaluate, cache) {
+function evaluateBarème(tranches, assiette, evaluate) {
 	return tranches.map((tranche) => {
 		if (tranche.isAfterActive) {
 			return { ...tranche, nodeValue: 0 }
@@ -69,7 +69,7 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 				(Math.min(assiette.nodeValue, tranche.plafondValue) -
 					tranche.plancherValue) *
 				convertUnit(taux.unit, parseUnit(''), taux.nodeValue as number),
-			missingVariables: mergeAllMissing([taux, tranche]),
+			missingVariables: mergeAllMissing([assiette, taux, tranche]),
 		}
 	})
 }
@@ -88,8 +88,7 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = liftTemporal2(
-		(tranches, assiette) =>
-			evaluateBarème(tranches, assiette, evaluate, this.cache),
+		(tranches, assiette) => evaluateBarème(tranches, assiette, evaluate),
 		temporalTranchesPlafond,
 		liftTemporalNode(assiette as any)
 	)

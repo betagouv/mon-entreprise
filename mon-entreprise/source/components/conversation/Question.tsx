@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
-import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
+import { InputCommonProps, RuleInputProps } from './RuleInput'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -31,7 +31,7 @@ export type Choice = RuleNode & {
 
 type QuestionProps = InputCommonProps & {
 	onSubmit: (source: string) => void
-	choices: Choice | typeof binaryQuestion
+	choices: Choice | Array<{ value: string | null; label: string }>
 }
 
 export default function Question({
@@ -68,7 +68,9 @@ export default function Question({
 		}
 	}, [currentSelection])
 
-	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
+	const renderBinaryQuestion = (
+		choices: Array<{ value: string | null; label: string }>
+	) => {
 		return choices.map(({ value, label }) => (
 			<span
 				key={value}
@@ -201,13 +203,13 @@ export const RadioLabel = (props: RadioLabelProps) => (
 )
 
 type RadioLabelContentProps = {
-	value: string
+	value: string | null
 	label: string
 	name: string
 	currentSelection?: null | string
 	icônes?: string
 	onChange: RuleInputProps['onChange']
-	onSubmit: (src: string, value: string) => void
+	onSubmit: (src: string, value: string | null) => void
 }
 
 function RadioLabelContent({

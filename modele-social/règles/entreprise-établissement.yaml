@@ -173,6 +173,7 @@ entreprise . exercice . durée maximale:
 entreprise . impôt sur les sociétés:
   unité: €/an
   formule:
+    plafond: plafond taux réduit 1
     barème:
       assiette: bénéfice
       multiplicateur: prorata temporis
@@ -211,7 +212,7 @@ entreprise . impôt sur les sociétés:
               - taux: 28%
                 plafond: plafond taux réduit 2
               - taux: 33.3333%
-    arrondi: oui
+    # arrondi: oui
   références:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
@@ -225,7 +226,9 @@ entreprise . impôt sur les sociétés . plafond taux réduit 2:
   valeur: 500000 €/an
 
 entreprise . impôt sur les sociétés . éligible taux réduit:
-  formule:
+  type: booléen
+  question: Êtes-vous éligible aux taux réduits ?
+  par défaut:
     toutes ces conditions:
       - chiffre d'affaires <= 7630 k€/an * prorata temporis
       - nom: capital détenu au moins à 75 pourcents par des personnes physiques
