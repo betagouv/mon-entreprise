@@ -275,7 +275,7 @@ entreprise . charges:
   question: Quelles sont les charges de l'entreprise ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
 
@@ -354,7 +354,7 @@ entreprise . franchise de TVA:
   description: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
+    chiffre d'affaires annuel dépendant de l'activité.
 
     Le professionnel qui relève de ce dispositif facture ses prestations ou ses
     ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
@@ -719,7 +719,7 @@ entreprise . auto entreprise impossible:
 
     Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
     aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
-    d'affaire significative pendant le confinement.
+    d'affaires significative pendant le confinement.
 
     Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
     sont éligibles aux aides à condition d'avoir subit une fermeture
@@ -759,7 +759,7 @@ entreprise . auto entreprise impossible:
   références:
     Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
 
-établissement . secteur d'activité covid . baisse significative de chiffre d'affaire:
+établissement . secteur d'activité covid . baisse significative de chiffre d'affaires:
   question: |
     Votre activité a-t-elle subit une baisse d'au moins 80% de chiffre d'affaire
     entre le 15 mars et le 15 mai 2020 par rapport à l'année précédentes ?

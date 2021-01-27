@@ -31,7 +31,7 @@ export default function SimulateurWarning({
 							<Trans i18nKey="simulateurs.warning.cfe">
 								Le simulateur n'intègre pas la cotisation foncière des
 								entreprise (CFE) qui est dûe dès la deuxième année d'exercice.
-								Son montant varie fortement en fonction du chiffre d'affaire et
+								Son montant varie fortement en fonction du chiffre d'affaires et
 								de la domiciliation de l'entreprise.{' '}
 								<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
 									Plus d'infos.

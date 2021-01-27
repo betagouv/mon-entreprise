@@ -2440,7 +2440,7 @@ contrat salarié . lodeom . éligible barème compétitivité renforcée:
 
     - In French Guiana, employers with a main activity in one of the sectors of activity eligible for the tax reduction provided for in Article 199 undecies B of the General Tax Code, or corresponding to one of the following activities: accounting, business consultancy, engineering or technical studies.
   description.fr: >
-    - Chiffre d'affaire de moins de 50 millions d'euros
+    - Chiffre d'affaires de moins de 50 millions d'euros
 
     - Les employeurs relevant des secteurs de l’industrie, de la restauration, de l’environnement, de l’agro nutrition, des énergies renouvelables, des nouvelles technologies de l’information et de la communication et des centres d’appel, de la pêche, des cultures marines, de l’aquaculture, de l’agriculture, du tourisme y compris les activités de loisirs s’y rapportant, du nautisme, de l’hôtellerie, de la recherche et du développement ;
 
@@ -6169,7 +6169,7 @@ entreprise . charges:
     On the other hand, a mobile phone for less than 500€ can be considered as a charge without immobilization.
   description.fr: >
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
 
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
@@ -6381,7 +6381,7 @@ entreprise . franchise de TVA:
   description.fr: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
+    chiffre d'affaires annuel dépendant de l'activité.
 
     Le professionnel qui relève de ce dispositif facture ses prestations ou ses
     ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
@@ -7482,7 +7482,7 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
     Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
     aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
-    d'affaire significative pendant le confinement.
+    d'affaires significative pendant le confinement.
 
     Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
     sont éligibles aux aides à condition d'avoir subit une fermeture

@@ -242,7 +242,7 @@ export default function SocialSecurity() {
 									<p>Accéder au site officiel auto-entrepreneur</p>
 									<p className="ui__ notice">
 										Vous pourrez effectuer votre déclaration de chiffre
-										d'affaire, payer vos cotisations, et plus largement trouver
+										d'affaires, payer vos cotisations, et plus largement trouver
 										toutes les informations relatives au statut
 										d'auto-entrepreneur
 									</p>
