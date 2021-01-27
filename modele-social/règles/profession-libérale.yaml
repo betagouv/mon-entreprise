@@ -248,21 +248,21 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
           assiette: assiette des cotisations
           unité: €/an
           tranches:
-            - montant: 1353
+            - montant: 1457
               plafond: 26581 €/an
-            - montant: 2705
+            - montant: 2913
               plafond: 49281 €/an
-            - montant: 4058
+            - montant: 4370
               plafond: 57851 €/an
-            - montant: 6763
+            - montant: 7283
               plafond: 66401 €/an
-            - montant: 9468
+            - montant: 10196
               plafond: 83061 €/an
-            - montant: 14878
+            - montant: 16023
               plafond: 103181 €/an
-            - montant: 16231
+            - montant: 17479
               plafond: 123301 €/an
-            - montant: 17583
+            - montant: 18936
       - (- réduction COVID . montant)
     plancher: 0
 
