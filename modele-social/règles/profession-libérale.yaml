@@ -347,6 +347,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
           taux: 1.87%
           plafond: 5 * plafond sécurité sociale temps plein
         arrondi: oui
+    plancher: 11.5% * plafond sécurité sociale temps plein
   références:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
