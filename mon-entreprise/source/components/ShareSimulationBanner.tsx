@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { TrackerContext } from 'Components/utils/withTracker'
 import Animate from 'Components/ui/animate'
 import Banner from './Banner'
 import { LinkButton } from 'Components/ui/Button'
@@ -11,6 +12,7 @@ export default function ShareSimulationBanner({
 }) {
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
+	const tracker = useContext(TrackerContext)
 
 	const shareAPIAvailable = !!window?.navigator?.share
 
@@ -22,7 +24,7 @@ export default function ShareSimulationBanner({
 			getShareSearchParams().toString(),
 		].join('')
 
-	const onClick = () => {
+	const startSharing = () => {
 		if (shareAPIAvailable) {
 			window.navigator.share({
 				title: document.title,
@@ -64,7 +66,18 @@ export default function ShareSimulationBanner({
 			) : (
 				<Trans i18nKey="shareSimulation.banner">
 					Pour partager cette simulation :{' '}
-					<LinkButton onClick={onClick}>Générer un lien dédié</LinkButton>
+					<LinkButton
+						onClick={() => {
+							tracker.push([
+								'trackEvent',
+								'Partage simulation',
+								'Partage démarré',
+							])
+							startSharing()
+						}}
+					>
+						Générer un lien dédié
+					</LinkButton>
 				</Trans>
 			)}
 		</Banner>
@@ -75,6 +88,7 @@ function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef: React.RefObject<HTMLInputElement> = React.createRef()
 	const { t } = useTranslation()
 	const [linkCopied, setLinkCopied] = useState(false)
+	const tracker = useContext(TrackerContext)
 
 	const selectInput = () => inputRef.current?.select()
 	useEffect(selectInput, [])
@@ -98,6 +112,7 @@ function ShareSimulationPopup({ url }: { url: string }) {
 					className="ui__ small simple link-button"
 					style={{ marginLeft: '1rem' }}
 					onClick={() => {
+						tracker.push(['trackEvent', 'Partage simulation', 'Texte copié'])
 						navigator.clipboard.writeText(url)
 						setLinkCopied(true)
 					}}
