@@ -6,7 +6,7 @@
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],
 			"Components/*": ["components/*"],
-			"Images/*": ["images/*"],
+			"Images/*": ["static/images/*"],
 			"Reducers/*": ["reducers/*"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
