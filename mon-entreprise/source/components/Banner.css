@@ -21,6 +21,10 @@
 	border-radius: 15px;
 }
 
+.ui__.banner p {
+	flex-grow: 1;
+}
+
 .ui__.banner.news img {
 	vertical-align: middle !important;
 	top: 4px;

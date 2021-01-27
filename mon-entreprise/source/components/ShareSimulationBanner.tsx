@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Overlay from './Overlay'
+import Animate from 'Components/ui/animate'
 import Banner from './Banner'
 import { LinkButton } from 'Components/ui/Button'
 
@@ -12,7 +12,7 @@ export default function ShareSimulationBanner({
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
 
-	if (typeof window === 'undefined') return null
+	const shareAPIAvailable = !!window?.navigator?.share
 
 	const getUrl = () =>
 		[
@@ -22,11 +22,8 @@ export default function ShareSimulationBanner({
 			getShareSearchParams().toString(),
 		].join('')
 
-	const handleClose = () => {
-		setOpened(false)
-	}
 	const onClick = () => {
-		if (window.navigator.share) {
+		if (shareAPIAvailable) {
 			window.navigator.share({
 				title: document.title,
 				text: t(
@@ -41,66 +38,81 @@ export default function ShareSimulationBanner({
 	}
 
 	return (
-		<Banner hidden={false} hideAfterFirstStep={false} icon="📤">
-			<Trans i18nKey="shareSimulation.banner">
-				Vous pouvez partager votre simulation :{' '}
-				<LinkButton onClick={onClick} className="shareButton">
-					Partager le lien
-				</LinkButton>
-			</Trans>
-			{opened && (
-				<Overlay onClose={handleClose}>
-					<ShareSimulationPopup handleClose={handleClose} getUrl={getUrl} />
-				</Overlay>
+		<Banner hideAfterFirstStep={false} icon="💬">
+			{opened ? (
+				<Animate.fromTop>
+					<div>
+						<span
+							className="ui__ close-button"
+							style={{ float: 'right' }}
+							onClick={() => setOpened(false)}
+						>
+							&times;
+						</span>
+						<h3>
+							{t('shareSimulation.modal.title', 'Votre lien de partage')}{' '}
+						</h3>
+						<p className="ui__ notice">
+							<Trans key="shareSimulation.modal.notice">
+								Voici le lien que vous pouvez envoyer pour accéder à votre
+								simulation.
+							</Trans>
+						</p>
+						<ShareSimulationPopup url={getUrl()} />
+					</div>
+				</Animate.fromTop>
+			) : (
+				<Trans i18nKey="shareSimulation.banner">
+					Pour partager cette simulation :{' '}
+					<LinkButton onClick={onClick}>Générer un lien dédié</LinkButton>
+				</Trans>
 			)}
 		</Banner>
 	)
 }
 
-function ShareSimulationPopup({
-	handleClose,
-	getUrl,
-}: {
-	handleClose: () => void
-	getUrl: () => string
-}) {
-	const textAreaRef: React.RefObject<HTMLTextAreaElement> = React.createRef()
+function ShareSimulationPopup({ url }: { url: string }) {
+	const inputRef: React.RefObject<HTMLInputElement> = React.createRef()
 	const { t } = useTranslation()
+	const [linkCopied, setLinkCopied] = useState(false)
 
+	const selectInput = () => inputRef.current?.select()
+	useEffect(selectInput, [])
 	useEffect(() => {
-		const node = textAreaRef.current
-		if (node) {
-			node.select()
+		const handler = setTimeout(() => setLinkCopied(false), 5000)
+		return () => {
+			clearTimeout(handler)
 		}
-	})
+	}, [linkCopied])
 
 	return (
 		<>
-			<h2>{t('shareSimulation.modal.title', 'Votre lien de partage')}</h2>
-			<textarea
-				className="ui__ "
-				ref={textAreaRef}
-				style={{
-					whiteSpace: 'nowrap',
-				}}
-			>
-				{getUrl()}
-			</textarea>
+			<input
+				className="ui__ shareableLink"
+				ref={inputRef}
+				onFocus={selectInput}
+				value={url}
+			/>
 			{navigator.clipboard ? (
 				<button
-					className="ui__ small simple  button "
+					className="ui__ small simple link-button"
+					style={{ marginLeft: '1rem' }}
 					onClick={() => {
-						navigator.clipboard.writeText(getUrl())
-						handleClose()
+						navigator.clipboard.writeText(url)
+						setLinkCopied(true)
 					}}
 				>
-					📋 {t('shareSimulation.modal.button', 'Copier le lien')}
+					{linkCopied ? (
+						<>✅ {t('shareSimulation.button.copied', 'Copié')}</>
+					) : (
+						<>📋 {t('shareSimulation.button.copy', 'Copier le lien')}</>
+					)}
 				</button>
 			) : (
-				<p>
+				<p className="ui notice">
 					{t(
 						'shareSimulation.modal.helpText',
-						'Le lien est déjà sélectionné, vous pouvez faire "copier".'
+						'Le lien est sélectionné, vous pouvez le copier/coller'
 					)}
 				</p>
 			)}
