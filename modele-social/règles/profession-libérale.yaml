@@ -825,7 +825,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
   formule:
     valeur [ref assiette]:
       somme:
-        - 5253 €/an
+        - 5325 €/an
         - produit:
             assiette: PAMC . revenus activité conventionnée
             plafond: 5 * plafond sécurité sociale temps plein
@@ -833,7 +833,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     abattement: participation CPAM
     arrondi: oui
   références:
-    Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
+    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre: Participation CPAM aux allocations supplémentaires de vieillesse
