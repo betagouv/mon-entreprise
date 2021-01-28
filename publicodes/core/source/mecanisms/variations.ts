@@ -1,7 +1,7 @@
 import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
 import { warning } from '../error'
-import { bonus, defaultNode } from '../evaluation'
+import { bonus, defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
@@ -12,7 +12,6 @@ import {
 	Temporal,
 	temporalAverage,
 } from '../temporal'
-import { mergeAllMissing } from '../evaluation'
 
 export type VariationNode = {
 	explanation: Array<{
@@ -142,7 +141,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					...explanations,
 					{
 						condition: evaluatedCondition,
-						satisfied: !!evaluatedCondition.nodeValue,
+						satisfied: evaluatedCondition.nodeValue !== false,
 						consequence: evaluatedConsequence,
 					},
 				],
