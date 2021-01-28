@@ -2104,60 +2104,6 @@ contrat salarié . frais professionnels . abonnement transports publics:
 ? contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge
 : titre.en: Employer's share
   titre.fr: Taux de prise en charge
-contrat salarié . frais professionnels . indemnité kilométrique vélo:
-  description.en: >
-    [automatic] This allowance is currently not mandatory.
-
-
-    The employer has the choice to implement it in his company.
-
-
-    To benefit from the €200 allowance deducted in this calculation, the employee must cycle 4km (round trip) to work each working day.
-
-
-    This allowance can be combined with the reimbursement of public transit costs if the trip is a feeder bike ride to a transit station.
-
-
-    This allowance is exempt from social security contributions and income tax. To pay an equivalent salary bonus to his employee without this scheme, **the employer would have to pay nearly €500 for a median salary**.
-  description.fr: >
-    Cette indemnité n'est pour l'instant pas obligatoire.
-
-
-    L'employeur a le choix de la mettre en place dans son entreprise.
-
-
-    Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
-
-
-    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il s'agit d'un trajet à vélo de rabattement vers une station de transport.
-
-
-    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
-  question.en: '[automatic] Does the employee take advantage of the bicycle
-    mileage allowance to get to work?'
-  question.fr: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se
-    rendre au travail ?
-  titre.en: kilometric bicycle allowance
-  titre.fr: indemnité kilométrique vélo
-? contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle
-: question.en: '[automatic] What is the distance cycled each month between home and work?'
-  question.fr:
-    Quelle est la distance parcourue en vélo chaque mois pour le trajet
-    domicile / travail ?
-  suggestions.10 km/jour.en: '[automatic] 10 km/day'
-  suggestions.10 km/jour.fr: 10 km/jour
-  suggestions.2 km/jour.en: '[automatic] 2 km/day'
-  suggestions.2 km/jour.fr: 2 km/jour
-  suggestions.5 km/jour.en: '[automatic] 5 km/day'
-  suggestions.5 km/jour.fr: 5 km/jour
-  titre.en: '[automatic] monthly distance'
-  titre.fr: distance mensuelle
-contrat salarié . frais professionnels . indemnité kilométrique vélo . montant:
-  titre.en: '[automatic] bicycle kilometre allowance'
-  titre.fr: indemnité kilométrique vélo
-? contrat salarié . frais professionnels . indemnité kilométrique vélo . part déductible
-: titre.en: '[automatic] bicycle kilometre allowance (deductible)'
-  titre.fr: indemnité kilométrique vélo (déductible)
 contrat salarié . frais professionnels . part déductible:
   description.en: '[automatic] Share of expenses deducted from the social
     contribution base and for income tax calculation.'

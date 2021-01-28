@@ -71,7 +71,6 @@ cdd:
     contrat salarié . rémunération . brut de base: 2400 €/mois
     contrat salarié . CDD . durée contrat: 10 mois
     contrat salarié . temps de travail . heures supplémentaires: 5 heures/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo: oui
     contrat salarié . rémunération . avantages en nature . montant: 200 €/mois
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2400 €/mois
@@ -284,13 +283,6 @@ frais pro - abonnement transports publics:
     contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
     contrat salarié . temps de travail . quotité de travail: 20%
 
-frais pro - IKV:
-  - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo: oui
-  - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 200 km/mois
-  - contrat salarié . rémunération . net après impôt: 1630 €/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 30 km/mois
 
 frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
