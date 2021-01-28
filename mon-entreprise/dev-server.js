@@ -33,7 +33,6 @@ app.use(
 app.use(
 	webpackDevMiddleware(compiler, {
 		publicPath: config.output.publicPath,
-		hot: true,
 	})
 )
 

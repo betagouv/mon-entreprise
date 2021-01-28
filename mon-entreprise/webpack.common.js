@@ -99,6 +99,23 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			test: /\.pdf$/,
 			use: ['file-loader'],
 		},
+		// https://github.com/eemeli/yaml/issues/208#issuecomment-720504241
+		{
+			test: /node_modules\/yaml\/.+.js$/,
+			type: 'javascript/auto',
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['@babel/preset-env'],
+				},
+			},
+		},
+		{
+			test: /node_modules\/.+\.m?js/,
+			resolve: {
+				fullySpecified: false,
+			},
+		},
 	]
 }
 
@@ -113,6 +130,13 @@ module.exports.default = {
 			Images: path.resolve('source/static/images/'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
+		fallback: {
+			path: require.resolve('path-browserify'),
+			util: require.resolve('util'),
+			assert: require.resolve('assert'),
+			zlib: require.resolve('browserify-zlib'),
+			stream: require.resolve('stream-browserify'),
+		},
 	},
 	entry: {
 		'mon-entreprise': './source/entry.fr.tsx',
@@ -130,17 +154,20 @@ module.exports.default = {
 			FR_SITE: '/mon-entreprise${path}',
 		}),
 		new EnvironmentPlugin({
+			HEAD: '',
 			GITHUB_REF: '',
 			GITHUB_HEAD_REF: '',
 			GITHUB_SHA: '',
 		}),
-		new CopyPlugin([
-			'./source/static',
-			{
-				from: './source/data',
-				to: 'data',
-			},
-		]),
+		new CopyPlugin({
+			patterns: [
+				'./source/static',
+				{
+					from: './source/data',
+					to: 'data',
+				},
+			],
+		}),
 	],
 }
 

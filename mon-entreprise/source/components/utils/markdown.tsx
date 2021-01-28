@@ -61,7 +61,7 @@ const TextRenderer = ({ children }: { children: string }) => (
 )
 
 type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
+	children?: string
 	className?: string
 }
 
@@ -93,14 +93,14 @@ const CodeBlock = ({
 )
 
 export const Markdown = ({
-	source,
+	children = '',
 	className = '',
 	renderers = {},
 	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
 		transformLinkUri={(src) => src}
-		source={source}
+		children={children}
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
