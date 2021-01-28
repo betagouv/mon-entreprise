@@ -63,7 +63,6 @@ contrat salarié . frais professionnels:
     kilométrique vélo, frais de panier, titres-restaurant...).
   formule:
     somme:
-      - indemnité kilométrique vélo . montant
       - titres-restaurant . montant . employeur
       - abonnement transports publics . prise en charge
 
@@ -74,7 +73,6 @@ contrat salarié . frais professionnels . part déductible:
     de l'impôt sur le revenu.
   formule:
     somme:
-      - indemnité kilométrique vélo . part déductible
       - titres-restaurant . part déductible
       - abonnement transports publics . prise en charge
 
@@ -197,44 +195,6 @@ contrat salarié . frais professionnels . abonnement transports publics . prise 
   titre: Abonnement transports publics, part prise en charge par l'employeur (déductible)
   unité: €/mois
   valeur: taux de prise en charge * montant
-
-contrat salarié . frais professionnels . indemnité kilométrique vélo:
-  icônes: 🚴
-  question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
-  description: |
-    Cette indemnité n'est pour l'instant pas obligatoire.
-
-    L'employeur a le choix de la mettre en place dans son entreprise.
-
-    Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
-
-    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il s'agit d'un trajet à vélo de rabattement vers une station de transport.
-
-    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
-  par défaut: non
-
-contrat salarié . frais professionnels . indemnité kilométrique vélo . montant:
-  titre: indemnité kilométrique vélo
-  unité: €/an
-  formule:
-    produit:
-      assiette: distance mensuelle
-      facteur: 0.25 €/km
-
-contrat salarié . frais professionnels . indemnité kilométrique vélo . part déductible:
-  titre: indemnité kilométrique vélo (déductible)
-  formule:
-    valeur: montant
-    plafond: 200 €/an
-
-contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle:
-  question: >-
-    Quelle est la distance parcourue en vélo chaque mois pour le trajet domicile / travail ?
-  suggestions:
-    2 km/jour: 40 km/mois
-    5 km/jour: 100 km/mois
-    10 km/jour: 200 km/mois
-  par défaut: 80 km/mois
 
 contrat salarié . activité partielle:
   question: Le salarié est-il en chômage partiel ?

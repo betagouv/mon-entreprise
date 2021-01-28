@@ -645,7 +645,7 @@ Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 3`] = `
-"[3404,0,2400,1987,1906]
+"[3381,0,2400,1967,1887]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -679,12 +679,6 @@ exports[`calculate simulations-salarié: frais pro - DFS 5`] = `"[2425,0,2000,15
 exports[`calculate simulations-salarié: frais pro - DFS 6`] = `"[1768,0,1700,1363,1363]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 7`] = `"[3287,0,2600,2125,2092]"`;
-
-exports[`calculate simulations-salarié: frais pro - IKV 1`] = `"[4368,0,3200,2530,2334]"`;
-
-exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4347,0,3200,2511,2314]"`;
-
-exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2752,0,2151,1681,1630]"`;
 
 exports[`calculate simulations-salarié: frais pro - abonnement transports publics 1`] = `"[4347,0,3200,2511,2314]"`;
 
