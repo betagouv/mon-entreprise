@@ -2061,7 +2061,7 @@ contrat salarié . frais professionnels:
       - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires (indemnité kilométrique vélo, frais de panier, titres-restaurant...).
+    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
 contrat salarié . frais professionnels . abonnement transports publics:
@@ -2200,6 +2200,136 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
   suggestions.60%.fr: 60%
   titre.en: '[automatic] employer contribution rate'
   titre.fr: taux participation employeur
+contrat salarié . frais professionnels . transports personnels:
+  titre.en: '[automatic] personal transports'
+  titre.fr: transports personnels
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission
+: titre.en: '[automatic] low emission fuel'
+  titre.fr: carburant faible émission
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant
+: description.en: >
+    [automatic] The employer may cover all or part of the fuel costs incurred by
+    the employee for his electric, plug-in hybrid or hydrogen vehicle, upon
+    presentation of proof.
+
+
+    This support can benefit from an exemption from social security contributions and income tax. The maximum deductible amount is 200€/month, but please note that
+
+      - the ceiling shall be partially reduced by the amount by which the cost of public transport season tickets is covered
+
+      - this fuel coverage is on the same basis as the coverage of the sustainable mobility package.
+
+    In the case of part time, the advantage will be the same for one half time or more. Below that, a proportional factor will be applied.
+
+
+    To pay a salary bonus equivalent to 200€/month to his employee without this scheme, **the employer would have to pay nearly 500€ for a median salary**.
+  description.fr: >
+    L'employeur peut prendre en charge tout ou partie des frais de carburant
+    dépensés par l'employé pour son véhicule électriques, hybrides rechargeables
+    ou hydrogènes, sur présentation de justificatif.
+
+
+    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/mois, mais attention
+
+      - le plafond est partiellement réduit du montant de la prise en charge des frais d'abonnement aux transports publics
+
+      - cette prise en charge de carburant entre dans la même assiette que la prise en charge du forfait mobilités durables.
+
+    Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
+
+
+    Pour verser une prime de salaire équivalente à 200€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
+  question.en: '[automatic] How much does the employer pay for fuel expenses for
+    electric, plug-in hybrid or hydrogen vehicles?'
+  question.fr: Quel montant l'employeur prend-il en charge des dépenses en
+    carburant pour véhicules électriques, hybrides rechargeables ou hydrogènes ?
+  titre.en: '[automatic] Fuel support for electric, plug-in hybrid or hydrogen vehicles'
+  titre.fr: Prise en charge du carburant pour véhicules électriques, hybrides
+    rechargeables ou hydrogènes
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible
+: titre.en: '[automatic] Fuel support for electric, plug-in hybrid or hydrogen
+    vehicles (deductible portion)'
+  titre.fr: Prise en charge du carburant pour véhicules électriques, hybrides
+    rechargeables ou hydrogènes (part déductible)
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables
+: titre.en: '[automatic] sustainable mobility package'
+  titre.fr: forfait mobilités durables
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant
+: description.en: >
+    [automatic] The employer may cover all or part of the travel expenses
+    related to the use of vehicles included in the sustainable mobility package.
+
+      - the bicycle and electric bicycle
+
+      - carpooling (driver or passenger)
+
+      - personal mobility equipment for hire or self-service
+
+      - car-sharing with electric, plug-in hybrid or hydrogen vehicles
+
+      - public transport (excluding season tickets).
+
+    The old Bicycle Mileage Allowance now fits into this scheme. It can be sued but the amount will have to be charged here.
+
+
+    The employer can cover these costs up to 500€/month tax- and social security contributions exempt. However, please note
+
+      - the ceiling shall be reduced by the amount by which the cost of public transport season tickets is covered
+
+      - Low-emission fuel handling also fits into this trim.
+
+    In the case of part time, the advantage will be the same for one half time or more. Below that, a proportional factor will be applied.
+
+
+    To pay a salary bonus equivalent to 500€/month to his employee without this scheme, **the employer would have to pay nearly 800€ for a median salary**.
+  description.fr: >
+    L'employeur peut prendre en charge tout ou partie des frais de déplacement
+    liés à l'utilisation des véhicules entrant dans le cadre du forfait
+    mobilités durables
+
+      - le vélo et vélo à assistance électrique
+
+      - le covoiturage (conducteur ou passager)
+
+      - les engins de déplacement personnels en location ou en libre-service
+
+      - l'autopartage avec des véhicules électriques, hybrides rechargeables ou hydrogènes
+
+      - les transports en commun (hors abonnement).
+
+    L'ancienne Indemnité Kilométrique Vélo entre maintenant dans ce dispositif. Elle peut être poursuivie mais son montant devra être imputé ici.
+
+
+    L'employeur peut prendre en charge ces frais jusqu'à 500€/mois de manière exonérée de cotisations sociales et d'impôt. Attention cependant
+
+      - le plafond est réduit du montant de la prise en charge des frais d'abonnement aux transports publics
+
+      - la prise en charge du carburant faible émission entre dans cette assiette également.
+
+    Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
+
+
+    Pour verser une prime de salaire équivalente à 500€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
+  question.en: '[automatic] How much does the employer pay as part of the
+    sustainable mobility package?'
+  question.fr: Quel montant l'employeur prend-il en charge dans le cadre du
+    forfait mobilités durables ?
+  titre.en: '[automatic] Coverage of transport costs for sustainable mobility packages'
+  titre.fr: Prise en charge des frais de transports forfait mobilités durables
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible
+: titre.en: '[automatic] Coverage of fixed-price transport costs for sustainable
+    mobility (deductible part)'
+  titre.fr: Prise en charge des frais de transports forfait mobilités durables
+    (part déductible)
+contrat salarié . frais professionnels . transports personnels . montant:
+  titre.en: '[automatic] Personal transport'
+  titre.fr: Transports personnels
+? contrat salarié . frais professionnels . transports personnels . part déductible
+: titre.en: '[automatic] deductible portion'
+  titre.fr: part déductible
+? contrat salarié . frais professionnels . transports personnels . proportion déduction
+: titre.en: '[automatic] Deductibility Proportion Factor'
+  titre.fr: Facteur de proportion de la déductibilité
 contrat salarié . intermittents du spectacle:
   question.en: To which "intermittent" status is the employee attached?
   question.fr: A quel statut d'intermittent est rattaché l'employé ?

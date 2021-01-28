@@ -645,7 +645,7 @@ Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 3`] = `
-"[3381,0,2400,1967,1887]
+"[3881,0,2400,2467,2387]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -680,21 +680,35 @@ exports[`calculate simulations-salarié: frais pro - DFS 6`] = `"[1768,0,1700,13
 
 exports[`calculate simulations-salarié: frais pro - DFS 7`] = `"[3287,0,2600,2125,2092]"`;
 
-exports[`calculate simulations-salarié: frais pro - abonnement transports publics 1`] = `"[4347,0,3200,2511,2314]"`;
+exports[`calculate simulations-salarié: frais pro - abo transports + transports personnels 1`] = `"[4847,0,3200,3011,2814]"`;
 
-exports[`calculate simulations-salarié: frais pro - abonnement transports publics 2`] = `"[4387,0,3200,2551,2354]"`;
+exports[`calculate simulations-salarié: frais pro - abo transports + transports personnels 2`] = `"[13021,0,3200,7448,6004]"`;
 
-exports[`calculate simulations-salarié: frais pro - abonnement transports publics 3`] = `"[5097,0,3200,3261,3064]"`;
+exports[`calculate simulations-salarié: frais pro - abo transports + transports personnels 3`] = `"[8529,0,3200,6405,6105]"`;
 
-exports[`calculate simulations-salarié: frais pro - abonnement transports publics 4`] = `"[4387,0,3200,2551,2354]"`;
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 1`] = `"[4387,0,3200,2551,2354]"`;
 
-exports[`calculate simulations-salarié: frais pro - abonnement transports publics 5`] = `"[4363,0,3200,2527,2330]"`;
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 2`] = `"[5097,0,3200,3261,3064]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 3`] = `"[4387,0,3200,2551,2354]"`;
+
+exports[`calculate simulations-salarié: frais pro - abonnement transports publics 4`] = `"[4363,0,3200,2527,2330]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2506,0,2000,1521,1487]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 2`] = `"[4308,0,3000,2134,1944]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 3`] = `"[2550,0,2000,1493,1458]"`;
+
+exports[`calculate simulations-salarié: frais pro - transports personnels seul 1`] = `"[4847,0,3200,3011,2814]"`;
+
+exports[`calculate simulations-salarié: frais pro - transports personnels seul 2`] = `"[4847,0,3200,3011,2814]"`;
+
+exports[`calculate simulations-salarié: frais pro - transports personnels seul 3`] = `"[12963,0,3200,7416,5979]"`;
+
+exports[`calculate simulations-salarié: frais pro - transports personnels seul 4`] = `"[4847,0,3200,3011,2814]"`;
+
+exports[`calculate simulations-salarié: frais pro - transports personnels seul 5`] = `"[4959,0,3200,2945,2661]"`;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 1`] = `"[2570,0,2000,1636,1601]"`;
 
