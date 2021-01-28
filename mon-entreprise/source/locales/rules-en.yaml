@@ -5461,6 +5461,13 @@ dirigeant . indépendant . contrats madelin . mutuelle:
   titre.en: '[automatic] Subscription to a Madelin mutual insurance contract'
   titre.fr: Souscription à un contrat de mutuelle Madelin
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
+  note.en: >
+    [automatic] Normally it is the tax result that should be used for the cap
+    base, but business income is used to avoid a cycle.
+  note.fr: >
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour
+    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
+    un cycle.
   titre.en: ceiling
   titre.fr: plafond
 dirigeant . indépendant . contrats madelin . part déductible fiscalement:
@@ -5486,6 +5493,13 @@ dirigeant . indépendant . contrats madelin . retraite:
   titre.en: '[automatic] Madelin Retirement Subscription'
   titre.fr: Souscription à une retraite Madelin
 dirigeant . indépendant . contrats madelin . retraite . plafond:
+  note.en: >
+    [automatic] Normally it is the tax result that should be used for the cap
+    base, but business income is used to avoid a cycle.
+  note.fr: >
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour
+    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
+    un cycle.
   titre.en: ceiling
   titre.fr: plafond
 dirigeant . indépendant . cotisations et contributions:

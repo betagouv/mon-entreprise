@@ -558,7 +558,7 @@ dirigeant . indépendant . revenu net de cotisations:
       - valeur: revenu professionnel
         arrondi: oui
       - (- cotisations et contributions . CSG et CRDS . non déductible)
-      - (- contrats madelin . part non-déductible fiscalement)
+      - (- contrats madelin . montant)
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -571,10 +571,7 @@ dirigeant . indépendant . résultat fiscal:
     - assiette fiscale
   résumé: Assiette du calcul de l'impôt
   description: Il s'agit du net imposable, assiette sur laquelle l'impôt est calculé.
-  formule:
-    somme:
-      - revenu professionnel
-      - contrats madelin . montant
+  formule: revenu professionnel - contrats madelin . part déductible fiscalement
   références:
     Portail Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
 
@@ -883,7 +880,7 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   formule:
     somme:
       - produit:
-          assiette: résultat fiscal
+          assiette: revenu professionnel
           taux: 3.75%
       - produit:
           assiette: plafond sécurité sociale temps plein
@@ -895,7 +892,8 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   références:
     Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
-
+  note: |
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
 dirigeant . indépendant . contrats madelin . retraite:
   titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez à votre contrat Madelin retraite ?
@@ -914,7 +912,7 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
   formule:
     le maximum de:
       - barème:
-          assiette: résultat fiscal
+          assiette: revenu professionnel
           multiplicateur: plafond sécurité sociale temps plein
           tranches:
             - taux: 10%
@@ -927,6 +925,8 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/1124-PGP.html
     LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
+  note: |
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
 
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   description: |
