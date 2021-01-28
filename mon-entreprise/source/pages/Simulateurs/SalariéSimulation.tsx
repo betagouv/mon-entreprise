@@ -16,7 +16,6 @@ export default function SalariéSimulation() {
 		<>
 			<Simulation
 				explanations={<SalaryExplanation />}
-				showLinkToForm={language === 'fr'}
 				customEndMessages={
 					<>
 						<Trans i18nKey="simulation-end.hiring.text">
