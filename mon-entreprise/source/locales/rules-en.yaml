@@ -7514,15 +7514,15 @@ situation personnelle . domiciliation fiscale à l'étranger:
     Votre activité a-t'elle été interrompue à cause de l’épidémie de Covid-19 ?
   titre.en: '[automatic] interrupted activity'
   titre.fr: activité interrompue
-? établissement . secteur d'activité covid . baisse significative de chiffre d'affaire
+? établissement . secteur d'activité covid . baisse significative de chiffre d'affaires
 : question.en: |
     [automatic] Has your business suffered a drop in turnover of at least 80%?
     between 15 March and 15 May 2020 compared to the previous year?
   question.fr: |
-    Votre activité a-t-elle subit une baisse d'au moins 80% de chiffre d'affaire
+    Votre activité a-t-elle subit une baisse d'au moins 80% de chiffre d'affaires
     entre le 15 mars et le 15 mai 2020 par rapport à l'année précédentes ?
   titre.en: '[automatic] significant drop in turnover'
-  titre.fr: baisse significative de chiffre d'affaire
+  titre.fr: baisse significative de chiffre d'affaires
 établissement . secteur d'activité covid . éligible aide:
   titre.en: '[automatic] eligible aid'
   titre.fr: éligible aide

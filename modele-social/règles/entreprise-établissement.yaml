@@ -752,7 +752,7 @@ entreprise . auto entreprise impossible:
       - secteur d'activité covid = 'S1'
       - toutes ces conditions:
           - secteur d'activité covid = 'S1-bis'
-          - baisse significative de chiffre d'affaire
+          - baisse significative de chiffre d'affaires
       - toutes ces conditions:
           - secteur d'activité covid = 'S2'
           - activité interrompue
