@@ -50,7 +50,7 @@ export default function Simulation({
 						}
 						customEventName="rate simulator"
 					/>
-					){explanations}
+					{explanations}
 				</Animate.fromTop>
 			)}
 		</>
