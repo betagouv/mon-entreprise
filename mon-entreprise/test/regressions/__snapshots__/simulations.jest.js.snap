@@ -453,20 +453,23 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,20621,0,15102,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,19388,0,16984,4,33]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,20621,0,15102,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,18995,0,17577,4,34]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 3`] = `"[0,20621,0,15102,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 3`] = `"[0,20297,0,15600,4,30]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 4`] = `"[0,13814,0,10116,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 4`] = `"[0,13656,0,10367,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `
-"[0,226878,0,57933,4,56]
+"[0,225725,0,57933,4,56]
 Notifications affichées : entreprise . seuil de franchise de TVA dépassé"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `"[0,13814,0,10116,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `
+"[0,13624,0,10417,4,21]
+Notifications affichées : dirigeant . indépendant . contrats madelin . contrôle montant charges"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,14555,0,0,0,0]"`;
 
