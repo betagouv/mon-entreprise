@@ -5,7 +5,7 @@ employées.
 ## Principes
 
 Nous suivons le [manifeste beta.gouv](https://beta.gouv.fr/approche/manifeste)
-dont nous rappelons le principes ici&nbsp;:
+dont nous rappelons les principes ici&nbsp;:
 
 > -   Les besoins des utilisateurs sont prioritaires sur les besoins de l’administration
 > -   Le mode de gestion de l’équipe repose sur la confiance
