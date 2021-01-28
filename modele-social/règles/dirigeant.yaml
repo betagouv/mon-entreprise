@@ -27,6 +27,7 @@ dirigeant . assimilé salarié:
     - contrat salarié . rémunération . primes . activité
     - contrat salarié . frais professionnels . titres-restaurant
     - contrat salarié . frais professionnels . abonnement transports publics
+    - contrat salarié . frais professionnels . transports personnels
     - contrat salarié . chômage
     - contrat salarié . réduction générale
     - contrat salarié . allocations familiales . taux réduit
