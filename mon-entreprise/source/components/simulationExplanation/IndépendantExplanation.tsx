@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import AidesCovid from './AidesCovid'
+import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
 	const { t } = useTranslation()
@@ -53,12 +54,9 @@ export default function IndépendantExplanation() {
 					/>
 				</section>
 			</Condition>
-			<section>
-				<h2>
-					<Trans>À quoi servent mes cotisations ?</Trans>
-				</h2>
+			<DistributionSection>
 				<Distribution />
-			</section>
+			</DistributionSection>
 		</>
 	)
 }
@@ -227,16 +225,18 @@ function Distribution() {
 	const maximum = distribution.map(([, value]) => value).reduce(max, 0)
 
 	return (
-		<div className="distribution-chart__container">
-			{distribution.map(([sectionName, value]) => (
-				<DistributionBranch
-					key={sectionName}
-					dottedName={sectionName}
-					value={value}
-					maximum={maximum}
-				/>
-			))}
-		</div>
+		<>
+			<div className="distribution-chart__container">
+				{distribution.map(([sectionName, value]) => (
+					<DistributionBranch
+						key={sectionName}
+						dottedName={sectionName}
+						value={value}
+						maximum={maximum}
+					/>
+				))}
+			</div>
+		</>
 	)
 }
 
