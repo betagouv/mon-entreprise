@@ -116,15 +116,15 @@ function PaySlipSection() {
 }
 
 export const DistributionSection = ({
-	children,
+	children = Distribution,
 }: {
-	children: React.ReactNode
+	children?: React.ReactNode
 }) => (
 	<section>
 		<h2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
 		</h2>
-		{children || <Distribution />}
+		{children}
 		<p className="ui__ notice">
 			<Trans>
 				<Emoji emoji="ℹ" /> Pour en savoir plus, rendez-vous sur le site{' '}
