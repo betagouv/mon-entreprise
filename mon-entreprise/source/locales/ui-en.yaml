@@ -1,6 +1,9 @@
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
+"<0></0> Pour en savoir plus, rendez-vous sur le site <3>aquoiserventlescotisations":
+  urssaf:
+    fr</3>: <0></0> To find out more, go to <3>aquoiserventlescotisations.urssaf.fr</3>
 "<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
