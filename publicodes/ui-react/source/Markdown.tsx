@@ -52,19 +52,12 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<>{emoji(children)}</>
 )
 
-type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
-	className?: string
-}
-
 export const Markdown = ({
-	source,
 	className = '',
 	renderers = {},
 	...otherProps
-}: MarkdownProps) => (
+}: ReactMarkdownProps) => (
 	<ReactMarkdown
-		source={source}
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,

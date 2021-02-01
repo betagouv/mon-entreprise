@@ -29,7 +29,7 @@ export default function Rule({ dottedName, engine, language }) {
 		<div id="documentationRuleRoot">
 			<RuleHeader dottedName={dottedName} />
 			<section>
-				<Markdown source={description || question} />
+				<Markdown source={(description || question) ?? ''} />
 			</section>
 
 			{(rule.nodeValue || rule.unit) && (

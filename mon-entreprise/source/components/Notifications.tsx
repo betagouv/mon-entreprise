@@ -66,7 +66,7 @@ export default function Notifications() {
 								<div className="notification">
 									{emoji(sévérité == 'avertissement' ? '⚠️' : 'ℹ️')}
 									<div className="notificationText ui__ card">
-										<Markdown source={description} />
+										<Markdown source={description ?? ''} />
 										<button
 											className="hide"
 											aria-label="close"

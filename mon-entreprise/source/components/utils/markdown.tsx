@@ -60,11 +60,6 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<>{emoji(children)}</>
 )
 
-type MarkdownProps = ReactMarkdownProps & {
-	children?: string
-	className?: string
-}
-
 const CodeBlock = ({
 	value,
 	language,
@@ -93,14 +88,12 @@ const CodeBlock = ({
 )
 
 export const Markdown = ({
-	children = '',
 	className = '',
 	renderers = {},
 	...otherProps
-}: MarkdownProps) => (
+}: ReactMarkdownProps) => (
 	<ReactMarkdown
 		transformLinkUri={(src) => src}
-		children={children}
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
@@ -115,7 +108,7 @@ export const Markdown = ({
 export const MarkdownWithAnchorLinks = ({
 	renderers = {},
 	...otherProps
-}: MarkdownProps) => (
+}: ReactMarkdownProps) => (
 	<Markdown
 		renderers={{
 			heading: HeadingWithAnchorLink,

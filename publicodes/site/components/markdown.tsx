@@ -60,11 +60,6 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<>{emoji(children)}</>
 )
 
-type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
-	className?: string
-}
-
 const LazySyntaxHighlighter = React.lazy(() => import('./SyntaxHighlighter'))
 const CodeBlock = ({
 	value,
@@ -100,14 +95,12 @@ const CodeBlock = ({
 )
 
 export const Markdown = ({
-	source,
 	className = '',
 	renderers = {},
 	...otherProps
-}: MarkdownProps) => (
+}: ReactMarkdownProps) => (
 	<ReactMarkdown
 		transformLinkUri={(src) => src}
-		source={source}
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
@@ -122,7 +115,7 @@ export const Markdown = ({
 export const MarkdownWithAnchorLinks = ({
 	renderers = {},
 	...otherProps
-}: MarkdownProps) => (
+}: ReactMarkdownProps) => (
 	<Markdown
 		renderers={{
 			heading: HeadingWithAnchorLink,

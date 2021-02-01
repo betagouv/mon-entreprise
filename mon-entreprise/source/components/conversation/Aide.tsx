@@ -19,7 +19,7 @@ export default function Aide() {
 	if (!explained) return null
 
 	const rule = engine.getRule(explained),
-		text = rule.rawNode.description,
+		text = rule.rawNode.description ?? '',
 		refs = rule.rawNode.références
 
 	return (

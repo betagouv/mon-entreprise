@@ -308,7 +308,7 @@
 		-->
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en%2CIntl.~locale.fr%2CIntersectionObserver"></script>
 		<% for (var file in htmlWebpackPlugin.files.js) { %>
-		<!-- <script nomodule src="<%= file %>.legacy.bundle.js"></script> -->
+		<script nomodule src="<%= htmlWebpackPlugin.files.js[file].replace('.js', '.legacy.bundle.js') %>"></script>
 		<% } %>
 	</body>
 </html>
