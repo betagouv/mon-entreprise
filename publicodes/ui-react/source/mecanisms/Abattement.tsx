@@ -12,14 +12,13 @@ export default function Abattement({ nodeValue, unit, explanation }) {
 							<Explanation node={explanation.assiette} />
 						</span>
 					</li>
-					{!explanation.abattement?.nodeValue && (
-						<li key="abattement">
-							<span className="key">Abattement : </span>
-							<span className="value">
-								<Explanation node={explanation.abattement} />
-							</span>
-						</li>
-					)}
+
+					<li key="abattement">
+						<span className="key">Abattement : </span>
+						<span className="value">
+							<Explanation node={explanation.abattement} />
+						</span>
+					</li>
 				</ul>
 			</Mecanism>
 		</div>
