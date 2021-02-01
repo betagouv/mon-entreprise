@@ -171,8 +171,8 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
 
 dirigeant . indépendant . PL . maladie:
   titre: maladie (taux PLR)
-  non applicable si: 
-    une de ces conditions: 
+  non applicable si:
+    une de ces conditions:
       - régime général
       - PAMC
   remplace: cotisations et contributions . maladie
@@ -248,21 +248,21 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
           assiette: assiette des cotisations
           unité: €/an
           tranches:
-            - montant: 1353
+            - montant: 1457
               plafond: 26581 €/an
-            - montant: 2705
+            - montant: 2913
               plafond: 49281 €/an
-            - montant: 4058
+            - montant: 4370
               plafond: 57851 €/an
-            - montant: 6763
+            - montant: 7283
               plafond: 66401 €/an
-            - montant: 9468
+            - montant: 10196
               plafond: 83061 €/an
-            - montant: 14878
+            - montant: 16023
               plafond: 103181 €/an
-            - montant: 16231
+            - montant: 17479
               plafond: 123301 €/an
-            - montant: 17583
+            - montant: 18936
       - (- réduction COVID . montant)
     plancher: 0
 
@@ -325,7 +325,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     une de ces conditions:
       - régime général
       - PL . CNBF
-  
+
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -349,13 +349,14 @@ dirigeant . indépendant . PL . retraite CNAVPL:
         arrondi: oui
   références:
     cnavpl.fr: https://www.cnavpl.fr/
+    cotisation minimale (Guide CNAVPL): https://www.cnavpl.fr/wp-content/uploads/2020/10/guide-site-2020.pdf#page=21
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
 
-#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore 
+#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . retraite CNAVPL . remplace:
   titre: retraite de base (CNAVPL)
-  non applicable si: CARMF . retraite CNAVPL 
+  non applicable si: CARMF . retraite CNAVPL
   remplace: cotisations et contributions . retraite de base
   formule: retraite CNAVPL
 
@@ -765,13 +766,16 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     aux revenus nets d'activité indépendante de 2018 plafonnés, sans
     régularisation ultérieure, avec une cotisation maximale de 14 110 €.
   titre: retraite complémentaire (CARMF)
-  applicable si: entreprise . durée d'activité . en fin d'année > 2 ans
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      plafond: 3.5 * plafond sécurité sociale temps plein
-      taux: 9.80%
-    arrondi: oui
+  arrondi: oui
+  variations:
+    - si: entreprise . durée d'activité . en fin d'année <= 2 ans
+      alors: 0€/an
+    - sinon:
+        produit:
+          assiette: assiette des cotisations
+          plafond: 3.5 * plafond sécurité sociale temps plein
+          taux: 9.80%
+
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
@@ -821,7 +825,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
   formule:
     valeur [ref assiette]:
       somme:
-        - 5253 €/an
+        - 5325 €/an
         - produit:
             assiette: PAMC . revenus activité conventionnée
             plafond: 5 * plafond sécurité sociale temps plein
@@ -829,7 +833,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     abattement: participation CPAM
     arrondi: oui
   références:
-    Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
+    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre: Participation CPAM aux allocations supplémentaires de vieillesse
@@ -891,7 +895,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     pour la retraite complémentaire si vous en faites la demande. [En savoir
     plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   type: notification
-
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
   applicable si: réduction applicable

@@ -1,12 +1,11 @@
 # AIDE A LA DECLARATION DES INDEPENDANTS
 
-aide déclaration revenu indépendant 2019:
+aide déclaration revenu indépendant 2020:
   description: >-
     Ces règles calculent les montants demandés dans les déclarations sociale et
-    fiscale des indépendants de 2020 sur les revenus 2019
+    fiscale des indépendants de 2021 sur les revenus 2020
   formule: non
-
-aide déclaration revenu indépendant 2019 . nature de l'activité:
+aide déclaration revenu indépendant 2020 . nature de l'activité:
   remplace: entreprise . catégorie d'activité
   question: Quelle est la nature de votre activité ?
   formule:
@@ -20,7 +19,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
 
-aide déclaration revenu indépendant 2019 . ACRE:
+aide déclaration revenu indépendant 2020 . ACRE:
   remplace: entreprise . ACRE
   description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
@@ -58,7 +57,7 @@ aide déclaration revenu indépendant 2019 . ACRE:
   applicable si: entreprise . durée d'activité . en début d'année <= 1 an
   par défaut: non
 
-aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
+aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   rend non applicable: dirigeant . indépendant . PL . CIPAV
   remplace: entreprise . catégorie d'activité . libérale
   formule: nature de l'activité = 'libérale'
@@ -68,12 +67,12 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
     caisse spécifique de retraite.
 
     C'est le cas de toutes les professions libérale non reglementée depuis le
-    1er janvier 2019.
+    1er janvier 2020.
 
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
 
-aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
+aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle:
   remplace: entreprise . catégorie d'activité . commerciale ou industrielle
   formule: nature de l'activité = 'commerciale ou industrielle'
   description: |
@@ -85,7 +84,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale
 
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 
-aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
   formule: nature de l'activité = 'artisanale'
   remplace: entreprise . catégorie d'activité . artisanale
   description: |
@@ -98,34 +97,37 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
   références:
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
-aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
+aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
   remplace: plafond sécurité sociale temps plein
-  formule: 3377 €/mois
+  formule: 3428 €/mois
 
-aide déclaration revenu indépendant 2019 . SMIC 2019:
+aide déclaration revenu indépendant 2020 . SMIC 2020:
   remplace: SMIC horaire
-  formule: 10.03 €/heure
+  formule: 10.15 €/heure
+aide déclaration revenu indépendant 2020 . PRCI:
+  remplace: dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond
+  formule: 38340 €/an
 
-aide déclaration revenu indépendant 2019 . période:
+aide déclaration revenu indépendant 2020 . période:
   formule: oui
   remplace:
     - règle: période . début d'année
-      par: 01/01/2019
+      par: 01/01/2020
     - règle: période . fin d'année
-      par: 31/12/2019
+      par: 31/12/2020
 
-aide déclaration revenu indépendant 2019 . revenu net fiscal:
+aide déclaration revenu indépendant 2020 . revenu net fiscal:
   titre: revenu net fiscal
   résumé: avant déduction des charges sociales et exonérations fiscales [A]
   unité: €/an
   formule: dirigeant . rémunération totale
 
-aide déclaration revenu indépendant 2019 . CSG déductible:
+aide déclaration revenu indépendant 2020 . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
   formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
-aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
+aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
   titre: cotisations sociales obligatoires déductibles
   résumé: '[C]'
   description: >-
@@ -137,11 +139,11 @@ aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
       - dirigeant . indépendant . cotisations et contributions . cotisations
       - dirigeant . indépendant . conjoint collaborateur . cotisations
       - (- dirigeant . indépendant . cotisations et contributions . exonérations)
-aide déclaration revenu indépendant 2019 . CFP:
+aide déclaration revenu indépendant 2020 . CFP:
   résumé: contribution à la formation professionnelle [D]
   formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
 
-aide déclaration revenu indépendant 2019 . total charges sociales déductible:
+aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   titre: total charges sociales obligatoires déductibles fiscalement
   résumé: '[B + C + D]'
   formule:
@@ -154,7 +156,7 @@ aide déclaration revenu indépendant 2019 . total charges sociales déductible:
     réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le réel
     normal) de votre déclaration fiscale.
 
-aide déclaration revenu indépendant 2019 . assiette sociale:
+aide déclaration revenu indépendant 2020 . assiette sociale:
   titre: assiette sociale
   résumé: 'pour information [A - (B + C + D)]'
   formule:

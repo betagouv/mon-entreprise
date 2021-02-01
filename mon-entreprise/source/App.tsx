@@ -1,4 +1,6 @@
 import * as Sentry from '@sentry/browser'
+import Footer from 'Components/layout/Footer/Footer'
+import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
 import {
@@ -8,6 +10,7 @@ import {
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
+import { DottedName } from 'modele-social'
 import Engine, { Rule } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
@@ -15,22 +18,12 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import { DottedName } from 'modele-social'
 import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import Provider, { ProviderProps } from './Provider'
-import {
-	setupInFranceAppPersistence,
-	retrievePersistedInFranceApp,
-} from './storage/persistInFranceApp'
-import { setupSimulationPersistence } from './storage/persistSimulation'
-import Tracker, { devTracker } from './Tracker'
 import './App.css'
-import Footer from 'Components/layout/Footer/Footer'
-import Header from 'Components/layout/Header'
-import trackSimulatorActions from './trackSimulatorActions'
+import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Créer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
@@ -44,8 +37,16 @@ import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautés/Nouveautés'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
+import Provider, { ProviderProps } from './Provider'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
+import {
+	retrievePersistedInFranceApp,
+	setupInFranceAppPersistence,
+} from './storage/persistInFranceApp'
+import { setupSimulationPersistence } from './storage/persistSimulation'
+import Tracker, { devTracker } from './Tracker'
+import trackSimulatorActions from './trackSimulatorActions'
 
 if (process.env.NODE_ENV === 'production') {
 	let branch: string | undefined = process.env.GITHUB_REF?.split('/')?.slice(
@@ -157,6 +158,7 @@ const App = () => {
 						<Route path={sitePaths.nouveautés} component={Nouveautés} />
 						<Route path={sitePaths.stats} component={Stats} />
 						<Route path={sitePaths.budget} component={Budget} />
+						<Route path={sitePaths.accessibilité} component={Accessibilité} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

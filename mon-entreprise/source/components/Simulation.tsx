@@ -13,7 +13,6 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
-import LinkToForm from './Feedback/LinkToForm'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 
@@ -22,14 +21,12 @@ type SimulationProps = {
 	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 	showPeriodSwitch?: boolean
-	showLinkToForm?: boolean
 }
 
 export default function Simulation({
 	explanations,
 	results,
 	customEndMessages,
-	showLinkToForm,
 	showPeriodSwitch,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
@@ -45,17 +42,14 @@ export default function Simulation({
 					<ShareSimulationBanner getShareSearchParams={getShareSearchParams} />
 					<Questions customEndMessages={customEndMessages} />
 					<br />
-					{showLinkToForm && <LinkToForm />}
-					{!showLinkToForm && (
-						<PageFeedback
-							customMessage={
-								<Trans i18nKey="feedback.simulator">
-									Êtes-vous satisfait de ce simulateur ?
-								</Trans>
-							}
-							customEventName="rate simulator"
-						/>
-					)}{' '}
+					<PageFeedback
+						customMessage={
+							<Trans i18nKey="feedback.simulator">
+								Êtes-vous satisfait de ce simulateur ?
+							</Trans>
+						}
+						customEventName="rate simulator"
+					/>
 					{explanations}
 				</Animate.fromTop>
 			)}

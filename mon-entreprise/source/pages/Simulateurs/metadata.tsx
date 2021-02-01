@@ -199,7 +199,7 @@ export function getSimulatorsData({
 				),
 				ogDescription: t(
 					'pages.simulateurs.auto-entrepreneur.meta.ogDescription',
-					"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaire mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
+					"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
 				),
 				ogImage: AutoEntrepreneurPreview,
 				ogTitle: t(
@@ -789,7 +789,7 @@ export function getSimulatorsData({
 					<h2>Taux réduit et régimes spécifiques</h2>
 					<p>
 						Les PME réalisant moins de 7,63 millions d’euros de chiffre
-						d’affaire et dont le capital est détenu à 75% par des personnes
+						d’affaires et dont le capital est détenu à 75% par des personnes
 						physiques bénéficient d’un taux réduit d’impôt sur les sociétés. Ce
 						taux est pris en compte sur le simulateur et il n’est pour l’instant
 						pas possible de simuler l’inéligibilité aux taux réduits.

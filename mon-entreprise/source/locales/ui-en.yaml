@@ -1,18 +1,14 @@
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
-"<0><0></0> Erratum : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
-  
-  high an amount for the total employer cost. This is now corrected. We
-  apologize for the inconvenienceundefined high an amount for the total employer
-  cost. This is now corrected. We apologize for the inconvenience."
-"<0><0></0> Erratum du 19/01/21 : </0> Depuis deux semaines, les simulations donnaient un montant trop élevé pour le coût total employeur. C'est maintenant corrigé. Veuillez nous excuser pour la gêne occasionnée.": "<0><0></0> </0> Erratum of 19/01/21: For the past two weeks, the simulations gave too high an amount for the total employer cost. This is now corrected. We apologize for the inconvenienceundefined\
-  
-  gave too high an amount for the total employer cost. This is now corrected. We
-  apologize for the inconvenience."
+"<0></0> Pour en savoir plus, rendez-vous sur le site <3>aquoiserventlescotisations":
+  urssaf:
+    fr</3>: <0></0> To find out more, go to <3>aquoiserventlescotisations.urssaf.fr</3>
 "<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
+footer: 
+  accessibilité: "Accessibility: not compliant"
 Accueil: Home
 Afficher la description publicode: Display publicode description
 Aide à la déclaration de revenu: Income tax return assistance
@@ -81,7 +77,9 @@ Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
 Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
+"Gérant majoritaire ": "Majority Manager "
 Gérant minoritaire: Managing director
+Gérant minoritaire ou égalitaire: Minority or equal manager
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
@@ -844,6 +842,46 @@ page:
         of devices considered</1><2><0>Easily and freely integrates</0> on any
         website. <3>Learn more about</3> it.</2></1>
 pages:
+  accessibilité: <0>Accessibility</0><1>This page is not a help page, but a
+    statement of compliance with <2>RGAA</2> 4.0, which aims to define the
+    general level of accessibility found on the site in accordance with the
+    regulations. This page is mandatory in order to comply with the RGAA
+    4.0.</1><2>What is digital accessibility?</2><3>An accessible website is one
+    that allows all web users to access its contents without difficulty,
+    including people with disabilities who use specialised software or
+    hardware.</3><4>An accessible website allows for example to
+    :</4><5><0>Navigate with voice synthesizers or Braille tracks (used in
+    particular by blind or partially sighted internet users).</0><1>Customize
+    the display of the site according to their needs (magnification of
+    characters, modification of colours, etc.).</1><2>Navigate without using the
+    mouse, with the keyboard only or via a touch screen.</2></5><6>Accessibility
+    statement</6><7>Acoss undertakes to make its websites accessible in
+    accordance with article 47 of the law n° 2005-102 of February 11,
+    2005.</7><8>To this end, it is drafting the <2>strategy and action plan to
+    be</2> implemented.</8><9>This accessibility declaration applies to
+    <2>https://mon-entreprise.fr.</2></9><10>State of
+    compliance</10><11><0>https://mon-entreprise.fr</0> is currently not in
+    compliance with the <3>general accessibility improvement standard
+    (RGAA</3>). The compliance audit will be planned soon. Corrections will be
+    taken into account following the audit.</11><12>Right to
+    compensation</12><13>Pending full compliance, you can obtain an accessible
+    version of the documents or information contained therein by sending an
+    email to <2>accessibilite@acoss.fr</2> indicating the name of the document
+    concerned and/or the information you would like to obtain. The requested
+    information will be sent to you as soon as possible.</13><14>Improvement and
+    contact</14><15>You can help us to improve the accessibility of the site by
+    reporting any problems you encounter. To do so, send us an email at
+    <2>accessibilite@acoss.fr.</2></15><16>Advocate for Rights</16><17>This
+    procedure is to be used in the following case.</17><18>You have notified the
+    website manager of an accessibility defect that prevents you from accessing
+    any of the content or services of the portal and you have not received a
+    satisfactory response.</18><19><0>Write a message to the Defender of
+    Rights<1>(https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contact the
+    representative of the Defender of Rights in your
+    region<1>(https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Send
+    a letter by post (free of charge, do not put a stamp) to:<1></1>Defender of
+    rights<3></3>Free answer 71120<5></5>75342 Paris CEDEX
+    07</2></19><20>Updated on 15/01/2021</20>
   common:
     ressources-auto-entrepreneur:
       FAQ: <0><0>Frequently Asked Questions</0><1>An exhaustive and up-to-date list of
@@ -1353,12 +1391,15 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 shareSimulation:
-  banner: "You can share your simulation: <2 onClick={onClick}>Share link</2>"
+  banner: "To share this simulation: <2>Generate a dedicated link</2>"
+  button:
+    copied: Copied
+    copy: Copy the link
   modal:
-    button: Copy link
-    helpText: The link is already selected, you can just hit "copy".
+    helpText: The link is selected, you can copy and paste it.
+    notice: Here is the link you can send to access your simulation.
     title: Your sharing link
-  navigatorShare: My company simulation
+  navigatorShare: My Simulation My Company
 simulateurs:
   explanation:
     CNAPL: It recovers contributions related to your retirement and disability/death

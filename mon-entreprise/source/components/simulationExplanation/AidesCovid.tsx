@@ -33,7 +33,7 @@ export default function AidesCovid({ aidesRule }: AidesCovidProps) {
 				<Condition expression={'dirigeant . auto-entrepreneur'}>
 					<div className="ui__ card box lighter-bg">
 						<Trans i18nKey="simulateurs.explanation.aides covid.deduction">
-							<h4>Déduction de chiffre d'affaire</h4>
+							<h4>Déduction de chiffre d'affaires</h4>
 							<p className="ui__ notice">
 								Les conditions et modalités de la réduction "covid" sont
 								présentées sur le site de l'Urssaf.

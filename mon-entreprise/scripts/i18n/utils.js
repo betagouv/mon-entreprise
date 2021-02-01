@@ -4,7 +4,7 @@ var fs = require('fs')
 var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
-let rules = require('modele-social')
+let rules = require('../../../modele-social')
 let { parse } = require('yaml')
 
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')

@@ -74,6 +74,7 @@ const sitePathsFr = {
 	},
 	nouveautés: '/nouveautés',
 	stats: '/stats',
+	accessibilité: '/accessibilité',
 	budget: '/budget',
 	integration: {
 		index: '/intégration',
@@ -134,6 +135,8 @@ const sitePathsEn = {
 		is: '/corporate-tax',
 	},
 	nouveautés: '/news',
+	accessibilité: '/accessibility',
+
 	integration: {
 		...sitePathsFr.integration,
 		index: '/integration',
