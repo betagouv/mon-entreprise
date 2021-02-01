@@ -1,19 +1,13 @@
 import Value from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import {
-	ASTNode,
-	EvaluatedNode,
-	formatValue,
-	ParsedRules,
-	reduceAST,
-} from 'publicodes'
+import { DottedName } from 'modele-social'
+import { ASTNode, formatValue, ParsedRules, reduceAST } from 'publicodes'
+import { RuleNode } from 'publicodes/dist/types/rule'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
-import { RuleNode } from 'publicodes/dist/types/rule'
 
 export const SECTION_ORDER = [
 	'protection sociale . santé',
@@ -183,19 +177,19 @@ export default function PaySlip() {
 function findReferenceInNode(
 	dottedName: DottedName,
 	node: ASTNode
-): EvaluatedNode | null {
-	return reduceAST<(EvaluatedNode & { nodeKind: 'reference' }) | null>(
+): string | undefined {
+	return reduceAST<string | undefined>(
 		(acc, node) => {
 			if (
 				node.nodeKind === 'reference' &&
 				node.dottedName?.startsWith(dottedName)
 			) {
-				return node as EvaluatedNode & { nodeKind: 'reference' }
+				return node.dottedName
 			} else if (node.nodeKind === 'reference') {
 				return acc
 			}
 		},
-		null,
+		undefined,
 		node
 	)
 }
