@@ -1695,26 +1695,25 @@ contrat salarié . rémunération . net imposable:
   type: salaire
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
-  formule:
-    somme:
-      - base
-      - (- frais professionnels . part déductible)
-      - (- prime d'impatriation)
-      - (- exonération d'impôt des stagiaires et apprentis)
-      - (- heures supplémentaires et complémentaires défiscalisées)
-      - (- retraite supplémentaire . exonération fiscale)
-      - (- prévoyance . exonération fiscale)
-  références:
-    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-contrat salarié . rémunération . net imposable . base:
-  titre: net imposable avant exonérations
-  description: Le net imposable avant les exonérations et déductions
-  formule:
+  valeur:
+    nom: base 
+    description: Le net imposable avant les exonérations et déductions
     somme:
       - net avec revenus de remplacement
       - avantages sociaux
       - CSG et CRDS . non déductible
+  abattement:
+    somme:
+      - frais professionnels . part déductible
+      - prime d'impatriation
+      - exonération d'impôt des stagiaires et apprentis
+      - heures supplémentaires et complémentaires défiscalisées
+      - retraite supplémentaire . exonération fiscale
+      - prévoyance . exonération fiscale
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   unité: €/mois

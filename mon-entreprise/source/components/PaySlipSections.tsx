@@ -1,7 +1,7 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
-import { Trans } from 'react-i18next'
 import { DottedName } from 'modele-social'
+import { Trans } from 'react-i18next'
 
 export const SalaireBrutSection = () => {
 	return (
