@@ -116,7 +116,7 @@ function PaySlipSection() {
 }
 
 export const DistributionSection = ({
-	children = Distribution,
+	children = <Distribution />,
 }: {
 	children?: React.ReactNode
 }) => (
