@@ -7,10 +7,9 @@
 	"license": "MIT",
 	"readme": "../README.md",
 	"scripts": {
-		"clean": "rimraf dist node_modules",
+		"clean": "rimraf dist node_modules data",
 		"build": "tsc",
-		"clean": "rimraf dist node_modules",
-		"prepare": "yarn run build",
+		"prepare": "mkdir -p ./source/data && yarn run --silent js-yaml ../docs/mecanisms.yaml >| ./source/data/mecanisms.json && yarn run build",
 		"test": "echo \"Error: no test specified\""
 	},
 	"dependencies": {
@@ -31,6 +30,7 @@
 		"react-router-hash-link": "^1.2.2"
 	},
 	"devDependencies": {
+		"js-yaml": "^4.0.0",
 		"typescript": "^4.1.3"
 	}
 }

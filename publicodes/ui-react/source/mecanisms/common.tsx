@@ -1,25 +1,21 @@
-import React, { createContext, useContext, useState } from 'react'
-import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { capitalise0, formatValue, simplifyNodeUnit } from 'publicodes'
 import {
-	mecanismsDoc,
-	formatValue,
-	capitalise0,
-	simplifyNodeUnit,
-} from 'publicodes'
-import {
-	Evaluation,
 	EvaluatedNode,
+	Evaluation,
 	Types,
 	Unit,
 } from 'publicodes/source/AST/types'
+import { ReferenceNode } from 'publicodes/source/reference'
+import React, { createContext, useContext, useState } from 'react'
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+import { EngineContext } from '../contexts'
+import mecanismsDoc from '../data/mecanisms.json'
+import Explanation from '../Explanation'
+import { Markdown } from '../Markdown'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
-import Explanation from '../Explanation'
-import { ReferenceNode } from 'publicodes/source/reference'
-import { EngineContext } from '../contexts'
-import { Markdown } from '../Markdown'
 
 export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
 	if (nodeValue === null) {
