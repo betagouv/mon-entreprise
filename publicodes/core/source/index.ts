@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
@@ -38,7 +37,6 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
 export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { capitalise0, formatValue } from './format'
