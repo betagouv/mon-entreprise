@@ -116,11 +116,8 @@ export default function Landing() {
 						<h2>Qui sommes-nous ?</h2>
 						<p>
 							Nous sommes une petite{' '}
-							<a>
-								<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
-									équipe
-								</a>{' '}
-								autonome et pluridisciplinaire
+							<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
+								équipe autonome et pluridisciplinaire
 							</a>{' '}
 							au sein de l’
 							<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à cœur
