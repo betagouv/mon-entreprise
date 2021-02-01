@@ -39,15 +39,14 @@ export type EvaluationOptions = Partial<{
 }>
 
 export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
-export * as cyclesLib from './AST/graph'
 export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
+export { default as serializeEvaluation } from './serializeEvaluation'
 export { parseUnit, serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
-export { default as serializeEvaluation } from './serializeEvaluation'
 
 type PublicodesExpression = string | Record<string, unknown> | number
 
@@ -78,7 +77,7 @@ export default class Engine<Name extends string = string> {
 	options: Options
 
 	constructor(
-		rules: string | Record<string, Rule> | ParsedRules<Name>,
+		rules: string | Record<string, Rule> | ParsedRules<Name> = {},
 		options: Partial<Options> = {}
 	) {
 		this.options = { ...options, logger: options.logger ?? console }

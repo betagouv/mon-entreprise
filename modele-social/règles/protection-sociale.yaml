@@ -195,23 +195,16 @@ protection sociale . retraite . complémentaire salarié:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . valeur du point:
-  formule: 1.2588 €/point/an
+  formule: 1.2714 €/point/an
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
 
 protection sociale . retraite . complémentaire salarié . points acquis:
-  formule: points acquis par mois * mois cotisés
-  unité: points
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
-
-protection sociale . retraite . complémentaire salarié . points acquis par mois:
   unité: points/mois
-  formule: contrat salarié . retraite complémentaire / prix d'achat du point
-
-protection sociale . retraite . complémentaire salarié . prix d'achat du point:
-  formule: 16.7226 €/point
+  note: |
+    On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
+  formule: mois cotisés * contrat salarié . retraite complémentaire / 17.3982 €/point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
@@ -221,7 +214,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
 protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
-  formule: 1.187 €/point/an
+  formule: 1.191 €/point/an
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
@@ -239,7 +232,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
       facteur: 1 / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
-  formule: 17.456 €/point
+  formule: 17.515 €/point
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
@@ -265,7 +258,6 @@ protection sociale . santé:
     ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
 
-
 protection sociale . invalidité et décès:
   icônes: 🦽
   type: branche
@@ -278,7 +270,6 @@ protection sociale . invalidité et décès:
     capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
     capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
-
 
 protection sociale . santé . indemnités journalières:
   description: >-
@@ -322,7 +313,7 @@ protection sociale . santé . indemnités journalières . indépendant:
   unité: €/jour
   formule:
     produit:
-      assiette: revenu moyen 
+      assiette: revenu moyen
       taux: 50%
     plancher: 21 €/jour
     plafond: 55.51 €/jour
@@ -336,7 +327,7 @@ protection sociale . santé . indemnités journalières . salarié:
   applicable si: contrat salarié
   formule:
     produit:
-      assiette: revenu moyen 
+      assiette: revenu moyen
       taux: 50%
       plafond: 1.8 * SMIC temps plein
   reférences:
@@ -408,10 +399,10 @@ protection sociale . accidents du travail et maladies professionnelles:
   applicable si: contrat salarié
   formule:
     produit:
-      assiette: 
+      assiette:
         valeur: revenu moyen
         plafond: 83.4% * plafond sécurité sociale temps plein
-      taux: 
+      taux:
         nom: Pourcentage du salaire journalier de référence
         valeur: 60%
   note: |

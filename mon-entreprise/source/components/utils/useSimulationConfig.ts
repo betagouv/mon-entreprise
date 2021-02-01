@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
 
-export default function useSituationConfig(
+export default function useSimulationConfig(
 	config: SimulationConfig | undefined,
 	{ useExistingCompanyFromSituation = false } = {}
 ) {

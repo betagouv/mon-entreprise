@@ -1,31 +1,38 @@
 import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
+import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
+import { useLocation } from 'react-router-dom'
 
-const VERSION = 4
+const VERSION = 5
 
-const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
+const localStorageKey = (pathname: string) =>
+	`mon-entreprise::persisted-simulation::v${VERSION}::${pathname}`
 
-export function persistSimulation(store: Store<RootState, Action>) {
+export function setupSimulationPersistence(
+	store: Store<RootState, Action>,
+	debounceDelay: number = 1000
+) {
 	const listener = () => {
 		const state = store.getState()
-		if (!state.simulation?.foldedSteps.length) {
-			return
-		}
-		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))
+		if (!state.simulation?.url) return
+		if (!state.simulation?.foldedSteps.length) return
+		safeLocalStorage.setItem(
+			localStorageKey(state.simulation.url),
+			serialize(state)
+		)
 	}
-	store.subscribe(debounce(1000, listener))
+	store.subscribe(debounce(debounceDelay, listener))
 }
 
-export function retrievePersistedSimulation(): SavedSimulation {
-	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
+export function retrievePersistedSimulation(
+	simulationUrl: string
+): PreviousSimulation | null {
+	const serializedState = safeLocalStorage.getItem(
+		localStorageKey(simulationUrl)
+	)
 	return serializedState ? deserialize(serializedState) : null
-}
-
-export function deletePersistedSimulation(): void {
-	safeLocalStorage.removeItem(LOCAL_STORAGE_KEY)
 }

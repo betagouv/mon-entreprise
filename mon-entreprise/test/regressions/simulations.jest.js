@@ -6,24 +6,24 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import rules from 'modele-social'
 import Engine from 'publicodes'
+import rules from '../../../modele-social'
 import { engineOptions } from '../../source/components/utils/EngineContext'
-import artisteAuteurConfig from '../../source/site/pages/Simulateurs/configs/artiste-auteur.yaml'
-import autoentrepreneurConfig from '../../source/site/pages/Simulateurs/configs/auto-entrepreneur.yaml'
-import independantConfig from '../../source/site/pages/Simulateurs/configs/indépendant.yaml'
-import remunerationDirigeantConfig from '../../source/site/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
-import employeeConfig from '../../source/site/pages/Simulateurs/configs/salarié.yaml'
-import professionLibéraleConfig from '../../source/site/pages/Simulateurs/configs/profession-libérale.yaml'
-import aideDéclarationConfig from '../../source/site/pages/Gérer/AideDéclarationIndépendant/config.yaml'
+import aideDéclarationConfig from '../../source/pages/Gérer/AideDéclarationIndépendant/config.yaml'
+import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'
+import autoentrepreneurConfig from '../../source/pages/Simulateurs/configs/auto-entrepreneur.yaml'
+import independantConfig from '../../source/pages/Simulateurs/configs/indépendant.yaml'
+import professionLibéraleConfig from '../../source/pages/Simulateurs/configs/profession-libérale.yaml'
+import remunerationDirigeantConfig from '../../source/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
+import employeeConfig from '../../source/pages/Simulateurs/configs/salarié.yaml'
+import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
+import impotSocieteSituations from './simulations-impôt-société.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
-import impotSocieteSituations from './simulations-impôt-société.yaml'
 import employeeSituations from './simulations-salarié.yaml'
-import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 
 const roundResult = (arr) => arr.map((x) => Math.round(x))
 const engine = new Engine(rules, engineOptions)
@@ -134,7 +134,7 @@ it('calculate aide-déclaration-indépendant', () => {
 		aideDéclarationIndépendantsSituations,
 		aideDéclarationConfig.objectifs,
 		{
-			"aide déclaration revenu indépendant 2019 . nature de l'activité":
+			"aide déclaration revenu indépendant 2020 . nature de l'activité":
 				"'commerciale ou industrielle'",
 			...aideDéclarationConfig.situation,
 		}

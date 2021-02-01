@@ -2,13 +2,13 @@ import { Action } from 'Actions/actions'
 import { defaultTo, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
+import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
-import storageRootReducer from './storageReducer'
 import { Names } from 'modele-social/dist/names'
 import { getCompanySituation } from 'Components/utils/useSimulationConfig'
+import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -19,15 +19,6 @@ function explainedVariable(
 			return action.variableName
 		case 'STEP_ACTION':
 			return null
-		default:
-			return state
-	}
-}
-
-function situationBranch(state: number | null = null, action: Action) {
-	switch (action.type) {
-		case 'SET_SITUATION_BRANCH':
-			return action.id
 		default:
 			return state
 	}
@@ -174,16 +165,15 @@ const existingCompanyReducer = (state: RootState, action: Action) => {
 const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
-	previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
-	situationBranch,
+	previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	inFranceApp: inFranceAppReducer,
 })
 
 export default reduceReducers<RootState>(
-	mainReducer,
+	mainReducer as any,
 	existingCompanyReducer as Reducer<RootState>,
-	storageRootReducer as Reducer<RootState>
+	previousSimulationRootReducer as Reducer<RootState>
 ) as Reducer<RootState>
 
 export type RootState = ReturnType<typeof mainReducer>

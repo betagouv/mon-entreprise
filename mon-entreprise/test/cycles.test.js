@@ -1,10 +1,10 @@
 import { expect } from 'chai'
-import { cyclesLib } from 'publicodes'
 import rules from 'modele-social'
+import { cyclicDependencies } from '../../publicodes/core/source/AST/graph'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
-		let cyclesDependencies = cyclesLib.cyclicDependencies(rules)
+		let cyclesDependencies = cyclicDependencies(rules)
 
 		expect(
 			cyclesDependencies,

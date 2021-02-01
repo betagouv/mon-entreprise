@@ -450,7 +450,7 @@ dirigeant . indépendant . avertissement base forfaitaire:
   formule:
     toutes ces conditions:
       - entreprise . durée d'activité . en fin d'année < 2 ans
-  description: >-
+  description: |
     Lorsque vous commencez votre activité, vos revenus professionnels
     n’étant pas connus, les cotisations et contributions des deux premières
     années sont calculées sur une base forfaitaire.
@@ -461,12 +461,13 @@ dirigeant . indépendant . avertissement base forfaitaire:
 
 
     Il y a un ajustement au cours de la deuxième année en fonction des
-    revenus réels déclarés pour l'année précédente.
+    revenus réels déclarés pour l'année précédente. Dans la majeure partie des cas, 
+    le montant des cotisations provisionnelles sera significativement plus élevé.
 
 
     Ce simulateur calcule les cotisations au **régime de croisière** (après
-    régularisation). Il vous permet donc de connaître le montant à
-    provisionner pour la régularisation.
+    régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
+    et de plannifier votre trésorerie en conséquence.
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
@@ -1034,7 +1035,7 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond:
   acronyme: PRCI
   titre: plafond retraite complémentaire des indépendants
-  formule: 38340 €/an
+  formule: 38493 €/an
 
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   formule:
