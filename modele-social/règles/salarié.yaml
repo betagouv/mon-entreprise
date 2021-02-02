@@ -200,6 +200,9 @@ contrat salarié . frais professionnels . abonnement transports publics . prise 
 
 contrat salarié . frais professionnels . transports personnels:
   valeur: oui
+  non applicable si: déduction forfaitaire spécifique
+  références:
+    circ. DGT-DSS 2009-1 du 28 janvier 2009: https://www.legifrance.gouv.fr/download/file/pdf/cir_2423/CIRC
 
 contrat salarié . frais professionnels . transports personnels . montant:
   titre: Transports personnels
