@@ -10,12 +10,10 @@ Le paquet est disponble sur NPM :
 $ npm install publicodes
 ```
 
-## Utilisation
+## Premiers pas
 
-### Introduction
-
-La libraire exporte un objet `Engine` qui permet d'instancier le moteur avec un
-jeu de règles publicodes :
+La bibliothèque exporte une classe par défaut `Engine` qui permet d'instancier le moteur avec un
+jeu de règles publicodes.
 
 ```js
 import Engine from 'publicodes'
@@ -40,7 +38,32 @@ dépenses primeur:
 const engine = new Engine(rules)
 ```
 
-(Attention, sous node vous devrez faire `const Engine = require('publicodes').default`)
+> ### Note : importer sans bundler
+>
+> Voici comment importer publicodes en fonction de l'environnement.
+>
+> -   **Node >= 15.0.0**
+>     ```js
+>     import Engine from 'publicodes'
+>     ```
+
+> -   **Node < 15.0.0**
+>
+>     ```js
+>     const Engine = require('publicodes').default
+>     ```
+
+> -   **ESModule sans npm install** (`<script type="module">` et deno)
+>     ```js
+>     import Engine from 'https://unpkg.com/publicodes@1.0.0-beta.12/esm/index.min.js'
+>     ```
+> -   **`<script>` dans navigateur**
+>     ```html
+>     <script src="https://unpkg.com/publicodes@1.0.0-beta.12/dist/index.min.js"></script>
+>     <script>
+>         const Engine = window.publicodes.default
+>     </script>
+>     ```
 
 La variable `engine` permet en ensuite de calculer la valeur d'une règle avec la
 méthode `evaluate`.
