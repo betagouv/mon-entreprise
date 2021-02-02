@@ -63,7 +63,7 @@ module.exports = [
 	process.env.NODE_ENV === 'production' && {
 		...common,
 		output: {
-			filename: 'publicodes.min.js',
+			filename: 'index.min.js',
 			library: 'publicodes',
 			libraryTarget: 'global',
 		},
