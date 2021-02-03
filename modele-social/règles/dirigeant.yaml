@@ -233,15 +233,15 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
         - si: entreprise . activité . libérale règlementée
           alors: 0.2%
         - sinon: 0.1%
-dirigeant . auto-entrepreneur . chiffre d'affaires:
-  question: Quel est votre chiffre d'affaires ?
-  résumé: Montant total des recettes brutes (hors taxe)
-  unité: €/an
-  arrondi: oui
-  inversion numérique:
-    avec:
-      - net de cotisations
-      - net après impôt
+# dirigeant . auto-entrepreneur . chiffre d'affaires:
+#   question: Quel est votre chiffre d'affaires ?
+#   résumé: Montant total des recettes brutes (hors taxe)
+#   unité: €/an
+#   arrondi: oui
+#   inversion numérique:
+#     avec:
+#       - net de cotisations
+#       - net après impôt
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une

@@ -56,29 +56,28 @@ entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
+  inversion numérique:
+    avec:
+      - dirigeant . auto-entrepreneur . net de cotisations
+      - dirigeant . auto-entrepreneur . net après impôt
   arrondi: oui
-  somme:
-    - vente restauration hébergement
-    - prestations de service
   identifiant court: ca
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
-  applicable si:
-    une de ces conditions:
-      - activité . service ou vente = 'vente'
-      - activité . mixte
   titre: Vente de biens, restauration, hebergement
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
   unité: €/an
-  par défaut: 
-    produit:
-      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
-      facteur: 
-        variations: 
-          - si: activité = 'libérale'
-            alors: 30%
-          - sinon: 70%
+  variations: 
+    - si: activité . mixte
+      alors:
+        par défaut: 
+          applicable si: chiffre d'affaires
+          valeur: chiffre d'affaires / 3
+    - sinon: 
+        applicable si: activité . service ou vente = 'vente'
+        valeur: chiffre d'affaires
+  
   arrondi: oui
   plancher: 0€/an
   description: |
@@ -106,19 +105,7 @@ entreprise . chiffre d'affaires . prestations de service:
     - BNC
 
 entreprise . chiffre d'affaires . prestations de service . BIC:
-  applicable si:
-    une de ces conditions:
-      - activité . service ou vente = 'service'
-      - activité . mixte
   unité: €/an
-  par défaut: 
-    produit:
-      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
-      facteur: 
-        variations: 
-          - si: activité = 'libérale'
-            alors: 0
-          - sinon: 30%
   plancher: 0€/an
   arrondi: oui
   résumé: Chiffre d'affaires hors taxe
@@ -133,6 +120,15 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
+  variations: 
+    - si: activité . mixte
+      alors:
+        par défaut: 
+          applicable si: chiffre d'affaires
+          valeur: chiffre d'affaires / 3
+    - sinon: 
+        applicable si: activité . service ou vente = 'service'
+        valeur: chiffre d'affaires
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
 
@@ -140,19 +136,7 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
   titre: Prestations de service libérale
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
-  par défaut: 
-    produit:
-      assiette: dirigeant . auto-entrepreneur . chiffre d'affaires 
-      facteur: 
-        variations: 
-          - si: activité = 'libérale'
-            alors: 70%
-          - sinon: 0.0000001% # On veut qu'elle reste manquante en fonction du CA
   arrondi: oui
-  applicable si:
-    une de ces conditions:
-      - activité = 'libérale'
-      - activité . mixte
   plancher: 0€/an
   
   description: |
@@ -161,7 +145,15 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
 
     **Exemples** : conseil, accompagnement, traduction, développement,
     formation, enseignement, sportif
-
+  variations: 
+    - si: activité . mixte
+      alors:
+        par défaut: 
+          applicable si: chiffre d'affaires
+          valeur: chiffre d'affaires / 3
+    - sinon: 
+        applicable si: activité = 'libérale'
+        valeur: chiffre d'affaires
   références:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
@@ -174,6 +166,7 @@ entreprise . chiffre d'affaires . franchise de TVA dépassé:
     Le professionnel qui relève de ce dispositif facture ses prestations ou ses
     ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
   une de ces conditions:
+    - chiffre d'affaires > seuil vente + seuil service
     - vente restauration hébergement > seuil vente
     - prestations de service > seuil service
   note: >
@@ -697,9 +690,9 @@ entreprise . activité . service ou vente . service:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 entreprise . activité . mixte:
-  #TODO non applicable si:
   titre: Activités mixtes
   question: Votre entreprise a-t-elle plusieurs types d'activités ?
+  par défaut: non
   description: |
     Il est possible d'avoir plusieurs activités avec des types de revenus
     différents pour une même entreprise. 

@@ -6,35 +6,30 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { useEngine } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 export default function AutoEntrepreneur() {
+	const engine = useContext(EngineContext)
 	return (
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
 			<SearchButton invisibleButton />
 
 			<SimulationGoals className="plain">
-				<Condition expression="entreprise . activité . mixte = non">
-					<SimulationGoal
-						appear={false}
-						labelWithTitle
-						dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires"
-					/>
-					<ActivitéMixte />
-				</Condition>
+				<SimulationGoal
+					appear={false}
+					editable={
+						engine.evaluate('entreprise . activité . mixte').nodeValue !== true
+					}
+					labelWithTitle
+					dottedName="entreprise . chiffre d'affaires"
+				/>
+				<ActivitéMixte />
 				<Condition expression="entreprise . activité . mixte">
-					<SimulationGoal
-						appear={false}
-						editable={false}
-						labelWithTitle
-						dottedName="entreprise . chiffre d'affaires"
-					/>
-					<ActivitéMixte />
 					<li>
 						<ul>
 							<SimulationGoal
