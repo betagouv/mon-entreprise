@@ -137,6 +137,27 @@ La commande `yarn run build:analyse-bundle` gènere une visualisation interactiv
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
+## Développement de modèles Publicodes 
+
+### Traduction des normes (lois) en règles Publicodes
+
+Checklist:
+
+- [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
+- [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
+- [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
+
+[wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
+
+### Tests
+
+Pour tester les règles, il est recommandé de:
+
+- faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
+  traduites ;
+- créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
+  `mon-entreprise/test/regressions`).
+
 ## Documentation
 
 ### Publicodes
