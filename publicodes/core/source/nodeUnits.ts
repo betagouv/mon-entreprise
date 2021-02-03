@@ -1,8 +1,9 @@
+import { EvaluatedNode, Unit } from './AST/types'
 import { mapTemporal } from './temporal'
 import { convertUnit, simplifyUnit } from './units'
-import { EvaluatedNode, Unit } from './AST/types'
 
 export function simplifyNodeUnit(node) {
+	console.log('jhjoiijoijo', node)
 	if (!node.unit) {
 		return node
 	}
