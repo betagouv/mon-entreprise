@@ -27,6 +27,7 @@ export type Props<Name extends string = DottedName> = Omit<
 	useSwitch?: boolean
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
+	modifiers?: Record<string, string>
 }
 
 export type InputProps<Name extends string = string> = Props<Name> &
@@ -51,11 +52,12 @@ export default function RuleInput({
 	useSwitch = false,
 	isTarget = false,
 	onSubmit = () => null,
+	modifiers = {},
 	...props
 }: Props<DottedName>) {
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
-	const evaluation = engine.evaluate(dottedName)
+	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
 	const commonProps: InputProps<DottedName> = {

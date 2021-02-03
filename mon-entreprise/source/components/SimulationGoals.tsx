@@ -5,7 +5,10 @@ import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
+import {
+	situationSelector,
+	targetUnitSelector,
+} from 'Selectors/simulationSelectors'
 import RuleInput from './conversation/RuleInput'
 import RuleLink from './RuleLink'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
@@ -26,7 +29,10 @@ export function SimulationGoals({
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
-			<section className={`ui__ card ${className}`}>
+			<section
+				className={`ui__ card ${className}`}
+				style={{ marginTop: '0.6rem' }}
+			>
 				<div id="targetSelection">
 					<ul className="targets">{children}</ul>
 				</div>
@@ -45,7 +51,7 @@ function useInitialRender() {
 
 type SimulationGoalProps = {
 	dottedName: DottedName
-	labelWithTitle?: boolean
+	labelWithQuestion?: boolean
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
@@ -53,16 +59,21 @@ type SimulationGoalProps = {
 
 export function SimulationGoal({
 	dottedName,
-	labelWithTitle = false,
+	labelWithQuestion = false,
 	small = false,
 	appear = true,
 	editable = true,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const currentUnit = useSelector(targetUnitSelector)
 	const situation = useSelector(situationSelector)
 	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
-	const evaluation = engine.evaluate(dottedName)
+	const evaluation = engine.evaluate({
+		valeur: dottedName,
+		unité: currentUnit,
+		arrondi: 'oui',
+	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	const [isFocused, setFocused] = useState(false)
@@ -79,6 +90,12 @@ export function SimulationGoal({
 		isFocused ||
 		initialRender ||
 		Object.keys(situation).length === 0
+	if (
+		!editable &&
+		(evaluation.nodeValue === false || evaluation.nodeValue === null)
+	) {
+		return null
+	}
 	return (
 		<li className={small ? 'small-target' : ''}>
 			<Animate.appear unless={!appear || initialRender}>
@@ -86,7 +103,9 @@ export function SimulationGoal({
 					<div className="header">
 						<label htmlFor={dottedName}>
 							<span className="optionTitle">
-								{(!labelWithTitle && rule.rawNode.question) || rule.title}
+								{(labelWithQuestion && rule.rawNode.question) || (
+									<RuleLink dottedName={dottedName} />
+								)}
 							</span>
 							<p className="ui__ notice">{rule.rawNode.résumé}</p>
 						</label>
@@ -101,6 +120,10 @@ export function SimulationGoal({
 										{ focused: isFocused }
 									)}
 									isTarget
+									modifiers={{
+										unité: currentUnit,
+										arrondi: 'oui',
+									}}
 									dottedName={dottedName}
 									onFocus={() => setFocused(true)}
 									onBlur={() => setFocused(false)}

@@ -22,14 +22,29 @@ export default function ArtisteAuteur() {
 		<>
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<SimulationGoals className="light">
-				<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
-				<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
-				<SimulationGoal dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
+				<SimulationGoal
+					labelWithQuestion
+					dottedName="artiste-auteur . revenus . traitements et salaires"
+				/>
+				<SimulationGoal
+					labelWithQuestion
+					dottedName="artiste-auteur . revenus . BNC . recettes"
+				/>
+				<SimulationGoal
+					labelWithQuestion
+					dottedName="artiste-auteur . revenus . BNC . micro-bnc"
+				/>
 				<Warning dottedName="artiste-auteur . revenus . BNC . contrôle micro-bnc" />
 				<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
-					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
+					<SimulationGoal
+						labelWithQuestion
+						dottedName="artiste-auteur . revenus . BNC . frais réels"
+					/>
 				</Condition>
-				<SimulationGoal dottedName="artiste-auteur . cotisations . option surcotisation" />
+				<SimulationGoal
+					labelWithQuestion
+					dottedName="artiste-auteur . cotisations . option surcotisation"
+				/>
 			</SimulationGoals>
 			<CotisationsResult />
 		</>

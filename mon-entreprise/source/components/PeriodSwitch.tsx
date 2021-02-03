@@ -10,7 +10,7 @@ export default function PeriodSwitch() {
 
 	const units = ['€/mois', '€/an']
 	return (
-		<span id="PeriodSwitch">
+		<div id="PeriodSwitch">
 			<span className="base ui__ small radio toggle">
 				{units.map((unit) => (
 					<label key={unit}>
@@ -27,6 +27,6 @@ export default function PeriodSwitch() {
 					</label>
 				))}
 			</span>
-		</span>
+		</div>
 	)
 }
