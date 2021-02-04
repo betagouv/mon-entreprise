@@ -3,7 +3,6 @@ import { mapTemporal } from './temporal'
 import { convertUnit, simplifyUnit } from './units'
 
 export function simplifyNodeUnit(node) {
-	console.log('jhjoiijoijo', node)
 	if (!node.unit) {
 		return node
 	}

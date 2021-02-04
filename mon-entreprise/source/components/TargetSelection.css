@@ -15,20 +15,20 @@
 	border-top: none;
 }
 
-#targetSelection .targets > li.small-target {
+#targetSelection .targets li.small-target {
 	font-size: 85%;
 }
-#targetSelection .targets > li.small-target .optionTitle a {
+#targetSelection .targets li.small-target .optionTitle a {
 	font-weight: normal;
 }
 
-#targetSelection .targets > li.small-target {
+#targetSelection .targets li.small-target {
 	border-top: none;
 	padding: 0.4rem 1rem;
 }
 
-#targetSelection .targets > li.small-target .targetInput,
-#targetSelection .targets > li.small-target .editableTarget {
+#targetSelection .targets li.small-target .targetInput,
+#targetSelection .targets li.small-target .editableTarget {
 	border-width: 1px;
 	border-radius: 0.2rem;
 	padding-top: 0;
@@ -130,6 +130,7 @@
 	text-align: right;
 	background: rgba(255, 255, 255, 0.2);
 	padding: 0.2rem 0.6rem;
+
 	border-radius: 0.3rem;
 	border: 1px solid;
 	font-size: inherit;
@@ -154,6 +155,7 @@
 	width: 5.5em;
 
 	display: inline-block;
+	transition: all 0.2s;
 	text-align: right;
 	padding: 0.2rem 0.6rem;
 
