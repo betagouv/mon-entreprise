@@ -1,9 +1,8 @@
 import { updateSituation } from 'Actions/actions'
-import Conversation from 'Components/conversation/Conversation'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
-import SearchButton from 'Components/SearchButton'
 import SimulateurWarning from 'Components/SimulateurWarning'
+import Simulation from 'Components/Simulation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
@@ -18,49 +17,48 @@ export default function AutoEntrepreneur() {
 	return (
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
-			<SearchButton invisibleButton />
-			<PeriodSwitch />
-			<br />
-			<SimulationGoals className="plain">
-				<SimulationGoal
-					appear={false}
-					editable={
-						engine.evaluate('entreprise . activité . mixte').nodeValue !== true
-					}
-					dottedName="entreprise . chiffre d'affaires"
-				/>
-				<ActivitéMixte />
-				<Condition expression="entreprise . activité . mixte">
-					<li>
-						<ul>
-							<SimulationGoal
-								small
-								dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
-							/>
-							<SimulationGoal
-								small
-								dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
-							/>
-							<SimulationGoal
-								small
-								dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
-							/>
-						</ul>
-					</li>
-				</Condition>
-				<SimulationGoal
-					small
-					editable={false}
-					dottedName="dirigeant . auto-entrepreneur . cotisations et contributions"
-				/>
-				<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net de cotisations" />
-				<Condition expression="impôt > 0">
-					<SimulationGoal small editable={false} dottedName="impôt" />
-				</Condition>
-				<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net après impôt" />
-			</SimulationGoals>
-			<Conversation />
-			<Explanation />
+			<Simulation explanations={<Explanation />}>
+				<PeriodSwitch />
+				<SimulationGoals className="plain">
+					<SimulationGoal
+						appear={false}
+						editable={
+							engine.evaluate('entreprise . activité . mixte').nodeValue !==
+							true
+						}
+						dottedName="entreprise . chiffre d'affaires"
+					/>
+					<ActivitéMixte />
+					<Condition expression="entreprise . activité . mixte">
+						<li>
+							<ul>
+								<SimulationGoal
+									small
+									dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
+								/>
+								<SimulationGoal
+									small
+									dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
+								/>
+								<SimulationGoal
+									small
+									dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
+								/>
+							</ul>
+						</li>
+					</Condition>
+					<SimulationGoal
+						small
+						editable={false}
+						dottedName="dirigeant . auto-entrepreneur . cotisations et contributions"
+					/>
+					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net de cotisations" />
+					<Condition expression="impôt > 0">
+						<SimulationGoal small editable={false} dottedName="impôt" />
+					</Condition>
+					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net après impôt" />
+				</SimulationGoals>
+			</Simulation>
 		</>
 	)
 }

@@ -107,11 +107,8 @@
 
 #targetSelection .targetInputOrValue {
 	font-size: 115%;
-	min-width: 5.5rem;
+	margin-left: 1rem;
 	text-align: right;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
 }
 
 #targetSelection .aidesGlimpse {
@@ -129,7 +126,6 @@
 
 #targetSelection .targetInput {
 	width: 5.5em;
-	margin-left: 1rem;
 	max-width: 7.5em;
 	text-align: right;
 	background: rgba(255, 255, 255, 0.2);

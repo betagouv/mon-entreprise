@@ -99,7 +99,7 @@ export function SimulationGoal({
 	return (
 		<li className={small ? 'small-target' : ''}>
 			<Animate.appear unless={!appear || initialRender}>
-				<div className="main" style={small ? { alignItems: 'baseline' } : {}}>
+				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
 							<span className="optionTitle">
@@ -113,39 +113,39 @@ export function SimulationGoal({
 					{small && <span className="guide-lecture" />}
 					<div className="targetInputOrValue">
 						{editable ? (
-							<>
-								<RuleInput
-									className={classnames(
-										displayAsInput ? 'targetInput' : 'editableTarget',
-										{ focused: isFocused }
-									)}
-									isTarget
-									modifiers={{
-										unité: currentUnit,
-										arrondi: 'oui',
-									}}
-									dottedName={dottedName}
-									onFocus={() => setFocused(true)}
-									onBlur={() => setFocused(false)}
-									onChange={(x) => dispatch(updateSituation(dottedName, x))}
-									useSwitch
-								/>
-							</>
+							<RuleInput
+								className={classnames(
+									displayAsInput ? 'targetInput' : 'editableTarget',
+									{ focused: isFocused }
+								)}
+								isTarget
+								modifiers={{
+									unité: currentUnit,
+									arrondi: 'oui',
+								}}
+								dottedName={dottedName}
+								onFocus={() => setFocused(true)}
+								onBlur={() => setFocused(false)}
+								onChange={(x) => dispatch(updateSituation(dottedName, x))}
+								useSwitch
+							/>
 						) : (
-							<>
-								<AnimatedTargetValue value={evaluation.nodeValue} />
-								<RuleLink
-									dottedName={dottedName}
-									css={`
+							<RuleLink
+								dottedName={dottedName}
+								css={`
 										padding-right: 0.6rem
 										&:not(:hover) {
 											text-decoration: none;
 										}
 									`}
-								>
-									{formatValue(evaluation, { displayedUnit: '€' })}
-								</RuleLink>
-							</>
+							>
+								{formatValue(evaluation, { displayedUnit: '€' })}
+							</RuleLink>
+						)}
+						{editable && !isFocused && (
+							<span style={{ position: 'relative', top: '-1rem' }}>
+								<AnimatedTargetValue value={evaluation.nodeValue} />
+							</span>
 						)}
 					</div>
 				</div>
