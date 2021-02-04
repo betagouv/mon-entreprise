@@ -17,11 +17,12 @@ import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import TextInput from './TextInput'
 
-export type Props<Name extends string = DottedName> = Omit<
+type Props<Name extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
-	'onChange' | 'defaultValue'
+	'onChange' | 'defaultValue' | 'onSubmit'
 > & {
 	required?: boolean
+	autoFocus?: boolean
 	dottedName: Name
 	onChange: (value: Parameters<Engine<Name>['evaluate']>[0]) => void
 	useSwitch?: boolean
@@ -144,8 +145,9 @@ export default function RuleInput({
 					debounce={750}
 					name={dottedName}
 					{...commonProps}
-					value={value as number}
+					onSubmit={() => {}}
 					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
+					value={value as number}
 				/>
 			</>
 		)

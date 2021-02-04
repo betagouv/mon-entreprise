@@ -144,7 +144,7 @@ export function SimulationGoal({
 						)}
 						{!isFocused && !small && (
 							<span style={{ position: 'relative', top: '-1rem' }}>
-								<AnimatedTargetValue value={evaluation.nodeValue} />
+								<AnimatedTargetValue value={evaluation.nodeValue as number} />
 							</span>
 						)}
 					</div>

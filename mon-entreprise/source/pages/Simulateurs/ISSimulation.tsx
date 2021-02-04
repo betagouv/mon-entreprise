@@ -38,7 +38,7 @@ export default function ISSimulation() {
 			<ExerciceDate />
 			<Notifications />
 			<SimulationGoals className="plain">
-				<SimulationGoal dottedName="entreprise . bénéfice" autoFocus={true} />
+				<SimulationGoal dottedName="entreprise . bénéfice" />
 			</SimulationGoals>
 			<Explanations />
 		</>

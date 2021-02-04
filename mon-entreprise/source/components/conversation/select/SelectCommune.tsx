@@ -1,9 +1,9 @@
 import * as Animate from 'Components/ui/animate'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { debounce } from '../../../utils'
 import styled, { css } from 'styled-components'
-import { InputCommonProps } from '../RuleInput'
+import { debounce } from '../../../utils'
+import { InputProps } from '../RuleInput'
 
 export type ApiCommuneJson = {
 	_score: number
@@ -62,13 +62,10 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({
-	onChange,
-	value,
-	id,
-	missing,
-}: InputCommonProps) {
-	const [name, setName] = useState(missing ? '' : formatCommune(value))
+export default function Select({ onChange, value, id, missing }: InputProps) {
+	const [name, setName] = useState(
+		missing ? '' : formatCommune(value as Commune)
+	)
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null
 	)
