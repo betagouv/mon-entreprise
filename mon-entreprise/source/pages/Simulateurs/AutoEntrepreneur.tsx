@@ -14,6 +14,9 @@ import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 export default function AutoEntrepreneur() {
 	const engine = useContext(EngineContext)
+	const activitéMixte =
+		useEngine().evaluate('entreprise . activité . mixte').nodeValue === true
+
 	return (
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
@@ -22,31 +25,23 @@ export default function AutoEntrepreneur() {
 				<SimulationGoals className="plain">
 					<SimulationGoal
 						appear={false}
-						editable={
-							engine.evaluate('entreprise . activité . mixte').nodeValue !==
-							true
-						}
+						editable={!activitéMixte}
 						dottedName="entreprise . chiffre d'affaires"
 					/>
-					<ActivitéMixte />
+
 					<Condition expression="entreprise . activité . mixte">
-						<li>
+						<li className="small-target">
 							<ul>
-								<SimulationGoal
-									small
-									dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
-								/>
-								<SimulationGoal
-									small
-									dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
-								/>
-								<SimulationGoal
-									small
-									dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
-								/>
+								<SimulationGoal dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
+								<SimulationGoal dottedName="entreprise . chiffre d'affaires . prestations de service . BIC" />
+								<SimulationGoal dottedName="entreprise . chiffre d'affaires . prestations de service . BNC" />
 							</ul>
 						</li>
 					</Condition>
+					<ActivitéMixte
+						key={'' + activitéMixte}
+						defaultChecked={activitéMixte}
+					/>
 					<SimulationGoal
 						small
 						editable={false}
@@ -63,28 +58,27 @@ export default function AutoEntrepreneur() {
 	)
 }
 
-function ActivitéMixte() {
-	const defaultCheked = !!useEngine().evaluate('entreprise . activité . mixte')
-		.nodeValue
+function ActivitéMixte({ defaultChecked }: { defaultChecked: boolean }) {
 	const dispatch = useDispatch()
 
 	return (
 		<li
-			className="ui__ notice small-target"
+			className="small-target"
 			css={`
-				margin-top: -0.4rem;
+				margin-top: -1rem;
 			`}
 		>
 			<label
 				css={`
 					display: flex;
 					align-items: center;
+					justify-content: flex-end;
 				`}
 			>
 				Activité mixte&nbsp;{' '}
 				<input
 					type="checkbox"
-					defaultChecked={defaultCheked}
+					defaultChecked={defaultChecked}
 					onChange={(evt) =>
 						setTimeout(() =>
 							dispatch(

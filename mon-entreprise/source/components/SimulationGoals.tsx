@@ -6,6 +6,7 @@ import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+	firstStepCompletedSelector,
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
@@ -77,6 +78,7 @@ export function SimulationGoal({
 	const rule = engine.getRule(dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	const [isFocused, setFocused] = useState(false)
+	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	if (
 		isNotApplicable === true ||
 		(!(dottedName in situation) &&
@@ -86,11 +88,9 @@ export function SimulationGoal({
 		return null
 	}
 	const displayAsInput =
-		dottedName in situation ||
-		isFocused ||
-		initialRender ||
-		Object.keys(situation).length === 0
+		!isFirstStepCompleted || isFocused || dottedName in situation
 	if (
+		small &&
 		!editable &&
 		(evaluation.nodeValue === false || evaluation.nodeValue === null)
 	) {
@@ -107,7 +107,7 @@ export function SimulationGoal({
 									<RuleLink dottedName={dottedName} />
 								)}
 							</span>
-							<p className="ui__ notice">{rule.rawNode.résumé}</p>
+							{!small && <p className="ui__ notice">{rule.rawNode.résumé}</p>}
 						</label>
 					</div>
 					{small && <span className="guide-lecture" />}
@@ -142,7 +142,7 @@ export function SimulationGoal({
 								{formatValue(evaluation, { displayedUnit: '€' })}
 							</RuleLink>
 						)}
-						{editable && !isFocused && (
+						{!isFocused && !small && (
 							<span style={{ position: 'relative', top: '-1rem' }}>
 								<AnimatedTargetValue value={evaluation.nodeValue} />
 							</span>
