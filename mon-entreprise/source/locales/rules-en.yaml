@@ -3258,11 +3258,6 @@ contrat salarié . rémunération . net imposable:
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
-contrat salarié . rémunération . net imposable . base:
-  description.en: Net taxable income before exemptions and deductions
-  description.fr: Le net imposable avant les exonérations et déductions
-  titre.en: '[automatic] net taxable before exemptions'
-  titre.fr: net imposable avant exonérations
 ? contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
 : titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires et complémentaires défiscalisées
@@ -3872,18 +3867,6 @@ dirigeant . auto-entrepreneur:
     cotisations sociales par un prélèvement unique mensuel.
   titre.en: auto-entrepreneur
   titre.fr: auto-entrepreneur
-dirigeant . auto-entrepreneur . base des cotisations:
-  titre.en: contribution basis
-  titre.fr: base des cotisations
-dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
-  description.en: '[automatic] The annual turnover threshold for the
-    self-employment plan is exceeded. Read
-    more](/documentation/manager/self-entrepreneur/ceiling)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour le régime de
-    l'auto-entreprise est dépassé. [En savoir
-    plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
-  titre.en: '[automatic] Threshold control of turnover exceeded'
-  titre.fr: contrôle seuil de CA dépassé
 dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -3906,6 +3889,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
+? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace
+: titre.en: '[automatic] Alsace rate'
+  titre.fr: taux Alsace
+? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle
+: titre.en: '[automatic] Moselle rate'
+  titre.fr: taux Moselle
 ? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
 : description.en: >
     [automatic] In addition to social security charges, self-employed
@@ -3952,19 +3941,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux dépend de la catégorie d'activité.
   titre.en: contributions
   titre.fr: cotisations
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE
-: titre.en: ACRE upper limit
-  titre.fr: plafond ACRE
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
-: description.en:
-    The total amount that is allocated to the supplementary pension,
-    useful to estimate the total amount of the retirement pension for
-    auto-entrepreneurs
-  description.fr: Le montant total qui est alloué à la retraite complémentaire,
-    utile pour estimer le montant total de la pension de retraite des
-    auto-entrepreneurs
-  titre.en: supplementary pension
-  titre.fr: retraite complémentaire
 ? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE
 : description.en: >
     [automatic] This rate corresponds to the contribution reduction that applies
@@ -3986,27 +3962,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
-dirigeant . auto-entrepreneur . impôt . abattement:
-  titre.en: allowance
-  titre.fr: abattement
-dirigeant . auto-entrepreneur . impôt . abattement . taux:
-  titre.en: tax allowance rate
-  titre.fr: taux d'abattement de l'impôt
-dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
-  description.en: >-
-    This is the rate to be applied to determine what remains after the
-    application of
-     the allowance
-  description.fr: C'est le taux à appliquer pour savoir ce qu'il reste après
-    application de l'abattement
-  titre.en: inverted rate
-  titre.fr: taux inversé
-dirigeant . auto-entrepreneur . impôt . revenu abattu:
-  titre.en: reduced income
-  titre.fr: revenu abattu auto-entrepreneur
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
-  titre.en: taxable income
-  titre.fr: revenu imposable
+  titre.en: '[automatic] self-employed taxable income'
+  titre.fr: revenu imposable auto-entrepreneur
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
     With the option for the discharge payment, the income tax is paid at the
@@ -4024,38 +3982,25 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
   titre.en: discharge payment
   titre.fr: versement libératoire
 dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seuil:
-  description.en: '[automatic] The payment in full discharge is not available if
-    your household income exceeds €27,086 per unit in 2018.'
-  description.fr:
-    Le versement libératoire n'est pas disponible si les revenus de
-    votre ménage sont supérieurs à 27 086 € par part en 2018
+  description.en: >
+    [automatic] The payment in full discharge is not available if the tax income
+    of
+
+    your household reference is higher than 27 519 € per share in 2018
+  description.fr: |
+    Le versement libératoire n'est pas disponible si le revenu fiscal de
+    référence de votre ménage est supérieur à 27 519 € par part en 2018
   titre.en: '[automatic] threshold control'
   titre.fr: contrôle seuil
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
-  description.en: >
-    If you have opted for the discharge payment, the income tax is paid at the
-    same time as your contributions (per month or per quarter) with application
-    of a specific rate according to your activity:
-
-
-    - 1% if the activity is purchase/resale, on-trade sale and hosting service (BIC)
-
-    - 1.7% if the activity is a profit-making service activity
-
-    industrial and commercial (BIC)
-
-    - 2.2% for other services covered by non-earnings Commercial (BNC)
-  description.fr: >
+  description.en: |
+    [automatic] If you have opted for the final instalment, the income tax is
+    paid at the same time as your contributions (per month or per quarter) with
+    application of a specific rate according to your activity
+  description.fr: |
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
     payé en même temps que vos cotisations (par mois ou par trimestre) avec
-    application d’un taux spécifique en fonction de votre activité :
-
-
-    - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la prestation d’hébergement (BIC)
-
-    - 1,7% si l’activité est une activité de services relevant des bénéfices industriels et commerciaux (BIC)
-
-    - 2,2% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
+    application d’un taux spécifique en fonction de votre activité
   titre.en: discharge payment for auto-entrepreneur
   titre.fr: versement libératoire auto-entrepreneur
 dirigeant . auto-entrepreneur . net après impôt:
@@ -4123,13 +4068,45 @@ dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
     d'acre sur une meme année.
   titre.en: '[automatic] notification calculation ACRE annual calculation'
   titre.fr: notification calcul ACRE annuel
-dirigeant . auto-entrepreneur . plafond:
+dirigeant . auto-entrepreneur . seuils dépassés:
   description.en: >
-    The status of microentrepreneur applies as long as the annual turnover
-    (actually collected during the calendar year) does not exceed a certain
-    threshold, which depends on its category of activity.
+    [automatic] The status of micro-entrepreneur applies as long as the annual
+    turnover (actually received during the calendar year) does not exceed the
+    thresholds of the micro-enterprise tax regime. 
 
-    In the event of a consecutive overrun over two years, the auto-entrepreneur automatically switches to the [sole proprietorship regime](/simulator/independant).
+
+    If the limit is exceeded **in two consecutive years**, the auto-entrepreneur automatically switches to the [sole proprietorship] (/simulators/independent) scheme.
+
+
+    At the end of the first year of activity, the turnover is prorated according to the duration of activity. 
+
+
+    For example:
+
+    &gt; A taxpayer sets up a business on August 1st and collects revenues excluding tax of `50,000 €` during the five months of activity of its first calendar year of operation. 
+
+    &gt; The revenues of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling :
+
+    &gt; 
+
+    &gt; `50 000€ x (365/153) = 119 280 €`
+
+
+
+    Expenses are not deductible for the calculation of the ceiling (as for the calculation of contributions).
+
+
+
+    ### Multi-activity 
+
+
+    When an entrepreneur carries out 2 activities within his micro-enterprise, the
+
+    The turnover threshold to be respected is not doubled. At
+
+    effect the exercise of several activities with the same micro-enterprise
+
+    does not increase the thresholds.
   description.fr: >
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires
     annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas
@@ -4155,11 +4132,30 @@ dirigeant . auto-entrepreneur . plafond:
 
 
     Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
-  titre.en: upper limit
-  titre.fr: plafond
-dirigeant . auto-entrepreneur . vente ou hébergement:
-  titre.en: '[automatic] Sales, catering or accommodation'
-  titre.fr: Vente, restauration ou hébergement
+
+
+
+    ### Multi-activité 
+
+
+    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
+
+    effet l'exercice de plusieurs activités avec la même micro-entreprise
+
+    n’augmente pas les seuils.
+  titre.en: '[automatic] exceeded thresholds'
+  titre.fr: seuils dépassés
+dirigeant . auto-entrepreneur . seuils dépassés . notification:
+  description.en: '[automatic] The annual turnover threshold for the
+    self-employment plan is exceeded. Read
+    more](/documentation/manager/self-entrepreneur/exceeded thresholds)'
+  description.fr: Le seuil annuel de chiffre d'affaires pour le régime de
+    l'auto-entreprise est dépassé. [En savoir
+    plus](/documentation/dirigeant/auto‑entrepreneur/seuils-dépassés)
+  titre.en: '[automatic] notification'
+  titre.fr: notification
 dirigeant . indépendant:
   titre.en: indépendant
   titre.fr: indépendant
@@ -6078,51 +6074,13 @@ entreprise . ACRE:
 entreprise . ACRE par défaut:
   titre.en: '[automatic] default ACRE'
   titre.fr: ACRE par défaut
-entreprise . association non lucrative:
-  description.en: The company is a non-profit organisation
-  description.fr: L'entreprise est une association non lucrative
-  question.en: Is this a non-profit organisation?
-  question.fr: S'agit-il d'une association à but non lucratif ?
-  titre.en: non-profit organisation
-  titre.fr: association non lucrative
-entreprise . auto entreprise impossible:
-  note.en:
-    '[automatic] Other conditions for exclusions exist and will have to be
-    completed, but the question of the category of activity must first be
-    completed.'
-  note.fr: D'autres conditions d'exclusions existent, il faudra les compléter,
-    mais la question de la catégorie d'activité doit avant être complétée.
-  titre.en: auto enterprise impossible
-  titre.fr: auto entreprise impossible
-entreprise . bénéfice:
-  résumé.en: '[automatic] Taxable for corporate income tax purposes'
-  résumé.fr: Imposable à l'impôt sur les sociétés
-  titre.en: '[automatic] Profit for the year'
-  titre.fr: Bénéfice de l'exercice
-entreprise . bénéfice . information sur le report de déficit:
-  description.en: >
-    [automatic] Deficits incurred in one year can be carried forward to
-    subsequent years (carry-forward), or carried back to the previous year only
-    (carry-back).
-
-
-    [More info on service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
-  description.fr: >
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les
-    exercices suivants (report en avant), ou sur le seul exercice précédent
-    (report en arrière).
-
-
-    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
-  titre.en: '[automatic] deficit carry forward information'
-  titre.fr: information sur le report de déficit
 entreprise . activité:
-  description.en: Your activity category will determine a large part of the
-    calculations of contribution, contribution and tax.
-  description.fr: Votre catégorie d'activité va déterminer une grande partie des
-    calculs de cotisation, contribution et impôt.
-  question.en: '[automatic] What is the nature of your business?'
-  question.fr: Quelle est la nature de votre activité ?
+  description.en: '[automatic] Your type of activity will determine a large part
+    of the contribution, contribution and tax calculations.'
+  description.fr: Votre type d'activité va déterminer une grande partie des
+    calculs de cotisations, contributions et impôt.
+  question.en: '[automatic] What is the nature of your main activity?'
+  question.fr: Quelle est la nature de votre activité principale ?
   titre.en: '[automatic] nature of business'
   titre.fr: nature de l'activité
 entreprise . activité . artisanale:
@@ -6235,39 +6193,127 @@ entreprise . activité . libérale règlementée:
   question.fr: Est-ce une activité libérale règlementée ?
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-entreprise . activité . restauration ou hébergement:
-  description.en: Your profits are classified in BIC - provision of housing or
-    accommodation food.
-  description.fr: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
-  question.en: Is it a food or accommodation activity?
-  question.fr: Est-ce une activité de restauration ou d'hébergement ?
-  titre.en: food or accommodation
-  titre.fr: restauration ou hébergement
+entreprise . activité . mixte:
+  description.en: >
+    [automatic] It is possible to have several activities with different types
+    of income
+
+    different for the same company. 
+
+
+    For example, a plumbing company that charges for the purchase and installation of a
+
+    tap has a turnover of the type sale of material (the tap) and provision of
+
+    service (installation)
+
+
+    There are three main families of income in the eyes of the administration
+
+    fiscal and social :
+
+
+    - [Sales of goods, catering and accommodation](/documentation/business/turnover/sales of goods, catering and accommodation)
+
+    - Provision of commercial or craft services](/documentation/enterprise/turnover/ BIC service provision)
+
+    - [Liberal service provision](/documentation/business/turnover/NCB service provision)
+
+
+    If your company has activities that correspond to more than one type of
+
+    returned, answer yes to this question.
+  description.fr: >
+    Il est possible d'avoir plusieurs activités avec des types de revenus
+
+    différents pour une même entreprise. 
+
+
+    Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
+
+    robinet a un CA de type vente de materiel (le robinet) et prestation de
+
+    service (la pose)
+
+
+    Il existe trois principales familles de revenus au yeux de l'administration
+
+    fiscale et sociale :
+
+
+    - [Ventes de biens, restauration et hébergement](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
+
+    - [Prestation de service commerciale ou artisanale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
+
+    - [Prestation de service libérale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+
+
+    Si votre entreprise a des activités correspondants à plus d'un type de
+
+    revenus, répondez oui à cette question.
+  question.en: '[automatic] Does your company have several types of activities?'
+  question.fr: Votre entreprise a-t-elle plusieurs types d'activités ?
+  titre.en: '[automatic] Mixed activities'
+  titre.fr: Activités mixtes
 entreprise . activité . service ou vente:
-  question.en: Is it a service activity, or the purchase and sale of goods?
-  question.fr: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
+  question.en: '[automatic] What is the type of activity of the company?'
+  question.fr: Quelle est le type d'activité de l'entreprise ?
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . activité . service ou vente . service:
   description.en: >
-    This refers to any transaction that does not involve a transfer of ownership
-    of tangible property (i.e., having a material existence).
-  description.fr: >
+    [automatic] This is any transaction that does not involve a transfer of
+    ownership of
+
+    tangible property (i.e. having a material existence).
+  description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle).
   titre.en: service provision
   titre.fr: prestation de service
 entreprise . activité . service ou vente . vente:
   description.en: >
-    This refers to any transaction involving the transfer of ownership of
-    tangible property, i.e. property having a material existence. All other
-    activities are part of the services provided.
-  description.fr: >
+    [automatic] This is any transaction involving the transfer of ownership of
+    property
+
+    corporeal (i.e., property having a material existence), as well as
+
+    all food and accommodation activities.
+  description.fr: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien
-    corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre
-    activité relève des prestations de services.
-  titre.en: sale of goods
-  titre.fr: vente de biens
+    corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
+    toutes les activités de restauration et d'hébergement.
+  titre.en: '[automatic] sale of goods, catering or accommodation'
+  titre.fr: vente de biens, restauration ou hébergement
+entreprise . association non lucrative:
+  description.en: The company is a non-profit organisation
+  description.fr: L'entreprise est une association non lucrative
+  question.en: Is this a non-profit organisation?
+  question.fr: S'agit-il d'une association à but non lucratif ?
+  titre.en: non-profit organisation
+  titre.fr: association non lucrative
+entreprise . bénéfice:
+  résumé.en: '[automatic] Taxable for corporate income tax purposes'
+  résumé.fr: Imposable à l'impôt sur les sociétés
+  titre.en: '[automatic] Profit for the year'
+  titre.fr: Bénéfice de l'exercice
+entreprise . bénéfice . information sur le report de déficit:
+  description.en: >
+    [automatic] Deficits incurred in one year can be carried forward to
+    subsequent years (carry-forward), or carried back to the previous year only
+    (carry-back).
+
+
+    [More info on service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  description.fr: >
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les
+    exercices suivants (report en avant), ou sur le seul exercice précédent
+    (report en arrière).
+
+
+    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+  titre.en: '[automatic] deficit carry forward information'
+  titre.fr: information sur le report de déficit
 entreprise . charges:
   description.en: >
     These are the company's expenses incurred in the company's interest,
@@ -6337,9 +6383,137 @@ entreprise . chiffre d'affaires:
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
-entreprise . chiffre d'affaires de société:
-  titre.en: company turnover
-  titre.fr: chiffre d'affaires de société
+entreprise . chiffre d'affaires . franchise de TVA dépassé:
+  description.en: |
+    [automatic] The VAT exemption is a device that exempts businesses from the
+    declaration and payment of VAT. It applies below a threshold of
+    annual turnover depending on the activity.
+
+    The professional covered by this scheme shall invoice his services or his
+    sales excluding tax, and cannot deduct VAT from its purchases.
+  description.fr: |
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
+
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  note.en: >
+    [automatic] The increased thresholds (which apply if the "reduced" threshold
+    was not exceeded in year `n - 2`) are taken into account here.
+  note.fr: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  titre.en: '[automatic] VAT exemption exceeded'
+  titre.fr: franchise de TVA dépassé
+entreprise . chiffre d'affaires . franchise de TVA dépassé . notification:
+  description.en: >
+    [automatic] The annual turnover threshold for VAT exemption is exceeded.
+    More information](/documentation/enterprise/VAT-exemption)
+  description.fr: >
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
+    [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+  titre.en: '[automatic] notification'
+  titre.fr: notification
+entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil service:
+  titre.en: '[automatic] service threshold'
+  titre.fr: seuil service
+entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil vente:
+  titre.en: '[automatic] sales threshold'
+  titre.fr: seuil vente
+entreprise . chiffre d'affaires . prestations de service:
+  description.en: >
+    [automatic] This is any transaction that does not involve a transfer of
+    ownership of
+
+    tangible property (i.e. having a material existence)
+  description.fr: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle)
+  titre.en: '[automatic] services provided'
+  titre.fr: prestations de service
+entreprise . chiffre d'affaires . prestations de service . BIC:
+  description.en: >
+    [automatic] This is any transaction that does not involve a transfer of
+    ownership of
+
+    tangible assets (i.e. having a material existence), of which
+
+    manual activity plays the main role.
+
+
+    To simplify, one could say that these are all the benefits of
+
+    services that require more than a computer to be performed.
+
+
+    **Examples**: transport, personal service, repairs etc.
+  description.fr: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle), dont
+    l'activité manuelle joue le principal rôle.
+
+    Pour simplifier on pourrait dire que ce sont toutes les prestations de
+    services qui nécessite plus qu'un ordinateur pour être effectuées.
+
+    **Exemples** : transports, service à la personne, réparation etc.
+  question.en: '[automatic] What is the turnover from commercial or artisanal services?'
+  question.fr: Quel est le chiffre d'affaires issus de prestations de service
+    commerciales ou artisanales ?
+  résumé.en: '[automatic] Turnover excluding tax'
+  résumé.fr: Chiffre d'affaires hors taxe
+  titre.en: '[automatic] Commercial or craft services'
+  titre.fr: Prestations de service commerciales ou artisanales
+entreprise . chiffre d'affaires . prestations de service . BNC:
+  description.en: |
+    [automatic] These are all operations whose intellectual activity is based on
+    an essential role. 
+
+    **Examples**: advice, support, translation, development,
+    training, education, sports
+  description.fr: |
+    Ce sont toutes les opérations dont l'activité intellectuelle tient
+    un rôle essentiel. 
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+  question.en: '[automatic] What is the turnover from liberal services?'
+  question.fr: Quel est le chiffre d'affaires issus de prestations de service libérale ?
+  résumé.en: '[automatic] Turnover excluding tax'
+  résumé.fr: Chiffre d'affaires hors taxe
+  titre.en: '[automatic] Liberal services'
+  titre.fr: Prestations de service libérale
+entreprise . chiffre d'affaires . vente restauration hébergement:
+  description.en: |
+    [automatic] ### Sale of goods 
+    This is the turnover of all operations involving
+    transfer of ownership of tangible property, i.e., property with a
+    material existence. 
+
+    ### Catering and hosting
+    This is the turnover of all catering operations.
+    or lodging (except classified tourist accommodation)
+
+    This income is taxable under the BIC regime
+  description.fr: |
+    ### Vente de biens 
+    Il s’agit du chiffre d'affaires de toutes les opérations comportant
+    transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
+    existence matérielle. 
+
+    ### Restauration et hébergement
+    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
+    ou hebergement (hors meublé de tourisme classé)
+
+    Ces revenus sont imposable au régime BIC
+  question.en: '[automatic] What is the turnover from the sale of goods, food or
+    accommodation?'
+  question.fr: Quel est le chiffre d'affaires issus de la vente de bien,
+    restauration ou hébergement ?
+  résumé.en: '[automatic] Turnover excluding tax'
+  résumé.fr: Chiffre d'affaires hors taxe
+  titre.en: '[automatic] Sale of goods, catering, accommodation'
+  titre.fr: Vente de biens, restauration, hebergement
 entreprise . chiffre d'affaires minimum:
   description.en: The minimum amount of sales (excluding tax) to be achieved to
     reach the break-even point.
@@ -6447,7 +6621,8 @@ entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . exercice . date trop ancienne:
-  description.en: '[automatic] The date entered is too old. The simulator does not
+  description.en:
+    '[automatic] The date entered is too old. The simulator does not
     integrate the scales until 2018.'
   description.fr: La date saisie est trop ancienne. Le simulateur n'intègre pas
     les barèmes avant 2018.
@@ -6499,29 +6674,6 @@ entreprise . exonérée de TVA:
   question.fr: L'entreprise est-elle exonérée de TVA (hors franchise de base) ?
   titre.en: '[automatic] VAT-exempt'
   titre.fr: exonérée de TVA
-entreprise . franchise de TVA:
-  description.en: |
-    [automatic] The VAT exemption is a device that exempts businesses from the
-    declaration and payment of VAT. It applies below a threshold of
-    annual turnover depending on the activity.
-
-    The professional covered by this scheme shall invoice his services or his
-    sales excluding tax, and cannot deduct VAT from its purchases.
-  description.fr: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaires annuel dépendant de l'activité.
-
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  note.en: >
-    [automatic] The increased thresholds (which apply if the "reduced" threshold
-    has not been exceeded in year `n - 2`) are taken into account here.
-  note.fr: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  titre.en: '[automatic] VAT exemption'
-  titre.fr: franchise de TVA
 entreprise . imposition:
   description.en: >
     [automatic] The entrepreneur can choose one of the two systems for taxing
@@ -6616,49 +6768,6 @@ entreprise . ratio alternants:
   suggestions.5%.fr: 5%
   titre.en: work-study employees ratio
   titre.fr: Fraction d'alternants
-entreprise . rattachée à la CIPAV:
-  description.en: >
-    [automatic] Self-employed persons exercising a regulated liberal profession
-    are affiliated to Cipav for their pension insurance. These regulated liberal
-    professions are: architects, interior designers, construction economists,
-    surveyors, consulting engineers, project managers, psychologists,
-    psychotherapists, osteopaths, occupational therapists, chiropractors,
-    dieticians, artists other than artists-authors, experts before the courts,
-    automobile experts, legal representatives for the protection of adults,
-    value brokers, guide-lecturers, mountain guides, mid-mountain guides and ski
-    instructors.
-  description.fr: >
-    Les auto-entrepreneurs exerçant une activité de profession libérale
-    règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces
-    professions libérales règlementées sont : architectes, architectes
-    d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils,
-    maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes,
-    ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les
-    artistes-auteurs, experts devant les tribunaux, experts automobiles,
-    mandataires judiciaires à la protection des majeurs, courtiers en valeur,
-    guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne
-    montagne et moniteurs de ski.
-
-
-    formule:
-      inclusion:
-        de: entreprise . activité . type d'activité libérale règlementée
-        dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
-          - Architecte
-          - Architecte d'intérieur
-          - Chiropracteur
-          - Diététicien
-          - Ergothérapeute
-          - Expert devant les tribunaux
-          - Géomètre-expert
-          - Mandataire judiciaire à la protecion des majeurs
-          - Ostéopathe
-          - Psychologue
-          - Psychothérapeute
-  question.en: Is the regulated liberal profession attached to the CIPAV?
-  question.fr: La profession libérale règlementée est-elle rattachée à la CIPAV ?
-  titre.en: attached to the CIPAV
-  titre.fr: rattachée à la CIPAV
 entreprise . rémunération du dirigeant:
   description.en: >
     This is the portion of revenue after expenses that is allocated to the
@@ -6679,14 +6788,6 @@ entreprise . résultat net:
   résumé.fr: Ce qu'il reste après impôt sur les sociétés
   titre.en: net result
   titre.fr: résultat net
-entreprise . seuil de franchise de TVA dépassé:
-  description.en:
-    '[automatic] The annual turnover threshold for VAT exemption is
-    exceeded. More information](/documentation/enterprise/VAT-exemption)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
-    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-  titre.en: '[automatic] VAT threshold control'
-  titre.fr: seuil de franchise de TVA dépassé
 entreprise . taxe sur les salaires:
   description.en: '[automatic] When the amount of payroll tax is less than
     €1200/year, there is no need to make a declaration and the tax is not
