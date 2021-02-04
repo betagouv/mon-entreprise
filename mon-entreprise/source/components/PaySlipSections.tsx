@@ -81,6 +81,7 @@ export function Line({
 			<Value
 				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}
+				unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
 				displayedUnit={displayedUnit}
 				className={className}
 				{...props}
