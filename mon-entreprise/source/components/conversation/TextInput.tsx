@@ -1,7 +1,7 @@
 import { Evaluation } from 'publicodes/dist/types/AST/types'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
-import { InputCommonProps } from './RuleInput'
+import { InputProps } from './RuleInput'
 
 export default function TextInput({
 	onChange,
@@ -9,7 +9,7 @@ export default function TextInput({
 	id,
 	missing,
 	autoFocus,
-}: InputCommonProps & { value: Evaluation<string> }) {
+}: InputProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 	return (
 		<div className="step input">

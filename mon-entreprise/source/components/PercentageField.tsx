@@ -1,14 +1,12 @@
 import { formatValue } from 'publicodes'
-import { Evaluation } from 'publicodes/dist/types/AST/types'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { debounce as debounceFn } from '../utils'
-import { InputCommonProps } from './conversation/RuleInput'
+import { InputProps } from './conversation/RuleInput'
 import './PercentageField.css'
 
-type PercentageFieldProps = InputCommonProps & {
+type PercentageFieldProps = InputProps & {
 	debounce: number
-	value: Evaluation<string>
 }
 
 export default function PercentageField({
@@ -16,7 +14,7 @@ export default function PercentageField({
 	value,
 	debounce = 0,
 }: PercentageFieldProps) {
-	const [localValue, setLocalValue] = useState(value)
+	const [localValue, setLocalValue] = useState(value as number)
 	const debouncedOnChange = useCallback(
 		debounce ? debounceFn(debounce, onChange) : onChange,
 		[debounce, onChange]
@@ -29,11 +27,11 @@ export default function PercentageField({
 				className="range"
 				onChange={(e) => {
 					const value = e.target.value
-					setLocalValue(value)
+					setLocalValue(+value)
 					debouncedOnChange(value)
 				}}
 				type="range"
-				value={localValue}
+				value={localValue as number}
 				name="volume"
 				min="0"
 				step="0.05"

@@ -30,7 +30,10 @@ export const numberFormatter = ({
 	}).format(value)
 }
 
-export const formatCurrency = (nodeValue: number | undefined, language: string) => {
+export const formatCurrency = (
+	nodeValue: number | undefined,
+	language: string
+) => {
 	return nodeValue == null
 		? ''
 		: (formatNumber({ unit: '€', language, nodeValue }) ?? '').replace(
@@ -122,43 +125,41 @@ export function formatValue(
 			? value
 			: value.nodeValue
 
-
 	if (
 		(typeof nodeValue === 'number' && Number.isNaN(nodeValue)) ||
 		nodeValue == null
 	) {
 		return '-'
 	}
-	if (typeof nodeValue === 'string'){
+	if (typeof nodeValue === 'string') {
 		return capitalise0(nodeValue.replace('\\n', '\n'))
 	}
-	if (typeof nodeValue === 'object')
-		return (nodeValue as any).nom
+	if (typeof nodeValue === 'object') return (nodeValue as any).nom
 	if (typeof nodeValue === 'boolean')
 		return booleanTranslations[language][nodeValue]
-	if (typeof nodeValue === 'number'){
-		let unit = 
-			(typeof value === 'number' ||
+	if (typeof nodeValue === 'number') {
+		let unit =
+			typeof value === 'number' ||
 			typeof value === 'undefined' ||
 			!('unit' in value)
 				? undefined
-				: value.unit)
+				: value.unit
 		if (unit) {
 			const simplifiedNode = simplifyNodeUnit({
 				unit,
-				nodeValue
+				nodeValue,
 			})
 			unit = simplifiedNode.unit
 			nodeValue = simplifiedNode.nodeValue as number
 		}
 		return formatNumber({
-				minimumFractionDigits: 0,
-				maximumFractionDigits: precision,
-				language,
-				formatUnit,
-				nodeValue,
-				unit: displayedUnit ?? unit
-		  })
+			minimumFractionDigits: 0,
+			maximumFractionDigits: precision,
+			language,
+			formatUnit,
+			nodeValue,
+			unit: displayedUnit ?? unit,
+		})
 	}
 	return null
 }

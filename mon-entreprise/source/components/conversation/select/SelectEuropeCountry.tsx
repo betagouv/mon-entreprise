@@ -1,4 +1,4 @@
-import { InputCommonProps } from '../RuleInput'
+import { InputProps } from '../RuleInput'
 
 const STATES = [
 	'Allemagne',
@@ -39,14 +39,14 @@ export default function SelectEuropeCountry({
 	value,
 	onChange,
 	id,
-}: InputCommonProps) {
+}: InputProps) {
 	return (
 		<div>
 			<select
 				name="country"
 				id={id}
 				className="ui__"
-				defaultValue={value ? value.slice(1, -1) : undefined}
+				defaultValue={value ? (value as string).slice(1, -1) : undefined}
 				onChange={(e) => onChange(`'${e.target.value}'`)}
 			>
 				<option disabled selected hidden></option>
