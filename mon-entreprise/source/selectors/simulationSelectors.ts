@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
-import { createSelector } from 'reselect'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { createSelector } from 'reselect'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
@@ -33,7 +33,7 @@ export const firstStepCompletedSelector = createSelector(
 			return false
 		}
 		return objectifs.some((objectif) => {
-			return objectif in situation
+			return Object.entries(situation).some(([dottedName]) => dottedName.startsWith(objectif))
 		})
 	}
 )

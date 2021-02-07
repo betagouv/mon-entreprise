@@ -52,10 +52,7 @@ export default function CurrencyInput({
 		// Only trigger the `onChange` event if the value has changed -- and not
 		// only its formating, we don't want to call it when a dot is added in `12.`
 		// for instance
-		if (
-			!nextValue.current ||
-			/(\.$)|(^\.)|(-$)|(^0+$)/.exec(nextValue.current)
-		) {
+		if (!nextValue.current || /(\.$)|(^\.)|(-$)/.exec(nextValue.current)) {
 			return
 		}
 		event.persist()
@@ -95,8 +92,10 @@ export default function CurrencyInput({
 				}
 				onValueChange={({ value }) => {
 					setCurrentValue(value)
-					nextValue.current = value.toString()
-					//.replace(/^0+/, '')
+					nextValue.current = value
+						.toString()
+						.replace(/^0+(.*)$/, '$1')
+						.replace(/^$/, '0')
 				}}
 				onChange={handleChange}
 				value={currentValue != null ? currentValue : ''}
