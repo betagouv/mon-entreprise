@@ -3,14 +3,20 @@ import classnames from 'classnames'
 import Animate from 'Components/ui/animate'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useState,
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	firstStepCompletedSelector,
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
-import RuleInput from './conversation/RuleInput'
+import RuleInput, { InputProps } from './conversation/RuleInput'
 import RuleLink from './RuleLink'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
 import { useEngine } from './utils/EngineContext'
@@ -56,12 +62,17 @@ type SimulationGoalProps = {
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
+	onUpdateSituation?: (
+		name: DottedName,
+		...rest: Parameters<InputProps['onChange']>
+	) => void
 }
 
 export function SimulationGoal({
 	dottedName,
 	labelWithQuestion = false,
 	small = false,
+	onUpdateSituation,
 	appear = true,
 	editable = true,
 }: SimulationGoalProps) {
@@ -79,6 +90,13 @@ export function SimulationGoal({
 	const initialRender = useContext(InitialRenderContext)
 	const [isFocused, setFocused] = useState(false)
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
+	const onChange = useCallback(
+		(x) => {
+			dispatch(updateSituation(dottedName, x))
+			onUpdateSituation?.(dottedName, x)
+		},
+		[dispatch, onUpdateSituation]
+	)
 	if (
 		isNotApplicable === true ||
 		(!(dottedName in situation) &&
@@ -126,7 +144,7 @@ export function SimulationGoal({
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
-								onChange={(x) => dispatch(updateSituation(dottedName, x))}
+								onChange={onChange}
 								useSwitch
 							/>
 						) : (

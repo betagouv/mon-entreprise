@@ -1,4 +1,4 @@
-import { updateSituation } from 'Actions/actions'
+import { batchUpdateSituation, updateSituation } from 'Actions/actions'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -6,14 +6,55 @@ import Simulation from 'Components/Simulation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { default as React, useContext } from 'react'
+import { useEngine } from 'Components/utils/EngineContext'
+import { serializeEvaluation } from 'publicodes'
+import { default as React, useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
+const proportions = {
+	'entreprise . activité . proportions . prestations de service BIC':
+		"entreprise . chiffre d'affaires . prestations de service . BIC",
+	'entreprise . activité . proportions . prestations de service BNC':
+		"entreprise . chiffre d'affaires . prestations de service . BNC",
+	'entreprise . activité . proportions . vente restauration hébergement':
+		"entreprise . chiffre d'affaires . vente restauration hébergement",
+} as const
+function useAdjustProportions(): () => void {
+	const engine = useEngine()
+	const dispatch = useDispatch()
+
+	return useCallback(() => {
+		const nouveauCA = serializeEvaluation(
+			engine.evaluate({
+				somme: Object.values(proportions)
+					.map((name) => serializeEvaluation(engine.evaluate(name)))
+					.filter(Boolean),
+			})
+		)
+		const situation = Object.entries(proportions).reduce(
+			(acc, [proportionName, valueName]) => {
+				const value = serializeEvaluation(
+					engine.evaluate({ valeur: valueName, 'par défaut': '0€/an' })
+				)
+				const newProportion = serializeEvaluation(
+					engine.evaluate({
+						valeur: `${value} / ${nouveauCA}`,
+						unité: '%',
+					})
+				)
+				return { ...acc, [proportionName]: newProportion }
+			},
+			{ "entreprise . chiffre d'affaires": nouveauCA }
+		)
+		dispatch(batchUpdateSituation(situation))
+	}, [engine, dispatch])
+}
+
 export default function AutoEntrepreneur() {
-	const engine = useContext(EngineContext)
+	const adjustProportions = useAdjustProportions()
 	const activitéMixte =
 		useEngine().evaluate('entreprise . activité . mixte').nodeValue === true
 
@@ -32,9 +73,18 @@ export default function AutoEntrepreneur() {
 					<Condition expression="entreprise . activité . mixte">
 						<li className="small-target">
 							<ul>
-								<SimulationGoal dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
-								<SimulationGoal dottedName="entreprise . chiffre d'affaires . prestations de service . BIC" />
-								<SimulationGoal dottedName="entreprise . chiffre d'affaires . prestations de service . BNC" />
+								<SimulationGoal
+									onUpdateSituation={adjustProportions}
+									dottedName="entreprise . chiffre d'affaires . vente restauration hébergement"
+								/>
+								<SimulationGoal
+									onUpdateSituation={adjustProportions}
+									dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
+								/>
+								<SimulationGoal
+									onUpdateSituation={adjustProportions}
+									dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
+								/>
 							</ul>
 						</li>
 					</Condition>
@@ -60,7 +110,19 @@ export default function AutoEntrepreneur() {
 
 function ActivitéMixte({ defaultChecked }: { defaultChecked: boolean }) {
 	const dispatch = useDispatch()
-
+	const engine = useEngine()
+	const situation = useSelector(situationSelector)
+	const onMixteChecked = useCallback(
+		(checked: boolean) => {
+			dispatch(
+				updateSituation(
+					'entreprise . activité . mixte',
+					checked ? 'oui' : 'non'
+				)
+			)
+		},
+		[dispatch, situation]
+	)
 	return (
 		<li
 			className="small-target"
@@ -79,16 +141,7 @@ function ActivitéMixte({ defaultChecked }: { defaultChecked: boolean }) {
 				<input
 					type="checkbox"
 					defaultChecked={defaultChecked}
-					onChange={(evt) =>
-						setTimeout(() =>
-							dispatch(
-								updateSituation(
-									'entreprise . activité . mixte',
-									evt.target.checked ? 'oui' : 'non'
-								)
-							)
-						)
-					}
+					onChange={(evt) => onMixteChecked(evt.target.checked)}
 				/>{' '}
 			</label>
 		</li>

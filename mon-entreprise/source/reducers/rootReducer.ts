@@ -1,13 +1,13 @@
 import { Action } from 'Actions/actions'
+import { getCompanySituation } from 'Components/utils/useSimulationConfig'
+import { DottedName } from 'modele-social'
+import { Names } from 'modele-social/dist/names'
 import { defaultTo, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
-import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
-import inFranceAppReducer, { Company } from './inFranceAppReducer'
-import { Names } from 'modele-social/dist/names'
-import { getCompanySituation } from 'Components/utils/useSimulationConfig'
+import inFranceAppReducer from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
@@ -102,30 +102,39 @@ function simulation(
 				foldedSteps: [],
 				unfoldedStep: null,
 			}
+		case 'BATCH_UPDATE_SITUATION': {
+			return Object.entries(action.situation).reduce<Simulation | null>(
+				(newState, [fieldName, value]) =>
+					simulation(newState, {
+						type: 'UPDATE_SITUATION',
+						fieldName,
+						value,
+					}),
+				state
+			)
+		}
 		case 'UPDATE_SITUATION': {
-			const targets = without(
-				[
-					'entreprise . charges',
-					"entreprise . chiffre d'affaires . prestations de service . BIC",
-					"entreprise . chiffre d'affaires . prestations de service . BNC",
-					"entreprise . chiffre d'affaires . vente restauration hébergement",
-				],
+			const objectifs = without(
+				['entreprise . charges'],
 				objectifsSelector({ simulation: state } as RootState)
 			)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
-			return {
-				...state,
-				situation:
-					value === undefined
-						? omit([dottedName], situation)
-						: {
-								...(targets.includes(dottedName)
-									? omit(targets, situation)
-									: situation),
-								[dottedName]: value,
-						  },
+			if (value === undefined) {
+				return { ...state, situation: omit([dottedName], situation) }
 			}
+			const objectifUpdated = objectifs.find((o) => dottedName.startsWith(o))
+			if (objectifUpdated) {
+				const objectifsToReset = without([objectifUpdated], objectifs)
+				const newSituation = Object.fromEntries(
+					Object.entries(situation).filter(
+						([dottedName]) =>
+							!objectifsToReset.some((o) => dottedName.startsWith(o))
+					)
+				)
+				return { ...state, situation: { ...newSituation, [dottedName]: value } }
+			}
+			return { ...state, situation: { ...situation, [dottedName]: value } }
 		}
 		case 'STEP_ACTION': {
 			const { name, step } = action
