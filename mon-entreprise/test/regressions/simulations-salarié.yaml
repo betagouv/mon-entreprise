@@ -287,41 +287,41 @@ frais pro - abonnement transports publics:
 
 frais pro - transports personnels seul:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/mois
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 500€/mois
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 500€/an
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/mois
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/an
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/mois
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
     contrat salarié . temps de travail . quotité de travail: 50%
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/mois
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
     contrat salarié . temps de travail . quotité de travail: 20%
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/mois
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
     contrat salarié . déduction forfaitaire spécifique . application: oui
     contrat salarié . déduction forfaitaire spécifique . taux: 20%
 
 
 frais pro - abo transports + transports personnels:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 100€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 360€/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/an
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 100€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 360€/an
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 80€/an
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/an
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . abonnement transports publics . montant: 7000€/mois
-    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/mois
-    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/mois
+    contrat salarié . frais professionnels . abonnement transports publics . montant: 7000€/an
+    contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
+    contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
 
 frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2000 €/mois

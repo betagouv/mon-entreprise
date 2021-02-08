@@ -235,12 +235,12 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
 contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant:
   titre: Prise en charge du carburant pour véhicules électriques, hybrides rechargeables ou hydrogènes
   question: Quel montant l'employeur prend-il en charge des dépenses en carburant pour véhicules électriques, hybrides rechargeables ou hydrogènes ?
-  unité: €/mois
-  par défaut: 0 €/mois
+  unité: €/an
+  par défaut: 0 €/an
   description: |
     L'employeur peut prendre en charge tout ou partie des frais de carburant dépensés par l'employé pour son véhicule électriques, hybrides rechargeables ou hydrogènes, sur présentation de justificatif.
 
-    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/mois, mais attention
+    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/an, mais attention
 
       - le plafond est partiellement réduit du montant de la prise en charge des frais d'abonnement aux transports publics
 
@@ -248,19 +248,19 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
 
     Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
 
-    Pour verser une prime de salaire équivalente à 200€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
+    Pour verser une prime de salaire équivalente à 200€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
   références:
     Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
     Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
 contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible:
   titre: Prise en charge du carburant pour véhicules électriques, hybrides rechargeables ou hydrogènes (part déductible)
-  unité: €/mois
+  unité: €/an
   valeur: montant
   plafond:
     le minimum de:
-       - proportion déduction * 200€/mois
-       - valeur: proportion déduction * 500€/mois
+       - proportion déduction * 200€/an
+       - valeur: proportion déduction * 500€/an
          abattement: abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
@@ -269,8 +269,8 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant:
   titre: Prise en charge des frais de transports forfait mobilités durables
   question: Quel montant l'employeur prend-il en charge dans le cadre du forfait mobilités durables ?
-  unité: €/mois
-  par défaut: 0 €/mois
+  unité: €/an
+  par défaut: 0 €/an
   description: |
     L'employeur peut prendre en charge tout ou partie des frais de déplacement liés à l'utilisation des véhicules entrant dans le cadre du forfait mobilités durables
 
@@ -286,7 +286,7 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
 
     L'ancienne Indemnité Kilométrique Vélo entre maintenant dans ce dispositif. Elle peut être poursuivie mais son montant devra être imputé ici.
 
-    L'employeur peut prendre en charge ces frais jusqu'à 500€/mois de manière exonérée de cotisations sociales et d'impôt. Attention cependant
+    L'employeur peut prendre en charge ces frais jusqu'à 500€/an de manière exonérée de cotisations sociales et d'impôt. Attention cependant
 
       - le plafond est réduit du montant de la prise en charge des frais d'abonnement aux transports publics
 
@@ -294,17 +294,17 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
 
     Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
 
-    Pour verser une prime de salaire équivalente à 500€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
+    Pour verser une prime de salaire équivalente à 500€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
   références:
     Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
     Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible:
   titre: Prise en charge des frais de transports forfait mobilités durables (part déductible)
-  unité: €/mois
+  unité: €/an
   valeur: montant
   plafond:
-    valeur: proportion déduction * 500€/mois
+    valeur: proportion déduction * 500€/an
     abattement:
       somme:
         - abonnement transports publics . prise en charge
