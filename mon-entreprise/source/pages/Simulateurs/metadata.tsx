@@ -229,12 +229,12 @@ export function getSimulatorsData({
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
 					<h2>Comment calculer le revenu net d'un auto-entrepreneur ?</h2>
 					<p>
-						Un auto-entrepreneur doit payer des cotisations sociales à
-						l'administration. Ces cotisations servent au financement de la
-						sécurité sociale, et ouvrent des droits pour la retraite ou pour
-						l'assurance maladie. Elle permettent également de financer la
-						formation professionnelle. Leur montant varie en fonction du type
-						d'activité.
+						Un auto-entrepreneur doit payer des cotisations et contributions
+						sociales à l'administration. Ces cotisations servent au financement
+						de la sécurité sociale, et ouvrent des droits notamment pour la
+						retraite et pour l'assurance maladie. Elles permettent également de
+						financer la formation professionnelle. Leur montant varie en
+						fonction du type d'activité.
 					</p>
 					<p>
 						<Emoji emoji="👉" />{' '}
@@ -244,7 +244,7 @@ export function getSimulatorsData({
 					</p>
 					<p>
 						Il ne faut pas oublier de retrancher toutes les dépenses effectuées
-						dans le cadre de l'activité professionnelle (équipements, matière
+						dans le cadre de l'activité professionnelle (équipements, matières
 						premières, local, transport). Bien qu'elles ne soient pas utilisées
 						pour le calcul des cotisations et de l'impôt, elles doivent être
 						prises en compte pour vérifier si l'activité est viable
