@@ -62,6 +62,7 @@ type SimulationGoalProps = {
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
+	boolean?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
 		...rest: Parameters<InputProps['onChange']>
@@ -75,6 +76,7 @@ export function SimulationGoal({
 	onUpdateSituation,
 	appear = true,
 	editable = true,
+	boolean = false, //TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -83,8 +85,7 @@ export function SimulationGoal({
 	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		unité: currentUnit,
-		arrondi: 'oui',
+		...(!boolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
 	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useContext(InitialRenderContext)
@@ -137,10 +138,14 @@ export function SimulationGoal({
 									{ focused: isFocused }
 								)}
 								isTarget
-								modifiers={{
-									unité: currentUnit,
-									arrondi: 'oui',
-								}}
+								modifiers={
+									!boolean
+										? {
+												unité: currentUnit,
+												arrondi: 'oui',
+										  }
+										: undefined
+								}
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}

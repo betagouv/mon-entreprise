@@ -42,7 +42,7 @@
 	margin-right: -1rem;
 }
 .light #targetSelection .targets > li {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-top: 1px dashed var(--darkColor);
 }
 .light #targetSelection .targets > li.small-target,
 .light #targetSelection .targets > li:not(.small-target):first-of-type {
@@ -64,6 +64,9 @@
 #targetSelection li .header {
 	display: flex;
 	align-items: center;
+}
+#targetSelection li:not(.small-target) .header {
+	flex: 1;
 }
 #targetSelection .targets > li.small-target .header p {
 	display: none;
@@ -130,22 +133,23 @@
 	text-align: right;
 	background: rgba(255, 255, 255, 0.2);
 	padding: 0.2rem 0.6rem;
-
 	border-radius: 0.3rem;
 	border: 1px solid;
 	font-size: inherit;
 }
 
 #targetSelection .targetInput.focused {
-	box-shadow: 0 0 0px 1px white;
+	box-shadow: 0 0 0px 2px white;
 }
 
 .light #targetSelection .targetInput {
 	color: var(--darkColor);
 	border-color: var(--darkColor);
-	background: white !important;
+	background: white;
 }
-
+.light #targetSelection .targetInput.focused {
+	box-shadow: 0 0 0px 2px var(--darkColor);
+}
 .light #targetSelection .optionTitle {
 	color: var(--darkColor);
 }

@@ -56,10 +56,19 @@ entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  inversion numérique:
-    avec:
-      - dirigeant . auto-entrepreneur . net de cotisations
-      - dirigeant . auto-entrepreneur . net après impôt
+  variations:
+    - si: dirigeant . auto-entrepreneur
+      alors:
+        inversion numérique:
+          avec:
+            - dirigeant . auto-entrepreneur . net de cotisations
+            - dirigeant . auto-entrepreneur . net après impôt
+    - sinon: 
+        somme: 
+          - dirigeant . rémunération totale
+          - charges
+        
+      
 
   arrondi: oui
   identifiant court: ca
@@ -70,9 +79,15 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
   unité: €/an
-  produit: 
-    assiette: chiffre d'affaires 
-    taux: activité . proportions . vente restauration hébergement
+  variations: 
+    - si: activité . mixte
+      alors:
+        produit: 
+          assiette: chiffre d'affaires 
+          taux: activité . mixte . proportions . vente restauration hébergement
+    - sinon: 
+        applicable si: activité . service ou vente = 'vente'
+        valeur: chiffre d'affaires
   arrondi: oui
   plancher: 0€/an
   description: |
@@ -115,9 +130,15 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  produit: 
-    assiette: chiffre d'affaires 
-    taux: activité . proportions . prestations de service BIC
+  variations: 
+    - si: activité . mixte
+      alors:
+        produit: 
+          assiette: chiffre d'affaires 
+          taux: activité . mixte . proportions . prestations de service BIC
+    - sinon: 
+        applicable si: activité . service ou vente = 'service'
+        valeur: chiffre d'affaires
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
   
@@ -135,11 +156,16 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
 
     **Exemples** : conseil, accompagnement, traduction, développement,
     formation, enseignement, sportif
-
-  produit: 
-    assiette: chiffre d'affaires 
-    taux: activité . proportions . prestations de service BNC
-
+  variations: 
+    - si: activité . mixte
+      alors:
+        produit: 
+          assiette: chiffre d'affaires 
+          taux: activité . mixte . proportions . prestations de service BNC
+    - sinon: 
+        applicable si: activité = 'libérale'
+        valeur: chiffre d'affaires
+  
   références:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
@@ -677,28 +703,29 @@ entreprise . activité . mixte:
     Si votre entreprise a des activités correspondants à plus d'un type de
     revenus, répondez oui à cette question.
 
-entreprise . activité . proportions:
-  titre: Part des différentes activités dans le chiffre d'affaires
+entreprise . activité . mixte . proportions:
+  description: Part des différentes activités dans le chiffre d'affaires
+  titre: proportion activité
   unité: '%'
   somme: 
     - nom: prestations de service BIC
-      variations: 
-        - si: mixte
-          alors: 1 / 3
-        - si: activité . service ou vente = 'service'
-          alors: 100%
+      par défaut: 
+        variations:
+          - si: activité = 'libérale'
+            alors: 0
+          - sinon: 50%
     - nom: prestations de service BNC
-      variations: 
-        - si: mixte
-          alors: 1 / 3
-        - si: activité = 'libérale'
-          alors: 100%
+      par défaut: 
+        variations:
+          - si: activité = 'libérale'
+            alors: 2 / 3
+          - sinon: 0
     - nom: vente restauration hébergement
-      variations:
-        - si: mixte
-          alors: 1 / 3
-        - si: activité . service ou vente = 'vente'
-          alors: 100%
+      par défaut: 
+        variations:
+          - si: activité = 'libérale'
+            alors: 1 / 3
+          - sinon: 50%
         
 
 entreprise . activité . libérale règlementée:

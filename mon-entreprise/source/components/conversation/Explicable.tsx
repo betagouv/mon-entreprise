@@ -1,13 +1,13 @@
 import { explainVariable } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import { EngineContext } from 'Components/utils/EngineContext'
+import { DottedName } from 'modele-social'
 import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
-import { DottedName } from 'modele-social'
+import usePortal from 'react-useportal'
 import { TrackerContext } from '../utils/withTracker'
 import './Explicable.css'
-import usePortal from 'react-useportal'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	const engine = useContext(EngineContext)
@@ -59,6 +59,10 @@ export function Explicable({ children }: { children: React.ReactNode }) {
 					margin-left: 0.3rem !important;
 					vertical-align: middle;
 					font-size: 110% !important;
+					> img {
+						border: 1px solid rgba(255, 255, 255, 0.7) !important;
+						border-radius: 0.1rem;
+					}
 				`}
 			>
 				{emoji('ℹ️')}
