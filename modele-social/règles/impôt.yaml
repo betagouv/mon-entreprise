@@ -68,13 +68,11 @@ impôt . méthode de calcul . prélèvement à la source:
 impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
-  formule:
-    valeur:
-      somme:
-        - contrat salarié . rémunération . net imposable
-        - dirigeant . indépendant . résultat fiscal
-        - dirigeant . auto-entrepreneur . impôt . revenu imposable
-    abattement: abattement contrat court
+  somme:
+      - contrat salarié . rémunération . net imposable
+      - dirigeant . indépendant . résultat fiscal
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
+  abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.

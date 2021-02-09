@@ -17,10 +17,10 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 const proportions = {
-	'entreprise . activité . mixte . proportions . prestations de service BIC':
-		"entreprise . chiffre d'affaires . prestations de service . BIC",
-	'entreprise . activité . mixte . proportions . prestations de service BNC':
-		"entreprise . chiffre d'affaires . prestations de service . BNC",
+	'entreprise . activité . mixte . proportions . service BIC':
+		"entreprise . chiffre d'affaires . service BIC",
+	'entreprise . activité . mixte . proportions . service BNC':
+		"entreprise . chiffre d'affaires . service BNC",
 	'entreprise . activité . mixte . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
@@ -47,6 +47,8 @@ function useAdjustProportions(): () => void {
 						unité: '%',
 					})
 				)
+				console.log(valueName, value, newProportion, nouveauCA)
+
 				return { ...acc, [proportionName]: newProportion }
 			},
 			{ "entreprise . chiffre d'affaires": nouveauCA }
@@ -81,11 +83,11 @@ export default function AutoEntrepreneur() {
 								/>
 								<SimulationGoal
 									onUpdateSituation={adjustProportions}
-									dottedName="entreprise . chiffre d'affaires . prestations de service . BIC"
+									dottedName="entreprise . chiffre d'affaires . service BIC"
 								/>
 								<SimulationGoal
 									onUpdateSituation={adjustProportions}
-									dottedName="entreprise . chiffre d'affaires . prestations de service . BNC"
+									dottedName="entreprise . chiffre d'affaires . service BNC"
 								/>
 							</ul>
 						</li>

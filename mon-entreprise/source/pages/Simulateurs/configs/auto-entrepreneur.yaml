@@ -23,8 +23,8 @@ questions:
     - entreprise . charges
     - entreprise . chiffre d'affaires
     - entreprise . chiffre d'affaires . vente restauration hébergement
-    - entreprise . chiffre d'affaires . prestations de service . BIC
-    - entreprise . chiffre d'affaires . prestations de service . BNC
+    - entreprise . chiffre d'affaires . service BIC
+    - entreprise . chiffre d'affaires . service BNC
 unité par défaut: €/an
 situation:
   entreprise . activité . mixte: non

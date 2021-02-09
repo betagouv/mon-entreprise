@@ -134,7 +134,7 @@ protection sociale . retraite . trimestres validés . trimestres auto-entreprene
             plafond: 20740 €/an
           - montant: 4
     - grille:
-        assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+        assiette: entreprise . chiffre d'affaires . service BNC
         tranches:
           - montant: 0
             plafond: 2880 €/an
@@ -147,7 +147,7 @@ protection sociale . retraite . trimestres validés . trimestres auto-entreprene
           - montant: 4
     - grille:
         unité: trimestres validés/an
-        assiette: entreprise . chiffre d'affaires . prestations de service . BIC
+        assiette: entreprise . chiffre d'affaires . service BIC
         tranches:
           - montant: 0
             plafond: 2412 €/an

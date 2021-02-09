@@ -103,7 +103,9 @@ function simulation(
 				unfoldedStep: null,
 			}
 		case 'BATCH_UPDATE_SITUATION': {
-			return Object.entries(action.situation).reduce<Simulation | null>(
+			return (Object.entries(action.situation as any) as Array<
+				[Names, unknown]
+			>).reduce<Simulation | null>(
 				(newState, [fieldName, value]) =>
 					simulation(newState, {
 						type: 'UPDATE_SITUATION',
@@ -123,9 +125,8 @@ function simulation(
 			if (value === undefined) {
 				return { ...state, situation: omit([dottedName], situation) }
 			}
-			const objectifUpdated = objectifs.find((o) => dottedName.startsWith(o))
-			if (objectifUpdated) {
-				const objectifsToReset = without([objectifUpdated], objectifs)
+			if (objectifs.includes(dottedName)) {
+				const objectifsToReset = without([dottedName], objectifs)
 				const newSituation = Object.fromEntries(
 					Object.entries(situation).filter(
 						([dottedName]) =>

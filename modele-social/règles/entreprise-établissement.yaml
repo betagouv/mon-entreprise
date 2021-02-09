@@ -63,6 +63,7 @@ entreprise . chiffre d'affaires:
           avec:
             - dirigeant . auto-entrepreneur . net de cotisations
             - dirigeant . auto-entrepreneur . net après impôt
+            - dirigeant . rémunération totale
     - sinon: 
         somme: 
           - dirigeant . rémunération totale
@@ -105,16 +106,8 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
     définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-entreprise . chiffre d'affaires . prestations de service:
-  description: |
-    Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle)
-  unité: €/an
-  somme:
-    - BIC
-    - BNC
 
-entreprise . chiffre d'affaires . prestations de service . BIC:
+entreprise . chiffre d'affaires . service BIC:
   unité: €/an
   plancher: 0€/an
   arrondi: oui
@@ -135,7 +128,7 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
       alors:
         produit: 
           assiette: chiffre d'affaires 
-          taux: activité . mixte . proportions . prestations de service BIC
+          taux: activité . mixte . proportions . service BIC
     - sinon: 
         applicable si: activité . service ou vente = 'service'
         valeur: chiffre d'affaires
@@ -144,7 +137,7 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
   
 
 
-entreprise . chiffre d'affaires . prestations de service . BNC:
+entreprise . chiffre d'affaires . service BNC:
   titre: Prestations de service libérale
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
@@ -156,12 +149,14 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
 
     **Exemples** : conseil, accompagnement, traduction, développement,
     formation, enseignement, sportif
+
+    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
   variations: 
     - si: activité . mixte
       alors:
         produit: 
           assiette: chiffre d'affaires 
-          taux: activité . mixte . proportions . prestations de service BNC
+          taux: activité . mixte . proportions . service BNC
     - sinon: 
         applicable si: activité = 'libérale'
         valeur: chiffre d'affaires
@@ -169,7 +164,24 @@ entreprise . chiffre d'affaires . prestations de service . BNC:
   références:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . chiffre d'affaires . franchise de TVA dépassé:
+entreprise . chiffre d'affaires . service:
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle)
+  unité: €/an
+  somme:
+    - service BIC
+    - service BNC
+
+entreprise . chiffre d'affaires . BIC:
+  description: |
+    Le chiffre d'affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
+  unité: €/an
+  somme:
+    - service BIC 
+    - vente restauration hébergement
+    
+entreprise . chiffre d'affaires . franchise de TVA dépassée:
   description: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
@@ -180,14 +192,14 @@ entreprise . chiffre d'affaires . franchise de TVA dépassé:
   une de ces conditions:
     - chiffre d'affaires > seuil vente + seuil service
     - vente restauration hébergement > seuil vente
-    - prestations de service > seuil service
+    - service > seuil service
   note: >
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil vente:
+entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 110000 €/an
@@ -195,7 +207,7 @@ entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil vente:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil service:
+entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
@@ -205,11 +217,11 @@ entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil service:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassé . notification:
+entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
   type: notification
   formule: oui
   description: |
-    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
 
 entreprise . chiffre d'affaires minimum:
   identifiant court: entreprise-ca-min
@@ -708,13 +720,13 @@ entreprise . activité . mixte . proportions:
   titre: proportion activité
   unité: '%'
   somme: 
-    - nom: prestations de service BIC
+    - nom: service BIC
       par défaut: 
         variations:
           - si: activité = 'libérale'
             alors: 0
           - sinon: 50%
-    - nom: prestations de service BNC
+    - nom: service BNC
       par défaut: 
         variations:
           - si: activité = 'libérale'
