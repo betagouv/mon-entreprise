@@ -68,6 +68,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 							<RuleInput
 								dottedName={currentQuestion}
 								onChange={onChange}
+								key={currentQuestion}
 								onSubmit={submit}
 							/>
 						</fieldset>

@@ -72,7 +72,7 @@ export default function Rule({ dottedName, engine, language }) {
 
 					<ul>
 						{Object.keys(rule.missingVariables).map((dottedName) => (
-							<li>
+							<li key={dottedName}>
 								<RuleLinkWithContext dottedName={dottedName} />
 							</li>
 						))}

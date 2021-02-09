@@ -1,20 +1,19 @@
 import { EvaluationFunction } from '..'
+import { ASTNode } from '../AST/types'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 import {
 	liftTemporal2,
 	liftTemporalNode,
 	mapTemporal,
 	temporalAverage,
 } from '../temporal'
-
 import {
 	evaluatePlafondUntilActiveTranche,
 	parseTranches,
 	TrancheNodes,
 } from './trancheUtils'
-import parse from '../parse'
-import { ASTNode } from '../AST/types'
 
 export type GrilleNode = {
 	explanation: {
@@ -85,7 +84,11 @@ const evaluate: EvaluationFunction<'grille'> = function (node) {
 	}, temporalTranches)
 	const temporalValue = mapTemporal(
 		(tranches) =>
-			tranches[0].isActive === null ? null : tranches[0].nodeValue,
+			!tranches[0]
+				? false
+				: tranches[0].isActive === null
+				? null
+				: tranches[0].nodeValue,
 		activeTranches
 	)
 
@@ -105,7 +108,7 @@ const evaluate: EvaluationFunction<'grille'> = function (node) {
 				? { temporalTranches }
 				: { tranches: temporalTranches[0].value }),
 		},
-		unit: activeTranches[0].value[0]?.unit ?? undefined,
+		unit: activeTranches[0]?.value[0]?.unit ?? undefined,
 	} as any
 }
 

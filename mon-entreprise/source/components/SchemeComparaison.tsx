@@ -7,18 +7,18 @@ import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import Value from 'Components/EngineValue'
-import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
-import Engine from 'publicodes'
+import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
-import { useCallback, useMemo, useState, useEffect } from 'react'
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
+import { useCallback, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import InfoBulle from 'Components/ui/InfoBulle'
+import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import './SchemeComparaison.css'
 import { engineOptions, useEngine } from './utils/EngineContext'
-import { DottedName } from 'modele-social'
 import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
@@ -34,9 +34,8 @@ export default function SchemeComparaison({
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
 	const plafondAutoEntrepreneurDépassé =
-		engine.evaluate(
-			'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
-		).nodeValue === true
+		engine.evaluate('dirigeant . auto-entrepreneur . seuils dépassés')
+			.nodeValue === true
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(

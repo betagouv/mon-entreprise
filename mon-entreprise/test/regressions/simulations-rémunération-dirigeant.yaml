@@ -39,7 +39,6 @@ activités:
   - dirigeant . rémunération totale: 20000 €/an
     entreprise . activité: "'commerciale ou industrielle'"
     entreprise . activité . service ou vente: "'service'"
-    entreprise . activité . restauration ou hébergement: oui
 
 Contrats Madelin:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de

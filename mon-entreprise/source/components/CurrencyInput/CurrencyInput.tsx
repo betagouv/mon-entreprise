@@ -79,6 +79,8 @@ export default function CurrencyInput({
 			onFocus={() => inputRef.current?.select()}
 			onClick={() => inputRef.current?.focus()}
 		>
+			{isCurrencyPrefixed && currentValue == '' && <>€&nbsp;</>}
+
 			<NumberFormat
 				{...forwardedProps}
 				thousandSeparator={thousandSeparator}

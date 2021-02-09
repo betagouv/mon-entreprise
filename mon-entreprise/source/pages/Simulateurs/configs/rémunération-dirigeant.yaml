@@ -17,4 +17,5 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'auto-entrepreneur'"
+  entreprise . activité . mixte: non
   contrat salarié . ATMP . taux réduit: oui

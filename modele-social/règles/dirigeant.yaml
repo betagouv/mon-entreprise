@@ -117,7 +117,7 @@ dirigeant . auto-entrepreneur . seuils dépassés:
   unité: €/an
   une de ces conditions:
     - entreprise . chiffre d'affaires > 176200 €/an
-    - entreprise . chiffre d'affaires . prestations de service > 70000 €/an
+    - entreprise . chiffre d'affaires . service > 70000 €/an
 
 dirigeant . auto-entrepreneur . seuils dépassés . notification:
   type: notification
@@ -164,7 +164,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   applicable si: entreprise . activité = 'commerciale ou industrielle'
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+      - assiette: entreprise . chiffre d'affaires . service BNC
         taux: 0.044%
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux: 0.015%
@@ -175,7 +175,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   applicable si: entreprise . activité = 'artisanale'
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+      - assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           nom: taux service
           valeur: 0.48%
@@ -228,10 +228,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
     composantes:
       - attributs:
           nom: revenus BIC
-        assiette: 
-          somme:
-            - entreprise . chiffre d'affaires . vente restauration hébergement
-            - entreprise . chiffre d'affaires . prestations de service . BIC
+        assiette: entreprise . chiffre d'affaires . BIC
         taux:
           variations:
             - si: entreprise . activité = 'artisanale'
@@ -239,7 +236,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
             - sinon: 0.1%
       - attributs:
           nom: revenus BNC
-        assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+        assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
             - si: entreprise . activité . libérale règlementée
@@ -257,7 +254,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux dépend de la catégorie d'activité.
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . prestations de service
+      - assiette: entreprise . chiffre d'affaires . service
         taux:
           nom: taux prestation de service
           valeur: 22%
@@ -341,16 +338,26 @@ dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
 dirigeant . auto-entrepreneur . impôt: oui
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre: revenu imposable auto-entrepreneur
+  description: |
+    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
+
+    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+
   valeur: entreprise . chiffre d'affaires
   abattement:
-    somme:
-      - valeur: entreprise . chiffre d'affaires . vente restauration hébergement
-        abattement: 71%
-      - valeur: entreprise . chiffre d'affaires . prestations de service . BIC
-        abattement: 50%
-      - valeur: entreprise . chiffre d'affaires . prestations de service . BNC
-        abattement: 34%
-    plancher: 305 €/an
+    produit:
+      composantes:
+        - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+          taux: 71%
+        - assiette: entreprise . chiffre d'affaires . service BIC
+          taux: 50%
+        - assiette: entreprise . chiffre d'affaires . service BNC
+          taux: 34%
+    plancher: 
+      variations: 
+        - si: entreprise . activité . mixte 
+          alors: 610 €/an
+        - sinon: 305 €/an
 
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
@@ -381,9 +388,9 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
     composantes:
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux: 1%
-      - assiette: entreprise . chiffre d'affaires . prestations de service . BIC
+      - assiette: entreprise . chiffre d'affaires . service BIC
         taux: 1.7%
-      - assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+      - assiette: entreprise . chiffre d'affaires . service BNC
         taux: 2.2%
 
 dirigeant . auto-entrepreneur . net après impôt:
@@ -416,7 +423,7 @@ dirigeant . auto-entrepreneur . net après impôt:
     nom: impôt
     titre: impôt sur le revenu
     produit:
-      assiette: impôt . revenu imposable
+      assiette: dirigeant . auto-entrepreneur . impôt . revenu imposable
       taux: impôt . taux d'imposition
 
 dirigeant . rémunération totale:
@@ -426,6 +433,7 @@ dirigeant . rémunération totale:
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
   unité: €/an
+  arrondi: oui
   identifiant court: dirigeant-total
   description: C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
@@ -438,6 +446,8 @@ dirigeant . rémunération totale:
           somme:
             - indépendant . revenu net de cotisations
             - indépendant . cotisations et contributions
+      - si: auto-entrepreneur
+        alors: entreprise . chiffre d'affaires - entreprise . charges
       - si: assimilé salarié
         alors:
           somme:

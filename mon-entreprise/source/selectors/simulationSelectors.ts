@@ -33,7 +33,9 @@ export const firstStepCompletedSelector = createSelector(
 			return false
 		}
 		return objectifs.some((objectif) => {
-			return Object.entries(situation).some(([dottedName]) => dottedName.startsWith(objectif))
+			return Object.entries(situation).some(([dottedName]) =>
+				dottedName.startsWith(objectif)
+			)
 		})
 	}
 )
