@@ -225,23 +225,27 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
   note: |
     Les taux implémentés sont ceux prélevés par l'Urssaf.
   produit:
-    assiette: entreprise . chiffre d'affaires
-    taux:
-      variations:
-        - si: entreprise . activité = 'artisanale'
-          alors: 0.3%
-        - si: entreprise . activité . libérale règlementée
-          alors: 0.2%
-        - sinon: 0.1%
-# dirigeant . auto-entrepreneur . chiffre d'affaires:
-#   question: Quel est votre chiffre d'affaires ?
-#   résumé: Montant total des recettes brutes (hors taxe)
-#   unité: €/an
-#   arrondi: oui
-#   inversion numérique:
-#     avec:
-#       - net de cotisations
-#       - net après impôt
+    composantes:
+      - attributs:
+          nom: revenus BIC
+        assiette: 
+          somme:
+            - entreprise . chiffre d'affaires . vente restauration hébergement
+            - entreprise . chiffre d'affaires . prestations de service . BIC
+        taux:
+          variations:
+            - si: entreprise . activité = 'artisanale'
+              alors: 0.3%
+            - sinon: 0.1%
+      - attributs:
+          nom: revenus BNC
+        assiette: entreprise . chiffre d'affaires . prestations de service . BNC
+        taux:
+          variations:
+            - si: entreprise . activité . libérale règlementée
+              alors: 0.2%
+            - sinon: 0.1%
+
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une
@@ -378,9 +382,9 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux: 1%
       - assiette: entreprise . chiffre d'affaires . prestations de service . BIC
-        abattement: 1.7%
+        taux: 1.7%
       - assiette: entreprise . chiffre d'affaires . prestations de service . BNC
-        abattement: 2.2%
+        taux: 2.2%
 
 dirigeant . auto-entrepreneur . net après impôt:
   titre: revenu net après impôt

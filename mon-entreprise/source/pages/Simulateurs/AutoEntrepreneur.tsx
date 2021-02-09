@@ -1,4 +1,5 @@
-import { batchUpdateSituation, updateSituation } from 'Actions/actions'
+import { batchUpdateSituation } from 'Actions/actions'
+import { Explicable } from 'Components/conversation/Explicable'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -7,6 +8,7 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
+import { Markdown } from 'Components/utils/markdown'
 import { serializeEvaluation } from 'publicodes'
 import { default as React, useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -15,11 +17,11 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 const proportions = {
-	'entreprise . activité . proportions . prestations de service BIC':
+	'entreprise . activité . mixte . proportions . prestations de service BIC':
 		"entreprise . chiffre d'affaires . prestations de service . BIC",
-	'entreprise . activité . proportions . prestations de service BNC':
+	'entreprise . activité . mixte . proportions . prestations de service BNC':
 		"entreprise . chiffre d'affaires . prestations de service . BNC",
-	'entreprise . activité . proportions . vente restauration hébergement':
+	'entreprise . activité . mixte . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 function useAdjustProportions(): () => void {
@@ -110,14 +112,17 @@ export default function AutoEntrepreneur() {
 
 function ActivitéMixte({ defaultChecked }: { defaultChecked: boolean }) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
 	const situation = useSelector(situationSelector)
+	const rule = useEngine().getRule('entreprise . activité . mixte')
+
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
-				updateSituation(
-					'entreprise . activité . mixte',
-					checked ? 'oui' : 'non'
+				batchUpdateSituation(
+					Object.values(proportions).reduce(
+						(acc, dottedName) => ({ ...acc, [dottedName]: undefined }),
+						{ 'entreprise . activité . mixte': checked ? 'oui' : 'non' }
+					)
 				)
 			)
 		},
@@ -137,12 +142,15 @@ function ActivitéMixte({ defaultChecked }: { defaultChecked: boolean }) {
 					justify-content: flex-end;
 				`}
 			>
-				Activité mixte&nbsp;{' '}
 				<input
 					type="checkbox"
 					defaultChecked={defaultChecked}
 					onChange={(evt) => onMixteChecked(evt.target.checked)}
-				/>{' '}
+				/>
+				&nbsp; Activité mixte
+				<Explicable>
+					<Markdown source={`## ${rule.title}\n ${rule.rawNode.description}`} />
+				</Explicable>
 			</label>
 		</li>
 	)

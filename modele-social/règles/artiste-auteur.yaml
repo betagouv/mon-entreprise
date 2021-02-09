@@ -22,7 +22,7 @@ artiste-auteur . revenus . BNC:
 artiste-auteur . revenus . BNC . micro-bnc:
   non applicable si: contrôle micro-bnc
   par défaut: oui
-  titre: Souhaitez-vous opter pour le régime micro-BNC ?
+  question: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 
 artiste-auteur . revenus . BNC . contrôle micro-bnc:

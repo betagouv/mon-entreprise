@@ -19,7 +19,7 @@ export type Action =
 			| typeof updateSituation
 			| typeof updateSituation
 			| typeof updateUnit
-			| typeof updateSituationBatch
+			| typeof batchUpdateSituation
 	  >
 	| CompanyCreationAction
 	| CompanyStatusAction
@@ -70,11 +70,14 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 		fieldName,
 		value,
 	} as const)
-	
-export const batchUpdateSituation = (situation: Parameters<Engine<DottedName>['setSituation']>[0]) => 	({
-	type: 'BATCH_UPDATE_SITUATION',
-	situation,
-} as const)
+
+export const batchUpdateSituation = (
+	situation: Parameters<Engine<DottedName>['setSituation']>[0]
+) =>
+	({
+		type: 'BATCH_UPDATE_SITUATION',
+		situation,
+	} as const)
 
 export const updateUnit = (targetUnit: string) =>
 	({
