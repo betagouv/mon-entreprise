@@ -6,6 +6,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
+import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
 import { equals, isEmpty } from 'ramda'
 import {
@@ -189,7 +190,7 @@ function FormulairePublicodes() {
 								)}
 								<RuleInput
 									id={dottedName}
-									dottedName={dottedName}
+									dottedName={dottedName as DottedName}
 									onChange={(value) => onChange(dottedName, value)}
 								/>
 							</>

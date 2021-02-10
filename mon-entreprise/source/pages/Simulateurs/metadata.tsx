@@ -761,7 +761,7 @@ export function getSimulatorsData({
 				title: 'Aides à l’embauche',
 				description:
 					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.',
-				color: '#16a385',
+				color: '#11965f',
 			},
 			path: sitePaths.simulateurs['aides-embauche'],
 			iframe: 'aides-embauche',
@@ -769,16 +769,22 @@ export function getSimulatorsData({
 			title: "Aides à l'embauche",
 			description: (
 				<p>
-					<img
-						src={logoFranceRelance}
-						alt="Logo France Relance"
-						style={{
-							width: '120px',
-							marginBottom: '1rem',
-							marginLeft: '1rem',
-							float: 'right',
-						}}
-					/>
+					<a
+						href="https://www.gouvernement.fr/france-relance"
+						title="Aller sur le site France Relance"
+						target="_blank"
+					>
+						<img
+							src={logoFranceRelance}
+							alt="Logo France Relance"
+							style={{
+								width: '120px',
+								marginBottom: '1rem',
+								marginLeft: '1rem',
+								float: 'right',
+							}}
+						/>
+					</a>
 					Les employeurs peuvent bénéficier d'une aide financière pour
 					l'embauche de certains publics prioritaires. Découvrez les dispositifs
 					existants et estimez le montant de l'aide en répondant aux questions.

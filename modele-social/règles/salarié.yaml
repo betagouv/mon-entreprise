@@ -2151,16 +2151,14 @@ contrat salarié . aides employeur . emploi franc:
                 - ancienneté . date d'embauche <= 31/03/2021
             alors:
               variations:
-                - si: CDI
-                  alors: 7000 €/an
                 - si: CDD
                   alors: 5500 €/an
+                - sinon: 7000 €/an
           - sinon:
               variations:
-                - si: CDI
-                  alors: 5000 €/an
                 - si: CDD
                   alors: 2500 €/an
+                - sinon: 5000 €/an
       facteur: temps de travail . quotité de travail effective
     arrondi: oui
   références:
