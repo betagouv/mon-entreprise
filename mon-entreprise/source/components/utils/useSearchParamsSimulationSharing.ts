@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { useSearchParams } from 'Components/utils/useSearchParams'
 import { useEngine } from 'Components/utils/EngineContext'
 import {
@@ -71,15 +71,13 @@ export default function useSearchParamsSimulationSharing() {
 	])
 }
 
-export const useGetSearchParams = () => {
+export const useParamsFromSituation = (situation: Situation) => {
 	const engine = useEngine()
-	const situation = useSelector(situationSelector)
 	const dottedNameParamName = useMemo(
 		() => getRulesParamNames(engine.getParsedRules()),
 		[engine]
 	)
-	return () =>
-		getSearchParamsFromSituation(engine, situation, dottedNameParamName)
+	return getSearchParamsFromSituation(engine, situation, dottedNameParamName)
 }
 
 const objectifsOfConfig = (config: Partial<SimulationConfig>) =>

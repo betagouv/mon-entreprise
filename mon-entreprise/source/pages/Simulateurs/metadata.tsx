@@ -27,6 +27,7 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import logoFranceRelance from './images/logo-france-relance.svg'
 import PAMCHome from './PAMCHome'
 import IndépendantSimulation, {
 	IndépendantPLSimulation,
@@ -768,11 +769,19 @@ export function getSimulatorsData({
 			title: "Aides à l'embauche",
 			description: (
 				<p>
+					<img
+						src={logoFranceRelance}
+						alt="Logo France Relance"
+						style={{
+							width: '120px',
+							marginBottom: '1rem',
+							marginLeft: '1rem',
+							float: 'right',
+						}}
+					/>
 					Les employeurs peuvent bénéficier d'une aide financière pour
 					l'embauche de certains publics prioritaires. Découvrez les dispositifs
 					existants et estimez le montant de l'aide en répondant aux questions.
-					<br />
-					<br />
 				</p>
 			),
 			component: AidesEmbauche,
