@@ -152,7 +152,7 @@ export default function RuleInput({
 					{...commonProps}
 					language={language}
 					debounce={750}
-					value={value}
+					value={value as any}
 					name={dottedName}
 					className="targetInput"
 					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}

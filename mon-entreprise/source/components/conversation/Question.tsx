@@ -142,7 +142,7 @@ export default function Question({
 									{renderChildren({ children } as Choice)}
 								</li>
 							) : (
-								!hiddenOptions.includes(dottedName) && (
+								!hiddenOptions.includes(dottedName as DottedName) && (
 									<li key={dottedName} className="variantLeaf">
 										<RadioLabel
 											{...{
