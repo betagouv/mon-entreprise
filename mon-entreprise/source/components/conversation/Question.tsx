@@ -1,9 +1,15 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
-import { RuleNode, serializeEvaluation, EvaluatedNode, Rule } from 'publicodes'
+import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
 import { References } from 'publicodes-react'
-import { useCallback, useEffect, useState } from 'react'
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useState,
+} from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
@@ -69,6 +75,7 @@ export default function Question({
 			return () => clearTimeout(timeoutId)
 		}
 	}, [currentSelection])
+	const hiddenOptions = useContext(HiddenOptionContext)
 
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
 		return choices.map(({ value, label }) => (
@@ -135,22 +142,24 @@ export default function Question({
 									{renderChildren({ children } as Choice)}
 								</li>
 							) : (
-								<li key={dottedName} className="variantLeaf">
-									<RadioLabel
-										{...{
-											value: `'${relativeDottedName(dottedName)}'`,
-											label: title,
-											dottedName,
-											currentSelection,
-											name: questionDottedName,
-											icônes,
-											onSubmit: handleSubmit,
-											description,
-											références,
-											onChange: handleChange,
-										}}
-									/>
-								</li>
+								!hiddenOptions.includes(dottedName) && (
+									<li key={dottedName} className="variantLeaf">
+										<RadioLabel
+											{...{
+												value: `'${relativeDottedName(dottedName)}'`,
+												label: title,
+												dottedName,
+												currentSelection,
+												name: questionDottedName,
+												icônes,
+												onSubmit: handleSubmit,
+												description,
+												références,
+												onChange: handleChange,
+											}}
+										/>
+									</li>
+								)
 							)
 					)}
 			</ul>
@@ -249,3 +258,9 @@ function RadioLabelContent({
 		</label>
 	)
 }
+
+// TODO : This is hacky, the logic to hide/disable some of the possible answer
+// to a mutliple-choice question must be handled by Publicodes. We use a React
+// context instead of passing down props to avoid polluting to much code with
+// this undesirable option.
+export const HiddenOptionContext = createContext<Array<DottedName>>([])

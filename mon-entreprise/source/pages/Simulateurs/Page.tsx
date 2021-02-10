@@ -6,6 +6,7 @@ import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { default as React, useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SimulatorData } from './metadata'
+import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 
 export default function SimulateurPage({
 	meta,
@@ -19,6 +20,8 @@ export default function SimulateurPage({
 	const inIframe = useContext(IsEmbeddedContext)
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
 	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
+	useSearchParamsSimulationSharing()
+
 	return (
 		<>
 			{meta && <Meta {...meta} />}

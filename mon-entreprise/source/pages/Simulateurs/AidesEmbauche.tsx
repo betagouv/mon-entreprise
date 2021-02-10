@@ -1,14 +1,24 @@
 import { formatValue } from 'publicodes'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import Animate from 'Components/ui/animate'
+import Conversation from 'Components/conversation/Conversation'
 import { Questions } from 'Components/Simulation'
 import { useEngine } from 'Components/utils/EngineContext'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { useContext } from 'react'
-import { Situation } from 'Reducers/rootReducer'
+import { useContext, useMemo } from 'react'
+import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { partition } from 'ramda'
+import { useSimulationProgress } from 'Components/utils/useNextQuestion'
+import { HiddenOptionContext } from 'Components/conversation/Question'
+import useSearchParamsSimulationSharing, {
+	getRulesParamNames,
+	getSearchParamsFromSituation,
+} from 'Components/utils/useSearchParamsSimulationSharing'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'react-router-dom'
 
 type AideDescriptor = {
 	title: string
@@ -55,34 +65,47 @@ const aides = [
 	},
 ] as Array<AideDescriptor>
 
+const config = {
+	'unité par défaut': '€/mois',
+	situation: {
+		"contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans":
+			'oui',
+		'contrat salarié . rémunération . brut de base': '1700 €/mois',
+		'contrat salarié . CDD . durée contrat': '12 mois',
+	},
+	objectifs: ['contrat salarié . aides employeur'],
+	questions: {
+		liste: ['contrat salarié'],
+		'liste noire': [
+			'contrat salarié . activité partielle',
+			'contrat salarié . prix du travail',
+			'contrat salarié . temps de travail . heures supplémentaires',
+			'contrat salarié . rémunération',
+			'contrat salarié . aides employeur . emploi franc . éligible',
+		],
+	},
+} as SimulationConfig
+
 export default function AidesEmbauche() {
 	const { color } = useContext(ThemeColorsContext)
-	useSimulationConfig({
-		color,
-		'unité par défaut': '€/mois',
-		situation: {
-			"contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans":
-				'oui',
-			'contrat salarié . rémunération . brut de base': '1700 €/mois',
-			'contrat salarié . CDD . durée contrat': '12 mois',
-		},
-		objectifs: ['contrat salarié . aides employeur'],
-		questions: {
-			liste: ['contrat salarié'],
-			'liste noire': [
-				'contrat salarié . activité partielle',
-				'contrat salarié . prix du travail',
-				'contrat salarié . temps de travail . heures supplémentaires',
-				'contrat salarié . rémunération',
-				'contrat salarié . aides employeur . emploi franc . éligible',
-			],
-		},
-	})
+	const progress = useSimulationProgress()
+	config.color = color
+	useSimulationConfig(config)
 
 	return (
 		<>
-			<Questions />
-			<Results />
+			<section className="ui__ full-width lighter-bg">
+				<div className="ui__ container">
+					<HiddenOptionContext.Provider value={['contrat salarié . stage']}>
+						<Conversation />
+					</HiddenOptionContext.Provider>
+				</div>
+			</section>
+			{progress > 0 && (
+				<Animate.fromTop>
+					<Results />
+				</Animate.fromTop>
+			)}
 		</>
 	)
 }
@@ -93,7 +116,6 @@ function Results() {
 		(aide) => typeof engine.evaluate(aide.dottedName).nodeValue === 'number',
 		aides
 	)
-	console.log(engine.evaluate(aides[1].dottedName).nodeValue)
 	return (
 		<>
 			<h3>Aides disponibles</h3>
@@ -122,15 +144,31 @@ function ResultCard({
 	const rule = engine.getParsedRules()[dottedName]
 	const valueNode = rule.explanation.valeur.explanation.valeur
 	const evaluation = engine.evaluate(valueNode)
+	const dottedNameParamName = useMemo(
+		() => getRulesParamNames(engine.getParsedRules()),
+		[engine]
+	)
+	const search = getSearchParamsFromSituation(
+		engine,
+		situation,
+		dottedNameParamName
+	).toString()
+	const sitePaths = useContext(SitePathsContext)
+	// TODO
 
 	return (
 		<div className="ui__ card box">
 			<h4>{title}</h4>
 			<p className="ui__ notice">{description}</p>
 			<p className="ui__ lead">
-				<RuleLink dottedName={dottedName}>
+				<Link
+					to={{
+						pathname: sitePaths.simulateurs.salarié,
+						search,
+					}}
+				>
 					{formatValue(evaluation, { displayedUnit: '€' })}
-				</RuleLink>
+				</Link>
 			</p>
 		</div>
 	)

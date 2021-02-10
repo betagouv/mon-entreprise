@@ -5,7 +5,6 @@ import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
-import { useLocation } from 'react-router-dom'
 
 const VERSION = 5
 
