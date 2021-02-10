@@ -1,13 +1,18 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useContext } from 'react'
+import { Helmet } from 'react-helmet'
 import { Route, Switch } from 'react-router-dom'
-import { inIframe } from '../../utils'
+import { TrackingContext } from '../../ATInternetTracking'
+import { INDICATOR } from '../../ATInternetTracking/Tracker'
 import useSimulatorsData from '../Simulateurs/metadata'
 import SimulateurPage from '../Simulateurs/Page'
 import IframeFooter from './IframeFooter'
-import { Helmet } from 'react-helmet'
 
 export default function Iframes() {
 	const simulators = useSimulatorsData()
+	useContext(TrackingContext).customVars.set({
+		site: { [INDICATOR.SITE.EMBARQUÉ]: 1 },
+	})
 	return (
 		<IsEmbeddedContext.Provider value={true}>
 			{/** Open external links in the parent frame.

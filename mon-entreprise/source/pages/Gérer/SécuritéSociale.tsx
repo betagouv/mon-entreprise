@@ -1,6 +1,7 @@
+import * as Animate from 'Components/ui/animate'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import * as Animate from 'Components/ui/animate'
+import { TrackPage } from '../../ATInternetTracking'
 import Video from './Video'
 
 export default function SocialSecurity() {
@@ -12,6 +13,7 @@ export default function SocialSecurity() {
 			</Helmet>
 
 			<Animate.fromBottom>
+				<TrackPage name="securite_social" />
 				<Trans i18nKey="sécu.contenu">
 					<h1>Protection sociale </h1>
 					<p>

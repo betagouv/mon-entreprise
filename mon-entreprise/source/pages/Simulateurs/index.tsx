@@ -4,9 +4,9 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { default as React, useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
+import Home from './Home'
 import useSimulatorsData from './metadata'
 import SimulateurPage from './Page'
-import Home from './Home'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)

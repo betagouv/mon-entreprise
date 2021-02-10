@@ -1,4 +1,5 @@
 import BarChartBranch from 'Components/BarChart'
+import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import { StackedBarChart } from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
@@ -20,9 +21,9 @@ import {
 	YAxis,
 } from 'recharts'
 import styled from 'styled-components'
+import { TrackPage } from '../../ATInternetTracking'
 import statsJson from '../../data/stats.json'
 import { capitalise0 } from '../../utils'
-import Privacy from 'Components/layout/Footer/Privacy'
 import useSimulatorsData from '../Simulateurs/metadata'
 
 const stats: StatsData = statsJson as any
@@ -80,6 +81,7 @@ export default function Stats() {
 	const simulators = Object.values(useSimulatorsData())
 	return (
 		<>
+			<TrackPage chapter1="informations" name="stats" />
 			<ScrollToTop />
 			<h1>
 				Statistiques <>{emoji('📊')}</>

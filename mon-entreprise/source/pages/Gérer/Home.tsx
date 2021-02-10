@@ -6,6 +6,7 @@ import {
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
+import * as Animate from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -16,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
-import * as Animate from 'Components/ui/animate'
+import { TrackPage } from '../../ATInternetTracking'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
@@ -41,7 +42,7 @@ const infereDirigeantFromCompanyDetails = (company: Company | null) => {
 	return null
 }
 
-export default function SocialSecurity() {
+export default function Gérer() {
 	const { t, i18n } = useTranslation()
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
@@ -54,6 +55,7 @@ export default function SocialSecurity() {
 			<Helmet>
 				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
 			</Helmet>
+			<TrackPage name="accueil" />
 			<ScrollToTop />
 			<Animate.fromBottom>
 				<h1>

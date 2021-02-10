@@ -4,12 +4,14 @@ import {
 } from 'Actions/companyStatusActions'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
+import { TrackPage } from '../../../ATInternetTracking'
 
 export default function NumberOfAssociates() {
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const { t } = useTranslation()
 	return (
 		<>
+			<TrackPage name="seul_ou_plusieurs" />
 			<Helmet>
 				<title>
 					{t(

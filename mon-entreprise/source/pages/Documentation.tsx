@@ -1,5 +1,7 @@
+import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
 import * as Animate from 'Components/ui/animate'
+import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -9,8 +11,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import SearchBar from 'Components/SearchBar'
-import { ThemeColorsProvider } from 'Components/utils/colors'
+import { TrackPage } from '../ATInternetTracking'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -36,6 +37,10 @@ export default function RulePage() {
 	}
 	return (
 		<Animate.fromBottom>
+			<TrackPage
+				chapter1="documentation"
+				name={documentationSitePaths[pathname]}
+			/>
 			<ScrollToTop key={pathname} />
 			<ThemeColorsProvider color={documentationColor}>
 				<div
@@ -54,7 +59,6 @@ export default function RulePage() {
 					documentationPath={documentationPath}
 					referenceImages={referencesImages}
 				/>
-				{/* <button>Voir l</button> */}
 			</ThemeColorsProvider>
 		</Animate.fromBottom>
 	)
@@ -79,6 +83,7 @@ function BackToSimulation() {
 function DocumentationLanding() {
 	return (
 		<>
+			<TrackPage chapter1="documentation" name="accueil" />
 			<h1>
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>

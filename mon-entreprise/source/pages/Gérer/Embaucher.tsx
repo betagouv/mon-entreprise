@@ -2,12 +2,13 @@ import {
 	checkHiringItem,
 	initializeHiringChecklist,
 } from 'Actions/hiringChecklistAction'
+import Animate from 'Components/ui/animate'
+import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import Animate from 'Components/ui/animate'
-import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
+import { TrackPage } from '../../ATInternetTracking'
 
 type EmbaucherProps = {
 	onChecklistInitialization: ChecklistProps['onInitialization']
@@ -21,6 +22,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 	)
 	return (
 		<Animate.fromBottom>
+			<TrackPage name="embaucher" />
 			<Helmet>
 				<title>
 					{t(['embauche.tâches.page.titre', 'Les formalités pour embaucher'])}

@@ -2,8 +2,8 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Switch, useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, Route, Switch, useLocation } from 'react-router-dom'
+import { TrackChapter } from '../../ATInternetTracking'
 import Iframe from './Iframe'
 import Library from './Library'
 import Options from './Options'
@@ -13,6 +13,7 @@ export default function Integration() {
 	const { pathname } = useLocation()
 	return (
 		<>
+			<TrackChapter name="integration" level={1} />
 			<ScrollToTop />
 			{pathname !== sitePaths.integration.index && (
 				<div className="ui__ card dark-bg" css="text-align: center">

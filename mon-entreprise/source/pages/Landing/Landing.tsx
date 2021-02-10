@@ -1,3 +1,6 @@
+import Footer from 'Components/layout/Footer/Footer'
+import Header from 'Components/layout/Header'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
@@ -5,11 +8,9 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Emoji from 'Components/utils/Emoji'
-import BrexitPDF from './Brexit_guide.pdf'
 import { RootState } from 'Reducers/rootReducer'
-import Header from 'Components/layout/Header'
-import Footer from 'Components/layout/Footer/Footer'
+import { TrackPage } from '../../ATInternetTracking'
+import BrexitPDF from './Brexit_guide.pdf'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
 
@@ -21,6 +22,7 @@ export default function Landing() {
 	const language = useTranslation().i18n.language
 	return (
 		<>
+			<TrackPage chapter1="informations" name="accueil" />
 			<Header />
 			<div className="app-content ui__ container">
 				{language === 'en' && (

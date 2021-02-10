@@ -1,6 +1,7 @@
 import Overlay from 'Components/Overlay'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { TrackPage } from '../../../ATInternetTracking'
 
 export default function Privacy({ label }: { label?: string }) {
 	const [opened, setOpened] = useState(false)
@@ -31,6 +32,7 @@ function PrivacyContent() {
 	return (
 		<>
 			<Trans i18nKey="privacyContent">
+				<TrackPage chapter1="informations" name={'donnees_personnelles'} />
 				<h1>Données personnelles</h1>
 				<p>
 					Nous recueillons des statistiques anonymes sur l'utilisation du site,

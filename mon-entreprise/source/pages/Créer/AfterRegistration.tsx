@@ -1,3 +1,4 @@
+import Animate from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -5,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import Animate from 'Components/ui/animate'
+import { TrackPage } from '../../ATInternetTracking'
 import siret from './siret.jpg'
 
 export default function AfterRegistration() {
@@ -19,6 +20,7 @@ export default function AfterRegistration() {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
+			<TrackPage name="apres_la_creation" />
 			<div css="transform: translateY(2rem)">
 				<NavLink
 					to={sitePaths.créer.index}

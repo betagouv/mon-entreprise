@@ -1,14 +1,20 @@
+import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom'
+import {
+	Link,
+	NavLink,
+	Redirect,
+	useHistory,
+	useRouteMatch,
+} from 'react-router-dom'
 import styled from 'styled-components'
 import useSWR from 'swr'
-import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
+import { TrackPage } from '../../ATInternetTracking'
 
 const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
@@ -46,6 +52,7 @@ export default function Nouveautés() {
 
 	return (
 		<>
+			<TrackPage chapter1="informations" name="nouveautes" />
 			<ScrollToTop key={selectedRelease} />
 			<h1>Les nouveautés {emoji('✨')}</h1>
 			<p>

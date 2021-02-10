@@ -1,9 +1,11 @@
 import { Trans } from 'react-i18next'
+import { TrackPage } from '../ATInternetTracking'
 
 export default function Accessibilité() {
 	return (
 		<Trans i18nKey="pages.accessibilité">
 			<h1>Accessibilité</h1>
+			<TrackPage chapter1="informations" name="accessibilite" />
 
 			<p>
 				Cette page n'est pas une page d'aide, mais une déclaration de conformité

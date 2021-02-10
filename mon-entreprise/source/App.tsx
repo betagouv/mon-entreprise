@@ -45,8 +45,6 @@ import {
 	setupInFranceAppPersistence,
 } from './storage/persistInFranceApp'
 import { setupSimulationPersistence } from './storage/persistSimulation'
-import Tracker, { devTracker } from './Tracker'
-import trackSimulatorActions from './trackSimulatorActions'
 
 if (process.env.NODE_ENV === 'production') {
 	let branch: string | undefined = process.env.GITHUB_REF?.split('/')?.slice(
@@ -68,15 +66,7 @@ if (process.env.NODE_ENV === 'production') {
 	}
 }
 
-let tracker = devTracker
-if (process.env.NODE_ENV === 'production') {
-	tracker = new Tracker()
-}
-
-const middlewares = [
-	createSentryMiddleware(Sentry as any),
-	trackSimulatorActions(tracker),
-]
+const middlewares = [createSentryMiddleware(Sentry as any)]
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -93,7 +83,6 @@ export default function Root({ basename, rules }: RootProps) {
 	return (
 		<Provider
 			basename={basename}
-			tracker={tracker}
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}
 			onStoreCreated={(store) => {

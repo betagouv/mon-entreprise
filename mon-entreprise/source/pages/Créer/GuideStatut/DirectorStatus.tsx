@@ -1,11 +1,13 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
+import { TrackPage } from '../../../ATInternetTracking'
 
 export default function DefineDirectorStatus() {
 	const { t } = useTranslation()
 	return (
 		<>
+			<TrackPage name="independant_ou_assimile-salarie" />
 			<Helmet>
 				<title>
 					{t('statut du dirigeant.titre', 'Définir le statut du dirigeant')}

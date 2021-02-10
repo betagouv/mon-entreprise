@@ -15,6 +15,7 @@ import React, {
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
+import { TrackPage } from '../../ATInternetTracking'
 import Iframes from '../Iframes'
 import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
@@ -175,6 +176,7 @@ export default function Integration() {
 	return (
 		<>
 			<ScrollToTop />
+			<TrackPage name="module_web" />
 			<div>
 				<Trans i18nKey="pages.développeurs.iframe">
 					<h1>Intégrez le module Web</h1>
