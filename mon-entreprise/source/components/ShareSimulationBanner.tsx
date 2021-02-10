@@ -4,13 +4,16 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import Animate from 'Components/ui/animate'
 import Banner from './Banner'
 import { LinkButton } from 'Components/ui/Button'
-import { useGetSearchParams } from './utils/useSearchParamsSimulationSharing'
+import { useParamsFromSituation } from './utils/useSearchParamsSimulationSharing'
+import { useSelector } from 'react-redux'
+import { situationSelector } from 'Selectors/simulationSelectors'
 
 export default function ShareSimulationBanner() {
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
 	const tracker = useContext(TrackerContext)
-	const getSearchParams = useGetSearchParams()
+	const situation = useSelector(situationSelector)
+	const searchParams = useParamsFromSituation(situation)
 
 	const shareAPIAvailable = !!window?.navigator?.share
 
@@ -19,7 +22,7 @@ export default function ShareSimulationBanner() {
 			window.location.origin,
 			window.location.pathname,
 			'?',
-			getSearchParams().toString(),
+			searchParams.toString(),
 		].join('')
 
 	const startSharing = () => {

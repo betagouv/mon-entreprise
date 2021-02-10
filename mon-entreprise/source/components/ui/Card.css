@@ -153,6 +153,9 @@
 }
 
 @media (min-width: 700px) {
+	.ui__.large.box-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
 	.ui__.small.box-container {
 		grid-template-columns: repeat(4, 1fr);
 	}
@@ -162,6 +165,9 @@
 }
 
 @media (min-width: 1000px) {
+	.ui__.large.box-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
 	.ui__.full-width.small.box-container {
 		grid-template-columns: repeat(5, auto);
 	}
