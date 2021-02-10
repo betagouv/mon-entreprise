@@ -8,6 +8,7 @@ env:
   MATOMO_TOKEN: ${{ secrets.MATOMO_TOKEN }}
   EN_SITE: "${path}?s=m"
   FR_SITE: "${path}"
+  AT_INTERNET_SITE_ID: 617189
 jobs:
   build:
     runs-on: ubuntu-18.04

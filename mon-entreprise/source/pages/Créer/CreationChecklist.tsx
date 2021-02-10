@@ -3,6 +3,8 @@ import {
 	initializeCompanyCreationChecklist,
 } from 'Actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
+import * as Animate from 'Components/ui/animate'
+import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -13,10 +15,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
+import { TrackPage } from '../../ATInternetTracking'
 import GuideAutoEntrepreneurUrl from './Guide_Auto-Entrepreneur.pdf'
-
-import * as Animate from 'Components/ui/animate'
-import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import StatutDescription from './StatutDescription'
 
 type CreateCompanyProps = {
@@ -50,8 +50,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		: t(['entreprise.page.entreprise.titre', 'Créer une {{status}}'], {
 				status: statut,
 		  })
+
 	return (
 		<Animate.fromBottom>
+			<TrackPage chapter2="statut" name={statut} />
 			<Helmet>
 				<title>{titre}</title>
 				<meta

@@ -4,5 +4,9 @@
 	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
-	"eslint.enable": true
+	"eslint.enable": true,
+	"cSpell.words": [
+		"mycompanyinfrance",
+		"smarttag"
+	]
 }

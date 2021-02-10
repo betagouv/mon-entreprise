@@ -9,6 +9,7 @@ import {
 	LegalStatus,
 	possibleStatusSelector,
 } from 'Selectors/companyStatusSelectors'
+import { TrackPage } from '../../../ATInternetTracking'
 import StatutDescription from '../StatutDescription'
 
 type StatutButtonProps = {
@@ -89,6 +90,7 @@ export default function SetMainStatus() {
 	const possibleStatus = useSelector(possibleStatusSelector)
 	return (
 		<>
+			<TrackPage chapter2="statut" name="liste" />
 			<Helmet>
 				<title>
 					{t(

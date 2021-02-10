@@ -1,11 +1,13 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
+import Animate from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
-import Animate from 'Components/ui/animate'
+import { RootState } from 'Reducers/rootReducer'
+import { TrackChapter } from '../../../ATInternetTracking'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import DirectorStatus from './DirectorStatus'
 import MinorityDirector from './MinorityDirector'
@@ -13,7 +15,6 @@ import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
 import PreviousAnswers from './PreviousAnswers'
 import SoleProprietorship from './SoleProprietorship'
-import { RootState } from 'Reducers/rootReducer'
 
 const useResetFollowingAnswers = () => {
 	const dispatch = useDispatch()
@@ -57,6 +58,7 @@ export default function Créer() {
 					← <Trans>Retour</Trans>
 				</NavLink>
 			</div>
+			<TrackChapter level={2} name="guide" />
 			<h1>
 				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
 			</h1>

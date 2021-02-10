@@ -72,6 +72,14 @@ export type SimulatorData = Record<
 			ogImage?: string
 			color?: string
 		}
+		tracking:
+			| {
+					name: string
+					chapter2?: 'profession_liberale'
+					chapter3?: 'pamc'
+					chapter1?: 'gerer' | 'creer'
+			  }
+			| string
 		icône: string
 		shortName: string
 		path?: string
@@ -93,6 +101,7 @@ export function getSimulatorsData({
 }): SimulatorData {
 	return {
 		salarié: {
+			tracking: 'salarie',
 			config: salariéConfig,
 			component: SalariéSimulation,
 			icône: '🤝',
@@ -168,9 +177,9 @@ export function getSimulatorsData({
 					<p>
 						Si vous cherchez à embaucher, vous pouvez calculer le coût total de
 						la rémunération de votre salarié, ainsi que les montants de
-						cotisations patronales et salariales correspondants. Cela vous
-						permet de définir le niveau de rémunération en connaissant le
-						montant global de charge que cela représente pour votre entreprise.
+						cotisations patronales et salariales correspondant. Cela vous permet
+						de définir le niveau de rémunération en connaissant le montant
+						global de charge que cela représente pour votre entreprise.
 					</p>
 					<p>
 						En plus du salaire, notre simulateur prend en compte le calcul des
@@ -193,6 +202,7 @@ export function getSimulatorsData({
 			),
 		},
 		'auto-entrepreneur': {
+			tracking: 'auto-entrepreneur',
 			config: autoEntrepreneurConfig,
 			icône: '🚶‍♂️',
 			iframe: 'simulateur-autoentrepreneur',
@@ -299,6 +309,7 @@ export function getSimulatorsData({
 		},
 		indépendant: {
 			config: indépendantConfig,
+			tracking: 'independant',
 			icône: '🏃',
 			iframe: 'simulateur-independant',
 			path: sitePaths.simulateurs.indépendant,
@@ -321,6 +332,7 @@ export function getSimulatorsData({
 		},
 		sasu: {
 			config: sasuConfig,
+			tracking: 'dirigeant-sasu',
 			icône: '👨‍✈️',
 			iframe: 'simulateur-assimilesalarie',
 			meta: {
@@ -400,6 +412,7 @@ export function getSimulatorsData({
 		},
 		'artiste-auteur': {
 			icône: '👩‍🎨',
+			tracking: 'artiste-auteur',
 			iframe: 'simulateur-artiste-auteur',
 			meta: {
 				title: t(
@@ -426,6 +439,7 @@ export function getSimulatorsData({
 			component: ArtisteAuteur,
 		},
 		'chômage-partiel': {
+			tracking: 'chomage-partiel',
 			component: ChômagePartielComponent,
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
@@ -533,6 +547,7 @@ export function getSimulatorsData({
 		},
 		'comparaison-statuts': {
 			component: SchemeComparaisonPage,
+			tracking: 'comparaison_statut',
 			icône: '📊',
 			path: sitePaths.simulateurs.comparaison,
 			title: t(
@@ -555,6 +570,7 @@ export function getSimulatorsData({
 			),
 		},
 		'économie-collaborative': {
+			tracking: 'economie_collaborative',
 			component: ÉconomieCollaborative,
 			meta: {
 				title: t(
@@ -575,6 +591,10 @@ export function getSimulatorsData({
 		},
 		'aide-déclaration-indépendant': {
 			component: AideDéclarationIndépendant,
+			tracking: {
+				chapter1: 'gerer',
+				name: 'aide_declaration_independant',
+			},
 			icône: '✍️',
 			meta: {
 				description: t(
@@ -598,6 +618,10 @@ export function getSimulatorsData({
 		},
 		'demande-mobilité': {
 			component: FormulaireMobilitéIndépendant,
+			tracking: {
+				chapter1: 'gerer',
+				name: 'demande_mobilite',
+			},
 			icône: '🧳',
 			meta: {
 				title: t(
@@ -619,6 +643,11 @@ export function getSimulatorsData({
 		},
 		médecin: {
 			config: médecinConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pamc',
+				name: 'medecin',
+			},
 			icône: '⚕️',
 			iframe: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
@@ -632,6 +661,11 @@ export function getSimulatorsData({
 		'chirurgien-dentiste': {
 			config: dentisteConfig,
 			icône: '🦷',
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pamc',
+				name: 'chirurgien_dentiste',
+			},
 			iframe: 'chirurgien-dentiste',
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 			shortName: t(
@@ -647,6 +681,11 @@ export function getSimulatorsData({
 		'sage-femme': {
 			config: sageFemmeConfig,
 			icône: '👶',
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pamc',
+				name: 'sage_femme',
+			},
 			iframe: 'sage-femme',
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 			shortName: t('pages.simulateurs.sage-femme.shortname', 'Sage-femme'),
@@ -658,6 +697,11 @@ export function getSimulatorsData({
 		},
 		'auxiliaire-médical': {
 			config: auxiliaireConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pamc',
+				name: 'auxiliaire_medical',
+			},
 			tooltip: t(
 				'pages.simulateurs.auxiliaire.tooltip',
 				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
@@ -674,6 +718,10 @@ export function getSimulatorsData({
 		},
 		avocat: {
 			config: avocatConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				name: 'avocat',
+			},
 			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
 			iframe: 'avocat',
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
@@ -686,6 +734,10 @@ export function getSimulatorsData({
 		},
 		'expert-comptable': {
 			config: expertComptableConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				name: 'expert_comptable',
+			},
 			icône: '🧮',
 			iframe: 'expert-comptable',
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
@@ -701,6 +753,10 @@ export function getSimulatorsData({
 		},
 		'profession-libérale': {
 			config: professionLibéraleConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				name: 'tous',
+			},
 			icône: '💻',
 			meta: {
 				title: t(
@@ -726,6 +782,11 @@ export function getSimulatorsData({
 		},
 		pamc: {
 			private: true,
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pamc',
+				name: 'accueil',
+			},
 			iframe: 'pamc',
 			title: t(
 				'pages.simulateurs.pamc.title',
@@ -793,6 +854,9 @@ export function getSimulatorsData({
 		},
 		is: {
 			icône: '🗓',
+			tracking: {
+				name: 'impot-societe',
+			},
 			path: sitePaths.simulateurs.is,
 			iframe: 'impot-societe',
 			meta: {

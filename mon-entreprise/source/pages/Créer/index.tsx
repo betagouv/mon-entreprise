@@ -1,8 +1,8 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import { TrackChapter } from '../../ATInternetTracking'
 import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'
@@ -15,6 +15,7 @@ export default function CreateMyCompany() {
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
+			<TrackChapter level={1} name="creer" />
 			<Switch>
 				<Route exact path={sitePaths.créer.index} component={Home} />
 				{LANDING_LEGAL_STATUS_LIST.map((statut) => (

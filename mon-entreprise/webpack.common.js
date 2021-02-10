@@ -1,4 +1,5 @@
 /* eslint-env node */
+require('dotenv').config()
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
@@ -128,6 +129,7 @@ module.exports.default = {
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}',
+			AT_INTERNET_SITE_ID: '',
 		}),
 		new EnvironmentPlugin({
 			GITHUB_REF: '',

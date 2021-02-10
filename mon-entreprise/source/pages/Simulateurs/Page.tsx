@@ -1,19 +1,21 @@
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
-import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
-import { default as React, useContext, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { SimulatorData } from './metadata'
-import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
+import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { default as React, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
+import { TrackPage } from '../../ATInternetTracking'
+import { SimulatorData } from './metadata'
 
 export default function SimulateurPage({
 	meta,
 	title,
 	config,
+	tracking,
 	tooltip,
 	description,
 	component: Component,
@@ -43,8 +45,16 @@ export default function SimulateurPage({
 		)
 	}
 
+	const trackInfo =
+		typeof tracking === 'string'
+			? {
+					name: tracking,
+					chapter1: 'simulateurs' as const,
+			  }
+			: tracking
 	return (
 		<>
+			<TrackPage {...trackInfo} />
 			{meta && <Meta {...meta} />}
 			{title && !inIframe && (
 				<>

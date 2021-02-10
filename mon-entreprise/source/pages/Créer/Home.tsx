@@ -1,3 +1,4 @@
+import Animate from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -6,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
-import Animate from 'Components/ui/animate'
+import { TrackPage } from '../../ATInternetTracking'
 import créerSvg from './créer.svg'
 
 export default function Créer() {
@@ -19,6 +20,8 @@ export default function Créer() {
 	)
 	return (
 		<Animate.fromBottom>
+			<TrackPage name="accueil" />
+
 			<Helmet>
 				<title>{t('créer.titre', 'Créer une entreprise')}</title>
 			</Helmet>

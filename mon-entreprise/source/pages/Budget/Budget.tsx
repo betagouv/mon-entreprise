@@ -7,6 +7,7 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { TrackPage } from '../../ATInternetTracking'
 import prose from './budget.md'
 import budget from './budget.yaml'
 
@@ -37,6 +38,7 @@ export default function Budget() {
 	const { language } = useTranslation().i18n
 	return (
 		<>
+			<TrackPage chapter1="informations" name="budget" />
 			<ScrollToTop />
 			<h1>Budget {emoji('💶')}</h1>
 			<Markdown source={intro} />

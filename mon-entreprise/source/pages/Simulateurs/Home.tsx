@@ -1,16 +1,16 @@
+import classnames from 'classnames'
+import InfoBulle from 'Components/ui/InfoBulle'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { HeadingWithAnchorLink } from 'Components/utils/markdown'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import classnames from 'classnames'
-
+import { TrackPage } from '../../ATInternetTracking'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import InfoBulle from 'Components/ui/InfoBulle'
-import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -20,6 +20,7 @@ export default function Simulateurs() {
 	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
 		<>
+			<TrackPage chapter1="simulateurs" name="accueil" />
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
