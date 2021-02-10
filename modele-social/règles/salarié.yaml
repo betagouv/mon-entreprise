@@ -2109,6 +2109,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
     produit:
       assiette: 4000 €/an
       facteur: temps de travail . quotité de travail effective
+    arrondi: oui
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
@@ -2121,6 +2122,7 @@ contrat salarié . aides employeur . aide à l'embauche senior professionnalisat
     produit:
       assiette: 2000 €/an
       facteur: temps de travail . quotité de travail effective
+    arrondi: oui
   références:
     Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
     Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
@@ -2160,6 +2162,7 @@ contrat salarié . aides employeur . emploi franc:
                 - si: CDD
                   alors: 2500 €/an
       facteur: temps de travail . quotité de travail effective
+    arrondi: oui
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
