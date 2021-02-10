@@ -2095,7 +2095,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   applicable si:
     toutes ces conditions:
       - ancienneté . date d'embauche >= 01/08/2020
-      - ancienneté . date d'embauche <= 31/01/2021
+      - ancienneté . date d'embauche <= 31/03/2021
       - rémunération . brut de base <= 2 * SMIC
       - une de ces conditions:
           - CDI
@@ -2146,7 +2146,7 @@ contrat salarié . aides employeur . emploi franc:
           - si:
               toutes ces conditions:
                 - ancienneté . date d'embauche >= 15/10/2020
-                - ancienneté . date d'embauche <= 31/01/2021
+                - ancienneté . date d'embauche <= 31/03/2021
             alors:
               variations:
                 - si: CDI
