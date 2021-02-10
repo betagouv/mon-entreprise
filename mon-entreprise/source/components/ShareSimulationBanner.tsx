@@ -4,15 +4,13 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import Animate from 'Components/ui/animate'
 import Banner from './Banner'
 import { LinkButton } from 'Components/ui/Button'
+import { useGetSearchParams } from './utils/useSearchParamsSimulationSharing'
 
-export default function ShareSimulationBanner({
-	getShareSearchParams,
-}: {
-	getShareSearchParams: () => URLSearchParams
-}) {
+export default function ShareSimulationBanner() {
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
 	const tracker = useContext(TrackerContext)
+	const getSearchParams = useGetSearchParams()
 
 	const shareAPIAvailable = !!window?.navigator?.share
 
@@ -21,7 +19,7 @@ export default function ShareSimulationBanner({
 			window.location.origin,
 			window.location.pathname,
 			'?',
-			getShareSearchParams().toString(),
+			getSearchParams().toString(),
 		].join('')
 
 	const startSharing = () => {
