@@ -7,8 +7,6 @@
 "<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
-footer: 
-  accessibilité: "Accessibility: not compliant"
 Accueil: Home
 Afficher la description publicode: Display publicode description
 Aide à la déclaration de revenu: Income tax return assistance
@@ -92,6 +90,7 @@ Intégrer nos simulateurs: Integrate our simulators
 Intégrer un simulateur: Integrating a simulator
 J'ai compris: understood
 Janvier 2019: January 2019
+Jusqu’au: Until
 La somme de: This rule is the sum of
 Liste des statuts juridiques: List of legal statutes
 Mes réponses: My answers
@@ -663,6 +662,8 @@ feedback:
   simulator: Do you like this simulator ?
   thanks: Thank for your feedback! You can contact us directly at <1>
     </1><2>contact@mon-entreprise.beta.gouv.fr</2>
+footer:
+  accessibilité: "Accessibility: not compliant"
 formeJuridique:
   EI: Also called company in own name or company in a personal name. No capital
     contribution is necessary. Private wealth and corporate wealth are one.
@@ -990,6 +991,38 @@ pages:
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
       titre: Simulators available
+    aides-embauche:
+      aides:
+        apprenti: For the hiring of an apprentice or a young person on a
+          professionalization contract.<1></1>The aid is paid <3>monthly</3> and
+          automatically by the Service and Payment Agency (ASP).
+        emploi franc: For the hiring of a young person from a priority district of the
+          city (QPV). The aid can be up to €17,000 over three years.<1></1>The
+          aid is paid every <3>6 months</3> by Pôle Emploi.
+        jeune: For the hiring of a young person under the age of 26 on a permanent
+          contract or for a fixed-term contract of at least 3 months.<1></1>The
+          aid is paid <3>quarterly</3> by the Services and Payment Agency (ASP).
+        senior: For a jobseeker aged 45 or over hired under a professionalization
+          contract.<1></1>The aid is paid by Pôle Emploi in two instalments of
+          €1,000 each.
+      card:
+        action: Estimate Hiring costs
+        montant: Amount of aid
+        première année: the first year
+      introduction: <0><0><0></0></0>Employers can receive financial assistance to
+        hire certain priority groups. Find out about existing schemes and
+        estimate the amount of incentives by answering a short number of questions.</0>
+      message fin: You can now simulate the exact cost of hiring by selecting an
+        eligible grant.
+      meta:
+        title: Hiring incentives
+      outro: <0>Learn more about incentives</0><1>As part of the "Plan Relance" plan, the
+        government is putting in place a series of measures to encourage new
+        hires.</1><2>Visit the portal <2>#1jeune1solution</2> to learn more.</2>
+      titres:
+        aides: The incentives
+        aidesDisponibles: Aid incentives
+        autresAides: Other incentives
     artiste-auteur:
       meta:
         description: Estimate social contributions on copyright and BNC income
