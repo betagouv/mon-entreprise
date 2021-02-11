@@ -77,7 +77,7 @@ const aides = [
 				Pour l’embauche d’un jeune issu d’un quartier prioritaire de la ville
 				(QPV). L’aide peut aller jusqu’à 17 000 € sur trois ans.
 				<br />
-				L’aide est versée tous les <strong>6 mois</strong> par Pôle Emploi.
+				L’aide est versée tous les <strong>6 mois</strong> par Pôle emploi.
 			</Trans>
 		),
 	},
@@ -96,7 +96,7 @@ const aides = [
 				Pour une embauche en contrat de professionnalisation d’un demandeur
 				d’emploi de 45 ans ou plus.
 				<br />
-				L’aide est versée par Pôle Emploi sous la forme de deux versements de
+				L’aide est versée par Pôle emploi sous la forme de deux versements de
 				1000 € chacun.
 			</Trans>
 		),
@@ -158,12 +158,15 @@ export default function AidesEmbauche() {
 				<Trans i18nKey="pages.simulateurs.aides-embauche.outro">
 					<h2>En savoir plus sur les aides</h2>
 					<p>
-						Dans le cadre du plan « Plan Relance » le gouvernement met en place
-						une série de mesure pour encourager les nouvelles embauches.
+						Dans le cadre du plan « France Relance » le gouvernement met en
+						place une série de mesures pour encourager les nouvelles embauches.
 					</p>
 					<p>
 						Rendez-vous sur le portail{' '}
-						<a href="https://www.1jeune1solution.gouv.fr/je-recrute/articles">
+						<a
+							href="https://www.1jeune1solution.gouv.fr/je-recrute/articles"
+							target="_blank"
+						>
 							#1jeune1solution
 						</a>{' '}
 						pour en savoir plus
@@ -248,12 +251,13 @@ function ResultCard({
 				<Trans i18nKey="pages.simulateurs.aides-embauche.card.montant">
 					Montant de l’aide
 				</Trans>{' '}
-				: <strong>{formatValue(evaluation, { displayedUnit: '€' })}</strong> 
+				: <strong>{formatValue(evaluation, { displayedUnit: '€' })}</strong>
 				{(dottedName.includes('aides employeur . emploi franc') ||
 					dottedName.includes(
 						"aide exceptionnelle à l'embauche d'apprentis"
 					)) && (
 					<Trans i18nKey="pages.simulateurs.aides-embauche.card.première année">
+						{' '}
 						la première année
 					</Trans>
 				)}

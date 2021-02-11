@@ -4,10 +4,7 @@ import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { useHistory } from 'react-router'
 import { useSearchParams } from 'Components/utils/useSearchParams'
 import { useEngine } from 'Components/utils/EngineContext'
-import {
-	configSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
+import { configSelector } from 'Selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
 import { updateSituation, setActiveTarget } from 'Actions/actions'
@@ -19,7 +16,6 @@ type ParamName = DottedName | ShortName
 export default function useSearchParamsSimulationSharing() {
 	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
-	const situation = useSelector(situationSelector)
 	const config = useSelector(configSelector)
 	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
 	const currentUrl = useHistory().location.pathname
