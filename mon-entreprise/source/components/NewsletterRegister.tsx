@@ -71,7 +71,7 @@ export default function NewsletterRegister() {
 			<div className="footer__newsletterContainer">
 				<p>
 					<Trans i18nKey="newsletter.register.description">
-						Inscrivez-vous à notre newsletter pour être informés des nouveautés
+						Inscrivez-vous à notre newsletter pour être informé des nouveautés
 						et accéder aux nouvelles fonctionnalités en avant-première.
 					</Trans>
 				</p>
