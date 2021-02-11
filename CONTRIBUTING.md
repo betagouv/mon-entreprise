@@ -45,6 +45,13 @@ yarn start
 
 L'application est exécuté sur https://localhost:8080/mon-entreprise pour la version française et http://localhost:8080/infrance pour la version anglaise.
 
+Pour activer le tracing Redux:
+
+```
+REDUX_TRACE=true yarn start
+```
+
+
 ### Messages de commit
 
 A mettre sans retenue dans les messages de commit :

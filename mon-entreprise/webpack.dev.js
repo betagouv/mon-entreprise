@@ -19,7 +19,10 @@ module.exports = {
 	plugins: [
 		...common.plugins,
 		...HTMLPlugins(),
-		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: 'development',
+			REDUX_TRACE: false,
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 }
