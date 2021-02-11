@@ -76,7 +76,7 @@ entreprise . chiffre d'affaires:
 
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
-  titre: Vente de biens, restauration, hebergement
+  titre: Vente de biens, restauration, hébergement
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
   unité: €/an
@@ -99,7 +99,7 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
     ### Restauration et hébergement
     Il s’agit du chiffre d'affaires de toutes les opérations de restauration
-    ou hebergement (hors meublé de tourisme classé)
+    ou hébergement (hors meublé de tourisme classé)
 
     Ces revenus sont imposable au régime BIC
   références:
@@ -138,7 +138,7 @@ entreprise . chiffre d'affaires . service BIC:
 
 
 entreprise . chiffre d'affaires . service BNC:
-  titre: Prestations de service libérale
+  titre: Prestations de service libérales
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
   arrondi: oui
@@ -484,7 +484,7 @@ entreprise . ACRE:
     - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
 
     - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
-  question: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  question: Votre entreprise bénéficie-t-elle de l'ACRE ?
   applicable si:
     une de ces conditions:
       - toutes ces conditions:

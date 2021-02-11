@@ -53,7 +53,7 @@ aide déclaration revenu indépendant 2020 . ACRE:
 
     - Si le revenu est supérieur à 100% du PASS l’exonération est nulle.
 
-  question: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  question: Votre entreprise bénéficie-t-elle de l'ACRE ?
   applicable si: entreprise . durée d'activité . en début d'année <= 1 an
   par défaut: non
 
