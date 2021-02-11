@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { useHistory } from 'react-router'
 import { useSearchParams } from 'Components/utils/useSearchParams'
 import { useEngine } from 'Components/utils/EngineContext'
 import {
@@ -18,10 +19,12 @@ type ParamName = DottedName | ShortName
 export default function useSearchParamsSimulationSharing() {
 	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
-	const config = useSelector(configSelector)
 	const situation = useSelector(situationSelector)
-	const engine = useEngine()
+	const config = useSelector(configSelector)
+	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
+	const currentUrl = useHistory().location.pathname
 	const dispatch = useDispatch()
+	const engine = useEngine()
 
 	const dottedNameParamName = useMemo(
 		() => getRulesParamNames(engine.getParsedRules()),
@@ -30,7 +33,11 @@ export default function useSearchParamsSimulationSharing() {
 
 	useEffect(() => {
 		const hasConfig = Object.keys(config).length > 0
-		if (!hasConfig) return
+		// TODO: this check is specific to `useSimulationConfig` and
+		// `setSimulationConfig`, so we'd prefer not doing it here. Other ideas
+		// include having the config in a provider rather than in state.
+		const configLoadedInState = simulationUrl === currentUrl
+		if (!hasConfig || !configLoadedInState) return
 
 		// On load:
 		if (!urlSituationIsExtracted) {
@@ -58,17 +65,25 @@ export default function useSearchParamsSimulationSharing() {
 			)
 
 			setUrlSituationIsExtracted(true)
-			return
 		}
+		return
 	}, [
+		currentUrl,
+		simulationUrl,
 		dispatch,
 		dottedNameParamName,
 		config,
 		searchParams,
 		setSearchParams,
-		situation,
 		urlSituationIsExtracted,
 	])
+
+	// Cleanup:
+	useEffect(() => {
+		return () => {
+			setUrlSituationIsExtracted(false)
+		}
+	}, [])
 }
 
 export const useParamsFromSituation = (situation: Situation) => {
