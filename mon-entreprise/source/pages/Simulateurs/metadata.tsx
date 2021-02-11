@@ -766,29 +766,35 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs['aides-embauche'],
 			iframe: 'aides-embauche',
 			shortName: 'Aides à l’embauche',
-			title: "Aides à l'embauche",
+			title: t(
+				'pages.simulateurs.aides-embauche.meta.title',
+				"Aides à l'embauche"
+			),
 			description: (
-				<p>
-					<a
-						href="https://www.gouvernement.fr/france-relance"
-						title="Aller sur le site France Relance"
-						target="_blank"
-					>
-						<img
-							src={logoFranceRelance}
-							alt="Logo France Relance"
-							style={{
-								width: '120px',
-								marginBottom: '1rem',
-								marginLeft: '1rem',
-								float: 'right',
-							}}
-						/>
-					</a>
-					Les employeurs peuvent bénéficier d'une aide financière pour
-					l'embauche de certains publics prioritaires. Découvrez les dispositifs
-					existants et estimez le montant de l'aide en répondant aux questions.
-				</p>
+				<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
+					<p>
+						<a
+							href="https://www.gouvernement.fr/france-relance"
+							title="Aller sur le site France Relance"
+							target="_blank"
+						>
+							<img
+								src={logoFranceRelance}
+								alt="Logo France Relance"
+								style={{
+									width: '120px',
+									marginBottom: '1rem',
+									marginLeft: '1rem',
+									float: 'right',
+								}}
+							/>
+						</a>
+						Les employeurs peuvent bénéficier d'une aide financière pour
+						l'embauche de certains publics prioritaires. Découvrez les
+						dispositifs existants et estimez le montant de l'aide en répondant
+						aux questions.
+					</p>
+				</Trans>
 			),
 			component: AidesEmbauche,
 		},

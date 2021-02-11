@@ -12,7 +12,7 @@ import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
 import { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import styled from 'styled-components'
@@ -37,13 +37,13 @@ const aides = [
 		},
 		dateFin: new Date('2020/02/28'),
 		description: (
-			<>
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.apprenti">
 				Pour l’embauche d’un apprenti ou d’un jeune en contrat de
 				professionnalisation.
 				<br />
 				L’aide est versée <strong>mensuellement</strong> et automatiquement par
 				l’Agence de services et de paiement (ASP).
-			</>
+			</Trans>
 		),
 	},
 	{
@@ -56,13 +56,13 @@ const aides = [
 		},
 		dateFin: new Date('2020/03/31'),
 		description: (
-			<>
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.jeune">
 				Pour l’embauche d’un jeune de moins de 26 ans en CDI ou pour un CDD d’au
 				moins 3 mois.
 				<br />
 				L’aide est versée <strong>trimestriellement</strong> par l’Agence de
 				services et de paiement (ASP).
-			</>
+			</Trans>
 		),
 	},
 	{
@@ -73,12 +73,12 @@ const aides = [
 		},
 		dateFin: new Date('2020/03/31'),
 		description: (
-			<>
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc">
 				Pour l’embauche d’un jeune issu d’un quartier prioritaire de la ville
 				(QPV). L’aide peut aller jusqu’à 17 000 € sur trois ans.
 				<br />
 				L’aide est versée tous les <strong>6 mois</strong> par Pôle Emploi.
-			</>
+			</Trans>
 		),
 	},
 	{
@@ -92,13 +92,13 @@ const aides = [
 				'oui',
 		},
 		description: (
-			<>
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.senior">
 				Pour une embauche en contrat de professionnalisation d’un demandeur
 				d’emploi de 45 ans ou plus.
 				<br />
 				L’aide est versée par Pôle Emploi sous la forme de deux versements de
 				1000 € chacun.
-			</>
+			</Trans>
 		),
 	},
 ] as Array<AideDescriptor>
@@ -144,10 +144,10 @@ export default function AidesEmbauche() {
 					<HiddenOptionContext.Provider value={['contrat salarié . stage']}>
 						<Conversation
 							customEndMessages={
-								<>
+								<Trans i18nKey="pages.simulateurs.aides-embauche.message fin">
 									Vous pouvez maintenant simuler le coût d’embauche précis en en
 									sélectionnant une aide éligible.
-								</>
+								</Trans>
 							}
 						/>
 					</HiddenOptionContext.Provider>
@@ -155,18 +155,20 @@ export default function AidesEmbauche() {
 			</section>
 			<Results />
 			<section>
-				<h2>En savoir plus sur les aides</h2>
-				<p>
-					Dans le cadre du plan « Plan Relance » le gouvernement met en place
-					une série de mesure pour encourager les nouvelles embauches.
-				</p>
-				<p>
-					Rendez-vous sur le portail{' '}
-					<a href="https://www.1jeune1solution.gouv.fr/je-recrute/articles">
-						#1jeune1solution
-					</a>{' '}
-					pour en savoir plus
-				</p>
+				<Trans i18nKey="pages.simulateurs.aides-embauche.outro">
+					<h2>En savoir plus sur les aides</h2>
+					<p>
+						Dans le cadre du plan « Plan Relance » le gouvernement met en place
+						une série de mesure pour encourager les nouvelles embauches.
+					</p>
+					<p>
+						Rendez-vous sur le portail{' '}
+						<a href="https://www.1jeune1solution.gouv.fr/je-recrute/articles">
+							#1jeune1solution
+						</a>{' '}
+						pour en savoir plus
+					</p>
+				</Trans>
 			</section>
 		</>
 	)
@@ -187,14 +189,26 @@ function Results() {
 
 	return progress === 0 ? (
 		<>
-			<h3>Les aides</h3>
+			<h3>
+				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aides">
+					Les aides
+				</Trans>
+			</h3>
 			<AidesGrid aides={aides} />
 		</>
 	) : (
 		<Animate.fromTop>
-			<h3>Aides disponibles</h3>
+			<h3>
+				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aidesDisponibles">
+					Aides disponibles
+				</Trans>
+			</h3>
 			<AidesGrid aides={aidesActives} />
-			<h3>Les autres aides</h3>
+			<h3>
+				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.autresAides">
+					Les autres aides
+				</Trans>
+			</h3>
 			<AidesGrid aides={aidesInactives} />
 		</Animate.fromTop>
 	)
@@ -230,18 +244,24 @@ function ResultCard({
 			<h4>{title}</h4>
 			<p className="ui__ notice">
 				<Emoji emoji={'💶'} />
-				&nbsp; Montant de l’aide :{' '}
-				<strong>{formatValue(evaluation, { displayedUnit: '€' })}</strong> 
+				&nbsp;{' '}
+				<Trans i18nKey="pages.simulateurs.aides-embauche.card.montant">
+					Montant de l’aide
+				</Trans>{' '}
+				: <strong>{formatValue(evaluation, { displayedUnit: '€' })}</strong> 
 				{(dottedName.includes('aides employeur . emploi franc') ||
 					dottedName.includes(
 						"aide exceptionnelle à l'embauche d'apprentis"
-					)) &&
-					'la première année'}
+					)) && (
+					<Trans i18nKey="pages.simulateurs.aides-embauche.card.première année">
+						la première année
+					</Trans>
+				)}
 				{dateFin && (
 					<>
 						<br />
 						<Emoji emoji={'📆'} />
-						&nbsp; Jusqu’au{' '}
+						&nbsp; <Trans>Jusqu’au</Trans>{' '}
 						{new Intl.DateTimeFormat(lang, {
 							month: 'long',
 							day: 'numeric',
@@ -259,7 +279,9 @@ function ResultCard({
 						search,
 					}}
 				>
-					Simuler une embauche
+					<Trans i18nKey="pages.simulateurs.aides-embauche.card.action">
+						Simuler une embauche
+					</Trans>
 				</Link>
 			</div>
 		</AideCard>
