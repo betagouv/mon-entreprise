@@ -2360,7 +2360,7 @@ contrat salarié . temps de travail . heures complémentaires . seuil légal:
 contrat salarié . statut JEI:
   titre: Statut JEI
   question: >-
-    La personne bénéficie-t'elle de l'exonération Jeune Entreprise Innovante (JEI) ?
+    La personne bénéficie-t-elle de l'exonération Jeune Entreprise Innovante (JEI) ?
   description: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
