@@ -18,8 +18,17 @@ declare global {
 		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
 	}
 }
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+if (process.env.REDUX_TRACE) {
+	console.log('going to trace')
+}
+const composeEnhancers =
+	(process.env.REDUX_TRACE
+		? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+		  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+				trace: true,
+				traceLimit: 25,
+		  })
+		: window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
 if (
 	process.env.NODE_ENV === 'production' &&
