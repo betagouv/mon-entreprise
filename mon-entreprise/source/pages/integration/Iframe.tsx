@@ -4,10 +4,17 @@ import {
 } from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/Urssaf.svg'
-import React, { Suspense, useContext, useMemo, useRef, useState } from 'react'
+import React, {
+	Suspense,
+	useContext,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { MemoryRouter, useLocation } from 'react-router-dom'
+import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import Iframes from '../Iframes'
 import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
@@ -21,6 +28,7 @@ const LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
 function IntegrationCustomizer() {
 	const { search } = useLocation()
 	const simulators = useSimulatorsData()
+	const history = useHistory()
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
@@ -35,6 +43,11 @@ function IntegrationCustomizer() {
 			? defaultModuleFromUrl
 			: integrableModuleNames[0]
 	)
+
+	useEffect(() => {
+		history.replace({ search: `?module=${currentModule}` })
+	}, [currentModule])
+
 	const { color: defaultColor } = useContext(ThemeColorsContext)
 	const [color, setColor] = useState(defaultColor)
 	return (

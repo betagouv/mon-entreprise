@@ -11,15 +11,18 @@ import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { SimulationConfig } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/simulationSelectors'
+
+const ISConfig = {
+	'unité par défaut': '€/an',
+	situation: {},
+} as SimulationConfig
 
 export default function ISSimulation() {
 	const { color } = useContext(ThemeColorsContext)
-	useSimulationConfig({
-		color,
-		'unité par défaut': '€/an',
-		situation: {},
-	})
+	ISConfig.color = color
+	useSimulationConfig(ISConfig)
 
 	return (
 		<>
