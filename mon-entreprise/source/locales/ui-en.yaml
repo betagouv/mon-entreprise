@@ -176,6 +176,7 @@ Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
+"Versement : ": "Payment : "
 Vie privée: Privacy
 Voir la répartition des cotisations: View contribution breakdown
 Voir le code source: See the source code
@@ -491,6 +492,7 @@ embauche:
       titre: Keep an updated staff register
     titre: Hiring process checklist
 employeur: employer
+en deux fois: in two parts
 en incluant: including
 en titres-restaurant: in restaurant vouchers
 entreprise:
@@ -1011,18 +1013,22 @@ pages:
         première année: the first year
       introduction: <0><0><0></0></0>Employers can receive financial assistance to
         hire certain priority groups. Find out about existing schemes and
-        estimate the amount of incentives by answering a short number of questions.</0>
+        estimate the amount of incentives by answering a short number of
+        questions.</0>
       message fin: You can now simulate the exact cost of hiring by selecting an
         eligible grant.
       meta:
         title: Hiring incentives
-      outro: <0>Learn more about incentives</0><1>As part of the "Plan Relance" plan, the
-        government is putting in place a series of measures to encourage new
+      outro: <0>Learn more about incentives</0><1>As part of the "Plan Relance" plan,
+        the government is putting in place a series of measures to encourage new
         hires.</1><2>Visit the portal <2>#1jeune1solution</2> to learn more.</2>
       titres:
         aides: The incentives
         aidesDisponibles: Aid incentives
         autresAides: Other incentives
+      warning: This simulator presents a reduced list of hiring aids and does not
+        include all the eligibility conditions.<1></1>A more complete simulation
+        can be made by clicking on "Simulate a Hiring".
     artiste-auteur:
       meta:
         description: Estimate social contributions on copyright and BNC income
@@ -1299,6 +1305,7 @@ pages:
         official portal</6>.</8>
       shortname: Employee
       title: Employee income simulator
+      title-employeur: Hiring Cost Simulator
       titre: Income simulator for employees
     sasu:
       meta:
@@ -1526,9 +1533,11 @@ sécu:
   titre: Social security in France
 taux: rate
 taxe: tax
+tous les 6 mois: every 6 months
 toutes ces conditions: all of these apply
 trimestres: quarters
 trimestres validés: validated quarters
+trimestriel: quarterly
 trouver:
   description: Thanks to the SIREN database, the public information of your
     company will be used automatically in the next steps.

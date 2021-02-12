@@ -8,6 +8,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import Warning from 'Components/ui/WarningBlock'
 import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
@@ -22,6 +23,7 @@ type AideDescriptor = {
 	dottedName: DottedName
 	situation: Situation
 	dateFin?: Date
+	versement: JSX.Element
 	description?: JSX.Element
 }
 
@@ -36,6 +38,7 @@ const aides = [
 				'oui',
 		},
 		dateFin: new Date('2020/02/28'),
+		versement: <Trans>mensuel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.apprenti">
 				Pour l’embauche d’un apprenti ou d’un jeune en contrat de
@@ -55,6 +58,7 @@ const aides = [
 				'oui',
 		},
 		dateFin: new Date('2020/03/31'),
+		versement: <Trans>trimestriel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.jeune">
 				Pour l’embauche d’un jeune de moins de 26 ans en CDI ou pour un CDD d’au
@@ -72,6 +76,7 @@ const aides = [
 			'contrat salarié . aides employeur . emploi franc . éligible': 'oui',
 		},
 		dateFin: new Date('2020/03/31'),
+		versement: <Trans>tous les 6 mois</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc">
 				Pour l’embauche d’un jeune issu d’un quartier prioritaire de la ville
@@ -91,6 +96,7 @@ const aides = [
 			'contrat salarié . professionnalisation . salarié de 45 ans et plus':
 				'oui',
 		},
+		versement: <Trans>en deux fois</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.senior">
 				Pour une embauche en contrat de professionnalisation d’un demandeur
@@ -139,13 +145,26 @@ export default function AidesEmbauche() {
 
 	return (
 		<>
+			<div style={{ '--lighterColor': '#e9fff6' } as React.CSSProperties}>
+				<Warning
+					localStorageKey={'app::simulateurs:warning-folded:v1:aides-embauche'}
+				>
+					<Trans i18nKey="pages.simulateurs.aides-embauche.warning">
+						Ce simulateur présente une liste réduite des aides à l'embauche et
+						n'intègre pas l'ensemble des conditions d'éligibilité.
+						<br />
+						Une simulation plus complète peut être réalisée en cliquant sur «
+						Simuler une Embauche ».
+					</Trans>
+				</Warning>
+			</div>
 			<section className="ui__ full-width lighter-bg">
 				<div className="ui__ container">
 					<HiddenOptionContext.Provider value={['contrat salarié . stage']}>
 						<Conversation
 							customEndMessages={
 								<Trans i18nKey="pages.simulateurs.aides-embauche.message fin">
-									Vous pouvez maintenant simuler le coût d’embauche précis en en
+									Vous pouvez maintenant simuler le coût d’embauche précis en
 									sélectionnant une aide éligible.
 								</Trans>
 							}
@@ -157,6 +176,14 @@ export default function AidesEmbauche() {
 			<section>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.outro">
 					<h2>En savoir plus sur les aides</h2>
+					<p>
+						Vous pouvez retrouver une liste plus complète des aides à l'embauche
+						existantes sur le portail{' '}
+						<a href="https://les-aides.fr" target="_blank">
+							les-aides.fr
+						</a>{' '}
+						édité par les chambres de commerce et d'industrie.
+					</p>
 					<p>
 						Dans le cadre du plan « France Relance » le gouvernement met en
 						place une série de mesures pour encourager les nouvelles embauches.
@@ -232,13 +259,15 @@ function ResultCard({
 	title,
 	dottedName,
 	dateFin,
+	versement,
 	description,
 }: AideDescriptor) {
 	const engine = useEngine()
 	const rule = engine.getParsedRules()[dottedName]
 	const valueNode = (rule.explanation.valeur as any)?.explanation.valeur
 	const evaluation = engine.evaluate(valueNode)
-	const search = useParamsFromSituation(situation).toString()
+	const search =
+		useParamsFromSituation(situation).toString() + '&view=employeur'
 	const sitePaths = useContext(SitePathsContext)
 	const lang = useTranslation().i18n.language
 
@@ -261,6 +290,9 @@ function ResultCard({
 						la première année
 					</Trans>
 				)}
+				<br />
+				<Emoji emoji={'🕑'} />
+				&nbsp; <Trans>Versement : </Trans> <strong>{versement}</strong>
 				{dateFin && (
 					<>
 						<br />
