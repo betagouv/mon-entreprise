@@ -109,7 +109,7 @@ export const cleanSearchParams = (
 	dottedNames.forEach((dottedName) =>
 		searchParams.delete(dottedNameParamNameMapping[dottedName])
 	)
-	setSearchParams(searchParams.toString())
+	setSearchParams(searchParams.toString(), { replace: true })
 }
 
 export const getRulesParamNames = (
