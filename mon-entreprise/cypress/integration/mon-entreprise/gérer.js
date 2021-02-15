@@ -17,7 +17,7 @@ describe('Manage page test', function () {
 	})
 	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
 		cy.get('button.cta').click()
-		cy.get('input').first().type('gwenael girod')
+		cy.get('input').first().type('johan girod')
 		cy.contains('MONSIEUR').click()
 		// ask if auto-entrepreneur
 		cy.contains(
@@ -30,9 +30,5 @@ describe('Manage page test', function () {
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/auto-entrepreneur$/)
 		})
-	})
-	it('should be able to navigate to the hiring simulator', function () {
-		cy.contains(fr ? 'une embauche' : 'hiring').click()
-		cy.contains(fr ? 'salarié' : 'employee')
 	})
 })

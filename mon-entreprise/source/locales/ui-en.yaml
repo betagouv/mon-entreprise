@@ -1418,9 +1418,6 @@ selectionRégime:
       the applicable regulatory elements and the elements that you have entered,
       but it does not take into account your entire situation. The actual amount
       of your contributions may therefore be different.
-    auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from
-      their turnover. Therefore, <3>all costs related to the business must be
-      deducted on a net basis to obtain the actual income received</3>.
     cfe: The simulator does not include the corporate property tax (CFE), which is
       due from the second year of the fiscal year. Its amount varies greatly
       depending on the company's turnover and the company's domiciliation.
@@ -1470,7 +1467,7 @@ simulateurs:
 
     We invite you to try again by slightly modifying the amount entered (a few euros more for example).
   précision:
-    défaut: "Refine the simulation by answering the questions:"
+    défaut: "Refine your simulation by answering the questions:"
   warning:
     année-courante: The amount of the contributions is calculated for an income over
       the year 2020.

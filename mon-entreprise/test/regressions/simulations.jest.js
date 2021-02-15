@@ -147,7 +147,7 @@ it('calculate simulations-professions-libérales', () => {
 		professionLibéraleConfig.objectifs,
 		{
 			...professionLibéraleConfig.situation,
-			'entreprise . activité . libérale règlementée': 'oui',
+			'entreprise . activité . libérale réglementée': 'oui',
 		}
 	)
 })

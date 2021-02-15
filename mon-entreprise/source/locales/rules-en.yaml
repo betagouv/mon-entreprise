@@ -71,7 +71,7 @@ aide déclaration revenu indépendant 2020 . ACRE:
 
     - Si le revenu est supérieur à 100% du PASS l’exonération est nulle.
   question.en: '[automatic] Does your company benefit from ACRE?'
-  question.fr: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
 aide déclaration revenu indépendant 2020 . CFP:
@@ -300,10 +300,12 @@ artiste-auteur . revenus . BNC . frais réels:
   titre.en: real costs
   titre.fr: frais réels
 artiste-auteur . revenus . BNC . micro-bnc:
+  question.en: '[automatic] Would you like to opt for the micro-BNC diet?'
+  question.fr: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé.en: '[automatic] With a flat-rate tax allowance of 34% for business expenses.'
   résumé.fr: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
-  titre.en: '[automatic] Would you like to opt for the micro-BNC diet?'
-  titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
+  titre.en: '[automatic] micro-bnc'
+  titre.fr: micro-bnc
 artiste-auteur . revenus . BNC . recettes:
   résumé.en: The amount of your gross revenue excluding VAT
   résumé.fr: Le montant de vos recettes brutes hors TVA
@@ -2213,7 +2215,7 @@ contrat salarié . frais professionnels . transports personnels:
     presentation of proof.
 
 
-    This support can benefit from an exemption from social security contributions and income tax. The maximum deductible amount is 200€/month, but please note that
+    This support can benefit from an exemption from social security contributions and income tax. The maximum deductible amount is 200€/year, but please note that
 
       - the ceiling shall be partially reduced by the amount by which the cost of public transport season tickets is covered
 
@@ -2222,14 +2224,14 @@ contrat salarié . frais professionnels . transports personnels:
     In the case of part time, the advantage will be the same for one half time or more. Below that, a proportional factor will be applied.
 
 
-    To pay a salary bonus equivalent to 200€/month to his employee without this scheme, **the employer would have to pay nearly 500€ for a median salary**.
+    To pay a salary bonus equivalent to 200€/year to his employee without this scheme, **the employer would have to pay nearly 500€ for a median salary**.
   description.fr: >
     L'employeur peut prendre en charge tout ou partie des frais de carburant
     dépensés par l'employé pour son véhicule électriques, hybrides rechargeables
     ou hydrogènes, sur présentation de justificatif.
 
 
-    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/mois, mais attention
+    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/an, mais attention
 
       - le plafond est partiellement réduit du montant de la prise en charge des frais d'abonnement aux transports publics
 
@@ -2238,7 +2240,7 @@ contrat salarié . frais professionnels . transports personnels:
     Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
 
 
-    Pour verser une prime de salaire équivalente à 200€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
+    Pour verser une prime de salaire équivalente à 200€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
   question.en: '[automatic] How much does the employer pay for fuel expenses for
     electric, plug-in hybrid or hydrogen vehicles?'
   question.fr: Quel montant l'employeur prend-il en charge des dépenses en
@@ -2272,7 +2274,7 @@ contrat salarié . frais professionnels . transports personnels:
     The old Bicycle Mileage Allowance now fits into this scheme. It can be sued but the amount will have to be charged here.
 
 
-    The employer can cover these costs up to 500€/month tax- and social security contributions exempt. However, please note
+    The employer can cover these costs up to €500/year in a tax- and social security contribution-free manner. However, please note
 
       - the ceiling shall be reduced by the amount by which the cost of public transport season tickets is covered
 
@@ -2281,7 +2283,7 @@ contrat salarié . frais professionnels . transports personnels:
     In the case of part time, the advantage will be the same for one half time or more. Below that, a proportional factor will be applied.
 
 
-    To pay a salary bonus equivalent to 500€/month to his employee without this scheme, **the employer would have to pay nearly 800€ for a median salary**.
+    To pay a salary bonus equivalent to 500€/year to his employee without this scheme, **the employer would have to pay nearly 800€ for a median salary**.
   description.fr: >
     L'employeur peut prendre en charge tout ou partie des frais de déplacement
     liés à l'utilisation des véhicules entrant dans le cadre du forfait
@@ -2300,7 +2302,7 @@ contrat salarié . frais professionnels . transports personnels:
     L'ancienne Indemnité Kilométrique Vélo entre maintenant dans ce dispositif. Elle peut être poursuivie mais son montant devra être imputé ici.
 
 
-    L'employeur peut prendre en charge ces frais jusqu'à 500€/mois de manière exonérée de cotisations sociales et d'impôt. Attention cependant
+    L'employeur peut prendre en charge ces frais jusqu'à 500€/an de manière exonérée de cotisations sociales et d'impôt. Attention cependant
 
       - le plafond est réduit du montant de la prise en charge des frais d'abonnement aux transports publics
 
@@ -2309,7 +2311,7 @@ contrat salarié . frais professionnels . transports personnels:
     Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
 
 
-    Pour verser une prime de salaire équivalente à 500€/mois à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
+    Pour verser une prime de salaire équivalente à 500€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
   question.en: '[automatic] How much does the employer pay as part of the
     sustainable mobility package?'
   question.fr: Quel montant l'employeur prend-il en charge dans le cadre du
@@ -3475,7 +3477,7 @@ contrat salarié . statut JEI:
     Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
   question.en: '[automatic] Does the person benefit from the Young Innovative
     Company (JEI) exemption?'
-  question.fr: La personne bénéficie-t'elle de l'exonération Jeune Entreprise
+  question.fr: La personne bénéficie-t-elle de l'exonération Jeune Entreprise
     Innovante (JEI) ?
   titre.en: JEI status
   titre.fr: Statut JEI
@@ -3959,10 +3961,25 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE auto-entrepreneur
+? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service
+: titre.en: '[automatic] service delivery rate with ACRE'
+  titre.fr: taux prestation de service avec ACRE
 dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
+  description.en: >
+    [automatic] The micro-entrepreneur is exempted from making a professional
+    profit declaration under the BNC or BIC.
+
+
+    It is sufficient to enter the annual amount of gross sales (BIC) or revenue (BNC) in the supplementary income tax return (No. 2042-C Pro).
+  description.fr: >
+    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle
+    de bénéfices au titre des BNC ou BIC.
+
+
+    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
   titre.en: '[automatic] self-employed taxable income'
   titre.fr: revenu imposable auto-entrepreneur
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
@@ -6068,7 +6085,7 @@ entreprise . ACRE:
     Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019
     bénéficient d'un dispositif plus favorable, actif pendant 3 années.
   question.en: '[automatic] Does your company benefit from ACRE?'
-  question.fr: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: ACRE
   titre.fr: ACRE
 entreprise . ACRE par défaut:
@@ -6160,7 +6177,7 @@ entreprise . activité . libérale:
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
   titre.en: liberal
   titre.fr: libérale
-entreprise . activité . libérale règlementée:
+entreprise . activité . libérale réglementée:
   description.en: >
     Some liberal professions have been classified in the liberal field by law
     and their title is protected. Their members must respect strict ethical
@@ -6190,9 +6207,9 @@ entreprise . activité . libérale règlementée:
 
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
   question.en: Is it a regulated liberal activity?
-  question.fr: Est-ce une activité libérale règlementée ?
+  question.fr: Est-ce une activité libérale réglementée ?
   titre.en: regulated liberal
-  titre.fr: libérale règlementée
+  titre.fr: libérale réglementée
 entreprise . activité . mixte:
   description.en: >
     [automatic] It is possible to have several activities with different types
@@ -6203,9 +6220,9 @@ entreprise . activité . mixte:
 
     For example, a plumbing company that charges for the purchase and installation of a
 
-    tap has a turnover of the type sale of material (the tap) and provision of
+    robinet has a part of its turnover in sales of equipment (the tap)
 
-    service (installation)
+    and a part in service provision (the installation)
 
 
     There are three main families of income in the eyes of the administration
@@ -6213,11 +6230,11 @@ entreprise . activité . mixte:
     fiscal and social :
 
 
-    - [Sales of goods, catering and accommodation](/documentation/business/turnover/sales of goods, catering and accommodation)
+    - (Sales of goods, restaurants and accommodation (BIC))(/documentation/enterprise/turnover/sales-restaurants and accommodation)
 
-    - Provision of commercial or craft services](/documentation/enterprise/turnover/ BIC service provision)
+    - Commercial or craft services (BIC)](/documentation/enterprise/turnover/ BIC services)
 
-    - [Liberal service provision](/documentation/business/turnover/NCB service provision)
+    - (Other services and liberal activity (NCBs))(/documentation/enterprise/turnover/services- NCBs)
 
 
     If your company has activities that correspond to more than one type of
@@ -6231,9 +6248,9 @@ entreprise . activité . mixte:
 
     Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
 
-    robinet a un CA de type vente de materiel (le robinet) et prestation de
+    robinet a une partie de son chiffre d'affaires en vente de materiel (le robinet)
 
-    service (la pose)
+    et une partie en prestation de service (la pose)
 
 
     Il existe trois principales familles de revenus au yeux de l'administration
@@ -6241,11 +6258,11 @@ entreprise . activité . mixte:
     fiscale et sociale :
 
 
-    - [Ventes de biens, restauration et hébergement](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
 
-    - [Prestation de service commerciale ou artisanale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
 
-    - [Prestation de service libérale](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
 
 
     Si votre entreprise a des activités correspondants à plus d'un type de
@@ -6255,9 +6272,11 @@ entreprise . activité . mixte:
   question.fr: Votre entreprise a-t-elle plusieurs types d'activités ?
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
-entreprise . activité . proportions:
-  titre.en: '[automatic] Share of the various activities in turnover'
-  titre.fr: Part des différentes activités dans le chiffre d'affaires
+entreprise . activité . mixte . proportions:
+  description.en: '[automatic] Share of the various activities in turnover'
+  description.fr: Part des différentes activités dans le chiffre d'affaires
+  titre.en: '[automatic] activity proportion'
+  titre.fr: proportion activité
 entreprise . activité . service ou vente:
   question.en: '[automatic] What is the type of activity of the company?'
   question.fr: Quelle est le type d'activité de l'entreprise ?
@@ -6386,7 +6405,16 @@ entreprise . chiffre d'affaires:
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
-entreprise . chiffre d'affaires . franchise de TVA dépassé:
+entreprise . chiffre d'affaires . BIC:
+  description.en: >
+    [automatic] Sales corresponding to taxable income from industrial and
+    commercial profits (BIC or micro-BIC).
+  description.fr: >
+    Le chiffre d'affaires correspondant au revenus imposable au titre des
+    bénéfice industriels et commerciaux (BIC ou micro-BIC).
+  titre.en: '[automatic] BIC'
+  titre.fr: BIC
+entreprise . chiffre d'affaires . franchise de TVA dépassée:
   description.en: |
     [automatic] The VAT exemption is a device that exempts businesses from the
     declaration and payment of VAT. It applies below a threshold of
@@ -6408,23 +6436,24 @@ entreprise . chiffre d'affaires . franchise de TVA dépassé:
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
   titre.en: '[automatic] VAT exemption exceeded'
-  titre.fr: franchise de TVA dépassé
-entreprise . chiffre d'affaires . franchise de TVA dépassé . notification:
+  titre.fr: franchise de TVA dépassée
+entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
   description.en: >
     [automatic] The annual turnover threshold for VAT exemption is exceeded.
-    More information](/documentation/enterprise/VAT-exemption)
+    More information](/documentation/enterprise/turnover/exceeded VAT exemption)
   description.fr: >
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
-    [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+    [En savoir
+    plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
   titre.en: '[automatic] notification'
   titre.fr: notification
-entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil service:
+entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
   titre.en: '[automatic] service threshold'
   titre.fr: seuil service
-entreprise . chiffre d'affaires . franchise de TVA dépassé . seuil vente:
+entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
   titre.en: '[automatic] sales threshold'
   titre.fr: seuil vente
-entreprise . chiffre d'affaires . prestations de service:
+entreprise . chiffre d'affaires . service:
   description.en: >
     [automatic] This is any transaction that does not involve a transfer of
     ownership of
@@ -6433,9 +6462,9 @@ entreprise . chiffre d'affaires . prestations de service:
   description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle)
-  titre.en: '[automatic] services provided'
-  titre.fr: prestations de service
-entreprise . chiffre d'affaires . prestations de service . BIC:
+  titre.en: '[automatic] service'
+  titre.fr: service
+entreprise . chiffre d'affaires . service BIC:
   description.en: >
     [automatic] This is any transaction that does not involve a transfer of
     ownership of
@@ -6465,27 +6494,39 @@ entreprise . chiffre d'affaires . prestations de service . BIC:
     commerciales ou artisanales ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
-  titre.en: '[automatic] Commercial or craft services'
-  titre.fr: Prestations de service commerciales ou artisanales
-entreprise . chiffre d'affaires . prestations de service . BNC:
-  description.en: |
+  titre.en: '[automatic] Commercial or craft services (BIC)'
+  titre.fr: Prestations de service commerciales ou artisanales (BIC)
+entreprise . chiffre d'affaires . service BNC:
+  description.en: >
     [automatic] These are all operations whose intellectual activity is based on
+
     an essential role. 
 
+
     **Examples**: consulting, support, translation, development,
+
     training, education, sports
-  description.fr: |
+
+
+    The income from this turnover is taxable under the BNC regime (non-trading profits).
+  description.fr: >
     Ce sont toutes les opérations dont l'activité intellectuelle tient
+
     un rôle essentiel. 
 
+
     **Exemples** : conseil, accompagnement, traduction, développement,
+
     formation, enseignement, sportif
+
+
+    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
   question.en: '[automatic] What is the turnover from liberal services?'
   question.fr: Quel est le chiffre d'affaires issus de prestations de service libérale ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
-  titre.en: '[automatic] Liberal services'
-  titre.fr: Prestations de service libérale
+  titre.en: '[automatic] Other services and liberal activities (BNC)'
+  titre.fr: Autres prestations de service et activités libérales (BNC)
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: |
     [automatic] ### Sale of goods 
@@ -6506,7 +6547,7 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
     ### Restauration et hébergement
     Il s’agit du chiffre d'affaires de toutes les opérations de restauration
-    ou hebergement (hors meublé de tourisme classé)
+    ou hébergement (hors meublé de tourisme classé)
 
     Ces revenus sont imposable au régime BIC
   question.en: '[automatic] What is the turnover from the sale of goods, food or
@@ -6515,8 +6556,8 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     restauration ou hébergement ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
-  titre.en: '[automatic] Sale of goods, catering, accommodation'
-  titre.fr: Vente de biens, restauration, hebergement
+  titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
+  titre.fr: Vente de biens, restauration, hébergement (BIC)
 entreprise . chiffre d'affaires minimum:
   description.en: The minimum amount of sales (excluding tax) to be achieved to
     reach the break-even point.
