@@ -30,7 +30,7 @@ activités:
     entreprise . activité: "'libérale'"
   - dirigeant . rémunération totale: 20000 €/an
     entreprise . activité: "'libérale'"
-    entreprise . activité . libérale règlementée: oui
+    entreprise . activité . libérale réglementée: oui
   - dirigeant . rémunération totale: 20000 €/an
     entreprise . activité: "'artisanale'"
   - dirigeant . rémunération totale: 20000 €/an

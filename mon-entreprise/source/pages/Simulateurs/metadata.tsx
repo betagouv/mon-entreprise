@@ -862,7 +862,7 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	...professionLibéraleConfig,
 	situation: {
 		...professionLibéraleConfig.situation,
-		'entreprise . activité . libérale règlementée': 'oui',
+		'entreprise . activité . libérale réglementée': 'oui',
 		'dirigeant . indépendant . PL . métier': `'${metier}'`,
 	},
 })

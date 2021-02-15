@@ -229,7 +229,7 @@ function TargetInputOrValue({
 							onFocus={() => {
 								setFocused(true)
 							}}
-							onBlur={() => setTimeout(() => setFocused(false), 100)}
+							onBlur={() => setTimeout(() => setFocused(false), 200)}
 							language={language}
 						/>
 					</>

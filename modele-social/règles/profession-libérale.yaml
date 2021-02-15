@@ -5,7 +5,7 @@ dirigeant . indépendant . PL:
   formule: oui
 
 dirigeant . indépendant . PL . métier:
-  applicable si: entreprise . activité . libérale règlementée
+  applicable si: entreprise . activité . libérale réglementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   formule:
@@ -105,7 +105,7 @@ dirigeant . indépendant . PL . métier . expert-comptable:
 dirigeant . indépendant . PL . option régime général:
   applicable si:
     toutes ces conditions:
-      - entreprise . activité . libérale règlementée = non
+      - entreprise . activité . libérale réglementée = non
       - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: |
@@ -140,7 +140,7 @@ dirigeant . indépendant . PL . régime général:
   formule:
     toutes ces conditions:
       - CIPAV = non
-      - entreprise . activité . libérale règlementée = non
+      - entreprise . activité . libérale réglementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
@@ -237,7 +237,7 @@ dirigeant . indépendant . PL . CIPAV:
       - toutes ces conditions:
           - entreprise . date de création < 01/2019
           - option régime général = non
-          - entreprise . activité . libérale règlementée = non
+          - entreprise . activité . libérale réglementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire

@@ -239,7 +239,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
         assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
-            - si: entreprise . activité . libérale règlementée
+            - si: entreprise . activité . libérale réglementée
               alors: 0.2%
             - sinon: 0.1%
 
@@ -269,26 +269,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-charges-sociales
     actualité urssaf.fr (2019): https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/nouveautes-2019--ce-qui-change-e.html
 
-# dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
-#   description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
-#   note: L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
-#   non applicable si: entreprise . activité = 'libérale'
-#   produit:
-#     assiette: base des cotisations
-#     taux:
-#       variations:
-#         - si: vente ou hébergement
-#           alors: 2.04%
-#         - sinon: 3.50%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . ACRE
   remplace:
-    - règle: taux prestation de service
-      par: taux ACRE * taux prestation de service
-    - règle: taux vente restauration hébergement
-      par: taux ACRE * taux vente restauration hébergement
+    règle: taux vente restauration hébergement
+    par: taux ACRE * taux vente restauration hébergement
 
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
@@ -320,12 +307,27 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
                 plafond: 2 ans
               - montant: 90%
                 plafond: 3 ans
-      - sinon: 50%
+      - sinon: 
+          applicable si: entreprise . durée d'activité < 1 an
+          valeur: 50%
+          
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
     FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
+
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
+  remplace: taux prestation de service
+  titre: taux prestation de service avec ACRE
+  variations: 
+    - si: 
+        toutes ces conditions: 
+          - entreprise . activité . libérale réglementée
+          - entreprise . date de création >= 01/04/2020
+      alors: 12.10%
+    - sinon: taux ACRE * taux prestation de service
+  références:
+    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Guide_Auto-Entrepreneur.pdf?page=14
 
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   formule: entreprise . ACRE

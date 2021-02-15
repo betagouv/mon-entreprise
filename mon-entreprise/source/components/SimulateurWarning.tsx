@@ -18,13 +18,14 @@ export default function SimulateurWarning({
 					<>
 						<li>
 							<Trans i18nKey="simulateurs.warning.auto-entrepreneur">
-								{' '}
-								Les auto-entrepreneurs ne peuvent pas déduire leurs charges de
-								leur chiffre d'affaires. Il faut donc{' '}
-								<strong>
-									retrancher au net tous les coûts liés à l'entreprise pour
-									obtenir le revenu réellement perçu.
-								</strong>
+								Les auto-entrepreneurs bénéficient d’un régime très simplifié
+								avec un taux forfaitaire pour le calcul des cotisations et
+								contributions sociales appliqué sur le chiffre d’affaires. Selon
+								le choix de la modalité de paiement des impôts il est appliqué
+								un abattement forfaitaire au titre des frais professionnels. Il
+								n’est pas possible de déduire des charges réelles en plus. Votre
+								revenu net est donc le chiffre d’affaires moins toutes les
+								charges engagées pour l’entreprise.
 							</Trans>
 						</li>
 						<li>
