@@ -6,9 +6,8 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Engine from 'publicodes'
 import rules from '../../../modele-social'
-import { engineOptions } from '../../source/components/utils/EngineContext'
+import { engineFactory } from '../../source/components/utils/EngineContext'
 import aideDéclarationConfig from '../../source/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -26,7 +25,7 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = (arr) => arr.map((x) => Math.round(x))
-const engine = new Engine(rules, engineOptions)
+const engine = engineFactory(rules)
 const runSimulations = (situations, targets, baseSituation = {}) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach((situation) => {

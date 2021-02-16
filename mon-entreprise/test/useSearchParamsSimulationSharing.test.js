@@ -26,14 +26,13 @@ describe('identifiant court', () => {
 })
 
 describe('useSearchParamsSimulationSharing', () => {
-	const someRules = parsePublicodes(`
+	const engine = new Engine(`
 rule with:
 	identifiant court: panta
 	formule: 0
 rule without:
 	formule: 0
 	`)
-	const engine = new Engine(someRules)
 	const dottedNameParamName = getRulesParamNames(engine.getParsedRules())
 
 	describe('getSearchParamsFromSituation', () => {
@@ -92,7 +91,7 @@ rule without:
 })
 
 describe('useSearchParamsSimulationSharing hook', () => {
-	const someRules = parsePublicodes(`
+	const parsedRules = parsePublicodes(`
 rule with:
 	identifiant court: panta
 	formule: 0
@@ -100,9 +99,7 @@ rule without:
 	formule: 0
 	`)
 
-	const dottedNameParamName = getRulesParamNames(
-		new Engine(someRules).getParsedRules()
-	)
+	const dottedNameParamName = getRulesParamNames(parsedRules)
 	let setSearchParams
 
 	beforeEach(() => {

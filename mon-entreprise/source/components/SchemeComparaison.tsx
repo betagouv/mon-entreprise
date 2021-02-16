@@ -9,8 +9,6 @@ import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import Value from 'Components/EngineValue'
 import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { useCallback, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -18,7 +16,7 @@ import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import './SchemeComparaison.css'
-import { engineOptions, useEngine } from './utils/EngineContext'
+import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
@@ -45,13 +43,12 @@ export default function SchemeComparaison({
 		setConversationStarted,
 	])
 
-	const parsedRules = engine.getParsedRules()
 	const situation = useSelector(situationSelector)
 	const displayResult =
 		useSelector(situationSelector)['entreprise . charges'] != undefined
 	const assimiléEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'assimilé salarié'",
 			}),
@@ -59,7 +56,7 @@ export default function SchemeComparaison({
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'auto-entrepreneur'",
 			}),
@@ -67,7 +64,7 @@ export default function SchemeComparaison({
 	)
 	const indépendantEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'indépendant'",
 			}),

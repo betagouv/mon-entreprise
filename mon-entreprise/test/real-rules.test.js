@@ -6,7 +6,7 @@ import rules from 'modele-social'
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
 let parsedRules = parsePublicodes(rules)
-const engine = new Engine(parsedRules)
+const engine = new Engine(rules)
 let runExamples = (examples, rule) =>
 	examples.map((ex) => {
 		const expected = ex['valeur attendue']

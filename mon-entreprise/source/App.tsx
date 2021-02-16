@@ -4,14 +4,13 @@ import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
 import {
-	engineOptions,
+	engineFactory,
 	EngineProvider,
+	Rules,
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
-import { DottedName } from 'modele-social'
-import Engine, { Rule } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
@@ -70,16 +69,13 @@ const middlewares = [createSentryMiddleware(Sentry as any)]
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rules: Record<DottedName, Rule>
+	rules: Rules
 }
 
 export default function Root({ basename, rules }: RootProps) {
 	const { language } = useTranslation().i18n
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
-	const engine = useMemo(() => new Engine(rules, engineOptions), [
-		rules,
-		engineOptions,
-	])
+	const engine = useMemo(() => engineFactory(rules), [rules])
 	return (
 		<Provider
 			basename={basename}
