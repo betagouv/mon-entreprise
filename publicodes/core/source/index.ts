@@ -59,10 +59,12 @@ type Options = {
 	getUnitKey?: getUnitKey
 	formatUnit?: formatUnit
 }
+
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind } & EvaluatedNode
+
 export type ParsedRules<Name extends string> = Record<
 	Name,
 	RuleNode & { dottedName: Name }
