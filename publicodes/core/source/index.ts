@@ -67,6 +67,7 @@ export type ParsedRules<Name extends string> = Record<
 	Name,
 	RuleNode & { dottedName: Name }
 >
+
 export default class Engine<Name extends string = string> {
 	parsedRules: ParsedRules<Name>
 	parsedSituation: Record<string, ASTNode> = {}
@@ -75,25 +76,11 @@ export default class Engine<Name extends string = string> {
 	options: Options
 
 	constructor(
-		rules: string | Record<string, Rule> | ParsedRules<Name> = {},
+		rules: string | Record<string, Rule> = {},
 		options: Partial<Options> = {}
 	) {
 		this.options = { ...options, logger: options.logger ?? console }
-		if (typeof rules === 'string') {
-			rules = parsePublicodes(rules, this.options) as ParsedRules<Name>
-		}
-		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
-		if (
-			typeof firstRuleObject !== 'object' ||
-			firstRuleObject == null ||
-			!('nodeKind' in firstRuleObject)
-		) {
-			rules = parsePublicodes(
-				rules as Record<string, Rule>,
-				this.options
-			) as ParsedRules<Name>
-		}
-		this.parsedRules = rules as ParsedRules<Name>
+		this.parsedRules = parsePublicodes(rules, this.options) as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
 	}
 
@@ -150,6 +137,10 @@ export default class Engine<Name extends string = string> {
 		return this.parsedRules
 	}
 
+	getOptions(): Options {
+		return this.options
+	}
+
 	evaluate<N extends ASTNode = ASTNode>(value: N): N & EvaluatedNode
 	evaluate(value: PublicodesExpression): EvaluatedNode
 	evaluate(value: PublicodesExpression | ASTNode): EvaluatedNode {
@@ -179,6 +170,17 @@ export default class Engine<Name extends string = string> {
 		)
 		this.cache.nodes.set(value, evaluatedNode)
 		return evaluatedNode
+	}
+
+	/**
+	 * Shallow Engine instance copy. Keeps references to the original Engine instance attributes.
+	 */
+	shallowCopy(): Engine<Name> {
+		const newEngine = new Engine<Name>()
+		newEngine.options = this.options
+		newEngine.parsedRules = this.parsedRules
+		newEngine.replacements = this.replacements
+		return newEngine
 	}
 }
 

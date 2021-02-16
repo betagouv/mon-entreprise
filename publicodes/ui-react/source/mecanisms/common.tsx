@@ -64,7 +64,7 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => {
 			}}
 		>
 			{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
-				formatUnit: engine?.options?.formatUnit,
+				formatUnit: engine?.getOptions()?.formatUnit,
 			})}
 		</small>
 	)

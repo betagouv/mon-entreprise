@@ -10,7 +10,7 @@ import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
-import Engine, { formatValue } from 'publicodes'
+import { formatValue } from 'publicodes'
 import { partition } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -229,7 +229,7 @@ function Results() {
 	const progress = useSimulationProgress()
 	const baseEngine = useEngine()
 	const aidesEngines = aides.map((aide) => {
-		const engine = new Engine(baseEngine.parsedRules)
+		const engine = baseEngine.shallowCopy()
 		engine.setSituation({ ...aide.situation, ...baseEngine.parsedSituation })
 		const isActive =
 			typeof engine.evaluate(aide.dottedName).nodeValue === 'number'
