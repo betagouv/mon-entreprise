@@ -1,5 +1,6 @@
 import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
 import RuleInput, { InputProps } from 'Components/conversation/RuleInput'
+import Notifications from 'Components/Notifications'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
@@ -62,7 +63,8 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				<Animate.fadeIn>
 					<div className="step">
 						<h3>
-							{engine.getRule(currentQuestion).rawNode.question}{' '}
+							{engine.getRule(currentQuestion).rawNode.question}
+							&nbsp;
 							<ExplicableRule dottedName={currentQuestion} />
 						</h3>
 
@@ -76,6 +78,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</fieldset>
 					</div>
 				</Animate.fadeIn>
+
 				<div className="ui__ answer-group">
 					{previousAnswers.length > 0 && (
 						<>
@@ -105,6 +108,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</button>
 					)}
 				</div>
+				<Notifications />
 			</div>
 			<QuickLinks />
 		</>

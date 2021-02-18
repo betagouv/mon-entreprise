@@ -1,9 +1,7 @@
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
-import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import Notifications from 'Components/Notifications'
 import SearchButton from 'Components/SearchButton'
 import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
@@ -15,6 +13,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
+import SeeAnswersButton from './conversation/SeeAnswersButton'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -73,28 +72,36 @@ export function Questions({
 
 	return (
 		<>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					marginTop: '1.2rem',
-					marginBottom: '0.6rem',
-				}}
-			>
-				{progress < 1 ? (
-					<small css="padding: 0.4rem 0">
-						<Trans i18nKey="simulateurs.précision.défaut">
-							Affinez votre simulation en répondant aux questions :
-						</Trans>
-					</small>
-				) : (
-					<span />
-				)}
-				<SeeAnswersButton />
-			</div>
 			<section className="ui__ full-width lighter-bg">
 				<div className="ui__ container">
-					<Notifications />
+					<div
+						css={`
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: center;
+							align-items: baseline;
+						`}
+					>
+						{progress < 1 && (
+							<h2
+								css={`
+									font-family: 'roboto';
+									font-weight: normal;
+									flex: 1;
+									font-size: 1.1rem;
+									margin-top: 0;
+								`}
+							>
+								<small>
+									<Trans i18nKey="simulateurs.précision.défaut">
+										Améliorez votre simulation en répondant aux questions
+									</Trans>
+								</small>
+							</h2>
+						)}
+						<SeeAnswersButton />
+					</div>
+
 					<Conversation customEndMessages={customEndMessages} />
 				</div>
 			</section>

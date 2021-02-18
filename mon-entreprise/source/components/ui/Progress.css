@@ -1,5 +1,5 @@
 .progress__container {
-	height: 0.2rem;
+	height: 0.3rem;
 	background-color: var(--lighterColor);
 	overflow: hidden;
 }
@@ -7,5 +7,5 @@
 	height: 100%;
 	transition: width 0.2s;
 	min-width: 6px;
-	background-color: var(--color);
+	background-color: var(--lightColor);
 }
