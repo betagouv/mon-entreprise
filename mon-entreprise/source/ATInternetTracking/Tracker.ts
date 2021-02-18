@@ -12,7 +12,7 @@ export const INDICATOR = {
 
 type CustomSiteIndicator = {
 	[INDICATOR.SITE.LANGAGE]: '[fr]' | '[en]' // langage du site (mycompanyinfrance ou mon-entreprise)
-	[INDICATOR.SITE.EMBARQUÉ]: 1 | 0 // intégration externe
+	[INDICATOR.SITE.EMBARQUÉ]: '1' | '0' // intégration externe
 }
 type CustomPageIndicator = Record<string, string>
 
@@ -76,9 +76,14 @@ export function createTracker(siteId?: string) {
 			this.customVars.set({
 				site: {
 					[INDICATOR.SITE.LANGAGE]: `[${options.language}]` as '[fr]' | '[en]',
-					[INDICATOR.SITE.EMBARQUÉ]: 0,
+					[INDICATOR.SITE.EMBARQUÉ]: document.location.pathname.includes(
+						'/iframes/'
+					)
+						? '1'
+						: '0',
 				},
 			})
+			this.dispatch()
 		}
 	}
 	return Tag
