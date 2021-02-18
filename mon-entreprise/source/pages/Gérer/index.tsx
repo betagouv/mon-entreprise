@@ -24,7 +24,7 @@ export default function Gérer() {
 			>
 				← <Trans>Retour à mon activité</Trans>
 			</NavLink>
-			<TrackChapter level={1} name="gerer" />
+			<TrackChapter chapter1="gerer" />
 			<Switch>
 				<Route exact path={sitePaths.gérer.index} component={Home} />
 				<Route

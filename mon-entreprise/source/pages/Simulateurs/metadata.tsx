@@ -74,9 +74,8 @@ export type SimulatorData = Record<
 		}
 		tracking:
 			| {
-					name: string
-					chapter2?: 'profession_liberale'
-					chapter3?: 'pamc'
+					chapter2?: string
+					chapter3?: string
 					chapter1?: 'gerer' | 'creer'
 			  }
 			| string
@@ -593,7 +592,7 @@ export function getSimulatorsData({
 			component: AideDéclarationIndépendant,
 			tracking: {
 				chapter1: 'gerer',
-				name: 'aide_declaration_independant',
+				chapter2: 'aide_declaration_independant',
 			},
 			icône: '✍️',
 			meta: {
@@ -620,7 +619,7 @@ export function getSimulatorsData({
 			component: FormulaireMobilitéIndépendant,
 			tracking: {
 				chapter1: 'gerer',
-				name: 'demande_mobilite',
+				chapter2: 'demande_mobilite',
 			},
 			icône: '🧳',
 			meta: {
@@ -645,8 +644,7 @@ export function getSimulatorsData({
 			config: médecinConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
-				chapter3: 'pamc',
-				name: 'medecin',
+				chapter3: 'medecin',
 			},
 			icône: '⚕️',
 			iframe: 'médecin',
@@ -663,8 +661,7 @@ export function getSimulatorsData({
 			icône: '🦷',
 			tracking: {
 				chapter2: 'profession_liberale',
-				chapter3: 'pamc',
-				name: 'chirurgien_dentiste',
+				chapter3: 'chirurgien_dentiste',
 			},
 			iframe: 'chirurgien-dentiste',
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
@@ -683,8 +680,7 @@ export function getSimulatorsData({
 			icône: '👶',
 			tracking: {
 				chapter2: 'profession_liberale',
-				chapter3: 'pamc',
-				name: 'sage_femme',
+				chapter3: 'sage_femme',
 			},
 			iframe: 'sage-femme',
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
@@ -699,8 +695,7 @@ export function getSimulatorsData({
 			config: auxiliaireConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
-				chapter3: 'pamc',
-				name: 'auxiliaire_medical',
+				chapter3: 'auxiliaire_medical',
 			},
 			tooltip: t(
 				'pages.simulateurs.auxiliaire.tooltip',
@@ -720,7 +715,7 @@ export function getSimulatorsData({
 			config: avocatConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
-				name: 'avocat',
+				chapter3: 'avocat',
 			},
 			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
 			iframe: 'avocat',
@@ -736,7 +731,7 @@ export function getSimulatorsData({
 			config: expertComptableConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
-				name: 'expert_comptable',
+				chapter3: 'expert_comptable',
 			},
 			icône: '🧮',
 			iframe: 'expert-comptable',
@@ -755,7 +750,6 @@ export function getSimulatorsData({
 			config: professionLibéraleConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
-				name: 'tous',
 			},
 			icône: '💻',
 			meta: {

@@ -14,6 +14,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
+import { TrackPage } from '../ATInternetTracking'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -39,22 +40,25 @@ export default function Simulation({
 		<>
 			{simulationBloc}
 			<SearchButton invisibleButton />
+			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
-				<Animate.fromTop>
-					{results}
-					<ShareSimulationBanner />
-					<Questions customEndMessages={customEndMessages} />
-					<br />
-					<PageFeedback
-						customMessage={
-							<Trans i18nKey="feedback.simulator">
-								Êtes-vous satisfait de ce simulateur ?
-							</Trans>
-						}
-						customEventName="rate simulator"
-					/>
-					{explanations}
-				</Animate.fromTop>
+				<>
+					<Animate.fromTop>
+						{results}
+						<ShareSimulationBanner />
+						<Questions customEndMessages={customEndMessages} />
+						<br />
+						<PageFeedback
+							customMessage={
+								<Trans i18nKey="feedback.simulator">
+									Êtes-vous satisfait de ce simulateur ?
+								</Trans>
+							}
+							customEventName="rate simulator"
+						/>
+						{explanations}
+					</Animate.fromTop>
+				</>
 			)}
 		</>
 	)

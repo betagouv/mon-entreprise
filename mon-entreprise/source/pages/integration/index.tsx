@@ -13,7 +13,7 @@ export default function Integration() {
 	const { pathname } = useLocation()
 	return (
 		<>
-			<TrackChapter name="integration" level={1} />
+			<TrackChapter chapter1="integration" />
 			<ScrollToTop />
 			{pathname !== sitePaths.integration.index && (
 				<div className="ui__ card dark-bg" css="text-align: center">

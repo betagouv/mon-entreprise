@@ -12,6 +12,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import { TrackPage } from '../../ATInternetTracking'
 import Aide from './Aide'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
@@ -55,6 +56,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 
 	return currentQuestion ? (
 		<>
+			<TrackPage name="simulation commencée" />
 			<Aide />
 			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<Animate.fadeIn>
@@ -108,6 +110,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		</>
 	) : (
 		<div style={{ textAlign: 'center' }}>
+			<TrackPage name="simulation terminée" />
 			<h3>
 				{emoji('🌟')}{' '}
 				<Trans i18nKey="simulation-end.title">

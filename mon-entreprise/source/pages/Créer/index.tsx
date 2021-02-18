@@ -15,7 +15,7 @@ export default function CreateMyCompany() {
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
-			<TrackChapter level={1} name="creer" />
+			<TrackChapter chapter1="creer" />
 			<Switch>
 				<Route exact path={sitePaths.créer.index} component={Home} />
 				{LANDING_LEGAL_STATUS_LIST.map((statut) => (

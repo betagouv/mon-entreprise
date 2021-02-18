@@ -8,7 +8,7 @@ import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import { TrackPage } from '../../ATInternetTracking'
+import { TrackChapter } from '../../ATInternetTracking'
 import { SimulatorData } from './metadata'
 
 export default function SimulateurPage({
@@ -45,16 +45,17 @@ export default function SimulateurPage({
 		)
 	}
 
-	const trackInfo =
-		typeof tracking === 'string'
+	const trackInfo = {
+		chapter1: 'simulateurs' as const,
+		...(typeof tracking === 'string'
 			? {
-					name: tracking,
-					chapter1: 'simulateurs' as const,
+					chapter2: tracking,
 			  }
-			: tracking
+			: tracking),
+	}
 	return (
 		<>
-			<TrackPage {...trackInfo} />
+			<TrackChapter {...trackInfo} />
 			{meta && <Meta {...meta} />}
 			{title && !inIframe && (
 				<>
