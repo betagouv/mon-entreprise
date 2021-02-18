@@ -13,7 +13,7 @@ const localStorageKey = (pathname: string) =>
 
 export function setupSimulationPersistence(
 	store: Store<RootState, Action>,
-	debounceDelay: number = 1000
+	debounceDelay = 1000
 ) {
 	const listener = () => {
 		const state = store.getState()

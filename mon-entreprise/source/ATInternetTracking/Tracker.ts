@@ -1,8 +1,5 @@
 import './smarttag.js'
 
-type CustomPageObject = {}
-type CustomHitObject = {}
-
 // Ci-dessous les indicateurs personnalisés de site et de page
 // https://developers.atinternet-solutions.com/javascript-fr/contenus-javascript-fr/indicateurs-de-site-et-de-page-javascript-fr/
 export const INDICATOR = {
@@ -17,7 +14,7 @@ type CustomSiteIndicator = {
 	[INDICATOR.SITE.LANGAGE]: '[fr]' | '[en]' // langage du site (mycompanyinfrance ou mon-entreprise)
 	[INDICATOR.SITE.EMBARQUÉ]: 1 | 0 // intégration externe
 }
-type CustomPageIndicator = {}
+type CustomPageIndicator = Record<string, string>
 
 type ATHit = {
 	name?: string
