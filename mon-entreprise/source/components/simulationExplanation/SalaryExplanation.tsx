@@ -8,46 +8,29 @@ import { useInversionFail } from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 
 export default function SalaryExplanation() {
-	const showDistributionFirst = !useSelector(answeredQuestionsSelector).length
-	const distributionRef = useRef<HTMLDivElement>(null)
+	const payslipRef = useRef<HTMLDivElement>(null)
 
 	if (useInversionFail()) {
 		return null
 	}
+
 	return (
-		<Animate.fromTop key={showDistributionFirst.toString()}>
-			{showDistributionFirst ? (
-				<>
-					<RevenueRepatitionSection />
-					<DistributionSection />
-					<PaySlipSection />
-				</>
-			) : (
-				<>
-					<RevenueRepatitionSection />
-					<div css="text-align: center">
-						<button
-							className="ui__ small simple button"
-							onClick={() =>
-								distributionRef.current?.scrollIntoView({
-									behavior: 'smooth',
-									block: 'start',
-								})
-							}
-						>
-							{emoji('📊')} <Trans>Voir la répartition des cotisations</Trans>
-						</button>
-					</div>
-					<div ref={distributionRef}>
-						<DistributionSection />
-						<PaySlipSection />
-					</div>
-				</>
-			)}
+		<Animate.fromTop>
+			<RevenueRepartitionSection
+				onSeePayslip={() =>
+					payslipRef.current?.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start',
+					})
+				}
+			/>
+
+			<DistributionSection />
+			<div ref={payslipRef}>
+				<PaySlipSection />
+			</div>
 			<br />
 			<p className="ui__ notice">
 				<Trans i18nKey="payslip.notice">
@@ -73,15 +56,34 @@ export default function SalaryExplanation() {
 	)
 }
 
-function RevenueRepatitionSection() {
+function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
 	return (
 		<section>
-			<h2>
-				<Trans i18nKey="payslip.repartition">Répartition du total chargé</Trans>
-			</h2>
+			<div
+				css={`
+					display: flex;
+					align-items: baseline;
+				`}
+			>
+				<h2
+					css={`
+						flex: 1;
+					`}
+				>
+					<Trans i18nKey="payslip.repartition">
+						Répartition du total chargé
+					</Trans>
+				</h2>
+				<button
+					className="ui__ small simple button"
+					onClick={props.onSeePayslip}
+				>
+					{emoji('📊')} <Trans>Voir la fiche de paie</Trans>
+				</button>
+			</div>
 			<StackedBarChart
 				data={[
 					{
