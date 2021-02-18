@@ -4,7 +4,7 @@ Publicode est distribué sous la forme d'une librairie
 [Node.js](https://nodejs.org/fr/) permettant de compiler un jeu de règles
 publicodes et de l'évaluer dans une situation donnée.
 
-Le paquet est disponble sur NPM :
+Le paquet est disponible sur npm :
 
 ```sh
 $ npm install publicodes
@@ -66,7 +66,7 @@ const engine = new Engine(rules)
 >     ```
 
 La variable `engine` permet en ensuite de calculer la valeur d'une règle avec la
-méthode `evaluate`.
+méthode `evaluate` :
 
 ```js
 console.log(engine.evaluate('dépenses primeur'))
@@ -74,7 +74,7 @@ console.log(engine.evaluate('dépenses primeur'))
 
 La valeur du nœud est disponible dans la propriété `nodeValue`, son
 unité est disponible dans la propriété `unit`. Mais pour un formattage sans
-effort, on préfèrera utiliser la fonction `formatValue`
+effort, on préfèrera utiliser la fonction `formatValue` :
 
 ```js
 import Engine, { formatValue } from 'publicodes'
@@ -84,7 +84,7 @@ console.log(`J'ai dépensé ${formatValue(dépenses)} chez le primeur.`)
 ```
 
 La méthode `setSituation` permet de forcer la valeur d'une liste de règles. Elle
-est utile pour préciser les paramètres spécifiques à une simulation.
+est utile pour préciser les paramètres spécifiques à une simulation :
 
 ```js
 // Ici on change le prix des avocats
@@ -106,7 +106,7 @@ console.log(
 
 ### Évaluation d'expressions
 
-La fonction `evaluate` permet d'évaluer des expressions publicode complètes
+La fonction `evaluate` permet d'évaluer des expressions publicode complètes :
 
 ```js
 // On va au marché une fois par semaine, amortissons la dépense sur 7 jours
@@ -132,9 +132,9 @@ console.log(`J'ai dépensé ${formatValue(depensesParMois)}.`)
 
 ### Variables manquantes
 
-Publicode calcule automatiquement les dépendances de chaque règle. Si une la
-valeur d'une dépendance est manquante et ne permet pas de faire le calcul elle
-apparaîtra dans la propriété `missingVariables`
+Publicode calcule automatiquement les dépendances de chaque règle. Si la
+valeur d'une dépendance est manquante et ne permet pas de faire le calcul, elle
+apparaîtra dans la propriété `missingVariables` :
 
 ```js
 const missingYEngine = new Engine(`

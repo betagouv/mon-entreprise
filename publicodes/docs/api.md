@@ -1,6 +1,6 @@
 # API
 
-> **IMPORTANT** : publicodes est encore en version beta, et l'API peut-être sujette à des changements cassants lors de prochaines version. Pour plus d'informations, se référer à la [feuille de route v1.0](https://github.com/betagouv/mon-entreprise/issues/1293)
+> **IMPORTANT** : publicodes est encore en version beta, et l'API peut-être sujette à des changements cassants lors de prochaines versions. Pour plus d'informations, se référer à la [feuille de route v1.0](https://github.com/betagouv/mon-entreprise/issues/1293)
 
 ## _new_ `Engine(rules)`
 
@@ -8,34 +8,36 @@ Crée un moteur d'évaluation avec les règles publicodes données en argument.
 
 **Arguments**
 
--   `rules` : les règles publicodes utilisée. Ces dernières peuvent-être sous la
-    forme d'une chaine de caractère `yaml` publicodes (ou d'un object javascript
-    correspondant). Elle peuvent aussi être sous la forme de règles publicodes déjà parsées
+-   `rules` : les règles publicodes utilisées. Ces dernières peuvent être sous la
+    forme d'une chaîne de caractère `yaml` publicodes (ou d'un objet javascript
+    correspondant). Elle peuvent aussi être sous la forme de règles publicodes déjà parsées.
 
 **Retourne**
 Un moteur d'évaluation qui expose les fonctions suivantes :
 
--   setSituation
--   evaluate
--   getRule
+-   `setSituation`
+-   `evaluate`
+-   `getRule`
 
 ### _method_ `engine.setSituation(situation)`
 
 Permet de spécifier une situation en entrée. Toutes les prochaines évaluations
 seront effectuées en se basant sur ces valeurs plutôt que les valeurs présentes
-dans la base de règle.
+dans la base de règles.
 
 C'est le point d'entrée principal pour adapter les calculs de règles générales à
 une situation particulière. La situation est gardée en mémoire, et chaque appel
 à `setSituation` remplace la situation précédente. Le moteur
-contient donc un _état interne_. Cela permet d'obtenir de meilleure performance,
+contient donc un _état interne_. Cela permet d'obtenir de meilleures performances,
 avec une gestion plus fine du cache de calcul. En revanche, il faut prêter une
 grande attention à la bonne gestion de cet état interne.
 
 **Arguments**
 
 -   `situation` : un objet javascript qui associe le nom complet d'une règle à sa
-    valeur. Cette valeur peut être n'importe quelle expression publicodes bien formée. Elle sera évaluée par le moteur. Cela permet de spécifier des nombre avec unité, des expressions, des références vers d'autres règles ou même d'utiliser des mécanismes.
+    valeur. Cette valeur peut être n'importe quelle expression publicodes bien formée.
+    Elle sera évaluée par le moteur. Cela permet de spécifier des nombres avec unité,
+    des expressions, des références vers d'autres règles ou même d'utiliser des mécanismes.
 
 **Retourne**
 
@@ -51,9 +53,11 @@ dans un cache. Par conséquent, les appels suivants seront plus rapides.
 
 **Arguments**
 
--   `expression`: la valeur à évaluer. Cela peut-être n'importe quelle expression publicodes bien formée (expression arithmétique, mécanisme, réference vers une règle)
+-   `expression`: la valeur à évaluer. Cela peut-être n'importe quelle expression publicodes
+    bien formée (expression arithmétique, mécanisme, réference vers une règle).
 
 **Retourne**
+
 Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
 
 > **Attention !** Il est déconseillé d'utiliser directement les valeurs présentes
@@ -87,9 +91,9 @@ Formate la valeur evaluée.
 
 La chaîne de caractère correspondant à la valeur bien formatée.
 
-# Composants react
+# Composants React
 
-Publicodes exporte des composants react permettant d'afficher une documentation
+Publicodes exporte des composants React permettant d'afficher une documentation
 explorable des calculs. Cette documentation est auto-générée en s'appuyant sur
 les données descriptives contenues dans les règles publicodes (description,
 références, titre, note, etc.) et en affichant pour chaque règle les étapes
@@ -99,7 +103,7 @@ intermédiaires qui permettent d'aboutir au résultat affiché.
 
 ## `<Documentation />`
 
-Composant react permettant d'afficher une documentation explorable d'une base de
+Composant React permettant d'afficher une documentation explorable d'une base de
 règles publicodes. Se base sur react-router pour créer une arborescence de pages
 correspondant aux espaces de noms existants dans les règles.
 
@@ -116,7 +120,7 @@ action (il est affiché sur l'écran de droite).
 
 ## `<RuleLink />`
 
-Composant react permettant de faire un lien vers une page de la documentation.
+Composant React permettant de faire un lien vers une page de la documentation.
 Par défaut, le texte affiché est le nom de la règle.
 
 **Props**
@@ -126,5 +130,5 @@ Par défaut, le texte affiché est le nom de la règle.
     montée. Doit correspondre à celui précisé pour le composant `<Documentation />`
 -   `dottedName`: le nom de la règle à afficher
 -   `displayIcon`: affiche l'icône de la règle dans le lien (par défaut à `false`)
--   `children`: un noeud react quelconque. Par défaut, c'est le nom de la règle
+-   `children`: un noeud React quelconque. Par défaut, c'est le nom de la règle
     qui est utilisé.

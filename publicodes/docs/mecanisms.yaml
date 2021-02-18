@@ -33,7 +33,7 @@ une de ces conditions:
     Renvoie `oui` si l'une des règles listées est _applicable_.
 
 
-    Equivaut à un `ou` logique.
+    Équivaut à un `ou` logique.
   retourne: Booléen
   exemples:
     base: >-
@@ -49,7 +49,7 @@ toutes ces conditions:
     Renvoie `oui` si toutes toutes les règles listées sont _applicables_.
 
 
-    Equivaut à un `et` logique.
+    Équivaut à un `et` logique.
   argument:
     - '*'
     - ...
@@ -79,7 +79,7 @@ produit:
     assiette: Valeur à multiplier
     taux: Taux à appliquer
     facteur: Facteur multiplicatif
-    plafond: Plafond au dessus duquel le taux appliqué est nul
+    plafond: Plafond au-dessus duquel le taux appliqué est nul
 
   exemples:
     base: >-
@@ -148,7 +148,7 @@ somme:
     Somme de chaque terme de la liste.
 
 
-    Si un des terme n'est pas applicable, il vaut zéro.
+    Si un des termes n'est pas applicable, il vaut zéro.
 
 
     On peut retrancher des valeurs grâce à l'opérateur unaire `-`
@@ -207,7 +207,7 @@ le minimum de:
 arrondi:
   chainable: oui
   description: >-
-    Arrondi à l'entier le plus proche, ou à une précision donnée.
+    Arrondit à l'entier le plus proche, ou à une précision donnée.
   exemples:
     base: >-
       arrondi:
@@ -348,16 +348,16 @@ composantes:
     Cela permet d'avoir une écriture factorisée, plus facile à lire. 
 
     Dans les calculs, `composantes` se comporte **exactement comme une somme**.
-    La documentation, elle, sera adaptée pour montrer chaque composantes.
+    La documentation, elle, sera adaptée pour montrer chaque composante.
 
     Il est possible par exemple pour le mécanisme `produit` de garder en
     commun l'assiette, et de déclarer des composantes pour le taux.
 
     Chaque composante peut également contenir un champs `attributs` de type objet
-    contenant les mécanismes chainés à appliquer à la composante en question
+    contenant les mécanismes chainés à appliquer à la composante en question.
 
-    Lorsque l'on utilise l'attribut `nom`, cela abouti à la définition de règles 
-    imbriquées pour chacun des terme de la somme.
+    Lorsque l'on utilise l'attribut `nom`, cela aboutit à la définition de règles 
+    imbriquées pour chacun des termes de la somme.
      
   exemples:
     base: >-
@@ -469,7 +469,7 @@ unité:
 par défaut:
   chainable: oui
   description: |
-    Permet de donner une valeur par défaut pour le calcul, sans influer sur les variables manquantes retournés.
+    Permet de donner une valeur par défaut pour le calcul, sans influer sur les variables manquantes retournées.
 
     Utile dans le cas d'une situation incomplète où l'on veut quand même retourner une première estimation.
   
@@ -485,9 +485,9 @@ par défaut:
 
 synchronisation:
   description: >- 
-    Permet de récupérer certaines informations, tels que les les
+    Permet de récupérer certaines informations, telles que les
     codes postaux des villes, à partir d'APIs externes, telles que l'[API
-    commune](https://geo.api.gouv.fr/decoupage-administratif/communes).
+    des communes de France](https://geo.api.gouv.fr/decoupage-administratif/communes).
 
 
     Attention, ce mécanisme est encore en cours de développement, et sa syntaxe
@@ -515,7 +515,7 @@ inversion numérique:
     Brent](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Brent). L'idée générale
     est de prendre une valeur au hasard pour la variable en question, et
     d'améliorer mathématiquement le choix jusqu'à ce que les valeurs cibles
-    soient toutes suffisamment proches des objectifs
+    soient toutes suffisamment proches des objectifs.
 
 
     Si on demande au moteur la valeur d'une variable qui a pour formule une
