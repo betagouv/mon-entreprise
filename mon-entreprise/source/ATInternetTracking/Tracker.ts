@@ -76,6 +76,7 @@ export function createTracker(siteId?: string) {
 			this.customVars.set({
 				site: {
 					[INDICATOR.SITE.LANGAGE]: `[${options.language}]` as '[fr]' | '[en]',
+					[INDICATOR.SITE.EMBARQUÉ]: 0,
 				},
 			})
 		}
