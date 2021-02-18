@@ -32,7 +32,6 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 				e.stopPropagation()
 			}}
 			css={`
-				margin-left: 0.3rem !important;
 				vertical-align: middle;
 				font-size: 110% !important;
 			`}

@@ -1,15 +1,14 @@
 import { goToQuestion } from 'Actions/actions'
+import { DottedName } from 'modele-social'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
-
-import { useNextQuestions } from './utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from 'Selectors/simulationSelectors'
+import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)
@@ -34,8 +33,8 @@ export default function QuickLinks() {
 	}
 
 	return (
-		<span>
-			<small>Questions :</small>
+		<small>
+			Questions :
 			{links.map(([label, dottedName]) => (
 				<button
 					key={dottedName}
@@ -49,6 +48,6 @@ export default function QuickLinks() {
 				</button>
 			))}{' '}
 			{/* <button className="ui__ link-button">Voir la liste</button> */}
-		</span>
+		</small>
 	)
 }

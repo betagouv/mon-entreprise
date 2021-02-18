@@ -64,7 +64,7 @@ export default function Notifications() {
 						<animate.fromTop key={dottedName}>
 							<li>
 								<div className="notification">
-									{emoji(sévérité == 'avertissement' ? '⚠️' : 'ℹ️')}
+									{emoji(sévérité == 'avertissement' ? '⚠️' : '💁🏻')}
 									<div className="notificationText ui__ card">
 										<Markdown source={description} />
 										<button

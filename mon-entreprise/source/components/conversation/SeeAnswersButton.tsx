@@ -8,7 +8,7 @@ export default function SeeAnswersButton() {
 	return (
 		<>
 			<button
-				className="ui__ small simple  button "
+				className="ui__ small  button "
 				onClick={() => setShowAnswerModal(true)}
 			>
 				<Trans>Voir mes paramètres</Trans>
