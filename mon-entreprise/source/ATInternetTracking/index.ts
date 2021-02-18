@@ -25,41 +25,51 @@ type Chapter1 =
 	| 'gerer'
 	| 'documentation'
 	| 'integration'
-type ChapterProp =
-	| {
-			level: 1
-			name: Chapter1
-	  }
-	| { level: 2 | 3; name: string }
 
 let chapters: {
 	chapter1?: Chapter1
 	chapter2?: string
 	chapter3?: string
 } = {}
+export function TrackChapter(props: {
+	chapter1?: Chapter1
+	chapter2?: string
+	chapter3?: string
+}) {
+	if (props.chapter1) {
+		chapters = { chapter2: '', chapter3: '', ...props }
+		return null
+	}
+	if (props.chapter2) {
+		chapters = { ...chapters, chapter3: '', ...props }
+		return null
+	}
 
-export function TrackChapter(props: ChapterProp) {
-	const chapterName = `chapter${props.level}`
-	chapters = { ...chapters, [chapterName]: props.name }
+	chapters = { ...chapters, ...props }
 	return null
 }
 
 export function TrackPage(props: {
-	name: string
+	name?: string
 	chapter1?: Chapter1
 	chapter2?: string
 	chapter3?: string
 }) {
 	const tag = useContext(TrackingContext)
+	TrackChapter(props)
 	const propsFormatted = Object.fromEntries(
-		Object.entries(props).map(([k, v]) => [k, v && toAtString(v)])
+		Object.entries({ ...chapters, name: props.name }).map(([k, v]) => [
+			k,
+			v && toAtString(v),
+		])
 	)
 	useEffect(() => {
-		tag.page.send({
-			...chapters,
-			...propsFormatted,
-		})
-		chapters = { chapter2: '', chapter3: '' }
-	}, [props.name, props.chapter1, props.chapter2, props.chapter3])
+		tag.page.send(propsFormatted)
+	}, [
+		propsFormatted.name,
+		propsFormatted.chapter1,
+		propsFormatted.chapter2,
+		propsFormatted.chapter3,
+	])
 	return null
 }

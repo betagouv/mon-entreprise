@@ -58,7 +58,7 @@ export default function Créer() {
 					← <Trans>Retour</Trans>
 				</NavLink>
 			</div>
-			<TrackChapter level={2} name="guide" />
+			<TrackChapter chapter2="guide" />
 			<h1>
 				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
 			</h1>
