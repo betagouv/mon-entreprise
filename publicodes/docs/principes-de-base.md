@@ -51,18 +51,18 @@ prix total: nombre de repas * prix d'un repas + frais de réservation
 # La formule de "prix total" est invalide.
 ```
 
-Dans l'exemple ci-dessus Publicode détecte une erreur car les termes de
+Dans l'exemple ci-dessus, Publicode détecte une erreur car les termes de
 l'addition ont des unités incompatibles : d'un côté on a des `€` et de l'autre
 des `€/repas`.
 
-Cette incohérence d'unité témoigne d'une erreur de logique. Ici une manière de corriger l'erreur peut être de factoriser la variable "nombre de repas" dans la formule du "prix total".
+Cette incohérence d'unité témoigne d'une erreur de logique. Ici, une manière de corriger l'erreur peut être de factoriser la variable "nombre de repas" dans la formule du "prix total".
 
 ```yaml
 prix total: nombre de repas * (prix d'un repas + frais de réservation)
 ```
 
 > **Attention :** Il ne faut pas insérer d'espace autour de la barre oblique dans
-> les unités, l'unité `€ / mois` doit être notée `€/mois`
+> les unités, l'unité `€ / mois` doit être notée `€/mois`.
 
 Publicode convertit automatiquement les unités si besoin.
 
@@ -71,7 +71,7 @@ salaire: 1500 €/mois
 prime faible salaire applicable: salaire < 20 k€/an
 ```
 
-> NB : On peut forcer la conversion des unités via le [mécanisme `unité`](/mécanismes#unité)
+> NB : On peut forcer la conversion des unités via le [mécanisme `unité`](/mécanismes#unité).
 
 **Types de base disponibles pour la conversion :**
 
@@ -80,7 +80,7 @@ prime faible salaire applicable: salaire < 20 k€/an
 
 ## Mécanismes
 
-Il existe une autre manière d'écrire des formules de calcul : les mécanismes. Au lieu de définir la formule sur une ligne, celle-ci prends la forme d'un objet sur plusieurs lignes.
+Il existe une autre manière d'écrire des formules de calcul : les mécanismes. Au lieu de définir la formule sur une ligne, celle-ci prend la forme d'un objet sur plusieurs lignes.
 
 Par exemple, la formule suivante :
 
@@ -88,7 +88,7 @@ Par exemple, la formule suivante :
 prix total: 5 repas * prix d'un repas
 ```
 
-Peut également s'écrire en utilisant le mécanisme [`produit`](/mécanismes/produit) :
+peut également s'écrire en utilisant le mécanisme [`produit`](/mécanismes/produit) :
 
 ```yaml
 prix total:
@@ -110,7 +110,7 @@ prix TTC:
 
 ### Mécanismes chaînés
 
-Certains mécanismes peuvent apparaître au même niveau d'indentation. Dans ce cas, le moteur appliquera les transformations dans un ordre préetabli.
+Certains mécanismes peuvent apparaître au même niveau d'indentation. Dans ce cas, le moteur appliquera les transformations dans un ordre préétabli.
 
 ```yaml
 remboursement repas:
@@ -126,7 +126,7 @@ remboursement repas:
 
 L'explication des règles est un des objectifs fondamentaux de Publicodes.
 
-Chaque règle se voit générer automatiquement une page explicatives
+Chaque règle se voit générer automatiquement une page explicative
 correspondante dans le front-end, contenant une information facilement digeste
 mise en regard des calculs eux-mêmes.
 
@@ -191,11 +191,11 @@ prime de vacances:
     valeur: 200€
 ```
 
-Ici si l'ancienneté est inférieure à un an la prime de vacances ne sera pas
-_applicable_. Les variables _non applicables_ sont égale à `non`. Elles sont ignorées au niveau des mécanismes numériques (par exemple le mécanisme `somme` comptera une prime non applicable
+Ici, si l'ancienneté est inférieure à un an, alors la prime de vacances ne sera pas
+_applicable_. Les variables _non applicables_ sont égales à `non`. Elles sont ignorées au niveau des mécanismes numériques (par exemple le mécanisme `somme` comptera une prime non applicable
 comme valant zéro, voir la page spécifique aux mécanismes).
 
-La syntaxe suivante est également valable:
+La syntaxe suivante est également valable :
 
 ```yaml
 assimilé salarié:
@@ -216,14 +216,14 @@ prime de vacances . taux:
     formule: 6%
 ```
 
-Ici `prime de vacances` est à la fois une règle et un espace de noms. La variable
+Ici, `prime de vacances` est à la fois une règle et un espace de noms. La variable
 `taux` est définie dans cet espace de noms et c'est elle qui est référencée dans
 la formule de calcul de la règle `prime de vacances`.
 
 La règle `prime de vacances` est elle-même définie dans l'espace de nom racine.
 
 On pourrait avoir une autre variable `taux` dans un espace de nom
-différent, sans que cela entre en conflit:
+différent, sans que cela entre en conflit :
 
 ```yaml
 # Ceci n'entre pas dans le calcul de `prime de vacances` définie plus haut
@@ -278,8 +278,8 @@ indemnités:
 
 Certaines règles ne s'appliquent parfois que dans quelques situations
 particulières et modifier la définition des règles générales pour prendre en
-compte ces particularités pose des problème de maintenabilité de la base de
-règle.
+compte ces particularités pose des problèmes de maintenabilité de la base de
+règles.
 
 Publicode dispose d'un mécanisme de remplacement qui permet d'amender n'importe
 quelle règle existante sans avoir besoin de la modifier :
@@ -295,7 +295,7 @@ convention hôtels cafés restaurants . frais de repas:
 montant repas mensuels: 20 repas * frais de repas
 ```
 
-On peut également choisir de remplacer dans un contexte donné:
+On peut également choisir de remplacer dans un contexte donné :
 
 ```yaml
 temps de préparation: 20 min
@@ -372,7 +372,7 @@ super-prime:
 
 Lors de l'évaluation, les variables dont les valeurs ne sont pas renseignées sont remontées afin que ces dernières puissent être complétées par l'utilisateur (dans le cas d'un simulateur par exemple).
 
-Il est possible de donner une valeur par défaut. Les variables manquantes seront quand même remontée, et le moteur utilisera la valeur par défaut pour le calcul.
+Il est possible de donner une valeur par défaut. Les variables manquantes seront quand même remontées, et le moteur utilisera la valeur par défaut pour le calcul.
 
 ```yaml
 durée:
