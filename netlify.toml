@@ -252,13 +252,14 @@
 [context.deploy-preview.environment]
   EN_SITE = "${path}?s=m"
   FR_SITE = "${path}"
-  AT_INTERNET_SITE_ID=617189
+  AT_INTERNET_SITE_ID = 617189
 
 [context.production.environment]
   EN_SITE = "https://mycompanyinfrance.fr${path}"
   FR_SITE = "https://mon-entreprise.fr${path}"
-  AT_INTERNET_SITE_ID=617189 #Todo replace with prod env when sure about the metrics
-  #AT_INTERNET_SITE_ID=617190
+  AT_INTERNET_SITE_ID = 617189 
+  # Todo replace with prod env when sure about the metrics
+  # AT_INTERNET_SITE_ID = 617190
 
 [context."demo".environment]
   EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
