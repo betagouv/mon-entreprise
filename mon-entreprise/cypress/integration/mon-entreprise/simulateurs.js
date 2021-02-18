@@ -119,7 +119,7 @@ describe('Simulateur salarié mode partagé', () => {
 		cy.wait(800)
 		cy.get(brutInputSelector).first().invoke('val').should('be', '1 539')
 
-		cy.get('button.ui__.small.simple.button').first().click()
+		cy.contains('Voir mes paramètres').click()
 		cy.get('span.answerContent').first().contains('CDD')
 	})
 	it('should set URL from input value', function () {

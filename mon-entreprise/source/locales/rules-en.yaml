@@ -764,12 +764,12 @@ contrat salarié . CDD . prime de fin de contrat:
     for precariousness.
   description.fr: Somme versée en fin de CDD comme compensation de précarité.
   note.en: >
-    [automatic] Beware, exceptions are legion. Collective agreements...
+    [automatic] Warning: exceptions are legion. Collective agreements...
 
 
-    - In practice, Senior fixed-term contract employees receive an indemnity equivalent to the job insecurity indemnity: [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
+    - In practice, Senior fixed-term contract employees receive an indemnity equivalent to the precariousness indemnity: [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
   note.fr: >
-    Attention, les exceptions sont légion. Conventions collectives...
+    Attention : les exceptions sont légion. Conventions collectives...
 
 
     - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
@@ -1262,9 +1262,8 @@ contrat salarié . aides employeur . emploi franc . éligible:
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
 
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
-  question.en: '[automatic] Are you eligible for Employment-Franc assistance for
-    this hiring?'
-  question.fr: Êtes-vous éligible à l'aide emploi-franc pour cette embauche ?
+  question.en: '[automatic] Is this hiring eligible for Employment-Franc assistance?'
+  question.fr: Cette embauche est-elle éligible à l'aide emploi-franc ?
   titre.en: '[automatic] eligibility for open employment assistance'
   titre.fr: éligibilité à l'aide emploi franc
 contrat salarié . allocations familiales:
@@ -1654,13 +1653,12 @@ contrat salarié . convention collective . compta:
 : titre.en: '[automatic] overtime increase'
   titre.fr: majoration heures supplémentaires
 contrat salarié . convention collective . contrôle décharge:
-  description.en: '[automatic] Please note that the implementation of the
-    collective agreements is still partial and unverified. Nevertheless, this
-    allows us to obtain a first estimate, which is more precise than the general
-    regime.'
-  description.fr: Attention, l'implémentation des conventions collective est
+  description.en: '[automatic] Caution: the implementation of the collective
+    agreements is still partial and unverified. Nevertheless, this allows a
+    first estimation, more precise than the general regime.'
+  description.fr: "Attention : l'implémentation des conventions collective est
     encore partielle et non vérifiée. Néanmoins, cela permet d'obtenir une
-    première estimation, plus précise que le régime général.
+    première estimation, plus précise que le régime général."
   titre.en: '[automatic] discharge control'
   titre.fr: contrôle décharge
 contrat salarié . convention collective . droit commun:
@@ -2094,6 +2092,16 @@ contrat salarié . frais professionnels . abonnement transports publics:
     season ticket each month?'
   question.fr: Quel montant le salarié dépense-t-il en abonnement aux transports
     publics chaque mois ?
+  suggestions.Navigo.en: '[automatic] Navigo'
+  suggestions.Navigo.fr: Navigo
+  suggestions.RTM.en: '[automatic] RTM'
+  suggestions.RTM.fr: RTM
+  suggestions.TBM.en: '[automatic] TBM'
+  suggestions.TBM.fr: TBM
+  suggestions.Tisséo.en: '[automatic] Tisséo'
+  suggestions.Tisséo.fr: Tisséo
+  suggestions.Técély.en: '[automatic] Técély'
+  suggestions.Técély.fr: Técély
   titre.en: '[automatic] Public transport season ticket'
   titre.fr: Abonnement aux transports publics
 ? contrat salarié . frais professionnels . abonnement transports publics . prise en charge
@@ -2182,6 +2190,10 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
 contrat salarié . frais professionnels . titres-restaurant . nombre:
   question.en: '[automatic] How many meal vouchers are distributed to the employee?'
   question.fr: Combien de titres-restaurant sont distribués au salarié ?
+  suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
+  suggestions.3 repas/semaine.fr: 3 repas/semaine
+  suggestions.5 repas/semaines.en: '[automatic] 5 meals/week'
+  suggestions.5 repas/semaines.fr: 5 repas/semaines
   titre.en: '[automatic] number'
   titre.fr: nombre
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
@@ -2244,15 +2256,15 @@ contrat salarié . frais professionnels . transports personnels:
   question.en: '[automatic] How much does the employer pay for fuel expenses for
     electric, plug-in hybrid or hydrogen vehicles?'
   question.fr: Quel montant l'employeur prend-il en charge des dépenses en
-    carburant pour véhicules électriques, hybrides rechargeables ou hydrogènes ?
+    carburant pour véhicule électrique, hybride rechargeable ou hydrogènes?
   titre.en: '[automatic] Fuel support for electric, plug-in hybrid or hydrogen vehicles'
-  titre.fr: Prise en charge du carburant pour véhicules électriques, hybrides
-    rechargeables ou hydrogènes
+  titre.fr: Prise en charge du carburant pour véhicule électrique, hybride
+    rechargeable ou hydrogène
 ? contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible
-: titre.en: '[automatic] Fuel support for electric, plug-in hybrid or hydrogen
-    vehicles (deductible portion)'
-  titre.fr: Prise en charge du carburant pour véhicules électriques, hybrides
-    rechargeables ou hydrogènes (part déductible)
+: titre.en: '[automatic] Fuel support for electric vehicles, plug-in hybrids or
+    hydrogen (deductible part)'
+  titre.fr: Prise en charge du carburant pour véhicule électrique, hybride
+    rechargeable ou hydrogène (part déductible)
 ? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables
 : titre.en: '[automatic] sustainable mobility package'
   titre.fr: forfait mobilités durables
@@ -2858,17 +2870,18 @@ contrat salarié . réduction générale . plafond avec application de la DFS:
   titre.fr: plafond avec application de la DFS
 contrat salarié . régime alsace moselle:
   description.en: >
-    We consider that an employee is affiliated to the Alsace-Moselle regime when
-    the establishment in which he works is located in these departments.
+    [automatic] We consider that an employee is affiliated to the Alsace-Moselle
+    scheme when the establishment in which he works is located in these
+    departments.
 
 
-    Be careful, it's a **simplification**: the affiliation is more complicated that, see the exact conditions[on the website of the plan] (http://regime-local.fr/salaries/).
+    Warning: this is a **simplification**: membership is more complicated than that, see the exact conditions [on the plan's website](http://regime-local.fr/salaries/).
   description.fr: >
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand
     l'établissement dans lequel il travaille est situé dans ces départements.
 
 
-    Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
 contrat salarié . régime des impatriés:
@@ -3449,14 +3462,14 @@ contrat salarié . statut JEI:
     [automatic] The status of Young Innovative Company (JEI) was created by the
     2004 Finance Law and allows SMEs under 8 years old devoting at least 15% of
     their expenses to Research and Development to benefit from an exemption from
-    social contributions.
+    social security contributions.
 
 
     The exemption may apply to remuneration paid :
 
-    - employees for whom the employer is subject to the obligation of unemployment insurance
+    - to employees for whom the employer is subject to the obligation of unemployment insurance
 
-    - corporate officers who participate, in a principal capacity, in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
     For the sake of simplicity, the benefit of the exemption for an employee will be considered as acquired when at least half of his working time is devoted to one or more research and development projects and the exemption cannot be called into question.
@@ -3464,7 +3477,7 @@ contrat salarié . statut JEI:
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
     moins de leurs charges à de la Recherche et Développement de bénéficier
-    d'une éxonération de cotisations sociale.
+    d'une exonération de cotisations sociales.
 
 
     L’exonération peut s’appliquer sur les rémunérations versées :
@@ -5939,23 +5952,23 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
   description.en: >
-    This is the income net of deductible contributions of the self-employed
-    person, which is used as the basis for the calculation of contributions and
-    tax.
+    [automatic] It is the net income of deductible contributions of the
+    self-employed person, which is used as the basis for the calculation of
+    contributions for self-employed persons.
 
 
-    Attention, **our calculation is made at cruising speed**:
+    Attention: **our calculation is made at cruising speed**:
 
-    the self-employed person who starts out will pay a relatively small package of social security contributions for the first 2 years. He will then have to regularise this situation in relation to the income he has actually received.
+    the self-employed person who is starting out will pay a relatively small package of social security contributions for the first 2 years. He will then have to regularise this situation in relation to the income he has actually received.
 
 
-    Therefore, this calculation should be seen as *the amount that will have to be paid* in the short term after 2 years of exercise.
+    Therefore, this calculation should be seen as "the amount that will have to be paid out anyway" in the short term after 2 years of exercise.
   description.fr: >
     C'est le revenu net de cotisations déductibles du travailleur indépendant,
     qui sert de base au calcul des cotisations pour les indépendants.
 
 
-    Attention, **notre calcul est fait au régime de croisière**:
+    Attention : **notre calcul est fait au régime de croisière**:
 
     l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
 
@@ -6644,20 +6657,23 @@ entreprise . effectif . seuil:
   titre.en: range
   titre.fr: seuil d'effectif
 entreprise . effectif . seuil . moins de 11:
-  titre.en: less than 11
-  titre.fr: moins de 11
+  titre.en: '[automatic] between 5 and 10'
+  titre.fr: entre 5 et 10
+entreprise . effectif . seuil . moins de 150:
+  titre.en: '[automatic] between 50 and 149'
+  titre.fr: entre 50 et 149
 entreprise . effectif . seuil . moins de 20:
-  titre.en: less than 20
-  titre.fr: moins de 20
+  titre.en: '[automatic] between 11 and 19'
+  titre.fr: entre 11 et 19
 entreprise . effectif . seuil . moins de 250:
-  titre.en: less than 250
-  titre.fr: moins de 250
+  titre.en: '[automatic] between 150 and 250'
+  titre.fr: entre 150 et 250
 entreprise . effectif . seuil . moins de 5:
   titre.en: less than 5
   titre.fr: moins de 5
 entreprise . effectif . seuil . moins de 50:
-  titre.en: less than 50
-  titre.fr: moins de 50
+  titre.en: '[automatic] between 20 and 49'
+  titre.fr: entre 20 et 49
 entreprise . effectif . seuil . plus de 250:
   titre.en: '[automatic] 251 and more'
   titre.fr: 251 et plus
@@ -7056,8 +7072,8 @@ impôt . méthode de calcul . taux personnalisé:
     par l'administration fiscal pour calculer votre impôt. Pour le connaître,
     vous pouvez-vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
-  titre.en: with the personalized rate
-  titre.fr: avec votre taux personnalisé
+  titre.en: '[automatic] with a personalized rate'
+  titre.fr: avec un taux personnalisé
 impôt . revenu imposable:
   description.en: >
     This is the income to be taken into account when calculating tax with an
@@ -7663,8 +7679,8 @@ situation personnelle . domiciliation fiscale à l'étranger:
   description.fr:
     Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt
     sur le revenu.
-  question.en: '[automatic] Is the tax residence located abroad?'
-  question.fr: La résidence fiscale est-elle située à l'étranger ?
+  question.en: "[automatic] Is the person's tax residence located abroad?"
+  question.fr: La résidence fiscale de la personne est-elle située à l'étranger ?
   titre.en: tax domicile abroad
   titre.fr: domiciliation fiscale à l'étranger
 établissement:
