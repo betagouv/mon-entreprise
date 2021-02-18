@@ -520,8 +520,10 @@ entreprise . effectif:
         alors: 19 employés
       - si: entreprise . effectif . seuil = 'moins de 50'
         alors: 49 employés
+      - si: entreprise . effectif . seuil = 'moins de 150'
+        alors: 149 employés
       - si: entreprise . effectif . seuil = 'moins de 250'
-        alors: 249 employés
+        alors: 250 employés
       - si: entreprise . effectif . seuil = 'plus de 250'
         alors: 251 employés
 
@@ -542,15 +544,22 @@ entreprise . effectif . seuil:
         - moins de 11
         - moins de 20
         - moins de 50
+        - moins de 150
         - moins de 250
         - plus de 250
   par défaut: "'moins de 5'"
 
 entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 11:
+  titre: entre 5 et 10
 entreprise . effectif . seuil . moins de 20:
+  titre: entre 11 et 19
 entreprise . effectif . seuil . moins de 50:
+  titre: entre 20 et 49
+entreprise . effectif . seuil . moins de 150:
+  titre: entre 50 et 149
 entreprise . effectif . seuil . moins de 250:
+  titre: entre 150 et 250
 entreprise . effectif . seuil . plus de 250:
   titre: 251 et plus
 

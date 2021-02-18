@@ -9,7 +9,7 @@ situation personnelle . RSA:
 situation personnelle . domiciliation fiscale à l'étranger:
   description: >-
     Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt sur le revenu.
-  question: La résidence fiscale est-elle située à l'étranger ?
+  question: La résidence fiscale de la personne est-elle située à l'étranger ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
     - contrat salarié . CSG et CRDS
