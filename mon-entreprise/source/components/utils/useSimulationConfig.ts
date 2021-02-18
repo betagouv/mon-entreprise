@@ -1,16 +1,16 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { configSelector } from 'Selectors/simulationSelectors'
 
 export default function useSimulationConfig(
 	config: SimulationConfig | undefined,
 	{ useExistingCompanyFromSituation = false } = {}
 ) {
 	const dispatch = useDispatch()
-	const lastConfig = useRef<SimulationConfig>()
 	// TODO : Reading the URL here is buggy because when we do SPA navigation the
 	// "location" retrieved at this point is still the previous URL. What we
 	// actually need is to have a simulator identifier, which is currently not
@@ -24,10 +24,10 @@ export default function useSimulationConfig(
 		? getCompanySituation(existingCompany)
 		: undefined
 
+	const lastConfig = useSelector(configSelector)
 	useEffect(() => {
-		if (config && lastConfig.current !== config) {
+		if (config && lastConfig !== config) {
 			dispatch(setSimulationConfig(config ?? {}, url, initialSituation))
-			lastConfig.current = config
 		}
 	}, [config, initialSituation])
 }
