@@ -11,7 +11,7 @@ export default function SeeAnswersButton() {
 				className="ui__ small simple  button "
 				onClick={() => setShowAnswerModal(true)}
 			>
-				<Trans>Voir ma situation</Trans>
+				<Trans>Voir mes paramètres</Trans>
 			</button>
 			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
 		</>

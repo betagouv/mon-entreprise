@@ -163,7 +163,7 @@ describe('Simulateur salarié', () => {
 		cy.get('fieldset input[type="search"]').type('Steenvoorde')
 		cy.contains('Steenvoorde (59114)').click()
 		cy.contains('Suivant').click()
-		cy.contains('Voir ma situation').click()
+		cy.contains('Voir mes paramètres').click()
 		cy.contains('Steenvoorde')
 	})
 
@@ -172,7 +172,7 @@ describe('Simulateur salarié', () => {
 			cy.visit('/simulateurs/salarié')
 			cy.get('input[name$="brut de base"]').click()
 			cy.get('button').contains('SMIC').click()
-			cy.contains('Voir ma situation').click()
+			cy.contains('Voir mes paramètres').click()
 			cy.contains('Temps partiel').click()
 			cy.get('input[value="oui"]').parent().click()
 			cy.wait(100)
