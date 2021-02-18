@@ -2,6 +2,7 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import { TrackingContext } from '../../ATInternetTracking'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
 import Form from './FeedbackForm'
@@ -42,6 +43,7 @@ export default function PageFeedback({
 			location.pathname,
 		]),
 	})
+	const ATTracker = useContext(TrackingContext)
 
 	const handleFeedback = useCallback(({ useful }: { useful: boolean }) => {
 		tracker.push([
@@ -50,6 +52,10 @@ export default function PageFeedback({
 			useful ? 'positive rating' : 'negative rating',
 			location.pathname,
 		])
+		ATTracker.click.send({
+			chapter1: 'satisfaction',
+			name: useful ? 'positive' : 'negative',
+		})
 		const feedback = [
 			customEventName || 'rate page usefulness',
 			location.pathname,

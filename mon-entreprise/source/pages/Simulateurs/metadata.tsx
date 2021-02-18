@@ -776,12 +776,8 @@ export function getSimulatorsData({
 		},
 		pamc: {
 			private: true,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'pamc',
-				name: 'accueil',
-			},
 			iframe: 'pamc',
+			tracking: {},
 			title: t(
 				'pages.simulateurs.pamc.title',
 
@@ -805,6 +801,7 @@ export function getSimulatorsData({
 		},
 		'aides-embauche': {
 			icône: '🎁',
+			tracking: 'aides_embauche',
 			meta: {
 				title: 'Aides à l’embauche',
 				description:
@@ -848,9 +845,8 @@ export function getSimulatorsData({
 		},
 		is: {
 			icône: '🗓',
-			tracking: {
-				name: 'impot-societe',
-			},
+			tracking: 'impot-societe',
+
 			path: sitePaths.simulateurs.is,
 			iframe: 'impot-societe',
 			meta: {

@@ -1,5 +1,4 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
@@ -25,11 +24,9 @@ export default function useSimulationConfig(
 		: undefined
 
 	const lastConfig = useSelector(configSelector)
-	useEffect(() => {
-		if (config && lastConfig !== config) {
-			dispatch(setSimulationConfig(config ?? {}, url, initialSituation))
-		}
-	}, [config, initialSituation])
+	if (config && lastConfig !== config) {
+		dispatch(setSimulationConfig(config ?? {}, url, initialSituation))
+	}
 }
 
 export function getCompanySituation(company: Company | null): Situation {

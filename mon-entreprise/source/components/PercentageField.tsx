@@ -31,7 +31,7 @@ export default function PercentageField({
 					debouncedOnChange(value)
 				}}
 				type="range"
-				value={localValue as number}
+				value={localValue}
 				name="volume"
 				min="0"
 				step="0.05"
