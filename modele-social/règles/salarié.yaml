@@ -125,7 +125,15 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 
 contrat salarié . frais professionnels . titres-restaurant . nombre:
   question: Combien de titres-restaurant sont distribués au salarié ?
-  par défaut: 19 titres-restaurant/mois
+  arrondi: oui
+  par défaut: 
+    produit: 
+      assiette: 19 titres-restaurant/mois 
+      facteur: temps de travail . quotité de travail
+  suggestions:
+    5 repas / semaines:  5 titres-restaurant / semaines * période . semaines par mois
+    3 repas / semaine:  3 titres-restaurant / semaines * période . semaines par mois
+      
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question: Quelle est la valeur unitaire du titre-restaurant ?

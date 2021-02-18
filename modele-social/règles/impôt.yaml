@@ -50,7 +50,7 @@ impôt . méthode de calcul . taux neutre:
   formule: impôt . méthode de calcul = 'taux neutre'
 
 impôt . méthode de calcul . taux personnalisé:
-  titre: avec votre taux personnalisé
+  titre: avec un taux personnalisé
   description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscal pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
   formule: impôt . méthode de calcul = 'taux personnalisé'
 
