@@ -598,7 +598,7 @@ dirigeant . indépendant . revenu professionnel:
   description: |
     C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations pour les indépendants.
 
-    Attention, **notre calcul est fait au régime de croisière**:
+    Attention : **notre calcul est fait au régime de croisière**:
     l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.

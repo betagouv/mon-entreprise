@@ -490,7 +490,7 @@ synchronisation:
     des communes de France](https://geo.api.gouv.fr/decoupage-administratif/communes).
 
 
-    Attention, ce mécanisme est encore en cours de développement, et sa syntaxe
+    Attention : ce mécanisme est encore en cours de développement, et sa syntaxe
     n'est pas stable. Se référer aux exemples existants.
 
 inversion numérique:

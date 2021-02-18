@@ -65,7 +65,7 @@ export default function FormulaireMobilitéIndépendant() {
 
 			<blockquote>
 				<p className="ui__ lead">
-					<strong>Attention, ce document doit être signé {emoji('✍️')}</strong>
+					<strong>Attention : ce document doit être signé {emoji('✍️')}</strong>
 				</p>
 				<p>
 					Aussi, nous vous invitons à utiliser un écran tactile pour le
