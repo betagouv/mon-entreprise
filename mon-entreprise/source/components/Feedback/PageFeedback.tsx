@@ -52,10 +52,11 @@ export default function PageFeedback({
 			useful ? 'positive rating' : 'negative rating',
 			location.pathname,
 		])
-		ATTracker.click.send({
+		ATTracker.click.set({
 			chapter1: 'satisfaction',
 			name: useful ? 'positive' : 'negative',
 		})
+		ATTracker.dispatch()
 		const feedback = [
 			customEventName || 'rate page usefulness',
 			location.pathname,

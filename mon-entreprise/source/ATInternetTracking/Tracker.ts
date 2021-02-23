@@ -15,28 +15,28 @@ type CustomSiteIndicator = {
 	[INDICATOR.SITE.EMBARQUÉ]: '1' | '0' // intégration externe
 }
 type CustomPageIndicator = Record<string, string>
-
+type CustomVars = {
+	site?: Partial<CustomSiteIndicator>
+	page?: Partial<CustomPageIndicator>
+}
 type ATHit = {
 	name?: string
 	chapter1?: string
 	chapter2?: string
 	chapter3?: string
 	level2?: string
+	customVars?: CustomVars
 }
 
 export interface ATTracker {
 	page: {
 		set(infos: ATHit): void
-		send(infos: ATHit): void
 	}
 	click: {
-		send(infos: ATHit): void
+		set(infos: ATHit): void
 	}
 	customVars: {
-		set(variables: {
-			site?: Partial<CustomSiteIndicator>
-			page?: Partial<CustomPageIndicator>
-		}): void
+		set(variables: CustomVars): void
 	}
 	privacy: {
 		setVisitorMode(authority: 'cnil', type: 'exempt'): void
@@ -60,8 +60,19 @@ export function createTracker(siteId?: string) {
 	}
 	const BaseTracker: ATTrackerClass = siteId ? ATInternet.Tracker.Tag : Log
 	class Tag extends BaseTracker {
+		site: CustomSiteIndicator = {
+			[INDICATOR.SITE.LANGAGE]: '[fr]',
+			[INDICATOR.SITE.EMBARQUÉ]: document.location.pathname.includes(
+				'/iframes/'
+			)
+				? '1'
+				: '0',
+		}
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
+			this.site[
+				INDICATOR.SITE.LANGAGE
+			] = `[${options.language}]` as CustomSiteIndicator[1]
 			this.privacy.setVisitorMode('cnil', 'exempt')
 			if (
 				process.env.NODE_ENV === 'production' &&
@@ -73,17 +84,12 @@ export function createTracker(siteId?: string) {
 			) {
 				this.privacy.setVisitorOptout()
 			}
-			this.customVars.set({
-				site: {
-					[INDICATOR.SITE.LANGAGE]: `[${options.language}]` as '[fr]' | '[en]',
-					[INDICATOR.SITE.EMBARQUÉ]: document.location.pathname.includes(
-						'/iframes/'
-					)
-						? '1'
-						: '0',
-				},
-			})
 			this.dispatch()
+		}
+
+		dispatch() {
+			this.customVars.set({ site: this.site })
+			super.dispatch()
 		}
 	}
 	return Tag
@@ -97,13 +103,10 @@ export class Log implements ATTracker {
 		set(infos: ATHit): void {
 			console.debug('ATTracker::page.set', infos)
 		},
-		send(infos: ATHit): void {
-			console.debug('ATTracker::page.send', infos)
-		},
 	}
 	click = {
-		send(infos: ATHit): void {
-			console.debug('ATTracker::click.send', infos)
+		set(infos: ATHit): void {
+			console.debug('ATTracker::click.set', infos)
 		},
 	}
 	customVars: ATTracker['customVars'] = {
