@@ -1,10 +1,12 @@
+import Animate from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
-import Animate from 'Components/ui/animate'
+import { TrackPage } from '../../../ATInternetTracking'
 import { ActivitéCard } from './ActivitésSelection'
 import illustration from './images/multitasking.svg'
 import {
@@ -46,6 +48,7 @@ export default function VotreSituation() {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
+			<TrackPage name="simulation terminée" />
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
@@ -135,6 +138,27 @@ export default function VotreSituation() {
 						<ActivitéList activités={déclarations.AUCUN} />
 					</>
 				)}
+			</section>
+			<section>
+				<h2>
+					{emoji('🧰')} <Trans>Ressources utiles</Trans>
+				</h2>
+				<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
+					<a
+						target="_blank"
+						className="ui__ interactive card small box lighter-bg"
+						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5877Plaquetteecoeollaborative.pdf"
+					>
+						<Trans i18nKey="économieCollaborative.obligations.guide">
+							<p>Consulter le guide Urssaf</p>
+							<p className="ui__ notice">
+								Découvrez les modalités des statuts sociaux pour chaque type de
+								locations (bien, meublé, courte durée, classé, etc.).
+							</p>
+							<span className="ui__ small label">PDF</span>
+						</Trans>
+					</a>
+				</div>
 			</section>
 		</Animate.fromBottom>
 	)

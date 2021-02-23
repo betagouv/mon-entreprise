@@ -1,12 +1,13 @@
+import Animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import Value from 'Components/EngineValue'
+import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Redirect } from 'react-router-dom'
-import Animate from 'Components/ui/animate'
+import { TrackPage } from '../../../ATInternetTracking'
 import { selectSeuilRevenus } from './actions'
 import { getTranslatedActivité } from './activitésData'
 import { ActivitéSelection } from './ActivitésSelection'
@@ -14,7 +15,6 @@ import ExceptionsExonération from './ExceptionsExonération'
 import NextButton from './NextButton'
 import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
-import { formatValue } from 'publicodes'
 
 export type Activity = {
 	titre: string
@@ -37,6 +37,7 @@ export default function Activité({
 	if (activité.activités) {
 		return (
 			<Animate.fromBottom>
+				<TrackPage name={activité.titre} />
 				<ScrollToTop />
 				<h1>{activité.titre}</h1>
 				<p>{activité.explication}</p>
@@ -61,6 +62,7 @@ export default function Activité({
 		<section key={title}>
 			<ScrollToTop />
 			<Animate.fromBottom>
+				<TrackPage name={activité.titre} />
 				<h1>
 					{emoji(activité.icônes)} {activité.titre}
 				</h1>
