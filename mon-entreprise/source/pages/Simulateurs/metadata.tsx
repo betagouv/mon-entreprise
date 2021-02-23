@@ -536,7 +536,7 @@ export function getSimulatorsData({
 						L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
 						contribution maladie dans certains cas. Pour en savoir plus, voir la
 						page explicative sur{' '}
-						<a href="https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html">
+						<a href="https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html">
 							le site de l'Urssaf
 						</a>
 						.
