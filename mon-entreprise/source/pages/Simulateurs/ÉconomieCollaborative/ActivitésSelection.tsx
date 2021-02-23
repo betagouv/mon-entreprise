@@ -9,6 +9,7 @@ import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { TrackPage } from '../../../ATInternetTracking'
 import { debounce } from '../../../utils'
 import { toggleActivité } from './actions'
 import { Activity } from './Activité'
@@ -29,6 +30,7 @@ export default function ActivitésSelection() {
 	return (
 		<>
 			<Animate.fromBottom>
+				<TrackPage name="accueil" />
 				<ScrollToTop />
 				<h1>{titre}</h1>
 				<section css="margin-bottom: 2rem">
