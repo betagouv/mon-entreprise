@@ -120,8 +120,8 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 						Afin d’examiner votre situation au regard des règlements
 						communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez
 						envoyer ce document à{' '}
-						<a href="mailto:relations.internationales@urssaf.fr">
-							relations.internationales@urssaf.fr
+						<a href="mailto:mobilite-internationale@urssaf.fr@urssaf.fr">
+							mobilite-internationale@urssaf.fr@urssaf.fr
 						</a>
 					</p>
 					<Suspense

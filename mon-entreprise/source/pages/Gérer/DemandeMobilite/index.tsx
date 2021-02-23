@@ -42,8 +42,8 @@ export default function FormulaireMobilitéIndépendant() {
 				devez <strong>compléter ce formulaire</strong> pour définir votre régime
 				de Sécurité sociale applicable durant cette période et l’envoyer par
 				email à{' '}
-				<a href="mailto:relations.internationales@urssaf.fr">
-					relations.internationales@urssaf.fr
+				<a href="mailto:mobilite-internationale@urssaf.fr@urssaf.fr">
+					mobilite-internationale@urssaf.fr@urssaf.fr
 				</a>
 				.
 			</p>
@@ -77,8 +77,8 @@ export default function FormulaireMobilitéIndépendant() {
 				En cas de difficultés pour{' '}
 				<strong>remplir ce formulaire, contactez un conseiller</strong> par
 				email{' '}
-				<a href="mailto:relations.internationales@urssaf.fr">
-					relations.internationales@urssaf.fr
+				<a href="mailto:mobilite-internationale@urssaf.fr@urssaf.fr">
+					mobilite-internationale@urssaf.fr@urssaf.fr
 				</a>{' '}
 				ou par téléphone au{' '}
 				<strong>

@@ -64,8 +64,10 @@ export function TrackPage(props: {
 		])
 	)
 	useEffect(() => {
-		tag.page.send(propsFormatted)
+		tag.page.set(propsFormatted)
+		tag.dispatch()
 	}, [
+		tag,
 		propsFormatted.name,
 		propsFormatted.chapter1,
 		propsFormatted.chapter2,

@@ -1,0 +1,98 @@
+{"monthlyVisits": [
+	{
+		"date": "2019-01",
+		"visiteurs": 119541
+	},
+	{
+		"date": "2019-02",
+		"visiteurs": 99065
+	},
+	{
+		"date": "2019-03",
+		"visiteurs": 122931
+	},
+	{
+		"date": "2019-04",
+		"visiteurs": 113454
+	},
+	{
+		"date": "2019-05",
+		"visiteurs": 118637
+	},
+	{
+		"date": "2019-06",
+		"visiteurs": 152981
+	},
+	{
+		"date": "2019-07",
+		"visiteurs": 141079
+	},
+	{
+		"date": "2019-08",
+		"visiteurs": 127326
+	},
+	{
+		"date": "2019-09",
+		"visiteurs": 178474
+	},
+	{
+		"date": "2019-10",
+		"visiteurs": 198260
+	},
+	{
+		"date": "2019-11",
+		"visiteurs": 174515
+	},
+	{
+		"date": "2019-12",
+		"visiteurs": 116305
+	},
+	{
+		"date": "2020-02",
+		"visiteurs": 216323
+	},
+	{
+		"date": "2020-03",
+		"visiteurs": 303301
+	},
+	{
+		"date": "2020-04",
+		"visiteurs": 153221
+	},
+	{
+		"date": "2020-05",
+		"visiteurs": 174496
+	},
+	{
+		"date": "2020-06",
+		"visiteurs": 224146
+	},
+	{
+		"date": "2020-07",
+		"visiteurs": 204123
+	},
+	{
+		"date": "2020-08",
+		"visiteurs": 179896
+	},
+	{
+		"date": "2020-09",
+		"visiteurs": 240820
+	},
+	{
+		"date": "2020-10",
+		"visiteurs": 229881
+	},
+	{
+		"date": "2020-11",
+		"visiteurs": 221928
+	},
+	{
+		"date": "2020-12",
+		"visiteurs": 232727
+	},
+	{
+		"date": "2021-01",
+		"visiteurs": 310247
+	}
+]}
