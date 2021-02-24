@@ -41,8 +41,8 @@ export default function PDFDocument({
 						Afin d’examiner votre situation au regard des règlements
 						communautaires de Sécurité sociale (CE 883/2004 et CE 987/2009),
 						veuillez envoyer ce document à{' '}
-						<Link src="mailto:mobilite-internationale@urssaf.fr@urssaf.fr">
-							mobilite-internationale@urssaf.fr@urssaf.fr
+						<Link src="mailto:mobilite-internationale@urssaf.fr">
+							mobilite-internationale@urssaf.fr
 						</Link>
 					</Text>
 				</View>
