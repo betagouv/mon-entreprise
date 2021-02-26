@@ -1,6 +1,7 @@
 import Conversation from 'Components/conversation/Conversation'
 import { HiddenOptionContext } from 'Components/conversation/Question'
 import Animate from 'Components/ui/animate'
+import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -8,7 +9,6 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import Warning from 'Components/ui/WarningBlock'
 import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
@@ -17,6 +17,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { SimulationConfig, Situation } from 'Reducers/rootReducer'
 import styled from 'styled-components'
+import { TrackPage } from '../../ATInternetTracking'
 
 type AideDescriptor = {
 	title: string
@@ -219,6 +220,7 @@ function Results() {
 
 	return progress === 0 ? (
 		<>
+			<TrackPage name="accueil" />
 			<h3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aides">
 					Les aides
