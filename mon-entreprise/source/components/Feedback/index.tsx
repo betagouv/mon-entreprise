@@ -24,7 +24,6 @@ const setFeedbackGivenForUrl = (url: string) => {
 // Ask for feedback again after 4 month
 const askFeedback = (url: string) => {
 	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
-	console.log(previousFeedbackDate)
 	if (!previousFeedbackDate) {
 		return true
 	}
@@ -44,7 +43,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 	const ATTracker = useContext(TrackingContext)
 
 	const handleFeedback = useCallback(
-		(rating: 'très mauvais' | 'mauvais' | 'moyen' | 'bien' | 'très bien') => {
+		(rating: 'mauvais' | 'moyen' | 'bien' | 'très bien') => {
 			setFeedbackGivenForUrl(url)
 			ATTracker.click.set({
 				chapter1: 'satisfaction',
@@ -52,7 +51,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 				name: rating,
 			})
 			ATTracker.dispatch()
-			const askDetails = ['très mauvais', 'mauvais', 'moyen'].includes(rating)
+			const askDetails = ['mauvais', 'moyen'].includes(rating)
 			setState({
 				showThanks: !askDetails,
 				showForm: askDetails,

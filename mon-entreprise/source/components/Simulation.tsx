@@ -85,7 +85,7 @@ export default function Simulation({
 											flex-shrink: 1;
 											flex: 1;
 											display: flex;
-											${!explanations && `justify-content: center;`}
+											${!explanations && 'justify-content: center;'}
 											position: sticky;
 											top: 1rem;
 										}
