@@ -6,7 +6,6 @@ import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import yaml from 'yaml'
 
 const EXAMPLE_CODE = `
 # Bienvenue dans le bac à sable du langage publicode !

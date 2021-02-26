@@ -201,7 +201,7 @@ export function getSimulatorsData({
 			),
 		},
 		'auto-entrepreneur': {
-			tracking: 'auto-entrepreneur',
+			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
 			icône: '🚶‍♂️',
 			iframe: 'simulateur-autoentrepreneur',
@@ -331,7 +331,7 @@ export function getSimulatorsData({
 		},
 		sasu: {
 			config: sasuConfig,
-			tracking: 'dirigeant-sasu',
+			tracking: 'dirigeant_sasu',
 			icône: '👨‍✈️',
 			iframe: 'simulateur-assimilesalarie',
 			meta: {

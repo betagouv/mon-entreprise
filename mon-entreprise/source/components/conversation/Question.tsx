@@ -221,7 +221,7 @@ type RadioLabelContentProps = {
 	onSubmit: (src: string, value: string) => void
 }
 
-function RadioLabelContent({
+export function RadioLabelContent({
 	value,
 	label,
 	name,
