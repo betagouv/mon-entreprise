@@ -8,369 +8,255 @@
 // https://developer.matomo.org/api-reference/reporting-api
 require('dotenv').config()
 require('isomorphic-fetch')
-const querystring = require('querystring')
+
+const {
+	prop,
+	groupBy,
+	indexBy,
+	map,
+	mapObjIndexed,
+	filter,
+	flatten,
+	partition,
+} = require('ramda')
+const { compose } = require('redux')
 const { createDataDir, writeInDataDir } = require('./utils.js')
-const R = require('ramda')
-
-const apiURL = (params) => {
-	const query = querystring.stringify({
-		period: 'month',
-		date: 'last1',
-		method: 'API.get',
-		format: 'JSON',
-		module: 'API',
-		idSite: 39,
-		language: 'fr',
-		apiAction: 'get',
-		token_auth: process.env.MATOMO_TOKEN,
-		...params,
+const matomoSiteVisitsHistory = require('./matomoVisitHistory.json')
+const fetchApi = async function (query) {
+	const response = await fetch('https://api.atinternet.io/v3/data/getData', {
+		method: 'POST',
+		headers: new Headers({
+			'x-api-key': `${process.env.ATINTERNET_API_ACCESS_KEY}_${process.env.ATINTERNET_API_SECRET_KEY}`,
+			'Content-Type': 'application/json',
+		}),
+		body: JSON.stringify(query),
 	})
-	return `https://stats.data.gouv.fr/index.php?${query}`
+	if (!response.ok) {
+		const text = await response.text()
+		throw new Error(`Erreur de l'API (${text})`)
+	}
+	const data = await response.json()
+	return data.DataFeed.Rows.map((x) => x.Rows)
 }
 
-async function main() {
-	createDataDir()
-	const stats = {
-		simulators: await fetchSimulatorsMonth(),
-		monthlyVisits: await fetchMonthlyVisits(),
-		dailyVisits: await fetchDailyVisits(),
-		statusChosen: await fetchStatusChosen(),
-		feedback: await fetchFeedback(),
-		channelType: await fetchChannelType(),
-	}
-	writeInDataDir('stats.json', stats)
+const buildSimulateursQuery = (period, granularity) => ({
+	columns: ['page', 'page_chapter2', 'page_chapter3', 'm_visits'],
+	space: {
+		s: [617190],
+	},
+	period: {
+		p1: [period],
+	},
+	evo: {
+		granularity,
+		top: {
+			'page-num': 1,
+			'max-results': 100,
+			sort: ['-m_visits'],
+			filter: {
+				property: {
+					page_chapter1: {
+						$eq: 'simulateurs',
+					},
+				},
+			},
+		},
+	},
+	options: {
+		ignore_null_properties: true,
+	},
+})
+
+const buildSatisfactionQuery = () => ({
+	columns: ['page_chapter2', 'page_chapter3', 'click', 'm_events'],
+	space: {
+		s: [617190],
+	},
+	period: {
+		p1: [last36Months],
+	},
+	evo: {
+		granularity: 'M',
+		top: {
+			'page-num': 1,
+			'max-results': 100,
+			sort: ['-m_events'],
+			filter: {
+				property: {
+					$AND: [
+						{
+							page_chapter1: {
+								$eq: 'simulateurs',
+							},
+						},
+						{
+							click_chapter1: {
+								$eq: 'satisfaction',
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	options: {
+		ignore_null_properties: true,
+	},
+})
+
+const buildSiteQuery = (period, granularity) => ({
+	columns: ['m_visits'],
+	space: {
+		s: [617190],
+	},
+	period: {
+		p1: [period],
+	},
+	evo: {
+		granularity,
+		top: {
+			'page-num': 1,
+			'max-results': 100,
+			sort: ['-m_visits'],
+		},
+	},
+	options: {
+		ignore_null_properties: true,
+	},
+})
+
+const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
+	.toISOString()
+	.slice(0, 10)
+const last60days = {
+	type: 'D',
+	start: new Date(
+		Math.max(
+			new Date().setDate(new Date().getDate() - 60),
+			new Date('2021-02-27')
+		)
+	)
+		.toISOString()
+		.slice(0, 10),
+	end: yesterday,
 }
 
-function xMonthAgo(x = 0) {
-	const date = new Date()
-	if (date.getMonth() - x > 0) {
-		date.setMonth(date.getMonth() - x)
-	} else {
-		date.setMonth(12 + date.getMonth() - x)
-		date.setFullYear(date.getFullYear() - 1)
-	}
-	return date.toISOString().substring(0, 7)
-}
-
-async function fetchSimulatorsMonth() {
-	const getDataFromXMonthAgo = async (x) => {
-		const date = xMonthAgo(x)
-		return { date, visites: await fetchSimulators(`${date}-01`) }
-	}
-	return {
-		currentMonth: await getDataFromXMonthAgo(0),
-		oneMonthAgo: await getDataFromXMonthAgo(1),
-		twoMonthAgo: await getDataFromXMonthAgo(2),
-		threeMonthAgo: await getDataFromXMonthAgo(3),
-		fourMonthAgo: await getDataFromXMonthAgo(4),
-	}
-}
-
-async function fetchSimulators(dt) {
-	async function fetchSubTableData(data, label) {
-		const subTable = data.find((page) => page.label === label)
-		if (!subTable) {
-			console.log('No subtable for ' + label + ' for the period ' + dt + '.')
-			return []
-		}
-
-		const response = await fetch(
-			apiURL({
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				search_recursive: 1,
-				filter_limits: -1,
-				idSubtable: subTable.idsubdatatable,
-			})
-		)
-		return await response.json()
-	}
-	try {
-		const response = await fetch(
-			apiURL({
-				period: 'month',
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				filter_limits: -1,
-			})
-		)
-		const firstLevelData = await response.json()
-
-		const coronavirusPage = firstLevelData.find(
-			(page) => page.label === '/coronavirus'
-		)
-
-		// Visits on simulators pages
-		const dataSimulateurs = await fetchSubTableData(
-			firstLevelData,
-			'simulateurs'
-		)
-		const dataGérer = await fetchSubTableData(firstLevelData, 'gérer')
-		const dataProfessionLiberale = await fetchSubTableData(
-			dataSimulateurs,
-			'profession-liberale'
-		)
-
-		const resultSimulateurs = [
-			...dataSimulateurs,
-			...dataProfessionLiberale,
-			...dataGérer,
-		]
-			.filter(({ label }) =>
-				[
-					'/salaire-brut-net',
-					'/chômage-partiel',
-					'/auto-entrepreneur',
-					'/artiste-auteur',
-					'/indépendant',
-					'/comparaison-régimes-sociaux',
-					'/dirigeant-sasu',
-					'/aide-declaration-independants',
-					'/demande-mobilité',
-					'/profession-liberale',
-					'/medecin',
-					'/auxiliaire-medical',
-					'/sage-femme',
-					'/chirugien-dentiste',
-					'/avocat',
-					'/expert-comptable',
-					'/économie-collaborative',
-				].includes(label)
+const last36Months = {
+	type: 'D',
+	start:
+		new Date(
+			Math.max(
+				new Date().setMonth(new Date().getMonth() - 36),
+				new Date('2021-03')
 			)
-
-			/// Two '/salarié' pages are reported on Matomo, one of which has very few
-			/// visitors. We delete it manually.
-			.filter(
-				(x) =>
-					x.label != '/salarié' ||
-					x.nb_visits !=
-						dataSimulateurs
-							.filter((x) => x.label == '/salarié')
-							.reduce((a, b) => Math.min(a, b.nb_visits), 1000)
-			)
-
-		const resultIframes = (
-			await fetchSubTableData(firstLevelData, 'iframes')
-		).filter((x) =>
-			[
-				'/simulateur-embauche',
-				'/simulateur-autoentrepreneur',
-				'/simulateur-assimilesalarie',
-				'/simulateur-artiste-auteur',
-				'/simulateur-independant',
-				'/demande-mobilite',
-				'/profession-liberale',
-				'/medecin',
-				'/auxiliaire-medical',
-				'/sage-femme',
-				'/chirugien-dentiste',
-				'/avocat',
-				'/expert-comptable',
-			].some((path) => x.label.startsWith(path))
 		)
-
-		const groupSimulateursIframesVisits = ({ label }) =>
-			label.startsWith('/coronavirus')
-				? '/chômage-partiel'
-				: label.startsWith('/simulateur-embauche') ||
-				  label.startsWith('/salarié')
-				? '/salaire-brut-net'
-				: label.startsWith('/simulateur-autoentrepreneur')
-				? '/auto-entrepreneur'
-				: label.startsWith('/assimilé-salarié') ||
-				  label.startsWith('/simulateur-assimilesalarie')
-				? '/dirigeant-sasu'
-				: label.startsWith('/simulateur-independant')
-				? '/indépendant'
-				: label.startsWith('/simulateur-artiste-auteur')
-				? '/artiste-auteur'
-				: label.startsWith('/demande-mobilite')
-				? '/demande-mobilité'
-				: label
-
-		const sumVisits = (acc, { nb_visits }) => acc + nb_visits
-		const results = R.reduceBy(
-			sumVisits,
-			0,
-			groupSimulateursIframesVisits,
-			[...resultSimulateurs, ...resultIframes, coronavirusPage].filter(Boolean)
-		)
-		return Object.entries(results)
-			.map(([label, nb_visits]) => ({ label, nb_visits }))
-			.sort((a, b) => b.nb_visits - a.nb_visits)
-	} catch (e) {
-		console.error(e)
-
-		console.log('fail to fetch Simulators Visits')
-		return null
-	}
+			.toISOString()
+			.slice(0, 8) + '01',
+	end: yesterday,
 }
+const uniformiseData = map(
+	({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
+		date: d_evo_day != null ? d_evo_day : d_evo_month,
+		nombre: m_visits != null ? m_visits : m_events,
+		...data,
+	})
+)
+const flattenPage = compose(
+	flatten,
+	map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r }))),
+	filter((p) => p.page_chapter2 !== 'N/A') // Remove simulateur landing page
+)
+async function fetchDailyVisits() {
+	const pages = uniformiseData(
+		flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D')))
+	)
+	const site = uniformiseData(
+		(await fetchApi(buildSiteQuery(last60days, 'D')))[0].Rows
+	)
 
-// We had a tracking bug in 2019, in which every click on Safari+iframe counted
-// as a visit, so the numbers are manually corrected.
-const visitsIn2019 = {
-	'2019-01': 119541,
-	'2019-02': 99065,
-	'2019-03': 122931,
-	'2019-04': 113454,
-	'2019-05': 118637,
-	'2019-06': 152981,
-	'2019-07': 141079,
-	'2019-08': 127326,
-	'2019-09': 178474,
-	'2019-10': 198260,
-	'2019-11': 174515,
-	'2019-12': 116305,
+	return { pages, site }
 }
 
 async function fetchMonthlyVisits() {
-	try {
-		const response = await fetch(
-			apiURL({
-				period: 'month',
-				date: 'previous12',
-				method: 'VisitsSummary.getUniqueVisitors',
-			})
-		)
-		const data = await response.json()
-		const result = Object.entries({ ...data, ...visitsIn2019 })
-			.sort(([t1], [t2]) => (t1 > t2 ? 1 : -1))
-			.map(([date, visiteurs]) => ({ date, visiteurs }))
-		return result
-	} catch (e) {
-		console.log('fail to fetch Monthly Visits')
-		return null
-	}
+	const pages = uniformiseData(
+		flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M')))
+	)
+
+	const site = [
+		...matomoSiteVisitsHistory.map(({ date, visites }) => ({
+			date: date + '-01',
+			nombre: visites,
+		})),
+		...uniformiseData(
+			(await fetchApi(buildSiteQuery(last36Months, 'M')))[0].Rows
+		),
+	]
+
+	return { pages, site }
 }
 
-async function fetchDailyVisits() {
-	try {
-		const response = await fetch(
-			apiURL({
-				period: 'day',
-				date: 'previous30',
-				method: 'VisitsSummary.getUniqueVisitors',
-			})
-		)
-		const data = await response.json()
-		return Object.entries(data).map(([date, visiteurs]) => ({
-			date,
-			visiteurs,
-		}))
-	} catch (e) {
-		console.log('fail to fetch Daily Visits')
-		return null
-	}
-}
-
-async function fetchStatusChosen() {
-	try {
-		const response = await fetch(
-			apiURL({
-				method: 'Events.getAction',
-				label: 'status chosen',
-				date: 'previous1',
-			})
-		)
-		const data = await response.json()
-		const response2 = await fetch(
-			apiURL({
-				method: 'Events.getNameFromActionId',
-				idSubtable: Object.values(data)[0][0].idsubdatatable,
-				date: 'previous1',
-			})
-		)
-		const data2 = await response2.json()
-		const result = Object.values(data2)[0].map(({ label, nb_visits }) => ({
-			label,
-			nb_visits,
-		}))
-		return result
-	} catch (e) {
-		console.log('fail to fetch Status Chosen')
-		return null
-	}
-}
-
-async function fetchFeedback() {
-	try {
-		const APIcontent = await fetch(
-			apiURL({
-				method: 'Events.getCategory',
-				label: 'Feedback &gt; @rate%20page%20usefulness',
-				date: 'previous5',
-			})
-		)
-		const APIsimulator = await fetch(
-			apiURL({
-				method: 'Events.getCategory',
-				label: 'Feedback &gt; @rate%20simulator',
-				date: 'previous5',
-			})
-		)
-		const feedbackcontent = await APIcontent.json()
-		const feedbacksimulator = await APIsimulator.json()
-
-		let content = 0
-		let simulator = 0
-		let j = 0
-		// The weights are defined by taking the coefficients of an exponential
-		// smoothing with alpha=0.8 and normalizing them. The current month is not
-		// considered.
-		const weights = [0.0015, 0.0076, 0.0381, 0.1905, 0.7623]
-		for (const i in feedbackcontent) {
-			content += feedbackcontent[i][0].avg_event_value * weights[j]
-			simulator += feedbacksimulator[i][0].avg_event_value * weights[j]
-			j += 1
+async function fetchIssuesFromUser() {
+	const tags = await fetch(
+		'https://mon-entreprise.zammad.com/api/v1/tag_list',
+		{
+			headers: new Headers({
+				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
+			}),
 		}
-		return {
-			content: Math.round(content * 10),
-			simulator: Math.round(simulator * 10),
-		}
-	} catch (e) {
-		console.log('fail to fetch feedbacks')
-		return null
+	).then((r) => r.json())
+	const sortedTags = tags
+		.sort((t1, t2) => t2.count - t1.count)
+		.filter(({ name }) => /#[\d]+/.exec(name))
+	const query = `query {
+			repository(owner:"betagouv", name:"mon-entreprise") {${sortedTags
+				.map(
+					({ name, count }, i) =>
+						`
+				issue${i}_${count}: issue(number: ${name.slice(1)}) {
+						title
+						closedAt
+						number
+				}`
+				)
+				.join('\n')}
+			}
+		}`
+	const response = await fetch('https://api.github.com/graphql', {
+		method: 'post',
+		headers: new Headers({
+			Authorization: `bearer ${process.env.GITHUB_API_SECRET}`,
+		}),
+		body: JSON.stringify({
+			query,
+		}),
+	})
+	const data = await response.json()
+	const issues = Object.entries(data.data.repository)
+		.filter(([, value]) => !!value)
+		.map(([k, value]) => ({ ...value, count: +/[\d]+$/.exec(k)[0] }))
+	const [closed, open] = partition((s) => s.closedAt, issues)
+	return {
+		open,
+		closed: closed.sort(
+			(i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)
+		),
 	}
 }
+async function main() {
+	createDataDir()
 
-async function fetchChannelType() {
-	try {
-		const response = await fetch(
-			apiURL({
-				period: 'month',
-				date: 'last6',
-				method: 'Referrers.getReferrerType',
-			})
-		)
-
-		const data = await response.json()
-
-		const result = R.map(
-			(date) =>
-				date
-					.filter((x) =>
-						['Sites web', 'Moteurs de recherche', 'Entrées directes'].includes(
-							x.label
-						)
-					)
-					.map(({ label, nb_visits }) => ({
-						label,
-						nb_visits,
-					})),
-			data
-		)
-		const dates = Object.keys(result).sort((t1, t2) => t1 - t2)
-		return {
-			currentMonth: { date: dates[0], visites: result[dates[0]] },
-			oneMonthAgo: { date: dates[1], visites: result[dates[1]] },
-			twoMonthAgo: { date: dates[2], visites: result[dates[2]] },
-			threeMonthAgo: { date: dates[3], visites: result[dates[3]] },
-			fourMonthAgo: { date: dates[4], visites: result[dates[4]] },
-		}
-	} catch (e) {
-		console.log('fail to fetch channel type')
-		return null
-	}
+	const visitesJours = await fetchDailyVisits()
+	const visitesMois = await fetchMonthlyVisits()
+	const satisfaction = uniformiseData(
+		flattenPage(await fetchApi(buildSatisfactionQuery()))
+	)
+	const retoursUtilisateurs = await fetchIssuesFromUser()
+	writeInDataDir('stats.json', {
+		visitesJours,
+		visitesMois,
+		satisfaction,
+		retoursUtilisateurs,
+	})
 }
 
 main()
