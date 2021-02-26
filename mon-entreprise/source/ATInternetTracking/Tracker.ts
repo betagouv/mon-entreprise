@@ -33,7 +33,9 @@ export interface ATTracker {
 		set(infos: ATHit): void
 	}
 	click: {
-		set(infos: ATHit): void
+		set(
+			infos: ATHit & { type: 'exit' | 'download' | 'action' | 'navigation' }
+		): void
 	}
 	customVars: {
 		set(variables: CustomVars): void

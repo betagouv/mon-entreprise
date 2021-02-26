@@ -1,4 +1,4 @@
-import PageFeedback from 'Components/Feedback/PageFeedback'
+import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
 import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
@@ -31,6 +31,8 @@ const useShowFeedback = () => {
 	return ![
 		sitePath.index,
 		...Object.values(simulators).map((s) => s.path),
+		'',
+		'/',
 	].includes(currentPath)
 }
 export default function Footer() {
@@ -58,7 +60,19 @@ export default function Footer() {
 				))}
 			</Helmet>
 			<footer className="footer">
-				{showFeedback && <PageFeedback />}
+				{showFeedback && (
+					<div>
+						<div
+							className="ui__ lighter-bg"
+							css={`
+								display: flex;
+								justify-content: center;
+							`}
+						>
+							<PageFeedback />
+						</div>
+					</div>
+				)}
 				<div className="ui__ container">
 					<NewsletterRegister />
 					<hr className="footer__separator" />

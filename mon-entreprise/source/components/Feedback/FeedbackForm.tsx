@@ -1,14 +1,12 @@
 import { ScrollToElement } from 'Components/utils/Scroll'
-import { TrackerContext } from 'Components/utils/withTracker'
-import React, { useContext, useEffect, useRef } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 
-type Props = { onEnd: () => void; onCancel: () => void }
 declare global {
 	const $: any
 }
-export default function FeedbackForm({ onEnd, onCancel }: Props) {
+export default function FeedbackForm() {
 	// const tracker = useContext(TrackerContext)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
@@ -29,12 +27,12 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 						isSimulateur ? 'le simulateur' : 'la page'
 					} ${page}`,
 					messageSubmit: 'Envoyer',
-					messageThankYou:
-						'Merci pour votre retour ! Vous pouvez aussi nous contacter directement à contact@mon-entreprise.beta.gouv.fr',
+					messageThankYou: 'Merci de votre retour !',
 					lang,
 					attributes: [
 						{
-							display: 'Message',
+							display:
+								"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)",
 							name: 'body',
 							tag: 'textarea',
 							placeholder: 'Your Message...',
@@ -49,7 +47,7 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 							defaultValue: '-',
 						},
 						{
-							display: 'Email (pour recevoir notre réponse)',
+							display: 'Email (pour recevoir une réponse)',
 							name: 'email',
 							tag: 'input',
 							type: 'email',
@@ -61,29 +59,10 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'
 			document.body.appendChild(script)
 		}, 100)
-		// tracker.push(['trackEvent', 'Feedback', 'written feedback submitted'])
 	}, [])
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			<div style={{ textAlign: 'end' }}>
-				<button
-					onClick={() => onCancel()}
-					className="ui__ link-button"
-					style={{ textDecoration: 'none', marginLeft: '0.3rem' }}
-					aria-label="close"
-				>
-					X
-				</button>
-			</div>
-
-			<p>
-				<Trans i18nKey="feedback.bad.form.headline">
-					Votre retour nous est précieux afin d'améliorer ce site en continu.
-					Sur quoi devrions nous travailler afin de mieux répondre à vos
-					attentes ?
-				</Trans>
-			</p>
 			<div id="feedback-form"></div>
 		</ScrollToElement>
 	)
