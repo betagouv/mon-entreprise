@@ -1,7 +1,7 @@
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
-import PageFeedback from 'Components/Feedback/PageFeedback'
+import PageFeedback from 'Components/Feedback'
 import SearchButton from 'Components/SearchButton'
 import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
@@ -38,6 +38,7 @@ export default function Simulation({
 	return (
 		<>
 			{simulationBloc}
+
 			<SearchButton invisibleButton />
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
@@ -47,15 +48,67 @@ export default function Simulation({
 						<ShareSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
 						<br />
-						<PageFeedback
-							customMessage={
-								<Trans i18nKey="feedback.simulator">
-									Êtes-vous satisfait de ce simulateur ?
-								</Trans>
-							}
-							customEventName="rate simulator"
-						/>
-						{explanations}
+						<div className="ui__ full-width">
+							<div
+								css={`
+									display: flex;
+									flex-direction: column;
+									align-items: center;
+									@media (min-width: 1200px) {
+										flex-direction: row;
+										align-items: baseline;
+									}
+								`}
+							>
+								{explanations && (
+									<>
+										<div
+											css={`
+												flex: 1;
+											`}
+										/>
+										<div
+											className="ui__ container"
+											css={`
+												flex-shrink: 0;
+											`}
+										>
+											{explanations}
+										</div>
+									</>
+								)}
+								<div
+									css={`
+										margin-top: 1rem;
+										@media (min-width: 1200px) {
+											flex-grow: 0;
+											flex-shrink: 1;
+											flex: 1;
+											display: flex;
+											${!explanations && 'justify-content: center;'}
+											position: sticky;
+											top: 1rem;
+										}
+									`}
+								>
+									<div
+										css={`
+											margin: 0 1rem;
+										`}
+									>
+										<div className="ui__ card lighter-bg">
+											<PageFeedback
+												customMessage={
+													<Trans i18nKey="feedback.simulator">
+														Êtes-vous satisfait de ce simulateur&nbsp;?
+													</Trans>
+												}
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</Animate.fromTop>
 				</>
 			)}

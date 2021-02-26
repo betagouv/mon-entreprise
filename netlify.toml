@@ -42,7 +42,7 @@
   from="/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
   to="/simulateurs/auto-entrepreneur"
   status = 301
-  
+
 # FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
 [[redirects]]
   from="/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
@@ -123,7 +123,7 @@
   status = 200
 
 
-# Publicode 
+# Publicode
 [[redirects]]
   from = "https://publi.codes/*"
   to = "/publicodes.html"
@@ -166,7 +166,7 @@
 
 
 
-# Mon-entreprise.fr 
+# Mon-entreprise.fr
 [[redirects]]
   from = "https://mon-entreprise.fr/robots.txt"
   to = "/robots.infrance.txt"
@@ -257,9 +257,7 @@
 [context.production.environment]
   EN_SITE = "https://mycompanyinfrance.fr${path}"
   FR_SITE = "https://mon-entreprise.fr${path}"
-  AT_INTERNET_SITE_ID = "617189" 
-  # Todo replace with prod env when sure about the metrics
-  # AT_INTERNET_SITE_ID = 617190
+  AT_INTERNET_SITE_ID = "617190"
 
 [context."demo".environment]
   EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"

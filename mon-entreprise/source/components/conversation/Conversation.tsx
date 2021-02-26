@@ -57,7 +57,9 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 
 	return currentQuestion ? (
 		<>
-			<TrackPage name="simulation commencée" />
+			{Object.keys(situation).length !== 0 && (
+				<TrackPage name="simulation commencée" />
+			)}
 			<Aide />
 			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<Animate.fadeIn>
