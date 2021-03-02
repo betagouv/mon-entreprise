@@ -12,6 +12,7 @@
 .step fieldset .step.question .variantLeaf,
 .step fieldset .step.question {
 	justify-content: flex-end;
+	width: 100%;
 }
 
 .step.question .variant {

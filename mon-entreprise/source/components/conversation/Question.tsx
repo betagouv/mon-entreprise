@@ -12,6 +12,7 @@ import {
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
+import styled, { css } from 'styled-components'
 import { Explicable } from './Explicable'
 import { binaryQuestion, InputProps } from './RuleInput'
 
@@ -77,6 +78,8 @@ export default function Question({
 	}, [currentSelection])
 	const hiddenOptions = useContext(HiddenOptionContext)
 
+	const gridMode = questionDottedName === 'contrat salarié' // TOTO Hack
+
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
 		return choices.map(({ value, label }) => (
 			<span
@@ -112,7 +115,7 @@ export default function Question({
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
 		return (
-			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
+			<AnswerListUl gridMode={gridMode} className="ui__ radio">
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -162,7 +165,7 @@ export default function Question({
 								)
 							)
 					)}
-			</ul>
+			</AnswerListUl>
 		)
 	}
 
@@ -264,3 +267,26 @@ function RadioLabelContent({
 // context instead of passing down props to avoid polluting to much code with
 // this undesirable option.
 export const HiddenOptionContext = createContext<Array<DottedName>>([])
+
+const AnswerListUl = styled.ul`
+	width: 100%;
+	padding: 0;
+	margin: 0;
+
+	${({ gridMode }: { gridMode: boolean }) =>
+		gridMode &&
+		css`
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+			column-gap: 1rem;
+
+			label.ui__.button {
+				width: 100%;
+				padding: 1.5rem 1rem;
+			}
+
+			button.ui__.link-button {
+				display: none;
+			}
+		`}
+`

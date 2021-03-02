@@ -7,6 +7,7 @@ contrat salarié:
       possibilités:
         - CDI
         - CDD
+        - intérim
         - apprentissage
         - professionnalisation
         - stage
@@ -1122,6 +1123,23 @@ contrat salarié . CDD . indemnités salarié:
       - prime de fin de contrat
       - compensation pour congés non pris
 
+contrat salarié . intérim:
+  titre: Contrat d'intérim
+  formule: contrat salarié = 'intérim'
+
+contrat salarié . intérim . prime de fin de mission:
+  description: Somme versée en fin de mission comme compensation de précarité.
+  note: Il s'agit du même calcul que l'indemnité de fin de contrat pour les CDD.
+  formule:
+    produit:
+      assiette:
+        somme:
+          - rémunération . brut de base
+          - rémunération . avantages en nature . montant
+          - rémunération . primes
+          - rémunération . heures supplémentaires
+      taux: 10%
+
 contrat salarié . apprentissage:
   description: |
     Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
@@ -1513,6 +1531,7 @@ contrat salarié . rémunération . brut:
     - avantages en nature . montant
     - primes
     - CDD . indemnités salarié
+    - intérim . prime de fin de mission
     - heures supplémentaires
     - heures complémentaires
     - frais professionnels

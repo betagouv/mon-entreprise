@@ -547,7 +547,12 @@ entreprise . effectif . seuil:
         - moins de 150
         - moins de 250
         - plus de 250
-  par défaut: "'moins de 5'"
+  par défaut: 
+    variations:
+      - si: contrat salarié . intérim
+        # Les entreprises d'intérims ont beaucoup de salariés et ne peuvent pas profiter des taux réduits, etc. réservés aux petites entreprises, y pour les salariés embauchés en intérim.
+        alors: "'plus de 250'"
+      - sinon: "'moins de 5'"
 
 entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 11:
