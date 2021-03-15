@@ -1,6 +1,7 @@
 import classnames from 'classnames'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
+import InfoBulle from 'Components/ui/InfoBulle'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
@@ -50,11 +51,14 @@ const filterByChapter2 = (
 }
 
 const computeTotals = (data: Data): number | Record<string, number> => {
-	const visites = data.map((d) => d.nombre)
-	if (typeof visites[0] === 'number') {
-		return visites.reduce(add, 0)
+	if (typeof data[0].nombre === 'number') {
+		return (data as Data & { nombre: number }[])
+			.map((d) => d.nombre)
+			.reduce(add, 0)
 	}
-	return visites.reduce(mergeWith(add), {})
+	return (data as Data & { nombre: Record<string, number> }[])
+		.map((d) => d.nombre)
+		.reduce(mergeWith(add), {})
 }
 export default function Stats() {
 	const [period, setPeriod] = useState<Period>('mois')
@@ -102,6 +106,7 @@ export default function Stats() {
 		<>
 			<TrackPage chapter1="informations" name="stats" />
 			<ScrollToTop />
+
 			<h1>
 				Statistiques <>{emoji('📊')}</>
 			</h1>
@@ -111,28 +116,40 @@ export default function Stats() {
 				Les données recueillies sont anonymisées.{' '}
 				<Privacy label="En savoir plus" />
 			</p>
-			<SimulateursChoice
-				onChange={setChapter2}
-				value={chapter2}
-				possibleValues={chapters2}
-			/>
-			<div style={{ display: 'flex' }}>
-				<span className="ui__  small radio toggle">
-					{['jours', 'mois'].map((p) => (
-						<label key={p}>
-							<input
-								type="radio"
-								value={p}
-								onChange={(event) => setPeriod(event.target.value as Period)}
-								checked={period === p}
-							/>
-							<span>
-								<Trans>{p}</Trans>
-							</span>
-						</label>
-					))}
-				</span>
-			</div>
+			<p>
+				<strong>1. Sélectionner le périmètre : </strong>
+			</p>
+			<p>
+				<SimulateursChoice
+					onChange={setChapter2}
+					value={chapter2}
+					possibleValues={chapters2}
+				/>
+			</p>
+			<p>
+				<strong>2. Choisir l'échelle de temps : </strong>
+
+				{['jours', 'mois'].map((p) => (
+					<label
+						key={p}
+						className={classnames('ui__ small button', {
+							selected: period === p,
+						})}
+						css={{ marginRight: '0.4rem' }}
+					>
+						<input
+							type="radio"
+							value={p}
+							onChange={(event) => setPeriod(event.target.value as Period)}
+							checked={period === p}
+						/>
+						<span>
+							<Trans>{p}</Trans>
+						</span>
+					</label>
+				))}
+			</p>
+
 			<section>
 				<h2>Visites</h2>
 
@@ -146,11 +163,7 @@ export default function Stats() {
 				{period === 'mois' && !!satisfaction.length && (
 					<section>
 						<h2>Satisfaction</h2>
-						<SatisfactionChart
-							period="mois"
-							key={chapter2}
-							data={satisfaction}
-						/>
+						<SatisfactionChart key={chapter2} data={satisfaction} />
 					</section>
 				)}
 				<section>
@@ -190,7 +203,14 @@ export default function Stats() {
 									),
 									{ displayedUnit: '%' }
 								)}
-								subTitle="Taux de conversion"
+								subTitle={
+									<>
+										Taux de conversion{' '}
+										<InfoBulle>
+											Pourcentage de personne qui commencent une simulation
+										</InfoBulle>
+									</>
+								}
 							/>
 						</>
 					)}
@@ -211,7 +231,7 @@ const Indicators = styled.div`
 
 type IndicatorProps = {
 	main?: string
-	subTitle?: string
+	subTitle?: React.ReactNode
 }
 
 function Indicator({ main, subTitle }: IndicatorProps) {
@@ -264,9 +284,10 @@ function SimulateursChoice(props: {
 		return (
 			chapter2 &&
 			props.possibleValues.includes(chapter2) &&
-			!s.tracking.chapter3
+			!(s.tracking as any).chapter3
 		)
 	})
+	console.log(props.possibleValues)
 
 	return (
 		<div

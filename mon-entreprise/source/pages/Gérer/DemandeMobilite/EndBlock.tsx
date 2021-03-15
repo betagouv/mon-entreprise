@@ -8,6 +8,7 @@ import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
+import { TrackPage } from '../../../ATInternetTracking'
 import PDFDocument from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()
@@ -171,18 +172,12 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 											)}
 											<a
 												href={url}
-												onClick={() =>
-													tracker.push([
-														'trackEvent',
-														'Demande mobilité',
-														'Formulaire téléchargé',
-													])
-												}
 												className="ui__ cta plain button"
 												download="demande-mobilité-internationale.pdf"
 											>
 												Télécharger le fichier
 											</a>
+											<TrackPage name="pdf généré" />
 										</>
 									)
 								)

@@ -438,7 +438,7 @@ export function getSimulatorsData({
 			component: ArtisteAuteur,
 		},
 		'chômage-partiel': {
-			tracking: 'chomage-partiel',
+			tracking: 'chomage_partiel',
 			component: ChômagePartielComponent,
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],

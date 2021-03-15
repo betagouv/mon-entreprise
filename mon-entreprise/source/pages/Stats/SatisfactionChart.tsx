@@ -14,16 +14,9 @@ import {
 type Period = 'mois' | 'jours'
 
 type SatisfactionChartProps = {
-	startIndex?: number
-	endIndex?: number
 	data: Array<{
 		date: string
-		nombre: {
-			'très bien': number
-			bien: number
-			mauvais: number
-			moyen: number
-		}
+		nombre: Record<string, number>
 	}>
 }
 
@@ -31,19 +24,15 @@ function toPercentage(data: Record<string, number>): Record<string, number> {
 	const total = Object.values(data).reduce(add)
 	return { ...mapObjIndexed((value) => (100 * value) / total, data), total }
 }
-export default function SatisfactionChart({
-	data,
-	startIndex,
-	endIndex,
-}: SatisfactionChartProps) {
+export default function SatisfactionChart({ data }: SatisfactionChartProps) {
+	const { color, lightColor, lighterColor } = useContext(ThemeColorsContext)
 	if (!data.length) {
 		return null
 	}
-	const { color, lightColor, lighterColor } = useContext(ThemeColorsContext)
 	const flattenData = data.map((d) => ({ ...d, ...toPercentage(d.nombre) }))
 	return (
 		<>
-			<ResponsiveContainer width="100%" height={400}>
+			<ResponsiveContainer width="100%" height={300}>
 				<BarChart data={flattenData}>
 					<XAxis dataKey="date" tickFormatter={formatMonth} />
 					<Tooltip content={<CustomTooltip />} />

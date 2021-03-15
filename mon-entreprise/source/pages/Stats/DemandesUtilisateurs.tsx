@@ -6,7 +6,7 @@ export default function DemandeUtilisateurs() {
 	const [extendedView, setExtendedView] = useState(false)
 	return (
 		<section>
-			<h2>Demande utilisateurs</h2>
+			<h2>Demandes utilisateurs</h2>
 			<p>
 				<small>
 					Demandes formulées en utilisant le bouton "faire une suggestion"
@@ -35,7 +35,17 @@ export default function DemandeUtilisateurs() {
 	)
 }
 
-function Issue({ title, number, count, closedAt }) {
+function Issue({
+	title,
+	number,
+	count,
+	closedAt,
+}: {
+	title: string
+	number: number
+	count: number
+	closedAt: string | null
+}) {
 	return (
 		<Animate.fromTop>
 			<li>

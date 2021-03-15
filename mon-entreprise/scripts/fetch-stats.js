@@ -9,16 +9,7 @@
 require('dotenv').config()
 require('isomorphic-fetch')
 
-const {
-	prop,
-	groupBy,
-	indexBy,
-	map,
-	mapObjIndexed,
-	filter,
-	flatten,
-	partition,
-} = require('ramda')
+const { map, filter, flatten, partition } = require('ramda')
 const { compose } = require('redux')
 const { createDataDir, writeInDataDir } = require('./utils.js')
 const matomoSiteVisitsHistory = require('./matomoVisitHistory.json')
@@ -40,7 +31,13 @@ const fetchApi = async function (query) {
 }
 
 const buildSimulateursQuery = (period, granularity) => ({
-	columns: ['page', 'page_chapter2', 'page_chapter3', 'm_visits'],
+	columns: [
+		'page',
+		'page_chapter1',
+		'page_chapter2',
+		'page_chapter3',
+		'm_visits',
+	],
 	space: {
 		s: [617190],
 	},
@@ -51,12 +48,12 @@ const buildSimulateursQuery = (period, granularity) => ({
 		granularity,
 		top: {
 			'page-num': 1,
-			'max-results': 100,
+			'max-results': 500,
 			sort: ['-m_visits'],
 			filter: {
 				property: {
 					page_chapter1: {
-						$eq: 'simulateurs',
+						$in: ['gerer', 'simulateurs'],
 					},
 				},
 			},
@@ -68,7 +65,13 @@ const buildSimulateursQuery = (period, granularity) => ({
 })
 
 const buildSatisfactionQuery = () => ({
-	columns: ['page_chapter2', 'page_chapter3', 'click', 'm_events'],
+	columns: [
+		'page_chapter1',
+		'page_chapter2',
+		'page_chapter3',
+		'click',
+		'm_events',
+	],
 	space: {
 		s: [617190],
 	},
@@ -79,14 +82,14 @@ const buildSatisfactionQuery = () => ({
 		granularity: 'M',
 		top: {
 			'page-num': 1,
-			'max-results': 100,
+			'max-results': 500,
 			sort: ['-m_events'],
 			filter: {
 				property: {
 					$AND: [
 						{
 							page_chapter1: {
-								$eq: 'simulateurs',
+								$in: ['gerer', 'simulateurs'],
 							},
 						},
 						{
@@ -116,7 +119,7 @@ const buildSiteQuery = (period, granularity) => ({
 		granularity,
 		top: {
 			'page-num': 1,
-			'max-results': 100,
+			'max-results': 500,
 			sort: ['-m_visits'],
 		},
 	},
@@ -195,7 +198,7 @@ async function fetchMonthlyVisits() {
 	return { pages, site }
 }
 
-async function fetchIssuesFromUser() {
+async function fetchUserFeedbackIssues() {
 	const tags = await fetch(
 		'https://mon-entreprise.zammad.com/api/v1/tag_list',
 		{
@@ -250,7 +253,7 @@ async function main() {
 	const satisfaction = uniformiseData(
 		flattenPage(await fetchApi(buildSatisfactionQuery()))
 	)
-	const retoursUtilisateurs = await fetchIssuesFromUser()
+	const retoursUtilisateurs = await fetchUserFeedbackIssues()
 	writeInDataDir('stats.json', {
 		visitesJours,
 		visitesMois,
