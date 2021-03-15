@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { TrackPage } from '../../../ATInternetTracking'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 
@@ -114,6 +115,11 @@ export default function AideDéclarationIndépendant() {
 					autoFocus
 				/>
 			</BigInput>
+			{displayForm ? (
+				<TrackPage name="commence" />
+			) : (
+				<TrackPage name="accueil" />
+			)}
 			{displayForm && (
 				<>
 					<Animate.fromTop>

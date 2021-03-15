@@ -4,8 +4,8 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
-import AideDéclarationIndépendant from './AideDéclarationIndépendant/index'
-import formulaireMobilitéIndépendant from './DemandeMobilite'
+import useSimulatorsData from '../Simulateurs/metadata'
+import PageData from '../Simulateurs/Page'
 import Embaucher from './Embaucher'
 import Home from './Home'
 import SécuritéSociale from './SécuritéSociale'
@@ -13,6 +13,7 @@ import SécuritéSociale from './SécuritéSociale'
 export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
+	const simulateurs = useSimulatorsData()
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
@@ -32,16 +33,17 @@ export default function Gérer() {
 					component={SécuritéSociale}
 				/>
 				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
-				<Route
-					exact
-					path={sitePaths.gérer.déclarationIndépendant}
-					component={AideDéclarationIndépendant}
-				/>
-				<Route
-					exact
-					path={sitePaths.gérer.formulaireMobilité}
-					component={formulaireMobilitéIndépendant}
-				/>
+				{[
+					simulateurs['aide-déclaration-indépendant'],
+					simulateurs['demande-mobilité'],
+				].map((p) => (
+					<Route
+						key={p.shortName}
+						exact
+						path={p.path}
+						render={() => <PageData {...p} />}
+					/>
+				))}
 			</Switch>
 		</>
 	)
