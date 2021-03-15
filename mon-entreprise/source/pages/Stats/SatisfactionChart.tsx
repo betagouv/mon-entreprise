@@ -30,11 +30,11 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	const flattenData = data.map((d) => ({ ...d, ...toPercentage(d.nombre) }))
 	return (
 		<>
-			<ResponsiveContainer width="100%" height={300}>
+			<ResponsiveContainer width="100%" height={400}>
 				<BarChart data={flattenData}>
 					<XAxis dataKey="date" tickFormatter={formatMonth} />
 					<Tooltip content={<CustomTooltip />} />
-					<Bar dataKey="mauvais" stackId="1" fill="#ffcccb" maxBarSize={50}>
+					<Bar dataKey="mauvais" stackId="1" fill="#fd667f" maxBarSize={50}>
 						<LabelList dataKey="mauvais" content={() => '🙁'} position="left" />
 					</Bar>
 					<Bar dataKey="moyen" stackId="1" maxBarSize={50} fill={lighterColor}>
