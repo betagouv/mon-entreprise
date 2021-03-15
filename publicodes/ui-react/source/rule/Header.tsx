@@ -12,12 +12,12 @@ export default function RuleHeader({ dottedName }) {
 	}
 	const {
 		title,
-		rawNode: { description, icônes },
+		rawNode: { description, question, icônes },
 	} = engine.getRule(dottedName)
 	const displayTitle = icônes ? title + ' ' + icônes : title
 	return (
 		<StyledHeader className="ui__ plain card rule-header">
-			<Meta title={displayTitle} description={description} />
+			<Meta title={displayTitle} description={description || question} />
 			<ul className="rule-header__breadcrumb">
 				{utils
 					.ruleParents(dottedName)
