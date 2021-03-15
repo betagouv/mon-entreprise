@@ -846,7 +846,6 @@ export function getSimulatorsData({
 		is: {
 			icône: '🗓',
 			tracking: 'impot-societe',
-
 			path: sitePaths.simulateurs.is,
 			iframe: 'impot-societe',
 			meta: {

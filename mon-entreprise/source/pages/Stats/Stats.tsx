@@ -12,25 +12,37 @@ import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import stats from '../../data/stats.json'
 import { debounce } from '../../utils'
+import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Chart from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 import SatisfactionChart from './SatisfactionChart'
 
 type Period = 'mois' | 'jours'
-type Chapter2 = typeof stats.visitesJours.pages[number]['page_chapter2']
+type Chapter2 = typeof stats.visitesJours.pages[number]['page_chapter2'] | 'PAM'
 const chapters2: Chapter2[] = [
 	...new Set(stats.visitesMois.pages.map((p) => p.page_chapter2)),
+	'PAM',
 ]
 
 type Data =
 	| Array<{ date: string; nombre: number }>
 	| Array<{ date: string; nombre: Record<string, number> }>
 
+const isPAM = (name: string | undefined) =>
+	name &&
+	[
+		'medecin',
+		'chirurgien_dentiste',
+		'auxiliaire_medical',
+		'sage_femme',
+	].includes(name)
+
 const filterByChapter2 = (
 	data: Array<{
 		date: string
 		page_chapter2: string
+		page_chapter3?: string
 		page?: string
 		click?: string
 	}>,
@@ -39,7 +51,13 @@ const filterByChapter2 = (
 	return toPairs(
 		groupBy(
 			(p) => p.date,
-			data.filter((p) => !chapter2 || p.page_chapter2 === chapter2)
+			data.filter(
+				(p) =>
+					!chapter2 ||
+					(p.page !== 'accueil_pamc' &&
+						(p.page_chapter2 === chapter2 ||
+							(chapter2 === 'PAM' && isPAM(p.page_chapter3))))
+			)
 		)
 	).map(([date, values]) => ({
 		date,
@@ -116,8 +134,9 @@ export default function Stats() {
 				Les données recueillies sont anonymisées.{' '}
 				<Privacy label="En savoir plus" />
 			</p>
+
 			<p>
-				<strong>1. Sélectionner le périmètre : </strong>
+				<strong>1. Sélectionner la fonctionnalité : </strong>
 			</p>
 			<p>
 				<SimulateursChoice
@@ -149,73 +168,86 @@ export default function Stats() {
 					</label>
 				))}
 			</p>
+			<div className="ui__ full-width">
+				<div className="ui__ container-and-side-block">
+					<div
+						className="ui__ side-block"
+						css={`
+							align-items: flex-end;
+						`}
+					>
+						<SelectedSimulator chapter2={chapter2} />
+					</div>
+					<div className="ui__ container">
+						<h2>Visites</h2>
 
-			<section>
-				<h2>Visites</h2>
-
-				<Chart
-					period={period}
-					data={visites}
-					onDateChange={handleDateChange}
-					startIndex={startDateIndex}
-					endIndex={endDateIndex}
-				/>
-				{period === 'mois' && !!satisfaction.length && (
-					<section>
-						<h2>Satisfaction</h2>
-						<SatisfactionChart key={chapter2} data={satisfaction} />
-					</section>
-				)}
-				<section>
-					<h2>
-						Cumuls pour la période{' '}
-						{period === 'jours'
-							? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
-									slicedVisits[slicedVisits.length - 1].date
-							  )}`
-							: `de ${formatMonth(slicedVisits[0].date)}` +
-							  (slicedVisits.length > 1
-									? ` à ${formatMonth(
-											slicedVisits[slicedVisits.length - 1].date
-									  )}`
-									: '')}
-					</h2>
-				</section>
-
-				<Indicators>
-					<Indicator
-						main={formatValue(
-							typeof totals === 'number' ? totals : totals.accueil
+						<Chart
+							period={period}
+							data={visites}
+							onDateChange={handleDateChange}
+							startIndex={startDateIndex}
+							endIndex={endDateIndex}
+						/>
+						{period === 'mois' && !!satisfaction.length && (
+							<>
+								<h2>Satisfaction</h2>
+								<SatisfactionChart key={chapter2} data={satisfaction} />
+							</>
 						)}
-						subTitle="Visites"
-					/>
-					{typeof totals !== 'number' && 'simulation_commencee' in totals && (
-						<>
-							{' '}
-							<Indicator
-								main={formatValue(totals.simulation_commencee)}
-								subTitle="Simulations "
-							/>
+						<h2>
+							Cumuls pour la période{' '}
+							{period === 'jours'
+								? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
+										slicedVisits[slicedVisits.length - 1].date
+								  )}`
+								: `de ${formatMonth(slicedVisits[0].date)}` +
+								  (slicedVisits.length > 1
+										? ` à ${formatMonth(
+												slicedVisits[slicedVisits.length - 1].date
+										  )}`
+										: '')}
+						</h2>
+						<Indicators>
 							<Indicator
 								main={formatValue(
-									Math.round(
-										(100 * totals.simulation_commencee) / totals.accueil
-									),
-									{ displayedUnit: '%' }
+									typeof totals === 'number' ? totals : totals.accueil
 								)}
-								subTitle={
-									<>
-										Taux de conversion{' '}
-										<InfoBulle>
-											Pourcentage de personne qui commencent une simulation
-										</InfoBulle>
-									</>
-								}
+								subTitle="Visites"
 							/>
-						</>
-					)}
-				</Indicators>
-			</section>
+							{typeof totals !== 'number' && 'simulation_commencee' in totals && (
+								<>
+									{' '}
+									<Indicator
+										main={formatValue(totals.simulation_commencee)}
+										subTitle="Simulations "
+									/>
+									<Indicator
+										main={formatValue(
+											Math.round(
+												(100 * totals.simulation_commencee) / totals.accueil
+											),
+											{ displayedUnit: '%' }
+										)}
+										subTitle={
+											<>
+												Taux de conversion&nbsp;
+												<InfoBulle>
+													Pourcentage de personne qui commencent une simulation
+												</InfoBulle>
+											</>
+										}
+									/>
+								</>
+							)}
+						</Indicators>
+					</div>
+					<div
+						css={`
+							flex: 1;
+						`}
+					/>
+				</div>
+			</div>
 			<DemandeUtilisateurs />
 			<MoreInfosOnUs />
 		</>
@@ -268,10 +300,22 @@ function formatMonth(date: string | Date) {
 }
 
 function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
+	if (s.iframe === 'pamc') {
+		return 'PAM'
+	}
 	if (!s.tracking) {
 		return ''
 	}
 	return typeof s.tracking === 'string' ? s.tracking : s.tracking.chapter2 ?? ''
+}
+function SelectedSimulator(props: { chapter2: Chapter2 }) {
+	const simulateur = Object.values(useSimulatorsData()).find(
+		(s) => getChapter2(s) === props.chapter2 && !s.tracking.chapter3
+	)
+	if (!simulateur) {
+		return null
+	}
+	return <SimulateurCard {...simulateur} />
 }
 
 function SimulateursChoice(props: {
@@ -287,7 +331,6 @@ function SimulateursChoice(props: {
 			!(s.tracking as any).chapter3
 		)
 	})
-	console.log(props.possibleValues)
 
 	return (
 		<div
@@ -297,6 +340,7 @@ function SimulateursChoice(props: {
 				margin-right: -0.4rem;
 				> * {
 					margin-bottom: 0.4rem;
+
 					margin-right: 0.4rem;
 				}
 			`}

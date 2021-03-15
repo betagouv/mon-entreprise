@@ -4,6 +4,7 @@
 @import './Toggle.css';
 @import './reset.css';
 @import './Fonts.css';
+@import './Layout.css';
 
 :root {
 	--color: rgb(41, 117, 209);
@@ -47,27 +48,6 @@ blockquote {
 	color: var(--darkerColor);
 }
 
-.ui__.answer-group {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-}
-@media (min-width: 500px) {
-	.ui__.answer-group > :not(:last-child) {
-		margin-right: 1rem;
-	}
-}
-@media (max-width: 500px) {
-	.ui__.answer-group {
-		flex-wrap: wrap;
-	}
-	.ui__.answer-group > * {
-		flex: 1;
-		white-space: nowrap;
-		margin: 0.5rem !important;
-	}
-}
-
 .ui__.light-bg {
 	background-color: var(--lighterColor) !important;
 }
@@ -100,29 +80,6 @@ blockquote {
 @media (max-width: 850px) {
 	.ui__.hide-mobile {
 		display: none;
-	}
-}
-
-section {
-	padding: 1rem 0;
-}
-
-.ui__.container {
-	width: 100%;
-	max-width: 850px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-right: 0.6rem;
-	padding-left: 0.6rem;
-}
-.ui__.container .ui__.full-width {
-	--margin: calc((850px - 100vw - 0.6rem) / 2);
-	margin-right: var(--margin);
-	margin-left: var(--margin);
-}
-@media (max-width: 850px) {
-	.ui__.container .ui__.full-width {
-		margin: 0 -0.6rem;
 	}
 }
 

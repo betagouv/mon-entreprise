@@ -9,7 +9,7 @@
 require('dotenv').config()
 require('isomorphic-fetch')
 
-const { map, filter, flatten, partition } = require('ramda')
+const { map, filter, flatten, partition, pipe } = require('ramda')
 const { compose } = require('redux')
 const { createDataDir, writeInDataDir } = require('./utils.js')
 const matomoSiteVisitsHistory = require('./matomoVisitHistory.json')
@@ -157,12 +157,15 @@ const last36Months = {
 			.slice(0, 8) + '01',
 	end: yesterday,
 }
-const uniformiseData = map(
-	({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
+const uniformiseData = pipe(
+	// For some reason, an artifact create ghost page with unlogical chapter metrics...
+	// It seems to only by one per month thought... This hacks resolves it
+	filter(({ m_visits }) => m_visits === undefined || m_visits > 2),
+	map(({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
 		date: d_evo_day != null ? d_evo_day : d_evo_month,
 		nombre: m_visits != null ? m_visits : m_events,
 		...data,
-	})
+	}))
 )
 const flattenPage = compose(
 	flatten,
