@@ -11,8 +11,6 @@ import {
 	XAxis,
 } from 'recharts'
 
-type Period = 'mois' | 'jours'
-
 type SatisfactionChartProps = {
 	data: Array<{
 		date: string

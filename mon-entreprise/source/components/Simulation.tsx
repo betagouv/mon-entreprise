@@ -49,17 +49,7 @@ export default function Simulation({
 						<Questions customEndMessages={customEndMessages} />
 						<br />
 						<div className="ui__ full-width">
-							<div
-								css={`
-									display: flex;
-									flex-direction: column;
-									align-items: center;
-									@media (min-width: 1200px) {
-										flex-direction: row;
-										align-items: baseline;
-									}
-								`}
-							>
+							<div className="ui__ container-and-side-block">
 								{explanations && (
 									<>
 										<div
@@ -78,18 +68,8 @@ export default function Simulation({
 									</>
 								)}
 								<div
-									css={`
-										margin-top: 1rem;
-										@media (min-width: 1200px) {
-											flex-grow: 0;
-											flex-shrink: 1;
-											flex: 1;
-											display: flex;
-											${!explanations && 'justify-content: center;'}
-											position: sticky;
-											top: 1rem;
-										}
-									`}
+									className="ui__ side-block"
+									css={!explanations ? 'justify-content: center;' : ''}
 								>
 									<div
 										css={`

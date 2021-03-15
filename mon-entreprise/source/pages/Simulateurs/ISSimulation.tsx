@@ -13,6 +13,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import { TrackPage } from '../../ATInternetTracking'
 
 const ISConfig = {
 	'unité par défaut': '€/an',
@@ -90,7 +91,7 @@ function Explanations() {
 	const situation = useSelector(situationSelector)
 	const showResult = situation['entreprise . bénéfice']
 	if (!showResult) {
-		return null
+		return <TrackPage name="accueil" />
 	}
 	return (
 		<Animate.fromTop>
@@ -107,6 +108,7 @@ function Explanations() {
 					}
 				`}
 			>
+				<TrackPage name="simulation terminée" />
 				<strong>
 					<Value
 						expression="entreprise . impôt sur les sociétés"
