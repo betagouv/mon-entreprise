@@ -37,15 +37,17 @@ const isPAM = (name: string | undefined) =>
 		'auxiliaire_medical',
 		'sage_femme',
 	].includes(name)
-
+type RawData = Array<{
+	date: string
+	page_chapter1?: string
+	page_chapter2: string
+	page_chapter3?: string
+	page?: string
+	click?: string
+	nombre: number
+}>
 const filterByChapter2 = (
-	data: Array<{
-		date: string
-		page_chapter2: string
-		page_chapter3?: string
-		page?: string
-		click?: string
-	}>,
+	data: RawData,
 	chapter2: Chapter2
 ): Array<{ date: string; nombre: Record<string, number> }> => {
 	return toPairs(
@@ -64,6 +66,25 @@ const filterByChapter2 = (
 		nombre: mapObjIndexed(
 			(v: Array<{ nombre: number }>) => v.map((v) => v.nombre).reduce(add),
 			groupBy((x) => x.page ?? x.click ?? '', values)
+		),
+	}))
+}
+
+function groupByDate(data: RawData) {
+	return toPairs(
+		groupBy(
+			(p) => p.date,
+			data.filter((d) => d.page === 'accueil')
+		)
+	).map(([date, values]) => ({
+		date,
+		nombre: Object.fromEntries(
+			Object.entries(
+				groupBy((x) => x.page_chapter1 + ' / ' + x.page_chapter2, values)
+			)
+				.map(([k, v]) => [k, v.map((v) => v.nombre).reduce(add, 0)] as const)
+				.sort((a, b) => b[1] - a[1])
+				.slice(0, 7)
 		),
 	}))
 }
@@ -88,6 +109,11 @@ export default function Stats() {
 		}
 		return filterByChapter2(rawData.pages, chapter2)
 	}, [period, chapter2])
+
+	const repartition = useMemo(() => {
+		const rawData = stats.visitesMois
+		return groupByDate(rawData.pages)
+	}, [])
 
 	const satisfaction = useMemo(() => {
 		return filterByChapter2(stats.satisfaction, chapter2)
@@ -182,18 +208,14 @@ export default function Stats() {
 						<h2>Visites</h2>
 
 						<Chart
+							key={period + visites.length}
 							period={period}
 							data={visites}
 							onDateChange={handleDateChange}
 							startIndex={startDateIndex}
 							endIndex={endDateIndex}
 						/>
-						{period === 'mois' && !!satisfaction.length && (
-							<>
-								<h2>Satisfaction</h2>
-								<SatisfactionChart key={chapter2} data={satisfaction} />
-							</>
-						)}
+
 						<h2>
 							Cumuls pour la période{' '}
 							{period === 'jours'
@@ -240,6 +262,24 @@ export default function Stats() {
 								</>
 							)}
 						</Indicators>
+						{period === 'mois' && !!satisfaction.length && (
+							<>
+								<h2>Satisfaction</h2>
+								<SatisfactionChart key={chapter2} data={satisfaction} />
+							</>
+						)}
+						{chapter2 === '' && period === 'mois' && (
+							<>
+								<h2>Principales pages</h2>
+								<Chart
+									colored
+									period={'mois'}
+									data={repartition}
+									grid={false}
+									layout={'vertical'}
+								/>
+							</>
+						)}
 					</div>
 					<div
 						css={`
@@ -310,7 +350,7 @@ function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 }
 function SelectedSimulator(props: { chapter2: Chapter2 }) {
 	const simulateur = Object.values(useSimulatorsData()).find(
-		(s) => getChapter2(s) === props.chapter2 && !s.tracking.chapter3
+		(s) => getChapter2(s) === props.chapter2 && !(s.tracking as any).chapter3
 	)
 	if (!simulateur) {
 		return null

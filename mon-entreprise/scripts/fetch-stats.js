@@ -265,4 +265,6 @@ async function main() {
 	})
 }
 
-main()
+main().catch((e) => {
+	throw new Error(e)
+})
