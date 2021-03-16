@@ -27,7 +27,7 @@
 		redirect: false,
 		activateCallbacks: true,
 		medium: '',
-		ignoreEmptyChapterValue: true,
+		ignoreEmptyChapterValue: false,
 		base64Storage: false,
 		sendHitWhenOptOut: true,
 		forceHttp: false,

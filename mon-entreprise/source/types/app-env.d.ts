@@ -14,6 +14,9 @@ declare namespace NodeJS {
 		GITHUB_API_SECRET: string
 		DEEPL_API_SECRET: string
 		INSEE_SIRENE_API_SECRET: string
+		ATINTERNET_API_ACCESS_KEY: string
+		ATINTERNET_API_SECRET_KEY: string
+		ZAMMAD_API_SECRET_KEY: string
 	}
 
 	interface Global {

@@ -201,7 +201,7 @@ export function getSimulatorsData({
 			),
 		},
 		'auto-entrepreneur': {
-			tracking: 'auto-entrepreneur',
+			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
 			icône: '🚶‍♂️',
 			iframe: 'simulateur-autoentrepreneur',
@@ -331,7 +331,7 @@ export function getSimulatorsData({
 		},
 		sasu: {
 			config: sasuConfig,
-			tracking: 'dirigeant-sasu',
+			tracking: 'dirigeant_sasu',
 			icône: '👨‍✈️',
 			iframe: 'simulateur-assimilesalarie',
 			meta: {
@@ -438,7 +438,7 @@ export function getSimulatorsData({
 			component: ArtisteAuteur,
 		},
 		'chômage-partiel': {
-			tracking: 'chomage-partiel',
+			tracking: 'chomage_partiel',
 			component: ChômagePartielComponent,
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
@@ -846,7 +846,6 @@ export function getSimulatorsData({
 		is: {
 			icône: '🗓',
 			tracking: 'impot-societe',
-
 			path: sitePaths.simulateurs.is,
 			iframe: 'impot-societe',
 			meta: {

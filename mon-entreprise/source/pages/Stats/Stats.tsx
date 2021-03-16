@@ -1,88 +1,156 @@
-import BarChartBranch from 'Components/BarChart'
+import classnames from 'classnames'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
-import { StackedBarChart } from 'Components/StackedBarChart'
-import { ThemeColorsContext } from 'Components/utils/colors'
+import InfoBulle from 'Components/ui/InfoBulle'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'publicodes'
-import { groupWith } from 'ramda'
-import React, { useContext, useState } from 'react'
+import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Link } from 'react-router-dom'
-import {
-	CartesianGrid,
-	Legend,
-	Line,
-	LineChart,
-	ReferenceArea,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from 'recharts'
+import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
-import statsJson from '../../data/stats.json'
-import { capitalise0 } from '../../utils'
-import useSimulatorsData from '../Simulateurs/metadata'
+import stats from '../../data/stats.json'
+import { debounce } from '../../utils'
+import { SimulateurCard } from '../Simulateurs/Home'
+import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
+import Chart from './Chart'
+import DemandeUtilisateurs from './DemandesUtilisateurs'
+import SatisfactionChart from './SatisfactionChart'
 
-const stats: StatsData = statsJson as any
+type Period = 'mois' | 'jours'
+type Chapter2 = typeof stats.visitesJours.pages[number]['page_chapter2'] | 'PAM'
+const chapters2: Chapter2[] = [
+	...new Set(stats.visitesMois.pages.map((p) => p.page_chapter2)),
+	'PAM',
+]
 
-const monthPeriods = [
-	'currentMonth',
-	'oneMonthAgo',
-	'twoMonthAgo',
-	'threeMonthAgo',
-	'fourMonthAgo',
-] as const
-type MonthPeriod = typeof monthPeriods[number]
+type Data =
+	| Array<{ date: string; nombre: number }>
+	| Array<{ date: string; nombre: Record<string, number> }>
 
-type Periodicity = 'daily' | 'monthly'
-
-type StatsData = {
-	feedback: {
-		simulator: number
-		content: number
-	}
-	statusChosen: Array<{
-		label: string
-		nb_visits: number
-	}>
-	dailyVisits: Array<{
-		date: string
-		visiteurs: number
-	}>
-	monthlyVisits: Array<{
-		date: string
-		visiteurs: number
-	}>
-	simulators: Record<
-		MonthPeriod,
-		{
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-	>
-	channelType: Record<
-		MonthPeriod,
-		{
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-	>
+const isPAM = (name: string | undefined) =>
+	name &&
+	[
+		'medecin',
+		'chirurgien_dentiste',
+		'auxiliaire_medical',
+		'sage_femme',
+	].includes(name)
+type RawData = Array<{
+	date: string
+	page_chapter1?: string
+	page_chapter2: string
+	page_chapter3?: string
+	page?: string
+	click?: string
+	nombre: number
+}>
+const filterByChapter2 = (
+	data: RawData,
+	chapter2: Chapter2
+): Array<{ date: string; nombre: Record<string, number> }> => {
+	return toPairs(
+		groupBy(
+			(p) => p.date,
+			data.filter(
+				(p) =>
+					!chapter2 ||
+					(p.page !== 'accueil_pamc' &&
+						(p.page_chapter2 === chapter2 ||
+							(chapter2 === 'PAM' && isPAM(p.page_chapter3))))
+			)
+		)
+	).map(([date, values]) => ({
+		date,
+		nombre: mapObjIndexed(
+			(v: Array<{ nombre: number }>) => v.map((v) => v.nombre).reduce(add),
+			groupBy((x) => x.page ?? x.click ?? '', values)
+		),
+	}))
 }
 
+function groupByDate(data: RawData) {
+	return toPairs(
+		groupBy(
+			(p) => p.date,
+			data.filter((d) => d.page === 'accueil')
+		)
+	).map(([date, values]) => ({
+		date,
+		nombre: Object.fromEntries(
+			Object.entries(
+				groupBy((x) => x.page_chapter1 + ' / ' + x.page_chapter2, values)
+			)
+				.map(([k, v]) => [k, v.map((v) => v.nombre).reduce(add, 0)] as const)
+				.sort((a, b) => b[1] - a[1])
+				.slice(0, 7)
+		),
+	}))
+}
+
+const computeTotals = (data: Data): number | Record<string, number> => {
+	if (typeof data[0].nombre === 'number') {
+		return (data as Data & { nombre: number }[])
+			.map((d) => d.nombre)
+			.reduce(add, 0)
+	}
+	return (data as Data & { nombre: Record<string, number> }[])
+		.map((d) => d.nombre)
+		.reduce(mergeWith(add), {})
+}
 export default function Stats() {
-	const [choice, setChoice] = useState<Periodicity>('monthly')
-	const [choicesimulators, setChoicesimulators] = useState<MonthPeriod>(
-		'oneMonthAgo'
+	const [period, setPeriod] = useState<Period>('mois')
+	const [chapter2, setChapter2] = useState<Chapter2 | ''>('')
+	const visites = useMemo(() => {
+		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
+		if (!chapter2) {
+			return rawData.site
+		}
+		return filterByChapter2(rawData.pages, chapter2)
+	}, [period, chapter2])
+
+	const repartition = useMemo(() => {
+		const rawData = stats.visitesMois
+		return groupByDate(rawData.pages)
+	}, [])
+
+	const satisfaction = useMemo(() => {
+		return filterByChapter2(stats.satisfaction, chapter2)
+	}, [chapter2])
+
+	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
+		[startIndex: number, endIndex: number]
+	>([0, visites.length - 1])
+
+	useEffect(() => {
+		setDateIndex([0, visites.length - 1])
+	}, [visites.length])
+
+	const [slicedVisits, setSlicedVisits] = useState(visites)
+	useEffect(() => {
+		setSlicedVisits(visites)
+	}, [visites])
+	const handleDateChange = useCallback(
+		debounce(
+			1000,
+			({ startIndex, endIndex }: { startIndex: number; endIndex: number }) => {
+				setDateIndex([startIndex, endIndex])
+				setSlicedVisits(visites.slice(startIndex, endIndex + 1))
+			}
+		),
+		[setDateIndex, visites]
 	)
-	const { palettes } = useContext(ThemeColorsContext)
-	const simulators = Object.values(useSimulatorsData())
+
+	const totals: number | Record<string, number> = useMemo(
+		() => computeTotals(slicedVisits),
+		[slicedVisits]
+	)
 	return (
 		<>
 			<TrackPage chapter1="informations" name="stats" />
 			<ScrollToTop />
+
 			<h1>
 				Statistiques <>{emoji('📊')}</>
 			</h1>
@@ -92,173 +160,137 @@ export default function Stats() {
 				Les données recueillies sont anonymisées.{' '}
 				<Privacy label="En savoir plus" />
 			</p>
-			<section>
-				<SectionTitle>
-					<h2>Nombre de visites</h2>
-					<span>
-						{emoji('🗓')}{' '}
-						<select
-							onChange={(event) => {
-								setChoice(event.target.value as Periodicity)
-							}}
-							value={choice}
-						>
-							<option value="monthly">les derniers mois</option>
-							<option value="daily">les derniers jours</option>
-						</select>
-					</span>
-				</SectionTitle>
-				<LineChartVisits periodicity={choice} />
 
-				<Indicators>
-					<Indicator main="3,2 millions" subTitle="Visites en 2020" />
-					<Indicator
-						main="41%"
-						subTitle="Taux de rebond (visiteurs qui partent sans faire d'actions)"
-					/>
-				</Indicators>
-			</section>
-			<section>
-				<SectionTitle>
-					<h2>Nombre d'utilisation des simulateurs</h2>
-					<PeriodSelector
-						onChange={(event) => {
-							setChoicesimulators(event.target.value as MonthPeriod)
-						}}
-						value={choicesimulators}
-					/>
-				</SectionTitle>
-
-				{stats.simulators[choicesimulators].visites.map(
-					({ label, nb_visits }) => {
-						const details = simulators.find(({ path }) => path?.endsWith(label))
-						if (!details) {
-							return null
-						}
-						return (
-							<BarChartBranch
-								key={label}
-								value={nb_visits}
-								title={
-									<>
-										{details.shortName}{' '}
-										<Link
-											className="distribution-chart__link_icone"
-											to={{
-												state: { fromSimulateurs: true },
-												pathname: details.path,
-											}}
-											title="Accéder au simulateur"
-											css="font-size:0.75em"
-										>
-											{emoji('📎')}
-										</Link>
-									</>
-								}
-								icon={details.icône}
-								maximum={stats.simulators[choicesimulators].visites.reduce(
-									(a, b) => Math.max(a, b.nb_visits),
-									0
-								)}
-								unit="visiteurs"
-							/>
-						)
-					}
-				)}
-			</section>
-			<section>
-				<SectionTitle>
-					<h2>Origine du trafic</h2>
-					<PeriodSelector
-						onChange={(event) => {
-							setChoicesimulators(event.target.value as MonthPeriod)
-						}}
-						value={choicesimulators}
-					/>
-				</SectionTitle>
-
-				<StackedBarChart
-					data={stats.channelType[choicesimulators].visites
-						.map((data, i) => ({
-							value: data.nb_visits,
-							key: data.label,
-							legend: capitalise0(data.label),
-							color: palettes[i][0],
-						}))
-						.reverse()}
+			<p>
+				<strong>1. Sélectionner la fonctionnalité : </strong>
+			</p>
+			<p>
+				<SimulateursChoice
+					onChange={setChapter2}
+					value={chapter2}
+					possibleValues={chapters2}
 				/>
-			</section>
-			<section>
-				<h2>Avis des visiteurs</h2>
-				<Indicators>
-					<Indicator
-						main={formatValue(stats.feedback.simulator, {
-							displayedUnit: '%',
-						})}
-						subTitle="Taux de satisfaction sur les simulateurs"
-					/>
-					<Indicator
-						main={formatValue(stats.feedback.content, {
-							displayedUnit: '%',
-						})}
-						subTitle="Taux de satisfaction sur le contenu"
-					/>
-				</Indicators>
-				<p>
-					Ces indicateurs sont calculés à partir des boutons de retours affichés
-					en bas de toutes les pages.
-				</p>
-			</section>
-			<section>
-				<h2>Statut choisi le mois dernier</h2>
-				{stats.statusChosen.map((x) => (
-					<BarChartBranch
-						key={x.label}
-						value={x.nb_visits}
-						title={capitalise0(x.label)}
-						maximum={stats.statusChosen.reduce(
-							(a, b) => Math.max(a, b.nb_visits),
-							0
-						)}
-						unit="visiteurs"
-					/>
-				))}
-			</section>
+			</p>
+			<p>
+				<strong>2. Choisir l'échelle de temps : </strong>
 
+				{['jours', 'mois'].map((p) => (
+					<label
+						key={p}
+						className={classnames('ui__ small button', {
+							selected: period === p,
+						})}
+						css={{ marginRight: '0.4rem' }}
+					>
+						<input
+							type="radio"
+							value={p}
+							onChange={(event) => setPeriod(event.target.value as Period)}
+							checked={period === p}
+						/>
+						<span>
+							<Trans>{p}</Trans>
+						</span>
+					</label>
+				))}
+			</p>
+			<div className="ui__ full-width">
+				<div className="ui__ container-and-side-block">
+					<div
+						className="ui__ side-block"
+						css={`
+							align-items: flex-end;
+						`}
+					>
+						<SelectedSimulator chapter2={chapter2} />
+					</div>
+					<div className="ui__ container">
+						<h2>Visites</h2>
+
+						<Chart
+							key={period + visites.length}
+							period={period}
+							data={visites}
+							onDateChange={handleDateChange}
+							startIndex={startDateIndex}
+							endIndex={endDateIndex}
+						/>
+
+						<h2>
+							Cumuls pour la période{' '}
+							{period === 'jours'
+								? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
+										slicedVisits[slicedVisits.length - 1].date
+								  )}`
+								: `de ${formatMonth(slicedVisits[0].date)}` +
+								  (slicedVisits.length > 1
+										? ` à ${formatMonth(
+												slicedVisits[slicedVisits.length - 1].date
+										  )}`
+										: '')}
+						</h2>
+						<Indicators>
+							<Indicator
+								main={formatValue(
+									typeof totals === 'number' ? totals : totals.accueil
+								)}
+								subTitle="Visites"
+							/>
+							{typeof totals !== 'number' && 'simulation_commencee' in totals && (
+								<>
+									{' '}
+									<Indicator
+										main={formatValue(totals.simulation_commencee)}
+										subTitle="Simulations "
+									/>
+									<Indicator
+										main={formatValue(
+											Math.round(
+												(100 * totals.simulation_commencee) / totals.accueil
+											),
+											{ displayedUnit: '%' }
+										)}
+										subTitle={
+											<>
+												Taux de conversion&nbsp;
+												<InfoBulle>
+													Pourcentage de personne qui commencent une simulation
+												</InfoBulle>
+											</>
+										}
+									/>
+								</>
+							)}
+						</Indicators>
+						{period === 'mois' && !!satisfaction.length && (
+							<>
+								<h2>Satisfaction</h2>
+								<SatisfactionChart key={chapter2} data={satisfaction} />
+							</>
+						)}
+						{chapter2 === '' && period === 'mois' && (
+							<>
+								<h2>Principales pages</h2>
+								<Chart
+									colored
+									period={'mois'}
+									data={repartition}
+									grid={false}
+									layout={'vertical'}
+								/>
+							</>
+						)}
+					</div>
+					<div
+						css={`
+							flex: 1;
+						`}
+					/>
+				</div>
+			</div>
+			<DemandeUtilisateurs />
 			<MoreInfosOnUs />
 		</>
-	)
-}
-
-const weekEndDays = groupWith(
-	(a, b) => {
-		const dayAfterA = new Date(a)
-		dayAfterA.setDate(dayAfterA.getDate() + 1)
-		return dayAfterA.toISOString().substring(0, 10) === b
-	},
-	stats.dailyVisits
-		.map(({ date }) => new Date(date))
-		.filter((date) => date.getDay() === 0 || date.getDay() === 6)
-		.map((date) => date.toISOString().substring(0, 10))
-)
-
-function PeriodSelector(props: React.ComponentProps<'select'>) {
-	const formatDate = (date: string) =>
-		new Date(date).toLocaleString('default', {
-			month: 'long',
-			year: 'numeric',
-		})
-	return (
-		<span>
-			{emoji('🗓')}{' '}
-			<select {...props}>
-				{monthPeriods.map((monthPeriod) => (
-					<option key={monthPeriod} value={monthPeriod}>
-						{formatDate(stats.simulators[monthPeriod].date)}
-					</option>
-				))}
-			</select>
-		</span>
 	)
 }
 
@@ -271,135 +303,125 @@ const Indicators = styled.div`
 
 type IndicatorProps = {
 	main?: string
-	subTitle?: string
+	subTitle?: React.ReactNode
 }
 
 function Indicator({ main, subTitle }: IndicatorProps) {
 	return (
 		<div
+			className="ui__ card lighter-bg"
 			css={`
 				text-align: center;
+				padding: 1rem;
 				width: 210px;
+				font-size: 110%;
 			`}
 		>
-			<div
-				css={`
-					font-size: 2.3rem;
-				`}
-			>
-				{main}
-			</div>
-			<div>{subTitle}</div>
+			<small>{subTitle}</small>
+			<br />
+			<strong>{main}</strong>
 		</div>
 	)
 }
 
-type LineChartVisitsProps = {
-	periodicity: Periodicity
+function formatDay(date: string | Date) {
+	return new Date(date).toLocaleString('default', {
+		weekday: 'long',
+		day: 'numeric',
+		month: 'long',
+	})
 }
 
-function LineChartVisits({ periodicity }: LineChartVisitsProps) {
-	const { color } = useContext(ThemeColorsContext)
-	const data = periodicity === 'daily' ? stats.dailyVisits : stats.monthlyVisits
-
-	return (
-		<ResponsiveContainer width="100%" height={400}>
-			<LineChart
-				data={data}
-				margin={{
-					top: 5,
-					right: 30,
-					left: 20,
-					bottom: 5,
-				}}
-			>
-				<CartesianGrid />
-				<XAxis
-					dataKey="date"
-					tickFormatter={(tickItem) => formatDate(tickItem, periodicity)}
-				/>
-				<YAxis
-					dataKey="visiteurs"
-					tickFormatter={(tickItem) => formatValue(tickItem)}
-				/>
-				{periodicity === 'daily' ? (
-					<Legend
-						payload={[
-							{
-								value: 'Week-End',
-								type: 'rect',
-								color: '#e5e5e5',
-								id: 'weedkend',
-							},
-						]}
-					/>
-				) : null}
-				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
-				{weekEndDays
-					.filter((days) => days.length === 2)
-					.map((days) => (
-						<ReferenceArea
-							key={days[0]}
-							x1={days[0]}
-							x2={days[1]}
-							strokeOpacity={0.3}
-						/>
-					))}
-				<Line
-					type="monotone"
-					dataKey="visiteurs"
-					stroke={color}
-					strokeWidth={3}
-					animationDuration={500}
-				/>
-			</LineChart>
-		</ResponsiveContainer>
-	)
+function formatMonth(date: string | Date) {
+	return new Date(date).toLocaleString('default', {
+		month: 'long',
+		year: 'numeric',
+	})
 }
 
-function formatDate(date: string | Date, periodicity?: Periodicity) {
-	if (periodicity === 'monthly') {
-		return new Date(date).toLocaleString('default', {
-			month: 'short',
-			year: '2-digit',
-		})
-	} else {
-		return new Date(date).toLocaleString('default', {
-			day: '2-digit',
-			month: '2-digit',
-		})
+function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
+	if (s.iframe === 'pamc') {
+		return 'PAM'
 	}
+	if (!s.tracking) {
+		return ''
+	}
+	return typeof s.tracking === 'string' ? s.tracking : s.tracking.chapter2 ?? ''
 }
-
-type CustomTooltipProps = {
-	active?: boolean
-	periodicity: Periodicity
-	payload?: any
-}
-
-const CustomTooltip = ({
-	active,
-	periodicity,
-	payload,
-}: CustomTooltipProps) => {
-	if (!active) {
+function SelectedSimulator(props: { chapter2: Chapter2 }) {
+	const simulateur = Object.values(useSimulatorsData()).find(
+		(s) => getChapter2(s) === props.chapter2 && !(s.tracking as any).chapter3
+	)
+	if (!simulateur) {
 		return null
 	}
-	return (
-		<p className="ui__ card">
-			<strong>{formatValue(payload[0].payload.visiteurs)} visites</strong>
-			<br />
-			{formatDate(payload[0].payload.date, periodicity)}
-		</p>
-	)
+	return <SimulateurCard {...simulateur} />
 }
 
-const SectionTitle = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 2rem;
+function SimulateursChoice(props: {
+	onChange: (ch: Chapter2 | '') => void
+	value: Chapter2 | ''
+	possibleValues: Array<Chapter2>
+}) {
+	const simulateurs = Object.values(useSimulatorsData()).filter((s) => {
+		const chapter2 = getChapter2(s)
+		return (
+			chapter2 &&
+			props.possibleValues.includes(chapter2) &&
+			!(s.tracking as any).chapter3
+		)
+	})
 
-	h2 {
-		margin: 0;
-	}
-`
+	return (
+		<div
+			css={`
+				display: flex;
+				flex-wrap: wrap;
+				margin-right: -0.4rem;
+				> * {
+					margin-bottom: 0.4rem;
+
+					margin-right: 0.4rem;
+				}
+			`}
+		>
+			<label
+				className={classnames('ui__ small button', {
+					selected: props.value === '',
+				})}
+			>
+				<input
+					type="radio"
+					name="simulateur"
+					value={'site'}
+					onChange={() => props.onChange('')}
+					checked={props.value === ''}
+				/>
+				<span>
+					{emoji('🌍')}
+					<Trans>Tout le site</Trans>
+				</span>
+			</label>
+			{simulateurs.map((s) => (
+				<label
+					key={s.shortName}
+					className={classnames('ui__ small button', {
+						selected: getChapter2(s) === props.value,
+					})}
+				>
+					<input
+						type="radio"
+						name="simulateur"
+						value={getChapter2(s)}
+						onChange={(evt) => props.onChange(evt.target.value)}
+						checked={getChapter2(s) === props.value}
+					/>
+					<span>
+						{s.icône && <>{emoji(s.icône)}&nbsp;</>}
+						<Trans>{s.shortName}</Trans>
+					</span>
+				</label>
+			))}
+		</div>
+	)
+}

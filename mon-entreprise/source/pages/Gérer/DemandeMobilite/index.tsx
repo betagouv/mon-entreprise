@@ -18,6 +18,7 @@ import {
 	useState,
 } from 'react'
 import emoji from 'react-easy-emoji'
+import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './formulaire-détachement.yaml'
 
@@ -213,6 +214,11 @@ function FormulairePublicodes() {
 					</button>
 				</div>
 			)}
+			{!Object.keys(situation).length ? (
+				<TrackPage name="accueil" />
+			) : isMissingValues ? (
+				<TrackPage name="commence" />
+			) : null}
 		</Animate.fromTop>
 	)
 }

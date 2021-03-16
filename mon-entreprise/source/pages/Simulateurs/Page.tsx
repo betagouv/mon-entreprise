@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import { SimulatorData } from './metadata'
 
-export default function SimulateurPage({
+export default function PageData({
 	meta,
 	title,
 	config,
@@ -46,7 +46,10 @@ export default function SimulateurPage({
 	}
 
 	const trackInfo = {
-		chapter1: 'simulateurs' as const,
+		chapter1:
+			typeof tracking === 'string' || !('chapter1' in tracking)
+				? ('simulateurs' as const)
+				: tracking.chapter1,
 		...(typeof tracking === 'string'
 			? {
 					chapter2: tracking,
