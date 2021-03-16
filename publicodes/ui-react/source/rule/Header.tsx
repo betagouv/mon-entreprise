@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { utils } from 'publicodes'
 import { RuleLinkWithContext } from '../RuleLink'
 import styled from 'styled-components'
+import Meta from './Meta'
+import { EngineContext } from '../contexts'
 
 export default function RuleHeader({ dottedName }) {
+	const engine = useContext(EngineContext)
+	if (!engine) {
+		throw new Error('an engine should be provided in context')
+	}
+	const {
+		title,
+		rawNode: { description, question, icônes },
+	} = engine.getRule(dottedName)
+	const displayTitle = icônes ? title + ' ' + icônes : title
 	return (
 		<StyledHeader className="ui__ plain card rule-header">
+			<Meta title={displayTitle} description={description || question} />
 			<ul className="rule-header__breadcrumb">
 				{utils
 					.ruleParents(dottedName)
