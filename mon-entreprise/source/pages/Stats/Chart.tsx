@@ -1,6 +1,5 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { formatValue } from 'publicodes'
-import { groupWith } from 'ramda'
 import React, { Fragment, useContext } from 'react'
 import {
 	Area,
@@ -15,25 +14,12 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
-import stats from '../../data/stats.json'
 
 type Period = 'mois' | 'jours'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
 	| Array<{ date: string; nombre: Record<string, number> }>
-
-const weekEndDays = groupWith(
-	(a, b) => {
-		const dayAfterA = new Date(a)
-		dayAfterA.setDate(dayAfterA.getDate() + 1)
-		return dayAfterA.toISOString().substring(0, 10) === b
-	},
-	stats.visitesJours.site
-		.map(({ date }) => new Date(date))
-		.filter((date) => date.getDay() === 0 || date.getDay() === 6)
-		.map((date) => date.toISOString().substring(0, 10))
-)
 
 type VisitsChartProps = {
 	period: Period

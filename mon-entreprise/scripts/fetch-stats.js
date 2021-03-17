@@ -250,21 +250,33 @@ async function fetchUserFeedbackIssues() {
 }
 async function main() {
 	createDataDir()
+	try {
+		const visitesJours = await fetchDailyVisits()
+		const visitesMois = await fetchMonthlyVisits()
+		const satisfaction = uniformiseData(
+			flattenPage(await fetchApi(buildSatisfactionQuery()))
+		)
+		const retoursUtilisateurs = await fetchUserFeedbackIssues()
+		writeInDataDir('stats.json', {
+			visitesJours,
+			visitesMois,
+			satisfaction,
+			retoursUtilisateurs,
+		})
+	} catch (e) {
+		console.error(e)
 
-	const visitesJours = await fetchDailyVisits()
-	const visitesMois = await fetchMonthlyVisits()
-	const satisfaction = uniformiseData(
-		flattenPage(await fetchApi(buildSatisfactionQuery()))
-	)
-	const retoursUtilisateurs = await fetchUserFeedbackIssues()
-	writeInDataDir('stats.json', {
-		visitesJours,
-		visitesMois,
-		satisfaction,
-		retoursUtilisateurs,
-	})
+		// In case we cannot fetch the release (the API is down or the Authorization
+		// token isn't valid) we fallback to some fake data -- it would be better to
+		// have a static ressource accessible without authentification.
+		writeInDataDir('stats.json', {
+			visitesJours: [],
+			visitesMois: [],
+			satisfaction: [],
+			retoursUtilisateurs: [],
+		})
+	}
 }
-
 main().catch((e) => {
 	throw new Error(e)
 })
