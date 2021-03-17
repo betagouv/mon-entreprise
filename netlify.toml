@@ -242,27 +242,3 @@
   from = "/*"
   to = "/mon-entreprise.html"
   status = 200
-
-[build]
-  # Hack while waiting for netlify to support workspace
-  # https://github.com/netlify/build-image/issues/196
-  command = "npm i yarn && yarn && yarn workspaces run prepare && yarn workspace mon-entreprise build"
-  publish = "mon-entreprise/dist"
-
-[context.deploy-preview.environment]
-  EN_SITE = "${path}?s=m"
-  FR_SITE = "${path}"
-  AT_INTERNET_SITE_ID = "617189"
-
-[context.production.environment]
-  EN_SITE = "https://mycompanyinfrance.fr${path}"
-  FR_SITE = "https://mon-entreprise.fr${path}"
-  AT_INTERNET_SITE_ID = "617190"
-
-[context."demo".environment]
-  EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
-  FR_SITE = "https://demo.mon-entreprise.fr${path}"
-
-[context."next".environment]
-  EN_SITE = "https://next.mon-entreprise.fr${path}?s=m"
-  FR_SITE = "https://next.mon-entreprise.fr${path}"

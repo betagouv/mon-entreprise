@@ -2,20 +2,33 @@ name: Déploiement sur Netlify
 on:
   pull_request:
     types: [opened, synchronize]
-env:
-  GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
-  ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
-  ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
-  ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
-  INSEE_SIRENE_API_SECRET: ${{ secrets.INSEE_SIRENE_API_TOKEN }}
-  MATOMO_TOKEN: ${{ secrets.MATOMO_TOKEN }}
-  EN_SITE: "${path}?s=m"
-  FR_SITE: "${path}"
-  AT_INTERNET_SITE_ID: 617189
+  push:
+    branches: [master, demo, next]
+
+
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - name: Set branch name
+        id: vars
+        run: echo ::set-output name=branch::${GITHUB_REF#refs/*/}
+      - if: github.event_name == 'pull_request'
+        name: 'Set site name for pull request deploy'
+        run:
+          echo "FR_SITE=deploy-preview-${{ github.event.number }}--syso.netlify.app/\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=deploy-preview-${{ github.event.number }}--syso.netlify.app/\${path}?s%3Dm" >> $GITHUB_ENV;
+      - if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+        name: 'Set site name for named branch deploy'
+        run: 
+          echo "FR_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr/\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr/\${path}?s%3Dm" >> $GITHUB_ENV;
+      - if: github.ref == 'refs/heads/master'
+        name: 'Set site name for production deploy'
+        run: 
+          echo "FR_SITE=https://mon-entreprise.fr/\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=https://mycompanyinfrance.fr/\${path}" >> $GITHUB_ENV
+    
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -24,9 +37,19 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: npm install yarn
       - run: yarn install
-      - run: yarn workspace mon-entreprise build
+        env:
+          # Secrets of all kinds for fetching stats & releases
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
+          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
+          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
+      - name: Build app
+        run: yarn workspace mon-entreprise build
+        env:
+          # Deploy dependant config (change for production settings)
+          AT_INTERNET_SITE_ID: ${{ github.ref == 'refs/heads/master' && 617190 || 617189 }}
+          NODE_ENV: production
       - name: Deploy to Netlify
         id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
@@ -34,16 +57,18 @@ jobs:
           publish-dir: './mon-entreprise/dist'
           netlify-config-path: ./netlify.toml
           production-branch: master
+          production-deploy: ${{ github.ref == 'refs/heads/master' }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-commit-comment: false
+          enable-commit-comment: ${{ github.event_name == 'push' }}
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
-          alias: deploy-preview-${{ github.event.number }}
+          alias: ${{ github.event_name == 'push' && steps.vars.outputs.branch || format('deploy-preview-{0}',  github.event.number) }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
       - name: Find Comment
+        if: github.event_name == 'pull_request'
         uses: peter-evans/find-comment@v1
         id: find-comment
         with:
@@ -51,7 +76,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: netlify
       - name: Create comment
-        if: ${{ steps.find-comment.outputs.comment-id == 0 }}
+        if: steps.find-comment.outputs.comment-id == 0
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
