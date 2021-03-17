@@ -62,8 +62,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-status: true
           enable-commit-comment: false
-          github-deployment-environment: $ENV_NAME
-          alias: $ENV_NAME
+          github-deployment-environment: ${{ env.ENV_NAME }}
+          alias: ${{ env.ENV_NAME }}
           deploy-message: ${{ github.event.pull_request.title || steps.vars.outputs.branch}}
           
           # Disabled because we create our own customized comment
@@ -104,10 +104,10 @@ jobs:
     needs: build
 
     strategy:
+      fail-fast: false
       matrix:
         lang: ['fr', 'en']
         # TODO : activate parallelization https://github.com/cypress-io/github-action#parallel (missing https://github.com/cypress-io/github-action#custom-build-id)
-        # fail-fast: false
         # containers: [1, 2] 
         # TODO : browser: ['firefox', 'chrome'] 
     steps:
@@ -115,6 +115,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Test mon-entreprise
         uses: cypress-io/github-action@v2
+        if: matrix.lang == 'fr' || !github.event.pull_request
         with:
           working-directory: mon-entreprise
           record: true
