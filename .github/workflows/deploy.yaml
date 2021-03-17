@@ -4,7 +4,6 @@ on:
     types: [opened, synchronize]
   push:
     branches: [master, demo, next]
-
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -19,31 +18,27 @@ jobs:
       - if: github.event_name == 'pull_request'
         name: 'Set site name for pull request deploy'
         run:
-          echo "FR_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app/\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app/\${path}?s%3Dm" >> $GITHUB_ENV;
-          echo "PUBLICODES_SITE=deploy-preview-${{ github.event.number }}--syso.netlify.app/\${path}?s%3Dp" >> $GITHUB_ENV;
+          echo "FR_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}?s%3Dm" >> $GITHUB_ENV;
+          echo "PUBLICODES_SITE=deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}?s%3Dp" >> $GITHUB_ENV;
       - if: github.event_name == 'push' && github.ref != 'refs/heads/master'
         name: 'Set site name for named branch deploy'
         run: 
-          echo "FR_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr/\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr/\${path}?s%3Dm" >> $GITHUB_ENV;
-          echo "PUBLICODES_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr/\${path}?s%3Dp" >> $GITHUB_ENV;
+          echo "FR_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}?s%3Dm" >> $GITHUB_ENV;
+          echo "PUBLICODES_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}?s%3Dp" >> $GITHUB_ENV;
       - if: github.ref == 'refs/heads/master'
         name: 'Set site name for production deploy'
         run: 
-          echo "FR_SITE=https://mon-entreprise.fr/\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://mycompanyinfrance.fr/\${path}" >> $GITHUB_ENV
-          echo "PUBLICODES_SITE=https://publi.codes/\${path}" >> $GITHUB_ENV
-    
+          echo "FR_SITE=https://mon-entreprise.fr\${path}" >> $GITHUB_ENV;
+          echo "EN_SITE=https://mycompanyinfrance.fr\${path}" >> $GITHUB_ENV
+          echo "PUBLICODES_SITE=https://publi.codes\${path}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
@@ -65,21 +60,26 @@ jobs:
           production-branch: master
           production-deploy: ${{ github.ref == 'refs/heads/master' }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-status: true
           enable-commit-comment: false
+          github-deployment-environment: $ENV_NAME
+          alias: $ENV_NAME
+          deploy-message: ${{ github.event.pull_request.title || steps.vars.outputs.branch}}
+          
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
-          alias: ${{ github.event_name == 'push' && steps.vars.outputs.branch || format('deploy-preview-{0}',  github.event.number) }}
         env:
+          ENV_NAME: ${{ github.event_name == 'push' && steps.vars.outputs.branch || format('deploy-preview-{0}',  github.event.number) }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
 
   post-comment:
     runs-on: ubuntu-18.04
+    if: github.event_name == 'pull_request'
     needs: build
     steps:
       - name: Find Comment
-        if: github.event_name == 'pull_request'
         uses: peter-evans/find-comment@v1
         id: find-comment
         with:
@@ -99,16 +99,17 @@ jobs:
   end-to-end-test:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CYPRESS_RECORD_KEY: 21660df5-36a5-4c49-b23d-801799b0c759 #TODO put in secrets
-
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-16.04
     needs: build
+
     strategy:
-      fail-fast: false
       matrix:
         lang: ['fr', 'en']
-        browser: ['firefox', 'chrome']
-        containers: [1, 2]
+        # TODO : activate parallelization https://github.com/cypress-io/github-action#parallel (missing https://github.com/cypress-io/github-action#custom-build-id)
+        # fail-fast: false
+        # containers: [1, 2] 
+        # TODO : browser: ['firefox', 'chrome'] 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -116,21 +117,17 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           working-directory: mon-entreprise
-          browser: ${{ matrix.browser }}
           record: true
-          parallel: true
-          group: 'mon-entreprise'
-          tag: mon-entreprise-${{ matrix.browser }}-${{ matrix.lang }}
+          tag: mon-entreprise-${{ matrix.lang }}
           config: integrationFolder=cypress/integration/mon-entreprise
           env: site=${{ needs.build.outputs[matrix.lang] }},language=${{ matrix.lang }}
-
+        
       - name: Test publicodes
         if: matrix.lang == 'fr'
         uses: cypress-io/github-action@v2
         with:
-          browser: ${{ matrix.browser }}
           record: true
-          tag: publicodes-${{ matrix.browser }}
+          tag: publicodes
           config: integrationFolder=cypress/integration/publi.codes
           env: site=${{ needs.build.outputs.publicodes }}
 
@@ -138,8 +135,8 @@ jobs:
         if: matrix.lang == 'fr' && github.ref == 'refs/heads/master'
         uses: cypress-io/github-action@v2
         with:
-          browser: ${{ matrix.browser }}
+          browser: chrome
           record: true
-          tag: external-integration-${{ matrix.browser }}
+          tag: external-integration
           config: integrationFolder=cypress/integration/external
           
