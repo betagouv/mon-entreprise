@@ -5,7 +5,8 @@ Ce repo contient :
 
 ## <a href="https://mon-entreprise.fr"><img src="https://mon-entreprise.fr/images/logo.svg" alt="mon-entreprise.fr" width="200"/></a>
 
-![](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg)
+[![](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml?query=branch%3Amaster++)&nbsp;
+[![](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml?query=branch%3Amaster++)
 
 Site développé en partenariat avec l'Urssaf, qui a pour mission d'accompagner des créateurs d’entreprise dans le développement de leur activité. 
 
