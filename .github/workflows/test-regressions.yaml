@@ -1,5 +1,10 @@
 name: Règles (non-regression)
-on: pull_request
+on: 
+  pull_request:
+    paths:
+      - modele-social/règles/**
+      - publicodes/core/**
+      - mon-entreprise/test/regressions/**
 jobs:
   test:
     runs-on: ubuntu-18.04
