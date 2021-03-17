@@ -5,8 +5,8 @@ Ce repo contient :
 
 ## <a href="https://mon-entreprise.fr"><img src="https://mon-entreprise.fr/images/logo.svg" alt="mon-entreprise.fr" width="200"/></a>
 
-[![](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml?query=branch%3Amaster++)&nbsp;
-[![](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml?query=branch%3Amaster++)
+[![Statut déploiement](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml?query=branch%3Amaster++)&nbsp;
+[![Statut test](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml?query=branch%3Amaster++)
 
 Site développé en partenariat avec l'Urssaf, qui a pour mission d'accompagner des créateurs d’entreprise dans le développement de leur activité. 
 
@@ -20,6 +20,7 @@ Les développeurs ont la possibilité d'intégrer ces simulateurs sur d'autres s
 
 ## <a href="https://publi.codes"><img src="https://mon-entreprise.fr/images/logo-publicodes.png" alt="Publicodes" width="200"/></a>
 
+[![Npm version](https://img.shields.io/npm/v/publicodes)](https://www.npmjs.com/package/publicodes)
 [![Gitter chat](https://badges.gitter.im/publicodes/publicodes.png)](https://gitter.im/publicodes/community)
 
 Publicodes est un langage déclaratif pour encoder les algorithmes d'intérêt public. Il permet de réaliser des calculs généraux tout en fournissant une explication permettant de comprendre et de documenter ces calculs.
