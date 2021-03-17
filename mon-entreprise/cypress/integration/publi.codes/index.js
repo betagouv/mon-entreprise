@@ -1,6 +1,6 @@
 describe('Navigation', function () {
 	it('landing should not crash', function () {
-		cy.visit('/')
+		cy.visit(Cypress.env('site').replace('${path}', '/'))
 	})
 	it('liste des mécanismes should not crash', function () {
 		cy.contains('Documentation').click()
