@@ -1,7 +1,7 @@
 describe('Manage page test', function () {
 	const fr = Cypress.env('language') === 'fr'
 	beforeEach(() => {
-		cy.visit(Cypress.env('site').replace('${path}', fr ? '/gérer' : '/manage'))
+		cy.visit(fr ? '/gérer' : '/manage')
 	})
 	it('should not crash', function () {
 		cy.contains(fr ? 'Gérer mon activité' : 'Manage my business')

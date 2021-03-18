@@ -3,7 +3,7 @@ describe('Iframe integration test', function () {
 		return
 	}
 	it('should display an iframe of the simulateur', function () {
-		cy.visit(Cypress.env('site').replace('${path}', '/dev/integration-test'))
+		cy.visit('/dev/integration-test')
 		cy.contains('Visualiser').click()
 		cy.wait(1000)
 		cy.get('#simulateurEmbauche').iframe().contains('Salaire net')

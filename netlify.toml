@@ -1,143 +1,57 @@
 ############
 # Redirects following architectural changes
 
+# :SITE_<name> is a placeholder replaced before deploy (depends on the environment)
+
 # FR | coronavirus -> simulateurs/chômage-partiel
 [[redirects]]
-  from="/coronavirus"
-  to="/simulateurs/ch%C3%B4mage-partiel"
+  from=":SITE_FR/coronavirus"
+  to=":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
   status = 301
 
 [[redirects]]
-  from="/%C3%A9conomie-collaborative"
-  to="/simulateurs/%C3%A9conomie-collaborative"
+  from=":SITE_FR/%C3%A9conomie-collaborative"
+  to=":SITE_FR/simulateurs/%C3%A9conomie-collaborative"
   status = 301
-
-# EN | salaried -> salary
-[[redirects]]
-  from="/simulators/salaried"
-  to="/calcultors/salary"
-  status = 301
-
-# EN | simulators -> calculators
-[[redirects]]
-  from="/simulators/*"
-  to="/calcultors/:splat"
-  status = 301
-
 
 # FR | salarié -> salaire-brut-net
 [[redirects]]
-  from="/simulateurs/salari%C3%A9"
-  to="/simulateurs/salaire-brut-net"
+  from=":SITE_FR/simulateurs/salari%C3%A9"
+  to=":SITE_FR/simulateurs/salaire-brut-net"
   status = 301
 
 # FR | assimilé-salarié -> dirigeant-sasu
 [[redirects]]
-  from="/simulateurs/assimil%C3%A9-salari%C3%A9"
-  to="/simulateurs/dirigeant-sasu"
+  from=":SITE_FR/simulateurs/assimil%C3%A9-salari%C3%A9"
+  to=":SITE_FR/simulateurs/dirigeant-sasu"
   status = 301
 
 # FR | s%C3%A9curit%C3%A9-sociale/auto-entrepreneur -> simulateurs/auto-entrepreneur
 [[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
-  to="/simulateurs/auto-entrepreneur"
+  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
+  to=":SITE_FR/simulateurs/auto-entrepreneur"
   status = 301
 
 # FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
 [[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  to="/simulateurs/salaire-brut-net"
+  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  to=":SITE_FR/simulateurs/salaire-brut-net"
   statys = 301
 
 # FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
 [[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  to="/simulateurs/salaire-brut-net"
+  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  to=":SITE_FR/simulateurs/salaire-brut-net"
   status = 301
 
 # SEO redirect
 [[redirects]]
-  from = "/documentation/contrat-salari%C3%A9/salaire/*"
-  to = "/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
+  from = ":SITE_FR/documentation/contrat-salari%C3%A9/salaire/*"
+  to = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
   status = 301
-
-############
-# Redirects for single page app config & prerendering purpose
-
-# Mycompanyinfrance
-[[redirects]]
-  from = "https://www.mycompanyinfrance.fr/*"
-  to = "https://mycompanyinfrance.fr/:splat"
-  status = 301
-
-[[redirects]]
-  from = "https://www.mycompanyinfrance.com/*"
-  to = "https://mycompanyinfrance.fr/:splat"
-  status = 301
-
-[[redirects]]
-  from = "https://mycompanyinfrance.com/*"
-  to = "https://mycompanyinfrance.fr/:splat"
-  status = 301
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr/robots.txt"
-  to = "/robots.infrance.txt"
-  status = 200
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr/sitemap.txt"
-  to = "/sitemap.infrance.en.txt"
-  status = 200
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr"
-  to = "/prerender/infrance/index.html"
-  status = 200
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr/calculators/salary"
-  to = "/prerender/infrance/calculators/salary/index.html"
-  status = 200
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
-  to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
-  status = 200
-
-[[redirects]]
-  from = "https://mycompanyinfrance.fr/*"
-  to = "/infrance.html"
-  status = 200
-
-[[redirects]]
-  from = "/"
-  query = {s = "m"}
-  to = "/prerender/infrance/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  query = {s = "m"}
-  to = "/infrance.html"
-  status = 200
-
-
-# Publicode
-[[redirects]]
-  from = "https://publi.codes/*"
-  to = "/publicodes.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  query = {s = "p"}
-  to = "/publicodes.html"
-  status = 200
 
 
 # Embauche redirection settings
-
 [[redirects]]
   from = "https://embauche.beta.gouv.fr/"
   to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
@@ -165,80 +79,138 @@
   status = 301
 
 
+############
+# Redirects for single page app config & prerendering purpose
+
+
+# Publicode
+[[redirects]]
+  from = ":SITE_PUBLICODES/*"
+  to = "/publicodes.html"
+  status = 200
+
 
 # Mon-entreprise.fr
 [[redirects]]
-  from = "https://mon-entreprise.fr/robots.txt"
+  from = ":SITE_FR/robots.txt"
   to = "/robots.infrance.txt"
   status = 200
 
 [[redirects]]
-  from = "https://mon-entreprise.fr/sitemap.txt"
+  from = ":SITE_FR/sitemap.txt"
   to = "/sitemap.infrance.fr.txt"
   status = 200
 
 [[redirects]]
-  from = "/"
+  from = ":SITE_FR"
   to = "/prerender/mon-entreprise/index.html"
   status = 200
 
 [[redirects]]
-  from = "/cr%C3%A9er"
+  from = ":SITE_FR/cr%C3%A9er"
   to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
   status = 200
 
 [[redirects]]
-  from = "/g%C3%A9rer"
+  from = ":SITE_FR/g%C3%A9rer"
   to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/ch%C3%B4mage-partiel"
+  from = ":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
   to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/salaire-brut-net"
+  from = ":SITE_FR/simulateurs/salaire-brut-net"
   to = "/prerender/mon-entreprise/simulateurs/salaire-brut-net/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/auto-entrepreneur"
+  from = ":SITE_FR/simulateurs/auto-entrepreneur"
   to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/ind%C3%A9pendant"
+  from = ":SITE_FR/simulateurs/ind%C3%A9pendant"
   to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/dirigeant-sasu"
+  from = ":SITE_FR/simulateurs/dirigeant-sasu"
   to = "/prerender/mon-entreprise/simulateurs/dirigeant-sasu/index.html"
   status = 200
 
 [[redirects]]
-  from = "/simulateurs/artiste-auteur"
+  from = ":SITE_FR/simulateurs/artiste-auteur"
   to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
   status = 200
 
 [[redirects]]
-  from = "/iframes/simulateur-embauche"
+  from = ":SITE_FR/iframes/simulateur-embauche"
   to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
   status = 200
 
 [[redirects]]
-  from = "/iframes/simulateur-chomage-partiel"
+  from = ":SITE_FR/iframes/simulateur-chomage-partiel"
   to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
   status = 200
 
 [[redirects]]
-  from = "/iframes/pamc"
+  from = ":SITE_FR/iframes/pamc"
   to = "/prerender/mon-entreprise/iframes/pamc/index.html"
   status = 200
 
+[[redirects]]
+  from = ":SITE_FR/*"
+  to = "/mon-entreprise.html"
+  status = 200
+
+
+# Mycompanyinfrance
 
 [[redirects]]
-  from = "/*"
-  to = "/mon-entreprise.html"
+  from = "https://www.mycompanyinfrance.fr/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
+
+[[redirects]]
+  from = "https://www.mycompanyinfrance.com/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
+
+[[redirects]]
+  from = "https://mycompanyinfrance.com/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
+
+
+[[redirects]]
+  from = ":SITE_EN/robots.txt"
+  to = "/robots.infrance.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/sitemap.txt"
+  to = "/sitemap.infrance.en.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN"
+  to = "/prerender/infrance/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/calculators/salary"
+  to = "/prerender/infrance/calculators/salary/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/iframes/simulateur-embauche"
+  to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/*"
+  to = "/infrance.html"
   status = 200

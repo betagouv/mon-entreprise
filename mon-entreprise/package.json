@@ -108,7 +108,7 @@
 		"build:legacy": "yarn run webpack --config webpack.prod.legacyBrowser.js",
 		"build:stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"build:analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
-		"build:dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run build",
+		"build:dev": "FR_BASE_URL='http://localhost:5000${path}' EN_BASE_URL='http://localhost:5001${path}' yarn run build",
 		"clean": "rimraf dist node_modules source/data",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.{js,ts}\"",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --include test/componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",

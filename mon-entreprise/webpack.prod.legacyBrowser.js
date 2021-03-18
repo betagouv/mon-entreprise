@@ -23,8 +23,8 @@ module.exports = {
 			GITHUB_SHA: '',
 		}),
 		new EnvironmentPlugin({
-			EN_SITE: '/infrance${path}',
-			FR_SITE: '/mon-entreprise${path}',
+			EN_BASE_URL: 'http://localhost:8080/infrance',
+			FR_BASE_URL: 'http://localhost:8080/mon-entreprise',
 		}),
 	],
 }
