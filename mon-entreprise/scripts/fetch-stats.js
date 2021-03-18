@@ -1,11 +1,3 @@
-// This script uses the Matomo API which requires an access token
-// Once you have your access token you can put it in a `.env` file at the root
-// of the project to enable it during development. For instance:
-//
-// MATOMO_TOKEN=f4336c82cb1e494752d06e610614eab12b65f1d1
-//
-// Matomo API documentation:
-// https://developer.matomo.org/api-reference/reporting-api
 require('dotenv').config()
 require('isomorphic-fetch')
 

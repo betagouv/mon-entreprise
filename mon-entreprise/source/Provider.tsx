@@ -1,10 +1,8 @@
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
-// Matomo Tracking
-import { TrackerProvider } from 'Components/utils/withTracker'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
-import React, { createContext, useEffect, useMemo } from 'react'
+import React, { createContext, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
@@ -20,13 +18,8 @@ import {
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-import Tracker, { devTracker } from './Tracker'
 import { inIframe } from './utils'
 
-let tracker = devTracker
-if (process.env.NODE_ENV === 'production') {
-	tracker = new Tracker()
-}
 const ATTracker = createTracker(process.env.AT_INTERNET_SITE_ID)
 declare global {
 	interface Window {
@@ -92,12 +85,6 @@ export default function Provider({
 			}),
 		[]
 	)
-	useEffect(() => {
-		tracker?.connectToHistory(history)
-		return () => {
-			tracker?.disconnectFromHistory()
-		}
-	})
 
 	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
 
@@ -137,17 +124,15 @@ export default function Provider({
 						})
 					}
 				>
-					<TrackerProvider value={tracker}>
-						<SiteNameContext.Provider value={basename}>
-							<SitePathProvider value={sitePaths}>
-								<I18nextProvider i18n={i18next}>
-									<Router history={history}>
-										<>{children}</>
-									</Router>
-								</I18nextProvider>
-							</SitePathProvider>
-						</SiteNameContext.Provider>
-					</TrackerProvider>
+					<SiteNameContext.Provider value={basename}>
+						<SitePathProvider value={sitePaths}>
+							<I18nextProvider i18n={i18next}>
+								<Router history={history}>
+									<>{children}</>
+								</Router>
+							</I18nextProvider>
+						</SitePathProvider>
+					</SiteNameContext.Provider>
 				</TrackingContext.Provider>
 			</ThemeColorsProvider>
 		</ReduxProvider>

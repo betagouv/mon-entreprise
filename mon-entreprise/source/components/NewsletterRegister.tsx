@@ -1,9 +1,8 @@
-import { usePersistingState } from 'Components/utils/persistState'
-import { TrackerContext } from 'Components/utils/withTracker'
-import { useContext, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import emoji from 'react-easy-emoji'
 import * as animate from 'Components/ui/animate'
+import { usePersistingState } from 'Components/utils/persistState'
+import { useRef, useState } from 'react'
+import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 
 // We don't want to load the full sendinblue iframe, so we reimplement a simple
 // logic to the a HTTP Post request to their URL with the email data.
@@ -21,7 +20,6 @@ export default function NewsletterRegister() {
 	const formElement = useRef<HTMLFormElement>(null)
 	const [userJustRegistered, setUserJustRegistered] = useState(false)
 	const { t, i18n } = useTranslation()
-	const tracker = useContext(TrackerContext)
 
 	const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault()
@@ -32,7 +30,6 @@ export default function NewsletterRegister() {
 			method: formInfos.method,
 			body: new FormData(formElement.current),
 		}).then(() => {
-			tracker.push(['trackEvent', 'Newsletter', 'registered'])
 			setUserIsRegistered(true)
 			setUserJustRegistered(true)
 		})

@@ -3,12 +3,11 @@ import Overlay from 'Components/Overlay'
 import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
-import { TrackerContext } from 'Components/utils/withTracker'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
-import { TrackPage } from '../../../ATInternetTracking'
+import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
 import PDFDocument from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()
@@ -29,7 +28,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	const engine = useContext(EngineContext)
 	const { darkColor } = useContext(ThemeColorsContext)
 	const signatureRef = useRef<SignaturePadInstance>()
-	const tracker = useContext(TrackerContext)
+	const tracker = useContext(TrackingContext)
 
 	if (isMissingValues) {
 		return (
@@ -172,6 +171,12 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 											)}
 											<a
 												href={url}
+												onClick={() => {
+													tracker.click.set({
+														type: 'download',
+														name: 'demande-mobilité-internationale.pdf',
+													})
+												}}
 												className="ui__ cta plain button"
 												download="demande-mobilité-internationale.pdf"
 											>

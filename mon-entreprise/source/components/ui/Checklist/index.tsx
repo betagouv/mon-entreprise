@@ -1,9 +1,8 @@
 import classnames from 'classnames'
+import Animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
-import { TrackerContext } from 'Components/utils/withTracker'
-import React, { useContext, useEffect, useState } from 'react'
-import Animate from 'Components/ui/animate'
+import React, { useEffect, useState } from 'react'
 import Checkbox from '../Checkbox'
 import './index.css'
 
@@ -22,7 +21,6 @@ export function CheckItem({
 	onChange,
 	defaultChecked,
 }: CheckItemProps) {
-	const tracker = useContext(TrackerContext)
 	const [displayExplanations, setDisplayExplanations] = useState(false)
 
 	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,16 +28,9 @@ export function CheckItem({
 			setDisplayExplanations(false)
 		}
 		onChange?.(e)
-		tracker.debouncedPush([
-			'trackEvent',
-			'CheckItem',
-			e.target.checked ? 'check' : 'uncheck',
-			name,
-		])
 	}
 
 	const handleClick = () => {
-		tracker.debouncedPush(['trackEvent', 'CheckItem', 'click', name])
 		setDisplayExplanations(!displayExplanations)
 	}
 
