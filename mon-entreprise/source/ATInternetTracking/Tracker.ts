@@ -43,6 +43,7 @@ export interface ATTracker {
 	privacy: {
 		setVisitorMode(authority: 'cnil', type: 'exempt'): void
 		setVisitorOptout(): void
+		getVisitorMode(): { name: 'exempt' | 'optout' }
 	}
 	dispatch(): void
 }
@@ -55,7 +56,7 @@ declare global {
 	}
 }
 
-export function createTracker(siteId?: string) {
+export function createTracker(siteId?: string, doNotTrack = false) {
 	const site = siteId ? +siteId : 0
 	if (Number.isNaN(site)) {
 		throw new Error('expect string siteId to be of number form')
@@ -75,18 +76,11 @@ export function createTracker(siteId?: string) {
 			this.site[
 				INDICATOR.SITE.LANGAGE
 			] = `[${options.language}]` as CustomSiteIndicator[1]
-			this.privacy.setVisitorMode('cnil', 'exempt')
-			if (
-				process.env.NODE_ENV === 'production' &&
-				(document.cookie
-					.split(';')
-					// We use Matomo cookie while it's here
-					.find((cookie) => cookie.startsWith('mtm_consent_removed')) ||
-					navigator.doNotTrack === '1')
-			) {
+			if (process.env.NODE_ENV === 'production' && doNotTrack) {
 				this.privacy.setVisitorOptout()
+			} else {
+				this.privacy.setVisitorMode('cnil', 'exempt')
 			}
-			this.dispatch()
 		}
 
 		dispatch() {
@@ -122,6 +116,10 @@ export class Log implements ATTracker {
 		},
 		setVisitorOptout() {
 			console.debug('ATTracker::setVisitorOptout')
+		},
+		getVisitorMode() {
+			console.debug('ATTracker::privacy.getVisitorMode')
+			return { name: 'exempt' }
 		},
 	}
 	dispatch(): void {

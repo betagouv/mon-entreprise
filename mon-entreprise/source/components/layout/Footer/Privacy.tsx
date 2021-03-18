@@ -1,7 +1,8 @@
 import Overlay from 'Components/Overlay'
-import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { TrackPage } from '../../../ATInternetTracking'
+import { useCallback, useContext, useState } from 'react'
+import { Trans } from 'react-i18next'
+import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
+import safeLocalStorage from '../../../storage/safeLocalStorage'
 
 export default function Privacy({ label }: { label?: string }) {
 	const [opened, setOpened] = useState(false)
@@ -28,7 +29,22 @@ export default function Privacy({ label }: { label?: string }) {
 }
 
 function PrivacyContent() {
-	const { language } = useTranslation().i18n
+	const tracker = useContext(TrackingContext)
+	const [valueChanged, setValueChanged] = useState(false)
+	const handleChange = useCallback(
+		(evt) => {
+			if (evt.target.checked) {
+				tracker.privacy.setVisitorOptout()
+				safeLocalStorage.setItem('tracking:do_not_track', 'true')
+			} else {
+				tracker.privacy.setVisitorMode('cnil', 'exempt')
+				safeLocalStorage.setItem('tracking:do_not_track', 'false')
+			}
+			setValueChanged(true)
+		},
+		[setValueChanged, tracker.privacy]
+	)
+
 	return (
 		<>
 			<Trans i18nKey="privacyContent">
@@ -46,17 +62,30 @@ function PrivacyContent() {
 				</p>
 				<p>
 					Vous pouvez vous soustraire de cette mesure d'utilisation du site
-					ci-dessous.
+					ci-dessous :
+				</p>
+				<p>
+					<label>
+						<input
+							type="checkbox"
+							name="opt-out mesure audience"
+							onChange={handleChange}
+							defaultChecked={
+								tracker.privacy.getVisitorMode().name === 'optout'
+							}
+						/>{' '}
+						Je souhaite ne pas envoyer de données anonymes sur mon utilisation
+						du site à des fins de mesures d'audience
+					</label>
 				</p>
 			</Trans>
-			<iframe
-				className="ui__ card light-bg"
-				css={`
-					border: 0;
-					padding: 1rem;
-				`}
-				src={`https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=${language}`}
-			/>
+			{valueChanged && (
+				<small className="ui__  label ">
+					<Trans i18nKey="privacyContent.ok">
+						Vos préférences ont bien été enregistrées
+					</Trans>
+				</small>
+			)}
 		</>
 	)
 }

@@ -18,9 +18,17 @@ import {
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
+import safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
 
-const ATTracker = createTracker(process.env.AT_INTERNET_SITE_ID)
+const ATTracker = createTracker(
+	process.env.AT_INTERNET_SITE_ID,
+	!!JSON.parse(
+		safeLocalStorage.getItem('tracking:do_not_track') ??
+			navigator.doNotTrack ??
+			'false'
+	)
+)
 declare global {
 	interface Window {
 		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
