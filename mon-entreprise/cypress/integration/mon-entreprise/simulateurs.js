@@ -17,11 +17,7 @@ describe('Simulateurs', function () {
 		'profession-liberale/chirurgien-dentiste',
 	].forEach((simulateur) =>
 		describe(simulateur, () => {
-			before(() =>
-				cy.visit(
-					Cypress.env('site').replace('${path}', `/simulateurs/${simulateur}`)
-				)
-			)
+			before(() => cy.visit(`/simulateurs/${simulateur}`))
 			it('should not crash', function () {
 				cy.get(inputSelector)
 			})
@@ -84,11 +80,7 @@ describe('Simulateur auto-entrepreneur', () => {
 	if (!fr) {
 		return
 	}
-	before(() =>
-		cy.visit(
-			Cypress.env('site').replace('${path}', '/simulateurs/auto-entrepreneur')
-		)
-	)
+	before(() => cy.visit('/simulateurs/auto-entrepreneur'))
 
 	it('should allow to enter the date of creation', () => {
 		cy.get(inputSelector).first().type('{selectall}50000')
@@ -123,7 +115,7 @@ describe('Simulateur salarié mode partagé', () => {
 		return
 	}
 	it('should set input value from URL', function () {
-		cy.visit(Cypress.env('site').replace('${path}', urlWithState))
+		cy.visit(urlWithState)
 		cy.wait(800)
 		cy.get(brutInputSelector).first().invoke('val').should('be', '1 539')
 
@@ -131,7 +123,7 @@ describe('Simulateur salarié mode partagé', () => {
 		cy.get('span.answerContent').first().contains('CDD')
 	})
 	it('should set URL from input value', function () {
-		cy.visit(Cypress.env('site').replace('${path}', simulatorUrl))
+		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')
 		cy.wait(1000)
 		cy.get('.step').find('input[value="\'CDD\'"]').click({ force: true })
@@ -147,9 +139,7 @@ describe('Simulateur salarié', () => {
 	if (!fr) {
 		return
 	}
-	before(() =>
-		cy.visit(Cypress.env('site').replace('${path}', '/simulateurs/salarié'))
-	)
+	before(() => cy.visit('/simulateurs/salarié'))
 
 	it('should persist the current simulation (persistSimulation)', function () {
 		cy.get(inputSelector).first().type('{selectall}42')
@@ -157,15 +147,13 @@ describe('Simulateur salarié', () => {
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.wait(1600)
-		cy.visit(
-			Cypress.env('site').replace('${path}', '/simulateurs/auto-entrepreneur')
-		)
+		cy.visit('/simulateurs/auto-entrepreneur')
 		cy.get(inputSelector).first().type('{selectall}007')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.wait(1600)
-		cy.visit(Cypress.env('site').replace('${path}', '/simulateurs/salarié'))
+		cy.visit('/simulateurs/salarié')
 		cy.contains('Retrouver ma simulation').click()
 		cy.get(inputSelector).first().invoke('val').should('match', /42/)
 	})
@@ -181,7 +169,7 @@ describe('Simulateur salarié', () => {
 
 	describe('part time contract', () => {
 		before(() => {
-			cy.visit(Cypress.env('site').replace('${path}', '/simulateurs/salarié'))
+			cy.visit('/simulateurs/salarié')
 			cy.get('input[name$="brut de base"]').click()
 			cy.get('button').contains('SMIC').click()
 			cy.contains('Voir mes paramètres').click()

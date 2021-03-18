@@ -4,35 +4,33 @@ on:
     types: [opened, synchronize]
   push:
     branches: [master, demo, next]
+
 jobs:
-  build:
+  deploy-context:
     runs-on: ubuntu-18.04
-    outputs: 
-      fr: ${{ env.FR_SITE }}
-      en: ${{ env.EN_SITE }}
-      publicodes: ${{ env.PUBLICODES_SITE }}
-    steps:
-      - name: Set branch name
-        id: vars
-        run: echo ::set-output name=branch::${GITHUB_REF#refs/*/}
-      - if: github.event_name == 'pull_request'
-        name: 'Set site name for pull request deploy'
+    outputs:
+      env-name: ${{ steps.deploy-env.outputs.name }}
+      fr_url: ${{ steps.base-urls.outputs.fr }}
+      en_url: ${{ steps.base-urls.outputs.en }}
+      publicodes_url: ${{ steps.base-urls.outputs.publicodes }}
+    steps: 
+      - id: deploy-env
         run:
-          echo "FR_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}?s%3Dm" >> $GITHUB_ENV;
-          echo "PUBLICODES_SITE=deploy-preview-${{ github.event.number }}--syso.netlify.app\${path}?s%3Dp" >> $GITHUB_ENV;
-      - if: github.event_name == 'push' && github.ref != 'refs/heads/master'
-        name: 'Set site name for named branch deploy'
-        run: 
-          echo "FR_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}?s%3Dm" >> $GITHUB_ENV;
-          echo "PUBLICODES_SITE=https://${{ steps.vars.outputs.branch }}.mon-entreprise.fr\${path}?s%3Dp" >> $GITHUB_ENV;
-      - if: github.ref == 'refs/heads/master'
-        name: 'Set site name for production deploy'
-        run: 
-          echo "FR_SITE=https://mon-entreprise.fr\${path}" >> $GITHUB_ENV;
-          echo "EN_SITE=https://mycompanyinfrance.fr\${path}" >> $GITHUB_ENV
-          echo "PUBLICODES_SITE=https://publi.codes\${path}" >> $GITHUB_ENV
+          echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" 
+      - id: base-urls
+        run:
+          echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.fr' || format('https://{0}--syso.netlify.app', steps.deploy-env.outputs.name) }}";
+          echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.fr' || format('https://{0}-en--syso.netlify.app', steps.deploy-env.outputs.name) }}";
+          echo "::set-output name=publicodes::${{ steps.deploy-env.outputs.name == 'master' && 'https://publi.codes' || format('https://{0}-publicodes--syso.netlify.app', steps.deploy-env.outputs.name) }}";
+    
+  build:
+    needs: deploy-context
+    env:
+      FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
+      EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+      PUBLICODES_BASE_URL: ${{ needs.deploy-context.outputs.publicodes_url }}
+    runs-on: ubuntu-18.04
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
@@ -48,28 +46,74 @@ jobs:
       - name: Build app
         run: yarn workspace mon-entreprise build
         env:
-          # Deploy dependant config (change for production settings)
-          AT_INTERNET_SITE_ID: ${{ github.ref == 'refs/heads/master' && 617190 || 617189 }}
+          AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
           NODE_ENV: production
-      - name: Deploy to Netlify
-        id: deploy-netlify
+      - name: Replace site placeholders in netlify.toml redirection file
+        run: 
+          sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
+          sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
+          sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-site
+          path: |
+            mon-entreprise/dist/**
+            netlify.toml
+          if-no-files-found: error
+        
+  deploy-preview:
+    needs: [build, deploy-context]
+    runs-on: ubuntu-18.04
+    if: needs.deploy-context.outputs.env-name != 'master'
+    strategy:
+      matrix: 
+        site: ['', 'en', 'publicodes']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-site
+      - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './mon-entreprise/dist'
           netlify-config-path: ./netlify.toml
-          production-branch: master
-          production-deploy: ${{ github.ref == 'refs/heads/master' }}
+          production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-status: true
           enable-commit-comment: false
-          github-deployment-environment: ${{ env.ENV_NAME }}
-          alias: ${{ env.ENV_NAME }}
-          deploy-message: ${{ github.event.pull_request.title || steps.vars.outputs.branch}}
+          github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
+          alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
+          deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
           
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
         env:
-          ENV_NAME: ${{ github.event_name == 'push' && steps.vars.outputs.branch || format('deploy-preview-{0}',  github.event.number) }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+  
+  deploy-prod:
+    needs: [build, deploy-context]
+    runs-on: ubuntu-18.04
+    if: needs.deploy-context.outputs.env-name == 'master'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: Static site
+      - id: deploy-netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './mon-entreprise/dist'
+          netlify-config-path: ./netlify.toml
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-status: true
+          enable-commit-comment: false
+          github-deployment-environment: master
+          deploy-message: Deploy production branch
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
@@ -77,7 +121,7 @@ jobs:
   post-comment:
     runs-on: ubuntu-18.04
     if: github.event_name == 'pull_request'
-    needs: build
+    needs: [deploy-preview, deploy-context]
     steps:
       - name: Find Comment
         uses: peter-evans/find-comment@v1
@@ -87,57 +131,80 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: netlify
       - name: Create comment
-        if: steps.find-comment.outputs.comment-id == 0
         uses: peter-evans/create-or-update-comment@v1
         with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
           body: |
-            🚀 La branche est déployée ! ${{ steps.deploy-netlify.outputs.deploy-url }}
-
-            _Voir aussi : [version anglaise](${{ steps.deploy-netlify.outputs.deploy-url }}?s=m) | [site publicodes](${{ steps.deploy-netlify.outputs.deploy-url }}?s=p)_
+            🚀 La branche est déployée ! 
+            
+            - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
+            - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
+            - publicodes : ${{ needs.deploy-context.outputs.publicodes_url }}
+            
 
   end-to-end-test:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-16.04
-    needs: build
+    # We need to specify always() https://github.com/actions/runner/issues/491
+    if: always() && (needs.deploy-prod.result == 'success' || needs.deploy-preview.result == 'success')
+    needs: [deploy-context, deploy-prod, deploy-preview]
 
     strategy:
       fail-fast: false
       matrix:
-        lang: ['fr', 'en']
+        site: ['fr', 'en', 'publicodes']
+        include:
+          - site: fr
+            integrationFolder: mon-entreprise
+            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
+            language: fr
+            test-external: ${{ needs.deploy-context.outputs.env-name == 'master' }}
+          - site: en
+            integrationFolder: mon-entreprise
+            baseUrl: ${{ needs.deploy-context.outputs.en_url }}
+            language: en
+          - site: publicodes
+            baseUrl: ${{ needs.deploy-context.outputs.publicodes_url }}
+            integrationFolder: publi.codes
+            language: fr
+
         # TODO : activate parallelization https://github.com/cypress-io/github-action#parallel (missing https://github.com/cypress-io/github-action#custom-build-id)
         # containers: [1, 2] 
         # TODO : browser: ['firefox', 'chrome'] 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        # Custom cache as we do not care about installing all the other dependancies
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npm i cypress cypress-plugin-tab
       - name: Test mon-entreprise
         uses: cypress-io/github-action@v2
-        if: matrix.lang == 'fr' || !github.event.pull_request
         with:
+          install: false
           working-directory: mon-entreprise
           record: true
-          tag: mon-entreprise-${{ matrix.lang }}
-          config: integrationFolder=cypress/integration/mon-entreprise
-          env: site=${{ needs.build.outputs[matrix.lang] }},language=${{ matrix.lang }}
+          tag: ${{ matrix.site }},${{ needs.deploy-context.outputs.env-name }}-deploy
+          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}
+          env: language=${{ matrix.language }}
+        env:
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
         
-      - name: Test publicodes
-        if: matrix.lang == 'fr'
-        uses: cypress-io/github-action@v2
-        with:
-          record: true
-          tag: publicodes
-          config: integrationFolder=cypress/integration/publi.codes
-          env: site=${{ needs.build.outputs.publicodes }}
-
       - name: Test external integration
-        if: matrix.lang == 'fr' && github.ref == 'refs/heads/master'
+        if: matrix.test-external
         uses: cypress-io/github-action@v2
         with:
-          browser: chrome
+          install: false
           record: true
           tag: external-integration
-          config: integrationFolder=cypress/integration/external
+          config: integrationFolder=cypress/integration/external, baseUrl=${{ matrix.baseUrl }}
           

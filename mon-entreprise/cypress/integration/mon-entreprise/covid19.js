@@ -10,11 +10,7 @@ describe('Page covid-19', function () {
 	if (!fr) {
 		return
 	}
-	before(() =>
-		cy.visit(
-			Cypress.env('site').replace('${path}', '/simulateurs/chômage-partiel')
-		)
-	)
+	before(() => cy.visit('/simulateurs/chômage-partiel'))
 	it('should not crash', () => {
 		cy.contains('Salaire brut mensuel')
 	})

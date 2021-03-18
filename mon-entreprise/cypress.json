@@ -1,7 +1,7 @@
 {
 	"projectId": "jxcngh",
+	"baseUrl": "http://localhost:8080/mon-entreprise",
 	"env": {
-		"site": "http://localhost:8080/mon-entreprise/${path}",
 		"language": "fr"
 	},
 	"integrationFolder": "cypress/integration/mon-entreprise",

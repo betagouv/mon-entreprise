@@ -4,9 +4,7 @@ describe('Formulaire demande mobilité', function () {
 	if (!fr) {
 		return
 	}
-	before(() =>
-		cy.visit(Cypress.env('site').replace('${path}', '/gérer/demande-mobilité'))
-	)
+	before(() => cy.visit('/gérer/demande-mobilité'))
 	it('should not crash', () => {
 		cy.contains('Demande de mobilité internationale')
 	})

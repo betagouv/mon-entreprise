@@ -187,12 +187,12 @@ export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 		sitePaths
 	)
 
-const enSiteMap = generateSiteMap(
-	constructLocalizedSitePath('en')
-).map((path) => (process.env.EN_SITE || '').replace('${path}', path))
-const frSiteMap = generateSiteMap(
-	constructLocalizedSitePath('fr')
-).map((path) => (process.env.FR_SITE || '').replace('${path}', path))
+const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
+	(path) => process.env.EN_BASE_URL + path
+)
+const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
+	(path) => process.env.FR_BASE_URL + path
+)
 
 export const hrefLangLink = {
 	en: zipObj(

@@ -1,5 +1,6 @@
 name: Tests
 on: push
+
 jobs:
   lint:
     runs-on: ubuntu-18.04

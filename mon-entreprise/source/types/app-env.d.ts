@@ -1,7 +1,7 @@
 declare namespace NodeJS {
 	interface ProcessEnv {
-		EN_SITE: string
-		FR_SITE: string
+		EN_BASE_URL: string
+		FR_BASE_URL: string
 		NODE_ENV: 'development' | 'production' | 'test'
 		ANALYZE_BUNDLE: '0' | '1'
 

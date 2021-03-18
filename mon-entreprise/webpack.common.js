@@ -127,8 +127,8 @@ module.exports.default = {
 	plugins: [
 		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
-			EN_SITE: '/infrance${path}',
-			FR_SITE: '/mon-entreprise${path}',
+			EN_BASE_URL: 'http://localhost:8080/infrance',
+			FR_BASE_URL: 'http://localhost:8080/mon-entreprise',
 			AT_INTERNET_SITE_ID: '',
 		}),
 		new EnvironmentPlugin({

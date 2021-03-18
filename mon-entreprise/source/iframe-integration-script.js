@@ -12,10 +12,9 @@ let script =
 	fr = lang === 'fr',
 	baseUrl =
 		script.dataset.iframeUrl ||
-		(fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
-			'${path}',
-			'/iframes/' + moduleName
-		),
+		(fr ? process.env.FR_BASE_URL : process.env.EN_BASE_URL) +
+			'/iframes/' +
+			moduleName,
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	src =
 		baseUrl +
@@ -50,10 +49,9 @@ const moduleToSitePath = {
 	'simulateur-independant': '/simulateurs/indépendant',
 	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
 }
-const simulateurLink = process.env.FR_SITE.replace(
-	'${path}',
-	moduleToSitePath[moduleName] ?? ''
-)
+const simulateurLink =
+	process.env.FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
+
 const url = new URL(simulateurLink, window.location.origin)
 const params = new URLSearchParams(url.search)
 params.append('utm_source', 'iframe')
@@ -76,17 +74,14 @@ links.innerHTML = `
 	<a href="${monEntrepriseUrl}">
 			<img
 				style="height: 40px; margin: 10px"
-				src="${process.env.FR_SITE.replace(
-					'${path}',
-					'/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)
-				)}"
+				src="${process.env.FR_BASE_URL + '/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)}"
 				alt="mon-entreprise.fr : l'assistant officiel du créateur d'entreprise"
 			/>
 		</a>
 		<a href="https://www.urssaf.fr">
 			<img
 				style="height: 40px; margin: 10px"
-				src="${process.env.FR_SITE.replace('${path}', '/' + urssafSvg)}"
+				src="${process.env.FR_BASE_URL + '/' + urssafSvg}"
 				alt="un service fourni par l'Urssaf"
 			/>
 		</a>
