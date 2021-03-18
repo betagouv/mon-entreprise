@@ -6,12 +6,10 @@ import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
 import usePortal from 'react-useportal'
-import { TrackerContext } from '../utils/withTracker'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	const engine = useContext(EngineContext)
-	const tracker = useContext(TrackerContext)
 	const dispatch = useDispatch()
 
 	// Rien à expliquer ici, ce n'est pas une règle
@@ -26,7 +24,6 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 		<button
 			className="ui__ link-button"
 			onClick={(e) => {
-				tracker.push(['trackEvent', 'help', dottedName])
 				dispatch(explainVariable(dottedName))
 				e.preventDefault()
 				e.stopPropagation()
