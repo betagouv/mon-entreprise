@@ -204,7 +204,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
+          working-directory: mon-entreprise
           record: true
           tag: external-integration
-          config: integrationFolder=cypress/integration/external, baseUrl=${{ matrix.baseUrl }}
+          config: integrationFolder=cypress/integration/external,baseUrl=${{ matrix.baseUrl }}
           
