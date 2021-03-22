@@ -591,7 +591,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 exports[`calculate simulations-salarié: aides 3`] = `"[2050,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 4`] = `
-"[2280,0,2000,1561,1527]
+"[2658,0,2000,1720,1656]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -605,7 +605,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7086,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 3`] = `
-"[1256,0,1500,1165,1165]
+"[1493,0,1500,1284,1284]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -641,22 +641,27 @@ exports[`calculate simulations-salarié: avantages 3`] = `"[2574,0,2000,1549,150
 exports[`calculate simulations-salarié: cadre 1`] = `"[4123,0,3000,2348,2160]"`;
 
 exports[`calculate simulations-salarié: cdd 1`] = `
-"[2496,0,2000,1561,1528]
+"[3292,0,2200,1894,1815]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 2`] = `
-"[2579,0,2000,1599,1551]
+"[3117,0,2200,1824,1746]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 3`] = `
-"[4084,0,2400,2372,2248]
+"[3378,0,2200,1997,1918]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 4`] = `
-"[3818,0,2400,1907,1828]
+"[4112,0,2200,2387,2262]
+Notifications affichées : contrat salarié . CDD . information"
+`;
+
+exports[`calculate simulations-salarié: cdd 5`] = `
+"[3392,0,2200,1746,1695]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -777,7 +782,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 `;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 3`] = `
-"[4112,0,3000,2353,2172]
+"[4520,0,3000,2590,2392]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
