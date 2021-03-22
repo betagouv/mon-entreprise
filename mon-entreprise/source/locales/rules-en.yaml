@@ -503,89 +503,32 @@ contrat salarié . CDD . CPF:
     (CPF) spécifique aux CDD.
   titre.en: CPF
   titre.fr: CPF
-contrat salarié . CDD . compensation pour congés non pris:
-  description.en: >-
-    [automatic] The employee with a fixed-term contract has the same paid
-    vacation entitlements as the employee with a permanent contract. He acquires
-    and takes his paid leave under the same conditions.
+contrat salarié . CDD . congés dus sur la durée du contrat:
+  titre.en: '[automatic] leave due during the term of the contract'
+  titre.fr: congés dus sur la durée du contrat
+contrat salarié . CDD . congés pris:
+  description.en: >
+    [automatic] As the contract is for a fixed term, the employee does not
+    necessarily have time to take all the days of leave that he/she has acquired
+    like any other employee during the contract.
 
-    However, it is common that the employee may not take all of his or her leave before the end of the contract, in which case he or she will receive a compensatory allowance for paid leave paid by the employer.
-
-    There are two methods of calculating the allowance for leave without pay.
-
-    ### Tenths method
-
-    This method of calculation will most often be favourable to the employee when he or she has worked overtime. An allowance equal to one tenth of the total gross remuneration received by the employee during the reference period.
-
-    ## Salary continuance method ## 
-
-    This method will most often be favourable to the employee when he or she has received a salary increase.
-
-    In making the calculation, the employer may take into account either : - the actual time of the month, - the average number of working days (or working days), - the actual number of working days (or working days).
-  description.fr: >-
-    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
-    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
-
-    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
-
-    Il existe deux méthodes pour calculer l'indemnité de congés non pris.
-
-    ### Méthode "du dixième"
-
-    Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires. Une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
-
-    ### Méthode "maintien du salaire" 
-
-    Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
-
-    Pour effectuer le calcul, l'employeur peut tenir compte soit : - de l'horaire réel du mois, - du nombre moyen de jours ouvrables (ou ouvrés), - du nombre réel de jours ouvrables (ou ouvrés).
-  note.en: >
-    [automatic] The indemnity is paid at the end of the contract, unless the
-    fixed-term contract is continued by a permanent contract.
-
-    Note that the El Khomri law modifies article L3141-12:
-
-    - before: Leave can be taken as soon as the entitlement arises. 
-
-    - now: Leaves can be taken as soon as you are hired.
-  note.fr: >
-    L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par
-    un CDI.
-
-    À noter, la loi El Khomri modifie l'article L3141-12:
-
-    - avant : Les congés peuvent être pris dès l'ouverture des droits 
-
-    - maintenant : Les congés peuvent être pris dès l’embauche
-  titre.en: '[automatic] holiday pay'
-  titre.fr: indemnité de congés payés
-? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
-: titre.en: proportion of untaken leave
-  titre.fr: proportion congés non pris
-contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
-  titre.en: daily salary
-  titre.fr: salaire journalier
-contrat salarié . CDD . congés dus en jours ouvrés:
-  titre.en: leave due in working days
-  titre.fr: congés dus en jours ouvrés
-contrat salarié . CDD . congés non pris:
-  description.en: How many days of paid leave the employee will not be able to
-    take, given the length of his / her fixed term contract. In working days,
-    compared to 25 days of legal leave for a twelve-month contract.
+    For example, for a 3-month contract, the employee acquires 2.08 days of leave per month (25 days / 12 months = 2.08), i.e. 6.25 days over the duration of the contract. However, the company may force him to take only 4 days, so 2.25 days will not be taken. They will be paid by the employer at the end of the contract.
   description.fr: >
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps
     de prendre tous les jours de congés qu'il a acquis comme tout salarié au
     cours du contrat.
 
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  question.en: How many working days of paid leave will not be taken?
-  question.fr: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
-  suggestions.10 jours.en: '[automatic] 10 days'
-  suggestions.10 jours.fr: 10 jours
-  suggestions.3 jours.en: '[automatic] 3 days'
-  suggestions.3 jours.fr: 3 jours
-  titre.en: Untaken paid leave
-  titre.fr: congés non pris
+  question.en: '[automatic] How many days off will be taken over the duration of
+    the fixed-term contract (in working days)?'
+  question.fr: Combien de jours de congés seront pris sur la durée du CDD (en
+    jours ouvrés) ?
+  suggestions.la moitié.en: '[automatic] half'
+  suggestions.la moitié.fr: la moitié
+  suggestions.la totalité.en: '[automatic] the whole'
+  suggestions.la totalité.fr: la totalité
+  titre.en: '[automatic] leave taken'
+  titre.fr: congés pris
 contrat salarié . CDD . contrat jeune vacances:
   description.en:
     Also called "harvest contract". Contract concluded with a young
@@ -600,8 +543,12 @@ contrat salarié . CDD . contrat jeune vacances:
   titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
 contrat salarié . CDD . contrôle congés non pris max:
-  description.en: '[automatic] An employee normally earns 2.08 working days off per month.'
-  description.fr: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
+  description.en: '[automatic] The number of days of leave taken is greater than
+    the total number of days of leave acquired over the duration of the contract
+    (by default 25 days/year)'
+  description.fr: Le nombre de jours de congés pris est supérieur à la totalité
+    des jours de congés acquis sur la durée du contrat (par défaut 25 jours /
+    an)
   titre.en: '[automatic] check leave not taken max'
   titre.fr: contrôle congés non pris max
 contrat salarié . CDD . durée contrat:
@@ -624,6 +571,97 @@ contrat salarié . CDD . durée contrat:
   suggestions.6 mois.fr: 6 mois
   titre.en: contract duration
   titre.fr: durée du contrat
+contrat salarié . CDD . indemnité compensatrice de congés payés:
+  description.en: >
+    [automatic] An employee on a fixed-term contract has the same rights to paid
+    leave as an employee on a permanent contract.
+
+    employee on a permanent contract. They acquire and take their paid leave under the same conditions.
+
+
+    However, it is common for the employee not to be able to take all his holidays before the
+
+    before the end of his contract, he then benefits from a compensatory allowance for paid
+
+    paid leave compensation paid by the employer.
+
+
+    There are two methods for calculating the compensation for untaken leave.
+
+
+    The "one-tenth" method
+
+
+    This method of calculation will most often be favorable to the employee when the employee
+
+    has worked overtime. An indemnity equal to one tenth of the total
+
+    of the total gross remuneration received by the employee during the reference period.
+
+    period.
+
+
+    Salary continuation method 
+
+
+    This method will most often be favorable to the employee when the employee has
+
+    an increase in salary.
+
+
+    To make the calculation, the employer can take into account either :
+
+    - the actual hours of work for the month,
+
+    - the average number of working days,
+
+    - the actual number of working days.
+  description.fr: |
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses
+    congés avant le terme de son contrat, il bénéficie alors d'une indemnité
+    compensatrice de congés payés versée par l'employeur.
+
+    Il existe deux méthodes pour calculer l'indemnité de congés non pris.
+
+    ### Méthode "du dixième"
+
+    Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci
+    a accompli des heures supplémentaires. Une indemnité égale au dixième de la
+    rémunération brute totale perçue par le salarié au cours de la période de
+    référence.
+
+    ### Méthode "maintien du salaire" 
+
+    Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
+    bénéficié d’une augmentation de salaire.
+
+    Pour effectuer le calcul, l'employeur peut tenir compte soit :
+    - de l'horaire réel du mois,
+    - du nombre moyen de jours ouvrés (ou ouvrables),
+    - du nombre réel de jours ouvrés (ou ouvrables).
+  note.en: >
+    [automatic] The indemnity is paid at the end of the contract, unless the
+    fixed-term contract is continued by a permanent contract.
+
+    Note that the El Khomri law modifies article L3141-12:
+
+    - before: Leave can be taken as soon as the entitlement arises. 
+
+    - now: Leaves can be taken as soon as you are hired.
+  note.fr: >
+    L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par
+    un CDI.
+
+    À noter, la loi El Khomri modifie l'article L3141-12:
+
+    - avant : Les congés peuvent être pris dès l'ouverture des droits 
+
+    - maintenant : Les congés peuvent être pris dès l’embauche
+  titre.en: '[automatic] holiday pay'
+  titre.fr: indemnité de congés payés
 contrat salarié . CDD . indemnités salarié:
   description.en: '[automatic] Employer contributions specific to the CDD'
   description.fr: Cotisations employeur spécifiques au CDD
@@ -639,6 +677,9 @@ contrat salarié . CDD . information:
     L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
   titre.en: '[automatic] information'
   titre.fr: information
+contrat salarié . CDD . jours ouvrés sur la durée du contrat:
+  titre.en: '[automatic] working days over the duration of the contract'
+  titre.fr: jours ouvrés sur la durée du contrat
 contrat salarié . CDD . motif:
   description.en:
     'The CDD is an exceptional contract: the reason for its use must
@@ -1453,9 +1494,6 @@ contrat salarié . complémentaire santé . part salarié:
     être supérieure à 50%
   titre.en: employee share
   titre.fr: part salarié
-contrat salarié . congés dus par mois:
-  titre.en: leave due by month
-  titre.fr: congés dus par mois
 contrat salarié . contribution au dialogue social:
   description.en: >-
     Employers' contribution intended to supplement a joint fund dedicated to the
