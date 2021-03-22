@@ -20,7 +20,7 @@ import {
 import emoji from 'react-easy-emoji'
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
-import formulaire from './formulaire-détachement.yaml'
+import formulaire from './demande-mobilité.yaml'
 
 const LazyEndBlock = lazy(() => import('./EndBlock'))
 
