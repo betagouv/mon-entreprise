@@ -296,7 +296,6 @@ export function Leaf(
 	if (!rule) {
 		throw new Error('Unknown node')
 	}
-
 	const [folded, setFolded] = useState(true)
 	const foldButton = useContext(UnfoldIsEnabledContext) ? (
 		<UnfoldButton
@@ -306,13 +305,12 @@ export function Leaf(
 			{folded ? 'déplier' : 'replier'}
 		</UnfoldButton>
 	) : null
-
 	if (
 		node.dottedName === node.contextDottedName + ' . ' + node.name &&
 		!node.name.includes(' . ') &&
 		rule.virtualRule
 	) {
-		return <Explanation node={rule} />
+		return <Explanation node={engine?.evaluate(rule)} />
 	}
 	return (
 		<div style={{ display: 'inline' }}>
@@ -339,7 +337,7 @@ export function Leaf(
 					}}
 				>
 					<UnfoldIsEnabledContext.Provider value={false}>
-						<Explanation node={engine?.evaluate(rule).explanation.valeur} />
+						<Explanation node={engine?.evaluate(rule)} />
 					</UnfoldIsEnabledContext.Provider>
 				</div>
 			)}
