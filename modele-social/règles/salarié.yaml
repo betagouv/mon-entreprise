@@ -626,40 +626,41 @@ contrat salarié . CDD . CPF:
       taux: 1%
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
-  exemples:
-    - nom: Non applicable si CDI
-      situation:
-        CDD: non
-        cotisations . assiette: 1480
-      valeur attendue: false
-    - nom: SMIC
-      situation:
-        CDD: oui
-        événement: non
-        motif: "'accroissement activité'"
-        contrat jeune vacances: non
-        cotisations . assiette: 1480
-      valeur attendue: 14.8
-    - nom: salaire médian
-      situation:
-        CDD: oui
-        événement: non
-        motif: "'accroissement activité'"
-        contrat jeune vacances: non
-        cotisations . assiette: 2300
-      valeur attendue: 23
-    - nom: motif saisonnier -> non applicable
-      situation:
-        contrat salarié . CDD . motif: "'classique . saisonnier'"
-        cotisations . assiette: 2300
-      valeur attendue: false
+  
+contrat salarié . CDD . congés pris:
+  question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
+  description: |
+    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
+    Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
+  unité: jours ouvrés
+  suggestions:
+    la totalité: congés dus sur la durée du contrat
+    la moitié: 50% * congés dus sur la durée du contrat
+  par défaut: 0 jours ouvrés
+  
+contrat salarié . CDD . jours ouvrés sur la durée du contrat: 
+  produit:
+    assiette: 253 jours ouvrés/an  
+    facteur: durée contrat
 
-contrat salarié . CDD . compensation pour congés non pris:
+contrat salarié . CDD . congés dus sur la durée du contrat:
+  produit:
+    assiette: 25 jours ouvrés/an
+    facteur: durée contrat
+  arrondi: 2 unités
+
+contrat salarié . CDD . contrôle congés non pris max:
+  type: notification
+  sévérité: avertissement
+  formule: congés pris > congés dus sur la durée du contrat
+  description: Le nombre de jours de congés pris est supérieur à la totalité des jours de congés acquis sur la durée du contrat (par défaut 25 jours / an)
+
+contrat salarié . CDD . indemnité compensatrice de congés payés:
   titre: indemnité de congés payés
   indemnité:
     destinataire: salarié
     dû par: employeur
-  description: >-
+  description: |
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
@@ -683,44 +684,29 @@ contrat salarié . CDD . compensation pour congés non pris:
 
     Pour effectuer le calcul, l'employeur peut tenir compte soit :
     - de l'horaire réel du mois,
-    - du nombre moyen de jours ouvrables (ou ouvrés),
-    - du nombre réel de jours ouvrables (ou ouvrés).
+    - du nombre moyen de jours ouvrés (ou ouvrables),
+    - du nombre réel de jours ouvrés (ou ouvrables).
 
   unité: €/mois
   non applicable si: événement . poursuite du CDD en CDI
-  formule:
-    le maximum de:
-      - produit:
-          assiette: rémunération . assiette congés payés
-          taux: 10%
-          facteur: proportion congés non pris
-      - produit:
-          assiette: salaire journalier
-          facteur: congés non pris / durée contrat
-  exemples:
-    - nom: pas de congés non pris
-      situation:
-        rémunération . brut de base: 2300 €/mois
-        prime de fin de contrat: 0
-        congés non pris: 0
-        durée contrat: 12
-      valeur attendue: false
-    - nom: 10 jours non pris
-      situation:
-        CDD: oui
-        rémunération . brut de base: 2300 €/mois
-        prime de fin de contrat: 0
-        congés non pris: 10 jours ouvrés
-        durée contrat: 12 mois
-      valeur attendue: 92
-    - nom: 3 jours non pris
-      situation:
-        CDD: oui
-        rémunération . brut de base: 2300 €/mois
-        prime de fin de contrat: 0
-        congés non pris: 3 jours ouvrés
-        durée contrat: 6 mois
-      valeur attendue: 55.21
+  le maximum de:
+    - nom: Méthode du dixième
+      produit:
+        assiette: rémunération . assiette congés payés
+        taux: 10%
+      abattement: 
+        nom: proportion congés pris
+        unité: '%'
+        valeur: congés pris / congés dus sur la durée du contrat
+        plafond: 100%
+    - nom: Méthode du maintien de salaire
+      produit:
+        assiette: rémunération . assiette congés payés / jours ouvrés sur la durée du contrat
+        facteur: 
+          nom: congés non pris
+          valeur: congés dus sur la durée du contrat - congés pris
+        
+        
   note: |
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
     À noter, la loi El Khomri modifie l'article L3141-12:
@@ -732,21 +718,6 @@ contrat salarié . CDD . compensation pour congés non pris:
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
     assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
     Méthode du maintien de salaire: https://www.service-public.fr/particuliers/vosdroits/F33359
-
-contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
-  unité: '%'
-  formule: congés non pris / congés dus en jours ouvrés
-
-contrat salarié . CDD . congés dus en jours ouvrés:
-  formule: contrat salarié . congés dus par mois * durée contrat
-
-contrat salarié . congés dus par mois:
-  formule: 25 jour ouvré / 12 mois
-
-contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
-  unité: €/jour ouvré
-
-  formule: rémunération . assiette congés payés / période . jours ouvrés moyen par mois
 
 contrat salarié . CDD . prime de fin de contrat:
   indemnité:
@@ -788,20 +759,6 @@ contrat salarié . CDD . prime de fin de contrat:
           - rémunération . primes
           - rémunération . heures supplémentaires
       taux: 10%
-
-  exemples:
-    - nom: salaire médian
-      situation:
-        CDD: oui
-        rémunération . brut de base: 2300
-        motif: "'classique . accroissement activité'"
-      valeur attendue: 230
-
-    - nom: CDD d'usage -> non applicable
-      situation:
-        motif: "'classique . usage'"
-        rémunération . brut de base: 2300
-      valeur attendue: false
 
   références:
     Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
@@ -1092,22 +1049,6 @@ contrat salarié . CDD . durée contrat:
   # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
   par défaut: 1 mois
 
-contrat salarié . CDD . congés non pris:
-  question: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
-  description: |
-    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
-    Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  suggestions:
-    3 jours: 3 jour ouvré
-    10 jours: 10 jour ouvré
-  par défaut: 0 jour ouvré
-
-contrat salarié . CDD . contrôle congés non pris max:
-  type: notification
-  sévérité: avertissement
-  formule: congés non pris > congés dus en jours ouvrés
-  description: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
-
 contrat salarié . CDD . contrat jeune vacances:
   titre: Contrat jeune vacances
   question: Est-ce un contrat jeune vacances ?
@@ -1120,7 +1061,7 @@ contrat salarié . CDD . indemnités salarié:
   formule:
     somme:
       - prime de fin de contrat
-      - compensation pour congés non pris
+      - indemnité compensatrice de congés payés
 
 contrat salarié . apprentissage:
   description: |
