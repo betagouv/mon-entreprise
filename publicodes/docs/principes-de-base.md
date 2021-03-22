@@ -309,10 +309,10 @@ robot de cuisine:
     valeur: oui
 
 temps original:
-    formule: a + b
+    formule: temps de préparation + temps de cuisson # résultat : 40 min
 
 temps modifié:
-    formule: a + b
+    formule: temps de préparation + temps de cuisson # résultat : 30 min
 ```
 
 > [En savoir plus sur les remplacements](/manuel#remplacement)
