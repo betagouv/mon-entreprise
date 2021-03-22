@@ -6466,9 +6466,7 @@ entreprise . ACRE:
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: ACRE
   titre.fr: ACRE
-entreprise . ACRE par défaut:
-  titre.en: '[automatic] default ACRE'
-  titre.fr: ACRE par défaut
+
 entreprise . activité:
   description.en: '[automatic] Your type of activity will determine a large part
     of the contribution, contribution and tax calculations.'
