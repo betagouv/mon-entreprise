@@ -252,17 +252,61 @@ activité transfrontalière simultanée . activité salariée . employeur . vill
 activité transfrontalière simultanée . activité salariée . employeur . code postal:
   type: texte
 
-activité transfrontalière simultanée . activité salariée . activité substantielle:
+activité transfrontalière simultanée . activité salariée . lieu d'exercice:
+  titre: Lieu effectif d'activité
+  type: groupe
+  formule: oui
+
+activité transfrontalière simultanée . activité salariée . lieu d'exercice . lieu de résidence:
+  question: Exercerez-vous cette activité salarié dans votre pays de résidence ? 
+activité transfrontalière simultanée . activité salariée . lieu d'exercice . employeur:
+  question: Exercerez-vous cette activité salarié dans le pays de votre employeur ?
+  non applicable si: lieu de résidence 
+activité transfrontalière simultanée . activité salariée . lieu d'exercice . autre:
+  non applicable si: 
+    une de ces conditions:
+      - lieu de résidence
+      - employeur
+  question: Quel sera le pays dans lequel vous exercerez cette activité salarié ?
+  API: pays européen
+
+activité transfrontalière simultanée . activité salariée . revenus:
+  titre: Revenus salariés
+  type: groupe
+  formule: oui
+
+activité transfrontalière simultanée . activité salariée . revenus . taux horaire:
+  type: texte
+  question: Quel est le taux horaire brut (dans la monnaie du pays d'accueil) ?
+
+activité transfrontalière simultanée . activité salariée . revenus . nombre d'heures:
+  type: nombre
+  unité: heures/semaine
+  question: Quel est le temps de travail hebdomadaires inscrit au contrat de travail ?
+
+
+activité transfrontalière simultanée . activité salariée . revenus . revenu:
+  question: Quel revenu estimez-vous obtenir de cet activité salarié pour les 12 prochains mois (à peu près) ?
+  type: nombre
+  unité: €/an
+
+activité transfrontalière simultanée . activité salariée . revenus . activité substantielle:
   question: >
-    Le salaire de cette activité representera-t'il plus de 5% de vos revenus pour
+    Ce revenu representera-t'il plus de 5% du total de vos revenus pour
     les 12 prochains mois ?
+
+activité transfrontalière simultanée . activité salariée . revenus . articulation activité indépendante:
+  question: Comment votre activité salariée s'articulera-t-elle avec votre activité indépendante au cours des 12 prochains mois (périodes, revenu, etc.) ?
+  type: paragraphe
+
+
 
 activité transfrontalière simultanée . activité salariée . activité indépendante additionnelle:
   question: >
     Exercez-vous également une activité non salariée à l'étranger ?
 
 activité transfrontalière simultanée . part subtentielle France:
-  non applicable si: activité salariée . activité substantielle
+  non applicable si: activité salariée . revenus . activité substantielle
   applicable si:
     une de ces conditions:
       - activité salariée = non
@@ -359,7 +403,7 @@ activité transfrontalière simultanée . activité non salariée . pays centre 
   non applicable si:
     une de ces conditions:
       - part subtentielle France
-      - activité salariée . activité substantielle
+      - activité salariée . revenus . activité substantielle
   applicable si: nombre >= 1
   description: >-
     Pour determiner votre pays "centre d'intêret", vous devez prendre en compte
