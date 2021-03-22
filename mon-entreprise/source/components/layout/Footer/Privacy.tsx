@@ -47,7 +47,7 @@ function PrivacyContent() {
 
 	return (
 		<>
-			<Trans i18nKey="privacyContent">
+			<Trans i18nKey="privacyContent.texte">
 				<TrackPage chapter1="informations" name={'donnees_personnelles'} />
 				<h1>Données personnelles</h1>
 				<p>
