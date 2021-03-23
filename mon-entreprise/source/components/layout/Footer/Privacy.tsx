@@ -35,10 +35,10 @@ function PrivacyContent() {
 		(evt) => {
 			if (evt.target.checked) {
 				tracker.privacy.setVisitorOptout()
-				safeLocalStorage.setItem('tracking:do_not_track', 'true')
+				safeLocalStorage.setItem('tracking:do_not_track', '1')
 			} else {
 				tracker.privacy.setVisitorMode('cnil', 'exempt')
-				safeLocalStorage.setItem('tracking:do_not_track', 'false')
+				safeLocalStorage.setItem('tracking:do_not_track', '0')
 			}
 			setValueChanged(true)
 		},
