@@ -1,13 +1,14 @@
 import 'core-js/stable'
-import { hot } from 'react-hot-loader/root'
-import { render } from 'react-dom'
-import 'regenerator-runtime/runtime'
 import rules from 'modele-social'
+import { render } from 'react-dom'
+import { hot } from 'react-hot-loader/root'
+import 'regenerator-runtime/runtime'
+import '../../removeServiceWorker'
+import App from './App'
 import i18next from './locales/i18n'
-import translations from './locales/ui-en.yaml'
 import ruleTranslations from './locales/rules-en.yaml'
 import translateRules from './locales/translateRules'
-import App from './App'
+import translations from './locales/ui-en.yaml'
 
 i18next.addResourceBundle('en', 'translation', translations)
 i18next.changeLanguage('en')
