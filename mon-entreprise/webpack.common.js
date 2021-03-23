@@ -142,6 +142,7 @@ module.exports.default = {
 				from: './source/data',
 				to: 'data',
 			},
+			'./sw.js',
 		]),
 	],
 }
