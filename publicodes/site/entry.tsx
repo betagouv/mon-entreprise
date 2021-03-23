@@ -3,7 +3,6 @@
 import 'core-js/stable'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
-import '../../removeServiceWorker'
 import App from './components/App'
 
 const anchor = document.querySelector('#js')

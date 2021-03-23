@@ -4,7 +4,6 @@ import { render } from 'react-dom'
 import 'react-hot-loader'
 import { hot } from 'react-hot-loader/root'
 import 'regenerator-runtime/runtime'
-import '../../removeServiceWorker'
 import App from './App'
 import i18next from './locales/i18n'
 
