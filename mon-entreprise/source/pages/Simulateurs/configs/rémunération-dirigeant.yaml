@@ -11,7 +11,7 @@ objectifs:
 
 questions:
   liste:
-    - dirigeant . rémunération totale
+    - dirigeant . rémunération
     - entreprise . charges
     - entreprise . activité
 unité par défaut: €/an

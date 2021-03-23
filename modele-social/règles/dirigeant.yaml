@@ -9,6 +9,78 @@ dirigeant:
         - assimilé salarié
         - indépendant
 
+dirigeant . rémunération: oui
+dirigeant . rémunération . totale:
+  titre: Total alloué à la rémunération
+  unité: €/an
+  description: superbrute
+  question: Quel est le total alloué à la rémunération du dirigeant (cotisations sociale inclues) ?
+  par défaut:
+    somme:
+      - entreprise . chiffre d'affaires 
+      - (- entreprise . charges)
+  inversion numérique:
+    avec: 
+      - nette
+      - nette après impôt
+
+  # plancher:
+  #   recalcul:
+  #     règle: dirigeant . rémunération . cotisations et contributions
+  #     avec: 
+  #       dirigeant . rémunération . nette: 0€/an
+
+dirigeant . rémunération . cotisations et contributions:
+  variations: 
+    - si: assimilé salarié
+      alors: contrat salarié . cotisations
+    - si: indépendant
+      alors: indépendant . cotisations et contributions
+    - si: auto-entrepreneur
+      alors: auto-entrepreneur . cotisations et contributions
+
+dirigeant . rémunération . cotisations et contributions . non déductibles fiscalement:
+  somme: 
+    - contrat salarié . CSG et CRDS . non déductible
+    - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+    - dirigeant . indépendant . contrats madelin . part non-déductible fiscalement
+
+dirigeant . rémunération . imposable:
+  titre: Rémunération imposable
+  variations: 
+    - si: entreprise . imposition . IR
+      alors: entreprise . résultats . fiscal
+    - si: auto-entrepreneur
+      alors: auto-entrepreneur . impôt . revenu imposable    
+    - si: assimilé salarié
+      alors: contrat salarié . rémunération . net imposable
+    - si: indépendant
+      alors: indépendant . revenu professionnel
+
+
+dirigeant . rémunération . nette après impôt:
+  titre: Rémunération après impôt
+  unité: €/an
+  arrondi: oui
+  question: Quel est le revenu net après impôt souhaité ?
+  description: >-
+    Le revenu net après déduction de l'impôt 
+    sur le revenu et des cotisations sociales.
+  valeur: rémunération . nette - impôt
+
+dirigeant . rémunération . impôt:
+  produit:
+    assiette: imposable
+    taux: impôt . taux d'imposition
+  
+
+dirigeant . rémunération . nette:
+  titre: Rémunération
+  question: Quel montant net de cotisation sera affecté à votre rémunération ?
+  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  unité: €/an
+  valeur: dirigeant . rémunération . totale - dirigeant . rémunération . cotisations et contributions
+    
 dirigeant . assimilé salarié:
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
@@ -18,6 +90,8 @@ dirigeant . assimilé salarié:
       par: "'CDI'"
     - règle: contrat salarié . statut cadre
       par: oui
+    - règle: contrat salarié . rémunération . total
+      par: 
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . activité partielle
@@ -428,36 +502,6 @@ dirigeant . auto-entrepreneur . net après impôt:
       assiette: dirigeant . auto-entrepreneur . impôt . revenu imposable
       taux: impôt . taux d'imposition
 
-dirigeant . rémunération totale:
-  synonymes:
-    - résultat d'exploitation
-    - bénéfices
-  question: Quel montant pensez-vous dégager pour votre rémunération ?
-  résumé: Dépensé par l'entreprise
-  unité: €/an
-  arrondi: oui
-  identifiant court: dirigeant-total
-  description: C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
-
-    On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
-  formule:
-    variations:
-      - si: indépendant
-        alors:
-          somme:
-            - indépendant . revenu net de cotisations
-            - indépendant . cotisations et contributions
-      - si: auto-entrepreneur
-        alors: entreprise . chiffre d'affaires - entreprise . charges
-      - si: assimilé salarié
-        alors:
-          somme:
-            - contrat salarié . rémunération . total
-            # TODO : ajouter la taxe sur les salaires ici.
-            # Pour l'instant commenté car elle crée une boucle à cause de la franchise de TVA
-            # - entreprise . taxe sur les salaires
-
 dirigeant . indépendant:
   rend non applicable: contrat salarié
   formule: dirigeant = 'indépendant'
@@ -566,52 +610,17 @@ dirigeant . indépendant . cotisations et contributions . aide indépendant covi
   références:
     Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
 
-dirigeant . indépendant . revenu net de cotisations:
-  identifiant court: independant-net
-  synonymes:
-    - résultat comptable
-  formule:
-    somme:
-      - valeur: revenu professionnel
-        arrondi: oui
-      - (- cotisations et contributions . CSG et CRDS . non déductible)
-      - (- contrats madelin . montant)
-  résumé: Avant déduction de l'impôt sur le revenu
-  question: Quel revenu avant impôt voulez-vous toucher ?
-  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  références:
-    Cerfa 2033-sd: https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2020/2033-sd_2983.pdf
-
-dirigeant . indépendant . résultat fiscal:
-  synonymes:
-    - net imposable
-    - assiette fiscale
-  résumé: Assiette du calcul de l'impôt
-  description: Il s'agit du net imposable, assiette sur laquelle l'impôt est calculé.
-  formule: revenu professionnel - contrats madelin . part déductible fiscalement
-  références:
-    Portail Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
-
 dirigeant . indépendant . revenu professionnel:
   unité: €/an
   titre: revenu professionnel
   description: |
     C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations pour les indépendants.
-
-    Attention : **notre calcul est fait au régime de croisière**:
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
-
-    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
-  formule:
-    inversion numérique:
-      avec:
-        - revenu net de cotisations
-        - résultat fiscal
-        - rémunération totale
-        - revenu net après impôt
-        - entreprise . chiffre d'affaires
-        - entreprise . chiffre d'affaires minimum
-    arrondi: oui
+  résoudre le cycle: oui 
+  somme: 
+    - rémunération . nette
+    - cotisations et contributions . CSG et CRDS
+    - contrats madelin . montant
+  arrondi: oui
 
 dirigeant . indépendant . assiette des cotisations:
   description: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
@@ -796,6 +805,7 @@ dirigeant . indépendant . cotisations et contributions:
   formule:
     somme:
       - cotisations
+      - contrats madelin . montant
       - CSG et CRDS
       - contributions spéciales
       - formation professionnelle
@@ -849,6 +859,8 @@ dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
   question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
   par défaut: non
+  références: 
+    economie.gouv.fr: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
 
 dirigeant . indépendant . contrats madelin . montant:
   titre: Somme des cotisations à contrats Madelin

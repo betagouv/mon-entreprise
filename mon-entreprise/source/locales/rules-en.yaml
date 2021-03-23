@@ -6049,7 +6049,7 @@ dirigeant . indépendant . résultat fiscal:
   résumé.fr: Assiette du calcul de l'impôt
   titre.en: fiscal earnings
   titre.fr: résultat fiscal
-dirigeant . rémunération totale:
+dirigeant . rémunération . totale:
   description.en: >-
     This is what the company spends in total for the director income. This
     "super gross" remuneration includes all social security contributions to be

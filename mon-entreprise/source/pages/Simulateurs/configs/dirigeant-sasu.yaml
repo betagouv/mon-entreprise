@@ -11,7 +11,7 @@ objectifs:
     nom: Mon entreprise
     objectifs:
       - entreprise . charges
-      - entreprise . chiffre d'affaires minimum
+      - entreprise . chiffre d'affaires
 
 questions:
   à l'affiche:

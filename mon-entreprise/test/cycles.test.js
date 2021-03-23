@@ -28,7 +28,7 @@ describe('DottedNames graph', () => {
 
 		// 	Cycle doesn't occur in real life. Will fix in next PR.
 		// ⬇️  entreprise . chiffre d'affaires
-		// ⬇️  dirigeant . rémunération totale
+		// ⬇️  dirigeant . rémunération . totale
 		// ⬇️  entreprise . chiffre d'affaires
 	})
 })

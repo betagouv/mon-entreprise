@@ -9,15 +9,15 @@
   - dirigeant . indépendant . revenu net de cotisations: 1000000 €/an
 
 inversions:
-  - dirigeant . rémunération totale: 2000 €/an
-  - dirigeant . rémunération totale: 50000 €/an
-  - revenu net après impôt: 10000 €/an
-  - revenu net après impôt: 40000 €/an
-  - revenu net après impôt: 10000 €/an
+  - dirigeant . rémunération . totale: 2000 €/an
+  - dirigeant . rémunération . totale: 50000 €/an
+  - dirigeant . rémunération . nette après impôt: 10000 €/an
+  - dirigeant . rémunération . nette après impôt: 40000 €/an
+  - dirigeant . rémunération . nette après impôt: 10000 €/an
     entreprise . charges: 1000 €/an
-  - entreprise . chiffre d'affaires minimum: 20000 €/an
+  - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
-  - entreprise . chiffre d'affaires minimum: 20000 €/an
+  - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 2000 €/an
 
 cotisations minimales:

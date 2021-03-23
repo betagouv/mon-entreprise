@@ -2,17 +2,17 @@ objectifs:
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
-      - dirigeant . rémunération totale
-      - dirigeant . indépendant . cotisations et contributions
-      - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . indépendant . revenu professionnel
-      - impôt
-      - revenu net après impôt
+      - dirigeant . rémunération . totale
+      - dirigeant . rémunération . cotisations et contributions
+      - dirigeant . rémunération . nette
+      - dirigeant . rémunération . impôt
+      - dirigeant . rémunération . nette après impôt
   - icône: 🏢
     nom: Mon entreprise
     objectifs:
+      - entreprise . chiffre d'affaires
       - entreprise . charges
-      - entreprise . chiffre d'affaires minimum
+      - entreprise . charges . rémunération dirigeant
 
 questions:
   à l'affiche:

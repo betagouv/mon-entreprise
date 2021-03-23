@@ -56,21 +56,9 @@ entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  variations:
-    - si: dirigeant . auto-entrepreneur
-      alors:
-        inversion numérique:
-          avec:
-            - dirigeant . auto-entrepreneur . net de cotisations
-            - dirigeant . auto-entrepreneur . net après impôt
-            - dirigeant . rémunération totale
-    - sinon: 
-        somme: 
-          - dirigeant . rémunération totale
-          - charges
-        
-      
-
+  inversion numérique:
+    avec:
+      - entreprise . charges . rémunération dirigeant
   arrondi: oui
   identifiant court: ca
 
@@ -223,18 +211,27 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
   description: |
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
 
-entreprise . chiffre d'affaires minimum:
-  identifiant court: entreprise-ca-min
-  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
-  question: Quel est votre chiffre d'affaires minimum envisagé ?
-  unité: €/an
-  formule: chiffre d'affaires
 
-entreprise . rémunération du dirigeant:
-  description: |
-    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
-  question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  par défaut: 100%
+entreprise . résultats: oui
+  
+entreprise . résultats . exploitation:
+  titre: résultat d'exploitation
+  somme:
+    - chiffre d'affaires 
+    - (- charges)
+    - (- charges . rémunération dirigeant)
+
+entreprise . résultats . net:
+  titre: résultat net
+  valeur: exploitation - impôt sur les sociétés
+
+entreprise . résultats . fiscal:
+  titre: résultat fiscal
+  somme: 
+    - exploitation
+    - dirigeant . rémunération . cotisations et contributions . non déductibles fiscalement
+    - applicable si: entreprise . imposition . IR
+      valeur: dirigeant . rémunération . nette
 
 entreprise . imposition:
   question: À quel régime d'imposition l'entreprise est-elle soumise ?
@@ -269,23 +266,15 @@ entreprise . imposition . IS . notification IS non intégré:
     dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
     le calcul de l'impôt sur le revenu.
 
-entreprise . bénéfice:
-  titre: Bénéfice de l'exercice
-  résumé: Imposable à l'impôt sur les sociétés
-  formule: chiffre d'affaires - charges dont rémunération dirigeant
 
-entreprise . bénéfice . information sur le report de déficit:
+entreprise . information sur le report de déficit:
   type: notification
-  formule: bénéfice < 0 €/an
+  formule: résultats . fiscal < 0 €/an
   # TODO: Support des références dans les notifications
   description: |
     Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
 
     [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
-
-entreprise . résultat net:
-  résumé: Ce qu'il reste après impôt sur les sociétés
-  formule: bénéfice - impôt sur les sociétés
 
 entreprise . exercice:
 
@@ -328,11 +317,12 @@ entreprise . exercice . durée maximale:
   formule: durée >= 24 mois
   description: La durée maximale d'un exercice comptable est de 24 mois.
 
-entreprise . impôt sur les sociétés:
+entreprise . résultats . impôt sur les sociétés:
+  applicable si: imposition . IS
   unité: €/an
   formule:
     barème:
-      assiette: bénéfice
+      assiette: résultats . fiscal
       multiplicateur: prorata temporis
       variations:
         - si: exercice . début >= 01/01/2022
@@ -374,22 +364,22 @@ entreprise . impôt sur les sociétés:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-entreprise . impôt sur les sociétés . plafond taux réduit 1:
+entreprise . résultats . impôt sur les sociétés . plafond taux réduit 1:
   applicable si: éligible taux réduit
   valeur: 38120 €/an
 
-entreprise . impôt sur les sociétés . plafond taux réduit 2:
+entreprise . résultats . impôt sur les sociétés . plafond taux réduit 2:
   applicable si: éligible taux réduit
   valeur: 500000 €/an
 
-entreprise . impôt sur les sociétés . éligible taux réduit:
+entreprise . résultats . impôt sur les sociétés . éligible taux réduit:
   formule:
     toutes ces conditions:
       - chiffre d'affaires <= 7630 k€/an * prorata temporis
       - nom: capital détenu au moins à 75 pourcents par des personnes physiques
         valeur: oui
 
-entreprise . impôt sur les sociétés . prorata temporis:
+entreprise . résultats . impôt sur les sociétés . prorata temporis:
   description: |
     Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
     plafonds utilisés dans le barème de l'impôt sur les sociétés.
@@ -402,7 +392,7 @@ entreprise . impôt sur les sociétés . prorata temporis:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
 
-entreprise . impôt sur les sociétés . contribution sociale:
+entreprise . résultats . impôt sur les sociétés . contribution sociale:
   # description: |
   #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
 
@@ -419,9 +409,6 @@ entreprise . impôt sur les sociétés . contribution sociale:
         abattement: 763000 €/an * prorata temporis
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
-
-entreprise . charges dont rémunération dirigeant:
-  formule: charges + dirigeant . rémunération totale
 
 entreprise . charges:
   synonymes:
@@ -451,6 +438,10 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
+
+entreprise . charges . rémunération dirigeant:
+  titre: Rémunération du dirigeant (dont cotisations sociales)
+  valeur: dirigeant . rémunération . totale
 
 entreprise . ACRE:
   description: >-
