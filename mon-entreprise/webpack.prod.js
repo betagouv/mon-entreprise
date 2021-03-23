@@ -10,7 +10,6 @@ const {
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const path = require('path')
@@ -77,23 +76,7 @@ module.exports = {
 		...common.plugins,
 		...HTMLPlugins({ injectTrackingScript: true }),
 		process.env.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
-		new WorkboxPlugin.GenerateSW({
-			clientsClaim: true,
-			skipWaiting: true,
-			cacheId: process.env.HEAD,
-			mode: process.env.HEAD === 'master' ? 'production' : 'developpement',
-			swDest: 'sw.js',
-			navigateFallback: '/fallback',
-			navigateFallbackDenylist: [
-				/^\/_.*$/,
-				/.*\.map$/,
-				/.*\?s=.*$/,
-				/.*\.worker\.js/,
-				/^\/robots\.txt$/,
-				/^\/sitemap\.infrance\.fr\.txt$/,
-				/^\/sitemap\.infrance\.en\.txt$/,
-			],
-		}),
+
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
