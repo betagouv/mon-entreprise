@@ -492,7 +492,11 @@ entreprise . ACRE:
           - entreprise . durée d'activité < 3 ans
           - entreprise . date de création < 04/2020
       - entreprise . durée d'activité . en début d'année < 1 an
-  par défaut: 
+  par défaut: ACRE par défaut
+  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
+
+entreprise . ACRE par défaut:
+  formule:
     variations:
       - si:
           toutes ces conditions:
@@ -504,9 +508,6 @@ entreprise . ACRE:
         alors: non
       - sinon: oui
 
-  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
-
-  
 entreprise . effectif:
   unité: employé
   formule:

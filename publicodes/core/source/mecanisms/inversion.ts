@@ -1,9 +1,9 @@
-import parse from '../parse'
 import { EvaluationFunction } from '..'
 import { ConstantNode, Unit } from '../AST/types'
 import { mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
+import parse from '../parse'
 import { Context } from '../parsePublicodes'
 import { ReferenceNode } from '../reference'
 import uniroot from '../uniroot'
@@ -139,9 +139,9 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 
 	// // Uncomment to display the two attempts and their result
 	// console.table([{ x: x1, y: y1 }, { x: x2, y: y2 }])
-	// console.log('iteration:', inversionNumberOfIterations)
+	console.log('iteration inversion:', inversionNumberOfIterations)
 	this.cache = originalCache
-	this.parsedSituation = originalSituation
+	// this.parsedSituation = originalSituation
 	return {
 		...node,
 		unit,

@@ -22,6 +22,7 @@ import plafond from './mecanisms/plafond'
 import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
+import résoudreCycle from './mecanisms/résoudre-le-cycle'
 import situation from './mecanisms/situation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
@@ -156,6 +157,7 @@ const chainableMecanisms = [
 	plafond,
 	parDéfaut,
 	situation,
+	résoudreCycle,
 	abattement,
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {

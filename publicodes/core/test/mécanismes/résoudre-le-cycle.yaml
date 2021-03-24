@@ -1,0 +1,18 @@
+fx: 
+x:
+  résoudre le cycle: oui
+  valeur: fx
+  exemples:
+    - nom: affine
+      situation: 
+        fx: 200 - x 
+      valeur attendue: 100
+    - nom: quadratique
+      situation: 
+        fx: x * x - 4 * x + 5
+      valeur attendue: 0.011 #Not 0 because of the tolerance of uniroot function
+
+résoudre cycle dans remplacement:
+  remplace: 
+    règle: fx
+    par: fx / 2 + 5
