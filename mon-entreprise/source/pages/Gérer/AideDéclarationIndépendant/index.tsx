@@ -37,13 +37,13 @@ export default function AideDéclarationIndépendant() {
 	const setCurrentIncome = useCallback(
 		(currentIncome) => {
 			dispatch(
-				updateSituation('dirigeant . rémunération totale', currentIncome)
+				updateSituation('dirigeant . rémunération . totale', currentIncome)
 			)
 		},
 		[dispatch, updateSituation]
 	)
 	const displayForm =
-		engine.evaluate('dirigeant . rémunération totale').nodeValue !== null
+		engine.evaluate('dirigeant . rémunération . totale').nodeValue !== null
 
 	return (
 		<div>
@@ -102,7 +102,7 @@ export default function AideDéclarationIndépendant() {
 			</Trans>
 			<BigInput>
 				<RuleInput
-					dottedName="dirigeant . rémunération totale"
+					dottedName="dirigeant . rémunération . totale"
 					onChange={setCurrentIncome}
 					autoFocus
 				/>

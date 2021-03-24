@@ -4244,6 +4244,8 @@ dirigeant . assimilé salarié:
     alors au régime général de la sécurité sociale, avec quelques contraintes
     cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas
     droit.
+  note.en: '[automatic] We do not manage the case of SAS(U) with IR for the moment'
+  note.fr: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
   titre.en: Assimilated salaried
   titre.fr: assimilé salarié
 dirigeant . assimilé salarié . réduction ACRE:
@@ -4276,6 +4278,13 @@ dirigeant . auto-entrepreneur:
     cotisations sociales par un prélèvement unique mensuel.
   titre.en: auto-entrepreneur
   titre.fr: auto-entrepreneur
+dirigeant . auto-entrepreneur . chiffre d'affaires:
+  question.en: '[automatic] What is your turnover?'
+  question.fr: Quel est votre chiffre d'affaires ?
+  résumé.en: '[automatic] Total revenue (excluding tax)'
+  résumé.fr: Montant total des recettes (hors taxe)
+  titre.en: '[automatic] revenues'
+  titre.fr: chiffre d'affaires
 dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -4467,10 +4476,9 @@ dirigeant . auto-entrepreneur . net après impôt:
   titre.en: net income after tax
   titre.fr: revenu net après impôt
 dirigeant . auto-entrepreneur . net de cotisations:
-  description.en:
-    This is the income net of contributions and expenses, before the
-    payment of income tax.
-  description.fr: Il s'agit du revenu net de cotisations et de charges, avant le
+  description.en: '[automatic] This is the income after deductions for
+    contributions, before payment of income tax.'
+  description.fr: Il s'agit du revenu après déductions des cotisations, avant le
     paiement de l'impôt sur le revenu.
   question.en: What pre-tax income do you want to receive?
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
@@ -4492,94 +4500,6 @@ dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
     d'acre sur une meme année.
   titre.en: '[automatic] notification calculation ACRE annual calculation'
   titre.fr: notification calcul ACRE annuel
-dirigeant . auto-entrepreneur . seuils dépassés:
-  description.en: >
-    [automatic] The status of micro-entrepreneur applies as long as the annual
-    turnover (actually received during the calendar year) does not exceed the
-    thresholds of the micro-enterprise tax regime. 
-
-
-    If the limit is exceeded **in two consecutive years**, the auto-entrepreneur automatically switches to the [sole proprietorship] (/simulators/independent) scheme.
-
-
-    At the end of the first year of activity, the turnover is prorated according to the duration of activity. 
-
-
-    For example:
-
-    &gt; A taxpayer sets up a business on August 1st and collects revenues excluding tax of `50,000 €` during the five months of activity of its first calendar year of operation. 
-
-    &gt; The revenues of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling :
-
-    &gt; 
-
-    &gt; `50 000€ x (365/153) = 119 280 €`
-
-
-
-    Expenses are not deductible for the calculation of the ceiling (as for the calculation of contributions).
-
-
-
-    ### Multi-activity 
-
-
-    When an entrepreneur carries out 2 activities within his micro-enterprise, the
-
-    The turnover threshold to be respected is not doubled. At
-
-    effect the exercise of several activities with the same micro-enterprise
-
-    does not increase the thresholds.
-  description.fr: >
-    Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires
-    annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas
-    les seuils du régime fiscal de la micro-entreprise. 
-
-
-    En cas de dépassement **sur deux années consécutives**, l'auto-entrepreneur bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
-
-
-    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité. 
-
-
-    Exemple :
-
-    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation. 
-
-    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
-
-    > 
-
-    > `50 000€ x (365/153) = 119 280 €`
-
-
-
-    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
-
-
-
-    ### Multi-activité 
-
-
-    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
-
-    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
-
-    effet l'exercice de plusieurs activités avec la même micro-entreprise
-
-    n’augmente pas les seuils.
-  titre.en: '[automatic] exceeded thresholds'
-  titre.fr: seuils dépassés
-dirigeant . auto-entrepreneur . seuils dépassés . notification:
-  description.en: '[automatic] The annual turnover threshold for the
-    self-employment plan is exceeded. Read
-    more](/documentation/manager/self-entrepreneur/exceeded thresholds)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour le régime de
-    l'auto-entreprise est dépassé. [En savoir
-    plus](/documentation/dirigeant/auto‑entrepreneur/seuils-dépassés)
-  titre.en: '[automatic] notification'
-  titre.fr: notification
 dirigeant . indépendant:
   titre.en: indépendant
   titre.fr: indépendant
@@ -5780,33 +5700,34 @@ dirigeant . indépendant . assiette des cotisations:
   titre.fr: assiette des cotisations
 dirigeant . indépendant . avertissement base forfaitaire:
   description.en: >
-    [automatic] When you start your business, your professional income
+    [automatic] When you start your activity, your professional income is not
+    known.
 
-    not being known, the dues and contributions of the first two
+    contributions for the first two years are calculated on a flat-rate basis.
 
-    years are calculated on a flat-rate basis.
-
-
-
-    This base amounts to 19% of the annual Social Security ceiling for
-
-    in the first and second year of operation.
+    are calculated on a flat-rate basis.
 
 
 
-    There is an adjustment in the second year based on the
+    This base amounts to 19% of the annual Social Security ceiling for the first and second year of activity.
 
-    actual income reported for the previous year. In most cases, 
-
-    the amount of provisional contributions will be significantly higher.
+    the first and second years of activity.
 
 
 
-    This simulator calculates the **cruising speed** contributions (after
+    There is an adjustment in the second year based on the actual income
 
-    regularization). It therefore allows you to anticipate the amount of this accrual/deferral.
+    income declared for the previous year. In most cases, 
 
-    and plan your cash flow accordingly.
+    the amount of the provisional contributions will be significantly higher.
+
+
+
+    This simulator calculates the contributions for the **cruise regime** (after
+
+    regularisation). It therefore enables you to anticipate the amount of this adjustment
+
+    and to plan your cash flow accordingly.
   description.fr: >
     Lorsque vous commencez votre activité, vos revenus professionnels
 
@@ -5835,7 +5756,7 @@ dirigeant . indépendant . avertissement base forfaitaire:
     régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
 
     et de plannifier votre trésorerie en conséquence.
-  titre.en: '[automatic] flat-rate warning'
+  titre.en: '[automatic] warning flat rate basis'
   titre.fr: avertissement base forfaitaire
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
@@ -5966,17 +5887,6 @@ dirigeant . indépendant . contrats madelin:
     ("contrats Madelins")
   titre.en: Madelin Contracts
   titre.fr: Contrats Madelin
-dirigeant . indépendant . contrats madelin . contrôle montant charges:
-  description.en:
-    '[automatic] The amount of all the contributions to your Madelin
-    contracts must be included in your operating expenses, but you have
-    indicated an amount of contributions greater than the expenses.'
-  description.fr:
-    Le montant de l'ensemble des cotisations à vos contrats Madelin
-    doit être inclus dans vos charges de fonctionnement, or vous avez indiqué un
-    montant de cotisations supérieur aux charges.
-  titre.en: '[automatic] expense control'
-  titre.fr: contrôle montant charges
 dirigeant . indépendant . contrats madelin . montant:
   titre.en: Sum of subscriptions to Madelin contracts
   titre.fr: Somme des cotisations à contrats Madelin
@@ -6044,9 +5954,14 @@ dirigeant . indépendant . cotisations et contributions:
     compulsory contributions and
 
     contributions.
+
+
+    This amount includes the "covid" contribution reduction in 2020.
   description.fr: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires.
+
+    Ce montant inclut la réduction de cotisation "covid" en 2020.
   note.en: |
     [automatic] Unlike contributions, contributions are not reintroduced
     for the calculation of the CSG/CRDS. They also do not benefit from the
@@ -6151,7 +6066,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   titre.en: ACRE
   titre.fr: ACRE
 ? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé
-: titre.en: Prorated PSS
+: titre.en: '[automatic] Prorated PSS'
   titre.fr: PSS proratisé
 ? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année
 : description.en: >
@@ -6294,6 +6209,9 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
     cotisation maladie en fonction du revenu déclaré.
   titre.en: '[automatic] Illness (tax domicile abroad)'
   titre.fr: Maladie (domiciliation fiscale à l'étranger)
+dirigeant . indépendant . cotisations et contributions . non déductibles:
+  titre.en: '[automatic] Non-tax-deductible contributions'
+  titre.fr: Cotisations et contributions non déductibles fiscalement
 ? dirigeant . indépendant . cotisations et contributions . retraite complémentaire
 : titre.en: '[automatic] retirement supplement'
   titre.fr: retraite complémentaire
@@ -6303,42 +6221,11 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-dirigeant . indépendant . revenu net de cotisations:
-  description.en:
-    This is the income net of contributions and expenses, before the
-    payment of income tax.
-  description.fr: Il s'agit du revenu net de cotisations et de charges, avant le
-    paiement de l'impôt sur le revenu.
-  question.en: What pre-tax income do you want to receive?
-  question.fr: Quel revenu avant impôt voulez-vous toucher ?
-  résumé.en: Before taxes
-  résumé.fr: Avant déduction de l'impôt sur le revenu
-  titre.en: net contribution income
-  titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
-  description.en: >
-    [automatic] It is the net income of deductible contributions of the
-    self-employed person, which is used as the basis for the calculation of
-    contributions for self-employed persons.
-
-
-    Attention: **our calculation is made at cruising speed**:
-
-    the self-employed person who is starting out will pay a relatively small package of social security contributions for the first 2 years. He will then have to regularise this situation in relation to the income he has actually received.
-
-
-    Therefore, this calculation should be seen as "the amount that will have to be paid out anyway" in the short term after 2 years of exercise.
-  description.fr: >
-    C'est le revenu net de cotisations déductibles du travailleur indépendant,
-    qui sert de base au calcul des cotisations pour les indépendants.
-
-
-    Attention : **notre calcul est fait au régime de croisière**:
-
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
-
-
-    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
+  description.en:
+    "[automatic] remuneration of the manager under the self-employed
+    persons' scheme"
+  description.fr: rémunération du dirigeant au régime des indépendant
   titre.en: professional income
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
@@ -6369,32 +6256,53 @@ dirigeant . indépendant . revenus étrangers . montant:
   question.fr: Quel est leur montant ?
   titre.en: foreign income
   titre.fr: revenus perçu à l'étranger
-dirigeant . indépendant . résultat fiscal:
-  description.en: Taxable net, amount on which tax has to be calculated.
-  description.fr: Il s'agit du net imposable, assiette sur laquelle l'impôt est calculé.
-  résumé.en: Base for tax calculation
-  résumé.fr: Assiette du calcul de l'impôt
-  titre.en: fiscal earnings
-  titre.fr: résultat fiscal
-dirigeant . rémunération totale:
-  description.en: >-
-    This is what the company spends in total for the director income. This
-    "super gross" remuneration includes all social security contributions to be
-    paid.
-
-    It can also be considered as the monetary value of the director's work.
-  description.fr: >-
+dirigeant . rémunération:
+  titre.en: '[automatic] compensation'
+  titre.fr: rémunération
+dirigeant . rémunération . cotisations:
+  titre.en: '[automatic] contributions'
+  titre.fr: cotisations
+dirigeant . rémunération . imposable:
+  titre.en: '[automatic] Taxable remuneration'
+  titre.fr: Rémunération imposable
+dirigeant . rémunération . impôt:
+  titre.en: '[automatic] tax'
+  titre.fr: impôt
+dirigeant . rémunération . nette:
+  question.en: '[automatic] What is your net pay?'
+  question.fr: Quelle est votre rémunération nette ?
+  résumé.en: '[automatic] After deduction of contributions and expenses'
+  résumé.fr: Après déduction des cotisations, contributions et charges
+  titre.en: '[automatic] net pay'
+  titre.fr: rémunération nette
+dirigeant . rémunération . nette après impôt:
+  description.en: '[automatic] The net income after deduction of income tax and
+    social security contributions.'
+  description.fr: Le revenu net après déduction de l'impôt  sur le revenu et des
+    cotisations sociales.
+  question.en: '[automatic] What is the desired net income after tax?'
+  question.fr: Quel est le revenu net après impôt souhaité ?
+  résumé.en: '[automatic] What you get from this activity'
+  résumé.fr: Ce que vous rapporte cette activité
+  titre.en: '[automatic] After-tax compensation'
+  titre.fr: Rémunération après impôt
+dirigeant . rémunération . totale:
+  description.en: >
+    [automatic] This is what the company spends in total for the remuneration of
+    the manager. This "super gross" remuneration includes all social security
+    contributions to be paid. It can also be considered as the monetary value of
+    the executive's work.
+  description.fr: >
     C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à
-    payer.
-
-    On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
-  question.en: How much do you think you will make available for your remuneration?
-  question.fr: Quel montant pensez-vous dégager pour votre rémunération ?
-  résumé.en: Spent by the company
-  résumé.fr: Dépensé par l'entreprise
-  titre.en: Director total income
-  titre.fr: rémunération totale
+    payer. On peut aussi considérer que c'est la valeur monétaire du travail du
+    dirigeant.
+  question.en: '[automatic] What is the total amount you expect to earn in compensation?'
+  question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
+  résumé.en: '[automatic] Including contributions'
+  résumé.fr: Incluant les cotisations et contributions
+  titre.en: '[automatic] Total compensation'
+  titre.fr: Rémunération totale
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -6466,7 +6374,9 @@ entreprise . ACRE:
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: ACRE
   titre.fr: ACRE
-
+entreprise . ACRE par défaut:
+  titre.en: '[automatic] Default ACRE'
+  titre.fr: ACRE par défaut
 entreprise . activité:
   description.en: '[automatic] Your type of activity will determine a large part
     of the contribution, contribution and tax calculations.'
@@ -6690,57 +6600,30 @@ entreprise . association non lucrative:
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
-entreprise . bénéfice:
-  résumé.en: '[automatic] Taxable for corporate income tax purposes'
-  résumé.fr: Imposable à l'impôt sur les sociétés
-  titre.en: '[automatic] Profit for the year'
-  titre.fr: Bénéfice de l'exercice
-entreprise . bénéfice . information sur le report de déficit:
-  description.en: >
-    [automatic] Deficits incurred in one year can be carried forward to
-    subsequent years (carry-forward), or carried back to the previous year only
-    (carry-back).
-
-
-    [More info on service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
-  description.fr: >
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les
-    exercices suivants (report en avant), ou sur le seul exercice précédent
-    (report en arrière).
-
-
-    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
-  titre.en: '[automatic] deficit carry forward information'
-  titre.fr: information sur le report de déficit
 entreprise . charges:
   description.en: >
-    These are the company's expenses incurred in the company's interest,
-    excluding executive compensation. For companies and businesses excluding
-    auto-entrepreneur, these expenses are said to be deductible from the result:
-    the company will not pay any contributions or taxes on it. For the
-    self-entrepreneur, they are not deductible: the contractor pays them with
-    his salary staff net of contributions and income.
+    [automatic] 
+
+    These are the expenses of the company incurred in the interest of the company, excluding the remuneration of the director. For companies and businesses other than auto-entrepreneurs, these expenses are said to be deductible from the result: the company will not pay any contributions or taxes on them. For the auto-entrepreneur, they are not deductible from the turnover.
 
 
-    We do not yet process VAT: charges are to be entered excluding tax.
+    We do not yet deal with VAT: the expenses are to be entered without tax (except for self-employed entrepreneurs who are exempt from VAT)
 
 
-    For example, loads can be:
+    For example, the expenses can be :
 
 
     - purchase of raw materials for a production activity
 
     - purchase of products for resale, for a commercial activity
 
-    - meal costs: the supplement over the cost of a meal at home
-
-    - Madelin contracts subscriptions
+    - meal expenses: the extra cost of a meal at home
 
 
-    Attention: the purchase of a computer at 1000€ is not a charge, but a capital asset: it is an asset that will benefit the company for a period of for several years. Each year, a portion of this asset is and this deductible depreciation can be included in this calculation, for example 200€ per year for 5 years.
+    Attention: the purchase of a computer at 1000€ is not an expense, but a fixed asset: it is an asset that will benefit the company for several years. Each year, a part of this fixed asset is depreciated, and this deductible depreciation can be integrated in this calculation, for example 200€ per year for 5 years.
 
 
-    On the other hand, a mobile phone for less than 500€ can be considered as a charge without immobilization.
+    On the other hand, a mobile phone costing less than €500 can be treated as an expense with no fixed asset.
   description.fr: >
 
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
@@ -6758,8 +6641,6 @@ entreprise . charges:
 
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
 
-    - les cotisations aux contrats Madelin
-
 
     Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
 
@@ -6769,11 +6650,16 @@ entreprise . charges:
   question.fr: Quelles sont les charges de l'entreprise ?
   résumé.en: All the expenses necessary for the company"
   résumé.fr: Toutes les dépenses nécessaires à l'entreprise
-  titre.en: expenses
-  titre.fr: charges de fonctionnement
-entreprise . charges dont rémunération dirigeant:
-  titre.en: expenses of which executive compensation
-  titre.fr: charges dont rémunération dirigeant
+  titre.en: '[automatic] expenses (excluding management remuneration)'
+  titre.fr: charges (hors rémunération dirigeant)
+entreprise . charges . dirigeant:
+  description.en:
+    '[automatic] Amounts related to executive compensation that are
+    tax deductible.'
+  description.fr: Les montants liés à la rémunération du dirigeant qui sont
+    déductibles d'impôt.
+  titre.en: '[automatic] Deductible expenses for managers'
+  titre.fr: Charges déductibles dirigeant
 entreprise . chiffre d'affaires:
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
@@ -6838,8 +6724,8 @@ entreprise . chiffre d'affaires . service:
   description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle)
-  titre.en: '[automatic] service'
-  titre.fr: service
+  titre.en: '[automatic] Turnover from services'
+  titre.fr: Chiffre d'affaires de prestation de service
 entreprise . chiffre d'affaires . service BIC:
   description.en: >
     [automatic] This is any transaction that does not involve a transfer of
@@ -6903,6 +6789,85 @@ entreprise . chiffre d'affaires . service BNC:
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Other services and liberal activities (BNC)'
   titre.fr: Autres prestations de service et activités libérales (BNC)
+entreprise . chiffre d'affaires . seuil micro dépassé:
+  description.en: >
+    [automatic] The status of micro-enterprise applies as long as the annual
+    turnover (actually received during the calendar year) does not exceed the
+    thresholds of the micro-enterprise tax regime. 
+
+
+    If the thresholds are exceeded **over two consecutive years**, the company automatically switches to the [sole proprietorship](/simulator/self-employed) regime.
+
+
+    At the end of the first year of activity, the turnover is prorated according to the duration of activity. 
+
+
+    Example:
+
+    &gt; A taxpayer sets up a business on August 1 and collects revenues (excluding VAT) of `50,000` during the five months of activity of his first calendar year of operation. 
+
+    The receipts of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling:
+
+    &gt; 
+
+    &gt; `50 000€ x (365/153) = 119 280 €`
+
+
+
+    Charges are not deductible for the calculation of the ceiling (as for the calculation of the contributions)
+
+
+
+    Multi-activity 
+
+
+    When an entrepreneur carries out 2 activities within his micro-enterprise, the turnover
+
+    turnover threshold is not doubled. In
+
+    Indeed, the exercise of several activities with the same micro-enterprise
+
+    does not increase the thresholds.
+  description.fr: >
+    Le statut de micro-entreprise s'applique tant que le chiffre d'affaires
+    annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas
+    les seuils du régime fiscal de la micro-entreprise. 
+
+
+    En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+
+
+    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité. 
+
+
+    Exemple :
+
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation. 
+
+    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+
+    > 
+
+    > `50 000€ x (365/153) = 119 280 €`
+
+
+
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
+
+
+
+    ### Multi-activité 
+
+
+    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
+
+    effet l'exercice de plusieurs activités avec la même micro-entreprise
+
+    n’augmente pas les seuils.
+  titre.en: '[automatic] micro threshold exceeded'
+  titre.fr: seuil micro dépassé
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: |
     [automatic] ### Sale of goods 
@@ -6934,16 +6899,6 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
-entreprise . chiffre d'affaires minimum:
-  description.en: The minimum amount of sales (excluding tax) to be achieved to
-    reach the break-even point.
-  description.fr:
-    Le montant minimum des ventes (H.T) à réaliser pour atteindre le
-    seuil de rentabilité.
-  question.en: What is your minimum planned turnover?
-  question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
-  titre.en: Minimum turnover
-  titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
@@ -7099,10 +7054,10 @@ entreprise . exonérée de TVA:
   titre.fr: exonérée de TVA
 entreprise . imposition:
   description.en: >
-    [automatic] The entrepreneur can choose one of the two systems for taxing
-    the profits of his activity:
+    [automatic] The entrepreneur can opt for one of two tax regimes for the
+    profits of his or her business:
 
-    - income tax, where profits are declared on the personal income tax return and taxed according to a progressive tax scale.
+    - income tax, where profits are declared on the personal income tax return and taxed on a progressive scale
 
     - corporate income tax, where profits are declared in the name of the company
   description.fr: >
@@ -7117,35 +7072,85 @@ entreprise . imposition:
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
-  titre.en: '[automatic] To income tax'
-  titre.fr: À l'impôt sur le revenu
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
+entreprise . imposition . IR . information sur le report de déficit:
+  description.en: >
+    [automatic] When your taxable income is negative, it reduces the taxable
+    income of the tax household.
+
+    A deficit can be deducted up to 6 years after its realization.
+
+
+    See detailed tax rules](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+  description.fr: >
+    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le
+    revenu imposables du foyer fiscal.
+
+    Un déficit peut être imputé jusqu'à 6 ans après sa réalisation.
+
+
+    [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+  titre.en: '[automatic] information on deficit carryover'
+  titre.fr: information sur le report de déficit
+entreprise . imposition . IR . micro-fiscal:
+  description.en: >
+    [automatic] With the micro tax system, the deductible expenses are estimated
+    as a percentage of the turnover.
+
+    This percentage depends on the type of activity. 
+
+
+    This option allows you to simplify your accounting, and can be advantageous in terms of income if your operating costs are low.
+  description.fr: >
+    Avec le régime micro fiscal, les charges déductible sont estimées
+    forfaitairement, comme un pourcentage du chiffre d'affaires.
+
+    Ce pourcentage dépend du type d'activité. 
+
+
+    Cette option permet de simplifier votre comptabilité, et peut-être avantageuse en terme de revenu dans le cas où vos charges de fonctionnement sont faibles.
+  question.en: '[automatic] Have you opted for the micro-tax system?'
+  question.fr: Avez-vous opté pour le régime micro-fiscal ?
+  titre.en: '[automatic] micro-tax'
+  titre.fr: micro-fiscal
+entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés:
+  description.en: '[automatic] The annual turnover threshold for the micro-tax
+    regime is exceeded. Learn
+    more](/documentation/company/turnover/threshold-micro-tax-exceeded)'
+  description.fr: Le seuil annuel de chiffre d'affaires pour le régime
+    micro-fiscal est dépassé. [En savoir
+    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
+  titre.en: '[automatic] threshold alert exceeded'
+  titre.fr: alerte seuil dépassés
+entreprise . imposition . IR . micro-fiscal . revenu abattu:
+  description.en: >
+    [automatic] The micro-entrepreneur is exempted from drawing up a
+    professional declaration of profits under the BNC or BIC heading.
+
+
+    All they have to do is enter the annual gross turnover (BIC) or revenue (BNC) in the supplementary income tax return (n°2042-C Pro).
+  description.fr: >
+    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle
+    de bénéfices au titre des BNC ou BIC.
+
+
+    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+  titre.en: '[automatic] flat-rate micro-tax deduction'
+  titre.fr: abattement forfaitaire micro-fiscal
 entreprise . imposition . IS:
-  titre.en: '[automatic] To corporate tax'
-  titre.fr: À l'impôt sur les sociétés
-entreprise . imposition . IS . notification IS non intégré:
-  description.en: >
-    [automatic] This simulator does not include corporate taxes or the taxation
-    of
-
-    dividends. The "Corporate Tax" option is only used in the following cases
-
-    income tax calculation.
-  description.fr: |
-    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
-    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
-    le calcul de l'impôt sur le revenu.
-  titre.en: '[automatic] non-integrated IS notification'
-  titre.fr: notification IS non intégré
-entreprise . impôt sur les sociétés:
-  titre.en: corporate income tax
+  titre.en: '[automatic] Corporate income tax'
+  titre.fr: Impôt sur les sociétés
+entreprise . imposition . IS . impôt sur les sociétés:
+  titre.en: '[automatic] corporate tax'
   titre.fr: impôt sur les sociétés
-entreprise . impôt sur les sociétés . contribution sociale:
+entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
   description.en: >
-    [automatic] The social contribution on profits is a tax separate from the
-    corporate tax. Its amount is not deductible from profits.
+    [automatic] The social contribution on profits is a separate tax from the
+    corporate tax. Its amount is not deductible from the results.
 
 
-    The tax base benefits from a significant reduction, and only companies making more than EUR 2,3 million in profits are concerned by this contribution.
+    The tax base benefits from a significant deduction, and only companies with a profit of more than 2.3 million euros are concerned by this contribution.
   description.fr: >
     La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
     sur les sociétés. Son montant n’est pas déductible des résultats.
@@ -7154,26 +7159,47 @@ entreprise . impôt sur les sociétés . contribution sociale:
     L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
   titre.en: '[automatic] social contribution'
   titre.fr: contribution sociale
-entreprise . impôt sur les sociétés . plafond taux réduit 1:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 1:
   titre.en: '[automatic] ceiling reduced rate 1'
   titre.fr: plafond taux réduit 1
-entreprise . impôt sur les sociétés . plafond taux réduit 2:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 2:
   titre.en: '[automatic] ceiling reduced rate 2'
   titre.fr: plafond taux réduit 2
-entreprise . impôt sur les sociétés . prorata temporis:
+entreprise . imposition . IS . impôt sur les sociétés . prorata temporis:
   description.en: >
-    [automatic] When the duration of the fiscal year is not equal to one year,
-    we pro-rate the
+    [automatic] When the duration of the financial year is not equal to one
+    year, the ceilings used in the
 
-    ceilings used in the corporate tax scale.
+    the ceilings used in the corporate tax schedule.
   description.fr: |
     Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
     plafonds utilisés dans le barème de l'impôt sur les sociétés.
   titre.en: '[automatic] prorata temporis'
   titre.fr: prorata temporis
-entreprise . impôt sur les sociétés . éligible taux réduit:
-  titre.en: '[automatic] eligible reduced rate'
+entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit:
+  titre.en: '[automatic] eligible for reduced rate'
   titre.fr: éligible taux réduit
+entreprise . imposition . IS . information sur le report de déficit:
+  description.en: >
+    [automatic] Losses incurred during a fiscal year can be carried forward to
+    subsequent years (carry forward), or back to the previous year only (carry
+    back).
+  description.fr: >
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les
+    exercices suivants (report en avant), ou sur le seul exercice précédent
+    (report en arrière).
+  titre.en: '[automatic] information on deficit carryover'
+  titre.fr: information sur le report de déficit
+entreprise . imposition . IS . résultat imposable:
+  résumé.en: '[automatic] Taxable for corporate income tax purposes'
+  résumé.fr: Imposable à l'impôt sur les sociétés
+  titre.en: '[automatic] Result for the year'
+  titre.fr: Résultat de l'exercice
+entreprise . imposition . IS . résultat net:
+  résumé.en: '[automatic] After deduction of expenses and corporate income tax'
+  résumé.fr: Après déduction des charges et de l'impôt sur les société
+  titre.en: '[automatic] net result'
+  titre.fr: résultat net
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
@@ -7191,26 +7217,9 @@ entreprise . ratio alternants:
   suggestions.5%.fr: 5%
   titre.en: work-study employees ratio
   titre.fr: Fraction d'alternants
-entreprise . rémunération du dirigeant:
-  description.en: >
-    This is the portion of revenue after expenses that is allocated to the
-    executive's compensation. The higher this share, the higher the executive's
-    compensation increases, and the lower the company's profit.
-  description.fr: >
-    C'est la part du chiffre d'affaires après charges qui est allouée à la
-    rémunération du dirigeant. Plus cette part est élevée, plus la rémunération
-    du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
-  question.en: How much of the after-charge revenue is allocated to the
-    executive's compensation?
-  question.fr: Quelle part du chiffre d'affaires après charge est allouée à la
-    rémunération du dirigeant ?
-  titre.en: executive compensation
-  titre.fr: rémunération du dirigeant
-entreprise . résultat net:
-  résumé.en: What remains after corporate income tax
-  résumé.fr: Ce qu'il reste après impôt sur les sociétés
-  titre.en: net result
-  titre.fr: résultat net
+entreprise . résultat fiscal:
+  titre.en: '[automatic] tax result'
+  titre.fr: résultat fiscal
 entreprise . taxe sur les salaires:
   description.en: '[automatic] When the amount of payroll tax is less than
     €1200/year, there is no need to make a declaration and the tax is not
@@ -7351,14 +7360,14 @@ impôt . foyer fiscal . revenu imposable . autres revenus imposables:
   titre.en: '[automatic] other taxable income'
   titre.fr: autres revenus imposables
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
-  description.en: '[automatic] In the general case, the tax is calculated after
-    the application of a fixed lump-sum allowance. However, everyone can opt to
-    declare their "actual expenses", which will replace this default lump-sum
-    deduction.'
-  description.fr: Dans le cas général, l'impôt est calculé après l'application
-    d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la
-    déclaration de ses *frais réels*, qui viendront remplacer ce forfait par
-    défaut.
+  description.en: >
+    [automatic] In the general case, the tax is calculated after the application
+    of a fixed abatement. However, everyone can opt to declare their *actual
+    expenses*, which will replace this default fixed allowance.
+  description.fr: >
+    Dans le cas général, l'impôt est calculé après l'application d'un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: '[automatic] earned income slaughtered'
   titre.fr: revenu d'activité abattu
 impôt . foyer fiscal . situation de famille:
@@ -8004,31 +8013,6 @@ période . jours ouvrés moyen par mois:
 période . semaines par mois:
   titre.en: week per month
   titre.fr: semaines par mois
-revenu net après impôt:
-  description.en: |
-    This is the income net of contributions and taxes.
-    In other words, that's what you get in the end from your bank account.
-  description.fr: |
-    Il s'agit du revenu net de charges, cotisations et d'impôts.
-    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  question.en: What income do you want to receive?
-  question.fr: Quel revenu voulez-vous toucher ?
-  résumé.en: Paid into the bank account
-  résumé.fr: Disponible sur votre compte en banque
-  titre.en: Net income after tax
-  titre.fr: revenu net après impôt
-revenus net de cotisations:
-  description.en: |
-    l'impôt sur le revenu.
-  description.fr: >
-    Il s'agit du revenu net de cotisations et de charges, avant le paiement de
-    l'impôt sur le revenu.
-  question.en: What pre-tax income do you want to earn?
-  question.fr: Quel revenu avant impôt voulez-vous toucher ?
-  résumé.en: Before tax
-  résumé.fr: Avant impôt
-  titre.en: net contribution income
-  titre.fr: revenus net de cotisations
 situation personnelle:
   titre.en: personal situation
   titre.fr: situation personnelle

@@ -95,7 +95,7 @@ export function getNextQuestions(
 	nextSteps = nextSteps.filter(
 		(step) =>
 			(!whitelist.length || whitelist.some((name) => step.startsWith(name))) &&
-			(!blacklist.length || !blacklist.some((name) => step.startsWith(name)))
+			(!blacklist.length || !blacklist.some((name) => step === name))
 	)
 
 	const lastStep = last(answeredQuestions)

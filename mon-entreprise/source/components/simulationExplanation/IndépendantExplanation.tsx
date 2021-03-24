@@ -28,13 +28,13 @@ export default function IndépendantExplanation() {
 			<Condition expression="entreprise . activité . libérale réglementée">
 				<PLExplanation />
 			</Condition>
-			<Condition expression="revenu net après impôt > 0 €/an">
+			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
 					<h2>Répartition de la rémunération totale</h2>
 					<StackedBarChart
 						data={[
 							{
-								dottedName: 'revenu net après impôt',
+								dottedName: 'dirigeant . rémunération . nette après impôt',
 								title: t('Revenu disponible'),
 								color: palettes[0][0],
 							},

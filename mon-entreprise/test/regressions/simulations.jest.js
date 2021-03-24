@@ -69,10 +69,16 @@ it('calculate simulations-salarié', () => {
 })
 
 it('calculate simulations-indépendant', () => {
-	const targets = independantConfig.objectifs.reduce(
-		(acc, cur) => [...acc, ...cur.objectifs],
-		[]
-	)
+	const targets = [
+		'dirigeant . rémunération . totale',
+		'dirigeant . rémunération . cotisations',
+		'dirigeant . rémunération . nette',
+		'dirigeant . indépendant . revenu professionnel',
+		'impôt',
+		'dirigeant . rémunération . nette après impôt',
+		'entreprise . charges',
+		"entreprise . chiffre d'affaires",
+	]
 	runSimulations(independentSituations, targets, independantConfig.situation)
 })
 
@@ -152,8 +158,16 @@ it('calculate simulations-professions-libérales', () => {
 })
 
 it('calculate simulations-impot-société', () => {
-	runSimulations(impotSocieteSituations, [
-		'entreprise . impôt sur les sociétés',
-		'entreprise . impôt sur les sociétés . contribution sociale',
-	])
+	runSimulations(
+		impotSocieteSituations,
+		[
+			'entreprise . imposition . IS . impôt sur les sociétés',
+			'entreprise . imposition . IS . impôt sur les sociétés . contribution sociale',
+		],
+		{
+			'entreprise . imposition': "'IS'",
+			'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
+				'oui',
+		}
+	)
 })

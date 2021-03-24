@@ -54,25 +54,21 @@ entreprise . durée d'activité . en début d'année:
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
+  
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  variations:
-    - si: dirigeant . auto-entrepreneur
-      alors:
-        inversion numérique:
-          avec:
-            - dirigeant . auto-entrepreneur . net de cotisations
-            - dirigeant . auto-entrepreneur . net après impôt
-            - dirigeant . rémunération totale
-    - sinon: 
-        somme: 
-          - dirigeant . rémunération totale
-          - charges
-        
-      
-
+  somme:
+    - dirigeant . rémunération . nette après impôt
+    - dirigeant . rémunération . impôt
+    - dirigeant . rémunération . cotisations
+    - charges
+    - applicable si: entreprise . imposition . IS
+      somme: 
+          - imposition . IS . résultat net
+          - imposition . IS . impôt sur les sociétés
+  plancher: 0€/an
   arrondi: oui
-  identifiant court: ca
+  identifiant court: CA
 
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
@@ -165,6 +161,7 @@ entreprise . chiffre d'affaires . service BNC:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . chiffre d'affaires . service:
+  titre: Chiffre d'affaires de prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle)
@@ -182,6 +179,7 @@ entreprise . chiffre d'affaires . BIC:
     - vente restauration hébergement
     
 entreprise . chiffre d'affaires . franchise de TVA dépassée:
+
   description: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
@@ -218,23 +216,20 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
+  applicable si: chiffre d'affaires
   type: notification
   formule: oui
   description: |
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
 
-entreprise . chiffre d'affaires minimum:
-  identifiant court: entreprise-ca-min
-  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
-  question: Quel est votre chiffre d'affaires minimum envisagé ?
-  unité: €/an
-  formule: chiffre d'affaires
 
-entreprise . rémunération du dirigeant:
-  description: |
-    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
-  question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  par défaut: 100%
+entreprise . résultat fiscal:
+  unité: €/an
+  somme: 
+    - chiffre d'affaires
+    - (- charges)
+    - (- charges . dirigeant)
+    
 
 entreprise . imposition:
   question: À quel régime d'imposition l'entreprise est-elle soumise ?
@@ -252,43 +247,100 @@ entreprise . imposition:
 
 entreprise . imposition . IR:
   valeur: imposition = 'IR'
-  titre: À l'impôt sur le revenu
+  titre: Impôt sur le revenu
 
-entreprise . imposition . IS:
-  valeur: imposition = 'IS'
-  titre: À l'impôt sur les sociétés
-
-entreprise . imposition . IS . notification IS non intégré:
-  type: notification
-  formule:
-    une de ces conditions:
-      - dirigeant . assimilé salarié
-      - dirigeant . indépendant
+entreprise . imposition . IR . micro-fiscal:
+  rend non applicable: dirigeant . indépendant . contrats madelin
+  question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
-    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
-    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
-    le calcul de l'impôt sur le revenu.
+    Avec le régime micro fiscal, les charges déductible sont estimées forfaitairement, comme un pourcentage du chiffre d'affaires.
+    Ce pourcentage dépend du type d'activité. 
 
-entreprise . bénéfice:
-  titre: Bénéfice de l'exercice
-  résumé: Imposable à l'impôt sur les sociétés
-  formule: chiffre d'affaires - charges dont rémunération dirigeant
+    Cette option permet de simplifier votre comptabilité, et peut-être avantageuse en terme de revenu dans le cas où vos charges de fonctionnement sont faibles.
+  par défaut: non
 
-entreprise . bénéfice . information sur le report de déficit:
-  type: notification
-  formule: bénéfice < 0 €/an
-  # TODO: Support des références dans les notifications
+entreprise . imposition . IR . micro-fiscal . revenu abattu:
+  remplace: résultat fiscal
+  résoudre la référence circulaire: oui
+  titre: abattement forfaitaire micro-fiscal
   description: |
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
 
-    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+  valeur: chiffre d'affaires
+  abattement:
+    produit:
+      composantes:
+        - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+          taux: 71%
+        - assiette: entreprise . chiffre d'affaires . service BIC
+          taux: 50%
+        - assiette: entreprise . chiffre d'affaires . service BNC
+          taux: 34%
+    plancher: 
+      variations: 
+        - si: entreprise . activité . mixte 
+          alors: 610 €/an
+        - sinon: 305 €/an
 
-entreprise . résultat net:
-  résumé: Ce qu'il reste après impôt sur les sociétés
-  formule: bénéfice - impôt sur les sociétés
 
-entreprise . exercice:
+entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés:
+  type: notification
+  sévérité: avertissement
+  formule: chiffre d'affaires . seuil micro dépassé
+  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
+  
+entreprise . chiffre d'affaires . seuil micro dépassé:
+  applicable si: imposition . IR
+  description: |
+    Le statut de micro-entreprise s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise. 
 
+    En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+
+    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité. 
+
+    Exemple :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation. 
+    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+    > 
+    > `50 000€ x (365/153) = 119 280 €`
+
+
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
+
+
+    ### Multi-activité 
+
+    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
+    effet l'exercice de plusieurs activités avec la même micro-entreprise
+    n’augmente pas les seuils.
+
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html
+    Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
+  unité: €/an
+  une de ces conditions:
+    - entreprise . chiffre d'affaires > 176200 €/an
+    - entreprise . chiffre d'affaires . service > 72500 €/an
+
+
+entreprise . imposition . IR . information sur le report de déficit:
+  non applicable si: micro-fiscal
+  type: notification
+  formule: résultat fiscal < 0 €/an
+  description: |
+    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le revenu imposables du foyer fiscal.
+    Un déficit peut être imputé jusqu'à 6 ans après sa réalisation.
+
+    [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+  références:
+    bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301 
+
+entreprise . exercice: oui
 entreprise . exercice . début:
   type: date
   par défaut: 01/01/2020
@@ -328,11 +380,38 @@ entreprise . exercice . durée maximale:
   formule: durée >= 24 mois
   description: La durée maximale d'un exercice comptable est de 24 mois.
 
-entreprise . impôt sur les sociétés:
+entreprise . imposition . IS:
+  valeur: imposition = 'IS'
+  titre: Impôt sur les sociétés
+
+
+entreprise . imposition . IS . résultat imposable:
+  titre: Résultat de l'exercice
+  résumé: Imposable à l'impôt sur les sociétés
+  valeur: résultat fiscal
+
+entreprise . imposition . IS . information sur le report de déficit:
+  type: notification
+  formule: résultat imposable < 0 €/an
+  # TODO: Support des références dans les notifications
+  description: |
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+
+    
+entreprise . imposition . IS . résultat net:
+  résumé: Après déduction des charges et de l'impôt sur les société
+  somme:
+    - chiffre d'affaires
+    - (- charges)
+    - (- dirigeant . rémunération . totale)
+    - (- impôt sur les sociétés)
+  par défaut: 0€
+  
+entreprise . imposition . IS . impôt sur les sociétés:
   unité: €/an
   formule:
     barème:
-      assiette: bénéfice
+      assiette: résultat imposable
       multiplicateur: prorata temporis
       variations:
         - si: exercice . début >= 01/01/2022
@@ -374,22 +453,22 @@ entreprise . impôt sur les sociétés:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-entreprise . impôt sur les sociétés . plafond taux réduit 1:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 1:
   applicable si: éligible taux réduit
   valeur: 38120 €/an
 
-entreprise . impôt sur les sociétés . plafond taux réduit 2:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 2:
   applicable si: éligible taux réduit
   valeur: 500000 €/an
 
-entreprise . impôt sur les sociétés . éligible taux réduit:
+entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit:
   formule:
     toutes ces conditions:
       - chiffre d'affaires <= 7630 k€/an * prorata temporis
       - nom: capital détenu au moins à 75 pourcents par des personnes physiques
         valeur: oui
 
-entreprise . impôt sur les sociétés . prorata temporis:
+entreprise . imposition . IS . impôt sur les sociétés . prorata temporis:
   description: |
     Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
     plafonds utilisés dans le barème de l'impôt sur les sociétés.
@@ -402,7 +481,7 @@ entreprise . impôt sur les sociétés . prorata temporis:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
 
-entreprise . impôt sur les sociétés . contribution sociale:
+entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
   # description: |
   #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
 
@@ -420,14 +499,11 @@ entreprise . impôt sur les sociétés . contribution sociale:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
-entreprise . charges dont rémunération dirigeant:
-  formule: charges + dirigeant . rémunération totale
-
 entreprise . charges:
   synonymes:
     - charges d'exploitation
     - charges de fonctionnement
-  titre: charges de fonctionnement
+  titre: charges (hors rémunération dirigeant)
   identifiant court: charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
@@ -442,7 +518,6 @@ entreprise . charges:
     - achat de matières premières pour une activité de production
     - achat de produits en vue de leur revente, pour une activité commerciale
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
-    - les cotisations aux contrats Madelin
 
     Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
 
@@ -451,6 +526,21 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
+
+     
+
+entreprise . charges . dirigeant:
+  titre: Charges déductibles dirigeant
+  description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
+  variations: 
+    - si: imposition . IS 
+      alors: dirigeant . rémunération . totale
+    # Note : le cas de dirigeant AS à l'IR n'est pas géré
+    # - si: dirigeant . assimilé salarié 
+    #   alors: 0€/an
+    - sinon: # TNS dans entreprise à l'IR
+        valeur: dirigeant . indépendant . cotisations et contributions
+        abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
 
 entreprise . ACRE:
   description: >-
@@ -492,7 +582,11 @@ entreprise . ACRE:
           - entreprise . durée d'activité < 3 ans
           - entreprise . date de création < 04/2020
       - entreprise . durée d'activité . en début d'année < 1 an
-  par défaut: 
+  par défaut: ACRE par défaut
+  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
+
+entreprise . ACRE par défaut:
+  formule:
     variations:
       - si:
           toutes ces conditions:
@@ -504,9 +598,6 @@ entreprise . ACRE:
         alors: non
       - sinon: oui
 
-  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
-
-  
 entreprise . effectif:
   unité: employé
   formule:

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `
-"[9020,0]
+"[9019,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -31,12 +31,12 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: RSA 1`] = `
-"[81,0]
+"[82,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: RSA 2`] = `
-"[1020,0]
+"[1021,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -56,7 +56,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `
-"[13576,0]
+"[13578,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -81,7 +81,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: international 1`] = `
-"[14609,0]
+"[14610,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, impôt . domiciliation étranger non implémentée"
 `;
 
@@ -127,16 +127,16 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `
 "[1041,0]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `
 "[1041,0]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `
-"[1059,0]
+"[1058,0]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -219,7 +219,7 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 1`] = `"[5
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 2`] = `"[1148,12,1000,0,1000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 3`] = `"[2297,25,2000,0,2000]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 3`] = `"[2296,25,2000,0,2000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 4`] = `"[5742,62,5000,0,5000]"`;
 
@@ -238,12 +238,12 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 "[1148303,12359,1000000,126543,873457]
-Notifications affichées : dirigeant . auto-entrepreneur . seuils dépassés . notification, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
 exports[`calculate simulations-impot-société: bénéfices 1`] = `
 "[0,0]
-Notifications affichées : entreprise . bénéfice . information sur le report de déficit"
+Notifications affichées : entreprise . imposition . IS . information sur le report de déficit"
 `;
 
 exports[`calculate simulations-impot-société: bénéfices 2`] = `"[0,0]"`;
@@ -254,15 +254,43 @@ exports[`calculate simulations-impot-société: bénéfices 4`] = `"[3000,0]"`;
 
 exports[`calculate simulations-impot-société: bénéfices 5`] = `"[51044,0]"`;
 
-exports[`calculate simulations-impot-société: bénéfices 6`] = `"[555044,0]"`;
+exports[`calculate simulations-impot-société: bénéfices 6`] = `
+"[555044,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
-exports[`calculate simulations-impot-société: bénéfices 7`] = `"[5595044,159457]"`;
+exports[`calculate simulations-impot-société: bénéfices 7`] = `
+"[5595044,159457]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
-exports[`calculate simulations-impot-société: prorata temporis 1`] = `"[275044,0]"`;
+exports[`calculate simulations-impot-société: prorata temporis 1`] = `
+"[275044,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
-exports[`calculate simulations-impot-société: prorata temporis 2`] = `"[277936,0]"`;
+exports[`calculate simulations-impot-société: prorata temporis 2`] = `
+"[277936,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
-exports[`calculate simulations-impot-société: prorata temporis 3`] = `"[272981,0]"`;
+exports[`calculate simulations-impot-société: prorata temporis 3`] = `
+"[272981,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
+
+exports[`calculate simulations-indépendant: Contrats Madelin 1`] = `"[30000,13180,16820,17883,232,16588,0,30000]"`;
+
+exports[`calculate simulations-indépendant: Contrats Madelin 2`] = `"[30000,14380,15620,17883,232,15388,0,30000]"`;
+
+exports[`calculate simulations-indépendant: Contrats Madelin 3`] = `"[30000,10379,19621,20433,593,19028,0,30000]"`;
+
+exports[`calculate simulations-indépendant: Contrats Madelin 4`] = `"[20000,6686,13314,13854,0,13314,0,20000]"`;
+
+exports[`calculate simulations-indépendant: Contrats Madelin 5`] = `
+"[300000,79622,220378,228522,75412,144966,0,300000]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73023,23023,50000,51980,8213,41787,0,73023]"`;
 
@@ -282,17 +310,17 @@ exports[`calculate simulations-indépendant: impôt sur le revenu 3`] = `"[29084
 
 exports[`calculate simulations-indépendant: inversions 1`] = `"[2000,1366,634,686,0,634,0,2000]"`;
 
-exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33998,35353,3500,30498,0,50000]"`;
+exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16002,33998,35352,3500,30498,0,50000]"`;
 
 exports[`calculate simulations-indépendant: inversions 3`] = `"[14460,4460,10000,10390,0,10000,0,14460]"`;
 
-exports[`calculate simulations-indépendant: inversions 4`] = `"[68273,21573,46700,48551,6700,40000,0,68273]"`;
+exports[`calculate simulations-indépendant: inversions 4`] = `"[69938,22076,47862,49758,7862,40000,0,69938]"`;
 
 exports[`calculate simulations-indépendant: inversions 5`] = `"[14460,4460,10000,10390,0,10000,1000,15460]"`;
 
 exports[`calculate simulations-indépendant: inversions 6`] = `"[19000,5870,13130,13643,0,13130,1000,20000]"`;
 
-exports[`calculate simulations-indépendant: inversions 7`] = `"[17999,5557,12442,12928,0,12442,2000,20000]"`;
+exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5557,12443,12928,0,12443,2000,20000]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1841,1341,500,547,0,500,0,1841]"`;
 
@@ -350,7 +378,7 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 `;
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `
-"[50000,0,11821,38179,4705,33474]
+"[50000,0,11821,38179,4705,33475]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
@@ -367,7 +395,7 @@ exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0
 
 exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,73630,226370,77389,148981]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,93706,306295,120519,185776]"`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,93706,306294,120519,185775]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 5`] = `
 "[120000,0,26977,93023,23107,69916]
@@ -375,7 +403,7 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 6`] = `
-"[50000,0,10691,39307,4839,34468]
+"[50000,0,10693,39307,4839,34468]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -387,7 +415,7 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
-"[4000,0,1268,2733,0,2733]
+"[4000,0,1267,2733,0,2733]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
@@ -407,128 +435,122 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
-"[606,0,0,7127,4,13]
+"[606,7272,0,7127,4,13]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `
-"[1249,0,0,14429,4,26]
+"[1249,14993,0,14429,4,26]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
-"[1893,0,0,21731,4,40]
+"[1893,22714,0,21731,4,40]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 1`] = `"[1391,0,0,16041,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 1`] = `"[1391,16698,0,16041,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 2`] = `"[1391,0,0,16041,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 2`] = `"[1391,16698,0,16041,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 3`] = `"[1391,0,0,16041,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 3`] = `"[1391,16698,0,16041,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 4`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 4`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 5`] = `
-"[14490,0,0,150669,4,46]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 5`] = `"[14490,173883,0,150669,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,0,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,10998,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,0,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 4`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 4`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 5`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 5`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 1`] = `"[442,0,0,5261,4,10]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 1`] = `"[442,5299,0,5261,4,10]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 2`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 2`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 1`] = `"[-30,0,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 1`] = `"[-30,-361,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,0,0,136,0,1]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,170,0,136,0,1]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 3`] = `"[62,0,0,314,0,2]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 3`] = `"[62,740,0,314,0,2]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 4`] = `"[204,0,0,2566,2,5]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 4`] = `"[204,2450,0,2566,2,5]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 5`] = `"[442,0,0,5261,4,10]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 5`] = `"[442,5299,0,5261,4,10]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 6`] = `"[917,0,0,10651,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 6`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 7`] = `"[2341,0,0,26822,4,46]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 7`] = `"[2341,28096,0,26822,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `
-"[4758,0,0,51817,4,46]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4758,57101,0,51817,4,46]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
-"[0,0,9349,1450,2,0]
+"[0,9349,9349,1450,2,0]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 2`] = `
-"[0,0,18697,2900,3,8]
+"[0,18697,18697,2900,3,8]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 3`] = `
-"[0,0,28046,4350,4,12]
+"[0,28046,28046,4350,4,12]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 1`] = `"[0,0,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 1`] = `"[0,34834,34834,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 2`] = `"[0,0,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 2`] = `"[0,34834,34834,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 3`] = `"[0,0,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 3`] = `"[0,34834,34834,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 4`] = `"[0,0,18288,3045,4,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 4`] = `"[0,18288,18288,3045,4,8]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 5`] = `
-"[0,0,274318,20568,4,56]
-Notifications affichées : dirigeant . auto-entrepreneur . seuils dépassés . notification, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+"[0,274318,274318,20568,4,56]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,0,17852,2973,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,17852,17852,2973,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,0,15580,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,15580,15580,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,0,15560,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15560,15560,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,0,17336,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,17336,17336,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 4`] = `"[0,0,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 4`] = `"[0,17417,17417,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 5`] = `"[0,0,15580,5000,4,14]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 5`] = `"[0,15580,15580,5000,4,14]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): avec charges 1`] = `"[0,0,10450,1740,3,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): avec charges 1`] = `"[0,10450,10450,1740,3,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): avec charges 2`] = `"[0,0,30480,5075,4,14]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): avec charges 2`] = `"[0,30480,30480,5075,4,14]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 1`] = `"[0,0,87,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 1`] = `"[0,87,87,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 2`] = `"[0,0,871,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 2`] = `"[0,871,871,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 3`] = `"[0,0,1742,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 3`] = `"[0,1742,1742,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 4`] = `"[0,0,4354,725,1,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 4`] = `"[0,4354,4354,725,1,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 5`] = `"[0,0,8709,1450,2,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 5`] = `"[0,8709,8709,1450,2,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 6`] = `"[0,0,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 6`] = `"[0,17417,17417,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 7`] = `"[0,0,43543,7250,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 7`] = `"[0,43543,43543,7250,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 8`] = `
-"[0,0,87085,14500,4,40]
+"[0,87085,87085,14500,4,40]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
@@ -547,23 +569,20 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,19388,0,16984,4,33]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,16820,0,13327,4,24]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,18995,0,17577,4,34]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,15620,0,13327,4,24]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 3`] = `"[0,20297,0,15600,4,30]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 3`] = `"[0,19621,0,14602,4,28]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 4`] = `"[0,13656,0,10367,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 4`] = `"[0,13314,0,9866,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `
-"[0,225725,0,57933,4,56]
+"[0,220378,0,57933,4,56]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `
-"[0,13624,0,10417,4,21]
-Notifications affichées : dirigeant . indépendant . contrats madelin . contrôle montant charges"
-`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `"[0,13214,0,9816,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13814,0,10116,4,21]"`;
 
@@ -579,13 +598,19 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): avec cha
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): avec charges 2`] = `"[0,13814,0,10116,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 1`] = `"[0,-1044,0,0,3,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 1`] = `
+"[0,-1044,0,0,3,21]
+Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 2`] = `"[0,-225,0,0,3,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 2`] = `
+"[0,-225,0,0,3,21]
+Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 3`] = `"[0,634,0,483,3,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 4`] = `"[0,3160,0,2322,3,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 4`] = `"[0,3159,0,2322,3,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 5`] = `"[0,6894,0,5046,4,21]"`;
 

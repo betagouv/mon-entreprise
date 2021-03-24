@@ -5,8 +5,8 @@ import {
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
-import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import Value from 'Components/EngineValue'
+import * as Animate from 'Components/ui/animate'
 import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
@@ -15,7 +15,10 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
+import SeeAnswersButton from './conversation/SeeAnswersButton'
+import PeriodSwitch from './PeriodSwitch'
 import './SchemeComparaison.css'
+import { SimulationGoal, SimulationGoals } from './SimulationGoals'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
@@ -32,7 +35,7 @@ export default function SchemeComparaison({
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
 	const plafondAutoEntrepreneurDépassé =
-		engine.evaluate('dirigeant . auto-entrepreneur . seuils dépassés')
+		engine.evaluate("entreprise . chiffre d'affaires . seuil micro dépassé")
 			.nodeValue === true
 
 	const [showMore, setShowMore] = useState(false)
@@ -45,7 +48,8 @@ export default function SchemeComparaison({
 
 	const situation = useSelector(situationSelector)
 	const displayResult =
-		useSelector(situationSelector)['entreprise . charges'] != undefined
+		useSelector(situationSelector)['dirigeant . rémunération . totale'] !=
+		undefined
 	const assimiléEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
@@ -313,9 +317,54 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<div className="ui__ container">
-							<SeeAnswersButton />
-							<Conversation />
+						<div
+							className="ui__ container"
+							css={`
+								text-align: left;
+							`}
+						>
+							<PeriodSwitch />
+							<SimulationGoals
+								className="plain"
+								css={
+									displayResult
+										? `
+									border-bottom: none;
+									border-bottom-left-radius: 0 !important;
+									border-bottom-right-radius: 0 !important;
+								`
+										: ''
+								}
+							>
+								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
+								<SimulationGoal dottedName="entreprise . charges" />
+							</SimulationGoals>
+							{displayResult && (
+								<Animate.fromBottom>
+									<div
+										className="ui__ card "
+										css={`
+											padding: 1rem;
+											border-top: none;
+											border-top-left-radius: 0 !important;
+											border-top-right-radius: 0 !important;
+										`}
+									>
+										<Conversation
+											customEndMessages={
+												<>
+													<p className="ui__ notice">
+														Vous pouvez consulter les différentes estimations
+														dans le tableau ci-dessous
+													</p>
+
+													<SeeAnswersButton />
+												</>
+											}
+										/>
+									</div>
+								</Animate.fromBottom>
+							)}
 						</div>
 					)}
 				</div>
@@ -332,7 +381,7 @@ export default function SchemeComparaison({
 								engine={assimiléEngine}
 								precision={0}
 								unit="€/an"
-								expression="contrat salarié . rémunération . net"
+								expression="dirigeant . rémunération . nette"
 							/>
 						</div>
 						<div className="indep">
@@ -340,7 +389,7 @@ export default function SchemeComparaison({
 								linkToRule={false}
 								engine={indépendantEngine}
 								precision={0}
-								expression="dirigeant . indépendant . revenu net de cotisations"
+								expression="dirigeant . rémunération . nette"
 							/>
 						</div>
 						<div className="auto">
@@ -352,7 +401,7 @@ export default function SchemeComparaison({
 									precision={0}
 									className={''}
 									unit="€/an"
-									expression="dirigeant . auto-entrepreneur . net de cotisations"
+									expression="dirigeant . rémunération . nette"
 								/>
 							</>
 						</div>
