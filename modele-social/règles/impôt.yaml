@@ -68,11 +68,12 @@ impôt . méthode de calcul . prélèvement à la source:
 impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
-  somme:
-      - contrat salarié . rémunération . net imposable
-      - dirigeant . indépendant . résultat fiscal
-      - dirigeant . auto-entrepreneur . impôt . revenu imposable
-  abattement: abattement contrat court
+  variations: 
+    - si: dirigeant
+      alors: dirigeant . rémunération . imposable
+    - sinon: 
+        valeur: contrat salarié . rémunération . net imposable      
+        abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
@@ -251,27 +252,6 @@ impôt . taux personnalisé:
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   unité: '%'
 
-revenus net de cotisations:
-  résumé: Avant impôt
-  unité: €/an
-  question: Quel revenu avant impôt voulez-vous toucher ?
-  description: |
-    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  formule:
-    somme:
-      - contrat salarié . rémunération . net
-      - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . auto-entrepreneur . net de cotisations
-
-revenu net après impôt:
-  unité: €/an
-  résumé: Disponible sur votre compte en banque
-  question: Quel revenu voulez-vous toucher ?
-  identifiant court: net-apres-impot
-  description: |
-    Il s'agit du revenu net de charges, cotisations et d'impôts.
-    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  formule: revenus net de cotisations - impôt
 
 # TODO: "foyer fiscal" should be in its own top level namespace, but we put it
 # in the "impôt" namespace to have a better questions ordering
@@ -364,28 +344,29 @@ impôt . foyer fiscal . revenu imposable:
   formule:
     somme:
       - revenu d'activité abattu
-      - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      - valeur: dirigeant . indépendant . résultat fiscal
-        applicable si: entreprise . imposition . IR
+      - applicable si: entreprise . imposition . IR
+        valeur: dirigeant . rémunération . imposable
       - autres revenus imposables
 
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
-  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
-  formule:
-    valeur [ref assiette]:
-      somme:
-        - contrat salarié . rémunération . net imposable
-        - valeur: dirigeant . indépendant . résultat fiscal
-          applicable si: entreprise . imposition . IS
-    abattement: 
-      valeur: 10% * assiette
-      # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
-      # HISTORIQUE 2020: 12627€
-      # 12627€ × (1 + 0,2%)
-      plafond: 12652 €/an
-      # HISTORIQUE 2020: 441€
-      # 441€ × (1 + 0,2%)
-      plancher: 442 €/an
+  description: |
+    Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  valeur:
+    nom: assiette
+    variations:
+      - si: dirigeant = non
+        alors: contrat salarié . rémunération . net imposable
+      - si: entreprise . imposition = 'IS'
+        alors: dirigeant . rémunération . imposable
+  abattement: 
+    valeur: 10% * assiette
+    # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
+    # HISTORIQUE 2020: 12627€
+    # 12627€ × (1 + 0,2%)
+    plafond: 12652 €/an
+    # HISTORIQUE 2020: 441€
+    # 441€ × (1 + 0,2%)
+    plancher: 442 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 

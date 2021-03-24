@@ -49,20 +49,12 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
-				{simulateur == 'indépendant' && (
-					<Trans i18nKey="simulateurs.warning.indépendant">
-						<li>
-							Le simulateur ne prend pas en compte les régimes micro-BNC et
-							micro-BIC.
-						</li>
-					</Trans>
-				)}
+
 				{simulateur == 'profession-libérale' && (
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<li>
 							Ce simulateur est à destination des professions libérales en BNC.
-							Il ne prend pas en compte les sociétés d'exercice libéral ni le
-							régime micro-BNC.
+							Il ne prend pas en compte les sociétés d'exercice libéral.
 						</li>
 					</Trans>
 				)}

@@ -1,17 +1,10 @@
 objectifs:
-  - icône: 👩‍💼
-    nom: Mon revenu
-    objectifs:
-      - contrat salarié . rémunération . total
-      - contrat salarié . cotisations
-      - contrat salarié . rémunération . net
-      - impôt
-      - contrat salarié . rémunération . net après impôt
-  - icône: 🏢
-    nom: Mon entreprise
-    objectifs:
-      - entreprise . charges
-      - entreprise . chiffre d'affaires minimum
+  - dirigeant . rémunération . totale  
+  - contrat salarié . cotisations
+  - contrat salarié . rémunération . net
+  - impôt
+  - contrat salarié . rémunération . net après impôt
+
 
 questions:
   à l'affiche:
@@ -22,6 +15,7 @@ questions:
     
   liste noire:
     - entreprise . charges
+    - entreprise . imposition
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
   non prioritaires:

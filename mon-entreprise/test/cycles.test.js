@@ -26,7 +26,7 @@ describe('DottedNames graph', () => {
 			.to.be.an('array')
 			.of.length(1)
 
-		// 	Cycle doesn't occur in real life. Will fix in next PR.
+		// 	Cycle doesn't occur in real life.
 		// ⬇️  entreprise . chiffre d'affaires
 		// ⬇️  dirigeant . rémunération totale
 		// ⬇️  entreprise . chiffre d'affaires

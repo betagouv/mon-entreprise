@@ -70,7 +70,7 @@ export default function AutoEntrepreneur() {
 					<SimulationGoal
 						appear={false}
 						editable={!activitéMixte}
-						dottedName="entreprise . chiffre d'affaires"
+						dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires"
 					/>
 
 					<Condition expression="entreprise . activité . mixte">

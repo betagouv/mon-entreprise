@@ -17,7 +17,13 @@ import { TrackPage } from '../../ATInternetTracking'
 
 const ISConfig = {
 	'unité par défaut': '€/an',
-	situation: {},
+	situation: {
+		'entreprise . imposition': "'IS'",
+		'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
+			'oui',
+		"entreprise . chiffre d'affaires . franchise de TVA dépassée . notification":
+			'non',
+	},
 } as SimulationConfig
 
 export default function ISSimulation() {
@@ -39,7 +45,7 @@ export default function ISSimulation() {
 			<ExerciceDate />
 			<Notifications />
 			<SimulationGoals className="plain">
-				<SimulationGoal dottedName="entreprise . bénéfice" />
+				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
 			</SimulationGoals>
 			<Explanations />
 		</>
@@ -89,7 +95,8 @@ function ExerciceDate() {
 
 function Explanations() {
 	const situation = useSelector(situationSelector)
-	const showResult = situation['entreprise . bénéfice']
+	const showResult =
+		situation['entreprise . imposition . IS . résultat imposable']
 	if (!showResult) {
 		return <TrackPage name="accueil" />
 	}
@@ -111,7 +118,7 @@ function Explanations() {
 				<TrackPage name="simulation terminée" />
 				<strong>
 					<Value
-						expression="entreprise . impôt sur les sociétés"
+						expression="entreprise . imposition . IS . impôt sur les sociétés"
 						displayedUnit="€"
 						className="payslip__total"
 					/>

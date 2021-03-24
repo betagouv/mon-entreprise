@@ -3,16 +3,16 @@ titre: |
 
 objectifs:
   - contrat salarié . rémunération . net
-  - dirigeant . indépendant . revenu net de cotisations
+  - dirigeant . rémunération . nette
   - dirigeant . auto-entrepreneur . net de cotisations
   - protection sociale . retraite
   - protection sociale . retraite . trimestres validés
   - protection sociale . santé . indemnités journalières
 
 questions:
-  liste:
-    - dirigeant . rémunération totale
+  liste noire:
     - entreprise . charges
+  liste:
     - entreprise . activité
 unité par défaut: €/an
 situation:

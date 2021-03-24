@@ -24,7 +24,7 @@ describe('Simulateurs', function () {
 
 			it('should display a result when entering a value in any of the currency input', () => {
 				cy.contains('€/an').click()
-				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type(1000)
 				}
 				cy.get(inputSelector).each((testedInput, i) => {
@@ -45,7 +45,7 @@ describe('Simulateurs', function () {
 				cy.contains('€/an').click()
 				cy.wait(200)
 				cy.get(inputSelector).first().type('{selectall}12000')
-				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type('{selectall}6000')
 				}
 				cy.wait(800)
@@ -54,7 +54,7 @@ describe('Simulateurs', function () {
 					.first()
 					.invoke('val')
 					.should('match', /1[\s]000/)
-				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
 				}
 				cy.contains('€/an').click()

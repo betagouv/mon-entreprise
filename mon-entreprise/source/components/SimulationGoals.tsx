@@ -63,6 +63,7 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	boolean?: boolean
+	alwaysShow?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
 		...rest: Parameters<InputProps['onChange']>
@@ -75,6 +76,7 @@ export function SimulationGoal({
 	small = false,
 	onUpdateSituation,
 	appear = true,
+	alwaysShow = false,
 	editable = true,
 	boolean = false, //TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
@@ -99,10 +101,11 @@ export function SimulationGoal({
 		[dispatch, onUpdateSituation]
 	)
 	if (
-		isNotApplicable === true ||
-		(!(dottedName in situation) &&
-			evaluation.nodeValue === false &&
-			!(dottedName in evaluation.missingVariables))
+		!alwaysShow &&
+		(isNotApplicable === true ||
+			(!(dottedName in situation) &&
+				evaluation.nodeValue === false &&
+				!(dottedName in evaluation.missingVariables)))
 	) {
 		return null
 	}

@@ -2,9 +2,9 @@ objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - dirigeant . indépendant . cotisations et contributions
-  - dirigeant . indépendant . revenu net de cotisations
+  - dirigeant . rémunération . nette
   - impôt
-  - revenu net après impôt
+  - dirigeant . rémunération . nette après impôt
 
 questions:
   liste noire:
