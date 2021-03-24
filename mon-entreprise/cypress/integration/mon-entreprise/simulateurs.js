@@ -55,7 +55,7 @@ describe('Simulateurs', function () {
 					.invoke('val')
 					.should('match', /1[\s]000/)
 				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
-					cy.get(chargeInputSelector).first().invoke('val').should('be', '500')
+					cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
 				}
 				cy.contains('€/an').click()
 			})
@@ -71,7 +71,7 @@ describe('Simulateurs', function () {
 
 			it('should allow to go back to the simulation', function () {
 				cy.contains('← ').click()
-				cy.get(inputSelector).first().invoke('val').should('be', '2 000')
+				cy.get(inputSelector).first().invoke('val').should('eq', '2 000')
 			})
 		})
 	)
@@ -117,7 +117,7 @@ describe('Simulateur salarié mode partagé', () => {
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
 		cy.wait(800)
-		cy.get(brutInputSelector).first().invoke('val').should('be', '1 539')
+		cy.get(brutInputSelector).first().invoke('val').should('eq', '1 539')
 
 		cy.contains('Voir mes paramètres').click()
 		cy.get('span.answerContent').first().contains('CDD')
