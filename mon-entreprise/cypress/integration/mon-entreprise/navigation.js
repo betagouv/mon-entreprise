@@ -12,6 +12,6 @@ describe('Navigation', function () {
 	it('should go back to home when clicking on logo', () => {
 		cy.visit('/documentation/contrat-salarié')
 		cy.get('img[alt^="logo mon-entreprise"]').click()
-		cy.url().should('be', Cypress.baseUrl)
+		cy.url().should('match', new RegExp(`${Cypress.config().baseUrl}/?`))
 	})
 })

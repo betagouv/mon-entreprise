@@ -144,6 +144,12 @@ function FormulairePublicodes() {
 	const isMissingValues = fields.some(
 		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
 	)
+
+	const missingValues = fields
+		.map(({ dottedName }) => dottedName)
+		.filter(
+			(dottedName) => !isEmpty(engine.evaluate(dottedName).missingVariables)
+		)
 	return (
 		<Animate.fromTop key={clearFieldsKey}>
 			{fields.map(
@@ -203,6 +209,7 @@ function FormulairePublicodes() {
 			<Suspense fallback={null}>
 				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />
 			</Suspense>
+			{missingValues.join(' / ')}
 			{!!Object.keys(situation).length && (
 				<div
 					css={`

@@ -91,7 +91,8 @@ describe('Formulaire demande mobilité', function () {
 	})
 	it('should allow to download PDF', () => {
 		cy.contains(
-			'Je certifie l’exactitude des informations communiquées ci-dessus'
+			'Je certifie l’exactitude des informations communiquées ci-dessus',
+			{ timeout: 10000 }
 		).click()
 		cy.contains('Fait à').click()
 		cy.focused().type('Plougastel')
