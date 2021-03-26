@@ -2,9 +2,10 @@
 
 aide déclaration revenu indépendant 2020:
   description: >-
-    Ces règles calculent les montants demandés dans les déclarations sociale et
-    fiscale des indépendants de 2021 sur les revenus 2020
+    Ces règles calculent les montants demandés dans la déclaration de revenu des
+    indépendants de 2021 sur les revenus 2020.
   formule: non
+
 aide déclaration revenu indépendant 2020 . nature de l'activité:
   remplace: entreprise . activité
   question: Quelle est la nature de votre activité ?
@@ -66,7 +67,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
     Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
     caisse spécifique de retraite.
 
-    C'est le cas de toutes les professions libérale non reglementée depuis le
+    C'est le cas de toutes les professions libérale non réglementées depuis le
     1er janvier 2020.
 
   références:
@@ -139,6 +140,7 @@ aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
       - dirigeant . indépendant . cotisations et contributions . cotisations
       - dirigeant . indépendant . conjoint collaborateur . cotisations
       - (- dirigeant . indépendant . cotisations et contributions . exonérations)
+      - (- réduction covid . montant)
 aide déclaration revenu indépendant 2020 . CFP:
   résumé: contribution à la formation professionnelle [D]
   formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
@@ -162,3 +164,209 @@ aide déclaration revenu indépendant 2020 . assiette sociale:
   formule:
     valeur: revenu net fiscal
     abattement: total charges sociales déductible
+
+aide déclaration revenu indépendant 2020 . réduction covid:
+  titre: Réduction de cotisation Covid
+  description: |
+    Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre plusieurs mesures exceptionnelles concernant les cotisations et contributions sociales des travailleurs indépendants affectés par la crise du coronavirus avec :
+
+    - un premier dispositif de réduction des cotisations et contributions sociales prévu par la 3ème loi de finance rectificative (LFR3) pour 2020(1) dans le cadre de la première période d’état d’urgence sanitaire du printemps 2020,
+    - un second dispositif de réduction prévu par la loi de financement de la sécurité sociale (LFSS) pour 2021 (2) dans le cadre de la seconde période d’état d’urgence sanitaire de l’automne 2020.
+  
+  références:
+    (1) Décret n° 2020-1103 du 1er septembre 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042297236/
+    (2) Décret 2021-75 du 27 janvier 2021: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043070140
+
+  question: Remplissez-vous les conditions pour bénéficier de la réduction de cotisations sociales liées à la crise du Covid-19 ?
+  par défaut: non
+
+aide déclaration revenu indépendant 2020 . réduction covid . montant:
+  titre: Réduction de cotisations Covid
+  résumé: intégrée dans le montant des cotisations calculé ci-dessus
+  formule:
+    somme:
+      - printemps 2020
+      - automne 2020
+    plafond:
+      somme:
+        - dirigeant . indépendant . cotisations et contributions . cotisations
+        - dirigeant . indépendant . conjoint collaborateur . cotisations
+        - (- dirigeant . indépendant . cotisations et contributions . exonérations)
+        - (- CFP)
+
+aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020:
+  applicable si: éligible aide printemps 2020
+  formule:
+    variations:
+      - si: secteur d'activité = 'S2'
+        alors: 1800 €/an
+      - sinon: 2400 €/an
+
+aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020:
+  applicable si: éligible aide automne 2020
+  formule: nombre de mois éligibles * 600 €/an/mois éligibles
+
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
+  question: |
+    De quel secteur votre activité principale relève-t'elle ?
+  # Pas d'inéligibilité explicite des PL réglementés à ce dispositif, mais il
+  # apparaît que les métiers concernés (médecins, avocats...) sont incompatibles
+  # avec les secteurs d'activités concernés par l'aide (hôtels, restaurants...)
+  description: |
+    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
+    d'activité de l'établissement. 
+
+    Les hôtels, restaurants, bars, etc. sont dans
+    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
+
+    Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
+    aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
+    d'affaires significative pendant le confinement.
+
+    Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
+    sont éligibles aux aides à condition d'avoir subit une fermeture
+    administrative.
+
+    Les modalités sont précisées sur le site de l'Urssaf.
+  références:
+    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - S1
+        - S1-bis
+        - S2
+  par défaut: non
+
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1:
+  titre: Secteur "1" - tourisme, hôtellerie, restauration
+
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis:
+  titre: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
+
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2:
+  titre: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
+
+aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020:
+  applicable si: secteur d'activité
+  question: Êtes-vous éligibles au dispositif de réduction prévu au titre de la première vague de la crise sanitaire du printemps 2020 ?
+  par défaut: non
+  description: |
+    Les conditions d’éligibilité à la réduction au titre de la première période d’état d’urgence sanitaire du printemps 2020 dépendent de votre secteur d’activité :
+
+    ### Secteur S1
+
+    Activité principale exercée relevant des secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel (Voir liste détaillée des activités relevant du secteur S1).
+    
+    Votre activité doit avoir débuté avant le 1er juillet 2020.
+    
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+
+    ### Secteur S1 bis
+
+    Activité principale exercée dépendant de celles du secteur S1 (Voir liste détaillée des activités relevant du secteur S1 bis) et ayant subi une forte baisse du chiffre d’affaires à savoir :
+
+    -	Soit une baisse de chiffre d’affaires d’au moins 80% durant la période comprise entre le 15 mars et le 15 mai 2020 par rapport à la même période l’année précédente (cas 1) ;
+    ou, par rapport au chiffre d’affaires mensuel moyen de l’année 2019 ramené sur deux mois (cas 2) ;
+    ou, pour les entreprises créées après le 15 mars 2019 et avant le 10 mars 2020, par rapport au montant moyen calculé sur deux mois du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 15 mars 2020 (cas 2 bis).
+
+    -	Soit à une baisse de chiffre d’affaires durant la période comprise entre le 15 mars et le 15 mai 2020 par rapport à la même période l’année précédente qui représente au moins 30 % du chiffre d’affaires de l’année 2019 (cas 3).
+    ou, pour les entreprises créées entre le 1er et le 14 mars 2019, une baisse du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 décembre 2019 ramené sur 12 mois (cas 3 bis).
+
+    Votre activité doit avoir débuté avant le 1er juillet 2020.
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+
+    ### Secteur S2
+
+    Activité principale exercée dans un secteur autre que S1 et S1 bis impliquant l’accueil du public et interrompue en application du décret n° 2020-293 du 23 mars 2020, à l’exclusion des fermetures volontaires.
+
+    Votre activité doit avoir débuté avant le 1er juin 2020.
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+
+
+aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020:
+  applicable si: secteur d'activité
+  question: Êtes-vous éligibles au dispositif de réduction prévu au titre de la première vague de la crise sanitaire de l'automne 2020 ?
+  par défaut: non
+  description: |
+    Les conditions d’éligibilité à la réduction au titre de la seconde période d’état d’urgence sanitaire de l’automne 2020 s’évaluent mois par mois et dépendent de votre secteur d’activité.
+
+    Vous devez également préciser le nombre de mois où vous remplissez les conditions d’éligibilité.
+
+    ### Secteur dit S1
+    Activité principale exercée relevant des secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+
+    Mois concerné | Conditions d'éligibilité
+    --------------|--------------------------
+    Octobre 2020  | Activité exercée dans une zone d’application des mesures de couvre-feu Et avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Activité exercée dans une zone d’application des mesures de couvre-feu Et avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+    Novembre 2020 à Mars 2021 | Avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+
+    _(ca) Condition de baisse de chiffre d'affaire:_
+
+    _Vous devez avoir subi une baisse d’au moins 50% du chiffre d’affaires mensuel par rapport au même mois de l’année précédente, ou si vous le souhaitez par rapport au chiffre d’affaires mensuel moyen de l’année 2019, ou, pour les entreprises créées en 2020, par rapport au montant mensuel moyen du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 août 2020._
+
+    _Cette condition est également satisfaite lorsque la baisse de chiffre d’affaires mensuel par rapport à la même période de l’année précédente représente au moins 15% du chiffre d’affaires de l’année 2019, ou, pour les entreprises créées en 2019, par rapport au chiffre d’affaires de l’année 2019 ramené sur 12 mois._
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 17 octobre 2020.
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
+
+    ### Secteur dit S1
+    Activité principale exercée dépendant de celles du secteur S1 
+    
+    Mois concerné | Conditions d'éligibilité
+    --------------|--------------------------
+    Octobre 2020  | Avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+
+    _(ca) Condition de baisse de chiffre d'affaire:_
+
+    _Vous devez avoir subi une baisse d’au moins 50% du chiffre d’affaires mensuel par rapport au même mois de l’année précédente, ou si vous le souhaitez par rapport au chiffre d’affaires mensuel moyen de l’année 2019, ou, pour les entreprises créées en 2020, par rapport au montant mensuel moyen du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 août 2020._
+
+    _Cette condition est également satisfaite lorsque la baisse de chiffre d’affaires mensuel par rapport à la même période de l’année précédente représente au moins 15% du chiffre d’affaires de l’année 2019, ou, pour les entreprises créées en 2019, par rapport au chiffre d’affaires de l’année 2019 ramené sur 12 mois._
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 17 octobre 2020.
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
+
+    ### Secteur dit S2
+    Activité principale exercée dans un secteur autre que S1 et S1 bis
+
+    - **Mois concerné** : novembre 2020, février 2021, mars 2021
+    - **Conditions d'éligibilité**: Avoir fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de l’activité, en application du décret n° 2020-1310 du 29 octobre 2020 
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 30 octobre 2020.
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction.
+
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles:
+  formule:
+    somme:
+      - S1
+      - S2
+    arrondi: oui
+    plafond:
+      variations:
+        - si: secteur d'activité = 'S2'
+          alors: 3 mois éligibles
+        - sinon: 6 mois éligibles
+
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1:
+  applicable si: 
+    toutes ces conditions:
+      - éligible aide automne 2020
+      - secteur d'activité = 'S1'
+  question: |
+    Précisez le nombre de mois entre octobre 2020* et mars 2021 durant lesquels vous avez subi une interdiction d’accueil du public ou une baisse de 50% de votre chiffre d’affaires
+  description: |
+    * Pour octobre 2020, vous activité devait également être située dans une zone d’application des mesures de couvre-feu
+  unité: mois éligibles
+
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2:
+  applicable si: 
+    toutes ces conditions:
+      - éligible aide automne 2020
+      - secteur d'activité = 'S2'
+  question: |
+    Précisez le nombre de mois (novembre 2020 et/ou février 2021 et/ou mars 2021) durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité
+  unité: mois éligibles

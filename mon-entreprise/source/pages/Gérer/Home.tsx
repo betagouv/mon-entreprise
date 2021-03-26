@@ -99,7 +99,7 @@ export default function Gérer() {
 											<p className="ui__ notice">
 												Calculez facilement les montants des charges sociales à
 												reporter dans votre déclaration de revenu au titre de
-												2019
+												2020
 											</p>
 										</Trans>
 										<div className="ui__ small simple button hide-mobile">
