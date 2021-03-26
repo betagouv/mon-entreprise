@@ -598,7 +598,7 @@ export function getSimulatorsData({
 			meta: {
 				description: t(
 					'pages.gérer.aide-déclaration-indépendant.meta.description',
-					'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2019.'
+					'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2020.'
 				),
 				title: t(
 					'pages.gérer.aide-déclaration-indépendant.meta.title',
@@ -612,7 +612,7 @@ export function getSimulatorsData({
 			),
 			title: t(
 				'pages.gérer.aide-déclaration-indépendant.title',
-				"Aide à la déclaration de revenus au titre de l'année 2019"
+				"Aide à la déclaration de revenus au titre de l'année 2020"
 			),
 		},
 		'demande-mobilité': {

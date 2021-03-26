@@ -53,13 +53,10 @@ export default function AideDéclarationIndépendant() {
 		<div>
 			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
-				<h1>Aide à la déclaration de revenus au titre de l'année 2020</h1>
 				<p>
-					Cet outil est une aide aux déclarations fiscale (revenu) et sociale (
-					<abbr title="Déclaration Sociale des Indépendants">DSI</abbr>) à
-					destination des travailleurs indépendants. Il vous permet de connaître
-					le montant des charges sociales déductibles à partir de votre résultat
-					net fiscal.
+					Cet outil est une aide aux déclarations de revenus à destination des
+					travailleurs indépendants. Il vous permet de connaître le montant des
+					charges sociales déductibles à partir de votre résultat net fiscal.
 				</p>
 				<p>
 					Vous restez entièrement responsable d'éventuelles omissions ou
@@ -146,6 +143,8 @@ export default function AideDéclarationIndépendant() {
 								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 							</Condition>
+
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
 
 							<h2>
 								<Trans>Situation personnelle</Trans>
