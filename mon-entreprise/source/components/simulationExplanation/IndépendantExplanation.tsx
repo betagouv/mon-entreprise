@@ -17,7 +17,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import AidesCovid from './AidesCovid'
 import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
@@ -29,7 +28,6 @@ export default function IndépendantExplanation() {
 			<Condition expression="entreprise . activité . libérale réglementée">
 				<PLExplanation />
 			</Condition>
-			<AidesCovid aidesRule="dirigeant . indépendant . cotisations et contributions . aides covid 2020" />
 			<Condition expression="revenu net après impôt > 0 €/an">
 				<section>
 					<h2>Répartition de la rémunération totale</h2>

@@ -534,38 +534,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
         - taux: 0%
           plafond: 100%
 
-dirigeant . indépendant . cotisations et contributions . aides covid 2020:
-  description: |
-    Le gouvernement et les organismes de sécurité sociale ont mis en place des
-    dispositifs de réduction de cotisation pour les indépendants impactés par la
-    crise du Coronavirus.
-  formule:
-    somme:
-      - aide indépendant covid 2020
-      - PL . CIPAV . retraite complémentaire . réduction COVID . montant
-
-dirigeant . indépendant . cotisations et contributions . aide indépendant covid 2020:
-  description: |
-    Le montant de la réduction dépend du secteur d'activité dont vous relevez.
-    Il est plafonné aux montant des cotisations sociales définitives de 2020,
-    hors CFP (contribution à la formation professionnelle) et CURPS
-    (contribution aux unions régionales des professionnels de santé).
-  formule:
-    variations:
-      - si:
-          une de ces conditions:
-            - établissement . secteur d'activité covid = 'S1'
-            - établissement . secteur d'activité covid = 'S1-bis'
-        alors: 2400 €/an
-      - si: établissement . secteur d'activité covid = 'S2'
-        alors: 1800 €/an
-    plafond:
-      somme:
-        - cotisations
-        - CSG et CRDS
-  références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
-
 dirigeant . indépendant . revenu net de cotisations:
   identifiant court: independant-net
   synonymes:
@@ -791,15 +759,12 @@ dirigeant . indépendant . cotisations et contributions:
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires.
 
-    Ce montant inclut la réduction de cotisation "covid" en 2020.
-
   formule:
     somme:
       - cotisations
       - CSG et CRDS
       - contributions spéciales
       - formation professionnelle
-      - (- aide indépendant covid 2020)
   note: |
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
