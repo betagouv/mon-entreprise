@@ -1,7 +1,6 @@
 import { DistributionBranch } from 'Components/Distribution'
 import Value, { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
-import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
@@ -101,7 +100,6 @@ function CotisationsResult() {
 				</ResultLine>
 			</div>
 			<br />
-			<AidesCovid aidesRule="artiste-auteur . réduction de cotisations covid 2020" />
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />
 			</Condition>

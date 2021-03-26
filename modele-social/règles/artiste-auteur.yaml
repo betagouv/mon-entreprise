@@ -129,39 +129,3 @@ artiste-auteur . cotisations . formation professionnelle:
     produit:
       assiette: assiette
       taux: 0.35%
-
-artiste-auteur . cotisations . assiette 2019:
-  description: |
-    Nous calculons l'aide covid sur la base d'une assiette des cotisations 2019
-    égale à l'assiette 2020.
-  par défaut: cotisations . assiette
-
-artiste-auteur . réduction de cotisations covid 2020:
-  description: |
-    Afin de tenir compte de l'impact de la crise du Covid-19 le gouvernement a
-    mis en place une prise en charge des cotisations sociales des
-    artistes-auteurs dues pour 2020 pouvant aller jusqu'à 2 000€.
-
-    Cette aide est calculée à partir de l'assiette des cotisations sociales de
-    2019.
-
-    La prise en charge est automatique et vous n'avez pas de démarche a
-    effectuer. Vous bénéficierez de cette aide après la déclaration annuelle de
-    revenus 2020, soit au second trimestre 2021.
-  applicable si:
-    toutes ces conditions:
-      - période . fin d'année = 31/12/2020
-      - cotisations . assiette >= 3000 €/an
-  formule:
-    # TODO: c'est inférieur ou égal ici
-    grille:
-      assiette: cotisations . assiette 2019
-      tranches:
-        - montant: 500 €/an
-          plafond: 800 heures/an * SMIC horaire
-        - montant: 1000 €/an
-          plafond: 2000 heures/an * SMIC horaire
-        - montant: 2000 €/an
-    plafond: cotisations
-  références:
-    Infographie Urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5761-Infographie-Aide-AA-WEB.pdf

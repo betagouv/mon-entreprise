@@ -14,7 +14,6 @@ import { default as React, useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import AidesCovid from '../../components/simulationExplanation/AidesCovid'
 
 const proportions = {
 	'entreprise . activité . mixte . proportions . service BIC':
@@ -163,8 +162,6 @@ function Explanation() {
 	const { palettes } = useContext(ThemeColorsContext)
 	return (
 		<section>
-			<AidesCovid />
-			<br />
 			<h2>
 				<Trans>Répartition du chiffre d'affaires</Trans>
 			</h2>
