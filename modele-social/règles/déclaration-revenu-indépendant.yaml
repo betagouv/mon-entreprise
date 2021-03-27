@@ -355,7 +355,9 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
   applicable si: 
     toutes ces conditions:
       - éligible aide automne 2020
-      - secteur d'activité = 'S1'
+      - une de ces conditions:
+        - secteur d'activité = 'S1'
+        - secteur d'activité = 'S1-bis'
   question: |
     Précisez le nombre de mois entre octobre 2020* et mars 2021 durant lesquels vous avez subi une interdiction d’accueil du public ou une baisse de 50% de votre chiffre d’affaires
   description: |

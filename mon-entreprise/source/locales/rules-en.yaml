@@ -10,11 +10,10 @@ SMIC temps plein . net imposable:
   titre.en: '[automatic] minimum net taxable income'
   titre.fr: SMIC net imposable
 aide déclaration revenu indépendant 2020:
-  description.en: '[automatic] These rules calculate the amounts claimed in the
-    2021 social and tax returns of self-employed persons on 2020 income'
-  description.fr:
-    Ces règles calculent les montants demandés dans les déclarations
-    sociale et fiscale des indépendants de 2021 sur les revenus 2020
+  description.en: '[automatic] These rules calculate the amounts claimed on the
+    2021 self-employed tax return on 2020 income.'
+  description.fr: Ces règles calculent les montants demandés dans la déclaration
+    de revenu des indépendants de 2021 sur les revenus 2020.
   titre.en: '[automatic] assistance declaration independent income 2020'
   titre.fr: aide déclaration revenu indépendant 2020
 aide déclaration revenu indépendant 2020 . ACRE:
@@ -169,19 +168,19 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
 aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   description.en: >
     [automatic] These are the "intellectual" professions, which are not attached
-    to any
+    to any specific
 
     specific pension fund.
 
 
-    This has been the case for all unregulated professions since the
+    This is the case for all unregulated liberal professions since
 
-    1 January 2020.
+    January 1, 2020.
   description.fr: |
     Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
     caisse spécifique de retraite.
 
-    C'est le cas de toutes les professions libérale non reglementée depuis le
+    C'est le cas de toutes les professions libérale non réglementées depuis le
     1er janvier 2020.
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
@@ -197,6 +196,407 @@ aide déclaration revenu indépendant 2020 . revenu net fiscal:
   résumé.fr: avant déduction des charges sociales et exonérations fiscales [A]
   titre.en: '[automatic] net taxable income'
   titre.fr: revenu net fiscal
+aide déclaration revenu indépendant 2020 . réduction covid:
+  description.en: >
+    [automatic] Within the framework of the health crisis, the Government has
+    implemented several exceptional measures concerning the social contributions
+    of self-employed workers affected by the coronavirus crisis, including
+
+
+    - a first system of reduction of social security contributions provided for by the 3rd rectifying finance law (LFR3) for 2020(1) within the framework of the first period of health emergency in spring 2020,
+
+    - a second reduction scheme provided for in the Social Security Financing Act (LFSS) for 2021 (2) as part of the second state of health emergency in the autumn of 2020.
+  description.fr: >
+    Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre
+    plusieurs mesures exceptionnelles concernant les cotisations et
+    contributions sociales des travailleurs indépendants affectés par la crise
+    du coronavirus avec :
+
+
+    - un premier dispositif de réduction des cotisations et contributions sociales prévu par la 3ème loi de finance rectificative (LFR3) pour 2020(1) dans le cadre de la première période d’état d’urgence sanitaire du printemps 2020,
+
+    - un second dispositif de réduction prévu par la loi de financement de la sécurité sociale (LFSS) pour 2021 (2) dans le cadre de la seconde période d’état d’urgence sanitaire de l’automne 2020.
+  question.en:
+    '[automatic] Do you qualify for the Covid-19 crisis-related payroll
+    tax reduction?'
+  question.fr: Remplissez-vous les conditions pour bénéficier de la réduction de
+    cotisations sociales liées à la crise du Covid-19 ?
+  titre.en: '[automatic] Covid contribution reduction'
+  titre.fr: Réduction de cotisation Covid
+aide déclaration revenu indépendant 2020 . réduction covid . montant:
+  résumé.en: '[automatic] included in the amount of contributions calculated above'
+  résumé.fr: intégrée dans le montant des cotisations calculé ci-dessus
+  titre.en: '[automatic] Covid contribution reduction'
+  titre.fr: Réduction de cotisations Covid
+? aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020
+: titre.en: '[automatic] Autumn 2020'
+  titre.fr: automne 2020
+? aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020
+: titre.en: '[automatic] Spring 2020'
+  titre.fr: printemps 2020
+? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles
+: titre.en: '[automatic] number of eligible months'
+  titre.fr: nombre de mois éligibles
+? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1
+: description.en: |
+    [automatic] For October 2020, you must also be located in a curfew zone
+  description.fr: >
+    * Pour octobre 2020, vous activité devait également être située dans une
+    zone d’application des mesures de couvre-feu
+  question.en: >
+    [automatic] Specify the number of months between October 2020* and March
+    2021 during which you were banned from receiving the public or experienced a
+    50% drop in turnover
+  question.fr: >
+    Précisez le nombre de mois entre octobre 2020* et mars 2021 durant lesquels
+    vous avez subi une interdiction d’accueil du public ou une baisse de 50% de
+    votre chiffre d’affaires
+  titre.en: '[automatic] S1'
+  titre.fr: S1
+? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2
+: question.en: >
+    [automatic] Specify the number of months (November 2020 and/or February 2021
+    and/or March 2021) during which you were subject to a prohibition measure
+    that predominantly affects the continuation of your business
+  question.fr: >
+    Précisez le nombre de mois (novembre 2020 et/ou février 2021 et/ou mars
+    2021) durant lesquels vous avez fait l’objet d’une mesure d’interdiction
+    affectant de manière prépondérante la poursuite de votre activité
+  titre.en: '[automatic] S2'
+  titre.fr: S2
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
+  description.en: >
+    [automatic] The conditions of eligibility for "covid" aid depend on the
+    sector of activity
+
+    of activity of the establishment. 
+
+
+    Hotels, restaurants, bars, etc. are in the so-called
+
+    are in the so-called "S1" category and are entitled to the aid without any other conditions.
+
+
+    Sectors whose activities depend on those of "sector 1" can also benefit from aid
+
+    can also benefit from aid provided that they have had a significant drop in turnover during
+
+    during the period of confinement.
+
+
+    Finally, the sectors known as "S2" are those involving the reception of the public, and
+
+    are eligible for aid provided that they have undergone an administrative
+
+    administrative closure.
+
+
+    The procedures are specified on the Urssaf website.
+  description.fr: |
+    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
+    d'activité de l'établissement. 
+
+    Les hôtels, restaurants, bars, etc. sont dans
+    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
+
+    Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
+    aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
+    d'affaires significative pendant le confinement.
+
+    Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
+    sont éligibles aux aides à condition d'avoir subit une fermeture
+    administrative.
+
+    Les modalités sont précisées sur le site de l'Urssaf.
+  question.en: |
+    [automatic] In which sector is your main activity?
+  question.fr: |
+    De quel secteur votre activité principale relève-t'elle ?
+  titre.en: '[automatic] line of business'
+  titre.fr: secteur d'activité
+? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1
+: titre.en: '[automatic] Sector "1" - tourism, hotels, restaurants'
+  titre.fr: Secteur "1" - tourisme, hôtellerie, restauration
+? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis
+: titre.en: '[automatic] Sector "1a" - whose activity depends on that of sectors 1'
+  titre.fr: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
+? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2
+: titre.en: '[automatic] Sector "2" - activity involving the reception of the
+    public which has been interrupted'
+  titre.fr: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
+? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
+: description.en: >
+    [automatic] Eligibility for the reduction under the second fall 2020 health
+    emergency period is assessed month by month and depends on your industry.
+
+
+    You must also specify the number of months in which you meet the eligibility requirements.
+
+
+    Sector known as S1
+
+    Main activity in the tourism, hotel, restaurant, sports, culture, air transport and events sectors
+
+
+    Month concerned | Conditions of eligibility
+
+    --------------|--------------------------
+
+    October 2020 | Activity carried out in an area where curfew measures apply And have been subject to a measure prohibiting the reception of the public **OR** Activity carried out in an area where curfew measures apply And have suffered a significant drop in monthly turnover(ca)
+
+    November 2020 to March 2021 | To have been subject to a measure of prohibition of reception of the public **OR** To have undergone a strong fall of the monthly sales (ca)
+
+
+    Condition of decrease in turnover:_
+
+
+    You must have suffered a drop in monthly turnover of at least 50% compared to the same month of the previous year, or if you wish, compared to the average monthly turnover of the year 2019, or, for companies created in 2020, compared to the average monthly turnover achieved between the date of creation of the company and August 31, 2020.
+
+
+    This condition is also met when the decrease in monthly turnover compared to the same period of the previous year represents at least 15% of the turnover of the year 2019, or, for companies created in 2019, compared to the turnover of the year 2019 over 12 months.
+
+
+    If you have ceased your activity, the cessation must be after or equal to 17 October 2020.
+
+
+    Good to know: The activities of delivery, withdrawal of order or takeaway sales are not taken into account to assess compliance with the condition of prohibition of reception of the public.
+
+
+    Sector known as S1
+
+    Main activity carried out depending on those of sector S1 
+
+
+    Month concerned | Conditions of eligibility
+
+    --------------|--------------------------
+
+    October 2020 | Have been subject to a measure of prohibition of reception of the public **OR** Have undergone a significant drop in monthly turnover(ca)
+
+
+    Condition of decrease in turnover:_
+
+
+    You must have suffered a drop in monthly turnover of at least 50% compared to the same month of the previous year, or if you wish, compared to the average monthly turnover of the year 2019, or, for companies created in 2020, compared to the average monthly turnover achieved between the date of creation of the company and August 31, 2020.
+
+
+    This condition is also met when the decrease in monthly turnover compared to the same period of the previous year represents at least 15% of the turnover of the year 2019, or, for companies created in 2019, compared to the turnover of the year 2019 over 12 months.
+
+
+    If you have ceased your activity, the cessation must be after or equal to 17 October 2020.
+
+
+    Good to know: The activities of delivery, withdrawal of order or takeaway sales are not taken into account to assess compliance with the condition of prohibition of reception of the public.
+
+
+    Sector known as S2
+
+    Main activity carried out in a sector other than S1 and S1 bis
+
+
+    - Month concerned** : November 2020, February 2021, March 2021
+
+    - Conditions of eligibility**: To have been the subject of a prohibition measure that predominantly affects the pursuit of the activity, pursuant to Decree no. 2020-1310 of 29 October 2020 
+
+
+    If you have ceased your activity, the cessation must be after or equal to 30 October 2020.
+
+
+    Good to know: Delivery activities, order collection or takeaway sales are not taken into account to assess compliance with the prohibition condition.
+  description.fr: >
+    Les conditions d’éligibilité à la réduction au titre de la seconde période
+    d’état d’urgence sanitaire de l’automne 2020 s’évaluent mois par mois et
+    dépendent de votre secteur d’activité.
+
+
+    Vous devez également préciser le nombre de mois où vous remplissez les conditions d’éligibilité.
+
+
+    ### Secteur dit S1
+
+    Activité principale exercée relevant des secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+
+
+    Mois concerné | Conditions d'éligibilité
+
+    --------------|--------------------------
+
+    Octobre 2020  | Activité exercée dans une zone d’application des mesures de couvre-feu Et avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Activité exercée dans une zone d’application des mesures de couvre-feu Et avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+
+    Novembre 2020 à Mars 2021 | Avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+
+
+    _(ca) Condition de baisse de chiffre d'affaire:_
+
+
+    _Vous devez avoir subi une baisse d’au moins 50% du chiffre d’affaires mensuel par rapport au même mois de l’année précédente, ou si vous le souhaitez par rapport au chiffre d’affaires mensuel moyen de l’année 2019, ou, pour les entreprises créées en 2020, par rapport au montant mensuel moyen du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 août 2020._
+
+
+    _Cette condition est également satisfaite lorsque la baisse de chiffre d’affaires mensuel par rapport à la même période de l’année précédente représente au moins 15% du chiffre d’affaires de l’année 2019, ou, pour les entreprises créées en 2019, par rapport au chiffre d’affaires de l’année 2019 ramené sur 12 mois._
+
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 17 octobre 2020.
+
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
+
+
+    ### Secteur dit S1
+
+    Activité principale exercée dépendant de celles du secteur S1 
+
+
+    Mois concerné | Conditions d'éligibilité
+
+    --------------|--------------------------
+
+    Octobre 2020  | Avoir fait l’objet d’une mesure d’interdiction d’accueil du public **OU** Avoir subi une forte baisse du chiffre d’affaires mensuel(ca)
+
+
+    _(ca) Condition de baisse de chiffre d'affaire:_
+
+
+    _Vous devez avoir subi une baisse d’au moins 50% du chiffre d’affaires mensuel par rapport au même mois de l’année précédente, ou si vous le souhaitez par rapport au chiffre d’affaires mensuel moyen de l’année 2019, ou, pour les entreprises créées en 2020, par rapport au montant mensuel moyen du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 août 2020._
+
+
+    _Cette condition est également satisfaite lorsque la baisse de chiffre d’affaires mensuel par rapport à la même période de l’année précédente représente au moins 15% du chiffre d’affaires de l’année 2019, ou, pour les entreprises créées en 2019, par rapport au chiffre d’affaires de l’année 2019 ramené sur 12 mois._
+
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 17 octobre 2020.
+
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
+
+
+    ### Secteur dit S2
+
+    Activité principale exercée dans un secteur autre que S1 et S1 bis
+
+
+    - **Mois concerné** : novembre 2020, février 2021, mars 2021
+
+    - **Conditions d'éligibilité**: Avoir fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de l’activité, en application du décret n° 2020-1310 du 29 octobre 2020 
+
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 30 octobre 2020.
+
+
+    Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction.
+  question.en: '[automatic] Are you eligible for the first wave of the fall 2020
+    health crisis reduction?'
+  question.fr:
+    Êtes-vous éligibles au dispositif de réduction prévu au titre de la
+    première vague de la crise sanitaire de l'automne 2020 ?
+  titre.en: '[automatic] eligible for aid autumn 2020'
+  titre.fr: éligible aide automne 2020
+? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020
+: description.en: >
+    [automatic] Eligibility requirements for the reduction under the first
+    Spring 2020 State of Health Emergency period depend on your industry:
+
+
+    ### Sector S1
+
+
+    Main activity in the tourism, hotel, restaurant, sports, culture, air transport and events sectors (see detailed list of activities in sector S1).
+
+
+    Your activity must have started before 1 July 2020.
+
+
+    If you have ceased your activity, the cessation must be after or on 15 March 2020.
+
+
+    Sector S1 bis
+
+
+    Main activity carried out depending on those of sector S1 (See detailed list of activities falling under sector S1 bis) and having suffered a sharp drop in turnover, namely :
+
+
+    - Either a drop in turnover of at least 80% during the period between 15 March and 15 May 2020 compared to the same period the previous year (case 1);
+
+    or, in relation to the average monthly turnover of the year 2019 reduced over two months (case 2);
+
+    or, for companies created after 15 March 2019 and before 10 March 2020, in relation to the average turnover over two months between the date of creation of the company and 15 March 2020 (case 2 bis).
+
+
+    - Or a drop in turnover during the period between 15 March and 15 May 2020 compared to the same period the previous year that represents at least 30% of the turnover for the year 2019 (case 3).
+
+    or, for companies created between 1 and 14 March 2019, a drop in turnover between the date of creation of the company and 31 December 2019 over 12 months (case 3 bis).
+
+
+    Your activity must have started before 1 July 2020.
+
+    If you have ceased your activity, the cessation must be after or equal to 15 March 2020.
+
+
+    Sector S2
+
+
+    Main activity carried out in a sector other than S1 and S1 bis involving the reception of the public and interrupted in application of decree n° 2020-293 of 23 March 2020, excluding voluntary closures.
+
+
+    Your activity must have started before 1 June 2020.
+
+    If you have ceased your activity, the cessation must be after or equal to 15 March 2020.
+  description.fr: >
+    Les conditions d’éligibilité à la réduction au titre de la première période
+    d’état d’urgence sanitaire du printemps 2020 dépendent de votre secteur
+    d’activité :
+
+
+    ### Secteur S1
+
+
+    Activité principale exercée relevant des secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel (Voir liste détaillée des activités relevant du secteur S1).
+
+
+    Votre activité doit avoir débuté avant le 1er juillet 2020.
+
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+
+
+    ### Secteur S1 bis
+
+
+    Activité principale exercée dépendant de celles du secteur S1 (Voir liste détaillée des activités relevant du secteur S1 bis) et ayant subi une forte baisse du chiffre d’affaires à savoir :
+
+
+    -	Soit une baisse de chiffre d’affaires d’au moins 80% durant la période comprise entre le 15 mars et le 15 mai 2020 par rapport à la même période l’année précédente (cas 1) ;
+
+    ou, par rapport au chiffre d’affaires mensuel moyen de l’année 2019 ramené sur deux mois (cas 2) ;
+
+    ou, pour les entreprises créées après le 15 mars 2019 et avant le 10 mars 2020, par rapport au montant moyen calculé sur deux mois du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 15 mars 2020 (cas 2 bis).
+
+
+    -	Soit à une baisse de chiffre d’affaires durant la période comprise entre le 15 mars et le 15 mai 2020 par rapport à la même période l’année précédente qui représente au moins 30 % du chiffre d’affaires de l’année 2019 (cas 3).
+
+    ou, pour les entreprises créées entre le 1er et le 14 mars 2019, une baisse du chiffre d’affaires réalisé entre la date de création de l’entreprise et le 31 décembre 2019 ramené sur 12 mois (cas 3 bis).
+
+
+    Votre activité doit avoir débuté avant le 1er juillet 2020.
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+
+
+    ### Secteur S2
+
+
+    Activité principale exercée dans un secteur autre que S1 et S1 bis impliquant l’accueil du public et interrompue en application du décret n° 2020-293 du 23 mars 2020, à l’exclusion des fermetures volontaires.
+
+
+    Votre activité doit avoir débuté avant le 1er juin 2020.
+
+    Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
+  question.en:
+    '[automatic] Are you eligible for the first wave of the Spring 2020
+    health crisis reduction scheme?'
+  question.fr:
+    Êtes-vous éligibles au dispositif de réduction prévu au titre de la
+    première vague de la crise sanitaire du printemps 2020 ?
+  titre.en: '[automatic] eligible for aid spring 2020'
+  titre.fr: éligible aide printemps 2020
 aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   description.en:
     '[automatic] Amount to be reported in Item 252 of Form 2033-B-SD
@@ -243,17 +643,6 @@ artiste-auteur . cotisations . assiette:
     catégories.
   titre.en: base
   titre.fr: assiette
-artiste-auteur . cotisations . assiette 2019:
-  description.en: >
-    [automatic] We calculate the covid aid on the basis of a contribution base
-    2019
-
-    equal to the 2020 plate.
-  description.fr: |
-    Nous calculons l'aide covid sur la base d'une assiette des cotisations 2019
-    égale à l'assiette 2020.
-  titre.en: '[automatic] plate 2019'
-  titre.fr: assiette 2019
 artiste-auteur . cotisations . assiette surcotisation:
   titre.en: over-contribution base
   titre.fr: assiette surcotisation
@@ -317,39 +706,6 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
-artiste-auteur . réduction de cotisations covid 2020:
-  description.en: >
-    [automatic] In order to take into account the impact of the Covid-19 crisis
-    the government has
-
-    set up a system for the payment of social security contributions of the
-
-    artists-authors due by 2020 up to 2 000€.
-
-
-    This aid is calculated on the basis of the social security contribution base of
-
-    2019.
-
-
-    The support is automatic and you don't have to take any steps to
-
-    to be carried out. You will benefit from this aid after the annual declaration of
-
-    2020 revenues, i.e. in the second quarter of 2021.
-  description.fr: |
-    Afin de tenir compte de l'impact de la crise du Covid-19 le gouvernement a
-    mis en place une prise en charge des cotisations sociales des
-    artistes-auteurs dues pour 2020 pouvant aller jusqu'à 2 000€.
-
-    Cette aide est calculée à partir de l'assiette des cotisations sociales de
-    2019.
-
-    La prise en charge est automatique et vous n'avez pas de démarche a
-    effectuer. Vous bénéficierez de cette aide après la déclaration annuelle de
-    revenus 2020, soit au second trimestre 2021.
-  titre.en: '[automatic] covid 2020 contribution reduction'
-  titre.fr: réduction de cotisations covid 2020
 chômage partiel:
   titre.en: '[automatic] short-time working'
   titre.fr: chômage partiel
@@ -5692,18 +6048,13 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
   titre.fr: plafond
 dirigeant . indépendant . cotisations et contributions:
   description.en: >
-    [automatic] This is the total amount owed by the self-employed person in
-    respect of contributions and
+    [automatic] This is the total amount owed by the self-employed person for
+    compulsory contributions and
 
-    mandatory contributions.
-
-
-    This amount includes the "covid" contribution reduction in 2020.
+    contributions.
   description.fr: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires.
-
-    Ce montant inclut la réduction de cotisation "covid" en 2020.
   note.en: |
     [automatic] Unlike contributions, contributions are not reintroduced
     for the calculation of the CSG/CRDS. They also do not benefit from the
@@ -5755,30 +6106,6 @@ dirigeant . indépendant . cotisations et contributions . PCV:
     conventionnel.
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
-? dirigeant . indépendant . cotisations et contributions . aide indépendant covid 2020
-: description.en: |
-    [automatic] The amount of the reduction depends on your industry.
-    It is capped at the final social security contributions for 2020,
-    excluding CFP (contribution to vocational training) and CURPS
-    (contribution to regional unions of health professionals).
-  description.fr: |
-    Le montant de la réduction dépend du secteur d'activité dont vous relevez.
-    Il est plafonné aux montant des cotisations sociales définitives de 2020,
-    hors CFP (contribution à la formation professionnelle) et CURPS
-    (contribution aux unions régionales des professionnels de santé).
-  titre.en: '[automatic] independent aid covid 2020'
-  titre.fr: aide indépendant covid 2020
-dirigeant . indépendant . cotisations et contributions . aides covid 2020:
-  description.en: |
-    [automatic] The government and social security agencies have established
-    contribution reduction schemes for self-employed persons affected by the
-    Coronavirus crisis.
-  description.fr: |
-    Le gouvernement et les organismes de sécurité sociale ont mis en place des
-    dispositifs de réduction de cotisation pour les indépendants impactés par la
-    crise du Coronavirus.
-  titre.en: '[automatic] covid 2020 aid'
-  titre.fr: aides covid 2020
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   titre.en: '[automatic] child benefit'
   titre.fr: allocations familiales
@@ -7782,86 +8109,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . localisation . outre-mer . Guadeloupe Réunion Martinique:
   titre.en: '[automatic] Guadeloupe Reunion Martinique'
   titre.fr: Guadeloupe Réunion Martinique
-établissement . secteur d'activité covid:
-  description.en: >
-    [automatic] Eligibility conditions for covid aid depend on the sector
-
-    of the establishment's activity. 
-
-
-    Hotels, restaurants, bars, etc. are in
-
-    the so-called "S1" category and are entitled to aid without further conditions.
-
-
-    Sectors whose activity depends on those of "sector 1" may
-
-    also benefit from the aid on condition that they have had a fall in turnover
-
-    of significant business during lockdown.
-
-
-    Finally, the so-called "S2" sectors are those involving the reception of the public, and
-
-    are eligible for aid on condition that they have been closed down
-
-    administrative.
-
-
-    The terms and conditions are specified on the Urssaf website.
-  description.fr: |
-    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
-    d'activité de l'établissement. 
-
-    Les hôtels, restaurants, bars, etc. sont dans
-    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
-
-    Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
-    aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
-    d'affaires significative pendant le confinement.
-
-    Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
-    sont éligibles aux aides à condition d'avoir subit une fermeture
-    administrative.
-
-    Les modalités sont précisées sur le site de l'Urssaf.
-  question.en: >
-    [automatic] covid" reduction device: is your main activity in one of the
-    following sectors?
-  question.fr: >
-    Dispositif de réduction "covid" : votre activité principale relève-t'elle
-    d'un des secteurs suivants ?
-  titre.en: '[automatic] covid business line'
-  titre.fr: secteur d'activité covid
-établissement . secteur d'activité covid . S1:
-  titre.en: '[automatic] Sector "1" - tourism, hotels and restaurants'
-  titre.fr: Secteur "1" - tourisme, hôtellerie, restauration
-établissement . secteur d'activité covid . S1-bis:
-  titre.en: '[automatic] Sector "1a" - whose activity depends on that of sector 1'
-  titre.fr: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
-établissement . secteur d'activité covid . S2:
-  titre.en: '[automatic] Sector "2" - activity involving the reception of the
-    public that has been interrupted'
-  titre.fr: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
-établissement . secteur d'activité covid . activité interrompue:
-  question.en: |
-    [automatic] Was your business interrupted because of the Covid-19 outbreak?
-  question.fr: |
-    Votre activité a-t'elle été interrompue à cause de l’épidémie de Covid-19 ?
-  titre.en: '[automatic] interrupted activity'
-  titre.fr: activité interrompue
-? établissement . secteur d'activité covid . baisse significative de chiffre d'affaires
-: question.en: |
-    [automatic] Has your business suffered a drop in turnover of at least 80%?
-    between 15 March and 15 May 2020 compared to the previous year?
-  question.fr: |
-    Votre activité a-t-elle subit une baisse d'au moins 80% de chiffre d'affaire
-    entre le 15 mars et le 15 mai 2020 par rapport à l'année précédentes ?
-  titre.en: '[automatic] significant drop in turnover'
-  titre.fr: baisse significative de chiffre d'affaires
-établissement . secteur d'activité covid . éligible aide:
-  titre.en: '[automatic] eligible aid'
-  titre.fr: éligible aide
 établissement . taux du versement transport:
   titre.en: Rate of transport tax
   titre.fr: taux du versement transport
