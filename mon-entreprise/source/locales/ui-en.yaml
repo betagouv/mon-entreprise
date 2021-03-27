@@ -1022,6 +1022,8 @@ pages:
       message fin: You can now simulate the exact cost of hiring by selecting an
         eligible grant.
       meta:
+        description: Find out about the main forms of aid for hiring and estimate their
+          amount by answering a few questions.
         title: Hiring incentives
       outro: <0>Learn more about incentives</0><1>As part of the "Plan Relance" plan,
         the government is putting in place a series of measures to encourage new
@@ -1205,6 +1207,7 @@ pages:
       title: Income simulator for the self-employed
     is:
       meta:
+        description: Calculate your corporate tax
         title: Corporate Tax Simulator
       seo: <0>How is corporate tax calculated?</0><1>Corporate income tax applies to
         the profits made by corporations (SA, SAS, SASU, SARL, etc.) and on an

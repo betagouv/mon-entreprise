@@ -803,17 +803,25 @@ export function getSimulatorsData({
 			icône: '🎁',
 			tracking: 'aides_embauche',
 			meta: {
-				title: 'Aides à l’embauche',
-				description:
-					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.',
+				title: t(
+					'pages.simulateurs.aides-embauche.meta.title',
+					'Aides à l’embauche'
+				),
+				description: t(
+					'pages.simulateurs.aides-embauche.meta.description',
+					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.'
+				),
 				color: '#11965f',
 			},
 			path: sitePaths.simulateurs['aides-embauche'],
 			iframe: 'aides-embauche',
-			shortName: 'Aides à l’embauche',
+			shortName: t(
+				'pages.simulateurs.aides-embauche.meta.title',
+				'Aides à l’embauche'
+			),
 			title: t(
 				'pages.simulateurs.aides-embauche.meta.title',
-				"Aides à l'embauche"
+				'Aides à l’embauche'
 			),
 			description: (
 				<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
@@ -851,7 +859,7 @@ export function getSimulatorsData({
 			meta: {
 				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
 				description: t(
-					'pages.simulateurs.pamc.meta.description',
+					'pages.simulateurs.is.meta.description',
 					'Calculez votre impôt sur les sociétés'
 				),
 				color: '#E71D66',

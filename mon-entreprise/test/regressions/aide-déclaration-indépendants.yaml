@@ -81,3 +81,17 @@ international:
   - dirigeant . indépendant . revenus étrangers: oui
     dirigeant . indépendant . revenus étrangers . montant: 30000€/an
     dirigeant . rémunération totale: 50000 €/an
+
+aide covid 2020:
+  - dirigeant . rémunération totale: 50000 €/an
+    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
+    aide déclaration revenu indépendant 2020 . réduction covid: oui
+    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
+    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
+    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020: oui
+    aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles: 4
+  - dirigeant . rémunération totale: 5000 €/an
+    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
+    aide déclaration revenu indépendant 2020 . réduction covid: oui
+    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
+    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
