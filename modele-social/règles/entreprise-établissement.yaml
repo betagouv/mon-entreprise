@@ -787,7 +787,7 @@ entreprise . activité . débit de tabac:
       nom: Non renseignée
       departement:
         nom: Non renseigné
-      taux du versement transport: 0.018
+      taux du versement transport: 1.8
 
 établissement . localisation . code commune:
   formule:
@@ -805,6 +805,7 @@ entreprise . activité . débit de tabac:
       chemin: nom
 
 établissement . taux du versement transport:
+  unité: "%"
   formule:
     synchronisation:
       data: localisation
