@@ -26,16 +26,15 @@ type Commune = {
 	nom: string
 }
 
-async function tauxVersementTransport(codeCommune: Commune['code']) {
-	const response = await fetch(
-		'https://versement-transport.netlify.app/.netlify/functions/taux-par-code-commune?codeCommune=' +
-			codeCommune
-	)
+async function tauxVersementTransport(
+	codeCommune: Commune['code']
+): Promise<number | null> {
+	const response = await fetch('/data/versement-transport.json')
 	if (!response.ok) {
 		return null
 	}
 	const json = await response.json()
-	return json.taux
+	return json[codeCommune] ?? null
 }
 function formatCommune(value: Commune) {
 	return value && `${value.nom} (${value.codePostal})`
