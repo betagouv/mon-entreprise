@@ -597,6 +597,8 @@ Notifications affichées : contrat salarié . CDD . information"
 
 exports[`calculate simulations-salarié: aides 5`] = `"[1883,0,2000,1561,1527]"`;
 
+exports[`calculate simulations-salarié: aides 6`] = `"[2133,0,2000,1561,1527]"`;
+
 exports[`calculate simulations-salarié: aides embauche covid 1`] = `
 "[1237,0,1500,1165,1165]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"

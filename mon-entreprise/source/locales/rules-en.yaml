@@ -1254,6 +1254,15 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
   titre.en: '[automatic] senior professionalization hiring assistance'
   titre.fr: aide à l'embauche senior professionnalisation
+contrat salarié . aides employeur . aides à l'embauche:
+  description.en: >
+    [automatic] The State provides aid to encourage the hiring of certain
+    priority groups. This aid cannot be combined with other aid.
+  description.fr: >
+    L'État met en place des aides pour encourager l'embauche de certains publics
+    prioritaires. Ces aides sont non cumulables entre elles.
+  titre.en: '[automatic] hiring aids'
+  titre.fr: aides à l'embauche
 contrat salarié . aides employeur . emploi franc:
   description.en: >
     [automatic] Deferred aid paid by Pôle emploi for the hiring of a job seeker

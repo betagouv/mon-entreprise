@@ -1986,12 +1986,19 @@ contrat salarié . aides employeur:
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
     somme:
+      - aides à l'embauche
+      - activité partielle . indemnisation entreprise
+
+contrat salarié . aides employeur . aides à l'embauche:
+  description: |
+    L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
+  formule:
+    le maximum de:
       - aide à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche des jeunes
       - aide à l'embauche senior professionnalisation
       - aide à l'embauche des travailleurs handicapés
-      - activité partielle . indemnisation entreprise
       - emploi franc
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -2064,6 +2071,9 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
       - nom: jeune de moins de 26 ans
         question: Le salarié a-t-il moins de 26 ans ?
         par défaut: non
+  rend non applicable:
+    # Dispositifs moins généreux et non cumulables
+    - aide à l'embauche des travailleurs handicapés
   formule:
     produit:
       assiette: 4000 €/an
@@ -2101,13 +2111,13 @@ contrat salarié . aides employeur . emploi franc:
     multiplication:
       assiette:
         variations:
-          - nom: emploi franc+
-            si:
+          - si:
               toutes ces conditions:
                 - ancienneté . date d'embauche >= 15/10/2020
                 - ancienneté . date d'embauche <= 31/05/2021
                 - contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans
             alors:
+              nom: emploi franc plus
               variations:
                 - si: CDD
                   alors: 5500 €/an
@@ -2119,6 +2129,9 @@ contrat salarié . aides employeur . emploi franc:
                 - sinon: 5000 €/an
       facteur: temps de travail . quotité de travail effective
     arrondi: oui
+  rend non applicable:
+    # Dispositifs moins généreux et non cumulables
+    - aide à l'embauche des travailleurs handicapés
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
