@@ -1087,15 +1087,15 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     Seule la partie imposable des IJSS est retranchée de l'assiette de la CSG,
     puisque la partie non imposable a déjà été retranchée du revenu net fiscal
     fourni
-  formule:
-    valeur:
-      somme:
-        - revenu professionnel
-        - cotisations
-    abattement:
-      somme:
-        - revenus étrangers . montant
-        - dirigeant . indépendant . IJSS . imposable
+  plancher: 0€/an
+  valeur:
+    somme:
+      - revenu professionnel
+      - cotisations
+  abattement:
+    somme:
+      - revenus étrangers . montant
+      - dirigeant . indépendant . IJSS . imposable
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   produit:

@@ -9,7 +9,6 @@ import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
@@ -34,10 +33,6 @@ export default function AideDéclarationIndépendant() {
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
 
-	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
-		threshold: 0.5,
-		unobserve: false,
-	})
 	const setCurrentIncome = useCallback(
 		(currentIncome) => {
 			dispatch(
@@ -135,53 +130,64 @@ export default function AideDéclarationIndépendant() {
 								)}
 								<CompanySection company={company} />
 							</div>
-							<SimpleField dottedName="entreprise . date de création" />
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . date de création" />
+							<Condition expression="aide déclaration revenu indépendant 2020 . date de création > 31/12/2020">
+								<small
+									css={`
+										color: #ff2d96;
+									`}
+								>
+									Cette aide à la déclaration concerne uniquement les
+									entreprises déjà en activité en 2020
+								</small>
+							</Condition>
+
 							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 							{/* PLNR */}
 							<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
 								<SimpleField dottedName="entreprise . activité . débit de tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
+
+								<h2>
+									<Trans>Situation personnelle</Trans>
+								</h2>
+								<SimpleField dottedName="situation personnelle . RSA" />
+								<SubSection dottedName="dirigeant . indépendant . IJSS" />
+								<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+
+								<h2>
+									<Trans>Exonérations</Trans>
+								</h2>
+								<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
+								<SimpleField dottedName="établissement . ZFU" />
+								<SubSection
+									hideTitle
+									dottedName="entreprise . effectif . seuil"
+								/>
+
+								<SubSection
+									dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+									hideTitle
+								/>
+
+								<h2>
+									<Trans>International</Trans>
+								</h2>
+								<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+								<SubSection
+									dottedName="dirigeant . indépendant . revenus étrangers"
+									hideTitle
+								/>
 							</Condition>
-
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
-
-							<h2>
-								<Trans>Situation personnelle</Trans>
-							</h2>
-							<SimpleField dottedName="situation personnelle . RSA" />
-							<SubSection dottedName="dirigeant . indépendant . IJSS" />
-							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
-
-							<h2>
-								<Trans>Exonérations</Trans>
-							</h2>
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
-							<SimpleField dottedName="établissement . ZFU" />
-							<SubSection
-								hideTitle
-								dottedName="entreprise . effectif . seuil"
-							/>
-
-							<SubSection
-								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-								hideTitle
-							/>
-
-							<h2>
-								<Trans>International</Trans>
-							</h2>
-							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-							<SubSection
-								dottedName="dirigeant . indépendant . revenus étrangers"
-								hideTitle
-							/>
 						</FormBlock>
 					</Animate.fromTop>
 
-					<div ref={resultsRef}>
+					<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
 						<Results />
-					</div>
+					</Condition>
 					<Aide />
 				</>
 			)}
@@ -386,7 +392,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 						`}
 					>
 						<p>
-							{question ?? rule.rawNode.question}
+							{question ?? rule.rawNode.question}&nbsp;
 							<ExplicableRule dottedName={dottedName} />
 						</p>
 						<p className="ui__ notice">{summary ?? rule.rawNode.résumé}</p>

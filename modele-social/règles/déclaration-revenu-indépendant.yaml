@@ -20,6 +20,12 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
 
+aide déclaration revenu indépendant 2020 . date de création:
+  remplace: entreprise . date de création
+  question: Quelle est votre date de début d'activité ?
+  type: date
+
+
 aide déclaration revenu indépendant 2020 . ACRE:
   remplace: entreprise . ACRE
   description: >-
@@ -213,23 +219,24 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
   # apparaît que les métiers concernés (médecins, avocats...) sont incompatibles
   # avec les secteurs d'activités concernés par l'aide (hôtels, restaurants...)
   description: |
-    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
-    d'activité de l'établissement. 
+    Les conditions d’éligibilité aux aides « Covid » dépendent du secteur d’activité 
+    dont relève l’activité principale.
 
     Les hôtels, restaurants, bars, etc. sont dans
-    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
+    la catégorie dite "S1" et ont le droit aux aides sans autres conditions.
 
     Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
     aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
     d'affaires significative pendant le confinement.
 
     Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
-    sont éligibles aux aides à condition d'avoir subit une fermeture
+    sont éligibles aux aides à condition d'avoir subi une fermeture
     administrative.
 
     Les modalités sont précisées sur le site de l'Urssaf.
   références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
+    Liste détaillée des secteurs (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf
+    Présentation du dispositif: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/dispositifs-de-reduction-des-cot.html
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -240,13 +247,21 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
   par défaut: non
 
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1:
-  titre: Secteur "1" - tourisme, hôtellerie, restauration
+  titre: Secteur dit S1
+  description: |
+    Secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel.
+
 
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis:
-  titre: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
+  titre: Secteur dit S1 bis
+  description: | 
+    Secteurs dont l’activité dépend de celle des secteurs 1 et qui ont subi une très forte baisse de leur chiffre d’affaires.
 
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2:
-  titre: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
+  titre: Secteur 2
+  description:
+    Autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité.
+
 
 aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020:
   applicable si: secteur d'activité
@@ -363,6 +378,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
   description: |
     * Pour octobre 2020, vous activité devait également être située dans une zone d’application des mesures de couvre-feu
   unité: mois éligibles
+  plafond: 6 mois éligibles
 
 aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2:
   applicable si: 
@@ -372,3 +388,5 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
   question: |
     Précisez le nombre de mois (novembre 2020 et/ou février 2021 et/ou mars 2021) durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité
   unité: mois éligibles
+  plafond: 6 mois éligibles
+
