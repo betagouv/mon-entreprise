@@ -139,7 +139,7 @@ aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
     formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
   
   valeur: dirigeant . indépendant . cotisations et contributions . cotisations
-  abattement: réduction covid . montant
+  
 aide déclaration revenu indépendant 2020 . CFP:
   résumé: contribution à la formation professionnelle [D]
   formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
@@ -166,6 +166,12 @@ aide déclaration revenu indépendant 2020 . assiette sociale:
 
 aide déclaration revenu indépendant 2020 . réduction covid:
   titre: Réduction de cotisation Covid
+  remplace: 
+    règle: dirigeant . indépendant . cotisations et contributions . cotisations
+    par: 
+      valeur: dirigeant . indépendant . cotisations et contributions . cotisations
+      abattement: montant
+    sauf dans: réduction covid . montant
   description: |
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre plusieurs mesures exceptionnelles concernant les cotisations et contributions sociales des travailleurs indépendants affectés par la crise du coronavirus avec :
 
