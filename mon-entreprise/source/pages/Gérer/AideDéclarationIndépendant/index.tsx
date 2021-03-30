@@ -13,7 +13,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { Fragment, useCallback, useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -130,8 +130,8 @@ export default function AideDéclarationIndépendant() {
 								)}
 								<CompanySection company={company} />
 							</div>
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . date de création" />
-							<Condition expression="aide déclaration revenu indépendant 2020 . date de création > 31/12/2020">
+							<SimpleField dottedName="entreprise . date de création" />
+							<Condition expression="entreprise . date de création > 31/12/2020">
 								<small
 									css={`
 										color: #ff2d96;
@@ -141,8 +141,10 @@ export default function AideDéclarationIndépendant() {
 									entreprises déjà en activité en 2020
 								</small>
 							</Condition>
+							<Condition expression="entreprise . date de création < 01/01/2021">
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+							</Condition>
 
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 							{/* PLNR */}
 							<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
 								<SimpleField dottedName="entreprise . activité . débit de tabac" />
@@ -423,7 +425,7 @@ function Results() {
 			<>
 				<Animate.fromTop>
 					{rules.map((r) => (
-						<Fragment key={r.dottedName}>
+						<Condition expression={r.dottedName} key={r.dottedName}>
 							<h4>
 								{r.title} <small>{r.rawNode.résumé}</small>
 							</h4>
@@ -440,7 +442,7 @@ function Results() {
 									/>
 								</RuleLink>
 							</p>
-						</Fragment>
+						</Condition>
 					))}
 				</Animate.fromTop>
 			</>
