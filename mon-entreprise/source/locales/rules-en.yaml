@@ -1247,24 +1247,19 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   titre.fr: aide à l'embauche senior professionnalisation
 contrat salarié . aides employeur . emploi franc:
   description.en: >
-    [automatic] Deferred assistance paid by Pôle emploi for hiring a job seeker
+    [automatic] Deferred aid paid by Pôle emploi for the hiring of a job seeker
 
-    registered with Pôle Emploi and living in a priority district of the city
+    registered with Pôle Emploi and residing in a priority neighbourhood of the city
 
     (QPV).
 
 
-    - *Hiring on permanent contracts*: €5,000/year for 3 years, i.e. a total of €15,000
+    - Hiring on a permanent contract*: €5000/year for 3 years, i.e. a total of €15,000
 
-    - * hiring on a fixed-term contract of at least 6 months*: 2,500€/year for 2 years, i.e. 5,000€ maximum
-
-
-    &gt; As part of the "France Relance" plan, the scheme is being upgraded to
-
-    hiring until January 31, 2021.
+    - Hiring on a fixed-term contract of at least 6 months*: €2,500/year for 2 years, i.e. a maximum of €5,000
 
 
-    [🗺 Check address eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    [🗺 Check the eligibility of an address](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   description.fr: >
     Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
 
@@ -1276,11 +1271,6 @@ contrat salarié . aides employeur . emploi franc:
     - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
 
     - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
-
-
-    > Dans le cadre du plan "France Relance", le dispositif est revalorisé pour
-
-    une embauche jusqu'au 31 janvier 2021.
 
 
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
