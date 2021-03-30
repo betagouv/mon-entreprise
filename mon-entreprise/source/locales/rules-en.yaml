@@ -1236,6 +1236,15 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
+? contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés
+: description.en: '[automatic] As part of the recovery plan, the government has
+    decided to create a recruitment aid aimed at encouraging the employment of
+    people with disabilities, regardless of their age.'
+  description.fr: Dans le cadre du plan de relance, le gouvernement a décidé de
+    créer une aide à l’embauche visant à favoriser l’emploi des personnes en
+    situation de handicap quel que soit leur âge.
+  titre.en: '[automatic] aid for the recruitment of disabled workers'
+  titre.fr: aide à l'embauche des travailleurs handicapés
 ? contrat salarié . aides employeur . aide à l'embauche senior professionnalisation
 : description.en: |
     [automatic] Employers can get €2,000 for the hiring of an

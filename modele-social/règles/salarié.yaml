@@ -1990,6 +1990,7 @@ contrat salarié . aides employeur:
       - aide exceptionnelle à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche des jeunes
       - aide à l'embauche senior professionnalisation
+      - aide à l'embauche des travailleurs handicapés
       - activité partielle . indemnisation entreprise
       - emploi franc
 
@@ -2053,7 +2054,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   applicable si:
     toutes ces conditions:
       - ancienneté . date d'embauche >= 01/08/2020
-      - ancienneté . date d'embauche <= 31/03/2021
+      - ancienneté . date d'embauche <= 31/05/2021
       - rémunération . brut de base <= 2 * SMIC
       - une de ces conditions:
           - CDI
@@ -2145,6 +2146,33 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
+  non applicable si: aides employeur . emploi franc
+  description: >-
+    Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
+    à l’embauche visant à favoriser l’emploi des personnes en situation de
+    handicap quel que soit leur âge.
+  applicable si:
+    toutes ces conditions:
+      - nom: situation de handicap
+        question: Le salarié a-t'il la reconnaissance de travailleur handicapé (RQTH) ?
+        par défaut: non
+      - ancienneté . date d'embauche >= 01/09/2020
+      - ancienneté . date d'embauche <= 30/06/2021
+      - rémunération . brut de base <= 2 * SMIC
+      - une de ces conditions:
+          - CDI
+          - toutes ces conditions:
+              - CDD
+              - CDD . durée contrat >= 3 mois
+  formule:
+    produit:
+      assiette: 4000 €/an
+      facteur: temps de travail . quotité de travail effective
+    arrondi: oui
+  références:
+    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . temps de travail . temps effectif:
   formule:
