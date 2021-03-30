@@ -88,6 +88,25 @@ const aides = [
 		),
 	},
 	{
+		title: 'Travailleur handicapé',
+		dottedName:
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés",
+		situation: {
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés . situation de handicap":
+				'oui',
+		},
+		dateFin: new Date('2021/06/30'),
+		versement: <Trans>trimestriel</Trans>,
+		description: (
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.handicapé">
+				Pour l’embauche d’un travailleur en situation de handicap.
+				<br />
+				L’aide est versée <strong>trimestriellement</strong> par l’Agence de
+				services et de paiement (ASP).
+			</Trans>
+		),
+	},
+	{
 		title: "Demandeur d'emploi de 45 ans ou plus",
 		dottedName:
 			"contrat salarié . aides employeur . aide à l'embauche senior professionnalisation",
@@ -133,6 +152,7 @@ const config = {
 			'contrat salarié . temps de travail . heures complémentaires',
 			'contrat salarié . rémunération',
 			'contrat salarié . aides employeur . emploi franc . éligible',
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés . situation de handicap",
 			'contrat salarié . professionnalisation . jeune de moins de 30 ans',
 			'contrat salarié . professionnalisation . salarié de 45 ans et plus',
 		],
