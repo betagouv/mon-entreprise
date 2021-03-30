@@ -266,10 +266,10 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
   titre.fr: S2
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
   description.en: >
-    [automatic] The conditions of eligibility for "covid" aid depend on the
-    sector of activity
+    [automatic] The conditions of eligibility for "Covid" aid depend on the
+    sector of activity 
 
-    of activity of the establishment. 
+    of which the main activity is part.
 
 
     Hotels, restaurants, bars, etc. are in the so-called
@@ -284,7 +284,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     during the period of confinement.
 
 
-    Finally, the sectors known as "S2" are those involving the reception of the public, and
+    Lastly, the "S2" sectors are those involving the reception of the public, and
 
     are eligible for aid provided that they have undergone an administrative
 
@@ -292,20 +292,31 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
 
 
     The procedures are specified on the Urssaf website.
-  description.fr: |
-    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
-    d'activité de l'établissement. 
+  description.fr: >
+    Les conditions d’éligibilité aux aides « Covid » dépendent du secteur
+    d’activité 
+
+    dont relève l’activité principale.
+
 
     Les hôtels, restaurants, bars, etc. sont dans
-    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
+
+    la catégorie dite "S1" et ont le droit aux aides sans autres conditions.
+
 
     Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
+
     aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
+
     d'affaires significative pendant le confinement.
 
+
     Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
-    sont éligibles aux aides à condition d'avoir subit une fermeture
+
+    sont éligibles aux aides à condition d'avoir subi une fermeture
+
     administrative.
+
 
     Les modalités sont précisées sur le site de l'Urssaf.
   question.en: |
@@ -315,15 +326,31 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
   titre.en: '[automatic] line of business'
   titre.fr: secteur d'activité
 ? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1
-: titre.en: '[automatic] Sector "1" - tourism, hotels, restaurants'
-  titre.fr: Secteur "1" - tourisme, hôtellerie, restauration
+: description.en: >
+    [automatic] Sectors of tourism, hotels, restaurants, sports, culture, air
+    transport and events.
+  description.fr: >
+    Secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la
+    culture, du transport aérien et de l’événementiel.
+  titre.en: '[automatic] Sector S1'
+  titre.fr: Secteur dit S1
 ? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis
-: titre.en: '[automatic] Sector "1a" - whose activity depends on that of sectors 1'
-  titre.fr: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
+: description.en: >
+    [automatic] Sectors whose activity depends on that of sector 1 and which
+    have suffered a very sharp decline in turnover.
+  description.fr: >
+    Secteurs dont l’activité dépend de celle des secteurs 1 et qui ont subi une
+    très forte baisse de leur chiffre d’affaires.
+  titre.en: '[automatic] Sector known as S1 bis'
+  titre.fr: Secteur dit S1 bis
 ? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2
-: titre.en: '[automatic] Sector "2" - activity involving the reception of the
-    public which has been interrupted'
-  titre.fr: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
+: description.en: '[automatic] Other sectors of activity which have been banned
+    from carrying on their business in a preponderant manner.'
+  description.fr: Autres secteurs d’activité qui ont fait l’objet d’une
+    interdiction affectant de manière prépondérante la poursuite de leur
+    activité.
+  titre.en: '[automatic] Sector 2'
+  titre.fr: Secteur 2
 ? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
 : description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
@@ -6981,12 +7008,6 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] What is your start date?'
   question.fr: Quelle est votre date de début d'activité ?
-  suggestions.Début 2020.en: '[automatic] Early 2020'
-  suggestions.Début 2020.fr: Début 2020
-  suggestions.Début 2021.en: '[automatic] Early 2021'
-  suggestions.Début 2021.fr: Début 2021
-  suggestions.Fin 2017.en: '[automatic] End 2017'
-  suggestions.Fin 2017.fr: Fin 2017
   titre.en: Creation date
   titre.fr: date de création
 entreprise . date de création . contrôle date future:
