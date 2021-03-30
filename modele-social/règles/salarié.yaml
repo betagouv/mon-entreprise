@@ -2029,7 +2029,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
           - apprentissage
           - professionnalisation . jeune de moins de 30 ans
       - ancienneté . date d'embauche >= 01/07/2020
-      - ancienneté . date d'embauche <= 28/02/2021
+      - ancienneté . date d'embauche <= 31/12/2021
       - temps de travail . temps effectif > 0 heures/mois
   formule:
     variations:
@@ -2094,19 +2094,18 @@ contrat salarié . aides employeur . emploi franc:
     - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
     - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
 
-    > Dans le cadre du plan "France Relance", le dispositif est revalorisé pour
-    une embauche jusqu'au 31 janvier 2021.
-
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   applicable si: éligible
   formule:
     multiplication:
       assiette:
         variations:
-          - si:
+          - nom: emploi franc+
+            si:
               toutes ces conditions:
                 - ancienneté . date d'embauche >= 15/10/2020
-                - ancienneté . date d'embauche <= 31/03/2021
+                - ancienneté . date d'embauche <= 31/05/2021
+                - contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans
             alors:
               variations:
                 - si: CDD

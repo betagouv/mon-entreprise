@@ -38,7 +38,7 @@ const aides = [
 			'contrat salarié . professionnalisation . jeune de moins de 30 ans':
 				'oui',
 		},
-		dateFin: new Date('2020/02/28'),
+		dateFin: new Date('2021/12/31'),
 		versement: <Trans>mensuel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.apprenti">
@@ -58,7 +58,7 @@ const aides = [
 			"contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans":
 				'oui',
 		},
-		dateFin: new Date('2020/03/31'),
+		dateFin: new Date('2021/05/31'),
 		versement: <Trans>trimestriel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.jeune">
@@ -76,7 +76,7 @@ const aides = [
 		situation: {
 			'contrat salarié . aides employeur . emploi franc . éligible': 'oui',
 		},
-		dateFin: new Date('2020/03/31'),
+		dateFin: new Date('2021/05/31'),
 		versement: <Trans>tous les 6 mois</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc">
@@ -210,13 +210,16 @@ function Results() {
 	const baseEngine = useEngine()
 	const aidesEngines = aides.map((aide) => {
 		const engine = new Engine(baseEngine.parsedRules)
+		engine.setSituation({ ...aide.situation, ...baseEngine.parsedSituation })
+		const isActive =
+			typeof engine.evaluate(aide.dottedName).nodeValue === 'number'
 		const situation = { ...baseEngine.parsedSituation, ...aide.situation }
-		engine.setSituation(situation)
-		return { ...aide, situation, engine }
+		return { ...aide, situation, isActive }
 	})
-	const [aidesActives, aidesInactives] = partition(({ dottedName, engine }) => {
-		return typeof engine.evaluate(dottedName).nodeValue === 'number'
-	}, aidesEngines)
+	const [aidesActives, aidesInactives] = partition(
+		({ isActive }) => isActive,
+		aidesEngines
+	)
 
 	return progress === 0 ? (
 		<>
