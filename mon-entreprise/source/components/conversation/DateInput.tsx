@@ -6,6 +6,7 @@ import InputSuggestions from './InputSuggestions'
 export default function DateInput({
 	suggestions,
 	onChange,
+	missing,
 	id,
 	onSubmit,
 	required,
@@ -52,7 +53,7 @@ export default function DateInput({
 					className="ui__ input"
 					id={id}
 					type="date"
-					value={dateValue}
+					value={missing ? undefined : dateValue}
 					required={required}
 					onChange={handleDateChange}
 				/>

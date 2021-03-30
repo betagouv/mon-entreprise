@@ -20,10 +20,6 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
 
-aide déclaration revenu indépendant 2020 . date de création:
-  remplace: entreprise . date de création
-  question: Quelle est votre date de début d'activité ?
-  type: date
 
 
 aide déclaration revenu indépendant 2020 . ACRE:
@@ -141,12 +137,9 @@ aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
     Montant à reporter dans la case XI de votre déclaration sociale et rubrique
     326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique A5 du
     formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
-  formule:
-    somme:
-      - dirigeant . indépendant . cotisations et contributions . cotisations
-      - dirigeant . indépendant . conjoint collaborateur . cotisations
-      - (- dirigeant . indépendant . cotisations et contributions . exonérations)
-      - (- réduction covid . montant)
+  
+  valeur: dirigeant . indépendant . cotisations et contributions . cotisations
+  abattement: réduction covid . montant
 aide déclaration revenu indépendant 2020 . CFP:
   résumé: contribution à la formation professionnelle [D]
   formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
