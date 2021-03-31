@@ -24,7 +24,7 @@ type Props<Name extends string = DottedName> = Omit<
 	required?: boolean
 	autoFocus?: boolean
 	dottedName: Name
-	onChange: (value: Parameters<Engine<Name>['evaluate']>[0]) => void
+	onChange: (value: Parameters<Engine<Name>['evaluate']>[0] | undefined) => void
 	useSwitch?: boolean
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
