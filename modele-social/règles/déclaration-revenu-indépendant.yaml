@@ -5,6 +5,10 @@ aide déclaration revenu indépendant 2020:
     Ces règles calculent les montants demandés dans la déclaration de revenu des
     indépendants de 2021 sur les revenus 2020.
   formule: non
+  remplace: 
+    règle: entreprise . ACRE
+    par: ACRE
+
 
 aide déclaration revenu indépendant 2020 . nature de l'activité:
   remplace: entreprise . activité
@@ -23,7 +27,6 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
 
 
 aide déclaration revenu indépendant 2020 . ACRE:
-  remplace: entreprise . ACRE
   description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
@@ -195,9 +198,9 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
     plafond:
       somme:
         - dirigeant . indépendant . cotisations et contributions . cotisations
+        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
         - dirigeant . indépendant . conjoint collaborateur . cotisations
         - (- dirigeant . indépendant . cotisations et contributions . exonérations)
-        - (- CFP)
 
 aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020:
   applicable si: éligible aide printemps 2020
@@ -257,7 +260,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     Secteurs dont l’activité dépend de celle des secteurs 1 et qui ont subi une très forte baisse de leur chiffre d’affaires.
 
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2:
-  titre: Secteur 2
+  titre: Secteur dit S2
   description:
     Autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité.
 

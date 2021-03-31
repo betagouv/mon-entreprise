@@ -8,7 +8,6 @@ import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { ScrollToTop } from 'Components/utils/Scroll'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
@@ -48,7 +47,6 @@ export default function AideDéclarationIndépendant() {
 
 	return (
 		<div>
-			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<p>
 					Cet outil est une aide aux déclarations de revenus à destination des
@@ -134,60 +132,62 @@ export default function AideDéclarationIndépendant() {
 							</div>
 							<SimpleField dottedName="entreprise . date de création" />
 							{situation['entreprise . date de création'] && (
-								<Condition expression="entreprise . date de création > 31/12/2020">
-									<small
-										css={`
-											color: #ff2d96;
-										`}
-									>
-										Cette aide à la déclaration concerne uniquement les
-										entreprises déjà en activité en 2020
-									</small>
-								</Condition>
+								<>
+									<Condition expression="entreprise . date de création > 31/12/2020">
+										<small
+											css={`
+												color: #ff2d96;
+											`}
+										>
+											Cette aide à la déclaration concerne uniquement les
+											entreprises déjà en activité en 2020
+										</small>
+									</Condition>
+									<Condition expression="entreprise . date de création < 01/01/2021">
+										<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+
+										{/* PLNR */}
+										<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
+											<SimpleField dottedName="entreprise . activité . débit de tabac" />
+											<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
+											<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+
+											<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
+
+											<h2>
+												<Trans>Situation personnelle</Trans>
+											</h2>
+											<SimpleField dottedName="situation personnelle . RSA" />
+											<SubSection dottedName="dirigeant . indépendant . IJSS" />
+											<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+
+											<h2>
+												<Trans>Exonérations</Trans>
+											</h2>
+											<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
+											<SimpleField dottedName="établissement . ZFU" />
+											<SubSection
+												hideTitle
+												dottedName="entreprise . effectif . seuil"
+											/>
+
+											<SubSection
+												dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+												hideTitle
+											/>
+
+											<h2>
+												<Trans>International</Trans>
+											</h2>
+											<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+											<SubSection
+												dottedName="dirigeant . indépendant . revenus étrangers"
+												hideTitle
+											/>
+										</Condition>
+									</Condition>
+								</>
 							)}
-							<Condition expression="entreprise . date de création < 01/01/2021">
-								<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-
-								{/* PLNR */}
-								<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
-									<SimpleField dottedName="entreprise . activité . débit de tabac" />
-									<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
-									<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
-
-									<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
-
-									<h2>
-										<Trans>Situation personnelle</Trans>
-									</h2>
-									<SimpleField dottedName="situation personnelle . RSA" />
-									<SubSection dottedName="dirigeant . indépendant . IJSS" />
-									<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
-
-									<h2>
-										<Trans>Exonérations</Trans>
-									</h2>
-									<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
-									<SimpleField dottedName="établissement . ZFU" />
-									<SubSection
-										hideTitle
-										dottedName="entreprise . effectif . seuil"
-									/>
-
-									<SubSection
-										dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-										hideTitle
-									/>
-
-									<h2>
-										<Trans>International</Trans>
-									</h2>
-									<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-									<SubSection
-										dottedName="dirigeant . indépendant . revenus étrangers"
-										hideTitle
-									/>
-								</Condition>
-							</Condition>
 						</FormBlock>
 					</Animate.fromTop>
 
