@@ -25,6 +25,10 @@ type Props<Name extends string = DottedName> = Omit<
 	autoFocus?: boolean
 	dottedName: Name
 	onChange: (value: Parameters<Engine<Name>['evaluate']>[0] | undefined) => void
+	// TODO: It would be preferable to replace this "showSuggestions" parameter by
+	// a build-in logic in the engine, by setting the "applicability" of
+	// suggestions.
+	showSuggestions?: boolean
 	useSwitch?: boolean
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
@@ -52,6 +56,7 @@ export default function RuleInput({
 	onChange,
 	useSwitch = false,
 	isTarget = false,
+	showSuggestions = true,
 	onSubmit = () => null,
 	modifiers = {},
 	...props
@@ -69,7 +74,7 @@ export default function RuleInput({
 		title: rule.title,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
-		suggestions: rule.suggestions,
+		suggestions: showSuggestions ? rule.suggestions : {},
 		...props,
 	}
 	if (getVariant(engine.getRule(dottedName))) {
