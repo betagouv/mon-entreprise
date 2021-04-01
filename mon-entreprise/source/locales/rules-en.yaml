@@ -214,11 +214,12 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
 ? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles
 : titre.en: '[automatic] number of eligible months'
   titre.fr: nombre de mois éligibles
-? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1
-: description.en: |
-    [automatic] For October 2020, you must also be located in a curfew zone
+? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1 et S1bis
+: description.en: >
+    [automatic] For October 2020, your business also had to be located in a
+    curfew zone
   description.fr: >
-    * Pour octobre 2020, vous activité devait également être située dans une
+    * Pour octobre 2020, votre activité devait également être située dans une
     zone d’application des mesures de couvre-feu
   question.en: >
     [automatic] Specify the number of months between October 2020* and March
@@ -228,8 +229,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
     Précisez le nombre de mois entre octobre 2020* et mars 2021 durant lesquels
     vous avez subi une interdiction d’accueil du public ou une baisse de 50% de
     votre chiffre d’affaires
-  titre.en: '[automatic] S1'
-  titre.fr: S1
+  titre.en: '[automatic] S1 and S1bis'
+  titre.fr: S1 et S1bis
 ? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2
 : question.en: >
     [automatic] Specify the number of months (November 2020 and/or February 2021
@@ -366,7 +367,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     Good to know: The activities of delivery, withdrawal of order or takeaway sales are not taken into account to assess compliance with the condition of prohibition of reception of the public.
 
 
-    Sector known as S1
+    Sector known as S1 bis
 
     Main activity carried out depending on those of sector S1 
 
@@ -375,7 +376,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
 
     --------------|--------------------------
 
-    October 2020 | Have been subject to a measure of prohibition of reception of the public **OR** Have undergone a significant drop in monthly turnover(ca)
+    October 2020 | Have been subject to a ban on receiving the public **OR** Have suffered a sharp drop in monthly turnover(ca)
 
 
     Condition of decrease in turnover:_
@@ -445,7 +446,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     Bon à savoir : Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
 
 
-    ### Secteur dit S1
+    ### Secteur dit S1 bis
 
     Activité principale exercée dépendant de celles du secteur S1 
 

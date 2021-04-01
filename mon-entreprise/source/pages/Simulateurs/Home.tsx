@@ -102,7 +102,7 @@ export default function Simulateurs() {
 							de dispositifs pris en compte
 						</li>
 						<li>
-							<strong>Intégrable facilement et gratuitement</strong> sur
+							<strong>Intégrables facilement et gratuitement</strong> sur
 							n'importe quel site internet.{' '}
 							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
 						</li>

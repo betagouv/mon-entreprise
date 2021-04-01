@@ -71,7 +71,7 @@ const aides = [
 		),
 	},
 	{
-		title: 'Emploi Franc+',
+		title: 'Emploi Franc',
 		dottedName: 'contrat salarié . aides employeur . emploi franc',
 		situation: {
 			'contrat salarié . aides employeur . emploi franc . éligible': 'oui',

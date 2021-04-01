@@ -74,7 +74,7 @@ export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoud
 	if (nodeValue != null) {
 		originalCache.nodes.forEach((v, k) => this.cache.nodes.set(k, v))
 	}
-	console.log('iteration résoudre référence circulaire :', i)
+	// console.log('iteration résoudre référence circulaire :', i)
 
 	this.cache = originalCache
 	delete this.parsedSituation[node.explanation.ruleToSolve]
