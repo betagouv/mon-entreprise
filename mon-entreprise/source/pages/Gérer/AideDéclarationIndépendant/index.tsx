@@ -12,7 +12,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { useCallback, useContext } from 'react'
+import { Fragment, useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -439,10 +439,20 @@ function Results() {
 				</Trans>
 				{emoji('📄')}
 			</h1>
+			<p>
+				L'ancienne Déclaration Sociale des Indépendant (DSI) qui était
+				précédemment à effectuer sur le site net-entreprises.fr est désormais
+				intégrée à la déclaration fiscale des revenus (déclaration 2042) sur
+				impots.gouv.fr.
+			</p>
+			<p>
+				Vous pouvez reporter le montant suivant dans votre déclaration, calculé
+				à partir des informations saisies.
+			</p>
 			<>
 				<Animate.fromTop>
 					{rules.map((r) => (
-						<Condition expression={r.dottedName} key={r.dottedName}>
+						<Fragment key={r.dottedName}>
 							<h4>
 								{r.title} <small>{r.rawNode.résumé}</small>
 							</h4>
@@ -459,7 +469,7 @@ function Results() {
 									/>
 								</RuleLink>
 							</p>
-						</Condition>
+						</Fragment>
 					))}
 				</Animate.fromTop>
 			</>

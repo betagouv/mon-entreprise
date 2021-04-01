@@ -73,39 +73,17 @@ aide déclaration revenu indépendant 2020 . ACRE:
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
-aide déclaration revenu indépendant 2020 . CFP:
-  résumé.en: '[automatic] contribution to vocational training [D]'
-  résumé.fr: contribution à la formation professionnelle [D]
-  titre.en: '[automatic] PSC'
-  titre.fr: CFP
-aide déclaration revenu indépendant 2020 . CSG déductible:
-  résumé.en: '[automatic] [B]'
-  résumé.fr: '[B]'
-  titre.en: '[automatic] deductible MSA'
-  titre.fr: CSG déductible
 aide déclaration revenu indépendant 2020 . PRCI:
   titre.en: '[automatic] PRCI'
   titre.fr: PRCI
 aide déclaration revenu indépendant 2020 . SMIC 2020:
   titre.en: '[automatic] MINIMUM WAGE 2020'
   titre.fr: SMIC 2020
-aide déclaration revenu indépendant 2020 . assiette sociale:
-  résumé.en: '[automatic] for your information [A - (B + C + D)].'
-  résumé.fr: pour information [A - (B + C + D)]
-  titre.en: '[automatic] social base'
-  titre.fr: assiette sociale
-aide déclaration revenu indépendant 2020 . cotisations sociales déductible:
-  description.en: '[automatic] Amount to be reported in Box XI of your social
-    security return and Item 326 of Form 2033-D-SD (for the simplified actual)
-    or Item A5 of Form 2053-SD (for the normal actual) of your tax return.'
-  description.fr:
-    Montant à reporter dans la case XI de votre déclaration sociale
-    et rubrique 326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique
-    A5 du formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
-  résumé.en: '[automatic] [C]'
-  résumé.fr: '[C]'
-  titre.en: '[automatic] deductible compulsory social security contributions'
-  titre.fr: cotisations sociales obligatoires déductibles
+aide déclaration revenu indépendant 2020 . cotisations obligatoires:
+  résumé.en: '[automatic] [DSBA/DSBB]'
+  résumé.fr: '[DSBA/DSBB]'
+  titre.en: '[automatic] Compulsory social security contributions'
+  titre.fr: Cotisations sociales obligatoires
 aide déclaration revenu indépendant 2020 . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
@@ -190,12 +168,6 @@ aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
 aide déclaration revenu indépendant 2020 . période:
   titre.en: '[automatic] period'
   titre.fr: période
-aide déclaration revenu indépendant 2020 . revenu net fiscal:
-  résumé.en: '[automatic] before deduction of social security charges and tax
-    exemptions [A]'
-  résumé.fr: avant déduction des charges sociales et exonérations fiscales [A]
-  titre.en: '[automatic] net taxable income'
-  titre.fr: revenu net fiscal
 aide déclaration revenu indépendant 2020 . réduction covid:
   description.en: >
     [automatic] Within the framework of the health crisis, the Government has
@@ -223,9 +195,14 @@ aide déclaration revenu indépendant 2020 . réduction covid:
     cotisations sociales liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
+? aide déclaration revenu indépendant 2020 . réduction covid . imputation sur les cotisations obligatoires
+: titre.en: '[automatic] imputation covid reduction'
+  titre.fr: imputation réduction covid
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
-  résumé.en: '[automatic] included in the amount of contributions calculated above'
-  résumé.fr: intégrée dans le montant des cotisations calculé ci-dessus
+  résumé.en:
+    '[automatic] included in the amount of contributions calculated above
+    (for information)'
+  résumé.fr: intégrée dans le montant des cotisations calculé ci-dessus (pour information)
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisations Covid
 ? aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020
@@ -349,8 +326,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
   description.fr: Autres secteurs d’activité qui ont fait l’objet d’une
     interdiction affectant de manière prépondérante la poursuite de leur
     activité.
-  titre.en: '[automatic] Sector 2'
-  titre.fr: Secteur 2
+  titre.en: '[automatic] Sector called S2'
+  titre.fr: Secteur dit S2
 ? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
 : description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
@@ -624,19 +601,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     première vague de la crise sanitaire du printemps 2020 ?
   titre.en: '[automatic] eligible for aid spring 2020'
   titre.fr: éligible aide printemps 2020
-aide déclaration revenu indépendant 2020 . total charges sociales déductible:
-  description.en:
-    '[automatic] Amount to be reported in Item 252 of Form 2033-B-SD
-    (for Simplified Actual) or in Item FZ of Form 2052-SD (for Regular Actual)
-    of your tax return.'
-  description.fr:
-    Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD
-    (pour le réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le
-    réel normal) de votre déclaration fiscale.
-  résumé.en: '[automatic] [B + C + D]'
-  résumé.fr: '[B + C + D]'
-  titre.en: '[automatic] total tax-deductible compulsory social security charges'
-  titre.fr: total charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
@@ -7008,6 +6972,12 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] What is your start date?'
   question.fr: Quelle est votre date de début d'activité ?
+  suggestions.Début 2020.en: '[automatic] Early 2020'
+  suggestions.Début 2020.fr: Début 2020
+  suggestions.Début 2021.en: '[automatic] Early 2021'
+  suggestions.Début 2021.fr: Début 2021
+  suggestions.Fin 2017.en: '[automatic] End of 2017'
+  suggestions.Fin 2017.fr: Fin 2017
   titre.en: Creation date
   titre.fr: date de création
 entreprise . date de création . contrôle date future:
