@@ -130,7 +130,10 @@ export default function AideDéclarationIndépendant() {
 								)}
 								<CompanySection company={company} />
 							</div>
-							<SimpleField dottedName="entreprise . date de création" />
+							<SimpleField
+								dottedName="entreprise . date de création"
+								showSuggestions={false}
+							/>
 							{situation['entreprise . date de création'] && (
 								<>
 									<Condition expression="entreprise . date de création > 31/12/2020">
@@ -356,8 +359,14 @@ type SimpleFieldProps = {
 	dottedName: DottedName
 	summary?: RuleNode['rawNode']['résumé']
 	question?: RuleNode['rawNode']['question']
+	showSuggestions?: boolean
 }
-function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
+function SimpleField({
+	dottedName,
+	question,
+	summary,
+	showSuggestions,
+}: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const evaluation = engine.evaluate(dottedName)
@@ -403,7 +412,11 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 						</p>
 						<p className="ui__ notice">{summary ?? rule.rawNode.résumé}</p>
 					</div>
-					<RuleInput dottedName={dottedName} onChange={dispatchValue} />
+					<RuleInput
+						dottedName={dottedName}
+						onChange={dispatchValue}
+						showSuggestions={showSuggestions}
+					/>
 				</Question>
 			</Animate.fromTop>
 		</div>

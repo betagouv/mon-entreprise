@@ -15,7 +15,10 @@ entreprise . date de création:
 
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
-  
+  suggestions:
+    Début 2021: 01/01/2021
+    Début 2020: 01/01/2020
+    Fin 2017: 31/12/2017
   type: date
 
 entreprise . date de création . contrôle date future:
