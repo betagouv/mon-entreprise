@@ -259,7 +259,7 @@ activité transfrontalière simultanée . activité salariée . lieu d'exercice:
 
 activité transfrontalière simultanée . activité salariée . lieu d'exercice . employeur:
   question: Exercerez-vous effectivement cette activité salariée dans le pays de votre employeur ?
-  description: Votre activité salariée peut-être exercé depuis un autre pays que celui de l'employeur par exemple en cas de télétravail.
+  description: Votre activité salariée peut être exercée depuis un autre pays que celui de l'employeur par exemple en cas de télétravail.
 
 activité transfrontalière simultanée . activité salariée . lieu d'exercice . lieu de résidence:
   question: Exercerez-vous cette activité salariée dans votre pays de résidence ? 
@@ -302,7 +302,8 @@ activité transfrontalière simultanée . activité salariée . revenus . revenu
 activité transfrontalière simultanée . activité salariée . revenus . activité substantielle:
   question: >
     Considérez-vous que votre activité salariée représentera plus de 5% de votre activité professionnelle pour les 12 prochains mois ?
-
+  description: |
+    Les activités marginales sont des activités permanentes mais négligeables en termes de temps ou de rentabilité économique. Il convient de considérer comme marginales les activités représentant moins de 5 % du temps de travail normal du travailleur et/ou moins de 5 % de sa rémunération globale.
 
 activité transfrontalière simultanée . activité salariée . revenus . articulation activité indépendante:
   question: Comment votre activité salariée s'articulera-t-elle avec votre activité indépendante au cours des 12 prochains mois (périodes, revenu, etc.) ?
@@ -361,6 +362,39 @@ activité transfrontalière simultanée . activité non salariée . n°1 . code 
 activité transfrontalière simultanée . activité non salariée . n°1 . date de début d'activité:
   type: date
 
+activité transfrontalière simultanée . activité non salariée . n°1 . lieu effectif d'exercice:
+  question: Exercerez-vous effectivement cette activité professionnelle hors de France ?
+  description: Une activité non salarié peut être déclarée à l'étranger mais exercée depuis la France par exemple en cas de télétravail.
+
+activité transfrontalière simultanée . activité non salariée . n°1 . temps de travail estimé:
+  question: Quel est le temps de travail hebdomadaire que vous allez consacrer à cette activité (estimation) ?
+  unité: heures / semaine
+
+activité transfrontalière simultanée . activité non salariée . n°1 . revenus:
+  titre: Estimation des revenus
+  type: groupe
+  formule: oui
+
+activité transfrontalière simultanée . activité non salariée . n°1 . revenus . montant estimé:
+  question: Quel revenu estimez-vous obtenir pour cette activité pour les 12 prochains mois (environ) ?
+  unité: €/an
+
+activité transfrontalière simultanée . activité non salariée . n°1 . revenus . activité substantielle:
+  question: Considérez-vous que votre activité (hors de France) représentera plus de 5% de votre activité professionnelle pour les 12 prochains mois ?
+  description: |
+    Les activités marginales sont des activités permanentes mais négligeables en termes de temps ou de rentabilité économique. Il convient de considérer comme marginales les activités représentant moins de 5 % du temps de travail normal du travailleur et/ou moins de 5 % de sa rémunération globale.
+
+activité transfrontalière simultanée . activité non salariée . n°1 . revenus . articulation avec activité en France:
+  question: Comment cette activité (hors de France) s'articulera-t-elle avec votre activité indépendante (France) au cours des 12 prochains mois (périodes, revenu, etc.) ?
+  type: paragraphe
+    
+
+
+
+
+
+
+
 activité transfrontalière simultanée . activité non salariée . n°2:
   titre: activité non salarié n°2
   type: groupe
@@ -382,6 +416,32 @@ activité transfrontalière simultanée . activité non salariée . n°2 . code 
   type: texte
 activité transfrontalière simultanée . activité non salariée . n°2 . date de début d'activité:
   type: date
+activité transfrontalière simultanée . activité non salariée . n°2 . lieu effectif d'exercice:
+  question: Exercerez-vous effectivement cette activité professionnelle hors de France ?
+  description: Une activité non salarié peut être déclarée à l'étranger mais exercée depuis la France par exemple en cas de télétravail.
+
+activité transfrontalière simultanée . activité non salariée . n°2 . temps de travail estimé:
+  question: Quel est le temps de travail hebdomadaire que vous allez consacrer à cette activité (estimation) ?
+  unité: heures / semaine
+
+activité transfrontalière simultanée . activité non salariée . n°2 . revenus:
+  titre: Estimation des revenus
+  type: groupe
+  formule: oui
+
+activité transfrontalière simultanée . activité non salariée . n°2 . revenus . montant estimé:
+  question: Quel revenu estimez-vous obtenir pour cette activité pour les 12 prochains mois (environ) ?
+  unité: €/an
+
+activité transfrontalière simultanée . activité non salariée . n°2 . revenus . activité substantielle:
+  question: Considérez-vous que votre activité (hors de France) représentera plus de 5% de votre activité professionnelle pour les 12 prochains mois ?
+  description: |
+    Les activités marginales sont des activités permanentes mais négligeables en termes de temps ou de rentabilité économique. Il convient de considérer comme marginales les activités représentant moins de 5 % du temps de travail normal du travailleur et/ou moins de 5 % de sa rémunération globale.
+
+activité transfrontalière simultanée . activité non salariée . n°2 . revenus . articulation avec activité en France:
+  question: Comment cette activité (hors de France) s'articulera-t-elle avec votre activité indépendante (France) au cours des 12 prochains mois (périodes, revenu, etc.) ?
+  type: paragraphe
+    
 
 activité transfrontalière simultanée . activité non salariée . n°3:
   titre: activité non salarié n°3
@@ -404,6 +464,32 @@ activité transfrontalière simultanée . activité non salariée . n°3 . code 
   type: texte
 activité transfrontalière simultanée . activité non salariée . n°3 . date de début d'activité:
   type: date
+activité transfrontalière simultanée . activité non salariée . n°3 . lieu effectif d'exercice:
+  question: Exercerez-vous effectivement cette activité professionnelle hors de France ?
+  description: Une activité non salarié peut être déclarée à l'étranger mais exercée depuis la France par exemple en cas de télétravail.
+
+activité transfrontalière simultanée . activité non salariée . n°3 . temps de travail estimé:
+  question: Quel est le temps de travail hebdomadaire que vous allez consacrer à cette activité (estimation) ?
+  unité: heures / semaine
+
+activité transfrontalière simultanée . activité non salariée . n°3 . revenus:
+  titre: Estimation des revenus
+  type: groupe
+  formule: oui
+
+activité transfrontalière simultanée . activité non salariée . n°3 . revenus . montant estimé:
+  question: Quel revenu estimez-vous obtenir pour cette activité pour les 12 prochains mois (environ) ?
+  unité: €/an
+
+activité transfrontalière simultanée . activité non salariée . n°3 . revenus . activité substantielle:
+  question: Considérez-vous que votre activité (hors de France) représentera plus de 5% de votre activité professionnelle pour les 12 prochains mois ?
+  description: |
+    Les activités marginales sont des activités permanentes mais négligeables en termes de temps ou de rentabilité économique. Il convient de considérer comme marginales les activités représentant moins de 5 % du temps de travail normal du travailleur et/ou moins de 5 % de sa rémunération globale.
+
+activité transfrontalière simultanée . activité non salariée . n°3 . revenus . articulation avec activité en France:
+  question: Comment cette activité (hors de France) s'articulera-t-elle avec votre activité indépendante (France) au cours des 12 prochains mois (périodes, revenu, etc.) ?
+  type: paragraphe
+    
 
 activité transfrontalière simultanée . activité non salariée . pays centre d'intérêt:
   type: groupe
