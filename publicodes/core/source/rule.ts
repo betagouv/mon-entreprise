@@ -1,6 +1,8 @@
 import { ASTNode, EvaluatedNode } from './AST/types'
+import { warning } from './error'
 import { bonus, mergeMissing } from './evaluation'
 import { registerEvaluationFunction } from './evaluationFunctions'
+import { capitalise0 } from './format'
 import parse, { mecanismKeys } from './parse'
 import { Context } from './parsePublicodes'
 import { ReferenceNode } from './reference'
@@ -10,7 +12,6 @@ import {
 	ReplacementRule,
 } from './replacement'
 import { nameLeaf, ruleParents } from './ruleUtils'
-import { capitalise0 } from './format'
 
 export type Rule = {
 	formule?: Record<string, unknown> | string
@@ -119,25 +120,53 @@ export default function parseRule(
 }
 
 registerEvaluationFunction('rule', function evaluate(node) {
-	if (this.cache[node.dottedName]) {
-		return this.cache[node.dottedName]
-	}
 	const explanation = { ...node.explanation }
-
-	const verifyParentApplicability = !this.cache._meta.ruleStack.includes(
-		node.dottedName
-	)
-	this.cache._meta.ruleStack.unshift(node.dottedName)
 	let parent: EvaluatedNode | null = null
-	if (explanation.parent && verifyParentApplicability) {
-		parent = this.evaluate(explanation.parent) as EvaluatedNode
+	if (explanation.parent) {
+		if (this.cache._meta.parentRuleStack.includes(node.dottedName)) {
+			parent = { nodeValue: null } as EvaluatedNode
+		} else {
+			this.cache._meta.parentRuleStack.unshift(node.dottedName)
+			parent = this.evaluate(explanation.parent) as EvaluatedNode
+			this.cache._meta.parentRuleStack.shift()
+		}
 		explanation.parent = parent
 	}
 	let valeur: EvaluatedNode | null = null
 	if (!parent || parent.nodeValue !== false) {
-		valeur = this.evaluate(explanation.valeur) as EvaluatedNode
+		if (
+			this.cache._meta.evaluationRuleStack.filter(
+				(dottedName) => dottedName === node.dottedName
+			).length > 15 // I don't know why this magic number, but below, cycle are detected "too early", which leads to blank value in brut-net simulator
+		) {
+			warning(
+				this.options.logger,
+				node.dottedName,
+				`
+		Un cycle a été détecté dans lors de l'évaluation de cette règle.
+		Par défaut cette règle sera évaluée à 'null'.
+
+		Pour indiquer au moteur de résoudre la référence circulaire en trouvant le point fixe
+		de la fonction, il vous suffit d'ajouter l'attribut suivant niveau de la règle :
+
+		${node.dottedName}:
+		"résoudre la référence circulaire: oui"
+		...
+
+		`
+			)
+
+			valeur = { nodeValue: null } as EvaluatedNode
+		} else {
+			this.cache._meta.evaluationRuleStack.unshift(node.dottedName)
+			valeur = this.evaluate(explanation.valeur) as EvaluatedNode
+			this.cache._meta.evaluationRuleStack.shift()
+		}
+
 		explanation.valeur = valeur
 	}
+	// if (valeur.nodeValue === '') {
+
 	const evaluation = {
 		...node,
 		explanation,
@@ -148,7 +177,5 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		),
 		...(valeur && 'unit' in valeur && { unit: valeur.unit }),
 	}
-	this.cache._meta.ruleStack.shift()
-	this.cache[node.dottedName] = evaluation
 	return evaluation
 })

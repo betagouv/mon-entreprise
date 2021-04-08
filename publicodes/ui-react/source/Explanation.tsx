@@ -1,8 +1,10 @@
-import { ConstantNode, Leaf } from './mecanisms/common'
+import { useContext } from 'react'
+import { EngineContext } from './contexts'
 import Abattement from './mecanisms/Abattement'
 import ApplicableSi from './mecanisms/Applicable'
 import Arrondi from './mecanisms/Arrondi'
 import Barème from './mecanisms/Barème'
+import { ConstantNode, Leaf } from './mecanisms/common'
 import Composantes from './mecanisms/Composantes'
 import Durée from './mecanisms/Durée'
 import Grille from './mecanisms/Grille'
@@ -19,6 +21,7 @@ import Recalcul from './mecanisms/Recalcul'
 import Replacement from './mecanisms/Replacement'
 import ReplacementRule from './mecanisms/ReplacementRule'
 import Rule from './mecanisms/Rule'
+import RésoudreRéférenceCirculaire from './mecanisms/RésoudreRéférenceCirculaire'
 import Situation from './mecanisms/Situation'
 import Somme from './mecanisms/Somme'
 import Synchronisation from './mecanisms/Synchronisation'
@@ -28,8 +31,6 @@ import UneDeCesConditions from './mecanisms/UneDeCesConditions'
 import UnePossibilité from './mecanisms/UnePossibilité'
 import Unité from './mecanisms/Unité'
 import Variations from './mecanisms/Variations'
-import { useContext } from 'react'
-import { EngineContext } from './contexts'
 
 const UIComponents = {
 	constant: ConstantNode,
@@ -61,6 +62,7 @@ const UIComponents = {
 	'toutes ces conditions': ToutesCesConditions,
 	'une de ces conditions': UneDeCesConditions,
 	'une possibilité': UnePossibilité,
+	'résoudre référence circulaire': RésoudreRéférenceCirculaire,
 	unité: Unité,
 	'variable temporelle': () => '[variable temporelle]',
 	variations: Variations,

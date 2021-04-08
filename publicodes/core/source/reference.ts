@@ -1,8 +1,6 @@
-import { EvaluatedNode } from './AST/types'
 import { InternalError } from './error'
 import { registerEvaluationFunction } from './evaluationFunctions'
 import { Context } from './parsePublicodes'
-import { RuleNode } from './rule'
 
 export type ReferenceNode = {
 	nodeKind: 'reference'
@@ -26,6 +24,7 @@ registerEvaluationFunction('reference', function evaluateReference(node) {
 	if (!node.dottedName) {
 		throw new InternalError(node)
 	}
+
 	const explanation = this.evaluate(this.parsedRules[node.dottedName])
 	return {
 		...node,

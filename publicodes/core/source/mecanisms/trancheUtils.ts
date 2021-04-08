@@ -63,7 +63,7 @@ export function evaluatePlafondUntilActiveTranche(
 			} catch (e) {
 				warning(
 					this.options.logger,
-					this.cache._meta.ruleStack[0],
+					this.cache._meta.evaluationRuleStack[0],
 					`L'unité du plafond de la tranche n°${
 						i + 1
 					}  n'est pas compatible avec celle l'assiette`,
@@ -103,7 +103,7 @@ export function evaluatePlafondUntilActiveTranche(
 			) {
 				evaluationError(
 					this.options.logger,
-					this.cache._meta.ruleStack[0],
+					this.cache._meta.evaluationRuleStack[0],
 					`Le plafond de la tranche n°${
 						i + 1
 					} a une valeur inférieure à celui de la tranche précédente`

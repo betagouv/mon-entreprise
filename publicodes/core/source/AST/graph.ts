@@ -28,6 +28,8 @@ function buildRuleDependancies(rule: RuleNode): Array<string> {
 					return node.explanation.amendedSituation.flatMap((s) => fn(s[1]))
 				case 'reference':
 					return [...acc, node.dottedName as string]
+				case 'résoudre référence circulaire':
+					return []
 				case 'rule':
 					// Cycle from parent dependancies are ignored at runtime,
 					// so we don' detect them statically

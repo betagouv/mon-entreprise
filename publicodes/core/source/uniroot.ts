@@ -109,7 +109,9 @@ export default function uniroot(
 		if ((fb > 0 && fc > 0) || (fb < 0 && fc < 0)) {
 			;(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b
 		}
-
+		if (Math.abs(fb) < errorTol) {
+			return b
+		}
 		if (Math.abs(fb) < acceptableErrorTol) {
 			fallback = b
 		}

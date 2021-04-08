@@ -25,7 +25,7 @@ const evaluateAbattement: EvaluationFunction<'abattement'> = function (node) {
 		} catch (e) {
 			warning(
 				this.options.logger,
-				this.cache._meta.ruleStack[0],
+				this.cache._meta.evaluationRuleStack[0],
 				"Impossible de convertir les unités de l'allègement entre elles",
 				e
 			)

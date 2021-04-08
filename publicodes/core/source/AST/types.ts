@@ -1,24 +1,23 @@
 import { AbattementNode } from '../mecanisms/abattement'
 import { ApplicableSiNode } from '../mecanisms/applicable'
 import { ArrondiNode } from '../mecanisms/arrondi'
-import { OperationNode } from '../mecanisms/operation'
 import { BarèmeNode } from '../mecanisms/barème'
-import { ReferenceNode } from '../reference'
-import { RuleNode } from '../rule'
 import { TouteCesConditionsNode } from '../mecanisms/condition-allof'
 import { UneDeCesConditionsNode } from '../mecanisms/condition-oneof'
 import { DuréeNode } from '../mecanisms/durée'
 import { GrilleNode } from '../mecanisms/grille'
 import { InversionNode } from '../mecanisms/inversion'
 import { MaxNode } from '../mecanisms/max'
-import { PlafondNode } from '../mecanisms/plafond'
 import { MinNode } from '../mecanisms/min'
 import { NonApplicableSiNode } from '../mecanisms/nonApplicable'
+import { PossibilityNode } from '../mecanisms/one-possibility'
+import { OperationNode } from '../mecanisms/operation'
 import { ParDéfautNode } from '../mecanisms/parDéfaut'
+import { PlafondNode } from '../mecanisms/plafond'
 import { PlancherNode } from '../mecanisms/plancher'
 import { ProductNode } from '../mecanisms/product'
 import { RecalculNode } from '../mecanisms/recalcul'
-import { PossibilityNode } from '../mecanisms/one-possibility'
+import { RésoudreRéférenceCiruclaireNode } from '../mecanisms/résoudre-référence-circulaire'
 import { SituationNode } from '../mecanisms/situation'
 import { SommeNode } from '../mecanisms/sum'
 import { SynchronisationNode } from '../mecanisms/synchronisation'
@@ -26,7 +25,9 @@ import { TauxProgressifNode } from '../mecanisms/tauxProgressif'
 import { UnitéNode } from '../mecanisms/unité'
 import { VariableTemporelleNode } from '../mecanisms/variableTemporelle'
 import { VariationNode } from '../mecanisms/variations'
+import { ReferenceNode } from '../reference'
 import { ReplacementRule } from '../replacement'
+import { RuleNode } from '../rule'
 import { Temporal } from '../temporal'
 
 export type ConstantNode = {
@@ -57,6 +58,7 @@ export type ASTNode = (
 	| PlancherNode
 	| ProductNode
 	| RecalculNode
+	| RésoudreRéférenceCiruclaireNode
 	| SituationNode
 	| SommeNode
 	| SynchronisationNode

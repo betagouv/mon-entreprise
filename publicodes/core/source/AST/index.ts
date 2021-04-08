@@ -114,6 +114,8 @@ const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 			return traverseArrayNode(fn, node)
 		case 'durée':
 			return traverseDuréeNode(fn, node)
+		case 'résoudre référence circulaire':
+			return traverseRésoudreRéférenceCirculaireNode(fn, node)
 		case 'inversion':
 			return traverseInversionNode(fn, node)
 		case 'operation':
@@ -258,6 +260,17 @@ const traversePlancherNode: TraverseFunction<'plancher'> = (fn, node) => ({
 	explanation: {
 		valeur: fn(node.explanation.valeur),
 		plancher: fn(node.explanation.plancher),
+	},
+})
+
+const traverseRésoudreRéférenceCirculaireNode: TraverseFunction<'résoudre référence circulaire'> = (
+	fn,
+	node
+) => ({
+	...node,
+	explanation: {
+		...node.explanation,
+		valeur: fn(node.explanation.valeur),
 	},
 })
 

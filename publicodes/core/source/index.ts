@@ -12,15 +12,18 @@ import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
 import { formatUnit, getUnitKey } from './units'
 
-const emptyCache = () => ({
-	_meta: { ruleStack: [] },
+const emptyCache = (): Cache => ({
+	_meta: {
+		parentRuleStack: [],
+		evaluationRuleStack: [],
+	},
 	nodes: new Map(),
 })
 
 type Cache = {
 	_meta: {
-		ruleStack: Array<string>
-		parentEvaluationStack?: Array<string>
+		parentRuleStack: Array<string>
+		evaluationRuleStack: Array<string>
 		inversionFail?:
 			| {
 					given: string
