@@ -22,6 +22,7 @@ import plafond from './mecanisms/plafond'
 import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
+import résoudreRéférenceCirculaire from './mecanisms/résoudre-référence-circulaire'
 import situation from './mecanisms/situation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
@@ -147,6 +148,7 @@ ${e.message}`
 	}
 }
 
+// Chainable mecanisme in their composition order (first one is applyied first)
 const chainableMecanisms = [
 	applicable,
 	nonApplicable,
@@ -156,6 +158,7 @@ const chainableMecanisms = [
 	plafond,
 	parDéfaut,
 	situation,
+	résoudreRéférenceCirculaire,
 	abattement,
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {

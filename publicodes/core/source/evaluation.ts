@@ -2,8 +2,8 @@ import Engine, { EvaluationFunction } from '.'
 import {
 	ASTNode,
 	ConstantNode,
-	Evaluation,
 	EvaluatedNode,
+	Evaluation,
 	NodeKind,
 } from './AST/types'
 import { warning } from './error'
@@ -53,7 +53,7 @@ function convertNodesToSameUnit(this: Engine, nodes, mecanismName) {
 		} catch (e) {
 			warning(
 				this.options.logger,
-				this.cache._meta.ruleStack[0],
+				this.cache._meta.evaluationRuleStack[0],
 				`Les unités des éléments suivants sont incompatibles entre elles : \n\t\t${
 					node?.name || node?.rawNode
 				}\n\t\t${firstNodeWithUnit?.name || firstNodeWithUnit?.rawNode}'`,

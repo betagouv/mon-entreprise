@@ -494,6 +494,7 @@ synchronisation:
     n'est pas stable. Se référer aux exemples existants.
 
 inversion numérique:
+  chainable: oui
   description: >-
     Il est souhaitable de rédiger les règles de calcul
     en publicodes de la même façon qu'elles sont décrites dans la loi ou les
@@ -523,3 +524,37 @@ inversion numérique:
     (calculée ou saisie), et procéder à l'inversion décrite plus haut à partir
     de celle-ci. Sinon, ces possibilités d'inversions seront listées comme
     manquantes.
+
+résoudre la référence circulaire:
+  description: |
+    Active le calcul itératif pour trouver la valeur de la règle qui résout 
+    la référence circulaire.
+    
+    Il est possible pour une règle de se référencer elle-même. Par défaut, le 
+    moteur considère qu'il s'agit d'un cycle non voulu, et renvoie 'null' comme valeur
+    pour la règle en question, en affichant un avertissement.
+
+    Mais dans certains cas, la formule est bonne et le cycle est voulu. La valeur de la 
+    règle attendue est donc celle qui résout l'équation obtenue via la référence cyclique.
+
+    Lorsque l'on active cette fonctionnalité, le moteur va procéder par essai-erreur jusqu'à 
+    trouver cette valeur.
+
+    Note : la résolution de cycle est coûteuse en temps de calcul. Il faut donc veiller à
+    ne pas la cumuler avec l'évaluation d'un autre mécanisme coûteux comme l'inversion numérique
+    par exemple.
+
+    
+  exemples:
+    base: >-
+      x: 
+        valeur: 4 * x - 5
+        résoudre la référence circulaire: oui
+    calcul du revenu professionnel: >-
+      chiffre d'affaires: 10000 €/an
+      
+      cotisations: 25% * revenu professionnel
+        
+      revenu professionnel: 
+        valeur: chiffre d'affaires - cotisations
+        résoudre la référence circulaire: oui

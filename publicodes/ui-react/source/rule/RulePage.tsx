@@ -19,7 +19,6 @@ export default function Rule({ dottedName, engine, language }) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
 	const rule = engine.evaluate(engine.getRule(dottedName))
-
 	const { description, question } = rule.rawNode
 	const { parent, valeur } = rule.explanation
 	return (

@@ -44,7 +44,7 @@ const productEffect: EvaluationFunction = function ({
 		} catch (e) {
 			warning(
 				this.options.logger,
-				this.cache._meta.ruleStack[0],
+				this.cache._meta.evaluationRuleStack[0],
 				"Impossible de convertir l'unité du plafond du produit dans celle de l'assiette",
 				e
 			)
