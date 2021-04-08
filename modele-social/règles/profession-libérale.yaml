@@ -769,7 +769,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   titre: retraite complémentaire (CARMF)
   arrondi: oui
   variations:
-    - si: entreprise . durée d'activité . en fin d'année <= 2 ans
+    - si: entreprise . date de création >= 01/01/2020
       alors: 0€/an
     - sinon:
         produit:
