@@ -1,5 +1,5 @@
 import { BarèmeAttributes, StyledComponent, TrancheTable } from './Barème'
-import { Mecanism, NodeValuePointer } from './common'
+import { Mecanism } from './common'
 
 export default function TauxProgressif({ nodeValue, explanation, unit }) {
 	return (
@@ -11,12 +11,6 @@ export default function TauxProgressif({ nodeValue, explanation, unit }) {
 						tranches={explanation.tranches}
 						multiplicateur={explanation.multiplicateur}
 					/>
-					{nodeValue != null && (
-						<>
-							<b>Taux calculé : </b>{' '}
-							<NodeValuePointer data={nodeValue * 100} unit={unit} />
-						</>
-					)}
 				</ul>
 			</Mecanism>
 		</StyledComponent>

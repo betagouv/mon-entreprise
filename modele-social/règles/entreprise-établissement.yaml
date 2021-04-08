@@ -41,10 +41,12 @@ entreprise . durée d'activité:
 entreprise . durée d'activité . en fin d'année:
   titre: durée d'activité à la fin de l'année
   formule:
-    durée:
-      depuis: date de création
-      jusqu'à: période . fin d'année
-
+    somme: 
+      - durée:
+          depuis: date de création
+          jusqu'à: période . fin d'année
+      - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+  
 entreprise . durée d'activité . en début d'année:
   titre: durée d'activité au début de l'année
   formule:

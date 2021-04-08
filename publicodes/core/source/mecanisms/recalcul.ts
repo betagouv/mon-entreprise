@@ -1,11 +1,10 @@
 import { EvaluationFunction } from '..'
-import { ASTNode } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
 import { defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 import { ReferenceNode } from '../reference'
 import { disambiguateRuleReference } from '../ruleUtils'
-import { EvaluatedNode } from '../AST/types'
 import { serializeUnit } from '../units'
 
 export type RecalculNode = {

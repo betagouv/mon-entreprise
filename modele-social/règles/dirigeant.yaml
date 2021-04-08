@@ -468,31 +468,6 @@ dirigeant . indépendant:
   rend non applicable: contrat salarié
   formule: dirigeant = 'indépendant'
 
-dirigeant . indépendant . avertissement base forfaitaire:
-  type: notification
-  formule:
-    toutes ces conditions:
-      - entreprise . durée d'activité . en fin d'année < 2 ans
-  description: |
-    Lorsque vous commencez votre activité, vos revenus professionnels
-    n’étant pas connus, les cotisations et contributions des deux premières
-    années sont calculées sur une base forfaitaire.
-
-
-    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
-    la première et de la deuxième année d’activité.
-
-
-    Il y a un ajustement au cours de la deuxième année en fonction des
-    revenus réels déclarés pour l'année précédente. Dans la majeure partie des cas, 
-    le montant des cotisations provisionnelles sera significativement plus élevé.
-
-
-    Ce simulateur calcule les cotisations au **régime de croisière** (après
-    régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
-    et de plannifier votre trésorerie en conséquence.
-
-
 dirigeant . indépendant . revenu professionnel:
   description: rémunération du dirigeant au régime des indépendant
   unité: €/an
@@ -554,13 +529,20 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   références:
     Fiche secu-independant.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
 
-dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
+dirigeant . indépendant . cotisations et contributions . PSS proratisé:
+  titre: plafond de la sécurité sociale proratisé
+  description: |
+    Le plafond de la sécurité sociale, proratisé par la durée d'activité pendant l'année (dans le cas d'activité crée ou cessée en cours d'année).
+
+    Utile pour calculer les cotisations forfaitaires de début d'activité ou le montant de l'ACRE
   formule:
+    unité: €/an
     produit:
       assiette: plafond sécurité sociale temps plein
       taux:
         valeur: entreprise . durée d'activité . en fin d'année / 1 an
         plafond: 100%
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
   description: |
@@ -890,6 +872,77 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
     LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
   note: |
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
+
+dirigeant . indépendant . cotisations et contributions . début activité:
+  titre: cotisations forfaitaires de début d'activité
+  description: |
+    Lorsque vous commencez votre activité, vos **revenus professionnels
+    n’étant pas connus**, les cotisations et contributions des deux premières
+    années sont calculées sur une **base forfaitaire**.
+
+
+    Cette base s’élève à **19 % du plafond annuel de la Sécurité sociale** au titre de
+    la première et de la deuxième année d’activité.
+
+
+    Il y a un **ajustement** au cours de la deuxième année en fonction des
+    revenus réels déclarés pour l'année précédente. Si votre rémunération effective 
+    est supérieure à la base forfaitaire, vous devrez payer un montant montant de 
+    cotisations plus élevé, c'est ce qu'on appelle la régularisation.
+
+
+    Ce simulateur calcule les cotisations **après régularisation** (régime de croisière). 
+    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
+    trésorerie en conséquence.
+
+  applicable si: entreprise . date de création >= 01/01/2020
+  unité: €/an
+  # valeur: cotisations et contributions
+  recalcul: 
+    règle: cotisations et contributions
+    avec: 
+      assiette forfaitaire: oui
+  
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
+
+  
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire: 
+  valeur: non
+  remplace: 
+    - règle: CSG et CRDS . assiette
+      par: assiette base
+    - règle: assiette des cotisations
+      sauf dans: 
+        - indemnités journalières maladie
+        - maladie
+      par: assiette base
+    - règle: assiette des cotisations
+      dans:
+        - indemnités journalières maladie
+        - maladie
+      par: assiette maladie
+    
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette base:
+  titre: assiette forfaitaire
+  produit: 
+    assiette: PSS proratisé
+    taux: 19%
+  unité: €/an
+  arrondi: oui
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles/debut-dactivite.html
+
+
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette maladie:
+  titre: assiette forfaitaire maladie
+  produit: 
+    assiette: plafond sécurité sociale temps plein
+    taux: 40%
+  unité: €/an
+  arrondi: oui
+
+    
 
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   description: |

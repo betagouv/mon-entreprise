@@ -4,6 +4,7 @@ var fs = require('fs')
 var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
+require('../../../modele-social/build')
 let rules = require('../../../modele-social')
 let { parse } = require('yaml')
 

@@ -5698,66 +5698,6 @@ dirigeant . indépendant . assiette des cotisations:
   description.fr: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
   titre.en: '[automatic] contribution base'
   titre.fr: assiette des cotisations
-dirigeant . indépendant . avertissement base forfaitaire:
-  description.en: >
-    [automatic] When you start your activity, your professional income is not
-    known.
-
-    contributions for the first two years are calculated on a flat-rate basis.
-
-    are calculated on a flat-rate basis.
-
-
-
-    This base amounts to 19% of the annual Social Security ceiling for the first and second year of activity.
-
-    the first and second years of activity.
-
-
-
-    There is an adjustment in the second year based on the actual income
-
-    income declared for the previous year. In most cases, 
-
-    the amount of the provisional contributions will be significantly higher.
-
-
-
-    This simulator calculates the contributions for the **cruise regime** (after
-
-    regularisation). It therefore enables you to anticipate the amount of this adjustment
-
-    and to plan your cash flow accordingly.
-  description.fr: >
-    Lorsque vous commencez votre activité, vos revenus professionnels
-
-    n’étant pas connus, les cotisations et contributions des deux premières
-
-    années sont calculées sur une base forfaitaire.
-
-
-
-    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
-
-    la première et de la deuxième année d’activité.
-
-
-
-    Il y a un ajustement au cours de la deuxième année en fonction des
-
-    revenus réels déclarés pour l'année précédente. Dans la majeure partie des cas, 
-
-    le montant des cotisations provisionnelles sera significativement plus élevé.
-
-
-
-    Ce simulateur calcule les cotisations au **régime de croisière** (après
-
-    régularisation). Il vous permet donc d'anticiper le montant de cette régularisation
-
-    et de plannifier votre trésorerie en conséquence.
-  titre.en: '[automatic] warning flat rate basis'
-  titre.fr: avertissement base forfaitaire
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the executive's spouse to be covered by social protection
@@ -6013,6 +5953,22 @@ dirigeant . indépendant . cotisations et contributions . PCV:
     conventionnel.
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
+dirigeant . indépendant . cotisations et contributions . PSS proratisé:
+  description.en: >
+    [automatic] The social security ceiling, prorated by the duration of
+    activity during the year (in the case of activity created or ceased during
+    the year).
+
+
+    Useful for calculating lump-sum contributions at the beginning of the activity or the amount of the ACRE
+  description.fr: >
+    Le plafond de la sécurité sociale, proratisé par la durée d'activité pendant
+    l'année (dans le cas d'activité crée ou cessée en cours d'année).
+
+
+    Utile pour calculer les cotisations forfaitaires de début d'activité ou le montant de l'ACRE
+  titre.en: '[automatic] prorated social security ceiling'
+  titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   titre.en: '[automatic] child benefit'
   titre.fr: allocations familiales
@@ -6028,6 +5984,78 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
 dirigeant . indépendant . cotisations et contributions . cotisations:
   titre.en: social contributions
   titre.fr: cotisations
+dirigeant . indépendant . cotisations et contributions . début activité:
+  description.en: >
+    [automatic] When you start your activity, your **professional income
+
+    income is not known**, the contributions for the first two years are calculated on a
+
+    are calculated on a **lump sum basis**.
+
+
+
+    This base amounts to **19% of the annual Social Security ceiling** for
+
+    the first and second year of activity.
+
+
+
+    There is an **adjustment** during the second year according to the actual
+
+    income declared for the previous year. If your actual earnings 
+
+    is higher than the flat-rate base, you will have to pay a higher amount of 
+
+    This is known as the regularisation.
+
+
+
+    This simulator calculates the contributions **after regularisation** (cruising regime). 
+
+    It therefore allows you to anticipate the amount of this regularisation and to plan your 
+
+    your cash flow accordingly.
+  description.fr: >
+    Lorsque vous commencez votre activité, vos **revenus professionnels
+
+    n’étant pas connus**, les cotisations et contributions des deux premières
+
+    années sont calculées sur une **base forfaitaire**.
+
+
+
+    Cette base s’élève à **19 % du plafond annuel de la Sécurité sociale** au titre de
+
+    la première et de la deuxième année d’activité.
+
+
+
+    Il y a un **ajustement** au cours de la deuxième année en fonction des
+
+    revenus réels déclarés pour l'année précédente. Si votre rémunération effective 
+
+    est supérieure à la base forfaitaire, vous devrez payer un montant montant de 
+
+    cotisations plus élevé, c'est ce qu'on appelle la régularisation.
+
+
+
+    Ce simulateur calcule les cotisations **après régularisation** (régime de croisière). 
+
+    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
+
+    trésorerie en conséquence.
+  titre.en: '[automatic] lump-sum start-up contributions'
+  titre.fr: cotisations forfaitaires de début d'activité
+? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
+: titre.en: '[automatic] flat-rate base'
+  titre.fr: assiette forfaitaire
+? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette base
+: titre.en: '[automatic] flat-rate base'
+  titre.fr: assiette forfaitaire
+? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette maladie
+: titre.en: '[automatic] lump-sum basis for illness'
+  titre.fr: assiette forfaitaire maladie
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
     [automatic] If you are also engaged in a commercial activity as a
@@ -6065,9 +6093,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   titre.en: ACRE
   titre.fr: ACRE
-? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé
-: titre.en: '[automatic] Prorated PSS'
-  titre.fr: PSS proratisé
 ? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année
 : description.en: >
     [automatic] Since the calculation of self-employed contributions is made
