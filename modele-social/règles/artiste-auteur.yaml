@@ -21,6 +21,7 @@ artiste-auteur . revenus . BNC:
 
 artiste-auteur . revenus . BNC . micro-bnc:
   non applicable si: contrôle micro-bnc
+  applicable si: recettes > 0 €/an
   par défaut: oui
   question: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
@@ -141,12 +142,110 @@ artiste-auteur . cotisations . IRCEC:
   formule:
     somme:
       - cotisation RAAP
+      - cotisation RACD
+      - cotisation RACL
+  références:
+    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
-  applicable si: assiette > 9135 €/an
+  applicable si: assiette > seuil d'affiliation
+  description: |
+    Vous pouvez bénéficier d'un taux réduit à votre demande si vos revenus
+    n'atteignent pas à seuil minimal pour une année donnée. Ce taux réduit
+    s'applique également à vos revenus déjà soumis à cotisation auprès du RACL
+    ou du RACD.
+  formule:
+    variations:
+      - si: taux réduit
+        alors:
+          produit:
+            assiette: assiette
+            taux: 4%
+      - sinon:
+          barème:
+            assiette: assiette
+            tranches:
+              - taux: 4%
+                plafond: 
+                  variations:
+                    - si: profession . RACD
+                      alors: cotisation RACD . plafond
+                    - si: profession . RACL
+                      alors: cotisation RACL . plafond
+              - taux: 8%
+    arrondi: oui
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 9135 €/an
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
+  applicable si: assiette < 3 * seuil d'affiliation
+  question: Souhaitez-vous bénéficier d'un taux réduit pour votre cotisation retraite ? Vos droits seront réduits d'autant.
+  par défaut: non
+  description: |
+    Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
+    si vous en faite la demande.
+  références:
+    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf#page=5
+
+artiste-auteur . cotisations . IRCEC . profession:
+  question: Exercez-vous l'une de professions suivantes ?
+  description: |
+    Selon  la  nature  de  leur  activité,  les  artistes-auteurs  cotisent  à
+    un  ou  plusieurs  régimes  de  retraite  complémentaire  gérés  par
+    l’IRCEC :  dans  tous  les  cas  et  si  vous  atteignez  le  seuil
+    d’affiliation,  au  RAAP,  puis  selon  votre  activité  artistique  au RACD
+    et/ou au RACL.
+  formule:
+    une possibilité:
+      choix obligatoire: non
+      possibilités:
+        - RACD
+        - RACL
+  par défaut: non
+
+artiste-auteur . cotisations . IRCEC . profession . RACD:
+  icônes: 🎞️
+  titre: auteur ou compositeur dramatique, de spectacle vivant, de films
+  description: |
+    Les professions suivantes cotisent au RACD :
+      - Les auteurs dramatiques exerçant l’une des professions suivantes : scénariste, dialoguiste, adaptateur, réalisateur, auteur de la bible littéraire, auteur graphique d’animation,  créateur  des  personnages  originaux  et  des  décors  s’il  s’agit  d’un  univers original, etc.
+      - Les  auteurs  et  compositeurs  dramatiques  et  du  spectacle  vivant  :  théâtre,  danse, opéra, cirque, arts de la rue, etc.
+  formule: profession = 'RACD'
+
+artiste-auteur . cotisations . IRCEC . profession . RACL:
+  icônes: 🎙️
+  titre: auteur ou compositeur lyrique, dialoguiste de doublage
+  description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes de doublage cotisent au RACL.
+  formule: profession = 'RACL'
+        
+artiste-auteur . cotisations . IRCEC . régime RACL:
+  question: Cotisez-vous au RACL ?
+  par défaut: non
+
+artiste-auteur . cotisations . IRCEC . cotisation RACD:
+  applicable si: profession . RACD
   formule:
     produit:
       assiette: assiette
-      plafond: 3 * contrat salarié . plafond sécurité sociale
+      plafond: 
+        nom: plafond
+        valeur: 496250 €/an 
       taux: 8%
+    arrondi: oui
+
+artiste-auteur . cotisations . IRCEC . cotisation RACL:
+  applicable si: profession . RACL
+  formule:
+    barème:
+      assiette: assiette
+      tranches:
+        - taux: 0%
+          plafond: 2739 €/an
+        - taux: 6.5%
+          plafond: 
+            nom: plafond
+            valeur: 376665 €/an
+        - taux: 
+            nom: cotisation de solidarité
+            valeur: 1.5%
     arrondi: oui

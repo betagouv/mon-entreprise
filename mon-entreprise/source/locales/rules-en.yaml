@@ -709,6 +709,108 @@ artiste-auteur . cotisations . CSG-CRDS . abattement:
 artiste-auteur . cotisations . CSG-CRDS . assiette:
   titre.en: base
   titre.fr: assiette
+artiste-auteur . cotisations . IRCEC:
+  description.en: >
+    [automatic] If you are a professional artist-author and you are paid in
+    royalties, the
+
+    royalties, the IRCEC is the social security organization that manages your
+
+    management of your compulsory supplementary pension.
+  description.fr: |
+    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
+    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
+    gestion de votre retraite complémentaire obligatoire.
+  titre.en: '[automatic] Supplementary pension'
+  titre.fr: Retraite complémentaire
+artiste-auteur . cotisations . IRCEC . cotisation RAAP:
+  description.en: >
+    [automatic] You may be eligible for a reduced rate at your request if your
+    income
+
+    do not reach a minimum threshold in a given year. This reduced rate
+
+    also applies to your income that is already subject to contributions under the RACL
+
+    or the RACD.
+  description.fr: |
+    Vous pouvez bénéficier d'un taux réduit à votre demande si vos revenus
+    n'atteignent pas à seuil minimal pour une année donnée. Ce taux réduit
+    s'applique également à vos revenus déjà soumis à cotisation auprès du RACL
+    ou du RACD.
+  titre.en: '[automatic] AMPS contribution'
+  titre.fr: cotisation RAAP
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation:
+  titre.en: '[automatic] membership threshold'
+  titre.fr: seuil d'affiliation
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
+  description.en: >
+    [automatic] The AMPS scheme allows you to opt for a reduced rate of 4%
+    instead of 8% if you
+
+    if you so request.
+  description.fr: |
+    Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
+    si vous en faite la demande.
+  question.en:
+    '[automatic] Would you like to benefit from a reduced rate for your
+    pension contribution? Your entitlement will be reduced accordingly.'
+  question.fr: Souhaitez-vous bénéficier d'un taux réduit pour votre cotisation
+    retraite ? Vos droits seront réduits d'autant.
+  titre.en: '[automatic] reduced rate'
+  titre.fr: taux réduit
+artiste-auteur . cotisations . IRCEC . cotisation RACD:
+  titre.en: '[automatic] RACD contribution'
+  titre.fr: cotisation RACD
+artiste-auteur . cotisations . IRCEC . cotisation RACL:
+  titre.en: '[automatic] RACL contribution'
+  titre.fr: cotisation RACL
+artiste-auteur . cotisations . IRCEC . profession:
+  description.en: >
+    [automatic] Depending on the nature of their activity, artists-authors
+    contribute to
+
+    one or more complementary pension schemes managed by the IRCEC
+
+    IRCEC: in all cases and if you reach the affiliation threshold
+
+    affiliation threshold, to the RAAP, then depending on your artistic activity to the RACD
+
+    and/or the RACL.
+  description.fr: |
+    Selon  la  nature  de  leur  activité,  les  artistes-auteurs  cotisent  à
+    un  ou  plusieurs  régimes  de  retraite  complémentaire  gérés  par
+    l’IRCEC :  dans  tous  les  cas  et  si  vous  atteignez  le  seuil
+    d’affiliation,  au  RAAP,  puis  selon  votre  activité  artistique  au RACD
+    et/ou au RACL.
+  question.en: '[automatic] Do you work in any of the following occupations?'
+  question.fr: Exercez-vous l'une de professions suivantes ?
+  titre.en: '[automatic] profession'
+  titre.fr: profession
+artiste-auteur . cotisations . IRCEC . profession . RACD:
+  description.en: >
+    [automatic] The following occupations contribute to the CDHA:
+      - Playwrights practising one of the following professions: screenwriter, dialogue writer, adapter, director, author of the literary bible, graphic author of animation, creator of original characters and sets if it is an original universe, etc.
+      - Authors and composers of drama and performing arts: theatre, dance, opera, circus, street arts, etc.
+  description.fr: >
+    Les professions suivantes cotisent au RACD :
+      - Les auteurs dramatiques exerçant l’une des professions suivantes : scénariste, dialoguiste, adaptateur, réalisateur, auteur de la bible littéraire, auteur graphique d’animation,  créateur  des  personnages  originaux  et  des  décors  s’il  s’agit  d’un  univers original, etc.
+      - Les  auteurs  et  compositeurs  dramatiques  et  du  spectacle  vivant  :  théâtre,  danse, opéra, cirque, arts de la rue, etc.
+  titre.en: '[automatic] author or composer of drama, live shows, films'
+  titre.fr: auteur ou compositeur dramatique, de spectacle vivant, de films
+artiste-auteur . cotisations . IRCEC . profession . RACL:
+  description.en:
+    '[automatic] Authors and composers of musical works and dubbing
+    dialogue writers contribute to the RACL.'
+  description.fr: Les auteurs et compositeurs d’œuvres musicales et les
+    dialoguistes de doublage cotisent au RACL.
+  titre.en: '[automatic] lyrical author or composer, dubbing dialogue writer'
+  titre.fr: auteur ou compositeur lyrique, dialoguiste de doublage
+artiste-auteur . cotisations . IRCEC . régime RACL:
+  question.en: '[automatic] Do you contribute to the RACL?'
+  question.fr: Cotisez-vous au RACL ?
+  titre.en: '[automatic] RACL plan'
+  titre.fr: régime RACL
 artiste-auteur . cotisations . assiette:
   description.en: "[automatic] Artists' earnings can be categorized either as
     wages and salaries or as non-commercial profits. Social security
@@ -726,19 +828,21 @@ artiste-auteur . cotisations . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
 artiste-auteur . cotisations . option surcotisation:
-  question.en: Would you like to over-contribute?
-  question.fr: Souhaitez-vous surcotiser ?
-  résumé.en: '[automatic] Your income is below the thresholds allowing you to
-    validate 4 quarters of retirement. You can choose to overcontribute to
-    increase your entitlements.'
-  résumé.fr: Vos revenus sont en dessous des seuils vous permettant de valider 4
-    trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos
-    droits.
+  description.en:
+    '[automatic] Your income is below the thresholds allowing you to
+    validate 4 quarters of retirement. You can choose to contribute more to
+    increase your rights.'
+  description.fr: Vos revenus sont en dessous des seuils vous permettant de
+    valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour
+    augmenter vos droits.
+  question.en: '[automatic] Would you like to contribute more to increase your
+    pension rights?'
+  question.fr: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
   titre.en: overcontribution option
   titre.fr: option surcotisation
 artiste-auteur . cotisations . vieillesse:
-  titre.en: Basic pension contribution
-  titre.fr: vieillesse
+  titre.en: '[automatic] Basic pension'
+  titre.fr: Retraite de base
 artiste-auteur . revenus:
   titre.en: revenues
   titre.fr: revenus

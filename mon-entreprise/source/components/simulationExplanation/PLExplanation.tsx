@@ -3,7 +3,7 @@ import * as Animate from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
-import * as logosSrc from 'Images/logos-cnavpl'
+import * as logosSrc from 'Images/logos-caisses-retraite'
 import urssafSrc from 'Images/Urssaf.svg'
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
@@ -19,23 +19,7 @@ export default function PLExplanation() {
 				<Animate.fromBottom>
 					<h2>Vos institutions partenaires</h2>
 					<div className="ui__ box-container">
-						<div className="ui__  card box">
-							<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
-								<LogoImg src={urssafSrc} title="logo Urssaf" />
-							</a>
-							<p className="ui__ notice">
-								Les cotisations recouvrées par l'Urssaf, qui servent au
-								financement de la sécurité sociale (assurance maladie,
-								allocations familiales, dépendance)
-							</p>
-							<p className="ui__ lead">
-								<Value
-									unit={unit}
-									displayedUnit="€"
-									expression="dirigeant . indépendant . PL . cotisations Urssaf"
-								/>
-							</p>
-						</div>
+						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
 						<CaisseRetraite />
 						<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
 							<div className="ui__  card box">
@@ -71,6 +55,25 @@ export default function PLExplanation() {
 				</Animate.fromBottom>
 			</Trans>
 		</section>
+	)
+}
+
+export function CotisationsUrssaf({ rule }: { rule: DottedName }) {
+	const unit = useSelector(targetUnitSelector)
+	return (
+		<div className="ui__  card box">
+			<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
+				<LogoImg src={urssafSrc} title="logo Urssaf" />
+			</a>
+			<p className="ui__ notice">
+				Les cotisations recouvrées par l'Urssaf, qui servent au financement de
+				la sécurité sociale (assurance maladie, allocations familiales,
+				dépendance)
+			</p>
+			<p className="ui__ lead">
+				<Value unit={unit} displayedUnit="€" expression={rule} />
+			</p>
+		</div>
 	)
 }
 
