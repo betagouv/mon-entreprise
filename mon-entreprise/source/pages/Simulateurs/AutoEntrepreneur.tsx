@@ -46,7 +46,6 @@ function useAdjustProportions(): () => void {
 						unité: '%',
 					})
 				)
-				console.log(valueName, value, newProportion, nouveauCA)
 
 				return { ...acc, [proportionName]: newProportion }
 			},

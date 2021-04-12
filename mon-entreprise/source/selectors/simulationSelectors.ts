@@ -27,16 +27,13 @@ export const configSituationSelector = (state: RootState) =>
 	configSelector(state).situation ?? emptySituation
 
 export const firstStepCompletedSelector = createSelector(
-	[situationSelector, objectifsSelector],
-	(situation, objectifs) => {
-		if (!situation) {
-			return false
-		}
-		return objectifs.some((objectif) => {
-			return Object.entries(situation).some(([dottedName]) =>
-				dottedName.startsWith(objectif)
-			)
-		})
+	[situationSelector, configSituationSelector],
+	(situation, baseSituation) => {
+		return (
+			Object.keys(situation).filter(
+				(dottedName) => !Object.keys(baseSituation).includes(dottedName)
+			).length > 0
+		)
 	}
 )
 
