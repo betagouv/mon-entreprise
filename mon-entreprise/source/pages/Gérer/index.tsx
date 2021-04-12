@@ -34,7 +34,7 @@ export default function Gérer() {
 				/>
 				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
 				{[
-					simulateurs['aide-déclaration-indépendant'],
+					// simulateurs['aide-déclaration-indépendant'],
 					simulateurs['demande-mobilité'],
 				].map((p) => (
 					<Route

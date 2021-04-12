@@ -19,7 +19,7 @@ const useShowFeedback = () => {
 	const simulators = useSimulatorsData()
 	if (
 		[
-			simulators['aide-déclaration-indépendant'],
+			// simulators['aide-déclaration-indépendant'],
 			simulators['comparaison-statuts'],
 			simulators['demande-mobilité'],
 		]

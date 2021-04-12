@@ -9,7 +9,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
 import { RessourceAutoEntrepreneur } from '../Créer/CreationChecklist'
-import AideDéclarationIndépendant from '../Gérer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gérer/DemandeMobilite'
 import AidesEmbauche from './AidesEmbauche'
 import ArtisteAuteur from './ArtisteAuteur'
@@ -47,7 +46,7 @@ const simulateurs = [
 	'artiste-auteur',
 	'comparaison-statuts',
 	'économie-collaborative',
-	'aide-déclaration-indépendant',
+	// 'aide-déclaration-indépendant',
 	'demande-mobilité',
 	'profession-libérale',
 	'médecin',
@@ -588,33 +587,33 @@ export function getSimulatorsData({
 				'Guide économie collaborative'
 			),
 		},
-		'aide-déclaration-indépendant': {
-			component: AideDéclarationIndépendant,
-			tracking: {
-				chapter1: 'gerer',
-				chapter2: 'aide_declaration_independant',
-			},
-			icône: '✍️',
-			meta: {
-				description: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.description',
-					'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2020.'
-				),
-				title: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.title',
-					'Déclaration de revenus indépendant : calcul du montant des cotisations'
-				),
-			},
-			path: sitePaths.gérer.déclarationIndépendant,
-			shortName: t(
-				'pages.gérer.aide-déclaration-indépendant.shortname',
-				'Aide à la déclaration de revenu'
-			),
-			title: t(
-				'pages.gérer.aide-déclaration-indépendant.title',
-				"Aide à la déclaration de revenus au titre de l'année 2020"
-			),
-		},
+		// 'aide-déclaration-indépendant': {
+		// 	component: AideDéclarationIndépendant,
+		// 	tracking: {
+		// 		chapter1: 'gerer',
+		// 		chapter2: 'aide_declaration_independant',
+		// 	},
+		// 	icône: '✍️',
+		// 	meta: {
+		// 		description: t(
+		// 			'pages.gérer.aide-déclaration-indépendant.meta.description',
+		// 			'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2020.'
+		// 		),
+		// 		title: t(
+		// 			'pages.gérer.aide-déclaration-indépendant.meta.title',
+		// 			'Déclaration de revenus indépendant : calcul du montant des cotisations'
+		// 		),
+		// 	},
+		// 	path: sitePaths.gérer.déclarationIndépendant,
+		// 	shortName: t(
+		// 		'pages.gérer.aide-déclaration-indépendant.shortname',
+		// 		'Aide à la déclaration de revenu'
+		// 	),
+		// 	title: t(
+		// 		'pages.gérer.aide-déclaration-indépendant.title',
+		// 		"Aide à la déclaration de revenus au titre de l'année 2020"
+		// 	),
+		// },
 		'demande-mobilité': {
 			component: FormulaireMobilitéIndépendant,
 			tracking: {
