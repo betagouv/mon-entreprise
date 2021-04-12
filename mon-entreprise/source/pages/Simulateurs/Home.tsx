@@ -86,7 +86,7 @@ export default function Simulateurs() {
 					)}
 					<SimulateurCard {...simulators['comparaison-statuts']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
-					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
+					{/* <SimulateurCard {...simulators['aide-déclaration-indépendant']} /> */}
 				</div>
 			</section>
 			<section>
