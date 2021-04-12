@@ -43,6 +43,10 @@
 .ui__.card.disabled img {
 	filter: saturate(0);
 }
+.ui__.card.content {
+	padding: 1rem;
+	padding-top: 0.1rem;
+}
 
 .ui__.card.disabled .ui__.card.plain,
 .ui__.card.disabled.plain {

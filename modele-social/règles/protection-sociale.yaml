@@ -8,10 +8,7 @@ protection sociale . retraite:
   icônes: 👵
   type: branche
   résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
-  non applicable si:
-    toutes ces conditions:
-      - entreprise . activité = 'libérale'
-      - dirigeant . indépendant . PL . régime général = non
+
   description: |
     Tous les travailleurs en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
@@ -198,7 +195,11 @@ protection sociale . retraite . complémentaire salarié . points acquis:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire sécurité des indépendants:
-  formule: points acquis * valeur du point
+  non applicable si:
+    toutes ces conditions:
+      - entreprise . activité = 'libérale'
+      - dirigeant . indépendant . PL . régime général = non
+  formule: total points acquis  * valeur du point
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
@@ -207,18 +208,12 @@ protection sociale . retraite . complémentaire sécurité des indépendants . v
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
-  formule: points acquis par mois * mois cotisés
+protection sociale . retraite . complémentaire sécurité des indépendants . total points acquis:
+  formule: points acquis * mois cotisés
 
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
-  unité: points/mois
-  formule:
-    produit:
-      assiette:
-        somme:
-          - dirigeant . indépendant . cotisations et contributions . retraite complémentaire
-          # - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
-      facteur: 1 / prix d'achat du point
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
+  unité: points/an
+  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
   formule: 17.515 €/point

@@ -1,6 +1,6 @@
 import BarChartBranch from 'Components/BarChart'
 import 'Components/Distribution.css'
-import { Condition } from 'Components/EngineValue'
+import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
@@ -8,7 +8,7 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaire'
@@ -51,6 +51,44 @@ export default function IndépendantExplanation() {
 					/>
 				</section>
 			</Condition>
+			<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
+				<h2>Retraite : droits acquis sur l'année 2021</h2>
+				<ul>
+					<li>
+						Retraite de base :{' '}
+						<strong>
+							<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
+								<Value
+									expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
+									displayedUnit=""
+								/>{' '}
+								trimestres acquis
+							</RuleLink>
+						</strong>
+					</li>
+					<li>
+						Retraite complémentaire :{' '}
+						<Condition expression="entreprise . activité . libérale réglementée">
+							<em>
+								Ce simulateur ne gère pas les droits acquis de retraite
+								complémentaire pour les professions libérales
+							</em>
+						</Condition>
+						<Condition expression="entreprise . activité . libérale réglementée = non">
+							<strong>
+								<RuleLink dottedName="protection sociale . retraite . complémentaire sécurité des indépendants . points acquis">
+									<Value
+										expression="protection sociale . retraite . complémentaire sécurité des indépendants . points acquis"
+										displayedUnit=""
+									/>{' '}
+									points acquis
+								</RuleLink>
+							</strong>
+						</Condition>
+					</li>
+				</ul>
+			</Trans>
+
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>

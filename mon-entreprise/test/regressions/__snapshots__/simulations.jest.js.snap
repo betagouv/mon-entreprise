@@ -394,9 +394,9 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,10998,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,10998,0,10651,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,10651,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[917,10998,0,10651,4,20]"`;
 
@@ -454,9 +454,9 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,17852,17852,2973,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,15580,15580,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,15580,15580,6600,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15560,15560,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15560,15560,6600,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,17336,17336,2900,3,8]"`;
 
@@ -510,7 +510,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13770,0,10085,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14555,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14555,0,7547,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 3`] = `"[0,13758,0,10076,4,21]"`;
 
