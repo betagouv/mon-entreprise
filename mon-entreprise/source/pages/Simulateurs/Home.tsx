@@ -65,7 +65,7 @@ export default function Simulateurs() {
 				<>
 					<HeadingWithAnchorLink level={3}>
 						<small>
-							<Trans>Professions</Trans>
+							<Trans>Professions libérales</Trans>
 						</small>
 					</HeadingWithAnchorLink>
 					<div className="ui__ small box-container">

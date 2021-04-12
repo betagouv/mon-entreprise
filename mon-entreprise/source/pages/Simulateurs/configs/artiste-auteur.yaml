@@ -2,4 +2,11 @@ situation:
   dirigeant: "'artiste-auteur'"
 unité par défaut: €/an
 objectifs:
+  - artiste-auteur . revenus . traitements et salaires
+  - artiste-auteur . revenus . BNC . recettes
+  - artiste-auteur . revenus . BNC . frais réels
   - artiste-auteur . cotisations
+questions:
+  liste:
+    - artiste-auteur . revenus . BNC . micro-bnc
+    - artiste-auteur . cotisations . option surcotisation

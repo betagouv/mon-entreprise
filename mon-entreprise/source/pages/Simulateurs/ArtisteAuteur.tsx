@@ -1,3 +1,5 @@
+import Simulation from 'Components/Simulation'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import { DistributionBranch } from 'Components/Distribution'
 import Value, { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -22,25 +24,15 @@ export default function ArtisteAuteur() {
 	return (
 		<>
 			<SimulateurWarning simulateur="artiste-auteur" />
-			<SimulationGoals className="light">
-				<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
-				<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
-				<SimulationGoal
-					labelWithQuestion
-					dottedName="artiste-auteur . revenus . BNC . micro-bnc"
-					boolean
-				/>
-				<Warning dottedName="artiste-auteur . revenus . BNC . contrôle micro-bnc" />
-				<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
+			<Simulation explanations={<CotisationsResult />}>
+				<PeriodSwitch />
+
+				<SimulationGoals className="plain">
+					<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
+					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
-				</Condition>
-				<SimulationGoal
-					labelWithQuestion
-					dottedName="artiste-auteur . cotisations . option surcotisation"
-					boolean
-				/>
-			</SimulationGoals>
-			<CotisationsResult />
+				</SimulationGoals>
+			</Simulation>
 		</>
 	)
 }
