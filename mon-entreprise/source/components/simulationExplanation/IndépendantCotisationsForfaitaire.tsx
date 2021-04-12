@@ -11,16 +11,12 @@ export default function CotisationsForfaitaires() {
 	)
 	return (
 		<Animate.fromBottom>
-			<div
-				className="ui__  lighter-bg card"
-				css={`
-					padding: 1rem;
-					padding-top: 0.1rem;
-				`}
-			>
+			<div className="ui__ lighter-bg content card">
 				<h2>{rule.title}</h2>
 				<p className="ui__ lead">
-					Montant des cotisations forfaitaires :{' '}
+					<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
+						Montant des cotisations forfaitaires :{' '}
+					</Trans>
 					<strong>
 						<Value expression="dirigeant . indépendant . cotisations et contributions . début activité" />
 					</strong>

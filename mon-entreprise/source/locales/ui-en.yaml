@@ -1209,10 +1209,16 @@ pages:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
     indépendant:
+      cotisations-forfaitaires: "Amount of lump sum contributions : "
       meta:
         description: Calculation of net income after tax and contributions based on
           turnover and vice versa
         title: "Independent: Urssaf income simulator"
+      retraite-droits-acquis: "<0>Retirement: rights acquired in 2021</0><1><0>Basic
+        pension : <2><0><0></0> vested quarters</0></2></0><1>Supplementary
+        pension : <2><0>This simulator does not manage the acquired rights of
+        supplementary pension for the liberal
+        professions</0></2><3><0><0><0></0> points acquired</0></0></3></1></1>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:

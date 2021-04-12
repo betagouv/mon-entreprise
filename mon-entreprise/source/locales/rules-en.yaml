@@ -8098,12 +8098,12 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
 ? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
 : titre.en: acquired points
   titre.fr: points acquis
-? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
-: titre.en: acquired points per month
-  titre.fr: points acquis par mois
 ? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
 : titre.en: buying cost of the point
   titre.fr: prix d'achat du point
+? protection sociale . retraite . complémentaire sécurité des indépendants . total points acquis
+: titre.en: '[automatic] total points earned'
+  titre.fr: total points acquis
 ? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
 : titre.en: value of the point
   titre.fr: valeur du point
