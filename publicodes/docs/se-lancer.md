@@ -55,11 +55,11 @@ const engine = new Engine(rules)
 
 > -   **ESModule sans npm install** (`<script type="module">` et deno)
 >     ```js
->     import Engine from 'https://unpkg.com/publicodes@1.0.0-beta.12/esm/index.min.js'
+>     import Engine from 'https://unpkg.com/publicodes@1.0.0-beta.13/esm/index.min.js'
 >     ```
 > -   **`<script>` dans navigateur**
 >     ```html
->     <script src="https://unpkg.com/publicodes@1.0.0-beta.12/dist/index.min.js"></script>
+>     <script src="https://unpkg.com/publicodes@1.0.0-beta.13/dist/index.min.js"></script>
 >     <script>
 >         const Engine = window.publicodes.default
 >     </script>
