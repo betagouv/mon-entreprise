@@ -10,6 +10,8 @@ import { DottedName } from 'modele-social'
 import { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import urssafSrc from 'Images/Urssaf.svg'
+import ircecSrc from 'Images/logos-caisses-retraite/ircec.jpg'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
@@ -82,24 +84,7 @@ function CotisationsResult() {
 
 	return (
 		<Animate.appear>
-			<div
-				className="ui__ card"
-				css={`
-					margin-top: 2rem;
-				`}
-			>
-				<ResultLine>
-					<ResultLabel>
-						<Trans>Montant des cotisations</Trans>
-					</ResultLabel>
-					<Value
-						displayedUnit="€"
-						precision={0}
-						expression="artiste-auteur . cotisations"
-					/>
-				</ResultLine>
-			</div>
-			<br />
+			<CotisationsParOrganisme />
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />
 			</Condition>
@@ -107,9 +92,60 @@ function CotisationsResult() {
 	)
 }
 
+function CotisationsParOrganisme() {
+	return (
+		<section>
+			<h2>Vos institutions partenaires</h2>
+			<div className="ui__ box-container">
+				<div className="ui__  card box">
+					<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
+						<LogoImg src={urssafSrc} title="logo Urssaf" />
+					</a>
+					<p className="ui__ notice">
+						Les cotisations recouvrées par l'Urssaf, qui servent au financement
+						de la sécurité sociale (assurance maladie, allocations familiales,
+						dépendance)
+					</p>
+					<p className="ui__ lead">
+						<Value
+							displayedUnit="€"
+							expression="artiste-auteur . cotisations"
+						/>
+					</p>
+				</div>
+				<div className="ui__  card box">
+					<a target="_blank" href="http://www.ircec.fr/">
+						<LogoImg src={ircecSrc} title="logo IRCEC" />
+					</a>
+					<p className="ui__ notice">
+						Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré
+						en droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui
+						assure la gestion de votre retraite complémentaire obligatoire.
+					</p>
+					<p className="ui__ lead">
+						<Value
+							displayedUnit="€"
+							expression="artiste-auteur . cotisations . IRCEC"
+						/>
+					</p>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+const LogoImg = styled.img`
+	padding: 1rem;
+	height: 5rem;
+`
+
 const branches = [
 	{
 		dottedName: 'artiste-auteur . cotisations . vieillesse',
+		icon: '👵',
+	},
+	{
+		dottedName: 'artiste-auteur . cotisations . IRCEC',
 		icon: '👵',
 	},
 	{

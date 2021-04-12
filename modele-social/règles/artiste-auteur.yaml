@@ -53,6 +53,7 @@ artiste-auteur . cotisations:
       - vieillesse
       - CSG-CRDS
       - formation professionnelle
+    arrondi: oui
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
 
@@ -81,6 +82,7 @@ artiste-auteur . cotisations . option surcotisation:
 artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
 
 artiste-auteur . cotisations . vieillesse:
+  titre: Retraite de base
   formule:
     produit:
       assiette: assiette
@@ -129,3 +131,22 @@ artiste-auteur . cotisations . formation professionnelle:
     produit:
       assiette: assiette
       taux: 0.35%
+
+artiste-auteur . cotisations . IRCEC:
+  titre: Retraite complémentaire
+  description: |
+    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
+    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
+    gestion de votre retraite complémentaire obligatoire.
+  formule:
+    somme:
+      - cotisation RAAP
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP:
+  applicable si: assiette > 9135 €/an
+  formule:
+    produit:
+      assiette: assiette
+      plafond: 3 * contrat salarié . plafond sécurité sociale
+      taux: 8%
+    arrondi: oui
