@@ -1,0 +1,83 @@
+douche:
+  valeur: oui
+  icônes: 🚿
+
+douche . impact:
+  icônes: 🍃
+  unité: kgCO2eq / mois
+  valeur: impact par litre * litres d'eau par douche * nombre
+
+douche . nombre:
+  question: Combien prenez-vous de douches ?
+  par défaut: 1 douche / jour
+  suggestions:
+    1 par jour: 1 douche / jour
+    5 par semaine: 4 douche / semaine
+    2 par jour: 2 douche / jour
+
+
+douche . impact par litre:
+  somme: 
+    - eau . impact par litre froid
+    - chauffage . impact par litre
+  
+douche . débit:
+  valeur: 18 litre/min
+  références:
+    économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
+
+douche . pomme de douche économe:
+  remplace: 
+    règle: débit
+    par: 9 litre/min
+  question: Utilisez-vous une pomme de douche économe ?
+  par défaut: non
+
+eau:
+  icônes: 💧
+
+eau . impact par litre froid:
+  unité: kgCO2eq/litre
+  formule: 0.000132
+
+chauffage:
+  icônes: 🔥
+
+chauffage . type:
+  par défaut: "'électricité'"
+
+
+chauffage . impact par kWh:
+  notes: |
+    La base carbone de l'ADEME ne permet malheureusement pas de faire des liens profonds vers les chiffres utilisés.
+    Pour l'électricité, nous retenons le chiffre de l'ADEME "Electricité - 2016 - usage : Eau Chaude Sanitaire - consommation".
+  références:
+    base carbone ADEME: http://www.bilans-ges.ademe.fr/fr/accueil
+    électricité: https://www.electricitymap.org/?page=country&solar=false&remote=true&wind=false&countryCode=FR
+    électricité sur Décrypter l'Energie: https://decrypterlenergie.org/decryptage-quel-est-le-contenu-en-co2-du-kwh-electrique
+
+chauffage . énergie consommée par litre:
+  valeur: 0.0325 kWh
+  références:
+    analyse du prix d'une douche: https://www.econologie.com/forums/plomberie-et-sanitaire/prix-reel-d-un-bain-ou-d-une-douche-pour-l-eau-et-chauffage-t12727.html
+
+chauffage . impact par litre:
+  produit: 
+    assiette: 0.0325 kWh/litre
+    facteur:
+      unité: kgCO2eq/kWh
+      variations:
+        - si: type = 'gaz'
+          alors: 0.227
+        - si: type = 'fioul'
+          alors: 0.324
+        - si: type = 'électricité'
+          alors: 0.059 
+
+douche . durée de la douche:
+  question: Combien de temps dure votre douche en général ?
+  par défaut: 10 min
+  suggestions:
+    expresse: 5 min
+    moyenne: 10 min
+    lente: 20 min
