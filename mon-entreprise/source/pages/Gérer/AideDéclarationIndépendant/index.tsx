@@ -8,11 +8,12 @@ import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { Markdown } from 'Components/utils/markdown'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { Fragment, useCallback, useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -49,13 +50,13 @@ export default function AideDéclarationIndépendant() {
 		<div>
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<p>
-					Cet outil est une aide aux déclarations de revenus à destination des
+					Cet outil est une aide à la déclaration de revenus à destination des
 					travailleurs indépendants. Il vous permet de connaître le montant des
 					charges sociales déductibles à partir de votre résultat net fiscal.
 				</p>
 				<p>
 					Vous restez entièrement responsable d'éventuelles omissions ou
-					inexactitudes dans vos déclarations.
+					inexactitudes dans votre déclarations.
 				</p>
 				<div>
 					<Warning localStorageKey="aide-déclaration-indépendant.warning">
@@ -425,54 +426,128 @@ function SimpleField({
 
 function Results() {
 	const engine = useEngine()
-	const rules = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
-		engine.getRule(objectif)
-	)
+
 	return (
 		<div
-			className="ui__ card lighter-bg"
-			css="margin-top: 3rem; padding: 1rem 0"
+			className="ui__ full-width lighter-bg"
+			css={`
+				margin-top: 2rem;
+			`}
 		>
-			<h1 css="text-align: center; margin-bottom: 2rem">
-				<Trans i18nKey="aide-déclaration-indépendant.results.title">
-					Aide à la déclaration
-				</Trans>
-				{emoji('📄')}
-			</h1>
-			<p>
-				L'ancienne Déclaration Sociale des Indépendant (DSI) qui était
-				précédemment à effectuer sur le site net-entreprises.fr est désormais
-				intégrée à la déclaration fiscale des revenus (déclaration 2042) sur
-				impots.gouv.fr.
-			</p>
-			<p>
-				Vous pouvez reporter le montant suivant dans votre déclaration, calculé
-				à partir des informations saisies.
-			</p>
-			<>
-				<Animate.fromTop>
-					{rules.map((r) => (
-						<Fragment key={r.dottedName}>
-							<h4>
-								{r.title} <small>{r.rawNode.résumé}</small>
-							</h4>
-							{r.rawNode.description && (
-								<p className="ui__ notice">{r.rawNode.description}</p>
-							)}
-							<p className="ui__ lead" css="margin-bottom: 1rem;">
-								<RuleLink dottedName={r.dottedName}>
-									<Value
-										expression={r.dottedName}
-										displayedUnit="€"
-										unit="€/an"
-										precision={0}
-									/>
-								</RuleLink>
-							</p>
-						</Fragment>
-					))}
-				</Animate.fromTop>
-			</>
+			<div
+				className="ui__ container"
+				css={`
+					display: flex;
+					flex-direction: column;
+				`}
+			>
+				<h2>
+					{emoji('📄')}{' '}
+					<Trans i18nKey="aide-déclaration-indépendant.results.title">
+						Montants à reporter dans votre déclaration de revenus
+					</Trans>
+				</h2>
+				<p>
+					L'ancienne Déclaration Sociale des Indépendant (DSI) qui était
+					précédemment à effectuer sur le site net-entreprises.fr est désormais
+					intégrée à la déclaration fiscale des revenus (déclaration 2042) sur
+					impots.gouv.fr.
+				</p>
+				<p>
+					Vous pouvez reporter les montant suivant dans votre déclaration,
+					calculé à partir des informations saisies.
+				</p>
+				{([
+					'aide déclaration revenu indépendant 2020 . cotisations obligatoires',
+					'aide déclaration revenu indépendant 2020 . total charges sociales déductible',
+				] as const).map((dottedName) => {
+					const r = engine.getRule(dottedName)
+					return (
+						<Animate.fromTop key={dottedName}>
+							<div
+								className="ui__ card"
+								css={`
+									display: flex;
+									flex-direction: column;
+									margin: 1rem 0;
+								`}
+							>
+								<h3>
+									{r.title} <small>{r.rawNode.résumé}</small>
+								</h3>
+								<p className="ui__ lead" css="margin-bottom: 1rem;">
+									<strong>
+										<RuleLink dottedName={r.dottedName}>
+											<Value
+												expression={r.dottedName}
+												displayedUnit="€"
+												unit="€/an"
+												precision={0}
+											/>
+										</RuleLink>
+									</strong>
+								</p>
+								{r.rawNode.description && (
+									<div className="ui__ notice">
+										<Markdown source={r.rawNode.description} />
+									</div>
+								)}
+							</div>
+						</Animate.fromTop>
+					)
+				})}
+				<h2>{emoji('ℹ️')} Pour votre information </h2>
+				<div
+					css={`
+						margin: 0 -0.5rem;
+						display: grid;
+						grid-gap: 0.5rem;
+						grid-template-columns: repeat(3, auto);
+					`}
+				>
+					{([
+						'aide déclaration revenu indépendant 2020 . réduction covid . montant',
+						'aide déclaration revenu indépendant 2020 . revenu net fiscal',
+						'aide déclaration revenu indépendant 2020 . CSG déductible',
+						'aide déclaration revenu indépendant 2020 . CFP',
+						'aide déclaration revenu indépendant 2020 . assiette sociale',
+					] as const).map((dottedName) => {
+						const r = engine.getRule(dottedName)
+						return (
+							<Animate.fromTop style={{ display: 'flex' }} key={dottedName}>
+								<div
+									className="ui__ box card"
+									css={`
+										margin: 0;
+										flex: 1 !important;
+									`}
+								>
+									<p className="ui__ lead">
+										<RuleLink dottedName={r.dottedName} />{' '}
+										<small>{r.rawNode.résumé}</small>
+									</p>
+
+									{r.rawNode.description && (
+										<div className="ui__ notice">
+											<Markdown source={r.rawNode.description} />
+										</div>
+									)}
+									<p className="ui__ lead" css="margin-bottom: 1rem;">
+										<RuleLink dottedName={r.dottedName}>
+											<Value
+												expression={r.dottedName}
+												displayedUnit="€"
+												unit="€/an"
+												precision={0}
+											/>
+										</RuleLink>
+									</p>
+								</div>
+							</Animate.fromTop>
+						)
+					})}
+				</div>
+			</div>
 		</div>
 	)
 }
