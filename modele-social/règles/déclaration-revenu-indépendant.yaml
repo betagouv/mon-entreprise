@@ -122,15 +122,6 @@ aide déclaration revenu indépendant 2020 . période:
     - règle: période . fin d'année
       par: 31/12/2020
 
-aide déclaration revenu indépendant 2020 . cotisations obligatoires:
-  titre: Cotisations sociales obligatoires 
-  résumé: '[DSBA/DSBB]'
-  unité: €/an
-  formule: 
-    somme: 
-      - dirigeant . indépendant . cotisations et contributions . cotisations
-      - (- réduction covid . imputation sur les cotisations obligatoires)
-
 aide déclaration revenu indépendant 2020 . réduction covid:
   titre: Réduction de cotisation Covid
   remplace: 
@@ -163,8 +154,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . imputation sur l
       facteur: dirigeant . indépendant . cotisations et contributions . cotisations / montant . plafond
 
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
-  titre: Réduction de cotisations Covid
-  résumé: intégrée dans le montant des cotisations calculé ci-dessus (pour information)
+  titre: Réduction Covid
+  description: Réduction intégrée dans le montant des cotisations affiché ci-dessus
   formule:
     somme:
       - printemps 2020
@@ -362,3 +353,53 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
   unité: mois éligibles
   plafond: 3 mois éligibles
 
+
+aide déclaration revenu indépendant 2020 . revenu net fiscal:
+  titre: revenu net fiscal
+  résumé: '[A]'
+  description: Résultat avant déduction des charges sociales et exonérations fiscales 
+  valeur: dirigeant . rémunération . totale
+
+aide déclaration revenu indépendant 2020 . cotisations obligatoires:
+  titre: Cotisations sociales obligatoires déductibles
+  résumé: '[C]'
+  description: |
+    À reporter dans :
+    - **la case DSBA/DSBB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+  unité: €/an
+  somme: 
+    - dirigeant . indépendant . cotisations et contributions . cotisations
+    - (- réduction covid . imputation sur les cotisations obligatoires)
+  références:
+    Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
+
+aide déclaration revenu indépendant 2020 . CSG déductible:
+  titre: CSG déductible
+  résumé: '[B]'
+  description: "Montant de la CSG déductible à l'impôt sur le revenu"
+  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+  
+aide déclaration revenu indépendant 2020 . CFP:
+  résumé: '[D]'
+  description: Contribution à la formation professionnelle 
+  formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
+  
+aide déclaration revenu indépendant 2020 . total charges sociales déductible:
+  titre: charges sociales obligatoires déductibles fiscalement
+  résumé: '[B + C + D]'
+  somme:
+    - CSG déductible
+    - cotisations obligatoires
+    - CFP
+  description: |
+    À reporter dans :
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    
+
+aide déclaration revenu indépendant 2020 . assiette sociale:
+  résumé: '[A - (B + C + D)]'
+  description: Assiette utilisée pour le calcul des cotisations sociales
+  valeur: dirigeant . indépendant . assiette des cotisations
