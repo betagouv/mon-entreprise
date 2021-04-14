@@ -60,12 +60,20 @@ programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ---
 
+## Budget
+
+En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) renouvelle le budget annuel de **250 000 € HT**.
+
+Au premier trimestre 2021, l'équipe mon-entreprise continue de bénéficier de l'accompagnement du [programme Gamma](https://beta.gouv.fr/approche/acceleration) financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
+
+---
+
 ### Description des catégories
 
 -   **Développement 👨‍💻**
 
     Les coûts de développement représentent la grande majorité de notre budget.
-    Nous utilisons une petite équipe de développeurs freelances, qui sont
+    Nous sommes une petite équipe de développeurs freelances,
     pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
     métiers. Les rémunérations suivent
     [la grille de beta.gouv](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
