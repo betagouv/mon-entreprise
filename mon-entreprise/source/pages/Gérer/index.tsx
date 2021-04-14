@@ -17,14 +17,16 @@ export default function Gérer() {
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
-			<NavLink
-				to={sitePaths.gérer.index}
-				exact
-				activeClassName="ui__ hide"
-				className="ui__ simple push-left small button"
-			>
-				← <Trans>Retour à mon activité</Trans>
-			</NavLink>
+			<div css="transform: translateY(2rem);">
+				<NavLink
+					to={sitePaths.gérer.index}
+					exact
+					activeClassName="ui__ hide"
+					className="ui__ simple push-left small button"
+				>
+					← <Trans>Retour à mon activité</Trans>
+				</NavLink>
+			</div>
 			<TrackChapter chapter1="gerer" />
 			<Switch>
 				<Route exact path={sitePaths.gérer.index} component={Home} />
