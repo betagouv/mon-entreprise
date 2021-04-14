@@ -451,11 +451,17 @@ function Results() {
 					L'ancienne Déclaration Sociale des Indépendant (DSI) qui était
 					précédemment à effectuer sur le site net-entreprises.fr est désormais
 					intégrée à la déclaration fiscale des revenus (déclaration 2042) sur
-					impots.gouv.fr.
+					impots.gouv.fr.{' '}
+					<a
+						href="https://www.impots.gouv.fr/portail/www2/minisite/declaration/independants.html?11"
+						target="_blank"
+					>
+						En savoir plus
+					</a>
 				</p>
 				<p>
-					Vous pouvez reporter les montant suivant dans votre déclaration,
-					calculé à partir des informations saisies.
+					Vous pouvez reporter les montants suivants dans votre déclaration,
+					calculés à partir des informations saisies.
 				</p>
 				{([
 					'aide déclaration revenu indépendant 2020 . cotisations obligatoires',
