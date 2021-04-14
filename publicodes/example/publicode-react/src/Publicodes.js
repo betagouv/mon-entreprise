@@ -21,7 +21,7 @@ export default function Publicodes() {
 
 	return (
 		<Router>
-			<Documentation engine={engine} documentationPath={'/'} />
+			<Documentation engine={engine} documentationPath={''} />
 		</Router>
 	)
 }

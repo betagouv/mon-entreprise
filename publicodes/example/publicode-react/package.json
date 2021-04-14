@@ -6,9 +6,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "i18next": "^20.2.1",
-    "publicodes": "../../core/publicodes-v1.0.0-beta.13.tgz",
-    "publicodes-react": "../../ui-react/publicodes-react-v1.0.0-beta.13.tgz",
+    "publicodes": "../../core/publicodes-1.0.0-beta.13.tgz",
+    "publicodes-react": "../../ui-react/publicodes-react-1.0.0-beta.13.tgz",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
@@ -17,7 +16,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "preinstall": "yarn pack --install-if-needed --cwd ../../core && yarn pack --install-if-needed --cwd ../../ui-react",
+	"preinstall": "cd ../../core && npm pack && cd ../ui-react && npm pack",
+    "refresh-publicodes": "yarn preinstall && yarn upgrade publicodes publicodes-react",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
