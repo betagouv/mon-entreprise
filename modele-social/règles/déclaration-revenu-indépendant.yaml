@@ -125,13 +125,23 @@ aide déclaration revenu indépendant 2020 . période:
 aide déclaration revenu indépendant 2020 . réduction covid:
   titre: Réduction de cotisation Covid
   remplace: 
-    règle: dirigeant . indépendant . cotisations et contributions . cotisations
-    par: 
-      valeur: dirigeant . indépendant . cotisations et contributions . cotisations
-      abattement: montant
-    sauf dans: 
-      - réduction covid
-      - cotisations obligatoires
+    - règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible 
+      sauf dans: cotisations concernées
+      par: 
+        valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible 
+        abattement: taux
+    - règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible 
+      sauf dans: cotisations concernées
+      par: 
+        valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible 
+        abattement: taux
+    - règle: dirigeant . indépendant . cotisations et contributions . cotisations
+      sauf dans: 
+        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
+        - cotisations concernées
+      par: 
+        valeur: dirigeant . indépendant . cotisations et contributions . cotisations
+        abattement: taux
   description: |
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre plusieurs mesures exceptionnelles concernant les cotisations et contributions sociales des travailleurs indépendants affectés par la crise du coronavirus avec :
 
@@ -145,13 +155,6 @@ aide déclaration revenu indépendant 2020 . réduction covid:
   question: Remplissez-vous les conditions pour bénéficier de la réduction de cotisations sociales liées à la crise du Covid-19 ?
   par défaut: non
 
-aide déclaration revenu indépendant 2020 . réduction covid . imputation sur les cotisations obligatoires:
-  titre: imputation réduction covid
-  unité: €/an
-  formule:
-    produit:
-      assiette: montant
-      facteur: dirigeant . indépendant . cotisations et contributions . cotisations / montant . plafond
 
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
   titre: Réduction Covid
@@ -160,14 +163,25 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
     somme:
       - printemps 2020
       - automne 2020
-    plafond:
-      nom: plafond
-      somme:
+    plafond: cotisations concernées
+    
+aide déclaration revenu indépendant 2020 . réduction covid . cotisations concernées:
+  # recalcul:
+  #   règle:
+      somme: 
         - dirigeant . indépendant . cotisations et contributions . cotisations
-        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
-        - dirigeant . indépendant . conjoint collaborateur . cotisations
-        - (- dirigeant . indépendant . cotisations et contributions . exonérations)
-
+        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+    # avec:
+    #   réduction covid: non
+aide déclaration revenu indépendant 2020 . réduction covid . taux:
+  titre: taux réduction covid
+  description: | 
+    Calcul du taux de réduction du à l'exonération covid. 
+    Ce chiffre permet ensuite d'imputer correctement la réduction dans les différentes cotisations 
+  valeur: montant / cotisations concernées
+  unité: '%'
+  
 
 aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020:
   applicable si: éligible aide printemps 2020
@@ -369,9 +383,7 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
   unité: €/an
-  somme: 
-    - dirigeant . indépendant . cotisations et contributions . cotisations
-    - (- réduction covid . imputation sur les cotisations obligatoires)
+  valeur: dirigeant . indépendant . cotisations et contributions . cotisations    
   références:
     Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
 
@@ -379,12 +391,12 @@ aide déclaration revenu indépendant 2020 . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
   description: "Montant de la CSG déductible à l'impôt sur le revenu"
-  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
-  
+  valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+
 aide déclaration revenu indépendant 2020 . CFP:
   résumé: '[D]'
   description: Contribution à la formation professionnelle 
-  formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
+  valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
   
 aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   titre: charges sociales obligatoires déductibles fiscalement
