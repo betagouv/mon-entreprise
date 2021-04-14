@@ -1,7 +1,3 @@
-// TODO: This is need to display the documentation UI, because the translations
-// for UI components are handled in the mon-entreprise site and not in the
-// publicodes-react package. This should be fixed.
-import '../../../mon-entreprise/source/locales/i18n'
 import 'Components/ui/index.css'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
