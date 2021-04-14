@@ -7,7 +7,6 @@ import {
 } from 'publicodes/source/AST/types'
 import { ReferenceNode } from 'publicodes/source/reference'
 import React, { createContext, useContext, useState } from 'react'
-import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { EngineContext } from '../contexts'
 import mecanismsDoc from '../data/mecanisms.json'
@@ -88,11 +87,7 @@ export function Mecanism({
 }: NodeProps) {
 	return (
 		<StyledMecanism name={name}>
-			{displayName && (
-				<MecanismName name={name}>
-					<Trans>{name}</Trans>
-				</MecanismName>
-			)}
+			{displayName && <MecanismName name={name}>{name}</MecanismName>}
 			<>
 				{children}
 
@@ -165,7 +160,7 @@ const StyledInfixMecanism = styled.div`
 export const InlineMecanismName = ({ name }: { name: string }) => {
 	return (
 		<MecanismName inline name={name}>
-			<Trans>{name}</Trans>
+			{name}
 		</MecanismName>
 	)
 }

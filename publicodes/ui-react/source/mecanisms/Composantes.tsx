@@ -1,10 +1,8 @@
-import { Trans, useTranslation } from 'react-i18next'
-import writtenNumbers from '../writtenNumbers'
 import Explanation from '../Explanation'
+import writtenNumbers from '../writtenNumbers'
 import { CapitalizeFirstLetter, InlineMecanismName, Mecanism } from './common'
 
 export default function Composantes({ nodeValue, explanation, unit }) {
-	const { i18n } = useTranslation()
 	return (
 		<Mecanism
 			name="composantes"
@@ -13,8 +11,7 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 			unit={unit}
 		>
 			<CapitalizeFirstLetter>
-				<Trans>La somme de</Trans>{' '}
-				{writtenNumbers[i18n.language ?? 'fr'][explanation.length]}{' '}
+				La somme de {writtenNumbers[explanation.length]}{' '}
 				<InlineMecanismName name="composantes" /> :
 			</CapitalizeFirstLetter>
 			<ol>

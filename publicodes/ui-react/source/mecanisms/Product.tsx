@@ -1,8 +1,7 @@
-import { Trans } from 'react-i18next'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
+import styled from 'styled-components'
 import Explanation from '../Explanation'
 import { Mecanism } from './common'
-import styled from 'styled-components'
 
 export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 	return (
@@ -18,9 +17,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 					<Explanation node={node.explanation.assiette} />
 					{!node.explanation.plafond.isDefault && (
 						<PlafondSmall>
-							<span>
-								<Trans>Plafonnée à :</Trans>&nbsp;
-							</span>
+							<span>Plafonnée à :&nbsp;</span>
 							<Explanation node={node.explanation.plafond} />
 						</PlafondSmall>
 					)}

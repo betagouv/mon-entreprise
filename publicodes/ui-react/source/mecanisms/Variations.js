@@ -1,15 +1,13 @@
 import classnames from 'classnames'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, useTranslation } from 'react-i18next'
-import writtenNumbers from '../writtenNumbers'
-import Explanation from '../Explanation'
-import { InlineMecanismName, Mecanism, CapitalizeFirstLetter } from './common'
 import styled from 'styled-components'
+import Explanation from '../Explanation'
+import writtenNumbers from '../writtenNumbers'
+import { CapitalizeFirstLetter, InlineMecanismName, Mecanism } from './common'
 
 export default function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
-	const { i18n } = useTranslation()
 
 	return (
 		<StyledComponent>
@@ -21,7 +19,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 			>
 				<>
 					<CapitalizeFirstLetter>
-						{writtenNumbers[i18n.language ?? 'fr'][explanation.length]}{' '}
+						{writtenNumbers[explanation.length]}{' '}
 						<InlineMecanismName name="variations" /> possibles :
 					</CapitalizeFirstLetter>
 					<ol>
@@ -69,7 +67,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													marginBottom: '0.4rem',
 												}}
 											>
-												<Trans>Si :</Trans>&nbsp;
+												Si :&nbsp;
 												<Explanation node={condition} />
 											</div>
 										)}
@@ -86,12 +84,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													satisfied,
 												})}
 											>
-												{!condition.isDefault ? (
-													<Trans>Alors</Trans>
-												) : (
-													<Trans>Sinon</Trans>
-												)}{' '}
-												:&nbsp;
+												{!condition.isDefault ? 'Alors' : 'Sinon'} :&nbsp;
 											</span>
 											<span
 												className={classnames('consequenceContent', {

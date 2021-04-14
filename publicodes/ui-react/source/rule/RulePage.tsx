@@ -5,8 +5,6 @@ import Engine, {
 	utils,
 } from 'publicodes'
 import { isEmpty } from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
 import Explanation from '../Explanation'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
@@ -100,9 +98,7 @@ export default function Rule({ dottedName, engine, language }) {
 			)}
 			{rule.rawNode.références && (
 				<>
-					<h2>
-						<Trans>Références</Trans>
-					</h2>
+					<h2>Références</h2>
 					<References refs={rule.rawNode.références} />
 				</>
 			)}
@@ -137,9 +133,7 @@ function AssociatedRules({
 	}
 	return (
 		<section>
-			<h2>
-				<Trans>Pages associées</Trans>
-			</h2>
+			<h2>Pages associées</h2>
 			<ul>
 				{namespaceRules.map((dottedName) => (
 					<li key={dottedName}>
