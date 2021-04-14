@@ -133,6 +133,7 @@ dirigeant . assimilé salarié . réduction ACRE . taux:
           taux: 100%
         - plafond: 100%
           taux: 0%
+          
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
   formule: oui
   type: notification
@@ -495,7 +496,7 @@ dirigeant . indépendant . assiette des cotisations:
 dirigeant . indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
   description: |
-    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
+    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémentaires. 
     Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
     - exercer une activité professionnelle régulière et habituelle dans l'entreprise 
     - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans 
@@ -503,7 +504,7 @@ dirigeant . indépendant . conjoint collaborateur:
     - ne pas être associé de la société.
   par défaut: non
   références:
-    secu-indépendant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
 
 dirigeant . indépendant . cotisations et contributions . non déductibles:
@@ -527,7 +528,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       facteur: prorata sur l'année
     arrondi: oui
   références:
-    Fiche secu-independant.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
+    Fiche secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
 
 dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre: plafond de la sécurité sociale proratisé
@@ -1122,15 +1123,15 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     Seule la partie imposable des IJSS est retranchée de l'assiette de la CSG,
     puisque la partie non imposable a déjà été retranchée du revenu net fiscal
     fourni
-  formule:
-    valeur:
-      somme:
-        - assiette des cotisations . sans plancher
-        - cotisations
-    abattement:
-      somme:
-        - revenus étrangers . montant
-        - dirigeant . indépendant . IJSS . imposable
+  valeur:
+    somme:
+      - assiette des cotisations . sans plancher
+      - cotisations
+  abattement:
+    somme:
+      - revenus étrangers . montant
+      - dirigeant . indépendant . IJSS . imposable
+  plancher: 0 €/mois
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   produit:
@@ -1256,8 +1257,7 @@ dirigeant . indépendant . IJSS:
   titre: indemnités journalières de sécurité sociale
   description: >-
     En cas de maladie, maternité, ou accident, le régime général de Sécurité
-    sociale ainsi que les régimes spéciaux assurent le versement de prestations
-    « en espèces ». 
+    sociale assurent le versement de prestations « en espèces ». 
 
     Ce sont les indemnités journalières de Sécurité sociale (IJSS).
 

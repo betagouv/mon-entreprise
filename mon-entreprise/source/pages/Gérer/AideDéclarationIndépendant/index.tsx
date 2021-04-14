@@ -90,7 +90,9 @@ export default function AideDéclarationIndépendant() {
 						</ul>
 					</Warning>
 				</div>
-				<PreviousSimulationBanner />
+				{!situation['dirigeant . rémunération . totale'] && (
+					<PreviousSimulationBanner />
+				)}
 				<h2>
 					Quel est votre résultat fiscal en 2020 ?<br />
 					<small>
