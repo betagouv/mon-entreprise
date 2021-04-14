@@ -176,9 +176,9 @@ aide déclaration revenu indépendant 2020 . réduction covid . cotisations conc
     #   réduction covid: non
 aide déclaration revenu indépendant 2020 . réduction covid . taux:
   titre: taux réduction covid
-  description: | 
+  description: |
     Calcul du taux de réduction du à l'exonération covid. 
-    Ce chiffre permet ensuite d'imputer correctement la réduction dans les différentes cotisations 
+    Ce chiffre permet ensuite d'imputer correctement la réduction dans les différentes cotisations.
   valeur: montant / cotisations concernées
   unité: '%'
   
