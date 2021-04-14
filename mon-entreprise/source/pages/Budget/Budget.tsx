@@ -5,6 +5,7 @@ import { formatValue } from 'publicodes'
 import { sum, uniq } from 'ramda'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -17,21 +18,23 @@ const [
 	intro,
 	ressources2019,
 	ressources2020,
+	ressources2021,
 	ressourcesDescription,
 ] = prose.split(/\r?\n-{3,}\r?\n/)
 
 const ressources = {
 	2019: ressources2019,
 	2020: ressources2020,
+	2021: ressources2021,
 }
 
 export default function Budget() {
-	const years = ['2019', '2020'] as const
+	const years = ['2019', '2020', '2021'] as const
 	const quarters = ['T1', 'T2', 'T3', 'T4']
-	const [selectedYear, setSelectedYear] = useState<typeof years[number]>('2020')
+	const [selectedYear, setSelectedYear] = useState<typeof years[number]>('2021')
 	const categories = uniq(
 		quarters
-			.map((q) => Object.keys(budget[2020][q] ?? {}))
+			.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
 			.reduce((acc, curr) => [...acc, ...curr], [])
 	)
 
@@ -39,6 +42,9 @@ export default function Budget() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="budget" />
+			<Helmet>
+				<title>Le budget de mon-entreprise.fr</title>
+			</Helmet>
 			<ScrollToTop />
 			<h1>Budget {emoji('💶')}</h1>
 			<Markdown source={intro} />
@@ -67,7 +73,7 @@ export default function Budget() {
 						<RessourcesAllocationTable>
 							<thead>
 								<tr>
-									<td>2020</td>
+									<td>{selectedYear}</td>
 									{quarters.map((q) => (
 										<td key={q}>{q}</td>
 									))}
@@ -79,7 +85,7 @@ export default function Budget() {
 									<tr key={label}>
 										<td>{label}</td>
 										{quarters.map((q) => {
-											const value = budget[2020]?.[q]?.[label]
+											const value = budget[selectedYear]?.[q]?.[label]
 											return (
 												<td key={q}>
 													{value
@@ -94,7 +100,9 @@ export default function Budget() {
 										<td>
 											{formatValue(
 												sum(
-													quarters.map((q) => budget[2020]?.[q]?.[label] ?? 0)
+													quarters.map(
+														(q) => budget[selectedYear]?.[q]?.[label] ?? 0
+													)
 												),
 												{
 													displayedUnit: '€',
@@ -109,7 +117,9 @@ export default function Budget() {
 								<tr>
 									<td>Total</td>
 									{quarters.map((q) => {
-										const value = sum(Object.values(budget[2020]?.[q] ?? {}))
+										const value = sum(
+											Object.values(budget[selectedYear]?.[q] ?? {})
+										)
 										return (
 											<td key={q}>
 												{value
@@ -125,7 +135,7 @@ export default function Budget() {
 										{formatValue(
 											sum(
 												quarters.map((q) =>
-													sum(Object.values(budget[2020]?.[q] ?? {}))
+													sum(Object.values(budget[selectedYear]?.[q] ?? {}))
 												)
 											),
 											{
