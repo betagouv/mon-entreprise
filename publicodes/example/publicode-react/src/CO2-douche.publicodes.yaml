@@ -5,33 +5,21 @@ douche:
 douche . impact:
   icônes: 🍃
   unité: kgCO2eq / mois
-  valeur: impact par litre * litres d'eau par douche * nombre
+  valeur: fréquence * impact par litre * litres consommés
 
-douche . nombre:
+douche . fréquence:
   question: Combien prenez-vous de douches ?
-  par défaut: 1 douche / jour
+  par défaut: 1 douche/jour
   suggestions:
-    1 par jour: 1 douche / jour
-    5 par semaine: 4 douche / semaine
-    2 par jour: 2 douche / jour
+    1 par jour: 1 douche/jour
+    5 par semaine: 4 douche/semaine
+    2 par jour: 2 douche/jour
 
 
 douche . impact par litre:
   somme: 
     - eau . impact par litre froid
     - chauffage . impact par litre
-  
-douche . débit:
-  valeur: 18 litre/min
-  références:
-    économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
-
-douche . pomme de douche économe:
-  remplace: 
-    règle: débit
-    par: 9 litre/min
-  question: Utilisez-vous une pomme de douche économe ?
-  par défaut: non
 
 eau:
   icônes: 💧
@@ -74,10 +62,27 @@ chauffage . impact par litre:
         - si: type = 'électricité'
           alors: 0.059 
 
-douche . durée de la douche:
+douche . litres consommés:
+  produit:
+    assiette: durée moyenne
+    facteur: débit
+    
+douche . durée moyenne:
   question: Combien de temps dure votre douche en général ?
   par défaut: 10 min
   suggestions:
     expresse: 5 min
     moyenne: 10 min
     lente: 20 min
+  
+douche . débit:
+  valeur: 18 litre/min
+  références:
+    économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
+
+douche . pomme de douche économe:
+  remplace: 
+    règle: débit
+    par: 9 litre/min
+  question: Utilisez-vous une pomme de douche économe ?
+  par défaut: non
