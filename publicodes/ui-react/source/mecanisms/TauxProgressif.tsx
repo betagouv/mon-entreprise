@@ -1,5 +1,4 @@
-import { Trans } from 'react-i18next'
-import { BarèmeAttributes, TrancheTable, StyledComponent } from './Barème'
+import { BarèmeAttributes, StyledComponent, TrancheTable } from './Barème'
 import { Mecanism, NodeValuePointer } from './common'
 
 export default function TauxProgressif({ nodeValue, explanation, unit }) {
@@ -14,9 +13,7 @@ export default function TauxProgressif({ nodeValue, explanation, unit }) {
 					/>
 					{nodeValue != null && (
 						<>
-							<b>
-								<Trans>Taux calculé</Trans> :{' '}
-							</b>{' '}
+							<b>Taux calculé : </b>{' '}
 							<NodeValuePointer data={nodeValue * 100} unit={unit} />
 						</>
 					)}

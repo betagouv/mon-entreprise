@@ -1,10 +1,9 @@
 import classNames from 'classnames'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import Explanation from '../Explanation'
-import styled from 'styled-components'
-import { Mecanism, NodeValuePointer } from './common'
 import { parseUnit } from 'publicodes'
+import React from 'react'
+import styled from 'styled-components'
+import Explanation from '../Explanation'
+import { Mecanism, NodeValuePointer } from './common'
 
 export default function Barème({ nodeValue, explanation, unit }) {
 	return (
@@ -19,9 +18,7 @@ export default function Barème({ nodeValue, explanation, unit }) {
 					{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
 					{nodeValue !== null && explanation.tranches.length > 2 && (
 						<>
-							<b>
-								<Trans>Taux moyen</Trans> :{' '}
-							</b>
+							<b>Taux moyen : </b>
 							<NodeValuePointer
 								data={(100 * nodeValue) / explanation.assiette.nodeValue}
 								unit={parseUnit('%')}
@@ -39,18 +36,14 @@ export const BarèmeAttributes = ({ explanation }) => {
 	return (
 		<>
 			<li key="assiette">
-				<span className="key">
-					<Trans>Assiette</Trans> :{' '}
-				</span>
+				<span className="key">Assiette : </span>
 				<span className="value">
 					<Explanation node={explanation.assiette} />
 				</span>
 			</li>
 			{multiplicateur && !multiplicateur.isDefault && (
 				<li key="multiplicateur">
-					<span className="key">
-						<Trans>Multiplicateur</Trans> :{' '}
-					</span>
+					<span className="key">Multiplicateur : </span>
 					<span className="value">
 						<Explanation node={multiplicateur} />
 					</span>
@@ -66,18 +59,10 @@ export const TrancheTable = ({ tranches, multiplicateur }) => {
 		<table className="tranches">
 			<thead>
 				<tr>
-					<th>
-						<Trans>Plafonds des tranches</Trans>
-					</th>
-					{tranches[0].taux && (
-						<th>
-							<Trans>Taux</Trans>
-						</th>
-					)}
+					<th>Plafonds des tranches</th>
+					{tranches[0].taux && <th>Taux</th>}
 					{(tranches[0].montant || activeTranche?.nodeValue != null) && (
-						<th>
-							<Trans>Montant</Trans>
-						</th>
+						<th>Montant</th>
 					)}
 				</tr>
 			</thead>
@@ -96,10 +81,10 @@ const Tranche = ({ tranche, multiplicateur }) => {
 		<tr className={classNames('tranche', { activated: isHighlighted })}>
 			<td key="tranche">
 				{tranche.plafond.nodeValue === Infinity ? (
-					<Trans>Au-delà du dernier plafond</Trans>
+					'Au-delà du dernier plafond'
 				) : (
 					<>
-						<Trans>Inférieur à </Trans>
+						Inférieur à
 						<Explanation node={tranche.plafond} />
 						{multiplicateur && !multiplicateur.isDefault && (
 							<>

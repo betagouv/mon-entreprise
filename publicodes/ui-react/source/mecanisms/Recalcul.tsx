@@ -1,6 +1,5 @@
-import { RuleLinkWithContext } from '../RuleLink'
-import { Trans } from 'react-i18next'
 import Explanation from '../Explanation'
+import { RuleLinkWithContext } from '../RuleLink'
 import { Mecanism } from './common'
 
 export default function Recalcul({ nodeValue, explanation, unit }) {
@@ -8,11 +7,11 @@ export default function Recalcul({ nodeValue, explanation, unit }) {
 		<Mecanism name="recalcul" value={nodeValue} unit={unit}>
 			<>
 				{explanation.recalcul && (
-					<Trans i18nKey="calcul-avec">
+					<>
 						Recalcul de la règle{' '}
 						<RuleLinkWithContext dottedName={explanation.recalcul.dottedName} />{' '}
 						avec les valeurs suivantes :
-					</Trans>
+					</>
 				)}
 				<ul>
 					{explanation.amendedSituation.map(([origin, replacement]) => (

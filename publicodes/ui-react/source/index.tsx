@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
 import Engine, { utils } from 'publicodes'
-import i18n from 'i18next'
+import { Route } from 'react-router-dom'
 import {
 	BasepathContext,
 	EngineContext,
 	ReferencesImagesContext,
 } from './contexts'
+import References from './rule/References'
 import RulePage from './rule/RulePage'
 const { decodeRuleName, encodeRuleName } = utils
 
-export { RuleLink } from './RuleLink'
 export { default as Explanation } from './Explanation'
-import References from './rule/References'
+export { RuleLink } from './RuleLink'
 export { References }
 
 type DocumentationProps = {
@@ -25,15 +23,8 @@ type DocumentationProps = {
 export function Documentation({
 	documentationPath,
 	engine,
-	language = 'fr',
 	referenceImages = {},
 }: DocumentationProps) {
-	useEffect(() => {
-		if (language !== i18n.language) {
-			i18n.changeLanguage(language)
-		}
-	}, [language])
-
 	return (
 		<EngineContext.Provider value={engine}>
 			<BasepathContext.Provider value={documentationPath}>
