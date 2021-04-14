@@ -3,6 +3,7 @@ import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import Value, { Condition } from 'Components/EngineValue'
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
@@ -89,6 +90,7 @@ export default function AideDéclarationIndépendant() {
 						</ul>
 					</Warning>
 				</div>
+				<PreviousSimulationBanner />
 				<h2>
 					Quel est votre résultat fiscal en 2020 ?<br />
 					<small>
