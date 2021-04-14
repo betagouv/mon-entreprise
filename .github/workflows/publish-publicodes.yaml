@@ -1,0 +1,40 @@
+name: Publication du paquet publicodes
+on:
+  push:
+    paths:
+      - publicodes/**
+
+jobs:
+  test:
+    if: contains(join(github.event.commits.*.message, ' | '), '📦 Publicodes v1.')
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+    - if: "!contains(join(github.event.commits.*.modified.*, 'publicodes/CHANGELOG.md')"
+      run: echo "::error file={name},line={line},col={col}::{message}"
+    - run: yarn install --frozen-lockfile
+    - working-directory: ./publicodes/example/publicode-react
+      run: |
+        yarn install
+        yarn test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+    - run: yarn install --frozen-lockfile
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_PUBLISH_SECRET }}
+    - working-directory: ./publicodes/core
+      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
+    - working-directory: ./publicodes/ui-react
+      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
