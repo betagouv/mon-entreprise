@@ -7,7 +7,6 @@ function App() {
 		<div className="App">
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
-				<p>Publicodes example</p>
 				<a
 					className="App-link"
 					href="https://publi.codes"
@@ -16,8 +15,8 @@ function App() {
 				>
 					Voir la documentation
 				</a>
-				<Publicodes />
 			</header>
+			<Publicodes />
 		</div>
 	)
 }

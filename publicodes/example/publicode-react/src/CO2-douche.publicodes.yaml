@@ -1,10 +1,9 @@
 douche:
-  valeur: oui
-  icônes: 🚿
-
-douche . impact:
-  icônes: 🍃
-  unité: kgCO2eq / mois
+  titre: Impact carbone d'une douche
+  description: Impact carbone liée aux douches prise au cours de l'année
+  icônes:  🚿 🍃
+  note: A titre de comparaison, l'empreinte carbone d'un burger est estimée à 0.279kg 
+  unité: kgCO2eq / an
   valeur: fréquence * impact par litre * litres consommés
 
 douche . fréquence:
@@ -12,7 +11,7 @@ douche . fréquence:
   par défaut: 1 douche/jour
   suggestions:
     1 par jour: 1 douche/jour
-    5 par semaine: 4 douche/semaine
+    5 par semaine: 5 douche/semaine * 52 semaines/an # Publicode ne gère pas encore nativement l'unité semaine
     2 par jour: 2 douche/jour
 
 
@@ -29,6 +28,7 @@ eau . impact par litre froid:
   formule: 0.000132
 
 chauffage:
+  valeur: oui
   icônes: 🔥
 
 chauffage . type:
@@ -69,11 +69,11 @@ douche . litres consommés:
     
 douche . durée moyenne:
   question: Combien de temps dure votre douche en général ?
-  par défaut: 10 min
+  par défaut: 10 min/douche
   suggestions:
-    expresse: 5 min
-    moyenne: 10 min
-    lente: 20 min
+    expresse: 5 min/douche
+    moyenne: 10 min/douche
+    lente: 20 min/douche
   
 douche . débit:
   valeur: 18 litre/min

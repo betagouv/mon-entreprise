@@ -16,7 +16,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-	"preinstall": "cd ../../core && npm pack && cd ../ui-react && npm pack",
+    "preinstall": "cd ../../core && npm pack && cd ../ui-react && npm pack",
     "refresh-publicodes": "yarn preinstall && yarn upgrade publicodes publicodes-react",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -40,5 +40,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "msw": "^0.28.1"
+  },
+  "jest": {
+	"moduleNameMapper": {
+		"CO2-douche.publicodes.yaml$": "<rootDir>/__mocks__/CO2-douche.publicodes.yaml.js"
+	}
   }
 }
