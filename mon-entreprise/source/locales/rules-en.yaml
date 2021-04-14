@@ -73,17 +73,54 @@ aide déclaration revenu indépendant 2020 . ACRE:
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
+aide déclaration revenu indépendant 2020 . CFP:
+  description.en: '[automatic] Contribution to professional training'
+  description.fr: Contribution à la formation professionnelle
+  résumé.en: '[automatic] [D]'
+  résumé.fr: '[D]'
+  titre.en: '[automatic] PSC'
+  titre.fr: CFP
+aide déclaration revenu indépendant 2020 . CSG déductible:
+  description.en: '[automatic] Amount of CSG deductible from income tax'
+  description.fr: Montant de la CSG déductible à l'impôt sur le revenu
+  résumé.en: '[automatic] [B]'
+  résumé.fr: '[B]'
+  titre.en: '[automatic] Deductible CSG'
+  titre.fr: CSG déductible
 aide déclaration revenu indépendant 2020 . PRCI:
   titre.en: '[automatic] PRCI'
   titre.fr: PRCI
 aide déclaration revenu indépendant 2020 . SMIC 2020:
   titre.en: '[automatic] MINIMUM WAGE 2020'
   titre.fr: SMIC 2020
+aide déclaration revenu indépendant 2020 . assiette sociale:
+  description.en: '[automatic] Basis for calculating social security contributions'
+  description.fr: Assiette utilisée pour le calcul des cotisations sociales
+  résumé.en: '[automatic] [A - (B + C + D)]'
+  résumé.fr: '[A - (B + C + D)]'
+  titre.en: '[automatic] social base'
+  titre.fr: assiette sociale
 aide déclaration revenu indépendant 2020 . cotisations obligatoires:
-  résumé.en: '[automatic] [DSBA/DSBB]'
-  résumé.fr: '[DSBA/DSBB]'
-  titre.en: '[automatic] Compulsory social security contributions'
-  titre.fr: Cotisations sociales obligatoires
+  description.en: >
+    [automatic] To be reported in :
+
+    - box DSBA/DSBB** on the supplementary data form for the self-employed person's income tax return (form 2042)
+
+    - simplified actual system:** item 326 of form 2033-D-SD 
+
+    - normal actual system:** item A5 of form 2053-SD
+  description.fr: >
+    À reporter dans :
+
+    - **la case DSBA/DSBB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+
+    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+  résumé.en: '[automatic] [C]'
+  résumé.fr: '[C]'
+  titre.en: '[automatic] Deductible mandatory social security contributions'
+  titre.fr: Cotisations sociales obligatoires déductibles
 aide déclaration revenu indépendant 2020 . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
@@ -168,6 +205,15 @@ aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
 aide déclaration revenu indépendant 2020 . période:
   titre.en: '[automatic] period'
   titre.fr: période
+aide déclaration revenu indépendant 2020 . revenu net fiscal:
+  description.en:
+    '[automatic] Income before deduction of social security charges
+    and tax exemptions'
+  description.fr: Résultat avant déduction des charges sociales et exonérations fiscales
+  résumé.en: '[automatic] [A]'
+  résumé.fr: '[A]'
+  titre.en: '[automatic] net tax income'
+  titre.fr: revenu net fiscal
 aide déclaration revenu indépendant 2020 . réduction covid:
   description.en: >
     [automatic] Within the framework of the health crisis, the Government has
@@ -195,16 +241,15 @@ aide déclaration revenu indépendant 2020 . réduction covid:
     cotisations sociales liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
-? aide déclaration revenu indépendant 2020 . réduction covid . imputation sur les cotisations obligatoires
-: titre.en: '[automatic] imputation covid reduction'
-  titre.fr: imputation réduction covid
+? aide déclaration revenu indépendant 2020 . réduction covid . cotisations concernées
+: titre.en: '[automatic] contributions concerned'
+  titre.fr: cotisations concernées
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
-  résumé.en:
-    '[automatic] included in the amount of contributions calculated above
-    (for information)'
-  résumé.fr: intégrée dans le montant des cotisations calculé ci-dessus (pour information)
-  titre.en: '[automatic] Covid contribution reduction'
-  titre.fr: Réduction de cotisations Covid
+  description.en: '[automatic] Reduction integrated in the amount of the
+    contributions displayed above'
+  description.fr: Réduction intégrée dans le montant des cotisations affiché ci-dessus
+  titre.en: '[automatic] Covid discount'
+  titre.fr: Réduction Covid
 ? aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020
 : titre.en: '[automatic] Autumn 2020'
   titre.fr: automne 2020
@@ -329,6 +374,17 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     activité.
   titre.en: '[automatic] Sector called S2'
   titre.fr: Secteur dit S2
+aide déclaration revenu indépendant 2020 . réduction covid . taux:
+  description.en: >
+    [automatic] Calculation of the reduction rate due to the covid exemption. 
+
+    This figure is then used to correctly allocate the reduction to the various contributions.
+  description.fr: >
+    Calcul du taux de réduction du à l'exonération covid. 
+
+    Ce chiffre permet ensuite d'imputer correctement la réduction dans les différentes cotisations.
+  titre.en: '[automatic] covid reduction rate'
+  titre.fr: taux réduction covid
 ? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
 : description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
@@ -602,6 +658,19 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     première vague de la crise sanitaire du printemps 2020 ?
   titre.en: '[automatic] eligible for aid spring 2020'
   titre.fr: éligible aide printemps 2020
+aide déclaration revenu indépendant 2020 . total charges sociales déductible:
+  description.en: |
+    [automatic] To be reported in :
+    - simplified actual system:** item 252 of form 2033-B-SD 
+    - normal actual system:** item FZ of form 2052-SD
+  description.fr: |
+    À reporter dans :
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+  résumé.en: '[automatic] [B + C + D]'
+  résumé.fr: '[B + C + D]'
+  titre.en: '[automatic] tax-deductible mandatory social security charges'
+  titre.fr: charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
