@@ -137,7 +137,6 @@ aide déclaration revenu indépendant 2020 . réduction covid:
         abattement: taux
     - règle: dirigeant . indépendant . cotisations et contributions . cotisations
       sauf dans: 
-        - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
         - cotisations concernées
       par: 
         valeur: dirigeant . indépendant . cotisations et contributions . cotisations
@@ -379,7 +378,7 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
   résumé: '[C]'
   description: |
     À reporter dans :
-    - **la case DSBA/DSBB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
   unité: €/an
