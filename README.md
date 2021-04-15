@@ -25,7 +25,7 @@ Les développeurs ont la possibilité d'intégrer ces simulateurs sur d'autres s
 
 Publicodes est un langage déclaratif pour encoder les algorithmes d'intérêt public. Il permet de réaliser des calculs généraux tout en fournissant une explication permettant de comprendre et de documenter ces calculs.
 
-Publicode est adapté pour modéliser des domaines métiers complexes pouvant être décomposés en règles élémentaires simples (comme la législation socio-fiscale, un bilan carbone, un estimateur de rendement locatif, etc.). Il propulse les simulateurs de mon-entreprise.fr et le site [futur.eco](https://futur.eco).
+Publicode est adapté pour modéliser des domaines métiers complexes pouvant être décomposés en règles élémentaires simples (comme la législation socio-fiscale, un bilan carbone, un estimateur de rendement locatif, etc.). Il propulse les simulateurs de mon-entreprise.fr et ceux de [datagir.ademe.fr](https://datagir.ademe.fr/).
 
 > 📖 [Voir la documentation](https://publi.codes)
 
