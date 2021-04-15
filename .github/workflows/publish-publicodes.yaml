@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    if: contains(join(github.event.commits.*.message, ' | '), '📦 Publicodes v1.')
+    if: contains(join(github.event.commits.*.message, ' | '), '📦 Publicodes v1.0.0-beta.')
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -14,8 +14,6 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-    - if: "!contains(join(github.event.commits.*.modified.*, 'publicodes/CHANGELOG.md')"
-      run: echo "::error file={name},line={line},col={col}::{message}"
     - run: yarn install --frozen-lockfile
     - working-directory: ./publicodes/example/publicode-react
       run: |
@@ -35,6 +33,6 @@ jobs:
       env:
         NPM_TOKEN: ${{ secrets.NPM_PUBLISH_SECRET }}
     - working-directory: ./publicodes/core
-      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
+      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}} --tag next
     - working-directory: ./publicodes/ui-react
-      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
+      run: npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}} --tag next
