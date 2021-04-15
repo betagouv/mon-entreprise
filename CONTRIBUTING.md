@@ -18,15 +18,15 @@ L'application est écrite en JavaScript, elle est exécuté uniquement côté cl
 
 Nous utilisons :
 
-- [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
-- [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
-- [React](https://reactjs.org) pour la gestion de l'interface utilisateur
-- [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
-- [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
-- [Webpack](https://webpack.js.org) pour le “bundling”
-- [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
-- [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
-- [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
+-   [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
+-   [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
+-   [React](https://reactjs.org) pour la gestion de l'interface utilisateur
+-   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
+-   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
+-   [Webpack](https://webpack.js.org) pour le “bundling”
+-   [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
+-   [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
+-   [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
 ### Démarrage
 
@@ -51,33 +51,32 @@ Pour activer le tracing Redux:
 REDUX_TRACE=true yarn start
 ```
 
-
 ### Messages de commit
 
 A mettre sans retenue dans les messages de commit :
 
 https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 
-- 🎨 `:art:` when working on the app's visual style
-- 🐎 `:racehorse:` when improving performance
-- 📝 `:memo:` when writing docs
-- 🐛 `:bug:` when fixing a bug
-- 🔥 `:fire:` when removing code or files
-- 💚 `:green_heart:` when fixing the CI build
-- ✅ `:white_check_mark:` when adding tests
-- ⬆️ `:arrow_up:` when upgrading dependencies
-- :sparkles: `:sparkles:` when formatting, renaming, reorganizing files
+-   🎨 `:art:` when working on the app's visual style
+-   🐎 `:racehorse:` when improving performance
+-   📝 `:memo:` when writing docs
+-   🐛 `:bug:` when fixing a bug
+-   🔥 `:fire:` when removing code or files
+-   💚 `:green_heart:` when fixing the CI build
+-   ✅ `:white_check_mark:` when adding tests
+-   ⬆️ `:arrow_up:` when upgrading dependencies
+-   :sparkles: `:sparkles:` when formatting, renaming, reorganizing files
 
 Et ceux spécifiques au projet :
 
-- :gear: `:gear:` pour une contribution au moteur qui traite les YAML
-- :hammer: `:hammer:` pour une contribution à la base de règles
-- :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
-- :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
-- :alien: `:alien:` pour ajouter des traductions
-- :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
-- :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
-- :mag: `:mag:` pour les modifications liées au référencement naturel
+-   :gear: `:gear:` pour une contribution au moteur qui traite les YAML
+-   :hammer: `:hammer:` pour une contribution à la base de règles
+-   :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
+-   :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
+-   :alien: `:alien:` pour ajouter des traductions
+-   :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
+-   :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
+-   :mag: `:mag:` pour les modifications liées au référencement naturel
 
 ### Tests
 
@@ -133,10 +132,10 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### CI/CD
 
-- [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
-  tests.
-- [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
-  sur internet avec gestion des DNS.
+-   [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
+    tests.
+-   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
+    sur internet avec gestion des DNS.
 
 ### Analyse des bundles
 
@@ -144,15 +143,15 @@ La commande `yarn run build:analyse-bundle` gènere une visualisation interactiv
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
-## Développement de modèles Publicodes 
+## Développement de modèles Publicodes
 
 ### Traduction des normes (lois) en règles Publicodes
 
 Checklist:
 
-- [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
-- [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
-- [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
+-   [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
+-   [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
+-   [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
 
 [wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
 
@@ -160,10 +159,10 @@ Checklist:
 
 Pour tester les règles, il est recommandé de:
 
-- faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
-  traduites ;
-- créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
-  `mon-entreprise/test/regressions`).
+-   faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
+    traduites ;
+-   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
+    `mon-entreprise/test/regressions`).
 
 ## Documentation
 
@@ -183,3 +182,16 @@ s'avérer assez abrupt.
 Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
 dans un premier temps, puis au [mécanismes en
 place](./publicodes/source/mecanisms).
+
+## Publier une nouvelle version des paquets publicodes
+
+Voici la marche à suivre pour publier une nouvelle version :
+
+1. Renseigner les modifications dans publicodes/CHANGELOG.md
+2. Remplacer les références à la précédente version par la nouvelle version dans les packages.json
+3. Ajouter tous les changement dans un commit avec le message suivant :
+    ```
+     📦 Publicodes v1.0.0-beta.<n>
+    ```
+    > **Important** Le message doit être exactement celui-ci (emoji compris), car le script de déploiement automatique sur le CI se base sur ce dernier.
+4. Laisser faire le CI, une fois le commit mergé sur master, le paquet sera déployé effectivement

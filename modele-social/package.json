@@ -16,11 +16,11 @@
 		"dist/index.js"
 	],
 	"devDependencies": {
-		"publicodes": "^1.0.0-beta.13",
+		"publicodes": "^1.0.0-beta.14",
 		"yaml": "^1.10.0"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.0-beta.13"
+		"publicodes": "^1.0.0-beta.14"
 	},
 	"scripts": {
 		"build": "node build.js",
