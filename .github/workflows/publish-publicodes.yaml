@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - publicodes/**
+      - .github/workflows/publish-publicodes.yaml
 
 jobs:
   test:
