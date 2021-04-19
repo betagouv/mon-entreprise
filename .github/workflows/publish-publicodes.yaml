@@ -33,6 +33,10 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
     - run: yarn install --frozen-lockfile
+    - run: |
+        echo _auth=$NPM_TOKEN >> .npmrc
+        echo email=dev@johangirod.com >> .npmrc
+        echo always-auth=true >> .npmrc
     - run: cat ./.npmrc
     - working-directory: ./publicodes/core
       run: | 
