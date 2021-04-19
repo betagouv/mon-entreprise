@@ -24,6 +24,8 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-18.04
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_PUBLISH_SECRET }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
@@ -31,13 +33,9 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
     - run: yarn install --frozen-lockfile
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_PUBLISH_SECRET }}
     - working-directory: ./publicodes/core
       run: | 
-        npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
         npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}} --tag next
     - working-directory: ./publicodes/ui-react
       run: |
-        npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}}
         npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}} --tag next
