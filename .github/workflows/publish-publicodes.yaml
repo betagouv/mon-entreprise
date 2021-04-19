@@ -33,6 +33,7 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
     - run: yarn install --frozen-lockfile
+    - run: cat ./.npmrc
     - working-directory: ./publicodes/core
       run: | 
         npm publish ${{ github.ref != 'refs/heads/master' && '--dry-run' || ''}} --tag next
