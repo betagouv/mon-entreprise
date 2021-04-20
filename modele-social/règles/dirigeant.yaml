@@ -728,7 +728,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
 dirigeant . indépendant . cotisations et contributions:
   description: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
-    contributions obligatoires.
+    contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
 
     Ce montant inclut la réduction de cotisation "covid" en 2020.
 
@@ -820,7 +821,7 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
 
 dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
-  question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
+  question: Avez-vous souscrit à des contrats de complémentaire privée dits "contrats Madelin"
   par défaut: non
   références: 
     economie.gouv.fr: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin

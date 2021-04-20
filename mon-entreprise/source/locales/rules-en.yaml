@@ -6025,10 +6025,10 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
   titre.fr: retraite de base
 dirigeant . indépendant . contrats madelin:
   question.en:
-    '[automatic] Have you subscribed to private complementary contracts
-    ("Madelins contracts")'
+    '[automatic] Have you subscribed to private supplementary insurance
+    contracts known as "Madelin contracts"?'
   question.fr: Avez-vous souscrit à des contrats de complémentaire privée dits
-    ("contrats Madelins")
+    "contrats Madelin"
   titre.en: Madelin Contracts
   titre.fr: Contrats Madelin
 dirigeant . indépendant . contrats madelin . montant:
@@ -6093,17 +6093,11 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
   titre.en: ceiling
   titre.fr: plafond
 dirigeant . indépendant . cotisations et contributions:
-  description.en: >
-    [automatic] This is the total amount owed by the self-employed person for
-    compulsory contributions and
-
-    contributions.
-
-
-    This amount includes the "covid" contribution reduction in 2020.
+  description.en: '[automatic] '
   description.fr: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
-    contributions obligatoires.
+    contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
 
     Ce montant inclut la réduction de cotisation "covid" en 2020.
   note.en: |
