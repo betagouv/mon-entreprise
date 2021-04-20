@@ -53,28 +53,18 @@
 
 # Embauche redirection settings
 [[redirects]]
-  from = "https://embauche.beta.gouv.fr/"
+  from = "https://mon-entreprise.fr/simulation"
   to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
   status = 301
 
+## Old iframe adress
 [[redirects]]
-  from = "https://embauche.beta.gouv.fr/simulation"
-  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  status = 301
-
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/documentation/*"
-  to = "https://mon-entreprise.fr/documentation/:splat"
-  status = 301
-
-## Old iframe adresse
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
+  from = "https://mon-entreprise.fr/modules/v2/dist/simulateur.js"
   to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
   status = 301
 
 [[redirects]]
-  from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
+  from = "https://mon-entreprise.fr/dist/simulateur.js"
   to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
   status = 301
 
