@@ -516,7 +516,7 @@ function Results() {
 					`}
 				>
 					{([
-						'aide déclaration revenu indépendant 2020 . réduction covid . montant',
+						'aide déclaration revenu indépendant 2020 . réduction covid . total',
 						'aide déclaration revenu indépendant 2020 . revenu net fiscal',
 						'aide déclaration revenu indépendant 2020 . CSG déductible',
 						'aide déclaration revenu indépendant 2020 . CFP',
