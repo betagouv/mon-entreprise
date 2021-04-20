@@ -1084,16 +1084,20 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
             nom: non déductible
             arrondi: oui
           composantes:
-            - taux: 2.9%
+            - taux: 
+                nom: taux
+                valeur: 2.9%
             - attributs:
                 nom: revenus de remplacement
               assiette: dirigeant . indépendant . IJSS . total
-              taux: 2.9%
+              taux: non déductible . taux
         - attributs:
             nom: déductible
             arrondi: oui
           composantes:
-            - taux: 6.8%
+            - taux: 
+                nom: taux
+                valeur: 6.8%
             - attributs:
                 nom: revenus de remplacement
               assiette: dirigeant . indépendant . IJSS . total
