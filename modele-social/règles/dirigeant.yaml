@@ -1131,6 +1131,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     somme:
       - assiette des cotisations . sans plancher
       - cotisations
+      - conjoint collaborateur . cotisations
   abattement:
     somme:
       - revenus étrangers . montant

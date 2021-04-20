@@ -284,7 +284,7 @@ function ExplicationsResultatFiscal() {
 						<td>
 							<strong>2058-A-SD</strong>
 							<br />
-							Lignes K9 / L6 / ØV / PP / L2 / 1F / L5 / PA / XC / PB
+							Lignes K9 / L6 / ØV / PP / L2 / 1F / PC / L5 / PA / XC / PB
 						</td>
 						<td>
 							<strong>2053-SD</strong>
@@ -312,7 +312,7 @@ function ExplicationsResultatFiscal() {
 						<td>
 							<strong>2033 B-SD</strong>
 							<br />
-							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 990 / 993
+							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 138 / 990 / 993
 						</td>
 						<td>
 							<strong>2033-SD</strong>

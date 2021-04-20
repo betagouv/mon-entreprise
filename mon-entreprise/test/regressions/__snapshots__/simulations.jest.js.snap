@@ -1,266 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[9019,0]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[9019,12299]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[913,0]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[913,1965]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[300,0]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[300,715]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[1432,0]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[1432,2165]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `"[606,0]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `"[606,1339]"`;
 
-exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[11408,0]"`;
+exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[11408,14534]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[82,0]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[82,210]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[1021,0]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[1021,1436]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[9097,4800]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[9081,11484]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[0,1924]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[0,119]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[14093,0]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `"[69,195]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[13578,0]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `"[7600,9447]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[11461,0]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[14092,17407]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[14097,0]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[13578,16893]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[11461,0]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[11461,14776]"`;
 
-exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[5651,0]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[14097,17392]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `
-"[14610,0]
-Notifications affichées : impôt . domiciliation étranger non implémentée"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[11461,14776]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 2`] = `"[11875,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[11362,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[1292,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[11368,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[1293,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
-"[11368,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[1293,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
-"[9453,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `
-"[1041,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `
-"[1041,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1058,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[1090,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[1293,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[2104,0]"`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `
-"[20929,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
-
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `
-"[106448,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-=======
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `
-"[9019,12299]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `
-"[913,1965]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `
-"[300,715]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `
-"[1432,2165]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `
-"[606,1339]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `
-"[11408,14534]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `
-"[82,210]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `
-"[1021,1436]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `
-"[9081,11484]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `
-"[0,119]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `
-"[69,195]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `
-"[7573,9371]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `
-"[14155,17233]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `
-"[13637,16759]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `
-"[11515,14625]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `
-"[14160,17219]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `
-"[11541,14553]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
-
-exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `
-"[5651,8931]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[5651,8931]"`;
 
 exports[`calculate aide-déclaration-indépendant: international 1`] = `
 "[14610,14713]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, impôt . domiciliation étranger non implémentée"
+Notifications affichées : impôt . domiciliation étranger non implémentée"
 `;
 
-exports[`calculate aide-déclaration-indépendant: international 2`] = `
-"[11875,13245]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: international 2`] = `"[11875,13245]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `
-"[11362,14657]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[11362,14657]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `
-"[1292,1722]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[1292,1722]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `
-"[11367,14647]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[11367,14647]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `
-"[1293,1708]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[1293,1708]"`;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
 "[11367,14647]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `
-"[1293,1708]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[1293,1708]"`;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
 "[9453,12733]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `
 "[1041,1169]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . imposition . IR . information sur le report de déficit"
+Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `
 "[1041,1201]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . imposition . IR . information sur le report de déficit"
+Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `
-"[1059,1251]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1059,1251]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `
-"[1090,1314]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[1090,1314]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `
-"[1293,1708]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[1293,1708]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `
-"[2104,2837]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[2104,2837]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `
 "[20929,27392]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `
 "[106448,170215]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
->>>>>>> 3215df6b (Impute la réduction covid dans chaque cotisations)
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
