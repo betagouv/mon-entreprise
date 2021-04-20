@@ -717,7 +717,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
       - indemnités journalières maladie
       - invalidité et décès
       - allocations familiales
-      - conjoint collaborateur . cotisations
       - PCV
       - (- exonérations)
 
@@ -730,6 +729,7 @@ dirigeant . indépendant . cotisations et contributions:
 
   somme:
     - cotisations et contributions . cotisations
+    - conjoint collaborateur . cotisations
     - contrats madelin . montant
     - CSG et CRDS
     - contributions spéciales

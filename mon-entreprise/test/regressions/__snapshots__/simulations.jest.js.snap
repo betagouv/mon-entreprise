@@ -128,7 +128,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `
-"[9102,11489]
+"[9081,11484]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -137,28 +137,38 @@ exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `
+"[69,195]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+`;
+
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `
+"[7573,9371]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+`;
+
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `
-"[14092,17407]
+"[14155,17233]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `
-"[13578,16893]
+"[13637,16759]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `
-"[11461,14776]
+"[11515,14625]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `
-"[14097,17392]
+"[14160,17219]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `
-"[11461,14776]
+"[11541,14553]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 

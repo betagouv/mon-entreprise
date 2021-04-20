@@ -154,11 +154,27 @@ aide déclaration revenu indépendant 2020 . réduction covid:
 
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
   titre: Réduction Covid
-  description: Réduction intégrée dans le montant des cotisations affiché ci-dessus
   formule:
     somme:
       - printemps 2020
       - automne 2020
+aide déclaration revenu indépendant 2020 . réduction covid . conjoint collaborateur:
+  applicable si: dirigeant . indépendant . conjoint collaborateur
+  remplace: 
+    règle: dirigeant . indépendant . conjoint collaborateur . cotisations
+    par:
+      valeur: dirigeant . indépendant . conjoint collaborateur . cotisations
+      abattement: réduction covid . conjoint collaborateur
+  valeur: montant
+
+aide déclaration revenu indépendant 2020 . réduction covid . total:
+  title: Réduction Covid
+  description: Intégrée dans le montant des cotisations affiché ci-dessus
+  somme:
+    - montant
+    - conjoint collaborateur
+  
+
 
 aide déclaration revenu indépendant 2020 . réduction covid . part cotisations:
   titre: Part réduction Covid sur cotisations (hors CSG/CRDS)
@@ -171,7 +187,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . part cotisations
 aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations:
   unité: '%'
   recalcul: 
-    règle: dirigeant . indépendant . cotisations et contributions . cotisations / dirigeant . indépendant . cotisations et contributions
+    règle: dirigeant . indépendant . cotisations et contributions . cotisations / (dirigeant . indépendant . cotisations et contributions . cotisations + dirigeant . indépendant . cotisations et contributions . CSG et CRDS)
     avec: 
       réduction covid: non
 
@@ -399,7 +415,9 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
   unité: €/an
-  valeur: dirigeant . indépendant . cotisations et contributions . cotisations
+  somme: 
+    - dirigeant . indépendant . cotisations et contributions . cotisations
+    - dirigeant . indépendant . conjoint collaborateur . cotisations
   références:
     Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
 
