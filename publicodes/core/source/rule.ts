@@ -165,7 +165,6 @@ registerEvaluationFunction('rule', function evaluate(node) {
 
 		explanation.valeur = valeur
 	}
-	// if (valeur.nodeValue === '') {
 
 	const evaluation = {
 		...node,
@@ -177,5 +176,6 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		),
 		...(valeur && 'unit' in valeur && { unit: valeur.unit }),
 	}
+
 	return evaluation
 })

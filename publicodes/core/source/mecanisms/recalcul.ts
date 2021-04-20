@@ -32,12 +32,12 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		) as Array<[ReferenceNode & EvaluatedNode, EvaluatedNode]>
 
 	const originalCache = this.cache
-	const originalSituation = { ...this.parsedSituation }
+	const originalSituation = this.parsedSituation
 	// Optimisation : no need for recalcul if situation is the same
 	const invalidateCache = Object.keys(amendedSituation).length > 0
 	if (invalidateCache) {
 		this.resetCache()
-		this.cache._meta = { ...this.cache._meta, inRecalcul: true }
+		this.cache._meta.inRecalcul = true
 	}
 
 	this.parsedSituation = {
@@ -55,10 +55,12 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 	}
 
 	const evaluatedNode = this.evaluate(node.explanation.recalcul)
+
 	this.parsedSituation = originalSituation
 	if (invalidateCache) {
 		this.cache = originalCache
 	}
+
 	return {
 		...node,
 		nodeValue: evaluatedNode.nodeValue,

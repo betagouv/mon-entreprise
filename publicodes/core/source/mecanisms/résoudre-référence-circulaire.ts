@@ -6,7 +6,7 @@ import { Context } from '../parsePublicodes'
 import uniroot from '../uniroot'
 import { UnitéNode } from './unité'
 
-export type RésoudreRéférenceCiruclaireNode = {
+export type RésoudreRéférenceCirculaireNode = {
 	explanation: {
 		ruleToSolve: string
 		valeur: ASTNode
@@ -65,19 +65,20 @@ export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoud
 		const defaultMin = -1_000_000
 		const defaultMax = 100_000_000
 
-		nodeValue = uniroot(test, defaultMin, defaultMax, 1, 30, 2)
+		nodeValue = uniroot(test, defaultMin, defaultMax, 0.5, 30, 2)
 	}
+
+	this.cache = originalCache
+	delete this.parsedSituation[node.explanation.ruleToSolve]
+
 	if (nodeValue === undefined) {
 		nodeValue = null
 		this.cache._meta.inversionFail = true
 	}
-	if (nodeValue != null) {
-		originalCache.nodes.forEach((v, k) => this.cache.nodes.set(k, v))
+	if (nodeValue !== null) {
+		valeur = evaluateWithValue(nodeValue, unit)
 	}
-	// console.log('iteration résoudre référence circulaire :', i)
 
-	this.cache = originalCache
-	delete this.parsedSituation[node.explanation.ruleToSolve]
 	return {
 		...node,
 		unit,
@@ -98,7 +99,7 @@ export default function parseRésoudreRéférenceCirculaire(v, context: Context)
 			valeur: parse(v.valeur, context),
 		},
 		nodeKind: 'résoudre référence circulaire',
-	} as RésoudreRéférenceCiruclaireNode
+	} as RésoudreRéférenceCirculaireNode
 }
 
 parseRésoudreRéférenceCirculaire.nom = 'résoudre la référence circulaire'
