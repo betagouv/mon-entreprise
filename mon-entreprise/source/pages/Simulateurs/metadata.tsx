@@ -556,7 +556,7 @@ export function getSimulatorsData({
 			meta: {
 				description: t(
 					'pages.simulateurs.comparaison.meta.description',
-					'Auto-entrepreneur, indépendant ou assimilé salarié ? Avec ce comparatif, trouvez le régime qui vous correspond le mieux'
+					'Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce comparatif, trouvez le régime qui vous correspond le mieux'
 				),
 				title: t(
 					'pages.simulateurs.comparaison.meta.title',

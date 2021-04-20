@@ -54,7 +54,7 @@ function IntegrationCustomizer() {
 	return (
 		<section>
 			<h2>
-				<Trans>Personnalisez l'integration</Trans>
+				<Trans>Personnalisez l'intégration</Trans>
 			</h2>
 			<div
 				className="ui__ full-width"
@@ -125,7 +125,7 @@ function IntegrationCustomizer() {
 						</h3>
 						<p>
 							<Trans i18nKey="pages.développeurs.code.description">
-								Voici le code à copier-coller sur votre site :
+								Voici le code à copier-coller sur votre site&nbsp;:
 							</Trans>
 						</p>
 						<IntegrationCode color={color} module={currentModule} />
