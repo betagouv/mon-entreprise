@@ -128,7 +128,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `
-"[9022,11643]
+"[9102,11489]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -138,7 +138,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `
-"[14093,17408]
+"[14092,17407]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -188,7 +188,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `
-"[11368,14648]
+"[11367,14647]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -198,7 +198,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
-"[11368,14648]
+"[11367,14647]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
@@ -223,7 +223,7 @@ Notifications affichées : dirigeant . indépendant . avertissement base forfait
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `
-"[1058,1250]
+"[1059,1251]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -376,7 +376,7 @@ exports[`calculate simulations-indépendant: Contrats Madelin 3`] = `"[30000,103
 exports[`calculate simulations-indépendant: Contrats Madelin 4`] = `"[20000,6686,13314,13854,0,13314,0,20000]"`;
 
 exports[`calculate simulations-indépendant: Contrats Madelin 5`] = `
-"[300000,79622,220378,228522,75412,144966,0,300000]
+"[300000,79622,220378,228521,75412,144966,0,300000]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
@@ -398,7 +398,7 @@ exports[`calculate simulations-indépendant: impôt sur le revenu 3`] = `"[29084
 
 exports[`calculate simulations-indépendant: inversions 1`] = `"[2000,1366,634,686,0,634,0,2000]"`;
 
-exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16002,33998,35352,3500,30498,0,50000]"`;
+exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33997,35353,3500,30497,0,50000]"`;
 
 exports[`calculate simulations-indépendant: inversions 3`] = `"[14460,4460,10000,10390,0,10000,0,14460]"`;
 
@@ -408,7 +408,7 @@ exports[`calculate simulations-indépendant: inversions 5`] = `"[14460,4460,1000
 
 exports[`calculate simulations-indépendant: inversions 6`] = `"[19000,5870,13130,13643,0,13130,1000,20000]"`;
 
-exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5557,12443,12928,0,12443,2000,20000]"`;
+exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5558,12442,12929,0,12442,2000,20000]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1841,1341,500,547,0,500,0,1841]"`;
 
@@ -418,7 +418,7 @@ exports[`calculate simulations-indépendant: échelle de revenus 3`] = `"[3025,1
 
 exports[`calculate simulations-indépendant: échelle de revenus 4`] = `"[3618,1618,2000,2095,0,2000,0,3618]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7302,2302,5000,5195,0,5000,0,7302]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7303,2303,5000,5196,0,5000,0,7303]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14460,4460,10000,10390,0,10000,0,14460]"`;
 
@@ -456,7 +456,7 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7733,22267,946,21321]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8059,21941,933,21008]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8058,21942,933,21009]"`;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61611,238389,81356,157033]"`;
 
@@ -692,10 +692,10 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 6`] = `"[0,13814,0,10116,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 7`] = `"[0,33998,0,24913,4,48]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 7`] = `"[0,33997,0,24913,4,48]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `
-"[0,69896,0,36428,4,56]
+"[0,69895,0,36428,4,56]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 

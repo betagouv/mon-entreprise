@@ -104,7 +104,7 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
   description.en: >
     [automatic] To be reported in :
 
-    - box DSBA/DSBB** on the supplementary data form for the self-employed person's income tax return (form 2042)
+    - the DSCA/DSCB box** on the supplementary data form for the self-employed tax return (form 2042)
 
     - simplified actual system:** item 326 of form 2033-D-SD 
 
@@ -112,7 +112,7 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
   description.fr: >
     À reporter dans :
 
-    - **la case DSBA/DSBB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
 
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
 
@@ -241,9 +241,6 @@ aide déclaration revenu indépendant 2020 . réduction covid:
     cotisations sociales liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
-? aide déclaration revenu indépendant 2020 . réduction covid . cotisations concernées
-: titre.en: '[automatic] contributions concerned'
-  titre.fr: cotisations concernées
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
   description.en: '[automatic] Reduction integrated in the amount of the
     contributions displayed above'
@@ -287,6 +284,21 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
     affectant de manière prépondérante la poursuite de votre activité
   titre.en: '[automatic] S2'
   titre.fr: S2
+aide déclaration revenu indépendant 2020 . réduction covid . part CSG:
+  titre.en: '[automatic] Covid reduction on CSG'
+  titre.fr: Part réduction Covid sur CSG
+? aide déclaration revenu indépendant 2020 . réduction covid . part CSG . déductible
+: titre.en: '[automatic] Covid reduction on deductible CSG/CRDS'
+  titre.fr: Part réduction Covid sur CSG/CRDS déductible
+? aide déclaration revenu indépendant 2020 . réduction covid . part CSG . non déductible
+: titre.en: '[automatic] Covid reduction on non-deductible CSG/CRDS'
+  titre.fr: Part réduction Covid sur CSG/CRDS non déductible
+aide déclaration revenu indépendant 2020 . réduction covid . part cotisations:
+  titre.en: '[automatic] Covid reduction on contributions (excluding CSG/CRDS)'
+  titre.fr: Part réduction Covid sur cotisations (hors CSG/CRDS)
+? aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations
+: titre.en: '[automatic] percentage contributions'
+  titre.fr: pourcentage cotisations
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
   description.en: >
     [automatic] The conditions of eligibility for "Covid" aid depend on the
@@ -374,17 +386,9 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     activité.
   titre.en: '[automatic] Sector called S2'
   titre.fr: Secteur dit S2
-aide déclaration revenu indépendant 2020 . réduction covid . taux:
-  description.en: >
-    [automatic] Calculation of the reduction rate due to the covid exemption. 
-
-    This figure is then used to correctly allocate the reduction to the various contributions.
-  description.fr: >
-    Calcul du taux de réduction du à l'exonération covid. 
-
-    Ce chiffre permet ensuite d'imputer correctement la réduction dans les différentes cotisations.
-  titre.en: '[automatic] covid reduction rate'
-  titre.fr: taux réduction covid
+aide déclaration revenu indépendant 2020 . réduction covid . taux CSG:
+  titre.en: '[automatic] CSG rate'
+  titre.fr: taux CSG
 ? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
 : description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
@@ -4574,18 +4578,17 @@ dirigeant . indépendant:
   titre.fr: indépendant
 dirigeant . indépendant . IJSS:
   description.en: >-
-    [automatic] In the event of illness, maternity or accident, the general
-    social security system and special schemes provide "cash" benefits. 
+    [automatic] In case of illness, maternity or accident, the general Social
+    Security system provides cash benefits. 
 
-    These are per diems from Social Security (IJSS).
+    These are the Social Security daily allowances (IJSS).
 
-    Compensation in addition to the Social Security daily allowances paid under a provident fund contract does not constitute replacement income.
+    The additional indemnities to the daily indemnities of the Social Security paid within the framework of a provident contract do not constitute replacement income.
      
-    Note: Disability benefits paid by disability/death plans are not affected.
+    Note: Disability benefits paid by disability and death schemes are not concerned
   description.fr: >-
     En cas de maladie, maternité, ou accident, le régime général de Sécurité
-    sociale ainsi que les régimes spéciaux assurent le versement de prestations
-    « en espèces ». 
+    sociale assurent le versement de prestations « en espèces ». 
 
     Ce sont les indemnités journalières de Sécurité sociale (IJSS).
 
@@ -4600,18 +4603,21 @@ dirigeant . indépendant . IJSS:
   titre.fr: indemnités journalières de sécurité sociale
 dirigeant . indépendant . IJSS . imposable:
   description.en: >-
-    [automatic] Indicate only the taxable replacement income received, i.e. all
-    replacement income received **except for daily allowances in connection with
-    a Long Term Affection (LTA)**. 
+    [automatic] Indicate only taxable replacement income received, i.e. all
+    replacement income received **except for daily allowances related to a Long
+    Term Condition (LTC)**. 
 
 
-    This income will be deducted from your contribution base, so that you are not subject to the CSG-CRDS twice:
+    This income will be deducted from your contribution base, so that you are not subject to CSG-CRDS twice:
 
     &gt; Replacement income is: the lump-sum maternal rest allowance, the lump-sum daily allowance for interruption of activity, the replacement allowance for maternity, paternity or adoption and the daily sickness allowance.
   description.fr: >-
     Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
     les revenus de remplacement perçus **sauf les indemnités journalières en
     lien avec une Affection de Longue Durée (ALD)**. 
+
+
+    Ces revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS :
 
     > Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie.
   question.en: '[automatic] What is the gross amount of taxable daily allowances received?'
@@ -5766,21 +5772,21 @@ dirigeant . indépendant . assiette des cotisations:
   titre.fr: assiette des cotisations
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
-    [automatic] Allows the executive's spouse to be covered by social protection
-    by paying additional social security contributions. 
+    [automatic] Allows the manager's spouse to be covered by social protection
+    in return for the payment of additional social contributions. 
 
-    In order to benefit from it, the officer's spouse or Pacs partner must:
+    To benefit from this, the manager's spouse or PACS partner must
 
-    - carry out a regular and customary professional activity in the company 
+    - carry out a regular and usual professional activity in the company 
 
-    - be listed in the RCS for merchants or in the Répertoire des métiers (RM) for craftspeople 
+    - be listed in the RCS for traders or in the RM for craftsmen 
 
-    - go unremunerated 
+    - not be remunerated 
 
     - not be a partner in the company.
   description.fr: >
     Permet au conjoint du dirigeant d'être couvert par la protection sociale
-    moyennant le paiement de cotisations sociales supplémantaires. 
+    moyennant le paiement de cotisations sociales supplémentaires. 
 
     Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
 
