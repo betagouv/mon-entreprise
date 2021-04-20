@@ -52,7 +52,7 @@ export default function Simulateurs() {
 				</div>
 
 				<HeadingWithAnchorLink level={2}>
-					<Trans>Par statut</Trans>
+					<Trans>Indépendants et dirigeants</Trans>
 				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
@@ -60,11 +60,12 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators.sasu} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
+					<SimulateurCard {...simulators['comparaison-statuts']} />
 				</div>
 				<>
 					<HeadingWithAnchorLink level={3}>
 						<small>
-							<Trans>Par profession</Trans>
+							<Trans>Professions</Trans>
 						</small>
 					</HeadingWithAnchorLink>
 					<div className="ui__ small box-container">
@@ -84,7 +85,6 @@ export default function Simulateurs() {
 					{language === 'fr' && (
 						<SimulateurCard {...simulators['demande-mobilité']} />
 					)}
-					<SimulateurCard {...simulators['comparaison-statuts']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					{/* <SimulateurCard {...simulators['aide-déclaration-indépendant']} /> */}
 				</div>
