@@ -39,7 +39,9 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 }
 
 export function Explicable({ children }: { children: React.ReactNode }) {
-	const { Portal } = usePortal()
+	const { Portal } = usePortal({
+		bindTo: document.getElementsByClassName('app-container')[0] as HTMLElement,
+	})
 	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<>
