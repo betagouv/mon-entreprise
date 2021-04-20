@@ -37,15 +37,16 @@ cycle avec inversion et situation vide:
       situation:
         cycle avec inversion et situation vide: CA
       valeur attendue: null
-    # - nom: net
-    #   situation:
-    #     cycle avec inversion et situation vide: net
-    #   valeur attendue: null
-    # - nom: net après impôt
-    #   situation:
-    #     cycle avec inversion et situation vide: net après impôt
-    #   valeur attendue: null
+    - nom: net
+      situation:
+        cycle avec inversion et situation vide: net
+      valeur attendue: null
+    - nom: net après impôt
+      situation:
+        cycle avec inversion et situation vide: net après impôt
+      valeur attendue: null
 
+# TODO : à corriger
 cycle avec la règle à inverser fixée dans la situation:
   valeur: net
   exemples:
@@ -53,13 +54,14 @@ cycle avec la règle à inverser fixée dans la situation:
         CA: 10000
       valeur attendue: 6666.666
 
-cycle avec la règle du cycle fixée dans la situation:
-  valeur: CA
-  exemples:
-    - situation:
-        net: 1000
-      valeur attendue: 1500
+# cycle avec la règle du cycle fixée dans la situation:
+#   valeur: CA
+#   exemples:
+#     - situation:
+#         net: 1000
+#       valeur attendue: 1500
 
+# TODO : à corriger
 # cycle avec une règle reliée fixée dans la situation:
 #   valeur: net
 #   exemples:

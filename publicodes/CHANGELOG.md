@@ -25,3 +25,9 @@
 **core**
 
 -   Fix bug sur le mécanisme minimum, une valeur non applicable n'est plus considérée comme valant "0" (#1493)
+
+## 1.0.0-beta.16 (release candidate)
+
+**core**
+
+-   Répare un bug dans le mécanisme résoudre le cycle

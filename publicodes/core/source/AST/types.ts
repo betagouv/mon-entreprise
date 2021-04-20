@@ -17,7 +17,7 @@ import { PlafondNode } from '../mecanisms/plafond'
 import { PlancherNode } from '../mecanisms/plancher'
 import { ProductNode } from '../mecanisms/product'
 import { RecalculNode } from '../mecanisms/recalcul'
-import { RésoudreRéférenceCiruclaireNode } from '../mecanisms/résoudre-référence-circulaire'
+import { RésoudreRéférenceCirculaireNode } from '../mecanisms/résoudre-référence-circulaire'
 import { SituationNode } from '../mecanisms/situation'
 import { SommeNode } from '../mecanisms/sum'
 import { SynchronisationNode } from '../mecanisms/synchronisation'
@@ -58,7 +58,7 @@ export type ASTNode = (
 	| PlancherNode
 	| ProductNode
 	| RecalculNode
-	| RésoudreRéférenceCiruclaireNode
+	| RésoudreRéférenceCirculaireNode
 	| SituationNode
 	| SommeNode
 	| SynchronisationNode

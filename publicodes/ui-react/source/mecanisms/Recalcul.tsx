@@ -8,9 +8,8 @@ export default function Recalcul({ nodeValue, explanation, unit }) {
 			<>
 				{explanation.recalcul && (
 					<>
-						Recalcul de la règle{' '}
-						<RuleLinkWithContext dottedName={explanation.recalcul.dottedName} />{' '}
-						avec les valeurs suivantes :
+						Recalcul de la valeur de <Explanation node={explanation.recalcul} />{' '}
+						avec la situation suivante :
 					</>
 				)}
 				<ul>
