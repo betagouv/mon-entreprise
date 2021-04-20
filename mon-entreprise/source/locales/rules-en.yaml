@@ -108,7 +108,9 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
 
     - simplified actual system:** item 326 of form 2033-D-SD 
 
-    - normal actual system:** item A5 of form 2053-SD
+    - normal actual regime:** item A5 of form 2053-SD
+
+    - controlled declaration:** item BT of form 2035-A-SD
   description.fr: >
     À reporter dans :
 
@@ -117,6 +119,8 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+
+    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
   résumé.en: '[automatic] [C]'
   résumé.fr: '[C]'
   titre.en: '[automatic] Deductible mandatory social security contributions'
@@ -241,10 +245,10 @@ aide déclaration revenu indépendant 2020 . réduction covid:
     cotisations sociales liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
+? aide déclaration revenu indépendant 2020 . réduction covid . conjoint collaborateur
+: titre.en: '[automatic] collaborating spouse'
+  titre.fr: conjoint collaborateur
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
-  description.en: '[automatic] Reduction integrated in the amount of the
-    contributions displayed above'
-  description.fr: Réduction intégrée dans le montant des cotisations affiché ci-dessus
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
 ? aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020
@@ -389,6 +393,11 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
 aide déclaration revenu indépendant 2020 . réduction covid . taux CSG:
   titre.en: '[automatic] CSG rate'
   titre.fr: taux CSG
+aide déclaration revenu indépendant 2020 . réduction covid . total:
+  description.en: '[automatic] Included in the amount of contributions shown above'
+  description.fr: Intégrée dans le montant des cotisations affiché ci-dessus
+  titre.en: '[automatic] Covid discount'
+  titre.fr: Réduction Covid
 ? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
 : description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
@@ -666,11 +675,13 @@ aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   description.en: |
     [automatic] To be reported in :
     - simplified actual system:** item 252 of form 2033-B-SD 
-    - normal actual system:** item FZ of form 2052-SD
+    - normal real system:** item FZ of form 2052-SD
+    - controlled declaration:** item BK of form 2035-A-SD
   description.fr: |
     À reporter dans :
     - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
   résumé.en: '[automatic] [B + C + D]'
   résumé.fr: '[B + C + D]'
   titre.en: '[automatic] tax-deductible mandatory social security charges'
@@ -4578,17 +4589,20 @@ dirigeant . indépendant:
   titre.fr: indépendant
 dirigeant . indépendant . IJSS:
   description.en: >-
-    [automatic] In case of illness, maternity or accident, the general Social
-    Security system provides cash benefits. 
+    [automatic] In case of illness, maternity or accident, including after a
+    work stoppage or a stoppage for childcare related to the Covid-19 epidemic,
+    the general Social Security scheme provides "cash" benefits. 
 
     These are the Social Security daily allowances (IJSS).
 
-    The additional indemnities to the daily indemnities of the Social Security paid within the framework of a provident contract do not constitute replacement income.
+    The supplementary allowances to the Social Security daily allowances paid under a provident contract do not constitute replacement income.
      
     Note: Disability benefits paid by disability and death schemes are not concerned
   description.fr: >-
-    En cas de maladie, maternité, ou accident, le régime général de Sécurité
-    sociale assurent le versement de prestations « en espèces ». 
+    En cas de maladie, maternité, ou accident, y compris suite à un arrêt de
+    travail ou un arrêt pour garde d’enfant en lien avec l’épidémie du Covid-19,
+    le régime général de Sécurité sociale assure le versement de prestations «
+    en espèces ». 
 
     Ce sont les indemnités journalières de Sécurité sociale (IJSS).
 

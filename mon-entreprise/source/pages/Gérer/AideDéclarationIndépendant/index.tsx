@@ -217,7 +217,7 @@ function ExplicationsResultatFiscal() {
 	return (
 		<Explicable>
 			<>
-				<h3>Quelles exonérations inclure ?</h3>
+				<h2>Quelles exonérations inclure ?</h2>
 				<p>
 					Pour calculer le montant du résultat fiscal avant déduction des
 					exonérations et des charges sociales à indiquer dans ce simulateur,
@@ -242,8 +242,8 @@ function ExplicationsResultatFiscal() {
 						font-size: 0.85em;
 						text-align: center;
 
-						tr:nth-child(2n) {
-							background: #e5effa;
+						tr:nth-child(2n + 3) {
+							background: var(--lightestColor);
 						}
 
 						td {
@@ -253,20 +253,26 @@ function ExplicationsResultatFiscal() {
 				>
 					<tr>
 						<td></td>
-						<td>
-							Résultat fiscal <strong>(1)</strong>
-						</td>
-						<td colSpan={4}>
+						<td></td>
+						<td className="ui__ light-bg" colSpan={4}>
 							Exonérations <strong>(2)</strong>
 						</td>
 					</tr>
 					<tr>
 						<td></td>
-						<td></td>
-						<td>Exonérations liées aux zones / activités</td>
-						<td>Exonérations Madelin et plan d’épargne retraite</td>
-						<td>Exonérations de plus-values à court terme</td>
-						<td>Suramortissement productif</td>
+						<td className="ui__ light-bg">
+							Résultat fiscal <strong>(1)</strong>
+						</td>
+						<td className="ui__ light-bg notice">
+							Exonérations liées aux zones / activités
+						</td>
+						<td className="ui__ light-bg notice">
+							Exonérations Madelin et plan d’épargne retraite
+						</td>
+						<td className="ui__ light-bg notice">
+							Exonérations de plus-values à court terme
+						</td>
+						<td className="ui__ light-bg notice">Suramortissement productif</td>
 					</tr>
 					<tr>
 						<td>BIC réel normal</td>
@@ -301,7 +307,7 @@ function ExplicationsResultatFiscal() {
 						<td>
 							<strong>2033-B-SD</strong>
 							<br />
-							Ligne 370 (bénéfice) Ligne 372 déficit)
+							Ligne 370 (bénéfice) Ligne 372 (déficit)
 						</td>
 						<td>
 							<strong>2033 B-SD</strong>
@@ -323,6 +329,30 @@ function ExplicationsResultatFiscal() {
 							<br />
 							Lignes 655 et 643
 						</td>
+					</tr>
+					<tr>
+						<td>BNC déclaration contrôlée</td>
+						<td>
+							<strong>2035-B-SD</strong>
+							<br />
+							Ligne CP (bénéfice) Ligne CR (déficit)
+						</td>
+						<td>
+							<strong>2035-B-SD </strong>
+							<br />
+							Lignes CS / AW / CU / CI / AX / CQ
+						</td>
+						<td>
+							<strong>2035-A-SD </strong>
+							<br />
+							Lignes BZ et BU
+						</td>
+						<td>
+							<strong>2035-A-SD</strong>
+							<br />
+							Ligne CL (montant inclus)
+						</td>
+						<td></td>
 					</tr>
 				</table>
 			</>

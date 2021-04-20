@@ -168,7 +168,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . conjoint collabo
   valeur: montant
 
 aide déclaration revenu indépendant 2020 . réduction covid . total:
-  title: Réduction Covid
+  titre: Réduction Covid
   description: Intégrée dans le montant des cotisations affiché ci-dessus
   somme:
     - montant
@@ -414,6 +414,7 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
     - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
   unité: €/an
   somme: 
     - dirigeant . indépendant . cotisations et contributions . cotisations
@@ -443,6 +444,7 @@ aide déclaration revenu indépendant 2020 . total charges sociales déductible:
     À reporter dans :
     - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
     
 
 aide déclaration revenu indépendant 2020 . assiette sociale:
