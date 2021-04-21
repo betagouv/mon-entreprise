@@ -69,7 +69,6 @@ export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoud
 	}
 
 	this.cache = originalCache
-	delete this.parsedSituation[node.explanation.ruleToSolve]
 
 	if (nodeValue === undefined) {
 		nodeValue = null
@@ -78,6 +77,7 @@ export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoud
 	if (nodeValue !== null) {
 		valeur = evaluateWithValue(nodeValue, unit)
 	}
+	delete this.parsedSituation[node.explanation.ruleToSolve]
 
 	return {
 		...node,

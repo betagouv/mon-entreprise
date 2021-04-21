@@ -126,7 +126,6 @@ aide déclaration revenu indépendant 2020 . réduction covid:
   titre: Réduction de cotisation Covid
   remplace: 
     - règle: dirigeant . indépendant . cotisations et contributions . cotisations
-      sauf dans: réduction covid . pourcentage cotisations
       par: 
         valeur: dirigeant . indépendant . cotisations et contributions . cotisations
         abattement: réduction covid . part cotisations
@@ -179,17 +178,14 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 aide déclaration revenu indépendant 2020 . réduction covid . part cotisations:
   titre: Part réduction Covid sur cotisations (hors CSG/CRDS)
   arrondi: oui
-  # résoudre la référence circulaire: oui
+  résoudre la référence circulaire: oui
   produit:
     assiette: montant
     taux: pourcentage cotisations
 
 aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations:
   unité: '%'
-  recalcul: 
-    règle: dirigeant . indépendant . cotisations et contributions . cotisations / (dirigeant . indépendant . cotisations et contributions . cotisations + dirigeant . indépendant . cotisations et contributions . CSG et CRDS)
-    avec: 
-      réduction covid: non
+  valeur: dirigeant . indépendant . cotisations et contributions . cotisations / (dirigeant . indépendant . cotisations et contributions . cotisations + dirigeant . indépendant . cotisations et contributions . CSG et CRDS)
 
     
 

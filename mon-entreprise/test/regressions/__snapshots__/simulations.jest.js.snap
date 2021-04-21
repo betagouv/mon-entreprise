@@ -16,13 +16,13 @@ exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[82,210]"`;
 
 exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[1021,1436]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[9081,11484]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[7892,11156]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[1577,1762]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[1278,1665]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `"[69,195]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `"[0,1051]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `"[7600,9447]"`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `"[7058,9296]"`;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[14093,17408]"`;
 
