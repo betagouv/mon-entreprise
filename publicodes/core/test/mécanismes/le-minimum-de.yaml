@@ -28,5 +28,14 @@ Minimum avec variables:
     - situation:
         assiette: 1000
       valeur attendue: 10
+
+a: non
+Minimum avec valeur non applicable:
+  formule:
+    le minimum de:
+      - a
+      - 10
+  exemples:
+    - valeur attendue: 10
 # TODO
 # Pouvoir faire référence à une variable, ou mettre une valeur. Aujourd'hui il est seulement possible de lister des mécanismes numériques

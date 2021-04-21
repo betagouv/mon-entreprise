@@ -1,6 +1,6 @@
 {
 	"name": "publicodes-react",
-	"version": "1.0.0-beta.14",
+	"version": "1.0.0-beta.15",
 	"description": "UI to explore publicodes computations",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -26,7 +26,7 @@
 		"yaml": "^1.9.2"
 	},
 	"peerDependencies": {
-		"publicodes": "1.0.0-beta.14",
+		"publicodes": "1.0.0-beta.15",
 		"react": "^17.0.2",
 		"react-router-dom": "^5.1.1",
 		"react-router-hash-link": "^1.2.2"
