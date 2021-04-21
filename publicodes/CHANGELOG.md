@@ -19,3 +19,9 @@
 -   Corrige un bug bloquant qui empêchait l'utilisation de la bibliothèque
 -   Enlève la dépendance à i18n et react-i18n et toute la traduction qui n'était pas utilisée de toute façon
 -   Ajoute des tests et une publication automatique des paquets publicodes
+
+## 1.0.0-beta.15
+
+**core**
+
+-   Fix bug sur le mécanisme minimum, une valeur non applicable n'est plus considérée comme valant "0" (#1493)

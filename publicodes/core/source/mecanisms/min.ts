@@ -16,6 +16,18 @@ export const mecanismMin = (v, context) => {
 	} as MinNode
 }
 
-const evaluate = evaluateArray<'minimum'>((a, b) => Math.min(a, b), Infinity)
+const min = (a, b) => {
+	if (a === false) {
+		return b
+	}
+	if (b === false) {
+		return a
+	}
+	if (a === null || b === null) {
+		return null
+	}
+	return Math.min(a, b)
+}
+const evaluate = evaluateArray<'minimum'>(min, false)
 
 registerEvaluationFunction('minimum', evaluate)
