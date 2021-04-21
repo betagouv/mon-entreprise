@@ -5784,6 +5784,43 @@ dirigeant . indépendant . assiette des cotisations:
   description.fr: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
   titre.en: '[automatic] contribution base'
   titre.fr: assiette des cotisations
+dirigeant . indépendant . assiette minimale:
+  description.en: >
+    [automatic] If the entrepreneur's income is in deficit or below the
+    calculation bases, certain contributions will be increased to a minimum
+    amount.
+
+    The contributions for daily allowances, basic pension, disability and death and for training are no longer calculated according to the entrepreneur's income but according to a "base" (the amount withheld that serves as the basis for calculating a tax or a fee).
+
+
+    The minimum contributions do not apply if you are receiving the RSA or the activity bonus.
+  description.fr: >
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+
+    Les cotisations pour les indemnités journalières, retraite de base, invalidité-décès et pour la formation ne sont plus calculées selon le revenu du chef d'entreprise mais selon une "assiette" (montant retenu qui sert de base au calcul d'un impôt ou d'une taxe).
+
+
+    Les cotisations minimales ne s'appliquent pas si vous bénéficiez du RSA ou de la prime d’activité.
+  titre.en: '[automatic] minimum base'
+  titre.fr: assiette minimale
+dirigeant . indépendant . assiette minimale . maladie:
+  description.en: >
+    [automatic] If the entrepreneur's income is in deficit or below the
+    calculation bases, certain contributions will be increased to a minimum
+    amount.
+  description.fr: >
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  titre.en: '[automatic] minimum health insurance base'
+  titre.fr: assiette minimale maladie
+dirigeant . indépendant . assiette minimale . retraite:
+  description.en: '[automatic] The minimum basic pension contribution allows you
+    to validate 3 quarters of pension, regardless of your income.'
+  description.fr: La cotisation minimale de retraite de base permet de valider 3
+    trimestres de retraite, quel que soit le revenu.
+  titre.en: '[automatic] minimum pension base'
+  titre.fr: assiette minimale retraite
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the manager's spouse to be covered by social protection
@@ -5839,13 +5876,22 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
   titre.en: base
   titre.fr: assiette
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
-  description.en: professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale.
-  description.fr:
-    Le conjoint collaborateur paiera des cotisations équivalentes à
-    un revenu professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité
-    sociale.
-  titre.en: lump sum
-  titre.fr: forfaitaire
+  description.en: >
+    [automatic] The collaborating spouse will pay contributions equivalent to a
+    flat-rate professional income 
+
+    fixed at 1/3 of the social security ceiling, 
+
+    with the exception of the daily allowance contribution which is calculated on
+
+    a base equivalent to 40% of the PASS.
+  description.fr: |
+    Le conjoint collaborateur paiera des cotisations équivalentes à un revenu 
+    professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale, 
+    à l’exception de la cotisation indemnités journalières qui est calculée sur
+    une assiette équivalente à 40% du PASS.
+  titre.en: '[automatic] flat-rate base'
+  titre.fr: assiette forfaitaire
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
   question.en: What proportion of income does the spouse contribute?
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
@@ -6136,12 +6182,6 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 ? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
 : titre.en: '[automatic] flat-rate base'
   titre.fr: assiette forfaitaire
-? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette base
-: titre.en: '[automatic] flat-rate base'
-  titre.fr: assiette forfaitaire
-? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette maladie
-: titre.en: '[automatic] lump-sum basis for illness'
-  titre.fr: assiette forfaitaire maladie
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
     [automatic] If you are also engaged in a commercial activity as a
@@ -6170,9 +6210,6 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
 ? dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits
 : titre.en: '[automatic] contribution base (with tobacco deduction)'
   titre.fr: assiette des cotisations (avec déduction tabac)
-? dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales
-: titre.en: '[automatic] minimum contribution holiday'
-  titre.fr: exonération de cotisations minimales
 dirigeant . indépendant . cotisations et contributions . exonérations:
   titre.en: exemptions
   titre.fr: exonérations
@@ -6286,9 +6323,6 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . maladie . taux:
-  titre.en: '[automatic] rate'
-  titre.fr: taux
 dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
   note.en: |
     [automatic] For RSA freelancers, only the simple reduction defined in
@@ -6302,12 +6336,9 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
     sociale ne l'est pas, car il n'y a pas d'assiette minimale.
   titre.en: '[automatic] RSA rate'
   titre.fr: taux RSA
-? dirigeant . indépendant . cotisations et contributions . maladie . taux RSA part variable
-: titre.en: '[automatic] rate RSA variable part'
-  titre.fr: taux RSA part variable
-? dirigeant . indépendant . cotisations et contributions . maladie . taux variable
-: titre.en: '[automatic] floating rate'
-  titre.fr: taux variable
+? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif
+: titre.en: '[automatic] progressive rate'
+  titre.fr: taux progressif
 ? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
 : description.en:
     '[automatic] In return for the CSG exemption, contributors have
@@ -6326,9 +6357,6 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
 ? dirigeant . indépendant . cotisations et contributions . retraite complémentaire
 : titre.en: '[automatic] retirement supplement'
   titre.fr: retraite complémentaire
-? dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond
-: titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
-  titre.fr: plafond retraite complémentaire des indépendants
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
