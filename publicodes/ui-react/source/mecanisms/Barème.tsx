@@ -84,8 +84,7 @@ const Tranche = ({ tranche, multiplicateur }) => {
 					'Au-delà du dernier plafond'
 				) : (
 					<>
-						Inférieur à
-						<Explanation node={tranche.plafond} />
+						Inférieur à <Explanation node={tranche.plafond} />
 						{multiplicateur && !multiplicateur.isDefault && (
 							<>
 								{' × '}

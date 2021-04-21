@@ -243,29 +243,26 @@ dirigeant . indépendant . PL . CIPAV:
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   titre: retraite complémentaire (CIPAV)
-  formule:
-    somme:
-      - grille:
-          assiette: assiette des cotisations
-          unité: €/an
-          tranches:
-            - montant: 1457
-              plafond: 26581 €/an
-            - montant: 2913
-              plafond: 49281 €/an
-            - montant: 4370
-              plafond: 57851 €/an
-            - montant: 7283
-              plafond: 66401 €/an
-            - montant: 10196
-              plafond: 83061 €/an
-            - montant: 16023
-              plafond: 103181 €/an
-            - montant: 17479
-              plafond: 123301 €/an
-            - montant: 18936
-      - (- réduction COVID . montant)
-    plancher: 0
+  unité: €/an
+  grille:
+    assiette: assiette des cotisations
+    tranches:
+      - montant: 1457
+        plafond: 26581 €/an
+      - montant: 2913
+        plafond: 49281 €/an
+      - montant: 4370
+        plafond: 57851 €/an
+      - montant: 7283
+        plafond: 66401 €/an
+      - montant: 10196
+        plafond: 83061 €/an
+      - montant: 16023
+        plafond: 103181 €/an
+      - montant: 17479
+        plafond: 123301 €/an
+      - montant: 18936
+  abattement: réduction COVID . montant
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID:
   applicable si: entreprise . date de création < 01/01/2020
@@ -326,7 +323,6 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     une de ces conditions:
       - régime général
       - PL . CNBF
-
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -336,20 +332,23 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     libérales est l'organisme qui fédère les différentes caisses 
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
 
-  formule:
-    somme:
-      - produit:
-          assiette: cotisations et contributions . retraite de base . assiette
-          taux: 8.23%
-          plafond: plafond sécurité sociale temps plein
-        arrondi: oui
-      - produit:
-          assiette: cotisations et contributions . retraite de base . assiette
-          taux: 1.87%
-          plafond: 5 * plafond sécurité sociale temps plein
-        arrondi: oui
+  produit:
+    assiette: 
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+    composantes:
+      - attributs:
+          nom: tranche T1
+          arrondi: oui
+        taux: 8.23%
+        plafond: plafond sécurité sociale temps plein
+      - attributs:
+          nom: tranche t2
+          arrondi: oui
+        taux: 1.87%
+        plafond: 5 * plafond sécurité sociale temps plein
   références:
-    cnavpl.fr: https://www.cnavpl.fr/
+    cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     cotisation minimale (Guide CNAVPL): https://www.cnavpl.fr/wp-content/uploads/2020/10/guide-site-2020.pdf#page=21
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215

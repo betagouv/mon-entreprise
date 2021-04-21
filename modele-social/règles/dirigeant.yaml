@@ -584,7 +584,12 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         - revenu sans partage
         - revenu avec partage
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
-  description: Le conjoint collaborateur paiera des cotisations équivalentes à un revenu professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale.
+  titre: assiette forfaitaire
+  description: |
+    Le conjoint collaborateur paiera des cotisations équivalentes à un revenu 
+    professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale, 
+    à l’exception de la cotisation indemnités journalières qui est calculée sur
+    une assiette équivalente à 40% du PASS.
   formule: assiette = 'forfaitaire'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
@@ -738,6 +743,39 @@ dirigeant . indépendant . cotisations et contributions:
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
     réduction ACRE.
+  
+dirigeant . indépendant . assiette minimale:
+  non applicable si: situation personnelle . RSA
+  valeur: oui
+  description: |
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
+    Les cotisations pour les indemnités journalières, retraite de base, invalidité-décès et pour la formation ne sont plus calculées selon le revenu du chef d'entreprise mais selon une "assiette" (montant retenu qui sert de base au calcul d'un impôt ou d'une taxe).
+
+    Les cotisations minimales ne s'appliquent pas si vous bénéficiez du RSA ou de la prime d’activité.
+  références:
+    cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+    
+dirigeant . indépendant . assiette minimale . maladie:
+  titre: assiette minimale maladie
+  description: |
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
+  produit:
+    assiette: plafond sécurité sociale temps plein
+    taux: 40%
+  références:
+    cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+    
+
+dirigeant . indépendant . assiette minimale . retraite:
+  titre: assiette minimale retraite
+  description: La cotisation minimale de retraite de base permet de valider 3 trimestres de retraite, quel que soit le revenu.
+  produit:
+    assiette: plafond sécurité sociale temps plein
+    taux: 40%
+  références:
+    cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+    
+    
 
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
   description: |
@@ -902,30 +940,12 @@ dirigeant . indépendant . cotisations et contributions . début activité:
   recalcul: 
     règle: cotisations et contributions
     avec: 
-      assiette forfaitaire: oui
-  
+      assiette des cotisations: assiette forfaitaire
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
 
   
-dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire: 
-  valeur: non
-  remplace: 
-    - règle: CSG et CRDS . assiette
-      par: assiette base
-    - règle: assiette des cotisations
-      sauf dans: 
-        - indemnités journalières maladie
-        - maladie
-      par: assiette base
-    - règle: assiette des cotisations
-      dans:
-        - indemnités journalières maladie
-        - maladie
-      par: assiette maladie
-    
-dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette base:
-  titre: assiette forfaitaire
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
   produit: 
     assiette: PSS proratisé
     taux: 19%
@@ -934,48 +954,44 @@ dirigeant . indépendant . cotisations et contributions . début activité . ass
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles/debut-dactivite.html
 
-
-dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire . assiette maladie:
-  titre: assiette forfaitaire maladie
-  produit: 
-    assiette: plafond sécurité sociale temps plein
-    taux: 40%
-  unité: €/an
-  arrondi: oui
-
     
 
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
+  synonyme: maladie 2
   description: |
     Cotisations pour les indemnités journalières des indépendants. Si l'état de
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
-  formule:
-    produit:
-      assiette:
-        valeur: assiette des cotisations
-        plancher [ref]: 40% * plafond sécurité sociale temps plein
-      taux [ref]: 0.85%
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
       plafond: 5 * plafond sécurité sociale temps plein
-    arrondi: oui
+    taux: 
+      nom: taux
+      valeur: 0.85%
+  arrondi: oui
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
     Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
 
 dirigeant . indépendant . cotisations et contributions . maladie:
-  formule:
-    barème:
-      assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - taux: taux variable
-          plafond: 5
-        - taux: 6.5%
-    arrondi: oui
+  barème:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - taux: taux progressif
+        plafond: 110%
+      - taux: 6.35%
+        plafond: 5
+      - taux: 6.5%
+  arrondi: oui
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
-
+    taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
   note: |
     On retrouve dans le décret ci-dessous la phrase suivante :
 
@@ -983,58 +999,51 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-dirigeant . indépendant . cotisations et contributions . maladie . taux variable:
-  formule:
-    variations:
-      - si: situation personnelle . RSA
-        alors: taux RSA
-      - sinon: taux
+
 
 dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
-  formule:
-    valeur: taux RSA part variable + 1.35%
-    plafond: 6.35%
+  applicable si: situation personnelle . RSA
+  remplace: taux progressif
+  unité: '%'
+  somme: 
+    - produit:
+        assiette: assiette des cotisations / (110% * plafond sécurité sociale temps plein)
+        taux: 5%
+    - 1.35%
+  plafond: 6.35%
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans
     le décret de calcul de la cotisation maladie est prise en compte.
     La réduction renforcée en-dessous de 40% du plafond de la sécurité 
     sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-dirigeant . indépendant . cotisations et contributions . maladie . taux RSA part variable:
-  unité: '%'
-  formule:
-    produit:
-      assiette: 5%
-      taux: assiette des cotisations / (110% * plafond sécurité sociale temps plein)
-
-dirigeant . indépendant . cotisations et contributions . maladie . taux:
-  formule:
-    taux progressif:
-      assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - plafond: 0%
-          taux: 0%
-        - plafond: 40%
-          taux: 3.16%
-        - plafond: 110%
-          taux: 6.35%
+   
+dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
+  taux progressif:
+    assiette: assiette des cotisations
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - plafond: 0%
+        taux: 0%
+      - plafond: 40%
+        taux: 3.16%
+      - plafond: 110%
+        taux: 6.35%
   références:
     Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
 dirigeant . indépendant . cotisations et contributions . retraite de base:
-  formule:
-    barème:
-      assiette [ref]:
-        valeur: assiette des cotisations
-        plancher [ref]: 11.5% * plafond sécurité sociale temps plein
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - taux: 17.75%
-          plafond: 1
-        - taux: 0.6%
-    arrondi: oui
+  barème:
+    assiette: 
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - taux: 17.75%
+        plafond: 1
+      - taux: 0.6%
+  arrondi: oui
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -1044,36 +1053,28 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
       assiette: assiette des cotisations
       tranches:
         - taux: 7%
-          plafond: plafond
+          plafond: 
+            nom: plafond
+            acronyme: PRCI
+            titre: plafond retraite complémentaire des indépendants
+            valeur: 38493 €/an
         - taux: 8%
           plafond: 4 * plafond sécurité sociale temps plein
     arrondi: oui
 
-dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond:
-  acronyme: PRCI
-  titre: plafond retraite complémentaire des indépendants
-  formule: 38493 €/an
 
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   formule:
     produit:
-      assiette [ref]:
+      assiette: 
         valeur: assiette des cotisations
-        plancher [ref]: 11.5% * plafond sécurité sociale temps plein
+        plancher: assiette minimale . retraite
+        plafond: plafond sécurité sociale temps plein
       taux: 1.3%
-      plafond: plafond sécurité sociale temps plein
     arrondi: oui
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales:
-  formule: situation personnelle . RSA
-  rend non applicable:
-    - invalidité et décès . assiette . plancher
-    - indemnités journalières maladie . plancher
-    - retraite de base . assiette . plancher
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   formule:
@@ -1161,7 +1162,8 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
   formule:
     produit:
       assiette: assiette des cotisations
-      taux [ref]:
+      taux:
+        nom: taux
         taux progressif:
           assiette: assiette des cotisations
           multiplicateur: plafond sécurité sociale temps plein
