@@ -440,7 +440,7 @@ export default function SchemeComparaison({
 									/>{' '}
 									<InfoBulle>
 										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-											Pension calculée pour 172 trimestres cotisés au régime des
+											Pension calculée à titre indicatif pour 172 trimestres cotisés au régime des
 											indépendants sans variations de revenus.
 										</Trans>
 									</InfoBulle>
