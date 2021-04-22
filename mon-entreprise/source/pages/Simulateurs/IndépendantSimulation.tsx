@@ -1,4 +1,5 @@
 import { updateSituation } from 'Actions/actions'
+import Banner from 'Components/Banner'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -6,8 +7,12 @@ import Simulation from 'Components/Simulation'
 import IndépendantExplanation from 'Components/simulationExplanation/IndépendantExplanation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { useEngine } from 'Components/utils/EngineContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -22,6 +27,7 @@ export function IndépendantPLSimulation() {
 }
 
 export default function IndépendantSimulation() {
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<SimulateurWarning simulateur="indépendant" />
@@ -44,6 +50,14 @@ export default function IndépendantSimulation() {
 					<PeriodSwitch />
 				</div>
 				<IndépendantSimulationGoals />
+				<Banner icon={'✍️'}>
+					<Trans i18nKey="aide-déclaration-indépendant.banner">
+						Découvrez notre outil d'
+						<Link to={sitePaths.gérer.déclarationIndépendant}>
+							aide à la déclaration des revenus
+						</Link>
+					</Trans>
+				</Banner>
 			</Simulation>
 		</>
 	)
