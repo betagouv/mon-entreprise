@@ -77,6 +77,7 @@ function ExerciceDate() {
 				Exercice du{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
+					showDefaultDateValue={true}
 					onChange={(x) =>
 						dispatch(updateSituation('entreprise . exercice . début', x))
 					}
@@ -84,6 +85,7 @@ function ExerciceDate() {
 				au{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . fin'}
+					showDefaultDateValue={true}
 					onChange={(x) =>
 						dispatch(updateSituation('entreprise . exercice . fin', x))
 					}

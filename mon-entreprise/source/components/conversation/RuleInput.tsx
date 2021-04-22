@@ -29,6 +29,10 @@ type Props<Name extends string = DottedName> = Omit<
 	// a build-in logic in the engine, by setting the "applicability" of
 	// suggestions.
 	showSuggestions?: boolean
+	// TODO: having an option seems undesirable, but it's the easier way to
+	// implement this behavior currently
+	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
+	showDefaultDateValue?: boolean
 	useSwitch?: boolean
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
@@ -58,6 +62,7 @@ export default function RuleInput({
 	isTarget = false,
 	showSuggestions = true,
 	onSubmit = () => null,
+	showDefaultDateValue = false,
 	modifiers = {},
 	...props
 }: Props<DottedName>) {
@@ -69,7 +74,7 @@ export default function RuleInput({
 	const commonProps: InputProps<DottedName> = {
 		dottedName,
 		value,
-		missing: !!evaluation.missingVariables[dottedName],
+		missing: !showDefaultDateValue && !!evaluation.missingVariables[dottedName],
 		onChange,
 		title: rule.title,
 		id: props.id ?? dottedName,
