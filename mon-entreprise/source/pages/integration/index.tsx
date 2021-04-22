@@ -1,8 +1,10 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import { TrackChapter } from '../../ATInternetTracking'
 import Iframe from './Iframe'
 import Library from './Library'
@@ -16,13 +18,14 @@ export default function Integration() {
 			<TrackChapter chapter1="integration" />
 			<ScrollToTop />
 			{pathname !== sitePaths.integration.index && (
-				<div className="ui__ card dark-bg" css="text-align: center">
-					🛠{' '}
-					<Link className="ui__ simple button" to={sitePaths.integration.index}>
-						<Trans>Outils pour les développeurs</Trans>
-					</Link>{' '}
-					🛠
-				</div>
+				<BackNavigationForDevs className="ui__ dark-bg">
+					<Link
+						className="ui__ simple small push-left button"
+						to={sitePaths.integration.index}
+					>
+						← <Trans>Outils pour les développeurs</Trans> {emoji('👨‍💻')}
+					</Link>
+				</BackNavigationForDevs>
 			)}
 			<Switch>
 				<Route exact path={sitePaths.integration.index} component={Options} />
@@ -32,3 +35,10 @@ export default function Integration() {
 		</>
 	)
 }
+
+const BackNavigationForDevs = styled.div`
+	transform: translateY(1rem);
+	padding: 0.25rem 1rem;
+	width: max-content;
+	border-radius: 0.25rem;
+`
