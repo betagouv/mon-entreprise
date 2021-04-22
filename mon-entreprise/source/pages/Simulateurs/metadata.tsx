@@ -60,8 +60,10 @@ const simulateurs = [
 	'aides-embauche',
 ] as const
 
+export type SimulatorId = typeof simulateurs[number]
+
 export type SimulatorData = Record<
-	typeof simulateurs[number],
+	SimulatorId,
 	{
 		meta?: {
 			title: string
@@ -87,6 +89,7 @@ export type SimulatorData = Record<
 		description?: React.ReactNode
 		config?: SimulationConfig
 		seoExplanations?: React.ReactNode
+		nextSteps?: Array<SimulatorId>
 		private?: true
 		component: () => JSX.Element
 	}
@@ -198,6 +201,7 @@ export function getSimulatorsData({
 					</p>
 				</Trans>
 			),
+			nextSteps: ['chômage-partiel', 'aides-embauche'],
 		},
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
@@ -304,6 +308,7 @@ export function getSimulatorsData({
 					</div>
 				</Trans>
 			),
+			nextSteps: ['indépendant', 'comparaison-statuts'],
 		},
 		indépendant: {
 			config: indépendantConfig,
@@ -327,6 +332,7 @@ export function getSimulatorsData({
 				),
 			},
 			component: IndépendantSimulation,
+			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		sasu: {
 			config: sasuConfig,
@@ -407,6 +413,7 @@ export function getSimulatorsData({
 					</p>
 				</Trans>
 			),
+			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'artiste-auteur': {
 			icône: '👩‍🎨',
@@ -542,6 +549,7 @@ export function getSimulatorsData({
 					</p>
 				</Trans>
 			),
+			nextSteps: ['salarié', 'aides-embauche'],
 		},
 		'comparaison-statuts': {
 			component: SchemeComparaisonPage,
@@ -849,6 +857,7 @@ export function getSimulatorsData({
 				</Trans>
 			),
 			component: AidesEmbauche,
+			nextSteps: ['salarié'],
 		},
 		is: {
 			icône: '🗓',
@@ -902,6 +911,7 @@ export function getSimulatorsData({
 					</p>
 				</Trans>
 			),
+			nextSteps: ['salarié', 'comparaison-statuts'],
 		},
 	}
 }

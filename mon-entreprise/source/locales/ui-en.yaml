@@ -1093,6 +1093,9 @@ pages:
     avocat:
       shortname: Lawyer
       title: Income simulator for private lawyers
+    cartes:
+      intégrer module web: <0>Integrate the web module</0><1>Add this simulator to
+        your website in one click</1>
     chirurgien-dentiste:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
