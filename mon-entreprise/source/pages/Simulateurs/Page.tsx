@@ -6,8 +6,9 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import { SimulatorData } from './metadata'
 
@@ -18,6 +19,7 @@ export default function PageData({
 	tracking,
 	tooltip,
 	description,
+	iframe,
 	component: Component,
 	seoExplanations,
 	path,
@@ -79,8 +81,41 @@ export default function PageData({
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
 				{config && <PreviousSimulationBanner />}
-				{seoExplanations && !inIframe && seoExplanations}
+				{!inIframe && (
+					<>
+						{seoExplanations}
+						<NextSteps iframe={iframe} />
+					</>
+				)}
 			</ThemeColorsProvider>
 		</>
+	)
+}
+
+function NextSteps({ iframe }: { iframe: string }) {
+	const sitePaths = useContext(SitePathsContext)
+	if (!iframe) {
+		return null
+	}
+	return (
+		<section>
+			<h3>Aller plus loin</h3>
+			<div className="ui__ box-container">
+				<Link
+					className="ui__ interactive card box light-border"
+					to={{
+						pathname: sitePaths.integration.iframe,
+						search: `?module=${iframe}`,
+					}}
+				>
+					<div className="ui__ big box-icon">{emoji('📱')}</div>
+					<h3>Intégrer le module web</h3>
+					<p className="ui__ notice">
+						Ajouter ce simulateur sur votre site internet en un clic
+					</p>
+					<div className="ui__ small simple button">Découvrir</div>
+				</Link>
+			</div>
+		</section>
 	)
 }
