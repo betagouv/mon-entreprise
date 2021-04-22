@@ -1002,15 +1002,20 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 
 
 dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
+  # TODO: Il n'est pour l'instant pas possible de rendre non applicable une
+  # seule tranche d'un barème dans le mécanisme "taux progressif", ce qui
+  # éviterait de devoir créer 2 règles séparées avec 2 barèmes distincts.
   applicable si: situation personnelle . RSA
   remplace: taux progressif
   unité: '%'
-  somme: 
-    - produit:
-        assiette: assiette des cotisations / (110% * plafond sécurité sociale temps plein)
-        taux: 5%
-    - 1.35%
-  plafond: 6.35%
+  taux progressif:
+    assiette: assiette des cotisations
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - plafond: 40%
+        taux: 3.16%
+      - plafond: 110%
+        taux: 6.35%
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans
     le décret de calcul de la cotisation maladie est prise en compte.
