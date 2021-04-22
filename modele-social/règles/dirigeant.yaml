@@ -771,7 +771,7 @@ dirigeant . indépendant . assiette minimale . retraite:
   description: La cotisation minimale de retraite de base permet de valider 3 trimestres de retraite, quel que soit le revenu.
   produit:
     assiette: plafond sécurité sociale temps plein
-    taux: 40%
+    taux: 11.5%
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
     
