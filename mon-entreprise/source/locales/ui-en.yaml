@@ -191,6 +191,7 @@ Votre forme juridique: Your legal status
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you a SAS(U) manager? <2>Access the dedicated income simulator</2>
 aide: aid or subsidy
 aide-déclaration-indépendant:
+  banner: Find out more about our tax<1>return</1>tool
   description: <0>Help with your 2019 income tax return</0><1>This tool is a tax
     (income) and social security<1> (ISD</1>) declaration aid for self-employed
     workers. It enables you to find out the amount of social security charges
