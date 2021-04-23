@@ -10,7 +10,7 @@ import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
-import { formatValue } from 'publicodes'
+import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -234,7 +234,7 @@ function Results() {
 		const isActive =
 			typeof engine.evaluate(aide.dottedName).nodeValue === 'number'
 		const situation = { ...baseEngine.parsedSituation, ...aide.situation }
-		return { ...aide, situation, isActive }
+		return { ...aide, situation, engine, isActive }
 	})
 	const [aidesActives, aidesInactives] = partition(
 		({ isActive }) => isActive,
@@ -249,7 +249,9 @@ function Results() {
 					Les aides
 				</Trans>
 			</h3>
-			<AidesGrid aides={aides} />
+			<AidesGrid
+				aides={aides.map((aide) => ({ ...aide, engine: baseEngine }))}
+			/>
 		</>
 	) : (
 		<Animate.fromTop>
@@ -269,7 +271,11 @@ function Results() {
 	)
 }
 
-function AidesGrid({ aides }: { aides: Array<AideDescriptor> }) {
+function AidesGrid({
+	aides,
+}: {
+	aides: Array<AideDescriptor & { engine: Engine }>
+}) {
 	return (
 		<div className="ui__ box-container large">
 			{aides.map((aide, i) => (
@@ -283,11 +289,11 @@ function ResultCard({
 	situation,
 	title,
 	dottedName,
+	engine,
 	dateFin,
 	versement,
 	description,
-}: AideDescriptor) {
-	const engine = useEngine()
+}: AideDescriptor & { engine: Engine }) {
 	const rule = engine.getParsedRules()[dottedName]
 	const valueNode = (rule.explanation.valeur as any)?.explanation.valeur
 	const evaluation = engine.evaluate(valueNode)
