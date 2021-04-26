@@ -12,6 +12,7 @@ objectifs:
 questions:
   liste noire:
     - entreprise . charges
+    - entreprise . activité . libérale réglementée
   liste:
     - entreprise . activité
 unité par défaut: €/an

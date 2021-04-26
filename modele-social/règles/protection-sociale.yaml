@@ -32,7 +32,7 @@ protection sociale . retraite:
     somme:
       - base
       - complémentaire salarié
-      - complémentaire sécurité des indépendants
+      - complémentaire indépendants
 
   note: |
     Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
@@ -44,7 +44,16 @@ protection sociale . retraite:
       - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
       - On ne calcule pas le nombre de trimestres validés par année
 
-    Ces limites seront amenées à évoluer au fur et à mesure du développement du simulateur
+protection sociale . retraite . plr: 
+  applicable si:
+    toutes ces conditions: 
+      - entreprise . activité . libérale réglementée
+      - dirigeant . indépendant . PL . option régime général = non
+  remplace: retraite
+  rend non applicable: complémentaire indépendants
+  titre: Retraite profession libérale réglementée
+  description: Nous n'avons pas implémenté les règles spécifiques aux professions libérales relementées.
+  valeur: "'Non implémenté'"
 
 protection sociale . retraite . base:
   titre: pension de retraite de base
@@ -194,7 +203,7 @@ protection sociale . retraite . complémentaire salarié . points acquis:
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
-protection sociale . retraite . complémentaire sécurité des indépendants:
+protection sociale . retraite . complémentaire indépendants:
   non applicable si:
     toutes ces conditions:
       - entreprise . activité = 'libérale'
@@ -203,19 +212,19 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
-protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
+protection sociale . retraite . complémentaire indépendants . valeur du point:
   formule: 1.191 €/point/an
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-protection sociale . retraite . complémentaire sécurité des indépendants . total points acquis:
+protection sociale . retraite . complémentaire indépendants . total points acquis:
   formule: points acquis * mois cotisés
 
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
+protection sociale . retraite . complémentaire indépendants . points acquis:
   unité: points/an
   valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / prix d'achat du point
 
-protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
+protection sociale . retraite . complémentaire indépendants . prix d'achat du point:
   formule: 17.515 €/point
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
@@ -262,7 +271,7 @@ protection sociale . santé . indemnités journalières:
     brut et versées tous les 14 jours en moyenne.
   non applicable si:
     toutes ces conditions:
-      - entreprise . activité = 'libérale'
+      - entreprise . activité . libérale réglementée
       - dirigeant . indépendant . PL . régime général = non
   unité: €/jour
   note: |
