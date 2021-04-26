@@ -21,7 +21,7 @@ const setFeedbackGivenForUrl = (url: string) => {
 		JSON.stringify(new Date().toISOString())
 	)
 }
-// Ask for feedback again after 4 month
+// Ask for feedback again after 4 months
 const askFeedback = (url: string) => {
 	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
 	if (!previousFeedbackDate) {
@@ -60,7 +60,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 		[ATTracker, url]
 	)
 
-	const handleErrorReporting = useCallback(() => {
+	const openSuggestionForm = useCallback(() => {
 		setState({ ...state, showForm: true })
 	}, [state])
 
@@ -76,72 +76,77 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 				position: 'relative',
 			}}
 		>
-			{!state.showForm && !state.showThanks && (
-				<div style={{ textAlign: 'center' }}>
-					<p>
-						{customMessage || (
-							<Trans i18nKey="feedback.question">
-								Êtes-vous satisfait de cette page ?
-							</Trans>
-						)}{' '}
-					</p>
-					<div
+			<div style={{ textAlign: 'center' }}>
+				{!state.showForm && !state.showThanks && (
+					<>
+						<p>
+							{customMessage || (
+								<Trans i18nKey="feedback.question">
+									Êtes-vous satisfait de cette page ?
+								</Trans>
+							)}{' '}
+						</p>
+						<div
+							css={`
+								display: flex;
+								flex-wrap: wrap;
+								justify-content: center;
+							`}
+						>
+							<div>
+								<EmojiButton onClick={() => handleFeedback('mauvais')}>
+									{emoji('🙁')}
+								</EmojiButton>
+								<EmojiButton onClick={() => handleFeedback('moyen')}>
+									{emoji('😐')}
+								</EmojiButton>
+							</div>
+							<div>
+								<EmojiButton onClick={() => handleFeedback('bien')}>
+									{emoji('🙂')}
+								</EmojiButton>
+								<EmojiButton onClick={() => handleFeedback('très bien')}>
+									{emoji('😀')}
+								</EmojiButton>
+							</div>
+						</div>
+					</>
+				)}
+				{(state.showThanks || state.showForm) && (
+					<button
+						onClick={() => setDisplay(false)}
+						style={{
+							position: 'absolute',
+							right: '-2.4rem',
+							top: '-0.6rem',
+							fontSize: '200%',
+						}}
 						css={`
-							display: flex;
-							flex-wrap: wrap;
-							justify-content: center;
+							:hover {
+								opacity: 0.8;
+							}
 						`}
+						aria-label="close"
 					>
-						<div>
-							<EmojiButton onClick={() => handleFeedback('mauvais')}>
-								{emoji('🙁')}
-							</EmojiButton>
-							<EmojiButton onClick={() => handleFeedback('moyen')}>
-								{emoji('😐')}
-							</EmojiButton>
-						</div>
-						<div>
-							<EmojiButton onClick={() => handleFeedback('bien')}>
-								{emoji('🙂')}
-							</EmojiButton>
-							<EmojiButton onClick={() => handleFeedback('très bien')}>
-								{emoji('😀')}
-							</EmojiButton>
-						</div>
+						<small>×</small>
+					</button>
+				)}
+				{state.showThanks && (
+					<div>
+						<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
 					</div>
+				)}
+				{state.showForm ? (
+					<Form />
+				) : (
 					<button
 						className="ui__  simple small button"
-						onClick={handleErrorReporting}
+						onClick={openSuggestionForm}
 					>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</button>
-				</div>
-			)}
-			{(state.showThanks || state.showForm) && (
-				<button
-					onClick={() => setDisplay(false)}
-					style={{
-						position: 'absolute',
-						right: '-2.4rem',
-						top: '-0.6rem',
-						fontSize: '200%',
-					}}
-					css={`
-						:hover {
-							opacity: 0.8;
-						}
-					`}
-					aria-label="close"
-				>
-					<small>×</small>
-				</button>
-			)}
-			{state.showThanks && (
-				<div style={{ marginRight: '1.2rem' }}>
-					<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
-				</div>
-			)}
-			{state.showForm && <Form />}
+				)}
+			</div>
 		</div>
 	)
 }
