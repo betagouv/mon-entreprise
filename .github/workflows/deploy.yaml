@@ -4,6 +4,10 @@ on:
     types: [opened, synchronize]
   push:
     branches: [master, demo, next]
+  # We display the release note in the "news" section of mon-entreprise.fr so we
+  # want to re-deploy the site when a new release is published on GitHub.
+  release:
+    types: [published]
 
 jobs:
   deploy-context:
