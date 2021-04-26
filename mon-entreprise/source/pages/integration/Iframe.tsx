@@ -33,8 +33,8 @@ function IntegrationCustomizer() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.filter((s) => s.iframe && !s.private)
-				.map((s) => s.iframe),
+				.filter((s) => s.iframePath && !s.private)
+				.map((s) => s.iframePath),
 		[simulators]
 	)
 	const defaultModuleFromUrl =
