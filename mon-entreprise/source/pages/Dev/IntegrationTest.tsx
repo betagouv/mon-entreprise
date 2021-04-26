@@ -7,7 +7,7 @@ export default function IntegrationTest() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.map((s) => s.iframe)
+				.map((s) => s.iframePath)
 				.filter(Boolean),
 		[simulators]
 	)

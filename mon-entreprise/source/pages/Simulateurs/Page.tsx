@@ -7,7 +7,7 @@ import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSi
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import { SimulateurCard } from './Home'
@@ -20,7 +20,7 @@ export default function PageData({
 	tracking,
 	tooltip,
 	description,
-	iframe,
+	iframePath,
 	component: Component,
 	seoExplanations,
 	nextSteps,
@@ -86,7 +86,7 @@ export default function PageData({
 				{!inIframe && (
 					<>
 						{seoExplanations}
-						<NextSteps iframe={iframe} nextSteps={nextSteps} />
+						<NextSteps iframePath={iframePath} nextSteps={nextSteps} />
 					</>
 				)}
 			</ThemeColorsProvider>
@@ -95,14 +95,14 @@ export default function PageData({
 }
 
 type NextStepsProps = {
-	iframe?: string
+	iframePath?: string
 	nextSteps?: Array<SimulatorId>
 }
 
-function NextSteps({ iframe, nextSteps }: NextStepsProps) {
+function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const simulators = useSimulatorsData()
-	if (!iframe && !nextSteps) {
+	if (!iframePath && !nextSteps) {
 		return null
 	}
 	return (
@@ -110,23 +110,25 @@ function NextSteps({ iframe, nextSteps }: NextStepsProps) {
 			<h3>Aller plus loin</h3>
 			<div className="ui__ box-container">
 				{nextSteps?.map((simulatorId) => (
-					<SimulateurCard key={simulatorId} {...simulators[simulatorId]} />
+					<SimulateurCard
+						key={simulatorId}
+						noBorder
+						{...simulators[simulatorId]}
+					/>
 				))}
-				{iframe && (
+				{13 && (
 					<Link
-						className="ui__ interactive card box light-border"
+						className="ui__ interactive card box"
 						to={{
 							pathname: sitePaths.integration.iframe,
-							search: `?module=${iframe}`,
+							search: `?module=${iframePath}`,
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('📱')}</div>
-						<Trans i18nKey="pages.simulateurs.cartes.intégrer module web">
-							<h3>Intégrer le module web</h3>
-							<p className="ui__ notice">
-								Ajouter ce simulateur sur votre site internet en un clic
-							</p>
-						</Trans>
+						<h3>Intégrer le module web</h3>
+						<p className="ui__ notice">
+							Ajouter ce simulateur sur votre site internet en un clic
+						</p>
 					</Link>
 				)}
 			</div>

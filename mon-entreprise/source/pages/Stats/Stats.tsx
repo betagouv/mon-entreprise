@@ -340,7 +340,7 @@ function formatMonth(date: string | Date) {
 }
 
 function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
-	if (s.iframe === 'pamc') {
+	if (s.iframePath === 'pamc') {
 		return 'PAM'
 	}
 	if (!s.tracking) {

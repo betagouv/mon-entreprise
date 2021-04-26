@@ -115,13 +115,17 @@ export default function Simulateurs() {
 
 export function SimulateurCard({
 	small = false,
+	noBorder = false,
 	shortName,
 	meta,
 	path,
 	tooltip,
-	iframe,
+	iframePath,
 	icône,
-}: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
+}: SimulatorData[keyof SimulatorData] & {
+	small?: boolean
+	noBorder?: boolean
+}) {
 	const isIframe = useContext(IsEmbeddedContext)
 	const name = (
 		<span>
@@ -130,13 +134,17 @@ export function SimulateurCard({
 	)
 	return (
 		<Link
-			className={classnames('ui__ interactive card box light-border', {
-				small,
-			})}
+			className={classnames(
+				'ui__ interactive card box',
+				!noBorder && 'light-border',
+				{
+					small,
+				}
+			)}
 			key={path}
 			to={{
 				state: { fromSimulateurs: true },
-				pathname: (isIframe && iframe) || path,
+				pathname: (isIframe && iframePath) || path,
 			}}
 		>
 			<div className={classnames('ui__ box-icon', { big: !small })}>

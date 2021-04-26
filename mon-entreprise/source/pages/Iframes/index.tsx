@@ -19,11 +19,11 @@ export default function Iframes() {
 			<div className="ui__ container">
 				<Switch>
 					{Object.values(simulators)
-						.filter(({ iframe }) => !!iframe)
+						.filter(({ iframePath }) => !!iframePath)
 						.map((s) => (
 							<Route
-								key={s.iframe}
-								path={`/iframes/${s.iframe}`}
+								key={s.iframePath}
+								path={`/iframes/${s.iframePath}`}
 								render={() => (
 									<>
 										<Helmet>

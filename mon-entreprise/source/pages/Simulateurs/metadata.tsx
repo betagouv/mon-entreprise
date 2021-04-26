@@ -84,7 +84,7 @@ export type SimulatorData = Record<
 		shortName: string
 		path?: string
 		tooltip?: string
-		iframe?: string
+		iframePath?: string
 		title?: string
 		description?: React.ReactNode
 		config?: SimulationConfig
@@ -110,7 +110,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.salarié.title',
 				'Simulateur de revenus pour salarié'
 			),
-			iframe: 'simulateur-embauche',
+			iframePath: 'simulateur-embauche',
 			meta: {
 				description: t(
 					'pages.simulateurs.salarié.meta.description',
@@ -207,7 +207,7 @@ export function getSimulatorsData({
 			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
 			icône: '🚶‍♂️',
-			iframe: 'simulateur-autoentrepreneur',
+			iframePath: 'simulateur-autoentrepreneur',
 			meta: {
 				description: t(
 					'pages.simulateurs.auto-entrepreneur.meta.description',
@@ -314,7 +314,7 @@ export function getSimulatorsData({
 			config: indépendantConfig,
 			tracking: 'independant',
 			icône: '🏃',
-			iframe: 'simulateur-independant',
+			iframePath: 'simulateur-independant',
 			path: sitePaths.simulateurs.indépendant,
 			shortName: t('pages.simulateurs.indépendant.shortname', 'Indépendant'),
 			title: t(
@@ -338,7 +338,7 @@ export function getSimulatorsData({
 			config: sasuConfig,
 			tracking: 'dirigeant_sasu',
 			icône: '👨‍✈️',
-			iframe: 'simulateur-assimilesalarie',
+			iframePath: 'simulateur-assimilesalarie',
 			meta: {
 				description: t(
 					'pages.simulateurs.sasu.meta.description',
@@ -418,7 +418,7 @@ export function getSimulatorsData({
 		'artiste-auteur': {
 			icône: '👩‍🎨',
 			tracking: 'artiste-auteur',
-			iframe: 'simulateur-artiste-auteur',
+			iframePath: 'simulateur-artiste-auteur',
 			meta: {
 				title: t(
 					'pages.simulateurs.artiste-auteur.meta.title',
@@ -449,7 +449,7 @@ export function getSimulatorsData({
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
 			icône: '😷',
-			iframe: 'simulateur-chomage-partiel',
+			iframePath: 'simulateur-chomage-partiel',
 			meta: {
 				description: t(
 					'pages.simulateurs.chômage-partiel.meta.description',
@@ -645,7 +645,7 @@ export function getSimulatorsData({
 				'Demande de mobilité internationale'
 			),
 			private: true,
-			iframe: 'demande-mobilite',
+			iframePath: 'demande-mobilite',
 		},
 		médecin: {
 			config: médecinConfig,
@@ -654,7 +654,7 @@ export function getSimulatorsData({
 				chapter3: 'medecin',
 			},
 			icône: '⚕️',
-			iframe: 'médecin',
+			iframePath: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
 			shortName: t('pages.simulateurs.médecin.shortname', 'Médecin'),
 			title: t(
@@ -670,7 +670,7 @@ export function getSimulatorsData({
 				chapter2: 'profession_liberale',
 				chapter3: 'chirurgien_dentiste',
 			},
-			iframe: 'chirurgien-dentiste',
+			iframePath: 'chirurgien-dentiste',
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 			shortName: t(
 				'pages.simulateurs.chirurgien-dentiste.shortname',
@@ -689,7 +689,7 @@ export function getSimulatorsData({
 				chapter2: 'profession_liberale',
 				chapter3: 'sage_femme',
 			},
-			iframe: 'sage-femme',
+			iframePath: 'sage-femme',
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 			shortName: t('pages.simulateurs.sage-femme.shortname', 'Sage-femme'),
 			title: t(
@@ -709,7 +709,7 @@ export function getSimulatorsData({
 				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
 			),
 			icône: '🩹',
-			iframe: 'auxiliaire-medical',
+			iframePath: 'auxiliaire-medical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire méd.'),
 			title: t(
@@ -725,7 +725,7 @@ export function getSimulatorsData({
 				chapter3: 'avocat',
 			},
 			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
-			iframe: 'avocat',
+			iframePath: 'avocat',
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
 			shortName: t('pages.simulateurs.avocat.shortname', 'Avocat'),
 			title: t(
@@ -741,7 +741,7 @@ export function getSimulatorsData({
 				chapter3: 'expert_comptable',
 			},
 			icône: '🧮',
-			iframe: 'expert-comptable',
+			iframePath: 'expert-comptable',
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
 			shortName: t(
 				'pages.simulateurs.expert-comptable.shortname',
@@ -769,7 +769,7 @@ export function getSimulatorsData({
 					"Calcul du revenu net pour les indépendants en libéral à l'impôt sur le revenu (IR, BNC)"
 				),
 			},
-			iframe: 'profession-liberale',
+			iframePath: 'profession-liberale',
 			path: sitePaths.simulateurs['profession-libérale'].index,
 			shortName: t(
 				'pages.simulateurs.profession-libérale.shortname',
@@ -783,7 +783,7 @@ export function getSimulatorsData({
 		},
 		pamc: {
 			private: true,
-			iframe: 'pamc',
+			iframePath: 'pamc',
 			tracking: {},
 			title: t(
 				'pages.simulateurs.pamc.title',
@@ -821,7 +821,7 @@ export function getSimulatorsData({
 				color: '#11965f',
 			},
 			path: sitePaths.simulateurs['aides-embauche'],
-			iframe: 'aides-embauche',
+			iframePath: 'aides-embauche',
 			shortName: t(
 				'pages.simulateurs.aides-embauche.meta.title',
 				'Aides à l’embauche'
@@ -863,7 +863,7 @@ export function getSimulatorsData({
 			icône: '🗓',
 			tracking: 'impot-societe',
 			path: sitePaths.simulateurs.is,
-			iframe: 'impot-societe',
+			iframePath: 'impot-societe',
 			meta: {
 				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
 				description: t(
