@@ -1,7 +1,7 @@
 impôt:
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
-  titre: impôts sur le revenu
+  titre: impôt sur le revenu
   somme:
     - produit:
         assiette: revenu imposable

@@ -7386,7 +7386,7 @@ impôt:
   description.en: '[automatic] This set of formulas is a simplified income tax model.'
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre.en: income tax
-  titre.fr: impôts sur le revenu
+  titre.fr: impôt sur le revenu
 impôt . domiciliation étranger non implémentée:
   description.en: >
     [automatic] Non-resident withholding tax is not yet implemented. For more
