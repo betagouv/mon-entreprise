@@ -76,9 +76,9 @@ export default function IndépendantExplanation() {
 						</Condition>
 						<Condition expression="entreprise . activité . libérale réglementée = non">
 							<strong>
-								<RuleLink dottedName="protection sociale . retraite . complémentaire sécurité des indépendants . points acquis">
+								<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 									<Value
-										expression="protection sociale . retraite . complémentaire sécurité des indépendants . points acquis"
+										expression="protection sociale . retraite . complémentaire indépendants . points acquis"
 										displayedUnit=""
 									/>{' '}
 									points acquis

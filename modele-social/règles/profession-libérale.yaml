@@ -262,25 +262,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
       - montant: 17479
         plafond: 123301 €/an
       - montant: 18936
-  abattement: réduction COVID . montant
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID:
-  applicable si: entreprise . date de création < 01/01/2020
-  question: |
-    Avez-vous fait une demande pour bénéficier de la réduction de cotisations de
-    retraite complémentaire sans conditions de revenus ?
-  description: |
-    La Cipav met en place une réduction jusqu'à 1392€ de cotisation sur la
-    retraire complémentaire sans diminution du nombre de points acquis. Cette
-    aide n'est pas automatique, mais peut-être obtenue sur simple demande via la
-    messagerie de l'espace adhérent.
-
-    [Faire votre demande](https://www.lacipav.fr/dispositif-exceptionnel-procedure)
-  par défaut: non
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant:
-  titre: réduction COVID
-  formule: 1392 €/an
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès

@@ -403,70 +403,65 @@ export default function SchemeComparaison({
 									precision={0}
 									className={''}
 									unit="€/an"
-									expression="dirigeant . rémunération . nette"
+									expression="dirigeant . rémunération . nette - entreprise . charges"
 								/>
 							</>
 						</div>
-						{indépendantEngine.evaluate(
-							'entreprise . activité . libérale réglementée'
-						).nodeValue !== true && (
-							<>
-								<h3 className="legend">
-									<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
-										<span>Pension de retraite</span>
-										<small>(avant impôts)</small>
-									</Trans>
-								</h3>
-								<div className="AS">
+
+						<h3 className="legend">
+							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
+								<span>Pension de retraite</span>
+								<small>(avant impôts)</small>
+							</Trans>
+						</h3>
+						<div className="AS">
+							<Value
+								linkToRule={false}
+								engine={assimiléEngine}
+								precision={0}
+								expression="protection sociale . retraite"
+							/>{' '}
+							<InfoBulle>
+								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
+									Pension calculée pour 172 trimestres cotisés au régime général
+									sans variations de revenus.
+								</Trans>
+							</InfoBulle>
+						</div>
+						<div className="indep">
+							<Value
+								linkToRule={false}
+								engine={indépendantEngine}
+								precision={0}
+								expression="protection sociale . retraite"
+							/>{' '}
+							<InfoBulle>
+								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
+									Pension calculée à titre indicatif pour 172 trimestres cotisés
+									au régime des indépendants sans variations de revenus.
+								</Trans>
+							</InfoBulle>
+						</div>
+						<div className="auto">
+							{plafondAutoEntrepreneurDépassé ? (
+								'—'
+							) : (
+								<>
 									<Value
 										linkToRule={false}
-										engine={assimiléEngine}
+										engine={autoEntrepreneurEngine}
 										precision={0}
 										expression="protection sociale . retraite"
 									/>{' '}
 									<InfoBulle>
-										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
-											Pension calculée pour 172 trimestres cotisés au régime
-											général sans variations de revenus.
+										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
+											Pension calculée pour 172 trimestres cotisés en
+											auto-entrepreneur sans variations de revenus.
 										</Trans>
 									</InfoBulle>
-								</div>
-								<div className="indep">
-									<Value
-										linkToRule={false}
-										engine={indépendantEngine}
-										precision={0}
-										expression="protection sociale . retraite"
-									/>{' '}
-									<InfoBulle>
-										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-											Pension calculée à titre indicatif pour 172 trimestres cotisés au régime des
-											indépendants sans variations de revenus.
-										</Trans>
-									</InfoBulle>
-								</div>
-								<div className="auto">
-									{plafondAutoEntrepreneurDépassé ? (
-										'—'
-									) : (
-										<>
-											<Value
-												linkToRule={false}
-												engine={autoEntrepreneurEngine}
-												precision={0}
-												expression="protection sociale . retraite"
-											/>{' '}
-											<InfoBulle>
-												<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
-													Pension calculée pour 172 trimestres cotisés en
-													auto-entrepreneur sans variations de revenus.
-												</Trans>
-											</InfoBulle>
-										</>
-									)}
-								</div>
-							</>
-						)}
+								</>
+							)}
+						</div>
 						<Trans i18nKey="comparaisonRégimes.trimestreValidés">
 							<h3 className="legend">
 								Nombre de trimestres validés <small>(pour la retraite)</small>
