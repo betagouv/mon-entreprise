@@ -26,3 +26,4 @@ questions:
 unité par défaut: €/mois
 situation:
   dirigeant: non
+  impôt . méthode de calcul . par défaut: "'taux neutre'"
