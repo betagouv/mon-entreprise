@@ -156,6 +156,7 @@ export default function Gérer() {
 										className="ui__ interactive card box light-border"
 										to={{
 											pathname: sitePaths.simulateurs.salarié,
+											search: '?view=employeur',
 											state: {
 												fromGérer: true,
 											},
