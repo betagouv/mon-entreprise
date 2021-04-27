@@ -5,5 +5,5 @@
 		"declaration": true,
 		"emitDeclarationOnly": true
 	},
-	"include": ["source/index.ts", "source/types"]
+	"include": ["source/index.ts", "source/types", "source/AST/**/*.ts"]
 }
