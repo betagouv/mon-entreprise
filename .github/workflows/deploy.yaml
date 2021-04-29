@@ -4,10 +4,17 @@ on:
     types: [opened, synchronize]
   push:
     branches: [master, demo, next]
-  # We display the release note in the "news" section of mon-entreprise.fr so we
-  # want to re-deploy the site when a new release is published on GitHub.
+
+  # We display the release notes in the "news" section of mon-entreprise.fr so
+  # we want to re-deploy the site when a new release is published or edited on
+  # GitHub.
   release:
-    types: [published]
+    types: [published, edited]
+
+  # The /stats data is generated during the build. To keep the daily data fresh,
+  # we relaunch a nightly full build of the app
+  schedule:
+    - cron: "0 4 * * *"
 
 jobs:
   deploy-context:
