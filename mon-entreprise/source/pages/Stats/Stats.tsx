@@ -8,6 +8,7 @@ import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import stats from '../../data/stats.json'
@@ -99,9 +100,29 @@ const computeTotals = (data: Data): number | Record<string, number> => {
 		.map((d) => d.nombre)
 		.reduce(mergeWith(add), {})
 }
+
 export default function Stats() {
-	const [period, setPeriod] = useState<Period>('mois')
-	const [chapter2, setChapter2] = useState<Chapter2 | ''>('')
+	const defaultPeriod = 'mois'
+	const history = useHistory()
+	const urlParams = new URLSearchParams(useLocation().search ?? '')
+
+	const [period, setPeriod] = useState<Period>(
+		(urlParams.get('periode') as Period) ?? defaultPeriod
+	)
+	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
+		urlParams.get('module') ?? ''
+	)
+
+	// The logic to persist some state in query parameters in the URL could be
+	// abstracted in a dedicated React hook.
+	useEffect(() => {
+		const queryParams = [
+			period !== defaultPeriod && `periode=${period}`,
+			chapter2 && `module=${chapter2}`,
+		].filter(Boolean)
+		history.replace({ search: `?${queryParams.join('&')}` })
+	}, [period, chapter2])
+
 	const visites = useMemo(() => {
 		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
 		if (!chapter2) {
