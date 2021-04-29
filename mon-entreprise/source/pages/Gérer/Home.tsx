@@ -85,7 +85,8 @@ export default function Gérer() {
 				<>
 					<section>
 						<div className="ui__ full-width box-container">
-							{company?.statutJuridique === 'EI' &&
+							{(company?.statutJuridique === 'EI' ||
+								company?.statutJuridique === 'SARL') &&
 								!company.isAutoEntrepreneur && (
 									<Link
 										className="ui__ interactive card box light-border"
