@@ -34,6 +34,7 @@ export default function CotisationsForfaitaires() {
 						<a
 							className="ui__  small button"
 							href={Object.values(rule.rawNode.références)[0]}
+							target="_blank"
 						>
 							<Emoji emoji="👉" /> <Trans>Voir la fiche Urssaf</Trans>
 						</a>

@@ -1,10 +1,10 @@
 import Engine, { formatValue } from 'publicodes'
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
-import { EngineContext, useEngine } from './utils/EngineContext'
+import { useEngine } from './utils/EngineContext'
 
 export type ValueProps<Names extends string> = {
 	expression: string
@@ -50,11 +50,13 @@ export default function Value<Names extends string>({
 }
 
 type ConditionProps = {
-	expression: string | string[]
+	expression:
+		| Parameters<Engine['evaluate']>[0]
+		| Parameters<Engine['evaluate']>[0][]
 	children: React.ReactNode
 }
 export function Condition({ expression, children }: ConditionProps) {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	if (
 		!coerceArray(expression).every((expr) => engine.evaluate(expr).nodeValue)
 	) {

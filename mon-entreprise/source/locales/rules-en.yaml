@@ -6192,19 +6192,9 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    This base amounts to **19% of the annual Social Security ceiling** for
+    These contributions will be adjusted and regularised according to your actual income for the year of exercise. 
 
-    the first and second years of activity (with the exception of the health contribution and 
-
-    and daily allowances for which the flat-rate base is equal to 40% of the annual 
-
-    annual Social Security ceiling).
-
-
-
-    These contributions will be adjusted and regularised according to your actual income for the year of 
-
-    the year of exercise. If your income is higher than the flat-rate base taken into account
+    the year of the exercise. If your income is higher than the flat rate taken into account for the calculation
 
     for the calculation of the provisional contributions, you will be liable to pay an **additional
 
@@ -6226,16 +6216,6 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    Cette base s’élève à **19 % du plafond annuel de la Sécurité sociale** au titre de
-
-    la première et de la deuxième année d’activité (à l’exception de la cotisation Maladie 
-
-    et indemnités journalières pour lesquelles l’assiette forfaitaire est égale à 40% du 
-
-    plafond annuel de la Sécurité sociale).
-
-
-
     Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de 
 
     l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
@@ -6251,10 +6231,19 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de 
 
     **planifier votre trésorerie** en conséquence.
-  titre.en: '[automatic] lump-sum start-up contributions'
-  titre.fr: cotisations forfaitaires de début d'activité
+  note.en: '[automatic] The flat-rate base is 19% of the annual Social Security
+    ceiling** for the first and second year of activity (with the exception of
+    the health contribution and daily allowances for which the flat-rate base is
+    equal to 40% of the annual Social Security ceiling).'
+  note.fr: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité
+    sociale** au titre de la première et de la deuxième année d’activité (à
+    l’exception de la cotisation Maladie et indemnités journalières pour
+    lesquelles l’assiette forfaitaire est égale à 40% du plafond annuel de la
+    Sécurité sociale).
+  titre.en: '[automatic] Flat-rate contributions at the beginning of the activity'
+  titre.fr: Cotisations forfaitaires de début d'activité
 ? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
-: titre.en: '[automatic] flat-rate base'
+: titre.en: '[automatic] '
   titre.fr: assiette forfaitaire
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
@@ -6434,6 +6423,65 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
+dirigeant . indépendant . cotisations et contributions . régularisation:
+  description.en: >
+    [automatic] Contributions are calculated provisionally
+
+    on the basis of the last declared income
+
+    (or the lump sum, if no income has yet been declared).
+
+    Once the year is over and the professional income is known
+
+    the contributions are adjusted.
+
+
+
+    This simulator calculates the contributions **after adjustment**. 
+
+    It therefore enables you to anticipate the amount of this regularisation and to plan your cash flow 
+
+    your cash flow accordingly.
+
+
+
+    If your activity income changes significantly compared to the previous year
+
+    you have the possibility to communicate to URSSAF a
+
+    forecast amount for the current year, which will be taken as the basis for the calculation** (be careful, however, you will be required to make an accurate estimate).
+
+    (be careful, however, you will be required to make an accurate estimate).
+  description.fr: >
+    Les cotisations et contributions sont calculées à titre provisionnel
+
+    sur la base du dernier revenu déclaré
+
+    (ou du montat forfaitaire, si aucun revenu n'est encore déclaré).
+
+    Une fois l'année écoulée et le revenu professionnel connu,
+
+    les cotisations et contributions sont régularisées.
+
+
+
+    Ce simulateur calcule les cotisations **après régularisation**. 
+
+    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
+
+    trésorerie en conséquence.
+
+
+
+    Si vos revenus d'activité changent beaucoup par rapport à l'année précédente,
+
+    vous avez la possibilité de communiquer à l'URSSAF un
+
+    **montant prévisionnel pour l'année en cours, qui sera pris comme base de calcul**
+
+    (attention cependant, vous serez tenus de faire une estimation précise).
+  titre.en: '[automatic] How the adjustment of provisional contributions works'
+  titre.fr: Comment fonctionne la régularisation des cotisations provisionnelles
 dirigeant . indépendant . revenu professionnel:
   description.en:
     "[automatic] remuneration of the manager under the self-employed

@@ -4,14 +4,15 @@ import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { useEngine } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
-import CotisationsForfaitaires from './IndépendantCotisationsForfaitaire'
+import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
+import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
 import PLExplanation from './PLExplanation'
 import { DistributionSection } from './SalaryExplanation'
 
@@ -23,6 +24,15 @@ export default function IndépendantExplanation() {
 		<>
 			<Condition expression="dirigeant . indépendant . cotisations et contributions . début activité">
 				<CotisationsForfaitaires />
+			</Condition>
+			<Condition
+				expression={{
+					valeur: 'oui',
+					['non applicable si']:
+						'dirigeant . indépendant . cotisations et contributions . début activité',
+				}}
+			>
+				<CotisationsRégularisation />
 			</Condition>
 			<Condition expression="entreprise . activité . libérale réglementée">
 				<PLExplanation />
@@ -125,7 +135,7 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 
 function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const distribution = (Object.entries(
 		CotisationsSection
 	).map(([section, cotisations]) => [
@@ -172,7 +182,7 @@ function DistributionBranch({
 	icon,
 	maximum,
 }: DistributionBranchProps) {
-	const branche = useContext(EngineContext).getRule(dottedName)
+	const branche = useEngine().getRule(dottedName)
 
 	return (
 		<BarChartBranch
