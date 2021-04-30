@@ -154,7 +154,7 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
     travailleurs indépendants  ont la possibilité d’opter pour des taux
     spécifique de la cotisation retraite complémentaire.
   références:
-    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+    Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
   titre: retraite complémentaire (taux PLNR)
@@ -192,7 +192,7 @@ dirigeant . indépendant . PL . maladie:
     arrondi: oui
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
-    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf
   note: |
     Les professions libérales réglementée ne cotisent pour la part correspondante aux
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de

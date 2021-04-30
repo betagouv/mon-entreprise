@@ -333,7 +333,7 @@ export function getSimulatorsData({
 				),
 			},
 			component: IndépendantSimulation,
-			nextSteps: ['is', 'comparaison-statuts'],
+			nextSteps: ['comparaison-statuts', 'is'],
 		},
 		sasu: {
 			config: sasuConfig,

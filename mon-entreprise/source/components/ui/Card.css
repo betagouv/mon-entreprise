@@ -105,6 +105,9 @@
 	color: inherit;
 	font-size: inherit !important;
 }
+.ui__.card.box.thiner {
+	max-width: 15rem;
+}
 .ui__.card.box.ui__.interactive.light-border:hover {
 	border-color: var(--lightColor);
 	/* border-color: var(--lightColor); */

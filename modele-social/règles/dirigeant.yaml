@@ -296,7 +296,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           valeur: 12.8%
 
   références:
-    guide urssaf (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Guide_Auto-Entrepreneur.pdf
+    guide urssaf (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-charges-sociales
     actualité urssaf.fr (2019): https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/nouveautes-2019--ce-qui-change-e.html
@@ -359,7 +359,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
       alors: 12.10%
     - sinon: taux ACRE * taux prestation de service
   références:
-    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Guide_Auto-Entrepreneur.pdf?page=14
+    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf
 
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   formule: entreprise . ACRE

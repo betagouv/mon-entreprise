@@ -16,7 +16,6 @@ import { Link, useHistory } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import { TrackPage } from '../../ATInternetTracking'
-import GuideAutoEntrepreneurUrl from './Guide_Auto-Entrepreneur.pdf'
 import StatutDescription from './StatutDescription'
 
 type CreateCompanyProps = {
@@ -522,12 +521,28 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						</p>
 					</Trans>
 				</Link>
+				{i18n.language === 'fr' && isAutoentrepreneur && (
+					<a
+						className="ui__ interactive card small box lighter-bg"
+						href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf"
+						target="_blank"
+					>
+						<p>Guide pratique Urssaf</p>
+						<p className="ui__ notice">
+							Des conseils pour les auto-entrepreneurs : comment préparer son
+							projet pour se lancer dans la création et une présentation
+							détaillée de votre protection sociale.
+						</p>
+
+						<small className="ui__ label">PDF</small>
+					</a>
+				)}
 				{isAutoentrepreneur && <RessourceAutoEntrepreneur />}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<a
 						target="_blank"
 						className="ui__ interactive card small box lighter-bg"
-						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Travailleurs-independants.pdf"
+						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf"
 					>
 						<p>Guide Urssaf pour les travailleur indépendant</p>
 						<p className="ui__ notice">
@@ -586,24 +601,6 @@ export function RessourceAutoEntrepreneur() {
 					</p>
 				</a>
 			</Trans>
-			{i18n.language === 'fr' && (
-				<a
-					className="ui__ interactive card small box lighter-bg"
-					href={GuideAutoEntrepreneurUrl}
-					download="guide-devenir-auto-entrepreneur-en-2020"
-				>
-					<p>Guide pratique Urssaf</p>
-					<p className="ui__ notice">
-						Des conseils pour les auto-entrepreneurs : comment préparer son
-						projet pour se lancer dans la création et une présentation détaillée
-						de votre protection sociale.
-					</p>
-
-					<div css="text-align: right">
-						<small className="ui__ label">PDF</small>
-					</div>
-				</a>
-			)}
 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt">
 				<a
 					className="ui__ interactive card small box lighter-bg"
