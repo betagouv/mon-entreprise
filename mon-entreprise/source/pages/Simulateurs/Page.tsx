@@ -1,6 +1,7 @@
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
@@ -94,44 +95,112 @@ export default function PageData({
 	)
 }
 
-type NextStepsProps = {
-	iframePath?: string
-	nextSteps?: Array<SimulatorId>
-}
+type NextStepsProps = Pick<
+	SimulatorData[keyof SimulatorData],
+	'iframePath' | 'nextSteps'
+>
 
 function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const simulators = useSimulatorsData()
-	if (!iframePath && !nextSteps) {
+	const { language } = useTranslation().i18n
+	const engine = useEngine()
+
+	const guideUrssaf = guidesUrssaf.find(
+		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
+	)
+
+	if (!iframePath && !nextSteps && !guideUrssaf) {
 		return null
 	}
 	return (
 		<section>
 			<h3>Aller plus loin</h3>
-			<div className="ui__ box-container">
-				{nextSteps?.map((simulatorId) => (
-					<SimulateurCard
-						key={simulatorId}
-						noBorder
-						{...simulators[simulatorId]}
-					/>
-				))}
-				{13 && (
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							pathname: sitePaths.integration.iframe,
-							search: `?module=${iframePath}`,
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('📱')}</div>
-						<h3>Intégrer le module web</h3>
-						<p className="ui__ notice">
-							Ajouter ce simulateur sur votre site internet en un clic
-						</p>
-					</Link>
-				)}
+			<div className="ui__ full-width ">
+				<div className="ui__ box-container center-flex">
+					{guideUrssaf && language === 'fr' && (
+						<a
+							className="ui__ interactive card box thiner"
+							href={guideUrssaf.url}
+							target="_blank"
+						>
+							<h5>
+								<span className="ui__ box-icon">{emoji('📖')}</span>{' '}
+								{guideUrssaf.title}
+							</h5>
+							<p className="ui__ notice">
+								Des conseils pour se lancer dans la création et une présentation
+								détaillée de votre protection sociale.
+							</p>
+							<small className="ui__ label">PDF</small>
+						</a>
+					)}
+					{nextSteps?.map((simulatorId) => (
+						<Link
+							key={simulatorId}
+							className="ui__ interactive card box thiner"
+							to={{
+								state: { fromSimulateurs: true },
+								pathname: simulators[simulatorId].path,
+							}}
+						>
+							<h5>
+								<span className="ui__ box-icon">
+									{emoji(simulators[simulatorId].icône)}
+								</span>
+								{simulators[simulatorId].shortName}
+							</h5>
+							<p className="ui__ notice">
+								{simulators[simulatorId].meta?.description}
+							</p>
+						</Link>
+					))}
+					{iframePath && (
+						<Link
+							className="ui__ interactive card box thiner"
+							to={{
+								pathname: sitePaths.integration.iframe,
+								search: `?module=`,
+							}}
+						>
+							<h5>
+								<span className="ui__ box-icon">{emoji('📱')}</span> Intégrer le
+								module web
+							</h5>
+							<p className="ui__ notice">
+								Ajouter ce simulateur sur votre site internet en un clic
+							</p>
+						</Link>
+					)}
+				</div>
 			</div>
 		</section>
 	)
 }
+
+const guidesUrssaf = [
+	{
+		url:
+			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_Medecins.pdf',
+		associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
+		title: 'Guide Urssaf pour les médecins libéraux',
+	},
+	{
+		url:
+			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
+		associatedRule: 'entreprise . activité . libérale réglementée',
+		title: 'Guide Urssaf pour les professions libérales réglementées',
+	},
+	{
+		url:
+			'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
+		associatedRule: 'dirigeant . auto-entrepreneur',
+		title: 'Guide Urssaf pour les auto-entrepreneurs',
+	},
+	{
+		url:
+			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
+		associatedRule: 'dirigeant',
+		title: 'Guide Urssaf pour les indépendants',
+	},
+]
