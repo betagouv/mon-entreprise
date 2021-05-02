@@ -836,8 +836,8 @@ newsletter:
       starting a business</2> and access new features in advance.
     titre: Stay informed
 nextSteps:
-  integration-iframe: <0>{emoji('📱')} Integrate the web module</0><1>Add this
-    simulator to your website in one click via a turnkey script.</1>
+  integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
+    to your website in one click with a simple script.</1>
 non: no
 non applicable si: not applicable if
 non déductible: not deductible

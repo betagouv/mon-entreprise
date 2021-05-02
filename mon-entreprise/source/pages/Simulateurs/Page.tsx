@@ -1,6 +1,7 @@
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -124,7 +125,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							target="_blank"
 						>
 							<h5>
-								{emoji('📖')} {guideUrssaf.title}
+								<Emoji emoji="📖" /> {guideUrssaf.title}
 							</h5>
 							<p className="ui__ notice">
 								Des conseils pour se lancer dans la création et une présentation
@@ -143,7 +144,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							}}
 						>
 							<h5>
-								{emoji(simulators[simulatorId].icône)}{' '}
+								<Emoji emoji={simulators[simulatorId].icône} />{' '}
 								{simulators[simulatorId].shortName}
 							</h5>
 							<p className="ui__ notice">
@@ -160,7 +161,9 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							}}
 						>
 							<Trans i18nKey="nextSteps.integration-iframe">
-								<h5>{emoji('📱')} Intégrer le module web</h5>
+								<h5>
+									<Emoji emoji="📱" /> Intégrer le module web
+								</h5>
 								<p className="ui__ notice">
 									Ajouter ce simulateur sur votre site internet en un clic via
 									un script clé en main.
