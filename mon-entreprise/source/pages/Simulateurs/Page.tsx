@@ -8,11 +8,10 @@ import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSi
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
-import { SimulateurCard } from './Home'
-import useSimulatorsData, { SimulatorData, SimulatorId } from './metadata'
+import useSimulatorsData, { SimulatorData } from './metadata'
 
 export default function PageData({
 	meta,
@@ -125,8 +124,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							target="_blank"
 						>
 							<h5>
-								<span className="ui__ box-icon">{emoji('📖')}</span>{' '}
-								{guideUrssaf.title}
+								{emoji('📖')} {guideUrssaf.title}
 							</h5>
 							<p className="ui__ notice">
 								Des conseils pour se lancer dans la création et une présentation
@@ -145,9 +143,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							}}
 						>
 							<h5>
-								<span className="ui__ box-icon">
-									{emoji(simulators[simulatorId].icône)}
-								</span>
+								{emoji(simulators[simulatorId].icône)}{' '}
 								{simulators[simulatorId].shortName}
 							</h5>
 							<p className="ui__ notice">
@@ -160,16 +156,16 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							className="ui__ interactive card box thiner"
 							to={{
 								pathname: sitePaths.integration.iframe,
-								search: `?module=`,
+								search: `?module=${iframePath}`,
 							}}
 						>
-							<h5>
-								<span className="ui__ box-icon">{emoji('📱')}</span> Intégrer le
-								module web
-							</h5>
-							<p className="ui__ notice">
-								Ajouter ce simulateur sur votre site internet en un clic
-							</p>
+							<Trans i18nKey="nextSteps.integration-iframe">
+								<h5>{emoji('📱')} Intégrer le module web</h5>
+								<p className="ui__ notice">
+									Ajouter ce simulateur sur votre site internet en un clic via
+									un script clé en main.
+								</p>
+							</Trans>
 						</Link>
 					)}
 				</div>
