@@ -919,24 +919,25 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     n’étant pas connus**, les cotisations et contributions des deux premières
     années sont calculées sur une **base forfaitaire**.
 
-
+    
     Cette base s’élève à **19 % du plafond annuel de la Sécurité sociale** au titre de
-    la première et de la deuxième année d’activité.
+    la première et de la deuxième année d’activité (à l’exception de la cotisation Maladie 
+    et indemnités journalières pour lesquelles l’assiette forfaitaire est égale à 40% du 
+    plafond annuel de la Sécurité sociale).
 
 
-    Il y a un **ajustement** au cours de la deuxième année en fonction des
-    revenus réels déclarés pour l'année précédente. Si votre rémunération effective 
-    est supérieure à la base forfaitaire, vous devrez payer un montant montant de 
-    cotisations plus élevé, c'est ce qu'on appelle la régularisation.
+    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de 
+    l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
+    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un **complément
+    de cotisations**.
 
 
-    Ce simulateur calcule les cotisations **après régularisation** (régime de croisière). 
-    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
-    trésorerie en conséquence.
+    Ce simulateur calcule les cotisations dites définitives sur la base des revenus réels de votre
+    activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de 
+    **planifier votre trésorerie** en conséquence.
 
   applicable si: entreprise . date de création >= 01/01/2020
   unité: €/an
-  # valeur: cotisations et contributions
   recalcul: 
     règle: cotisations et contributions
     avec: 
