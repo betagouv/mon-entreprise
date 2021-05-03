@@ -53,6 +53,7 @@
 		"babel-plugin-styled-components": "^1.10.7",
 		"babel-plugin-webpack-alias": "^2.1.2",
 		"chai": "^4.1.2",
+		"concurrently": "^6.0.2",
 		"connect-history-api-fallback": "^1.5.0",
 		"css-loader": "^0.28.11",
 		"csv-loader": "^2.1.1",
@@ -121,7 +122,7 @@
 		"test:type": "yarn workspaces run tsc",
 		"test:regressions": "yarn workspace modele-social build && jest",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
-		"start": "yarn workspace publicodes build --watch & yarn workspace publicodes-react build --watch & yarn workspace mon-entreprise start",
+		"start": "concurrently -k -n publicodes,publicodes-react,mon-entreprise \"yarn workspace publicodes build:watch\" \"yarn workspace publicodes-react build --watch\" \"yarn workspace mon-entreprise start\"",
 		"moso:up": "yarn workspace modele-social run up && yarn workspace mon-entreprise upgrade modele-social",
 		"publicodes:up": "yarn workspace publicodes-react upgrade publicodes && yarn workspace mon-entreprise upgrade publicodes publicodes-react"
 	},
