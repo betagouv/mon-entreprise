@@ -1,7 +1,7 @@
 describe('Status guide', function () {
 	const fr = Cypress.env('language') === 'fr'
 	beforeEach(() => {
-		cy.visit(fr ? '/créer' : '/create')
+		cy.visit(fr ? encodeURI('/créer') : '/create')
 		cy.get('.cta').click()
 	})
 

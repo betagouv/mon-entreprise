@@ -17,7 +17,7 @@ describe('Simulateurs', function () {
 		'profession-liberale/chirurgien-dentiste',
 	].forEach((simulateur) =>
 		describe(simulateur, () => {
-			before(() => cy.visit(`/simulateurs/${simulateur}`))
+			before(() => cy.visit(encodeURI(`/simulateurs/${simulateur}`)))
 			it('should not crash', function () {
 				cy.get(inputSelector)
 			})
@@ -139,7 +139,7 @@ describe('Simulateur salarié', () => {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit('/simulateurs/salarié'))
+	before(() => cy.visit(encodeURI('/simulateurs/salarié')))
 
 	it('should persist the current simulation (persistSimulation)', function () {
 		cy.get(inputSelector).first().type('{selectall}42')
@@ -153,7 +153,7 @@ describe('Simulateur salarié', () => {
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.wait(1600)
-		cy.visit('/simulateurs/salarié')
+		cy.visit(encodeURI('/simulateurs/salarié'))
 		cy.contains('Retrouver ma simulation').click()
 		cy.get(inputSelector).first().invoke('val').should('match', /42/)
 	})
@@ -169,7 +169,7 @@ describe('Simulateur salarié', () => {
 
 	describe('part time contract', () => {
 		before(() => {
-			cy.visit('/simulateurs/salarié')
+			cy.visit(encodeURI('/simulateurs/salarié'))
 			cy.get('input[name$="brut de base"]').click()
 			cy.get('button').contains('SMIC').click()
 			cy.contains('Voir mes paramètres').click()
