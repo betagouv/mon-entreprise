@@ -12,7 +12,7 @@ describe(
 		if (!fr) {
 			return
 		}
-		before(() => cy.visit('/gérer/demande-mobilité'))
+		before(() => cy.visit(encodeURI('/gérer/demande-mobilité')))
 		it('should not crash', () => {
 			cy.contains('Demande de mobilité internationale')
 		})
