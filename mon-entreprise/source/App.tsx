@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
@@ -16,7 +15,6 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import createSentryMiddleware from 'redux-sentry-middleware'
 import {
 	configSituationSelector,
 	situationSelector,
@@ -45,28 +43,6 @@ import {
 } from './storage/persistInFranceApp'
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
-if (process.env.NODE_ENV === 'production') {
-	let branch: string | undefined = process.env.GITHUB_REF?.split('/')?.slice(
-		-1
-	)?.[0]
-	if (branch === 'merge') {
-		branch = process.env.GITHUB_HEAD_REF
-	}
-	const release =
-		branch && `${branch}-` + process.env.GITHUB_SHA?.substring(0, 7)
-	const dsn = 'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
-	Sentry.init({ dsn, release })
-
-	if (branch && branch !== 'master') {
-		console.log(
-			`ℹ Vous êtes sur la branche : %c${branch}`,
-			'font-weight: bold; text-decoration: underline;'
-		)
-	}
-}
-
-const middlewares = [createSentryMiddleware(Sentry as any)]
-
 type RootProps = {
 	basename: ProviderProps['basename']
 	rules: Rules
@@ -80,7 +56,6 @@ export default function Root({ basename, rules }: RootProps) {
 		<Provider
 			basename={basename}
 			sitePaths={paths}
-			reduxMiddlewares={middlewares}
 			onStoreCreated={(store) => {
 				setupInFranceAppPersistence(store)
 				setupSimulationPersistence(store)
