@@ -70,3 +70,12 @@ Contrats Madelin:
     dirigeant . indépendant . contrats madelin: oui
     dirigeant . indépendant . contrats madelin . mutuelle: 1500 €/an
     dirigeant . indépendant . contrats madelin . retraite: 5000 €/an
+
+
+imposition à l'IS :
+  - entreprise . chiffre d'affaires: 100000 €/an
+    entreprise . imposition: "'IS'" 
+  - entreprise . chiffre d'affaires: 100000 €/an
+    entreprise . imposition: "'IS'" 
+    impôt . méthode de calcul: "'barème standard'"
+  
