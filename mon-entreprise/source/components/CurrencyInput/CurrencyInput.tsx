@@ -24,7 +24,9 @@ export default function CurrencyInput({
 	dottedName,
 	...forwardedProps
 }: CurrencyInputProps) {
-	const valueProp = value ?? ''
+	const valueProp =
+		typeof value === 'number' && Number.isNaN(value) ? '' : value ?? ''
+
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
 

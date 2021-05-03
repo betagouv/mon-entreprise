@@ -337,7 +337,10 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
 
 impôt . foyer fiscal . taux effectif:
   unité: '%'
-  formule: impôt à payer / revenu imposable
+  variations: 
+    - si: impôt à payer = 0
+      alors: 0% 
+    - sinon: impôt à payer / revenu imposable 
 
 
 impôt . foyer fiscal . revenu imposable:
