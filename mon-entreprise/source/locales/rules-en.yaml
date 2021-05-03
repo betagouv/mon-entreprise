@@ -6128,25 +6128,29 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     This base amounts to **19% of the annual Social Security ceiling** for
 
-    the first and second year of activity.
+    the first and second years of activity (with the exception of the health contribution and 
+
+    and daily allowances for which the flat-rate base is equal to 40% of the annual 
+
+    annual Social Security ceiling).
 
 
 
-    There is an **adjustment** during the second year according to the actual
+    These contributions will be adjusted and regularised according to your actual income for the year of 
 
-    income declared for the previous year. If your actual earnings 
+    the year of exercise. If your income is higher than the flat-rate base taken into account
 
-    is higher than the flat-rate base, you will have to pay a higher amount of 
+    for the calculation of the provisional contributions, you will be liable to pay an **additional
 
-    This is known as the regularisation.
+    of contributions**.
 
 
 
-    This simulator calculates the contributions **after regularisation** (cruising regime). 
+    This simulator calculates the so-called definitive contributions on the basis of your actual income from
 
-    It therefore allows you to anticipate the amount of this regularisation and to plan your 
+    activity. It therefore enables you to anticipate the amount of this adjustment and to 
 
-    your cash flow accordingly.
+    plan your cash flow** accordingly.
   description.fr: >
     Lorsque vous commencez votre activité, vos **revenus professionnels
 
@@ -6158,25 +6162,29 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     Cette base s’élève à **19 % du plafond annuel de la Sécurité sociale** au titre de
 
-    la première et de la deuxième année d’activité.
+    la première et de la deuxième année d’activité (à l’exception de la cotisation Maladie 
+
+    et indemnités journalières pour lesquelles l’assiette forfaitaire est égale à 40% du 
+
+    plafond annuel de la Sécurité sociale).
 
 
 
-    Il y a un **ajustement** au cours de la deuxième année en fonction des
+    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de 
 
-    revenus réels déclarés pour l'année précédente. Si votre rémunération effective 
+    l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
 
-    est supérieure à la base forfaitaire, vous devrez payer un montant montant de 
+    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un **complément
 
-    cotisations plus élevé, c'est ce qu'on appelle la régularisation.
+    de cotisations**.
 
 
 
-    Ce simulateur calcule les cotisations **après régularisation** (régime de croisière). 
+    Ce simulateur calcule les cotisations dites définitives sur la base des revenus réels de votre
 
-    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
+    activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de 
 
-    trésorerie en conséquence.
+    **planifier votre trésorerie** en conséquence.
   titre.en: '[automatic] lump-sum start-up contributions'
   titre.fr: cotisations forfaitaires de début d'activité
 ? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
