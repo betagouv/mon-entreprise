@@ -121,10 +121,9 @@
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
 		"start": "node dev-server.js",
-		"serve:dev": "yarn run serve:dev:mon-entreprise & yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes",
+		"serve:dev": "concurrently -k \"yarn run serve:dev:mon-entreprise\" \"yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes\"",
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"serve:dev:publicodes": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
-		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"publish:publicodes": "yarn run lint && yarn run "
+		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard"
 	}
 }

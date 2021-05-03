@@ -185,6 +185,8 @@ export default class Engine<Name extends string = string> {
 		newEngine.options = this.options
 		newEngine.parsedRules = this.parsedRules
 		newEngine.replacements = this.replacements
+		newEngine.parsedSituation = this.parsedSituation
+		newEngine.cache = this.cache
 		return newEngine
 	}
 }

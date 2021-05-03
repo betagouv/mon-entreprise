@@ -41,6 +41,7 @@
 		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run rimraf dist && yarn run build",
 		"build": "yarn run webpack --config webpack.config.js && yarn run tsc",
+		"build:watch": "concurrently \"yarn run webpack --watch --config webpack.config.js\" \"yarn run tsc -w\"",
 		"test:file": "yarn mocha-webpack --include test/setupIntl.js --webpack-config ./webpack.test.js ",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
 	},

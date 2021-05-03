@@ -14,6 +14,9 @@ module.exports = {
 	module: {
 		rules: [...commonLoaders(), styleLoader('style-loader')],
 	},
+	watchOptions: {
+		aggregateTimeout: 600,
+	},
 	mode: 'development',
 	entry: map((entry) => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
