@@ -40,7 +40,6 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
 	const colors = useContext(ThemeColorsContext)
-
 	return (
 		<div id="targetSelection">
 			{((typeof objectifs[0] === 'string'

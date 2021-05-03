@@ -6,6 +6,7 @@ import { hot } from 'react-hot-loader/root'
 import 'regenerator-runtime/runtime'
 import App from './App'
 import i18next from './locales/i18n'
+import './sentry'
 
 i18next.changeLanguage('fr')
 
