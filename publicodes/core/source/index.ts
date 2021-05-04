@@ -40,7 +40,7 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { reduceAST, transformAST } from './AST/index'
+export { reduceAST, makeASTTransformer as transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'

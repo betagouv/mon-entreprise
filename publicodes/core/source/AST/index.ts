@@ -2,9 +2,14 @@ import { InternalError } from '../error'
 import { TrancheNodes } from '../mecanisms/trancheUtils'
 import { ReplacementRule } from '../replacement'
 import { RuleNode } from '../rule'
-import { ASTNode, NodeKind, TraverseFunction } from './types'
+import {
+	ASTNode,
+	ASTVisitor,
+	ASTTransformer,
+	NodeKind,
+	TraverseFunction,
+} from './types'
 
-type TransformASTFunction = (n: ASTNode) => ASTNode
 /**
 	This function creates a transormation of the AST from on a simpler
 	callback function `fn`
@@ -20,42 +25,68 @@ type TransformASTFunction = (n: ASTNode) => ASTNode
 	by using the function passed as second argument. The returned value will be the
 	transformed version of the node.
 	*/
-export function transformAST(
-	fn: (
-		node: ASTNode,
-		updateFn: TransformASTFunction
-	) => ASTNode | undefined | false
-): TransformASTFunction {
-	function traverseFn(node: ASTNode) {
-		const updatedNode = fn(node, traverseFn)
+export function makeASTTransformer(
+	fn: (node: ASTNode, transform: ASTTransformer) => ASTNode | undefined | false
+): ASTTransformer {
+	function transform(node: ASTNode): ASTNode {
+		const updatedNode = fn(node, transform)
 		if (updatedNode === false) {
 			return node
 		}
 		if (updatedNode === undefined) {
-			return traverseASTNode(traverseFn, node)
+			return traverseASTNode(transform, node)
 		}
 		return updatedNode
 	}
-	return traverseFn
+	return transform
+}
+export function makeASTVisitor(
+	fn: (node: ASTNode, visit: ASTVisitor) => 'continue' | 'stop'
+): ASTVisitor {
+	function visit(node: ASTNode) {
+		switch (fn(node, visit)) {
+			case 'continue':
+				traverseASTNode(transformizedVisit, node)
+				return
+			case 'stop':
+				return
+		}
+	}
+	const transformizedVisit: ASTTransformer = (node) => {
+		visit(node)
+		return node
+	}
+	return visit
+}
+
+// Can be made more flexible with other args like a filter function (ASTNode -> Bool).
+export function iterAST(
+	childrenSelector: (node: ASTNode) => Iterable<ASTNode>,
+	node: ASTNode
+): ASTNode[] {
+	function* iterate(node: ASTNode): IterableIterator<ASTNode> {
+		yield node
+		const selectedSubNodes = childrenSelector(node)
+		for (const subNode of selectedSubNodes) yield* iterate(subNode)
+	}
+	return [...iterate(node)]
 }
 
 /**
-		This function allows to construct a specific value while exploring the AST with
-		a simple reducing function as argument.
-
-		`fn` will be called with the currently reduced value `acc` and the current node of the AST
-
-
-		The outcome of the callback function has an influence on the exploration of the AST :
-		- `undefined`, the exploration continues further down and all the child are reduced
-			successively to a single value
-		- `T`, the reduced value
-
-		`reduceFn` : It is possible to specifically use the reduced value of a child
-		by using the function passed as second argument. The returned value will be the reduced version
-		of the node
-		*/
-
+ * This function allows to construct a specific value while exploring the AST with
+ * a simple reducing function as argument.
+ *
+ * `fn` will be called with the currently reduced value `acc` and the current node of the AST
+ *
+ * If the callback function returns:
+ * - `undefined`, the exploration continues further down and all the children are reduced
+ * 	successively to a single value
+ * - `T`, the reduced value is returned
+ *
+ * `reduceFn` : It is possible to specifically use the reduced value of a child
+ * by using the function passed as second argument. The returned value will be the reduced version
+ * of the node
+ */
 export function reduceAST<T>(
 	fn: (acc: T, n: ASTNode, reduceFn: (n: ASTNode) => T) => T | undefined,
 	start: T,
@@ -64,14 +95,14 @@ export function reduceAST<T>(
 	function traverseFn(acc: T, node: ASTNode): T {
 		const result = fn(acc, node, traverseFn.bind(null, start))
 		if (result === undefined) {
-			return gatherNodes(node).reduce(traverseFn, acc)
+			return getChildrenNodes(node).reduce(traverseFn, acc)
 		}
 		return result
 	}
 	return traverseFn(start, node)
 }
 
-function gatherNodes(node: ASTNode): ASTNode[] {
+export function getChildrenNodes(node: ASTNode): ASTNode[] {
 	const nodes: ASTNode[] = []
 	traverseASTNode((node) => {
 		nodes.push(node)
@@ -81,7 +112,7 @@ function gatherNodes(node: ASTNode): ASTNode[] {
 }
 
 export function traverseParsedRules(
-	fn: (n: ASTNode) => ASTNode,
+	fn: ASTTransformer,
 	parsedRules: Record<string, RuleNode>
 ): Record<string, RuleNode> {
 	return Object.fromEntries(
@@ -89,7 +120,10 @@ export function traverseParsedRules(
 	) as Record<string, RuleNode>
 }
 
-const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
+/**
+ * Apply a transform function on children. Not recursive.
+ */
+export const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 	switch (node.nodeKind) {
 		case 'rule':
 			return traverseRuleNode(fn, node)

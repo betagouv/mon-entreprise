@@ -137,7 +137,9 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		if (
 			this.cache._meta.evaluationRuleStack.filter(
 				(dottedName) => dottedName === node.dottedName
-			).length > 15 // I don't know why this magic number, but below, cycle are detected "too early", which leads to blank value in brut-net simulator
+			).length > 15
+			// I don't know why this magic number, but below, cycle are
+			// detected "too early", which leads to blank value in brut-net simulator
 		) {
 			warning(
 				this.options.logger,

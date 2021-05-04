@@ -85,10 +85,13 @@ export type MecanismNode = Exclude<
 	ASTNode,
 	RuleNode | ConstantNode | ReferenceNode
 >
-export type NodeKind = ASTNode['nodeKind']
 
+export type ASTTransformer = (n: ASTNode) => ASTNode
+export type ASTVisitor = (n: ASTNode) => void
+
+export type NodeKind = ASTNode['nodeKind']
 export type TraverseFunction<Kind extends NodeKind> = (
-	fn: (n: ASTNode) => ASTNode,
+	fn: ASTTransformer,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind }
 

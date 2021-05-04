@@ -1,6 +1,6 @@
 import yaml from 'yaml'
 import { ParsedRules, Logger } from '.'
-import { transformAST, traverseParsedRules } from './AST'
+import { makeASTTransformer, traverseParsedRules } from './AST'
 import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
@@ -105,7 +105,7 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 }
 
 export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
-	transformAST((node) => {
+	makeASTTransformer((node) => {
 		if (node.nodeKind === 'reference') {
 			const dottedName = disambiguateRuleReference(
 				parsedRules,
