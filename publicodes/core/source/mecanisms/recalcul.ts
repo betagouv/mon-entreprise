@@ -31,35 +31,24 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 				serializeUnit(originRule.unit) !== serializeUnit(replacement.unit)
 		) as Array<[ReferenceNode & EvaluatedNode, EvaluatedNode]>
 
-	const originalCache = this.cache
-	const originalSituation = this.parsedSituation
-	// Optimisation : no need for recalcul if situation is the same
-	const invalidateCache = Object.keys(amendedSituation).length > 0
-	if (invalidateCache) {
-		this.resetCache()
-		this.cache._meta.inRecalcul = true
-	}
-
-	this.parsedSituation = {
-		...this.parsedSituation,
-		...Object.fromEntries(
-			amendedSituation.map(([reference, replacement]) => [
-				disambiguateRuleReference(
-					this.parsedRules,
-					reference.contextDottedName,
-					reference.name
+	const engine = amendedSituation.length
+		? this.shallowCopy().setSituation({
+				...this.parsedSituation,
+				...Object.fromEntries(
+					amendedSituation.map(([reference, replacement]) => [
+						disambiguateRuleReference(
+							this.parsedRules,
+							reference.contextDottedName,
+							reference.name
+						),
+						replacement,
+					]) as any
 				),
-				replacement,
-			]) as any
-		),
-	}
-
-	const evaluatedNode = this.evaluate(node.explanation.recalcul)
-
-	this.parsedSituation = originalSituation
-	if (invalidateCache) {
-		this.cache = originalCache
-	}
+		  })
+		: this
+	engine.cache._meta.inRecalcul = true
+	const evaluatedNode = engine.evaluate(node.explanation.recalcul)
+	engine.cache._meta.inRecalcul = false
 
 	return {
 		...node,
