@@ -113,8 +113,8 @@ exemple5:
       par: 10€
     - règle: cotisations . maladie
       par: 0
-    
-remplacements :
+
+remplacements:
   formule: cotisations
   exemples:
     - nom: sans boucle infinie si il n'y a pas de dépendances cycliques
@@ -125,8 +125,8 @@ remplacements :
       situation:
         exemple2: oui
       valeur attendue: 250
-    - nom: avec plusieurs remplacements existant pour une même variables 
-      # ici, le remplacement de l'exemple 2 doit être effectué car plus précis que celui de l'exemple 1 
+    - nom: avec plusieurs remplacements existant pour une même variables
+      # ici, le remplacement de l'exemple 2 doit être effectué car plus précis que celui de l'exemple 1
       situation:
         exemple1: oui
         exemple2: oui
@@ -148,8 +148,6 @@ remplacements :
       situation:
         exemple5: oui
       valeur attendue: 110
-
-
 
 A:
   formule: 1
@@ -181,18 +179,17 @@ remplacement non applicable car branche desactivée:
   exemples:
     - valeur attendue: 1
 
-# Remplacement non effectué dans la formule du remplacement
+# Remplacement effectué dans la bonne variable
 espace: oui
 espace . valeur:
   formule: 20
 espace . remplacement:
   remplace: valeur
   formule: valeur + 10
-test remplacement non effectué dans la formule du remplacement:
+test remplacement effectué dans la variable à remplacer:
   formule: espace . valeur
   exemples:
     - valeur attendue: 30
-
 
 frais de repas:
   formule: 5 €/repas

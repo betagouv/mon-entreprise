@@ -28,8 +28,7 @@
 		"chai": "^4.2.0",
 		"intl": "^1.2.5",
 		"typescript": "^4.2.4",
-		"dedent-js": "1.0.1",
-		"@dagrejs/graphlib": "^2.1.4"
+		"dedent-js": "1.0.1"
 	},
 	"dependencies": {
 		"moo": "^0.5.1",
