@@ -96,6 +96,7 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	font-size: 85%;
 	line-height: initial;
 	padding: 0.4rem 0.6rem;
+	white-space: nowrap;
 	font-weight: bold;
 	color: white !important;
 	background: var(--darkColor);

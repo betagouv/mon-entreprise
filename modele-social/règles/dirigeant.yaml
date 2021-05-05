@@ -942,6 +942,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     règle: cotisations et contributions
     avec: 
       assiette des cotisations: assiette forfaitaire
+      assiette des cotisations . sans plancher: assiette forfaitaire
       situation personnelle . RSA: non
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
