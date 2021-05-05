@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { useDebounce } from 'Components/utils'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
@@ -69,12 +70,18 @@ export default function Question({
 		},
 		[onSubmit, onChange, setCurrentSelection]
 	)
+
+	const debouncedSelection = useDebounce(currentSelection, 300)
 	useEffect(() => {
-		if (currentSelection != null) {
-			const timeoutId = setTimeout(() => onChange(currentSelection), 300)
-			return () => clearTimeout(timeoutId)
+		if (
+			debouncedSelection !== null &&
+			serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode) !==
+				debouncedSelection
+		) {
+			onChange(debouncedSelection)
 		}
-	}, [currentSelection])
+	}, [debouncedSelection])
+
 	const hiddenOptions = useContext(HiddenOptionContext)
 
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
