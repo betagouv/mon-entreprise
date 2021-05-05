@@ -202,7 +202,7 @@ export default function Gérer() {
 					</section>
 					<AideOrganismeLocal />
 
-					<h2>
+					<h2 className="ui__ h h3">
 						{emoji('🧰 ')}
 						<Trans>Ressources utiles</Trans>
 					</h2>
@@ -215,7 +215,9 @@ export default function Gérer() {
 									to={sitePaths.gérer.formulaireMobilité}
 								>
 									<Trans i18nKey="gérer.ressources.embaucher">
-										<p>Exporter son activité en Europe</p>
+										<h3 className="ui__ h h5">
+											Exporter son activité en Europe
+										</h3>
 										<p className="ui__ notice">
 											Le formulaire pour effectuer une demande de mobilité
 											internationale (détachement ou pluriactivité)
@@ -229,7 +231,9 @@ export default function Gérer() {
 								to={sitePaths.gérer.embaucher}
 							>
 								<Trans i18nKey="gérer.ressources.embaucher">
-									<p>Découvrir les démarches d’embauche </p>
+									<h3 className="ui__ h h5">
+										Découvrir les démarches d’embauche{' '}
+									</h3>
 									<p className="ui__ notice">
 										La liste des choses à faire pour être sûr de ne rien oublier
 										lors de l’embauche d’un nouveau salarié
@@ -243,7 +247,9 @@ export default function Gérer() {
 								href="https://autoentrepreneur.urssaf.fr"
 							>
 								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
-									<p>Accéder au site officiel auto-entrepreneur</p>
+									<h3 className="ui__ h h5">
+										Accéder au site officiel auto-entrepreneur
+									</h3>
 									<p className="ui__ notice">
 										Vous pourrez effectuer votre déclaration de chiffre
 										d'affaires, payer vos cotisations, et plus largement trouver
@@ -258,7 +264,7 @@ export default function Gérer() {
 							to={sitePaths.gérer.sécuritéSociale}
 						>
 							<Trans i18nKey="gérer.ressources.sécuritéSociale">
-								<p>Comprendre la sécurité sociale </p>
+								<h3 className="ui__ h h5">Comprendre la sécurité sociale </h3>
 								<p className="ui__ notice">
 									A quoi servent les cotisations sociales ? Le point sur le
 									système de protection sociale dont bénéficient tous les

@@ -64,7 +64,7 @@ export default function Créer() {
 					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) scale(1.4);"
 				/>
 			</div>
-			<h2>
+			<h2 className="ui__ h h3">
 				<Trans>Ressources utiles</Trans>
 			</h2>
 			<div className="ui__ box-container">
@@ -73,7 +73,7 @@ export default function Créer() {
 					to={sitePaths.créer.guideStatut.liste}
 				>
 					<Trans i18nKey="créer.ressources.listeStatuts">
-						<p>Liste des statuts juridiques</p>
+						<h3 className="ui__ h h5">Liste des statuts juridiques</h3>
 						<small>
 							Vous savez déjà quel statut choisir ? Accédez directement à la
 							liste des démarches associées
@@ -88,7 +88,7 @@ export default function Créer() {
 					}}
 				>
 					<Trans i18nKey="créer.ressources.comparaison">
-						<p>Comparateur de régimes</p>
+						<h3 className="ui__ h h5">Comparateur de régimes</h3>
 						<small>
 							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
 							différences en terme de revenus, cotisations, retraite, etc
@@ -101,7 +101,7 @@ export default function Créer() {
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
 					<Trans i18nKey="créer.ressources.autoEntrepreneur">
-						<p>Démarche auto-entrepreneur</p>
+						<h3 className="ui__ h h5">Démarche auto-entrepreneur</h3>
 						<small>
 							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
 							pour bien démarrer votre activité

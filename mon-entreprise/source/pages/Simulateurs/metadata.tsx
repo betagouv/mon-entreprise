@@ -8,7 +8,6 @@ import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
-import { RessourceAutoEntrepreneur } from '../Créer/CreationChecklist'
 import AideDéclarationIndépendant from '../Gérer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gérer/DemandeMobilite'
 import AidesEmbauche from './AidesEmbauche'
@@ -301,12 +300,6 @@ export function getSimulatorsData({
 							auto-entrepreneur
 						</RuleLink>
 					</p>
-					<h2>
-						<Trans>Ressources utiles</Trans>
-					</h2>
-					<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-						<RessourceAutoEntrepreneur />
-					</div>
 				</Trans>
 			),
 			nextSteps: ['indépendant', 'comparaison-statuts'],
