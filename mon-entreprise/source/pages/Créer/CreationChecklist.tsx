@@ -454,20 +454,22 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					}
 				/>
 			</Checklist>
-			<h2>
+			<h2 className="ui__ h h3">
 				{emoji('🧰')} <Trans>Ressources utiles</Trans>
 			</h2>
 			<div className="ui__ box-container">
 				{isAutoentrepreneur && (
 					<Link
-						className="ui__ interactive card small box lighter-bg"
+						className="ui__ interactive card small box lighter-bg thinner"
 						to={{
 							pathname: sitePaths.simulateurs['auto-entrepreneur'],
 							state: { fromCréer: true },
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur">
-							<p>Simulateur de revenus auto-entrepreneur</p>
+							<h3 className="ui__ h h5">
+								Simulateur de revenus auto-entrepreneur
+							</h3>
 							<p className="ui__ notice">
 								Simuler le montant de vos cotisations sociales et de votre impôt
 								et estimez votre futur revenu net.
@@ -484,7 +486,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.indépendant">
-							<p>Simulateur de cotisations indépendant</p>
+							<h3 className="ui__ h h5">
+								Simulateur de cotisations indépendant
+							</h3>
 							<p className="ui__ notice">
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.
@@ -501,7 +505,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.assimilé">
-							<p>Simulateur de rémunération pour dirigeant de SASU</p>
+							<h3 className="ui__ h h5">
+								Simulateur de rémunération pour dirigeant de SASU
+							</h3>
 							<p className="ui__ notice">
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.
@@ -514,7 +520,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					to={sitePaths.créer.après}
 				>
 					<Trans i18nKey="entreprise.ressources.après">
-						<p>Après la création</p>
+						<h3 className="ui__ h h5">Après la création</h3>
 						<p className="ui__ notice">
 							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
 							vous pourrez (éventuellement) rencontrer après la création.
@@ -527,7 +533,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf"
 						target="_blank"
 					>
-						<p>Guide pratique Urssaf</p>
+						<h3 className="ui__ h h5">Guide pratique Urssaf</h3>
 						<p className="ui__ notice">
 							Des conseils pour les auto-entrepreneurs : comment préparer son
 							projet pour se lancer dans la création et une présentation
@@ -544,7 +550,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						className="ui__ interactive card small box lighter-bg"
 						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf"
 					>
-						<p>Guide Urssaf pour les travailleur indépendant</p>
+						<h3 className="ui__ h h5">
+							Guide Urssaf pour les travailleur indépendant
+						</h3>
 						<p className="ui__ notice">
 							Des conseils sur comment préparer son projet pour se lancer dans
 							la création et une présentation détaillée de votre protection
@@ -584,7 +592,6 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 }
 
 export function RessourceAutoEntrepreneur() {
-	const { i18n } = useTranslation()
 	return (
 		<>
 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ">
@@ -593,7 +600,7 @@ export function RessourceAutoEntrepreneur() {
 					href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
 					target="_blank"
 				>
-					<p>Questions fréquentes</p>
+					<h3 className="ui__ h h5">❓ Questions fréquentes</h3>
 					<p className="ui__ notice">
 						Une liste exhaustive et maintenue à jour de toutes les questions
 						fréquentes (et moins fréquentes) que l'on est amené à poser en tant
@@ -607,7 +614,9 @@ export function RessourceAutoEntrepreneur() {
 					target="_blank"
 					href="https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur"
 				>
-					<p>Comment déclarer son revenu aux impôts ?</p>
+					<h3 className="ui__ h h5">
+						📑 Comment déclarer son revenu aux impôts ?
+					</h3>
 					<p className="ui__ notice">
 						Les informations officielles de l'administration fiscale concernant
 						les auto-entrepreneurs et le régime de la micro-entreprise.

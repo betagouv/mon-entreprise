@@ -1,3 +1,4 @@
+import { Condition } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
@@ -8,10 +9,10 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
+import { RessourceAutoEntrepreneur } from '../../pages/Créer/CreationChecklist'
 import useSimulatorsData, { SimulatorData } from './metadata'
 
 export default function PageData({
@@ -115,63 +116,66 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	}
 	return (
 		<section>
-			<h3>Aller plus loin</h3>
-			<div className="ui__ full-width ">
-				<div className="ui__ box-container center-flex">
-					{guideUrssaf && language === 'fr' && (
-						<a
-							className="ui__ interactive card box thiner"
-							href={guideUrssaf.url}
-							target="_blank"
-						>
-							<h5>
-								<Emoji emoji="📖" /> {guideUrssaf.title}
-							</h5>
+			<h2 className="ui__ h h3">
+				<Trans>Ressources utiles</Trans>
+			</h2>
+			<div className="ui__ box-container">
+				<Condition expression="dirigeant . auto-entrepreneur">
+					<RessourceAutoEntrepreneur />
+				</Condition>
+				{guideUrssaf && language === 'fr' && (
+					<a
+						className="ui__ interactive card box lighter-bg thinner"
+						href={guideUrssaf.url}
+						target="_blank"
+					>
+						<h3 className="ui__ h h5">
+							<Emoji emoji="📖" /> {guideUrssaf.title}
+						</h3>
+						<p className="ui__ notice">
+							Des conseils pour se lancer dans la création et une présentation
+							détaillée de votre protection sociale.
+						</p>
+						<small className="ui__ small label">PDF</small>
+					</a>
+				)}
+				{nextSteps?.map((simulatorId) => (
+					<Link
+						key={simulatorId}
+						className="ui__ interactive card lighter-bg box thinner"
+						to={{
+							state: { fromSimulateurs: true },
+							pathname: simulators[simulatorId].path,
+						}}
+					>
+						<h3 className="ui__ h h5">
+							<Emoji emoji={simulators[simulatorId].icône} />{' '}
+							{simulators[simulatorId].shortName}
+						</h3>
+						<p className="ui__ notice">
+							{simulators[simulatorId].meta?.description}
+						</p>
+					</Link>
+				))}
+				{iframePath && (
+					<Link
+						className="ui__ interactive card lighter-bg box thinner"
+						to={{
+							pathname: sitePaths.integration.iframe,
+							search: `?module=${iframePath}`,
+						}}
+					>
+						<Trans i18nKey="nextSteps.integration-iframe">
+							<h3 className="ui__ h h5">
+								<Emoji emoji="📱" /> Intégrer le module web
+							</h3>
 							<p className="ui__ notice">
-								Des conseils pour se lancer dans la création et une présentation
-								détaillée de votre protection sociale.
+								Ajouter ce simulateur sur votre site internet en un clic via un
+								script clé en main.
 							</p>
-							<small className="ui__ label">PDF</small>
-						</a>
-					)}
-					{nextSteps?.map((simulatorId) => (
-						<Link
-							key={simulatorId}
-							className="ui__ interactive card box thiner"
-							to={{
-								state: { fromSimulateurs: true },
-								pathname: simulators[simulatorId].path,
-							}}
-						>
-							<h5>
-								<Emoji emoji={simulators[simulatorId].icône} />{' '}
-								{simulators[simulatorId].shortName}
-							</h5>
-							<p className="ui__ notice">
-								{simulators[simulatorId].meta?.description}
-							</p>
-						</Link>
-					))}
-					{iframePath && (
-						<Link
-							className="ui__ interactive card box thiner"
-							to={{
-								pathname: sitePaths.integration.iframe,
-								search: `?module=${iframePath}`,
-							}}
-						>
-							<Trans i18nKey="nextSteps.integration-iframe">
-								<h5>
-									<Emoji emoji="📱" /> Intégrer le module web
-								</h5>
-								<p className="ui__ notice">
-									Ajouter ce simulateur sur votre site internet en un clic via
-									un script clé en main.
-								</p>
-							</Trans>
-						</Link>
-					)}
-				</div>
+						</Trans>
+					</Link>
+				)}
 			</div>
 		</section>
 	)

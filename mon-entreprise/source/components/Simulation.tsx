@@ -121,8 +121,8 @@ export function Questions({
 									font-family: 'roboto';
 									font-weight: normal;
 									flex: 1;
-									font-size: 1.1rem;
-									margin-top: 0;
+									font-size: 1.1rem !important;
+									margin-top: 0 !important;
 								`}
 							>
 								<small>
