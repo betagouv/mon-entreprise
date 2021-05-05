@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
 import { utils } from 'publicodes'
-import { RuleLinkWithContext } from '../RuleLink'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import Meta from './Meta'
 import { EngineContext } from '../contexts'
+import { RuleLinkWithContext } from '../RuleLink'
+import Meta from './Meta'
 
 export default function RuleHeader({ dottedName }) {
 	const engine = useContext(EngineContext)

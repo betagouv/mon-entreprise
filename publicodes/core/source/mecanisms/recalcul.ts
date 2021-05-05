@@ -1,4 +1,4 @@
-import { EvaluationFunction } from '..'
+import Engine, { EvaluationFunction } from '..'
 import { ASTNode, EvaluatedNode } from '../AST/types'
 import { defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -11,6 +11,7 @@ export type RecalculNode = {
 	explanation: {
 		recalcul: ASTNode
 		amendedSituation: Array<[ReferenceNode, ASTNode]>
+		parsedSituation?: Engine['parsedSituation']
 	}
 	nodeKind: 'recalcul'
 }
@@ -46,6 +47,7 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 				),
 		  })
 		: this
+
 	engine.cache._meta.inRecalcul = true
 	const evaluatedNode = engine.evaluate(node.explanation.recalcul)
 	engine.cache._meta.inRecalcul = false
@@ -55,7 +57,9 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		nodeValue: evaluatedNode.nodeValue,
 		explanation: {
 			recalcul: evaluatedNode,
+			engine,
 			amendedSituation,
+			parsedSituation: engine.parsedSituation,
 		},
 		missingVariables: evaluatedNode.missingVariables,
 		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),

@@ -1,8 +1,12 @@
+import Engine, { utils } from 'publicodes'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Link } from 'react-router-dom'
-import Engine, { utils } from 'publicodes'
-import { BasepathContext, EngineContext } from './contexts'
+import { Link, useLocation } from 'react-router-dom'
+import {
+	BasepathContext,
+	EngineContext,
+	SituationMetaContext,
+} from './contexts'
 
 const { encodeRuleName } = utils
 
@@ -14,6 +18,7 @@ type RuleLinkProps<Name extends string> = Omit<
 	engine: Engine<Name>
 	documentationPath: string
 	displayIcon?: boolean
+	situationName?: string
 	children?: React.ReactNode
 }
 
@@ -21,6 +26,7 @@ export function RuleLink<Name extends string>({
 	dottedName,
 	engine,
 	documentationPath,
+	situationName,
 	displayIcon = false,
 	children,
 	...props
@@ -46,7 +52,16 @@ export function RuleLink<Name extends string>({
 		throw new Error(`Unknown rule: ${dottedName}`)
 	}
 	return (
-		<Link to={newPath} {...props}>
+		<Link
+			to={{
+				pathname: newPath,
+				state: {
+					situation: engine.parsedSituation,
+					situationName,
+				},
+			}}
+			{...props}
+		>
 			{children || rule.title}{' '}
 			{displayIcon && rule.rawNode.icônes && (
 				<span>{emoji(rule.rawNode.icônes)} </span>
@@ -63,11 +78,14 @@ export function RuleLinkWithContext(
 		throw new Error('an engine should be provided in context')
 	}
 	const documentationPath = useContext(BasepathContext)
-
+	const { state } = useLocation<{ situationName?: string } | undefined>()
+	const situationName =
+		useContext(SituationMetaContext)?.name ?? state?.situationName
 	return (
 		<RuleLink
 			engine={engine}
 			documentationPath={documentationPath}
+			situationName={situationName}
 			{...props}
 		/>
 	)
