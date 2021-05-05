@@ -75,8 +75,9 @@ export default function Question({
 	useEffect(() => {
 		if (
 			debouncedSelection !== null &&
-			serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode) !==
-				debouncedSelection
+			(missing ||
+				serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode) !==
+					debouncedSelection)
 		) {
 			onChange(debouncedSelection)
 		}
