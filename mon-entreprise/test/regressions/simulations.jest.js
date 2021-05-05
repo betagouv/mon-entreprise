@@ -78,6 +78,7 @@ it('calculate simulations-indépendant', () => {
 		'dirigeant . rémunération . nette après impôt',
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
+		'dirigeant . indépendant . cotisations et contributions . début activité',
 	]
 	runSimulations(independentSituations, targets, independantConfig.situation)
 })
