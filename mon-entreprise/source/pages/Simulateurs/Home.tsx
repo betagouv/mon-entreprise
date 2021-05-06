@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import PageHeader from 'Components/PageHeader'
 import InfoBulle from 'Components/ui/InfoBulle'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
@@ -24,23 +25,14 @@ export default function Simulateurs() {
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
-			<section css="display: flex; align-items: flex-start; justify-content: space-between">
-				<div>
-					<h1>{titre}</h1>
-					<p className="ui__ lead">
-						<Trans i18nKey="pages.simulateurs.accueil.header">
-							Tous les simulateurs sur ce site sont maintenus à jour avec les
-							dernières évolutions législatives.
-						</Trans>
-					</p>
-				</div>
-
-				<img
-					className="ui__ hide-mobile"
-					src={simulatorSvg}
-					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(3rem) scale(1.4);"
-				/>
-			</section>
+			<PageHeader titre={titre} picture={simulatorSvg}>
+				<p className="ui__ lead">
+					<Trans i18nKey="pages.simulateurs.accueil.header">
+						Tous les simulateurs sur ce site sont maintenus à jour avec les
+						dernières évolutions législatives.
+					</Trans>
+				</p>
+			</PageHeader>
 			<section>
 				<HeadingWithAnchorLink level={2}>
 					<Trans>Salariés et employeurs</Trans>
