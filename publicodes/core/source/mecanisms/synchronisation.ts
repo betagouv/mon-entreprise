@@ -16,20 +16,14 @@ const evaluate: EvaluationFunction<'synchronisation'> = function (node: any) {
 	const valuePath = node.explanation.chemin.split(' . ')
 	const path = (obj) => valuePath.reduce((res, prop) => res[prop], obj)
 	const nodeValue = data.nodeValue == null ? null : path(data.nodeValue)
-	// If the API gave a non null value, then some of its props may be null (the
-	// API can be composed of multiple API, some failing). Then this prop will be
-	// set to the default value defined in the API's rule
-	const safeNodeValue =
-		nodeValue == null && data.nodeValue != null
-			? path(data.explanation.defaultValue)
-			: nodeValue
+
 	const missingVariables = {
 		...data.missingVariables,
 		...(data.nodeValue === null ? { [data.dottedName]: 1 } : {}),
 	}
 
 	const explanation = { ...node.explanation, data }
-	return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export const mecanismSynchronisation = (v, context) => {
