@@ -6,6 +6,7 @@ import {
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
+import PageHeader from 'Components/PageHeader'
 import * as Animate from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -58,30 +59,22 @@ export default function Gérer() {
 			<TrackPage name="accueil" />
 			<ScrollToTop />
 			<Animate.fromBottom>
-				<h1>
-					<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>
-				</h1>
-				<div css="display: flex; align-items: flex-start; justify-content: space-between">
-					<div>
-						{!company && (
-							<p className="ui__ lead">
-								<Trans i18nKey="gérer.description">
-									Vous souhaitez vous verser un revenu ou embaucher ? <br />
-									Vous aurez à payer des cotisations et des impôts. <br />
-									Anticipez leurs montants grâce aux simulateurs adaptés à votre
-									situation.
-								</Trans>
-							</p>
-						)}
-						<CompanySection company={company} />
-					</div>
-
-					<img
-						className="ui__ hide-mobile"
-						src={businessPlan}
-						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(-2.5rem) scale(1.2);"
-					/>
-				</div>
+				<PageHeader
+					picture={businessPlan}
+					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
+				>
+					{!company && (
+						<p className="ui__ lead">
+							<Trans i18nKey="gérer.description">
+								Vous souhaitez vous verser un revenu ou embaucher ? <br />
+								Vous aurez à payer des cotisations et des impôts. <br />
+								Anticipez leurs montants grâce aux simulateurs adaptés à votre
+								situation.
+							</Trans>
+						</p>
+					)}
+					<CompanySection company={company} />
+				</PageHeader>
 				<>
 					<section>
 						<div className="ui__ full-width box-container">

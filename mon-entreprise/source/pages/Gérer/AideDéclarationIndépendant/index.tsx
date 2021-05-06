@@ -3,6 +3,7 @@ import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import Value, { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
+import PageHeader from 'Components/PageHeader'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
@@ -24,7 +25,7 @@ import styled from 'styled-components'
 import { TrackPage } from '../../../ATInternetTracking'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
-
+import illustration from './undraw_fill_in_mie5.svg'
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
 	const dispatch = useDispatch()
@@ -48,48 +49,50 @@ export default function AideDéclarationIndépendant() {
 		engine.evaluate('dirigeant . rémunération . totale').nodeValue !== null
 
 	return (
-		<div>
+		<>
 			<Trans i18nKey="aide-déclaration-indépendant.description">
-				<p>
-					Cet outil est une aide à la déclaration de revenus à destination des
-					travailleurs indépendants. Il vous permet de connaître le montant des
-					charges sociales déductibles à partir de votre résultat net fiscal.
-				</p>
-				<p>
-					Vous restez entièrement responsable d'éventuelles omissions ou
-					inexactitudes dans votre déclarations.
-				</p>
-				<div>
-					<Warning localStorageKey="aide-déclaration-indépendant.warning">
-						<h3>
-							Cet outil vous concerne si vous êtes dans tous les cas suivants :
-						</h3>
-						<ul>
-							<li>
-								vous cotisez au régime général des travailleurs indépendants
-							</li>
-							<li>
-								votre entreprise est au régime réel d'imposition et en
-								comptabilité d'engagement
-							</li>
-						</ul>
-						<h3>
-							Il ne vous concerne pas si vous êtes dans un des cas suivants :
-						</h3>
-						<ul>
-							<li>
-								vous exercez une activité libérale relevant d’un régime de
-								retraite des professions libérales
-							</li>
-							<li>
-								vous êtes gérants de société relevant de l’impôt sur les
-								sociétés
-							</li>
-							<li>vous avez opté pour le régime micro-fiscal</li>
-							<li>votre entreprise est domiciliée dans les DOM</li>
-						</ul>
-					</Warning>
-				</div>
+				<PageHeader picture={illustration}>
+					<p className="ui__ lead">
+						Cet outil est une aide à la déclaration de revenus à destination des{' '}
+						<strong>travailleurs indépendants</strong>. Il vous permet de
+						connaître le montant des charges sociales déductibles à partir de
+						votre résultat net fiscal.
+					</p>
+					<p className="ui__ notice">
+						Vous restez entièrement responsable d'éventuelles omissions ou
+						inexactitudes dans votre déclarations.
+					</p>
+				</PageHeader>
+
+				<Warning localStorageKey="aide-déclaration-indépendant.warning">
+					<h3>
+						Cet outil vous concerne si vous êtes dans tous les cas suivants :
+					</h3>
+					<ul>
+						<li>
+							vous cotisez au régime général des travailleurs indépendants
+						</li>
+						<li>
+							votre entreprise est au régime réel d'imposition et en
+							comptabilité d'engagement
+						</li>
+					</ul>
+					<h3>
+						Il ne vous concerne pas si vous êtes dans un des cas suivants :
+					</h3>
+					<ul>
+						<li>
+							vous exercez une activité libérale relevant d’un régime de
+							retraite des professions libérales
+						</li>
+						<li>
+							vous êtes gérants de société relevant de l’impôt sur les sociétés
+						</li>
+						<li>vous avez opté pour le régime micro-fiscal</li>
+						<li>votre entreprise est domiciliée dans les DOM</li>
+					</ul>
+				</Warning>
+
 				{!situation['dirigeant . rémunération . totale'] && (
 					<PreviousSimulationBanner />
 				)}
@@ -112,6 +115,7 @@ export default function AideDéclarationIndépendant() {
 					autoFocus
 				/>
 			</BigInput>
+
 			{displayForm ? (
 				<TrackPage name="commence" />
 			) : (
@@ -205,7 +209,7 @@ export default function AideDéclarationIndépendant() {
 					<Aide />
 				</>
 			)}
-		</div>
+		</>
 	)
 }
 

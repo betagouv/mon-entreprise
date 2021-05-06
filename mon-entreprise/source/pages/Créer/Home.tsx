@@ -1,3 +1,4 @@
+import PageHeader from 'Components/PageHeader'
 import Animate from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -25,45 +26,37 @@ export default function Créer() {
 			<Helmet>
 				<title>{t('créer.titre', 'Créer une entreprise')}</title>
 			</Helmet>
+			<PageHeader
+				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}
+				picture={créerSvg}
+			>
+				<p className="ui__ lead">
+					<Trans i18nKey="créer.description">
+						Avant d'entamer les démarches administratives pour créer votre
+						entreprise, vous devez choisir un statut juridique adapté à votre
+						activité
+					</Trans>
+				</p>
+				<Link
+					className="ui__ button plain cta"
+					to={
+						guideAlreadyStarted && nextQuestionUrl
+							? nextQuestionUrl
+							: sitePaths.créer.guideStatut.multipleAssociates
+					}
+				>
+					{!guideAlreadyStarted
+						? t('créer.cta.default', 'Trouver le bon statut')
+						: t('créer.cta.continue', 'Continuer le guide')}
+				</Link>
+				<p className="ui__ notice">
+					<Trans i18nKey="créer.warningPL">
+						Le cas des professions libérales réglementées n'est pas encore
+						traité
+					</Trans>
+				</p>
+			</PageHeader>
 
-			<h1>
-				<Trans i18nKey="créer.titre">Créer une entreprise</Trans>
-			</h1>
-			<div css="display: flex; align-items: flex-start; justify-content: space-between">
-				<div>
-					<p className="ui__ lead">
-						<Trans i18nKey="créer.description">
-							Avant d'entamer les démarches administratives pour créer votre
-							entreprise, vous devez choisir un statut juridique adapté à votre
-							activité
-						</Trans>
-					</p>
-					<Link
-						className="ui__ button plain cta"
-						to={
-							guideAlreadyStarted && nextQuestionUrl
-								? nextQuestionUrl
-								: sitePaths.créer.guideStatut.multipleAssociates
-						}
-					>
-						{!guideAlreadyStarted
-							? t('créer.cta.default', 'Trouver le bon statut')
-							: t('créer.cta.continue', 'Continuer le guide')}
-					</Link>
-					<p className="ui__ notice">
-						<Trans i18nKey="créer.warningPL">
-							Le cas des professions libérales réglementées n'est pas encore
-							traité
-						</Trans>
-					</p>
-				</div>
-
-				<img
-					className="ui__ hide-mobile"
-					src={créerSvg}
-					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) scale(1.4);"
-				/>
-			</div>
 			<h2 className="ui__ h h3">
 				<Trans>Ressources utiles</Trans>
 			</h2>
