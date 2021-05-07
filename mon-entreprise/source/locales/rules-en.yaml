@@ -2172,6 +2172,9 @@ contrat salarié . convention collective . HCR:
 contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
+contrat salarié . convention collective . HCR . prévoyance conventionnelle:
+  titre.en: '[automatic] conventional pension fund'
+  titre.fr: prévoyance conventionnelle
 contrat salarié . convention collective . SVP:
   description.en: >
     The company depends on the national collective agreement of performing arts

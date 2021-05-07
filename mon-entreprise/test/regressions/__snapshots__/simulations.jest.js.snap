@@ -548,7 +548,7 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 `;
 
 exports[`calculate simulations-salarié: CCN HCR 1`] = `
-"[3532,0,2500,1998,1887]
+"[3546,0,2500,2005,1894]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -769,12 +769,12 @@ exports[`calculate simulations-salarié: heures supplémentaires et complémenta
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 3`] = `"[2641,0,2000,1636,1601]"`;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 4`] = `
-"[2552,0,2000,1627,1592]
+"[2567,0,2000,1632,1598]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 5`] = `
-"[2517,0,2000,1601,1566]
+"[2533,0,2000,1606,1572]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
