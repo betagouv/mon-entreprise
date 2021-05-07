@@ -4,6 +4,7 @@ import {
 } from 'Actions/hiringChecklistAction'
 import Animate from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
+import { SimulatorRessourceCard } from '../Simulateurs/Page'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
@@ -216,6 +217,14 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					<li>Remettre la fiche de paie à votre employé</li>
 				</ul>
 			</Trans>
+
+			<h2 className="ui__ h h3">
+				<Trans>Ressources utiles</Trans>
+			</h2>
+
+			<div className="ui__ box-container">
+				<SimulatorRessourceCard simulatorId="salarié" />
+			</div>
 		</Animate.fromBottom>
 	)
 }
