@@ -111,7 +111,9 @@
 #targetSelection .targetInputOrValue {
 	font-size: 115%;
 	margin-left: 1rem;
-	text-align: right;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
 
 #targetSelection .aidesGlimpse {
