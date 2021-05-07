@@ -23,6 +23,7 @@ export default function PageData({
 	tooltip,
 	description,
 	iframePath,
+	private: privateIframe,
 	component: Component,
 	seoExplanations,
 	nextSteps,
@@ -88,7 +89,10 @@ export default function PageData({
 				{!inIframe && (
 					<>
 						{seoExplanations}
-						<NextSteps iframePath={iframePath} nextSteps={nextSteps} />
+						<NextSteps
+							iframePath={privateIframe ? undefined : iframePath}
+							nextSteps={nextSteps}
+						/>
 					</>
 				)}
 			</ThemeColorsProvider>
