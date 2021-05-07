@@ -13,6 +13,10 @@ export default function ({
 	const [wasOnScreen, setWasOnScreen] = useState(false)
 
 	useEffect(() => {
+		if (!IntersectionObserver) {
+			setWasOnScreen(true) // No effect for old browsers
+		}
+
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
