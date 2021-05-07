@@ -14,6 +14,7 @@ export default function ShareSimulationBanner() {
 	const tracker = useContext(TrackingContext)
 	const situation = useSelector(situationSelector)
 	const searchParams = useParamsFromSituation(situation)
+	searchParams.set('utm_source', 'sharing')
 
 	const shareAPIAvailable = !!window?.navigator?.share
 
