@@ -104,11 +104,13 @@ export default function Footer() {
 						<Trans>Intégrer nos simulateurs</Trans>
 					</Link>
 					{'  •  '}
-					<Link to={sitePaths.accessibilité}>
-						<Trans i18nKey="footer.accessibilité">
-							Accessibilité : non conforme
-						</Trans>
-					</Link>
+					{language === 'fr' && (
+						<Link to={sitePaths.accessibilité}>
+							<Trans i18nKey="footer.accessibilité">
+								Accessibilité : non conforme
+							</Trans>
+						</Link>
+					)}
 					{!!hrefLink.length && '  •  '}
 					{hrefLink.map(({ hrefLang, href }) => (
 						<a
