@@ -1,3 +1,4 @@
+import Overlay from 'Components/Overlay'
 import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
@@ -177,8 +178,8 @@ export default function Integration() {
 		<>
 			<ScrollToTop />
 			<TrackPage name="module_web" />
-			<div>
-				<Trans i18nKey="pages.développeurs.iframe">
+			<Trans i18nKey="pages.développeurs.iframe.intro">
+				<div>
 					<h1>Intégrez le module Web</h1>
 					<p>
 						Nos simulateurs sont intégrables de manière transparente en ajoutant
@@ -193,9 +194,15 @@ export default function Integration() {
 						L'attribut <i>data-lang="en"</i> vous permet quant à lui de choisir
 						l'anglais comme langue du simulateur.
 					</p>
-				</Trans>
-			</div>
-			<IntegrationCustomizer />
+				</div>
+				<IntegrationCustomizer />
+				<p>
+					À noter que si votre site utilise une politique de sécurité de contenu
+					via l'en-tête de réponse HTTP <i>Content-Security-Policy</i>, une
+					erreur bénigne peut apparaître dans la console.
+					<EnSavoirPlusCSP />
+				</p>
+			</Trans>
 			<section className="blocks" id="integrations">
 				<h2>
 					<Trans>Quelques intégrations</Trans>
@@ -249,6 +256,44 @@ export default function Integration() {
 	)
 }
 
+function EnSavoirPlusCSP() {
+	const [opened, setOpened] = useState(false)
+	return (
+		<>
+			<button onClick={() => setOpened(true)} className="ui__ link-button">
+				<Trans>En savoir plus</Trans>
+			</button>
+			{opened && (
+				<Overlay onClose={() => setOpened(false)} style={{ textAlign: 'left' }}>
+					<Trans i18nKey="pages.développeurs.iframe.csp-1">
+						<h3>Intégration iframe et politique de sécurité de contenu</h3>
+						<p>
+							L'erreur ci-dessous qui s'affiche dans la console est liée à la
+							communication entre la page parente et l'iframe pour le
+							redimensionnement automatique au contenu affiché.
+						</p>
+					</Trans>
+					<blockquote>
+						Failed to execute 'postMessage' on 'DOMWindow': The target origin
+						provided ('https://mon-entreprise.fr') does not match the recipient
+						window's origin
+					</blockquote>
+					<p>
+						<Trans i18nKey="pages.développeurs.iframe.csp-2">
+							Vous pouvez la corriger avec la politique suivante :
+						</Trans>
+					</p>
+					<code>
+						script-src 'self' 'unsafe-inline' https://mon-entreprise.fr;
+						<br />
+						img-src 'self' https://mon-entreprise.fr;
+					</code>
+				</Overlay>
+			)}
+		</>
+	)
+}
+
 type IntegrationCodeProps = {
 	module?: string
 	color?: string
@@ -284,6 +329,7 @@ function IntegrationCode({
 				margin: auto;
 				margin-bottom: 1em;
 				overflow: auto;
+				line-height: 1.6em;
 				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
 					-1px 1px 1px rgba(0, 0, 0, 0.02);
 

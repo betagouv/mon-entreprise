@@ -14,7 +14,9 @@ export default function Iframes() {
 	// briefly during transitions, cf.
 	// https://github.com/betagouv/mon-entreprise/issues/1462
 	useEffect(() => {
-		document.body.style.overflowY = 'hidden'
+		if ('parentIFrame' in window) {
+			document.body.style.overflowY = 'hidden'
+		}
 	}, [])
 
 	return (
