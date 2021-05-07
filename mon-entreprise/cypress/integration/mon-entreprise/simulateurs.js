@@ -109,6 +109,7 @@ describe('Simulateur salarié mode partagé', () => {
 		'contrat salarié': "'CDD'",
 		'salaire-brut': '1539€/mois',
 	})
+	searchParams.set('utm_source', 'sharing')
 
 	const urlWithState = `${simulatorUrl}?${searchParams.toString()}`
 	if (!fr) {
