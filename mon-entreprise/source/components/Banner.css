@@ -21,7 +21,7 @@
 	border-radius: 15px;
 }
 
-.ui__.banner p {
+.ui__.banner .banner-content {
 	flex-grow: 1;
 }
 

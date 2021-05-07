@@ -25,7 +25,7 @@ export default function Banner({
 		<Animate.fadeIn>
 			<div className="ui__ banner">
 				{icon && emoji(icon)}
-				<p>{children}</p>
+				<div className="ui__ banner-content">{children}</div>
 			</div>
 		</Animate.fadeIn>
 	) : null
