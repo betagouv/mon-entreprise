@@ -14,7 +14,7 @@ import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import {
 	configSituationSelector,
 	situationSelector,
@@ -85,6 +85,15 @@ const Router = () => {
 		<SituationProvider situation={situation}>
 			<Switch>
 				<Route exact path="/" component={Landing} />
+				{/* Removes trailing slashes */}
+				<Route
+					path={'/:url*(/+)'}
+					exact
+					strict
+					render={({ location }) => (
+						<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
+					)}
+				/>
 				<Route path="/iframes" component={Iframes} />
 				<Route component={App} />
 			</Switch>

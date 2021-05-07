@@ -1,7 +1,7 @@
 import 'Components/ui/index.css'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Communauté from '../pages/Communauté'
 import Documentation from '../pages/Documentation'
 import Landing from '../pages/Landing'
@@ -34,6 +34,17 @@ const RouterSwitch = () => {
 			>
 				<Switch>
 					<Route exact path="/" component={Landing} />
+					{/* Removes trailing slashes */}
+					<Route
+						path={'/:url*(/+)'}
+						exact
+						strict
+						render={({ location }) => (
+							<Redirect
+								to={location.pathname.replace(/\/+$/, location.search)}
+							/>
+						)}
+					/>
 					<Route path="/studio" component={LazyStudio} />
 					<Route path="/documentation" component={Documentation} />
 					<Route exact path="/communauté" component={Communauté} />
