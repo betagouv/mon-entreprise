@@ -103,7 +103,6 @@ type NextStepsProps = Pick<
 
 function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const sitePaths = useContext(SitePathsContext)
-	const simulators = useSimulatorsData()
 	const { language } = useTranslation().i18n
 	const engine = useEngine()
 
@@ -140,22 +139,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 					</a>
 				)}
 				{nextSteps?.map((simulatorId) => (
-					<Link
-						key={simulatorId}
-						className="ui__ interactive card lighter-bg box thinner"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: simulators[simulatorId].path,
-						}}
-					>
-						<h3 className="ui__ h h5">
-							<Emoji emoji={simulators[simulatorId].icône} />{' '}
-							{simulators[simulatorId].shortName}
-						</h3>
-						<p className="ui__ notice">
-							{simulators[simulatorId].meta?.description}
-						</p>
-					</Link>
+					<SimulatorRessourceCard key={simulatorId} simulatorId={simulatorId} />
 				))}
 				{iframePath && (
 					<Link
@@ -178,6 +162,31 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				)}
 			</div>
 		</section>
+	)
+}
+
+type SimulatorRessourceCardProps = {
+	simulatorId: keyof SimulatorData
+}
+
+export function SimulatorRessourceCard({
+	simulatorId,
+}: SimulatorRessourceCardProps) {
+	const simulators = useSimulatorsData()
+	return (
+		<Link
+			className="ui__ interactive card lighter-bg box thinner"
+			to={{
+				state: { fromSimulateurs: true },
+				pathname: simulators[simulatorId].path,
+			}}
+		>
+			<h3 className="ui__ h h5">
+				<Emoji emoji={simulators[simulatorId].icône} />{' '}
+				{simulators[simulatorId].shortName}
+			</h3>
+			<p className="ui__ notice">{simulators[simulatorId].meta?.description}</p>
+		</Link>
 	)
 }
 
