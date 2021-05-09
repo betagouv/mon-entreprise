@@ -35,7 +35,7 @@
 		"@types/react-router": "^5.1.2",
 		"@types/recharts": "^1.8.16",
 		"@types/redux-sentry-middleware": "^0.1.2",
-		"@types/styled-components": "^5.1.4",
+		"@types/styled-components": "^5.1.9",
 		"@types/webpack": "^4.41.10",
 		"@typescript-eslint/eslint-plugin": "^4.0.1",
 		"@typescript-eslint/parser": "^4.0.1",

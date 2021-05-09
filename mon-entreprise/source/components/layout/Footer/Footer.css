@@ -54,7 +54,7 @@
 	border-top: 1px solid var(--lighterColor);
 	border-bottom: none;
 }
-.footer__registerField > input[type='submit'] {
+.footer__registerField > button[type='submit'] {
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 	margin: -1px !important;

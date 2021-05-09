@@ -19,7 +19,7 @@ export default function NewsletterRegister() {
 	)
 	const formElement = useRef<HTMLFormElement>(null)
 	const [userJustRegistered, setUserJustRegistered] = useState(false)
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 
 	const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault()
@@ -85,12 +85,13 @@ export default function NewsletterRegister() {
 						</label>
 						<div className="footer__registerField">
 							<input type="email" name="EMAIL" id="EMAIL" />
-							<input
-								className="ui__ plain small button"
+							<button
 								type="submit"
-								value={t("S'inscrire")!}
 								name="subscribe"
-							/>
+								className="ui__ plain small button"
+							>
+								<Trans>S'inscrire</Trans>
+							</button>
 							<input type="hidden" name="locale" value={i18n.language} />
 						</div>
 					</div>
