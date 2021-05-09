@@ -44,9 +44,9 @@ protection sociale . retraite:
       - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
       - On ne calcule pas le nombre de trimestres validés par année
 
-protection sociale . retraite . plr: 
+protection sociale . retraite . plr:
   applicable si:
-    toutes ces conditions: 
+    toutes ces conditions:
       - entreprise . activité . libérale réglementée
       - dirigeant . indépendant . PL . option régime général = non
   remplace: retraite

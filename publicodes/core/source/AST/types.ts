@@ -26,6 +26,7 @@ import { UnitéNode } from '../mecanisms/unité'
 import { VariationNode } from '../mecanisms/variations'
 import { ReferenceNode } from '../reference'
 import { ReplacementRule } from '../replacement'
+import { UnitConversionNode } from '../nodeUnits'
 import { RuleNode } from '../rule'
 
 export type ConstantNode = {
@@ -64,8 +65,10 @@ export type ASTNode = (
 	| UnitéNode
 	| VariationNode
 	| ConstantNode
+	| UnitConversionNode
 	| ReplacementRule
 ) & {
+	unit?: Unit
 	isDefault?: boolean
 	visualisationKind?: string
 	rawNode?: string | Record<string, unknown>
@@ -109,7 +112,7 @@ export type Unit = {
 type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
 	missingVariables: Record<string, number>
-	unit?: Unit
+	unit?: Unit // TODO: to remove
 }
 export type Types = number | boolean | string | Record<string, unknown>
 // TODO: type NotYetDefined & NotApplicable properly (see #14) then refactor any code depending on these:

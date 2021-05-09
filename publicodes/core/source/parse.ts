@@ -32,6 +32,7 @@ import variations, { devariate } from './mecanisms/variations'
 import { Context } from './parsePublicodes'
 import parseReference from './reference'
 import parseRule from './rule'
+import { parseUnit } from './units'
 
 export default function parse(rawNode, context: Context): ASTNode {
 	if (rawNode == null) {
@@ -211,6 +212,10 @@ const parseFunctions = {
 		fullPrecision: true,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
+	}),
+	constantWithUnit: (v, context) => ({
+		...parseFunctions['constant'](v),
+		unit: parseUnit(v.unit, context.getUnitKey),
 	}),
 }
 

@@ -6,6 +6,7 @@ artiste-auteur:
 artiste-auteur . revenus: oui
 artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
+  unité: €/an
   par défaut: 0 €/an
   résumé: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
 
@@ -166,7 +167,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
             assiette: assiette
             tranches:
               - taux: 4%
-                plafond: 
+                plafond:
                   variations:
                     - si: profession . RACD
                       alors: cotisation RACD . plafond
@@ -217,7 +218,7 @@ artiste-auteur . cotisations . IRCEC . profession . RACL:
   titre: auteur ou compositeur lyrique, dialoguiste de doublage
   description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes de doublage cotisent au RACL.
   formule: profession = 'RACL'
-        
+
 artiste-auteur . cotisations . IRCEC . régime RACL:
   question: Cotisez-vous au RACL ?
   par défaut: non
@@ -227,9 +228,9 @@ artiste-auteur . cotisations . IRCEC . cotisation RACD:
   formule:
     produit:
       assiette: assiette
-      plafond: 
+      plafond:
         nom: plafond
-        valeur: 496250 €/an 
+        valeur: 496250 €/an
       taux: 8%
     arrondi: oui
 
@@ -242,10 +243,10 @@ artiste-auteur . cotisations . IRCEC . cotisation RACL:
         - taux: 0%
           plafond: 2739 €/an
         - taux: 6.5%
-          plafond: 
+          plafond:
             nom: plafond
             valeur: 376665 €/an
-        - taux: 
+        - taux:
             nom: cotisation de solidarité
             valeur: 1.5%
     arrondi: oui

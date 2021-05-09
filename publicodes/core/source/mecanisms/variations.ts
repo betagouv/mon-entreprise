@@ -97,21 +97,8 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					previousConditions,
 				]
 			}
-			let evaluatedConsequence = this.evaluate(consequence)
-			if (unit) {
-				try {
-					evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
-				} catch (e) {
-					warning(
-						this.options.logger,
-						this.cache._meta.evaluationRuleStack[0],
-						`L'unité de la branche n° ${
-							i + 1
-						} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
-						e
-					)
-				}
-			}
+			const evaluatedConsequence = this.evaluate(consequence)
+
 			return [
 				currentCondition && evaluatedConsequence.nodeValue,
 				[

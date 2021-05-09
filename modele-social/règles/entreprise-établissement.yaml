@@ -41,12 +41,12 @@ entreprise . durée d'activité:
 entreprise . durée d'activité . en fin d'année:
   titre: durée d'activité à la fin de l'année
   formule:
-    somme: 
+    somme:
       - durée:
           depuis: date de création
           jusqu'à: période . fin d'année
       - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
-  
+
 entreprise . durée d'activité . en début d'année:
   titre: durée d'activité au début de l'année
   formule:
@@ -56,7 +56,7 @@ entreprise . durée d'activité . en début d'année:
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
-  
+
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   somme:
@@ -65,26 +65,25 @@ entreprise . chiffre d'affaires:
     - dirigeant . rémunération . cotisations
     - charges
     - applicable si: entreprise . imposition . IS
-      somme: 
-          - imposition . IS . résultat net
-          - imposition . IS . impôt sur les sociétés
+      somme:
+        - imposition . IS . résultat net
+        - imposition . IS . impôt sur les sociétés
   plancher: 0€/an
   arrondi: oui
   identifiant court: CA
-
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
   résumé: Chiffre d'affaires hors taxe
   question: Quel est le chiffre d'affaires issu de la vente de biens, restauration ou hébergement ?
   unité: €/an
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . vente restauration hébergement
-    - sinon: 
+    - sinon:
         applicable si: activité . service ou vente = 'vente'
         valeur: chiffre d'affaires
   arrondi: oui
@@ -106,7 +105,6 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
     définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-
 entreprise . chiffre d'affaires . service BIC:
   unité: €/an
   plancher: 0€/an
@@ -123,19 +121,17 @@ entreprise . chiffre d'affaires . service BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . service BIC
-    - sinon: 
+    - sinon:
         applicable si: activité . service ou vente = 'service'
         valeur: chiffre d'affaires
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
-  
-
 
 entreprise . chiffre d'affaires . service BNC:
   titre: Autres prestations de service et activités libérales (BNC)
@@ -151,16 +147,16 @@ entreprise . chiffre d'affaires . service BNC:
     formation, enseignement, sportif
 
     Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . service BNC
-    - sinon: 
+    - sinon:
         applicable si: activité = 'libérale'
         valeur: chiffre d'affaires
-  
+
   références:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
@@ -179,11 +175,10 @@ entreprise . chiffre d'affaires . BIC:
     Le chiffre d'affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
   unité: €/an
   somme:
-    - service BIC 
+    - service BIC
     - vente restauration hébergement
-    
-entreprise . chiffre d'affaires . franchise de TVA dépassée:
 
+entreprise . chiffre d'affaires . franchise de TVA dépassée:
   description: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
@@ -214,7 +209,7 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
     - si: dirigeant . indépendant . PL . métier = 'avocat'
-      alors: 44500 €
+      alors: 44500 €/an
     - sinon: 36500 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
@@ -226,14 +221,12 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
   description: |
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
 
-
 entreprise . résultat fiscal:
   unité: €/an
-  somme: 
+  somme:
     - chiffre d'affaires
     - (- charges)
     - (- charges . dirigeant)
-    
 
 entreprise . imposition:
   question: Comment l'entreprise est-elle imposée ?
@@ -284,19 +277,18 @@ entreprise . imposition . IR . micro-fiscal . revenu abattu:
           taux: 50%
         - assiette: entreprise . chiffre d'affaires . service BNC
           taux: 34%
-    plancher: 
-      variations: 
-        - si: entreprise . activité . mixte 
+    plancher:
+      variations:
+        - si: entreprise . activité . mixte
           alors: 610 €/an
         - sinon: 305 €/an
-
 
 entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés:
   type: notification
   sévérité: avertissement
   formule: chiffre d'affaires . seuil micro dépassé
   description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
-  
+
 entreprise . chiffre d'affaires . seuil micro dépassé:
   applicable si: imposition . IR
   description: |
@@ -338,7 +330,6 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
     - entreprise . chiffre d'affaires > 176200 €/an
     - entreprise . chiffre d'affaires . service > 72600 €/an
 
-
 entreprise . imposition . IR . information sur le report de déficit:
   non applicable si: micro-fiscal
   type: notification
@@ -349,7 +340,7 @@ entreprise . imposition . IR . information sur le report de déficit:
 
     [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
   références:
-    bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301 
+    bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301
 
 entreprise . exercice: oui
 entreprise . exercice . début:
@@ -395,7 +386,6 @@ entreprise . imposition . IS:
   valeur: imposition = 'IS'
   titre: Impôt sur les sociétés
 
-
 entreprise . imposition . IS . résultat imposable:
   titre: Résultat de l'exercice
   résumé: Imposable à l'impôt sur les sociétés
@@ -408,7 +398,6 @@ entreprise . imposition . IS . information sur le report de déficit:
   description: |
     Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
 
-    
 entreprise . imposition . IS . résultat net:
   résumé: Après déduction des charges et de l'impôt sur les société
   somme:
@@ -417,7 +406,7 @@ entreprise . imposition . IS . résultat net:
     - (- dirigeant . rémunération . totale)
     - (- impôt sur les sociétés)
   par défaut: 0€
-  
+
 entreprise . imposition . IS . impôt sur les sociétés:
   unité: €/an
   formule:
@@ -538,16 +527,14 @@ entreprise . charges:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
 
-     
-
 entreprise . charges . dirigeant:
   titre: Charges déductibles dirigeant
   description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
-  variations: 
-    - si: imposition . IS 
+  variations:
+    - si: imposition . IS
       alors: dirigeant . rémunération . totale
     # Note : le cas de dirigeant AS à l'IR n'est pas géré
-    # - si: dirigeant . assimilé salarié 
+    # - si: dirigeant . assimilé salarié
     #   alors: 0€/an
     - sinon: # TNS dans entreprise à l'IR
         valeur: dirigeant . indépendant . cotisations et contributions
@@ -829,26 +816,25 @@ entreprise . activité . mixte . proportions:
   description: Part des différentes activités dans le chiffre d'affaires
   titre: proportion activité
   unité: '%'
-  somme: 
+  somme:
     - nom: service BIC
-      par défaut: 
+      par défaut:
         variations:
           - si: activité = 'libérale'
             alors: 0
           - sinon: 50%
     - nom: service BNC
-      par défaut: 
+      par défaut:
         variations:
           - si: activité = 'libérale'
             alors: 2 / 3
           - sinon: 0
     - nom: vente restauration hébergement
-      par défaut: 
+      par défaut:
         variations:
           - si: activité = 'libérale'
             alors: 1 / 3
           - sinon: 50%
-        
 
 entreprise . activité . libérale réglementée:
   question: Est-ce une activité libérale réglementée ?
@@ -906,7 +892,7 @@ entreprise . activité . débit de tabac:
       chemin: nom
 
 établissement . taux du versement transport:
-  unité: "%"
+  unité: '%'
   formule:
     synchronisation:
       data: localisation

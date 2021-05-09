@@ -12,6 +12,7 @@ export type SommeNode = {
 
 export const mecanismSum = (v, context) => {
 	const explanation = v.map((node) => parse(node, context))
+
 	return {
 		explanation,
 		nodeKind: 'somme',

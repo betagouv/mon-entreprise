@@ -126,14 +126,13 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 contrat salarié . frais professionnels . titres-restaurant . nombre:
   question: Combien de titres-restaurant sont distribués au salarié ?
   arrondi: oui
-  par défaut: 
-    produit: 
-      assiette: 19 titres-restaurant/mois 
+  par défaut:
+    produit:
+      assiette: 19 titres-restaurant/mois
       facteur: temps de travail . quotité de travail
   suggestions:
-    5 repas/semaines:  5 titres-restaurant/semaines * période . semaines par mois
-    3 repas/semaine:  3 titres-restaurant/semaines * période . semaines par mois
-      
+    5 repas/semaines: 5 titres-restaurant/semaines * période . semaines par mois
+    3 repas/semaine: 3 titres-restaurant/semaines * période . semaines par mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question: Quelle est la valeur unitaire du titre-restaurant ?
@@ -180,7 +179,7 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
   par défaut: 0 €/mois
   description: |
     L'employeur doit prendre en charge 50% du montant dépensé par le salarié pour les transports publics lui permettant de se rendre sur son lieu de travail.
-    
+
     Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
 
     Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
@@ -191,10 +190,8 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
     Navigo: 75 €/mois
     Técély: 65 €/mois
     RTM: 40 €/mois
-    Tisséo: 42.50 €/mois  
+    Tisséo: 42.50 €/mois
     TBM: 42.20 €/mois
-
-
 
 contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
   valeur: 50%
@@ -203,7 +200,7 @@ contrat salarié . frais professionnels . abonnement transports publics . taux d
   titre: Taux de prise en charge
   valeur:
     produit:
-      assiette: 
+      assiette:
         le minimum de:
           - temps de travail . quotité de travail
           - 50%
@@ -275,9 +272,9 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
   valeur: montant
   plafond:
     le minimum de:
-       - proportion déduction * 200€/an
-       - valeur: proportion déduction * 500€/an
-         abattement: abonnement transports publics . prise en charge
+      - proportion déduction * 200€/an
+      - valeur: proportion déduction * 500€/an
+        abattement: abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
   valeur: oui
@@ -336,9 +333,9 @@ contrat salarié . activité partielle:
     La déclaration d'activité partielle est simplifiée et l'effet est
     rétroactif.
   par défaut: non
-  rend non applicable:
-    - temps de travail . heures supplémentaires
-    - temps de travail . heures complémentaires
+  # rend non applicable:
+  #   - temps de travail . heures supplémentaires
+  #   - temps de travail . heures complémentaires
   références:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
@@ -640,7 +637,7 @@ contrat salarié . CDD . CPF:
       taux: 1%
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
-  
+
 contrat salarié . CDD . congés pris:
   question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
   description: |
@@ -651,10 +648,10 @@ contrat salarié . CDD . congés pris:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
   par défaut: 0 jours ouvrés
-  
-contrat salarié . CDD . jours ouvrés sur la durée du contrat: 
+
+contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:
-    assiette: 253 jours ouvrés/an  
+    assiette: 253 jours ouvrés/an
     facteur: durée contrat
 
 contrat salarié . CDD . congés dus sur la durée du contrat:
@@ -708,7 +705,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
       produit:
         assiette: rémunération . assiette congés payés
         taux: 10%
-      abattement: 
+      abattement:
         nom: proportion congés pris
         unité: '%'
         valeur: congés pris / congés dus sur la durée du contrat
@@ -716,11 +713,10 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     - nom: Méthode du maintien de salaire
       produit:
         assiette: rémunération . assiette congés payés / jours ouvrés sur la durée du contrat
-        facteur: 
+        facteur:
           nom: congés non pris
           valeur: congés dus sur la durée du contrat - congés pris
-        
-        
+
   note: |
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
     À noter, la loi El Khomri modifie l'article L3141-12:
@@ -1236,6 +1232,7 @@ contrat salarié . cotisations . assiette:
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  unité: €/mois
   formule:
     valeur: rémunération . brut
     abattement:
@@ -1300,7 +1297,6 @@ contrat salarié . rémunération . brut de base:
         - rémunération . net après impôt
         - équivalent temps plein
         - dirigeant . rémunération . totale
-
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -1463,6 +1459,7 @@ contrat salarié . rémunération . brut:
   # et de retraite complémentaire on ne ré-intègre ici que la part employeur
   # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
   # base` dont elle vient en déduction).
+  unité: €/mois
   somme:
     - rémunération . brut de base
     - avantages en nature . montant
@@ -1478,6 +1475,7 @@ contrat salarié . rémunération . brut:
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
+  unité: €/mois
   formule:
     produit:
       assiette: taux horaire . heures supplémentaires
@@ -1489,6 +1487,7 @@ contrat salarié . rémunération . heures supplémentaires:
 contrat salarié . rémunération . heures complémentaires:
   titre: rémunération heures complémentaires
   description: La rémunération relative aux heures complémentaires
+  unité: €/mois
   formule:
     produit:
       assiette: taux horaire . heures supplémentaires
@@ -1636,6 +1635,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
 contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
   question: >
     Combien de repas par mois sont payés par l'entreprise ?
+  unité: repas/mois
   par défaut: 21 repas/mois
   suggestions:
     1 par jour: 21 repas/mois
@@ -1780,7 +1780,7 @@ contrat salarié . rémunération . net imposable:
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   valeur:
-    nom: base 
+    nom: base
     description: Le net imposable avant les exonérations et déductions
     somme:
       - net avec revenus de remplacement
@@ -1796,8 +1796,6 @@ contrat salarié . rémunération . net imposable:
       - prévoyance . exonération fiscale
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   unité: €/mois
@@ -2269,6 +2267,7 @@ contrat salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   non applicable si: temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
+  unité: heure/mois
   par défaut: 0 heure/mois
   suggestions:
     aucune: 0 heure/mois
@@ -2318,6 +2317,7 @@ contrat salarié . temps de travail . heures complémentaires:
     durée légale ou conventionnelle du travail.
   applicable si: temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
+  unité: heure/mois
   par défaut: 0 heure/mois
 
 contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents:
@@ -2347,7 +2347,6 @@ contrat salarié . temps de travail . heures complémentaires . majoration:
   formule:
     barème:
       assiette: heures complémentaires
-      mutliplicateur:
       tranches:
         - taux: 10%
           plafond: seuil légal

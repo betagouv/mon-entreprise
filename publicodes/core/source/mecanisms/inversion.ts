@@ -63,7 +63,7 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 		this.resetCache()
 		this.cache._meta = { ...originalCache._meta }
 		this.parsedSituation[node.explanation.ruleToInverse] = {
-			unit: unit,
+			parsedUnit: unit,
 			nodeKind: 'unité',
 			explanation: {
 				nodeKind: 'constant',

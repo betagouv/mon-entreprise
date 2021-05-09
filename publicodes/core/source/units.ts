@@ -211,6 +211,30 @@ export function convertUnit(
 	)
 }
 
+export function conversionFactor(from: Unit, to: Unit) {
+	if (!areUnitConvertible(from, to)) {
+		throw new Error(
+			`Impossible de convertir l'unité '${serializeUnit(
+				from
+			)}' en '${serializeUnit(to)}'`
+		)
+	}
+
+	const [fromSimplified, factorTo] = simplifyUnitWithValue(from || noUnit)
+	const [toSimplified, factorFrom] = simplifyUnitWithValue(to || noUnit)
+	return round(
+		(factorTo / factorFrom) *
+			unitsConversionFactor(
+				fromSimplified.numerators,
+				toSimplified.numerators
+			) *
+			unitsConversionFactor(
+				toSimplified.denominators,
+				fromSimplified.denominators
+			)
+	)
+}
+
 const convertibleUnitClasses = unitClasses(convertTable)
 type unitClasses = Array<Set<string>>
 type ConvertTable = { readonly [index: string]: number }

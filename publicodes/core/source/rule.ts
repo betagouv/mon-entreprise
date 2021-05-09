@@ -111,6 +111,7 @@ export default function parseRule(
 		),
 		nodeKind: 'rule',
 		explanation,
+		unit: explanation.valeur.unit,
 		rawNode: rawRule,
 		virtualRule: !!context.dottedName,
 	} as RuleNode

@@ -201,7 +201,7 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux . A
 
 contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
   question: Pour combien de jours continus l'artiste est-il engagé ?
-  par défaut: 5 jours
+  par défaut: 5 jours/mois
 
 contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
   applicable si: nombre jours travaillés < 5
@@ -215,7 +215,7 @@ contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
   formule:
     produit:
       assiette: plafond horaire sécurité sociale
-      facteur: 12 * nombre jours travaillés
+      facteur: 12 heures/jour * nombre jours travaillés
 
 contrat salarié . intermittents du spectacle . artiste . acteur de complément:
   non applicable si: activité accessoire

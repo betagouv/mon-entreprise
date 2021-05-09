@@ -28,7 +28,7 @@ export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoud
 		this.resetCache()
 
 		this.parsedSituation[node.explanation.ruleToSolve] = {
-			unit: unit,
+			parsedUnit: unit,
 			nodeKind: 'unité',
 			explanation: {
 				nodeKind: 'constant',

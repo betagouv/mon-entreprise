@@ -38,8 +38,10 @@ export let number = ([{ value }]) => ({
 })
 
 export let numberWithUnit = (value) => ({
-	...number(value),
-	unité: value[2].value,
+	constantWithUnit: {
+		...number(value).constant,
+		unit: value[2].value,
+	},
 })
 
 export let date = ([{ value }]) => {

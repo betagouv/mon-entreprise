@@ -5,18 +5,18 @@ import parse from '../parse'
 import { convertUnit, parseUnit } from '../units'
 
 export type UnitéNode = {
-	unit: Unit
+	parsedUnit: Unit
 	explanation: ASTNode
 	nodeKind: 'unité'
 }
 
 export default function parseUnité(v, context): UnitéNode {
 	const explanation = parse(v.valeur, context)
-	const unit = parseUnit(v.unité, context.getUnitKey)
+	const parsedUnit = parseUnit(v.unité, context.getUnitKey)
 
 	return {
 		explanation,
-		unit,
+		parsedUnit,
 		nodeKind: parseUnité.nom,
 	}
 }
@@ -27,11 +27,11 @@ registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
 	const valeur = this.evaluate(node.explanation)
 
 	let nodeValue = valeur.nodeValue
-	if (nodeValue !== false && 'unit' in node) {
+	if (nodeValue !== false) {
 		try {
 			nodeValue = convertUnit(
 				valeur.unit,
-				node.unit,
+				node.parsedUnit,
 				valeur.nodeValue as number
 			)
 		} catch (e) {

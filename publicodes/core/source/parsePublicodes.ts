@@ -1,6 +1,7 @@
 import yaml from 'yaml'
 import { ParsedRules, Logger } from '.'
 import { makeASTTransformer, traverseParsedRules } from './AST'
+import { inferNodeUnit } from './nodeUnits'
 import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
@@ -70,6 +71,30 @@ export default function parsePublicodes(
 	// TODO STEP 6: check for cycle
 
 	// TODO STEP 7: type check
+	const stack = []
+	const inferRuleUnit = inferNodeUnit(parsedRules, stack)
+	try {
+		Object.values(parsedRules).forEach((parsedRule) => {
+			inferRuleUnit(parsedRule)
+		})
+	} catch (e) {
+		console.error('erreur dans ', stack[0])
+		throw e
+	}
+
+	// temp
+	// const stats = { totalNodes: 0, nodesWithUnit: 0 }
+	// traverseParsedRules(
+	// 	makeASTTransformer((node) => {
+	// 		stats.totalNodes++
+	// 		if (node.unit) {
+	// 			stats.nodesWithUnit++
+	// 		}
+	// 		return undefined
+	// 	}),
+	// 	parsedRules
+	// )
+	// console.table(stats)
 
 	return parsedRules
 }
