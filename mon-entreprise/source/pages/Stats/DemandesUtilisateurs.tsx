@@ -6,7 +6,7 @@ export default function DemandeUtilisateurs() {
 	const [extendedView, setExtendedView] = useState(false)
 	return (
 		<section>
-			<h2>Demandes utilisateurs</h2>
+			<h2 id="demandes-utilisateurs">Demandes utilisateurs</h2>
 			<p>
 				<small>
 					Demandes formulées en utilisant le bouton "faire une suggestion"

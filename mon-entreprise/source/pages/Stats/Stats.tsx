@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import InfoBulle from 'Components/ui/InfoBulle'
+import { useScrollToHash } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
@@ -104,7 +105,9 @@ const computeTotals = (data: Data): number | Record<string, number> => {
 export default function Stats() {
 	const defaultPeriod = 'mois'
 	const history = useHistory()
-	const urlParams = new URLSearchParams(useLocation().search ?? '')
+	const location = useLocation()
+	useScrollToHash()
+	const urlParams = new URLSearchParams(location.search ?? '')
 
 	const [period, setPeriod] = useState<Period>(
 		(urlParams.get('periode') as Period) ?? defaultPeriod
@@ -120,7 +123,10 @@ export default function Stats() {
 			period !== defaultPeriod && `periode=${period}`,
 			chapter2 && `module=${chapter2}`,
 		].filter(Boolean)
-		history.replace({ search: `?${queryParams.join('&')}` })
+		history.replace({
+			search: `?${queryParams.join('&')}`,
+			hash: location.hash,
+		})
 	}, [period, chapter2])
 
 	const visites = useMemo(() => {

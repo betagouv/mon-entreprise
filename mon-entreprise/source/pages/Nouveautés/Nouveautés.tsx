@@ -56,8 +56,9 @@ export default function Nouveautés() {
 			<ScrollToTop key={selectedRelease} />
 			<h1>Les nouveautés {emoji('✨')}</h1>
 			<p>
-				Nous améliorons le site en continu à partir de vos retours. Découvrez
-				les{' '}
+				Nous améliorons le site en continu à partir de{' '}
+				<Link to={sitePaths.stats + '#demandes-utilisateurs'}>vos retours</Link>
+				. Découvrez les{' '}
 				{selectedRelease === 0
 					? 'dernières nouveautés'
 					: `nouveautés ${determinant(releaseName)}${releaseName}`}

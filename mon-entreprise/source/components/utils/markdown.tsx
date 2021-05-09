@@ -132,7 +132,7 @@ const flatMapChildren = (children: React.ReactNode): Array<string> => {
 			: child.props?.value ?? flatMapChildren(child.props?.children)
 	)
 }
-function useScrollToHash() {
+export function useScrollToHash() {
 	useEffect(() => {
 		const { hash } = window.location
 		if (hash) {

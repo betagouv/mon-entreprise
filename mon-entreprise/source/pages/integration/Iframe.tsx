@@ -199,8 +199,7 @@ export default function Integration() {
 				<p>
 					À noter que si votre site utilise une politique de sécurité de contenu
 					via l'en-tête de réponse HTTP <i>Content-Security-Policy</i>, une
-					erreur bénigne peut apparaître dans la console.
-					<EnSavoirPlusCSP />
+					erreur bénigne peut apparaître dans la console. <EnSavoirPlusCSP />
 				</p>
 			</Trans>
 			<section className="blocks" id="integrations">
