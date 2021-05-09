@@ -69,11 +69,11 @@ function translateRule<Names extends string>(
 	)
 }
 
-export default function translateRules(
+export default function translateRules<Names extends string>(
 	lang: string,
-	translations: Record<string, Translation>,
-	rules: Record<string, Rule>
-): Record<string, Rule> {
+	translations: Record<Names, Translation>,
+	rules: Record<Names, Rule>
+): Record<Names, Rule> {
 	const translatedRules = mapObjIndexed(
 		(rule: Rule, name: string) => translateRule(lang, translations, name, rule),
 		rules
