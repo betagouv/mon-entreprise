@@ -57,7 +57,6 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		nodeValue: evaluatedNode.nodeValue,
 		explanation: {
 			recalcul: evaluatedNode,
-			engine,
 			amendedSituation,
 			parsedSituation: engine.parsedSituation,
 		},

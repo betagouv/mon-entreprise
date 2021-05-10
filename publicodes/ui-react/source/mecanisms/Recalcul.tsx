@@ -1,3 +1,5 @@
+import { EvaluatedNode } from 'publicodes'
+import { RecalculNode } from 'publicodes/dist/types/mecanisms/recalcul'
 import { useContext } from 'react'
 import {
 	EngineContext,
@@ -8,19 +10,24 @@ import Explanation from '../Explanation'
 import { RuleLinkWithContext } from '../RuleLink'
 import { Mecanism } from './common'
 
-export default function Recalcul({ nodeValue, explanation, unit }) {
+export default function Recalcul({
+	nodeValue,
+	explanation,
+	unit,
+}: RecalculNode & EvaluatedNode) {
 	const engine = useContext(EngineContext)
 	if (!engine) {
 		throw new Error()
 	}
-	useContext(RegisterEngineContext)(
-		engine.shallowCopy().setSituation(explanation.parsedSituation)
-	)
+	const recalculEngine = engine
+		.shallowCopy()
+		.setSituation(explanation.parsedSituation)
+	useContext(RegisterEngineContext)(recalculEngine)
 	return (
 		<Mecanism name="recalcul" value={nodeValue} unit={unit}>
 			<>
 				{explanation.recalcul && (
-					<EngineContext.Provider value={explanation.engine}>
+					<EngineContext.Provider value={recalculEngine}>
 						<SituationMetaContext.Provider
 							value={{
 								name: 'Mécanisme recalcul',
@@ -35,7 +42,7 @@ export default function Recalcul({ nodeValue, explanation, unit }) {
 				<ul>
 					{explanation.amendedSituation.map(([origin, replacement]) => (
 						<li key={origin.dottedName}>
-							<RuleLinkWithContext dottedName={origin.dottedName} /> ={' '}
+							<RuleLinkWithContext dottedName={origin.dottedName as string} /> ={' '}
 							<Explanation node={replacement} />
 						</li>
 					))}
