@@ -397,20 +397,35 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
 
 
 aide déclaration revenu indépendant 2020 . revenu net fiscal:
+  applicable si: entreprise . imposition . IR
   titre: revenu net fiscal
   résumé: '[A]'
   description: Résultat avant déduction des charges sociales et exonérations fiscales 
   valeur: dirigeant . rémunération . totale
+
+
+
+aide déclaration revenu indépendant 2020 . rémunération nette dirigeant:
+  applicable si: entreprise . imposition . IS
+  résumé: '[X]'
+  description: | 
+    La rémunération nette du dirigeant déductible du résultat pour l'impôt sur le revenu (charges sociales non incluse).
+
+    À reporter dans :
+    - **régime réel simplifié :** la rubrique 250 du formulaire 2033-B-SD 
+    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
+  valeur: dirigeant . rémunération . nette
 
 aide déclaration revenu indépendant 2020 . cotisations obligatoires:
   titre: Cotisations sociales obligatoires déductibles
   résumé: '[C]'
   description: |
     À reporter dans :
-    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
-    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
-    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
-    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
+    - **dans tous les cas :** la rubrique DSCA/DSCB du formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+    - **régime réel simplifié (IR uniquement) :** la rubrique 326 du formulaire 2033-D-SD 
+    - **régime réel normal (IR uniquement):** la rubrique A5 du formulaire 2053-SD
+    - **déclaration contrôlée (IR uniquement):** la rubrique BT du formulaire 2035-A-SD
   unité: €/an
   somme: 
     - dirigeant . indépendant . cotisations et contributions . cotisations
@@ -418,18 +433,29 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires:
   références:
     Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
 
+
 aide déclaration revenu indépendant 2020 . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
+  applicable si: entreprise . imposition . IR
   description: "Montant de la CSG déductible à l'impôt sur le revenu"
   valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
+aide déclaration revenu indépendant 2020 . cotisations non déductible:
+  applicable si: entreprise . imposition . IS
+  titre: Cotisations non déductible
+  résumé: '[Y]'
+  description: "Montant des cotisations non déductible à l'impôt sur le revenu"
+  valeur: dirigeant . indépendant . cotisations et contributions . non déductibles
+
 aide déclaration revenu indépendant 2020 . CFP:
   résumé: '[D]'
+  applicable si: entreprise . imposition . IR
   description: Contribution à la formation professionnelle 
   valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
   
-aide déclaration revenu indépendant 2020 . total charges sociales déductible:
+aide déclaration revenu indépendant 2020 . total charges sociales déductibles IR:
+  applicable si: entreprise . imposition . IR
   titre: charges sociales obligatoires déductibles fiscalement
   résumé: '[B + C + D]'
   somme:
@@ -439,11 +465,29 @@ aide déclaration revenu indépendant 2020 . total charges sociales déductible:
   description: |
     À reporter dans :
     - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
-    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **régime réel normal :** la rubrique FY du formulaire 2052-SD
     - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
+
+aide déclaration revenu indépendant 2020 . total charges sociales déductibles IS:
+  applicable si: entreprise . imposition . IS
+  titre: charges sociales du dirigeant (déductibles de l'impôt sur les société)
+  valeur: dirigeant . indépendant . cotisations et contributions
+  description: | 
+    À reporter dans : 
+    - **régime réel simplifié** : la rubrique 252 du formulaire 2035-B-SD
+    - **régime réel normal** : la rubrique FY du formulaire 2052-SD
+    
     
 
 aide déclaration revenu indépendant 2020 . assiette sociale:
   résumé: '[A - (B + C + D)]'
+  applicable si: entreprise . imposition . IR
   description: Assiette utilisée pour le calcul des cotisations sociales
   valeur: dirigeant . indépendant . assiette des cotisations
+
+aide déclaration revenu indépendant 2020 . traitements et salaires:
+  applicable si: entreprise . imposition . IS
+  description: | 
+    À reporter dans la case **1GB/1HB** de la déclaration n°2042
+  résumé: '[X + Y]'
+  valeur: dirigeant . rémunération . imposable

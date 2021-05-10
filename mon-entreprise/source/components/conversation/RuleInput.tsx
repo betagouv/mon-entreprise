@@ -24,7 +24,10 @@ type Props<Name extends string = DottedName> = Omit<
 	required?: boolean
 	autoFocus?: boolean
 	dottedName: Name
-	onChange: (value: Parameters<Engine<Name>['evaluate']>[0] | undefined) => void
+	onChange: (
+		value: Parameters<Engine<Name>['evaluate']>[0] | undefined,
+		dottedName: DottedName
+	) => void
 	// TODO: It would be preferable to replace this "showSuggestions" parameter by
 	// a build-in logic in the engine, by setting the "applicability" of
 	// suggestions.
@@ -75,7 +78,7 @@ export default function RuleInput({
 		dottedName,
 		value,
 		missing: !showDefaultDateValue && !!evaluation.missingVariables[dottedName],
-		onChange,
+		onChange: (value) => onChange(value, dottedName),
 		title: rule.title,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
