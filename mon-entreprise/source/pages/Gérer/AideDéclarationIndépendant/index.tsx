@@ -29,24 +29,21 @@ import illustration from './undraw_fill_in_mie5.svg'
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
 	const dispatch = useDispatch()
-	const engine = useEngine()
 
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
 
 	const situation = useSelector(situationSelector)
-
-	const setCurrentIncome = useCallback(
-		(currentIncome) => {
-			dispatch(
-				updateSituation('dirigeant . rémunération . totale', currentIncome)
-			)
+	const setSituation = useCallback(
+		(value, dottedName) => {
+			dispatch(updateSituation(dottedName, value))
 		},
-		[dispatch, updateSituation]
+		[dispatch]
 	)
 	const displayForm =
-		engine.evaluate('dirigeant . rémunération . totale').nodeValue !== null
+		situation['dirigeant . rémunération . totale'] ||
+		situation['dirigeant . rémunération . nette']
 
 	return (
 		<>
@@ -55,8 +52,8 @@ export default function AideDéclarationIndépendant() {
 					<p className="ui__ lead">
 						Cet outil est une aide à la déclaration de revenus à destination des{' '}
 						<strong>travailleurs indépendants</strong>. Il vous permet de
-						connaître le montant des charges sociales déductibles à partir de
-						votre résultat net fiscal.
+						connaître le montant des charges sociales déductibles applicable à
+						votre rémunération.
 					</p>
 					<p className="ui__ notice">
 						Vous restez entièrement responsable d'éventuelles omissions ou
@@ -85,10 +82,10 @@ export default function AideDéclarationIndépendant() {
 							vous exercez une activité libérale relevant d’un régime de
 							retraite des professions libérales
 						</li>
-						<li>
-							vous êtes gérants de société relevant de l’impôt sur les sociétés
-						</li>
 						<li>vous avez opté pour le régime micro-fiscal</li>
+						<li>
+							vous êtes dans le cas d'une entreprise avec plusieurs associés
+						</li>
 						<li>votre entreprise est domiciliée dans les DOM</li>
 					</ul>
 				</Warning>
@@ -96,25 +93,52 @@ export default function AideDéclarationIndépendant() {
 				{!situation['dirigeant . rémunération . totale'] && (
 					<PreviousSimulationBanner />
 				)}
-				<h2>
-					Quel est votre résultat fiscal en 2020 ?<br />
-					<small>
-						Charges sociales et exonérations fiscales non incluses{' '}
-						<ExplicationsResultatFiscal />
-					</small>
-				</h2>
+				<h2>Imposition et comptabilité</h2>
 				<p className="ui__ notice">
-					Le résultat fiscal correspond aux produits moins les charges. Il peut
-					être positif (bénéfice) ou négatif (déficit).
+					Ces quelques questions permettent de déterminer le type de déclaration
+					à remplir, ainsi que les modalités de calcul des cotisations social.
 				</p>
+
+				<SimpleField dottedName="entreprise . imposition" />
+				{situation['entreprise . imposition'] && (
+					<>
+						<Condition expression="entreprise . imposition . IR">
+							<h2>
+								Quel est votre résultat fiscal en 2020 ?<br />
+								<small>
+									Charges sociales et exonérations fiscales non incluses{' '}
+									<ExplicationsResultatFiscal />
+								</small>
+							</h2>
+							<p className="ui__ notice">
+								Le résultat fiscal correspond aux produits moins les charges. Il
+								peut être positif (bénéfice) ou négatif (déficit).
+							</p>
+							<BigInput>
+								<RuleInput
+									dottedName="dirigeant . rémunération . totale"
+									onChange={setSituation}
+									autoFocus
+								/>
+							</BigInput>
+						</Condition>
+						<Condition expression="entreprise . imposition . IS">
+							<h2>
+								Quel est le montant net de votre rémunération en 2020 ?
+								<br />
+								<small>Sans tenir compte des charges sociales</small>
+							</h2>
+							<BigInput>
+								<RuleInput
+									dottedName="dirigeant . rémunération . nette"
+									onChange={setSituation}
+									autoFocus
+								/>
+							</BigInput>
+						</Condition>
+					</>
+				)}
 			</Trans>
-			<BigInput>
-				<RuleInput
-					dottedName="dirigeant . rémunération . totale"
-					onChange={setCurrentIncome}
-					autoFocus
-				/>
-			</BigInput>
 
 			{displayForm ? (
 				<TrackPage name="commence" />
@@ -413,15 +437,10 @@ function SimpleField({
 	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
-		(value) => {
+		(value, dottedName) => {
 			dispatch(updateSituation(dottedName, value))
-			dispatch({
-				type: 'STEP_ACTION',
-				name: 'fold',
-				step: dottedName,
-			})
 		},
-		[dispatch, dottedName]
+		[dispatch]
 	)
 
 	if (
@@ -502,10 +521,17 @@ function Results() {
 					calculés à partir des informations saisies.
 				</p>
 				{([
+					'aide déclaration revenu indépendant 2020 . total charges sociales déductibles IS',
+					'aide déclaration revenu indépendant 2020 . rémunération nette dirigeant',
+					'aide déclaration revenu indépendant 2020 . traitements et salaires',
 					'aide déclaration revenu indépendant 2020 . cotisations obligatoires',
-					'aide déclaration revenu indépendant 2020 . total charges sociales déductible',
+					'aide déclaration revenu indépendant 2020 . total charges sociales déductibles IR',
 				] as const).map((dottedName) => {
 					const r = engine.getRule(dottedName)
+					const evaluation = engine.evaluate(dottedName)
+					if (evaluation.nodeValue == null || evaluation.nodeValue == false) {
+						return
+					}
 					return (
 						<Animate.fromTop key={dottedName}>
 							<div
@@ -550,6 +576,7 @@ function Results() {
 					`}
 				>
 					{([
+						'aide déclaration revenu indépendant 2020 . cotisations non déductible',
 						'aide déclaration revenu indépendant 2020 . réduction covid . total',
 						'aide déclaration revenu indépendant 2020 . revenu net fiscal',
 						'aide déclaration revenu indépendant 2020 . CSG déductible',
@@ -557,6 +584,10 @@ function Results() {
 						'aide déclaration revenu indépendant 2020 . assiette sociale',
 					] as const).map((dottedName) => {
 						const r = engine.getRule(dottedName)
+						const evaluation = engine.evaluate(dottedName)
+						if (evaluation.nodeValue == null || evaluation.nodeValue == false) {
+							return
+						}
 						return (
 							<Animate.fromTop style={{ display: 'flex' }} key={dottedName}>
 								<div
