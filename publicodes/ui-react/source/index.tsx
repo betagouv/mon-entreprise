@@ -67,6 +67,7 @@ export function Documentation({
 		defaultEngine,
 		state?.situation
 	)
+	console.log(engine)
 	return (
 		<RegisterEngineContext.Provider value={cacheEngine}>
 			<EngineContext.Provider value={engine}>
