@@ -13,8 +13,9 @@ export default function ({
 	const [wasOnScreen, setWasOnScreen] = useState(false)
 
 	useEffect(() => {
-		if (!IntersectionObserver) {
+		if (typeof IntersectionObserver === 'undefined') {
 			setWasOnScreen(true) // No effect for old browsers
+			return
 		}
 
 		const observer = new IntersectionObserver(
