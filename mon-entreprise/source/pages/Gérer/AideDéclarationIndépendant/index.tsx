@@ -1,6 +1,5 @@
 import { updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
-import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import Value, { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
@@ -9,13 +8,10 @@ import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import { DottedName } from 'modele-social'
-import { RuleNode } from 'publicodes'
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,6 +21,8 @@ import styled from 'styled-components'
 import { TrackPage } from '../../../ATInternetTracking'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
+import { ExplicationsResultatFiscal } from './ExplicationResultatFiscal'
+import { SimpleField, SubSection } from './Fields'
 import illustration from './undraw_fill_in_mie5.svg'
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
@@ -211,6 +209,9 @@ export default function AideDéclarationIndépendant() {
 												dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 												hideTitle
 											/>
+											<Condition expression="entreprise . imposition . IS">
+												<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
+											</Condition>
 
 											<h2>
 												<Trans>International</Trans>
@@ -234,250 +235,6 @@ export default function AideDéclarationIndépendant() {
 				</>
 			)}
 		</>
-	)
-}
-
-type SubSectionProp = {
-	dottedName: DottedName
-	hideTitle?: boolean
-}
-function ExplicationsResultatFiscal() {
-	return (
-		<Explicable>
-			<>
-				<h2>Quelles exonérations inclure ?</h2>
-				<p>
-					Pour calculer le montant du résultat fiscal avant déduction des
-					exonérations et des charges sociales à indiquer dans ce simulateur,
-					vous pouvez utiliser votre liasse fiscale, en reprenant les montants
-					indiqués dans les lignes fiscales du tableau ci-dessous, en fonction
-					de votre situation (imposition au réel normal ou au réel simplifié).
-				</p>
-				<p>L’opération à effectuer est la suivante :</p>
-				<ul>
-					<li>
-						Déterminez le résultat fiscal dans votre liasse, sans déduire le
-						montant de vos cotisations et contributions sociales aux régimes
-						obligatoires de sécurité sociale. Prenez le résultat fiscal
-						correspondant <strong>(1)</strong>
-					</li>
-					<li>
-						Ajoutez les exonérations <strong>(2)</strong>
-					</li>
-				</ul>
-				<table
-					css={`
-						font-size: 0.85em;
-						text-align: center;
-
-						tr:nth-child(2n + 3) {
-							background: var(--lightestColor);
-						}
-
-						td {
-							padding: 0.5rem;
-						}
-					`}
-				>
-					<tr>
-						<td></td>
-						<td></td>
-						<td className="ui__ light-bg" colSpan={4}>
-							Exonérations <strong>(2)</strong>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td className="ui__ light-bg">
-							Résultat fiscal <strong>(1)</strong>
-						</td>
-						<td className="ui__ light-bg notice">
-							Exonérations liées aux zones / activités
-						</td>
-						<td className="ui__ light-bg notice">
-							Exonérations Madelin et plan d’épargne retraite
-						</td>
-						<td className="ui__ light-bg notice">
-							Exonérations de plus-values à court terme
-						</td>
-						<td className="ui__ light-bg notice">Suramortissement productif</td>
-					</tr>
-					<tr>
-						<td>BIC réel normal</td>
-						<td>
-							<strong>2058-A-SD</strong>
-							<br />
-							Ligne XN (bénéfice) Ligne XO (déficit)
-						</td>
-						<td>
-							<strong>2058-A-SD</strong>
-							<br />
-							Lignes K9 / L6 / ØV / PP / L2 / 1F / PC / L5 / PA / XC / PB
-						</td>
-						<td>
-							<strong>2053-SD</strong>
-							<br />
-							Lignes A7 et A8
-						</td>
-						<td>
-							<strong>2058-A-SD</strong>
-							<br />
-							Ligne XG (montant inclus)
-						</td>
-						<td>
-							<strong>2058-A-SD</strong>
-							<br />
-							Lignes X9 et YA
-						</td>
-					</tr>
-					<tr>
-						<td>BIC réel simplifié</td>
-						<td>
-							<strong>2033-B-SD</strong>
-							<br />
-							Ligne 370 (bénéfice) Ligne 372 (déficit)
-						</td>
-						<td>
-							<strong>2033 B-SD</strong>
-							<br />
-							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 138 / 990 / 993
-						</td>
-						<td>
-							<strong>2033-SD</strong>
-							<br />
-							Lignes 325 et 327
-						</td>
-						<td>
-							<strong>2033 B-SD</strong>
-							<br />
-							Ligne 350 (montant inclus)
-						</td>
-						<td>
-							<strong>2033 B-SD</strong>
-							<br />
-							Lignes 655 et 643
-						</td>
-					</tr>
-					<tr>
-						<td>BNC déclaration contrôlée</td>
-						<td>
-							<strong>2035-B-SD</strong>
-							<br />
-							Ligne CP (bénéfice) Ligne CR (déficit)
-						</td>
-						<td>
-							<strong>2035-B-SD </strong>
-							<br />
-							Lignes CS / AW / CU / CI / AX / CQ
-						</td>
-						<td>
-							<strong>2035-A-SD </strong>
-							<br />
-							Lignes BZ et BU
-						</td>
-						<td>
-							<strong>2035-A-SD</strong>
-							<br />
-							Ligne CL (montant inclus)
-						</td>
-						<td></td>
-					</tr>
-				</table>
-			</>
-		</Explicable>
-	)
-}
-
-function SubSection({
-	dottedName: sectionDottedName,
-	hideTitle = false,
-}: SubSectionProp) {
-	const engine = useContext(EngineContext)
-	const ruleTitle = engine.getRule(sectionDottedName)?.title
-	const nextSteps = useNextQuestions()
-	const situation = useSelector(situationSelector)
-	const title = hideTitle ? null : ruleTitle
-	const subQuestions = [
-		...(Object.keys(situation) as Array<DottedName>),
-		...nextSteps,
-	].filter((nextStep) => {
-		const {
-			dottedName,
-			rawNode: { question },
-		} = engine.getRule(nextStep)
-		return !!question && dottedName.startsWith(sectionDottedName)
-	})
-
-	return (
-		<>
-			{!!subQuestions.length && title && <h3>{title}</h3>}
-			{subQuestions.map((dottedName) => (
-				<SimpleField key={dottedName} dottedName={dottedName} />
-			))}
-		</>
-	)
-}
-
-type SimpleFieldProps = {
-	dottedName: DottedName
-	summary?: RuleNode['rawNode']['résumé']
-	question?: RuleNode['rawNode']['question']
-	showSuggestions?: boolean
-}
-function SimpleField({
-	dottedName,
-	question,
-	summary,
-	showSuggestions,
-}: SimpleFieldProps) {
-	const dispatch = useDispatch()
-	const engine = useContext(EngineContext)
-	const evaluation = engine.evaluate(dottedName)
-	const rule = engine.getRule(dottedName)
-	const situation = useSelector(situationSelector)
-
-	const dispatchValue = useCallback(
-		(value, dottedName) => {
-			dispatch(updateSituation(dottedName, value))
-		},
-		[dispatch]
-	)
-
-	if (
-		!(dottedName in situation) &&
-		evaluation.nodeValue === false &&
-		!(dottedName in evaluation.missingVariables)
-	) {
-		return null
-	}
-	return (
-		<div
-			css={`
-				break-inside: avoid;
-			`}
-		>
-			<Animate.fromTop>
-				<Question>
-					<div
-						css={`
-							border-left: 3px solid var(--lightColor);
-							padding-left: 0.6rem;
-						`}
-					>
-						<p>
-							{question ?? rule.rawNode.question}&nbsp;
-							<ExplicableRule dottedName={dottedName} />
-						</p>
-						<p className="ui__ notice">{summary ?? rule.rawNode.résumé}</p>
-					</div>
-					<RuleInput
-						dottedName={dottedName}
-						onChange={dispatchValue}
-						showSuggestions={showSuggestions}
-					/>
-				</Question>
-			</Animate.fromTop>
-		</div>
 	)
 }
 
@@ -651,7 +408,7 @@ const FormBlock = styled.section`
 	}
 `
 
-const Question = styled.div`
+export const Question = styled.div`
 	margin-top: 1em;
 `
 const BigInput = styled.div`
