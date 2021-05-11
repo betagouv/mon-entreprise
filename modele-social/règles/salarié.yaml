@@ -3104,8 +3104,8 @@ contrat salarié . maladie . taux solidarité autonomie:
   acronyme: CSA
   formule: 0.3%
   références:
-    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
-    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
+    Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
 
 contrat salarié . maladie . taux employeur:
   formule:
@@ -3568,7 +3568,7 @@ contrat salarié . lodeom:
 contrat salarié . lodeom . zone un:
   titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
   références:
-    - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
   formule:
     une de ces conditions:
       - établissement . localisation . département = 'Guadeloupe'
