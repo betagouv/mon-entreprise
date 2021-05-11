@@ -28,14 +28,18 @@ export default function ShareSimulationBanner() {
 
 	const startSharing = () => {
 		if (shareAPIAvailable) {
-			window.navigator.share({
-				title: document.title,
-				text: t(
-					'shareSimulation.navigatorShare',
-					'Ma simulation Mon Entreprise'
-				),
-				url: getUrl(),
-			})
+			try {
+				window.navigator.share({
+					title: document.title,
+					text: t(
+						'shareSimulation.navigatorShare',
+						'Ma simulation Mon Entreprise'
+					),
+					url: getUrl(),
+				})
+			} catch {
+				setOpened(true)
+			}
 		} else {
 			setOpened(true)
 		}
