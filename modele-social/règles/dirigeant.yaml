@@ -682,6 +682,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
+  unité: €/an
   formule:
     le minimum de:
       - variations:
@@ -764,6 +765,8 @@ dirigeant . indépendant . assiette minimale . maladie:
   produit:
     assiette: plafond sécurité sociale temps plein
     taux: 40%
+  unité: €/an
+  arrondi: oui
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
     
@@ -774,6 +777,8 @@ dirigeant . indépendant . assiette minimale . retraite:
   produit:
     assiette: plafond sécurité sociale temps plein
     taux: 11.5%
+  unité: €/an
+  arrondi: oui
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
     
@@ -1042,7 +1047,7 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
     multiplicateur: plafond sécurité sociale temps plein
     tranches:
       - plafond: 40%
-        taux: 3.16%
+        taux: 3.17%
       - plafond: 110%
         taux: 6.35%
   note: |
@@ -1060,7 +1065,7 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux progres
       - plafond: 0%
         taux: 0%
       - plafond: 40%
-        taux: 3.16%
+        taux: 3.17%
       - plafond: 110%
         taux: 6.35%
   références:
