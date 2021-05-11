@@ -29,6 +29,7 @@ const BarStackLegend = styled.div`
 	display: flex;
 	margin-top: 10px;
 	flex-direction: column;
+	justify-content: space-between;
 
 	@media (min-width: 800px) {
 		flex-direction: row;
@@ -37,9 +38,7 @@ const BarStackLegend = styled.div`
 `
 
 const BarStackLegendItem = styled.div`
-	flex: 1 1 0px;
 	color: #555;
-
 	strong {
 		display: inline-block;
 		color: #111;

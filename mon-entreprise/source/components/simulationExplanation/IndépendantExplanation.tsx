@@ -37,7 +37,7 @@ export default function IndépendantExplanation() {
 			</Condition>
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
-					<h2>Répartition de la rémunération totale</h2>
+					<h2>Répartition du revenu</h2>
 					<StackedBarChart
 						data={[
 							{
@@ -52,7 +52,6 @@ export default function IndépendantExplanation() {
 							{
 								dottedName:
 									'dirigeant . indépendant . cotisations et contributions',
-								title: t('Cotisations'),
 								color: palettes[1][1],
 							},
 						]}

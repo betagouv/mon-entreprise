@@ -103,7 +103,7 @@ export default function AutoEntrepreneur() {
 						dottedName="dirigeant . auto-entrepreneur . cotisations et contributions"
 					/>
 					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net de cotisations" />
-					<Condition expression="impôt > 0">
+					<Condition expression="entreprise . chiffre d'affaires">
 						<SimulationGoal small editable={false} dottedName="impôt" />
 					</Condition>
 					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net après impôt" />
