@@ -99,7 +99,7 @@ describe(
 				.next()
 				.click()
 		})
-		it('should allow to download PDF', () => {
+		it.skip('should allow to download PDF', () => {
 			cy.contains(
 				'Je certifie l’exactitude des informations communiquées ci-dessus'
 			).click()
