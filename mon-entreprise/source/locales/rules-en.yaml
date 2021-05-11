@@ -6024,11 +6024,12 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
 : titre.en: basic retirement
   titre.fr: retraite de base
 dirigeant . indépendant . contrats madelin:
-  question.en:
-    '[automatic] Have you subscribed to private supplementary insurance
-    contracts known as "Madelin contracts"?'
-  question.fr: Avez-vous souscrit à des contrats de complémentaire privée dits
-    "contrats Madelin"
+  question.en: >
+    [automatic] Have you subscribed to a private provident and/or supplementary
+    pension contract known as a "Madelin contract"?
+  question.fr: >
+    Avez-vous souscrit à un contrat de prévoyance et / ou de retraite
+    complémentaire privé dits « contrat Madelin »
   titre.en: Madelin Contracts
   titre.fr: Contrats Madelin
 dirigeant . indépendant . contrats madelin . montant:
@@ -6036,20 +6037,25 @@ dirigeant . indépendant . contrats madelin . montant:
   titre.fr: Somme des cotisations à contrats Madelin
 dirigeant . indépendant . contrats madelin . mutuelle:
   description.en: >
-    [automatic] If you contribute under a mutual insurance contract such as the
-    Madelin law,
+    [automatic] If you contribute to a supplementary insurance contract (health,
+    loss of employment) 
 
-    you can deduct part of these contributions from your profits; and
+    under the Madelin law, you can deduct these contributions from the taxable profits
 
-    taxable persons that you declare for your self-employed activity.
-  description.fr: |
-    Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
-    vous pouvez déduire une partie de ces cotisations des bénéfices
+    that you declare for your self-employed activity.
+  description.fr: >
+    Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé,
+    perte d'emploi subie) 
+
+    de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
+
     imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay to a Madelin Mutual contract?'
-  question.fr: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
-  titre.en: '[automatic] Subscription to a Madelin mutual insurance contract'
-  titre.fr: Souscription à un contrat de mutuelle Madelin
+  question.en: '[automatic] How much do you pay for your Madelin supplementary
+    insurance policies (health, sudden loss of employment)?'
+  question.fr: Quel est le montant que vous versez pour vos contrats Madelin de
+    prévoyance complémentaire (santé, perte d'emploi subie) ?
+  titre.en: '[automatic] Subscribing to a Madelin supplementary insurance contract'
+  titre.fr: Souscription à un contrat de prévoyance complémentaire Madelin
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   note.en: >
     [automatic] Normally it is the tax result that should be used for the cap
@@ -6078,8 +6084,10 @@ dirigeant . indépendant . contrats madelin . retraite:
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay into your Madelin retraite contract?'
-  question.fr: Quel est le montant que vous versez à votre contrat Madelin retraite ?
+  question.en: '[automatic] How much do you pay for your Madelin supplementary
+    pension contract?'
+  question.fr: Quel est le montant que vous versez pour votre contrat Madelin
+    retraite complémentaire ?
   titre.en: '[automatic] Madelin Retirement Subscription'
   titre.fr: Souscription à une retraite Madelin
 dirigeant . indépendant . contrats madelin . retraite . plafond:
@@ -6108,8 +6116,8 @@ dirigeant . indépendant . cotisations et contributions:
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
     réduction ACRE.
-  titre.en: all contributions
-  titre.fr: cotisations et contributions
+  titre.en: '[automatic] social contributions'
+  titre.fr: cotisations et contributions sociales
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
   titre.fr: CSG et CRDS
@@ -6524,18 +6532,18 @@ dirigeant . rémunération . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . rémunération . imposable:
-  titre.en: '[automatic] Taxable remuneration'
-  titre.fr: Rémunération imposable
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenu imposable
 dirigeant . rémunération . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
 dirigeant . rémunération . nette:
-  question.en: '[automatic] What is your net pay?'
-  question.fr: Quelle est votre rémunération nette ?
+  question.en: '[automatic] What is your net income?'
+  question.fr: Quelle est votre revenu net ?
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
-  titre.en: '[automatic] net pay'
-  titre.fr: rémunération nette
+  titre.en: '[automatic] net income'
+  titre.fr: revenu net
 dirigeant . rémunération . nette après impôt:
   description.en: '[automatic] The net income after deduction of income tax and
     social security contributions.'
@@ -6545,8 +6553,8 @@ dirigeant . rémunération . nette après impôt:
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: '[automatic] What you get from this activity'
   résumé.fr: Ce que vous rapporte cette activité
-  titre.en: '[automatic] After-tax compensation'
-  titre.fr: Rémunération après impôt
+  titre.en: '[automatic] After-tax income'
+  titre.fr: Revenu après impôt
 dirigeant . rémunération . totale:
   description.en: >
     [automatic] This is what the company spends in total for the remuneration of
@@ -6760,33 +6768,31 @@ entreprise . activité . libérale réglementée:
 entreprise . activité . mixte:
   description.en: >
     [automatic] It is possible to have several activities with different types
-    of income
+    of income for the same
 
-    different for the same company. 
-
-
-    For example, a plumbing company that charges for the purchase and installation of a
-
-    robinet has a part of its turnover in sales of equipment (the tap)
-
-    and a part in service provision (the installation)
+    for the same company. 
 
 
-    There are three main families of income in the eyes of the administration
+    For example, a plumbing company that charges for the purchase and installation of a faucet
 
-    fiscal and social :
+    faucet has a part of its turnover in sale of material (the faucet)
 
-
-    - (Sales of goods, restaurants and accommodation (BIC))(/documentation/enterprise/turnover/sales-restaurants and accommodation)
-
-    - Commercial or craft services (BIC)](/documentation/enterprise/turnover/ BIC services)
-
-    - (Other services and liberal activity (NCBs))(/documentation/enterprise/turnover/services- NCBs)
+    and a part in service provision (the installation).
 
 
-    If your company has activities that correspond to more than one type of
+    There are three categories with different standard expense allowance rates:
 
-    returned, answer yes to this question.
+
+    - [Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% allowance)
+
+    - Commercial or artisanal services (BIC)](/documentation/company/turnover/service-BIC) (50% deduction)
+
+    - Other services and liberal activities (BNC)](/documentation/company/turnover/service-BNC) (34% deduction)
+
+
+    If your company has activities corresponding to several categories of income, answer yes to this
+
+    answer yes to this question.
   description.fr: >
     Il est possible d'avoir plusieurs activités avec des types de revenus
 
@@ -6797,22 +6803,20 @@ entreprise . activité . mixte:
 
     robinet a une partie de son chiffre d'affaires en vente de materiel (le robinet)
 
-    et une partie en prestation de service (la pose)
+    et une partie en prestation de service (la pose).
 
 
-    Il existe trois principales familles de revenus au yeux de l'administration
-
-    fiscale et sociale :
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
 
 
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
 
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
 
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
 
-    Si votre entreprise a des activités correspondants à plus d'un type de
+    Si votre entreprise a des activités correspondants à plusieurs catégories de
 
     revenus, répondez oui à cette question.
   question.en: '[automatic] Does your company have several types of activities?'
@@ -7130,28 +7134,48 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
   titre.en: '[automatic] micro threshold exceeded'
   titre.fr: seuil micro dépassé
 entreprise . chiffre d'affaires . vente restauration hébergement:
-  description.en: |
-    [automatic] ### Sale of goods 
-    This is the turnover of all operations involving
-    transfer of ownership of tangible property, i.e., property with a
+  description.en: >
+    [automatic] Sale of goods 
+
+    This is the turnover of all transactions involving
+
+    transfer of ownership of a tangible asset, i.e. an asset that has a physical
+
     material existence. 
 
-    ### Catering and hosting
-    This is the turnover of all catering operations.
-    or lodging (except classified tourist accommodation)
 
-    This income is taxable under the BIC regime
-  description.fr: |
+    Catering and accommodation
+
+    This is the turnover of all catering and accommodation operations
+
+    or accommodation
+
+
+    Note: for furnished rentals, only classified furnished tourist accommodation and guest rooms are included in this accommodation category; other furnished rentals are included in the "Provision of BIC services" category
+
+
+    This income is taxable in the BIC category
+  description.fr: >
     ### Vente de biens 
+
     Il s’agit du chiffre d'affaires de toutes les opérations comportant
+
     transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
+
     existence matérielle. 
 
-    ### Restauration et hébergement
-    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
-    ou hébergement (hors meublé de tourisme classé)
 
-    Ces revenus sont imposable au régime BIC
+    ### Restauration et hébergement
+
+    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
+
+    ou hébergement
+
+
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+
+
+    Ces revenus sont imposables dans la catégorie des BIC
   question.en: '[automatic] What is the turnover from the sale of goods, food or
     accommodation?'
   question.fr: Quel est le chiffre d'affaires issus de la vente de bien,
@@ -7357,20 +7381,24 @@ entreprise . imposition . IR . information sur le report de déficit:
 entreprise . imposition . IR . micro-fiscal:
   description.en: >
     [automatic] With the micro tax system, the deductible expenses are estimated
-    as a percentage of the turnover.
+    on a flat rate basis, according to a percentage of the turnover. This
+    percentage depends on the type of activity: 71% for sales, catering and
+    accommodation (rental of classified furnished tourist accommodation and
+    guest rooms), 50% for commercial or craft services, 34% for liberal
+    activities. 
 
-    This percentage depends on the type of activity. 
 
-
-    This option allows you to simplify your accounting, and can be advantageous in terms of income if your operating costs are low.
+    This option allows you to simplify your accounting and can be advantageous in terms of taxable income and subject to social security contributions if your operating expenses are low.
   description.fr: >
-    Avec le régime micro fiscal, les charges déductible sont estimées
-    forfaitairement, comme un pourcentage du chiffre d'affaires.
+    Avec le régime micro fiscal, les charges déductibles sont estimées
+    forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité : 71% pour les activités de vente,
+    restauration et hébergement (location de meublé de tourisme classé et
+    chambre d’hôte), 50% pour les prestations de service commerciales ou
+    artisanales, 34% pour les activités libérales. 
 
-    Ce pourcentage dépend du type d'activité. 
 
-
-    Cette option permet de simplifier votre comptabilité, et peut-être avantageuse en terme de revenu dans le cas où vos charges de fonctionnement sont faibles.
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
   question.en: '[automatic] Have you opted for the micro-tax system?'
   question.fr: Avez-vous opté pour le régime micro-fiscal ?
   titre.en: '[automatic] micro-tax'
