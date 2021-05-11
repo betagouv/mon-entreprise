@@ -24,11 +24,9 @@ onmessage = function (event) {
 		})
 
 	if (event.data.input) {
-		let results = [
-			...fuse.search(
-				event.data.input + '|' + event.data.input.replace(/ /g, '|')
-			),
-		]
+		let results = fuse
+			.search(event.data.input + '|' + event.data.input.replace(/ /g, '|'))
+			.slice()
 		postMessage(results)
 	}
 }
