@@ -97,9 +97,11 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
     ### Restauration et hébergement
     Il s’agit du chiffre d'affaires de toutes les opérations de restauration
-    ou hébergement (hors meublé de tourisme classé)
+    ou hébergement
 
-    Ces revenus sont imposable au régime BIC
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+
+    Ces revenus sont imposables dans la catégorie des BIC
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
     définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
@@ -255,10 +257,9 @@ entreprise . imposition . IR . micro-fiscal:
   rend non applicable: dirigeant . indépendant . contrats madelin
   question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
-    Avec le régime micro fiscal, les charges déductible sont estimées forfaitairement, comme un pourcentage du chiffre d'affaires.
-    Ce pourcentage dépend du type d'activité. 
-
-    Cette option permet de simplifier votre comptabilité, et peut-être avantageuse en terme de revenu dans le cas où vos charges de fonctionnement sont faibles.
+    Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales. 
+    
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
   par défaut: non
 
 entreprise . imposition . IR . micro-fiscal . revenu abattu:
@@ -804,16 +805,15 @@ entreprise . activité . mixte:
 
     Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
     robinet a une partie de son chiffre d'affaires en vente de materiel (le robinet)
-    et une partie en prestation de service (la pose)
+    et une partie en prestation de service (la pose).
 
-    Il existe trois principales familles de revenus au yeux de l'administration
-    fiscale et sociale :
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
 
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
-    Si votre entreprise a des activités correspondants à plus d'un type de
+    Si votre entreprise a des activités correspondants à plusieurs catégories de
     revenus, répondez oui à cette question.
 
 entreprise . activité . mixte . proportions:

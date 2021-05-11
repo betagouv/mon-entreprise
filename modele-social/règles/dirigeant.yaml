@@ -31,8 +31,8 @@ dirigeant . rémunération . totale:
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
 
 dirigeant . rémunération . nette:
-  titre: rémunération nette
-  question: Quelle est votre rémunération nette ?
+  titre: revenu net
+  question: Quelle est votre revenu net ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . totale
@@ -48,7 +48,7 @@ dirigeant . rémunération . cotisations:
       alors: auto-entrepreneur . cotisations et contributions
 
 dirigeant . rémunération . imposable:
-  titre: Rémunération imposable
+  titre: revenu imposable
   variations:
     - si: assimilé salarié 
       alors: contrat salarié . rémunération . net imposable
@@ -64,7 +64,7 @@ dirigeant . rémunération . impôt:
 
 
 dirigeant . rémunération . nette après impôt:
-  titre: Rémunération après impôt
+  titre: Revenu après impôt
   unité: €/an
   arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
@@ -726,6 +726,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
       - (- exonérations)
 
 dirigeant . indépendant . cotisations et contributions:
+  titre: cotisations et contributions sociales
   description: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
@@ -821,7 +822,8 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
 
 dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
-  question: Avez-vous souscrit à des contrats de complémentaire privée dits "contrats Madelin"
+  question: |
+    Avez-vous souscrit à un contrat de prévoyance et / ou de retraite complémentaire privé dits « contrat Madelin »
   par défaut: non
   références: 
     economie.gouv.fr: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
@@ -848,11 +850,11 @@ dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
   formule: montant - part déductible fiscalement
 
 dirigeant . indépendant . contrats madelin . mutuelle:
-  titre: Souscription à un contrat de mutuelle Madelin
-  question: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
+  titre: Souscription à un contrat de prévoyance complémentaire Madelin
+  question: Quel est le montant que vous versez pour vos contrats Madelin de prévoyance complémentaire (santé, perte d'emploi subie) ?
   description: |
-    Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
-    vous pouvez déduire une partie de ces cotisations des bénéfices
+    Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé, perte d'emploi subie) 
+    de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
   références:
     Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
@@ -881,7 +883,7 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
 dirigeant . indépendant . contrats madelin . retraite:
   titre: Souscription à une retraite Madelin
-  question: Quel est le montant que vous versez à votre contrat Madelin retraite ?
+  question: Quel est le montant que vous versez pour votre contrat Madelin retraite complémentaire ?
   description: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices

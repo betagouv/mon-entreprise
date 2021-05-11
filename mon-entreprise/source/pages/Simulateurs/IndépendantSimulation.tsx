@@ -100,7 +100,7 @@ function IndépendantSimulationGoals() {
 				/>
 			</Condition>
 			<SimulationGoal dottedName="dirigeant . rémunération . nette" />
-			<Condition expression="impôt > 0">
+			<Condition expression="entreprise . chiffre d'affaires">
 				<SimulationGoal small editable={false} dottedName="impôt" />
 			</Condition>
 			<SimulationGoal dottedName="dirigeant . rémunération . nette après impôt" />
