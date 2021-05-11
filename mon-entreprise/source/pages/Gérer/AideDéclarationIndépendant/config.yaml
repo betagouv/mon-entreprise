@@ -1,9 +1,16 @@
 objectifs:
-  - aide déclaration revenu indépendant 2020 . cotisations obligatoires
-  - aide déclaration revenu indépendant 2020 . total charges sociales déductibles IR
+  - aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles
+  - aide déclaration revenu indépendant 2020 . total charges sociales déductibles
+  - dirigeant . rémunération . totale
+  - dirigeant . rémunération . nette
+  - aide déclaration revenu indépendant 2020 . formulaire 2033
+  - aide déclaration revenu indépendant 2020 . formulaire 2050
+  - aide déclaration revenu indépendant 2020 . formulaire 2042
+  - aide déclaration revenu indépendant 2020 . formulaire 2035
   
 situation:
   dirigeant: "'indépendant'"
   aide déclaration revenu indépendant 2020: oui
   dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements
+  impôt: non
 unité par défaut: '€/an'
