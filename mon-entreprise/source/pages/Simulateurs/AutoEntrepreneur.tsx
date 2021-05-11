@@ -35,6 +35,9 @@ function useAdjustProportions(): () => void {
 					.filter(Boolean),
 			})
 		)
+		if (nouveauCA === '0€/an') {
+			return // Avoid division by 0
+		}
 		const situation = Object.entries(proportions).reduce(
 			(acc, [proportionName, valueName]) => {
 				const value = serializeEvaluation(
