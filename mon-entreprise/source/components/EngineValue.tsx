@@ -1,23 +1,15 @@
-<<<<<<< HEAD
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	formatValue,
-
-	isNotYetDefined, PublicodesExpression,
-
-	UNSAFE_isNotApplicable
+	isNotYetDefined,
+	PublicodesExpression,
+	UNSAFE_isNotApplicable,
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
-=======
-import { DottedName } from 'modele-social'
-import Engine, { formatValue, PublicodesExpression } from 'publicodes'
-import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
->>>>>>> e9c1f6e8 (Export le type PublicodeExpression$)
 
 export type ValueProps<Names extends string> = {
 	expression: PublicodesExpression

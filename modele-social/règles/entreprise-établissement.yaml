@@ -236,7 +236,7 @@ entreprise . résultat fiscal:
     
 
 entreprise . imposition:
-  question: À quel régime d'imposition l'entreprise est-elle soumise ?
+  question: Comment l'entreprise est-elle imposée ?
   description: |
     Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition des bénéfices de son activité :
     - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif

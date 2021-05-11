@@ -855,6 +855,7 @@ dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
 dirigeant . indépendant . contrats madelin . mutuelle:
   titre: Souscription à un contrat de prévoyance complémentaire Madelin
   question: Quel est le montant que vous versez pour vos contrats Madelin de prévoyance complémentaire (santé, perte d'emploi subie) ?
+  unité: €/an
   description: |
     Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé, perte d'emploi subie) 
     de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
