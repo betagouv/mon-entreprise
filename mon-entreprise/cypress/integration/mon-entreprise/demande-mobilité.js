@@ -99,14 +99,5 @@ describe(
 				.next()
 				.click()
 		})
-		it('should allow to download PDF', () => {
-			cy.contains(
-				'Je certifie l’exactitude des informations communiquées ci-dessus'
-			).click()
-			cy.contains('Fait à').click()
-			cy.focused().type('Plougastel')
-			cy.contains('Générer la demande').click()
-			cy.contains('Télécharger le fichier').click()
-		})
 	}
 )
