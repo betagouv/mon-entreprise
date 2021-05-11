@@ -8,7 +8,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
-import { equals, isEmpty } from 'ramda'
+import { equals, isEmpty, omit } from 'ramda'
 import {
 	createElement,
 	lazy,
@@ -123,10 +123,14 @@ function FormulairePublicodes() {
 	)
 	const onChange = useCallback(
 		(dottedName, value) => {
-			setSituation((situation) => ({
-				...situation,
-				[dottedName]: value,
-			}))
+			if (value === undefined) {
+				setSituation((situation) => omit([dottedName], situation))
+			} else {
+				setSituation((situation) => ({
+					...situation,
+					[dottedName]: value,
+				}))
+			}
 		},
 		[setSituation]
 	)
