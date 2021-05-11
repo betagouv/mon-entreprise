@@ -176,17 +176,19 @@ $ npm install publicodes-react
 ```
 
 ```jsx
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Documentation } from 'publicodes-react'
 
 function MonApp() {
     return (
-        <ReactRouter>
+        <Router>
             <Documentation
                 engine={engine}
                 documentationPath={'/documentation'}
+                language={'fr'}
             />
             {/* Composants de l'app */}
-        </ReactRouter>
+        </Router>
     )
 }
 ```
