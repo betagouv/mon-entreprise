@@ -101,7 +101,7 @@ export default function Options() {
 					href="https://publi.codes"
 				>
 					<div className="ui__ big box-icon">{emoji('📚')}</div>
-					<Trans i18nKey="pages.développeurs.choice.publicode">
+					<Trans i18nKey="pages.développeurs.choice.publicodes">
 						<h3>Publicodes</h3>
 						<p className="ui__ notice">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour

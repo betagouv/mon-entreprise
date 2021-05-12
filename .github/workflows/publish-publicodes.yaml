@@ -16,7 +16,7 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
     - run: yarn install --frozen-lockfile
-    - working-directory: ./publicodes/example/publicode-react
+    - working-directory: ./publicodes/example/publicodes-react
       run: |
         yarn install
         yarn test

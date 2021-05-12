@@ -1,9 +1,9 @@
 # Principes de base
 
-La syntaxe de Publicode est basée sur le langage
+La syntaxe de Publicodes est basée sur le langage
 [Yaml](https://en.wikipedia.org/wiki/YAML).
 
-Un fichier Publicode contient une liste de _règles_ identifiées par leur _nom_ et
+Un fichier Publicodes contient une liste de _règles_ identifiées par leur _nom_ et
 possédant une _valeur_ :
 
 ```yaml
@@ -51,7 +51,7 @@ prix total: nombre de repas * prix d'un repas + frais de réservation
 # La formule de "prix total" est invalide.
 ```
 
-Dans l'exemple ci-dessus, Publicode détecte une erreur car les termes de
+Dans l'exemple ci-dessus, Publicodes détecte une erreur car les termes de
 l'addition ont des unités incompatibles : d'un côté on a des `€` et de l'autre
 des `€/repas`.
 
@@ -64,7 +64,7 @@ prix total: nombre de repas * (prix d'un repas + frais de réservation)
 > **Attention :** Il ne faut pas insérer d'espace autour de la barre oblique dans
 > les unités, l'unité `€ / mois` doit être notée `€/mois`.
 
-Publicode convertit automatiquement les unités si besoin.
+Publicodes convertit automatiquement les unités si besoin.
 
 ```yaml
 salaire: 1500 €/mois
@@ -157,7 +157,7 @@ ticket resto:
 
 ## Conditions booléennes
 
-Publicode supporte des opérateurs booléens basiques.
+Publicodes supporte des opérateurs booléens basiques.
 
 ```yaml
 âge: 17 ans
@@ -281,7 +281,7 @@ particulières et modifier la définition des règles générales pour prendre e
 compte ces particularités pose des problèmes de maintenabilité de la base de
 règles.
 
-Publicode dispose d'un mécanisme de remplacement qui permet d'amender n'importe
+Publicodes dispose d'un mécanisme de remplacement qui permet d'amender n'importe
 quelle règle existante sans avoir besoin de la modifier :
 
 ```yaml

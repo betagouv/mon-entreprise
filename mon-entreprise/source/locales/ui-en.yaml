@@ -8,7 +8,7 @@
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
-Afficher la description publicode: Display publicode description
+Afficher la description publicodes: Display publicodes description
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Aides Covid-19: Covid-19 Aids
@@ -955,7 +955,7 @@ pages:
       library: <0>Using the calculation engine</0><1>The entire socio-fiscal
         calculation engine developed by Urssaf, freely available in the form of
         an NPM library.</1>
-      publicode: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
+      publicodes: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
         language for encoding "explainable" algorithms.</1>
     code:
       description: "Here is the code to copy and paste on your site:"

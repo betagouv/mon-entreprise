@@ -1,6 +1,6 @@
 ## Installation ![béta](https://img.shields.io/badge/-beta-blue)
 
-Publicode est distribué sous la forme d'une librairie
+Publicodes est distribué sous la forme d'une librairie
 [Node.js](https://nodejs.org/fr/) permettant de compiler un jeu de règles
 publicodes et de l'évaluer dans une situation donnée.
 
@@ -33,8 +33,8 @@ dépenses primeur:
       - prix . avocat * 3 avocat
 `
 
-// On initialise un moteur en lui donnant le publicode.
-// Ce publicode va être parsé
+// On initialise un moteur en lui donnant le publicodes.
+// Ce publicodes va être parsé
 const engine = new Engine(rules)
 ```
 
@@ -106,7 +106,7 @@ console.log(
 
 ### Évaluation d'expressions
 
-La fonction `evaluate` permet d'évaluer des expressions publicode complètes :
+La fonction `evaluate` permet d'évaluer des expressions publicodes complètes :
 
 ```js
 // On va au marché une fois par semaine, amortissons la dépense sur 7 jours
@@ -116,7 +116,7 @@ console.log(`J'ai dépensé ${formatValue(depensesParJour)}.`)
 
 ### Conversion d'unité
 
-Publicode permet de réaliser des conversions d'unités. Pour celà il faut
+Publicodes permet de réaliser des conversions d'unités. Pour celà il faut
 indiquer l'unité désirée via le mécanisme [`unité`](https://publi.codes/documentation/mécanismes#unité) :
 
 ```js
@@ -132,7 +132,7 @@ console.log(`J'ai dépensé ${formatValue(depensesParMois)}.`)
 
 ### Variables manquantes
 
-Publicode calcule automatiquement les dépendances de chaque règle. Si la
+Publicodes calcule automatiquement les dépendances de chaque règle. Si la
 valeur d'une dépendance est manquante et ne permet pas de faire le calcul, elle
 apparaîtra dans la propriété `missingVariables` :
 
@@ -146,7 +146,7 @@ y:
 console.log(missingYEngine.evaluate('x').missingVariables)
 ```
 
-Cette information est utile pour intégrer publicode à votre application.
+Cette information est utile pour intégrer publicodes à votre application.
 
 Il est aussi possible d'utiliser des valeurs par défaut. Dans ce cas la règle
 sera calculée avec la valeur par défaut de sa dépendance, mais cette dernière

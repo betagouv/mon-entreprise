@@ -10,10 +10,10 @@ import './Notifications.css'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
 
-// To add a new notification to a simulator, you should create a publicode rule
+// To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with
 // the "sévérité" attribute. The notification will only be displayed if the
-// publicode rule is applicable.
+// publicodes rule is applicable.
 type Notification = {
 	dottedName: RuleNode['dottedName']
 	description: RuleNode['rawNode']['description']

@@ -4,7 +4,7 @@ import { uniq } from 'ramda'
 import rawRules from 'modele-social'
 import unitsTranslations from '../source/locales/units.yaml'
 
-it('use unit that exists in publicode', () => {
+it('use unit that exists in publicodes', () => {
 	const rules = parsePublicodes(rawRules)
 	const units = uniq(
 		Object.keys(rules).reduce(

@@ -44,7 +44,7 @@ export default function RuleSource({ engine, dottedName }: Props) {
 	]
 	const rule = engine.evaluate(engine.getRule(dottedName))
 
-	// When we import a rule in the Publicode Studio, we need to provide a
+	// When we import a rule in the Publicodes Studio, we need to provide a
 	// simplified definition of its dependencies to avoid undefined references.
 	const dependenciesValues = dissoc(
 		dottedName,
