@@ -32,7 +32,3 @@ npm install publicodes
 -   **[futur.eco](https://futur.eco/)** utilise publicodes pour calculer les bilans
     carbone d'un grand nombre d'activités, plats, transports ou biens.
 -   **[Nos Gestes Climat](https://ecolab.ademe.fr/apps/climat)** utilise publicodes pour proposer un calculateur d'empreinte climat personnel de référence complètement ouvert
-
-## Feuille de route
-
-Pour plus de détails sur les prochaines fonctionalités et notre future direction vous pouvez consulter nos [feuilles de route](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+label%3A%22%F0%9F%8E%AF+feuille+de+route%22+label%3A%22%E2%9A%99%EF%B8%8F+publicodes%22+).

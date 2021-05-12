@@ -12,7 +12,7 @@
 
 ## ✍️ Contribuer
 
-Tout le développement se fait dans le monorepo [github.com/betagouv/mon-entreprise](https://github.com/betagouv/mon-entreprise/tree/master/publicodes).
+Le développement est ouvert et se passe sur [github.com/betagouv/publicodes](https://github.com/betagouv/publicodes).
 
 ## 💬 Discuter
 
