@@ -168,9 +168,9 @@ Pour tester les règles, il est recommandé de:
 
 ### Publicodes
 
-Un tutoriel sur publicode est disponible sur https://publi.codes.
+Un tutoriel sur publicodes est disponible sur https://publi.codes.
 
-Un wiki contenant des informations intéressantes sur publicode et le
+Un wiki contenant des informations intéressantes sur publicodes et le
 raisonnement ayant abouti à ce langage sont dispos sur le repository
 [betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
 ailleurs inutilisé.

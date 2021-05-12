@@ -11,7 +11,7 @@ douche . fréquence:
   par défaut: 1 douche/jour
   suggestions:
     1 par jour: 1 douche/jour
-    5 par semaine: 5 douche/semaine * 52 semaines/an # Publicode ne gère pas encore nativement l'unité semaine
+    5 par semaine: 5 douche/semaine * 52 semaines/an # Publicodes ne gère pas encore nativement l'unité semaine
     2 par jour: 2 douche/jour
 
 

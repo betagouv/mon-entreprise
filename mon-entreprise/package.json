@@ -113,7 +113,7 @@
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.{js,ts}\"",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --include test/componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",
 		"test:bundlesize": "bundlesize",
-		"test:dev-e2e:publicode": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
+		"test:dev-e2e:publicodes": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
