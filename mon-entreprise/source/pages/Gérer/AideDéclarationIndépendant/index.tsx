@@ -94,6 +94,7 @@ export default function AideDéclarationIndépendant() {
 				</p>
 			</Trans>
 			<SimpleField dottedName="entreprise . imposition" />
+			<SimpleField dottedName="aide déclaration revenu indépendant 2020 . comptabilité" />
 
 			{situation['entreprise . imposition'] !== undefined && (
 				<Animate.fromTop key={situation['entreprise . imposition']}>
@@ -143,74 +144,95 @@ export default function AideDéclarationIndépendant() {
 				<>
 					<Animate.fromTop>
 						<FormBlock>
-							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
-								<h2>Entreprise et activité</h2>
-							</Trans>
-							<div>
-								{!company && (
-									<p className="ui__ notice">
-										<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
-											<strong>Facultatif : </strong>Vous pouvez renseigner votre
-											entreprise pour pré-remplir le formulaire
-										</Trans>
-									</p>
-								)}
-								<CompanySection company={company} />
-							</div>
-							<SimpleField
-								dottedName="entreprise . date de création"
-								showSuggestions={false}
-							/>
-							<Condition expression="entreprise . date de création > 31/12/2020">
-								<small
-									css={`
-										color: #ff2d96;
-									`}
-								>
-									Cette aide à la déclaration concerne uniquement les
-									entreprises déjà en activité en 2020
-								</small>
+							<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
+								<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
+									<h2>Entreprise et activité</h2>
+								</Trans>
+								<div>
+									{!company && (
+										<p className="ui__ notice">
+											<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
+												<strong>Facultatif : </strong>Vous pouvez renseigner
+												votre entreprise pour pré-remplir le formulaire
+											</Trans>
+										</p>
+									)}
+									<CompanySection company={company} />
+								</div>
+								<SimpleField
+									dottedName="entreprise . date de création"
+									showSuggestions={false}
+								/>
+								<Condition expression="entreprise . date de création > 31/12/2020">
+									<small
+										css={`
+											color: #ff2d96;
+										`}
+									>
+										Cette aide à la déclaration concerne uniquement les
+										entreprises déjà en activité en 2020
+									</small>
+								</Condition>
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+								{/* PLNR */}
+								<SimpleField dottedName="entreprise . activité . débit de tabac" />
+								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
+								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+
+								<h2>
+									<Trans>Situation personnelle</Trans>
+								</h2>
+								<SimpleField dottedName="situation personnelle . RSA" />
+								<SubSection dottedName="dirigeant . indépendant . IJSS" />
+								<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+
+								<h2>
+									<Trans>Exonérations</Trans>
+								</h2>
+								<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
+								<SimpleField dottedName="établissement . ZFU" />
+								<SubSection
+									hideTitle
+									dottedName="entreprise . effectif . seuil"
+								/>
+								<SubSection
+									dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+									hideTitle
+								/>
+
+								<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
+								<h2>
+									<Trans>International</Trans>
+								</h2>
+								<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+								<SubSection
+									dottedName="dirigeant . indépendant . revenus étrangers"
+									hideTitle
+								/>
 							</Condition>
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-							{/* PLNR */}
-							<SimpleField dottedName="entreprise . activité . débit de tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+							<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . trésorerie">
+								<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . comptabilité . trésorerie" />
+								<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-							<h2>
-								<Trans>Situation personnelle</Trans>
-							</h2>
-							<SimpleField dottedName="situation personnelle . RSA" />
-							<SubSection dottedName="dirigeant . indépendant . IJSS" />
-							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+								<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
 
-							<h2>
-								<Trans>Exonérations</Trans>
-							</h2>
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
-							<SimpleField dottedName="établissement . ZFU" />
-							<SubSection
-								hideTitle
-								dottedName="entreprise . effectif . seuil"
-							/>
+								{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
+								<h3>
+									<Trans>Revenus étranger</Trans>
+								</h3>
+								<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
+								<Condition expression="dirigeant . indépendant . revenus étrangers">
+									<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
+								</Condition>
+							</Condition>
 
-							<SubSection
-								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-								hideTitle
-							/>
-							<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
-
-							<h2>
-								<Trans>International</Trans>
-							</h2>
-							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-							<SubSection
-								dottedName="dirigeant . indépendant . revenus étrangers"
-								hideTitle
-							/>
+							<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
+							</Condition>
 						</FormBlock>
 					</Animate.fromTop>
-					<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
+
 					<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
 					<Condition
 						expression={{
@@ -272,43 +294,44 @@ function Results() {
 				] as const).map((dottedName) => (
 					<DeclarationForm key={dottedName} dottedName={dottedName} />
 				))}
+				<Condition expression="aide déclaration revenu indépendant 2020 . informations">
+					<h3>{emoji('ℹ️')} Pour votre information </h3>
+					<div className="ui__ box-container">
+						{informations.map((r) => (
+							<Condition key={r.dottedName} expression={r.dottedName}>
+								<Animate.fromTop style={{ display: 'flex' }}>
+									<div
+										className="ui__ box card"
+										css={`
+											margin: 0;
+											flex: 1 !important;
+										`}
+									>
+										<p>
+											<RuleLink dottedName={r.dottedName} />
+											<br />
+											<small>{r.rawNode.résumé}</small>
+										</p>
 
-				<h3>{emoji('ℹ️')} Pour votre information </h3>
-				<div className="ui__ box-container">
-					{informations.map((r) => (
-						<Condition key={r.dottedName} expression={r.dottedName}>
-							<Animate.fromTop style={{ display: 'flex' }}>
-								<div
-									className="ui__ box card"
-									css={`
-										margin: 0;
-										flex: 1 !important;
-									`}
-								>
-									<p>
-										<RuleLink dottedName={r.dottedName} />
-										<br />
-										<small>{r.rawNode.résumé}</small>
-									</p>
-
-									{r.rawNode.description && (
-										<div className="ui__ notice">
-											<Markdown source={r.rawNode.description} />
-										</div>
-									)}
-									<p className="ui__ lead" css="margin-bottom: 1rem;">
-										<Value
-											expression={r.dottedName}
-											displayedUnit="€"
-											unit="€/an"
-											precision={0}
-										/>
-									</p>
-								</div>
-							</Animate.fromTop>
-						</Condition>
-					))}
-				</div>
+										{r.rawNode.description && (
+											<div className="ui__ notice">
+												<Markdown source={r.rawNode.description} />
+											</div>
+										)}
+										<p className="ui__ lead" css="margin-bottom: 1rem;">
+											<Value
+												expression={r.dottedName}
+												displayedUnit="€"
+												unit="€/an"
+												precision={0}
+											/>
+										</p>
+									</div>
+								</Animate.fromTop>
+							</Condition>
+						))}
+					</div>
+				</Condition>
 			</div>
 		</section>
 	)

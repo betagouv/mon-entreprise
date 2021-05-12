@@ -9,6 +9,93 @@ aide déclaration revenu indépendant 2020:
     règle: entreprise . ACRE
     par: ACRE
 
+aide déclaration revenu indépendant 2020 . comptabilité:
+  titre: régime de la déclaration contrôlée
+  question: Quel méthode de gestion de la comptabilité est utilisée pour l'entreprise ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - trésorerie
+        - engagement
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
+  remplace: 
+    règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+    par: CSG non déductible + CRDS
+  valeur: comptabilité = 'trésorerie'
+  titre: comptabilité de trésorerie
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total charges sociale:
+  remplace: 
+    règle: dirigeant . rémunération . cotisations
+    par: 
+      somme: 
+        - total charges sociale
+        - dirigeant . indépendant . contrats madelin . montant
+  unité: €/an
+  question: Quel est le montant total des cotisations et contributions sociales payées pendant l'exercice ?
+  description: |
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+    2. Allez dans l'onglet "Document"
+    3. Selectionnez "relevé de situation comptable"
+    4. Reportez dans ce champs le montant de la colonne "Cotisation", ligne "Année 2020"
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG déductible:
+  question: Quel est le montant total de CSG déductible payé cette année ?
+  remplace: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+  unité: €/an
+  description: |
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+    2. Allez dans l'onglet "Document"
+    3. Selectionnez "demander une attestation"
+    3. Puis, "attestation CSG/CRDS"
+    4. Reportez dans ce champs le total de la colonne "Montant déductible CSG" (dernière ligne)
+
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG non déductible:
+  question: Quel est le montant total de CSG non déductible payé cette année ?
+  unité: €/an
+  description: |
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+    2. Allez dans l'onglet "Document"
+    3. Selectionnez "demander une attestation"
+    3. Puis, "attestation CSG/CRDS"
+    4. Reportez dans ce champs le total de la colonne "Montant non déductible : CSG" (dernière ligne)
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
+  question: Quel est le montant total de CRDS payé cette année ?
+  unité: €/an
+  description: |
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+    2. Allez dans l'onglet "Document"
+    3. Selectionnez "demander une attestation"
+    3. Puis, "attestation CSG/CRDS"
+    4. Reportez dans ce champs le total de la colonne "Montant non déductible : CRDS" (dernière ligne)
+
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . cotisations obligatoires déductibles:
+  remplace: cotisations obligatoires déductibles
+  unité: €/an
+  valeur: total charges sociale
+  abattement: 
+    somme: 
+      - CSG non déductible
+      - CRDS
+      - dirigeant . indépendant . cotisations et contributions . formation professionnelle
+
+aide déclaration revenu indépendant 2020 . comptabilité . engagement:
+  valeur: comptabilité = 'engagement'
+  titre: comptabilité d'engagement
+
+
 aide déclaration revenu indépendant 2020 . régime d'imposition: oui
 aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée:
   titre: régime de la déclaration contrôlée
@@ -517,6 +604,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 380:
   applicable si: entreprise . imposition . IR
   résumé: Cotisations personnelles obligatoires de l'exploitant
   valeur: total charges sociales déductibles
+  abattement: dirigeant . indépendant . contrats madelin . part déductible fiscalement
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 326:
   applicable si: entreprise . imposition . IR
@@ -539,7 +627,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FY:
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FZ:
   résumé: Charges sociales (+)
-  valeur: rubrique A2
+  valeur: total charges sociales déductibles
   description: |
     Si votre entreprise emploie des salarié, ajoutez à ce montant le total des cotisations patronales payées durant l'exercice, ainsi que toutes les autres charges sociales
 
@@ -605,9 +693,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2042:
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
   titre: rubrique 1GB / 1HB
   applicable si: entreprise . imposition . IS
-  résumé: Traitements et salaires (+)
+  résumé: Traitements et salaires
   valeur: dirigeant . rémunération . imposable
-  description: A ajouter à vos éventuels revenus salariés
 
   
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA: 
@@ -634,7 +721,9 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSLA:
   résumé: Revenus étrangers imposables mais exonérés de CSG-CRDS
   formule: dirigeant . indépendant . revenus étrangers . montant
 
-aide déclaration revenu indépendant 2020 . informations : oui
+aide déclaration revenu indépendant 2020 . informations : 
+  applicable si: comptabilité . engagement
+  valeur: oui
 aide déclaration revenu indépendant 2020 . informations . réduction Covid:
   description: La réduction de cotisation applicable dans le cas du dispositif Covid
   valeur: réduction covid . total
