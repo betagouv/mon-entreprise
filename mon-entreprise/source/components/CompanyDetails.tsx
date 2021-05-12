@@ -30,6 +30,15 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 		fetchCompanyDetails(siren).then(setCompany)
 	}, [siren])
 
+	if (company === null) {
+		return (
+			<p className="ui__ notice">
+				{siren}
+				<Trans>est un SIREN non diffusable</Trans>
+			</p>
+		)
+	}
+
 	return (
 		<>
 			<h3>
