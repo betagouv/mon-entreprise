@@ -2,11 +2,13 @@ const isSIREN = (input: string) => /^[\s]*([\d][\s]*){9}$/.exec(input)
 const isSIRET = (input: string) => /^[\s]*([\d][\s]*){14}$/.exec(input)
 
 export async function fetchCompanyDetails(siren: string) {
+	// Le paramètre `statut_diffusion` filtre les SIREN non diffusibles, cf.
+	// https://github.com/betagouv/mon-entreprise/issues/1399#issuecomment-770736525
 	const response = await fetch(
 		`https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/${siren.replace(
 			/[\s]/g,
 			''
-		)}`
+		)}?statut_diffusion=O`
 	)
 	if (!response.ok) {
 		return null

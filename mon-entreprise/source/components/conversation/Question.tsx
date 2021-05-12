@@ -261,7 +261,7 @@ export function RadioLabelContent({
 			/>
 			<span>
 				{icônes && <>{emoji(icônes)}&nbsp;</>}
-				<Trans>{label}</Trans>
+				{label}
 			</span>
 		</label>
 	)
