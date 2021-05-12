@@ -1,18 +1,26 @@
+<<<<<<< HEAD
+import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	formatValue,
-	PublicodesExpression,
-	isNotYetDefined,
-	UNSAFE_isNotApplicable,
+
+	isNotYetDefined, PublicodesExpression,
+
+	UNSAFE_isNotApplicable
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
+=======
+import { DottedName } from 'modele-social'
+import Engine, { formatValue, PublicodesExpression } from 'publicodes'
+import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
+>>>>>>> e9c1f6e8 (Export le type PublicodeExpression$)
 
 export type ValueProps<Names extends string> = {
-	expression: string
+	expression: PublicodesExpression
 	unit?: string
 	engine?: Engine<Names>
 	displayedUnit?: string
@@ -34,7 +42,8 @@ export default function Value<Names extends string>({
 		throw new TypeError('expression cannot be null')
 	}
 	const e = engine ?? useEngine()
-	const isRule = expression in e.getParsedRules()
+	const isRule =
+		typeof expression === 'string' && expression in e.getParsedRules()
 	const evaluation = e.evaluate({
 		valeur: expression,
 		...(unit && { unité: unit }),
