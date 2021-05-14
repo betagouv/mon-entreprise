@@ -107,6 +107,23 @@ const aides = [
 		),
 	},
 	{
+		title: 'Parcours Emploi Compétence',
+		dottedName:
+			"contrat salarié . aides employeur . aide à l'embauche d'un jeune en PEC",
+		situation: {
+			'contrat salarié': "'contrats associations . PEC jeune'",
+		},
+		dateFin: new Date('2021/12/31'),
+		versement: <Trans>mensuel</Trans>,
+		description: (
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.handicapé">
+				Pour l’embauche d’un jeune de moins de 26 ans dans le cadre d'un «
+				Parcours Emploi Compétences » dans le secteur non marchand (associations
+				et secteur public).
+			</Trans>
+		),
+	},
+	{
 		title: "Demandeur d'emploi de 45 ans ou plus",
 		dottedName:
 			"contrat salarié . aides employeur . aide à l'embauche senior professionnalisation",
