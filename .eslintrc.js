@@ -59,7 +59,7 @@ module.exports = {
           "jsx": true
         },
         "tsconfigRootDir": __dirname,
-        "project": [ "./tsconfig.json" ]
+        "project": [ "./mon-entreprise/tsconfig.json", "./publicodes/tsconfig.json" ]
       },
       plugins: [ "@typescript-eslint" ],
       rules: {

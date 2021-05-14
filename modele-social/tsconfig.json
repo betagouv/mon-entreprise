@@ -1,8 +1,8 @@
 {
-	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"allowJs": true,
 		"noEmit": true,
 		"strict": true
-  },
-  "include": ["build.js"]
+	},
+	"include": ["build.js"]
 }

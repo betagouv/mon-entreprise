@@ -1,23 +1,21 @@
 import { expect } from 'chai'
-import * as sinon from 'sinon'
-import { createStore } from 'redux'
 import { createMemoryHistory } from 'history'
-
 import { DottedName } from 'modele-social'
+import { createStore } from 'redux'
+import * as sinon from 'sinon'
+import {
+	loadPreviousSimulation,
+	setSimulationConfig,
+	updateSituation,
+} from '../source/actions/actions'
 import reducers, {
 	Simulation,
 	SimulationConfig,
 } from '../source/reducers/rootReducer'
-import { PreviousSimulation } from '../source/selectors/previousSimulationSelectors'
-import safeLocalStorage from '../source/storage/safeLocalStorage'
 import { setupSimulationPersistence } from '../source/storage/persistSimulation'
-import {
-	loadPreviousSimulation,
-	updateSituation,
-	setSimulationConfig,
-} from '../source/actions/actions'
+import safeLocalStorage from '../source/storage/safeLocalStorage'
 
-function delay(ms) {
+function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
@@ -40,15 +38,15 @@ const initialSimulation: Simulation = {
 
 describe('[persistence] When simulation persistence is setup', () => {
 	const sandbox = sinon.createSandbox()
-	let spiedSafeLocalStorage
-	let store
+	let spiedSafeLocalStorage: any
+	let store: any
 
 	beforeEach(() => {
 		spiedSafeLocalStorage = sandbox.spy(safeLocalStorage as any)
 		store = createStore(reducers, {
 			simulation: initialSimulation,
 			activeTargetInput: 'sometargetinput',
-		})
+		} as any)
 
 		setupSimulationPersistence(store, 0)
 	})
@@ -81,7 +79,7 @@ describe('[persistence] When simulation config is set', () => {
 		'{"situation":{"dotted name . other":"42"},"activeTargetInput":"someothertargetinput","foldedSteps":["someotherstep"]}'
 
 	const sandbox = sinon.createSandbox()
-	let store
+	let store: any
 
 	beforeEach(() => {
 		sandbox
