@@ -1,7 +1,15 @@
 {
-	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": "source",
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],
@@ -14,5 +22,5 @@
 		"noEmit": true,
 		"strict": true
 	},
-	"include": ["types", "source", "dev-server.js"]
+	"include": ["types", "source", "test/persistence.test.ts", "dev-server.js"]
 }
