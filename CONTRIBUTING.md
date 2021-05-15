@@ -30,6 +30,9 @@ Nous utilisons :
 
 ### Démarrage
 
+Tout d'abord assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier `mon-entreprise/.env`.
+Demandez les détails à vos collègues (ces informations n'étant pas publiques).
+
 Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramètre `depth` de git pour ne télécharger que les derniers commits.
 
 ```
@@ -38,6 +41,9 @@ git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entre
 
 # Install the Javascript dependencies through Yarn
 yarn install
+
+# Download some data
+yarn prepare
 
 # Watch changes in publicodes and run the server for mon-entreprise
 yarn start
