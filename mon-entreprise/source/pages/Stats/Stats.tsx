@@ -10,18 +10,23 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
-import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
-import stats from '../../data/stats.json'
+import statsJson from '../../data/stats.json'
 import { debounce } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Chart from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
+import GlobalStats from './GlobalStats'
+import { formatDay, formatMonth, Indicators, Indicator } from './utils'
 import SatisfactionChart from './SatisfactionChart'
+import { StatsStruct, PageChapter2, Page, PageSatisfaction } from './types'
+
+const stats = (statsJson as unknown) as StatsStruct
 
 type Period = 'mois' | 'jours'
-type Chapter2 = typeof stats.visitesJours.pages[number]['page_chapter2'] | 'PAM'
+type Chapter2 = PageChapter2 | 'PAM'
+
 const chapters2: Chapter2[] = [
 	...new Set(stats.visitesMois.pages.map((p) => p.page_chapter2)),
 	'PAM',
@@ -31,6 +36,8 @@ type Data =
 	| Array<{ date: string; nombre: number }>
 	| Array<{ date: string; nombre: Record<string, number> }>
 
+type Pageish = Page & PageSatisfaction
+
 const isPAM = (name: string | undefined) =>
 	name &&
 	[
@@ -39,23 +46,15 @@ const isPAM = (name: string | undefined) =>
 		'auxiliaire_medical',
 		'sage_femme',
 	].includes(name)
-type RawData = Array<{
-	date: string
-	page_chapter1?: string
-	page_chapter2: string
-	page_chapter3?: string
-	page?: string
-	click?: string
-	nombre: number
-}>
+
 const filterByChapter2 = (
-	data: RawData,
-	chapter2: Chapter2
+	pages: Pageish[],
+	chapter2: Chapter2 | ''
 ): Array<{ date: string; nombre: Record<string, number> }> => {
 	return toPairs(
 		groupBy(
 			(p) => p.date,
-			data.filter(
+			pages.filter(
 				(p) =>
 					!chapter2 ||
 					(p.page !== 'accueil_pamc' &&
@@ -72,7 +71,7 @@ const filterByChapter2 = (
 	}))
 }
 
-function groupByDate(data: RawData) {
+function groupByDate(data: Pageish[]) {
 	return toPairs(
 		groupBy(
 			(p) => p.date,
@@ -102,7 +101,7 @@ const computeTotals = (data: Data): number | Record<string, number> => {
 		.reduce(mergeWith(add), {})
 }
 
-export default function Stats() {
+const StatsDetail = () => {
 	const defaultPeriod = 'mois'
 	const history = useHistory()
 	const location = useLocation()
@@ -113,7 +112,7 @@ export default function Stats() {
 		(urlParams.get('periode') as Period) ?? defaultPeriod
 	)
 	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
-		urlParams.get('module') ?? ''
+		(urlParams.get('module') as Chapter2) ?? ''
 	)
 
 	// The logic to persist some state in query parameters in the URL could be
@@ -134,16 +133,16 @@ export default function Stats() {
 		if (!chapter2) {
 			return rawData.site
 		}
-		return filterByChapter2(rawData.pages, chapter2)
+		return filterByChapter2(rawData.pages as Pageish[], chapter2)
 	}, [period, chapter2])
 
 	const repartition = useMemo(() => {
 		const rawData = stats.visitesMois
-		return groupByDate(rawData.pages)
+		return groupByDate(rawData.pages as Pageish[])
 	}, [])
 
 	const satisfaction = useMemo(() => {
-		return filterByChapter2(stats.satisfaction, chapter2)
+		return filterByChapter2(stats.satisfaction as Pageish[], chapter2)
 	}, [chapter2])
 
 	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
@@ -173,21 +172,10 @@ export default function Stats() {
 		() => computeTotals(slicedVisits),
 		[slicedVisits]
 	)
+
 	return (
 		<>
-			<TrackPage chapter1="informations" name="stats" />
-			<ScrollToTop />
-
-			<h1>
-				Statistiques <>{emoji('📊')}</>
-			</h1>
-			<p>
-				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
-				<br />
-				Les données recueillies sont anonymisées.{' '}
-				<Privacy label="En savoir plus" />
-			</p>
-
+			<h2>Statistiques détaillées</h2>
 			<p>
 				<strong>1. Sélectionner la fonctionnalité : </strong>
 			</p>
@@ -315,55 +303,32 @@ export default function Stats() {
 					/>
 				</div>
 			</div>
-			<DemandeUtilisateurs />
-			<MoreInfosOnUs />
 		</>
 	)
 }
 
-const Indicators = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	margin: 2rem 0;
-`
-
-type IndicatorProps = {
-	main?: string
-	subTitle?: React.ReactNode
-}
-
-function Indicator({ main, subTitle }: IndicatorProps) {
+export default function Stats() {
 	return (
-		<div
-			className="ui__ card lighter-bg"
-			css={`
-				text-align: center;
-				padding: 1rem;
-				width: 210px;
-				font-size: 110%;
-			`}
-		>
-			<small>{subTitle}</small>
-			<br />
-			<strong>{main}</strong>
-		</div>
+		<>
+			<TrackPage chapter1="informations" name="stats" />
+			<ScrollToTop />
+
+			<h1>
+				Statistiques <>{emoji('📊')}</>
+			</h1>
+			<p>
+				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
+				<br />
+				Les données recueillies sont anonymisées.{' '}
+				<Privacy label="En savoir plus" />
+			</p>
+			<GlobalStats stats={stats} />
+			<StatsDetail />
+
+			<DemandeUtilisateurs />
+			<MoreInfosOnUs />
+		</>
 	)
-}
-
-function formatDay(date: string | Date) {
-	return new Date(date).toLocaleString('default', {
-		weekday: 'long',
-		day: 'numeric',
-		month: 'long',
-	})
-}
-
-function formatMonth(date: string | Date) {
-	return new Date(date).toLocaleString('default', {
-		month: 'long',
-		year: 'numeric',
-	})
 }
 
 function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
@@ -373,9 +338,10 @@ function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 	if (!s.tracking) {
 		return ''
 	}
-	return typeof s.tracking === 'string' ? s.tracking : s.tracking.chapter2 ?? ''
+	const tracking = s.tracking as { chapter2?: Chapter2 }
+	return typeof tracking === 'string' ? tracking : tracking.chapter2 ?? ''
 }
-function SelectedSimulator(props: { chapter2: Chapter2 }) {
+function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
 	const simulateur = Object.values(useSimulatorsData()).find(
 		(s) => getChapter2(s) === props.chapter2 && !(s.tracking as any).chapter3
 	)
@@ -440,7 +406,9 @@ function SimulateursChoice(props: {
 						type="radio"
 						name="simulateur"
 						value={getChapter2(s)}
-						onChange={(evt) => props.onChange(evt.target.value)}
+						onChange={(evt) =>
+							props.onChange(evt.target.value as Chapter2 | '')
+						}
 						checked={getChapter2(s) === props.value}
 					/>
 					<span>

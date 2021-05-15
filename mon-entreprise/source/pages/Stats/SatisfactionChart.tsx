@@ -1,6 +1,4 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { add, mapObjIndexed } from 'ramda'
-import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import {
 	Bar,
@@ -10,6 +8,22 @@ import {
 	Tooltip,
 	XAxis,
 } from 'recharts'
+import { SatisfactionLevel } from './types'
+
+export const SatisfactionStyle: [
+	SatisfactionLevel,
+	{ emoji: string; color: string }
+][] = [
+	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#ff5959' }],
+	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#fff339' }],
+	[SatisfactionLevel.Bien, { emoji: '🙂', color: '#90e789' }],
+	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#0fc700' }],
+]
+
+function toPercentage(data: Record<string, number>): Record<string, number> {
+	const total = Object.values(data).reduce(add)
+	return { ...mapObjIndexed((value) => (100 * value) / total, data), total }
+}
 
 type SatisfactionChartProps = {
 	data: Array<{
@@ -17,13 +31,7 @@ type SatisfactionChartProps = {
 		nombre: Record<string, number>
 	}>
 }
-
-function toPercentage(data: Record<string, number>): Record<string, number> {
-	const total = Object.values(data).reduce(add)
-	return { ...mapObjIndexed((value) => (100 * value) / total, data), total }
-}
 export default function SatisfactionChart({ data }: SatisfactionChartProps) {
-	const { color, lightColor, lighterColor } = useContext(ThemeColorsContext)
 	if (!data.length) {
 		return null
 	}
@@ -34,22 +42,21 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 				<BarChart data={flattenData}>
 					<XAxis dataKey="date" tickFormatter={formatMonth} />
 					<Tooltip content={<CustomTooltip />} />
-					<Bar dataKey="mauvais" stackId="1" fill="#fd667f" maxBarSize={50}>
-						<LabelList dataKey="mauvais" content={() => '🙁'} position="left" />
-					</Bar>
-					<Bar dataKey="moyen" stackId="1" maxBarSize={50} fill={lighterColor}>
-						<LabelList dataKey="moyen" content={() => '😐'} position="left" />
-					</Bar>
-					<Bar dataKey="bien" stackId="1" maxBarSize={50} fill={lightColor}>
-						<LabelList dataKey="bien" content={() => '🙂'} position="left" />
-					</Bar>
-					<Bar dataKey="très bien" stackId="1" maxBarSize={50} fill={color}>
-						<LabelList
-							dataKey="très bien"
-							content={() => '😀'}
-							position="left"
-						/>
-					</Bar>
+					{SatisfactionStyle.map(([level, { emoji, color }]) => (
+						<Bar
+							key={level}
+							dataKey={level}
+							stackId="1"
+							fill={color}
+							maxBarSize={50}
+						>
+							<LabelList
+								dataKey={level}
+								content={() => emoji}
+								position="left"
+							/>
+						</Bar>
+					))}
 				</BarChart>
 			</ResponsiveContainer>
 		</>
