@@ -39,14 +39,16 @@ export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
-	const hrefLink =
-		hrefLangLink[language][
-			decodeURIComponent(
-				(process.env.NODE_ENV === 'production'
-					? window.location.protocol + '//' + window.location.host
-					: '') + window.location.pathname
-			).replace(/\/$/, '')
-		] || []
+
+	const encodedUri =
+		(process.env.NODE_ENV === 'production' ||
+		process.env.NODE_ENV === 'development'
+			? window.location.protocol + '//' + window.location.host
+			: '') + window.location.pathname
+	const uri = decodeURIComponent(encodedUri).replace(/\/$/, '')
+
+	const hrefLink = hrefLangLink[language][uri] || []
+
 	return (
 		<div className="footer-container">
 			<Helmet>
