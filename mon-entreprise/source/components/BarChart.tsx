@@ -1,10 +1,10 @@
+import { ThemeColorsContext } from 'Components/utils/colors'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { animated, config, useSpring } from 'react-spring'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { ThemeColorsContext } from 'Components/utils/colors'
-import { formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
+import { animated, config, useSpring } from 'react-spring'
 
 const ANIMATION_SPRING = config.gentle
 

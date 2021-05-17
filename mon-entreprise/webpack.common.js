@@ -9,7 +9,7 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 module.exports.styleLoader = (styleLoader) => ({
 	test: /\.css$/,
 	use: [
-		{ loader: styleLoader },
+		styleLoader,
 		{
 			loader: 'css-loader',
 			options: {

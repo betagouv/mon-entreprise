@@ -3,3 +3,4 @@ source/data/*
 !source/data/versement-transport.json
 cypress/videos
 cypress/screenshots
+.next

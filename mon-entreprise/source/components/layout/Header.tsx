@@ -3,11 +3,12 @@ import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/Urssaf.svg'
+import dynamic from 'next/dynamic'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import NewsBanner from './NewsBanner'
 
+const NewsBanner = dynamic(() => import('./NewsBanner'))
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
 	const { language } = useTranslation().i18n

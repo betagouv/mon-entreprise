@@ -1,18 +1,47 @@
 {
-	"extends": "../tsconfig.json",
-	"compilerOptions": {
-		"baseUrl": "source",
-		"paths": {
-			"Actions/*": ["actions/*"],
-			"Components": ["components"],
-			"Components/*": ["components/*"],
-			"Images/*": ["static/images/*"],
-			"Reducers/*": ["reducers/*"],
-			"Selectors/*": ["selectors/*"],
-			"Types/*": ["types/*"]
-		},
-		"noEmit": true,
-		"strict": true
-	},
-	"include": ["types", "source", "dev-server.js"]
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "source",
+    "paths": {
+      "Actions/*": [
+        "actions/*"
+      ],
+      "Components": [
+        "components"
+      ],
+      "Components/*": [
+        "components/*"
+      ],
+      "Images/*": [
+        "static/images/*"
+      ],
+      "Reducers/*": [
+        "reducers/*"
+      ],
+      "Selectors/*": [
+        "selectors/*"
+      ],
+      "Types/*": [
+        "types/*"
+      ]
+    },
+    "noEmit": true,
+    "strict": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "types",
+    "source",
+    "dev-server.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

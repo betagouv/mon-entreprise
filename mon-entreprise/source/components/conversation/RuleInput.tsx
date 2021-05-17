@@ -1,12 +1,12 @@
 import Input from 'Components/conversation/Input'
 import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
-import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
+import dynamic from 'next/dynamic'
 import Engine, { ASTNode, formatValue, reduceAST } from 'publicodes'
 import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
 import { RuleNode } from 'publicodes/dist/types/rule'
@@ -17,6 +17,9 @@ import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import TextInput from './TextInput'
 
+const SelectAtmp = dynamic(
+	() => import('Components/conversation/select/SelectTauxRisque')
+)
 type Props<Name extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
 	'onChange' | 'defaultValue' | 'onSubmit'

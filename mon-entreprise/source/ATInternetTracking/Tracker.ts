@@ -1,5 +1,3 @@
-import './smarttag.js'
-
 // Ci-dessous les indicateurs personnalisés de site et de page
 // https://developers.atinternet-solutions.com/javascript-fr/contenus-javascript-fr/indicateurs-de-site-et-de-page-javascript-fr/
 export const INDICATOR = {
@@ -56,12 +54,17 @@ declare global {
 	}
 }
 
-export function createTracker(siteId?: string, doNotTrack = false) {
+export async function createTracker(siteId?: string, doNotTrack = false) {
 	const site = siteId ? +siteId : 0
 	if (Number.isNaN(site)) {
 		throw new Error('expect string siteId to be of number form')
 	}
-	const BaseTracker: ATTrackerClass = siteId ? ATInternet.Tracker.Tag : Log
+	let BaseTracker: ATTrackerClass = Log
+	if (siteId && typeof window !== 'undefined') {
+		console.log(typeof window !== 'undefined')
+		await import('./smarttag.js')
+		BaseTracker = ATInternet.Tracker.Tag
+	}
 	class Tag extends BaseTracker {
 		site: CustomSiteIndicator = {
 			[INDICATOR.SITE.LANGAGE]: '[fr]',

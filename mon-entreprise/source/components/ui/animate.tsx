@@ -7,7 +7,7 @@ import {
 	SpringConfig,
 	Trail,
 	Transition,
-} from 'react-spring/renderprops'
+} from 'react-spring'
 
 type Props = {
 	children: React.ReactNode

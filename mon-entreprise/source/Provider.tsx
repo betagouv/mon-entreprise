@@ -18,16 +18,10 @@ import {
 } from 'redux'
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
-import { createTracker } from './ATInternetTracking/Tracker'
+import { createTracker, Log } from './ATInternetTracking/Tracker'
 import logo from './static/images/logo.svg'
 import safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
-
-const ATTracker = createTracker(
-	process.env.AT_INTERNET_SITE_ID,
-	safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
-		navigator.doNotTrack === '1'
-)
 
 declare global {
 	interface Window {
@@ -38,13 +32,15 @@ if (process.env.REDUX_TRACE) {
 	console.log('going to trace')
 }
 const composeEnhancers =
-	(process.env.REDUX_TRACE
-		? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-		  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-				trace: true,
-				traceLimit: 25,
-		  })
-		: window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+	(typeof window !== 'undefined' &&
+		(process.env.REDUX_TRACE
+			? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+			  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+					trace: true,
+					traceLimit: 25,
+			  })
+			: window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)) ||
+	compose
 
 if (
 	process.env.NODE_ENV === 'production' &&
@@ -101,7 +97,20 @@ export default function Provider({
 		return createStore(reducers, initialStore, storeEnhancer)
 	}, [])
 	onStoreCreated?.(store)
-
+	const [tracker, setTracker] = useState(new Log())
+	useEffect(() => {
+		createTracker(
+			process.env.AT_INTERNET_SITE_ID,
+			safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
+				navigator.doNotTrack === '1'
+		).then((tracker) =>
+			setTracker(
+				new tracker({
+					language: i18next.language as 'fr' | 'en',
+				})
+			)
+		)
+	}, [setTracker])
 	// Remove loader
 	const css = document.createElement('style')
 	css.type = 'text/css'
@@ -148,13 +157,7 @@ export default function Provider({
 				<ThemeColorsProvider
 					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
-					<TrackingContext.Provider
-						value={
-							new ATTracker({
-								language: i18next.language as 'fr' | 'en',
-							})
-						}
-					>
+					<TrackingContext.Provider value={tracker}>
 						<SiteNameContext.Provider value={basename}>
 							<SitePathProvider value={sitePaths}>
 								<I18nextProvider i18n={i18next}>

@@ -17,13 +17,15 @@ if (branch && branch !== 'master') {
 		'font-weight: bold; text-decoration: underline;'
 	)
 }
-Sentry.init({
-	dsn:
-		'https://92bbc21937b24136a2fe1b1d922b000f@o548798.ingest.sentry.io/5745615',
-	integrations: [new Integrations.BrowserTracing()],
-	release,
-	// Set tracesSampleRate to 1.0 to capture 100%
-	// of transactions for performance monitoring.
-	// We recommend adjusting this value in production
-	tracesSampleRate: 0.5,
-})
+if (typeof window !== 'undefined') {
+	Sentry.init({
+		dsn:
+			'https://92bbc21937b24136a2fe1b1d922b000f@o548798.ingest.sentry.io/5745615',
+		integrations: [new Integrations.BrowserTracing()],
+		release,
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 0.5,
+	})
+}

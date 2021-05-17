@@ -10,6 +10,7 @@
 		"smarttag"
 	],
 	"search.exclude": {
+		"**/.next": true,
 		"**/dist": true
 	}
 }
