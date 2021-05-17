@@ -1,7 +1,7 @@
+import { Link, useLocation } from 'Components/router-adapter'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
 import { icons } from './ui/SocialIcon'
 import { SitePathsContext } from './utils/SitePathsContext'
 

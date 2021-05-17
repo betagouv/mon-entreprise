@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'Components/router-adapter'
 import netlifyToml from '../../netlify.toml'
 
 export default netlifyToml.redirects

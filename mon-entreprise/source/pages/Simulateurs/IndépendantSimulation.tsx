@@ -2,6 +2,7 @@ import { updateSituation } from 'Actions/actions'
 import Banner from 'Components/Banner'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import { Link } from 'Components/router-adapter'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import IndépendantExplanation from 'Components/simulationExplanation/IndépendantExplanation'
@@ -12,7 +13,6 @@ import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 export function IndépendantPLSimulation() {
 	return (

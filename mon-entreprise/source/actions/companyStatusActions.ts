@@ -1,9 +1,9 @@
-import { fetchCompanyDetails } from '../api/sirene'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
+import { useHistory } from 'Components/router-adapter'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
+import { fetchCompanyDetails } from '../api/sirene'
 import { Action } from './actions'
 import {
 	addCommuneDetails,

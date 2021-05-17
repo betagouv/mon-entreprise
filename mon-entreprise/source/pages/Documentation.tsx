@@ -1,19 +1,17 @@
+import { Redirect, useHistory, useLocation } from 'Components/router-adapter'
 import SearchButton from 'Components/SearchButton'
 import * as Animate from 'Components/ui/animate'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import dynamic from 'next/dynamic'
 import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
 
-const SearchBar = dynamic(() => import('Components/SearchBar'))
 export default function RulePage() {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
@@ -89,7 +87,6 @@ function DocumentationLanding() {
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>
 			<p>Explorez toutes les règles de la documentation</p>
-			<SearchBar showListByDefault={true} />
 		</>
 	)
 }

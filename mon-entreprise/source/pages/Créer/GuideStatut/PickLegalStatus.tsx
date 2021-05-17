@@ -1,10 +1,10 @@
+import { Link } from 'Components/router-adapter'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { filter } from 'ramda'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import {
 	LegalStatus,
 	possibleStatusSelector,

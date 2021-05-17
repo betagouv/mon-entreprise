@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
-import Worker from 'worker-loader!./SearchBar.worker.js'
+import { utils } from 'publicodes'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+// import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
-import { EngineContext, useEngine } from './utils/EngineContext'
-import { utils } from 'publicodes'
+import { useEngine } from './utils/EngineContext'
 
-const worker = new Worker()
+// const worker = new Worker()
 
 type SearchBarProps = {
 	showListByDefault?: boolean
@@ -87,14 +87,13 @@ export default function SearchBar({
 	)
 
 	useEffect(() => {
-		worker.postMessage({
-			rules: searchIndex,
-		})
-
-		worker.onmessage = ({ data: results }) => setResults(results)
-		return () => {
-			worker.onmessage = null
-		}
+		// worker.postMessage({
+		// 	rules: searchIndex,
+		// })
+		// worker.onmessage = ({ data: results }) => setResults(results)
+		// return () => {
+		// 	worker.onmessage = null
+		// }
 	}, [searchIndex, setResults])
 
 	return (
@@ -106,7 +105,7 @@ export default function SearchBar({
 				placeholder={i18n.t('Entrez des mots clefs ici')}
 				onChange={(e) => {
 					const input = e.target.value
-					if (input.length > 0) worker.postMessage({ input })
+					// if (input.length > 0) worker.postMessage({ input })
 					setInput(input)
 				}}
 			/>

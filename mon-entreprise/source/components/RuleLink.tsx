@@ -1,7 +1,5 @@
-import { RuleLink as EngineRuleLink } from 'publicodes-react'
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { DottedName } from 'modele-social'
+import React, { useContext } from 'react'
 import { EngineContext } from './utils/EngineContext'
 import { SitePathsContext } from './utils/SitePathsContext'
 
@@ -13,11 +11,5 @@ export default function RuleLink(
 ) {
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useContext(EngineContext)
-	return (
-		<EngineRuleLink
-			{...props}
-			engine={engine}
-			documentationPath={sitePaths.documentation.index}
-		/>
-	)
+	return null
 }

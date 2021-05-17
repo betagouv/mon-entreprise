@@ -1,6 +1,6 @@
 import { setSimulationConfig } from 'Actions/actions'
+import { useHistory } from 'Components/router-adapter'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
 import { configSelector } from 'Selectors/simulationSelectors'
@@ -14,7 +14,7 @@ export default function useSimulationConfig(
 	// "location" retrieved at this point is still the previous URL. What we
 	// actually need is to have a simulator identifier, which is currently not
 	// accessible from the situation config but is defined in the metadata file.
-	const url = useHistory().location.pathname.split('?')[0]
+	const url = useHistory().pathname.split('?')[0]
 
 	const existingCompany = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany

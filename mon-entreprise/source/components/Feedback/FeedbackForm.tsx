@@ -1,7 +1,7 @@
+import { useLocation } from 'Components/router-adapter'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router'
 
 declare global {
 	const $: any

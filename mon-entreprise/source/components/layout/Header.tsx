@@ -1,14 +1,13 @@
+import { Link } from 'Components/router-adapter'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/Urssaf.svg'
-import dynamic from 'next/dynamic'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 
-const NewsBanner = dynamic(() => import('./NewsBanner'))
+// const NewsBanner = dynamic(() => import('./NewsBanner'))
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
 	const { language } = useTranslation().i18n
@@ -58,7 +57,7 @@ export default function Header() {
 					<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
 				</a>
 			</div>
-			<NewsBanner />
+			{/* <NewsBanner /> */}
 		</>
 	)
 }

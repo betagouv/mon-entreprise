@@ -1,7 +1,7 @@
+import { Link } from 'Components/router-adapter'
 import image from 'Images/map-directions.png'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
 
 export default () => (
 	<div

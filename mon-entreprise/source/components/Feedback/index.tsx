@@ -1,7 +1,7 @@
+import { useLocation } from 'Components/router-adapter'
 import React, { useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import safeLocalStorage from '../../storage/safeLocalStorage'

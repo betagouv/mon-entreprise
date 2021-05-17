@@ -913,9 +913,13 @@ export function getSimulatorsData({
 export default function useSimulatorsData(): SimulatorData {
 	const { t, i18n } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-
 	return useMemo(
-		() => getSimulatorsData({ t, sitePaths, language: i18n.language }),
+		() =>
+			getSimulatorsData({
+				t,
+				sitePaths,
+				language: i18n.language,
+			}),
 		[t, sitePaths, i18n.language]
 	)
 }

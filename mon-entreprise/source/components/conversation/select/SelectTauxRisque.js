@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
-const worker = new Worker()
+
+// const worker = new Worker()
 
 function SelectComponent({ onChange, onSubmit, options }) {
 	const [searchResults, setSearchResults] = useState()
@@ -10,13 +10,13 @@ function SelectComponent({ onChange, onSubmit, options }) {
 		onSubmit()
 	}
 	const { t } = useTranslation()
-	useEffect(() => {
-		worker.postMessage({
-			options,
-		})
+	// useEffect(() => {
+	// 	worker.postMessage({
+	// 		options,
+	// 	})
 
-		worker.onmessage = ({ data: results }) => setSearchResults(results)
-	}, [options])
+	// 	worker.onmessage = ({ data: results }) => setSearchResults(results)
+	// }, [options])
 	return (
 		<>
 			<input

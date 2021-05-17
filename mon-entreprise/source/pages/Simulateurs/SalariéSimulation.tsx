@@ -1,10 +1,9 @@
-import Banner from 'Components/Banner'
+import { Link } from 'Components/router-adapter'
 import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
 
 export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
@@ -35,7 +34,7 @@ export default function SalariéSimulation() {
 
 			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
 			 * le simulateur dirigeant de SASU sur son site. */}
-			{!document.referrer?.includes('code.travail.gouv.fr') && (
+			{/* {!document.referrer?.includes('code.travail.gouv.fr') && (
 				<Banner icon={'👨‍✈️'}>
 					<Trans>
 						Vous êtes dirigeant d'une SAS(U) ?{' '}
@@ -44,7 +43,7 @@ export default function SalariéSimulation() {
 						</Link>
 					</Trans>
 				</Banner>
-			)}
+			)} */}
 		</>
 	)
 }

@@ -1,6 +1,6 @@
+import { Route, useLocation } from 'Components/router-adapter'
 import Engine, { utils } from 'publicodes'
 import { useCallback, useRef } from 'react'
-import { Route, useLocation } from 'react-router-dom'
 import {
 	BasepathContext,
 	EngineContext,

@@ -1,7 +1,7 @@
+import { Route, Switch, useLocation } from 'Components/router-adapter'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
 import AfterRegistration from './AfterRegistration'

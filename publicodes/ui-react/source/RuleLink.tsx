@@ -1,7 +1,7 @@
+import { Link, useLocation } from 'Components/router-adapter'
 import Engine, { utils } from 'publicodes'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Link, useLocation } from 'react-router-dom'
 import {
 	BasepathContext,
 	EngineContext,

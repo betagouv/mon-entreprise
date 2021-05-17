@@ -1,9 +1,9 @@
+import { Link } from 'Components/router-adapter'
+import { icons } from 'Components/ui/SocialIcon'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { icons } from 'Components/ui/SocialIcon'
 import illustration from './illustration.png'
 
 export default function Options() {

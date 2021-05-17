@@ -1,17 +1,17 @@
 import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
-import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext, useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import {
 	Link,
 	NavLink,
 	Redirect,
 	useHistory,
 	useRouteMatch,
-} from 'react-router-dom'
+} from 'Components/router-adapter'
+import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { useContext, useEffect } from 'react'
+import emoji from 'react-easy-emoji'
 import styled from 'styled-components'
 import useSWR from 'swr'
 import { TrackPage } from '../../ATInternetTracking'

@@ -163,7 +163,7 @@ function constructSitePaths<T extends SitePathObject<T>>(
 }
 
 export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
-	const sitePaths = language === 'fr' ? sitePathsFr : sitePathsEn
+	const sitePaths = language === 'en' ? sitePathsEn : sitePathsFr
 	return constructSitePaths('', sitePaths)
 }
 

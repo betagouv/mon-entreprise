@@ -1,10 +1,8 @@
-import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Overlay from './Overlay'
 
-const SearchBar = dynamic(() => import('Components/SearchBar'))
 type SearchButtonProps = {
 	invisibleButton?: boolean
 }
@@ -33,7 +31,6 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			<h1>
 				<Trans>Chercher dans la documentation</Trans>
 			</h1>
-			<SearchBar />
 		</Overlay>
 	) : invisibleButton ? null : (
 		<button

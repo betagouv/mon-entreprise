@@ -1,12 +1,10 @@
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
-import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
-import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import {
 	applyMiddleware,
@@ -44,6 +42,7 @@ const composeEnhancers =
 
 if (
 	process.env.NODE_ENV === 'production' &&
+	typeof navigator !== 'undefined' &&
 	'serviceWorker' in navigator &&
 	!inIframe()
 ) {
@@ -82,13 +81,13 @@ export default function Provider({
 	children,
 	sitePaths = {} as SitePaths,
 }: ProviderProps) {
-	const history = useMemo(
-		() =>
-			createBrowserHistory({
-				basename: process.env.NODE_ENV === 'production' ? '' : basename,
-			}),
-		[]
-	)
+	// const history = useMemo(
+	// 	() =>
+	// 		createBrowserHistory({
+	// 			basename: process.env.NODE_ENV === 'production' ? '' : basename,
+	// 		}),
+	// 	[]
+	// )
 
 	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
 
@@ -112,21 +111,21 @@ export default function Provider({
 		)
 	}, [setTracker])
 	// Remove loader
-	const css = document.createElement('style')
-	css.type = 'text/css'
-	css.innerHTML = `
-#js {
-	animation: appear 0.5s;
-	opacity: 1;
-}
-#loading {
-	display: none !important;
-}`
-	document.body.appendChild(css)
-	const iframeCouleur =
-		new URLSearchParams(document?.location.search.substring(1)).get(
-			'couleur'
-		) ?? undefined
+	// 	const css = document.createElement('style')
+	// 	css.type = 'text/css'
+	// 	css.innerHTML = `
+	// #js {
+	// 	animation: appear 0.5s;
+	// 	opacity: 1;
+	// }
+	// #loading {
+	// 	display: none !important;
+	// }`
+	// 	document.body.appendChild(css)
+	// const iframeCouleur =
+	// 	new URLSearchParams(document?.location.search.substring(1)).get(
+	// 		'couleur'
+	// ) ?? undefined
 
 	return (
 		<ErrorBoundary
@@ -155,15 +154,15 @@ export default function Provider({
 		>
 			<ReduxProvider store={store}>
 				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+				// color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
 					<TrackingContext.Provider value={tracker}>
 						<SiteNameContext.Provider value={basename}>
 							<SitePathProvider value={sitePaths}>
 								<I18nextProvider i18n={i18next}>
-									<Router history={history}>
-										<>{children}</>
-									</Router>
+									{/* <Router history={history}> */}
+									<>{children}</>
+									{/* </Router> */}
 								</I18nextProvider>
 							</SitePathProvider>
 						</SiteNameContext.Provider>

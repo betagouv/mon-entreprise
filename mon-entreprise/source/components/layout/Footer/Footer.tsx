@@ -1,15 +1,13 @@
 import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
 import NewsletterRegister from 'Components/NewsletterRegister'
+import { Link, useLocation } from 'Components/router-adapter'
 import SocialIcon from 'Components/ui/SocialIcon'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
 import useSimulatorsData from '../../../pages/Simulateurs/metadata'
-import { hrefLangLink } from '../../../sitePaths'
 import './Footer.css'
 import Privacy from './Privacy'
 
@@ -39,25 +37,25 @@ export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
-	const hrefLink =
-		hrefLangLink[language][
-			decodeURIComponent(
-				(process.env.NODE_ENV === 'production'
-					? window.location.protocol + '//' + window.location.host
-					: '') + window.location.pathname
-			).replace(/\/$/, '')
-		] || []
+	// const hrefLink =
+	// 	hrefLangLink[language][
+	// 		decodeURIComponent(
+	// 			(process.env.NODE_ENV === 'production'
+	// 				? window.location.protocol + '//' + window.location.host
+	// 				: '') + window.location.pathname
+	// 		).replace(/\/$/, '')
+	// 	] || []
 	return (
 		<div className="footer-container">
 			<Helmet>
-				{hrefLink.map(({ href, hrefLang }) => (
+				{/* {hrefLink.map(({ href, hrefLang }) => (
 					<link
 						key={hrefLang}
 						rel="alternate"
 						hrefLang={hrefLang}
 						href={href}
 					/>
-				))}
+				))} */}
 			</Helmet>
 			<footer className="footer">
 				{showFeedback && (
@@ -113,22 +111,6 @@ export default function Footer() {
 							</Link>
 						</>
 					)}
-					{!!hrefLink.length && '  •  '}
-					{hrefLink.map(({ hrefLang, href }) => (
-						<a
-							href={href}
-							key={hrefLang}
-							style={{ textDecoration: 'underline' }}
-						>
-							{hrefLang === 'fr' ? (
-								<> Passer en français {emoji('🇫🇷')}</>
-							) : hrefLang === 'en' ? (
-								<> Switch to English {emoji('🇬🇧')}</>
-							) : (
-								hrefLang
-							)}
-						</a>
-					))}
 				</p>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>

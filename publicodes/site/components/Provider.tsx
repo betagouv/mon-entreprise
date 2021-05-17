@@ -1,9 +1,7 @@
 // TODO: This code comes from mon-entreprise.fr and could be simplified for
 // publi.codes
 
-import { createBrowserHistory } from 'history'
-import React, { createContext, useMemo } from 'react'
-import { Router } from 'react-router-dom'
+import React, { createContext } from 'react'
 import { ThemeColorsProvider } from './colors'
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
@@ -31,13 +29,13 @@ export type ProviderProps = {
 }
 
 export default function Provider({ basename, children }: ProviderProps) {
-	const history = useMemo(
-		() =>
-			createBrowserHistory({
-				basename: process.env.NODE_ENV === 'production' ? '' : basename,
-			}),
-		[]
-	)
+	// const history = useMemo(
+	// 	() =>
+	// 		createBrowserHistory({
+	// 			basename: process.env.NODE_ENV === 'production' ? '' : basename,
+	// 		}),
+	// 	[]
+	// )
 
 	// Remove loader
 	const css = document.createElement('style')
@@ -55,9 +53,9 @@ export default function Provider({ basename, children }: ProviderProps) {
 	return (
 		<ThemeColorsProvider>
 			<SiteNameContext.Provider value={basename}>
-				<Router history={history}>
-					<>{children}</>
-				</Router>
+				{/* <Router history={history}> */}
+				<>{children}</>
+				{/* </Router> */}
 			</SiteNameContext.Provider>
 		</ThemeColorsProvider>
 	)

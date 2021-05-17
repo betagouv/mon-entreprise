@@ -1,8 +1,8 @@
 // backported from react-router 6
 // https://github.com/ReactTraining/react-router/blob/a97dbdb7297474ff0114411e363db2c8fb417e55/packages/react-router-dom/index.tsx#L383
 
+import { useHistory, useLocation } from 'Components/router-adapter'
 import { useCallback, useMemo, useRef } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
 
 export type ParamKeyValuePair = [string, string]
 export type URLSearchParamsInit =

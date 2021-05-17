@@ -1,7 +1,7 @@
+import { useLocation } from 'Components/router-adapter'
 import React, { Suspense, useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from './Provider'
 

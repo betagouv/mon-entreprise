@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'Components/router-adapter'
 
 const items = [
 	['documentation', 'Documentation'] as const,

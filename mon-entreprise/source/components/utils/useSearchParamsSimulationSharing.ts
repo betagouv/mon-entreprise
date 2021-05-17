@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
-import { useHistory } from 'react-router'
-import { useSearchParams } from 'Components/utils/useSearchParams'
+import { setActiveTarget, updateSituation } from 'Actions/actions'
+import { useHistory } from 'Components/router-adapter'
 import { useEngine } from 'Components/utils/EngineContext'
-import { configSelector } from 'Selectors/simulationSelectors'
-import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
+import { useSearchParams } from 'Components/utils/useSearchParams'
 import { DottedName } from 'modele-social'
-import { updateSituation, setActiveTarget } from 'Actions/actions'
+import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
+import { useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { configSelector } from 'Selectors/simulationSelectors'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -18,7 +18,7 @@ export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const config = useSelector(configSelector)
 	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
-	const currentUrl = useHistory().location.pathname
+	const currentUrl = useHistory().pathname
 	const dispatch = useDispatch()
 	const engine = useEngine()
 

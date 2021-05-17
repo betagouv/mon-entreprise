@@ -1,9 +1,9 @@
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import { Link } from 'Components/router-adapter'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import lastRelease from '../../data/last-release.json'
 
 const localStorageKey = 'last-viewed-release'

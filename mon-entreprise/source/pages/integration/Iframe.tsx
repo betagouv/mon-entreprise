@@ -1,5 +1,10 @@
 import Overlay from 'Components/Overlay'
 import {
+	MemoryRouter,
+	useHistory,
+	useLocation,
+} from 'Components/router-adapter'
+import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
@@ -15,7 +20,6 @@ import React, {
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
 import Iframes from '../Iframes'
 import useSimulatorsData from '../Simulateurs/metadata'

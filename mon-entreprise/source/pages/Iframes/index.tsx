@@ -1,7 +1,7 @@
+import { Route, Switch } from 'Components/router-adapter'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { Route, Switch } from 'react-router-dom'
 import useSimulatorsData from '../Simulateurs/metadata'
 import SimulateurPage from '../Simulateurs/Page'
 import IframeFooter from './IframeFooter'

@@ -1,11 +1,10 @@
-import { HeadingWithAnchorLink, Markdown } from '../components/markdown'
-import { ScrollToTop } from '../components/Scroll'
+import { useLocation } from 'Components/router-adapter'
+import { capitalise0 } from 'publicodes'
 import { Fragment, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import mecanisms from '../../docs/mecanisms.yaml'
-import { capitalise0 } from 'publicodes'
-import { Header } from '../components/Header'
+import { HeadingWithAnchorLink, Markdown } from '../components/markdown'
+import { ScrollToTop } from '../components/Scroll'
 const sortedMecanisms = Object.entries(mecanisms).sort(([a], [b]) =>
 	a.localeCompare(b)
 )

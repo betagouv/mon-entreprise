@@ -1,7 +1,7 @@
+import { Redirect, Route, Switch } from 'Components/router-adapter'
 import 'Components/ui/index.css'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
-import { Redirect, Route, Switch } from 'react-router-dom'
 import Communauté from '../pages/Communauté'
 import Documentation from '../pages/Documentation'
 import Landing from '../pages/Landing'

@@ -1,7 +1,7 @@
+import { BrowserRouter as Router, Link } from 'Components/router-adapter'
 import Engine from 'publicodes'
 import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
 import { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
 
 const rulesURL = require('./CO2-douche.publicodes.yaml').default
 async function initEngine(setEngine) {

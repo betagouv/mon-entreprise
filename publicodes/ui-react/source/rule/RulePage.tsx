@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'Components/router-adapter'
 import Engine, {
 	formatValue,
 	serializeUnit,
@@ -6,7 +7,6 @@ import Engine, {
 } from 'publicodes'
 import { isEmpty } from 'ramda'
 import { useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { EngineContext } from '../contexts'
 import Explanation from '../Explanation'
 import { Markdown } from '../Markdown'

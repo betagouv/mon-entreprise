@@ -1,7 +1,7 @@
+import { NavLink, Route, Switch } from 'Components/router-adapter'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { NavLink, Route, Switch } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
 import Activité from './Activité'
 import ActivitésSelection from './ActivitésSelection'

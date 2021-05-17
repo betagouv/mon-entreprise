@@ -1,10 +1,10 @@
+import { useHistory, useLocation } from 'Components/router-adapter'
 import Engine from 'publicodes'
 import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
 import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
-import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `

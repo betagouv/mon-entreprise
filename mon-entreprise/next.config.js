@@ -7,6 +7,9 @@ const {
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+	typescript: {
+		ignoreBuildErrors: true,
+	},
 	webpack: function (config, options) {
 		config.module.rules = [
 			...config.module.rules,
