@@ -142,6 +142,9 @@ it('calculate aide-déclaration-indépendant', () => {
 		{
 			"aide déclaration revenu indépendant 2020 . nature de l'activité":
 				"'commerciale'",
+			'aide déclaration revenu indépendant 2020 . comptabilité': "'engagement'",
+			"aide déclaration revenu indépendant 2020 . régime d'imposition . réel":
+				"'normal'",
 			...aideDéclarationConfig.situation,
 		}
 	)

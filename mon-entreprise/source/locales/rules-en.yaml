@@ -18,35 +18,35 @@ aide déclaration revenu indépendant 2020:
   titre.fr: aide déclaration revenu indépendant 2020
 aide déclaration revenu indépendant 2020 . ACRE:
   description.en: >-
-    [automatic] The aid for the creation or takeover of a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the exemption for the start of activity for 12 months. 
+    [automatic] The aid for creating or taking over a business (Acre) consists
+    of a partial exemption from social security charges, known as the start-up
+    exemption, for 12 months.
 
 
     It is automatic for companies and sole proprietorships (under certain conditions, such as not having benefited from it in the last three years).
 
 
-    Moreover, for classic self-employed workers it is necessary to respect the condition of being considered as a creator in the sense of [article R131-3 of the Social Security Code](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&amp;cidTexte=LEGITEXT000006073189&amp;dateTexte=20170511).
+    In addition, for classic self-employed workers it is necessary to respect the condition of being considered as a creator in the sense of [article R131-3 of the Social Security Code](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&amp;cidTexte=LEGITEXT000006073189&amp;dateTexte=20170511).
 
 
-    ### Details
+    Details
 
 
-    This exemption covers all contributions except for the supplementary pension contribution and the CSG/CRDS and CFP contributions.
+    This exemption applies to all contributions except for the supplementary pension contribution and the CSG/CRDS and CFP contributions.
 
 
-    This exemption may be total, partial or nil depending on the income declared:
+    This exemption can be total, partial or zero depending on the income declared:
 
 
-    - If the income is less than 75% of the PASS, the exemption is total.
+    - If the income is less than 75% of the PASS the exemption is total.
 
-    - If the income is between 75% and 100% of the PASS, the exemption is degressive. 
+    - If the income is between 75% and 100% of the PASS the exemption is degressive.
 
-    - If the income is higher than 100% of the PASS, the exemption is nil.
+    - If the income is higher than 100% of the PASS the exemption is nil.
   description.fr: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois. 
+    d'activité pendant 12 mois.
 
 
     Elle est automatique pour les sociétés et les entreprises individuelles (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
@@ -66,65 +66,408 @@ aide déclaration revenu indépendant 2020 . ACRE:
 
     - Si le revenu est inférieur à 75% du PASS l’exonération est totale.
 
-    - Si le revenu est compris entre 75% et 100% du PASS l’exonération est dégressive. 
+    - Si le revenu est compris entre 75% et 100% du PASS l’exonération est dégressive.
 
     - Si le revenu est supérieur à 100% du PASS l’exonération est nulle.
   question.en: '[automatic] Does your company benefit from ACRE?'
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
-aide déclaration revenu indépendant 2020 . CFP:
-  description.en: '[automatic] Contribution to professional training'
-  description.fr: Contribution à la formation professionnelle
-  résumé.en: '[automatic] [D]'
-  résumé.fr: '[D]'
-  titre.en: '[automatic] PSC'
-  titre.fr: CFP
-aide déclaration revenu indépendant 2020 . CSG déductible:
-  description.en: '[automatic] Amount of CSG deductible from income tax'
-  description.fr: Montant de la CSG déductible à l'impôt sur le revenu
-  résumé.en: '[automatic] [B]'
-  résumé.fr: '[B]'
-  titre.en: '[automatic] Deductible CSG'
-  titre.fr: CSG déductible
 aide déclaration revenu indépendant 2020 . PRCI:
   titre.en: '[automatic] PRCI'
   titre.fr: PRCI
 aide déclaration revenu indépendant 2020 . SMIC 2020:
   titre.en: '[automatic] MINIMUM WAGE 2020'
   titre.fr: SMIC 2020
-aide déclaration revenu indépendant 2020 . assiette sociale:
-  description.en: '[automatic] Basis for calculating social security contributions'
-  description.fr: Assiette utilisée pour le calcul des cotisations sociales
-  résumé.en: '[automatic] [A - (B + C + D)]'
-  résumé.fr: '[A - (B + C + D)]'
+aide déclaration revenu indépendant 2020 . comptabilité:
+  question.en: '[automatic] What method of accounting management is used for the company?'
+  question.fr: Quel méthode de gestion de la comptabilité est utilisée pour l'entreprise ?
+  titre.en: '[automatic] controlled declaration regime'
+  titre.fr: régime de la déclaration contrôlée
+aide déclaration revenu indépendant 2020 . comptabilité . engagement:
+  titre.en: '[automatic] accrual accounting'
+  titre.fr: comptabilité d'engagement
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
+  titre.en: '[automatic] cash accounting'
+  titre.fr: comptabilité de trésorerie
+aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
+  description.en: >
+    [automatic] You can find this amount in your personal Urssaf space. Here are
+    the steps to follow: 
+
+
+    1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
+
+    2. Go to the "Document" tab
+
+    3. Select "request a certificate".
+
+    3. Then, "CSG/CRDS certificate".
+
+    4. Enter in this field the total of the column "Amount not deductible: CRDS" (last line)
+  description.fr: >
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
+    la marche à suivre : 
+
+
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+
+    2. Allez dans l'onglet "Document"
+
+    3. Selectionnez "demander une attestation"
+
+    3. Puis, "attestation CSG/CRDS"
+
+    4. Reportez dans ce champs le total de la colonne "Montant non déductible : CRDS" (dernière ligne)
+  question.en: '[automatic] What is the total amount of CRDS paid this year?'
+  question.fr: Quel est le montant total de CRDS payé cette année ?
+  titre.en: '[automatic] CRDS'
+  titre.fr: CRDS
+? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG déductible
+: description.en: >
+    [automatic] You can find this amount in your personal Urssaf space. Here are
+    the steps to follow: 
+
+
+    1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
+
+    2. Go to the "Document" tab
+
+    3. Select "request a certificate".
+
+    3. Then, "CSG/CRDS certificate".
+
+    4. Enter in this field the total of the column "Amount deductible CSG" (last line) (last line)
+  description.fr: >
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
+    la marche à suivre : 
+
+
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+
+    2. Allez dans l'onglet "Document"
+
+    3. Selectionnez "demander une attestation"
+
+    3. Puis, "attestation CSG/CRDS"
+
+    4. Reportez dans ce champs le total de la colonne "Montant déductible CSG" (dernière ligne)
+  question.en: '[automatic] What is the total amount of deductible CSG paid this year?'
+  question.fr: Quel est le montant total de CSG déductible payé cette année ?
+  titre.en: '[automatic] Deductible CSG'
+  titre.fr: CSG déductible
+? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG non déductible
+: description.en: >
+    [automatic] You can find this amount in your personal Urssaf space. Here are
+    the steps to follow: 
+
+
+    1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
+
+    2. Go to the "Document" tab
+
+    3. Select "request a certificate".
+
+    3. Then, "CSG/CRDS certificate".
+
+    4. Enter in this field the total of the column "Amount not deductible: CSG" (last line) (last line)
+  description.fr: >
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
+    la marche à suivre : 
+
+
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+
+    2. Allez dans l'onglet "Document"
+
+    3. Selectionnez "demander une attestation"
+
+    3. Puis, "attestation CSG/CRDS"
+
+    4. Reportez dans ce champs le total de la colonne "Montant non déductible : CSG" (dernière ligne)
+  question.en: '[automatic] What is the total amount of non-deductible CSG paid this year?'
+  question.fr: Quel est le montant total de CSG non déductible payé cette année ?
+  titre.en: '[automatic] Non-deductible CSG'
+  titre.fr: CSG non déductible
+? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . cotisations obligatoires déductibles
+: titre.en: '[automatic] deductible mandatory contributions'
+  titre.fr: cotisations obligatoires déductibles
+? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total charges sociale
+: description.en: >
+    [automatic] You can find this amount in your personal Urssaf space. Here are
+    the steps to follow: 
+
+
+    1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
+
+    2. Go to the "Document" tab
+
+    3. Select "statement of account".
+
+    4. Enter in this field the amount of the column "Contribution", line "Year 2020".
+  description.fr: >
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
+    la marche à suivre : 
+
+
+    1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
+
+    2. Allez dans l'onglet "Document"
+
+    3. Selectionnez "relevé de situation comptable"
+
+    4. Reportez dans ce champs le montant de la colonne "Cotisation", ligne "Année 2020"
+  question.en:
+    '[automatic] What is the total amount of social contributions paid
+    during the year?'
+  question.fr:
+    Quel est le montant total des cotisations et contributions sociales
+    payées pendant l'exercice ?
+  titre.en: '[automatic] total social charges'
+  titre.fr: total charges sociale
+aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
+  titre.en: '[automatic] deductible mandatory contributions'
+  titre.fr: cotisations obligatoires déductibles
+aide déclaration revenu indépendant 2020 . formulaire 2033:
+  résumé.en: '[automatic] Tax package for the simplified actual system'
+  résumé.fr: Liasse fiscale du régime réel simplifié
+  titre.en: '[automatic] form 2033-SD'
+  titre.fr: formulaire 2033-SD
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 250:
+  description.en: >
+    [automatic] If your business employs employees, add to this amount the total
+    gross remuneration paid during the year
+  description.fr: >
+    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
+    rémunération brute versée durant l'exercice
+  résumé.en: '[automatic] Staff remuneration (+)'
+  résumé.fr: Rémunérations du personnel (+)
+  titre.en: '[automatic] item 250'
+  titre.fr: rubrique 250
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 252:
+  description.en: >
+    [automatic] If your business employs employees, add to this amount the total
+    employer contributions paid during the year
+  description.fr: >
+    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
+    cotisations patronales payées durant l'exercice
+  résumé.en: '[automatic] Social security charges (+)'
+  résumé.fr: Charges sociales (+)
+  titre.en: '[automatic] heading 252'
+  titre.fr: rubrique 252
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 325:
+  résumé.en: '[automatic] Of which, deductible amount of optional contributions
+    paid in application of I of Article 154 bis of the CGI of which optional
+    Madelin contributions (I of Article 154 bis of the CGI)'
+  résumé.fr: Dont montant déductible des cotisations
+    facultatives  versées  en  application  du  I
+    de  l'article  154  bis  du  CGI  dont
+    cotisations  facultatives  Madelin  (I  de l’art. 154 bis du CGI)
+  titre.en: '[automatic] heading 325'
+  titre.fr: rubrique 325
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 326:
+  résumé.en: '[automatic] Of which amount deductible from compulsory social
+    security contributions excluding CSG-CRDS'
+  résumé.fr: Dont montant déductible des cotisations sociales obligatoires hors CSG-CRDS
+  titre.en: '[automatic] heading 326'
+  titre.fr: rubrique 326
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 380:
+  résumé.en: '[automatic] Compulsory personal contributions of the operator'
+  résumé.fr: Cotisations personnelles obligatoires de l'exploitant
+  titre.en: '[automatic] item 380'
+  titre.fr: rubrique 380
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 381:
+  description.en: '[automatic] Add optional contributions to new retirement
+    savings plans if necessary (327)'
+  description.fr: Ajoutez le montant des cotisations facultatives aux nouveaux
+    plans d'épargne retraite si nécessaire (327)
+  résumé.en: '[automatic] Optional supplementary premiums and contributions'
+  résumé.fr: Primes et cotisations complémentaires facultatives
+  titre.en: '[automatic] heading 381'
+  titre.fr: rubrique 381
+aide déclaration revenu indépendant 2020 . formulaire 2035:
+  résumé.en: '[automatic] Tax package for the controlled declaration system'
+  résumé.fr: Liasse fiscale du régime de la déclaration contrôlée
+  titre.en: '[automatic] form 2035-A-SD'
+  titre.fr: formulaire 2035-A-SD
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BK:
+  description.en: '[automatic] The BU heading is not taken into account here. It
+    must be added to this amount if it is not zero.'
+  description.fr:
+    La rubrique BU n'est pas prise en compte ici. Il faut l'ajouter
+    à ce montant si elle est non nulle.
+  résumé.en: '[automatic] Personal social charges (+)'
+  résumé.fr: Charges sociales personnelles (+)
+  titre.en: '[automatic] BK section'
+  titre.fr: rubrique BK
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BS:
+  description.en: '[automatic] Contribution to the professional training of the
+    farmer and his spouse, to be added to other existing taxes.'
+  description.fr: Contribution à la formation professionnelle de l'exploitant et
+    de son conjoint, à ajouter aux autres impôts existants.
+  résumé.en: '[automatic] Other taxes (+)'
+  résumé.fr: Autres impôts (+)
+  titre.en: '[automatic] BS section'
+  titre.fr: rubrique BS
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BT:
+  résumé.en: '[automatic] Of which mandatory'
+  résumé.fr: Dont obligatoires
+  titre.en: '[automatic] LV section'
+  titre.fr: rubrique BT
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BV:
+  résumé.en: '[automatic] Deductible generalized social contribution'
+  résumé.fr: Contribution sociale généralisée déductible
+  titre.en: '[automatic] BV section'
+  titre.fr: rubrique BV
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BZ:
+  résumé.en: '[automatic] Of which optional Madelin contributions'
+  résumé.fr: Dont cotisations facultatives Madelin
+  titre.en: '[automatic] section BZ'
+  titre.fr: rubrique BZ
+aide déclaration revenu indépendant 2020 . formulaire 2042:
+  résumé.en: '[automatic] Income tax return'
+  résumé.fr: Déclaration des revenus
+  titre.en: '[automatic] form 2042'
+  titre.fr: formulaire 2042
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
+  résumé.en: '[automatic] Salaries and wages'
+  résumé.fr: Traitements et salaires
+  titre.en: '[automatic] item 1GB / 1HB'
+  titre.fr: rubrique 1GB / 1HB
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA:
+  description.en: '[automatic] Heading SCPD/SCBD on the Supplementary Data Form
+    for the Self-employed Income Tax Return'
+  description.fr: Rubrique DSCA/DSCB du formulaire de donnée complémentaire à la
+    déclaration de revenus des indépendant
+  résumé.en: '[automatic] Compulsory social security contributions'
+  résumé.fr: Cotisations sociales obligatoires
+  titre.en: '[automatic] DSCA / DSCB section'
+  titre.fr: rubrique DSCA / DSCB
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSEA:
+  description.en: '[automatic] Add the amounts paid into the new supplementary savings plans'
+  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire
+  résumé.en: '[automatic] Optional contributions (+)'
+  résumé.fr: Cotisations facultatives (+)
+  titre.en: '[automatic] DSEA / DSEB section'
+  titre.fr: rubrique DSEA / DSEB
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSIA:
+  résumé.en: '[automatic] Tobacco shop'
+  résumé.fr: Débit de tabac
+  titre.en: '[automatic] DSIA / DSIB section'
+  titre.fr: rubrique DSIA / DSIB
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSLA:
+  résumé.en: '[automatic] Foreign income taxable but exempt from CSG-CRDS'
+  résumé.fr: Revenus étrangers imposables mais exonérés de CSG-CRDS
+  titre.en: '[automatic] DSLA / DSLB section'
+  titre.fr: rubrique DSLA / DSLB
+aide déclaration revenu indépendant 2020 . formulaire 2050:
+  résumé.en: '[automatic] Tax package for the normal actual system'
+  résumé.fr: Liasse fiscale du régime réel normal
+  titre.en: '[automatic] form 2052-SD and 2053-SD'
+  titre.fr: formulaire 2052-SD et 2053-SD
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A2:
+  résumé.en: '[automatic] Personal contributions of the operator (+)'
+  résumé.fr: Cotisations personnelles de l'exploitant (+)
+  titre.en: '[automatic] item A2'
+  titre.fr: rubrique A2
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:
+  résumé.en: '[automatic] Of which amount of compulsory social contributions
+    excluding CSG/CRDS'
+  résumé.fr: Dont montant des cotisations sociales obligatoires hors CSG/CRDS
+  titre.en: '[automatic] section A5'
+  titre.fr: rubrique A5
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A6:
+  description.en: '[automatic] Add amounts paid into new supplementary savings plans (A8)'
+  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne
+    complémentaire (A8)
+  résumé.en: '[automatic] Optional personal supplementary premiums and contributions (+)'
+  résumé.fr: Primes et cotisations complémentaires personnelles facultatives (+)
+  titre.en: '[automatic] heading A6'
+  titre.fr: rubrique A6
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A7:
+  résumé.en: '[automatic] Of which optional Madelin contributions'
+  résumé.fr: Dont cotisations facultatives Madelin
+  titre.en: '[automatic] section A7'
+  titre.fr: rubrique A7
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FY:
+  description.en: >
+    [automatic] If your business employs employees, add to this amount the total
+    of all remuneration and allowances paid during the year
+  description.fr: >
+    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
+    rémunérations et indemnités versée durant l'exercice
+  résumé.en: '[automatic] Wages and salaries (+)'
+  résumé.fr: Salaires et traitements (+)
+  titre.en: '[automatic] section FY'
+  titre.fr: rubrique FY
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FZ:
+  description.en: >
+    [automatic] If your business employs employees, add to this amount the total
+    employer's contributions paid during the year, as well as any other social
+    security charges
+  description.fr: >
+    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
+    cotisations patronales payées durant l'exercice, ainsi que toutes les autres
+    charges sociales
+  résumé.en: '[automatic] Social security charges (+)'
+  résumé.fr: Charges sociales (+)
+  titre.en: '[automatic] section FZ'
+  titre.fr: rubrique FZ
+aide déclaration revenu indépendant 2020 . informations:
+  titre.en: '[automatic] information'
+  titre.fr: informations
+aide déclaration revenu indépendant 2020 . informations . assiette sociale:
+  description.en: '[automatic] The base used to calculate social security contributions.'
+  description.fr: Assiette utilisée pour le calcul des cotisations sociales.
+  résumé.en: '[automatic] [A - C1]'
+  résumé.fr: '[A - C1]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-aide déclaration revenu indépendant 2020 . cotisations obligatoires:
-  description.en: >
-    [automatic] To be reported in :
-
-    - the DSCA/DSCB box** on the supplementary data form for the self-employed tax return (form 2042)
-
-    - simplified actual system:** item 326 of form 2033-D-SD 
-
-    - normal actual regime:** item A5 of form 2053-SD
-
-    - controlled declaration:** item BT of form 2035-A-SD
-  description.fr: >
-    À reporter dans :
-
-    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
-
-    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
-
-    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
-
-    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
-  résumé.en: '[automatic] [C]'
-  résumé.fr: '[C]'
-  titre.en: '[automatic] Deductible mandatory social security contributions'
-  titre.fr: Cotisations sociales obligatoires déductibles
+? aide déclaration revenu indépendant 2020 . informations . cotisations déductibles
+: description.en:
+    '[automatic] Deductible social contributions for the calculation
+    of the social security base'
+  description.fr:
+    Cotisations et contributions sociales déductibles pour le calcul
+    de l'assiette sociale
+  résumé.en: '[automatic] [C1]'
+  résumé.fr: '[C1]'
+  titre.en: '[automatic] deductible contributions'
+  titre.fr: cotisations déductibles
+? aide déclaration revenu indépendant 2020 . informations . cotisations non déductibles
+: description.en: '[automatic] Non-deductible social contributions for the
+    calculation of the social security base'
+  description.fr: Cotisations et contributions sociales non déductibles pour le
+    calcul de l'assiette sociale
+  résumé.en: '[automatic] [C2]'
+  résumé.fr: '[C2]'
+  titre.en: '[automatic] non-deductible contributions'
+  titre.fr: cotisations non déductibles
+aide déclaration revenu indépendant 2020 . informations . réduction Covid:
+  description.en: '[automatic] The contribution reduction applicable in the case
+    of the Covid scheme'
+  description.fr: La réduction de cotisation applicable dans le cas du dispositif Covid
+  titre.en: '[automatic] Covid discount'
+  titre.fr: réduction Covid
+aide déclaration revenu indépendant 2020 . informations . rémunération nette:
+  description.en:
+    "[automatic] The executive's net income before income tax. This
+    is the remuneration actually paid."
+  description.fr: Le revenu net du dirigeant avant impôt sur le revenu. C'est la
+    rémunération effectivement versée.
+  résumé.en: '[automatic] [A - C1 - C2]'
+  résumé.fr: '[A - C1 - C2]'
+  titre.en: '[automatic] net pay'
+  titre.fr: rémunération nette
+aide déclaration revenu indépendant 2020 . informations . rémunération totale:
+  description.en: '[automatic] The manager''s "superbrute" remuneration,
+    including all social contributions.'
+  description.fr: La rémunération "superbrute" du dirigeant, incluant toutes les
+    cotisations et contributions sociales.
+  résumé.en: '[automatic] [A]'
+  résumé.fr: '[A]'
+  titre.en: '[automatic] Total executive compensation'
+  titre.fr: Total rémunération dirigeant
 aide déclaration revenu indépendant 2020 . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
@@ -209,15 +552,6 @@ aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
 aide déclaration revenu indépendant 2020 . période:
   titre.en: '[automatic] period'
   titre.fr: période
-aide déclaration revenu indépendant 2020 . revenu net fiscal:
-  description.en:
-    '[automatic] Income before deduction of social security charges
-    and tax exemptions'
-  description.fr: Résultat avant déduction des charges sociales et exonérations fiscales
-  résumé.en: '[automatic] [A]'
-  résumé.fr: '[A]'
-  titre.en: '[automatic] net tax income'
-  titre.fr: revenu net fiscal
 aide déclaration revenu indépendant 2020 . réduction covid:
   description.en: >
     [automatic] Within the framework of the health crisis, the Government has
@@ -306,7 +640,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . part cotisations
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
   description.en: >
     [automatic] The conditions of eligibility for "Covid" aid depend on the
-    sector of activity 
+    sector of activity
 
     of which the main activity is part.
 
@@ -333,7 +667,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     The procedures are specified on the Urssaf website.
   description.fr: >
     Les conditions d’éligibilité aux aides « Covid » dépendent du secteur
-    d’activité 
+    d’activité
 
     dont relève l’activité principale.
 
@@ -438,7 +772,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 
     Sector known as S1 bis
 
-    Main activity carried out depending on those of sector S1 
+    Main activity carried out depending on those of sector S1
 
 
     Month concerned | Conditions of eligibility
@@ -470,7 +804,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 
     - Month concerned** : November 2020, February 2021, March 2021
 
-    - Conditions of eligibility**: To have been the subject of a prohibition measure that predominantly affects the pursuit of the activity, pursuant to Decree no. 2020-1310 of 29 October 2020 
+    - Conditions of eligibility**: To have been the subject of a prohibition measure that predominantly affects the pursuit of the activity, pursuant to Decree no. 2020-1310 of 29 October 2020
 
 
     If you have ceased your activity, the cessation must be after or equal to 30 October 2020.
@@ -517,7 +851,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 
     ### Secteur dit S1 bis
 
-    Activité principale exercée dépendant de celles du secteur S1 
+    Activité principale exercée dépendant de celles du secteur S1
 
 
     Mois concerné | Conditions d'éligibilité
@@ -549,7 +883,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 
     - **Mois concerné** : novembre 2020, février 2021, mars 2021
 
-    - **Conditions d'éligibilité**: Avoir fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de l’activité, en application du décret n° 2020-1310 du 29 octobre 2020 
+    - **Conditions d'éligibilité**: Avoir fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de l’activité, en application du décret n° 2020-1310 du 29 octobre 2020
 
 
     Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 30 octobre 2020.
@@ -671,19 +1005,112 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
     première vague de la crise sanitaire du printemps 2020 ?
   titre.en: '[automatic] eligible for aid spring 2020'
   titre.fr: éligible aide printemps 2020
-aide déclaration revenu indépendant 2020 . total charges sociales déductible:
-  description.en: |
-    [automatic] To be reported in :
-    - simplified actual system:** item 252 of form 2033-B-SD 
-    - normal real system:** item FZ of form 2052-SD
-    - controlled declaration:** item BK of form 2035-A-SD
-  description.fr: |
-    À reporter dans :
-    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
-    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
-    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
-  résumé.en: '[automatic] [B + C + D]'
-  résumé.fr: '[B + C + D]'
+aide déclaration revenu indépendant 2020 . régime d'imposition:
+  titre.en: '[automatic] tax regime'
+  titre.fr: régime d'imposition
+? aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée
+: description.en: >
+    [automatic] If you have to declare non-commercial profits (BNC), you may be
+    subject to the controlled declaration regime or the micro-BNC regime; this
+    depends on the amount of your profits.
+
+
+    The controlled declaration regime is the compulsory regime if the non-commercial profits to be declared are greater than €70,000 excluding tax. If the profits are lower, professionals are subject to the micro-BNC regime but can still opt for the controlled declaration regime.
+
+
+    In the case of the controlled declaration, the taxpayer is taxed on the profits actually made. In the case of the micro-BNC system, a flat-rate deduction of 34% is automatically applied after the turnover is declared.
+  description.fr: >
+    Si vous devez déclarer des bénéfices non commerciaux (BNC), vous pouvez être
+    soumis au régime de la déclaration contrôlée ou au régime micro-BNC ; cela
+    dépend du montant de vos bénéfices.
+
+
+    Le régime de la déclaration contrôlée est le régime obligatoire si les bénéfices non commerciaux à déclarer sont supérieurs à 70 000 € HT. Si les bénéfices sont inférieurs, les professionnels dépendent du régime micro-BNC mais peuvent tout de même opter pour le régime de la déclaration contrôlée.
+
+
+    Dans le cas de la déclaration contrôlée, le contribuable est imposé sur les bénéfices effectivement réalisés. Dans le cas du régime micro-BNC, un abattement forfaitaire de 34 % est appliqué automatiquement après déclaration du chiffre d’affaires.
+  titre.en: '[automatic] controlled declaration regime'
+  titre.fr: régime de la déclaration contrôlée
+aide déclaration revenu indépendant 2020 . régime d'imposition . réel:
+  description.en: >
+    [automatic] The simplified tax regime (RSI) and the normal tax regime (RN)
+    apply to profits made during the financial year and to value added tax
+    (VAT).
+
+
+    It is mainly the detail required when filling in the accounting obligations that differentiates these 2 tax systems.
+  description.fr: >
+    Le régime simplifié d'imposition (RSI) et le régime réel normal (RN)
+    s'appliquent aux bénéfices réalisés au cours de l'exercice et à la taxe sur
+    la valeur ajoutée (TVA).
+
+
+    C'est principalement le détail demandé lors du remplissage des obligations comptables qui différencie ces 2 régimes d'imposition.
+  question.en: '[automatic] What is the tax regime applicable to the year?'
+  question.fr: Quel est le régime d'imposition applicable à l'exercice ?
+  titre.en: '[automatic] real'
+  titre.fr: réel
+aide déclaration revenu indépendant 2020 . régime d'imposition . réel . normal:
+  description.en: >
+    [automatic] The accounting of the company subjected to the normal real
+    regime must be more precise than for the simplified real regime:
+
+
+    - It must be based on supporting documents.
+
+    - The company is obliged to proceed with the chronological recording of the movements affecting its assets.
+
+    - The company must carry out an inventory at least once every 12 months.
+
+    - The company must draw up annual accounts comprising a balance sheet, an income statement and annexes.
+
+    - The company must keep a journal book and a general ledger.
+  description.fr: >
+    La comptabilité de l’entreprise soumise au régime réel normal doit être plus
+    précise que pour le régime réel simplifié :
+
+
+    - Elle doit s'appuyer sur des pièces justificatives.
+
+    - L'entreprise est obligée de procéder à l'enregistrement comptable chronologique des mouvements affectant son patrimoine.
+
+    - L'entreprise doit procéder à un inventaire au moins une fois tous les 12 mois.
+
+    - L'entreprise doit établir des comptes annuels comprenant un bilan, un compte de résultat et des annexes.
+
+    - L'entreprise doit tenir un livre journal et un grand livre.
+  titre.en: '[automatic] standard real estate regime'
+  titre.fr: régime réel normal
+? aide déclaration revenu indépendant 2020 . régime d'imposition . réel . simplifié
+: description.en: >
+    [automatic] Companies subject to the simplified real tax regime must keep
+    standard accounts: a balance sheet, an income statement and annexes. Special
+    provisions apply to lighten your accounting obligations:
+
+
+    - the journal book only records daily the income received and the expenses paid
+
+    - receivables and payables are recorded at the end of the financial year
+
+    - the balance sheet provided to the tax authorities is a simplified balance sheet
+  description.fr: >
+    Les entreprises soumises au régime d'imposition réel simplifié doivent tenir
+    une comptabilité classique : un bilan, un compte de résultat et des annexes.
+    Des dispositions particulières s’appliquent pour alléger vos obligations
+    comptables :
+
+
+    - le livre journal n’enregistre journellement que les recettes encaissées et les dépenses payées
+
+    - les créances et les dettes sont constatées à la clôture de l’exercice
+
+    - le bilan fourni à l’administration fiscale est un bilan simplifié
+  titre.en: '[automatic] simplified real estate regime'
+  titre.fr: régime réel simplifié
+aide déclaration revenu indépendant 2020 . rémunération déductible:
+  titre.en: '[automatic] deductible remuneration'
+  titre.fr: rémunération déductible
+aide déclaration revenu indépendant 2020 . total charges sociales déductibles:
   titre.en: '[automatic] tax-deductible mandatory social security charges'
   titre.fr: charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
@@ -7346,8 +7773,8 @@ entreprise . imposition:
     - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
 
     - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
-  question.en: '[automatic] What tax regime is the company subject to?'
-  question.fr: À quel régime d'imposition l'entreprise est-elle soumise ?
+  question.en: '[automatic] How is the company taxed?'
+  question.fr: Comment l'entreprise est-elle imposée ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:

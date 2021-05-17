@@ -1,10 +1,11 @@
 import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
-import RuleInput, { InputProps } from 'Components/conversation/RuleInput'
+import RuleInput from 'Components/conversation/RuleInput'
 import Notifications from 'Components/Notifications'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -43,7 +44,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		dispatch(stepAction(currentQuestion, source))
 	}
 
-	const onChange: InputProps['onChange'] = (value) => {
+	const onChange = (value: PublicodesExpression | undefined) => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 
