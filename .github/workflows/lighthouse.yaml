@@ -1,0 +1,21 @@
+on:
+  workflow_run:
+    workflows: ["deploy"]
+    types: [completed]
+
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo "${{github.event.workflow.jobs.deploy-context.outputs.fr_url}}"
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: |
+            {{github.event.workflow.jobs.deploy-context.outputs.fr_url}}
+            {{github.event.workflow.jobs.deploy-context.outputs.fr_url}}/simulateurs
+            {{github.event.workflow.jobs.deploy-context.outputs.fr_url}}/simulateurs/salaire-brut-net
+          uploadArtifacts: true
+            
