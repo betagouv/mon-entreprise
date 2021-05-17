@@ -1,7 +1,7 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
-import { isNotYetDefined, isNotApplicable } from 'publicodes'
+import { isNotApplicable, isNotYetDefined } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useEngine } from './utils/EngineContext'
 
@@ -91,7 +91,7 @@ export function Line({
 		return null
 
 	return (
-		<>
+		<Condition expression={`${rule} > 0`}>
 			<RuleLink dottedName={rule} className={className} />
 			<Value
 				linkToRule={false}
@@ -101,6 +101,6 @@ export function Line({
 				className={className}
 				{...props}
 			/>
-		</>
+		</Condition>
 	)
 }
