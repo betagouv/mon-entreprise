@@ -157,6 +157,10 @@ export function getSimulatorsData({
 								? urlIllustrationNetBrut
 								: urlIllustrationNetBrutEn
 						}
+						alt={t(
+							'pages.simulateurs.salarié.alt-image1',
+							'Salaire net (perçu par le salarié) = Salaire brut (inscrit dans le contrat de travail) - cotisations salariales (retraite, csg, etc)'
+						)}
 						css={`
 							width: 100%;
 						`}
