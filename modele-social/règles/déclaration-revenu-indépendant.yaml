@@ -591,7 +591,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 252:
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 381:
   applicable si: entreprise . imposition . IR
-  résumé: Primes et cotisations complémentaires facultatives
+  résumé: Primes et cotisations complémentaires facultatives (+)
   valeur: rubrique 325
   description: Ajoutez le montant des cotisations facultatives aux nouveaux plans d'épargne retraite si nécessaire (327)
 
@@ -634,6 +634,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FZ:
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A2:
   applicable si: entreprise . imposition . IR
   résumé: Cotisations personnelles de l'exploitant (+)
+  description: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire (A8)
   valeur: total charges sociales déductibles
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:

@@ -281,8 +281,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 381:
     savings plans if necessary (327)'
   description.fr: Ajoutez le montant des cotisations facultatives aux nouveaux
     plans d'épargne retraite si nécessaire (327)
-  résumé.en: '[automatic] Optional supplementary premiums and contributions'
-  résumé.fr: Primes et cotisations complémentaires facultatives
+  résumé.en: '[automatic] Optional supplementary premiums and contributions (+)'
+  résumé.fr: Primes et cotisations complémentaires facultatives (+)
   titre.en: '[automatic] heading 381'
   titre.fr: rubrique 381
 aide déclaration revenu indépendant 2020 . formulaire 2035:
@@ -366,6 +366,9 @@ aide déclaration revenu indépendant 2020 . formulaire 2050:
   titre.en: '[automatic] form 2052-SD and 2053-SD'
   titre.fr: formulaire 2052-SD et 2053-SD
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A2:
+  description.en: '[automatic] Add amounts paid into new supplementary savings plans (A8)'
+  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne
+    complémentaire (A8)
   résumé.en: '[automatic] Personal contributions of the operator (+)'
   résumé.fr: Cotisations personnelles de l'exploitant (+)
   titre.en: '[automatic] item A2'
