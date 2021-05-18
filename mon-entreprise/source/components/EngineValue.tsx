@@ -2,7 +2,6 @@ import Engine, { formatValue } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
-import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
 
@@ -50,16 +49,13 @@ export default function Value<Names extends string>({
 }
 
 type ConditionProps = {
-	expression:
-		| Parameters<Engine['evaluate']>[0]
-		| Parameters<Engine['evaluate']>[0][]
+	expression: Parameters<Engine['evaluate']>[0]
 	children: React.ReactNode
 }
 export function Condition({ expression, children }: ConditionProps) {
 	const engine = useEngine()
-	if (
-		!coerceArray(expression).every((expr) => engine.evaluate(expr).nodeValue)
-	) {
+	// [XXX] check strict falsity (and check that it's coherent with publicodes core)
+	if (!engine.evaluate(expression).nodeValue) {
 		return null
 	}
 	return <>{children}</>

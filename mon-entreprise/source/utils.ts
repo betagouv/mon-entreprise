@@ -47,10 +47,6 @@ export function mapOrApply<A, B>(fn: (a: A) => B, x: A | Array<A>) {
 	return Array.isArray(x) ? x.map(fn) : fn(x)
 }
 
-export function coerceArray<A>(x: A | Array<A>): Array<A> {
-	return Array.isArray(x) ? x : [x]
-}
-
 export function getSessionStorage() {
 	// In some browsers like Brave, even just reading the variable sessionStorage
 	// is throwing an error in the iframe, so we can't do things if sessionStorage !== undefined
