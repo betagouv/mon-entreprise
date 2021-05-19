@@ -1,6 +1,7 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
+import { isNotYetDefined, UNSAFE_isNotApplicable } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useEngine } from './utils/EngineContext'
 
@@ -78,8 +79,16 @@ export function Line({
 	className,
 	...props
 }: LineProps) {
-	const evaluatedNode = useEngine().evaluate(rule)
-	if (evaluatedNode.nodeValue === 0) return null
+	const engine = useEngine()
+
+	if (UNSAFE_isNotApplicable(engine, rule)) {
+		return null
+	}
+
+	const evaluatedNode = engine.evaluate(rule)
+	if (isNotYetDefined(evaluatedNode.nodeValue) || evaluatedNode.nodeValue === 0)
+		return null
+
 	return (
 		<>
 			<RuleLink dottedName={rule} className={className} />
