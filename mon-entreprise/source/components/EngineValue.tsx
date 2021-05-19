@@ -3,6 +3,7 @@ import Engine, {
 	formatValue,
 	PublicodesExpression,
 	isNotYetDefined,
+	UNSAFE_isNotApplicable,
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -82,7 +83,20 @@ export function Condition({
 	return <>{children}</>
 }
 
-export function IsAlreadyDefined({
+export function WhenApplicable({
+	dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
+	if (isNotApplicable) return null
+	return <>{children}</>
+}
+
+export function WhenAlreadyDefined({
 	dottedName: dottedName,
 	children,
 }: {
