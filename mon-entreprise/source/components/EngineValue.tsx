@@ -91,8 +91,18 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
-	if (isNotApplicable) return null
+	if (UNSAFE_isNotApplicable(engine, dottedName)) return null
+	return <>{children}</>
+}
+export function WhenNotApplicable({
+	dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (!UNSAFE_isNotApplicable(engine, dottedName)) return null
 	return <>{children}</>
 }
 

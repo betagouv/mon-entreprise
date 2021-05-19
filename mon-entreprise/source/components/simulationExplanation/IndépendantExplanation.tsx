@@ -1,6 +1,10 @@
 import BarChartBranch from 'Components/BarChart'
 import 'Components/Distribution.css'
-import Value, { Condition, WhenApplicable } from 'Components/EngineValue'
+import Value, {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
@@ -25,15 +29,9 @@ export default function IndépendantExplanation() {
 			<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
 				<CotisationsForfaitaires />
 			</WhenApplicable>
-			<Condition
-				expression={{
-					valeur: 'oui',
-					['non applicable si']:
-						'dirigeant . indépendant . cotisations et contributions . début activité',
-				}}
-			>
+			<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
 				<CotisationsRégularisation />
-			</Condition>
+			</WhenNotApplicable>
 			<Condition expression="entreprise . activité . libérale réglementée">
 				<PLExplanation />
 			</Condition>
