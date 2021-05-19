@@ -56,7 +56,7 @@ export default function Value<Names extends string>({
 
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
-	defaultIfNotYetDefined: boolean
+	defaultIfNotYetDefined?: boolean
 	children: React.ReactNode
 }
 export function Condition({

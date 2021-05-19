@@ -35,13 +35,10 @@ export const SalaireNetSection = () => {
 			<Line rule="contrat salarié . rémunération . net imposable" />
 			<Condition
 				expression={{
-					valeur: 'oui',
-					['applicable si']: {
-						['toutes ces conditions']: [
-							'contrat salarié . rémunération . avantages en nature',
-							'contrat salarié . frais professionnels . titres-restaurant',
-						],
-					},
+					['toutes ces conditions']: [
+						'contrat salarié . rémunération . avantages en nature', // bool
+						'contrat salarié . frais professionnels . titres-restaurant', // bool
+					],
 				}}
 			>
 				<Line rule="contrat salarié . rémunération . net de cotisations" />
