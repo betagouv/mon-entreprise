@@ -2,7 +2,7 @@ import { updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
-import Value, { Condition } from 'Components/EngineValue'
+import Value, { Condition, IsAlreadyDefined } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
@@ -155,7 +155,7 @@ export default function AideDéclarationIndépendant() {
 										<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 
 										{/* PLNR */}
-										<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
+										<IsAlreadyDefined dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité">
 											<SimpleField dottedName="entreprise . activité . débit de tabac" />
 											<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 											<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
@@ -192,16 +192,16 @@ export default function AideDéclarationIndépendant() {
 												dottedName="dirigeant . indépendant . revenus étrangers"
 												hideTitle
 											/>
-										</Condition>
+										</IsAlreadyDefined>
 									</Condition>
 								</>
 							)}
 						</FormBlock>
 					</Animate.fromTop>
 
-					<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité">
+					<IsAlreadyDefined dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité">
 						<Results />
-					</Condition>
+					</IsAlreadyDefined>
 					<Aide />
 				</>
 			)}

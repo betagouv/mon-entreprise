@@ -112,6 +112,14 @@ type EvaluationDecoration<T extends Types> = {
 	unit?: Unit
 }
 export type Types = number | boolean | string | Record<string, unknown>
-export type Evaluation<T extends Types = Types> = T | false | null
+export type NotYetDefined = null
+export function isNotYetDefined(value): value is NotYetDefined {
+	return value === null
+}
+export type NotApplicable = false
+export type Evaluation<T extends Types = Types> =
+	| T
+	| NotApplicable
+	| NotYetDefined
 export type EvaluatedNode<T extends Types = Types> = ASTNode &
 	EvaluationDecoration<T>

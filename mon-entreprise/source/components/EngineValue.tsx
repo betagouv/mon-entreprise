@@ -1,4 +1,9 @@
-import Engine, { formatValue } from 'publicodes'
+import Engine, {
+	ASTNode,
+	formatValue,
+	PublicodesExpression,
+	isNotYetDefined,
+} from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
@@ -49,13 +54,43 @@ export default function Value<Names extends string>({
 }
 
 type ConditionProps = {
-	expression: Parameters<Engine['evaluate']>[0]
+	expression: PublicodesExpression | ASTNode
+	defaultIfNotYetDefined: boolean
 	children: React.ReactNode
 }
-export function Condition({ expression, children }: ConditionProps) {
+export function Condition({
+	expression,
+	defaultIfNotYetDefined = false,
+	children,
+}: ConditionProps) {
 	const engine = useEngine()
-	// [XXX] check strict falsity (and check that it's coherent with publicodes core)
-	if (!engine.evaluate(expression).nodeValue) {
+	const value = engine.evaluate(expression).nodeValue
+	const boolValue = isNotYetDefined(value) ? defaultIfNotYetDefined : value
+
+	if (Boolean(boolValue) !== boolValue) {
+		// [XXX] - only console
+		throw new Error(
+			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
+		)
+		console.error(
+			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
+		)
+	}
+	if (!boolValue) {
+		return null
+	}
+	return <>{children}</>
+}
+
+export function IsAlreadyDefined({
+	dottedName: dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
 		return null
 	}
 	return <>{children}</>
