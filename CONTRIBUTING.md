@@ -132,16 +132,41 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### CI/CD
 
--   [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
+-   Nous utilisons des [Github actions](https://github.com/features/actions) pour faire tourner les builds et
     tests.
--   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
-    sur internet avec gestion des DNS.
+-   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet avec gestion des DNS.
 
 ### Analyse des bundles
 
 La commande `yarn run build:analyse-bundle` gènere une visualisation interactive du
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
+### Modifier publicodes
+
+Publicodes dispose désormais de son propre dépôt GitHub https://github.com/betagouv/publicodes
+
+Néanmoins pour certaines nouvelles fonctionnalités de mon-entreprise nous concervons le besoin de modifier publicodes avec le moins de frictions possible. Pour tester une évolution du moteur il serait en effet trop lourd d'avoir à ouvrir d'abord une PR côté publicodes, la merger, publier une nouvelle version du paquet, puis ré-intégrer cette nouvelle version sur mon-entreprise.
+
+C'est pourquoi nous intégrons le code source du publicode dans le sous-répertoire `publicodes/`. La commande `git subtree` nous permet de synchroniser les changements effectués dans l'un ou l'autre des dépôts.
+
+La première chose à faire est d'ajouter une nouvelle `remote` pour `betagouv/publicodes`, ici nous l'appelons simplement `publicodes` :
+
+```sh
+git remote add publicodes git@github.com:betagouv/publicodes.git
+```
+
+Ensuite il est possible de remonter les changements effectués dans le sous-repertoire `publicodes/` vers la branche master de la remote `publicodes`.
+
+```sh
+$ git subtree push --prefix=publicodes publicodes master
+```
+
+Dans l'autre sens il est possible de rapatrier les changements avec la commande
+
+```sh
+$ git subtree pull --prefix=publicodes publicodes master --squash
+```
 
 ## Développement de modèles Publicodes
 
@@ -184,6 +209,8 @@ dans un premier temps, puis au [mécanismes en
 place](./publicodes/source/mecanisms).
 
 ## Publier une nouvelle version des paquets publicodes
+
+<!-- TODO: action à déplacer dans le dépot betagouv/publicodes -->
 
 Voici la marche à suivre pour publier une nouvelle version :
 
