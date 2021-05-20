@@ -1,13 +1,11 @@
 import { EvaluationFunction } from '..'
-import { ASTNode } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
 import { convertToDate } from '../date'
 import { warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
-import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
-import { EvaluatedNode } from '../AST/types'
 import { inferUnit, serializeUnit } from '../units'
 
 const knownOperations = {
@@ -74,7 +72,26 @@ const evaluate: EvaluationFunction<'operation'> = function (node) {
 			)
 		}
 	}
-	const baseNode = {
+
+	const operatorFunction = knownOperations[node.operationKind][0]
+
+	const a = node1.nodeValue as string | false
+	const b = node2.nodeValue as string | false
+
+	const nodeValue =
+		!['≠', '='].includes(node.operator) && a === false && b === false
+			? false
+			: ['<', '>', '≤', '≥', '∕', '×'].includes(node.operator) &&
+			  (a === false || b === false)
+			? false
+			: a !== false &&
+			  b !== false &&
+			  ['≠', '=', '<', '>', '≤', '≥'].includes(node.operator) &&
+			  [a, b].every((value) => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
+			? operatorFunction(convertToDate(a), convertToDate(b))
+			: operatorFunction(a, b)
+
+	return {
 		...node,
 		explanation,
 		...((node.operationKind === '*' ||
@@ -84,40 +101,7 @@ const evaluate: EvaluationFunction<'operation'> = function (node) {
 			unit: inferUnit(node.operationKind, [node1.unit, node2.unit]),
 		}),
 		missingVariables,
-	}
-
-	const operatorFunction = knownOperations[node.operationKind][0]
-
-	const temporalValue = liftTemporal2(
-		(a: string | false, b: string | false) => {
-			if (!['≠', '='].includes(node.operator) && a === false && b === false) {
-				return false
-			}
-			if (
-				['<', '>', '≤', '≥', '∕', '×'].includes(node.operator) &&
-				(a === false || b === false)
-			) {
-				return false
-			}
-			if (
-				a !== false &&
-				b !== false &&
-				['≠', '=', '<', '>', '≤', '≥'].includes(node.operator) &&
-				[a, b].every((value) => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
-			) {
-				return operatorFunction(convertToDate(a), convertToDate(b))
-			}
-			return operatorFunction(a, b)
-		},
-		node1.temporalValue ?? (pureTemporal(node1.nodeValue) as any),
-		node2.temporalValue ?? (pureTemporal(node2.nodeValue) as any)
-	)
-	const nodeValue = temporalAverage(temporalValue, baseNode.unit)
-
-	return {
-		...baseNode,
 		nodeValue,
-		...(temporalValue.length > 1 && { temporalValue }),
 	}
 }
 

@@ -1,17 +1,10 @@
 import { EvaluationFunction } from '..'
-import { ASTNode, Unit } from '../AST/types'
+import { ASTNode, EvaluatedNode, Unit } from '../AST/types'
 import { warning } from '../error'
 import { bonus, defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
-import {
-	liftTemporal2,
-	pureTemporal,
-	sometime,
-	Temporal,
-	temporalAverage,
-} from '../temporal'
 
 export type VariationNode = {
 	explanation: Array<{
@@ -62,12 +55,12 @@ export default function parseVariations(v, context): VariationNode {
 }
 
 const evaluate: EvaluationFunction<'variations'> = function (node) {
-	const [temporalValue, explanation, unit] = node.explanation.reduce<
+	const [nodeValue, explanation, unit] = node.explanation.reduce<
 		[
-			Temporal<any>,
+			EvaluatedNode['nodeValue'],
 			VariationNode['explanation'],
 			Unit | undefined,
-			Temporal<any>
+			boolean | null
 		]
 	>(
 		(
@@ -75,11 +68,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 			{ condition, consequence },
 			i: number
 		) => {
-			const previousConditionsAlwaysTrue = !sometime(
-				(value) => value !== true,
-				previousConditions
-			)
-			if (previousConditionsAlwaysTrue) {
+			if (previousConditions === true) {
 				return [
 					evaluation,
 					[...explanations, { condition, consequence }],
@@ -88,24 +77,19 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 				]
 			}
 			const evaluatedCondition = this.evaluate(condition)
-			const currentCondition = liftTemporal2(
-				(previousCond, currentCond) =>
-					previousCond === null
-						? previousCond
-						: !previousCond &&
-						  (currentCond === null ? null : currentCond !== false),
-				previousConditions,
-				evaluatedCondition.temporalValue ??
-					pureTemporal(evaluatedCondition.nodeValue)
-			)
+			const currentCondition =
+				previousConditions === null
+					? previousConditions
+					: !previousConditions &&
+					  (evaluatedCondition.nodeValue === null
+							? null
+							: evaluatedCondition.nodeValue !== false)
+
 			evaluatedCondition.missingVariables = bonus(
 				evaluatedCondition.missingVariables
 			)
-			const currentConditionAlwaysFalse = !sometime(
-				(x) => x !== false,
-				currentCondition
-			)
-			if (currentConditionAlwaysFalse) {
+
+			if (currentCondition === false) {
 				return [
 					evaluation,
 					[...explanations, { condition: evaluatedCondition, consequence }],
@@ -128,15 +112,8 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					)
 				}
 			}
-			const currentValue = liftTemporal2(
-				(cond, value) => cond && value,
-				currentCondition,
-				evaluatedConsequence.temporalValue ??
-					pureTemporal(evaluatedConsequence.nodeValue)
-			)
-			const or = (a, b) => a || b
 			return [
-				liftTemporal2(or, evaluation, currentValue),
+				currentCondition && evaluatedConsequence.nodeValue,
 				[
 					...explanations,
 					{
@@ -146,13 +123,12 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					},
 				],
 				unit || evaluatedConsequence.unit,
-				liftTemporal2(or, previousConditions, currentCondition),
+				previousConditions || currentCondition,
 			]
 		},
-		[pureTemporal(false), [], undefined, pureTemporal(false)]
+		[false, [], undefined, false]
 	)
 
-	const nodeValue = temporalAverage(temporalValue, unit)
 	const missingVariables = mergeAllMissing(
 		explanation.reduce<ASTNode[]>(
 			(values, { condition, consequence }) => [
@@ -170,7 +146,6 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 		...(unit !== undefined && { unit }),
 		explanation,
 		missingVariables,
-		...(temporalValue.length > 1 && { temporalValue }),
 	}
 }
 

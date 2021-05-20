@@ -1,7 +1,7 @@
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import { warning } from '../error'
-import { defaultNode, evaluateObject, parseObject } from '../evaluation'
+import { defaultNode, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
 import { areUnitConvertible, convertUnit, inferUnit } from '../units'
@@ -32,12 +32,12 @@ export const mecanismProduct = (v, context) => {
 	} as ProductNode
 }
 
-const productEffect: EvaluationFunction = function ({
-	assiette,
-	taux,
-	facteur,
-	plafond,
-}: any) {
+const evaluateProduit: EvaluationFunction<'produit'> = function (node) {
+	const assiette = this.evaluate(node.explanation.assiette)
+	const taux = this.evaluate(node.explanation.taux)
+	const facteur = this.evaluate(node.explanation.facteur)
+	let plafond = this.evaluate(node.explanation.plafond)
+
 	if (assiette.unit) {
 		try {
 			plafond = convertNodeToUnit(assiette.unit, plafond)
@@ -77,11 +77,9 @@ const productEffect: EvaluationFunction = function ({
 		unit,
 
 		explanation: {
-			plafondActif: assiette.nodeValue > plafond.nodeValue,
+			plafondActif: (assiette.nodeValue as any) > (plafond as any).nodeValue,
 		},
 	})
 }
 
-const evaluate = evaluateObject<'produit'>(productEffect)
-
-registerEvaluationFunction('produit', evaluate)
+registerEvaluationFunction('produit', evaluateProduit)

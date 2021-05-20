@@ -7,17 +7,8 @@ import {
 	NodeKind,
 } from './AST/types'
 import { warning } from './error'
-import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
+import { convertNodeToUnit } from './nodeUnits'
 import parse from './parse'
-import {
-	concatTemporals,
-	liftTemporalNode,
-	mapTemporal,
-	pureTemporal,
-	Temporal,
-	temporalAverage,
-	zipTemporals,
-} from './temporal'
 
 export const collectNodeMissing = (
 	node: EvaluatedNode | ASTNode
@@ -75,37 +66,17 @@ export const evaluateArray: <NodeName extends NodeKind>(
 			node.explanation.map(evaluate),
 			node.name
 		)
+		const values = evaluatedNodes.map(({ nodeValue }) => nodeValue)
+		const nodeValue = values.some((value) => value === null)
+			? null
+			: values.reduce(reducer, start)
 
-		const temporalValues = concatTemporals(
-			evaluatedNodes.map(
-				({ temporalValue, nodeValue }) =>
-					temporalValue ?? pureTemporal(nodeValue)
-			)
-		)
-		const temporalValue = mapTemporal((values) => {
-			if (values.some((value) => value === null)) {
-				return null
-			}
-			return values.reduce(reducer, start)
-		}, temporalValues)
-
-		const baseEvaluation = {
+		return {
 			...node,
 			missingVariables: mergeAllMissing(evaluatedNodes),
 			explanation: evaluatedNodes,
 			...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit }),
-		}
-		if (temporalValue.length === 1) {
-			return {
-				...baseEvaluation,
-				nodeValue: temporalValue[0].value,
-			}
-		}
-
-		return {
-			...baseEvaluation,
-			temporalValue,
-			nodeValue: temporalAverage(temporalValue as any),
+			nodeValue,
 		}
 	}
 
@@ -131,72 +102,4 @@ export const parseObject = (objectShape, value, context) => {
 			return [key, parsedValue]
 		})
 	)
-}
-
-export function evaluateObject<NodeName extends NodeKind>(
-	effet: (this: Engine, explanations: any) => any
-) {
-	return function (node) {
-		const evaluations = Object.fromEntries(
-			Object.entries((node as any).explanation).map(([key, value]) => [
-				key,
-				this.evaluate(value as any),
-			])
-		)
-		const temporalExplanations = mapTemporal(
-			Object.fromEntries,
-			concatTemporals(
-				Object.entries(evaluations).map(([key, node]) =>
-					zipTemporals(pureTemporal(key), liftTemporalNode(node as ASTNode))
-				)
-			)
-		)
-		const temporalExplanation = mapTemporal((explanations) => {
-			const evaluation = effet.call(this, explanations)
-			return {
-				...evaluation,
-				explanation: {
-					...explanations,
-					...evaluation.explanation,
-				},
-			}
-		}, temporalExplanations)
-
-		const sameUnitTemporalExplanation: Temporal<
-			ASTNode & EvaluatedNode & { nodeValue: number }
-		> = convertNodesToSameUnit
-			.call(
-				this,
-				temporalExplanation.map((x) => x.value),
-				node.nodeKind
-			)
-			.map((node, i) => ({
-				...temporalExplanation[i],
-				value: simplifyNodeUnit(node),
-			}))
-
-		const temporalValue = mapTemporal(
-			({ nodeValue }) => nodeValue,
-			sameUnitTemporalExplanation
-		)
-		const nodeValue = temporalAverage(temporalValue)
-		const baseEvaluation = {
-			...node,
-			nodeValue,
-			unit: sameUnitTemporalExplanation[0].value.unit,
-			explanation: evaluations,
-			missingVariables: mergeAllMissing(Object.values(evaluations)),
-		}
-		if (sameUnitTemporalExplanation.length === 1) {
-			return {
-				...baseEvaluation,
-				explanation: (sameUnitTemporalExplanation[0] as any).value.explanation,
-			}
-		}
-		return {
-			...baseEvaluation,
-			temporalValue,
-			temporalExplanation,
-		}
-	} as EvaluationFunction<NodeName>
 }
