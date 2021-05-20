@@ -83,7 +83,11 @@ export default function AideDéclarationIndépendant() {
 						</li>
 					</ul>
 				</Warning>
-
+				{displayForm ? (
+					<TrackPage name="commence" />
+				) : (
+					<TrackPage name="accueil" />
+				)}
 				{!situation['dirigeant . rémunération . totale'] && (
 					<PreviousSimulationBanner />
 				)}
@@ -135,11 +139,6 @@ export default function AideDéclarationIndépendant() {
 				</Animate.fromTop>
 			)}
 
-			{displayForm ? (
-				<TrackPage name="commence" />
-			) : (
-				<TrackPage name="accueil" />
-			)}
 			{displayForm && (
 				<>
 					<Animate.fromTop>
@@ -234,6 +233,7 @@ export default function AideDéclarationIndépendant() {
 					</Animate.fromTop>
 
 					<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
+
 					<Condition
 						expression={{
 							'une de ces conditions': [
@@ -242,6 +242,7 @@ export default function AideDéclarationIndépendant() {
 							],
 						}}
 					>
+						<TrackPage name="simulation terminée" />
 						<Results />
 					</Condition>
 					<Aide />
