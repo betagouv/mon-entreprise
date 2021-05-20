@@ -59,7 +59,7 @@ Grille avec valeur manquante:
       situation:
         assiette: 3000
       valeur attendue: 300
-    - nom: 'assiette au delà du plagond'
+    - nom: 'assiette au delà du plafond'
       situation:
         assiette: 5000
       valeur attendue: false

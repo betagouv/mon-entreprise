@@ -28,7 +28,6 @@ import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
 import unité from './mecanisms/unité'
-import variableTemporelle from './mecanisms/variableTemporelle'
 import variations, { devariate } from './mecanisms/variations'
 import { Context } from './parsePublicodes'
 import parseReference from './reference'
@@ -190,7 +189,6 @@ const parseFunctions = {
 	somme: mecanismSum,
 	multiplication: mecanismProduct,
 	produit: mecanismProduct,
-	temporalValue: variableTemporelle,
 	barème,
 	grille,
 	'taux progressif': tauxProgressif,

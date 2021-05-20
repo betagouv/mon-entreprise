@@ -174,8 +174,6 @@ export const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 			return traverseUnitéNode(fn, node)
 		case 'variations':
 			return traverseVariationNode(fn, node)
-		case 'variable temporelle':
-			return traverseVariableTemporelle(fn, node)
 		case 'replacementRule':
 			return traverseReplacementNode(fn, node)
 		default:
@@ -381,18 +379,4 @@ const traverseVariationNode: TraverseFunction<'variations'> = (fn, node) => ({
 		condition: fn(condition),
 		consequence: fn(consequence),
 	})),
-})
-
-const traverseVariableTemporelle: TraverseFunction<'variable temporelle'> = (
-	fn,
-	node
-) => ({
-	...node,
-	explanation: {
-		period: {
-			end: node.explanation.period.end && fn(node.explanation.period.end),
-			start: node.explanation.period.start && fn(node.explanation.period.start),
-		},
-		value: fn(node.explanation.value),
-	},
 })

@@ -23,12 +23,10 @@ import { SommeNode } from '../mecanisms/sum'
 import { SynchronisationNode } from '../mecanisms/synchronisation'
 import { TauxProgressifNode } from '../mecanisms/tauxProgressif'
 import { UnitéNode } from '../mecanisms/unité'
-import { VariableTemporelleNode } from '../mecanisms/variableTemporelle'
 import { VariationNode } from '../mecanisms/variations'
 import { ReferenceNode } from '../reference'
 import { ReplacementRule } from '../replacement'
 import { RuleNode } from '../rule'
-import { Temporal } from '../temporal'
 
 export type ConstantNode = {
 	type: 'boolean' | 'objet' | 'number' | 'string'
@@ -64,7 +62,6 @@ export type ASTNode = (
 	| SynchronisationNode
 	| TauxProgressifNode
 	| UnitéNode
-	| VariableTemporelleNode
 	| VariationNode
 	| ConstantNode
 	| ReplacementRule
@@ -109,12 +106,10 @@ export type Unit = {
 }
 
 // Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
-// Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
 type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
 	missingVariables: Record<string, number>
 	unit?: Unit
-	temporalValue?: Temporal<Evaluation>
 }
 export type Types = number | boolean | string | Record<string, unknown>
 export type Evaluation<T extends Types = Types> = T | false | null
