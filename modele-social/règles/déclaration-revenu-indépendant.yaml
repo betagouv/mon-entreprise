@@ -16,8 +16,8 @@ aide déclaration revenu indépendant 2020 . comptabilité:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - trésorerie
         - engagement
+        - trésorerie
 
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
   remplace: 
@@ -28,11 +28,11 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
 
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total charges sociale:
   remplace: 
-    règle: dirigeant . rémunération . cotisations
+    règle: dirigeant . indépendant . cotisations et contributions
     par: 
       somme: 
-        - total charges sociale
-        - dirigeant . indépendant . contrats madelin . montant
+        - comptabilité . trésorerie . total charges sociale
+        - dirigeant . indépendant . cotisations facultatives . total
   unité: €/an
   question: Quel est le montant total des cotisations et contributions sociales payées pendant l'exercice ?
   description: |
@@ -84,11 +84,10 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . cotisations obligatoires déductibles:
   remplace: cotisations obligatoires déductibles
   unité: €/an
-  valeur: total charges sociale
+  valeur: comptabilité . trésorerie . total charges sociale
   abattement: 
     somme: 
-      - CSG non déductible
-      - CRDS
+      - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
       - dirigeant . indépendant . cotisations et contributions . formation professionnelle
 
 aide déclaration revenu indépendant 2020 . comptabilité . engagement:
@@ -548,19 +547,11 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
 
 
 aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
-  unité: €/an
+  description: Cotisations obligatoires déductibles, utile pour calculer l'assiette de la CSG/CRDS
   somme:
     - dirigeant . indépendant . cotisations et contributions . cotisations
     - dirigeant . indépendant . conjoint collaborateur . cotisations
-  références:
 
-aide déclaration revenu indépendant 2020 . total charges sociales déductibles:
-  titre: charges sociales obligatoires déductibles fiscalement
-  valeur: dirigeant . rémunération . cotisations
-  abattement:
-    applicable si: entreprise . imposition . IR
-    valeur: dirigeant . indépendant . cotisations et contributions . non déductibles
-    
 aide déclaration revenu indépendant 2020 . rémunération déductible:
   variations: 
     - si: entreprise . imposition . IS
@@ -579,32 +570,50 @@ aide déclaration revenu indépendant 2020 . formulaire 2033:
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 250:
   résumé: Rémunérations du personnel (+)
-  valeur: rémunération déductible 
+  valeur: rémunération déductible
   description: |
     Si votre entreprise emploie des salarié, ajoutez à ce montant le total des rémunération brute versée durant l'exercice
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 252:
   résumé: Charges sociales (+)
-  valeur: total charges sociales déductibles
+  valeur: dirigeant . indépendant . cotisations et contributions
   description: |
     Si votre entreprise emploie des salarié, ajoutez à ce montant le total des cotisations patronales payées durant l'exercice
 
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 324:
+  résumé: Impôts et taxes non déductibles
+  applicable si: entreprise . imposition . IR
+  valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 330:
+  résumé: Divers à réintégrer (+)
+  description: Réintégrer également les montants spécifiés [page 8 de la notice dédiée](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2033-sd_2570.pdf#page=8)
+  applicable si: 
+    toutes ces conditions:
+      - entreprise . imposition . IR
+      - dirigeant . indépendant . cotisations facultatives . non déductibles > 0
+  valeur: dirigeant . indépendant . cotisations facultatives . non déductibles
+
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 381:
   applicable si: entreprise . imposition . IR
-  résumé: Primes et cotisations complémentaires facultatives (+)
-  valeur: rubrique 325
-  description: Ajoutez le montant des cotisations facultatives aux nouveaux plans d'épargne retraite si nécessaire (327)
+  résumé: Primes et cotisations complémentaires facultatives
+  valeur: dirigeant . indépendant . cotisations facultatives . total
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 325:
   applicable si: entreprise . imposition . IR
   résumé: Dont montant déductible des cotisations facultatives  versées  en  application  du  I de  l'article  154  bis  du  CGI  dont cotisations  facultatives  Madelin  (I  de l’art. 154 bis du CGI)
-  valeur: dirigeant . indépendant . contrats madelin . part déductible fiscalement
+  valeur: dirigeant . indépendant . cotisations facultatives . déductibles
 
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 327:
+  applicable si: entreprise . imposition . IR
+  résumé: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
+  valeur: dirigeant . indépendant . cotisations facultatives . PER
+  
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 380:
   applicable si: entreprise . imposition . IR
   résumé: Cotisations personnelles obligatoires de l'exploitant
-  valeur: total charges sociales déductibles
-  abattement: dirigeant . indépendant . contrats madelin . part déductible fiscalement
+  valeur: dirigeant . indépendant . cotisations et contributions
+  abattement: dirigeant . indépendant . cotisations facultatives . total
 
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 326:
   applicable si: entreprise . imposition . IR
@@ -618,7 +627,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2050:
   résumé: Liasse fiscale du régime réel normal
   référence:
     formulaire: https://www.impots.gouv.fr/portail/files/formulaires/2050-liasse/2021/2050-liasse_3391.pdf
-
+    notice: https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FY:
   résumé: Salaires et traitements (+)
   valeur: rémunération déductible
@@ -627,15 +636,15 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FY:
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FZ:
   résumé: Charges sociales (+)
-  valeur: total charges sociales déductibles
+  valeur: dirigeant . indépendant . cotisations et contributions
   description: |
     Si votre entreprise emploie des salarié, ajoutez à ce montant le total des cotisations patronales payées durant l'exercice, ainsi que toutes les autres charges sociales
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A2:
   applicable si: entreprise . imposition . IR
-  résumé: Cotisations personnelles de l'exploitant (+)
-  description: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire (A8)
-  valeur: total charges sociales déductibles
+  résumé: Cotisations personnelles de l'exploitant
+  valeur: dirigeant . indépendant . cotisations et contributions
+  abattement: dirigeant . indépendant . cotisations facultatives . total
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:
   applicable si: entreprise . imposition . IR
@@ -644,14 +653,24 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A6:
   applicable si: entreprise . imposition . IR
-  résumé: Primes et cotisations complémentaires personnelles facultatives (+)
-  description: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire (A8)
-  valeur: rubrique A7
+  résumé: Primes et cotisations complémentaires personnelles facultatives
+  valeur: dirigeant . indépendant . cotisations facultatives . déductibles
 
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A7:
   applicable si: entreprise . imposition . IR
-  résumé: Dont cotisations facultatives Madelin 
-  valeur: dirigeant . indépendant . contrats madelin . part déductible fiscalement
+  résumé: Dont cotisations facultatives Madelin
+  valeur: dirigeant . indépendant . cotisations facultatives . contrats madelin
+
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A8:
+  applicable si: entreprise . imposition . IR
+  résumé: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
+  valeur: dirigeant . indépendant . cotisations facultatives . PER
+  
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique WQ:
+  applicable si: entreprise . imposition . IR
+  valeur: dirigeant . indépendant . cotisations et contributions . non déductibles 
+  résumé: Réintégrations diverses (+)
+  description: Ajouter toutes les réintégrations listée dans la [page 9 de la notice](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf#page=9) 
 
 aide déclaration revenu indépendant 2020 . formulaire 2035:
   titre: formulaire 2035-A-SD
@@ -671,10 +690,10 @@ aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BV:
   valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BK:
-  résumé: Charges sociales personnelles (+)
-  description: La rubrique BU n'est pas prise en compte ici. Il faut l'ajouter à ce montant si elle est non nulle. 
-  valeur: total charges sociales déductibles
-  abattement: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+  résumé: Charges sociales personnelles
+  somme: 
+    - cotisations obligatoires déductibles
+    - dirigeant . indépendant . cotisations facultatives . déductibles
 
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BT:
   résumé: Dont obligatoires
@@ -682,7 +701,11 @@ aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BT:
 
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BZ:
   résumé: Dont cotisations facultatives Madelin
-  valeur: dirigeant . indépendant . contrats madelin . part déductible fiscalement
+  valeur: dirigeant . indépendant . cotisations facultatives . contrats madelin
+
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BU:
+  résumé: Dont facultatives aux nouveaux plans d’épargne retraite
+  valeur: dirigeant . indépendant . cotisations facultatives . PER
 
 aide déclaration revenu indépendant 2020 . formulaire 2042: 
   valeur: oui
@@ -697,7 +720,6 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
   résumé: Traitements et salaires
   valeur: dirigeant . rémunération . imposable
 
-  
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA: 
   titre: rubrique DSCA / DSCB
   résumé: Cotisations sociales obligatoires
@@ -708,9 +730,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA:
 
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSEA:
   titre: rubrique DSEA / DSEB
-  description: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire
-  résumé: Cotisations facultatives (+)
-  formule: dirigeant . indépendant . contrats madelin . part déductible fiscalement
+  résumé: Cotisations facultatives
+  formule: dirigeant . indépendant . cotisations facultatives . déductibles
 
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSIA:
   titre: rubrique DSIA / DSIB
@@ -747,9 +768,10 @@ aide déclaration revenu indépendant 2020 . informations . cotisations déducti
 aide déclaration revenu indépendant 2020 . informations . cotisations non déductibles:
   résumé: '[C2]'
   description: Cotisations et contributions sociales non déductibles pour le calcul de l'assiette sociale
-  somme: 
-    - dirigeant . indépendant . contrats madelin . montant
-    - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+  valeur: 
+    somme: 
+      - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+      - dirigeant . indépendant . cotisations facultatives . total
 
 aide déclaration revenu indépendant 2020 . informations . assiette sociale:
   résumé: '[A - C1]'

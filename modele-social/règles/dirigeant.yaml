@@ -490,7 +490,7 @@ dirigeant . indépendant . assiette des cotisations:
     nom: sans plancher
     somme: 
       - revenu professionnel
-      - contrats madelin . part déductible fiscalement
+      - cotisations facultatives . déductibles
   plancher: 0
 
 dirigeant . indépendant . conjoint collaborateur:
@@ -511,7 +511,7 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre: Cotisations et contributions non déductibles fiscalement
   somme: 
     - CSG et CRDS . non déductible
-    - contrats madelin . part non-déductible fiscalement
+    - cotisations facultatives . non déductibles
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
@@ -736,7 +736,7 @@ dirigeant . indépendant . cotisations et contributions:
   somme:
     - cotisations et contributions . cotisations
     - conjoint collaborateur . cotisations
-    - contrats madelin . montant
+    - cotisations facultatives . total
     - CSG et CRDS
     - contributions spéciales
     - formation professionnelle
@@ -823,36 +823,59 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
     valeur: assiette des cotisations
     abattement: déduction tabac
 
-dirigeant . indépendant . contrats madelin:
-  titre: Contrats Madelin
-  question: |
-    Avez-vous souscrit à un contrat de prévoyance et / ou de retraite complémentaire privé dits « contrat Madelin »
+
+dirigeant . indépendant . cotisations facultatives:
+  question: Avez-vous souscrit à des contrats de prévoyance et / ou de retraite complémentaire privés (contrats Madelin, plans d'épargne retraite) ?
+  description: | 
+    Il est possible pour l'indépendant de souscrire à des contrats privés pour la complémentaire santé, ou un plan d'épargne retraite. 
+    Les versements à ces contrats sont désigné par l'appellation "cotisations facultative" par l'administration fiscale. 
+
+    Ils sont déductible d'impôts (dans la limite d'un plafond), mais non déductible pour l'assiette des cotisations et contributions sociales.
   par défaut: non
+  références:
+    Contrats Madelin: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
+    PER: https://www.economie.gouv.fr/PER-epargne-retraite
+
+dirigeant . indépendant . cotisations facultatives . total:
+  titre: Total des cotisations facultatives
+  somme:
+    - contrats madelin
+    - PER
+
+dirigeant . indépendant . cotisations facultatives . déductibles:
+  titre: Part des cotisations facultatives déductible fiscalement
+  formule:
+    somme:
+      - valeur: contrats madelin . prévoyance
+        plafond: plafond prévoyance
+      - somme: 
+          - PER
+          - contrats madelin . retraite
+        plafond: plafond retraite complémentaire
+
+dirigeant . indépendant . cotisations facultatives . non déductibles:
+  titre: Part des cotisations facultatives non déductible fiscalement
+  formule: total - déductibles
+
+dirigeant . indépendant . cotisations facultatives . PER:
+  description: 
+    Le PER individuel est ouvert à tous. Vous pouvez le souscrire auprès d'un établissement financier ou d'un organisme d'assurance. Ce nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus proposés à partir du 1er octobre 2020. Votre épargne accumulée sur le Perp et le Madelin peut être à votre demande transférée sur le PER individuel. Ce contrat donne droit à des avantages fiscaux et vos droits sont transférables vers les autres PER. Il y a des cas de déblocage anticipé.
+  titre: Plan d'épargne retraite 
+  unité: €/an
+  question: Quel est le montant des cotisations que vous versez dans le cadre d'un PER (nouveau plan épargne retraite, depuis le 1er octobre 2019) ?
+  par défaut: 0 €/mois
   références: 
-    economie.gouv.fr: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
+    Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F34982
+    Fiche economie.gouv.fr: https://www.economie.gouv.fr/PER-epargne-retraite
 
-dirigeant . indépendant . contrats madelin . montant:
+
+dirigeant . indépendant . cotisations facultatives . contrats madelin:
   titre: Somme des cotisations à contrats Madelin
-  formule:
-    somme:
-      - mutuelle
-      - retraite
+  somme:
+    - prévoyance
+    - retraite
 
-
-dirigeant . indépendant . contrats madelin . part déductible fiscalement:
-  titre: Part de la cotisation à contrat Madelin qui est déductible fiscalement
-  formule:
-    somme:
-      - valeur: mutuelle
-        plafond: mutuelle . plafond
-      - valeur: retraite
-        plafond: retraite . plafond
-
-dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
-  titre: Part de la cotisation à contrat Madelin qui n'est pas déductible fiscalement
-  formule: montant - part déductible fiscalement
-
-dirigeant . indépendant . contrats madelin . mutuelle:
+dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
   titre: Souscription à un contrat de prévoyance complémentaire Madelin
   question: Quel est le montant que vous versez pour vos contrats Madelin de prévoyance complémentaire (santé, perte d'emploi subie) ?
   unité: €/an
@@ -866,7 +889,7 @@ dirigeant . indépendant . contrats madelin . mutuelle:
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
   par défaut: 50 €/mois
 
-dirigeant . indépendant . contrats madelin . mutuelle . plafond:
+dirigeant . indépendant . cotisations facultatives . plafond prévoyance :
   unité: €/an
   formule:
     somme:
@@ -885,7 +908,7 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
   note: |
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
-dirigeant . indépendant . contrats madelin . retraite:
+dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
   titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez pour votre contrat Madelin retraite complémentaire ?
   description: |
@@ -898,7 +921,7 @@ dirigeant . indépendant . contrats madelin . retraite:
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
   par défaut: 0 €/an
 
-dirigeant . indépendant . contrats madelin . retraite . plafond:
+dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire:
   unité: €/an
   formule:
     le maximum de:

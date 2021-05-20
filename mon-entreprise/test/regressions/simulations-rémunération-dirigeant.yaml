@@ -46,34 +46,40 @@ Contrats Madelin:
   # cotisations ne change pas:
   - dirigeant . rémunération . totale: 30000 €/an
     entreprise . charges: 10000 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 3800 €/an # plafond: 10% PSS donc environ 4100 
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 3800 €/an # plafond: 10% PSS donc environ 4100 
   # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - dirigeant . rémunération . totale: 30000 €/an
     entreprise . charges: 10000 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 5000 €/an # plafond: 10% PSS donc environ 4100 
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 5000 €/an # plafond: 10% PSS donc environ 4100 
   # Cas mutuelle
   - dirigeant . rémunération . totale: 30000 €/an
     entreprise . charges: 10000 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 1000 €/an
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 1000 €/an
   # Cas global madelin faible
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . charges: 1000 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 200 €/an
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 200 €/an
     dirigeant . indépendant . contrats madelin . retraite: 300 €/an
   # Cas global madelin grand (plafonds calculés différemment)
   - dirigeant . rémunération . totale: 300000 €/an
     entreprise . charges: 15000 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 1500 €/an
-    dirigeant . indépendant . contrats madelin . retraite: 5000 €/an
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 1500 €/an
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
   # Cas charges plus faibles que total madelin
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . charges: 500 €/an
-    dirigeant . indépendant . contrats madelin: oui
-    dirigeant . indépendant . contrats madelin . mutuelle: 300 €/an
-    dirigeant . indépendant . contrats madelin . retraite: 300 €/an
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 300 €/an
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
+  # PER
+  - dirigeant . rémunération . totale: 20000 €/an
+    dirigeant . indépendant . cotisations facultatives: oui
+    dirigeant . indépendant . cotisations facultatives . PER: 5500 €/an
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 500 €/an
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 900 €/an

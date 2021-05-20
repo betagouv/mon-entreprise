@@ -254,7 +254,7 @@ entreprise . imposition . IR:
   titre: Impôt sur le revenu
 
 entreprise . imposition . IR . micro-fiscal:
-  rend non applicable: dirigeant . indépendant . contrats madelin
+  rend non applicable: dirigeant . indépendant . cotisations facultatives
   question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
     Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales. 
