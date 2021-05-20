@@ -202,24 +202,29 @@ exports[`calculate simulations-impot-société: prorata temporis 3`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
-exports[`calculate simulations-indépendant: Contrats Madelin 1`] = `"[30000,13180,16820,17883,467,16353,0,30000,7072]"`;
-
-exports[`calculate simulations-indépendant: Contrats Madelin 2`] = `"[30000,14380,15620,17883,467,15153,0,30000,8272]"`;
-
-exports[`calculate simulations-indépendant: Contrats Madelin 3`] = `"[30000,10379,19621,20433,875,18746,0,30000,4272]"`;
-
-exports[`calculate simulations-indépendant: Contrats Madelin 4`] = `"[20000,6730,13270,13810,0,13270,0,20000,3772]"`;
-
-exports[`calculate simulations-indépendant: Contrats Madelin 5`] = `
-"[300000,79622,220378,228521,82429,137949,0,300000,9772]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
-`;
-
 exports[`calculate simulations-indépendant: acre 1`] = `"[73023,23023,50000,51980,9600,40400,0,73023,3272]"`;
 
 exports[`calculate simulations-indépendant: activité 1`] = `"[29084,9084,20000,20787,931,19069,0,29084,3272]"`;
 
 exports[`calculate simulations-indépendant: activité 2`] = `"[29100,9100,20000,20787,931,19069,0,29100,3288]"`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13180,16820,17883,467,16353,0,30000,7072]"`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14380,15620,17883,467,15153,0,30000,8272]"`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 3`] = `"[30000,10379,19621,20433,875,18746,0,30000,4272]"`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 4`] = `"[20000,6730,13270,13810,0,13270,0,20000,3772]"`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 5`] = `
+"[300000,79622,220378,228521,82429,137949,0,300000,9772]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
+
+exports[`calculate simulations-indépendant: cotisations facultatives 6`] = `
+"[300000,83122,216878,225021,80854,136024,0,300000,13272]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
 
 exports[`calculate simulations-indépendant: cotisations minimales 1`] = `"[1372,1272,100,134,0,100,0,1372,3272]"`;
 
@@ -391,6 +396,8 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,10998,0,10651,4,20]"`;
 
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 7`] = `"[917,10998,0,10651,4,20]"`;
+
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,10998,0,10651,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,null,4,0]"`;
@@ -451,6 +458,8 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,17852,17852,2973,3,8]"`;
 
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 7`] = `"[0,17417,17417,2900,3,8]"`;
+
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,15580,15580,6600,4,18]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15560,15560,null,4,0]"`;
@@ -504,6 +513,8 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA d�
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `"[0,13170,0,9785,4,21]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 7`] = `"[0,6870,0,7778,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13770,0,10085,4,21]"`;
 

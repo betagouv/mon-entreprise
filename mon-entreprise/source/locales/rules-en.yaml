@@ -226,6 +226,10 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
   titre.en: '[automatic] total social charges'
   titre.fr: total charges sociale
 aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
+  description.en: '[automatic] Deductible compulsory contributions, useful for
+    calculating the CSG/CRDS base'
+  description.fr: Cotisations obligatoires déductibles, utile pour calculer
+    l'assiette de la CSG/CRDS
   titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
 aide déclaration revenu indépendant 2020 . formulaire 2033:
@@ -255,6 +259,11 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 252:
   résumé.fr: Charges sociales (+)
   titre.en: '[automatic] heading 252'
   titre.fr: rubrique 252
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 324:
+  résumé.en: '[automatic] Non-deductible taxes'
+  résumé.fr: Impôts et taxes non déductibles
+  titre.en: '[automatic] heading 324'
+  titre.fr: rubrique 324
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 325:
   résumé.en: '[automatic] Of which, deductible amount of optional contributions
     paid in application of I of Article 154 bis of the CGI of which optional
@@ -271,18 +280,33 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 326:
   résumé.fr: Dont montant déductible des cotisations sociales obligatoires hors CSG-CRDS
   titre.en: '[automatic] heading 326'
   titre.fr: rubrique 326
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 327:
+  résumé.en: '[automatic] Of which, voluntary contributions to new retirement
+    savings plans'
+  résumé.fr: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
+  titre.en: '[automatic] heading 327'
+  titre.fr: rubrique 327
+aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 330:
+  description.en:
+    "[automatic] Also add back the amounts specified [page 8 of the
+    dedicated
+    notice](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2\
+    033-sd_2570.pdf#page=8)"
+  description.fr:
+    Réintégrer également les montants spécifiés [page 8 de la notice
+    dédiée](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2033-sd_2570.pdf#page=8)
+  résumé.en: '[automatic] Miscellaneous to be added back (+)'
+  résumé.fr: Divers à réintégrer (+)
+  titre.en: '[automatic] section 330'
+  titre.fr: rubrique 330
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 380:
   résumé.en: '[automatic] Compulsory personal contributions of the operator'
   résumé.fr: Cotisations personnelles obligatoires de l'exploitant
   titre.en: '[automatic] item 380'
   titre.fr: rubrique 380
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 381:
-  description.en: '[automatic] Add optional contributions to new retirement
-    savings plans if necessary (327)'
-  description.fr: Ajoutez le montant des cotisations facultatives aux nouveaux
-    plans d'épargne retraite si nécessaire (327)
-  résumé.en: '[automatic] Optional supplementary premiums and contributions (+)'
-  résumé.fr: Primes et cotisations complémentaires facultatives (+)
+  résumé.en: '[automatic] Optional supplementary premiums and contributions'
+  résumé.fr: Primes et cotisations complémentaires facultatives
   titre.en: '[automatic] heading 381'
   titre.fr: rubrique 381
 aide déclaration revenu indépendant 2020 . formulaire 2035:
@@ -291,13 +315,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2035:
   titre.en: '[automatic] form 2035-A-SD'
   titre.fr: formulaire 2035-A-SD
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BK:
-  description.en: '[automatic] The BU heading is not taken into account here. It
-    must be added to this amount if it is not zero.'
-  description.fr:
-    La rubrique BU n'est pas prise en compte ici. Il faut l'ajouter
-    à ce montant si elle est non nulle.
-  résumé.en: '[automatic] Personal social charges (+)'
-  résumé.fr: Charges sociales personnelles (+)
+  résumé.en: '[automatic] Personal social charges'
+  résumé.fr: Charges sociales personnelles
   titre.en: '[automatic] BK section'
   titre.fr: rubrique BK
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BS:
@@ -314,6 +333,11 @@ aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BT:
   résumé.fr: Dont obligatoires
   titre.en: '[automatic] LV section'
   titre.fr: rubrique BT
+aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BU:
+  résumé.en: '[automatic] Of which, optional to new retirement savings plans'
+  résumé.fr: Dont facultatives aux nouveaux plans d’épargne retraite
+  titre.en: '[automatic] BU section'
+  titre.fr: rubrique BU
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BV:
   résumé.en: '[automatic] Deductible generalized social contribution'
   résumé.fr: Contribution sociale généralisée déductible
@@ -344,10 +368,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA:
   titre.en: '[automatic] DSCA / DSCB section'
   titre.fr: rubrique DSCA / DSCB
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSEA:
-  description.en: '[automatic] Add the amounts paid into the new supplementary savings plans'
-  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne complémentaire
-  résumé.en: '[automatic] Optional contributions (+)'
-  résumé.fr: Cotisations facultatives (+)
+  résumé.en: '[automatic] Optional contributions'
+  résumé.fr: Cotisations facultatives
   titre.en: '[automatic] DSEA / DSEB section'
   titre.fr: rubrique DSEA / DSEB
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSIA:
@@ -366,11 +388,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2050:
   titre.en: '[automatic] form 2052-SD and 2053-SD'
   titre.fr: formulaire 2052-SD et 2053-SD
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A2:
-  description.en: '[automatic] Add amounts paid into new supplementary savings plans (A8)'
-  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne
-    complémentaire (A8)
-  résumé.en: '[automatic] Personal contributions of the operator (+)'
-  résumé.fr: Cotisations personnelles de l'exploitant (+)
+  résumé.en: "[automatic] Operator's personal contributions"
+  résumé.fr: Cotisations personnelles de l'exploitant
   titre.en: '[automatic] item A2'
   titre.fr: rubrique A2
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:
@@ -380,11 +399,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A5:
   titre.en: '[automatic] section A5'
   titre.fr: rubrique A5
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A6:
-  description.en: '[automatic] Add amounts paid into new supplementary savings plans (A8)'
-  description.fr: Ajoutez les sommes versées sur les nouveaux plans d'épargne
-    complémentaire (A8)
-  résumé.en: '[automatic] Optional personal supplementary premiums and contributions (+)'
-  résumé.fr: Primes et cotisations complémentaires personnelles facultatives (+)
+  résumé.en: '[automatic] Optional personal supplementary premiums and contributions'
+  résumé.fr: Primes et cotisations complémentaires personnelles facultatives
   titre.en: '[automatic] heading A6'
   titre.fr: rubrique A6
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A7:
@@ -392,6 +408,12 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A7:
   résumé.fr: Dont cotisations facultatives Madelin
   titre.en: '[automatic] section A7'
   titre.fr: rubrique A7
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A8:
+  résumé.en: '[automatic] Of which, voluntary contributions to new retirement
+    savings plans'
+  résumé.fr: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
+  titre.en: '[automatic] item A8'
+  titre.fr: rubrique A8
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FY:
   description.en: >
     [automatic] If your business employs employees, add to this amount the total
@@ -416,6 +438,16 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique FZ:
   résumé.fr: Charges sociales (+)
   titre.en: '[automatic] section FZ'
   titre.fr: rubrique FZ
+aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique WQ:
+  description.en: "[automatic] Add all reinstatements listed on [page 9 of the
+    record](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/20\
+    20/2032-not-sd_2959.pdf#page=9)"
+  description.fr: Ajouter toutes les réintégrations listée dans la [page 9 de la
+    notice](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf#page=9)
+  résumé.en: '[automatic] Miscellaneous reinstatements (+)'
+  résumé.fr: Réintégrations diverses (+)
+  titre.en: '[automatic] WQ section'
+  titre.fr: rubrique WQ
 aide déclaration revenu indépendant 2020 . informations:
   titre.en: '[automatic] information'
   titre.fr: informations
@@ -1113,9 +1145,6 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel . norm
 aide déclaration revenu indépendant 2020 . rémunération déductible:
   titre.en: '[automatic] deductible remuneration'
   titre.fr: rémunération déductible
-aide déclaration revenu indépendant 2020 . total charges sociales déductibles:
-  titre.en: '[automatic] tax-deductible mandatory social security charges'
-  titre.fr: charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
@@ -6453,83 +6482,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
 ? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
 : titre.en: basic retirement
   titre.fr: retraite de base
-dirigeant . indépendant . contrats madelin:
-  question.en: >
-    [automatic] Have you subscribed to a private provident and/or supplementary
-    pension contract known as a "Madelin contract"?
-  question.fr: >
-    Avez-vous souscrit à un contrat de prévoyance et / ou de retraite
-    complémentaire privé dits « contrat Madelin »
-  titre.en: Madelin Contracts
-  titre.fr: Contrats Madelin
-dirigeant . indépendant . contrats madelin . montant:
-  titre.en: Sum of subscriptions to Madelin contracts
-  titre.fr: Somme des cotisations à contrats Madelin
-dirigeant . indépendant . contrats madelin . mutuelle:
-  description.en: >
-    [automatic] If you contribute to a supplementary insurance contract (health,
-    loss of employment) 
-
-    under the Madelin law, you can deduct these contributions from the taxable profits
-
-    that you declare for your self-employed activity.
-  description.fr: >
-    Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé,
-    perte d'emploi subie) 
-
-    de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
-
-    imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay for your Madelin supplementary
-    insurance policies (health, sudden loss of employment)?'
-  question.fr: Quel est le montant que vous versez pour vos contrats Madelin de
-    prévoyance complémentaire (santé, perte d'emploi subie) ?
-  titre.en: '[automatic] Subscribing to a Madelin supplementary insurance contract'
-  titre.fr: Souscription à un contrat de prévoyance complémentaire Madelin
-dirigeant . indépendant . contrats madelin . mutuelle . plafond:
-  note.en: >
-    [automatic] Normally it is the tax result that should be used for the cap
-    base, but business income is used to avoid a cycle.
-  note.fr: >
-    Normalement c'est le résultat fiscal qui devrait être utilisé pour
-    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
-    un cycle.
-  titre.en: ceiling
-  titre.fr: plafond
-dirigeant . indépendant . contrats madelin . part déductible fiscalement:
-  titre.en: Part of the Madelin contract subscription which is fiscally deductible
-  titre.fr: Part de la cotisation à contrat Madelin qui est déductible fiscalement
-dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
-  titre.en: Part of the Madelin contract subscription which is not fiscally deductible
-  titre.fr: Part de la cotisation à contrat Madelin qui n'est pas déductible fiscalement
-dirigeant . indépendant . contrats madelin . retraite:
-  description.en: >
-    [automatic] If you are contributing under a pension contract such as the
-    Madelin law,
-
-    you can deduct part of these contributions from your profits; and
-
-    taxable persons that you declare for your self-employed activity.
-  description.fr: |
-    Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
-    vous pouvez déduire une partie de ces cotisations des bénéfices
-    imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay for your Madelin supplementary
-    pension contract?'
-  question.fr: Quel est le montant que vous versez pour votre contrat Madelin
-    retraite complémentaire ?
-  titre.en: '[automatic] Madelin Retirement Subscription'
-  titre.fr: Souscription à une retraite Madelin
-dirigeant . indépendant . contrats madelin . retraite . plafond:
-  note.en: >
-    [automatic] Normally it is the tax result that should be used for the cap
-    base, but business income is used to avoid a cycle.
-  note.fr: >
-    Normalement c'est le résultat fiscal qui devrait être utilisé pour
-    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
-    un cycle.
-  titre.en: ceiling
-  titre.fr: plafond
 dirigeant . indépendant . cotisations et contributions:
   description.en: '[automatic] '
   description.fr: |
@@ -6914,6 +6866,120 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
     (attention cependant, vous serez tenus de faire une estimation précise).
   titre.en: '[automatic] How the adjustment of provisional contributions works'
   titre.fr: Comment fonctionne la régularisation des cotisations provisionnelles
+dirigeant . indépendant . cotisations facultatives:
+  description.en: >
+    [automatic] It is possible for the self-employed to subscribe to private
+    contracts for complementary health care or a retirement savings plan. 
+
+    Payments to these contracts are designated as "optional contributions" by the tax authorities. 
+
+
+    They are tax deductible (up to a limit), but not deductible for the basis of social contributions.
+  description.fr: >
+    Il est possible pour l'indépendant de souscrire à des contrats privés pour
+    la complémentaire santé, ou un plan d'épargne retraite. 
+
+    Les versements à ces contrats sont désigné par l'appellation "cotisations facultative" par l'administration fiscale. 
+
+
+    Ils sont déductible d'impôts (dans la limite d'un plafond), mais non déductible pour l'assiette des cotisations et contributions sociales.
+  question.en: '[automatic] Have you subscribed to any private provident and/or
+    supplementary pension contracts (Madelin contracts, retirement savings
+    plans)?'
+  question.fr:
+    Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
+    complémentaire privés (contrats Madelin, plans d'épargne retraite) ?
+  titre.en: '[automatic] optional contributions'
+  titre.fr: cotisations facultatives
+dirigeant . indépendant . cotisations facultatives . PER:
+  description.en: '[automatic] The individual PER is open to everyone. You can
+    subscribe to it with a financial institution or an insurance company. This
+    new plan is the successor to the PERP and Madelin contracts, which will no
+    longer be offered from 1 October 2020. Your savings accumulated on the Perp
+    and Madelin can be transferred to the individual PER at your request. This
+    contract entitles you to tax benefits and your rights are transferable to
+    the other PERs. There are cases of early release.'
+  description.fr: Le PER individuel est ouvert à tous. Vous pouvez le souscrire
+    auprès d'un établissement financier ou d'un organisme d'assurance. Ce
+    nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus
+    proposés à partir du 1er octobre 2020. Votre épargne accumulée sur le Perp
+    et le Madelin peut être à votre demande transférée sur le PER individuel. Ce
+    contrat donne droit à des avantages fiscaux et vos droits sont transférables
+    vers les autres PER. Il y a des cas de déblocage anticipé.
+  question.en: '[automatic] How much do you contribute to a PER (new retirement
+    savings plan, as of October 1, 2019)?'
+  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
+    d'un PER (nouveau plan épargne retraite, depuis le 1er octobre 2019) ?
+  titre.en: '[automatic] Retirement savings plan'
+  titre.fr: Plan d'épargne retraite
+dirigeant . indépendant . cotisations facultatives . contrats madelin:
+  titre.en: '[automatic] Sum of contributions to Madelin contracts'
+  titre.fr: Somme des cotisations à contrats Madelin
+? dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance
+: description.en: >
+    [automatic] If you contribute to a supplementary insurance contract (health,
+    loss of employment) 
+
+    under the Madelin law, you can deduct these contributions from the taxable profits
+
+    that you declare for your self-employed activity.
+  description.fr: >
+    Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé,
+    perte d'emploi subie) 
+
+    de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
+
+    imposables que vous déclarez pour votre activité non salariée.
+  question.en: '[automatic] How much do you pay for your Madelin supplementary
+    insurance policies (health, sudden loss of employment)?'
+  question.fr: Quel est le montant que vous versez pour vos contrats Madelin de
+    prévoyance complémentaire (santé, perte d'emploi subie) ?
+  titre.en: '[automatic] Subscribing to a Madelin supplementary insurance contract'
+  titre.fr: Souscription à un contrat de prévoyance complémentaire Madelin
+? dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite
+: description.en: |
+    [automatic] If you contribute to a Madelin-type retirement contract
+    you can deduct part of these contributions from the taxable profits
+    that you declare for your self-employed activity.
+  description.fr: |
+    Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
+    vous pouvez déduire une partie de ces cotisations des bénéfices
+    imposables que vous déclarez pour votre activité non salariée.
+  question.en: '[automatic] How much do you pay for your Madelin supplementary
+    pension contract?'
+  question.fr: Quel est le montant que vous versez pour votre contrat Madelin
+    retraite complémentaire ?
+  titre.en: '[automatic] Subscription to a Madelin pension'
+  titre.fr: Souscription à une retraite Madelin
+dirigeant . indépendant . cotisations facultatives . déductibles:
+  titre.en: '[automatic] Tax-deductible portion of voluntary contributions'
+  titre.fr: Part des cotisations facultatives déductible fiscalement
+dirigeant . indépendant . cotisations facultatives . non déductibles:
+  titre.en: '[automatic] Non-deductible portion of voluntary contributions'
+  titre.fr: Part des cotisations facultatives non déductible fiscalement
+dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
+  note.en: >
+    [automatic] Normally it is the tax result that should be used for the basis
+    of the ceiling, but we use the professional income to avoid a cycle.
+  note.fr: >
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour
+    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
+    un cycle.
+  titre.en: '[automatic] planning ceiling'
+  titre.fr: plafond prévoyance
+? dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire
+: note.en: >
+    [automatic] Normally it is the tax result that should be used for the basis
+    of the ceiling, but we use the professional income to avoid a cycle.
+  note.fr: >
+    Normalement c'est le résultat fiscal qui devrait être utilisé pour
+    l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
+    un cycle.
+  titre.en: '[automatic] supplementary pension ceiling'
+  titre.fr: plafond retraite complémentaire
+dirigeant . indépendant . cotisations facultatives . total:
+  titre.en: '[automatic] Total optional contributions'
+  titre.fr: Total des cotisations facultatives
 dirigeant . indépendant . revenu professionnel:
   description.en:
     "[automatic] remuneration of the manager under the self-employed

@@ -64,7 +64,7 @@ Contrats Madelin:
     entreprise . charges: 1000 €/an
     dirigeant . indépendant . cotisations facultatives: oui
     dirigeant . indépendant . cotisations facultatives . contrats madelin . mutuelle: 200 €/an
-    dirigeant . indépendant . contrats madelin . retraite: 300 €/an
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
   # Cas global madelin grand (plafonds calculés différemment)
   - dirigeant . rémunération . totale: 300000 €/an
     entreprise . charges: 15000 €/an
