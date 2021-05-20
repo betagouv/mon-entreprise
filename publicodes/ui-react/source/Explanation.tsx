@@ -64,7 +64,6 @@ const UIComponents = {
 	'une possibilité': UnePossibilité,
 	'résoudre référence circulaire': RésoudreRéférenceCirculaire,
 	unité: Unité,
-	'variable temporelle': () => '[variable temporelle]',
 	variations: Variations,
 } as const
 

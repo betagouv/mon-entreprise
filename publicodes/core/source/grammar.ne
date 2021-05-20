@@ -7,8 +7,7 @@
 
 @{%
 const {
-  string, date, variable, temporalNumericValue, binaryOperation, 
-  unaryOperation, boolean, number, numberWithUnit, JSONObject
+  string, date, variable, binaryOperation, unaryOperation, boolean, number, numberWithUnit, JSONObject
 } = require('./grammarFunctions')
 
 const moo = require("moo");
@@ -61,11 +60,6 @@ main ->
 NumericValue ->
     AdditionSubstraction {% id %}
   | Negation {% id %}
-  | TemporalNumericValue {% id %}
-
-TemporalNumericValue ->
-    NumericValue %space %periodWord %space %date {% ([value,,word,,dateString]) => temporalNumericValue(value, word, date([dateString])) %}
-  | NumericValue %space %periodWord %colon Date {% ([value,,word,,date]) => temporalNumericValue(value, word, date) %}
 
 NumericTerminal ->
 	 	Variable {% id %}
