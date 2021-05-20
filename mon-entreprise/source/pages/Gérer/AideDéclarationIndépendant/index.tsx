@@ -200,7 +200,7 @@ export default function AideDéclarationIndépendant() {
 									hideTitle
 								/>
 
-								<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
+								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
 								<h2>
 									<Trans>International</Trans>
 								</h2>
@@ -215,7 +215,7 @@ export default function AideDéclarationIndépendant() {
 								<SubSection dottedName="aide déclaration revenu indépendant 2020 . comptabilité . trésorerie" />
 								<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-								<SubSection dottedName="dirigeant . indépendant . contrats madelin" />
+								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
 
 								{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
 								<h3>
