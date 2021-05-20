@@ -62,9 +62,6 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		},
 		missingVariables: evaluatedNode.missingVariables,
 		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),
-		...(evaluatedNode.temporalValue && {
-			temporalValue: evaluatedNode.temporalValue,
-		}),
 	}
 }
 

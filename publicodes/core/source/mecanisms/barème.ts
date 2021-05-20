@@ -3,12 +3,6 @@ import { ASTNode } from '../AST/types'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
-import {
-	liftTemporal2,
-	liftTemporalNode,
-	mapTemporal,
-	temporalAverage,
-} from '../temporal'
 import { convertUnit, parseUnit } from '../units'
 import {
 	evaluatePlafondUntilActiveTranche,
@@ -78,44 +72,28 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 	const evaluate = this.evaluate.bind(this)
 	const assiette = this.evaluate(node.explanation.assiette)
 	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
-	const temporalTranchesPlafond = liftTemporal2(
-		(assiette, multiplicateur) =>
-			evaluatePlafondUntilActiveTranche.call(this, {
-				parsedTranches: node.explanation.tranches,
-				assiette,
-				multiplicateur,
-			}),
-		liftTemporalNode(assiette as any),
-		liftTemporalNode(multiplicateur as any)
+	const tranches = evaluateBarème(
+		evaluatePlafondUntilActiveTranche.call(this, {
+			parsedTranches: node.explanation.tranches,
+			assiette,
+			multiplicateur,
+		}),
+		assiette,
+		evaluate
 	)
-	const temporalTranches = liftTemporal2(
-		(tranches, assiette) => evaluateBarème(tranches, assiette, evaluate),
-		temporalTranchesPlafond,
-		liftTemporalNode(assiette as any)
+	const nodeValue = tranches.reduce(
+		(value, { nodeValue }) => (nodeValue == null ? null : value + nodeValue),
+		0
 	)
-	const temporalValue = mapTemporal(
-		(tranches) =>
-			tranches.reduce(
-				(value, { nodeValue }) =>
-					nodeValue == null ? null : value + nodeValue,
-				0
-			),
-		temporalTranches
-	)
+
 	return {
 		...node,
-		nodeValue: temporalAverage(temporalValue),
-		...(temporalValue.length > 1
-			? {
-					temporalValue,
-			  }
-			: { missingVariables: mergeAllMissing(temporalTranches[0].value) }),
+		nodeValue,
+		missingVariables: mergeAllMissing(tranches),
 		explanation: {
 			assiette,
 			multiplicateur,
-			...(temporalTranches.length > 1
-				? { temporalTranches }
-				: { tranches: temporalTranches[0].value }),
+			tranches,
 		},
 		unit: assiette.unit,
 	} as any
