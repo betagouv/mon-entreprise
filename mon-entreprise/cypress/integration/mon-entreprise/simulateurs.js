@@ -23,7 +23,7 @@ describe('Simulateurs', function () {
 			})
 
 			it('should display a result when entering a value in any of the currency input', () => {
-				cy.contains('€/an').click()
+				cy.contains('Annuel').click()
 				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type(1000)
 				}
@@ -42,14 +42,14 @@ describe('Simulateurs', function () {
 			})
 
 			it('should allow to change period', function () {
-				cy.contains('€/an').click()
+				cy.contains('Annuel').click()
 				cy.wait(200)
 				cy.get(inputSelector).first().type('{selectall}12000')
 				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type('{selectall}6000')
 				}
 				cy.wait(800)
-				cy.contains('€/mois').click()
+				cy.contains('Mensuel').click()
 				cy.get(inputSelector)
 					.first()
 					.invoke('val')
@@ -57,7 +57,7 @@ describe('Simulateurs', function () {
 				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
 				}
-				cy.contains('€/an').click()
+				cy.contains('Annuel').click()
 			})
 
 			it('should allow to navigate to a documentation page', function () {
@@ -90,7 +90,7 @@ describe('Simulateur auto-entrepreneur', () => {
 		cy.contains('ACRE')
 	})
 	it('should not have negative value', () => {
-		cy.contains('€/mois').click()
+		cy.contains('Mensuel').click()
 		cy.wait(100)
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.wait(800)
