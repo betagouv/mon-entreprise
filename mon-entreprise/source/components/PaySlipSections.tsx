@@ -1,7 +1,7 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
-import { isNotYetDefined, UNSAFE_isNotApplicable } from 'publicodes'
+import { isNotYetDefined, isNotApplicable } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useEngine } from './utils/EngineContext'
 
@@ -81,12 +81,13 @@ export function Line({
 }: LineProps) {
 	const engine = useEngine()
 
-	if (UNSAFE_isNotApplicable(engine, rule)) {
-		return null
-	}
-
 	const evaluatedNode = engine.evaluate(rule)
-	if (isNotYetDefined(evaluatedNode.nodeValue) || evaluatedNode.nodeValue === 0)
+	if (
+		isNotYetDefined(evaluatedNode.nodeValue) ||
+		// ⚠️ isNotApplicable is a bad func only here to help with further refactoring:
+		isNotApplicable(evaluatedNode.nodeValue) ||
+		evaluatedNode.nodeValue === 0
+	)
 		return null
 
 	return (
