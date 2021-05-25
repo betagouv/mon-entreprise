@@ -41,7 +41,14 @@ export type EvaluationOptions = Partial<{
 }>
 
 export { reduceAST, makeASTTransformer as transformAST } from './AST/index'
-export { Evaluation, Unit } from './AST/types'
+export {
+	Evaluation,
+	Unit,
+	NotYetDefined,
+	isNotYetDefined,
+	NotApplicable,
+	isNotApplicable,
+} from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
 export { default as serializeEvaluation } from './serializeEvaluation'
@@ -49,7 +56,7 @@ export { parseUnit, serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
 
-type PublicodesExpression = string | Record<string, unknown> | number
+export type PublicodesExpression = string | Record<string, unknown> | number
 
 export type Logger = {
 	log(message: string): void

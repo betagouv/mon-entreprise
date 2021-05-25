@@ -36,7 +36,7 @@ function CotisationsResult() {
 	return (
 		<>
 			<CotisationsParOrganisme />
-			<Condition expression="artiste-auteur . cotisations">
+			<Condition expression="artiste-auteur . cotisations > 0">
 				<RepartitionCotisations />
 			</Condition>
 		</>

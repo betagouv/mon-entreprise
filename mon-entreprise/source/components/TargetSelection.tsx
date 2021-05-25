@@ -268,7 +268,7 @@ function TitreRestaurant() {
 	const dottedName =
 		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	return (
-		<Condition expression={dottedName}>
+		<Condition expression={`${dottedName} > 0`}>
 			<Animate.fromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={dottedName}>
@@ -313,7 +313,7 @@ function AidesGlimpse() {
 		aides
 	)
 	return (
-		<Condition expression={dottedName}>
+		<Condition expression={`${dottedName} > 0`}>
 			<Animate.fromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={aideLink}>

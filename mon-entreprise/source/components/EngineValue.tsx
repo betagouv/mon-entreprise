@@ -1,8 +1,13 @@
-import Engine, { formatValue } from 'publicodes'
+import Engine, {
+	ASTNode,
+	formatValue,
+	PublicodesExpression,
+	isNotYetDefined,
+	UNSAFE_isNotApplicable,
+} from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
-import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
 
@@ -50,16 +55,62 @@ export default function Value<Names extends string>({
 }
 
 type ConditionProps = {
-	expression:
-		| Parameters<Engine['evaluate']>[0]
-		| Parameters<Engine['evaluate']>[0][]
+	expression: PublicodesExpression | ASTNode
+	defaultIfNotYetDefined?: boolean
 	children: React.ReactNode
 }
-export function Condition({ expression, children }: ConditionProps) {
+export function Condition({
+	expression,
+	defaultIfNotYetDefined = false,
+	children,
+}: ConditionProps) {
 	const engine = useEngine()
-	if (
-		!coerceArray(expression).every((expr) => engine.evaluate(expr).nodeValue)
-	) {
+	const value = engine.evaluate(expression).nodeValue
+	const boolValue = isNotYetDefined(value) ? defaultIfNotYetDefined : value
+
+	if (Boolean(boolValue) !== boolValue) {
+		console.error(
+			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
+		)
+	}
+	if (!boolValue) {
+		return null
+	}
+	return <>{children}</>
+}
+
+export function WhenApplicable({
+	dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (UNSAFE_isNotApplicable(engine, dottedName)) return null
+	return <>{children}</>
+}
+export function WhenNotApplicable({
+	dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (!UNSAFE_isNotApplicable(engine, dottedName)) return null
+	return <>{children}</>
+}
+
+export function WhenAlreadyDefined({
+	dottedName: dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
 		return null
 	}
 	return <>{children}</>

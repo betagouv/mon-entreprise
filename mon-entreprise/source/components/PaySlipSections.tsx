@@ -1,7 +1,9 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
+import { isNotYetDefined, isNotApplicable } from 'publicodes'
 import { Trans } from 'react-i18next'
+import { useEngine } from './utils/EngineContext'
 
 export const SalaireBrutSection = () => {
 	return (
@@ -33,10 +35,12 @@ export const SalaireNetSection = () => {
 			</h4>
 			<Line rule="contrat salarié . rémunération . net imposable" />
 			<Condition
-				expression={[
-					'contrat salarié . rémunération . avantages en nature',
-					'contrat salarié . frais professionnels . titres-restaurant',
-				]}
+				expression={{
+					['toutes ces conditions']: [
+						'contrat salarié . rémunération . avantages en nature', // bool
+						'contrat salarié . frais professionnels . titres-restaurant', // bool
+					],
+				}}
 			>
 				<Line rule="contrat salarié . rémunération . net de cotisations" />
 			</Condition>
@@ -52,7 +56,7 @@ export const SalaireNetSection = () => {
 				rule="contrat salarié . rémunération . net"
 				className="payslip__total"
 			/>
-			<Condition expression="impôt">
+			<Condition expression="impôt > 0">
 				<Line negative rule="impôt" unit="€/mois" />
 				<Line
 					className="payslip__total"
@@ -75,8 +79,19 @@ export function Line({
 	className,
 	...props
 }: LineProps) {
+	const engine = useEngine()
+
+	const evaluatedNode = engine.evaluate(rule)
+	if (
+		isNotYetDefined(evaluatedNode.nodeValue) ||
+		// ⚠️ isNotApplicable is a bad func only here to help with further refactoring:
+		isNotApplicable(evaluatedNode.nodeValue) ||
+		evaluatedNode.nodeValue === 0
+	)
+		return null
+
 	return (
-		<Condition expression={rule}>
+		<>
 			<RuleLink dottedName={rule} className={className} />
 			<Value
 				linkToRule={false}
@@ -86,6 +101,6 @@ export function Line({
 				className={className}
 				{...props}
 			/>
-		</Condition>
+		</>
 	)
 }
