@@ -69,10 +69,6 @@ export function Condition({
 	const boolValue = isNotYetDefined(value) ? defaultIfNotYetDefined : value
 
 	if (Boolean(boolValue) !== boolValue) {
-		// [XXX] - only console
-		throw new Error(
-			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
-		)
 		console.error(
 			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
 		)
