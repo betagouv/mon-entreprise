@@ -127,9 +127,3 @@ export type Evaluation<T extends Types = Types> =
 	| NotYetDefined
 export type EvaluatedNode<T extends Types = Types> = ASTNode &
 	EvaluationDecoration<T>
-
-function testFunc(a: Types) {
-	if (isNotApplicable(a)) {
-		return 0
-	}
-}
