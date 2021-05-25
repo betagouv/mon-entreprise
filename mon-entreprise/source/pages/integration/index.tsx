@@ -17,6 +17,7 @@ export default function Integration() {
 		<>
 			<TrackChapter chapter1="integration" />
 			<ScrollToTop />
+
 			{pathname !== sitePaths.integration.index && (
 				<BackNavigationForDevs className="ui__ dark-bg">
 					<Link
@@ -27,6 +28,24 @@ export default function Integration() {
 					</Link>
 				</BackNavigationForDevs>
 			)}
+			<div
+				className="ui__ card plain"
+				css={`
+					margin: 1rem 0;
+					transform: translateY(1rem);
+
+					text-align: center;
+					padding: 0.4rem;
+				`}
+			>
+				📯{' '}
+				<strong>
+					<a href="https://beta.gouv.fr/recrutement/2021/05/25/mon-entreprise-fr.recrute.js.html">
+						Mon-entreprise.fr recrute !
+					</a>
+				</strong>{' '}
+				<small>Freelance Typescript / React pour 6 mois minimum</small>
+			</div>
 			<Switch>
 				<Route exact path={sitePaths.integration.index} component={Options} />
 				<Route path={sitePaths.integration.iframe} component={Iframe} />
