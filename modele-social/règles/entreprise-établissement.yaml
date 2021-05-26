@@ -831,23 +831,20 @@ entreprise . activité . mixte . proportions:
   unité: '%'
   somme: 
     - nom: service BIC
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 0
-          - sinon: 50%
+      variations:
+        - si: activité = 'libérale'
+          alors: 0
+        - sinon: 50%
     - nom: service BNC
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 2 / 3
-          - sinon: 0
+      variations:
+        - si: activité = 'libérale'
+          alors: 2 / 3
+        - sinon: 0
     - nom: vente restauration hébergement
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 1 / 3
-          - sinon: 50%
+      variations:
+        - si: activité = 'libérale'
+          alors: 1 / 3
+        - sinon: 50%
         
 
 entreprise . activité . libérale réglementée:
