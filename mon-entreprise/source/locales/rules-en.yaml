@@ -6106,8 +6106,6 @@ dirigeant . indépendant . cotisations et contributions:
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
     telles que les contrats Madelin.
-
-    Ce montant inclut la réduction de cotisation "covid" en 2020.
   note.en: |
     [automatic] Unlike contributions, contributions are not reintroduced
     for the calculation of the CSG/CRDS. They also do not benefit from the
@@ -6394,21 +6392,34 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
-  note.en: |
-    [automatic] For RSA freelancers, only the simple reduction defined in
-    the decree for calculating the health contribution is taken into account.
-    The reinforced reduction below 40% of the security ceiling 
-    social is not, because there is no minimum base.
-  note.fr: |
-    Pour les indépendants au RSA, seule la réduction simple définie dans
-    le décret de calcul de la cotisation maladie est prise en compte.
-    La réduction renforcée en-dessous de 40% du plafond de la sécurité 
-    sociale ne l'est pas, car il n'y a pas d'assiette minimale.
-  titre.en: '[automatic] RSA rate'
-  titre.fr: taux RSA
 ? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif
-: titre.en: '[automatic] progressive rate'
+: description.en: >
+    [automatic] The rate of the health contribution is progressive according to
+    the declared income.
+  description.fr: >
+    Le taux de la cotisations maladie est progressif en fonction du revenu
+    déclaré.
+  note.en: >
+    [automatic] For self-employed persons receiving the RSA or the activity
+    allowance, only the simple reduction 
+
+    defined in the decree for calculating the health contribution is taken into account.
+
+
+    The reduction below 40% of the social security ceiling is not, because there is no minimum 
+
+    minimum base.
+  note.fr: >
+    Pour les indépendants bénéficiant du RSA ou de la prime d'activité, seule la
+    réduction simple 
+
+    définie dans le décret de calcul de la cotisation maladie est prise en compte.
+
+
+    La réduction en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas 
+
+    d'assiette minimale.
+  titre.en: '[automatic] progressive rate'
   titre.fr: taux progressif
 ? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
 : description.en:
