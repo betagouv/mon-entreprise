@@ -628,18 +628,18 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moi
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
   titre: assiette conjoint collaborateur
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      taux: 1 / 3
-      variations:
-        - si: assiette . forfaitaire
-          alors:
-            assiette: plafond sécurité sociale temps plein
-        - si: assiette . pourcentage . moitié
-          alors:
-            taux: 50%
-        - sinon: rien
+  unité: €/an
+  produit:
+    assiette: assiette des cotisations
+    taux: 1 / 3
+    variations:
+      - si: assiette . forfaitaire
+        alors:
+          assiette: plafond sécurité sociale temps plein
+      - si: assiette . pourcentage . moitié
+        alors:
+          taux: 50%
+      # sinon rien ne change
 
 dirigeant . indépendant . conjoint collaborateur . cotisations:
   titre: Cotisations conjoint collaborateur
@@ -683,13 +683,12 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
   unité: €/an
-  formule:
-    le minimum de:
-      - variations:
-          - si: entreprise . activité = 'artisanale'
-            alors: 4 * plafond sécurité sociale temps plein
-          - sinon: 3 * plafond sécurité sociale temps plein
-      - assiette retraite
+  valeur: assiette retraite
+  plafond:
+    variations:
+      - si: entreprise . activité = 'artisanale'
+        alors: 4 * plafond sécurité sociale temps plein
+      - sinon: 3 * plafond sécurité sociale temps plein
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
   titre: assiette invalidité et décès
@@ -732,8 +731,6 @@ dirigeant . indépendant . cotisations et contributions:
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
     telles que les contrats Madelin.
-
-    Ce montant inclut la réduction de cotisation "covid" en 2020.
 
   somme:
     - cotisations et contributions . cotisations
@@ -1034,43 +1031,34 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
 
-
-dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
-  # TODO: Il n'est pour l'instant pas possible de rendre non applicable une
-  # seule tranche d'un barème dans le mécanisme "taux progressif", ce qui
-  # éviterait de devoir créer 2 règles séparées avec 2 barèmes distincts.
-  applicable si: situation personnelle . RSA
-  remplace: taux progressif
-  unité: '%'
-  taux progressif:
-    assiette: assiette des cotisations
-    multiplicateur: plafond sécurité sociale temps plein
-    tranches:
-      - plafond: 40%
-        taux: 3.17%
-      - plafond: 110%
-        taux: 6.35%
-  note: |
-    Pour les indépendants au RSA, seule la réduction simple définie dans
-    le décret de calcul de la cotisation maladie est prise en compte.
-    La réduction renforcée en-dessous de 40% du plafond de la sécurité 
-    sociale ne l'est pas, car il n'y a pas d'assiette minimale.
-
    
 dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
+  description: | 
+    Le taux de la cotisations maladie est progressif en fonction du revenu déclaré. 
+  note: |
+    Pour les indépendants bénéficiant du RSA ou de la prime d'activité, seule la réduction simple 
+    définie dans le décret de calcul de la cotisation maladie est prise en compte.
+
+    La réduction en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas 
+    d'assiette minimale.
   taux progressif:
-    assiette: assiette des cotisations
+    assiette: 
+      valeur: assiette des cotisations
+      plancher: 
+        applicable si: situation personnelle . RSA
+        valeur: 40% * plafond sécurité sociale temps plein
     multiplicateur: plafond sécurité sociale temps plein
     tranches:
       - plafond: 0%
-        taux: 0%
-      - plafond: 40%
-        taux: 3.17%
+        taux: 1.35%
       - plafond: 110%
         taux: 6.35%
+  arrondi: 2 unités
+  unité: '%'
   références:
     Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+
 
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   barème:
