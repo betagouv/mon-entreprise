@@ -204,6 +204,7 @@ protection sociale . retraite . complémentaire salarié . points acquis:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire indépendants:
+  acronyme: RCI
   non applicable si:
     toutes ces conditions:
       - entreprise . activité = 'libérale'
@@ -225,8 +226,7 @@ protection sociale . retraite . complémentaire indépendants . points acquis:
   valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / prix d'achat du point
 
 protection sociale . retraite . complémentaire indépendants . prix d'achat du point:
-  formule: 17.515 €/point
-  notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
+  formule: 17.765 €/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
 
