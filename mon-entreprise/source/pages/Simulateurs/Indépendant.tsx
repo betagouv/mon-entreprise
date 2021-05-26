@@ -26,6 +26,18 @@ export function IndépendantPLSimulation() {
 	)
 }
 
+export function EntrepriseIndividuelle() {
+	return (
+		<>
+			<SimulateurWarning simulateur="entreprise-individuelle" />
+			<Simulation explanations={<IndépendantExplanation />}>
+				<PeriodSwitch />
+				<IndépendantSimulationGoals />
+			</Simulation>
+		</>
+	)
+}
+
 export default function IndépendantSimulation() {
 	const sitePaths = useContext(SitePathsContext)
 	return (

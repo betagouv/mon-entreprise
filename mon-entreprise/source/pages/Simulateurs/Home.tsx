@@ -50,6 +50,7 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators.sasu} />
+					<SimulateurCard {...simulators['entreprise-individuelle']} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
 					<SimulateurCard {...simulators['comparaison-statuts']} />

@@ -43,6 +43,7 @@ h2:not(.h),
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.4rem;
+	line-height: 2.1rem;
 }
 h3:not(.h),
 .ui__.h.h3 {

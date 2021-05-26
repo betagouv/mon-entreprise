@@ -28,12 +28,13 @@ import logoFranceRelance from './images/logo-france-relance.svg'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import ISSimulation from './ImpôtSociété'
 import IndépendantSimulation, {
+	EntrepriseIndividuelle,
 	IndépendantPLSimulation,
-} from './IndépendantSimulation'
-import ISSimulation from './ISSimulation'
+} from './Indépendant'
 import PAMCHome from './PAMCHome'
-import SalariéSimulation from './SalariéSimulation'
+import SalariéSimulation from './Salarié'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
 
@@ -45,6 +46,7 @@ const simulateurs = [
 	'chômage-partiel',
 	'artiste-auteur',
 	'comparaison-statuts',
+	'entreprise-individuelle',
 	'économie-collaborative',
 	'aide-déclaration-indépendant',
 	'demande-mobilité',
@@ -206,6 +208,103 @@ export function getSimulatorsData({
 				</Trans>
 			),
 			nextSteps: ['chômage-partiel', 'aides-embauche'],
+		},
+		'entreprise-individuelle': {
+			tracking: 'entreprise_individuelle',
+			config: {
+				...indépendantConfig,
+				situation: {
+					...indépendantConfig.situation,
+					'entreprise . imposition': "'IR'",
+				},
+			},
+			icône: '',
+			iframePath: 'simulateur-EI',
+			meta: {
+				description: t(
+					'pages.simulateurs.EI.meta.description',
+					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
+				),
+				ogDescription: t(
+					'pages.simulateurs.EI.meta.ogDescription',
+					"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
+				),
+				ogImage: AutoEntrepreneurPreview,
+				ogTitle: t(
+					'pages.simulateurs.EI.meta.ogTitle',
+					'Entreprise individuelle (EI) : calculez rapidement votre revenu net à partir du CA et vice-versa'
+				),
+				title: t(
+					'pages.simulateurs.EI.meta.titre',
+					'Entreprise individuelle (EI) : simulateur de revenus'
+				),
+			},
+			component: EntrepriseIndividuelle,
+			path: sitePaths.simulateurs['entreprise-individuelle'],
+			shortName: t('pages.simulateurs.EI.shortname', 'Entreprise individuelle'),
+			title: t(
+				'pages.simulateurs.EI.title',
+				'Simulateur de revenus pour entreprise individuelle (EI)'
+			),
+			seoExplanations: (
+				<Trans i18nKey="pages.simulateurs.EI.seo explanation">
+					<h2>
+						Comment calculer le revenu net d'un dirigeant d'entreprise
+						individuelle (EI) ?
+					</h2>
+					<p>
+						Un dirigeant d'entreprise individuelle doit payer des cotisations et
+						contributions sociales à l'administration. Ces cotisations servent
+						au financement de la sécurité sociale, et ouvrent des droits
+						notamment pour la retraite et pour l'assurance maladie. Elles
+						permettent également de financer la formation professionnelle.
+					</p>
+					<p>
+						<Emoji emoji="👉" />{' '}
+						<RuleLink dottedName="dirigeant . indépendant . cotisations et contributions">
+							Voir le détail du calcul des cotisations
+						</RuleLink>
+					</p>
+					<p>
+						Il ne faut pas oublier de retrancher toutes les dépenses effectuées
+						dans le cadre de l'activité professionnelle (équipements, matières
+						premières, local, transport). Ces dernières sont déductibles du
+						résultat de l'entreprise, cela veut dire que vous ne payerez pas
+						d'impôt ou de cotisations sur leur montant (sauf si vous avez opté
+						pour l'option micro-fiscal).
+					</p>
+					<p>
+						La formule de calcul complète est donc :
+						<blockquote>
+							<strong>
+								Revenu net = Chiffres d'affaires − Dépenses professionnelles -
+								Cotisations sociales
+							</strong>
+						</blockquote>
+					</p>
+					<h2>
+						Comment calculer les cotisations sociales d'une entreprise
+						individuelle ?
+					</h2>
+					<p>
+						Le dirigeant d'une entreprise individuelle paye des cotisations
+						sociales, proportionnelle au{' '}
+						<RuleLink dottedName="entreprise . résultat fiscal" /> de
+						l'entreprise. Leur montant varie en fonction du type d'activité
+						(profession libérale, artisan, commerçants, etc), où des éventuelles
+						exonérations accordées (ACRE, ZFU, RSA, etc.). Pour connaître leur
+						montant, vous pouvez utiliser ce simulateur, et affiner le
+					</p>
+					<p>
+						{' '}
+						Comme le résultat d'une entreprise n'est connu qu'à la fin de
+						l'exercice comptable, le dirigeant paye des cotisations
+						provisionnelles qui seront ensuite régularisée une fois le revenu
+						réel déclaré, l'année suivante.
+					</p>
+				</Trans>
+			),
+			nextSteps: ['indépendant', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
