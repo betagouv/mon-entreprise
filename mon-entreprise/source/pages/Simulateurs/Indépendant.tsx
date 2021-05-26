@@ -1,5 +1,6 @@
 import { updateSituation } from 'Actions/actions'
 import Banner from 'Components/Banner'
+import ChiffreAffairesActivitéMixte from 'Components/ChiffreAffairesActivitéMixte'
 import { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
@@ -78,11 +79,16 @@ function IndépendantSimulationGoals() {
 	return (
 		<SimulationGoals className="plain">
 			<Condition expression="entreprise . imposition = 'IR'">
-				<SimulationGoal
-					appear={false}
-					alwaysShow
-					dottedName="entreprise . chiffre d'affaires"
-				/>
+				<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+					<SimulationGoal
+						appear={false}
+						alwaysShow
+						dottedName="entreprise . chiffre d'affaires"
+					/>
+				</Condition>
+				<Condition expression="entreprise . imposition . IR . micro-fiscal">
+					<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
+				</Condition>
 				<Condition expression="entreprise . imposition . IR . micro-fiscal != oui">
 					<SimulationGoal
 						small
