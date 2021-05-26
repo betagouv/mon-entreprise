@@ -382,6 +382,7 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
 
   valeur: entreprise . chiffre d'affaires
   abattement:
+    applicable si: entreprise . imposition . IR . micro-fiscal
     produit:
       composantes:
         - assiette: entreprise . chiffre d'affaires . vente restauration hébergement

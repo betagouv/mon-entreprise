@@ -31,7 +31,9 @@ function useAdjustProportions(): () => void {
 		const nouveauCA = serializeEvaluation(
 			engine.evaluate({
 				somme: Object.values(proportions)
-					.map((name) => serializeEvaluation(engine.evaluate(name)))
+					.map((chiffreAffaire) =>
+						serializeEvaluation(engine.evaluate(chiffreAffaire))
+					)
 					.filter(Boolean),
 			})
 		)
@@ -52,7 +54,7 @@ function useAdjustProportions(): () => void {
 
 				return { ...acc, [proportionName]: newProportion }
 			},
-			{ "entreprise . chiffre d'affaires": nouveauCA }
+			{ "dirigeant . auto-entrepreneur . chiffre d'affaires": nouveauCA }
 		)
 		dispatch(batchUpdateSituation(situation))
 	}, [engine, dispatch])
