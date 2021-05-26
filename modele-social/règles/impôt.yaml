@@ -349,7 +349,10 @@ impôt . foyer fiscal . revenu imposable:
   formule:
     somme:
       - revenu d'activité abattu
-      - applicable si: entreprise . imposition . IR
+      - applicable si: 
+          toutes ces conditions: 
+            - dirigeant . rémunération . imposable
+            - entreprise . imposition . IR
         valeur: dirigeant . rémunération . imposable
       - autres revenus imposables
 
