@@ -945,13 +945,12 @@ dirigeant . indépendant . cotisations et contributions . début activité:
   recalcul: 
     règle: cotisations et contributions
     avec: 
+      maladie . taux progressif . assiette: 40% * plafond sécurité sociale temps plein 
       assiette des cotisations: assiette forfaitaire
-      assiette des cotisations . sans plancher: assiette forfaitaire
-      situation personnelle . RSA: non
+      CSG et CRDS . assiette: assiette forfaitaire 
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
 
-  
 dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
   produit: 
     assiette: PSS proratisé
@@ -1043,6 +1042,7 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux progres
     d'assiette minimale.
   taux progressif:
     assiette: 
+      nom: assiette
       valeur: assiette des cotisations
       plancher: 
         applicable si: situation personnelle . RSA
