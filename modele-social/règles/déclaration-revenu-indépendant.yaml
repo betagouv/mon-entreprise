@@ -21,6 +21,7 @@ aide déclaration revenu indépendant 2020 . comptabilité:
         - trésorerie
 
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
+  rend non applicable: entreprise . imposition . IR . micro-fiscal
   valeur: comptabilité = 'trésorerie'
   titre: comptabilité de trésorerie
 
@@ -183,6 +184,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
     - règle: entreprise . activité . commerciale ou industrielle 
       par: commerciale ou industrielle
   question: Quelle est la nature de votre activité ?
+  par défaut: "'commerciale ou industrielle'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -762,8 +764,30 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSLA:
   résumé: Revenus étrangers imposables mais exonérés de CSG-CRDS
   formule: dirigeant . indépendant . revenus étrangers . montant
 
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C:
+  valeur: oui
+  applicable si: entreprise . imposition . IR . micro-fiscal
+  références:
+    formulaire: https://www.impots.gouv.fr/portail/files/formulaires/2042/2021/2042_3451.pdf
+
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5KO:
+  titre: rubrique 5KO / 5LO
+  résumé: Revenus imposables micro BIC (ventes de marchandises et assimilées)
+  valeur: entreprise . chiffre d'affaires . vente restauration hébergement
+
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5KP:
+  titre: rubrique 5KP / 5LP
+  résumé: Revenus imposables micro BIC (prestations de services et locations meublées)
+  valeur: entreprise . chiffre d'affaires . service BIC
+
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5HQ:
+  titre: rubrique 5HQ / 5IQ
+  résumé: Régime déclaratif spécial ou micro BNC (recettes brutes)
+  valeur: entreprise . chiffre d'affaires . service BNC
+
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire : 
   applicable si: comptabilité . engagement
+  non applicable si: entreprise . imposition . IR . micro-fiscal
   valeur: oui
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid:
   description: La réduction de cotisation applicable dans le cas du dispositif Covid
@@ -805,6 +829,8 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
 
 
 aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal:
+  non applicable si: entreprise . imposition . IR . micro-fiscal
+
   titre: revenu net fiscal
   résumé: '[A]'
   description: Résultat avant déduction des charges sociales et exonérations fiscales 
@@ -830,17 +856,20 @@ aide déclaration revenu indépendant 2020 . résultat simple . cotisations obli
 
 aide déclaration revenu indépendant 2020 . résultat simple: oui
 aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible:
+  non applicable si: entreprise . imposition . IR . micro-fiscal
   titre: CSG déductible
   résumé: '[B]'
   description: "Montant de la CSG déductible à l'impôt sur le revenu"
   valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
 aide déclaration revenu indépendant 2020 . résultat simple . CFP:
+  non applicable si: entreprise . imposition . IR . micro-fiscal
   résumé: '[D]'
   description: Contribution à la formation professionnelle 
   valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
   
 aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible:
+  non applicable si: entreprise . imposition . IR . micro-fiscal
   titre: charges sociales obligatoires déductibles fiscalement
   résumé: '[B + C + D]'
   somme:
@@ -854,6 +883,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . total charges so
     - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
     
 aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale:
+  non applicable si: entreprise . imposition . IR . micro-fiscal
   résumé: '[A - (B + C + D)]'
   description: Assiette utilisée pour le calcul des cotisations sociales
   valeur: dirigeant . indépendant . assiette des cotisations
