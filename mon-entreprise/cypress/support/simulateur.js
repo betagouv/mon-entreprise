@@ -5,7 +5,7 @@ const fr = Cypress.env('language') === 'fr'
 export const runSimulateurTest = (simulateur) => {
 	if (!fr) return
 
-	describe(`Test simulateur ${simulateur}`, () => {
+	describe(`Simulateur ${simulateur}`, () => {
 		before(() => cy.visit(encodeURI(`/simulateurs/${simulateur}`)))
 		it('should not crash', function () {
 			cy.get(inputSelector)
@@ -16,28 +16,31 @@ export const runSimulateurTest = (simulateur) => {
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type(1000)
 			}
-			cy.get(inputSelector).each((testedInput, i) => {
-				cy.wrap(testedInput).type('{selectall}60111')
-				cy.wait(1500)
-				cy.contains('Cotisations')
-				cy.get(inputSelector).each(($input, j) => {
-					const val = $input.val().replace(/[\s,.]/g, '')
-					if (i != j) {
+			cy.get(inputSelector).each(($testedInput) => {
+				cy.wrap($testedInput)
+					.type('{selectall}60111')
+					.and(($i) =>
+						expect($i.val().replace(/[\s,.]/g, '')).to.match(/[1-9][\d]{3,6}$/)
+					)
+				cy.get(inputSelector).each(($input) => {
+					if ($testedInput.get(0) === $input.get(0)) return
+					cy.wrap($input).and(($i) => {
+						const val = $i.val().replace(/[\s,.]/g, '')
 						expect(val).not.to.be.eq('60111')
-					}
-					expect(val).to.match(/[1-9][\d]{3,6}$/)
+						expect(val).to.match(/[1-9][\d]{3,6}$/)
+					})
 				})
+				cy.contains('Cotisations et contributions')
 			})
 		})
 
 		it('should allow to change period', function () {
 			cy.contains('Annuel').click()
-			cy.wait(200)
 			cy.get(inputSelector).first().type('{selectall}12000')
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('{selectall}6000')
 			}
-			cy.wait(800)
+			cy.get(inputSelector).eq(1).invoke('val').should('not.be.empty')
 			cy.contains('Mensuel').click()
 			cy.get(inputSelector)
 				.first()
@@ -51,8 +54,7 @@ export const runSimulateurTest = (simulateur) => {
 
 		it('should allow to navigate to a documentation page', function () {
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.wait(700)
-			cy.contains('Cotisations').click()
+			cy.contains('Cotisations et contributions').click()
 			cy.location().should((loc) => {
 				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
 			})
