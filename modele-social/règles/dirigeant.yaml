@@ -1053,8 +1053,6 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux progres
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
 dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
-  description: | 
-    Le taux de la cotisations maladie est progressif en fonction du revenu déclaré. 
   taux progressif:
     assiette: 
       nom: assiette
