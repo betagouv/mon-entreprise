@@ -255,6 +255,7 @@ entreprise . imposition . IR:
 
 entreprise . imposition . IR . micro-fiscal:
   rend non applicable: dirigeant . indépendant . cotisations facultatives
+
   question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
     Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales. 
@@ -270,7 +271,10 @@ entreprise . imposition . IR . micro-fiscal . revenu abattu:
     Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
 
     Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
-  valeur: chiffre d'affaires
+  somme: 
+    - entreprise . chiffre d'affaires . vente restauration hébergement
+    - entreprise . chiffre d'affaires . service BIC
+    - entreprise . chiffre d'affaires . service BNC
   abattement:
     produit:
       composantes:
@@ -801,6 +805,7 @@ entreprise . activité . service ou vente . service:
 
 entreprise . activité . mixte:
   titre: Activités mixtes
+  applicable si: entreprise . imposition . IR . micro-fiscal
   question: Votre entreprise a-t-elle plusieurs types d'activités ?
   par défaut: non
   description: |

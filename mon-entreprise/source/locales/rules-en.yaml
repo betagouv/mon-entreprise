@@ -393,6 +393,24 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSLA:
   résumé.fr: Revenus étrangers imposables mais exonérés de CSG-CRDS
   titre.en: '[automatic] DSLA / DSLB section'
   titre.fr: rubrique DSLA / DSLB
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C:
+  titre.en: '[automatic] form 2042 PRO C'
+  titre.fr: formulaire 2042 PRO C
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5HQ:
+  résumé.en: '[automatic] Special declarative regime or micro BNC (gross receipts)'
+  résumé.fr: Régime déclaratif spécial ou micro BNC (recettes brutes)
+  titre.en: '[automatic] item 5HQ / 5IQ'
+  titre.fr: rubrique 5HQ / 5IQ
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5KO:
+  résumé.en: '[automatic] Micro BIC taxable income (sales of goods and similar)'
+  résumé.fr: Revenus imposables micro BIC (ventes de marchandises et assimilées)
+  titre.en: '[automatic] heading 5KO / 5LO'
+  titre.fr: rubrique 5KO / 5LO
+aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5KP:
+  résumé.en: '[automatic] Micro BIC taxable income (services and furnished rentals)'
+  résumé.fr: Revenus imposables micro BIC (prestations de services et locations meublées)
+  titre.en: '[automatic] item 5KP / 5LP'
+  titre.fr: rubrique 5KP / 5LP
 aide déclaration revenu indépendant 2020 . formulaire 2050:
   résumé.en: '[automatic] Tax package for the normal actual system'
   résumé.fr: Liasse fiscale du régime réel normal

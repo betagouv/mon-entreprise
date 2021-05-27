@@ -50,6 +50,9 @@ export default function ResultatsSimples() {
 					'aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible',
 				] as const).map((dottedName) => {
 					const r = engine.getRule(dottedName)
+					if (engine.evaluate(dottedName).nodeValue === false) {
+						return null
+					}
 					return (
 						<Animate.fromTop key={dottedName}>
 							<div
@@ -87,7 +90,14 @@ export default function ResultatsSimples() {
 						</Animate.fromTop>
 					)
 				})}
-				<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées = non">
+				<Condition
+					expression={{
+						'toutes ces conditions': [
+							'aide déclaration revenu indépendant 2020 . cotisations payées = non',
+							'entreprise . imposition . IR . micro-fiscal = non',
+						],
+					}}
+				>
 					<h2>{emoji('ℹ️')} Pour votre information </h2>
 					<div
 						css={`
@@ -105,6 +115,9 @@ export default function ResultatsSimples() {
 							'aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale',
 						] as const).map((dottedName) => {
 							const r = engine.getRule(dottedName)
+							if (engine.evaluate(dottedName).nodeValue === false) {
+								return null
+							}
 							return (
 								<Animate.fromTop style={{ display: 'flex' }} key={dottedName}>
 									<div
