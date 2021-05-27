@@ -16,7 +16,6 @@ describe('Simulateur salarié mode partagé', () => {
 	}
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
-		cy.wait(800)
 		cy.get(brutInputSelector).first().invoke('val').should('eq', '1 539')
 
 		cy.contains('Voir mes paramètres').click()
@@ -25,9 +24,9 @@ describe('Simulateur salarié mode partagé', () => {
 	it('should set URL from input value', function () {
 		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')
-		cy.wait(1000)
-		cy.get('.step').find('input[value="\'CDD\'"]').click({ force: true })
-		cy.wait(1000)
+		cy.contains('De quel type de contrat').should('be.visible')
+		cy.get('.step').contains('CDD').should('be.visible').click()
+		cy.get('button').contains('Suivant').should('be.visible')
 		cy.contains('Générer un lien').click()
 		cy.get('.shareableLink')
 			.invoke('val')
