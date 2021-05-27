@@ -741,7 +741,8 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA: 
   titre: rubrique DSCA / DSCB
   résumé: Cotisations sociales obligatoires
-  description: Rubrique DSCA/DSCB du formulaire de donnée complémentaire à la déclaration de revenus des indépendant
+  description: |
+    La rubrique DSCA ou DSCB de la déclaration de revenu fiscale et sociale unifiée correspond au montant des cotisations sociales obligatoires déductibles fiscalement (ces cotisations seront soumises à CSG-CRDS). La rubrique DSCA ou DSCB figure dans le volet social « déclaration de revenus des indépendants » de la déclaration 2042.
   valeur: cotisations obligatoires déductibles
   références: 
     notice: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
