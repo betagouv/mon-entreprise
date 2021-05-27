@@ -1199,6 +1199,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
   plancher: 0 €/mois
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
+  acronyme: CFP
   produit:
     assiette: plafond sécurité sociale temps plein
     taux:

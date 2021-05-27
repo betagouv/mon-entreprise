@@ -8,7 +8,6 @@ import { DottedName } from 'modele-social'
 import { useMemo } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
 
 export default function ResultatsParFormulaire() {
 	const engine = useEngine()
@@ -154,27 +153,3 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 		</Condition>
 	)
 }
-
-const FormBlock = styled.section`
-	max-width: 500px;
-	padding: 0;
-
-	h3 {
-		margin-top: 2rem;
-	}
-	h2 {
-		border-top: 1px solid var(--lighterColor);
-		padding-top: 2rem;
-		break-after: avoid;
-	}
-
-	select,
-	input[type='text'] {
-		font-size: 1.05em;
-		padding: 5px 10px;
-	}
-	ul {
-		padding: 0;
-		margin: 0;
-	}
-`
