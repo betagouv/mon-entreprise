@@ -1,6 +1,6 @@
 import { updateSituation } from 'Actions/actions'
 import Banner from 'Components/Banner'
-import { Condition } from 'Components/EngineValue'
+import { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
@@ -100,9 +100,9 @@ function IndépendantSimulationGoals() {
 				/>
 			</Condition>
 			<SimulationGoal dottedName="dirigeant . rémunération . nette" />
-			<Condition expression="entreprise . chiffre d'affaires">
+			<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 				<SimulationGoal small editable={false} dottedName="impôt" />
-			</Condition>
+			</WhenAlreadyDefined>
 			<SimulationGoal dottedName="dirigeant . rémunération . nette après impôt" />
 		</SimulationGoals>
 	)

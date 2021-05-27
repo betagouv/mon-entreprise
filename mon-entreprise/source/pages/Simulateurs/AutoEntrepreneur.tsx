@@ -1,6 +1,6 @@
 import { batchUpdateSituation } from 'Actions/actions'
 import { Explicable } from 'Components/conversation/Explicable'
-import { Condition } from 'Components/EngineValue'
+import { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
@@ -103,9 +103,9 @@ export default function AutoEntrepreneur() {
 						dottedName="dirigeant . auto-entrepreneur . cotisations et contributions"
 					/>
 					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net de cotisations" />
-					<Condition expression="entreprise . chiffre d'affaires">
+					<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 						<SimulationGoal small editable={false} dottedName="impôt" />
-					</Condition>
+					</WhenAlreadyDefined>
 					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net après impôt" />
 				</SimulationGoals>
 			</Simulation>

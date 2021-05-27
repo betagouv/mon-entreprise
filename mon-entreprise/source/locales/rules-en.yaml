@@ -6393,13 +6393,7 @@ dirigeant . indépendant . cotisations et contributions . maladie:
   titre.en: '[automatic] disease'
   titre.fr: maladie
 ? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif
-: description.en: >
-    [automatic] The rate of the health contribution is progressive according to
-    the declared income.
-  description.fr: >
-    Le taux de la cotisations maladie est progressif en fonction du revenu
-    déclaré.
-  titre.en: '[automatic] progressive rate'
+: titre.en: '[automatic] progressive rate'
   titre.fr: taux progressif
 ? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire
 : description.en: >
