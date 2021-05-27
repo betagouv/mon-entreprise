@@ -362,10 +362,18 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
   titre.en: '[automatic] item 1GB / 1HB'
   titre.fr: rubrique 1GB / 1HB
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA:
-  description.en: '[automatic] Heading SCPD/SCBD on the Supplementary Data Form
-    for the Self-employed Income Tax Return'
-  description.fr: Rubrique DSCA/DSCB du formulaire de donnée complémentaire à la
-    déclaration de revenus des indépendant
+  description.en: >
+    [automatic] The DSCA or DSCB item of the unified tax and social security
+    return corresponds to the amount of compulsory social contributions that are
+    tax deductible (these contributions will be subject to CSG-CRDS). The DSCA
+    or DSCB item appears in the social section "declaration of income of the
+    self-employed" of the 2042 declaration.
+  description.fr: >
+    La rubrique DSCA ou DSCB de la déclaration de revenu fiscale et sociale
+    unifiée correspond au montant des cotisations sociales obligatoires
+    déductibles fiscalement (ces cotisations seront soumises à CSG-CRDS). La
+    rubrique DSCA ou DSCB figure dans le volet social « déclaration de revenus
+    des indépendants » de la déclaration 2042.
   résumé.en: '[automatic] Compulsory social security contributions'
   résumé.fr: Cotisations sociales obligatoires
   titre.en: '[automatic] DSCA / DSCB section'
@@ -7905,19 +7913,19 @@ entreprise . exonérée de TVA:
   titre.fr: exonérée de TVA
 entreprise . imposition:
   description.en: >
-    [automatic] The entrepreneur can opt for one of two tax regimes for the
-    profits of his or her business:
+    [automatic] Indicate if the taxation system of the income related to the
+    self-employed activity is :
 
-    - income tax, where profits are declared on the personal income tax return and taxed on a progressive scale
+    - Income tax: the company's profits are taxed directly to the self-employed person, at the progressive income tax rate.
 
-    - corporate income tax, where profits are declared in the name of the company
+    - corporate tax: the company's profits are taxed in the name of the company, at the corporate tax rate.
   description.fr: >
-    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition
-    des bénéfices de son activité :
+    Indiquez si le régime d’imposition des revenus liés à l’activité
+    indépendante relèvent :
 
-    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
+    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleurs indépendant, au barème progressif de l’impôt sur le revenu.
 
-    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+    - de l’impôt sur les sociétés : les bénéfices de l’entreprise sont imposés au nom de la société, au taux de l’impôt sur les sociétés.
   question.en: '[automatic] How is the company taxed?'
   question.fr: Comment l'entreprise est-elle imposée ?
   titre.en: '[automatic] taxation'

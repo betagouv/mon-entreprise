@@ -65,7 +65,7 @@ export default function AideDéclarationIndépendant() {
 					</p>
 					<p className="ui__ notice">
 						Vous restez entièrement responsable d'éventuelles omissions ou
-						inexactitudes dans votre déclarations.
+						inexactitudes dans votre déclaration.
 					</p>
 				</PageHeader>
 
@@ -99,7 +99,7 @@ export default function AideDéclarationIndépendant() {
 				<h2>Imposition</h2>
 				<p className="ui__ notice">
 					Ces quelques questions permettent de déterminer le type de déclaration
-					à remplir, ainsi que les modalités de calcul des cotisations social.
+					à remplir, ainsi que les modalités de calcul des cotisations sociale.
 				</p>
 			</Trans>
 			<SimpleField dottedName="entreprise . imposition" />
