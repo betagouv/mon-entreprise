@@ -1,18 +1,18 @@
-const fr = Cypress.env('language') === 'fr'
 const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
 const chargeInputSelector = 'input.currencyInput__input[name$="charges"]'
+const fr = Cypress.env('language') === 'fr'
 
-export const testSim = (simulateur) => {
+export const runSimulateurTest = (simulateur) => {
 	if (!fr) return
 
-	describe(simulateur, () => {
+	describe(`Test simulateur ${simulateur}`, () => {
 		before(() => cy.visit(encodeURI(`/simulateurs/${simulateur}`)))
 		it('should not crash', function () {
 			cy.get(inputSelector)
 		})
 
 		it('should display a result when entering a value in any of the currency input', () => {
-			cy.contains('€/an').click()
+			cy.contains('Annuel').click()
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type(1000)
 			}
@@ -31,14 +31,14 @@ export const testSim = (simulateur) => {
 		})
 
 		it('should allow to change period', function () {
-			cy.contains('€/an').click()
+			cy.contains('Annuel').click()
 			cy.wait(200)
 			cy.get(inputSelector).first().type('{selectall}12000')
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('{selectall}6000')
 			}
 			cy.wait(800)
-			cy.contains('€/mois').click()
+			cy.contains('Mensuel').click()
 			cy.get(inputSelector)
 				.first()
 				.invoke('val')
@@ -46,7 +46,7 @@ export const testSim = (simulateur) => {
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
 			}
-			cy.contains('€/an').click()
+			cy.contains('Annuel').click()
 		})
 
 		it('should allow to navigate to a documentation page', function () {
