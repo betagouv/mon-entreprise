@@ -11,6 +11,7 @@ aide déclaration revenu indépendant 2020:
 
 aide déclaration revenu indépendant 2020 . comptabilité:
   titre: régime de la déclaration contrôlée
+  non applicable si: entreprise . imposition . IS
   question: Quel méthode de gestion de la comptabilité est utilisée pour l'entreprise ?
   formule:
     une possibilité:
@@ -20,18 +21,39 @@ aide déclaration revenu indépendant 2020 . comptabilité:
         - trésorerie
 
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
-  remplace: 
-    règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
-    par: CSG non déductible + CRDS
   valeur: comptabilité = 'trésorerie'
   titre: comptabilité de trésorerie
 
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total charges sociale:
+aide déclaration revenu indépendant 2020 . comptabilité . engagement:
+  valeur: comptabilité = 'engagement'
+  titre: comptabilité d'engagement
+
+
+aide déclaration revenu indépendant 2020 . cotisations payées: 
+  remplace: 
+    - règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
+      par: CSG non déductible + CRDS
+    - règle: aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires
+      par: 
+        valeur: cotisations payées . total charges sociale 
+        abattement: 
+          somme:
+            - dirigeant . indépendant . cotisations et contributions . formation professionnelle
+            - CSG non déductible
+            - CRDS
+            - CSG déductible
+  applicable si: 
+    une de ces conditions: 
+      - comptabilité . trésorerie
+      - entreprise . imposition . IS
+  valeur: oui
+
+aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociale:
   remplace: 
     règle: dirigeant . indépendant . cotisations et contributions
     par: 
       somme: 
-        - comptabilité . trésorerie . total charges sociale
+        - cotisations payées . total charges sociale
         - dirigeant . indépendant . cotisations facultatives . total
   unité: €/an
   question: Quel est le montant total des cotisations et contributions sociales payées pendant l'exercice ?
@@ -43,7 +65,7 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total
     3. Selectionnez "relevé de situation comptable"
     4. Reportez dans ce champs le montant de la colonne "Cotisation", ligne "Année 2020"
 
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG déductible:
+aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductible:
   question: Quel est le montant total de CSG déductible payé cette année ?
   remplace: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
   unité: €/an
@@ -57,7 +79,7 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG d
     4. Reportez dans ce champs le total de la colonne "Montant déductible CSG" (dernière ligne)
 
 
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG non déductible:
+aide déclaration revenu indépendant 2020 . cotisations payées . CSG non déductible:
   question: Quel est le montant total de CSG non déductible payé cette année ?
   unité: €/an
   description: |
@@ -69,7 +91,7 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG n
     3. Puis, "attestation CSG/CRDS"
     4. Reportez dans ce champs le total de la colonne "Montant non déductible : CSG" (dernière ligne)
 
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
+aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
   question: Quel est le montant total de CRDS payé cette année ?
   unité: €/an
   description: |
@@ -81,18 +103,14 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
     3. Puis, "attestation CSG/CRDS"
     4. Reportez dans ce champs le total de la colonne "Montant non déductible : CRDS" (dernière ligne)
 
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . cotisations obligatoires déductibles:
+aide déclaration revenu indépendant 2020 . cotisations payées . cotisations obligatoires déductibles:
   remplace: cotisations obligatoires déductibles
   unité: €/an
-  valeur: comptabilité . trésorerie . total charges sociale
+  valeur: cotisations payées . total charges sociale
   abattement: 
     somme: 
       - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
       - dirigeant . indépendant . cotisations et contributions . formation professionnelle
-
-aide déclaration revenu indépendant 2020 . comptabilité . engagement:
-  valeur: comptabilité = 'engagement'
-  titre: comptabilité d'engagement
 
 
 aide déclaration revenu indépendant 2020 . régime d'imposition: oui
@@ -743,21 +761,21 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSLA:
   résumé: Revenus étrangers imposables mais exonérés de CSG-CRDS
   formule: dirigeant . indépendant . revenus étrangers . montant
 
-aide déclaration revenu indépendant 2020 . informations : 
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire : 
   applicable si: comptabilité . engagement
   valeur: oui
-aide déclaration revenu indépendant 2020 . informations . réduction Covid:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid:
   description: La réduction de cotisation applicable dans le cas du dispositif Covid
   valeur: réduction covid . total
 
 
-aide déclaration revenu indépendant 2020 . informations . rémunération totale:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération totale:
   titre: Total rémunération dirigeant
   résumé: '[A]'
   description: La rémunération "superbrute" du dirigeant, incluant toutes les cotisations et contributions sociales.
   valeur: dirigeant . rémunération . totale
 
-aide déclaration revenu indépendant 2020 . informations . cotisations déductibles:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations déductibles:
   résumé: '[C1]'
   description: "Cotisations et contributions sociales déductibles pour le calcul de l'assiette sociale"
   somme: 
@@ -765,7 +783,7 @@ aide déclaration revenu indépendant 2020 . informations . cotisations déducti
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
     - dirigeant . indépendant . cotisations et contributions . formation professionnelle
 
-aide déclaration revenu indépendant 2020 . informations . cotisations non déductibles:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations non déductibles:
   résumé: '[C2]'
   description: Cotisations et contributions sociales non déductibles pour le calcul de l'assiette sociale
   valeur: 
@@ -773,13 +791,68 @@ aide déclaration revenu indépendant 2020 . informations . cotisations non déd
       - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
       - dirigeant . indépendant . cotisations facultatives . total
 
-aide déclaration revenu indépendant 2020 . informations . assiette sociale:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . assiette sociale:
   résumé: '[A - C1]'
   description: Assiette utilisée pour le calcul des cotisations sociales.
   valeur: dirigeant . indépendant . assiette des cotisations
 
-aide déclaration revenu indépendant 2020 . informations . rémunération nette:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération nette:
   résumé: '[A - C1 - C2]'
   description: Le revenu net du dirigeant avant impôt sur le revenu. C'est la rémunération effectivement versée.
   valeur: dirigeant . rémunération . nette
 
+
+
+aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal:
+  titre: revenu net fiscal
+  résumé: '[A]'
+  description: Résultat avant déduction des charges sociales et exonérations fiscales 
+  valeur: dirigeant . rémunération . totale
+
+aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires:
+  titre: Cotisations sociales obligatoires déductibles
+  résumé: '[C]'
+  description: |
+    À reporter dans :
+    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
+  unité: €/an
+  somme: 
+    - dirigeant . indépendant . cotisations et contributions . cotisations
+    - dirigeant . indépendant . conjoint collaborateur . cotisations
+  références:
+    Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
+
+
+
+aide déclaration revenu indépendant 2020 . résultat simple: oui
+aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible:
+  titre: CSG déductible
+  résumé: '[B]'
+  description: "Montant de la CSG déductible à l'impôt sur le revenu"
+  valeur: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
+
+aide déclaration revenu indépendant 2020 . résultat simple . CFP:
+  résumé: '[D]'
+  description: Contribution à la formation professionnelle 
+  valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
+  
+aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible:
+  titre: charges sociales obligatoires déductibles fiscalement
+  résumé: '[B + C + D]'
+  somme:
+    - CSG déductible
+    - cotisations obligatoires
+    - CFP
+  description: |
+    À reporter dans :
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
+    
+aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale:
+  résumé: '[A - (B + C + D)]'
+  description: Assiette utilisée pour le calcul des cotisations sociales
+  valeur: dirigeant . indépendant . assiette des cotisations

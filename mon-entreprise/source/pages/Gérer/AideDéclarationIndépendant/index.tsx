@@ -19,8 +19,21 @@ import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 import { ExplicationsResultatFiscal } from './ExplicationResultatFiscal'
 import { SimpleField, SubSection } from './Fields'
+import ResultatsSimples from './RésultatSimple'
 import ResultatsParFormulaire from './RésultatsParFormulaire'
 import illustration from './undraw_fill_in_mie5.svg'
+
+/**
+ * Nous avons proposé une nouvelle vision des résultat plus complète, avec une proposition d'aide pour
+ * l'ensemble des cases liées aux cotisations sociale.
+ *
+ * Hors de propos pour 2021, étant donné que cela prendrait beaucoup de temps à valider par la DGFiP
+ * En attendant, on propose la version "simple" (mais moins utile).
+ *
+ * Le but est de faire valider la version plus complète pour la déclaration de revenu 2021.
+ */
+const FEATURE_FLAG_RESULTATS_COMPLETS = false
+
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
 	const dispatch = useDispatch()
@@ -69,13 +82,10 @@ export default function AideDéclarationIndépendant() {
 					<ul>
 						<li>
 							vous exercez une activité libérale relevant d’un régime de
-							retraite des professions libérales
+							retraite des professions libérales en comptabilité d'engagement
 						</li>
-						<li>vous avez opté pour le régime micro-fiscal</li>
 						<li>votre entreprise est domiciliée dans les DOM</li>
-						<li>
-							vous vous versez des dividendes soumis à cotisations sociales
-						</li>
+						<li>vous avez opté pour le régime micro-fiscal</li>
 					</ul>
 				</Warning>
 				{displayForm ? (
@@ -93,47 +103,57 @@ export default function AideDéclarationIndépendant() {
 				</p>
 			</Trans>
 			<SimpleField dottedName="entreprise . imposition" />
-			<SimpleField dottedName="aide déclaration revenu indépendant 2020 . comptabilité" />
-
-			{situation['entreprise . imposition'] !== undefined && (
-				<Animate.fromTop key={situation['entreprise . imposition']}>
-					<Condition expression="entreprise . imposition . IR">
-						<h2>
-							Quel est votre résultat fiscal en 2020 ?<br />
-							<small>
-								Charges sociales et exonérations fiscales non incluses{' '}
-								<ExplicationsResultatFiscal />
-							</small>
-						</h2>
-						<p className="ui__ notice">
-							Le résultat fiscal correspond aux produits moins les charges. Il
-							peut être positif (bénéfice) ou négatif (déficit).
-						</p>
-						<BigInput>
-							<RuleInput
-								dottedName="dirigeant . rémunération . totale"
-								onChange={setSituation}
-								autoFocus
-							/>
-						</BigInput>
+			{situation['entreprise . imposition'] != null && (
+				<>
+					{/* <WhenApplicable dottedName="aide déclaration revenu indépendant 2020 . comptabilité"> */}
+					<SimpleField dottedName="aide déclaration revenu indépendant 2020 . comptabilité" />
+					{/* </WhenApplicable> */}
+					<Condition
+						expression={
+							FEATURE_FLAG_RESULTATS_COMPLETS
+								? 'oui'
+								: 'aide déclaration revenu indépendant 2020 . cotisations payées = non'
+						}
+					>
+						<Animate.fromTop key={situation['entreprise . imposition']}>
+							<Condition expression="entreprise . imposition . IR">
+								<h2>
+									Quel est votre résultat fiscal en 2020 ?<br />
+									<small>
+										Charges sociales et exonérations fiscales non incluses{' '}
+										<ExplicationsResultatFiscal />
+									</small>
+								</h2>
+								<p className="ui__ notice">
+									Le résultat fiscal correspond aux produits moins les charges.
+									Il peut être positif (bénéfice) ou négatif (déficit).
+								</p>
+								<BigInput>
+									<RuleInput
+										dottedName="dirigeant . rémunération . totale"
+										onChange={setSituation}
+										autoFocus
+									/>
+								</BigInput>
+							</Condition>
+							<Condition expression="entreprise . imposition . IS">
+								<h2>
+									Quel est le montant net de votre rémunération en 2020 ?
+									<br />
+									<small>Sans tenir compte des charges sociales</small>
+								</h2>
+								<BigInput>
+									<RuleInput
+										dottedName="dirigeant . rémunération . nette"
+										onChange={setSituation}
+										autoFocus
+									/>
+								</BigInput>
+							</Condition>
+						</Animate.fromTop>
 					</Condition>
-					<Condition expression="entreprise . imposition . IS">
-						<h2>
-							Quel est le montant net de votre rémunération en 2020 ?
-							<br />
-							<small>Sans tenir compte des charges sociales</small>
-						</h2>
-						<BigInput>
-							<RuleInput
-								dottedName="dirigeant . rémunération . nette"
-								onChange={setSituation}
-								autoFocus
-							/>
-						</BigInput>
-					</Condition>
-				</Animate.fromTop>
+				</>
 			)}
-
 			{displayForm && (
 				<>
 					<Animate.fromTop>
@@ -193,8 +213,9 @@ export default function AideDéclarationIndépendant() {
 									dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 									hideTitle
 								/>
-
-								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
+								{FEATURE_FLAG_RESULTATS_COMPLETS && (
+									<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
+								)}
 								<h2>
 									<Trans>International</Trans>
 								</h2>
@@ -203,43 +224,50 @@ export default function AideDéclarationIndépendant() {
 									dottedName="dirigeant . indépendant . revenus étrangers"
 									hideTitle
 								/>
-							</Condition>
-							<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . trésorerie">
-								<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-								<SubSection dottedName="aide déclaration revenu indépendant 2020 . comptabilité . trésorerie" />
-								<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
-
-								{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
-								<h3>
-									<Trans>Revenus étranger</Trans>
-								</h3>
-								<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
-								<Condition expression="dirigeant . indépendant . revenus étrangers">
-									<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
-								</Condition>
-							</Condition>
-
-							<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
 								<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
+							</Condition>
+							<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées">
+								<SubSection dottedName="aide déclaration revenu indépendant 2020 . cotisations payées" />
+								<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+								{FEATURE_FLAG_RESULTATS_COMPLETS && (
+									<>
+										<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
+
+										<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
+										{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
+										<h3>
+											<Trans>Revenus étranger</Trans>
+										</h3>
+
+										<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
+										<Condition expression="dirigeant . indépendant . revenus étrangers">
+											<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
+										</Condition>
+									</>
+								)}
 							</Condition>
 						</FormBlock>
 					</Animate.fromTop>
+					{FEATURE_FLAG_RESULTATS_COMPLETS ? (
+						<>
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
+							<Condition
+								expression={{
+									'une de ces conditions': [
+										"aide déclaration revenu indépendant 2020 . régime d'imposition . réel",
+										"aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée",
+									],
+								}}
+							>
+								<TrackPage name="simulation terminée" />
+								<ResultatsParFormulaire />
+							</Condition>
+						</>
+					) : (
+						<ResultatsSimples />
+					)}
 
-					<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
-
-					<Condition
-						expression={{
-							'une de ces conditions': [
-								"aide déclaration revenu indépendant 2020 . régime d'imposition . réel",
-								"aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée",
-							],
-						}}
-					>
-						<TrackPage name="simulation terminée" />
-						<ResultatsParFormulaire />
-					</Condition>
 					<Aide />
 				</>
 			)}

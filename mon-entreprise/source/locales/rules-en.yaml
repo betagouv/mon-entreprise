@@ -90,7 +90,17 @@ aide déclaration revenu indépendant 2020 . comptabilité . engagement:
 aide déclaration revenu indépendant 2020 . comptabilité . trésorerie:
   titre.en: '[automatic] cash accounting'
   titre.fr: comptabilité de trésorerie
-aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
+aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
+  description.en: '[automatic] Deductible compulsory contributions, useful for
+    calculating the CSG/CRDS base'
+  description.fr: Cotisations obligatoires déductibles, utile pour calculer
+    l'assiette de la CSG/CRDS
+  titre.en: '[automatic] deductible mandatory contributions'
+  titre.fr: cotisations obligatoires déductibles
+aide déclaration revenu indépendant 2020 . cotisations payées:
+  titre.en: '[automatic] contributions paid'
+  titre.fr: cotisations payées
+aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow: 
@@ -123,8 +133,8 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
   question.fr: Quel est le montant total de CRDS payé cette année ?
   titre.en: '[automatic] CRDS'
   titre.fr: CRDS
-? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG déductible
-: description.en: >
+aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductible:
+  description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow: 
 
@@ -156,7 +166,7 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
   question.fr: Quel est le montant total de CSG déductible payé cette année ?
   titre.en: '[automatic] Deductible CSG'
   titre.fr: CSG déductible
-? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CSG non déductible
+? aide déclaration revenu indépendant 2020 . cotisations payées . CSG non déductible
 : description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow: 
@@ -189,10 +199,10 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
   question.fr: Quel est le montant total de CSG non déductible payé cette année ?
   titre.en: '[automatic] Non-deductible CSG'
   titre.fr: CSG non déductible
-? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . cotisations obligatoires déductibles
+? aide déclaration revenu indépendant 2020 . cotisations payées . cotisations obligatoires déductibles
 : titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
-? aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . total charges sociale
+? aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociale
 : description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow: 
@@ -225,13 +235,6 @@ aide déclaration revenu indépendant 2020 . comptabilité . trésorerie . CRDS:
     payées pendant l'exercice ?
   titre.en: '[automatic] total social charges'
   titre.fr: total charges sociale
-aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
-  description.en: '[automatic] Deductible compulsory contributions, useful for
-    calculating the CSG/CRDS base'
-  description.fr: Cotisations obligatoires déductibles, utile pour calculer
-    l'assiette de la CSG/CRDS
-  titre.en: '[automatic] deductible mandatory contributions'
-  titre.fr: cotisations obligatoires déductibles
 aide déclaration revenu indépendant 2020 . formulaire 2033:
   résumé.en: '[automatic] Tax package for the simplified actual system'
   résumé.fr: Liasse fiscale du régime réel simplifié
@@ -448,17 +451,17 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique WQ:
   résumé.fr: Réintégrations diverses (+)
   titre.en: '[automatic] WQ section'
   titre.fr: rubrique WQ
-aide déclaration revenu indépendant 2020 . informations:
-  titre.en: '[automatic] information'
-  titre.fr: informations
-aide déclaration revenu indépendant 2020 . informations . assiette sociale:
-  description.en: '[automatic] The base used to calculate social security contributions.'
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire:
+  titre.en: '[automatic] result information by form'
+  titre.fr: informations résultat par formulaire
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . assiette sociale
+: description.en: '[automatic] The base used to calculate social security contributions.'
   description.fr: Assiette utilisée pour le calcul des cotisations sociales.
   résumé.en: '[automatic] [A - C1]'
   résumé.fr: '[A - C1]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-? aide déclaration revenu indépendant 2020 . informations . cotisations déductibles
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations déductibles
 : description.en:
     '[automatic] Deductible social contributions for the calculation
     of the social security base'
@@ -469,7 +472,7 @@ aide déclaration revenu indépendant 2020 . informations . assiette sociale:
   résumé.fr: '[C1]'
   titre.en: '[automatic] deductible contributions'
   titre.fr: cotisations déductibles
-? aide déclaration revenu indépendant 2020 . informations . cotisations non déductibles
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations non déductibles
 : description.en: '[automatic] Non-deductible social contributions for the
     calculation of the social security base'
   description.fr: Cotisations et contributions sociales non déductibles pour le
@@ -478,14 +481,14 @@ aide déclaration revenu indépendant 2020 . informations . assiette sociale:
   résumé.fr: '[C2]'
   titre.en: '[automatic] non-deductible contributions'
   titre.fr: cotisations non déductibles
-aide déclaration revenu indépendant 2020 . informations . réduction Covid:
-  description.en: '[automatic] The contribution reduction applicable in the case
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid
+: description.en: '[automatic] The contribution reduction applicable in the case
     of the Covid scheme'
   description.fr: La réduction de cotisation applicable dans le cas du dispositif Covid
   titre.en: '[automatic] Covid discount'
   titre.fr: réduction Covid
-aide déclaration revenu indépendant 2020 . informations . rémunération nette:
-  description.en:
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération nette
+: description.en:
     "[automatic] The executive's net income before income tax. This
     is the remuneration actually paid."
   description.fr: Le revenu net du dirigeant avant impôt sur le revenu. C'est la
@@ -494,8 +497,8 @@ aide déclaration revenu indépendant 2020 . informations . rémunération nette
   résumé.fr: '[A - C1 - C2]'
   titre.en: '[automatic] net pay'
   titre.fr: rémunération nette
-aide déclaration revenu indépendant 2020 . informations . rémunération totale:
-  description.en: '[automatic] The manager''s "superbrute" remuneration,
+? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération totale
+: description.en: '[automatic] The manager''s "superbrute" remuneration,
     including all social contributions.'
   description.fr: La rémunération "superbrute" du dirigeant, incluant toutes les
     cotisations et contributions sociales.
@@ -1145,6 +1148,79 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel . norm
 aide déclaration revenu indépendant 2020 . rémunération déductible:
   titre.en: '[automatic] deductible remuneration'
   titre.fr: rémunération déductible
+aide déclaration revenu indépendant 2020 . résultat simple:
+  titre.en: '[automatic] simple result'
+  titre.fr: résultat simple
+aide déclaration revenu indépendant 2020 . résultat simple . CFP:
+  description.en: '[automatic] Contribution to professional training'
+  description.fr: Contribution à la formation professionnelle
+  résumé.en: '[automatic] [D]'
+  résumé.fr: '[D]'
+  titre.en: '[automatic] PSC'
+  titre.fr: CFP
+aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible:
+  description.en: '[automatic] Amount of CSG deductible from income tax'
+  description.fr: Montant de la CSG déductible à l'impôt sur le revenu
+  résumé.en: '[automatic] [B]'
+  résumé.fr: '[B]'
+  titre.en: '[automatic] Deductible CSG'
+  titre.fr: CSG déductible
+aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale:
+  description.en: '[automatic] Basis for calculating social security contributions'
+  description.fr: Assiette utilisée pour le calcul des cotisations sociales
+  résumé.en: '[automatic] [A - (B + C + D)]'
+  résumé.fr: '[A - (B + C + D)]'
+  titre.en: '[automatic] social base'
+  titre.fr: assiette sociale
+? aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires
+: description.en: >
+    [automatic] To be reported in :
+
+    - the DSCA/DSCB box** on the supplementary data form for the self-employed tax return (form 2042)
+
+    - simplified actual system:** item 326 of form 2033-D-SD 
+
+    - normal actual regime:** item A5 of form 2053-SD
+
+    - controlled declaration:** item BT of form 2035-A-SD
+  description.fr: >
+    À reporter dans :
+
+    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
+
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+
+    - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
+
+    - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
+  résumé.en: '[automatic] [C]'
+  résumé.fr: '[C]'
+  titre.en: '[automatic] Deductible mandatory social security contributions'
+  titre.fr: Cotisations sociales obligatoires déductibles
+aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal:
+  description.en:
+    '[automatic] Income before deduction of social security charges
+    and tax exemptions'
+  description.fr: Résultat avant déduction des charges sociales et exonérations fiscales
+  résumé.en: '[automatic] [A]'
+  résumé.fr: '[A]'
+  titre.en: '[automatic] net tax income'
+  titre.fr: revenu net fiscal
+? aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible
+: description.en: |
+    [automatic] To be reported in :
+    - simplified actual system:** item 252 of form 2033-B-SD 
+    - normal real system:** item FZ of form 2052-SD
+    - controlled declaration:** item BK of form 2035-A-SD
+  description.fr: |
+    À reporter dans :
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+    - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
+  résumé.en: '[automatic] [B + C + D]'
+  résumé.fr: '[B + C + D]'
+  titre.en: '[automatic] tax-deductible mandatory social security charges'
+  titre.fr: charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
