@@ -177,19 +177,20 @@ dirigeant . indépendant . PL . maladie:
       - régime général
       - PAMC
   remplace: cotisations et contributions . maladie
-  formule:
-    produit:
-      assiette: indépendant . assiette des cotisations
-      taux:
-        taux progressif:
-          assiette: indépendant . assiette des cotisations
-          multiplicateur: plafond sécurité sociale temps plein
-          tranches:
-            - plafond: 0%
-              taux: 1.5%
-            - plafond: 110%
-              taux: 6.5%
-    arrondi: oui
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
+    taux:
+      taux progressif:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale temps plein
+        tranches:
+          - plafond: 0%
+            taux: 1.5%
+          - plafond: 110%
+            taux: 6.5%
+  arrondi: oui
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
     guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf
