@@ -6399,28 +6399,17 @@ dirigeant . indépendant . cotisations et contributions . maladie:
   description.fr: >
     Le taux de la cotisations maladie est progressif en fonction du revenu
     déclaré.
-  note.en: >
-    [automatic] For self-employed persons receiving the RSA or the activity
-    allowance, only the simple reduction 
-
-    defined in the decree for calculating the health contribution is taken into account.
-
-
-    The reduction below 40% of the social security ceiling is not, because there is no minimum 
-
-    minimum base.
-  note.fr: >
-    Pour les indépendants bénéficiant du RSA ou de la prime d'activité, seule la
-    réduction simple 
-
-    définie dans le décret de calcul de la cotisation maladie est prise en compte.
-
-
-    La réduction en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas 
-
-    d'assiette minimale.
   titre.en: '[automatic] progressive rate'
   titre.fr: taux progressif
+? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire
+: description.en: >
+    [automatic] Additional reduction of the sickness rate for income below 40%
+    of the social security ceiling
+  description.fr: >
+    La réduction supplémentaire du taux maladie pour les revenu inférieurs à 40%
+    du plafond de la sécurité sociale
+  titre.en: '[automatic] further reduction'
+  titre.fr: réduction supplémentaire
 ? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
 : description.en:
     '[automatic] In return for the CSG exemption, contributors have
