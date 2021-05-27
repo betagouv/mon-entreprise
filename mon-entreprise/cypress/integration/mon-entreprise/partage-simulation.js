@@ -1,6 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Simulateur salarié mode partagé', () => {
+describe('Partage (simulateur salarié)', () => {
 	const brutInputSelector =
 		'input.currencyInput__input[name="contrat salarié . rémunération . brut de base"]'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'

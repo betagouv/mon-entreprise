@@ -1,37 +1,10 @@
 const fr = Cypress.env('language') === 'fr'
-const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
 
 describe('Simulateur salarié', () => {
 	if (!fr) {
 		return
 	}
 	before(() => cy.visit(encodeURI('/simulateurs/salarié')))
-
-	it('should persist the current simulation (persistSimulation)', function () {
-		cy.get(inputSelector).first().type('{selectall}42')
-		cy.contains('Passer').click()
-		cy.contains('Passer').click()
-		cy.contains('Passer').click()
-		cy.wait(1600)
-		cy.visit('/simulateurs/auto-entrepreneur')
-		cy.get(inputSelector).first().type('{selectall}007')
-		cy.contains('Passer').click()
-		cy.contains('Passer').click()
-		cy.contains('Passer').click()
-		cy.wait(1600)
-		cy.visit(encodeURI('/simulateurs/salarié'))
-		cy.contains('Retrouver ma simulation').click()
-		cy.get(inputSelector).first().invoke('val').should('match', /42/)
-	})
-
-	it('should not crash when selecting localisation', function () {
-		cy.contains('Commune').click()
-		cy.get('fieldset input[type="search"]').type('Steenvoorde')
-		cy.contains('Steenvoorde (59114)').click()
-		cy.contains('Suivant').click()
-		cy.contains('Voir mes paramètres').click()
-		cy.contains('Steenvoorde')
-	})
 
 	describe('part time contract', () => {
 		before(() => {
