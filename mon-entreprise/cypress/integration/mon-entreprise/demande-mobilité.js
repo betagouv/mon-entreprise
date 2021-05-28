@@ -16,7 +16,8 @@ describe(
 		it('should not crash', () => {
 			cy.contains('Demande de mobilité internationale')
 		})
-		it('should allow to complete "coordonnées" section', () => {
+		it('should allow to complete and download', () => {
+			// "coordonnées" section
 			cy.contains('SIRET').click()
 			cy.focused()
 				.type('684 064 0011')
@@ -56,8 +57,8 @@ describe(
 				.tab()
 				.type('06 85 69 78 54')
 				.tab()
-		})
-		it('should allow to complete "activité en France" section', () => {
+
+			// "activité en France" section
 			cy.focused()
 				.type('Deaux & Fils')
 				.tab()
@@ -68,8 +69,8 @@ describe(
 			cy.contains('29240').click()
 			cy.contains('Organisme Urssaf').click()
 			cy.focused().type('Bretagne').tab().tab().type('Boulangerie')
-		})
-		it('should allow to complete "votre demande" section', () => {
+
+			// "votre demande" section
 			cy.get("input[name='demande . pays unique'][value='oui']").next().click()
 			cy.get("input[name='demande . infrastructure sauvegardée'][value='oui']")
 				.next()
@@ -98,8 +99,8 @@ describe(
 			)
 				.next()
 				.click()
-		})
-		it.skip('should allow to download PDF', () => {
+
+			// download PDF
 			cy.contains(
 				'Je certifie l’exactitude des informations communiquées ci-dessus'
 			).click()
