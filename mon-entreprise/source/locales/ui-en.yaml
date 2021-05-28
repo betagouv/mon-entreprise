@@ -150,6 +150,7 @@ Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
+Revenu du dirigeant par statut: Executive income by status
 "Revenu net avec chômage partiel :": "Net income with short-time work :"
 Revenu net mensuel: Monthly net income
 Revenus étranger: Foreign income
@@ -180,6 +181,7 @@ Total des retenues: Total withheld
 Tout effacer: Delete all
 Tout le site: The whole site
 Tranche de l'assiette: Scale bracket
+Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
 Un seul associé: Only one partner
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
 "Versement : ": "Payment : "
@@ -1243,6 +1245,66 @@ pages:
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
         questions.</4>"
+    ei:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the income simulator for sole proprietorships
+          developed by Urssaf, you can estimate your income based on your
+          monthly or annual turnover to better manage your cash flow. Or the
+          other way round: find out how much to charge to achieve a certain
+          income."
+        ogTitle: "Sole proprietorship: quickly calculate your net income from your
+          turnover and vice versa"
+        titre: "Sole proprietorship (EI): income simulator"
+      seo explanation: <0>How to calculate the net income of a sole trader?</0><1>A
+        sole trader must pay social security contributions to the authorities.
+        These contributions are used to finance social security, and open up
+        rights, particularly for retirement and health insurance. They are also
+        used to finance professional training.</1><2><0></0> <2>See the details
+        of the calculation of contributions</2></2><3>Do not forget to deduct
+        all expenses incurred in the course of the business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means that you will not pay tax or contributions on their
+        amount (unless you have opted for the micro-tax option).</3><4>The
+        complete calculation formula is therefore :<1><0>Net income = Turnover -
+        Professional expenses - Social contributions</0></1></4><5>How do you
+        calculate the social security contributions of a sole
+        proprietorship?</5><6>The manager of a sole proprietorship pays social
+        security contributions, proportional to the company's <2></2>. Their
+        amount also varies according to the type of activity (liberal
+        profession, craftsman, tradesman, etc.), or any exemptions granted
+        (ACRE, ZFU, RSA, etc.).</6><7> As a company's result is only known at
+        the end of the accounting period, the manager pays provisional
+        contributions which will then be adjusted once the actual income has
+        been declared, the following year.</7><8>This simulator allows you to
+        calculate the exact amount of social security contributions based on a
+        desired turnover or net income. You can specify your situation by
+        answering the questions displayed below the simulation.</8>
+      shortname: EI
+      title: Simulator for sole proprietorship (EI)
+    eirl:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the income simulator for EIRL developed by Urssaf, you
+          can estimate the amount of your income based on your monthly or annual
+          turnover to better manage your cash flow. Or in the opposite
+          direction: know how much to charge to reach a certain income."
+        ogTitle: "EIRL manager: quickly calculate your net income from your turnover and
+          vice versa"
+        titre: "EIRL : income simulator for managers"
+      shortname: EIRL
+      title: EIRL Simulator
+    eurl:
+      meta:
+        description: Calculation of the net salary from the total allocated to
+          remuneration and vice versa
+        ogDescription: As an employee-equivalent manager, you can immediately calculate
+          your net income after tax from the total allocated to your
+          remuneration.
+        ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
+        titre: "EURL : income simulator for managers"
     expert-comptable:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice

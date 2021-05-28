@@ -44,16 +44,25 @@ export default function Simulateurs() {
 				</div>
 
 				<HeadingWithAnchorLink level={2}>
-					<Trans>Indépendants et dirigeants</Trans>
+					<Trans>Revenu du dirigeant par statut</Trans>
 				</HeadingWithAnchorLink>
+				<div className="ui__ small box-container">
+					<SimulateurCard small {...simulators['auto-entrepreneur']} />
+					<SimulateurCard small {...simulators['entreprise-individuelle']} />
+					<SimulateurCard small {...simulators.eirl} />
+					<SimulateurCard small {...simulators.sasu} />
+					<SimulateurCard small {...simulators.eurl} />
+					<SimulateurCard small {...simulators['comparaison-statuts']} />
+				</div>
+
+				<HeadingWithAnchorLink level={2}>
+					<Trans>Travailleurs Non Salariés (TNS)</Trans>
+				</HeadingWithAnchorLink>
+
 				<div className="ui__ box-container">
-					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators.indépendant} />
-					<SimulateurCard {...simulators.sasu} />
-					<SimulateurCard {...simulators['entreprise-individuelle']} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
-					<SimulateurCard {...simulators['comparaison-statuts']} />
 				</div>
 				<>
 					<HeadingWithAnchorLink level={3}>
@@ -70,6 +79,7 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['expert-comptable']} />
 					</div>
 				</>
+
 				<HeadingWithAnchorLink level={2}>
 					<Trans>Autres outils</Trans>
 				</HeadingWithAnchorLink>
@@ -134,9 +144,11 @@ export function SimulateurCard({
 				pathname: (isIframe && iframePath) || path,
 			}}
 		>
-			<div className={classnames('ui__ box-icon', { big: !small })}>
-				{emoji(icône)}
-			</div>
+			{icône && (
+				<div className={classnames('ui__ box-icon', { big: !small })}>
+					{emoji(icône)}
+				</div>
+			)}
 			<>{small ? name : <h3>{name}</h3>}</>
 			{!small && meta?.description && (
 				<p className="ui__ notice">{meta.description}</p>

@@ -42,6 +42,8 @@ const simulateurs = [
 	'salarié',
 	'auto-entrepreneur',
 	'indépendant',
+	'eirl',
+	'eurl',
 	'sasu',
 	'chômage-partiel',
 	'artiste-auteur',
@@ -82,7 +84,7 @@ export type SimulatorData = Record<
 					chapter1?: 'gerer' | 'creer'
 			  }
 			| string
-		icône: string
+		icône?: string
 		shortName: string
 		path?: string
 		tooltip?: string
@@ -210,7 +212,10 @@ export function getSimulatorsData({
 			nextSteps: ['chômage-partiel', 'aides-embauche'],
 		},
 		'entreprise-individuelle': {
-			tracking: 'entreprise_individuelle',
+			tracking: {
+				chapter2: 'statut_entreprise',
+				chapter3: 'EI',
+			},
 			config: {
 				...indépendantConfig,
 				situation: {
@@ -218,36 +223,36 @@ export function getSimulatorsData({
 					'entreprise . imposition': "'IR'",
 				},
 			},
-			icône: '',
 			iframePath: 'simulateur-EI',
+			icône: '🧍',
 			meta: {
 				description: t(
-					'pages.simulateurs.EI.meta.description',
+					'pages.simulateurs.ei.meta.description',
 					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
 				),
 				ogDescription: t(
-					'pages.simulateurs.EI.meta.ogDescription',
-					"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
+					'pages.simulateurs.ei.meta.ogDescription',
+					"Grâce au simulateur de revenu pour entreprise individuelle développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
 				),
 				ogImage: AutoEntrepreneurPreview,
 				ogTitle: t(
-					'pages.simulateurs.EI.meta.ogTitle',
+					'pages.simulateurs.ei.meta.ogTitle',
 					'Entreprise individuelle (EI) : calculez rapidement votre revenu net à partir du CA et vice-versa'
 				),
 				title: t(
-					'pages.simulateurs.EI.meta.titre',
+					'pages.simulateurs.ei.meta.titre',
 					'Entreprise individuelle (EI) : simulateur de revenus'
 				),
 			},
 			component: EntrepriseIndividuelle,
 			path: sitePaths.simulateurs['entreprise-individuelle'],
-			shortName: t('pages.simulateurs.EI.shortname', 'Entreprise individuelle'),
+			shortName: t('pages.simulateurs.ei.shortname', 'EI'),
 			title: t(
-				'pages.simulateurs.EI.title',
-				'Simulateur de revenus pour entreprise individuelle (EI)'
+				'pages.simulateurs.ei.title',
+				'Simulateur pour entreprise individuelle (EI)'
 			),
 			seoExplanations: (
-				<Trans i18nKey="pages.simulateurs.EI.seo explanation">
+				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 					<h2>
 						Comment calculer le revenu net d'un dirigeant d'entreprise
 						individuelle (EI) ?
@@ -289,11 +294,14 @@ export function getSimulatorsData({
 					<p>
 						Le dirigeant d'une entreprise individuelle paye des cotisations
 						sociales, proportionnelle au{' '}
-						<RuleLink dottedName="entreprise . résultat fiscal" /> de
-						l'entreprise. Leur montant varie en fonction du type d'activité
-						(profession libérale, artisan, commerçants, etc), où des éventuelles
-						exonérations accordées (ACRE, ZFU, RSA, etc.). Pour connaître leur
-						montant, vous pouvez utiliser ce simulateur, et affiner le
+						<RuleLink
+							dottedName="entreprise . résultat fiscal"
+							résultat
+							fiscal
+						></RuleLink>{' '}
+						de l'entreprise. Leur montant varie également en fonction du type
+						d'activité (profession libérale, artisan, commerçants, etc), où des
+						éventuelles exonérations accordées (ACRE, ZFU, RSA, etc.).
 					</p>
 					<p>
 						{' '}
@@ -302,14 +310,174 @@ export function getSimulatorsData({
 						provisionnelles qui seront ensuite régularisée une fois le revenu
 						réel déclaré, l'année suivante.
 					</p>
+					<p>
+						Ce simulateur permet de calculer le montant exact des cotisations
+						sociale en partant d'un chiffre d'affaires ou d'un revenu net
+						souhaité. Vous pourrez préciser votre situation en répondant aux
+						questions s'affichant en dessous de la simulation.
+					</p>
 				</Trans>
 			),
 			nextSteps: ['indépendant', 'comparaison-statuts'],
 		},
+		eirl: {
+			tracking: {
+				chapter2: 'statut_entreprise',
+				chapter3: 'EIRL',
+			},
+			config: indépendantConfig,
+			icône: '🧍‍♀️',
+			iframePath: 'simulateur-EIRL',
+			meta: {
+				description: t(
+					'pages.simulateurs.eirl.meta.description',
+					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
+				),
+				ogDescription: t(
+					'pages.simulateurs.eirl.meta.ogDescription',
+					"Grâce au simulateur de revenu pour EIRL développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
+				),
+				ogImage: AutoEntrepreneurPreview,
+				ogTitle: t(
+					'pages.simulateurs.eirl.meta.ogTitle',
+					"Dirigeant d'EIRL : calculez rapidement votre revenu net à partir du CA et vice-versa"
+				),
+				title: t(
+					'pages.simulateurs.eirl.meta.titre',
+					'EIRL : simulateur de revenus pour dirigeant'
+				),
+			},
+			component: EntrepriseIndividuelle,
+			path: sitePaths.simulateurs.eirl,
+			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
+			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
+
+			nextSteps: ['indépendant', 'comparaison-statuts'],
+		},
+		sasu: {
+			config: sasuConfig,
+			tracking: {
+				chapter2: 'statut_entreprise',
+				chapter3: 'SASU',
+			},
+			icône: '🏢',
+			iframePath: 'simulateur-assimilesalarie',
+			meta: {
+				description: t(
+					'pages.simulateurs.sasu.meta.description',
+					'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
+				),
+				ogDescription: t(
+					'pages.simulateurs.sasu.meta.ogDescription',
+					'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
+				),
+				ogImage: RémunérationSASUPreview,
+				ogTitle: t(
+					'pages.simulateurs.sasu.meta.ogTitle',
+					'Rémunération du dirigeant de SASU : un simulateur pour connaître votre salaire net'
+				),
+				title: t(
+					'pages.simulateurs.sasu.meta.titre',
+					'SASU : simulateur de revenus pour dirigeant'
+				),
+			},
+			path: sitePaths.simulateurs.sasu,
+			shortName: t('pages.simulateurs.sasu.shortname', 'SASU'),
+			title: t('pages.simulateurs.sasu.title', 'Simulateur de SASU'),
+			component: function SasuSimulation() {
+				return (
+					<>
+						<SimulateurWarning simulateur="sasu" />
+						<Simulation explanations={<SalaryExplanation />} />
+					</>
+				)
+			},
+			seoExplanations: (
+				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
+					<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
+					<p>
+						Comme pour un salarié classique, le{' '}
+						<strong>dirigeant de sasu</strong> paye des cotisations sociales sur
+						la rémunération qu'il se verse. Les cotisations sont calculées de la
+						même manière que pour le salarié : elles sont décomposées en partie
+						employeur et partie salarié et sont exprimées comme un pourcentage
+						du salaire brut.
+					</p>
+					<p>
+						Le dirigeant assimilé-salarié ne paye pas de{' '}
+						<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie
+						pas de la{' '}
+						<RuleLink dottedName="contrat salarié . réduction générale">
+							réduction générale de cotisations
+						</RuleLink>{' '}
+						ni des dispositifs encadrés par le code du travail comme les{' '}
+						<RuleLink dottedName="contrat salarié . temps de travail . heures supplémentaires">
+							heures supplémentaires
+						</RuleLink>{' '}
+						ou les primes.
+					</p>
+					<p>
+						Il peut en revanche prétendre à la{' '}
+						<RuleLink dottedName="dirigeant . assimilé salarié . réduction ACRE">
+							réduction ACRE
+						</RuleLink>{' '}
+						en debut d'activité, sous certaines conditions.
+					</p>
+					<p>
+						Vous pouvez utiliser notre simulateur pour calculer la{' '}
+						<strong>rémunération nette</strong> à partir d'un montant superbrut
+						alloué à la rémunération du dirigeant. Il vous suffit pour cela
+						saisir le montant total alloué dans la case "total chargé". La
+						simulation peut ensuite être affinée en répondant aux différentes
+						questions.
+					</p>
+				</Trans>
+			),
+			nextSteps: ['is', 'comparaison-statuts'],
+		},
+		eurl: {
+			config: {
+				...indépendantConfig,
+				situation: {
+					...indépendantConfig.situation,
+					'entreprise . imposition': "'IS'",
+				},
+			},
+			tracking: {
+				chapter2: 'statut_entreprise',
+				chapter3: 'EURL',
+			},
+			icône: '🏦',
+			iframePath: 'simulateur-eurl',
+			meta: {
+				description: t(
+					'pages.simulateurs.eurl.meta.description',
+					'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
+				),
+				ogDescription: t(
+					'pages.simulateurs.eurl.meta.ogDescription',
+					'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
+				),
+				ogImage: RémunérationSASUPreview,
+				ogTitle: t(
+					'pages.simulateurs.eurl.meta.ogTitle',
+					"Rémunération du dirigeant d'EURL : un simulateur pour connaître votre salaire net"
+				),
+				title: t(
+					'pages.simulateurs.eurl.meta.titre',
+					'EURL : simulateur de revenus pour dirigeant'
+				),
+			},
+			path: sitePaths.simulateurs.eurl,
+			shortName: t('pages.simulateurs.sasu.shortname', 'EURL'),
+			title: t('pages.simulateurs.sasu.title', "Simulateur d'EURL"),
+			component: IndépendantSimulation,
+			nextSteps: ['is', 'comparaison-statuts'],
+		},
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
-			icône: '🚶‍♂️',
+			icône: '🧍‍♂️',
 			iframePath: 'simulateur-autoentrepreneur',
 			meta: {
 				description: t(
@@ -421,7 +589,7 @@ export function getSimulatorsData({
 			meta: {
 				title: t(
 					'pages.simulateurs.indépendant.meta.title',
-					'Indépendant : simulateur de revenus Urssaf'
+					'Indépendant : simulateur de revenus'
 				),
 				description: t(
 					'pages.simulateurs.indépendant.meta.description',
@@ -431,87 +599,7 @@ export function getSimulatorsData({
 			component: IndépendantSimulation,
 			nextSteps: ['comparaison-statuts', 'is'],
 		},
-		sasu: {
-			config: sasuConfig,
-			tracking: 'dirigeant_sasu',
-			icône: '👨‍✈️',
-			iframePath: 'simulateur-assimilesalarie',
-			meta: {
-				description: t(
-					'pages.simulateurs.sasu.meta.description',
-					'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
-				),
-				ogDescription: t(
-					'pages.simulateurs.sasu.meta.ogDescription',
-					'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
-				),
-				ogImage: RémunérationSASUPreview,
-				ogTitle: t(
-					'pages.simulateurs.sasu.meta.ogTitle',
-					'Rémunération du dirigeant de SASU : un simulateur pour connaître votre salaire net'
-				),
-				title: t(
-					'pages.simulateurs.sasu.meta.titre',
-					'Dirigeant de SASU : simulateur de revenus Urssaf'
-				),
-			},
-			path: sitePaths.simulateurs.SASU,
-			shortName: t('pages.simulateurs.sasu.shortname', 'Dirigeant de SASU'),
-			title: t(
-				'pages.simulateurs.sasu.title',
-				'Simulateur de revenus pour dirigeant de SASU'
-			),
-			component: function SasuSimulation() {
-				return (
-					<>
-						<SimulateurWarning simulateur="SASU" />
-						<Simulation explanations={<SalaryExplanation />} />
-					</>
-				)
-			},
-			seoExplanations: (
-				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-					<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
-					<p>
-						Comme pour un salarié classique, le{' '}
-						<strong>dirigeant de sasu</strong> paye des cotisations sociales sur
-						la rémunération qu'il se verse. Les cotisations sont calculées de la
-						même manière que pour le salarié : elles sont décomposées en partie
-						employeur et partie salarié et sont exprimées comme un pourcentage
-						du salaire brut.
-					</p>
-					<p>
-						Le dirigeant assimilé-salarié ne paye pas de{' '}
-						<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie
-						pas de la{' '}
-						<RuleLink dottedName="contrat salarié . réduction générale">
-							réduction générale de cotisations
-						</RuleLink>{' '}
-						ni des dispositifs encadrés par le code du travail comme les{' '}
-						<RuleLink dottedName="contrat salarié . temps de travail . heures supplémentaires">
-							heures supplémentaires
-						</RuleLink>{' '}
-						ou les primes.
-					</p>
-					<p>
-						Il peut en revanche prétendre à la{' '}
-						<RuleLink dottedName="dirigeant . assimilé salarié . réduction ACRE">
-							réduction ACRE
-						</RuleLink>{' '}
-						en debut d'activité, sous certaines conditions.
-					</p>
-					<p>
-						Vous pouvez utiliser notre simulateur pour calculer la{' '}
-						<strong>rémunération nette</strong> à partir d'un montant superbrut
-						alloué à la rémunération du dirigeant. Il vous suffit pour cela
-						saisir le montant total alloué dans la case "total chargé". La
-						simulation peut ensuite être affinée en répondant aux différentes
-						questions.
-					</p>
-				</Trans>
-			),
-			nextSteps: ['is', 'comparaison-statuts'],
-		},
+
 		'artiste-auteur': {
 			icône: '👩‍🎨',
 			tracking: 'artiste-auteur',

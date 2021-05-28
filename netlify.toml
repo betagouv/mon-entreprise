@@ -30,10 +30,16 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
   to=":SITE_FR/simulateurs/salaire-brut-net"
   status = 301
 
-# FR | assimilé-salarié -> dirigeant-sasu
+# FR | assimilé-salarié -> sasu
 [[redirects]]
   from=":SITE_FR/simulateurs/assimil%C3%A9-salari%C3%A9"
-  to=":SITE_FR/simulateurs/dirigeant-sasu"
+  to=":SITE_FR/simulateurs/sasu"
+  status = 301
+
+# FR | dirigeant-sasu -> sasu
+[[redirects]]
+  from=":SITE_FR/simulateurs/dirigeant-sasu"
+  to=":SITE_FR/simulateurs/sasu"
   status = 301
 
 # FR | s%C3%A9curit%C3%A9-sociale/auto-entrepreneur -> simulateurs/auto-entrepreneur
