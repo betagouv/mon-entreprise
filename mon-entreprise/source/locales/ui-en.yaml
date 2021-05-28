@@ -781,13 +781,13 @@ indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
 landing:
-  aboutUs: "<0>Who are we?</0><1>We are a small <2>, autonomous and
-    multidisciplinary<0>team</0></2> within<5>URSSAF</5>. We have at heart to be
-    close to your needs in order to constantly improve this site in accordance
-    with the <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to
-    <2>support entrepreneurs</2> in the development of their business.</2><3>Our
-    objective is to <2>remove all uncertainties regarding the administration</2>
-    so that you can concentrate on what matters: your business.</3>"
+  aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
+    <2>team</2> within the <5>Urssaf</5>. We are committed to being close to
+    your needs in order to constantly improve this site in accordance with the
+    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to <2>assist
+    entrepreneurs</2> in the development of their business.</2><3>Our objective
+    is to <2>remove all administrative uncertainties</2> so that you can focus
+    on what really matters: your business.</3>"
   choice:
     create: <0>Create a company</0><1>Assistance in choosing the status and the
       complete list of creation steps</1>
