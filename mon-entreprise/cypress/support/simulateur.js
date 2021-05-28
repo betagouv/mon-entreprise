@@ -30,7 +30,7 @@ export const runSimulateurTest = (simulateur) => {
 						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})
 				})
-				cy.contains('Cotisations et contributions')
+				cy.contains('Cotisations')
 			})
 		})
 
@@ -54,7 +54,7 @@ export const runSimulateurTest = (simulateur) => {
 
 		it('should allow to navigate to a documentation page', function () {
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.contains('Cotisations et contributions').click()
+			cy.contains('Cotisations').click()
 			cy.location().should((loc) => {
 				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
 			})
