@@ -39,7 +39,6 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
-	const colors = useContext(ThemeColorsContext)
 	return (
 		<div id="targetSelection">
 			{((typeof objectifs[0] === 'string'
@@ -62,15 +61,9 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					</div>
 					<section
 						className="ui__ plain card"
-						style={{
-							marginTop: '.6em',
-							color: colors.textColor,
-							background: `linear-gradient(
-								60deg,
-								${colors.darkColor} 0%,
-								${colors.color} 100%
-								)`,
-						}}
+						css={`
+							margin-top: 0.6rem;
+						`}
 					>
 						<ul className="targets">
 							{' '}

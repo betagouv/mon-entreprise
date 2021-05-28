@@ -49,13 +49,16 @@ const sitePathsFr = {
 	},
 	simulateurs: {
 		index: '/simulateurs',
-		SASU: '/dirigeant-sasu',
-		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
+		'entreprise-individuelle': '/entreprise-individuelle',
+		eirl: '/eirl',
+		sasu: '/sasu',
+		eurl: '/eurl',
+
+		indépendant: '/indépendant',
 		comparaison: '/comparaison-régimes-sociaux',
 		pamc: '/pamc',
 		salarié: '/salaire-brut-net',
-		'entreprise-individuelle': '/entreprise-individuelle',
 		'artiste-auteur': '/artiste-auteur',
 		'profession-libérale': {
 			index: '/profession-liberale',
@@ -113,7 +116,6 @@ const sitePathsEn = {
 	},
 	simulateurs: {
 		index: '/calculators',
-		SASU: '/sasu-chairman',
 		indépendant: '/independant',
 		'entreprise-individuelle': '/sole-proprietorship',
 		'auto-entrepreneur': '/auto-entrepreneur',
