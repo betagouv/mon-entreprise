@@ -7458,6 +7458,10 @@ entreprise . activité . mixte:
 entreprise . activité . mixte . proportions:
   description.en: '[automatic] Share of the various activities in turnover'
   description.fr: Part des différentes activités dans le chiffre d'affaires
+  note.en: '[automatic] It is up to the user to check that the sum of the three
+    percentages is 100%.'
+  note.fr: Il appartient à l'utilisateur de bien vérifier que la somme des trois
+    pourcentages renseignés vaut 100%.
   titre.en: '[automatic] activity proportion'
   titre.fr: proportion activité
 entreprise . activité . service ou vente:
