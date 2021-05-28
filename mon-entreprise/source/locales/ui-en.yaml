@@ -1001,6 +1001,41 @@ pages:
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
   simulateurs:
+    EI:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the auto-entrepreneur income simulator developed by
+          Urssaf, you can estimate your income based on your monthly or annual
+          turnover to better manage your cash flow. Or the other way round: find
+          out how much to charge to achieve a certain income."
+        ogTitle: "Sole proprietorship: quickly calculate your net income from your
+          turnover and vice versa"
+        titre: "Sole proprietorship (EI): income simulator"
+      seo explanation: <0>How to calculate the net income of a sole trader?</0><1>A
+        sole trader must pay social security contributions to the authorities.
+        These contributions are used to finance social security, and open up
+        rights, particularly for retirement and health insurance. They are also
+        used to finance professional training.</1><2><0></0> <2>See the details
+        of the calculation of contributions</2></2><3>Do not forget to deduct
+        all expenses incurred in the course of the business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means that you will not pay tax or contributions on their
+        amount (unless you have opted for the micro-tax option).</3><4>The
+        complete calculation formula is therefore :<1><0>Net income = Turnover -
+        Professional expenses - Social contributions</0></1></4><5>How do you
+        calculate the social security contributions of a sole
+        proprietorship?</5><6>The manager of a sole proprietorship pays social
+        security contributions, proportional to the company's <2></2>. Their
+        amount varies according to the type of activity (liberal profession,
+        craftsman, shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
+        etc.). To find out the amount, you can use this simulator, and refine
+        the</6><7> As a company's result is only known at the end of the
+        accounting year, the manager pays provisional contributions which will
+        then be adjusted once the real income has been declared, the following
+        year.</7>
+      shortname: Sole proprietorship
+      title: Income simulator for sole proprietorship (EI)
     accueil:
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
