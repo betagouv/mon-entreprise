@@ -979,6 +979,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       maladie . taux progressif . assiette: 40% * plafond sécurité sociale temps plein 
       assiette des cotisations: assiette forfaitaire
       CSG et CRDS . assiette: assiette forfaitaire 
+      dirigeant . indépendant . cotisations facultatives: non
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
 

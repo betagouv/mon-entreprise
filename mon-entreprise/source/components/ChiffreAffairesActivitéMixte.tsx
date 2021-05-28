@@ -36,6 +36,7 @@ export default function ChiffreAffairesActivitéMixte({
 			)
 		)
 	}, [dispatch])
+
 	return (
 		<>
 			<SimulationGoal
@@ -50,6 +51,7 @@ export default function ChiffreAffairesActivitéMixte({
 					<ul>
 						{Object.values(proportions).map((chiffreAffaires) => (
 							<SimulationGoal
+								alwaysShow
 								key={chiffreAffaires}
 								onUpdateSituation={adjustProportions}
 								dottedName={chiffreAffaires}
