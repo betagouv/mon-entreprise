@@ -60,6 +60,7 @@ Ressources utiles: Ressources utiles
 Retour: Retour
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
+Revenus étranger: Revenus étranger
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 S'inscrire: S'inscrire
 Salaire: Salaire
@@ -82,29 +83,25 @@ Votre forme juridique: Votre forme juridique
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
 aide-déclaration-indépendant:
   banner: Découvrez notre outil d'<1>aide à la déclaration des revenus</1>
-  description: >-
-    <0>Cet outil est une aide à la déclaration de revenus à destination des
-    travailleurs indépendants. Il vous permet de connaître le montant des
-    charges sociales déductibles à partir de votre résultat net
-    fiscal.</0><1>Vous restez entièrement responsable d'éventuelles omissions ou
-    inexactitudes dans votre déclarations.</1><2><0><0>Cet outil vous concerne
-    si vous êtes dans tous les cas suivants :</0><1><0>vous cotisez au régime
-    général des travailleurs indépendants</0><1>votre entreprise est au régime
-    réel d'imposition et en comptabilité d'engagement</1></1><2>Il ne vous
-    concerne pas si vous êtes dans un des cas suivants :</2><3><0>vous exercez
-    une activité libérale relevant d’un régime de retraite des professions
-    libérales</0><1>vous êtes gérants de société relevant de l’impôt sur les
-    sociétés</1><2>vous avez opté pour le régime micro-fiscal</2><3>votre
-    entreprise est domiciliée dans les DOM</3></3></0></2>{!situation['dirigeant
-    . rémunération . totale'] && (
-    					<PreviousSimulationBanner />
-    				)}<4>Quel est votre résultat fiscal en 2020 ?<1></1><2>Charges sociales et exonérations fiscales non incluses <2></2></2></4><5>Le résultat fiscal correspond aux produits moins les charges. Il peut être positif (bénéfice) ou négatif (déficit).</5>
+  description: <0><0>Cet outil est une aide à la déclaration de revenus à
+    destination des <2>travailleurs indépendants</2>. Il vous permet de
+    connaître le montant des charges sociales déductibles pour le calcul de
+    l'impôt.</0><1>Vous restez entièrement responsable d'éventuelles omissions
+    ou inexactitudes dans votre déclaration.</1></0><1><0>Cet outil vous
+    concerne si vous êtes dans le cas suivant :</0><1><0>vous cotisez au régime
+    général des travailleurs indépendants</0></1><2>Il ne vous concerne pas si
+    vous êtes dans un des cas suivants :</2><3><0>vous exercez une activité
+    libérale relevant d’un régime de retraite des professions libérales en
+    comptabilité d'engagement</0><1>votre entreprise est domiciliée dans les
+    DOM</1></3></1><2>Imposition</2><3>Ces quelques questions permettent de
+    déterminer le type de déclaration à remplir, ainsi que les modalités de
+    calcul des cotisations sociales.</3>
   entreprise:
     description: "<0>Facultatif : </0>Vous pouvez renseigner votre entreprise pour
       pré-remplir le formulaire"
     titre: <0>Entreprise et activité</0>
   results:
-    title: Montants à reporter dans votre déclaration de revenus
+    title: Vos déclarations fiscales
 après:
   ape:
     description: Le code APE correspond au <1>secteur d'activité</1> de votre
