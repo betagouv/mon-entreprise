@@ -610,6 +610,38 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
     1er janvier 2020.
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
+? aide déclaration revenu indépendant 2020 . nature de l'activité . libérale . recettes
+: description.en: >
+    [automatic] These are all operations in which intellectual activity plays an
+    essential role.
+
+    an essential role. 
+
+
+    Examples**: consulting, coaching, translation, development,
+
+    training, teaching, sports
+
+
+    The income from this turnover is taxable under the BNC regime (non-commercial profits)
+  description.fr: >
+    Ce sont toutes les opérations dont l'activité intellectuelle tient
+
+    un rôle essentiel. 
+
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+
+    formation, enseignement, sportif
+
+
+    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
+  question.en: '[automatic] What are the revenues from the liberal activity?'
+  question.fr: Quelles sont les recettes issues de l’activité libérale ?
+  résumé.en: '[automatic] Revenue excluding tax'
+  résumé.fr: Recettes hors taxe
+  titre.en: '[automatic] Income from liberal activity (BNC)'
+  titre.fr: Recette de l'activité libérale (BNC)
 aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
   titre.en: '[automatic] social security ceiling 2020'
   titre.fr: plafond sécurité sociale 2020
@@ -7608,8 +7640,8 @@ entreprise . chiffre d'affaires . service BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  question.en: '[automatic] What is the turnover from commercial or artisanal services?'
-  question.fr: Quel est le chiffre d'affaires issus de prestations de service
+  question.en: '[automatic] What is the turnover from commercial or craft services?'
+  question.fr: Quel est le chiffre d'affaires issu de prestations de service
     commerciales ou artisanales ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
@@ -7641,7 +7673,7 @@ entreprise . chiffre d'affaires . service BNC:
 
     Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
   question.en: '[automatic] What is the turnover from liberal services?'
-  question.fr: Quel est le chiffre d'affaires issus de prestations de service libérale ?
+  question.fr: Quel est le chiffre d'affaires issu de prestations de service libérale ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Other services and liberal activities (BNC)'
@@ -7768,9 +7800,10 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
 
     Ces revenus sont imposables dans la catégorie des BIC
-  question.en: '[automatic] What is the turnover from the sale of goods, food or
-    accommodation?'
-  question.fr: Quel est le chiffre d'affaires issus de la vente de bien,
+  question.en:
+    '[automatic] What is the turnover from the sale of goods, catering
+    or accommodation?'
+  question.fr: Quel est le chiffre d'affaires issu de la vente de biens,
     restauration ou hébergement ?
   résumé.en: '[automatic] Turnover excluding tax'
   résumé.fr: Chiffre d'affaires hors taxe
@@ -7931,8 +7964,8 @@ entreprise . exonérée de TVA:
   titre.fr: exonérée de TVA
 entreprise . imposition:
   description.en: >
-    [automatic] Indicate if the taxation system of the income related to the
-    self-employed activity is :
+    [automatic] Indicate whether the taxation system of the income related to
+    the self-employed activity is :
 
     - Income tax: the company's profits are taxed directly to the self-employed person, at the progressive income tax rate.
 
@@ -7941,7 +7974,7 @@ entreprise . imposition:
     Indiquez si le régime d’imposition des revenus liés à l’activité
     indépendante relèvent :
 
-    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleurs indépendant, au barème progressif de l’impôt sur le revenu.
+    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleur indépendant, au barème progressif de l’impôt sur le revenu.
 
     - de l’impôt sur les sociétés : les bénéfices de l’entreprise sont imposés au nom de la société, au taux de l’impôt sur les sociétés.
   question.en: '[automatic] How is the company taxed?'
