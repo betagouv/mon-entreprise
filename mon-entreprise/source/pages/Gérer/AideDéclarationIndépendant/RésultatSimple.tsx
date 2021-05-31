@@ -65,7 +65,14 @@ export default function ResultatsSimples() {
 							>
 								<h3>
 									{r.title}
-									<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées = non">
+									<Condition
+										expression={{
+											'toutes ces conditions': [
+												'aide déclaration revenu indépendant 2020 . cotisations payées = non',
+												'entreprise . imposition . IR . micro-fiscal = non',
+											],
+										}}
+									>
 										<small>{r.rawNode.résumé}</small>
 									</Condition>
 								</h3>
