@@ -51,6 +51,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées:
     une de ces conditions: 
       - comptabilité . trésorerie
       - entreprise . imposition . IS
+  non applicable si: résultat simple
   valeur: oui
 
 aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociale:
@@ -82,7 +83,6 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     3. Selectionnez "demander une attestation"
     3. Puis, "attestation CSG/CRDS"
     4. Reportez dans ce champs le total de la colonne "Montant déductible CSG" (dernière ligne)
-
 
 aide déclaration revenu indépendant 2020 . cotisations payées . CSG non déductible:
   question: Quel est le montant total de CSG non déductible payé cette année ?
@@ -116,6 +116,35 @@ aide déclaration revenu indépendant 2020 . cotisations payées . cotisations o
     somme: 
       - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
       - dirigeant . indépendant . cotisations et contributions . formation professionnelle
+
+aide déclaration revenu indépendant 2020 . cotisations payées version simple: 
+  applicable si: 
+    toutes ces conditions: 
+      - une de ces conditions: 
+        - comptabilité . trésorerie
+        - entreprise . imposition . IS
+      - résultat simple  
+  valeur: oui
+  remplace:
+    - règle: résultat simple . cotisations obligatoires
+      par: cotisations payées version simple . cotisations sociales
+    - règle: résultat simple . total charges sociales déductible
+      par: 
+        somme: 
+          - cotisations payées version simple . cotisations sociales
+          - cotisations payées version simple . CSG déductible et CFP
+
+
+aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP:
+  question: Quel est le montant total de CSG déductible et CFP payées cette année ?
+  unité: €/an
+  description: |
+    Indiquez le montant de la part de CSG déductible et de CFP que vous avez payé en 2020 (peu importe l’année à laquelle ces contributions se rapportent).
+aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales:
+  question: Quel est le montant de vos cotisations sociales payées cette année ?
+  unité: €/an
+  description: |
+    Indiquez le montant des cotisations sociales aux régimes obligatoires (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez payées en 2020 (peu importe l’année à laquelle ces cotisations se rapportent).
 
 
 aide déclaration revenu indépendant 2020 . régime d'imposition: oui
@@ -253,27 +282,6 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
 
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
-
-
-aide déclaration revenu indépendant 2020 . nature de l'activité . libérale . recettes:
-  remplace: entreprise . chiffre d'affaires . service BNC
-  titre: Recette de l'activité libérale (BNC)
-  résumé: Recettes hors taxe
-  question: Quelles sont les recettes issues de l’activité libérale ?
-  arrondi: oui
-  unité: €/an
-  plancher: 0€/an
-  description: |
-    Ce sont toutes les opérations dont l'activité intellectuelle tient
-    un rôle essentiel. 
-
-    **Exemples** : conseil, accompagnement, traduction, développement,
-    formation, enseignement, sportif
-
-    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  références:
-    liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
-
 
 aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale:
   formule: nature de l'activité = 'commerciale'
@@ -870,6 +878,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . cotisations obli
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
     - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
+    - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
   unité: €/an
   somme: 
     - dirigeant . indépendant . cotisations et contributions . cotisations

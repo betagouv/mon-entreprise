@@ -139,8 +139,8 @@ entreprise . chiffre d'affaires . service BIC:
 
 entreprise . chiffre d'affaires . service BNC:
   titre: Autres prestations de service et activités libérales (BNC)
-  résumé: Chiffre d'affaires hors taxe
-  question: Quel est le chiffre d'affaires issu de prestations de service libérale ?
+  résumé: Recettes hors taxes
+  question: Quelles sont les recettes issues de l’activité libérale ?
   arrondi: oui
   plancher: 0€/an
   description: |

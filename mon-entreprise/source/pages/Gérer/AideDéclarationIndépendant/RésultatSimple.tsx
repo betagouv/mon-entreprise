@@ -68,7 +68,7 @@ export default function ResultatsSimples() {
 									<Condition
 										expression={{
 											'toutes ces conditions': [
-												'aide déclaration revenu indépendant 2020 . cotisations payées = non',
+												'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non',
 												'entreprise . imposition . IR . micro-fiscal = non',
 											],
 										}}
@@ -100,7 +100,7 @@ export default function ResultatsSimples() {
 				<Condition
 					expression={{
 						'toutes ces conditions': [
-							'aide déclaration revenu indépendant 2020 . cotisations payées = non',
+							'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non',
 							'entreprise . imposition . IR . micro-fiscal = non',
 						],
 					}}

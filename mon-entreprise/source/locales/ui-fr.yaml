@@ -85,17 +85,17 @@ aide-déclaration-indépendant:
   banner: Découvrez notre outil d'<1>aide à la déclaration des revenus</1>
   description: <0><0>Cet outil est une aide à la déclaration de revenus à
     destination des <2>travailleurs indépendants</2>. Il vous permet de
-    connaître le montant des charges sociales déductibles pour le calcul de
-    l'impôt.</0><1>Vous restez entièrement responsable d'éventuelles omissions
-    ou inexactitudes dans votre déclaration.</1></0><1><0>Cet outil vous
-    concerne si vous êtes dans le cas suivant :</0><1><0>vous cotisez au régime
-    général des travailleurs indépendants</0></1><2>Il ne vous concerne pas si
-    vous êtes dans un des cas suivants :</2><3><0>vous exercez une activité
-    libérale relevant d’un régime de retraite des professions libérales en
-    comptabilité d'engagement</0><1>votre entreprise est domiciliée dans les
-    DOM</1></3></1><2>Imposition</2><3>Ces quelques questions permettent de
-    déterminer le type de déclaration à remplir, ainsi que les modalités de
-    calcul des cotisations sociales.</3>
+    connaître le montant des charges sociales déductibles.</0><1>Vous restez
+    entièrement responsable d'éventuelles omissions ou inexactitudes dans votre
+    déclaration.</1></0><1><0>Cet outil vous concerne si vous êtes dans le cas
+    suivant :</0><1><0>vous cotisez au régime général des travailleurs
+    indépendants</0></1><2>Il ne vous concerne pas si vous êtes dans un des cas
+    suivants :</2><3><0>vous exercez une activité libérale relevant d’un régime
+    de retraite des professions libérales en comptabilité
+    d'engagement</0><1>votre entreprise est domiciliée dans les
+    DOM</1></3></1><2></2><3>Imposition</3><4>Ces quelques questions permettent
+    de déterminer le type de déclaration à remplir, ainsi que les modalités de
+    calcul des cotisations sociales.</4>
   entreprise:
     description: "<0>Facultatif : </0>Vous pouvez renseigner votre entreprise pour
       pré-remplir le formulaire"
