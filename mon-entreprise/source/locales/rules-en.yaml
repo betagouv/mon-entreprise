@@ -235,6 +235,36 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     payées pendant l'exercice ?
   titre.en: '[automatic] total social charges'
   titre.fr: total charges sociale
+aide déclaration revenu indépendant 2020 . cotisations payées version simple:
+  titre.en: '[automatic] dues paid simple version'
+  titre.fr: cotisations payées version simple
+? aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP
+: description.en: >
+    [automatic] Enter the amount of the deductible CSG and PSC you paid in 2020
+    (regardless of the year to which these contributions relate).
+  description.fr: >
+    Indiquez le montant de la part de CSG déductible et de CFP que vous avez
+    payé en 2020 (peu importe l’année à laquelle ces contributions se
+    rapportent).
+  question.en: '[automatic] What is the total amount of deductible CSG and CFP
+    paid this year?'
+  question.fr: Quel est le montant total de CSG déductible et CFP payées cette année ?
+  titre.en: '[automatic] Deductible CSG and PSC'
+  titre.fr: CSG déductible et CFP
+? aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales
+: description.en: >
+    [automatic] Indicate the amount of social contributions to the compulsory
+    schemes (sickness-maternity, old age, disability-death, family) that you
+    paid in 2020 (regardless of the year to which these contributions relate).
+  description.fr: >
+    Indiquez le montant des cotisations sociales aux régimes obligatoires
+    (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez
+    payées en 2020 (peu importe l’année à laquelle ces cotisations se
+    rapportent).
+  question.en: '[automatic] How much social security contribution did you pay this year?'
+  question.fr: Quel est le montant de vos cotisations sociales payées cette année ?
+  titre.en: '[automatic] social contributions'
+  titre.fr: cotisations sociales
 aide déclaration revenu indépendant 2020 . formulaire 2033:
   résumé.en: '[automatic] Tax package for the simplified actual system'
   résumé.fr: Liasse fiscale du régime réel simplifié
@@ -610,38 +640,6 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
     1er janvier 2020.
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
-? aide déclaration revenu indépendant 2020 . nature de l'activité . libérale . recettes
-: description.en: >
-    [automatic] These are all operations in which intellectual activity plays an
-    essential role.
-
-    an essential role. 
-
-
-    Examples**: consulting, coaching, translation, development,
-
-    training, teaching, sports
-
-
-    The income from this turnover is taxable under the BNC regime (non-commercial profits)
-  description.fr: >
-    Ce sont toutes les opérations dont l'activité intellectuelle tient
-
-    un rôle essentiel. 
-
-
-    **Exemples** : conseil, accompagnement, traduction, développement,
-
-    formation, enseignement, sportif
-
-
-    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  question.en: '[automatic] What are the revenues from the liberal activity?'
-  question.fr: Quelles sont les recettes issues de l’activité libérale ?
-  résumé.en: '[automatic] Revenue excluding tax'
-  résumé.fr: Recettes hors taxe
-  titre.en: '[automatic] Income from liberal activity (BNC)'
-  titre.fr: Recette de l'activité libérale (BNC)
 aide déclaration revenu indépendant 2020 . plafond sécurité sociale 2020:
   titre.en: '[automatic] social security ceiling 2020'
   titre.fr: plafond sécurité sociale 2020
@@ -1241,6 +1239,8 @@ aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale
     - normal actual regime:** item A5 of form 2053-SD
 
     - controlled declaration:** item BT of form 2035-A-SD
+
+    - micro fiscal regime:** no professional tax return to be filed
   description.fr: >
     À reporter dans :
 
@@ -1251,6 +1251,8 @@ aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
 
     - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
+
+    - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
   résumé.en: '[automatic] [C]'
   résumé.fr: '[C]'
   titre.en: '[automatic] Deductible mandatory social security contributions'
@@ -7672,10 +7674,10 @@ entreprise . chiffre d'affaires . service BNC:
 
 
     Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  question.en: '[automatic] What is the turnover from liberal services?'
-  question.fr: Quel est le chiffre d'affaires issu de prestations de service libérale ?
-  résumé.en: '[automatic] Turnover excluding tax'
-  résumé.fr: Chiffre d'affaires hors taxe
+  question.en: '[automatic] What are the revenues from the liberal activity?'
+  question.fr: Quelles sont les recettes issues de l’activité libérale ?
+  résumé.en: '[automatic] Revenue excluding taxes'
+  résumé.fr: Recettes hors taxes
   titre.en: '[automatic] Other services and liberal activities (BNC)'
   titre.fr: Autres prestations de service et activités libérales (BNC)
 entreprise . chiffre d'affaires . seuil micro dépassé:

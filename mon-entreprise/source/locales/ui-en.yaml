@@ -198,17 +198,17 @@ aide: aid or subsidy
 aide-déclaration-indépendant:
   banner: Find out more about our tax<1>return</1>tool
   description: <0><0>This tool is an aid for the declaration of income for
-    <2>self-employed workers</2>. It allows you to find out the amount of social
-    security contributions that are deductible for tax purposes.</0><1>You
-    remain entirely responsible for any omissions or inaccuracies in your
-    declaration.</1></0><1><0>This tool concerns you if you are in the following
-    situation:</0><1><0>you contribute to the general scheme for self-employed
-    workers</0></1><2>It does not concern you if you are in one of the following
-    cases:</2><3><0>you carry out a liberal activity covered by a pension scheme
-    for the liberal professions in accrual accounting</0><1>your company is
-    domiciled in the DOM</1></3></1><2>Taxation</2><3>These few questions help
-    determine the type of declaration to be completed, as well as the methods of
-    calculating social security contributions.</3>
+    <2>self-employed workers</2>. It allows you to know the amount of deductible
+    social charges.</0><1>You remain entirely responsible for any omissions or
+    inaccuracies in your declaration.</1></0><1><0>This tool concerns you if you
+    are in the following situation:</0><1><0>you contribute to the general
+    scheme for self-employed workers</0></1><2>It does not concern you if you
+    are in one of the following cases:</2><3><0>you carry out a liberal activity
+    covered by a pension scheme for the liberal professions in accrual
+    accounting</0><1>your company is domiciled in the
+    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions help determine
+    the type of declaration to be completed, as well as the methods of
+    calculating social security contributions.</4>
   entreprise:
     description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
