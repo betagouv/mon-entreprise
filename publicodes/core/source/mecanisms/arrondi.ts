@@ -2,7 +2,9 @@ import { EvaluationFunction, simplifyNodeUnit } from '..'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
-import { ASTNode } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
+import { serializeUnit } from '../units'
+import { evaluationError } from '../error'
 
 export type ArrondiNode = {
 	explanation: {
@@ -24,6 +26,19 @@ const evaluate: EvaluationFunction<'arrondi'> = function (node) {
 	let arrondi = node.explanation.arrondi
 	if (nodeValue !== false) {
 		arrondi = this.evaluate(arrondi)
+
+		if (
+			typeof (arrondi as EvaluatedNode).nodeValue === 'number' &&
+			!serializeUnit((arrondi as EvaluatedNode).unit)?.match(/décimales?/)
+		) {
+			evaluationError(
+				this.options.logger,
+				this.cache._meta.evaluationRuleStack[0],
+				`L'unité ${serializeUnit(
+					(arrondi as EvaluatedNode).unit
+				)} de l'arrondi est inconnu. Vous devez utiliser l'unité “décimales”`
+			)
+		}
 	}
 
 	return {
