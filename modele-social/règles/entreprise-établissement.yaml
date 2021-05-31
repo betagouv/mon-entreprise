@@ -326,9 +326,13 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
     Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
     autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
   unité: €/an
+  # TODO: les seuils micro sont dupliqués à plusieurs endroits (artiste-auteur .
+  # revenus . BNC . contrôle micro-bnc, tableau de la comparaison de régime,
+  # économie collaborative). Il faudrait référencer la même valeur partout où
+  # elle est utilisée.
   une de ces conditions:
     - entreprise . chiffre d'affaires > 176200 €/an
-    - entreprise . chiffre d'affaires . service > 72500 €/an
+    - entreprise . chiffre d'affaires . service > 72600 €/an
 
 
 entreprise . imposition . IR . information sur le report de déficit:

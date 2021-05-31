@@ -203,7 +203,7 @@ comparaisonRégimes:
     tagline: La protection sociale à la carte
   mutuelle: <0>Mutuelle santé<1></1></0><1>Obligatoire</1><2>Fortement conseillée</2>
   plafondCA: <0>Plafond de chiffre
-    d'affaires</0><1><0>Non</0></1><2><0>Oui</0><1>(72 500 € en services / 176
+    d'affaires</0><1><0>Non</0></1><2><0>Oui</0><1>(72 600 € en services / 176
     200 € en vente de biens, restauration ou hébergement)</1></2>
   retraite: <0>Retraite</0>
   retraiteEstimation:

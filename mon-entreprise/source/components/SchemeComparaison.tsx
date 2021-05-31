@@ -267,7 +267,7 @@ export default function SchemeComparaison({
 								<div className="auto">
 									<Trans>Oui</Trans>
 									<small>
-										(72 500 € en services / 176 200 € en vente de biens,
+										(72 600 € en services / 176 200 € en vente de biens,
 										restauration ou hébergement)
 									</small>
 								</div>
