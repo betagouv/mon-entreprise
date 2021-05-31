@@ -1016,7 +1016,7 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     tranches:
       - taux: 
           valeur: taux progressif
-          arrondi: 2 unités
+          arrondi: 2 décimales
         plafond: 110%
       - taux: 6.35%
         plafond: 5

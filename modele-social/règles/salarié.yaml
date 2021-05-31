@@ -647,7 +647,7 @@ contrat salarié . CDD . congés dus sur la durée du contrat:
   produit:
     assiette: 25 jours ouvrés/an
     facteur: durée contrat
-  arrondi: 2 unités
+  arrondi: 2 décimales
 
 contrat salarié . CDD . contrôle congés non pris max:
   type: notification
