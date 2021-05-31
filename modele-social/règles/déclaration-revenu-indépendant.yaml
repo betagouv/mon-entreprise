@@ -6,8 +6,12 @@ aide déclaration revenu indépendant 2020:
     indépendants de 2021 sur les revenus 2020.
   formule: non
   remplace:
-    règle: entreprise . ACRE
-    par: ACRE
+    - règle: entreprise . ACRE
+      par: ACRE
+      
+    - # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
+      règle: entreprise . activité . mixte
+      par: oui 
 
 aide déclaration revenu indépendant 2020 . comptabilité:
   titre: régime de la déclaration contrôlée
@@ -181,10 +185,10 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
       par: libérale
     - règle: entreprise . activité . artisanale 
       par: artisanale
-    - règle: entreprise . activité . commerciale ou industrielle 
-      par: commerciale ou industrielle
+    - règle: entreprise . activité . commerciale 
+      par: commerciale
   question: Quelle est la nature de votre activité ?
-  par défaut: "'commerciale ou industrielle'"
+  par défaut: "'commerciale'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -195,6 +199,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+
 
 
 
@@ -249,8 +254,28 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
 
+
+aide déclaration revenu indépendant 2020 . nature de l'activité . libérale . recettes:
+  remplace: entreprise . chiffre d'affaires . service BNC
+  titre: Recette de l'activité libérale (BNC)
+  résumé: Recettes hors taxe
+  question: Quelles sont les recettes issues de l’activité libérale ?
+  arrondi: oui
+  unité: €/an
+  plancher: 0€/an
+  description: |
+    Ce sont toutes les opérations dont l'activité intellectuelle tient
+    un rôle essentiel. 
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+
+    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
+  références:
+    liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+
 aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale:
-  remplace: entreprise . activité . commerciale
   formule: nature de l'activité = 'commerciale'
   description: |
     ### Activité commerciale

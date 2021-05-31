@@ -25,7 +25,7 @@ import illustration from './undraw_fill_in_mie5.svg'
 
 /**
  * Nous avons proposé une nouvelle vision des résultat plus complète, avec une proposition d'aide pour
- * l'ensemble des cases liées aux cotisations sociale.
+ * l'ensemble des cases liées aux cotisations sociales.
  *
  * Hors de propos pour 2021, étant donné que cela prendrait beaucoup de temps à valider par la DGFiP
  * En attendant, on propose la version "simple" (mais moins utile).
@@ -89,7 +89,7 @@ export default function AideDéclarationIndépendant() {
 				<h2>Imposition</h2>
 				<p className="ui__ notice">
 					Ces quelques questions permettent de déterminer le type de déclaration
-					à remplir, ainsi que les modalités de calcul des cotisations sociale.
+					à remplir, ainsi que les modalités de calcul des cotisations sociales.
 				</p>
 			</Trans>
 			<ImpositionSection />
@@ -126,8 +126,9 @@ export default function AideDéclarationIndépendant() {
 										entreprises déjà en activité en 2020
 									</small>
 								</Condition>
-								<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-								<SubSection dottedName="entreprise . activité . service ou vente" />
+								<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+									<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+								</Condition>
 								{/* PLNR */}
 								<SimpleField dottedName="entreprise . activité . débit de tabac" />
 								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
@@ -248,24 +249,22 @@ function ImpositionSection() {
 							<Condition expression="entreprise . imposition . IR">
 								<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
 								<Condition expression="entreprise . imposition . IR . micro-fiscal">
-									<SimpleField dottedName="entreprise . activité . mixte" />
+									<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
 									<h2>
-										Quel est votre chiffre d'affaires hors taxes en 2020 ?<br />
+										Quel est votre chiffre d'affaires hors taxes en 2020 ?
 									</h2>
-									<Condition expression="entreprise . activité . mixte = oui">
-										<SimpleField dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
-										<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
+									<p className="ui__ notice">
+										Indiquez le montant hors taxes de votre chiffre d’affaires
+										ou de vos recettes bruts (avant déduction de l’abattement
+										forfaitaire pour frais et charges) et avant déduction des
+										exonérations fiscales dont vous avez bénéficié
+									</p>
+									<SimpleField dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
+									<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
+									<Condition expression="aide déclaration revenu indépendant 2020 . nature de l'activité . libérale = non">
 										<SimpleField dottedName="entreprise . chiffre d'affaires . service BNC" />
 									</Condition>
-									<Condition expression="entreprise . activité . mixte = non">
-										<BigInput>
-											<RuleInput
-												dottedName="entreprise . chiffre d'affaires"
-												onChange={setSituation}
-												autoFocus
-											/>
-										</BigInput>
-									</Condition>
+									<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité . libérale . recettes" />
 								</Condition>
 								<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 									<h2>
