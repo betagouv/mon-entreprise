@@ -34,10 +34,10 @@ activités:
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . activité: "'artisanale'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'commerciale ou industrielle'"
+    entreprise . activité: "'commerciale'"
     entreprise . activité . service ou vente: "'vente'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'commerciale ou industrielle'"
+    entreprise . activité: "'commerciale'"
     entreprise . activité . service ou vente: "'service'"
 
 Contrats Madelin:

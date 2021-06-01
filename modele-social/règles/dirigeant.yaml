@@ -192,7 +192,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
   unité: €/mois
-  applicable si: entreprise . activité = 'commerciale ou industrielle'
+  applicable si: entreprise . activité = 'commerciale'
   produit:
     composantes:
       - assiette: entreprise . chiffre d'affaires . service BNC

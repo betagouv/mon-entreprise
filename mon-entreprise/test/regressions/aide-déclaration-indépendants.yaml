@@ -13,9 +13,9 @@ nature de l'activité:
     dirigeant . rémunération . totale: 50000 €/an
   - aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
     dirigeant . rémunération . totale: 5000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale ou industrielle'"
+  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 50000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale ou industrielle'"
+  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 5000 €/an
   - aide déclaration revenu indépendant 2020 . nature de l'activité: "'libérale'"
     dirigeant . rémunération . totale: 50000 €/an
@@ -27,7 +27,7 @@ nature de l'activité:
     dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire: oui
 
 débit de tabac:
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale ou industrielle'"
+  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 50000 €/an
     entreprise . activité . débit de tabac: oui
     dirigeant . indépendant . cotisations et contributions . déduction tabac: 30000 €/an
