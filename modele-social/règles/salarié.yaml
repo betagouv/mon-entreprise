@@ -416,7 +416,12 @@ contrat salarié . activité partielle . indemnités . base:
   formule:
     multiplication:
       assiette: retrait absence
-      taux: 70%
+      # Historique:
+      # - avant le 01/07/2021: 70%
+      # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
+      taux:
+        valeur: 70%
+        nom: taux
 
 contrat salarié . activité partielle . indemnités . complémentaire:
   titre: indemnité complémentaire
@@ -444,11 +449,11 @@ contrat salarié . activité partielle . indemnités . conventionnelle:
         grille:
           assiette: rémunération . assiette congés payés
           tranches:
-            - montant: 95% - 70%
+            - montant: 95% - indemnités . base . taux
               plafond: 2000 €/mois
-            - montant: 80% - 70%
+            - montant: 80% - indemnités . base . taux
               plafond: plafond sécurité sociale temps plein
-            - montant: 75% - 70%
+            - montant: 75% - indemnités . base . taux
   références:
     Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
     Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
@@ -505,8 +510,17 @@ contrat salarié . activité partielle . indemnisation entreprise . taux d'indem
   formule:
     variations:
       - si: secteur d'activité restreint
+      # Historique: 
+      # - avant le 01/07/2021: 70%
+      # - avant le 01/08/2021: 60%
+      # - avant le 01/09/2021: 52%
+      # - à partir du 01/09/2021: 36%
         alors: 70%
-      - sinon: 60%
+      # Historique: 
+      # - avant le 01/06/2021: 60%
+      # - avant le 01/07/2021: 52%
+      # - à partir du 01/07/2021: 36%
+      - sinon: 52% 
 
 contrat salarié . activité partielle . secteur d'activité restreint:
   question: >-
