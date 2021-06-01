@@ -114,7 +114,7 @@ Notifications affichées : dirigeant . auto-entrepreneur . notification calcul A
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
-"[33228,269,30000,0,30000]
+"[34449,371,30000,0,30000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
@@ -435,7 +435,7 @@ Notifications affichées : dirigeant . auto-entrepreneur . notification calcul A
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 3`] = `
-"[0,28046,28046,4350,4,12]
+"[0,26126,26126,4350,4,12]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
