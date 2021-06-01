@@ -202,7 +202,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
 ? aide déclaration revenu indépendant 2020 . cotisations payées . cotisations obligatoires déductibles
 : titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
-? aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociale
+? aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociales
 : description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow: 
@@ -234,7 +234,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     Quel est le montant total des cotisations et contributions sociales
     payées pendant l'exercice ?
   titre.en: '[automatic] total social charges'
-  titre.fr: total charges sociale
+  titre.fr: total charges sociales
 aide déclaration revenu indépendant 2020 . cotisations payées version simple:
   titre.en: '[automatic] dues paid simple version'
   titre.fr: cotisations payées version simple
@@ -1272,11 +1272,17 @@ aide déclaration revenu indépendant 2020 . résultat simple . revenu net fisca
     - simplified actual system:** item 252 of form 2033-B-SD 
     - normal real system:** item FZ of form 2052-SD
     - controlled declaration:** item BK of form 2035-A-SD
-  description.fr: |
+    - micro fiscal regime:** no professional tax return to be filed
+  description.fr: >
     À reporter dans :
+
     - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
+
     - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
+
+    - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
   résumé.en: '[automatic] [B + C + D]'
   résumé.fr: '[B + C + D]'
   titre.en: '[automatic] tax-deductible mandatory social security charges'
