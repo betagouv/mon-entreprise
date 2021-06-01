@@ -18,7 +18,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
       choix obligatoire: oui
       possibilités:
         - artisanale
-        - commerciale ou industrielle
+        - commerciale
         - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
@@ -78,9 +78,9 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
 
-aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle:
-  remplace: entreprise . activité . commerciale ou industrielle
-  formule: nature de l'activité = 'commerciale ou industrielle'
+aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale:
+  remplace: entreprise . activité . commerciale
+  formule: nature de l'activité = 'commerciale'
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)

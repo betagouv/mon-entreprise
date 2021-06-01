@@ -717,13 +717,13 @@ entreprise . activité:
   titre: nature de l'activité
   question: Quelle est la nature de votre activité principale ?
   description: Votre type d'activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
-  par défaut: "'commerciale ou industrielle'"
+  par défaut: "'commerciale'"
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
         - artisanale
-        - commerciale ou industrielle
+        - commerciale
         - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
@@ -741,7 +741,7 @@ entreprise . activité . libérale:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . activité . commerciale ou industrielle:
+entreprise . activité . commerciale:
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
@@ -767,7 +767,7 @@ entreprise . activité . service ou vente:
   applicable si:
     une de ces conditions:
       - activité = 'artisanale'
-      - activité = 'commerciale ou industrielle'
+      - activité = 'commerciale'
   question: Quelle est le type d'activité de l'entreprise ?
   formule:
     une possibilité:
@@ -857,7 +857,7 @@ entreprise . activité . libérale réglementée:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . activité . débit de tabac:
-  applicable si: activité = 'commerciale ou industrielle'
+  applicable si: activité = 'commerciale'
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 

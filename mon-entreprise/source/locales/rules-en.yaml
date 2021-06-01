@@ -157,8 +157,8 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
     - Les activités artisanales sont répertoriées par un décret
   titre.en: '[automatic] artisanal'
   titre.fr: artisanale
-? aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale ou industrielle
-: description.en: >
+aide déclaration revenu indépendant 2020 . nature de l'activité . commerciale:
+  description.en: >
     [automatic] ### Commercial activity
 
     - Purchases of goods for resale in the same condition (wholesale or retail)
@@ -183,7 +183,7 @@ aide déclaration revenu indépendant 2020 . nature de l'activité . artisanale:
 
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: '[automatic] commercial or industrial'
-  titre.fr: commerciale ou industrielle
+  titre.fr: commerciale
 aide déclaration revenu indépendant 2020 . nature de l'activité . libérale:
   description.en: >
     [automatic] These are the "intellectual" professions, which are not attached
@@ -6675,7 +6675,7 @@ entreprise . activité . artisanale:
     - Les activités artisanales sont répertoriées par un décret
   titre.en: Craft
   titre.fr: artisanale
-entreprise . activité . commerciale ou industrielle:
+entreprise . activité . commerciale:
   description.en: >
     [automatic] ### Commercial activity
 
@@ -6701,7 +6701,7 @@ entreprise . activité . commerciale ou industrielle:
 
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: commercial or industrial
-  titre.fr: commerciale ou industrielle
+  titre.fr: commerciale
 entreprise . activité . débit de tabac:
   question.en: '[automatic] Do you engage in tobacco sales?'
   question.fr: Exercez-vous une activité de vente de tabac ?

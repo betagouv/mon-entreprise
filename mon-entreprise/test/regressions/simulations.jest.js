@@ -141,7 +141,7 @@ it('calculate aide-déclaration-indépendant', () => {
 		aideDéclarationConfig.objectifs,
 		{
 			"aide déclaration revenu indépendant 2020 . nature de l'activité":
-				"'commerciale ou industrielle'",
+				"'commerciale'",
 			...aideDéclarationConfig.situation,
 		}
 	)
