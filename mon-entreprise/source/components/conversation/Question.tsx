@@ -1,8 +1,15 @@
 import classnames from 'classnames'
 import { useDebounce } from 'Components/utils'
+import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
+import {
+	EvaluatedNode,
+	Rule,
+	RuleNode,
+	serializeEvaluation,
+	UNSAFE_isNotApplicable,
+} from 'publicodes'
 import { References } from 'publicodes-react'
 import {
 	createContext,
@@ -70,6 +77,7 @@ export default function Question({
 		},
 		[onSubmit, onChange, setCurrentSelection]
 	)
+	const engine = useEngine()
 
 	const debouncedSelection = useDebounce(currentSelection, 300)
 	useEffect(() => {
@@ -150,6 +158,7 @@ export default function Question({
 									{renderChildren({ children } as Choice)}
 								</li>
 							) : (
+								!UNSAFE_isNotApplicable(engine, dottedName) &&
 								!hiddenOptions.includes(dottedName as DottedName) && (
 									<li key={dottedName} className="variantLeaf">
 										<RadioLabel
