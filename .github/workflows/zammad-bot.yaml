@@ -3,8 +3,6 @@ name: Message du robot Zammad
 on:
   issues:
     types: [closed]
-  pull_request:
-    types: [closed]
 
 jobs:
   comment-when-issue-close:
