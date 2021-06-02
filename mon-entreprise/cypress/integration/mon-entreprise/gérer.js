@@ -4,16 +4,13 @@ const FIXTURES_FOLDER = 'cypress/fixtures'
 const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
 const writeFixtures = Cypress.env('record_http') !== undefined
 const stubFixtures = !writeFixtures
-const setInterceptResponses = (requestsMatches, responses, ...urlsMatch) => {
-	// TODO: just capture everything by default?
+const setInterceptResponses = (responses, hostnames) => {
 	if (writeFixtures) {
-		urlsMatch.forEach((urlMatch) => {
-			cy.intercept(urlMatch, (req) => {
-				requestsMatches.push(urlMatch)
-				req.on('after:response', (res) => {
-					responses[res.url] = res.body
-				})
-			}).as(urlMatch)
+		cy.intercept('*', (req) => {
+			if (!hostnames.includes(new URL(req.url).hostname)) return
+			req.on('after:response', (res) => {
+				responses[res.url] = res.body
+			})
 		})
 	} else if (stubFixtures) {
 		const urlOfFilepath = (filename) => {
@@ -32,40 +29,31 @@ const setInterceptResponses = (requestsMatches, responses, ...urlsMatch) => {
 			})
 	}
 }
-const waitResponses = (requestsMatches, responses) => {
+const waitResponses = (responses) => {
 	if (writeFixtures) {
-		if (!requestsMatches.length) return
-		// TODO: we pobably don't need to `cy.wait`.
-		// Caveat: for a given urlMatch, when any of the matching responses is
-		// received (the first one), the `cy.wait` will resolve.
-		// see https://docs.cypress.io/api/commands/intercept#Waiting-on-a-request
-		cy.wait(requestsMatches.map((urlMatch) => `@${urlMatch}`)).then(() => {
-			Object.keys(responses).map((url) => {
-				cy.writeFile(
-					`${GERER_FIXTURES_FOLDER}/${btoa(url)}.json`,
-					JSON.stringify(responses[url], null, 2)
-				)
-			})
+		// No need to `cy.wait`, we anyway don't care about not-yet-received
+		// responses, as we don't care about responses not yet utilized in the
+		// test itself. Caveat: fixtures folder is undeterministic when recording.
+		Object.keys(responses).map((url) => {
+			if (responses[url] === undefined) return
+			cy.writeFile(
+				`${GERER_FIXTURES_FOLDER}/${btoa(url)}.json`,
+				JSON.stringify(responses[url], null, 2)
+			)
 		})
 	}
 }
 
 describe('Manage page test', function () {
-	let requestsMatches = []
 	let responses = {}
-	const urlsMatch = [
-		'https://entreprise.data.gouv.fr/api/sirene/v1/full_text/**',
-		'https://entreprise.data.gouv.fr/api/sirene/v3/unites_legales/**',
-		'https://geo.api.gouv.fr/communes/**',
-	]
+	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
 	beforeEach(() => {
-		requestsMatches = []
 		responses = {}
-		setInterceptResponses(requestsMatches, responses, ...urlsMatch)
+		setInterceptResponses(responses, hostnamesToRecord)
 		cy.visit(fr ? encodeURI('/gérer') : '/manage')
 	})
 	afterEach(() => {
-		waitResponses(requestsMatches, responses)
+		waitResponses(responses)
 	})
 	it('should not crash', function () {
 		cy.contains(fr ? 'Gérer mon activité' : 'Manage my business')
