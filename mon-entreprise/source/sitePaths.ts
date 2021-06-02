@@ -54,7 +54,6 @@ const sitePathsFr = {
 		eirl: '/eirl',
 		sasu: '/sasu',
 		eurl: '/eurl',
-
 		indépendant: '/indépendant',
 		comparaison: '/comparaison-régimes-sociaux',
 		pamc: '/pamc',
@@ -119,6 +118,9 @@ const sitePathsEn = {
 		indépendant: '/independant',
 		'entreprise-individuelle': '/sole-proprietorship',
 		'auto-entrepreneur': '/auto-entrepreneur',
+		eirl: '/eirl',
+		sasu: '/sasu',
+		eurl: '/eurl',
 		pamc: '/pamc',
 		comparaison: '/social-scheme-comparaison',
 		salarié: '/salary',

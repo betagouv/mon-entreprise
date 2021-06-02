@@ -294,11 +294,9 @@ export function getSimulatorsData({
 					<p>
 						Le dirigeant d'une entreprise individuelle paye des cotisations
 						sociales, proportionnelle au{' '}
-						<RuleLink
-							dottedName="entreprise . résultat fiscal"
-							résultat
-							fiscal
-						></RuleLink>{' '}
+						<RuleLink dottedName="entreprise . résultat fiscal">
+							résultat fiscal
+						</RuleLink>{' '}
 						de l'entreprise. Leur montant varie également en fonction du type
 						d'activité (profession libérale, artisan, commerçants, etc), où des
 						éventuelles exonérations accordées (ACRE, ZFU, RSA, etc.).

@@ -198,14 +198,15 @@ Notifications affichées : dirigeant . auto-entrepreneur . notification calcul A
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
+<<<<<<< HEAD
 "[34449,371,30000,0,30000]
+=======
+"[33950,329,30000,0,30000]
+>>>>>>> f2da7982 (:green_hear: Fix type test)
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 4`] = `
-"[45267,439,40000,0,40000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
-`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 4`] = `"[45932,494,40000,0,40000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: activité mixte 1`] = `"[20000,292,16499,0,16499]"`;
 
