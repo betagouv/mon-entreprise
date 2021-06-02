@@ -106,7 +106,6 @@
 	},
 	"optionalDependencies": {
 		"bundlesize": "^0.18.0",
-		"cypress": "^7.4.0",
 		"prerender-spa-plugin": "^3.4.0"
 	},
 	"scripts": {

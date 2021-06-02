@@ -173,7 +173,6 @@ jobs:
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-            test-external: ${{ needs.deploy-context.outputs.env-name == 'master' }}
           - site: en
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
@@ -197,7 +196,7 @@ jobs:
             ~/.cache/Cypress
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      - run: npm i cypress cypress-plugin-tab
+      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
       - name: Test mon-entreprise
         uses: cypress-io/github-action@v2
         with:
@@ -209,14 +208,3 @@ jobs:
           env: language=${{ matrix.language }}
         env:
           COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
-        
-      - name: Test external integration
-        if: matrix.test-external
-        uses: cypress-io/github-action@v2
-        with:
-          install: false
-          working-directory: mon-entreprise
-          record: true
-          tag: external-integration
-          config: integrationFolder=cypress/integration/external,baseUrl=${{ matrix.baseUrl }}
-          
