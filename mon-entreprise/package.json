@@ -116,6 +116,7 @@
 		"test:dev-e2e:publicodes": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
+		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
