@@ -31,7 +31,7 @@ artiste-auteur . revenus . BNC . contrôle micro-bnc:
   formule:
     toutes ces conditions:
       - recettes != 0
-      - recettes > 72500 €/an
+      - recettes > 72600 €/an
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
