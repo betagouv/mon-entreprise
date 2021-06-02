@@ -39,7 +39,7 @@ export default function SalariéSimulation() {
 				<Banner icon={'👨‍✈️'}>
 					<Trans>
 						Vous êtes dirigeant d'une SAS(U) ?{' '}
-						<Link to={sitePaths.simulateurs.SASU}>
+						<Link to={sitePaths.simulateurs.sasu}>
 							Accéder au simulateur de revenu dédié
 						</Link>
 					</Trans>

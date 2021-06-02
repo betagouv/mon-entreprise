@@ -9,7 +9,7 @@ import Overlay from 'Components/Overlay'
 import PageHeader from 'Components/PageHeader'
 import * as Animate from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
@@ -22,22 +22,33 @@ import { TrackPage } from '../../ATInternetTracking'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
-const infereDirigeantFromCompanyDetails = (company: Company | null) => {
+const infereDirigeantFromCompanyDetails = (
+	company: Company | null
+): Exclude<
+	keyof SitePaths['simulateurs'],
+	'index' | 'profession-libérale' | 'économieCollaborative'
+> | null => {
 	if (!company) {
 		return null
 	}
 	if (company.isAutoEntrepreneur) {
 		return 'auto-entrepreneur'
 	}
+	if (company.statutJuridique === 'EI') {
+		return 'entreprise-individuelle'
+	}
 	if (
-		['EI', 'EURL'].includes(company.statutJuridique ?? '') ||
-		(company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire)
+		company.statutJuridique &&
+		['EIRL', 'SASU', 'EURL'].includes(company.statutJuridique)
 	) {
+		return company.statutJuridique.toLowerCase() as 'eirl' | 'sasu' | 'eurl'
+	}
+	if (company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire) {
 		return 'indépendant'
 	}
 
-	if (['SASU', 'SAS'].includes(company.statutJuridique ?? '')) {
-		return 'SASU'
+	if (company.statutJuridique === 'SAS') {
+		return 'sasu'
 	}
 
 	return null

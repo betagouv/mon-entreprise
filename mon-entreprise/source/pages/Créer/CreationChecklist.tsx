@@ -500,7 +500,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					<Link
 						className="ui__ interactive card small box lighter-bg"
 						to={{
-							pathname: sitePaths.simulateurs.SASU,
+							pathname: sitePaths.simulateurs.sasu,
 							state: { fromCréer: true },
 						}}
 					>

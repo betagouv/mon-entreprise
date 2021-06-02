@@ -83,9 +83,18 @@ function companyStatusChoice(state: LegalStatus | null = null, action: Action) {
 	return action.statusName
 }
 
+type StatutJuridique =
+	| 'EI'
+	| 'EURL'
+	| 'SARL'
+	| 'SAS'
+	| 'SA'
+	| 'SASU'
+	| 'NON_IMPLÉMENTÉ'
+
 const infereLegalStatusFromCategorieJuridique = (
 	catégorieJuridique: string
-) => {
+): StatutJuridique => {
 	/*
 	Nous utilisons le code entreprise pour connaitre le statut juridique
 	(voir https://www.insee.fr/fr/information/2028129)
@@ -118,7 +127,7 @@ const infereLegalStatusFromCategorieJuridique = (
 export type Company = {
 	siren: string
 	catégorieJuridique?: string
-	statutJuridique?: string
+	statutJuridique?: StatutJuridique
 	dateDeCréation?: string
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean

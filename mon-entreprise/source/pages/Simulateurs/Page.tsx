@@ -176,20 +176,20 @@ type SimulatorRessourceCardProps = {
 export function SimulatorRessourceCard({
 	simulatorId,
 }: SimulatorRessourceCardProps) {
-	const simulators = useSimulatorsData()
+	const simulator = useSimulatorsData()[simulatorId]
 	return (
 		<Link
 			className="ui__ interactive card lighter-bg box thinner"
 			to={{
 				state: { fromSimulateurs: true },
-				pathname: simulators[simulatorId].path,
+				pathname: simulator.path,
 			}}
 		>
 			<h3 className="ui__ h h5">
-				<Emoji emoji={simulators[simulatorId].icône} />{' '}
-				{simulators[simulatorId].shortName}
+				{simulator.icône && <Emoji emoji={simulator.icône} />}{' '}
+				{simulator.shortName}
 			</h3>
-			<p className="ui__ notice">{simulators[simulatorId].meta?.description}</p>
+			<p className="ui__ notice">{simulator.meta?.description}</p>
 		</Link>
 	)
 }
