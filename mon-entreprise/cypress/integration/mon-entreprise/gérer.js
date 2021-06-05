@@ -44,7 +44,9 @@ const waitResponses = (responses) => {
 	}
 }
 
-describe('Manage page test', function () {
+describe(`Manage page test (${
+	writeFixtures ? 'record mode' : 'stubbed mode'
+})`, function () {
 	let responses = {}
 	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
 	beforeEach(() => {
