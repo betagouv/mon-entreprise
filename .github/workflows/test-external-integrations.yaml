@@ -31,3 +31,15 @@ jobs:
           record: true
           tag: external-integration
           config: integrationFolder=cypress/integration/external,baseUrl=https://mon-entreprise.fr
+
+      - name: e2e tests with external API calls
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          working-directory: mon-entreprise
+          # List here all the specs that are making external API calls:
+          spec: cypress/integration/mon-entreprise/gérer.js
+          record: true
+          tag: external-integration
+          config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.fr
+          env: record_http= # prevent stubbing
