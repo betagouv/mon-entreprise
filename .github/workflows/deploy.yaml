@@ -14,7 +14,7 @@ on:
   # The /stats data is generated during the build. To keep the daily data fresh,
   # we relaunch a nightly full build of the app
   schedule:
-    - cron: "0 4 * * *"
+    - cron: '0 4 * * *'
 
 jobs:
   deploy-context:
@@ -24,16 +24,14 @@ jobs:
       fr_url: ${{ steps.base-urls.outputs.fr }}
       en_url: ${{ steps.base-urls.outputs.en }}
       publicodes_url: ${{ steps.base-urls.outputs.publicodes }}
-    steps: 
+    steps:
       - id: deploy-env
-        run:
-          echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" 
+        run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
       - id: base-urls
-        run:
-          echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
+        run: echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=publicodes::${{ steps.deploy-env.outputs.name == 'master' && 'https://publi.codes' || format('https://{0}-publicodes--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
-    
+
   build:
     needs: deploy-context
     env:
@@ -60,10 +58,9 @@ jobs:
           AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
           NODE_ENV: production
       - name: Replace site placeholders in netlify.toml redirection file
-        run: 
-          sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
+        run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
           sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
-          sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml 
+          sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml
       - uses: actions/upload-artifact@v2
         with:
           name: static-site
@@ -71,13 +68,13 @@ jobs:
             mon-entreprise/dist/**
             netlify.toml
           if-no-files-found: error
-        
+
   deploy-preview:
     needs: [build, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
-      matrix: 
+      matrix:
         site: ['', 'en', 'publicodes']
     steps:
       - uses: actions/checkout@v2
@@ -96,14 +93,14 @@ jobs:
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
           alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
           deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
-          
+
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-  
+
   deploy-prod:
     needs: [build, deploy-context]
     runs-on: ubuntu-18.04
@@ -149,11 +146,10 @@ jobs:
           edit-mode: replace
           body: |
             🚀 La branche est déployée ! 
-            
+
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - publicodes : ${{ needs.deploy-context.outputs.publicodes_url }}
-            
 
   end-to-end-test:
     env:
