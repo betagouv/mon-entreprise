@@ -295,6 +295,21 @@ exports[`calculate simulations-indépendant: activité 1`] = `"[29086,9086,20000
 
 exports[`calculate simulations-indépendant: activité 2`] = `"[29102,9102,20000,20787,931,19069,0,29102,3575]"`;
 
+exports[`calculate simulations-indépendant: conjoint collaborateur 1`] = `"[77179,27179,50000,52092,9633,40367,0,77179,7308]"`;
+
+exports[`calculate simulations-indépendant: conjoint collaborateur 2`] = `"[78241,28241,50000,52121,9642,40358,0,78241,4487]"`;
+
+exports[`calculate simulations-indépendant: conjoint collaborateur 3`] = `"[80761,30761,50000,52189,9663,40337,0,80761,4811]"`;
+
+exports[`calculate simulations-indépendant: conjoint collaborateur 4`] = `"[75298,25298,50000,52041,9618,40382,0,75298,3809]"`;
+
+exports[`calculate simulations-indépendant: conjoint collaborateur 5`] = `"[75297,25297,50000,52041,9618,40382,0,75297,3951]"`;
+
+exports[`calculate simulations-indépendant: conjoint collaborateur 6`] = `
+"[652233,152233,500000,517707,220771,279229,0,652233,4487]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+`;
+
 exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,467,16352,0,30000,7359]"`;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14381,15619,17881,467,15152,0,30000,8559]"`;
