@@ -1,5 +1,3 @@
-import './smarttag.js'
-
 // Ci-dessous les indicateurs personnalisés de site et de page
 // https://developers.atinternet-solutions.com/javascript-fr/contenus-javascript-fr/indicateurs-de-site-et-de-page-javascript-fr/
 export const INDICATOR = {

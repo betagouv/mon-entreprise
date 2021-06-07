@@ -278,5 +278,6 @@
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 		<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
 		<% } %>
+		<script src="/scripts/smarttag.js"></script>
 	</body>
 </html>
