@@ -44,6 +44,25 @@ impôt sur le revenu:
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%
 
+conjoint collaborateur:
+  - &conjoint-collab
+    dirigeant . rémunération . nette: 50000 €/an
+    dirigeant . indépendant . conjoint collaborateur: oui
+  - <<: *conjoint-collab
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
+  - <<: *conjoint-collab
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+  - <<: *conjoint-collab
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'" 
+  - <<: *conjoint-collab
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+  - <<: *conjoint-collab
+    dirigeant . rémunération . nette: 500000 €/an
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
+    
+
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
