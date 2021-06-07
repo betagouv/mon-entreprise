@@ -583,6 +583,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         - forfaitaire
         - revenu sans partage
         - revenu avec partage
+
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
   titre: assiette forfaitaire
   description: |
@@ -639,7 +640,8 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
       - si: assiette . pourcentage . moitié
         alors:
           taux: 50%
-      # sinon rien ne change
+      - sinon: oui
+        # sinon rien ne change
 
 dirigeant . indépendant . conjoint collaborateur . cotisations:
   titre: Cotisations conjoint collaborateur
