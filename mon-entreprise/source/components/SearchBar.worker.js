@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 
-let searchWeights = [
+const searchWeights = [
 	{
 		name: 'espace',
 		weight: 0.6,

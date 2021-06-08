@@ -1,13 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
-import Worker from 'worker-loader!./SearchBar.worker.js' // TODO: importing a worker this way doesn't work with babel transpilation https://github.com/betagouv/mon-entreprise/issues/1554
 import RuleLink from './RuleLink'
 import './SearchBar.css'
 import { useEngine } from './utils/EngineContext'
 import { utils } from 'publicodes'
 
-const worker = new Worker()
+// TODO: We should use a normal import here
+// We use a dynamic import to work around a typing problem https://github.com/betagouv/mon-entreprise/pull/1616#issuecomment-858629506
+let worker: any
+;(async function () {
+	console.log('okok')
+	const Worker = ((await import('./SearchBar.worker.js')) as any).default
+	worker = new Worker()
+})()
 
 type SearchBarProps = {
 	showListByDefault?: boolean
@@ -91,7 +97,7 @@ export default function SearchBar({
 			rules: searchIndex,
 		})
 
-		worker.onmessage = ({ data: results }) => setResults(results)
+		worker.onmessage = ({ data: results }: any) => setResults(results)
 		return () => {
 			worker.onmessage = null
 		}

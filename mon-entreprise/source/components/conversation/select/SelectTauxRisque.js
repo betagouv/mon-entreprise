@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
+import Worker from './SelectTauxRisque.worker.js'
 const worker = new Worker()
 
 function SelectComponent({ onChange, onSubmit, options }) {

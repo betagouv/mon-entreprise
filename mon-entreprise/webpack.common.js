@@ -51,6 +51,11 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 
 	return [
 		{
+			test: /\.worker\.(js|ts|tsx)$/,
+			use: [babelLoader, 'worker-loader'],
+			exclude: /node_modules|dist/,
+		},
+		{
 			test: /\.(js|ts|tsx)$/,
 			use: babelLoader,
 			exclude: /node_modules|dist/,
