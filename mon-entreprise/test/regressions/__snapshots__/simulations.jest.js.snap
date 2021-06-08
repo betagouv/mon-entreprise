@@ -198,15 +198,14 @@ Notifications affichées : dirigeant . auto-entrepreneur . notification calcul A
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
-<<<<<<< HEAD
 "[34449,371,30000,0,30000]
-=======
-"[33950,329,30000,0,30000]
->>>>>>> f2da7982 (:green_hear: Fix type test)
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 4`] = `"[45932,494,40000,0,40000]"`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 4`] = `
+"[45267,439,40000,0,40000]
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
+`;
 
 exports[`calculate simulations-auto-entrepreneur: activité mixte 1`] = `"[20000,292,16499,0,16499]"`;
 
@@ -311,21 +310,21 @@ exports[`calculate simulations-indépendant: conjoint collaborateur 6`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,467,16352,0,30000,7359]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,467,16352,0,30000,3559]"`;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14381,15619,17881,467,15152,0,30000,8559]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14381,15619,17881,467,15152,0,30000,3559]"`;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 3`] = `"[30000,10381,19619,20431,874,18745,0,30000,4559]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 3`] = `"[30000,10381,19619,20431,874,18745,0,30000,3559]"`;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 4`] = `"[20000,6732,13268,13809,0,13268,0,20000,4059]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 4`] = `"[20000,6732,13268,13809,0,13268,0,20000,3559]"`;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 5`] = `
-"[300000,79622,220378,228521,82429,137949,0,300000,10059]
+"[300000,79622,220378,228521,82429,137949,0,300000,3559]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 6`] = `
-"[300000,83122,216878,225021,80854,136024,0,300000,13559]
+"[300000,83122,216878,225021,80854,136024,0,300000,3559]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
