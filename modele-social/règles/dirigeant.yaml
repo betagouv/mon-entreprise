@@ -58,10 +58,13 @@ dirigeant . rémunération . imposable:
       alors: auto-entrepreneur . impôt . revenu imposable
     
 dirigeant . rémunération . impôt:
-  produit:
-    assiette: imposable
-    taux: impôt . taux d'imposition
-
+  titre: impôt sur le revenu
+  somme:
+    - produit:
+        assiette: imposable
+        taux: impôt . taux d'imposition
+    - auto-entrepreneur . impôt . versement libératoire . montant
+  arrondi: oui
 
 dirigeant . rémunération . nette après impôt:
   titre: Revenu après impôt

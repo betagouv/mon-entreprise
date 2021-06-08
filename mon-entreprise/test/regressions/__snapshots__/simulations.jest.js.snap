@@ -223,7 +223,7 @@ exports[`calculate simulations-auto-entrepreneur: aides 2`] = `
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,25000,0,25000]"`;
+exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,25000,706,24294]"`;
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 1`] = `"[574,6,500,0,500]"`;
 
