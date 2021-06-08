@@ -66,6 +66,12 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
   to = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
   status = 301
 
+# EN | sasu-chairman -> sasu
+[[redirects]]
+  from=":SITE_FR/simulateurs/sasu-chairman"
+  to=":SITE_FR/simulateurs/sasu"
+  status = 301
+
 
 # Embauche redirection settings
 [[redirects]]
