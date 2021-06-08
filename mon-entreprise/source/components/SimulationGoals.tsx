@@ -8,6 +8,7 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
+	useMemo,
 	useState,
 } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,7 +33,10 @@ export function SimulationGoals({
 	className = '',
 	children,
 }: SimulationGoalsProps) {
-	const initialRender = useInitialRender()
+	const [initialRender, setInitialRender] = useState(true)
+	useEffect(() => {
+		setInitialRender(false)
+	}, [])
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
@@ -49,11 +53,9 @@ export function SimulationGoals({
 }
 
 function useInitialRender() {
-	const [initialRender, setInitialRender] = useState(true)
-	useEffect(() => {
-		setInitialRender(false)
-	}, [])
-	return initialRender
+	const initialRender = useContext(InitialRenderContext)
+	const unChangedInitialRender = useMemo(() => initialRender, [])
+	return unChangedInitialRender
 }
 
 type SimulationGoalProps = {
@@ -90,7 +92,7 @@ export function SimulationGoal({
 		...(!boolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
 	})
 	const rule = engine.getRule(dottedName)
-	const initialRender = useContext(InitialRenderContext)
+	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const onChange = useCallback(
