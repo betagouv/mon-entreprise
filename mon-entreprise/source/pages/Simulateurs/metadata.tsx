@@ -224,7 +224,7 @@ export function getSimulatorsData({
 				},
 			},
 			iframePath: 'simulateur-EI',
-			icône: '🧍',
+			icône: '🚶‍♀️',
 			meta: {
 				description: t(
 					'pages.simulateurs.ei.meta.description',
@@ -316,7 +316,7 @@ export function getSimulatorsData({
 					</p>
 				</Trans>
 			),
-			nextSteps: ['indépendant', 'comparaison-statuts'],
+			nextSteps: ['comparaison-statuts'],
 		},
 		eirl: {
 			tracking: {
@@ -324,7 +324,7 @@ export function getSimulatorsData({
 				chapter3: 'EIRL',
 			},
 			config: indépendantConfig,
-			icône: '🧍‍♀️',
+			icône: '🚶',
 			iframePath: 'simulateur-EIRL',
 			meta: {
 				description: t(
@@ -345,12 +345,12 @@ export function getSimulatorsData({
 					'EIRL : simulateur de revenus pour dirigeant'
 				),
 			},
-			component: EntrepriseIndividuelle,
+			component: IndépendantSimulation,
 			path: sitePaths.simulateurs.eirl,
 			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
 
-			nextSteps: ['indépendant', 'comparaison-statuts'],
+			nextSteps: ['comparaison-statuts'],
 		},
 		sasu: {
 			config: sasuConfig,
@@ -358,7 +358,7 @@ export function getSimulatorsData({
 				chapter2: 'statut_entreprise',
 				chapter3: 'SASU',
 			},
-			icône: '🏢',
+			icône: '📘',
 			iframePath: 'simulateur-assimilesalarie',
 			meta: {
 				description: t(
@@ -445,7 +445,7 @@ export function getSimulatorsData({
 				chapter2: 'statut_entreprise',
 				chapter3: 'EURL',
 			},
-			icône: '🏦',
+			icône: '📕',
 			iframePath: 'simulateur-eurl',
 			meta: {
 				description: t(
@@ -475,7 +475,7 @@ export function getSimulatorsData({
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
-			icône: '🧍‍♂️',
+			icône: '🚶‍♂️',
 			iframePath: 'simulateur-autoentrepreneur',
 			meta: {
 				description: t(
