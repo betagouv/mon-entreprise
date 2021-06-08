@@ -23,15 +23,20 @@ const emptySituation: Partial<
 export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation
 
+export const initialSituationSelector = (state: RootState) =>
+	state.simulation?.initialSituation ?? emptySituation
+
 export const configSituationSelector = (state: RootState) =>
 	configSelector(state).situation ?? emptySituation
 
 export const firstStepCompletedSelector = createSelector(
-	[situationSelector, configSituationSelector],
-	(situation, baseSituation) => {
+	[situationSelector, configSituationSelector, initialSituationSelector],
+	(situation, baseSituation, initialSituation) => {
 		return (
 			Object.keys(situation).filter(
-				(dottedName) => !Object.keys(baseSituation).includes(dottedName)
+				(dottedName) =>
+					!Object.keys(baseSituation).includes(dottedName) &&
+					!Object.keys(initialSituation).includes(dottedName)
 			).length > 0
 		)
 	}
