@@ -7167,8 +7167,8 @@ dirigeant . rémunération . imposable:
   titre.en: '[automatic] taxable income'
   titre.fr: revenu imposable
 dirigeant . rémunération . impôt:
-  titre.en: '[automatic] tax'
-  titre.fr: impôt
+  titre.en: '[automatic] income tax'
+  titre.fr: impôt sur le revenu
 dirigeant . rémunération . nette:
   question.en: '[automatic] What is your net income?'
   question.fr: Quelle est votre revenu net ?
