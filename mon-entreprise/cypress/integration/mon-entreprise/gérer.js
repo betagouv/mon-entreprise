@@ -64,9 +64,11 @@ describe(`Manage page test (${
 		cy.get('button.cta').click()
 		cy.get('input').first().type('menoz')
 		cy.contains('834364291').click()
-		cy.contains(fr ? 'simulateur SASU' : 'simulator for SASU').click()
+		cy.contains(
+			fr ? 'Calculer mon revenu net de cotisations' : 'Calculate my net income'
+		).click()
 		cy.location().should((loc) => {
-			expect(loc.pathname).to.match(fr ? /dirigeant-sasu$/ : /sasu-chairman$/)
+			expect(loc.pathname).to.match(/sasu$/)
 		})
 	})
 	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
