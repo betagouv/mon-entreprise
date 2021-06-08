@@ -1271,11 +1271,11 @@ pages:
         Professional expenses - Social contributions</0></1></4><5>How do you
         calculate the social security contributions of a sole
         proprietorship?</5><6>The manager of a sole proprietorship pays social
-        security contributions, proportional to the company's <2></2>. Their
-        amount also varies according to the type of activity (liberal
-        profession, craftsman, tradesman, etc.), or any exemptions granted
-        (ACRE, ZFU, RSA, etc.).</6><7> As a company's result is only known at
-        the end of the accounting period, the manager pays provisional
+        security contributions in proportion to the company's <2>taxable
+        income</2>. Their amount also varies according to the type of activity
+        (liberal profession, craftsman, tradesman, etc.), or any exemptions
+        granted (ACRE, ZFU, RSA, etc.).</6><7> As a company's result is only
+        known at the end of the accounting period, the manager pays provisional
         contributions which will then be adjusted once the actual income has
         been declared, the following year.</7><8>This simulator allows you to
         calculate the exact amount of social security contributions based on a
@@ -1313,7 +1313,7 @@ pages:
       meta:
         description: Calculation of net income after tax and contributions based on
           turnover and vice versa
-        title: "Independent: Urssaf income simulator"
+        title: "Self-employed: income simulator"
       retraite-droits-acquis: "<0>Retirement: rights acquired in 2021</0><1><0>Basic
         pension : <2><0><0></0> vested quarters</0></2></0><1>Supplementary
         pension : <2><0>This simulator does not manage the acquired rights of
@@ -1439,7 +1439,7 @@ pages:
         ogDescription: As an officer in a similar position, immediately calculate your
           net income after tax from the total allocated to your compensation.
         ogTitle: "SASU executive compensation: a simulator to find out your net salary"
-        titre: "Head of SASU: Urssaf revenue simulator"
+        titre: "SASU : income simulator for managers"
       seo-explanation: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a classic employee, the SASU <2>manager</2> pays social security
         contributions on the remuneration he pays himself. The contributions are
@@ -1456,8 +1456,8 @@ pages:
         remuneration. To do this, simply enter the total amount allocated in the
         \"total charged\" box. The simulation can then be refined by answering
         the various questions.</4>"
-      shortname: Head of SASU
-      title: Income simulator for SASU manager
+      shortname: EURL
+      title: EURL Simulator
       titre: Revenue simulator for SAS(U) executive
   économie-collaborative:
     meta:
