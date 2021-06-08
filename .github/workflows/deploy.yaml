@@ -170,7 +170,7 @@ jobs:
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
           - site: en
-            integrationFolder: mon-entreprise
+            integrationFolder: mon-entreprise/english
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
             language: en
           - site: publicodes
