@@ -27,6 +27,7 @@
 		"@babel/preset-typescript": "^7.9.0",
 		"@types/cheerio": "^0.22.18",
 		"@types/js-yaml": "^3.12.2",
+		"@types/mocha": "^8.2.2",
 		"@types/react": "^17.0.0",
 		"@types/react-color": "^3.0.1",
 		"@types/react-dom": "^17.0.0",

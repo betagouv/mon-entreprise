@@ -19,8 +19,9 @@
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
 		},
+		"typeRoots": ["./types/", "./node_modules/@types"],
 		"noEmit": true,
 		"strict": true
 	},
-	"include": ["types", "source", "test/persistence.test.ts", "dev-server.js"]
+	"include": ["source", "test/persistence.test.ts", "dev-server.js"]
 }
