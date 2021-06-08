@@ -18,7 +18,7 @@
 	width: 2.2em;
 	height: 2.2em;
 	border-radius: 50%;
-	background: rgba(34, 50, 84, 0.03);
+	background: hsla(221, 42%, 23%, 0.03);
 	opacity: 0;
 	transition: opacity 0.2s ease;
 }

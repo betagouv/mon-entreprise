@@ -1,4 +1,5 @@
 import { Action } from 'Actions/actions'
+import HSLInterface from 'Components/utils/color/HSLInterface'
 import { getCompanySituation } from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
@@ -51,7 +52,7 @@ export type SimulationConfig = Partial<{
 	questions: Partial<Record<QuestionsKind, Array<DottedName>>>
 	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
 	'unité par défaut': string
-	color: string
+	color: HSLInterface
 }>
 
 export type Situation = Partial<Record<DottedName, any>>

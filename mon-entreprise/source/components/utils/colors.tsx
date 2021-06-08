@@ -1,78 +1,97 @@
 import convert from 'color-convert'
 import React, { createContext, useContext, useEffect, useRef } from 'react'
+import HSL from './color/HSL';
+import HSLInterface from './color/HSLInterface';
 
-/*
-	Hex to RGB conversion:
- 	http://www.javascripter.net/faq/hextorgb.htm
-*/
-const cutHex = (h: string) => (h.startsWith('#') ? h.substring(1, 7) : h),
-	hexToR = (h: string) => parseInt(cutHex(h).substring(0, 2), 16),
-	hexToG = (h: string) => parseInt(cutHex(h).substring(2, 4), 16),
-	hexToB = (h: string) => parseInt(cutHex(h).substring(4, 6), 16)
+const BLACK = new HSL();
+const WHITE = new HSL([0, 0, 1]);
+const DEFAULT_COLOR = new HSL([212.857, 0.672, 0.49]);
 
-/*
-	Given a background color, should you write on it in black or white ?
-   	Taken from http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#comment61936401_3943023
-*/
-function findContrastedTextColor(color: string, simple: boolean) {
-	const r = hexToR(color),
-		g = hexToG(color),
-		b = hexToB(color)
+/**
+ * Given a background color, should you write on it in black or white ?
+ * Taken from http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#comment61936401_3943023
+ * @param {HSLInterface} color : base color;
+ * @param {boolean} simple 
+ * @returns 
+ */
+function findContrastedTextColor(color: HSLInterface): HSLInterface {
+	const rgb = convert.hsl.rgb([color.h, color.s * 100, color.l * 100])
+	const r = rgb[0],
+		g = rgb[1],
+		b = rgb[2]
 
-	if (simple) {
 		// The YIQ formula
-		return r * 0.299 + g * 0.587 + b * 0.114 > 128 ? '#000000' : '#ffffff'
-	} // else complex formula
-	const uicolors = [r / 255, g / 255, b / 255],
-		c = uicolors.map((c) =>
-			c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
-		),
-		L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
-
-	return L > 0.179 ? '#000000' : '#ffffff'
+		return r * 0.299 + g * 0.587 + b * 0.114 > 128 ? BLACK : WHITE
 }
 
-const lightenColor = (hex: string, x: number) => {
-	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
-	return '#' + convert.hsl.hex([h, s, Math.max(2, Math.min(l + x, 98))])
+/**
+ * Lighten the color
+ * @param {HSLInterface} color : color in HSL format
+ * @param {number} lightDifferrence : light modification desired
+ * @returns {HSLInterface}
+ */
+const lightenColor = (color: HSLInterface, lightDifferrence: number) : HSLInterface => {
+	return Object.assign(new HSL(), color, { l: Math.max(0.02, Math.min(color.l + lightDifferrence, 0.98)) });
 }
 
+/**
+ * Create darken variation of color
+ * @param {number} numberOfVariation : number of darken color variation
+ * @param {HSLInterface} color : base color 
+ * @returns HSLInterface[]
+ */
 const generateDarkenVariations = (
 	numberOfVariation: number,
-	[h, s, l]: [number, number, number]
-) => {
+	color : HSLInterface
+): HSLInterface[] => {
 	return [...Array(numberOfVariation).keys()].map(
-		(i) => '#' + convert.hsl.hex([h, s, l * 0.8 ** i])
+		(i) => new HSL([color.h, color.s, color.l * 0.8 ** i])
 	)
 }
 
-const deriveAnalogousPalettes = (hex: string) => {
-	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
+/**
+ * Create analogous palettes from color
+ * @param {HSLInterface} color : 
+ * @returns 
+ */
+const deriveAnalogousPalettes = (color: HSLInterface) : HSLInterface[][] => {
 	return [
-		generateDarkenVariations(4, [(h - 45) % 360, 0.75 * s, l]),
-		generateDarkenVariations(4, [(h + 45) % 360, 0.75 * s, l]),
-		generateDarkenVariations(4, [(h + 90) % 360, 0.75 * s, l]),
+		generateDarkenVariations(4, {h: (color.h - 45) % 360, s: 0.75 * color.s, l: color.l }),
+		generateDarkenVariations(4, {h: (color.h + 45) % 360, s: 0.75 * color.s, l: color.l }),
+		generateDarkenVariations(4, {h: (color.h + 90) % 360, s: 0.75 * color.s, l: color.l }),
 	]
 }
 
-export const generateTheme = (themeColor: string) => {
+/**
+ * Invert HSL color light
+ * @param {HSLInterface} color : base color
+ * @returns 
+ */
+const invertLightColor = (color: HSLInterface): HSLInterface => {
+	return Object.assign(new HSL(),  color, { l: color.l ? 0 : 1 });
+}
+
+/**
+ * Create theme for application from themeColor
+ * @param {HSLInterface} themeColor : base color for application theme
+ * @returns 
+ */
+export const generateTheme = (themeColor: HSLInterface) => {
 	const // Use the default theme color if the host page hasn't made a choice
 		color = themeColor,
-		lightColor = lightenColor(color, 10),
-		darkColor = lightenColor(color, -20),
-		lighterColor = lightenColor(color, 45),
-		lightestColor = lightenColor(color, 100),
-		darkestColor = lightenColor(color, -100),
-		grayColor = '#00000099',
-		textColor = findContrastedTextColor(color, true), // the 'simple' version feels better...
-		inverseTextColor = textColor === '#ffffff' ? '#000' : '#fff',
-		lightenTextColor = (textColor: string) =>
-			textColor === '#ffffff' ? 'rgba(255, 255, 255, .7)' : 'rgba(0, 0, 0, .7)',
-		lighterTextColor = darkColor + 'cc',
-		lighterInverseTextColor = lightenTextColor(inverseTextColor),
-		textColorOnWhite = textColor === '#ffffff' ? color : '#333',
+		lightColor = lightenColor(color, 0.1),
+		darkColor = lightenColor(color, -0.2),
+		lighterColor = lightenColor(color, 0.45),
+		lightestColor = lightenColor(color, 1),
+		darkestColor = lightenColor(color, -1),
+		grayColor = new HSL([0, 0, 0, 0.6]),
+		textColor = findContrastedTextColor(color),
+		inverseTextColor = invertLightColor(textColor),
+		lighterTextColor = Object.assign(new HSL(), darkColor, { a: 0.8 }),
+		lighterInverseTextColor = Object.assign(new HSL(), inverseTextColor, { a: 0.7 }),
+		textColorOnWhite = !!textColor.l ? color : new HSL([0, 0, 20]),
 		palettes = deriveAnalogousPalettes(color)
-
+		
 	return {
 		color,
 		textColor,
@@ -90,26 +109,27 @@ export const generateTheme = (themeColor: string) => {
 	}
 }
 
-const defaultColor = '#2975D1'
-
 export type ThemeColors = ReturnType<typeof generateTheme>
 
 export const ThemeColorsContext = createContext<ThemeColors>(
-	generateTheme(defaultColor)
+	generateTheme(DEFAULT_COLOR)
 )
 
 type ProviderProps = {
-	color?: string
+	color?: HSLInterface
 	children: React.ReactNode
 }
 
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
-	const colors = generateTheme(color ?? useContext(ThemeColorsContext).color)
-	const divRef = useRef<HTMLDivElement>(null)
+	const colorsContext = useContext(ThemeColorsContext);
+	const colors = color ? generateTheme(color) : colorsContext;
+	const divRef = useRef<HTMLDivElement>(null);
+	
 	useEffect(() => {
 		Object.entries(colors).forEach(([key, value]) => {
-			if (typeof value === 'string') {
-				divRef.current?.style.setProperty(`--${key}`, value)
+			if (value instanceof HSL) {
+				
+				divRef.current?.style.setProperty(`--${key}`, value.toString())
 			}
 		}, colors)
 	}, [colors])
@@ -117,6 +137,7 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 		<ThemeColorsContext.Provider value={colors}>
 			{/* This div is only used to set the CSS variables */}
 			<div
+				id="colorProvider"
 				ref={divRef}
 				css={`
 					height: 100%;

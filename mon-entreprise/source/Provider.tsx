@@ -1,5 +1,6 @@
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
+import HSL from "Components/utils/color/HSL"
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -114,10 +115,12 @@ export default function Provider({
 	display: none !important;
 }`
 	document.body.appendChild(css)
-	const iframeCouleur =
-		new URLSearchParams(document?.location.search.substring(1)).get(
-			'couleur'
-		) ?? undefined
+	const iframeCouleurParam =
+	new URLSearchParams(document?.location.search.substring(1)).get(
+		'couleur'
+		)
+		
+	const iframeCouleur = iframeCouleurParam ? new HSL(iframeCouleurParam) : undefined
 
 	return (
 		<ErrorBoundary
@@ -146,7 +149,7 @@ export default function Provider({
 		>
 			<ReduxProvider store={store}>
 				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+					color={iframeCouleur}
 				>
 					<TrackingContext.Provider
 						value={

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import HSLInterface from './utils/color/HSLInterface'
 import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
@@ -38,10 +39,10 @@ const BarStackLegend = styled.div`
 `
 
 const BarStackLegendItem = styled.div`
-	color: #555;
+	color: hsl(0, 0%, 33.333%);
 	strong {
 		display: inline-block;
-		color: #111;
+		color: hsl(0, 0%, 6.667%);
 		margin-left: 8px;
 	}
 `
@@ -85,7 +86,7 @@ export function roundedPercentages(values: Array<number>) {
 
 type StackedBarChartProps = {
 	data: Array<{
-		color?: string
+		color?: HSLInterface
 		value: EvaluatedNode['nodeValue']
 		legend: React.ReactNode
 		key: string
@@ -116,7 +117,7 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 						<BarItem
 							style={{
 								width: `${percentage}%`,
-								backgroundColor: color || 'green',
+								backgroundColor: color?.toString() || 'green',
 							}}
 							key={key}
 						/>
@@ -125,7 +126,7 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 			<BarStackLegend>
 				{dataWithPercentage.map(({ key, percentage, color, legend }) => (
 					<BarStackLegendItem key={key}>
-						<SmallCircle style={{ backgroundColor: color }} />
+						<SmallCircle style={{ backgroundColor: color?.toString() }} />
 						{legend}
 						<strong>{percentage} %</strong>
 					</BarStackLegendItem>
@@ -136,7 +137,7 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 }
 
 type StackedRulesChartProps = {
-	data: Array<{ color?: string; dottedName: Names; title?: string }>
+	data: Array<{ color?: HSLInterface; dottedName: Names; title?: string }>
 }
 
 export default function StackedRulesChart({ data }: StackedRulesChartProps) {

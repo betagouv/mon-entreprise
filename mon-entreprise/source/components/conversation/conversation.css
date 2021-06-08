@@ -19,7 +19,7 @@
 }
 
 .step.question .variant > ul {
-	border-right: 1px dashed #333;
+	border-right: 1px dashed hsl(0, 0%, 20%);
 	text-align: right;
 	padding-right: 0.6em;
 	padding-top: 0.6em;

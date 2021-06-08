@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default () => (
 	<div
 		style={{
-			color: '#333350',
+			color: 'hsl(240, 22.137%, 25.686%)',
 			margin: '15% auto',
 			width: '15em',
 			textAlign: 'center',

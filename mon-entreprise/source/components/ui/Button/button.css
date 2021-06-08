@@ -30,22 +30,22 @@
 	cursor: pointer;
 
 	/* ie11 */
-	border-color: rgb(41, 117, 209);
+	border-color: hsl(213, 67%, 49%);
 	border-color: var(--color);
 	/* ie11 */
-	color: rgb(41, 117, 209);
+	color: hsl(213, 67%, 49%);
 	color: var(--color);
 	background-image: linear-gradient(
 		50deg,
-		rgba(39, 69, 195, 0.87) 5%,
-		rgb(41, 117, 209) 50%,
-		rgba(255, 255, 255, 0.52) 55%
+		hsla(228, 67%, 46%, 0.87) 5%,
+		hsl(213, 67%, 49%) 50%,
+		hsla(0, 0%, 100%, 0.52) 55%
 	);
 	background-image: linear-gradient(
 		50deg,
 		var(--color) 5%,
 		var(--lightColor) 50%,
-		rgba(255, 255, 255, 0.52) 55%
+		hsla(0, 0%, 100%, 0.52) 55%
 	);
 	background-size: 280%;
 	background-position-x: 99%;
@@ -53,9 +53,9 @@
 .ui__.button.plain {
 	background-image: linear-gradient(
 		50deg,
-		rgba(39, 69, 195, 0.87) 5%,
-		rgb(41, 117, 209) 50%,
-		rgba(41, 117, 209, 0.9) 55%
+		hsla(228, 67%, 46%, 0.87) 5%,
+		hsl(213, 67%, 49%) 50%,
+		hsla(213, 67%, 49%, 0.9) 55%
 	);
 	background-image: linear-gradient(
 		50deg,
@@ -121,7 +121,7 @@
 .ui__.link-button {
 	text-decoration: underline;
 	text-underline-offset: 4px;
-	color: rgb(41, 117, 209);
+	color: hsl(213, 67%, 49%);
 	color: var(--color);
 }
 .ui__.link-button.active {
@@ -134,7 +134,7 @@
 }
 .ui__.dashed-button {
 	border-bottom: 1px dashed;
-	border-color: rgb(41, 117, 209);
+	border-color: hsl(213, 67%, 49%);
 	border-color: var(--color);
 	padding: 0.15em 0em;
 }

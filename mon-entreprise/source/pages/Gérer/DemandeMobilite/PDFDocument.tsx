@@ -101,7 +101,7 @@ Font.register({
 const styles = StyleSheet.create({
 	body: {
 		paddingTop: 35,
-		color: '#18457B',
+		color: 'hsl(212.727, 67.347%, 28.823%)',
 		lineHeight: 1.5,
 		paddingBottom: 65,
 		paddingHorizontal: 35,

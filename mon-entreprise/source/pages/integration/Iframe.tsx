@@ -1,4 +1,5 @@
 import Overlay from 'Components/Overlay'
+import HSLInterface from 'Components/utils/color/HSLInterface'
 import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
@@ -51,7 +52,7 @@ function IntegrationCustomizer() {
 	}, [currentModule])
 
 	const { color: defaultColor } = useContext(ThemeColorsContext)
-	const [color, setColor] = useState(defaultColor)
+	const [ color, setColor ] = useState(defaultColor)
 	return (
 		<section>
 			<h2>
@@ -116,7 +117,7 @@ function IntegrationCustomizer() {
 							{emoji('🎨')}
 						</h3>
 						<Suspense fallback={<div>Chargement...</div>}>
-							<LazyColorPicker color={color} onChange={setColor} />
+							<LazyColorPicker color={color} onChange={ setColor } />
 						</Suspense>
 						<h3>
 							<Trans i18nKey="pages.développeurs.code.titre">
@@ -295,7 +296,7 @@ function EnSavoirPlusCSP() {
 
 type IntegrationCodeProps = {
 	module?: string
-	color?: string
+	color?: HSLInterface
 }
 
 function IntegrationCode({
@@ -324,17 +325,17 @@ function IntegrationCode({
 				display: block;
 				font-size: 80%;
 				padding: 1em;
-				background: #f8f8f8;
+				background: hsl(0, 0%, 97.255%);
 				margin: auto;
 				margin-bottom: 1em;
 				overflow: auto;
 				line-height: 1.6em;
-				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
-					-1px 1px 1px rgba(0, 0, 0, 0.02);
+				box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.05),
+					-1px 1px 1px hsla(0, 0%, 0%, 0.02);
 
 				em {
 					font-weight: 300;
-					color: black;
+					color: hsl(0, 0%, 0%);
 				}
 
 				:before {
@@ -344,10 +345,10 @@ function IntegrationCode({
 					right: 0;
 					border-width: 0 16px 16px 0;
 					border-style: solid;
-					border-color: #e8e8e8 white;
+					border-color: hsl(0, 0%, 90.98%) white;
 				}
 				#scriptColor {
-					color: #2975d1;
+					color: hsl(212.857, 67.2%, 49.02%);
 				}
 			`}
 		>
@@ -365,7 +366,7 @@ function IntegrationCode({
 				<>
 					<br />
 					<em>data-couleur</em>="
-					<span id="scriptColor">{color}</span>"
+					<span id="scriptColor">{color.toString()}</span>"
 				</>
 			) : (
 				''

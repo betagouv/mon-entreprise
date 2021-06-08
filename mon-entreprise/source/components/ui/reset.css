@@ -52,7 +52,7 @@ label {
 
 button {
 	background: none;
-	border: 1px solid #222;
+	border: 1px solid hsl(0, 0%, 13%);
 	border-radius: 0.2em;
 	padding: 0 1em;
 }

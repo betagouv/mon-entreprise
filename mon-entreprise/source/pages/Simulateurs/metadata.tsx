@@ -2,6 +2,7 @@ import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
+import HSL from "Components/utils/color/HSL"
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext, useMemo } from 'react'
@@ -75,7 +76,7 @@ export type SimulatorData = Record<
 			ogTitle?: string
 			ogDescription?: string
 			ogImage?: string
-			color?: string
+			color?: HSL
 		}
 		tracking:
 			| {
@@ -1001,7 +1002,7 @@ export function getSimulatorsData({
 					'pages.simulateurs.aides-embauche.meta.description',
 					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.'
 				),
-				color: '#11965f',
+				color: new HSL([155.188, 0.796, 0.327]),
 			},
 			path: sitePaths.simulateurs['aides-embauche'],
 			iframePath: 'aides-embauche',
@@ -1053,7 +1054,7 @@ export function getSimulatorsData({
 					'pages.simulateurs.is.meta.description',
 					'Calculez votre impôt sur les sociétés'
 				),
-				color: '#E71D66',
+				color: new HSL([338.317, 0.808, 0.51]),
 			},
 			shortName: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
 			title: t(

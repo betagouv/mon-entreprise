@@ -91,7 +91,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 							css={`
 								width: 10%;
 								min-width: 3em;
-								color: #333;
+								color: hsl(0, 0%, 20%);
 							`}
 						>
 							<span>{option['Taux net'] + ' %'}</span>
@@ -101,7 +101,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 								width: 20%;
 								font-size: 85%;
 								background-color: #ddd;
-								color: #333;
+								color: hsl(0, 0%, 20%);
 								border-radius: 0.25em;
 								padding: 0.5em;
 								text-align: center;

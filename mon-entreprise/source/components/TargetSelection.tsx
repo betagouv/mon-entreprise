@@ -202,8 +202,8 @@ function TargetInputOrValue({
 						{!isFocused && <AnimatedTargetValue value={value} />}
 						<CurrencyInput
 							style={{
-								color: colors.textColor,
-								borderColor: colors.textColor,
+								color: colors.textColor.toString(),
+								borderColor: colors.textColor.toString(),
 							}}
 							debounce={750}
 							name={target.dottedName}

@@ -40,16 +40,16 @@ type VisitsChartProps = {
 	data: Data
 }
 const Palette = [
-	'#1ea0f5',
-	'#697ad5',
-	'#b453b6',
-	'#ff2d96',
-	'#fd667f',
-	'#fc9e67',
-	'#fad750',
-	'#bed976',
-	'#82da9d',
-	'#46dcc3',
+	'hsl(203.721, 91.489%, 53.922%)',
+	'hsl(230.555, 56.25%, 62.353%)',
+	'hsl(298.788, 40.408%, 51.961%)',
+	'hsl(330, 100%, 58.824%)',
+	'hsl(350.066, 97.419%, 69.608%)',
+	'hsl(22.148, 96.129%, 69.608%)',
+	'hsl(47.647, 94.4445%, 64.706%)',
+	'hsl(76.364, 56.571%, 65.686%)',
+	'hsl(138.409, 54.321%, 68.235%)',
+	'hsl(170, 68.182%, 56.863%)',
 ]
 
 export default function VisitsChart({
@@ -80,7 +80,7 @@ export default function VisitsChart({
 
 	function getColor(i: number): string {
 		if (!colored) {
-			return [lighterColor, lightColor, darkColor][i % 3]
+			return [lighterColor, lightColor, darkColor][i % 3].toString()
 		}
 		return Palette[i % Palette.length]
 	}

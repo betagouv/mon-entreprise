@@ -7,9 +7,9 @@
 @import './Layout.css';
 
 :root {
-	--color: rgb(41, 117, 209);
-	--darkColor: rgb(24, 69, 123);
-	--textColor: rgb(24, 69, 123);
+	--color: hsl(213, 67%, 49%);
+	--darkColor: hsl(213, 67%, 29%);
+	--textColor: hsl(213, 67%, 29%);
 }
 @media (min-width: 400px) {
 	:focus:not(:active):not(input) {
@@ -56,11 +56,11 @@ blockquote {
 }
 
 .ui__.dark-bg {
-	background-color: #3b3945;
+	background-color: hsl(250, 10%, 25%);
 }
 
 .ui__.dark-bg * {
-	color: #f3f3f3;
+	color: hsl(0, 0%, 95%);
 }
 
 .ui__.light-border {
@@ -131,13 +131,13 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	font-family: monospace;
 	margin: 0 0.2rem;
 	padding: 0 0.2rem;
-	box-shadow: 0px 1px 1px 1px #d9d9d9, 0 0 0 1px #d9d9d9;
+	box-shadow: 0px 1px 1px 1px hsl(0, 0%, 85%), 0 0 0 1px hsl(0, 0%, 85%);
 	border-radius: 0.2rem;
 }
 
 pre.ui__.code {
-	color: rgb(197, 200, 198);
-	text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;
+	color: hsl(140, 3%, 78%);
+	text-shadow: hsla(0, 0%, 0%, 0.3) 0px 1px;
 	font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
 	direction: ltr;
 	text-align: left;
@@ -151,12 +151,12 @@ pre.ui__.code {
 	margin: 0.5em 0px;
 	overflow: auto;
 	border-radius: 0.3em;
-	background: rgb(29, 31, 33);
+	background: hsl(210, 6%, 12%);
 }
 
 pre.ui__.code > code {
-	color: rgb(197, 200, 198);
-	text-shadow: rgba(0, 0, 0, 0.3) 0px 1px;
+	color: hsl(140, 3%, 78%);
+	text-shadow: hsla(0, 0%, 0%, 0.3) 0px 1px;
 	font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
 	direction: ltr;
 	text-align: left;

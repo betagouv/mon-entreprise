@@ -89,7 +89,7 @@ export default function BarChartBranch({
 				</p>
 				<ChartItemBar
 					style={{
-						backgroundColor: color,
+						backgroundColor: color.toString(),
 						flex: styles.flex,
 					}}
 					numberToPlot={numberToPlot}

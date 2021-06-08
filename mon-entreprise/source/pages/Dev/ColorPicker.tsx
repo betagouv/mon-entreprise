@@ -1,15 +1,17 @@
-import { ChromePicker, ChromePickerProps } from 'react-color'
+import HSL from "Components/utils/color/HSL"
+import HSLInterface from "Components/utils/color/HSLInterface"
+import { ChromePicker, HSLColor } from 'react-color'
 
 type ColorPickerProps = {
-	color: ChromePickerProps['color']
-	onChange: (color: string) => void
+	color: HSLInterface
+	onChange: (color: HSLInterface) => void
 }
 
 export default function ColorPicker({ color, onChange }: ColorPickerProps) {
 	return (
 		<ChromePicker
-			color={color}
-			onChangeComplete={(color) => onChange(color.hex)}
+			color={color as HSLColor}
+			onChangeComplete={(color) => onChange(Object.assign(new HSL(), color.hsl))}
 		/>
 	)
 }

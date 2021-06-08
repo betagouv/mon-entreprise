@@ -32,9 +32,9 @@
 	background-color: white;
 	transition: opacity 0.2s, transform 0.2s;
 	opacity: 0;
-	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
-		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
-		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
+	box-shadow: 0px 2px 4px -1px hsla(213, 67%, 49%, 0.2),
+		0px 4px 5px 0px hsla(213, 67%, 49%, 0.14),
+		0px 1px 10px 0px hsla(213, 67%, 49%, 0.12);
 	pointer-events: none;
 	transform: translate(2.8ex, -5px);
 }

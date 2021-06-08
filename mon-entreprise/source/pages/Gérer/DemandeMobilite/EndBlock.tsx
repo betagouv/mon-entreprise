@@ -81,7 +81,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					>
 						<SignaturePad
 							height={200}
-							options={{ penColor: darkColor }}
+							options={{ penColor: darkColor.toString() }}
 							ref={signatureRef}
 						/>
 					</div>

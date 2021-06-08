@@ -29,7 +29,7 @@
 }
 
 #targetSelection .targets > li {
-	border-top: 1px dashed rgba(255, 255, 255, 0.6);
+	border-top: 1px dashed #ffffff99;
 	padding: 0.8rem 1rem;
 	margin-left: -1rem;
 	margin-right: -1rem;
@@ -50,7 +50,7 @@
 }
 #targetSelection .targets > li .guide-lecture {
 	flex: 1;
-	border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+	border-bottom: 1px dashed #ffffff40;
 	margin-left: 1rem;
 }
 
@@ -126,7 +126,7 @@
 	width: 5.5em;
 	max-width: 7.5em;
 	text-align: right;
-	background: rgba(255, 255, 255, 0.2);
+	background: #ffffff33;
 	padding: 0.2rem 0.6rem;
 	border-radius: 0.3rem;
 	border: 1px solid;
@@ -159,7 +159,7 @@
 	padding: 0.2rem 0.6rem;
 
 	background: transparent;
-	border: 1px dashed rgba(255, 255, 255, 0.5);
+	border: 1px dashed #ffffff80;
 	border-radius: 0.3rem;
 
 	font-size: inherit;

@@ -291,7 +291,7 @@ const ResultTable = styled.table`
 	}
 
 	td {
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-top: 1px solid hsla(0, 0%, 0%, 0.098);
 		padding: 0.8rem 1rem 0;
 	}
 

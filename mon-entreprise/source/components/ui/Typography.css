@@ -26,7 +26,7 @@ html {
 
 body {
 	font-weight: 400;
-	color: #040e19;
+	color: hsl(211, 72%, 6%);
 	color: var(--darkColor);
 	font-family: 'Roboto', sans-serif;
 }
@@ -113,7 +113,7 @@ a {
 	padding: none;
 	text-decoration: underline;
 	text-underline-offset: 4px;
-	color: rgb(41, 117, 209);
+	color: hsl(213, 67%, 49%);
 	color: var(--color);
 }
 
@@ -136,7 +136,7 @@ textarea {
 
 small,
 .ui__.notice {
-	color: rgba(0, 0, 0, 0.6);
+	color: hsla(0, 0%, 0%, 0.6);
 	color: var(--lighterTextColor);
 	font-size: 85%;
 	line-height: 1.5rem;

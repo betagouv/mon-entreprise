@@ -62,7 +62,7 @@ export default function SocialIcon({ media }: { media: keyof typeof icons }) {
 			<g>
 				<path d={icons[media].icon} style={{ fill: 'transparent' }} />
 			</g>
-			<g style={{ fill: color }}>
+			<g style={{ fill: color.toString() }}>
 				<path d={icons[media].mask} />
 			</g>
 		</svg>

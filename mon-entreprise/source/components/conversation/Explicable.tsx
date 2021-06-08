@@ -58,7 +58,7 @@ export function Explicable({ children }: { children: React.ReactNode }) {
 					vertical-align: middle;
 					font-size: 110% !important;
 					> img {
-						border: 1px solid rgba(255, 255, 255, 0.7) !important;
+						border: 1px solid hsla(0, 0%, 100%, 0.7) !important;
 						border-radius: 0.1rem;
 					}
 				`}
