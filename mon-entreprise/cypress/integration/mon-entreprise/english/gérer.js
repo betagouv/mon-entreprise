@@ -4,11 +4,13 @@ const FIXTURES_FOLDER = 'cypress/fixtures'
 const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
 const writeFixtures = Cypress.env('record_http') !== undefined
 const stubFixtures = !writeFixtures
-const setInterceptResponses = (responses, hostnames) => {
+const setInterceptResponses = (pendingRequests, responses, hostnames) => {
 	if (writeFixtures) {
 		cy.intercept('*', (req) => {
 			if (!hostnames.includes(new URL(req.url).hostname)) return
+			pendingRequests.add(req.url)
 			req.on('after:response', (res) => {
+				pendingRequests.delete(req.url)
 				responses[res.url] = res.body
 			})
 		})
@@ -29,11 +31,12 @@ const setInterceptResponses = (responses, hostnames) => {
 			})
 	}
 }
-const waitResponses = (responses) => {
+const writeResponses = (pendingRequests, responses) => {
 	if (writeFixtures) {
-		// No need to `cy.wait`, we anyway don't care about not-yet-received
-		// responses, as we don't care about responses not yet utilized in the
-		// test itself. Caveat: fixtures folder is undeterministic when recording.
+		// We need to wait on all catched requests to be fulfilled and recorded,
+		// otherwise the stubbed cy run might error when a request is not stubbed.
+		// Caveat: we assume request.url to be unique amongst recorded requests.
+		cy.waitUntil(() => pendingRequests.size === 0)
 		Object.keys(responses).map((url) => {
 			if (responses[url] === undefined) return
 			cy.writeFile(
@@ -47,15 +50,17 @@ const waitResponses = (responses) => {
 describe(`Manage page test (${
 	writeFixtures ? 'record mode' : 'stubbed mode'
 })`, function () {
+	let pendingRequests = new Set()
 	let responses = {}
 	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
 	beforeEach(() => {
+		pendingRequests = new Set()
 		responses = {}
-		setInterceptResponses(responses, hostnamesToRecord)
+		setInterceptResponses(pendingRequests, responses, hostnamesToRecord)
 		cy.visit(fr ? encodeURI('/gérer') : '/manage')
 	})
 	afterEach(() => {
-		waitResponses(responses)
+		writeResponses(pendingRequests, responses)
 	})
 	it('should not crash', function () {
 		cy.contains(fr ? 'Gérer mon activité' : 'Manage my business')
