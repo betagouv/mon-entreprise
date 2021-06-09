@@ -28,3 +28,4 @@ Cypress.Commands.add('iframe', { prevSubject: 'element' }, ($iframe) => {
 		setTimeout(() => resolve($iframe.contents().find('body')), 6000)
 	})
 })
+import 'cypress-wait-until'
