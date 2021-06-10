@@ -10,3 +10,6 @@ dist/
 
 # Local Netlify folder
 .netlify
+
+# Webstorm (and other Jetbrains IDE)
+.idea/
