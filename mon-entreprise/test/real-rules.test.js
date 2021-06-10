@@ -13,8 +13,11 @@ let runExamples = (examples, rule) =>
 		const situation = Object.entries(ex.situation).reduce(
 			(acc, [name, value]) => ({
 				...acc,
-				[disambiguateRuleReference(engine.parsedRules, rule.dottedName, name)]:
-					value,
+				[disambiguateRuleReference(
+					engine.parsedRules,
+					rule.dottedName,
+					name
+				)]: value,
 			}),
 			{}
 		)

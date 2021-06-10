@@ -92,8 +92,7 @@ function CaisseRetraite() {
 	return (
 		<>
 			{caisses.map((caisse) => {
-				const dottedName =
-					`dirigeant . indépendant . PL . ${caisse}` as DottedName
+				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = engine.getRule(dottedName).rawNode
 				return (
 					<Condition expression={dottedName} key={caisse}>

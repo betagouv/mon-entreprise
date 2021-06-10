@@ -8,24 +8,24 @@ import { TrackingContext } from '../ATInternetTracking'
 import Banner from './Banner'
 import { useParamsFromSituation } from './utils/useSearchParamsSimulationSharing'
 
+export function useUrl() {
+	const situation = useSelector(situationSelector)
+	const searchParams = useParamsFromSituation(situation)
+	searchParams.set('utm_source', 'sharing')
+	return [
+		window.location.origin,
+		window.location.pathname,
+		'?',
+		searchParams.toString(),
+	].join('')
+}
+
 export default function ShareSimulationBanner() {
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
-	const situation = useSelector(situationSelector)
-	const searchParams = useParamsFromSituation(situation)
-	searchParams.set('utm_source', 'sharing')
-
 	const shareAPIAvailable = !!window?.navigator?.share
-
-	const getUrl = () =>
-		[
-			window.location.origin,
-			window.location.pathname,
-			'?',
-			searchParams.toString(),
-		].join('')
-
+	const url = useUrl()
 	const startSharing = async () => {
 		if (shareAPIAvailable) {
 			try {
@@ -35,7 +35,7 @@ export default function ShareSimulationBanner() {
 						'shareSimulation.navigatorShare',
 						'Ma simulation Mon Entreprise'
 					),
-					url: getUrl(),
+					url,
 				})
 			} catch {
 				setOpened(true)
@@ -46,7 +46,11 @@ export default function ShareSimulationBanner() {
 	}
 
 	return (
-		<Banner hideAfterFirstStep={false} icon="💬">
+		<Banner
+			hideAfterFirstStep={false}
+			icon="💬"
+			className="ui__ print-display-none"
+		>
 			{opened ? (
 				<Animate.fromTop>
 					<div>
@@ -66,21 +70,21 @@ export default function ShareSimulationBanner() {
 								simulation.
 							</Trans>
 						</p>
-						<ShareSimulationPopup url={getUrl()} />
+						<ShareSimulationPopup url={url} />
 					</div>
 				</Animate.fromTop>
 			) : (
 				<Trans i18nKey="shareSimulation.banner">
 					Pour partager cette simulation :{' '}
 					<LinkButton
-						onClick={async () => {
+						onClick={() => {
 							tracker.click.set({
 								chapter1: 'feature:partage',
 								type: 'action',
 								name: 'démarré',
 							})
 							tracker.dispatch()
-							await startSharing()
+							startSharing()
 						}}
 					>
 						Générer un lien dédié

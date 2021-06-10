@@ -24,6 +24,8 @@ En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
 Explorez notre documentation: Explorez notre documentation
+ExportSimulation:
+  Banner: "Pour conserver cette simulation : <2>Imprimer ou sauvegarder en PDF</2>"
 Fiche de paie: Fiche de paie
 Gestion des données personnelles: Gestion des données personnelles
 Gérant majoritaire: Gérant majoritaire
@@ -1006,6 +1008,10 @@ pages:
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: "PAMC : simulateurs de cotisations et de revenu"
+    print-info:
+      recover: Retrouvez la, ainsi que d'autres outils d'aide à la création et à la gestion d'entreprise, sur <2>mon-entreprise.fr</2>
+      date: Cette simulation a été effectuée le 
+      title: Vous souhaitez retrouver cette simulation ?
     profession-libérale:
       meta:
         description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur

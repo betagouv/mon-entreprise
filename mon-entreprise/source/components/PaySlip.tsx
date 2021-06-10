@@ -52,12 +52,10 @@ export function getCotisationsBySection(
 		)
 	}
 
-	const cotisations = (
-		[
-			...findCotisations('contrat salarié . cotisations . patronales'),
-			...findCotisations('contrat salarié . cotisations . salariales'),
-		] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>
-	)
+	const cotisations = ([
+		...findCotisations('contrat salarié . cotisations . patronales'),
+		...findCotisations('contrat salarié . cotisations . salariales'),
+	] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>)
 		.map((cotisation) => cotisation.dottedName)
 		.filter(Boolean)
 		.map(

@@ -1,14 +1,12 @@
 import { hasConditions } from './activitésData'
 
-const filterActivités =
-	(filter = () => true) =>
-	(state) =>
-		Object.entries(state)
-			.filter(
-				([activitéTitle, activitéData]) =>
-					activitéData.effectuée && filter(activitéData, activitéTitle)
-			)
-			.map(([activité]) => activité)
+const filterActivités = (filter = () => true) => (state) =>
+	Object.entries(state)
+		.filter(
+			([activitéTitle, activitéData]) =>
+				activitéData.effectuée && filter(activitéData, activitéTitle)
+		)
+		.map(([activité]) => activité)
 
 export const nextActivitéSelector = (state, currentActivité) =>
 	filterActivités(

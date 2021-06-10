@@ -10,22 +10,24 @@ import './PaySlip'
 import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 
-export default function Distribution() {
+interface DistributionProps {
+	disableAnimation: boolean
+}
+
+export default function Distribution({ disableAnimation }: DistributionProps) {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
-	const distribution = (
-		getCotisationsBySection(useEngine().getParsedRules()).map(
-			([section, cotisations]) => [
-				section,
-				cotisations
-					.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
-					.reduce(
-						(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
-						0
-					),
-			]
-		) as Array<[DottedName, number]>
-	)
+	const distribution = (getCotisationsBySection(
+		useEngine().getParsedRules()
+	).map(([section, cotisations]) => [
+		section,
+		cotisations
+			.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
+			.reduce(
+				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
+				0
+			),
+	]) as Array<[DottedName, number]>)
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
 
@@ -39,6 +41,7 @@ export default function Distribution() {
 					dottedName={sectionName}
 					value={value}
 					maximum={maximum}
+					disableAnimation={disableAnimation}
 				/>
 			))}
 		</div>
@@ -49,8 +52,8 @@ type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
 	maximum: number
-
 	icon?: string
+	disableAnimation: boolean
 }
 
 export function DistributionBranch({
@@ -58,6 +61,7 @@ export function DistributionBranch({
 	value,
 	icon,
 	maximum,
+	disableAnimation,
 }: DistributionBranchProps) {
 	const branche = useContext(EngineContext).getRule(dottedName)
 
@@ -69,6 +73,7 @@ export function DistributionBranch({
 			icon={icon ?? branche.rawNode.icônes}
 			description={branche.rawNode.résumé}
 			unit="€"
+			disableAnimation={disableAnimation}
 		/>
 	)
 }
