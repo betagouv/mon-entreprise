@@ -25,7 +25,7 @@ export default function PeriodSwitch() {
 		<div id="PeriodSwitch">
 			<span className="base ui__ small radio toggle">
 				{periods.map(({ label, unit }) => (
-					<label key={unit}>
+					<label key={unit} className={ currentUnit !== unit ? 'print-display-none' : ''}>
 						<input
 							name="defaultUnit"
 							type="radio"

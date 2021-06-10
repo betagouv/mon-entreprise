@@ -16,7 +16,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 				margin-bottom: 1rem;
 			`}
 		>
-			<p>
+			<p className={folded?'print-display-none':''}>
 				{emoji('🚩 ')}
 				<strong>
 					<Trans i18nKey="simulateurs.warning.titre">
@@ -40,7 +40,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 					css="padding-top: 1rem; padding-bottom: 0.4rem"
 				>
 					{children}
-					<div className="ui__ answer-group">
+					<div className="ui__ answer-group print-display-none">
 						<button
 							className="ui__ button simple small"
 							onClick={() => fold(true)}

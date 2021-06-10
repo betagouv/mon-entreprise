@@ -134,7 +134,7 @@ function ImpositionSwitch() {
 	return (
 		<span className="base ui__ small radio toggle">
 			{(['IR', 'IS'] as const).map((imposition) => (
-				<label key={imposition}>
+				<label key={imposition} className={ currentImposition !== imposition ? 'print-display-none' : ''}>
 					<input
 						name="entreprise . imposition"
 						type="radio"
