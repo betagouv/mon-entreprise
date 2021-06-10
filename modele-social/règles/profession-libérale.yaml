@@ -143,8 +143,8 @@ dirigeant . indépendant . PL . régime général:
       - CIPAV = non
       - entreprise . activité . libérale réglementée = non
 
-dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
-  titre: taux spécifique profession libérale non reglementée
+? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire
+: titre: taux spécifique profession libérale non reglementée
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
   par défaut: non
   description: |
@@ -156,8 +156,8 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   références:
     Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
-dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
-  titre: retraite complémentaire (taux PLNR)
+? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant
+: titre: retraite complémentaire (taux PLNR)
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     barème:
@@ -276,8 +276,8 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
       - si: classe de cotisation = 'C'
         alors: 380 €/an
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
-  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
+? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation
+: question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
   description: >-
     La Cipav gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
@@ -293,12 +293,12 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
         - C
   par défaut: "'A'"
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
-  titre: classe A
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
-  titre: classe B
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
-  titre: classe C
+? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A
+: titre: classe A
+? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B
+: titre: classe B
+? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C
+: titre: classe C
 
 dirigeant . indépendant . PL . retraite CNAVPL:
   non applicable si:
@@ -360,8 +360,8 @@ dirigeant . indépendant . PL . PAMC:
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
 
-dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
-  question: |
+? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée
+: question: |
     Quel est la part de votre chiffre d'affaires liée à une activité non
     conventionnée (estimation) ?
   par défaut: 0%
@@ -383,8 +383,8 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     (aide à la télétransmission, indemnisation, indemnisation de la formation
     continue, prime à l’installation, ...)
 
-dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
-  type: notification
+? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification
+: type: notification
   sévérité: avertissement
   formule: proportion recette activité non conventionnée > 100%
   description: |
@@ -529,8 +529,8 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
 
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
-dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
-  titre: Participation CPAM aux allocations familiales
+? dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM
+: titre: Participation CPAM aux allocations familiales
   formule:
     produit:
       assiette: cotisations et contributions . allocations familiales
@@ -546,8 +546,8 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
             - montant: 60%
     arrondi: oui
 
-dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
-  applicable si: métier = 'santé . chirurgien-dentiste'
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste
+: applicable si: métier = 'santé . chirurgien-dentiste'
   titre: assiette participation CPAM (chirurgien dentiste)
   remplace: assiette participation CPAM
   formule:
@@ -558,8 +558,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-chirurgien-dentiste/assiette-de-participation-de-la.html
     Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
 
-dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
-  description: |
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf
+: description: |
     Le « taux Urssaf » (taux UR) permet de calculer la part de votre
     cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
@@ -578,8 +578,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   unité: ''
   par défaut: 1
 
-dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
-  formule: taux Urssaf >= 100
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification
+: formule: taux Urssaf >= 100
   type: notification
   sévérité: avertissement
   description: Le taux Urssaf doit être inférieur à 100
@@ -848,8 +848,8 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
-  formule:
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle
+: formule:
     barème:
       assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
@@ -860,8 +860,8 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
           plafond: 5
     arrondi: oui
 
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire:
-  formule:
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire
+: formule:
     produit:
       assiette: 2960.40 €/an
       facteur:
@@ -871,16 +871,16 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
           - sinon: 100%
     arrondi: oui
 
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
-  formule: assiette des cotisations < 85% * plafond sécurité sociale temps plein
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable
+: formule: assiette des cotisations < 85% * plafond sécurité sociale temps plein
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
     plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   type: notification
 
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
-  applicable si: réduction applicable
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction
+: applicable si: réduction applicable
   description: |
     Les affiliés dont les revenus professionnels nets sur l'année N-1 sont inférieurs à 85
     % du PASS en vigueur au 1er janvier de l’année considérée (34 966 € en 2020)
@@ -927,18 +927,18 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
       - proportionnelle
     arrondi: oui
 
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
-  formule: 1440.60 €/an
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
-  formule:
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire
+: formule: 1440.60 €/an
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle
+: formule:
     produit:
       assiette: assiette des cotisations
       plafond: 5 * plafond sécurité sociale temps plein
       taux: 0.725 %
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
-  titre: Participation CPAM à la prestation complémentaire vieillesse
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM
+: titre: Participation CPAM à la prestation complémentaire vieillesse
   formule:
     somme:
       - 2 * forfaitaire
@@ -955,8 +955,8 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
     faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
-  formule: 23 €/consultation
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation
+: formule: 23 €/consultation
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
   applicable si: métier = 'santé . sage-femme'
@@ -1074,8 +1074,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire
           plafond: 5 ans
         - montant: 1586 €/an
 
-dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle:
-  formule:
+? dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle
+: formule:
     produit:
       taux: 3.1%
       assiette: assiette des cotisations

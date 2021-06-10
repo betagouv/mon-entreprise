@@ -27,6 +27,7 @@ declare global {
 
 export default function ChômagePartiel() {
 	const inIframe = useContext(IsEmbeddedContext)
+	const [animationDisabled, setAnimationDisabled] = useState(false)
 	useEffect(() => {
 		if (inIframe) {
 			return
@@ -56,6 +57,10 @@ export default function ChômagePartiel() {
 				</ul>
 			</Warning>
 			<Simulation
+				userWillExport={() => {
+					setAnimationDisabled(true)
+				}}
+				disableAnimation={animationDisabled}
 				results={<ExplanationSection />}
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>

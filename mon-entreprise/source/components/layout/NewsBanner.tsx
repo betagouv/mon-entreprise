@@ -30,7 +30,7 @@ export default function NewsBanner() {
 		lastViewedRelease !== lastRelease.name && i18n.language === 'fr'
 
 	return showBanner ? (
-		<div className="ui__ banner news">
+		<div className="ui__ banner news print-display-none">
 			<span>
 				{emoji('✨')} Découvrez les nouveautés {determinant(lastRelease.name)}
 				<Link to={sitePaths.nouveautés}>{lastRelease.name.toLowerCase()}</Link>

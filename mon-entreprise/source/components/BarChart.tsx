@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { animated, config, useSpring } from 'react-spring'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
@@ -51,6 +51,7 @@ type BarChartBranchProps = {
 	maximum: number
 	description?: string
 	unit?: string
+	disableAnimation: boolean
 }
 
 export default function BarChartBranch({
@@ -60,11 +61,11 @@ export default function BarChartBranch({
 	maximum,
 	description,
 	unit,
+	disableAnimation,
 }: BarChartBranchProps) {
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5,
 	})
-	const { color } = useContext(ThemeColorsContext)
 	const numberToPlot = brancheInViewport ? value : 0
 	const styles = useSpring({
 		config: ANIMATION_SPRING,
@@ -74,12 +75,53 @@ export default function BarChartBranch({
 		},
 	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
 
-	return (
+	return !disableAnimation ? (
 		<animated.div
 			ref={intersectionRef}
 			className="distribution-chart__item"
 			style={{ opacity: styles.opacity }}
 		>
+			<InnerBarChartBranch
+				value={numberToPlot}
+				maximum={maximum}
+				title={title}
+				unit={unit}
+				icon={icon}
+				description={description}
+			/>
+		</animated.div>
+	) : (
+		<InnerBarChartBranch
+			value={value}
+			maximum={maximum}
+			title={title}
+			unit={unit}
+			icon={icon}
+			description={description}
+		/>
+	)
+}
+
+type InnerBarChartBranchProps = {
+	title: React.ReactNode
+	icon?: string
+	maximum: number
+	description?: string
+	unit?: string
+	value: number
+}
+
+function InnerBarChartBranch({
+	value,
+	title,
+	icon,
+	maximum,
+	description,
+	unit,
+}: InnerBarChartBranchProps) {
+	const { color } = useContext(ThemeColorsContext)
+	return (
+		<>
 			{icon && <BranchIcon icon={icon} />}
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
@@ -90,12 +132,12 @@ export default function BarChartBranch({
 				<ChartItemBar
 					style={{
 						backgroundColor: color,
-						flex: styles.flex,
+						flex: value / maximum,
 					}}
-					numberToPlot={numberToPlot}
+					numberToPlot={value}
 					unit={unit}
 				/>
 			</div>
-		</animated.div>
+		</>
 	)
 }

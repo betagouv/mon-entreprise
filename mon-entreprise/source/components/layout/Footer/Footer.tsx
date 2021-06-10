@@ -51,7 +51,7 @@ export default function Footer() {
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (
-		<div>
+		<div className="ui__ print-display-none">
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link

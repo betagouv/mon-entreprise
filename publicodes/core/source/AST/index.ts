@@ -295,14 +295,16 @@ const traversePlancherNode: TraverseFunction<'plancher'> = (fn, node) => ({
 	},
 })
 
-const traverseRésoudreRéférenceCirculaireNode: TraverseFunction<'résoudre référence circulaire'> =
-	(fn, node) => ({
-		...node,
-		explanation: {
-			...node.explanation,
-			valeur: fn(node.explanation.valeur),
-		},
-	})
+const traverseRésoudreRéférenceCirculaireNode: TraverseFunction<'résoudre référence circulaire'> = (
+	fn,
+	node
+) => ({
+	...node,
+	explanation: {
+		...node.explanation,
+		valeur: fn(node.explanation.valeur),
+	},
+})
 
 const traversePlafondNode: TraverseFunction<'plafond'> = (fn, node) => ({
 	...node,

@@ -39,10 +39,9 @@ export default function SchemeComparaison({
 	const [conversationStarted, setConversationStarted] = useState(
 		!!Object.keys(useSelector(situationSelector)).length
 	)
-	const startConversation = useCallback(
-		() => setConversationStarted(true),
-		[setConversationStarted]
-	)
+	const startConversation = useCallback(() => setConversationStarted(true), [
+		setConversationStarted,
+	])
 
 	const situation = useSelector(situationSelector)
 	const displayResult =

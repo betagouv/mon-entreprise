@@ -146,8 +146,8 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
     moyenne: 8 €/titre-restaurant
     max exonéré: 11.10 €/titre-restaurant
 
-contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
-  description: >-
+? contrat salarié . frais professionnels . titres-restaurant . taux participation employeur
+: description: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
   question: Quelle est la participation de l'employeur ?
@@ -156,14 +156,14 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
     50%: 50 %
     60%: 60 %
 
-contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min:
-  type: notification
+? contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min
+: type: notification
   sévérité: avertissement
   formule: taux participation employeur < 50%
   description: La part employeur du titre-restaurant doit être de 50% au minimum
 
-contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
-  type: notification
+? contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max
+: type: notification
   sévérité: avertissement
   formule: taux participation employeur > 60%
   description: La part employeur du titre-restaurant doit être de 60% au maximum
@@ -172,8 +172,8 @@ contrat salarié . frais professionnels . abonnement transports publics:
   icônes: 🚍
   valeur: oui
 
-contrat salarié . frais professionnels . abonnement transports publics . montant:
-  titre: Abonnement aux transports publics
+? contrat salarié . frais professionnels . abonnement transports publics . montant
+: titre: Abonnement aux transports publics
   question: Quel montant le salarié dépense-t-il en abonnement aux transports publics chaque mois ?
   unité: €/mois
   par défaut: 0 €/mois
@@ -193,11 +193,11 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
     Tisséo: 42.50 €/mois
     TBM: 42.20 €/mois
 
-contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
-  valeur: 50%
+? contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur
+: valeur: 50%
 
-contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge:
-  titre: Taux de prise en charge
+? contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge
+: titre: Taux de prise en charge
   valeur:
     produit:
       assiette:
@@ -206,8 +206,8 @@ contrat salarié . frais professionnels . abonnement transports publics . taux d
           - 50%
       taux: 2 * taux de participation employeur
 
-contrat salarié . frais professionnels . abonnement transports publics . prise en charge:
-  titre: Abonnement transports publics, part prise en charge par l'employeur (déductible)
+? contrat salarié . frais professionnels . abonnement transports publics . prise en charge
+: titre: Abonnement transports publics, part prise en charge par l'employeur (déductible)
   unité: €/mois
   valeur: taux de prise en charge * montant
 
@@ -224,14 +224,14 @@ contrat salarié . frais professionnels . transports personnels . montant:
       - carburant faible émission . montant
       - forfait mobilités durables . montant
 
-contrat salarié . frais professionnels . transports personnels . part déductible:
-  valeur:
+? contrat salarié . frais professionnels . transports personnels . part déductible
+: valeur:
     somme:
       - carburant faible émission . part déductible
       - forfait mobilités durables . part déductible
 
-contrat salarié . frais professionnels . transports personnels . proportion déduction:
-  titre: Facteur de proportion de la déductibilité
+? contrat salarié . frais professionnels . transports personnels . proportion déduction
+: titre: Facteur de proportion de la déductibilité
   valeur:
     produit:
       assiette:
@@ -242,11 +242,11 @@ contrat salarié . frais professionnels . transports personnels . proportion dé
   références:
     Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
 
-contrat salarié . frais professionnels . transports personnels . carburant faible émission:
-  valeur: oui
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission
+: valeur: oui
 
-contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant:
-  titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant
+: titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène
   question: Quel montant l'employeur prend-il en charge des dépenses en carburant pour véhicule électrique, hybride rechargeable ou hydrogènes?
   unité: €/an
   par défaut: 0 €/an
@@ -266,8 +266,8 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
     Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
     Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
-contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible:
-  titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène (part déductible)
+? contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible
+: titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène (part déductible)
   unité: €/an
   valeur: montant
   plafond:
@@ -276,11 +276,11 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
       - valeur: proportion déduction * 500€/an
         abattement: abonnement transports publics . prise en charge
 
-contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
-  valeur: oui
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables
+: valeur: oui
 
-contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant:
-  titre: Prise en charge des frais de transports forfait mobilités durables
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant
+: titre: Prise en charge des frais de transports forfait mobilités durables
   question: Quel montant l'employeur prend-il en charge dans le cadre du forfait mobilités durables ?
   unité: €/an
   par défaut: 0 €/an
@@ -312,8 +312,8 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
     Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
     Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
-contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible:
-  titre: Prise en charge des frais de transports forfait mobilités durables (part déductible)
+? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible
+: titre: Prise en charge des frais de transports forfait mobilités durables (part déductible)
   unité: €/an
   valeur: montant
   plafond:
@@ -377,8 +377,8 @@ contrat salarié . activité partielle . heures travaillées:
     20 h/semaine: 86.6666 heures/mois
     10 h/semaine: 43.3333 heures/mois
 
-contrat salarié . activité partielle . heures travaillées . contrôle temps de travail:
-  type: notification
+? contrat salarié . activité partielle . heures travaillées . contrôle temps de travail
+: type: notification
   sévérité: avertissement
   formule: heures travaillées > temps de travail . temps contractuel
   description: >-
@@ -455,8 +455,8 @@ contrat salarié . activité partielle . indemnités . conventionnelle:
     Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
     Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
 
-contrat salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation:
-  applicable si:
+? contrat salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation
+: applicable si:
     toutes ces conditions:
       - indemnités . conventionnelle > 0
       - indemnités . conventionnelle + indemnités . base > 3.15 * SMIC
@@ -496,8 +496,8 @@ contrat salarié . activité partielle . indemnisation entreprise:
         avec:
           rémunération . brut de base: 4.5 * SMIC
 
-contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
-  description: >-
+? contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation
+: description: >-
     Depuis le 1er juin, le taux d'indemnisation de l'entreprise passe à 60%.
     L'indemnité versée à l'employé reste inchangée et c'est donc l'entreprise
     qui devra prendre en charge la différence.
@@ -613,8 +613,8 @@ contrat salarié . déduction forfaitaire spécifique . profession . journaliste
     Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
     Critiques dramatiques et musicaux.
 
-contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
-  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+? contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux
+: applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
   remplace:
     - règle: vieillesse . employeur . plafonnée . taux
       par: vieillesse . employeur . plafonnée . taux * réduction de taux
@@ -635,29 +635,29 @@ contrat salarié . déduction forfaitaire spécifique . profession . journaliste
       par: ATMP . taux minimum * réduction de taux
   formule: 80%
 
-contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
-  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+? contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal
+: applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
   remplace: rémunération . net imposable
   titre: net imposable journaliste
   formule:
     valeur: rémunération . net imposable
     abattement: 7650€/an
 
-contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment:
-  icônes: 👷‍♂️
+? contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment
+: icônes: 👷‍♂️
   description: >-
     Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
     l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
     travaillent en usine ou en atelier.
 
-contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien:
-  icônes: 🎼
+? contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien
+: icônes: 🎼
   description: >-
     Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
     théâtre
 
-contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant:
-  icônes: ✈
+? contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant
+: icônes: ✈
   description: >-
     Concerne les pilotes, radios, mécaniciens navigants des compagnies de
     transports aériens ; pilotes et mécaniciens employés par les maisons de
@@ -1482,8 +1482,8 @@ contrat salarié . rémunération . primes . fin d'année:
       assiette: assiette de vérification du SMIC * temps de travail . quotité de travail / 1 an
       facteur: prime de fin d'année en mois
 
-contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois:
-  applicable si: treizième mois
+? contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois
+: applicable si: treizième mois
   formule: 13 mois - 1 an
   note: >
     Certaines entreprises proposent une prime de fin d'année sur une base de
@@ -1674,8 +1674,8 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
-contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
-  question: >
+? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
+: question: >
     Combien de repas par mois sont payés par l'entreprise ?
   par défaut: 21 repas/mois
   suggestions:
@@ -1837,8 +1837,8 @@ contrat salarié . rémunération . net imposable:
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
-  unité: €/mois
+? contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
+: unité: €/mois
   formule:
     valeur:
       somme:
@@ -1961,8 +1961,8 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
     urssaf.fr (cumul réduction générale): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/les-regles-relatives-au-cumul.html
     urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
 
-contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
-  applicable si: entreprise . effectif < 20
+? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
+: applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
   formule:
     produit:
@@ -1982,8 +1982,8 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
-contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
-  unité: '%'
+? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
+: unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
     valeur:
@@ -2072,8 +2072,8 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
-  description: >-
+? contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis
+: description: >-
     Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
     gouvernement met en place une aide exceptionnelle au recrutement des
     apprentis.
@@ -2135,8 +2135,8 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
-contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
-  description: |
+? contrat salarié . aides employeur . aide à l'embauche senior professionnalisation
+: description: |
     Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
   applicable si: professionnalisation . salarié de 45 ans et plus
@@ -2213,8 +2213,8 @@ contrat salarié . temps de travail:
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
-contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
-  non applicable si: aides employeur . emploi franc
+? contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés
+: non applicable si: aides employeur . emploi franc
   description: >-
     Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
     à l’embauche visant à favoriser l’emploi des personnes en situation de
@@ -2360,8 +2360,8 @@ contrat salarié . temps de travail . heures complémentaires:
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0 heure/mois
 
-contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents:
-  type: notification
+? contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents
+: type: notification
   formule: heures complémentaires > heures complémentaires . seuil légal
   description: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
 
@@ -2653,8 +2653,8 @@ contrat salarié . retraite supplémentaire . part déductible:
     valeur: retraite supplémentaire . employeur
     abattement: plafond d'exonération sociale employeur
 
-contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
-  formule:
+? contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur
+: formule:
     valeur: 5% * rémunération . brut
     plafond: 5% * plafond sécurité sociale
   références:
@@ -2929,8 +2929,8 @@ contrat salarié . CSG et CRDS . assiette revenu remplacements:
       taux: 98.25%
       assiette: rémunération . revenus de remplacement
 
-contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
-  formule:
+? contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées
+: formule:
     produit:
       assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
       taux: 98.25%
