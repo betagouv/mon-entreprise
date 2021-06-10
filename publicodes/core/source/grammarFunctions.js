@@ -2,23 +2,19 @@
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 import { normalizeDateString } from './date'
 
-export let binaryOperation =
-	(operationType) =>
-	([A, , operator, , B]) => ({
-		[operator]: {
-			operationType,
-			explanation: [A, B],
-		},
-	})
+export let binaryOperation = (operationType) => ([A, , operator, , B]) => ({
+	[operator]: {
+		operationType,
+		explanation: [A, B],
+	},
+})
 
-export let unaryOperation =
-	(operationType) =>
-	([operator, , A]) => ({
-		[operator]: {
-			operationType,
-			explanation: [number([{ value: '0' }]), A],
-		},
-	})
+export let unaryOperation = (operationType) => ([operator, , A]) => ({
+	[operator]: {
+		operationType,
+		explanation: [number([{ value: '0' }]), A],
+	},
+})
 
 export let variable = ([firstFragment, nextFragment], _, reject) => {
 	const fragments = [firstFragment, ...nextFragment].map(({ value }) => value)

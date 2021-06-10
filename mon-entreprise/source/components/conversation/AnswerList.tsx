@@ -17,9 +17,11 @@ type AnswerListProps = {
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const answeredQuestions = (
-		Object.keys(useSelector(situationSelector)) as Array<DottedName>
-	).map((dottedName) => engine.evaluate(engine.getRule(dottedName)))
+	const answeredQuestions = (Object.keys(
+		useSelector(situationSelector)
+	) as Array<DottedName>).map((dottedName) =>
+		engine.evaluate(engine.getRule(dottedName))
+	)
 
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))

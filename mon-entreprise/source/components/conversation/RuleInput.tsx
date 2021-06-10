@@ -225,11 +225,9 @@ export const buildVariantTree = <Name extends string>(
 		variant
 			? {
 					canGiveUp,
-					children: (
-						variant.explanation as (ASTNode & {
-							nodeKind: 'reference'
-						})[]
-					).map(({ dottedName }) =>
+					children: (variant.explanation as (ASTNode & {
+						nodeKind: 'reference'
+					})[]).map(({ dottedName }) =>
 						buildVariantTree(engine, dottedName as Name)
 					),
 			  }

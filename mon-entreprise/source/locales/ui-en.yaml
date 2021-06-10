@@ -71,6 +71,8 @@ Exemples: Examples
 Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
+ExportSimulation:
+  Banner: "To save this simulation: <2>Print or export as PDF</2>"
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
@@ -1354,6 +1356,10 @@ pages:
         title: PAMC diet simulators
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
+    print-info:
+      recover: Find it, as well as other tools to help create and manage a business on <2>mycompanyinfrance.fr</2>
+      date: This simulation was performed on
+      title: Would you like to recover this simulation?
     profession-libérale:
       meta:
         description: Net Income Calculation for Self-Employed Persons in Liberal Income

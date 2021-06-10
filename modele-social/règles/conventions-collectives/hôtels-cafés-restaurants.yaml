@@ -9,8 +9,8 @@ contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
     règle: rémunération . avantages en nature . nourriture . montant . repas forfaitaire
   formule: 3.62 €/repas
 
-contrat salarié . convention collective . HCR . majoration heures supplémentaires:
-  remplace: temps de travail . heures supplémentaires . majoration
+? contrat salarié . convention collective . HCR . majoration heures supplémentaires
+: remplace: temps de travail . heures supplémentaires . majoration
   formule:
     barème:
       assiette: temps de travail . heures supplémentaires

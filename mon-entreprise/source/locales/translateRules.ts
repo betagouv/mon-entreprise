@@ -41,15 +41,17 @@ export const attributesToTranslate = [
 	'identifiant court',
 ]
 
-const translateProp =
-	(lang: string, translation: Translation) => (rule: Rule, prop: string) => {
-		if (prop === 'suggestions' && rule?.suggestions) {
-			return translateSuggestion(prop, rule, translation, lang)
-		}
-		let propTrans = translation[prop + '.' + lang]
-		propTrans = propTrans?.replace(/^\[automatic\] /, '')
-		return propTrans ? assoc(prop, propTrans, rule) : rule
+const translateProp = (lang: string, translation: Translation) => (
+	rule: Rule,
+	prop: string
+) => {
+	if (prop === 'suggestions' && rule?.suggestions) {
+		return translateSuggestion(prop, rule, translation, lang)
 	}
+	let propTrans = translation[prop + '.' + lang]
+	propTrans = propTrans?.replace(/^\[automatic\] /, '')
+	return propTrans ? assoc(prop, propTrans, rule) : rule
+}
 
 function translateRule<Names extends string>(
 	lang: string,

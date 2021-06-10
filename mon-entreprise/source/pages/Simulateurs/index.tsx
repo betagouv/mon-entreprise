@@ -59,7 +59,7 @@ export default function Simulateurs() {
 					{(!lastState || lastState?.fromSimulateurs) && (
 						<Link
 							to={sitePaths.simulateurs.index}
-							className="ui__ simple small push-left button"
+							className="ui__ simple small push-left button print-display-none"
 						>
 							← <Trans>Voir les autres simulateurs</Trans>
 						</Link>

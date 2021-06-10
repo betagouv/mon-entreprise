@@ -2,35 +2,33 @@ import { Evaluation, Unit } from './AST/types'
 import { simplifyNodeUnit } from './nodeUnits'
 import { formatUnit, serializeUnit } from './units'
 
-export const numberFormatter =
-	({
+export const numberFormatter = ({
+	style,
+	maximumFractionDigits = 2,
+	minimumFractionDigits = 0,
+	language,
+}: {
+	style?: string
+	maximumFractionDigits?: number
+	minimumFractionDigits?: number
+	language?: string
+}) => (value: number) => {
+	// When we format currency we don't want to display a single decimal digit
+	// ie 8,1€ but we want to display 8,10€
+	const adaptedMinimumFractionDigits =
+		style === 'currency' &&
+		maximumFractionDigits >= 2 &&
+		minimumFractionDigits === 0 &&
+		!Number.isInteger(value)
+			? 2
+			: minimumFractionDigits
+	return Intl.NumberFormat(language, {
 		style,
-		maximumFractionDigits = 2,
-		minimumFractionDigits = 0,
-		language,
-	}: {
-		style?: string
-		maximumFractionDigits?: number
-		minimumFractionDigits?: number
-		language?: string
-	}) =>
-	(value: number) => {
-		// When we format currency we don't want to display a single decimal digit
-		// ie 8,1€ but we want to display 8,10€
-		const adaptedMinimumFractionDigits =
-			style === 'currency' &&
-			maximumFractionDigits >= 2 &&
-			minimumFractionDigits === 0 &&
-			!Number.isInteger(value)
-				? 2
-				: minimumFractionDigits
-		return Intl.NumberFormat(language, {
-			style,
-			currency: 'EUR',
-			maximumFractionDigits,
-			minimumFractionDigits: adaptedMinimumFractionDigits,
-		}).format(value)
-	}
+		currency: 'EUR',
+		maximumFractionDigits,
+		minimumFractionDigits: adaptedMinimumFractionDigits,
+	}).format(value)
+}
 
 export const formatCurrency = (
 	nodeValue: number | undefined,
@@ -170,10 +168,9 @@ export function serializeValue(
 	{ nodeValue, unit }: { nodeValue: Evaluation; unit?: Unit },
 	{ format }: { format: formatUnit }
 ) {
-	const serializedUnit = (
-		unit && typeof nodeValue === 'number'
-			? serializeUnit(unit, nodeValue, format)
-			: ''
+	const serializedUnit = (unit && typeof nodeValue === 'number'
+		? serializeUnit(unit, nodeValue, format)
+		: ''
 	)?.replace(/\s*\/\s*/g, '/')
 	return `${nodeValue} ${serializedUnit}`.trim()
 }
