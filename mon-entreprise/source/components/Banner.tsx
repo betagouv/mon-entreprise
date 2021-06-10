@@ -10,6 +10,7 @@ type BannerProps = {
 	hidden?: boolean
 	hideAfterFirstStep?: boolean
 	icon?: string
+	className?: string
 }
 
 export default function Banner({
@@ -17,13 +18,14 @@ export default function Banner({
 	hidden: hiddenProp = false,
 	hideAfterFirstStep = true,
 	icon,
+	className,
 }: BannerProps) {
 	const hiddenState = useSelector(firstStepCompletedSelector)
 
 	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
 	return !hidden ? (
-		<Animate.fadeIn>
-			<div className="ui__ banner">
+		<Animate.fadeIn className={className}>
+			<div className={'ui__ banner '+ className} >
 				{icon && emoji(icon)}
 				<div className="ui__ banner-content">{children}</div>
 			</div>
