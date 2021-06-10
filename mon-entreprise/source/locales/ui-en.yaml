@@ -71,6 +71,8 @@ Exemples: Examples
 Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
+ExportSimulation:
+  Banner: "To save this simulation: <2>Print or export as PDF</2>"
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data

@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
+import ExportSimulationBanner from 'Components/ExportSimulationBanner'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -46,6 +47,7 @@ export default function Simulation({
 					<Animate.fromTop>
 						{results}
 						<ShareSimulationBanner />
+						<ExportSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
 						<br />
 						<div className="ui__ full-width">
