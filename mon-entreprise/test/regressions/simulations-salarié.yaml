@@ -313,7 +313,7 @@ frais pro - transports personnels seul:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
     contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
     contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
-    contrat salarié . déduction forfaitaire spécifique . application: oui
+    contrat salarié . déduction forfaitaire spécifique: oui
     contrat salarié . déduction forfaitaire spécifique . taux: 20%
 
 
@@ -333,21 +333,27 @@ frais pro - abo transports + transports personnels:
 
 frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . profession spécifique: "'journaliste'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . profession spécifique: "'ouvrier du bâtiment'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'ouvrier du bâtiment'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . profession spécifique: "'artiste musicien'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'artiste musicien'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . profession spécifique: "'pilote de ligne ou personnel navigant'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'pilote de ligne ou personnel navigant'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . profession spécifique: "'journaliste'"
-    contrat salarié . déduction forfaitaire spécifique . application: non
+    contrat salarié . déduction forfaitaire spécifique: non
+    contrat salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
   # Test des taux réduits journalistes et abattement fiscal
   - contrat salarié . rémunération . brut de base: 1700 €/mois
-    contrat salarié . profession spécifique: "'journaliste'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
   - contrat salarié . rémunération . brut de base: 2600 €/mois
-    contrat salarié . profession spécifique: "'journaliste'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
 
 activité partielle:
   - contrat salarié . rémunération . brut de base: 1560 €/mois
@@ -368,7 +374,8 @@ activité partielle:
     contrat salarié . temps de travail . temps partiel . heures par semaine: 28 heures/semaine
   - contrat salarié . rémunération . brut de base: 4000 €/mois
     contrat salarié . activité partielle: oui
-    contrat salarié . profession spécifique: "'journaliste'"
+    contrat salarié . déduction forfaitaire spécifique: oui
+    contrat salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . activité partielle: oui
     contrat salarié . activité partielle . convention syntec: oui
