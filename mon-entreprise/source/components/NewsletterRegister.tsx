@@ -61,7 +61,7 @@ export default function NewsletterRegister() {
 	}
 
 	return (
-		<>
+		<div className='print-display-none'>
 			<h2>
 				<Trans i18nKey="newsletter.register.titre">Restez au courant</Trans>
 			</h2>
@@ -97,6 +97,6 @@ export default function NewsletterRegister() {
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	)
 }

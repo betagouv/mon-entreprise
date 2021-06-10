@@ -118,7 +118,7 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 		return null
 	}
 	return (
-		<section>
+		<section className='print-display-none'>
 			<h2 className="ui__ h h3">
 				<Trans>Ressources utiles</Trans>
 			</h2>

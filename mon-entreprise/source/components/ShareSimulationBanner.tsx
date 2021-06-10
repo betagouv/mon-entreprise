@@ -46,48 +46,50 @@ export default function ShareSimulationBanner() {
 	}
 
 	return (
-		<Banner hideAfterFirstStep={false} icon="💬">
-			{opened ? (
-				<Animate.fromTop>
-					<div>
-						<span
-							className="ui__ close-button"
-							style={{ float: 'right' }}
-							onClick={() => setOpened(false)}
+		<div className="print-display-none">
+			<Banner hideAfterFirstStep={false} icon="💬">
+				{opened ? (
+					<Animate.fromTop>
+						<div>
+							<span
+								className="ui__ close-button"
+								style={{ float: 'right' }}
+								onClick={() => setOpened(false)}
+							>
+								&times;
+							</span>
+							<h3>
+								{t('shareSimulation.modal.title', 'Votre lien de partage')}{' '}
+							</h3>
+							<p className="ui__ notice">
+								<Trans key="shareSimulation.modal.notice">
+									Voici le lien que vous pouvez envoyer pour accéder à votre
+									simulation.
+								</Trans>
+							</p>
+							<ShareSimulationPopup url={getUrl()} />
+						</div>
+					</Animate.fromTop>
+				) : (
+					<Trans i18nKey="shareSimulation.banner">
+						Pour partager cette simulation :{' '}
+						<LinkButton
+							onClick={() => {
+								tracker.click.set({
+									chapter1: 'feature:partage',
+									type: 'action',
+									name: 'démarré',
+								})
+								tracker.dispatch()
+								startSharing()
+							}}
 						>
-							&times;
-						</span>
-						<h3>
-							{t('shareSimulation.modal.title', 'Votre lien de partage')}{' '}
-						</h3>
-						<p className="ui__ notice">
-							<Trans key="shareSimulation.modal.notice">
-								Voici le lien que vous pouvez envoyer pour accéder à votre
-								simulation.
-							</Trans>
-						</p>
-						<ShareSimulationPopup url={getUrl()} />
-					</div>
-				</Animate.fromTop>
-			) : (
-				<Trans i18nKey="shareSimulation.banner">
-					Pour partager cette simulation :{' '}
-					<LinkButton
-						onClick={() => {
-							tracker.click.set({
-								chapter1: 'feature:partage',
-								type: 'action',
-								name: 'démarré',
-							})
-							tracker.dispatch()
-							startSharing()
-						}}
-					>
-						Générer un lien dédié
-					</LinkButton>
-				</Trans>
-			)}
-		</Banner>
+							Générer un lien dédié
+						</LinkButton>
+					</Trans>
+				)}
+			</Banner>
+		</div>
 	)
 }
 

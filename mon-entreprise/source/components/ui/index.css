@@ -214,3 +214,9 @@ input.ui__::placeholder {
 	opacity: 0.6;
 	color: grey;
 }
+
+@media print {
+	.print-display-none {
+		display: none !important;
+	}
+}

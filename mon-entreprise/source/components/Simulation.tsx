@@ -70,7 +70,7 @@ export default function Simulation({
 									</>
 								)}
 								<div
-									className="ui__ side-block"
+									className="ui__ side-block print-display-none"
 									css={!explanations ? 'justify-content: center;' : ''}
 								>
 									<div
@@ -106,7 +106,7 @@ export function Questions({
 	const progress = useSimulationProgress()
 
 	return (
-		<>
+		<div className='print-display-none'>
 			<section className="ui__ full-width lighter-bg">
 				<div className="ui__ container">
 					<div
@@ -143,6 +143,6 @@ export function Questions({
 			{progress < 1 && (
 				<Progress progress={progress} className="ui__ full-width" />
 			)}
-		</>
+		</div>
 	)
 }
