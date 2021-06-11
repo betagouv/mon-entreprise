@@ -244,7 +244,7 @@ export function getSimulatorsData({
 					'Entreprise individuelle (EI) : simulateur de revenus'
 				),
 			},
-			component: EntrepriseIndividuelle,
+			component:() => {return (<EntrepriseIndividuelle disableAnimation={false}/>)},
 			path: sitePaths.simulateurs['entreprise-individuelle'],
 			shortName: t('pages.simulateurs.ei.shortname', 'EI'),
 			title: t(
@@ -345,7 +345,7 @@ export function getSimulatorsData({
 					'EIRL : simulateur de revenus pour dirigeant'
 				),
 			},
-			component: IndépendantSimulation,
+			component: () => {return (<IndépendantSimulation disableAnimation={false}/>)},
 			path: sitePaths.simulateurs.eirl,
 			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
@@ -386,7 +386,7 @@ export function getSimulatorsData({
 				return (
 					<>
 						<SimulateurWarning simulateur="sasu" />
-						<Simulation explanations={<SalaryExplanation />} />
+						<Simulation userWillExport={()=>{}} explanations={<SalaryExplanation disableAnimation={false} />} />
 					</>
 				)
 			},
@@ -469,7 +469,7 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs.eurl,
 			shortName: t('pages.simulateurs.sasu.shortname', 'EURL'),
 			title: t('pages.simulateurs.sasu.title', "Simulateur d'EURL"),
-			component: IndépendantSimulation,
+			component: () => {return (<IndépendantSimulation disableAnimation={false}/>)},
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {
@@ -594,7 +594,7 @@ export function getSimulatorsData({
 					"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
 				),
 			},
-			component: IndépendantSimulation,
+			component: () => {return (<IndépendantSimulation disableAnimation={false}/>)},
 			nextSteps: ['comparaison-statuts', 'is'],
 		},
 
@@ -844,7 +844,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.médecin.title',
 				'Simulateur de revenus pour médecin en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		'chirurgien-dentiste': {
 			config: dentisteConfig,
@@ -863,7 +863,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.chirurgien-dentiste.title',
 				'Simulateur de revenus pour chirurgien-dentiste en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		'sage-femme': {
 			config: sageFemmeConfig,
@@ -879,7 +879,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.sage-femme.title',
 				'Simulateur de revenus pour sage-femme en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		'auxiliaire-médical': {
 			config: auxiliaireConfig,
@@ -899,7 +899,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		avocat: {
 			config: avocatConfig,
@@ -915,7 +915,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.avocat.title',
 				'Simulateur de revenus pour avocat en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		'expert-comptable': {
 			config: expertComptableConfig,
@@ -934,7 +934,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.expert-comptable.title',
 				'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		'profession-libérale': {
 			config: professionLibéraleConfig,
@@ -962,7 +962,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.profession-libérale.title',
 				'Simulateur de revenus pour profession libérale'
 			),
-			component: IndépendantPLSimulation,
+			component: () => {return (<IndépendantPLSimulation disableAnimation={false}/>)},
 		},
 		pamc: {
 			private: true,

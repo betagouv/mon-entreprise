@@ -10,7 +10,11 @@ import './PaySlip'
 import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 
-export default function Distribution() {
+interface DistributionProps {
+	disableAnimation: boolean
+}
+
+export default function Distribution({disableAnimation,}: DistributionProps)  {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (getCotisationsBySection(
@@ -37,6 +41,7 @@ export default function Distribution() {
 					dottedName={sectionName}
 					value={value}
 					maximum={maximum}
+					disableAnimation={disableAnimation}
 				/>
 			))}
 		</div>
@@ -47,8 +52,8 @@ type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
 	maximum: number
-
 	icon?: string
+	disableAnimation: boolean
 }
 
 export function DistributionBranch({
@@ -56,6 +61,7 @@ export function DistributionBranch({
 	value,
 	icon,
 	maximum,
+	disableAnimation,
 }: DistributionBranchProps) {
 	const branche = useContext(EngineContext).getRule(dottedName)
 
@@ -67,6 +73,7 @@ export function DistributionBranch({
 			icon={icon ?? branche.rawNode.icônes}
 			description={branche.rawNode.résumé}
 			unit="€"
+			disableAnimation={disableAnimation}
 		/>
 	)
 }

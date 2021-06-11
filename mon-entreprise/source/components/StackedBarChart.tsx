@@ -83,7 +83,31 @@ export function roundedPercentages(values: Array<number>) {
 	)
 }
 
-type StackedBarChartProps = {
+type StackedBarChartProps =
+	InnerStackedBarChartProps
+	& { disableAnimation: boolean }
+
+export function StackedBarChart({
+																	data,
+																	disableAnimation
+																}: StackedBarChartProps) {
+	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
+
+	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+	return (
+		!disableAnimation ?
+			<animated.div ref={intersectionRef} style={styles}>
+				<InnerStackedBarChart data={data} />
+			</animated.div>
+			:
+			<InnerStackedBarChart data={data} />
+
+	)
+}
+
+type InnerStackedBarChartProps = {
 	data: Array<{
 		color?: string
 		value: EvaluatedNode['nodeValue']
@@ -92,10 +116,7 @@ type StackedBarChartProps = {
 	}>
 }
 
-export function StackedBarChart({ data }: StackedBarChartProps) {
-	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
-		threshold: 0.5,
-	})
+function InnerStackedBarChart({ data }: InnerStackedBarChartProps) {
 	const percentages = roundedPercentages(
 		data.map((d) => (typeof d.value === 'number' && d.value) || 0)
 	)
@@ -103,10 +124,8 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 		...data,
 		percentage: percentages[index],
 	}))
-
-	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
 	return (
-		<animated.div ref={intersectionRef} style={styles}>
+		<>
 			<BarStack>
 				{dataWithPercentage
 					// <BarItem /> has a border so we don't want to display empty bars
@@ -131,15 +150,16 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 					</BarStackLegendItem>
 				))}
 			</BarStackLegend>
-		</animated.div>
+		</>
 	)
 }
 
 type StackedRulesChartProps = {
 	data: Array<{ color?: string; dottedName: Names; title?: string }>
+	disableAnimation: boolean
 }
 
-export default function StackedRulesChart({ data }: StackedRulesChartProps) {
+export default function StackedRulesChart({ data, disableAnimation }: StackedRulesChartProps) {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
 	return (
@@ -151,6 +171,7 @@ export default function StackedRulesChart({ data }: StackedRulesChartProps) {
 				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
 				color,
 			}))}
+			disableAnimation={disableAnimation}
 		/>
 	)
 }

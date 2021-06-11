@@ -20,7 +20,11 @@ import CotisationsRégularisation from './IndépendantCotisationsRégularisation
 import PLExplanation from './PLExplanation'
 import { DistributionSection } from './SalaryExplanation'
 
-export default function IndépendantExplanation() {
+interface IndépendantExplanationProps{
+	disableAnimation: boolean
+}
+
+export default function IndépendantExplanation({disableAnimation} : IndépendantExplanationProps) {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -38,7 +42,7 @@ export default function IndépendantExplanation() {
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
 					<h2>Répartition du revenu</h2>
-					<StackedBarChart
+					<StackedBarChart disableAnimation={disableAnimation}
 						data={[
 							{
 								dottedName: 'dirigeant . rémunération . nette après impôt',
@@ -96,8 +100,8 @@ export default function IndépendantExplanation() {
 				</ul>
 			</Trans>
 
-			<DistributionSection>
-				<Distribution />
+			<DistributionSection disableAnimation={disableAnimation}>
+				<Distribution disableAnimation={disableAnimation}/>
 			</DistributionSection>
 		</>
 	)
@@ -130,7 +134,11 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	],
 }
 
-function Distribution() {
+interface DistributionProps{
+	disableAnimation: boolean
+}
+
+function Distribution({disableAnimation}:DistributionProps) {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useEngine()
 	const distribution = (Object.entries(
@@ -158,6 +166,7 @@ function Distribution() {
 						dottedName={sectionName}
 						value={value}
 						maximum={maximum}
+						disableAnimation={disableAnimation}
 					/>
 				))}
 			</div>
@@ -169,8 +178,8 @@ type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
 	maximum: number
-
 	icon?: string
+	disableAnimation:boolean
 }
 
 function DistributionBranch({
@@ -178,6 +187,7 @@ function DistributionBranch({
 	value,
 	icon,
 	maximum,
+	disableAnimation,
 }: DistributionBranchProps) {
 	const branche = useEngine().getRule(dottedName)
 
@@ -189,6 +199,7 @@ function DistributionBranch({
 			icon={icon ?? branche.rawNode.icônes}
 			description={branche.rawNode.résumé}
 			unit="€"
+			disableAnimation={disableAnimation}
 		/>
 	)
 }

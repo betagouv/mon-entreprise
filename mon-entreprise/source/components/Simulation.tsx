@@ -22,6 +22,7 @@ type SimulationProps = {
 	children?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 	showPeriodSwitch?: boolean
+	userWillExport:()=>void
 }
 
 export default function Simulation({
@@ -30,6 +31,7 @@ export default function Simulation({
 	children,
 	customEndMessages,
 	showPeriodSwitch,
+	userWillExport,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 
@@ -47,7 +49,7 @@ export default function Simulation({
 					<Animate.fromTop>
 						{results}
 						<ShareSimulationBanner />
-						<ExportSimulationBanner />
+						<ExportSimulationBanner userWillExport={userWillExport}/>
 						<Questions customEndMessages={customEndMessages} />
 						<br />
 						<div className="ui__ full-width">

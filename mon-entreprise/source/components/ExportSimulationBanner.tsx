@@ -3,7 +3,11 @@ import Banner from './Banner'
 import { Trans, useTranslation } from 'react-i18next'
 import { LinkButton } from 'Components/ui/Button'
 
-export default function ExportSimulationBanner() {
+interface ExportSimulationBannerProps {
+	userWillExport:()=>void
+}
+
+export default function ExportSimulationBanner({userWillExport} : ExportSimulationBannerProps) {
 
 	return (
 		<Banner hideAfterFirstStep={false} icon="🖨" className='print-display-none'>
@@ -11,7 +15,7 @@ export default function ExportSimulationBanner() {
 				<Trans i18nKey="ExportSimulation.Banner">
 					Pour conserver cette simulation :{' '}
 					<LinkButton
-						onClick={() => {window.print()}}
+						onClick={() => {userWillExport(); window.print();}}
 					>
 						Imprimer ou sauvegarder en PDF
 					</LinkButton>

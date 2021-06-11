@@ -219,6 +219,7 @@ input.ui__::placeholder {
 	.print-display-none {
 		display: none !important;
 	}
+
 	.ui__.toggle input[type='radio']:checked ~ * {
 		box-shadow: none;
 	}

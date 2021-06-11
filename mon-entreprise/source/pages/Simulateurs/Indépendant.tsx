@@ -10,16 +10,22 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-export function IndépendantPLSimulation() {
+interface IndépendantSimulationProps
+{
+	disableAnimation: boolean
+}
+
+export function IndépendantPLSimulation({disableAnimation}: IndépendantSimulationProps) {
+	const [animationDisabled, setAnimationDisabled] = useState(false);
 	return (
 		<>
 			<SimulateurWarning simulateur="profession-libérale" />
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled} />}>
 				<PeriodSwitch />
 				<IndépendantSimulationGoals />
 			</Simulation>
@@ -27,11 +33,12 @@ export function IndépendantPLSimulation() {
 	)
 }
 
-export function EntrepriseIndividuelle() {
+export function EntrepriseIndividuelle({disableAnimation}: IndépendantSimulationProps) {
+	const [animationDisabled, setAnimationDisabled] = useState(false);
 	return (
 		<>
 			<SimulateurWarning simulateur="entreprise-individuelle" />
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
 				<PeriodSwitch />
 				<IndépendantSimulationGoals />
 			</Simulation>
@@ -39,12 +46,13 @@ export function EntrepriseIndividuelle() {
 	)
 }
 
-export default function IndépendantSimulation() {
+export default function IndépendantSimulation({disableAnimation}: IndépendantSimulationProps) {
 	const sitePaths = useContext(SitePathsContext)
+	const [animationDisabled, setAnimationDisabled] = useState(false);
 	return (
 		<>
 			<SimulateurWarning simulateur="indépendant" />
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
 				<div
 					css={`
 						display: flex;

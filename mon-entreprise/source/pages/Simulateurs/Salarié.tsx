@@ -1,4 +1,5 @@
 import Banner from 'Components/Banner'
+import { useState } from 'react'
 import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -7,12 +8,14 @@ import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 export default function SalariéSimulation() {
+	const [animationDisabled, setAnimationDisabled] = useState(false);
 	const sitePaths = useContext(SitePathsContext)
 
 	return (
 		<>
 			<Simulation
-				explanations={<SalaryExplanation />}
+				userWillExport={()=>{setAnimationDisabled(true)}}
+				explanations={<SalaryExplanation disableAnimation={animationDisabled}/>}
 				customEndMessages={
 					<>
 						<Trans i18nKey="simulation-end.hiring.text">
