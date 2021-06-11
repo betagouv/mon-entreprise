@@ -15,6 +15,7 @@ export default function SalariéSimulation() {
 		<>
 			<Simulation
 				userWillExport={()=>{setAnimationDisabled(true)}}
+				disableAnimation={animationDisabled}
 				explanations={<SalaryExplanation disableAnimation={animationDisabled}/>}
 				customEndMessages={
 					<>

@@ -391,7 +391,9 @@ export function getSimulatorsData({
 				return (
 					<>
 						<SimulateurWarning simulateur="sasu" />
-						<Simulation userWillExport={() => {setAnimationDisabled(true)}} explanations={<SalaryExplanation disableAnimation={animationDisabled} />} />
+						<Simulation userWillExport={() => {setAnimationDisabled(true)}}
+												disableAnimation={animationDisabled}
+												explanations={<SalaryExplanation disableAnimation={animationDisabled} />} />
 					</>
 				)
 			},

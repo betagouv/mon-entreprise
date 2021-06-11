@@ -24,6 +24,7 @@ export default function ArtisteAuteur() {
 			<Simulation userWillExport={() => {
 				setAnimationDisabled(true)
 			}}
+									disableAnimation={animationDisabled}
 									explanations={<CotisationsResult
 										disableAnimation={animationDisabled} />}>
 				<PeriodSwitch />

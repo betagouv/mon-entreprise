@@ -25,7 +25,9 @@ export function IndépendantPLSimulation({disableAnimation}: IndépendantSimulat
 	return (
 		<>
 			<SimulateurWarning simulateur="profession-libérale" />
-			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled} />}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}}
+									disableAnimation={animationDisabled}
+									explanations={<IndépendantExplanation disableAnimation={animationDisabled} />}>
 				<PeriodSwitch />
 				<IndépendantSimulationGoals />
 			</Simulation>
@@ -38,7 +40,9 @@ export function EntrepriseIndividuelle({disableAnimation}: IndépendantSimulatio
 	return (
 		<>
 			<SimulateurWarning simulateur="entreprise-individuelle" />
-			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}}
+									disableAnimation={animationDisabled}
+									explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
 				<PeriodSwitch />
 				<IndépendantSimulationGoals />
 			</Simulation>
@@ -52,7 +56,9 @@ export default function IndépendantSimulation({disableAnimation}: IndépendantS
 	return (
 		<>
 			<SimulateurWarning simulateur="indépendant" />
-			<Simulation userWillExport={()=>{setAnimationDisabled(true)}} explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
+			<Simulation userWillExport={()=>{setAnimationDisabled(true)}}
+									disableAnimation={animationDisabled}
+									explanations={<IndépendantExplanation disableAnimation={animationDisabled}/>}>
 				<div
 					css={`
 						display: flex;

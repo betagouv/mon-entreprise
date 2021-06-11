@@ -15,6 +15,7 @@ export default function AutoEntrepreneur() {
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
 			<Simulation userWillExport={() => {setAnimationDisabled(true)}}
+									disableAnimation={animationDisabled}
 									explanations={<Explanation disableAnimation={animationDisabled} />}>
 				<PeriodSwitch />
 				<SimulationGoals className="plain">
