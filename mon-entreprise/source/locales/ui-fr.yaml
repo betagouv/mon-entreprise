@@ -1008,6 +1008,10 @@ pages:
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: "PAMC : simulateurs de cotisations et de revenu"
+    print-info:
+      recover: Retrouvez la, ainsi que d'autres outils d'aide à la création et à la gestion d'entreprise, sur <2>mon-entreprise.fr</2>
+      date: Cette simulation a été effectuée le 
+      title: Vous souhaitez retrouver cette simulation ?
     profession-libérale:
       meta:
         description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur

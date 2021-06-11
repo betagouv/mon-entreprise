@@ -214,6 +214,11 @@ input.ui__::placeholder {
 	opacity: 0.6;
 	color: grey;
 }
+@media screen{
+	.screen-display-none{
+		display: none !important;
+	}
+}
 
 @media print {
 	.print-display-none {
