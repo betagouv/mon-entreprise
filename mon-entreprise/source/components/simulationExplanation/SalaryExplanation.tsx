@@ -83,7 +83,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void; disableAni
 					</Trans>
 				</h2>
 				<button
-					className="ui__ small simple button"
+					className="ui__ small simple button print-display-none"
 					onClick={props.onSeePayslip}
 				>
 					{emoji('📊')} <Trans>Voir la fiche de paie</Trans>
