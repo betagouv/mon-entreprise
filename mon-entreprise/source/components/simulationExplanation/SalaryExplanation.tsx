@@ -114,7 +114,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void; disableAni
 
 function PaySlipSection() {
 	return (
-		<section>
+		<section className="print-break-avoid">
 			<h2>
 				<Trans>Fiche de paie</Trans>
 			</h2>
@@ -130,7 +130,7 @@ export const DistributionSection = ({
 	disableAnimation:boolean
 	children?: React.ReactNode
 }) => (
-	<section>
+	<section className="print-break-avoid">
 		<h2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
 		</h2>
@@ -144,4 +144,5 @@ export const DistributionSection = ({
 			</Trans>
 		</p>
 	</section>
+
 )

@@ -220,6 +220,19 @@ input.ui__::placeholder {
 		display: none !important;
 	}
 
+	.print-break-avoid
+	{
+		page-break-inside: avoid;
+		break-inside: avoid;
+	}
+
+	.print-background-force
+	{
+		color-adjust: exact !important;
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+	}
+
 	.ui__.toggle input[type='radio']:checked ~ * {
 		box-shadow: none;
 	}

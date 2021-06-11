@@ -126,7 +126,7 @@ function InnerStackedBarChart({ data }: InnerStackedBarChartProps) {
 	}))
 	return (
 		<>
-			<BarStack>
+			<BarStack className="print-background-force">
 				{dataWithPercentage
 					// <BarItem /> has a border so we don't want to display empty bars
 					// (even with width 0).
@@ -141,7 +141,7 @@ function InnerStackedBarChart({ data }: InnerStackedBarChartProps) {
 						/>
 					))}
 			</BarStack>
-			<BarStackLegend>
+			<BarStackLegend className="print-background-force">
 				{dataWithPercentage.map(({ key, percentage, color, legend }) => (
 					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />

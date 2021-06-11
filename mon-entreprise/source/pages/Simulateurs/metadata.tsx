@@ -139,74 +139,76 @@ export function getSimulatorsData({
 			shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.salarié.seo">
-					<h2>Comment calculer le salaire net ?</h2>
-					<p>
-						Lors de l'entretien d'embauche l'employeur propose en général une
-						rémunération exprimée en « brut ». Le montant annoncé inclut ainsi
-						les cotisations salariales, qui servent à financer la protection
-						sociale du salarié et qui sont retranchées du salaire « net » perçu
-						par le salarié.
-					</p>
-					<p>
-						Vous pouvez utiliser notre simulateur pour convertir le{' '}
-						<strong>salaire brut en net</strong> : il vous suffit pour cela
-						saisir la rémunération annoncée dans la case salaire brut. La
-						simulation peut-être affinée en répondant aux différentes questions
-						(CDD, statut cadre, heures supplémentaires, temps partiel,
-						titre-restaurants, etc.).
-					</p>
-					<img
-						src={
-							language === 'fr'
-								? urlIllustrationNetBrut
-								: urlIllustrationNetBrutEn
-						}
-						alt={t(
-							'pages.simulateurs.salarié.alt-image1',
-							'Salaire net (perçu par le salarié) = Salaire brut (inscrit dans le contrat de travail) - cotisations salariales (retraite, csg, etc)'
-						)}
-						css={`
-							width: 100%;
-						`}
-					/>
-					<p>
-						Par ailleurs depuis 2019, l'
-						<RuleLink dottedName="impôt">impôt sur le revenu</RuleLink> est
-						prélevé à la source. Pour ce faire, la direction générale des
-						finances publiques (DGFiP) transmet à l'employeur le taux
-						d'imposition calculé à partir de la déclaration de revenu du
-						salarié. Si ce taux est inconnu, par exemple lors d'une première
-						année d'activité, l'employeur utilise le{' '}
-						<RuleLink dottedName="impôt . taux neutre d'impôt sur le revenu">
-							taux neutre
-						</RuleLink>
-						.
-					</p>
-					<h2>Comment calculer le coût d'embauche ?</h2>
-					<p>
-						Si vous cherchez à embaucher, vous pouvez calculer le coût total de
-						la rémunération de votre salarié, ainsi que les montants de
-						cotisations patronales et salariales correspondant. Cela vous permet
-						de définir le niveau de rémunération en connaissant le montant
-						global de charge que cela représente pour votre entreprise.
-					</p>
-					<p>
-						En plus du salaire, notre simulateur prend en compte le calcul des
-						avantages en nature (téléphone, véhicule de fonction, etc.), ainsi
-						que la mutuelle santé obligatoire.
-					</p>
-					<p>
-						Il existe des{' '}
-						<RuleLink dottedName="contrat salarié . aides employeur">
-							aides différées
-						</RuleLink>{' '}
-						à l'embauche qui ne sont pas toutes prises en compte par notre
-						simulateur, vous pouvez les retrouver sur{' '}
-						<a href="http://www.aides-entreprises.fr" target="_blank">
-							le portail officiel
-						</a>
-						.
-					</p>
+					<section className="print-break-avoid">
+						<h2>Comment calculer le salaire net ?</h2>
+						<p>
+							Lors de l'entretien d'embauche l'employeur propose en général une
+							rémunération exprimée en « brut ». Le montant annoncé inclut ainsi
+							les cotisations salariales, qui servent à financer la protection
+							sociale du salarié et qui sont retranchées du salaire « net » perçu
+							par le salarié.
+						</p>
+						<p>
+							Vous pouvez utiliser notre simulateur pour convertir le{' '}
+							<strong>salaire brut en net</strong> : il vous suffit pour cela
+							saisir la rémunération annoncée dans la case salaire brut. La
+							simulation peut-être affinée en répondant aux différentes questions
+							(CDD, statut cadre, heures supplémentaires, temps partiel,
+							titre-restaurants, etc.).
+						</p>
+						<img
+							src={
+								language === 'fr'
+									? urlIllustrationNetBrut
+									: urlIllustrationNetBrutEn
+							}
+							alt={t(
+								'pages.simulateurs.salarié.alt-image1',
+								'Salaire net (perçu par le salarié) = Salaire brut (inscrit dans le contrat de travail) - cotisations salariales (retraite, csg, etc)'
+							)}
+							css={`
+								width: 100%;
+							`}
+						/>
+						<p>
+							Par ailleurs depuis 2019, l'
+							<RuleLink dottedName="impôt">impôt sur le revenu</RuleLink> est
+							prélevé à la source. Pour ce faire, la direction générale des
+							finances publiques (DGFiP) transmet à l'employeur le taux
+							d'imposition calculé à partir de la déclaration de revenu du
+							salarié. Si ce taux est inconnu, par exemple lors d'une première
+							année d'activité, l'employeur utilise le{' '}
+							<RuleLink dottedName="impôt . taux neutre d'impôt sur le revenu">
+								taux neutre
+							</RuleLink>
+							.
+						</p>
+						<h2>Comment calculer le coût d'embauche ?</h2>
+						<p>
+							Si vous cherchez à embaucher, vous pouvez calculer le coût total de
+							la rémunération de votre salarié, ainsi que les montants de
+							cotisations patronales et salariales correspondant. Cela vous permet
+							de définir le niveau de rémunération en connaissant le montant
+							global de charge que cela représente pour votre entreprise.
+						</p>
+						<p>
+							En plus du salaire, notre simulateur prend en compte le calcul des
+							avantages en nature (téléphone, véhicule de fonction, etc.), ainsi
+							que la mutuelle santé obligatoire.
+						</p>
+						<p>
+							Il existe des{' '}
+							<RuleLink dottedName="contrat salarié . aides employeur">
+								aides différées
+							</RuleLink>{' '}
+							à l'embauche qui ne sont pas toutes prises en compte par notre
+							simulateur, vous pouvez les retrouver sur{' '}
+							<a href="http://www.aides-entreprises.fr" target="_blank">
+								le portail officiel
+							</a>
+							.
+						</p>
+					</section>
 				</Trans>
 			),
 			nextSteps: ['chômage-partiel', 'aides-embauche'],
