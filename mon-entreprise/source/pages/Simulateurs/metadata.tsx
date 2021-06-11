@@ -4,7 +4,7 @@ import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
@@ -387,10 +387,11 @@ export function getSimulatorsData({
 			shortName: t('pages.simulateurs.sasu.shortname', 'SASU'),
 			title: t('pages.simulateurs.sasu.title', 'Simulateur de SASU'),
 			component: function SasuSimulation() {
+				const [animationDisabled, setAnimationDisabled] = useState(false);
 				return (
 					<>
 						<SimulateurWarning simulateur="sasu" />
-						<Simulation userWillExport={()=>{}} explanations={<SalaryExplanation disableAnimation={false} />} />
+						<Simulation userWillExport={() => {setAnimationDisabled(true)}} explanations={<SalaryExplanation disableAnimation={animationDisabled} />} />
 					</>
 				)
 			},
