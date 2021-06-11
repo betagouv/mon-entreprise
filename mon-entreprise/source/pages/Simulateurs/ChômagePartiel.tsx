@@ -55,8 +55,8 @@ export default function ChômagePartiel() {
 					</li>
 				</ul>
 			</Warning>
-			<Simulation
-				results={<ExplanationSection />}
+			<Simulation userWillExport={() => {}}
+									results={<ExplanationSection/>}
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>
 				}
