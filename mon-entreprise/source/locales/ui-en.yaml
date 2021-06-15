@@ -1459,6 +1459,12 @@ pages:
       shortname: EURL
       title: EURL Simulator
       titre: Revenue simulator for SAS(U) executive
+    équivalent-salaire-tjm:
+      meta:
+        description: Form to give you an idea of the daily rate to be invoiced to keep your old salary
+        title: Assistance in converting gross monthly salary to a daily rate
+      shortname: Salary to daily rate conversion assistance
+      title: Assistance in converting gross monthly salary to a daily rate
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
@@ -1623,6 +1629,11 @@ simulateurs:
     titre: Before we start...
     urssaf: The calculations are indicative and are not a substitute for the actual
       statements of Urssaf, impots.gouv.fr, or others.
+    équivalent-salaire-tjm:
+      '1': The calculations don't include any holidays you may take during the year.
+      '2': A base of 21 working days per month is used for the daily rate.
+      '3': No business expenses have been counted, you will have to adjust your rate
+        to take them into account.
 simulation-end:
   cta: Know the steps to take
   hiring:

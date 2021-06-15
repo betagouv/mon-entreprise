@@ -103,6 +103,28 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
+				{simulateur == 'équivalent-salaire-tjm' && (
+					<>
+						<li>
+							<Trans i18nKey="simulateurs.warning.équivalent-salaire-tjm.1">
+								Les calculs ne prennent pas en compte les vacances que vous
+								pourriez prendre au cours de l'année.
+							</Trans>
+						</li>
+						<li>
+							<Trans i18nKey="simulateurs.warning.équivalent-salaire-tjm.2">
+								Une base de 21 jours de travail par mois est utilisée pour le
+								tarif journalier.
+							</Trans>
+						</li>
+						<li>
+							<Trans i18nKey="simulateurs.warning.équivalent-salaire-tjm.3">
+								Aucuns frais professionnels n'ont été comptés, il faudra adapter
+								votre tarif pour les prendre en compte
+							</Trans>
+						</li>
+					</>
+				)}
 			</ul>
 		</Warning>
 	)

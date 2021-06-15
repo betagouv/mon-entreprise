@@ -9017,3 +9017,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . taux du versement transport:
   titre.en: Rate of transport tax
   titre.fr: taux du versement transport
+salaire tjm . équivalent . tarif journalier auto-entrepreneur:
+  titre.en: Daily Rate Self-entrepreneur
+  titre.fr: Tarif journalier en auto-entrepreneur

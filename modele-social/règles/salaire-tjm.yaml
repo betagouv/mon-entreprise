@@ -1,0 +1,22 @@
+salaire tjm:
+  description: >
+    description
+  par défaut: oui
+
+salaire tjm . cotisation: oui
+
+salaire tjm . cotisation . auto-entrepreneur:
+  formule:
+    somme:
+      - produit:
+          assiette: contrat salarié . rémunération . net de cotisations
+          taux:
+            nom: taux prestation de service
+            valeur: 22%
+      - contrat salarié . rémunération . net de cotisations
+
+salaire tjm . équivalent: oui
+
+salaire tjm . équivalent . tarif journalier auto-entrepreneur:
+  unité: €/jour ouvré
+  formule: salaire tjm . cotisation . auto-entrepreneur / période . jours ouvrés moyen par mois

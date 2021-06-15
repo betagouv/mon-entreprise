@@ -20,6 +20,7 @@ import sasuConfig from './configs/dirigeant-sasu.yaml'
 import indépendantConfig from './configs/indépendant.yaml'
 import professionLibéraleConfig from './configs/profession-libérale.yaml'
 import salariéConfig from './configs/salarié.yaml'
+import équivalentSalaireTJMConfig from './configs/équivalent-salaire-tjm.yaml'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
@@ -37,6 +38,7 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
+import ÉquivalentSalaireTJM from './ÉquivalentSalaireTJM'
 
 const simulateurs = [
 	'salarié',
@@ -62,6 +64,7 @@ const simulateurs = [
 	'pamc',
 	'is',
 	'aides-embauche',
+	'équivalent-salaire-tjm',
 ] as const
 
 export type SimulatorId = typeof simulateurs[number]
@@ -1041,6 +1044,31 @@ export function getSimulatorsData({
 			),
 			component: AidesEmbauche,
 			nextSteps: ['salarié'],
+		},
+		'équivalent-salaire-tjm': {
+			meta: {
+				title: t(
+					'pages.simulateurs.équivalent-salaire-tjm.meta.title',
+					'Aide à la conversion du salaire brut mensuel vers un tarif journalier'
+				),
+				description: t(
+					'pages.simulateurs.équivalent-salaire-tjm.meta.description',
+					'Formulaire pour vous donner une idée du montant journalier à facturer pour garder à minima votre ancien salaire'
+				),
+			},
+			tracking: {},
+			icône: '👛',
+			shortName: t(
+				'pages.simulateurs.équivalent-salaire-tjm.shortname',
+				'Aide à la conversion du salaire vers un tarif journalier'
+			),
+			path: sitePaths.simulateurs['équivalent-salaire-tjm'],
+			title: t(
+				'pages.simulateurs.équivalent-salaire-tjm.title',
+				'Aide à la conversion du salaire brut mensuel vers un tarif journalier'
+			),
+			config: équivalentSalaireTJMConfig,
+			component: ÉquivalentSalaireTJM,
 		},
 		is: {
 			icône: '🗓',

@@ -90,6 +90,7 @@ export default function Simulateurs() {
 					)}
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
+					<SimulateurCard {...simulators['équivalent-salaire-tjm']} />
 				</div>
 			</section>
 			<section>
