@@ -30,8 +30,12 @@ Nous utilisons :
 
 ### Démarrage
 
-Tout d'abord assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier `mon-entreprise/.env`.
-Demandez les détails à vos collègues (ces informations n'étant pas publiques).
+Si possible, assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier
+`mon-entreprise/.env`.  
+**NB : ne vous inquiétez pas, ceci n'est pas nécessaire pour effectuer une première contribution à
+la base de code !** Cependant, vous en aurez besoin pour la commande `yarn prepare` et pour les
+commandes de traduction automatique français -> anglais. Si vous êtes confronté à ce type de besoin,
+demandez l'aide des contributeurs du projet.
 
 Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramètre `depth` de git pour ne télécharger que les derniers commits.
 
@@ -49,9 +53,10 @@ yarn prepare
 yarn start
 ```
 
-L'application est exécuté sur https://localhost:8080/mon-entreprise pour la version française et http://localhost:8080/infrance pour la version anglaise.
+L'application est exécutée sur http://localhost:8080/mon-entreprise pour la version française et
+http://localhost:8080/infrance pour la version anglaise.
 
-Pour activer le tracing Redux:
+Pour activer le traçage Redux:
 
 ```
 REDUX_TRACE=true yarn start
@@ -86,24 +91,38 @@ Et ceux spécifiques au projet :
 
 ### Tests
 
+Pour la vérification syntaxique :
+
+```sh
+$ yar lint
+```
+
+Pour la vérification du typage :
+
+```sh
+$ yar test:type
+```
+
 Pour executer les tests unitaires :
 
 ```sh
-$ yarn run test-common
+$ yarn test
 ```
 
 Pour le snapshot testing :
 
 ```sh
-$ yarn run test:regressions
+$ yarn test:regressions
 ```
 
 Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
 
-Enfin pour les tests d'intégration :
+Pour les tests d'intégration sur chacun des 3 sites :
 
 ```sh
-$ yarn run cypress run
+$ yarn workspace mon-entreprise test:dev-e2e:mon-entreprise
+$ yarn workspace mon-entreprise test:dev-e2e:mycompanyinfrance
+$ yarn workspace mon-entreprise test:dev-e2e:publicodes
 ```
 
 ### Traduction 👽
@@ -152,9 +171,14 @@ contenu packagé, cf.
 
 Publicodes dispose désormais de son propre dépôt GitHub https://github.com/betagouv/publicodes
 
-Néanmoins pour certaines nouvelles fonctionnalités de mon-entreprise nous concervons le besoin de modifier publicodes avec le moins de frictions possible. Pour tester une évolution du moteur il serait en effet trop lourd d'avoir à ouvrir d'abord une PR côté publicodes, la merger, publier une nouvelle version du paquet, puis ré-intégrer cette nouvelle version sur mon-entreprise.
+Néanmoins pour certaines nouvelles fonctionnalités de mon-entreprise nous concervons le besoin de
+modifier publicodes avec le moins de frictions possible. Pour tester une évolution du moteur il
+serait en effet trop lourd d'avoir à ouvrir d'abord une PR côté publicodes, la merger, publier une
+nouvelle version du paquet, puis ré-intégrer cette nouvelle version sur mon-entreprise.
 
-C'est pourquoi nous intégrons le code source du publicode dans le sous-répertoire `publicodes/`. La commande `git subtree` nous permet de synchroniser les changements effectués dans l'un ou l'autre des dépôts.
+C'est pourquoi nous intégrons le code source du publicode dans le sous-répertoire `publicodes/`. La
+commande `git subtree` nous permet de synchroniser les changements effectués dans l'un ou l'autre
+des dépôts.
 
 La première chose à faire est d'ajouter une nouvelle `remote` pour `betagouv/publicodes`, ici nous l'appelons simplement `publicodes` :
 
