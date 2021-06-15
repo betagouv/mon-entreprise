@@ -9018,5 +9018,17 @@ situation personnelle . domiciliation fiscale à l'étranger:
   titre.en: Rate of transport tax
   titre.fr: taux du versement transport
 salaire tjm . équivalent . tarif journalier auto-entrepreneur:
-  titre.en: Daily Rate Self-entrepreneur
+  titre.en: Daily Rate for Self-entrepreneur
   titre.fr: Tarif journalier en auto-entrepreneur
+salaire tjm . équivalent . tarif journalier EI:
+  titre.en: Daily Rate for sole proprietorship (EI)
+  titre.fr: Tarif journalier en EI
+salaire tjm . équivalent . tarif journalier EIRL:
+  titre.en: Daily Rate for EIRL
+  titre.fr: Tarif journalier en EIRL
+salaire tjm . équivalent . tarif journalier SASU:
+  titre.en: Daily Rate for SASU
+  titre.fr: Tarif journalier en SASU
+salaire tjm . équivalent . tarif journalier EURL:
+  titre.en: Daily Rate for EURL
+  titre.fr: Tarif journalier en EURL

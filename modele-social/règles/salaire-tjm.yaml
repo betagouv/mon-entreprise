@@ -15,8 +15,64 @@ salaire tjm . cotisation . auto-entrepreneur:
             valeur: 22%
       - contrat salarié . rémunération . net de cotisations
 
+salaire tjm . cotisation . EI:
+  formule:
+    somme:
+      - produit:
+          assiette: contrat salarié . rémunération . net de cotisations
+          taux:
+            nom: taux charges sociales EI
+            valeur: 45%
+      - contrat salarié . rémunération . net de cotisations
+
+salaire tjm . cotisation . EIRL:
+  formule:
+    somme:
+      - produit:
+          assiette: contrat salarié . rémunération . net de cotisations
+          taux:
+            nom: taux charges sociales EIRL
+            valeur: 45%
+      - contrat salarié . rémunération . net de cotisations
+
+salaire tjm . cotisation . SASU:
+  formule:
+    somme:
+      - produit:
+          assiette: contrat salarié . rémunération . net de cotisations
+          taux:
+            nom: taux charges sociales SASU
+            valeur: 81%
+      - contrat salarié . rémunération . net de cotisations
+
+salaire tjm . cotisation . EURL:
+  formule:
+    somme:
+      - produit:
+          assiette: contrat salarié . rémunération . net de cotisations
+          taux:
+            nom: taux charges sociales EURL
+            valeur: 45%
+      - contrat salarié . rémunération . net de cotisations
+
 salaire tjm . équivalent: oui
 
 salaire tjm . équivalent . tarif journalier auto-entrepreneur:
   unité: €/jour ouvré
   formule: salaire tjm . cotisation . auto-entrepreneur / période . jours ouvrés moyen par mois
+
+salaire tjm . équivalent . tarif journalier EI:
+  unité: €/jour ouvré
+  formule: salaire tjm . cotisation . EI / période . jours ouvrés moyen par mois
+
+salaire tjm . équivalent . tarif journalier EIRL:
+  unité: €/jour ouvré
+  formule: salaire tjm . cotisation . EIRL / période . jours ouvrés moyen par mois
+
+salaire tjm . équivalent . tarif journalier SASU:
+  unité: €/jour ouvré
+  formule: salaire tjm . cotisation . SASU / période . jours ouvrés moyen par mois
+
+salaire tjm . équivalent . tarif journalier EURL:
+  unité: €/jour ouvré
+  formule: salaire tjm . cotisation . EURL / période . jours ouvrés moyen par mois

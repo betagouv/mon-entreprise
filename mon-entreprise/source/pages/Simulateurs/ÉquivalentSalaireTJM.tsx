@@ -13,6 +13,22 @@ export default function ÉquivalentSalaireTJM() {
 						editable={false}
 						dottedName="salaire tjm . équivalent . tarif journalier auto-entrepreneur"
 					/>
+					<SimulationGoal
+						editable={false}
+						dottedName="salaire tjm . équivalent . tarif journalier EI"
+					/>
+					<SimulationGoal
+						editable={false}
+						dottedName="salaire tjm . équivalent . tarif journalier EIRL"
+					/>
+					<SimulationGoal
+						editable={false}
+						dottedName="salaire tjm . équivalent . tarif journalier SASU"
+					/>
+					<SimulationGoal
+						editable={false}
+						dottedName="salaire tjm . équivalent . tarif journalier EURL"
+					/>
 				</SimulationGoals>
 			</Simulation>
 		</>
