@@ -688,7 +688,7 @@ Notifications affichées : contrat salarié . convention collective . contrôle 
 `;
 
 exports[`calculate simulations-salarié: CCN spectacle vivant 1`] = `
-"[3923,0,2500,1938,1856]
+"[3913,0,2500,1938,1856]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -738,7 +738,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 exports[`calculate simulations-salarié: aides 3`] = `"[2050,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 4`] = `
-"[2658,0,2000,1720,1656]
+"[2657,0,2000,1720,1656]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -754,7 +754,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7086,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 3`] = `
-"[1493,0,1500,1284,1284]
+"[1490,0,1500,1284,1284]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -790,27 +790,27 @@ exports[`calculate simulations-salarié: avantages 3`] = `"[2574,0,2000,1549,150
 exports[`calculate simulations-salarié: cadre 1`] = `"[4123,0,3000,2348,2160]"`;
 
 exports[`calculate simulations-salarié: cdd 1`] = `
-"[3292,0,2200,1894,1815]
+"[3282,0,2200,1894,1815]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 2`] = `
-"[3117,0,2200,1824,1746]
+"[3115,0,2200,1824,1746]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 3`] = `
-"[3378,0,2200,1997,1918]
+"[3377,0,2200,1997,1918]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 4`] = `
-"[4112,0,2200,2387,2262]
+"[4111,0,2200,2387,2262]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 5`] = `
-"[3392,0,2200,1746,1695]
+"[3382,0,2200,1746,1695]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -931,7 +931,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 `;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 3`] = `
-"[4520,0,3000,2590,2392]
+"[4515,0,3000,2590,2392]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 

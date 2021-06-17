@@ -667,21 +667,6 @@ contrat salarié . déduction forfaitaire spécifique . profession . pilote de l
     construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
     moniteurs d’aéro-clubs et des écoles d’aviation civile
 
-contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
-  description: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
-    forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
-    taxe est de décourager le recours excessif aux contrats courts.
-
-    Certains secteurs d'activités définis dans le code du travail ne sont pas
-    concernés par cette taxe.
-  applicable si: motif = 'classique . usage'
-  # TODO: cette formule ne fonctionne pas pour des contrats dont la durée est
-  # inférieure à un mois
-  formule: 10 € / durée contrat
-  références:
-    Urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taxe-forfaitaire-sur-les-cdd-dus.html
-
 contrat salarié . CDD . CPF:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
   cotisation:
@@ -1809,7 +1794,6 @@ contrat salarié . cotisations . patronales:
     - formation professionnelle
     - versement transport
     - taxe d'apprentissage
-    - CDD . taxe forfaitaire sur les CDD d'usage
     - CDD . CPF
     - forfait social
     - conventionnelles
