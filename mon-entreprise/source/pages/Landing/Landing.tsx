@@ -42,7 +42,7 @@ export default function Landing() {
 					<header>
 						<h1>
 							<Trans i18nKey="landing.title">
-								L'assistant officiel de l'entrepreneur
+								Le super assistant officiel de l'entrepreneur
 							</Trans>
 						</h1>
 						<p className="ui__ lead">
