@@ -10,7 +10,6 @@ questions:
   liste:
     - contrat salarié . activité partielle
     - contrat salarié . temps de travail
-    - contrat salarié . profession spécifique
     - établissement . localisation
 
 unité par défaut: €/mois

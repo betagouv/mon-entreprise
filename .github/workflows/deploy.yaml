@@ -14,7 +14,7 @@ on:
   # The /stats data is generated during the build. To keep the daily data fresh,
   # we relaunch a nightly full build of the app
   schedule:
-    - cron: "0 4 * * *"
+    - cron: '0 4 * * *'
 
 jobs:
   deploy-context:
@@ -24,16 +24,14 @@ jobs:
       fr_url: ${{ steps.base-urls.outputs.fr }}
       en_url: ${{ steps.base-urls.outputs.en }}
       publicodes_url: ${{ steps.base-urls.outputs.publicodes }}
-    steps: 
+    steps:
       - id: deploy-env
-        run:
-          echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" 
+        run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
       - id: base-urls
-        run:
-          echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
+        run: echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=publicodes::${{ steps.deploy-env.outputs.name == 'master' && 'https://publi.codes' || format('https://{0}-publicodes--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
-    
+
   build:
     needs: deploy-context
     env:
@@ -60,10 +58,9 @@ jobs:
           AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
           NODE_ENV: production
       - name: Replace site placeholders in netlify.toml redirection file
-        run: 
-          sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
+        run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
           sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
-          sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml 
+          sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml
       - uses: actions/upload-artifact@v2
         with:
           name: static-site
@@ -71,13 +68,13 @@ jobs:
             mon-entreprise/dist/**
             netlify.toml
           if-no-files-found: error
-        
+
   deploy-preview:
     needs: [build, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
-      matrix: 
+      matrix:
         site: ['', 'en', 'publicodes']
     steps:
       - uses: actions/checkout@v2
@@ -96,14 +93,14 @@ jobs:
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
           alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
           deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
-          
+
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-  
+
   deploy-prod:
     needs: [build, deploy-context]
     runs-on: ubuntu-18.04
@@ -149,46 +146,64 @@ jobs:
           edit-mode: replace
           body: |
             🚀 La branche est déployée ! 
-            
+
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - publicodes : ${{ needs.deploy-context.outputs.publicodes_url }}
-            
 
-  end-to-end-test:
+  e2e-test-preview:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-16.04
     # We need to specify always() https://github.com/actions/runner/issues/491
-    if: always() && (needs.deploy-prod.result == 'success' || needs.deploy-preview.result == 'success')
-    needs: [deploy-context, deploy-prod, deploy-preview]
+    if: always() && needs.deploy-preview.result == 'success'
+    needs: [deploy-context, deploy-preview]
 
     strategy:
       fail-fast: false
       matrix:
         site: ['fr', 'en', 'publicodes']
+        browser: [electron]  # Firefox is very slow…
+        viewport: [default]
+        container: [1, 2, 3, 4]
         include:
           - site: fr
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-          - site: en
+          - site: fr
             integrationFolder: mon-entreprise
+            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
+            language: fr
+          - site: en
+            integrationFolder: mon-entreprise/english
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
             language: en
           - site: publicodes
             baseUrl: ${{ needs.deploy-context.outputs.publicodes_url }}
             integrationFolder: publi.codes
             language: fr
-
-        # TODO : activate parallelization https://github.com/cypress-io/github-action#parallel (missing https://github.com/cypress-io/github-action#custom-build-id)
-        # containers: [1, 2] 
-        # TODO : browser: ['firefox', 'chrome'] 
+        exclude:
+          - site: en
+            container: 2
+          - site: publicodes
+            container: 2
+          - site: en
+            container: 3
+          - site: publicodes
+            container: 3
+          - site: en
+            container: 4
+          - site: publicodes
+            container: 4
+          - site: en
+            viewport: small
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
       - uses: actions/cache@v2
         # Custom cache as we do not care about installing all the other dependancies
         with:
@@ -196,15 +211,100 @@ jobs:
             ~/.cache/Cypress
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      
       - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
-      - name: Test mon-entreprise
+      
+      - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
         with:
           install: false
           working-directory: mon-entreprise
           record: true
-          tag: ${{ matrix.site }},${{ needs.deploy-context.outputs.env-name }}-deploy
-          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}
+          tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
+          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
+          browser: ${{ matrix.browser }}
+          headless: true
+          parallel: true
+          group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
+        env:
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+
+  e2e-test-production:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    runs-on: ubuntu-16.04
+    # We need to specify always() https://github.com/actions/runner/issues/491
+    if: always() && needs.deploy-prod.result == 'success'
+    needs: [deploy-context, deploy-prod]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        site: ['fr', 'en', 'publicodes']
+        browser: [chrome]  # Firefox is very slow…
+        viewport: [default, small]
+        container: [1, 2, 3, 4]
+        include:
+          - site: fr
+            integrationFolder: mon-entreprise
+            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
+            language: fr
+          - site: fr
+            integrationFolder: mon-entreprise
+            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
+            language: fr
+          - site: en
+            integrationFolder: mon-entreprise/english
+            baseUrl: ${{ needs.deploy-context.outputs.en_url }}
+            language: en
+          - site: publicodes
+            baseUrl: ${{ needs.deploy-context.outputs.publicodes_url }}
+            integrationFolder: publi.codes
+            language: fr
+        exclude:
+          - site: en
+            container: 2
+          - site: publicodes
+            container: 2
+          - site: en
+            container: 3
+          - site: publicodes
+            container: 3
+          - site: en
+            container: 4
+          - site: publicodes
+            container: 4
+          - site: en
+            viewport: small
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - uses: actions/cache@v2
+        # Custom cache as we do not care about installing all the other dependancies
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      
+      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
+      
+      - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          working-directory: mon-entreprise
+          record: true
+          tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
+          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
+          env: language=${{ matrix.language }}
+          browser: ${{ matrix.browser }}
+          headless: true
+          parallel: true
+          group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
           COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
