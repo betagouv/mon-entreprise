@@ -62,7 +62,7 @@ programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ## Budget
 
-En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) renouvelle le budget annuel de **250 000 € HT**.
+En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) finance le projet à hauteur de **185 000 € HT**.
 
 Au premier trimestre 2021, l'équipe mon-entreprise continue de bénéficier de l'accompagnement du [programme Gamma](https://beta.gouv.fr/approche/acceleration) financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 

@@ -552,74 +552,120 @@ contrat salarié . activité partielle . convention syntec:
     de chômage partielle au dessus du minimum légal et à la charge de
     l'entreprise.
   par défaut: non
-  rend non applicable:
-    # TODO: this is not working, the question is still displayed. This should be
-    # fixed but is not critical
-    - profession spécifique
 
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
-    déduction forfaitaire spécifique pour frais professionnels sur la base de
-    calcul des cotisations sociales.
-  applicable si:
-    toutes ces conditions:
-      - application
-      - taux > 0%
+    déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base de
+    calcul des cotisations sociales. spécifique consiste en un abattement sur l'assiette
+    des cotisations sociales. Elle peut s'appliquer si le salarié supporte
+    effectivement des frais lors de son activité professionnelle.
+
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en
+    charge ou rembourse la totalité des frais professionnels, il est impossible
+    d’appliquer la DFS.
   titre: assiette avec DFS
+  question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
+  par défaut: non
   remplace:
     règle: cotisations . assiette
+    par:
+      valeur: cotisations . assiette
+      abattement:
+        valeur: taux * cotisations . assiette
+        plafond: 7600 €/an
+      plancher: cotisations . assiette minimale
     sauf dans: contrat salarié . CSG et CRDS
     # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
-  formule:
-    valeur: cotisations . assiette
-    abattement:
-      valeur: taux * cotisations . assiette
-      plafond: 7600 €/an
-    plancher: cotisations . assiette minimale
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
 contrat salarié . déduction forfaitaire spécifique . taux:
   formule:
     variations:
-      - si: profession spécifique = 'journaliste'
+      - si: profession = 'journaliste'
         alors: 20%
-      - si: profession spécifique = 'ouvrier du bâtiment'
+      - si: profession = 'ouvrier du bâtiment'
         alors: 10%
-      - si: profession spécifique = 'artiste musicien'
+      - si: profession = 'artiste musicien'
         alors: 20%
-      - si: profession spécifique = 'pilote de ligne ou personnel navigant'
+      - si: profession = 'pilote de ligne ou personnel navigant'
         alors: 30%
       - sinon: 0%
   références:
     Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
 
-contrat salarié . déduction forfaitaire spécifique . application:
+contrat salarié . déduction forfaitaire spécifique . profession:
+  question: Quelle est la profession du salarié pour l'application de la déduction forfaitaire spécifique ?
+  par défaut: non
+  formule:
+    une possibilité:
+      possibilités:
+        - journaliste
+        - ouvrier du bâtiment
+        - artiste musicien
+        - pilote de ligne ou personnel navigant
+      choix obligatoire: oui
+
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste:
+  formule: contrat salarié . déduction forfaitaire spécifique . profession = 'journaliste'
+  icônes: ✒
   description: >-
-    La déduction forfaitaire spécifique consiste en un abattement sur l'assiette
-    des cotisations sociales. L'employeur peut renoncer à appliquer cette
-    déduction afin d'accorder plus de droits au salarié, notamment en terme de
-    retraite et d'assurance chômage.
-  titre: application de la DFS
-  formule: oui
+    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
+    Critiques dramatiques et musicaux.
 
-contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
-  description: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
-    forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
-    taxe est de décourager le recours excessif aux contrats courts.
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
+  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+  remplace:
+    - règle: vieillesse . employeur . plafonnée . taux
+      par: vieillesse . employeur . plafonnée . taux * réduction de taux
+    - règle: vieillesse . employeur . déplafonnée . taux
+      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . plafonnée . taux
+      par: vieillesse . salarié . plafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . déplafonnée . taux
+      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
 
-    Certains secteurs d'activités définis dans le code du travail ne sont pas
-    concernés par cette taxe.
-  applicable si: motif = 'classique . usage'
-  # TODO: cette formule ne fonctionne pas pour des contrats dont la durée est
-  # inférieure à un mois
-  formule: 10 € / durée contrat
-  références:
-    Urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taxe-forfaitaire-sur-les-cdd-dus.html
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: ATMP . taux
+      par: ATMP . taux * réduction de taux
+    - règle: ATMP . taux minimum
+      par: ATMP . taux minimum * réduction de taux
+  formule: 80%
+
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
+  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+  remplace: rémunération . net imposable
+  titre: net imposable journaliste
+  formule:
+    valeur: rémunération . net imposable
+    abattement: 7650€/an
+
+contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment:
+  icônes: 👷‍♂️
+  description: >-
+    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
+    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
+    travaillent en usine ou en atelier.
+
+contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien:
+  icônes: 🎼
+  description: >-
+    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
+    théâtre
+
+contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant:
+  icônes: ✈
+  description: >-
+    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
+    transports aériens ; pilotes et mécaniciens employés par les maisons de
+    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
+    moniteurs d’aéro-clubs et des écoles d’aviation civile
 
 contrat salarié . CDD . CPF:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
@@ -1748,7 +1794,6 @@ contrat salarié . cotisations . patronales:
     - formation professionnelle
     - versement transport
     - taxe d'apprentissage
-    - CDD . taxe forfaitaire sur les CDD d'usage
     - CDD . CPF
     - forfait social
     - conventionnelles
@@ -2511,7 +2556,7 @@ contrat salarié . réduction générale . plafond avec application de la DFS:
         recalcul:
           règle: réduction générale
           avec:
-            déduction forfaitaire spécifique . application: non
+            déduction forfaitaire spécifique: non
 
 contrat salarié . contribution d'équilibre général:
   description: >-
@@ -3354,75 +3399,6 @@ contrat salarié . taxe sur les salaires . barème:
     Nous n'implémentons pas les taux spécifiques pour l'outre-mer
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-
-contrat salarié . profession spécifique:
-  question: Le salarié exerce t-il l'une des professions suivantes ?
-  par défaut: non
-  formule:
-    une possibilité:
-      possibilités:
-        - journaliste
-        - ouvrier du bâtiment
-        - artiste musicien
-        - pilote de ligne ou personnel navigant
-
-contrat salarié . profession spécifique . journaliste:
-  formule: contrat salarié . profession spécifique = 'journaliste'
-  icônes: ✒
-  description: >-
-    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
-    Critiques dramatiques et musicaux.
-
-contrat salarié . profession spécifique . journaliste . réduction de taux:
-  applicable si: profession spécifique = 'journaliste'
-  remplace:
-    - règle: vieillesse . employeur . plafonnée . taux
-      par: vieillesse . employeur . plafonnée . taux * réduction de taux
-    - règle: vieillesse . employeur . déplafonnée . taux
-      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
-    - règle: vieillesse . salarié . plafonnée . taux
-      par: vieillesse . salarié . plafonnée . taux * réduction de taux
-    - règle: vieillesse . salarié . déplafonnée . taux
-      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
-
-    - règle: allocations familiales . taux
-      par: allocations familiales . taux * réduction de taux
-    - règle: établissement . taux du versement transport
-      par: établissement . taux du versement transport * réduction de taux
-    - règle: ATMP . taux
-      par: ATMP . taux * réduction de taux
-    - règle: ATMP . taux minimum
-      par: ATMP . taux minimum * réduction de taux
-  formule: 80%
-
-contrat salarié . profession spécifique . journaliste . abattement fiscal:
-  applicable si: profession spécifique = 'journaliste'
-  remplace: rémunération . net imposable
-  titre: net imposable journaliste
-  formule:
-    valeur: rémunération . net imposable
-    abattement: 7650€/an
-
-contrat salarié . profession spécifique . ouvrier du bâtiment:
-  icônes: 👷‍♂️
-  description: >-
-    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
-    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
-    travaillent en usine ou en atelier.
-
-contrat salarié . profession spécifique . artiste musicien:
-  icônes: 🎼
-  description: >-
-    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
-    théâtre
-
-contrat salarié . profession spécifique . pilote de ligne ou personnel navigant:
-  icônes: ✈
-  description: >-
-    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
-    transports aériens ; pilotes et mécaniciens employés par les maisons de
-    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
-    moniteurs d’aéro-clubs et des écoles d’aviation civile
 
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?

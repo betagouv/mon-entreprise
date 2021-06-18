@@ -38,8 +38,8 @@ jobs:
           install: false
           working-directory: mon-entreprise
           # List here all the specs that are making external API calls:
-          spec: cypress/integration/mon-entreprise/gérer.js
+          spec: cypress/integration/mon-entreprise/english/gérer.js
           record: true
-          tag: external-integration
+          tag: external-mon-entreprise-e2e
           config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.fr
-          env: record_http= # prevent stubbing
+          env: language=fr,record_http= # prevent stubbing
