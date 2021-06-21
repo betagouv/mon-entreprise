@@ -1,7 +1,5 @@
 name: Déploiement
 on:
-  pull_request:
-    types: [opened, synchronize]
   push:
     branches: [master, demo, next]
   pull_request_target: 
@@ -93,7 +91,7 @@ jobs:
           enable-commit-comment: false
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
           alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
-          deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
+          deploy-message: ${{ github.event.pull_request_target.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
 
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
@@ -129,21 +127,21 @@ jobs:
 
   post-comment:
     runs-on: ubuntu-18.04
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request_target'
     needs: [deploy-preview, deploy-context]
     steps:
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         id: find-comment
         with:
-          issue-number: ${{ github.event.pull_request.number }} #e.g. 1
+          issue-number: ${{ github.event.pull_request_target.number }} #e.g. 1
           comment-author: 'github-actions[bot]'
           body-includes: netlify
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.pull_request_target.number }}
           edit-mode: replace
           body: |
             🚀 La branche est déployée ! 
@@ -229,7 +227,7 @@ jobs:
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
-          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request_target.title }}
 
   e2e-test-production:
     env:
@@ -308,4 +306,4 @@ jobs:
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
-          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request_target.title }}
