@@ -10,7 +10,6 @@ import { utils } from 'publicodes'
 // We use a dynamic import to work around a typing problem https://github.com/betagouv/mon-entreprise/pull/1616#issuecomment-858629506
 let worker: any
 ;(async function () {
-	console.log('okok')
 	const Worker = ((await import('./SearchBar.worker.js')) as any).default
 	worker = new Worker()
 })()
