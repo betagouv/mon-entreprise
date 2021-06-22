@@ -1196,6 +1196,14 @@ simulateurs:
   explanation:
     CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
       d'invalidité-décès.
+    institutions:
+      cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
+        prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
+      dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
+        collecte l'impôt sur le revenu.
+      notice acre: Les montants indiqués ci-dessus sont calculés sans prendre en
+        compte l'exonération de début d'activité ACRE
+      titre: Vos institutions partenaires
     pamc: <0><0>Vos institutions
       partenaires</0><1><0></0><1></1><2><0><0><0></0></0><1>En tant que
       professionnel de santé conventionné, vous bénéficiez d'une prise en charge
