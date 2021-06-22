@@ -1630,13 +1630,14 @@ simulateurs:
       soutien: <0>Listening and support</0><1>An <2>initial listening and
         psychological support unit</2> has been set up for company directors
         weakened by the crisis.</1><2><0>{emoji('📞')}</0> 08 05 65 50 50</2>
-    pamc: <0><0>Your partner institutions</0><1><0><0><0></0></0><1>Contributions
-      collected by Urssaf, which are used to finance social security (health
-      insurance, family allowances, dependency
-      care).</1><2><0></0></2></0><1></1><2><0><0><0></0></0><1>As a contracted
-      health professional, you benefit from having part of your contributions
-      covered by the Assurance Maladie.</1><2><0></0>
-      <2></2></2></0></2></1></0>
+    institutions:
+      cpam: As a health professional under agreement, you benefit from a part of your
+        contributions being covered by the Health Insurance.
+      dgfip: The Directorate General of Public Finances (DGFiP) is the body that
+        collects income tax.
+      notice acre: The amounts indicated above are calculated without taking into
+        account the ACRE start-up exemption
+      titre: Your partner institutions
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.
