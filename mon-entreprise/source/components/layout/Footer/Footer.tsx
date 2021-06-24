@@ -8,6 +8,7 @@ import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import useSimulatorsData from '../../../pages/Simulateurs/metadata'
 import { hrefLangLink } from '../../../sitePaths'
 import './Footer.css'
@@ -86,61 +87,58 @@ export default function Footer() {
 						security contributions collector.
 					</p>
 				)}
-				<p
-					className="ui__ notice"
-					css={`
-						text-align: center;
-						margin: 0 0.6rem;
-						a {
-							white-space: nowrap;
-						}
-					`}
-				>
-					<LegalNotice />
-					{'  •  '}
-					<Privacy />
-
+				<StyledFooter className="ui__ notice container">
+					<ul>
+						<li>
+							<LegalNotice />
+						</li>
+						<li>
+							<Privacy />
+						</li>
+						{language === 'fr' && (
+							<li>
+								<Link to={sitePaths.accessibilité}>
+									<Trans i18nKey="footer.accessibilité">
+										Accessibilité : non conforme
+									</Trans>
+								</Link>
+							</li>
+						)}
+					</ul>
 					{language === 'fr' && (
-						<>
-							{'  •  '}
-							<Link to={sitePaths.nouveautés}>Nouveautés</Link>
-							{'  •  '}
-							<Link to={sitePaths.stats}>Stats</Link>
-							{'  •  '}
-							<Link to={sitePaths.budget}>Budget</Link>
-						</>
+						<ul>
+							<li>
+								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.stats}>Stats</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.budget}>Budget</Link>
+							</li>
+						</ul>
 					)}
-					{'  •  '}
-					<Link to={sitePaths.integration.index}>
-						<Trans>Intégrer nos simulateurs</Trans>
-					</Link>
-					{language === 'fr' && (
-						<>
-							{'  •  '}
-							<Link to={sitePaths.accessibilité}>
-								<Trans i18nKey="footer.accessibilité">
-									Accessibilité : non conforme
-								</Trans>
+					<ul>
+						<li>
+							<Link to={sitePaths.integration.index}>
+								<Trans>Intégrer nos simulateurs</Trans>
 							</Link>
-						</>
-					)}
-					{!!hrefLink.length && '  •  '}
-					{hrefLink.map(({ hrefLang, href }) => (
-						<a
-							href={href}
-							key={hrefLang}
-							style={{ textDecoration: 'underline' }}
-						>
-							{hrefLang === 'fr' ? (
-								<> Passer en français {emoji('🇫🇷')}</>
-							) : hrefLang === 'en' ? (
-								<> Switch to English {emoji('🇬🇧')}</>
-							) : (
-								hrefLang
-							)}
-						</a>
-					))}
-				</p>
+						</li>
+						{hrefLink.map(({ hrefLang, href }) => (
+							<li key={hrefLang}>
+								<a href={href} style={{ textDecoration: 'underline' }}>
+									{hrefLang === 'fr' ? (
+										<>Passer en français {emoji('🇫🇷')}</>
+									) : hrefLang === 'en' ? (
+										<>Switch to English {emoji('🇬🇧')}</>
+									) : (
+										hrefLang
+									)}
+								</a>
+							</li>
+						))}
+					</ul>
+				</StyledFooter>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<a href="https://twitter.com/monentreprisefr">
@@ -157,3 +155,22 @@ export default function Footer() {
 		</div>
 	)
 }
+
+const StyledFooter = styled.div`
+	a {
+		white-space: nowrap;
+	}
+	display: flex;
+	justify-content: space-between;
+	@media (max-width: 600px) {
+		flex-direction: column-reverse;
+		text-align: center;
+		li {
+			display: inline-block;
+		}
+		li:not(:last-child)::after {
+			content: '•';
+			margin: 0.3rem;
+		}
+	}
+`
