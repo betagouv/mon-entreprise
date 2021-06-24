@@ -1435,17 +1435,35 @@ artiste-auteur . cotisations . assiette:
 artiste-auteur . cotisations . assiette surcotisation:
   titre.en: over-contribution base
   titre.fr: assiette surcotisation
+artiste-auteur . cotisations . avertissement trimestres retraite:
+  description.en: >
+    [automatic] Your income does not allow you to validate 4 quarters for the
+    basic pension
+
+    pension. You can decide to "over-contribute" to validate 4 quarters and
+
+    benefit from daily allowances.
+  description.fr: |
+    Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
+    de base. Vous pouvez décider de « surcotiser » pour valider 4 trimestres et
+    bénéficier d'indemnités journalières.
+  titre.en: '[automatic] warning pension quarters'
+  titre.fr: avertissement trimestres retraite
 artiste-auteur . cotisations . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
 artiste-auteur . cotisations . option surcotisation:
-  description.en:
-    '[automatic] Your income is below the thresholds allowing you to
-    validate 4 quarters of retirement. You can choose to contribute more to
-    increase your rights.'
-  description.fr: Vos revenus sont en dessous des seuils vous permettant de
-    valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour
-    augmenter vos droits.
+  description.en: >
+    [automatic] Your income is below the thresholds allowing you to validate all
+    your social
+
+    of your social security rights. You can choose to contribute more to increase your
+
+    rights.
+  description.fr: |
+    Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
+    de vos droits sociaux. Vous pouvez choisir de surcotiser pour augmenter vos
+    droits.
   question.en: '[automatic] Would you like to contribute more to increase your
     pension rights?'
   question.fr: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
