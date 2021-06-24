@@ -75,12 +75,28 @@ artiste-auteur . cotisations . option surcotisation:
     dans: vieillesse
     par: assiette surcotisation
   question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
-  description: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
+  description: | 
+    Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
+    de vos droits sociaux. Vous pouvez choisir de surcotiser pour augmenter vos
+    droits.
   par défaut: non
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
 artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
+
+artiste-auteur . cotisations . avertissement trimestres retraite:
+  type: notification
+  sévérité: avertissement
+  formule: 
+    toutes ces conditions:
+      - assiette > 0 €/an
+      - assiette < 600 heures/an * SMIC horaire
+      - option surcotisation = non
+  description: | 
+    Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
+    de base. Vous pouvez décider de « surcotiser » pour valider 4 trimestres et
+    bénéficier d'indemnités journalières.
 
 artiste-auteur . cotisations . vieillesse:
   titre: Retraite de base
