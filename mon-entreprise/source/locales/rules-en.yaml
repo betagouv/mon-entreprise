@@ -1350,14 +1350,24 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
     instead of 8% if you
 
     if you so request.
+
+
+    The supplementary pension points are acquired pro rata to the amount contributed.
+
+    contributed. By reducing your contribution you reduce the number of points
+
+    acquired.
   description.fr: |
     Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
     si vous en faite la demande.
-  question.en:
-    '[automatic] Would you like to benefit from a reduced rate for your
-    pension contribution? Your entitlement will be reduced accordingly.'
-  question.fr: Souhaitez-vous bénéficier d'un taux réduit pour votre cotisation
-    retraite ? Vos droits seront réduits d'autant.
+
+    Les points de retraite complémentaire sont acquis au pro-rata du montant
+    cotisé. En réduisant votre cotisation vous réduisez donc le nombre de points
+    acquis.
+  question.en: '[automatic] Would you like to contribute at a reduced rate for
+    your supplementary pension to the IRCEC?'
+  question.fr: Souhaitez-vous cotiser sur la base d'un taux réduit pour votre
+    retraite complémentaire à l'IRCEC ?
   titre.en: '[automatic] reduced rate'
   titre.fr: taux réduit
 artiste-auteur . cotisations . IRCEC . cotisation RACD:
@@ -1953,28 +1963,6 @@ contrat salarié . CDD . prime de fin de contrat:
     - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
   titre.en: End of contract bonus
   titre.fr: prime de fin de contrat
-contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
-  description.en: >
-    [automatic] As of January 1, 2020, the employer must pay a tax on the
-    following
-
-    for each conclusion of a customary fixed-term contract. The objective of this
-
-    tax is to discourage the excessive use of short contracts.
-
-
-    Certain sectors of activity defined in the Labour Code are not defined in the Labour Code.
-
-    concerned by this tax.
-  description.fr: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
-    forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
-    taxe est de décourager le recours excessif aux contrats courts.
-
-    Certains secteurs d'activités définis dans le code du travail ne sont pas
-    concernés par cette taxe.
-  titre.en: flat-rate tax on customary fixed-term contracts
-  titre.fr: taxe forfaitaire sur les CDD d'usage
 contrat salarié . CDD . événement:
   description.en: >-
     Some events have a strong impact on the financial obligations of the
