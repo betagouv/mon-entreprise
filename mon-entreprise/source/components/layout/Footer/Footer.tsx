@@ -50,7 +50,7 @@ export default function Footer() {
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (
-		<div className="footer-container">
+		<div>
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link
@@ -86,7 +86,16 @@ export default function Footer() {
 						security contributions collector.
 					</p>
 				)}
-				<p className="ui__ notice" style={{ textAlign: 'center' }}>
+				<p
+					className="ui__ notice"
+					css={`
+						text-align: center;
+						margin: 0 0.6rem;
+						a {
+							white-space: nowrap;
+						}
+					`}
+				>
 					<LegalNotice />
 					{'  •  '}
 					<Privacy />
