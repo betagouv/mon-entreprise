@@ -179,11 +179,15 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 91
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
   applicable si: assiette < 3 * seuil d'affiliation
-  question: Souhaitez-vous bénéficier d'un taux réduit pour votre cotisation retraite ? Vos droits seront réduits d'autant.
+  question: Souhaitez-vous cotiser sur la base d'un taux réduit pour votre retraite complémentaire à l'IRCEC ?
   par défaut: non
   description: |
     Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
     si vous en faite la demande.
+
+    Les points de retraite complémentaire sont acquis au pro-rata du montant
+    cotisé. En réduisant votre cotisation vous réduisez donc le nombre de points
+    acquis.
   références:
     Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf#page=5
 
