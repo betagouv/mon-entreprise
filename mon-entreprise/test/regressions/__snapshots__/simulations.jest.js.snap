@@ -1,178 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `
-"[0,50000,49897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[9020,50000,36345,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `
-"[0,15000,14897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[913,15000,12630,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `
-"[0,5000,4897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[300,5000,4152,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `
-"[525,10000,9372,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[1487,10000,7511,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `
-"[0,10000,9897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `"[606,10000,8392,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `
-"[1042,50000,48185,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `
-"[0,500,397,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[82,500,279,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `
-"[0,5000,4897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[1021,5000,3431,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `
-"[0,50000,49881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[9021,50000,37539,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `
-"[0,5000,4881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[0,5000,4881,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `
-"[0,15000,14881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `"[33,15000,14803,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `
-"[1312,35000,33569,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `"[7546,35000,24814,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `
-"[4754,50000,45106,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[14093,50000,31238,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[13578,50000,31753,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `
-"[4754,50000,45127,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[14098,50000,31253,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[5652,50000,39713,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[14610,50000,35287,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 2`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: international 2`] = `"[11875,50000,36215,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `
-"[1042,50000,48839,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[11365,50000,33986,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `
-"[1042,5000,3839,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[1368,5000,3069,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[11369,50000,33996,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `
-"[1042,5000,3855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[1369,5000,3083,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
-"[1042,50000,48855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `"[11369,50000,33996,0,0,1,1]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `
-"[1042,5000,3855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[1369,5000,3083,0,0,1,1]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
-"[1042,50000,48855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `"[9454,50000,35911,0,0,1,1]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `
-"[1042,500,-645,0,1,1,0]
+"[1042,500,-681,0,1,1,0]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `
-"[1042,1000,-145,0,1,1,0]
+"[1042,1000,-226,0,1,1,0]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `
-"[1042,1500,355,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1067,1500,203,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `
-"[1042,2000,855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[1110,2000,614,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `
-"[1042,5000,3855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[1369,5000,3083,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `
-"[1042,10000,8855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[2204,10000,6794,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `
-"[1042,100000,98855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+"[20929,100000,69895,0,1,1,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `
-"[1042,1000000,998855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+"[106448,1000000,802634,0,1,1,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;

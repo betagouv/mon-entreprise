@@ -8,13 +8,10 @@ aide déclaration revenu indépendant 2020:
   remplace:
     - règle: entreprise . ACRE
       par: ACRE
-      
+
     - # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
       règle: entreprise . activité . mixte
-      par: oui 
-    - # Par défaut, le CA est à zéro 
-      règle: entreprise . chiffre d'affaires
-      par: 0€/an
+      par: oui
 
 aide déclaration revenu indépendant 2020 . comptabilité:
   titre: régime de la déclaration contrôlée
@@ -36,39 +33,38 @@ aide déclaration revenu indépendant 2020 . comptabilité . engagement:
   valeur: comptabilité = 'engagement'
   titre: comptabilité d'engagement
 
-
-aide déclaration revenu indépendant 2020 . cotisations payées: 
-  remplace: 
+aide déclaration revenu indépendant 2020 . cotisations payées:
+  remplace:
     - règle: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
       par: CSG non déductible + CRDS
     - règle: aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires
-      par: 
-        valeur: cotisations payées . total charges sociales 
-        abattement: 
+      par:
+        valeur: cotisations payées . total charges sociales
+        abattement:
           somme:
             - dirigeant . indépendant . cotisations et contributions . formation professionnelle
             - CSG non déductible
             - CRDS
             - CSG déductible
-  applicable si: 
-    une de ces conditions: 
+  applicable si:
+    une de ces conditions:
       - comptabilité . trésorerie
       - entreprise . imposition . IS
   non applicable si: résultat simple
   valeur: oui
 
 aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociales:
-  remplace: 
+  remplace:
     règle: dirigeant . indépendant . cotisations et contributions
-    par: 
-      somme: 
+    par:
+      somme:
         - cotisations payées . total charges sociales
         - dirigeant . indépendant . cotisations facultatives . total
   unité: €/an
   question: Quel est le montant total des cotisations et contributions sociales payées pendant l'exercice ?
   description: |
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
-    
+
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
     3. Selectionnez "relevé de situation comptable"
@@ -80,7 +76,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
   unité: €/an
   description: |
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
-    
+
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
     3. Selectionnez "demander une attestation"
@@ -92,7 +88,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG non dédu
   unité: €/an
   description: |
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
-    
+
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
     3. Selectionnez "demander une attestation"
@@ -104,7 +100,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
   unité: €/an
   description: |
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
-    
+
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
     3. Selectionnez "demander une attestation"
@@ -115,28 +111,27 @@ aide déclaration revenu indépendant 2020 . cotisations payées . cotisations o
   remplace: cotisations obligatoires déductibles
   unité: €/an
   valeur: cotisations payées . total charges sociales
-  abattement: 
-    somme: 
+  abattement:
+    somme:
       - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
       - dirigeant . indépendant . cotisations et contributions . formation professionnelle
 
-aide déclaration revenu indépendant 2020 . cotisations payées version simple: 
-  applicable si: 
-    toutes ces conditions: 
-      - une de ces conditions: 
-        - comptabilité . trésorerie
-        - entreprise . imposition . IS
-      - résultat simple  
+aide déclaration revenu indépendant 2020 . cotisations payées version simple:
+  applicable si:
+    toutes ces conditions:
+      - une de ces conditions:
+          - comptabilité . trésorerie
+          - entreprise . imposition . IS
+      - résultat simple
   valeur: oui
   remplace:
     - règle: résultat simple . cotisations obligatoires
       par: cotisations payées version simple . cotisations sociales
     - règle: résultat simple . total charges sociales déductible
-      par: 
-        somme: 
+      par:
+        somme:
           - cotisations payées version simple . cotisations sociales
           - cotisations payées version simple . CSG déductible et CFP
-
 
 aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP:
   question: Quel est le montant total de CSG déductible et CFP payées cette année ?
@@ -149,15 +144,14 @@ aide déclaration revenu indépendant 2020 . cotisations payées version simple 
   description: |
     Indiquez le montant des cotisations sociales aux régimes obligatoires (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez payées en 2020 (peu importe l’année à laquelle ces cotisations se rapportent).
 
-
 aide déclaration revenu indépendant 2020 . régime d'imposition: oui
 aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée:
   titre: régime de la déclaration contrôlée
   applicable si: entreprise . activité . libérale
-  non applicable si: 
-      une de ces conditions:
-        - entreprise . imposition . IS
-        - entreprise . imposition . IR . micro-fiscal
+  non applicable si:
+    une de ces conditions:
+      - entreprise . imposition . IS
+      - entreprise . imposition . IR . micro-fiscal
   valeur: oui
   description: |
     Si vous devez déclarer des bénéfices non commerciaux (BNC), vous pouvez être soumis au régime de la déclaration contrôlée ou au régime micro-BNC ; cela dépend du montant de vos bénéfices.
@@ -171,8 +165,8 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel:
     Le régime simplifié d'imposition (RSI) et le régime réel normal (RN) s'appliquent aux bénéfices réalisés au cours de l'exercice et à la taxe sur la valeur ajoutée (TVA).
 
     C'est principalement le détail demandé lors du remplissage des obligations comptables qui différencie ces 2 régimes d'imposition.
-  
-  question: Quel est le régime d'imposition applicable à l'exercice ? 
+
+  question: Quel est le régime d'imposition applicable à l'exercice ?
   non applicable si:
     une de ces conditions:
       - entreprise . imposition . IR . micro-fiscal
@@ -192,7 +186,7 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel . simp
     - les créances et les dettes sont constatées à la clôture de l’exercice
     - le bilan fourni à l’administration fiscale est un bilan simplifié
 
-  titre: régime réel simplifié 
+  titre: régime réel simplifié
   acronyme: RSI
   valeur: réel = 'simplifié'
 
@@ -206,18 +200,18 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel . norm
     - L'entreprise doit établir des comptes annuels comprenant un bilan, un compte de résultat et des annexes.
     - L'entreprise doit tenir un livre journal et un grand livre.
 
-  titre: régime réel normal 
+  titre: régime réel normal
   acronyme: RN
   valeur: réel = 'normal'
 
 aide déclaration revenu indépendant 2020 . nature de l'activité:
-  remplace: 
+  remplace:
     - entreprise . activité
-    - règle: entreprise . activité . libérale 
+    - règle: entreprise . activité . libérale
       par: libérale
-    - règle: entreprise . activité . artisanale 
+    - règle: entreprise . activité . artisanale
       par: artisanale
-    - règle: entreprise . activité . commerciale 
+    - règle: entreprise . activité . commerciale
       par: commerciale
   question: Quelle est la nature de votre activité ?
   par défaut: "'commerciale'"
@@ -231,9 +225,6 @@ aide déclaration revenu indépendant 2020 . nature de l'activité:
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
-
-
-
 
 aide déclaration revenu indépendant 2020 . ACRE:
   description: >-
@@ -356,7 +347,6 @@ aide déclaration revenu indépendant 2020 . réduction covid:
   question: Remplissez-vous les conditions pour bénéficier de la réduction de cotisations sociales liées à la crise du Covid-19 ?
   par défaut: non
 
-
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
   titre: Réduction Covid
   formule:
@@ -379,8 +369,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
     - montant
     - conjoint collaborateur
 
-
-
 aide déclaration revenu indépendant 2020 . réduction covid . part cotisations:
   titre: Part réduction Covid sur cotisations (hors CSG/CRDS)
   arrondi: oui
@@ -392,8 +380,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . part cotisations
 aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations:
   unité: '%'
   valeur: dirigeant . indépendant . cotisations et contributions . cotisations / (dirigeant . indépendant . cotisations et contributions . cotisations + dirigeant . indépendant . cotisations et contributions . CSG et CRDS)
-
-
 
 aide déclaration revenu indépendant 2020 . réduction covid . part CSG:
   titre: Part réduction Covid sur CSG
@@ -468,7 +454,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
   description: |
     Secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel.
 
-
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis:
   titre: Secteur dit S1 bis
   description: |
@@ -476,8 +461,7 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
 
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2:
   titre: Secteur dit S2
-  description:
-    Autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité.
+  description: Autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité.
 
 aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020:
   applicable si: secteur d'activité
@@ -514,7 +498,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . éligible aide p
 
     Votre activité doit avoir débuté avant le 1er juin 2020.
     Si vous avez cessé votre activité, la cessation doit être postérieure ou égale au 15 mars 2020.
-
 
 aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020:
   applicable si: secteur d'activité
@@ -582,8 +565,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
     toutes ces conditions:
       - éligible aide automne 2020
       - une de ces conditions:
-        - secteur d'activité = 'S1'
-        - secteur d'activité = 'S1-bis'
+          - secteur d'activité = 'S1'
+          - secteur d'activité = 'S1-bis'
   question: |
     Précisez le nombre de mois entre octobre 2020* et mars 2021 durant lesquels vous avez subi une interdiction d’accueil du public ou une baisse de 50% de votre chiffre d’affaires
   description: |
@@ -601,7 +584,6 @@ aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois �
   unité: mois éligibles
   plafond: 3 mois éligibles
 
-
 aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibles:
   description: Cotisations obligatoires déductibles, utile pour calculer l'assiette de la CSG/CRDS
   somme:
@@ -609,11 +591,10 @@ aide déclaration revenu indépendant 2020 . cotisations obligatoires déductibl
     - dirigeant . indépendant . conjoint collaborateur . cotisations
 
 aide déclaration revenu indépendant 2020 . rémunération déductible:
-  variations: 
+  variations:
     - si: entreprise . imposition . IS
       alors: dirigeant . rémunération . nette
     - sinon: 0€
-    
 
 aide déclaration revenu indépendant 2020 . formulaire 2033:
   titre: formulaire 2033-SD
@@ -644,7 +625,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 324:
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 330:
   résumé: Divers à réintégrer (+)
   description: Réintégrer également les montants spécifiés [page 8 de la notice dédiée](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2033-sd_2570.pdf#page=8)
-  applicable si: 
+  applicable si:
     toutes ces conditions:
       - entreprise . imposition . IR
       - dirigeant . indépendant . cotisations facultatives . non déductibles > 0
@@ -664,7 +645,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 327:
   applicable si: entreprise . imposition . IR
   résumé: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
   valeur: dirigeant . indépendant . cotisations facultatives . PER
-  
+
 aide déclaration revenu indépendant 2020 . formulaire 2033 . rubrique 380:
   applicable si: entreprise . imposition . IR
   résumé: Cotisations personnelles obligatoires de l'exploitant
@@ -721,12 +702,12 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique A8:
   applicable si: entreprise . imposition . IR
   résumé: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
   valeur: dirigeant . indépendant . cotisations facultatives . PER
-  
+
 aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique WQ:
   applicable si: entreprise . imposition . IR
-  valeur: dirigeant . indépendant . cotisations et contributions . non déductibles 
+  valeur: dirigeant . indépendant . cotisations et contributions . non déductibles
   résumé: Réintégrations diverses (+)
-  description: Ajouter toutes les réintégrations listée dans la [page 9 de la notice](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf#page=9) 
+  description: Ajouter toutes les réintégrations listée dans la [page 9 de la notice](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf#page=9)
 
 aide déclaration revenu indépendant 2020 . formulaire 2035:
   titre: formulaire 2035-A-SD
@@ -747,7 +728,7 @@ aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BV:
 
 aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BK:
   résumé: Charges sociales personnelles
-  somme: 
+  somme:
     - cotisations obligatoires déductibles
     - dirigeant . indépendant . cotisations facultatives . déductibles
 
@@ -763,26 +744,26 @@ aide déclaration revenu indépendant 2020 . formulaire 2035 . rubrique BU:
   résumé: Dont facultatives aux nouveaux plans d’épargne retraite
   valeur: dirigeant . indépendant . cotisations facultatives . PER
 
-aide déclaration revenu indépendant 2020 . formulaire 2042: 
+aide déclaration revenu indépendant 2020 . formulaire 2042:
   valeur: oui
   résumé: Déclaration des revenus
-  référence: 
+  référence:
     formulaire: https://www.impots.gouv.fr/portail/formulaire/2042/declaration-des-revenus
     notice fusion déclaration sociale/fiscale: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
-    
+
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique 1GB:
   titre: rubrique 1GB / 1HB
   applicable si: entreprise . imposition . IS
   résumé: Traitements et salaires
   valeur: dirigeant . rémunération . imposable
 
-aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA: 
+aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSCA:
   titre: rubrique DSCA / DSCB
   résumé: Cotisations sociales obligatoires
   description: |
     La rubrique DSCA ou DSCB de la déclaration de revenu fiscale et sociale unifiée correspond au montant des cotisations sociales obligatoires déductibles fiscalement (ces cotisations seront soumises à CSG-CRDS). La rubrique DSCA ou DSCB figure dans le volet social « déclaration de revenus des indépendants » de la déclaration 2042.
   valeur: cotisations obligatoires déductibles
-  références: 
+  références:
     notice: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
 
 aide déclaration revenu indépendant 2020 . formulaire 2042 . rubrique DSEA:
@@ -821,14 +802,13 @@ aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C . rubrique 5H
   résumé: Régime déclaratif spécial ou micro BNC (recettes brutes)
   valeur: entreprise . chiffre d'affaires . service BNC
 
-aide déclaration revenu indépendant 2020 . informations résultat par formulaire : 
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire:
   applicable si: comptabilité . engagement
   non applicable si: entreprise . imposition . IR . micro-fiscal
   valeur: oui
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid:
   description: La réduction de cotisation applicable dans le cas du dispositif Covid
   valeur: réduction covid . total
-
 
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération totale:
   titre: Total rémunération dirigeant
@@ -839,7 +819,7 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations déductibles:
   résumé: '[C1]'
   description: "Cotisations et contributions sociales déductibles pour le calcul de l'assiette sociale"
-  somme: 
+  somme:
     - cotisations obligatoires déductibles
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
     - dirigeant . indépendant . cotisations et contributions . formation professionnelle
@@ -847,8 +827,8 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations non déductibles:
   résumé: '[C2]'
   description: Cotisations et contributions sociales non déductibles pour le calcul de l'assiette sociale
-  valeur: 
-    somme: 
+  valeur:
+    somme:
       - dirigeant . indépendant . cotisations et contributions . CSG et CRDS . non déductible
       - dirigeant . indépendant . cotisations facultatives . total
 
@@ -862,14 +842,12 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
   description: Le revenu net du dirigeant avant impôt sur le revenu. C'est la rémunération effectivement versée.
   valeur: dirigeant . rémunération . nette
 
-
-
 aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal:
   non applicable si: entreprise . imposition . IR . micro-fiscal
 
   titre: revenu net fiscal
   résumé: '[A]'
-  description: Résultat avant déduction des charges sociales et exonérations fiscales 
+  description: Résultat avant déduction des charges sociales et exonérations fiscales
   valeur: dirigeant . rémunération . totale
 
 aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires:
@@ -883,13 +861,11 @@ aide déclaration revenu indépendant 2020 . résultat simple . cotisations obli
     - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
     - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
   unité: €/an
-  somme: 
+  somme:
     - dirigeant . indépendant . cotisations et contributions . cotisations
     - dirigeant . indépendant . conjoint collaborateur . cotisations
   références:
     Notice impots.gouv.fr: https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2021/pdf_som/11-bis-decla_fusion_fisc_185a195.pdf
-
-
 
 aide déclaration revenu indépendant 2020 . résultat simple: oui
 aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible:
@@ -902,9 +878,9 @@ aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible:
 aide déclaration revenu indépendant 2020 . résultat simple . CFP:
   non applicable si: entreprise . imposition . IR . micro-fiscal
   résumé: '[D]'
-  description: Contribution à la formation professionnelle 
+  description: Contribution à la formation professionnelle
   valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
-  
+
 aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible:
   non applicable si: entreprise . imposition . IR . micro-fiscal
   titre: charges sociales obligatoires déductibles fiscalement
@@ -919,7 +895,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . total charges so
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
     - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
     - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
-    
+
 aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale:
   non applicable si: entreprise . imposition . IR . micro-fiscal
   résumé: '[A - (B + C + D)]'
