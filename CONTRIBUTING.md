@@ -66,28 +66,22 @@ REDUX_TRACE=true yarn start
 
 A mettre sans retenue dans les messages de commit :
 
-https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
-
--   🎨 `:art:` when working on the app's visual style
--   🐎 `:racehorse:` when improving performance
--   📝 `:memo:` when writing docs
--   🐛 `:bug:` when fixing a bug
--   🔥 `:fire:` when removing code or files
--   💚 `:green_heart:` when fixing the CI build
--   ✅ `:white_check_mark:` when adding tests
--   ⬆️ `:arrow_up:` when upgrading dependencies
--   :sparkles: `:sparkles:` when formatting, renaming, reorganizing files
-
-Et ceux spécifiques au projet :
-
--   :gear: `:gear:` pour une contribution au moteur qui traite les YAML
--   :hammer: `:hammer:` pour une contribution à la base de règles
--   :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
--   :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
--   :alien: `:alien:` pour ajouter des traductions
--   :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
--   :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
--   :mag: `:mag:` pour les modifications liées au référencement naturel
+-   🎨 `:art:` pour une modification de l'UI
+-   🐎 `:racehorse:` pour une amélioration de performance
+-   🐛 `:bug:` pour une correction de bug
+-   🔥 `:fire:` pour une suppression de code ou de fichier
+-   💚 `:green_heart:` pour une correction de CI
+-   ✅ `:white_check_mark:` pour un ajout de test
+-   ⬆️ `:arrow_up:` pour une mise à jour de dépendances
+-   ✨ `:sparkles:` pour une ré-organisation du code
+-   ⚙ `:gear:` pour une contribution sur le moteur publicodes
+-   🔨 `:hammer:` pour une contribution à la base de règles
+-   📆 `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
+-   📈 `:chart_with_upwards_trend:` pour une amélioration du tracking
+-   👽 `:alien:` pour ajouter des traductions
+-   ♿ `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
+-   🖋 `:fountain_pen:` pour séparer les commits liés à la modification du contenu
+-   🔍 `:mag:` pour les modifications liées au référencement naturel
 
 ### Tests
 
@@ -167,6 +161,44 @@ La commande `yarn run build:analyse-bundle` gènere une visualisation interactiv
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
+### Tests
+
+Pour tester les règles, il est recommandé de:
+
+-   faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
+    traduites ;
+-   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
+    `mon-entreprise/test/regressions`).
+
+## Publicodes
+
+### Documentation
+
+Un tutoriel sur publicodes est disponible sur https://publi.codes.
+
+Un wiki contenant des informations intéressantes sur publicodes et le
+raisonnement ayant abouti à ce langage sont dispos sur le repository
+[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
+ailleurs inutilisé.
+
+Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
+contenant les règles elles-mêmes (dans le dossier `modele-social`) mais cela
+peut s'avérer assez abrupt.
+
+Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
+dans un premier temps, puis au [mécanismes en
+place](./publicodes/source/mecanisms).
+
+### Traduction des normes (lois) en règles Publicodes
+
+Checklist:
+
+-   [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
+-   [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
+-   [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
+
+[wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
+
 ### Modifier publicodes
 
 Publicodes dispose désormais de son propre dépôt GitHub https://github.com/betagouv/publicodes
@@ -198,57 +230,4 @@ Dans l'autre sens il est possible de rapatrier les changements avec la commande
 $ git subtree pull --prefix=publicodes publicodes master --squash
 ```
 
-## Développement de modèles Publicodes
-
-### Traduction des normes (lois) en règles Publicodes
-
-Checklist:
-
--   [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
--   [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
--   [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
-
-[wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
-
-### Tests
-
-Pour tester les règles, il est recommandé de:
-
--   faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
-    traduites ;
--   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
-    `mon-entreprise/test/regressions`).
-
-## Documentation
-
-### Publicodes
-
-Un tutoriel sur publicodes est disponible sur https://publi.codes.
-
-Un wiki contenant des informations intéressantes sur publicodes et le
-raisonnement ayant abouti à ce langage sont dispos sur le repository
-[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
-ailleurs inutilisé.
-
-Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
-contenant les règles elles-mêmes (dans le dossier `rules`) mais cela peut
-s'avérer assez abrupt.
-
-Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
-dans un premier temps, puis au [mécanismes en
-place](./publicodes/source/mecanisms).
-
-## Publier une nouvelle version des paquets publicodes
-
-<!-- TODO: action à déplacer dans le dépot betagouv/publicodes -->
-
-Voici la marche à suivre pour publier une nouvelle version :
-
-1. Renseigner les modifications dans publicodes/CHANGELOG.md
-2. Remplacer les références à la précédente version par la nouvelle version dans les packages.json
-3. Ajouter tous les changement dans un commit avec le message suivant :
-    ```
-     📦 Publicodes v1.0.0-beta.<n>
-    ```
-    > **Important** Le message doit être exactement celui-ci (emoji compris), car le script de déploiement automatique sur le CI se base sur ce dernier.
-4. Laisser faire le CI, une fois le commit mergé sur master, le paquet sera déployé effectivement
+Les dépendances peuvent avoir changé côté publicodes, mieux vaut donc enchaîner avec un `yarn install` pour être à jour.
