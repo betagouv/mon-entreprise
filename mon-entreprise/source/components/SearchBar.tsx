@@ -92,15 +92,18 @@ export default function SearchBar({
 	)
 
 	useEffect(() => {
+		if (!worker) return
+
 		worker.postMessage({
 			rules: searchIndex,
 		})
 
 		worker.onmessage = ({ data: results }: any) => setResults(results)
+
 		return () => {
 			worker.onmessage = null
 		}
-	}, [searchIndex, setResults])
+	}, [worker, searchIndex, setResults])
 
 	return (
 		<>
