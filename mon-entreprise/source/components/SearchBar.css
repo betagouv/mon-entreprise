@@ -1,8 +1,15 @@
-li.active {
-	background: var(--color);
-	color: var(--textColor);
+.ais-Hits-list > .ais-Hits-item {
+	margin-top: 0.7em;
+	padding: 0.5em;
 }
 
-li.active a {
-	color: var(--textColor);
+.ais-Hits-list > .ais-Hits-item > .hit-content {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.ais-Hits-list > .ais-Hits-item > .hit-content > .ais-Highlight {
+	display: block;
+	flex-grow: 1;
 }
