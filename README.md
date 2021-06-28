@@ -7,6 +7,7 @@ Ce dépôt contient :
 
 [![Statut déploiement](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml?query=branch%3Amaster++)&nbsp;
 [![Statut test](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml?query=branch%3Amaster++)
+[![Gitter chat](https://badges.gitter.im/mon-entreprise/community.png)](https://gitter.im/mon-entreprise/community)
 
 Site développé en partenariat avec l'Urssaf, qui a pour mission d'accompagner des créateurs d’entreprise dans le développement de leur activité.
 
