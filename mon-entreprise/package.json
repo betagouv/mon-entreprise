@@ -67,12 +67,15 @@
 		"@rehooks/local-storage": "^2.1.1",
 		"@sentry/react": "^6.3.5",
 		"@sentry/tracing": "^6.3.5",
+		"@types/react-instantsearch-dom": "^6.10.1",
+		"algoliasearch": "^4.10.2",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",
 		"fuse.js": "5.2.1",
 		"iframe-resizer": "^4.1.1",
+		"instantsearch.css": "^7.4.5",
 		"modele-social": "^0.2.0",
 		"publicodes": "^1.0.0-beta.15",
 		"publicodes-react": "^1.0.0-beta.15",
@@ -83,6 +86,8 @@
 		"react-easy-emoji": "^1.2.0",
 		"react-helmet": "^6.1.0",
 		"react-i18next": "^11.0.0",
+		"react-instantsearch": "^6.11.2",
+		"react-instantsearch-dom": "^6.11.2",
 		"react-markdown": "^4.1.0",
 		"react-monaco-editor": "^0.40.0",
 		"react-number-format": "^4.3.1",
@@ -128,6 +133,7 @@
 		"serve:dev": "concurrently -k \"yarn run serve:dev:mon-entreprise\" \"yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes\"",
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"serve:dev:publicodes": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
-		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard"
+		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
+		"algolia:update": "node scripts/search/update-data.js"
 	}
 }

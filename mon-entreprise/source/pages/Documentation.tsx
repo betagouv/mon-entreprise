@@ -1,5 +1,4 @@
-import SearchBar from 'Components/SearchBar'
-import SearchButton from 'Components/SearchButton'
+import SearchRules from 'Components/search/SearchRules'
 import { FromBottom } from 'Components/ui/animate'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -12,6 +11,8 @@ import { useSelector } from 'react-redux'
 import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
+import rules, { DottedName } from 'modele-social'
+import RuleLink from '../components/RuleLink'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -32,9 +33,15 @@ export default function RulePage() {
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
+
+	if (pathname === '/documentation/dev') {
+		return <DocumentationRulesList />
+	}
+
 	if (!documentationSitePaths[pathname]) {
 		return <Redirect to="/404" />
 	}
+
 	return (
 		<FromBottom>
 			<TrackPage
@@ -51,7 +58,6 @@ export default function RulePage() {
 					`}
 				>
 					{currentSimulation ? <BackToSimulation /> : <span />}
-					<SearchButton key={pathname} />
 				</div>
 				<Documentation
 					language={i18n.language as 'fr' | 'en'}
@@ -88,7 +94,21 @@ function DocumentationLanding() {
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>
 			<p>Explorez toutes les règles de la documentation</p>
-			<SearchBar showListByDefault={true} />
+			<SearchRules />
+		</>
+	)
+}
+
+function DocumentationRulesList() {
+	const ruleEntries = Object.keys(rules) as DottedName[]
+	return (
+		<>
+			<h1>Liste des règles</h1>
+			{ruleEntries.map((name) => (
+				<RuleLink dottedName={name} key={name}>
+					{name}
+				</RuleLink>
+			))}
 		</>
 	)
 }
