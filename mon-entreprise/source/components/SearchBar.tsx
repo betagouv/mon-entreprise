@@ -6,7 +6,7 @@ import algoliasearch from 'algoliasearch/lite'
 import {
 	InstantSearch,
 	SearchBox,
-	Hits,
+	InfiniteHits,
 	Highlight,
 } from 'react-instantsearch-dom'
 import { Names } from '../../../modele-social/dist/names'
@@ -30,7 +30,7 @@ export default function SearchBar({}: SearchBarProps) {
 		<InstantSearch indexName="rules" searchClient={searchClient}>
 			<SearchBox />
 			<div className="hit-container">
-				<Hits hitComponent={Hit} />
+				<InfiniteHits hitComponent={Hit} />
 			</div>
 		</InstantSearch>
 	)
