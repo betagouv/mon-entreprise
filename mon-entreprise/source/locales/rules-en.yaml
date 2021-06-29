@@ -3703,6 +3703,11 @@ contrat salarié . intermittents du spectacle . technicien:
 contrat salarié . intermittents du spectacle . technicien . non cadre:
   titre.en: not "cadre"
   titre.fr: non cadre
+contrat salarié . jeune de moins de 26 ans:
+  question.en: '[automatic] Is the employee under 26 years of age?'
+  question.fr: Le salarié a-t-il moins de 26 ans ?
+  titre.en: '[automatic] young person under 26 years old'
+  titre.fr: jeune de moins de 26 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas

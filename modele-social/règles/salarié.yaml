@@ -2106,6 +2106,10 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
 
+contrat salarié . jeune de moins de 26 ans:
+  question: Le salarié a-t-il moins de 26 ans ?
+  par défaut: non
+
 contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
   non applicable si: aides employeur . emploi franc
   description: >-
@@ -2126,9 +2130,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
           - toutes ces conditions:
               - CDD
               - CDD . durée contrat >= 3 mois
-      - nom: jeune de moins de 26 ans
-        question: Le salarié a-t-il moins de 26 ans ?
-        par défaut: non
+      - jeune de moins de 26 ans
   rend non applicable:
     # Dispositifs moins généreux et non cumulables
     - aide à l'embauche des travailleurs handicapés
@@ -2173,7 +2175,7 @@ contrat salarié . aides employeur . emploi franc:
               toutes ces conditions:
                 - ancienneté . date d'embauche >= 15/10/2020
                 - ancienneté . date d'embauche <= 31/05/2021
-                - contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans
+                - jeune de moins de 26 ans
             alors:
               nom: emploi franc plus
               variations:
