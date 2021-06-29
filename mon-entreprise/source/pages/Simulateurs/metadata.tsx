@@ -105,7 +105,6 @@ export function getSimulatorsData({
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
 } = {}): SimulatorData {
-	console.log({ data: getData() })
 	const pureSimulatorsData = getData({ t })
 	return {
 		salarié: {
