@@ -51,7 +51,6 @@ export default function RulePage() {
 					`}
 				>
 					{currentSimulation ? <BackToSimulation /> : <span />}
-					<SearchButton key={pathname} />
 				</div>
 				<Documentation
 					language={i18n.language as 'fr' | 'en'}

@@ -42,7 +42,6 @@ export default function Simulation({
 			<ExportRecover />
 			{simulationBloc}
 
-			<SearchButton invisibleButton />
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
 				<>

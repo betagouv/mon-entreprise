@@ -42,6 +42,7 @@ import {
 	setupInFranceAppPersistence,
 } from './storage/persistInFranceApp'
 import { setupSimulationPersistence } from './storage/persistSimulation'
+import SearchButton from 'Components/SearchButton'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -114,6 +115,9 @@ const App = () => {
 				/>
 				{/* Passing location down to prevent update blocking */}
 				<div className="ui__ container app-content">
+					<div style={{ marginLeft: 'auto', marginRight: 0 }}>
+						<SearchButton />
+					</div>
 					<Switch>
 						{redirects}
 						<Route path={sitePaths.créer.index} component={Créer} />
