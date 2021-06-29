@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Overlay from './Overlay'
-import SearchBar from './SearchBar'
+import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
 type SearchButtonProps = {
 	invisibleButton?: boolean
@@ -32,7 +32,7 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			<h1>
 				<Trans>Chercher dans la documentation</Trans>
 			</h1>
-			<SearchBar />
+			<SearchRulesAndSimulators />
 		</Overlay>
 	) : invisibleButton ? null : (
 		<button

@@ -1,0 +1,48 @@
+.ais-InfiniteHits {
+}
+
+.ais-InfiniteHits-list > .ais-InfiniteHits-item {
+	padding: 0.5em;
+}
+
+.ais-InfiniteHits-list > .ais-InfiniteHits-item > .hit-content {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.ais-InfiniteHits-list
+	> .ais-InfiniteHits-item
+	> .hit-content
+	> .ais-Highlight {
+	display: block;
+	flex-grow: 1;
+}
+
+.ais-Hits-list {
+	display: grid;
+	grid-column-gap: 0.2em;
+	grid-row-gap: 0.5em;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.ais-Hits-list > .box {
+	padding: 0.5em;
+}
+
+.simulator-hit-content {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.simulator-hit-content .ais-Highlight {
+	font-size: 0.9em;
+}
+
+.simulator-icon {
+	height: 2em;
+}

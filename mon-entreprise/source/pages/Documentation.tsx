@@ -1,4 +1,4 @@
-import SearchBar from 'Components/SearchBar'
+import SearchRules from 'Components/search/SearchRules'
 import SearchButton from 'Components/SearchButton'
 import { FromBottom } from 'Components/ui/animate'
 import { ThemeColorsProvider } from 'Components/utils/colors'
@@ -88,7 +88,7 @@ function DocumentationLanding() {
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>
 			<p>Explorez toutes les règles de la documentation</p>
-			<SearchBar showListByDefault={true} />
+			<SearchRules />
 		</>
 	)
 }
