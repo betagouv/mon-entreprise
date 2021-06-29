@@ -1,12 +1,14 @@
 import { hideNotification } from 'Actions/actions'
 import animate from 'Components/ui/animate'
 import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
+import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
+import RuleLink from './RuleLink'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
 
@@ -15,8 +17,9 @@ import { ScrollToElement } from './utils/Scroll'
 // the "sévérité" attribute. The notification will only be displayed if the
 // publicodes rule is applicable.
 type Notification = {
-	dottedName: RuleNode['dottedName']
+	dottedName: DottedName
 	description: RuleNode['rawNode']['description']
+	résumé?: RuleNode['rawNode']['description']
 	sévérité: 'avertissement' | 'information'
 }
 
@@ -27,9 +30,10 @@ export function getNotifications(engine: Engine) {
 				rule.rawNode['type'] === 'notification' &&
 				!!engine.evaluate(rule.dottedName).nodeValue
 		)
-		.map(({ dottedName, rawNode: { sévérité, description } }) => ({
+		.map(({ dottedName, rawNode: { sévérité, résumé, description } }) => ({
 			dottedName,
 			sévérité,
+			résumé,
 			description,
 		}))
 }
@@ -45,7 +49,7 @@ export default function Notifications() {
 	const messages: Array<Notification> = inversionFail
 		? [
 				{
-					dottedName: 'inversion fail',
+					dottedName: 'inversion fail' as any,
 					description: t(
 						'simulateurs.inversionFail',
 						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
@@ -59,14 +63,19 @@ export default function Notifications() {
 	return (
 		<div id="notificationsBlock">
 			<ul style={{ margin: 0, padding: 0 }}>
-				{messages.map(({ sévérité, dottedName, description }) =>
+				{messages.map(({ sévérité, dottedName, résumé, description }) =>
 					hiddenNotifications?.includes(dottedName) ? null : (
 						<animate.fromTop key={dottedName}>
 							<li>
 								<div className="notification">
 									{emoji(sévérité == 'avertissement' ? '⚠️' : '💁🏻')}
 									<div className="notificationText ui__ card">
-										<Markdown source={description} />
+										<Markdown source={résumé ?? description} />{' '}
+										{résumé && (
+											<RuleLink dottedName={dottedName}>
+												<Trans>En savoir plus</Trans>
+											</RuleLink>
+										)}
 										<button
 											className="hide"
 											aria-label="close"

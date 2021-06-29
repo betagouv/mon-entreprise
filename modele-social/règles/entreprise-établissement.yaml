@@ -182,26 +182,9 @@ entreprise . chiffre d'affaires . BIC:
     - service BIC 
     - vente restauration hébergement
     
-entreprise . chiffre d'affaires . franchise de TVA dépassée:
+entreprise . chiffre d'affaires . franchise de TVA: oui
 
-  description: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
-
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  une de ces conditions:
-    - chiffre d'affaires > seuil vente + seuil service
-    - vente restauration hébergement > seuil vente
-    - service > seuil service
-  note: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
-
-entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
+entreprise . chiffre d'affaires . franchise de TVA . seuil vente:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 110000 €/an
@@ -209,7 +192,7 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
+entreprise . chiffre d'affaires . franchise de TVA . seuil service:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
@@ -219,13 +202,27 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
-  applicable si: chiffre d'affaires
+entreprise . chiffre d'affaires . franchise de TVA . dépassement:
   type: notification
-  formule: oui
+  formule:
+    une de ces conditions:
+      - chiffre d'affaires > seuil vente + seuil service
+      - vente restauration hébergement > seuil vente
+      - service > seuil service
+  résumé: |
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
   description: |
-    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
 
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  note: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 entreprise . résultat fiscal:
   unité: €/an

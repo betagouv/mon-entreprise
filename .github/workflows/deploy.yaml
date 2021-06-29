@@ -2,7 +2,7 @@ name: Déploiement
 on:
   push:
     branches: [master, demo, next]
-  pull_request_target: 
+  pull_request_target:
     types: [opened, synchronize]
   # We display the release notes in the "news" section of mon-entreprise.fr so
   # we want to re-deploy the site when a new release is published or edited on
@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
@@ -163,7 +165,7 @@ jobs:
       fail-fast: false
       matrix:
         site: ['fr', 'en', 'publicodes']
-        browser: [electron]  # Firefox is very slow…
+        browser: [electron] # Firefox is very slow…
         viewport: [default]
         container: [1, 2, 3, 4]
         include:
@@ -202,7 +204,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - uses: actions/cache@v2
         # Custom cache as we do not care about installing all the other dependancies
         with:
@@ -210,9 +212,9 @@ jobs:
             ~/.cache/Cypress
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      
+
       - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
-      
+
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
         with:
@@ -242,7 +244,7 @@ jobs:
       fail-fast: false
       matrix:
         site: ['fr', 'en', 'publicodes']
-        browser: [chrome]  # Firefox is very slow…
+        browser: [chrome] # Firefox is very slow…
         viewport: [default, small]
         container: [1, 2, 3, 4]
         include:
@@ -281,7 +283,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - uses: actions/cache@v2
         # Custom cache as we do not care about installing all the other dependancies
         with:
@@ -289,9 +291,9 @@ jobs:
             ~/.cache/Cypress
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      
+
       - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
-      
+
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
         with:

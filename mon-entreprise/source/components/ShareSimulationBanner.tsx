@@ -26,10 +26,10 @@ export default function ShareSimulationBanner() {
 			searchParams.toString(),
 		].join('')
 
-	const startSharing = () => {
+	const startSharing = async () => {
 		if (shareAPIAvailable) {
 			try {
-				window.navigator.share({
+				await window.navigator.share({
 					title: document.title,
 					text: t(
 						'shareSimulation.navigatorShare',
@@ -73,14 +73,14 @@ export default function ShareSimulationBanner() {
 				<Trans i18nKey="shareSimulation.banner">
 					Pour partager cette simulation :{' '}
 					<LinkButton
-						onClick={() => {
+						onClick={async () => {
 							tracker.click.set({
 								chapter1: 'feature:partage',
 								type: 'action',
 								name: 'démarré',
 							})
 							tracker.dispatch()
-							startSharing()
+							await startSharing()
 						}}
 					>
 						Générer un lien dédié

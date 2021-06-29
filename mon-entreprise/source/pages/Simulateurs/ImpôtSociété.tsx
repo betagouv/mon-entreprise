@@ -21,8 +21,7 @@ const ISConfig = {
 		'entreprise . imposition': "'IS'",
 		'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
 			'oui',
-		"entreprise . chiffre d'affaires . franchise de TVA dépassée . notification":
-			'non',
+		"entreprise . chiffre d'affaires . franchise de TVA": 'non',
 	},
 } as SimulationConfig
 

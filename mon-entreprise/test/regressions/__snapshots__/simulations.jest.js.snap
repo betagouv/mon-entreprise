@@ -1,178 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `
-"[0,50000,49897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[9020,50000,36345,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `
-"[0,15000,14897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[913,15000,12630,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `
-"[0,5000,4897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[300,5000,4152,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `
-"[525,10000,9372,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[1487,10000,7511,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `
-"[0,10000,9897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `"[606,10000,8392,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `
-"[1042,50000,48185,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `
-"[0,500,397,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[82,500,279,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `
-"[0,5000,4897,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[1021,5000,3431,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `
-"[0,50000,49881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 1`] = `"[9021,50000,37539,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `
-"[0,5000,4881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 2`] = `"[0,5000,4881,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `
-"[0,15000,14881,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 3`] = `"[33,15000,14803,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `
-"[1312,35000,33569,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: aide covid 2020 4`] = `"[7546,35000,24814,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `
-"[4754,50000,45106,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[14093,50000,31238,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[13578,50000,31753,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `
-"[4754,50000,45127,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[14098,50000,31253,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `
-"[1823,50000,48037,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[5652,50000,39713,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[14610,50000,35287,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 2`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: international 2`] = `"[11875,50000,36215,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `
-"[1042,50000,48839,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[11365,50000,33986,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `
-"[1042,5000,3839,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[1368,5000,3069,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `
-"[1042,50000,48855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[11369,50000,33996,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `
-"[1042,5000,3855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[1369,5000,3083,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
-"[1042,50000,48855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `"[11369,50000,33996,0,0,1,1]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `
-"[1042,5000,3855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[1369,5000,3083,0,0,1,1]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
-"[1042,50000,48855,0,0,1,1]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `"[9454,50000,35911,0,0,1,1]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `
-"[1042,500,-645,0,1,1,0]
+"[1042,500,-681,0,1,1,0]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `
-"[1042,1000,-145,0,1,1,0]
+"[1042,1000,-226,0,1,1,0]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `
-"[1042,1500,355,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1067,1500,203,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `
-"[1042,2000,855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[1110,2000,614,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `
-"[1042,5000,3855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[1369,5000,3083,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `
-"[1042,10000,8855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
-`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[2204,10000,6794,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `
-"[1042,100000,98855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+"[20929,100000,69895,0,1,1,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `
-"[1042,1000000,998855,0,1,1,0]
-Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
+"[106448,1000000,802634,0,1,1,0]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
@@ -249,12 +156,12 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[8
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 9`] = `
 "[114830,1236,100000,3996,96004]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 "[1148303,12359,1000000,131938,868062]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
 exports[`calculate simulations-impot-société: bénéfices 1`] = `
@@ -272,27 +179,27 @@ exports[`calculate simulations-impot-société: bénéfices 5`] = `"[51044,0]"`;
 
 exports[`calculate simulations-impot-société: bénéfices 6`] = `
 "[555044,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: bénéfices 7`] = `
 "[5595044,159457]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: prorata temporis 1`] = `
 "[275044,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: prorata temporis 2`] = `
 "[277936,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: prorata temporis 3`] = `
 "[272981,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73023,23023,50000,51980,9600,40400,0,73023,3559]"`;
@@ -313,7 +220,7 @@ exports[`calculate simulations-indépendant: conjoint collaborateur 5`] = `"[752
 
 exports[`calculate simulations-indépendant: conjoint collaborateur 6`] = `
 "[652233,152233,500000,517707,220771,279229,0,652233,4487]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,467,16352,0,30000,3559]"`;
@@ -326,12 +233,12 @@ exports[`calculate simulations-indépendant: cotisations facultatives 4`] = `"[2
 
 exports[`calculate simulations-indépendant: cotisations facultatives 5`] = `
 "[300000,79622,220378,228521,82429,137949,0,300000,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 6`] = `
 "[300000,83122,216878,225021,80854,136024,0,300000,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: cotisations minimales 1`] = `"[1375,1275,100,135,0,100,0,1375,3559]"`;
@@ -340,12 +247,12 @@ exports[`calculate simulations-indépendant: cotisations minimales 2`] = `"[244,
 
 exports[`calculate simulations-indépendant: imposition à l'IS 1`] = `
 "[100000,30105,69895,72609,15123,54772,0,100000,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: imposition à l'IS 2`] = `
 "[100000,30105,69895,72609,15123,54772,0,100000,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: impôt sur le revenu 1`] = `"[29086,9086,20000,20787,603,19397,0,29086,3559]"`;
@@ -382,12 +289,12 @@ exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14597,
 
 exports[`calculate simulations-indépendant: échelle de revenus 7`] = `
 "[139593,39593,100000,103788,28472,71528,0,139593,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant: échelle de revenus 8`] = `
 "[1239954,239954,1000000,1033666,473591,526409,0,1239954,3559]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[3147,0,2647,500,0,500]"`;
@@ -404,12 +311,12 @@ exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[14422,0,44
 
 exports[`calculate simulations-professions-libérales: CIPAV 7`] = `
 "[146241,0,46241,100000,28546,71454]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
 "[1238004,0,238004,1000000,473565,526435]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7733,22267,1297,20970]"`;
@@ -420,19 +327,19 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] =
 
 exports[`calculate simulations-professions-libérales: avocat 1`] = `
 "[50000,0,11181,38819,6058,32761]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `
 "[50000,0,11821,38179,5866,32313]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,5076,14924,81,14843]"`;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 2`] = `
 "[50000,0,14877,35123,4949,30174]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,10817,39183,6167,33016]"`;
@@ -445,7 +352,7 @@ exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,
 
 exports[`calculate simulations-professions-libérales: médecin 5`] = `
 "[120000,0,26977,93023,25393,67630]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 6`] = `"[50000,0,10663,39337,6213,33124]"`;
@@ -561,7 +468,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Con
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 5`] = `
 "[0,274318,274318,20568,4,56]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,17852,17852,2973,3,8]"`;
@@ -598,7 +505,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): éc
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 8`] = `
 "[0,87085,87085,14500,4,40]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `"[0,8392,0,6077,4,21]"`;
@@ -617,7 +524,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `
 "[0,220378,0,57407,4,56]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `"[0,13168,0,9743,4,21]"`;
@@ -660,7 +567,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `
 "[0,69895,0,36204,4,56]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA dépassée . notification"
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-salarié: CCN HCR 1`] = `
