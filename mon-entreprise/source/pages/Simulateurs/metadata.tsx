@@ -37,6 +37,7 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
+import getData from './metadata-src.js'
 
 const simulateurs = [
 	'salarié',
@@ -103,40 +104,20 @@ export function getSimulatorsData({
 	t = (_: unknown, text: string) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
-}): SimulatorData {
+} = {}): SimulatorData {
+	console.log({ data: getData() })
+	const pureSimulatorsData = getData({ t })
 	return {
 		salarié: {
-			tracking: 'salarie',
+			...pureSimulatorsData['salarié'],
 			config: salariéConfig,
 			component: SalariéSimulation,
-			icône: '🤝',
-			title: t(
-				'pages.simulateurs.salarié.title',
-				'Simulateur de revenus pour salarié'
-			),
-			iframePath: 'simulateur-embauche',
 			meta: {
-				description: t(
-					'pages.simulateurs.salarié.meta.description',
-					"Calcul du salaire net, net après impôt et coût total employeur. Beaucoup d'options disponibles (cadre, stage, apprentissage, heures supplémentaires, etc.)"
-				),
-				ogDescription: t(
-					'pages.simulateurs.salarié.meta.ogDescription',
-					"En tant que salarié, calculez immédiatement votre revenu net après impôt à partir du brut mensuel ou annuel. En tant qu'employé, estimez le coût total d'une embauche à partir du brut. Ce simulateur est développé avec les experts de l'Urssaf, et il adapte les calculs à votre situation (statut cadre, stage, apprentissage, heures supplémentaire, titre-restaurants, mutuelle, temps partiel, convention collective, etc.)"
-				),
+				...pureSimulatorsData['salarié'].meta,
 				ogImage:
 					language === 'fr' ? salaireBrutNetPreviewFR : salaireBrutNetPreviewEN,
-				ogTitle: t(
-					'pages.simulateurs.salarié.meta.ogTitle',
-					'Salaire brut, net, net après impôt, coût total : le simulateur ultime pour salariés et employeurs'
-				),
-				title: t(
-					'pages.simulateurs.salarié.meta.titre',
-					'Salaire brut / net : le convertisseur Urssaf'
-				),
 			},
 			path: sitePaths.simulateurs.salarié,
-			shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.salarié.seo">
 					<h2>Comment calculer le salaire net ?</h2>
@@ -212,10 +193,7 @@ export function getSimulatorsData({
 			nextSteps: ['chômage-partiel', 'aides-embauche'],
 		},
 		'entreprise-individuelle': {
-			tracking: {
-				chapter2: 'statut_entreprise',
-				chapter3: 'EI',
-			},
+			...pureSimulatorsData['entreprise-individuelle'],
 			config: {
 				...indépendantConfig,
 				situation: {
@@ -223,34 +201,12 @@ export function getSimulatorsData({
 					'entreprise . imposition': "'IR'",
 				},
 			},
-			iframePath: 'simulateur-EI',
-			icône: '🚶‍♀️',
 			meta: {
-				description: t(
-					'pages.simulateurs.ei.meta.description',
-					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
-				),
-				ogDescription: t(
-					'pages.simulateurs.ei.meta.ogDescription',
-					"Grâce au simulateur de revenu pour entreprise individuelle développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
-				),
+				...pureSimulatorsData['entreprise-individuelle'].meta,
 				ogImage: AutoEntrepreneurPreview,
-				ogTitle: t(
-					'pages.simulateurs.ei.meta.ogTitle',
-					'Entreprise individuelle (EI) : calculez rapidement votre revenu net à partir du CA et vice-versa'
-				),
-				title: t(
-					'pages.simulateurs.ei.meta.titre',
-					'Entreprise individuelle (EI) : simulateur de revenus'
-				),
 			},
 			component: EntrepriseIndividuelle,
 			path: sitePaths.simulateurs['entreprise-individuelle'],
-			shortName: t('pages.simulateurs.ei.shortname', 'EI'),
-			title: t(
-				'pages.simulateurs.ei.title',
-				'Simulateur pour entreprise individuelle (EI)'
-			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 					<h2>
@@ -319,69 +275,24 @@ export function getSimulatorsData({
 			nextSteps: ['comparaison-statuts'],
 		},
 		eirl: {
-			tracking: {
-				chapter2: 'statut_entreprise',
-				chapter3: 'EIRL',
-			},
+			...pureSimulatorsData['eirl'],
 			config: indépendantConfig,
-			icône: '🚶',
-			iframePath: 'simulateur-EIRL',
 			meta: {
-				description: t(
-					'pages.simulateurs.eirl.meta.description',
-					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
-				),
-				ogDescription: t(
-					'pages.simulateurs.eirl.meta.ogDescription',
-					"Grâce au simulateur de revenu pour EIRL développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
-				),
+				...pureSimulatorsData['eirl'].meta,
 				ogImage: AutoEntrepreneurPreview,
-				ogTitle: t(
-					'pages.simulateurs.eirl.meta.ogTitle',
-					"Dirigeant d'EIRL : calculez rapidement votre revenu net à partir du CA et vice-versa"
-				),
-				title: t(
-					'pages.simulateurs.eirl.meta.titre',
-					'EIRL : simulateur de revenus pour dirigeant'
-				),
 			},
 			component: IndépendantSimulation,
 			path: sitePaths.simulateurs.eirl,
-			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
-			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
-
 			nextSteps: ['comparaison-statuts'],
 		},
 		sasu: {
+			...pureSimulatorsData['sasu'],
 			config: sasuConfig,
-			tracking: {
-				chapter2: 'statut_entreprise',
-				chapter3: 'SASU',
-			},
-			icône: '📘',
-			iframePath: 'simulateur-assimilesalarie',
 			meta: {
-				description: t(
-					'pages.simulateurs.sasu.meta.description',
-					'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
-				),
-				ogDescription: t(
-					'pages.simulateurs.sasu.meta.ogDescription',
-					'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
-				),
+				...pureSimulatorsData['sasu'].meta,
 				ogImage: RémunérationSASUPreview,
-				ogTitle: t(
-					'pages.simulateurs.sasu.meta.ogTitle',
-					'Rémunération du dirigeant de SASU : un simulateur pour connaître votre salaire net'
-				),
-				title: t(
-					'pages.simulateurs.sasu.meta.titre',
-					'SASU : simulateur de revenus pour dirigeant'
-				),
 			},
 			path: sitePaths.simulateurs.sasu,
-			shortName: t('pages.simulateurs.sasu.shortname', 'SASU'),
-			title: t('pages.simulateurs.sasu.title', 'Simulateur de SASU'),
 			component: function SasuSimulation() {
 				return (
 					<>
@@ -434,6 +345,7 @@ export function getSimulatorsData({
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		eurl: {
+			...pureSimulatorsData['eurl'],
 			config: {
 				...indépendantConfig,
 				situation: {
@@ -441,43 +353,22 @@ export function getSimulatorsData({
 					'entreprise . imposition': "'IS'",
 				},
 			},
-			tracking: {
-				chapter2: 'statut_entreprise',
-				chapter3: 'EURL',
-			},
-			icône: '📕',
-			iframePath: 'simulateur-eurl',
 			meta: {
-				description: t(
-					'pages.simulateurs.eurl.meta.description',
-					'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
-				),
-				ogDescription: t(
-					'pages.simulateurs.eurl.meta.ogDescription',
-					'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
-				),
+				...pureSimulatorsData['eurl'].meta,
 				ogImage: RémunérationSASUPreview,
-				ogTitle: t(
-					'pages.simulateurs.eurl.meta.ogTitle',
-					"Rémunération du dirigeant d'EURL : un simulateur pour connaître votre salaire net"
-				),
-				title: t(
-					'pages.simulateurs.eurl.meta.titre',
-					'EURL : simulateur de revenus pour dirigeant'
-				),
 			},
 			path: sitePaths.simulateurs.eurl,
-			shortName: t('pages.simulateurs.sasu.shortname', 'EURL'),
-			title: t('pages.simulateurs.sasu.title', "Simulateur d'EURL"),
 			component: IndépendantSimulation,
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {
+			...pureSimulatorsData['auto-entrepreneur'],
 			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
 			icône: '🚶‍♂️',
 			iframePath: 'simulateur-autoentrepreneur',
 			meta: {
+				...pureSimulatorsData['auto-entrepreneur'].meta,
 				description: t(
 					'pages.simulateurs.auto-entrepreneur.meta.description',
 					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
@@ -574,92 +465,32 @@ export function getSimulatorsData({
 			nextSteps: ['indépendant', 'comparaison-statuts'],
 		},
 		indépendant: {
+			...pureSimulatorsData['indépendant'],
 			config: indépendantConfig,
-			tracking: 'independant',
-			icône: '🏃',
-			iframePath: 'simulateur-independant',
 			path: sitePaths.simulateurs.indépendant,
-			shortName: t('pages.simulateurs.indépendant.shortname', 'Indépendant'),
-			title: t(
-				'pages.simulateurs.indépendant.title',
-				'Simulateur de revenus pour indépendant'
-			),
 			meta: {
-				title: t(
-					'pages.simulateurs.indépendant.meta.title',
-					'Indépendant : simulateur de revenus'
-				),
-				description: t(
-					'pages.simulateurs.indépendant.meta.description',
-					"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
-				),
+				...pureSimulatorsData['indépendant'].meta,
 			},
 			component: IndépendantSimulation,
 			nextSteps: ['comparaison-statuts', 'is'],
 		},
-
 		'artiste-auteur': {
-			icône: '👩‍🎨',
-			tracking: 'artiste-auteur',
-			iframePath: 'simulateur-artiste-auteur',
+			...pureSimulatorsData['artiste-auteur'],
 			meta: {
-				title: t(
-					'pages.simulateurs.artiste-auteur.meta.title',
-					'Artiste-auteur: calcul des cotisations Urssaf'
-				),
-				description: t(
-					'pages.simulateurs.artiste-auteur.meta.description',
-					"Estimez les cotisations sociales sur les droits d'auteur et sur le revenu BNC"
-				),
-				ogTitle: 'Artiste-auteur : estimez vos cotisations Urssaf',
-				ogDescription:
-					"Renseignez vos revenus (droits d'auteur et bnc) et découvrez immédiatement le montant des cotisations que vous aurez à payer sur l'année.",
+				...pureSimulatorsData['artiste-auteur'].meta,
 			},
 			path: sitePaths.simulateurs['artiste-auteur'],
-			title: t(
-				'pages.simulateurs.artiste-auteur.title',
-				'Estimer mes cotisations d’artiste-auteur'
-			),
-			shortName: t(
-				'pages.simulateurs.artiste-auteur.shortname',
-				'Artiste-auteur'
-			),
 			component: ArtisteAuteur,
 		},
 		'chômage-partiel': {
-			tracking: 'chomage_partiel',
+			...pureSimulatorsData['chômage-partiel'],
 			component: ChômagePartielComponent,
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
-			icône: '😷',
-			iframePath: 'simulateur-chomage-partiel',
 			meta: {
-				description: t(
-					'pages.simulateurs.chômage-partiel.meta.description',
-					"Calcul du revenu net pour l'employé et du reste à charge pour l'employeur après remboursement de l'Etat, en prenant en compte toutes les cotisations sociales."
-				),
-				ogDescription: t(
-					'pages.simulateurs.chômage-partiel.meta.ogDescription',
-					"Accédez à une première estimation en saisissant à partir d'un salaire brut. Vous pourrez ensuite personaliser votre situation (temps partiel, convention, etc). Prends en compte la totalité des cotisations, y compris celles spécifiques à l'indemnité (CSG et CRDS)."
-				),
+				...pureSimulatorsData['chômage-partiel'].meta,
 				ogImage: ChômagePartielPreview,
-				ogTitle: t(
-					'pages.simulateurs.chômage-partiel.meta.ogTitle',
-					"Simulateur chômage partiel : découvrez l'impact sur le revenu net salarié et le coût total employeur."
-				),
-				title: t(
-					'pages.simulateurs.chômage-partiel.meta.titre',
-					"Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
-				),
 			},
-			shortName: t(
-				'pages.simulateurs.chômage-partiel.shortname',
-				'Chômage partiel'
-			),
-			title: t(
-				'pages.simulateurs.chômage-partiel.title',
-				'Covid-19 : Simulateur de chômage partiel'
-			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
 					<h2>Comment calculer l'indemnité d'activité partielle ?</h2>
@@ -735,284 +566,136 @@ export function getSimulatorsData({
 			nextSteps: ['salarié', 'aides-embauche'],
 		},
 		'comparaison-statuts': {
+			...pureSimulatorsData['comparaison-statuts'],
 			component: SchemeComparaisonPage,
-			tracking: 'comparaison_statut',
-			icône: '📊',
 			path: sitePaths.simulateurs.comparaison,
-			title: t(
-				'pages.simulateurs.comparaison.title',
-				'Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir ?'
-			),
 			meta: {
-				description: t(
-					'pages.simulateurs.comparaison.meta.description',
-					'Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce comparatif, trouvez le régime qui vous correspond le mieux'
-				),
-				title: t(
-					'pages.simulateurs.comparaison.meta.title',
-					"Création d'entreprise : le comparatif des régimes sociaux"
-				),
+				...pureSimulatorsData['comparaison-statuts'].meta,
 			},
-			shortName: t(
-				'pages.simulateurs.comparaison.shortname',
-				'Comparaison des statuts'
-			),
 		},
 		'économie-collaborative': {
-			tracking: 'economie_collaborative',
+			...pureSimulatorsData['économie-collaborative'],
 			component: ÉconomieCollaborative,
 			meta: {
-				title: t(
-					'pages.économie-collaborative.meta.title',
-					'Déclaration des revenus des plateforme en ligne : guide intéractif'
-				),
-				description: t(
-					'pages.économie-collaborative.meta.description',
-					'Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en règle dans vos déclarations'
-				),
+				...pureSimulatorsData['économie-collaborative'].meta,
 			},
-			icône: '🙋',
 			path: sitePaths.simulateurs.économieCollaborative.index,
-			shortName: t(
-				'pages.économie-collaborative.shortname',
-				'Guide économie collaborative'
-			),
 		},
 		'aide-déclaration-indépendant': {
+			...pureSimulatorsData['aide-déclaration-indépendant'],
 			component: AideDéclarationIndépendant,
 			tracking: {
 				chapter1: 'gerer',
 				chapter2: 'aide_declaration_independant',
 			},
-			icône: '✍️',
 			meta: {
-				description: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.description',
-					'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2020.'
-				),
-				title: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.title',
-					'Déclaration de revenus indépendant : calcul du montant des cotisations'
-				),
+				...pureSimulatorsData['aide-déclaration-indépendant'].meta,
 			},
 			path: sitePaths.gérer.déclarationIndépendant,
-			shortName: t(
-				'pages.gérer.aide-déclaration-indépendant.shortname',
-				'Aide à la déclaration de revenu'
-			),
-			title: t(
-				'pages.gérer.aide-déclaration-indépendant.title',
-				"Aide à la déclaration de revenus au titre de l'année 2020"
-			),
 		},
 		'demande-mobilité': {
+			...pureSimulatorsData['demande-mobilité'],
 			component: FormulaireMobilitéIndépendant,
 			tracking: {
 				chapter1: 'gerer',
 				chapter2: 'demande_mobilite',
 			},
-			icône: '🧳',
 			meta: {
-				title: t(
-					'pages.gérer.demande-mobilité.meta.title',
-					'Travailleur indépendant : demande de mobilité en Europe'
-				),
-				description: t(
-					'pages.gérer.demande-mobilité.meta.description',
-					"Formulaire interactif à compléter pour les indépendants souhaitant exercer leur activité dans d'autres pays d'Europe"
-				),
+				...pureSimulatorsData['demande-mobilité'].meta,
 			},
 			path: sitePaths.gérer.formulaireMobilité,
-			shortName: t(
-				'pages.gérer.demande-mobilité.shortname',
-				'Demande de mobilité internationale'
-			),
-			private: true,
-			iframePath: 'demande-mobilite',
 		},
 		médecin: {
+			...pureSimulatorsData['médecin'],
 			config: médecinConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'medecin',
 			},
-			icône: '⚕️',
-			iframePath: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
-			shortName: t('pages.simulateurs.médecin.shortname', 'Médecin'),
-			title: t(
-				'pages.simulateurs.médecin.title',
-				'Simulateur de revenus pour médecin en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		'chirurgien-dentiste': {
+			...pureSimulatorsData['chirurgien-dentiste'],
 			config: dentisteConfig,
-			icône: '🦷',
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'chirurgien_dentiste',
 			},
-			iframePath: 'chirurgien-dentiste',
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
-			shortName: t(
-				'pages.simulateurs.chirurgien-dentiste.shortname',
-				'Chirurgien-dentiste'
-			),
-			title: t(
-				'pages.simulateurs.chirurgien-dentiste.title',
-				'Simulateur de revenus pour chirurgien-dentiste en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		'sage-femme': {
+			...pureSimulatorsData['sage-femme'],
 			config: sageFemmeConfig,
-			icône: '👶',
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'sage_femme',
 			},
-			iframePath: 'sage-femme',
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
-			shortName: t('pages.simulateurs.sage-femme.shortname', 'Sage-femme'),
-			title: t(
-				'pages.simulateurs.sage-femme.title',
-				'Simulateur de revenus pour sage-femme en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		'auxiliaire-médical': {
+			...pureSimulatorsData['auxiliaire-médical'],
 			config: auxiliaireConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'auxiliaire_medical',
 			},
-			tooltip: t(
-				'pages.simulateurs.auxiliaire.tooltip',
-				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
-			),
-			icône: '🩹',
-			iframePath: 'auxiliaire-medical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
-			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire méd.'),
-			title: t(
-				'pages.simulateurs.auxiliaire.title',
-				'Simulateur de revenus pour auxiliaire médical en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		avocat: {
+			...pureSimulatorsData['avocat'],
 			config: avocatConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'avocat',
 			},
-			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
-			iframePath: 'avocat',
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
-			shortName: t('pages.simulateurs.avocat.shortname', 'Avocat'),
-			title: t(
-				'pages.simulateurs.avocat.title',
-				'Simulateur de revenus pour avocat en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		'expert-comptable': {
+			...pureSimulatorsData['expert-comptable'],
 			config: expertComptableConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'expert_comptable',
 			},
-			icône: '🧮',
-			iframePath: 'expert-comptable',
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
-			shortName: t(
-				'pages.simulateurs.expert-comptable.shortname',
-				'Expert-Comptable'
-			),
-			title: t(
-				'pages.simulateurs.expert-comptable.title',
-				'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
-			),
 			component: IndépendantPLSimulation,
 		},
 		'profession-libérale': {
+			...pureSimulatorsData['profession-libérale'],
 			config: professionLibéraleConfig,
 			tracking: {
 				chapter2: 'profession_liberale',
 			},
-			icône: '💻',
 			meta: {
-				title: t(
-					'pages.simulateurs.profession-libérale.meta.title',
-					'Professions libérale : le simulateur Urssaf'
-				),
-				description: t(
-					'pages.simulateurs.profession-libérale.meta.description',
-					"Calcul du revenu net pour les indépendants en libéral à l'impôt sur le revenu (IR, BNC)"
-				),
+				...pureSimulatorsData['profession-libérale'].meta,
 			},
-			iframePath: 'profession-liberale',
 			path: sitePaths.simulateurs['profession-libérale'].index,
-			shortName: t(
-				'pages.simulateurs.profession-libérale.shortname',
-				'Profession libérale'
-			),
-			title: t(
-				'pages.simulateurs.profession-libérale.title',
-				'Simulateur de revenus pour profession libérale'
-			),
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
+			...pureSimulatorsData['pamc'],
 			private: true,
-			iframePath: 'pamc',
 			tracking: {},
-			title: t(
-				'pages.simulateurs.pamc.title',
-
-				'PAMC : simulateurs de cotisations et de revenu'
-			),
 			path: sitePaths.simulateurs.pamc,
 			config: professionLibéraleConfig,
-			icône: '🏥',
 			meta: {
-				title: t(
-					'pages.simulateurs.pamc.meta.title',
-					'Simulateurs régime PAMC'
-				),
-				description: t(
-					'pages.simulateurs.pamc.meta.description',
-					'Calcul du revenu net pour les professions libérales du régime PAMC (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
-				),
+				...pureSimulatorsData['pamc'].meta,
 			},
-			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
 			component: PAMCHome,
 		},
 		'aides-embauche': {
-			icône: '🎁',
+			...pureSimulatorsData['aides-embauche'],
 			tracking: 'aides_embauche',
 			meta: {
-				title: t(
-					'pages.simulateurs.aides-embauche.meta.title',
-					'Aides à l’embauche'
-				),
-				description: t(
-					'pages.simulateurs.aides-embauche.meta.description',
-					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.'
-				),
-				color: '#11965f',
+				...pureSimulatorsData['aides-embauche'].meta,
 			},
 			path: sitePaths.simulateurs['aides-embauche'],
-			iframePath: 'aides-embauche',
-			shortName: t(
-				'pages.simulateurs.aides-embauche.meta.title',
-				'Aides à l’embauche'
-			),
-			title: t(
-				'pages.simulateurs.aides-embauche.meta.title',
-				'Aides à l’embauche'
-			),
+			// Cette description est surchargé car elle contient ici du JSX
 			description: (
 				<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
 					<p>
@@ -1043,23 +726,12 @@ export function getSimulatorsData({
 			nextSteps: ['salarié'],
 		},
 		is: {
-			icône: '🗓',
+			...pureSimulatorsData['is'],
 			tracking: 'impot-societe',
 			path: sitePaths.simulateurs.is,
-			iframePath: 'impot-societe',
 			meta: {
-				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
-				description: t(
-					'pages.simulateurs.is.meta.description',
-					'Calculez votre impôt sur les sociétés'
-				),
-				color: '#E71D66',
+				...pureSimulatorsData['is'].meta,
 			},
-			shortName: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
-			title: t(
-				'pages.simulateurs.is.title',
-				"Simulateur d'impôt sur les sociétés"
-			),
 			component: ISSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.is.seo">
