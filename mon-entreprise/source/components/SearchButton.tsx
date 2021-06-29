@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
+import { useLocation } from 'react-router'
 import Overlay from './Overlay'
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
@@ -9,6 +10,8 @@ type SearchButtonProps = {
 }
 
 export default function SearchButton({ invisibleButton }: SearchButtonProps) {
+	const { pathname } = useLocation()
+	const pathnameRef = useRef(pathname)
 	const [visible, setVisible] = useState(false)
 
 	useEffect(() => {
@@ -19,7 +22,9 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			e.preventDefault()
 			return false
 		}
+
 		window.addEventListener('keydown', handleKeyDown)
+
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown)
 		}
@@ -27,19 +32,31 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 
 	const close = () => setVisible(false)
 
-	return visible ? (
-		<Overlay onClose={close}>
-			<h1>
-				<Trans>Chercher dans la documentation</Trans>
-			</h1>
-			<SearchRulesAndSimulators />
-		</Overlay>
-	) : invisibleButton ? null : (
-		<button
-			className="ui__ simple small button"
-			onClick={() => setVisible(true)}
-		>
-			{emoji('🔍')} <Trans>Rechercher</Trans>
-		</button>
+	useEffect(() => {
+		if (pathname !== pathnameRef.current) {
+			pathnameRef.current = pathname
+			close()
+		}
+	}, [pathname])
+
+	return (
+		<>
+			{visible && (
+				<Overlay onClose={close}>
+					<h1>
+						<Trans>Que recherchez vous?</Trans>
+					</h1>
+					<SearchRulesAndSimulators />
+				</Overlay>
+			)}
+			{!invisibleButton && (
+				<button
+					className="ui__ simple small button"
+					onClick={() => setVisible(true)}
+				>
+					{emoji('🔍')} <Trans>Rechercher</Trans>
+				</button>
+			)}
+		</>
 	)
 }
