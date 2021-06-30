@@ -1,0 +1,23 @@
+pfu:
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'PFU'"
+    dirigeant: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 20000000 €/an
+    impôt . méthode de calcul: "'PFU'"
+    dirigeant: "'assimilé salarié'"
+
+barème:
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 20000000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 500000 €/an
+  - bénéficiaire . dividendes . bruts: 20000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 50000 €/an

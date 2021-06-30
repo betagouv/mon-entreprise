@@ -1,14 +1,19 @@
 impôt:
+  valeur: oui
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre: impôt sur le revenu
+
+impôt . montant:
   somme:
     - produit:
         assiette: revenu imposable
         taux: taux d'imposition
     - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
+    - impôt . dividendes . PFU
   arrondi: oui
   unité: €/an
+  titre: Montant de l'impôt sur le revenu
 
 impôt . taux d'imposition:
   formule:
@@ -42,6 +47,7 @@ impôt . méthode de calcul:
         - taux neutre
         - taux personnalisé
         - barème standard
+        - PFU
   références:
     différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
     calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
@@ -61,6 +67,11 @@ impôt . méthode de calcul . barème standard:
   description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition.
   formule: impôt . méthode de calcul = 'barème standard'
 
+impôt . méthode de calcul . PFU:
+  titre: avec prélèvement forfaitaire unique
+  description: Calcul de l'impôt des revenus de capitaux mobiliers avec le prélèvement forfaitaire unique (ou "flat tax")
+  formule: impôt . méthode de calcul = 'PFU'
+
 impôt . méthode de calcul . prélèvement à la source:
   formule:
     une de ces conditions:
@@ -70,12 +81,14 @@ impôt . méthode de calcul . prélèvement à la source:
 impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
-  variations:
-    - si: dirigeant
-      alors: dirigeant . rémunération . imposable
-    - sinon:
-        valeur: contrat salarié . rémunération . net imposable
-        abattement: abattement contrat court
+  somme:
+    - variations:
+        - si: dirigeant
+          alors: dirigeant . rémunération . imposable
+        - sinon:
+            valeur: contrat salarié . rémunération . net imposable
+            abattement: abattement contrat court
+    - bénéficiaire . dividendes . imposables
 
 impôt . revenu imposable . abattement contrat court:
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
@@ -352,6 +365,7 @@ impôt . foyer fiscal . revenu imposable:
             - dirigeant . rémunération . imposable
             - entreprise . imposition . IR
         valeur: dirigeant . rémunération . imposable
+      - bénéficiaire . dividendes . imposables
       - autres revenus imposables
 
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
@@ -398,11 +412,14 @@ impôt . foyer fiscal . impôt à payer:
       - impôt sur le revenu
       - CEHR
 
+# [TODO] Il semble y avoir un soucis: selon la doc impot.gouv, le "revenu brut" (sur lequel est basé l'impôt brut ci-dessous sans doute?) ne doit pas contenir les revenus de capitaux mobiliers. Donc les dividendes imposables au barème ne devraient dans ce cas pas se voir appliquer de décote pour les bas revenus. Il faudrait sans doute revoir l'ensemble des règles de calcul autour du barème pour bien séparer celles qui ne s'appliquent qu'aux revenus brut.
 impôt . foyer fiscal . impôt sur le revenu:
   unité: €/an
   formule:
-    valeur: impôt brut
-    abattement: décote
+    somme:
+      - valeur: impôt brut
+        abattement: décote
+      - impôt . dividendes . PFU
   exemples:
     - nom: Salaire d'un cadre
       situation:
@@ -451,7 +468,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   formule:
     barème:
       assiette: quotient familial
@@ -485,10 +502,9 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut:
           - (- quotient familial . plafond avantage)
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
-  formule:
-    produit:
-      assiette: impôt brut par part
-      facteur: nombre de parts
+  produit:
+    assiette: impôt brut par part
+    facteur: nombre de parts
 
 impôt . foyer fiscal . CEHR:
   unité: €/an
@@ -524,3 +540,34 @@ impôt . domiciliation étranger non implémentée:
   niveau: avertissement
   description: |
     La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
+
+# [XXX] [taux effectif] En fait le calcul n'est pas top, ça sous-estime l'impact des dividendes sur l'impôt dans le cas barème car ça utilise le taux effectif
+# [XXX] [taux effectif] Si on est ok avec la règle, à virer. Simplement utiliser `impôt` d'autant plus que pr l'instant on ne peut pas avoir de concept du genre "partie de l'impôt", on ne peut avoir qu'un revenu principal soumis à la simulation (le reste étant dans foyer fiscal)
+impôt . dividendes:
+  applicable si: bénéficiaire . dividendes . bruts > 0
+  variations:
+    - si: méthode de calcul . PFU
+      alors: PFU
+    - sinon: impôt . montant
+  titre: Impôt sur dividendes
+
+impôt . dividendes . PFU:
+  applicable si: impôt . méthode de calcul . PFU
+  produit:
+    assiette: bénéficiaire . dividendes . bruts
+    taux: 12.8%
+  titre: Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire Unique (ou "flat tax")
+  description: |
+    Ce montant est à verser sous forme d'acompte au moment du versement des dividendes.
+
+    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur à
+
+      - 50 000 € pour une personne seule,
+      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou pacsés).
+
+    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard le 30 novembre
+    de l'année précédant celle du paiement
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963
+    Article 200 A du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/
+    Article 117 quater du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036428175/#LEGIARTI000036428175

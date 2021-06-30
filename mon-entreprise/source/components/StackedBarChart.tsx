@@ -177,7 +177,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 
 type StackedRulesChartProps = {
 	data: Array<{ color?: string; dottedName: Names; title?: string }>
-	precision: Precision
+	precision?: Precision
 }
 
 export default function StackedRulesChart({

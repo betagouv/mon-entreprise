@@ -164,6 +164,18 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
+exports[`calculate simulations-dividendes: barème 1`] = `"[200,166,34,0,112,112,0]"`;
+
+exports[`calculate simulations-dividendes: barème 2`] = `"[20000000,11112746,3440000,5447254,11184000,11184000,49]"`;
+
+exports[`calculate simulations-dividendes: barème 3`] = `"[200,119,34,47,112,112,42]"`;
+
+exports[`calculate simulations-dividendes: barème 4`] = `"[20000,14300,3440,2260,11184,11184,20]"`;
+
+exports[`calculate simulations-dividendes: pfu 1`] = `"[200,140,34,26,120,120,0]"`;
+
+exports[`calculate simulations-dividendes: pfu 2`] = `"[20000000,14000000,3440000,2560000,12000000,12000000,0]"`;
+
 exports[`calculate simulations-impot-société: bénéfices 1`] = `
 "[0,0]
 Notifications affichées : entreprise . imposition . IS . information sur le report de déficit"

@@ -2,7 +2,7 @@ objectifs:
   - dirigeant . rémunération . totale
   - contrat salarié . cotisations
   - contrat salarié . rémunération . net
-  - impôt
+  - impôt . montant
   - contrat salarié . rémunération . net après impôt
 
 questions:

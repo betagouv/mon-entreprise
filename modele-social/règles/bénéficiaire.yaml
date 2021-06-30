@@ -1,0 +1,76 @@
+bénéficiaire:
+  valeur: oui
+  description: |
+    Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une SARL/EURL.
+
+    Attention: nous ne prenons en compte ici que le cas de figure de l'associé unique (SASU et EURL).
+
+bénéficiaire . dividendes:
+  # Désactivé par défaut:
+  # [XXX] Ou sinon ne faudrait-il pas laisser soin aux simulateurs de faire liste-noire?
+  valeur: non
+  applicable si: entreprise . imposition = 'IS'
+
+bénéficiaire . dividendes . bruts:
+  unité: €/an
+  par défaut: 0 €/an
+  inversion numérique:
+    avec:
+      - nets d'impôt
+  titre: Dividendes bruts revenant au bénéficiaire
+
+bénéficiaire . dividendes . nets:
+  somme:
+    - bruts
+    - (- cotisations et contributions)
+  titre: Dividendes nets
+
+bénéficiaire . dividendes . nets d'impôt:
+  valeur: bruts - dividendes . cotisations et contributions - impôt . dividendes
+  titre: Dividendes nets de cotisations et d'impôts
+
+bénéficiaire . dividendes . cotisations et contributions:
+  produit:
+    assiette: bruts
+    composantes:
+      - attributs:
+          nom: CSG non déductible
+        taux:
+          variations:
+            - si: impôt . méthode de calcul . PFU
+              alors: 9.2%
+            - sinon: 2.4%
+      - attributs:
+          nom: CSG déductible
+        taux:
+          variations:
+            - si: impôt . méthode de calcul . PFU
+              alors: 0%
+            - sinon: 6.8%
+      - attributs:
+          nom: CRDS
+        taux: 0.5%
+      - attributs:
+          nom: prélèvement de solidarité
+        taux: 7.5%
+  titre: Cotisations et contributions sur dividendes
+  références:
+    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/les-revenus-mobiliers
+    Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2329
+    Article L 136-6 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173130/
+    Article L 136-7 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173129/
+
+bénéficiaire . dividendes . imposables:
+  somme:
+    - bruts
+    - (- cotisations et contributions . CSG déductible)
+  abattement: 40%
+  titre: Net imposable des dividendes auxquels s'applique le barème de l'impôt sur le revenu
+  description: |
+    Un abattement de 40% s'applique dans le cas où
+
+    - la société distributrice des dividendes relève de l'IS
+    - la société distributrice est française ou a son siège en UE ou dans un état ayant conclu des accords en ce sens avec la France
+    - les dividendes sont décidés en assemblée générale.
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963

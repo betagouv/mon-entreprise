@@ -1902,7 +1902,7 @@ contrat salarié . rémunération . net après impôt:
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
-  formule: net - impôt
+  formule: net - impôt . montant
 
 contrat salarié . prix du travail:
   titre: Coût total
