@@ -539,6 +539,9 @@ entreprise . charges . dirigeant:
         valeur: dirigeant . indépendant . cotisations et contributions
         abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
 
+# on ne prend en compte pour l'instant que le cas entreprise unipersonnelle
+entreprise . dividendes: bénéficiaire . dividendes . bruts
+
 entreprise . ACRE:
   description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une

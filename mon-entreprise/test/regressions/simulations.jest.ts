@@ -26,6 +26,8 @@ import independentSituations from './simulations-indépendant.yaml'
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import employeeSituations from './simulations-salarié.yaml'
+import dividendesSituations from './simulations-dividendes.yaml'
+import dividendesConfig from '../../source/pages/Simulateurs/configs/dividendes.yaml'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
@@ -85,7 +87,7 @@ it('calculate simulations-indépendant', () => {
 		'dirigeant . rémunération . cotisations',
 		'dirigeant . rémunération . nette',
 		'dirigeant . indépendant . revenu professionnel',
-		'impôt',
+		'impôt . montant',
 		'dirigeant . rémunération . nette après impôt',
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
@@ -181,5 +183,20 @@ it('calculate simulations-impot-société', () => {
 			'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
 				'oui',
 		}
+	)
+})
+
+it('calculate simulations-dividendes', () => {
+	runSimulations(
+		dividendesSituations,
+		[
+			...dividendesConfig.objectifs,
+			'bénéficiaire . dividendes . cotisations et contributions',
+			'impôt . montant',
+			'impôt . revenu imposable',
+			'bénéficiaire . dividendes . imposables',
+			"impôt . taux d'imposition",
+		],
+		dividendesConfig.situation
 	)
 })

@@ -3,7 +3,7 @@ objectifs:
   - entreprise . charges
   - dirigeant . indépendant . cotisations et contributions
   - dirigeant . rémunération . nette
-  - impôt
+  - impôt . montant
   - dirigeant . rémunération . nette après impôt
 
 questions:
@@ -17,7 +17,7 @@ questions:
     - entreprise
     - établissement
     - situation personnelle
-    - impôt
+    - impôt . montant
   non prioritaires:
     - dirigeant . indépendant . cotisations facultatives
     - dirigeant . indépendant . IJSS

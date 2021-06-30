@@ -14,7 +14,7 @@ questions:
   liste:
     - entreprise
     - dirigeant
-    - impôt
+    - impôt . montant
     - établissement
     - situation personnelle
   non prioritaires:

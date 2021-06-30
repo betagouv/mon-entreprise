@@ -24,10 +24,16 @@ describe('DottedNames graph', () => {
 		).to.deep.equal([
 			[
 				"entreprise . chiffre d'affaires",
+				'dirigeant . rémunération . nette après impôt',
+				'dirigeant . rémunération . nette',
+				'dirigeant . rémunération . totale',
 				'dirigeant . rémunération . impôt',
+				"impôt . taux d'imposition",
+				"impôt . taux neutre d'impôt sur le revenu",
+				"impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
+				'impôt . revenu imposable',
 				'dirigeant . rémunération . imposable',
 				'dirigeant . auto-entrepreneur . impôt . revenu imposable',
-				"entreprise . chiffre d'affaires . vente restauration hébergement",
 			],
 		])
 		console.warn(

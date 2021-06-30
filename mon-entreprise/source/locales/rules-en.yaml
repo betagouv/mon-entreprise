@@ -1515,6 +1515,83 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
+bénéficiaire:
+  description.en: >
+    [automatic] A beneficiary is a shareholder in a SAS or a partner in a
+    SARL/EURL.
+
+
+    Attention: we only consider here the case of the sole shareholder (SASU and EURL).
+  description.fr: >
+    Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
+    SARL/EURL.
+
+
+    Attention: nous ne prenons en compte ici que le cas de figure de l'associé unique (SASU et EURL).
+  titre.en: '[automatic] recipient'
+  titre.fr: bénéficiaire
+bénéficiaire . compte courant d'associé:
+  description.en: >
+    [automatic] This value is necessary to calculate the maximum amount taxable
+    under the PFU for a beneficiary under the self-employed workers' scheme.
+
+    The amount taken into account is the average annual balance of the current account. It is determined by the sum of the average monthly balances of the account, divided by the number of months included in the financial year.
+
+    The average monthly balance is equal to the sum of the daily balances, divided by the number of days in the month. The average monthly balance therefore differs from the monthly balance shown in the company's accounts.
+
+    If the account is opened or closed during the fiscal year, the number of months in the fiscal year will be reduced to the number of months the account is in operation. An account is considered to be "operating" even if it is not moved during the fiscal year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the payment of interest.
+  description.fr: >
+    Cette valeur est nécessaire à calculer le montant maximal imposable au PFU
+    pour un bénéficiaire au régime des travailleurs indépendants.
+
+    Le montant pris en compte est le solde moyen annuel du compte courant. Il est déterminé par la somme des soldes moyens mensuels du compte, divisée par le nombre de mois compris dans l’exercice.
+
+    Le solde moyen mensuel est égal à l’addition des soldes journaliers, divisée par le nombre de jours dans le mois. Le solde moyen mensuel diffère donc du solde mensuel figurant dans les comptes de la société.
+
+    En cas d’ouverture ou de clôture du compte en cours d’exercice, le nombre de mois au cours de l’exercice sera réduit au nombre de mois de fonctionnement du compte. Un compte est considéré comme « fonctionnant », même s’il n’est pas mouvementé au cours de l’exercice.  La date à laquelle les sommes versées en compte courant doivent être appréciées est le dernier jour de l’exercice précédant le versement des intérêts.
+  question.en: '[automatic] What are the amounts paid in current account by the partner?'
+  question.fr: Quelles sont les sommes versées en compte courant par l'associé ?
+  titre.en: "[automatic] Amounts paid into a partner's current account"
+  titre.fr: Sommes versées en compte courant d'associé
+bénéficiaire . dividendes:
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
+bénéficiaire . dividendes . bruts:
+  titre.en: "[automatic] Beneficiary's share of dividends"
+  titre.fr: Part des dividendes revenant au bénéficiaire
+bénéficiaire . dividendes . cotisations et contributions:
+  titre.en: '[automatic] Contributions on dividends'
+  titre.fr: Cotisations et contributions sur dividendes
+bénéficiaire . dividendes . imposables:
+  description.en: >
+    [automatic] A deduction of 40% applies in the case of
+
+
+    - the company distributing the dividends is subject to corporation tax
+
+    - the company distributing the dividends is French or has its registered office in the EU or in a country that has concluded agreements in this regard with France
+
+    - the dividends are decided in a general meeting.
+  description.fr: >
+    Un abattement de 40% s'applique dans le cas où
+
+
+    - la société distributrice des dividendes relève de l'IS
+
+    - la société distributrice est française ou a son siège en UE ou dans un état ayant conclu des accords en ce sens avec la France
+
+    - les dividendes sont décidés en assemblée générale.
+  titre.en: '[automatic] Net taxable amount of dividends to which the income tax
+    scale applies'
+  titre.fr:
+    Net imposable des dividendes auxquels s'applique le barème de l'impôt
+    sur le revenu
+bénéficiaire . dividendes . nets:
+  titre.en: '[automatic] Net dividends'
+  titre.fr: Dividendes nets
+bénéficiaire . dividendes . nets d'impôt:
+  titre.en: '[automatic] Dividends net of contributions and taxes'
+  titre.fr: Dividendes nets de cotisations et d'impôts
 chômage partiel:
   titre.en: '[automatic] short-time working'
   titre.fr: chômage partiel
@@ -7516,6 +7593,15 @@ entreprise . association non lucrative:
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
+entreprise . capital social:
+  description.en: |
+    [automatic] This value must include the value of the share premiums.
+  description.fr: |
+    Cette valeur doit inclure la valeur des primes d'émission.
+  question.en: '[automatic] What is the share capital of the company?'
+  question.fr: Quele est le capital social de la société ?
+  titre.en: '[automatic] Share capital'
+  titre.fr: Capital social
 entreprise . charges:
   description.en: >
     [automatic] 
@@ -7887,6 +7973,9 @@ entreprise . date de création . contrôle date passée:
     pas vous être trompé dans la saisie ?
   titre.en: '[automatic] past date check'
   titre.fr: contrôle date passée
+entreprise . dividendes:
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
 entreprise . durée d'activité:
   titre.en: length of service
   titre.fr: durée d'activité
@@ -8184,6 +8273,41 @@ impôt:
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre.en: income tax
   titre.fr: impôt sur le revenu
+impôt . dividendes:
+  titre.en: '[automatic] Tax on dividends'
+  titre.fr: Impôt sur dividendes
+impôt . dividendes . PFU:
+  description.en: >
+    [automatic] This amount is to be paid in the form of a deposit at the time
+    of the dividend payment.
+
+
+    The advance payment is not compulsory if the tax income n-2 is less than
+
+      - 50,000 € for a single person,
+      - 75,000 € for a couple subject to joint taxation (married or civil union).
+
+    In this case, the beneficiary may apply for exemption no later than 30 November 
+
+    of the year preceding the year of payment
+  description.fr: >
+    Ce montant est à verser sous forme d'acompte au moment du versement des
+    dividendes.
+
+
+    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur à
+
+      - 50 000 € pour une personne seule,
+      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou pacsés).
+
+    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard le 30 novembre 
+
+    de l'année précédant celle du paiement
+  titre.en: '[automatic] Amount of tax on dividends under the Prélèvement
+    Forfaitaire Unique (or "flat tax")'
+  titre.fr:
+    Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
+    Unique (ou "flat tax")
 impôt . domiciliation étranger non implémentée:
   description.en: >
     [automatic] Non-resident withholding tax is not yet implemented. For more
@@ -8225,13 +8349,13 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
   titre.fr: sans plafonnement
 impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   description.en: >
-    [automatic] This is the famous income tax schedule. It's a five-bracket
-    marginal scale.
+    [automatic] Here is the famous income tax scale. It is a marginal scale with
+    5 brackets.
 
     A contribution on high incomes adds two more brackets.
 
 
-    Attention: for an annual income of 100 000€, the taxpayer will only pay 41 000€ tax (the rate of the 4th bracket is 41%)! This 41% is only applied to the part of his income above 72 617€.
+    Attention: for an income of 100 000€ per year, the taxpayer will not pay 41 000€ of tax (the rate of the 4th bracket is 41%)! This 41% is only applied to the part of his income above 72 617€.
   description.fr: >
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à
     5 tranches.
@@ -8239,7 +8363,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   titre.en: '[automatic] gross tax per unit'
   titre.fr: impôt brut par part
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
@@ -8331,6 +8455,9 @@ impôt . foyer fiscal . situation de famille . veuf:
 impôt . foyer fiscal . taux effectif:
   titre.en: '[automatic] yield rate'
   titre.fr: taux effectif
+impôt . montant:
+  titre.en: '[automatic] Amount of income tax'
+  titre.fr: Montant de l'impôt sur le revenu
 impôt . méthode de calcul:
   description.en: >
     We have implemented three ways to calculate income tax:
@@ -8357,6 +8484,13 @@ impôt . méthode de calcul:
   question.fr: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   titre.en: calculation method
   titre.fr: méthode de calcul
+impôt . méthode de calcul . PFU:
+  description.en: '[automatic] Calculation of the tax on income from movable
+    assets with the single flat rate tax (or "flat tax")'
+  description.fr: Calcul de l'impôt des revenus de capitaux mobiliers avec le
+    prélèvement forfaitaire unique (ou "flat tax")
+  titre.en: '[automatic] with one-time deduction'
+  titre.fr: avec prélèvement forfaitaire unique
 impôt . méthode de calcul . barème standard:
   description.en: '[automatic] The "official" tax calculation, the one the tax
     authorities use to calculate your tax rate.'

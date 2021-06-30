@@ -22,7 +22,7 @@ questions:
     - établissement
     - dirigeant . indépendant
     - situation personnelle
-    - impôt
+    - impôt . montant
   non prioritaires:
     - dirigeant . indépendant . IJSS
     - dirigeant . indépendant . cotisations et contributions . exonérations

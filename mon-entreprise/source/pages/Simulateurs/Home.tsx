@@ -85,6 +85,7 @@ export default function Simulateurs() {
 				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['is']} />
+					<SimulateurCard {...simulators['dividendes']} />
 					{language === 'fr' && (
 						<SimulateurCard {...simulators['demande-mobilité']} />
 					)}
