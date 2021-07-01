@@ -115,10 +115,12 @@ export const cleanSearchParams = (
 export const getRulesParamNames = (
 	parsedRules: ParsedRules<DottedName>
 ): [DottedName, ParamName][] =>
-	(Object.entries(parsedRules) as [
-		DottedName,
-		{ rawNode: { 'identifiant court'?: ShortName } }
-	][]).map(([dottedName, ruleNode]) => [
+	(
+		Object.entries(parsedRules) as [
+			DottedName,
+			{ rawNode: { 'identifiant court'?: ShortName } }
+		][]
+	).map(([dottedName, ruleNode]) => [
 		dottedName,
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])

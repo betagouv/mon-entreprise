@@ -1,4 +1,3 @@
-
 arrondi oui:
   formule:
     valeur: 30.4167 jours
@@ -24,7 +23,7 @@ arrondi décimales:
 demie part:
   formule:
     valeur: 0.5 * 100.2€
-    arrondi: oui 
+    arrondi: oui
   exemples:
     - valeur attendue: 50
 
@@ -48,7 +47,7 @@ cotisation retraite:
 Arrondi:
   formule:
     valeur: cotisation retraite
-    arrondi: oui 
+    arrondi: oui
 
   exemples:
     - nom: arrondi en dessous

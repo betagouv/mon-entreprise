@@ -16,7 +16,6 @@ prévoyance obligatoire cadre:
         statut cadre: non
       valeur attendue: false
 
-
 variable:
   par défaut: oui
 applicable comme mécanisme chainé:

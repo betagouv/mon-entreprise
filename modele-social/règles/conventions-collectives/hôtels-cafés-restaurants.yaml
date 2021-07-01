@@ -27,11 +27,11 @@ contrat salarié . convention collective . HCR . prévoyance conventionnelle:
     assiette: rémunération . brut de base
     plafond: plafond sécurité sociale
     composantes:
-      - attributs: 
+      - attributs:
           nom: employeur
           remplace: prévoyance . employeur
         taux: 0.40%
-      - attributs: 
+      - attributs:
           nom: salarié
           remplace: prévoyance . salarié
         taux: 0.40%

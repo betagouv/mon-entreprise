@@ -32,9 +32,8 @@ import illustration from './undraw_fill_in_mie5.svg'
  *
  * Le but est de faire valider la version plus complète pour la déclaration de revenu 2021.
  */
-const FEATURE_FLAG_RESULTATS_COMPLETS = document.location.search.includes(
-	'next'
-)
+const FEATURE_FLAG_RESULTATS_COMPLETS =
+	document.location.search.includes('next')
 
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)

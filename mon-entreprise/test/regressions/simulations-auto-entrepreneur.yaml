@@ -35,7 +35,6 @@ ACRE:
     entreprise . date de création: 01/06/2019
     entreprise . ACRE: oui
 
-
 activité mixte:
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
@@ -45,4 +44,3 @@ activité mixte:
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
     entreprise . activité: "'artisanale'"
-  

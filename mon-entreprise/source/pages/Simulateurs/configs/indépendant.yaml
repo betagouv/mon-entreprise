@@ -3,7 +3,7 @@ objectifs:
   - dirigeant . rémunération . totale
   - dirigeant . rémunération . nette
   - dirigeant . rémunération . nette après impôt
-  
+
 questions:
   à l'affiche:
     Type d'activité: entreprise . activité

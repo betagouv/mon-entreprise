@@ -75,7 +75,7 @@ artiste-auteur . cotisations . option surcotisation:
     dans: vieillesse
     par: assiette surcotisation
   question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
-  description: | 
+  description: |
     Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
     de vos droits sociaux. Vous pouvez choisir de surcotiser pour augmenter vos
     droits.
@@ -88,12 +88,12 @@ artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC hora
 artiste-auteur . cotisations . avertissement trimestres retraite:
   type: notification
   sévérité: avertissement
-  formule: 
+  formule:
     toutes ces conditions:
       - assiette > 0 €/an
       - assiette < 600 heures/an * SMIC horaire
       - option surcotisation = non
-  description: | 
+  description: |
     Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
     de base. Vous pouvez décider de « surcotiser » pour valider 4 trimestres et
     bénéficier d'indemnités journalières.
@@ -182,7 +182,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
             assiette: assiette
             tranches:
               - taux: 4%
-                plafond: 
+                plafond:
                   variations:
                     - si: profession . RACD
                       alors: cotisation RACD . plafond
@@ -237,7 +237,7 @@ artiste-auteur . cotisations . IRCEC . profession . RACL:
   titre: auteur ou compositeur lyrique, dialoguiste de doublage
   description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes de doublage cotisent au RACL.
   formule: profession = 'RACL'
-        
+
 artiste-auteur . cotisations . IRCEC . régime RACL:
   question: Cotisez-vous au RACL ?
   par défaut: non
@@ -247,9 +247,9 @@ artiste-auteur . cotisations . IRCEC . cotisation RACD:
   formule:
     produit:
       assiette: assiette
-      plafond: 
+      plafond:
         nom: plafond
-        valeur: 496250 €/an 
+        valeur: 496250 €/an
       taux: 8%
     arrondi: oui
 
@@ -262,10 +262,10 @@ artiste-auteur . cotisations . IRCEC . cotisation RACL:
         - taux: 0%
           plafond: 2739 €/an
         - taux: 6.5%
-          plafond: 
+          plafond:
             nom: plafond
             valeur: 376665 €/an
-        - taux: 
+        - taux:
             nom: cotisation de solidarité
             valeur: 1.5%
     arrondi: oui

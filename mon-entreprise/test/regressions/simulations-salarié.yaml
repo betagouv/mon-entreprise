@@ -119,7 +119,6 @@ aides:
     contrat salarié . ancienneté . date d'embauche: 01/03/2021
     contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés . situation de handicap: oui
 
-
 aides embauche covid:
   - contrat salarié . ancienneté . date d'embauche: 01/08/2020
     contrat salarié . jeune de moins de 26 ans: oui
@@ -315,7 +314,6 @@ frais pro - transports personnels seul:
     contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
     contrat salarié . déduction forfaitaire spécifique: oui
     contrat salarié . déduction forfaitaire spécifique . taux: 20%
-
 
 frais pro - abo transports + transports personnels:
   - contrat salarié . rémunération . brut de base: 3200 €/mois

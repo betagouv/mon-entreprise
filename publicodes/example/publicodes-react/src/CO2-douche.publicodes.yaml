@@ -1,8 +1,8 @@
 douche:
   titre: Impact carbone d'une douche
   description: Impact carbone liée aux douches prise au cours de l'année
-  icônes:  🚿 🍃
-  note: A titre de comparaison, l'empreinte carbone d'un burger est estimée à 0.279kg 
+  icônes: 🚿 🍃
+  note: A titre de comparaison, l'empreinte carbone d'un burger est estimée à 0.279kg
   unité: kgCO2eq / an
   valeur: fréquence * impact par litre * litres consommés
 
@@ -14,9 +14,8 @@ douche . fréquence:
     5 par semaine: 5 douche/semaine * 52 semaines/an # Publicodes ne gère pas encore nativement l'unité semaine
     2 par jour: 2 douche/jour
 
-
 douche . impact par litre:
-  somme: 
+  somme:
     - eau . impact par litre froid
     - chauffage . impact par litre
 
@@ -34,7 +33,6 @@ chauffage:
 chauffage . type:
   par défaut: "'électricité'"
 
-
 chauffage . impact par kWh:
   notes: |
     La base carbone de l'ADEME ne permet malheureusement pas de faire des liens profonds vers les chiffres utilisés.
@@ -50,7 +48,7 @@ chauffage . énergie consommée par litre:
     analyse du prix d'une douche: https://www.econologie.com/forums/plomberie-et-sanitaire/prix-reel-d-un-bain-ou-d-une-douche-pour-l-eau-et-chauffage-t12727.html
 
 chauffage . impact par litre:
-  produit: 
+  produit:
     assiette: 0.0325 kWh/litre
     facteur:
       unité: kgCO2eq/kWh
@@ -60,13 +58,13 @@ chauffage . impact par litre:
         - si: type = 'fioul'
           alors: 0.324
         - si: type = 'électricité'
-          alors: 0.059 
+          alors: 0.059
 
 douche . litres consommés:
   produit:
     assiette: durée moyenne
     facteur: débit
-    
+
 douche . durée moyenne:
   question: Combien de temps dure votre douche en général ?
   par défaut: 10 min/douche
@@ -74,14 +72,14 @@ douche . durée moyenne:
     expresse: 5 min/douche
     moyenne: 10 min/douche
     lente: 20 min/douche
-  
+
 douche . débit:
   valeur: 18 litre/min
   références:
     économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
 
 douche . pomme de douche économe:
-  remplace: 
+  remplace:
     règle: débit
     par: 9 litre/min
   question: Utilisez-vous une pomme de douche économe ?

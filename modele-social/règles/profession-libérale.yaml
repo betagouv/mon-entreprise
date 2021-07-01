@@ -21,7 +21,7 @@ dirigeant . indépendant . PL . métier:
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la CIPAV
   description: |
-    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est : 
+    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est :
 
     - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
     - Guide-montage (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
@@ -113,7 +113,7 @@ dirigeant . indépendant . PL . option régime général:
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV. 
+    cotisations à la CIPAV.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
@@ -311,11 +311,11 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     ont les mêmes taux de cotisations pour leur retraite de base.
 
     La caisse nationale d'assurance vieillesse des professions
-    libérales est l'organisme qui fédère les différentes caisses 
+    libérales est l'organisme qui fédère les différentes caisses
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
 
   produit:
-    assiette: 
+    assiette:
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
     composantes:
@@ -370,8 +370,8 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     30%: 30%
   description: |
     Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes : 
-        
+    les catégories suivantes :
+
     - Honoraires tirés des actes remboursables (y compris les
     dépassements d’honoraires et les frais de déplacement figurant sur le relevé
     SNIR)
@@ -471,30 +471,31 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
         plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
+  description:
+    Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
     de dépassement.
   formule: revenus activité conventionnée  / (100% + dépassement d'honoraire moyen)
   note: |
-    La formule référencée dans les textes Urssaf est la suivante : 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires. 
+    La formule référencée dans les textes Urssaf est la suivante :
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires.
 
-    On peut simplififer cette formule en : 
+    On peut simplififer cette formule en :
     > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
 
     ### Preuve
-    Si on prends les variables suivantes, 
+    Si on prends les variables suivantes,
     > `h+` : total des honoraires (avec dépassement)
       `h` : honoraires sans dépassement
       `d%`: pourcentage de dépassement d'honoraire moyen
 
-    On a : 
-    >  
+    On a :
+    >
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
     Si on remplace dans la formule de l'assiette participation CPAM, on a :
     > 1. `(revenu de l’activité conventionnée) * h / h+`
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%)) 
+    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
     > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
 
   références:
@@ -560,7 +561,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description: |
     Le « taux Urssaf » (taux UR) permet de calculer la part de votre
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
+    cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
     est issu des données de votre Relevé individuel d’activité et de
@@ -571,7 +572,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
     ## Calcul du taux
 
-    La formule de calcul du taux de dépassement est la suivante : 
+    La formule de calcul du taux de dépassement est la suivante :
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre "taux Urssaf" ?
   unité: ''
@@ -615,7 +616,7 @@ dirigeant . indépendant . PL . PAMC . IJSS:
     Les indemnités complémentaires aux indemnités journalières de la Sécurité
     sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
     des revenus de remplacement.
-     
+
     Note: Les prestations d’invalidité versées par les régimes
     d’invalidité-décès ne sont pas concernées.
 
@@ -737,7 +738,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   description: >-
-    La CARMF gère le régime de retraite complémentaire. 
+    La CARMF gère le régime de retraite complémentaire.
 
     Le montant des cotisations est déterminé en fonction des revenus
     nets d’activité indépendante de l’avant-dernière année.
@@ -767,7 +768,7 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. 
+    conjoints et enfants survivants en cas de décès de l'assuré.
 
     La cotisation comporte trois classes forfaitaires dont le montant est
     déterminé en fonction de vos revenus nets d'activité indépendante de
@@ -909,7 +910,8 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
   titre: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
   remplace: cotisations et contributions . PCV
   non applicable si: exonération PCV
-  note: Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+  note:
+    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
     inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
     soit 11 500 €.
 

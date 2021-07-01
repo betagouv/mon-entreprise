@@ -1,16 +1,16 @@
-fx: 
+fx:
 x:
   résoudre la référence circulaire: oui
   valeur: fx
   exemples:
     - nom: affine
-      situation: 
-        fx: 200 - x 
+      situation:
+        fx: 200 - x
       valeur attendue: 100
     - nom: quadratique
-      situation: 
+      situation:
         fx: 0.2 * x * x - 400 * x + 500
-      valeur attendue: 2003.743 
+      valeur attendue: 2003.743
       # CF https://www.wolframalpha.com/input/?i=x%3D0.2x%C2%B2-400x%2B500
 
 CA:
@@ -18,17 +18,16 @@ CA:
   plancher: 0€
   formule:
     inversion numérique:
-      avec: 
+      avec:
         - net
 
 net:
   résoudre la référence circulaire: oui
   unité: €
-  formule: CA - 50% * net 
+  formule: CA - 50% * net
 
-
-net après impôt: 
-  formule: 80% * net 
+net après impôt:
+  formule: 80% * net
   unité: €
 
 cycle avec inversion et situation vide:
@@ -59,7 +58,6 @@ cycle avec la règle du cycle fixée dans la situation:
     - situation:
         net: 1000
       valeur attendue: 1500
-
 # TODO : à corriger
 # cycle avec une règle reliée fixée dans la situation:
 #   valeur: net

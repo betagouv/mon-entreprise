@@ -290,9 +290,8 @@ type CompanySectionProps = {
 export const CompanySection = ({ company }: CompanySectionProps) => {
 	const [searchModal, showSearchModal] = useState(false)
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
-	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] = useState(
-		false
-	)
+	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] =
+		useState(false)
 
 	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {

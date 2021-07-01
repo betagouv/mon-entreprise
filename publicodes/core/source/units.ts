@@ -101,13 +101,12 @@ const equals = <T>(a: T, b: T) => {
 	}
 }
 
-export const removeOnce = <T>(
-	element: T,
-	eqFn: (a: T, b: T) => boolean = equals
-) => (list: Array<T>): Array<T> => {
-	const index = list.findIndex((e) => eqFn(e, element))
-	return list.filter((_, i) => i !== index)
-}
+export const removeOnce =
+	<T>(element: T, eqFn: (a: T, b: T) => boolean = equals) =>
+	(list: Array<T>): Array<T> => {
+		const index = list.findIndex((e) => eqFn(e, element))
+		return list.filter((_, i) => i !== index)
+	}
 
 const simplify = (
 	unit: Unit,

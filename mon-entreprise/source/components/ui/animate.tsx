@@ -33,19 +33,21 @@ export const fromBottom = ({
 		to={{ opacity: 1, y: 0 }}
 		items={children}
 	>
-		{(item) => ({ y, ...style }) => (
-			<animated.div
-				style={{
-					transform: interpolate([y], (y) =>
-						y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-					),
-					...style,
-					...inheritedStyle,
-				}}
-			>
-				{item}
-			</animated.div>
-		)}
+		{(item) =>
+			({ y, ...style }) =>
+				(
+					<animated.div
+						style={{
+							transform: interpolate([y], (y) =>
+								y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
+							),
+							...style,
+							...inheritedStyle,
+						}}
+					>
+						{item}
+					</animated.div>
+				)}
 	</Trail>
 )
 export const fromTop = ({
@@ -63,19 +65,21 @@ export const fromTop = ({
 		to={{ opacity: 1, y: 0 }}
 		items={children}
 	>
-		{(item) => ({ y, ...style }) => (
-			<animated.div
-				style={{
-					transform: interpolate([y], (y) =>
-						y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-					),
-					...style,
-					...inheritedStyle,
-				}}
-			>
-				{item}
-			</animated.div>
-		)}
+		{(item) =>
+			({ y, ...style }) =>
+				(
+					<animated.div
+						style={{
+							transform: interpolate([y], (y) =>
+								y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
+							),
+							...style,
+							...inheritedStyle,
+						}}
+					>
+						{item}
+					</animated.div>
+				)}
 	</Trail>
 )
 

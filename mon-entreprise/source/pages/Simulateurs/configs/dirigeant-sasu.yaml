@@ -1,10 +1,9 @@
 objectifs:
-  - dirigeant . rémunération . totale  
+  - dirigeant . rémunération . totale
   - contrat salarié . cotisations
   - contrat salarié . rémunération . net
   - impôt
   - contrat salarié . rémunération . net après impôt
-
 
 questions:
   à l'affiche:
@@ -12,7 +11,7 @@ questions:
     Commune: établissement . localisation
     Avantages en nature: contrat salarié . rémunération . avantages en nature
     Impôt sur le revenu: impôt . méthode de calcul
-    
+
   liste noire:
     - entreprise . charges
     - entreprise . imposition

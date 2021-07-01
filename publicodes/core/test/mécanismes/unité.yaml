@@ -3,10 +3,9 @@ cotisation retraite:
 valeur sans unité:
   formule:
     valeur: 100
-    unité: € 
+    unité: €
   exemples:
     - unité attendue: €
-
 
 conversion d'unité:
   formule:
@@ -18,7 +17,7 @@ conversion d'unité:
 
 unité chainée:
   formule:
-    produit: 
+    produit:
       assiette: 10 €/mois
       taux: 50%
     unité: €/an

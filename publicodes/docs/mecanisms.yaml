@@ -3,8 +3,8 @@ applicable si:
   description: >-
     Renvoie `non` si la condition est égale à `non`. Renvoie la valeur sinon.
 
-    Permet de désactiver une règle ou une valeur. 
-    
+    Permet de désactiver une règle ou une valeur.
+
   retourne: Valeur | non
   exemples:
     base: >-
@@ -18,8 +18,8 @@ non applicable si:
   description: >-
     Renvoit `non` si la condition n'est pas égale à `non`
 
-    Permet de désactiver une règle ou une valeur. 
-    
+    Permet de désactiver une règle ou une valeur.
+
   retourne: Valeur | non
   exemples:
     base: >-
@@ -65,7 +65,7 @@ toutes ces conditions:
 produit:
   description: >-
     C'est une multiplication adaptée pour exprimer au mieux les cotisations.
-    
+
 
     Sa propriété `assiette` est multipliée par un pourcentage `taux`, ou par un
     `facteur` quand ce nom est plus approprié.
@@ -111,7 +111,7 @@ variations:
     `non`.
 
 
-    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme avec des attributs, 
+    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme avec des attributs,
     tel que `produit` ou `barème`.
   arguments:
     - si: condition à vérifier
@@ -185,7 +185,7 @@ le maximum de:
     mécanisme `encadrement`.
   exemples:
     base: >-
-      max: 
+      max:
         le maximum de:
           - 50
           - 100
@@ -199,7 +199,7 @@ le minimum de:
     Pour plafonner une valeur, préférer l'utilisation du mécanisme `encadrement`.
   exemples:
     base: >-
-      min: 
+      min:
         le minimum de:
           - 50
           - 100
@@ -277,7 +277,6 @@ barème:
             - taux: 0.6%
         arrondi: oui
 
-
 grille:
   description: >-
     C'est un barème sous la forme d'une grille de correspondance simple. C'est
@@ -345,7 +344,7 @@ composantes:
     méthode de calcul mais diffèrent selons certains paramètres. Pour ne pas
     définir deux variables quasi-redondantes, on utilise ce mécanisme.
 
-    Cela permet d'avoir une écriture factorisée, plus facile à lire. 
+    Cela permet d'avoir une écriture factorisée, plus facile à lire.
 
     Dans les calculs, `composantes` se comporte **exactement comme une somme**.
     La documentation, elle, sera adaptée pour montrer chaque composante.
@@ -356,9 +355,9 @@ composantes:
     Chaque composante peut également contenir un champs `attributs` de type objet
     contenant les mécanismes chainés à appliquer à la composante en question.
 
-    Lorsque l'on utilise l'attribut `nom`, cela aboutit à la définition de règles 
+    Lorsque l'on utilise l'attribut `nom`, cela aboutit à la définition de règles
     imbriquées pour chacun des termes de la somme.
-     
+
   exemples:
     base: >-
       composante:
@@ -368,36 +367,36 @@ composantes:
             - taux: 2%
             - taux: 4%
               plafond: plafond sécurité sociale
-    
+
     Cotisations: >-
-        cotisation 1:
-          produit:
-            assiette: assiette de base
-            composantes:
-              - attributs:
-                  nom: employeur
-                taux: 5%
-              - attributs:
-                  nom: salarié
-                taux: 1%
+      cotisation 1:
+        produit:
+          assiette: assiette de base
+          composantes:
+            - attributs:
+                nom: employeur
+              taux: 5%
+            - attributs:
+                nom: salarié
+              taux: 1%
 
-        cotisations salariales :
-          somme: 
-            - cotisation 1 . salarié
-            # ...
+      cotisations salariales :
+        somme:
+          - cotisation 1 . salarié
+          # ...
     TVA: >-
-        prix:
-          produit:
-            assiette: 50€
-            composantes:
-              - attributs:
-                  nom: HT
-              - attributs:
-                  nom: TVA
-                taux: 20%
+      prix:
+        produit:
+          assiette: 50€
+          composantes:
+            - attributs:
+                nom: HT
+            - attributs:
+                nom: TVA
+              taux: 20%
 
-        vérification:
-          prix = prix . HT + prix . TVA 
+      vérification:
+        prix = prix . HT + prix . TVA
 
 abattement:
   chainable: oui
@@ -458,13 +457,12 @@ unité:
     Permet de convertir explicitement une unité.
 
     Affiche un avertissement si la conversion n'est pas possible à cause d'unités incompatibles.
-  
+
   exemples:
     base: >-
-      salaire: 
+      salaire:
         valeur: 35 k€/an
         unité: €/mois
-      
 
 par défaut:
   chainable: oui
@@ -472,19 +470,16 @@ par défaut:
     Permet de donner une valeur par défaut pour le calcul, sans influer sur les variables manquantes retournées.
 
     Utile dans le cas d'une situation incomplète où l'on veut quand même retourner une première estimation.
-  
+
   exemples:
     base: >-
-      prix TTC: 
+      prix TTC:
         assiette: prix HT * (100% + TVA)
-      TVA: 
+      TVA:
         par défaut: 20%
 
-      
-
-
 synchronisation:
-  description: >- 
+  description: >-
     Permet de récupérer certaines informations, telles que les
     codes postaux des villes, à partir d'APIs externes, telles que l'[API
     des communes de France](https://geo.api.gouv.fr/decoupage-administratif/communes).
@@ -527,34 +522,33 @@ inversion numérique:
 
 résoudre la référence circulaire:
   description: |
-    Active le calcul itératif pour trouver la valeur de la règle qui résout 
+    Active le calcul itératif pour trouver la valeur de la règle qui résout
     la référence circulaire.
-    
-    Il est possible pour une règle de se référencer elle-même. Par défaut, le 
+
+    Il est possible pour une règle de se référencer elle-même. Par défaut, le
     moteur considère qu'il s'agit d'un cycle non voulu, et renvoie 'null' comme valeur
     pour la règle en question, en affichant un avertissement.
 
-    Mais dans certains cas, la formule est bonne et le cycle est voulu. La valeur de la 
+    Mais dans certains cas, la formule est bonne et le cycle est voulu. La valeur de la
     règle attendue est donc celle qui résout l'équation obtenue via la référence cyclique.
 
-    Lorsque l'on active cette fonctionnalité, le moteur va procéder par essai-erreur jusqu'à 
+    Lorsque l'on active cette fonctionnalité, le moteur va procéder par essai-erreur jusqu'à
     trouver cette valeur.
 
     Note : la résolution de cycle est coûteuse en temps de calcul. Il faut donc veiller à
     ne pas la cumuler avec l'évaluation d'un autre mécanisme coûteux comme l'inversion numérique
     par exemple.
 
-    
   exemples:
     base: >-
-      x: 
+      x:
         valeur: 4 * x - 5
         résoudre la référence circulaire: oui
     calcul du revenu professionnel: >-
       chiffre d'affaires: 10000 €/an
-      
+
       cotisations: 25% * revenu professionnel
-        
-      revenu professionnel: 
+
+      revenu professionnel:
         valeur: chiffre d'affaires - cotisations
         résoudre la référence circulaire: oui

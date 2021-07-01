@@ -22,7 +22,7 @@ import { formatDay, formatMonth, Indicators, Indicator } from './utils'
 import SatisfactionChart from './SatisfactionChart'
 import { StatsStruct, PageChapter2, Page, PageSatisfaction } from './types'
 
-const stats = (statsJson as unknown) as StatsStruct
+const stats = statsJson as unknown as StatsStruct
 
 type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM'

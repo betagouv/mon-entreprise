@@ -41,9 +41,9 @@ export default function VotreSituation() {
 	}
 
 	const déclarations = déclarationsSelector(state)
-	const régimeGénéralDisponible = activitésEffectuéesSelector(
-		state
-	).some((activité) => régimeGénéralDisponibleSelector(state, activité))
+	const régimeGénéralDisponible = activitésEffectuéesSelector(state).some(
+		(activité) => régimeGénéralDisponibleSelector(state, activité)
+	)
 
 	return (
 		<Animate.fromBottom>

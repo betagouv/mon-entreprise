@@ -91,7 +91,7 @@ contrat salarié . frais professionnels . titres-restaurant:
       - d’un repas,
 
       - de préparations alimentaires directement consommables,
-      
+
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
@@ -126,14 +126,13 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 contrat salarié . frais professionnels . titres-restaurant . nombre:
   question: Combien de titres-restaurant sont distribués au salarié ?
   arrondi: oui
-  par défaut: 
-    produit: 
-      assiette: 19 titres-restaurant/mois 
+  par défaut:
+    produit:
+      assiette: 19 titres-restaurant/mois
       facteur: temps de travail . quotité de travail
   suggestions:
-    5 repas/semaines:  5 titres-restaurant/semaines * période . semaines par mois
-    3 repas/semaine:  3 titres-restaurant/semaines * période . semaines par mois
-      
+    5 repas/semaines: 5 titres-restaurant/semaines * période . semaines par mois
+    3 repas/semaine: 3 titres-restaurant/semaines * période . semaines par mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question: Quelle est la valeur unitaire du titre-restaurant ?
@@ -180,7 +179,7 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
   par défaut: 0 €/mois
   description: |
     L'employeur doit prendre en charge 50% du montant dépensé par le salarié pour les transports publics lui permettant de se rendre sur son lieu de travail.
-    
+
     Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
 
     Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
@@ -191,10 +190,8 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
     Navigo: 75 €/mois
     Técély: 65 €/mois
     RTM: 40 €/mois
-    Tisséo: 42.50 €/mois  
+    Tisséo: 42.50 €/mois
     TBM: 42.20 €/mois
-
-
 
 contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
   valeur: 50%
@@ -203,7 +200,7 @@ contrat salarié . frais professionnels . abonnement transports publics . taux d
   titre: Taux de prise en charge
   valeur:
     produit:
-      assiette: 
+      assiette:
         le minimum de:
           - temps de travail . quotité de travail
           - 50%
@@ -275,9 +272,9 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
   valeur: montant
   plafond:
     le minimum de:
-       - proportion déduction * 200€/an
-       - valeur: proportion déduction * 500€/an
-         abattement: abonnement transports publics . prise en charge
+      - proportion déduction * 200€/an
+      - valeur: proportion déduction * 500€/an
+        abattement: abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
   valeur: oui
@@ -510,17 +507,17 @@ contrat salarié . activité partielle . indemnisation entreprise . taux d'indem
   formule:
     variations:
       - si: secteur d'activité restreint
-      # Historique: 
-      # - avant le 01/07/2021: 70%
-      # - avant le 01/08/2021: 60%
-      # - avant le 01/09/2021: 52%
-      # - à partir du 01/09/2021: 36%
+        # Historique:
+        # - avant le 01/07/2021: 70%
+        # - avant le 01/08/2021: 60%
+        # - avant le 01/09/2021: 52%
+        # - à partir du 01/09/2021: 36%
         alors: 70%
-      # Historique: 
+      # Historique:
       # - avant le 01/06/2021: 60%
       # - avant le 01/07/2021: 52%
       # - à partir du 01/07/2021: 36%
-      - sinon: 52% 
+      - sinon: 52%
 
 contrat salarié . activité partielle . secteur d'activité restreint:
   question: >-
@@ -686,7 +683,7 @@ contrat salarié . CDD . CPF:
       taux: 1%
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
-  
+
 contrat salarié . CDD . congés pris:
   question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
   description: |
@@ -697,10 +694,10 @@ contrat salarié . CDD . congés pris:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
   par défaut: 0 jours ouvrés
-  
-contrat salarié . CDD . jours ouvrés sur la durée du contrat: 
+
+contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:
-    assiette: 253 jours ouvrés/an  
+    assiette: 253 jours ouvrés/an
     facteur: durée contrat
 
 contrat salarié . CDD . congés dus sur la durée du contrat:
@@ -737,7 +734,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     rémunération brute totale perçue par le salarié au cours de la période de
     référence.
 
-    ### Méthode "maintien du salaire" 
+    ### Méthode "maintien du salaire"
 
     Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
     bénéficié d’une augmentation de salaire.
@@ -754,7 +751,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
       produit:
         assiette: rémunération . assiette congés payés
         taux: 10%
-      abattement: 
+      abattement:
         nom: proportion congés pris
         unité: '%'
         valeur: congés pris / congés dus sur la durée du contrat
@@ -762,15 +759,14 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     - nom: Méthode du maintien de salaire
       produit:
         assiette: rémunération . assiette congés payés / jours ouvrés sur la durée du contrat
-        facteur: 
+        facteur:
           nom: congés non pris
           valeur: congés dus sur la durée du contrat - congés pris
-        
-        
+
   note: |
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
     À noter, la loi El Khomri modifie l'article L3141-12:
-    - avant : Les congés peuvent être pris dès l'ouverture des droits 
+    - avant : Les congés peuvent être pris dès l'ouverture des droits
     - maintenant : Les congés peuvent être pris dès l’embauche
   références:
     Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
@@ -1347,7 +1343,6 @@ contrat salarié . rémunération . brut de base:
         - équivalent temps plein
         - dirigeant . rémunération . totale
 
-
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
 
@@ -1825,7 +1820,7 @@ contrat salarié . rémunération . net imposable:
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   valeur:
-    nom: base 
+    nom: base
     description: Le net imposable avant les exonérations et déductions
     somme:
       - net avec revenus de remplacement
@@ -1841,8 +1836,6 @@ contrat salarié . rémunération . net imposable:
       - prévoyance . exonération fiscale
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   unité: €/mois
@@ -1950,11 +1943,11 @@ contrat salarié . cotisations . salariales . réductions de cotisations:
 contrat salarié . cotisations . patronales . réductions de cotisations:
   titre: réductions patronales
   description: >-
-    À l'exception de la déduction heure supplémentaire, les 
-    dispositifs de réduction de cotisations patronales sont 
+    À l'exception de la déduction heure supplémentaire, les
+    dispositifs de réduction de cotisations patronales sont
     mutuellement exclusif.
 
-    Le formule ci dessous selectionne donc automatiquement 
+    Le formule ci dessous selectionne donc automatiquement
     le plus avantageux pour l'employeur.
   formule:
     somme:
@@ -2205,7 +2198,7 @@ contrat salarié . aides employeur . emploi franc . éligible:
           - CDD . durée contrat >= 6
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
-    Conditions : 
+    Conditions :
     - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
@@ -2825,7 +2818,7 @@ contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
   description: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre à sa charge au moins la moitié de son coût. 
+    doit prendre à sa charge au moins la moitié de son coût.
 
     Le montant peut varier, mais la prévoyance doit couvrir un panier minimum
     légal de soins.
