@@ -43,6 +43,9 @@ Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramè
 # Clone this repo on your computer
 git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entreprise
 
+# Mettre à jour votre config git locale
+git config blame.ignoreRevsFile .git-blame-ignore-revs
+
 # Install the Javascript dependencies through Yarn
 yarn install
 
