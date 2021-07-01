@@ -6,8 +6,8 @@ Location meublée:
     - Abritel
     - Guest room
     - classified tourism
-  
-Location meublée standard: 
+
+Location meublée standard:
   titre: Standard furnished rental
   explication: You have rented furnished accommodation for short periods of time to a visiting clientele who do not elect domicile there (excluding guest rooms or furnished tourist accommodation)
   exonérations:
@@ -21,7 +21,7 @@ Location meublée de tourisme classé:
   titre: Furnished rental of classified tourism
   explication: The property must have previously been declared to the municipality where it is located. At the end of this procedure, a declaration number (13 characters) is issued. Any change is subject to a new declaration.
 
-Location de chambre d'hôtes:  
+Location de chambre d'hôtes:
   titre: Rental of guest rooms
   explication: You are a B&B rental company and meet the requirements of the Tourism Code
 
@@ -52,7 +52,7 @@ Vente de biens occasionnelle:
   exonérée sauf si:
     - titre: You sell precious metals (gold, silver, ingots)
       explication: For the transfer of precious metals, you are subject to the flat-rate tax on precious metals, which you must pay within one month of the transfer.
-  
+
 Vente de biens professionnelle:
   titre: Sale of professional goods
   explication: |
@@ -74,5 +74,3 @@ Co-consommation:
     - titre: You exceed the limit of the kilometric scale (for carpooling)
       explication: |
         When it comes to carpooling, there is a third condition: the full fare must not exceed the current kilometric rate and must be divided by the number of people transported, including the car owner.
-
-

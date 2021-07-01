@@ -66,11 +66,8 @@ export default function CurrencyInput({
 		onChangeDebounced?.(event)
 	}
 
-	const {
-		isCurrencyPrefixed,
-		thousandSeparator,
-		decimalSeparator,
-	} = currencyFormat(language)
+	const { isCurrencyPrefixed, thousandSeparator, decimalSeparator } =
+		currencyFormat(language)
 	// Autogrow the input
 	const valueLength = currentValue.toString().length
 	const width = `${5 + (valueLength - 5) * 0.75}em`

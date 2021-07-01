@@ -196,32 +196,27 @@ export function SimulatorRessourceCard({
 
 const guidesUrssaf = [
 	{
-		url:
-			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_Medecins.pdf',
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_Medecins.pdf',
 		associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
 		title: 'Guide Urssaf pour les médecins libéraux',
 	},
 	{
-		url:
-			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
 		associatedRule: 'entreprise . activité . libérale réglementée',
 		title: 'Guide Urssaf pour les professions libérales réglementées',
 	},
 	{
-		url:
-			'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
+		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
 		associatedRule: 'dirigeant . auto-entrepreneur',
 		title: 'Guide Urssaf pour les auto-entrepreneurs',
 	},
 	{
-		url:
-			'http://www.secu-artistes-auteurs.fr/sites/default/files/pdf/Guide%20pratique%20de%20d%C3%A9but%20d%27activit%C3%A9.pdf',
+		url: 'http://www.secu-artistes-auteurs.fr/sites/default/files/pdf/Guide%20pratique%20de%20d%C3%A9but%20d%27activit%C3%A9.pdf',
 		associatedRule: "dirigeant = 'artiste-auteur'",
 		title: 'Guide Urssaf pour les artistes-auteurs',
 	},
 	{
-		url:
-			'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
 		associatedRule: 'dirigeant',
 		title: 'Guide Urssaf pour les indépendants',
 	},

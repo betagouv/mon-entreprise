@@ -49,19 +49,18 @@ conjoint collaborateur:
     dirigeant . rémunération . nette: 50000 €/an
     dirigeant . indépendant . conjoint collaborateur: oui
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
     dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'" 
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
     dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
   - <<: *conjoint-collab
     dirigeant . rémunération . nette: 500000 €/an
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'" 
-    
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
 
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
@@ -69,12 +68,12 @@ cotisations facultatives:
   # cotisations ne change pas:
   - dirigeant . rémunération . totale: 30000 €/an
     dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 3800 €/an # plafond: 10% PSS donc environ 4100 
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 3800 €/an # plafond: 10% PSS donc environ 4100
   # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - dirigeant . rémunération . totale: 30000 €/an
     dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 5000 €/an # plafond: 10% PSS donc environ 4100 
+    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 5000 €/an # plafond: 10% PSS donc environ 4100
   # Cas mutuelle
   - dirigeant . rémunération . totale: 30000 €/an
     dirigeant . indépendant . cotisations facultatives: oui
@@ -89,18 +88,16 @@ cotisations facultatives:
     dirigeant . indépendant . cotisations facultatives: oui
     dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
     dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
-  # Cas madelin + PER grand 
+  # Cas madelin + PER grand
   - dirigeant . rémunération . totale: 300000 €/an
     dirigeant . indépendant . cotisations facultatives: oui
     dirigeant . indépendant . cotisations facultatives . PER: 3500 €/an
     dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
     dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
 
-
-imposition à l'IS :
+imposition à l'IS:
   - entreprise . chiffre d'affaires: 100000 €/an
-    entreprise . imposition: "'IS'" 
+    entreprise . imposition: "'IS'"
   - entreprise . chiffre d'affaires: 100000 €/an
-    entreprise . imposition: "'IS'" 
+    entreprise . imposition: "'IS'"
     impôt . méthode de calcul: "'barème standard'"
-  

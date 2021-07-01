@@ -1,5 +1,5 @@
 name: Règles (non-regression)
-on: 
+on:
   pull_request:
     paths:
       - modele-social/règles/**
@@ -9,10 +9,10 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-    - run: yarn install --frozen-lockfile
-    - run: yarn test:regressions
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+      - run: yarn install --frozen-lockfile
+      - run: yarn test:regressions

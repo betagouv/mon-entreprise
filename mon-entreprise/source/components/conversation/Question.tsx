@@ -175,7 +175,7 @@ export default function Question({
 	}
 
 	const choiceElements = Array.isArray(choices)
-		? renderBinaryQuestion((choices as unknown) as typeof binaryQuestion)
+		? renderBinaryQuestion(choices as unknown as typeof binaryQuestion)
 		: renderChildren(choices as Choice)
 
 	return (

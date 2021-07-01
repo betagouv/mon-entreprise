@@ -18,7 +18,7 @@ export type RecalculNode = {
 
 const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 	if (this.cache._meta.inRecalcul) {
-		return (defaultNode(null) as any) as RecalculNode & EvaluatedNode
+		return defaultNode(null) as any as RecalculNode & EvaluatedNode
 	}
 
 	const amendedSituation = node.explanation.amendedSituation

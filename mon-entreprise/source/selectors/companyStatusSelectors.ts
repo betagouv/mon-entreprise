@@ -97,21 +97,21 @@ const QUESTION_LIST: Array<Question> = keys(
 	mergeAll(flatten(Object.values(LEGAL_STATUS_DETAILS)))
 )
 
-const isCompatibleStatusWith = (answers: any) => (
-	statusRequirements: LegalStatusRequirements
-): boolean => {
-	const stringify = map((x) => (!isNil(x) ? JSON.stringify(x) : x))
-	const answerCompatibility = Object.values(
-		mergeWith(
-			(answer, statusValue) =>
-				isNil(answer) || isNil(statusValue) || answer === statusValue,
-			stringify(statusRequirements as any),
-			stringify(answers)
+const isCompatibleStatusWith =
+	(answers: any) =>
+	(statusRequirements: LegalStatusRequirements): boolean => {
+		const stringify = map((x) => (!isNil(x) ? JSON.stringify(x) : x))
+		const answerCompatibility = Object.values(
+			mergeWith(
+				(answer, statusValue) =>
+					isNil(answer) || isNil(statusValue) || answer === statusValue,
+				stringify(statusRequirements as any),
+				stringify(answers)
+			)
 		)
-	)
-	const isCompatibleStatus = answerCompatibility.every((x) => x !== false)
-	return isCompatibleStatus
-}
+		const isCompatibleStatus = answerCompatibility.every((x) => x !== false)
+		return isCompatibleStatus
+	}
 const possibleStatus = (
 	answers: Array<LegalStatusRequirements> | LegalStatusRequirements
 ): Record<LegalStatus, boolean> =>
@@ -140,24 +140,23 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 	).filter(isCompatibleStatusWith(legalStatusRequirements) as any)
 
 	const unansweredQuestions = difference(QUESTION_LIST, questionAnswered)
-	const shannonEntropyByQuestion = unansweredQuestions.map((question): [
-		typeof question,
-		number
-	] => {
-		const answerPopulation = Object.values(possibleStatusList).map(
-			(status: any) => status[question]
-		)
-		const frequencyOfAnswers = Object.values(
-			countBy(
-				(x) => x,
-				answerPopulation.filter((x) => x !== undefined)
+	const shannonEntropyByQuestion = unansweredQuestions.map(
+		(question): [typeof question, number] => {
+			const answerPopulation = Object.values(possibleStatusList).map(
+				(status: any) => status[question]
 			)
-		).map((numOccurrence) => numOccurrence / answerPopulation.length)
-		const shannonEntropy = -frequencyOfAnswers
-			.map((p) => p * Math.log2(p))
-			.reduce(add, 0)
-		return [question, shannonEntropy]
-	})
+			const frequencyOfAnswers = Object.values(
+				countBy(
+					(x) => x,
+					answerPopulation.filter((x) => x !== undefined)
+				)
+			).map((numOccurrence) => numOccurrence / answerPopulation.length)
+			const shannonEntropy = -frequencyOfAnswers
+				.map((p) => p * Math.log2(p))
+				.reduce(add, 0)
+			return [question, shannonEntropy]
+		}
+	)
 
 	const sortedPossibleNextQuestions = sortBy(
 		([, entropy]) => -entropy,

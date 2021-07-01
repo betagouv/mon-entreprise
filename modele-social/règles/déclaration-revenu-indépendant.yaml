@@ -63,7 +63,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . total charges
   unité: €/an
   question: Quel est le montant total des cotisations et contributions sociales payées pendant l'exercice ?
   description: |
-    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre :
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
@@ -75,7 +75,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
   remplace: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
   unité: €/an
   description: |
-    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre :
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
@@ -87,7 +87,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG non dédu
   question: Quel est le montant total de CSG non déductible payé cette année ?
   unité: €/an
   description: |
-    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre :
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
@@ -99,7 +99,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
   question: Quel est le montant total de CRDS payé cette année ?
   unité: €/an
   description: |
-    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre : 
+    Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici la marche à suivre :
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
     2. Allez dans l'onglet "Document"
@@ -856,7 +856,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . cotisations obli
   description: |
     À reporter dans :
     - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
-    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
     - **déclaration contrôlée :** la rubrique BT du formulaire 2035-A-SD
     - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire
@@ -891,7 +891,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . total charges so
     - CFP
   description: |
     À reporter dans :
-    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
     - **déclaration contrôlée :** la rubrique BK du formulaire 2035-A-SD
     - **régime micro fiscal :** pas de liasse professionnelle fiscale à souscrire

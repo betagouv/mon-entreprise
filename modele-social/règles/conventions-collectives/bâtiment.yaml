@@ -29,11 +29,11 @@ contrat salarié . convention collective . BTP . catégorie . ouvrier . prévoya
     assiette: rémunération . brut de base
     plafond: 3 * plafond sécurité sociale
     composantes:
-      - attributs: 
+      - attributs:
           nom: employeur
           remplace: prévoyance . employeur
         taux: 1.72%
-      - attributs: 
+      - attributs:
           nom: salarié
           remplace: prévoyance . salarié
         taux: 0.87%
@@ -60,11 +60,11 @@ contrat salarié . convention collective . BTP . catégorie . etam . prévoyance
     assiette: rémunération . brut de base
     plafond: 3 * plafond sécurité sociale
     composantes:
-      - attributs: 
+      - attributs:
           nom: employeur
           remplace: prévoyance . employeur
         taux: 1.25%
-      - attributs: 
+      - attributs:
           nom: salarié
           remplace: prévoyance . salarié
         taux: 0.60%
@@ -76,7 +76,6 @@ contrat salarié . convention collective . BTP . catégorie . cadre:
   remplace:
     - règle: statut cadre
       par: oui
-
 
 contrat salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
   barème:
@@ -103,7 +102,6 @@ contrat salarié . convention collective . BTP . catégorie . cadre . prévoyanc
             plafond: 4
           - taux: 50% * 3.60%
             plafond: 8
-
 
 contrat salarié . convention collective . BTP . cotisations conventionnelles:
   remplace: cotisations . patronales . conventionnelles

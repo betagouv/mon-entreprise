@@ -82,7 +82,8 @@
 				: null
 		}
 		var c = this,
-			b = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g,
+			b =
+				/(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g,
 			d = RegExp(
 				'^[\\x20\\t\\r\\n\\f]+|((?:^|[^\\\\])(?:\\\\.)*)[\\x20\\t\\r\\n\\f]+$',
 				'g'
@@ -1506,12 +1507,13 @@
 				'undefined' !== typeof window &&
 				'undefined' !== typeof window.location
 			) {
-				h = (c.getConfig('urlPropertyQueryString')
-					? window.location.href
-					: window.location.protocol +
-					  '//' +
-					  window.location.host +
-					  window.location.pathname
+				h = (
+					c.getConfig('urlPropertyQueryString')
+						? window.location.href
+						: window.location.protocol +
+						  '//' +
+						  window.location.host +
+						  window.location.pathname
 				)
 					.replace(/[<>]/g, '')
 					.substring(0, 1600)
@@ -1521,9 +1523,10 @@
 				c.setContext('page', l)
 				c.setParam('page_url', h, {
 					permanent: !0,
-					hitType: 'page click publisher selfPromotion onSiteAdsClick onSiteAdsImpression InternalSearch mvtesting richmedia'.split(
-						' '
-					),
+					hitType:
+						'page click publisher selfPromotion onSiteAdsClick onSiteAdsImpression InternalSearch mvtesting richmedia'.split(
+							' '
+						),
 				})
 			}
 			c.plugins.init()
@@ -1641,8 +1644,13 @@
 						},
 						c = { search: 's', content: 'c' }
 					this.atMedium = 'sl'
-					this.atTerm = this.atNetwork = this.atVariant = this.atCreation = this.atPlatform = this.atCampaign =
-						''
+					this.atTerm =
+						this.atNetwork =
+						this.atVariant =
+						this.atCreation =
+						this.atPlatform =
+						this.atCampaign =
+							''
 					this.format = function () {
 						var a = 'sec',
 							h = b(this.atCampaign),
@@ -1693,8 +1701,15 @@
 				this.Email = function () {
 					var e = { acquisition: 'erec', retention: 'epr', promotion: 'es' }
 					this.atMedium = 'email'
-					this.atSendTime = this.atRecipientList = this.atRecipientId = this.atLink = this.atSendDate = this.atCreation = this.atCampaign = this.atEmailtype =
-						''
+					this.atSendTime =
+						this.atRecipientList =
+						this.atRecipientId =
+						this.atLink =
+						this.atSendDate =
+						this.atCreation =
+						this.atCampaign =
+						this.atEmailtype =
+							''
 					this.format = function () {
 						var a = e[this.atEmailtype] || e.promotion,
 							c = b(this.atCampaign),
@@ -1762,8 +1777,13 @@
 				}
 				this.Affiliate = function () {
 					this.atMedium = 'affiliate'
-					this.atVariant = this.atCreation = this.atFormat = this.atIdentifier = this.atType = this.atCampaign =
-						''
+					this.atVariant =
+						this.atCreation =
+						this.atFormat =
+						this.atIdentifier =
+						this.atType =
+						this.atCampaign =
+							''
 					this.format = function () {
 						var a = 'al',
 							f = b(this.atCampaign),
@@ -1813,8 +1833,14 @@
 				}
 				this.Display = function () {
 					this.atMedium = 'display'
-					this.atDetailPlacement = this.atGeneralPlacement = this.atChannel = this.atFormat = this.atVariant = this.atCreation = this.atCampaign =
-						''
+					this.atDetailPlacement =
+						this.atGeneralPlacement =
+						this.atChannel =
+						this.atFormat =
+						this.atVariant =
+						this.atCreation =
+						this.atCampaign =
+							''
 					this.format = function () {
 						var a = 'ad',
 							f = b(this.atCampaign),
@@ -1885,8 +1911,13 @@
 					}
 				}
 				this.Custom = function () {
-					this.atCustom4 = this.atCustom3 = this.atCustom2 = this.atCustom1 = this.atCampaign = this.atMedium =
-						''
+					this.atCustom4 =
+						this.atCustom3 =
+						this.atCustom2 =
+						this.atCustom1 =
+						this.atCampaign =
+						this.atMedium =
+							''
 					this.format = function () {
 						var a = ''
 						;/\d+$/.test(this.atMedium) && (a = /\d+$/.exec(this.atMedium)[0])

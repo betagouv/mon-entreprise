@@ -47,10 +47,9 @@ plancher:
   exemples:
     - valeur attendue: 2500
 
-
 encadrement inférieur et supérieur:
   formule:
-    somme: 
+    somme:
       - 500
       - 400
     plafond: 800

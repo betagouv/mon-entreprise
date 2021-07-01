@@ -95,9 +95,10 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 		},
 		[setSearchResults, setLoadingState]
 	)
-	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch,
-	])
+	const debouncedHandleSearch = useMemo(
+		() => debounce(300, handleSearch),
+		[handleSearch]
+	)
 
 	const handleSubmit = useCallback(
 		async (commune: Commune) => {

@@ -41,13 +41,15 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 	)
 	return (
 		<div id="targetSelection">
-			{((typeof objectifs[0] === 'string'
-				? [{ objectifs }]
-				: objectifs) as Array<{
-				icône?: string
-				nom?: string
-				objectifs: Array<DottedName>
-			}>).map(({ icône, objectifs: targets, nom }, index: number) => (
+			{(
+				(typeof objectifs[0] === 'string'
+					? [{ objectifs }]
+					: objectifs) as Array<{
+					icône?: string
+					nom?: string
+					objectifs: Array<DottedName>
+				}>
+			).map(({ icône, objectifs: targets, nom }, index: number) => (
 				<Fragment key={nom || '0'}>
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>

@@ -32,7 +32,7 @@ impôt . méthode de calcul:
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
-  par défaut: 
+  par défaut:
     nom: par défaut
     valeur: "'barème standard'"
   formule:
@@ -70,11 +70,11 @@ impôt . méthode de calcul . prélèvement à la source:
 impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
-  variations: 
+  variations:
     - si: dirigeant
       alors: dirigeant . rémunération . imposable
-    - sinon: 
-        valeur: contrat salarié . rémunération . net imposable      
+    - sinon:
+        valeur: contrat salarié . rémunération . net imposable
         abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
@@ -254,7 +254,6 @@ impôt . taux personnalisé:
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   unité: '%'
 
-
 # TODO: "foyer fiscal" should be in its own top level namespace, but we put it
 # in the "impôt" namespace to have a better questions ordering
 impôt . foyer fiscal:
@@ -339,18 +338,17 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
 
 impôt . foyer fiscal . taux effectif:
   unité: '%'
-  variations: 
+  variations:
     - si: impôt à payer = 0
-      alors: 0% 
-    - sinon: impôt à payer / revenu imposable 
-
+      alors: 0%
+    - sinon: impôt à payer / revenu imposable
 
 impôt . foyer fiscal . revenu imposable:
   formule:
     somme:
       - revenu d'activité abattu
-      - applicable si: 
-          toutes ces conditions: 
+      - applicable si:
+          toutes ces conditions:
             - dirigeant . rémunération . imposable
             - entreprise . imposition . IR
         valeur: dirigeant . rémunération . imposable
@@ -366,7 +364,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
         alors: contrat salarié . rémunération . net imposable
       - si: entreprise . imposition = 'IS'
         alors: dirigeant . rémunération . imposable
-  abattement: 
+  abattement:
     valeur: 10% * assiette
     # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
     # HISTORIQUE 2020: 12627€
@@ -524,5 +522,5 @@ impôt . domiciliation étranger non implémentée:
   formule: situation personnelle . domiciliation fiscale à l'étranger
   type: notification
   niveau: avertissement
-  description: | 
+  description: |
     La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)

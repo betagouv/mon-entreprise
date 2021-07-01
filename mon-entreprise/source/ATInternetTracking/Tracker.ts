@@ -73,9 +73,8 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		}
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
-			this.site[
-				INDICATOR.SITE.LANGAGE
-			] = `[${options.language}]` as CustomSiteIndicator[1]
+			this.site[INDICATOR.SITE.LANGAGE] =
+				`[${options.language}]` as CustomSiteIndicator[1]
 			if (process.env.NODE_ENV === 'production' && doNotTrack) {
 				this.privacy.setVisitorOptout()
 			} else {

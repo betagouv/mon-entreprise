@@ -103,7 +103,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées:
 aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
-    the steps to follow: 
+    the steps to follow:
 
 
     1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
@@ -117,7 +117,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
     4. Enter in this field the total of the column "Amount not deductible: CRDS" (last line)
   description.fr: >
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
-    la marche à suivre : 
+    la marche à suivre :
 
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
@@ -136,7 +136,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CRDS:
 aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductible:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
-    the steps to follow: 
+    the steps to follow:
 
 
     1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
@@ -150,7 +150,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     4. Enter in this field the total of the column "Amount deductible CSG" (last line) (last line)
   description.fr: >
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
-    la marche à suivre : 
+    la marche à suivre :
 
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
@@ -166,10 +166,10 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
   question.fr: Quel est le montant total de CSG déductible payé cette année ?
   titre.en: '[automatic] Deductible CSG'
   titre.fr: CSG déductible
-? aide déclaration revenu indépendant 2020 . cotisations payées . CSG non déductible
-: description.en: >
+aide déclaration revenu indépendant 2020 . cotisations payées . CSG non déductible:
+  description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
-    the steps to follow: 
+    the steps to follow:
 
 
     1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
@@ -183,7 +183,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     4. Enter in this field the total of the column "Amount not deductible: CSG" (last line) (last line)
   description.fr: >
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
-    la marche à suivre : 
+    la marche à suivre :
 
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
@@ -199,13 +199,13 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
   question.fr: Quel est le montant total de CSG non déductible payé cette année ?
   titre.en: '[automatic] Non-deductible CSG'
   titre.fr: CSG non déductible
-? aide déclaration revenu indépendant 2020 . cotisations payées . cotisations obligatoires déductibles
-: titre.en: '[automatic] deductible mandatory contributions'
+aide déclaration revenu indépendant 2020 . cotisations payées . cotisations obligatoires déductibles:
+  titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
-? aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociales
-: description.en: >
+aide déclaration revenu indépendant 2020 . cotisations payées . total charges sociales:
+  description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
-    the steps to follow: 
+    the steps to follow:
 
 
     1. Log on to your [Urssaf personal space](https://www.urssaf.fr/portail/home.html)
@@ -217,7 +217,7 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
     4. Enter in this field the amount of the column "Contribution", line "Year 2020".
   description.fr: >
     Vous pouvez retrouver ce montant dans votre espace personnel Urssaf. Voici
-    la marche à suivre : 
+    la marche à suivre :
 
 
     1. Connectez-vous à votre [espace personnel Urssaf](https://www.urssaf.fr/portail/home.html)
@@ -238,8 +238,8 @@ aide déclaration revenu indépendant 2020 . cotisations payées . CSG déductib
 aide déclaration revenu indépendant 2020 . cotisations payées version simple:
   titre.en: '[automatic] dues paid simple version'
   titre.fr: cotisations payées version simple
-? aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP
-: description.en: >
+aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP:
+  description.en: >
     [automatic] Enter the amount of the deductible CSG and PSC you paid in 2020
     (regardless of the year to which these contributions relate).
   description.fr: >
@@ -251,8 +251,8 @@ aide déclaration revenu indépendant 2020 . cotisations payées version simple:
   question.fr: Quel est le montant total de CSG déductible et CFP payées cette année ?
   titre.en: '[automatic] Deductible CSG and PSC'
   titre.fr: CSG déductible et CFP
-? aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales
-: description.en: >
+aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales:
+  description.en: >
     [automatic] Indicate the amount of social contributions to the compulsory
     schemes (sickness-maternity, old age, disability-death, family) that you
     paid in 2020 (regardless of the year to which these contributions relate).
@@ -510,15 +510,15 @@ aide déclaration revenu indépendant 2020 . formulaire 2050 . rubrique WQ:
 aide déclaration revenu indépendant 2020 . informations résultat par formulaire:
   titre.en: '[automatic] result information by form'
   titre.fr: informations résultat par formulaire
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . assiette sociale
-: description.en: '[automatic] The base used to calculate social security contributions.'
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . assiette sociale:
+  description.en: '[automatic] The base used to calculate social security contributions.'
   description.fr: Assiette utilisée pour le calcul des cotisations sociales.
   résumé.en: '[automatic] [A - C1]'
   résumé.fr: '[A - C1]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations déductibles
-: description.en:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations déductibles:
+  description.en:
     '[automatic] Deductible social contributions for the calculation
     of the social security base'
   description.fr:
@@ -528,8 +528,8 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
   résumé.fr: '[C1]'
   titre.en: '[automatic] deductible contributions'
   titre.fr: cotisations déductibles
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations non déductibles
-: description.en: '[automatic] Non-deductible social contributions for the
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . cotisations non déductibles:
+  description.en: '[automatic] Non-deductible social contributions for the
     calculation of the social security base'
   description.fr: Cotisations et contributions sociales non déductibles pour le
     calcul de l'assiette sociale
@@ -537,14 +537,14 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
   résumé.fr: '[C2]'
   titre.en: '[automatic] non-deductible contributions'
   titre.fr: cotisations non déductibles
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid
-: description.en: '[automatic] The contribution reduction applicable in the case
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . réduction Covid:
+  description.en: '[automatic] The contribution reduction applicable in the case
     of the Covid scheme'
   description.fr: La réduction de cotisation applicable dans le cas du dispositif Covid
   titre.en: '[automatic] Covid discount'
   titre.fr: réduction Covid
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération nette
-: description.en:
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération nette:
+  description.en:
     "[automatic] The executive's net income before income tax. This
     is the remuneration actually paid."
   description.fr: Le revenu net du dirigeant avant impôt sur le revenu. C'est la
@@ -553,8 +553,8 @@ aide déclaration revenu indépendant 2020 . informations résultat par formulai
   résumé.fr: '[A - C1 - C2]'
   titre.en: '[automatic] net pay'
   titre.fr: rémunération nette
-? aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération totale
-: description.en: '[automatic] The manager''s "superbrute" remuneration,
+aide déclaration revenu indépendant 2020 . informations résultat par formulaire . rémunération totale:
+  description.en: '[automatic] The manager''s "superbrute" remuneration,
     including all social contributions.'
   description.fr: La rémunération "superbrute" du dirigeant, incluant toutes les
     cotisations et contributions sociales.
@@ -673,23 +673,23 @@ aide déclaration revenu indépendant 2020 . réduction covid:
     cotisations sociales liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
-? aide déclaration revenu indépendant 2020 . réduction covid . conjoint collaborateur
-: titre.en: '[automatic] collaborating spouse'
+aide déclaration revenu indépendant 2020 . réduction covid . conjoint collaborateur:
+  titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 aide déclaration revenu indépendant 2020 . réduction covid . montant:
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
-? aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020
-: titre.en: '[automatic] Autumn 2020'
+aide déclaration revenu indépendant 2020 . réduction covid . montant . automne 2020:
+  titre.en: '[automatic] Autumn 2020'
   titre.fr: automne 2020
-? aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020
-: titre.en: '[automatic] Spring 2020'
+aide déclaration revenu indépendant 2020 . réduction covid . montant . printemps 2020:
+  titre.en: '[automatic] Spring 2020'
   titre.fr: printemps 2020
-? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles
-: titre.en: '[automatic] number of eligible months'
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles:
+  titre.en: '[automatic] number of eligible months'
   titre.fr: nombre de mois éligibles
-? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1 et S1bis
-: description.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S1 et S1bis:
+  description.en: >
     [automatic] For October 2020, your business also had to be located in a
     curfew zone
   description.fr: >
@@ -705,8 +705,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
     votre chiffre d’affaires
   titre.en: '[automatic] S1 and S1bis'
   titre.fr: S1 et S1bis
-? aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2
-: question.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles . S2:
+  question.en: >
     [automatic] Specify the number of months (November 2020 and/or February 2021
     and/or March 2021) during which you were subject to a prohibition measure
     that predominantly affects the continuation of your business
@@ -719,17 +719,17 @@ aide déclaration revenu indépendant 2020 . réduction covid . montant:
 aide déclaration revenu indépendant 2020 . réduction covid . part CSG:
   titre.en: '[automatic] Covid reduction on CSG'
   titre.fr: Part réduction Covid sur CSG
-? aide déclaration revenu indépendant 2020 . réduction covid . part CSG . déductible
-: titre.en: '[automatic] Covid reduction on deductible CSG/CRDS'
+aide déclaration revenu indépendant 2020 . réduction covid . part CSG . déductible:
+  titre.en: '[automatic] Covid reduction on deductible CSG/CRDS'
   titre.fr: Part réduction Covid sur CSG/CRDS déductible
-? aide déclaration revenu indépendant 2020 . réduction covid . part CSG . non déductible
-: titre.en: '[automatic] Covid reduction on non-deductible CSG/CRDS'
+aide déclaration revenu indépendant 2020 . réduction covid . part CSG . non déductible:
+  titre.en: '[automatic] Covid reduction on non-deductible CSG/CRDS'
   titre.fr: Part réduction Covid sur CSG/CRDS non déductible
 aide déclaration revenu indépendant 2020 . réduction covid . part cotisations:
   titre.en: '[automatic] Covid reduction on contributions (excluding CSG/CRDS)'
   titre.fr: Part réduction Covid sur cotisations (hors CSG/CRDS)
-? aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations
-: titre.en: '[automatic] percentage contributions'
+aide déclaration revenu indépendant 2020 . réduction covid . pourcentage cotisations:
+  titre.en: '[automatic] percentage contributions'
   titre.fr: pourcentage cotisations
 aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité:
   description.en: >
@@ -792,8 +792,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     De quel secteur votre activité principale relève-t'elle ?
   titre.en: '[automatic] line of business'
   titre.fr: secteur d'activité
-? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1
-: description.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1:
+  description.en: >
     [automatic] Sectors of tourism, hotels, restaurants, sports, culture, air
     transport and events.
   description.fr: >
@@ -801,8 +801,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     culture, du transport aérien et de l’événementiel.
   titre.en: '[automatic] Sector S1'
   titre.fr: Secteur dit S1
-? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis
-: description.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S1-bis:
+  description.en: >
     [automatic] Sectors whose activity depends on that of sector 1 and which
     have suffered a very sharp decline in turnover.
   description.fr: >
@@ -810,8 +810,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activi
     très forte baisse de leur chiffre d’affaires.
   titre.en: '[automatic] Sector known as S1 bis'
   titre.fr: Secteur dit S1 bis
-? aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2
-: description.en: '[automatic] Other sectors of activity which have been banned
+aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité . S2:
+  description.en: '[automatic] Other sectors of activity which have been banned
     from carrying on their business in a preponderant manner.'
   description.fr: Autres secteurs d’activité qui ont fait l’objet d’une
     interdiction affectant de manière prépondérante la poursuite de leur
@@ -826,8 +826,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
   description.fr: Intégrée dans le montant des cotisations affiché ci-dessus
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
-? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020
-: description.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020:
+  description.en: >
     [automatic] Eligibility for the reduction under the second fall 2020 health
     emergency period is assessed month by month and depends on your industry.
 
@@ -991,8 +991,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
     première vague de la crise sanitaire de l'automne 2020 ?
   titre.en: '[automatic] eligible for aid autumn 2020'
   titre.fr: éligible aide automne 2020
-? aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020
-: description.en: >
+aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020:
+  description.en: >
     [automatic] Eligibility requirements for the reduction under the first
     Spring 2020 State of Health Emergency period depend on your industry:
 
@@ -1102,8 +1102,8 @@ aide déclaration revenu indépendant 2020 . réduction covid . total:
 aide déclaration revenu indépendant 2020 . régime d'imposition:
   titre.en: '[automatic] tax regime'
   titre.fr: régime d'imposition
-? aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée
-: description.en: >
+aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée:
+  description.en: >
     [automatic] If you have to declare non-commercial profits (BNC), you may be
     subject to the controlled declaration regime or the micro-BNC regime; this
     depends on the amount of your profits.
@@ -1175,8 +1175,8 @@ aide déclaration revenu indépendant 2020 . régime d'imposition . réel . norm
     - L'entreprise doit tenir un livre journal et un grand livre.
   titre.en: '[automatic] standard real estate regime'
   titre.fr: régime réel normal
-? aide déclaration revenu indépendant 2020 . régime d'imposition . réel . simplifié
-: description.en: >
+aide déclaration revenu indépendant 2020 . régime d'imposition . réel . simplifié:
+  description.en: >
     [automatic] Companies subject to the simplified real tax regime must keep
     standard accounts: a balance sheet, an income statement and annexes. Special
     provisions apply to lighten your accounting obligations:
@@ -1228,13 +1228,13 @@ aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale
   résumé.fr: '[A - (B + C + D)]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-? aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires
-: description.en: >
+aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires:
+  description.en: >
     [automatic] To be reported in :
 
     - the DSCA/DSCB box** on the supplementary data form for the self-employed tax return (form 2042)
 
-    - simplified actual system:** item 326 of form 2033-D-SD 
+    - simplified actual system:** item 326 of form 2033-D-SD
 
     - normal actual regime:** item A5 of form 2053-SD
 
@@ -1246,7 +1246,7 @@ aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale
 
     - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
 
-    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD 
+    - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD
 
     - **régime réel normal :** la rubrique A5 du formulaire 2053-SD
 
@@ -1266,17 +1266,17 @@ aide déclaration revenu indépendant 2020 . résultat simple . revenu net fisca
   résumé.fr: '[A]'
   titre.en: '[automatic] net tax income'
   titre.fr: revenu net fiscal
-? aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible
-: description.en: |
+aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible:
+  description.en: |
     [automatic] To be reported in :
-    - simplified actual system:** item 252 of form 2033-B-SD 
+    - simplified actual system:** item 252 of form 2033-B-SD
     - normal real system:** item FZ of form 2052-SD
     - controlled declaration:** item BK of form 2035-A-SD
     - micro fiscal regime:** no professional tax return to be filed
   description.fr: >
     À reporter dans :
 
-    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD 
+    - **régime réel simplifié :** la rubrique 252 du formulaire 2033-B-SD
 
     - **régime réel normal :** la rubrique FZ du formulaire 2052-SD
 
@@ -1766,7 +1766,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     period.
 
 
-    Salary continuation method 
+    Salary continuation method
 
 
     This method will most often be favorable to the employee when the employee has
@@ -1798,7 +1798,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     rémunération brute totale perçue par le salarié au cours de la période de
     référence.
 
-    ### Méthode "maintien du salaire" 
+    ### Méthode "maintien du salaire"
 
     Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
     bénéficié d’une augmentation de salaire.
@@ -1813,16 +1813,16 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
 
     Note that the El Khomri law modifies article L3141-12:
 
-    - before: Leave can be taken as soon as the entitlement arises. 
+    - before : Leave can be taken as soon as the rights are opened
 
-    - now: Leaves can be taken as soon as you are hired.
+    - now : Leave can be taken as soon as the employee is hired
   note.fr: >
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par
     un CDI.
 
     À noter, la loi El Khomri modifie l'article L3141-12:
 
-    - avant : Les congés peuvent être pris dès l'ouverture des droits 
+    - avant : Les congés peuvent être pris dès l'ouverture des droits
 
     - maintenant : Les congés peuvent être pris dès l’embauche
   titre.en: '[automatic] holiday pay'
@@ -2075,8 +2075,8 @@ contrat salarié . CSG et CRDS . assiette abattue totale:
 contrat salarié . CSG et CRDS . assiette de base:
   titre.en: '[automatic] base plate'
   titre.fr: assiette de base
-? contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées
-: titre.en: '[automatic] tax-free overtime and additional hours base'
+contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
+  titre.en: '[automatic] tax-free overtime and additional hours base'
   titre.fr: assiette heures supplémentaires et complémentaires défiscalisées
 contrat salarié . CSG et CRDS . assiette revenu remplacements:
   titre.en: '[automatic] income base replacements'
@@ -2207,8 +2207,8 @@ contrat salarié . activité partielle . heures travaillées:
   suggestions.30 h/semaine.fr: 30 h/semaine
   titre.en: '[automatic] remaining hours worked'
   titre.fr: heures travaillées restantes
-? contrat salarié . activité partielle . heures travaillées . contrôle temps de travail
-: description.en:
+contrat salarié . activité partielle . heures travaillées . contrôle temps de travail:
+  description.en:
     '[automatic] In the context of the partial activity, the working
     time must be less than that stipulated in the employment contract.'
   description.fr:
@@ -2225,8 +2225,8 @@ contrat salarié . activité partielle . indemnisation entreprise:
     prise à 100% en charge par l'état.
   titre.en: '[automatic] Reimbursement of partial activity allowance'
   titre.fr: Remboursement de l'indemnité d'activité partielle
-? contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation
-: description.en: >-
+contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  description.en: >-
     [automatic] As of June 1, the company's compensation rate increases to 60%.
     The compensation paid to the employee remains unchanged and it is therefore
     the company that will have to pay the difference.
@@ -2274,8 +2274,8 @@ contrat salarié . activité partielle . indemnités . complémentaire:
 contrat salarié . activité partielle . indemnités . conventionnelle:
   titre.en: '[automatic] conventional'
   titre.fr: conventionnelle
-? contrat salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation
-: titre.en: '[automatic] contributable portion'
+contrat salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation:
+  titre.en: '[automatic] contributable portion'
   titre.fr: part soumise à cotisation
 contrat salarié . activité partielle . retrait absence:
   titre.en: '[automatic] partial activity withdrawal'
@@ -2335,8 +2335,8 @@ contrat salarié . aides employeur:
   résumé.fr: Pour l'employeur, différées dans le temps
   titre.en: '[automatic] employer assistance'
   titre.fr: aides employeur
-? contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis
-: description.en: >-
+contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
+  description.en: >-
     [automatic] As part of the economic recovery plan for the start of the new
     school year in 2020, the government is putting in place exceptional
     assistance for the recruitment of apprentices.
@@ -2379,8 +2379,8 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
-? contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés
-: description.en: '[automatic] As part of the recovery plan, the government has
+contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
+  description.en: '[automatic] As part of the recovery plan, the government has
     decided to create a recruitment aid aimed at encouraging the employment of
     people with disabilities, regardless of their age.'
   description.fr: Dans le cadre du plan de relance, le gouvernement a décidé de
@@ -2388,8 +2388,8 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     situation de handicap quel que soit leur âge.
   titre.en: '[automatic] aid for the recruitment of disabled workers'
   titre.fr: aide à l'embauche des travailleurs handicapés
-? contrat salarié . aides employeur . aide à l'embauche senior professionnalisation
-: description.en: |
+contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
+  description.en: |
     [automatic] Employers can get €2,000 for the hiring of an
     jobseekers over 45 years of age on a professionalization contract.
   description.fr: |
@@ -2439,15 +2439,15 @@ contrat salarié . aides employeur . emploi franc:
   titre.fr: emploi franc
 contrat salarié . aides employeur . emploi franc . éligible:
   description.en: >
-    [automatic] Terms and conditions: 
+    [automatic] Conditions:
 
-    - The recruited employee is a job seeker registered with Pôle Emploi and resides in a priority district of the city (QPV) [check the eligibility of a district](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - The employee recruited is a job seeker registered with Pôle Emploi and resides in a priority urban district (QPV) [check the eligibility of a district](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
 
-    - The employer is up to date with its contributions and has not made an economic layoff for the position filled in the 6 months prior to recruitment.
+    - The employer is up to date with its contributions and has not made an economic redundancy for the position filled in the 6 months preceding recruitment
 
-    - The recruited employee must not have been part of the company's workforce in the 6 months prior to hiring.
+    - The employee recruited must not have been part of the company's workforce in the 6 months prior to recruitment
   description.fr: >
-    Conditions : 
+    Conditions :
 
     - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
 
@@ -2585,13 +2585,14 @@ contrat salarié . complémentaire santé . contrôle min:
   titre.fr: contrôle min
 contrat salarié . complémentaire santé . forfait:
   description.en: >-
-    [automatic] The employer has the obligation to offer a complementary health
-    care package. He must pay at least half of the cost. 
+    [automatic] The employer is obliged to offer a complementary health
+    insurance. The employer must cover at least half of the cost of the
+    supplementary health insurance.
 
-    The amount may vary, but the plan must cover a legal minimum basket of care.
+    The amount may vary, but the plan must cover a minimum legal basket of care.
   description.fr: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre à sa charge au moins la moitié de son coût. 
+    doit prendre à sa charge au moins la moitié de son coût.
 
     Le montant peut varier, mais la prévoyance doit couvrir un panier minimum légal de soins.
   note.en: '[automatic] For historical reasons, social health coverage for
@@ -2705,8 +2706,8 @@ contrat salarié . convention collective . BTP . catégorie:
 contrat salarié . convention collective . BTP . catégorie . cadre:
   titre.en: '[automatic] Framework'
   titre.fr: Cadre
-? contrat salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire
-: titre.en: '[automatic] supplementary pension'
+contrat salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
+  titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 contrat salarié . convention collective . BTP . catégorie . etam:
   description.en: '[automatic] Employee, technician, master angel'
@@ -2718,52 +2719,52 @@ contrat salarié . convention collective . BTP . catégorie . etam:
     13 décembre 1990.
   titre.en: '[automatic] ETAM'
   titre.fr: ETAM
-? contrat salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire
-: titre.en: '[automatic] supplementary pension'
+contrat salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
+  titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 contrat salarié . convention collective . BTP . catégorie . ouvrier:
   titre.en: '[automatic] Worker'
   titre.fr: Ouvrier
-? contrat salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire
-: titre.en: '[automatic] supplementary pension'
+contrat salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire:
+  titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 contrat salarié . convention collective . BTP . congés intempéries:
   titre.en: '[automatic] bad weather'
   titre.fr: congés intempéries
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement
-: question.en:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
+  question.en:
     '[automatic] To which fund is the company attached for the payment
     of the bad weather contribution?'
   question.fr: À quelle caisse l'entreprise est-elle rattachée pour le versement
     de la cotisation congés intempéries ?
   titre.en: '[automatic] home office fund'
   titre.fr: caisse de rattachement
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre
-: titre.en: '[automatic] centre'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre:
+  titre.en: '[automatic] centre'
   titre.fr: centre
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre ouest
-: titre.en: '[automatic] western center'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre ouest:
+  titre.en: '[automatic] western center'
   titre.fr: centre ouest
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand est
-: titre.en: '[automatic] great east'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand est:
+  titre.en: '[automatic] great east'
   titre.fr: grand est
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand ouest
-: titre.en: '[automatic] great west'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand ouest:
+  titre.en: '[automatic] great west'
   titre.fr: grand ouest
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf
-: titre.en: '[automatic] Île-de-France'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf:
+  titre.en: '[automatic] Île-de-France'
   titre.fr: Île-de-France
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . méditerranée
-: titre.en: '[automatic] mediterranean'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . méditerranée:
+  titre.en: '[automatic] mediterranean'
   titre.fr: méditerranée
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . nord ouest
-: titre.en: '[automatic] northwest'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . nord ouest:
+  titre.en: '[automatic] northwest'
   titre.fr: nord ouest
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . rhône alpes auvergne
-: titre.en: '[automatic] rhône alpes auvergne'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . rhône alpes auvergne:
+  titre.en: '[automatic] rhône alpes auvergne'
   titre.fr: rhône alpes auvergne
-? contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . sud ouest
-: titre.en: '[automatic] southwest'
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . sud ouest:
+  titre.en: '[automatic] southwest'
   titre.fr: sud ouest
 contrat salarié . convention collective . BTP . cotisations conventionnelles:
   titre.en: '[automatic] conventional contributions'
@@ -2773,8 +2774,8 @@ contrat salarié . convention collective . HCR:
   description.fr: L'entreprise est un hôtel, café, restaurant ou assimilé.
   titre.en: '[automatic] hotels, cafés and restaurants HCR'
   titre.fr: hôtels, cafés restaurants HCR
-? contrat salarié . convention collective . HCR . majoration heures supplémentaires
-: titre.en: overtime increase
+contrat salarié . convention collective . HCR . majoration heures supplémentaires:
+  titre.en: overtime increase
   titre.fr: majoration heures supplémentaires
 contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: fixed amount of a meal
@@ -2841,8 +2842,8 @@ contrat salarié . convention collective . compta:
     ainsi que les centres de gestion agréés et les associations agréées (AGC).
   titre.en: '[automatic] Chartered Accountants and Statutory Auditors'
   titre.fr: Experts-comptables et commissaires aux comptes
-? contrat salarié . convention collective . compta . majoration heures supplémentaires
-: titre.en: '[automatic] overtime increase'
+contrat salarié . convention collective . compta . majoration heures supplémentaires:
+  titre.en: '[automatic] overtime increase'
   titre.fr: majoration heures supplémentaires
 contrat salarié . convention collective . contrôle décharge:
   description.en: '[automatic] Caution: the implementation of the collective
@@ -2882,8 +2883,8 @@ contrat salarié . convention collective . optique . prévoyance . employeur:
 contrat salarié . convention collective . optique . prévoyance . salarié:
   titre.en: '[automatic] employee'
   titre.fr: salarié
-? contrat salarié . convention collective . optique . salaire minimum conventionnel
-: titre.en: '[automatic] standard minimum wage'
+contrat salarié . convention collective . optique . salaire minimum conventionnel:
+  titre.en: '[automatic] standard minimum wage'
   titre.fr: salaire minimum conventionnel
 contrat salarié . convention collective . sport:
   description.en: >
@@ -2901,37 +2902,37 @@ contrat salarié . convention collective . sport:
 contrat salarié . convention collective . sport . cotisations:
   titre.en: contributions
   titre.fr: cotisations
-? contrat salarié . convention collective . sport . cotisations . assiette forfaitaire
-: titre.en: flat-rate contribution base
+contrat salarié . convention collective . sport . cotisations . assiette forfaitaire:
+  titre.en: flat-rate contribution base
   titre.fr: assiette forfaitaire
-? contrat salarié . convention collective . sport . cotisations . assiette franchisée
-: titre.en: franchised contribution base
+contrat salarié . convention collective . sport . cotisations . assiette franchisée:
+  titre.en: franchised contribution base
   titre.fr: assiette franchisée
-? contrat salarié . convention collective . sport . cotisations . financement du paritarisme
-: note.en: '[automatic] is calculated on the payroll'
+contrat salarié . convention collective . sport . cotisations . financement du paritarisme:
+  note.en: '[automatic] is calculated on the payroll'
   note.fr: se calcule sur la masse salariale
   titre.en: financing of gender mainstreaming
   titre.fr: financement du paritarisme
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle
-: titre.en: professional training
+contrat salarié . convention collective . sport . cotisations . formation professionnelle:
+  titre.en: professional training
   titre.fr: formation professionnelle
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD
-: titre.en: CIF CDD
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD:
+  titre.en: CIF CDD
   titre.fr: CIF CDD
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI
-: titre.en: CIF CDI
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI:
+  titre.en: CIF CDI
   titre.fr: CIF CDI
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation
-: titre.en: professional training plan
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation:
+  titre.en: professional training plan
   titre.fr: plan de formation
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum
-: titre.en: minimum contribution
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum:
+  titre.en: minimum contribution
   titre.fr: versement minimum
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation
-: titre.en: professionalization
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation:
+  titre.en: professionalization
   titre.fr: professionnalisation
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum
-: titre.en: minimum contribution
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum:
+  titre.en: minimum contribution
   titre.fr: versement minimum
 contrat salarié . convention collective . sport . cotisations . franchise:
   titre.en: exemption
@@ -2942,31 +2943,31 @@ contrat salarié . convention collective . sport . cotisations . patronales:
 contrat salarié . convention collective . sport . cotisations . prévoyance:
   titre.en: insurance
   titre.fr: prévoyance
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé
-: titre.en: health care plan
+contrat salarié . convention collective . sport . cotisations . régime frais de santé:
+  titre.en: health care plan
   titre.fr: régime frais de santé
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option
-: question.en: What option was chosen for the health care plan?
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option:
+  question.en: What option was chosen for the health care plan?
   question.fr: Quel option a été choisi pour le régime des frais de santé ?
   titre.en: option
   titre.fr: option
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1
-: titre.en: R1
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1:
+  titre.en: R1
   titre.fr: R1
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2
-: titre.en: R2
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2:
+  titre.en: R2
   titre.fr: R2
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3
-: titre.en: R3
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3:
+  titre.en: R3
   titre.fr: R3
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux
-: titre.en: rate
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux:
+  titre.en: rate
   titre.fr: taux
 contrat salarié . convention collective . sport . exonération cotisation AT:
   titre.en: exemption from AT contribution
   titre.fr: exonération cotisation AT
-? contrat salarié . convention collective . sport . exonération cotisation AT . refus
-: question.en: Has the employer refused to be exempt from AT contributions?
+contrat salarié . convention collective . sport . exonération cotisation AT . refus:
+  question.en: Has the employer refused to be exempt from AT contributions?
   question.fr: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   titre.en: refusal of AT exemption
   titre.fr: refus exonération AT
@@ -2978,8 +2979,8 @@ contrat salarié . convention collective . sport . joueur entraineur:
 contrat salarié . convention collective . sport . primes:
   titre.en: event bonuses
   titre.fr: primes de manifestation
-? contrat salarié . convention collective . sport . primes . autres manifestations
-: question.en: What is the bonus for the other events
+contrat salarié . convention collective . sport . primes . autres manifestations:
+  question.en: What is the bonus for the other events
   question.fr: Quelles primes pour les autres manifestations ?
   titre.en: other events
   titre.fr: autres manifestations
@@ -2988,43 +2989,43 @@ contrat salarié . convention collective . sport . primes . manifestation 1:
   question.fr: Quelle prime pour la première manifestation ?
   titre.en: event 1
   titre.fr: manifestation 1
-? contrat salarié . convention collective . sport . primes . manifestation 1 . franchise
-: titre.en: exemption event 1
+contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
+  titre.en: exemption event 1
   titre.fr: franchise manifestation 1
 contrat salarié . convention collective . sport . primes . manifestation 2:
   question.en: What is the bonus for the second event ?
   question.fr: Quelle prime pour la deuxième manifestation ?
   titre.en: event 2
   titre.fr: manifestation 2
-? contrat salarié . convention collective . sport . primes . manifestation 2 . franchise
-: titre.en: exemption event 2
+contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
+  titre.en: exemption event 2
   titre.fr: franchise manifestation 2
 contrat salarié . convention collective . sport . primes . manifestation 3:
   question.en: What is the bonus for the third event ?
   question.fr: Quelle prime pour la troisième manifestation ?
   titre.en: event 3
   titre.fr: manifestation 3
-? contrat salarié . convention collective . sport . primes . manifestation 3 . franchise
-: titre.en: exemption event 3
+contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
+  titre.en: exemption event 3
   titre.fr: franchise manifestation 3
 contrat salarié . convention collective . sport . primes . manifestation 4:
   question.en: What is the bonus for the fourth event ?
   question.fr: Quelle prime pour la quatrième manifestation ?
   titre.en: event 4
   titre.fr: manifestation 4
-? contrat salarié . convention collective . sport . primes . manifestation 4 . franchise
-: titre.en: exemption event 4
+contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
+  titre.en: exemption event 4
   titre.fr: franchise manifestation 4
 contrat salarié . convention collective . sport . primes . manifestation 5:
   question.en: What is the bonus for the fifth event ?
   question.fr: Quelle prime pour la cinquième manifestation ?
   titre.en: event 5
   titre.fr: manifestation 5
-? contrat salarié . convention collective . sport . primes . manifestation 5 . franchise
-: titre.en: exemption event 5
+contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
+  titre.en: exemption event 5
   titre.fr: franchise manifestation 5
-? contrat salarié . convention collective . sport . primes . nombre de manifestations
-: question.en: How many paid sportive events did the player perform this month?
+contrat salarié . convention collective . sport . primes . nombre de manifestations:
+  question.en: How many paid sportive events did the player perform this month?
   question.fr: Combien de manifestations rémunérées le joueur a-t'il effectué ?
   titre.en: number of events
   titre.fr: nombre de manifestations
@@ -3098,14 +3099,14 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
 
     The formula below therefore automatically selects the most advantageous for the employer.
   description.fr: >-
-    À l'exception de la déduction heure supplémentaire, les  dispositifs de
-    réduction de cotisations patronales sont  mutuellement exclusif.
+    À l'exception de la déduction heure supplémentaire, les dispositifs de
+    réduction de cotisations patronales sont mutuellement exclusif.
 
-    Le formule ci dessous selectionne donc automatiquement  le plus avantageux pour l'employeur.
+    Le formule ci dessous selectionne donc automatiquement le plus avantageux pour l'employeur.
   titre.en: "[automatic] employer's reductions"
   titre.fr: réductions patronales
-? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
-: note.en: '[automatic] Deduction does not apply to overtime work.'
+contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
+  note.en: '[automatic] Deduction does not apply to overtime work.'
   note.fr: La déduction ne s’applique pas aux heures complémentaires
   titre.en: flat-rate deduction for overtime
   titre.fr: déduction forfaitaire pour heures supplémentaires
@@ -3123,8 +3124,8 @@ contrat salarié . cotisations . salariales . conventionnelles:
 contrat salarié . cotisations . salariales . réduction heures supplémentaires:
   titre.en: reduction for overtime hours
   titre.fr: réduction heures supplémentaires
-? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
-: description.en: the effective rate of the employee's pension contributions
+contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
+  description.en: the effective rate of the employee's pension contributions
   description.fr: le taux effectif des cotisations d'assurance vieillesse à la
     charge du salarié
   titre.en: reduced contribution rates
@@ -3160,8 +3161,8 @@ contrat salarié . déduction forfaitaire spécifique . profession:
     déduction forfaitaire spécifique ?
   titre.en: '[automatic] profession'
   titre.fr: profession
-? contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien
-: description.en: '[automatic] Concerns musicians, chorus members, conductors,
+contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien:
+  description.en: '[automatic] Concerns musicians, chorus members, conductors,
     theatre managers'
   description.fr: Concerne les artistes musiciens, choristes, chefs d’orchestre,
     régisseurs de théâtre
@@ -3175,14 +3176,14 @@ contrat salarié . déduction forfaitaire spécifique . profession . journaliste
     de journaux Critiques dramatiques et musicaux.
   titre.en: '[automatic] journalist'
   titre.fr: journaliste
-? contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal
-: titre.en: '[automatic] net taxable journalist'
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
+  titre.en: '[automatic] net taxable journalist'
   titre.fr: net imposable journaliste
-? contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux
-: titre.en: '[automatic] rate reduction'
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
+  titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
-? contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment
-: description.en: '[automatic] Concerns construction workers referred to in
+contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment:
+  description.en: '[automatic] Concerns construction workers referred to in
     paragraphs 1 and 2 of Article 1 of the Decree of 17 November 1936, excluding
     those working in factories or workshops.'
   description.fr:
@@ -3191,8 +3192,8 @@ contrat salarié . déduction forfaitaire spécifique . profession . journaliste
     travaillent en usine ou en atelier.
   titre.en: '[automatic] construction worker'
   titre.fr: ouvrier du bâtiment
-? contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant
-: description.en: '[automatic] Concerns pilots, radios, flight engineers of air
+contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant:
+  description.en: '[automatic] Concerns pilots, radios, flight engineers of air
     transport companies; pilots and mechanics employed by aircraft and engine
     manufacturing companies for the testing of prototypes; pilot instructors of
     flying clubs and civil aviation schools'
@@ -3309,8 +3310,8 @@ contrat salarié . frais professionnels:
 contrat salarié . frais professionnels . abonnement transports publics:
   titre.en: '[automatic] public transport pass'
   titre.fr: abonnement transports publics
-? contrat salarié . frais professionnels . abonnement transports publics . montant
-: description.en: >
+contrat salarié . frais professionnels . abonnement transports publics . montant:
+  description.en: >
     [automatic] The employer must pay 50% of the amount spent by the employee on
     public transport to work.
 
@@ -3346,15 +3347,15 @@ contrat salarié . frais professionnels . abonnement transports publics:
   suggestions.Técély.fr: Técély
   titre.en: '[automatic] Public transport season ticket'
   titre.fr: Abonnement aux transports publics
-? contrat salarié . frais professionnels . abonnement transports publics . prise en charge
-: titre.en: "[automatic] Public transport season ticket, employer's share (deductible)"
+contrat salarié . frais professionnels . abonnement transports publics . prise en charge:
+  titre.en: "[automatic] Public transport season ticket, employer's share (deductible)"
   titre.fr: Abonnement transports publics, part prise en charge par l'employeur
     (déductible)
-? contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur
-: titre.en: '[automatic] employer participation rate'
+contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
+  titre.en: '[automatic] employer participation rate'
   titre.fr: taux de participation employeur
-? contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge
-: titre.en: Employer's share
+contrat salarié . frais professionnels . abonnement transports publics . taux de prise en charge:
+  titre.en: Employer's share
   titre.fr: Taux de prise en charge
 contrat salarié . frais professionnels . part déductible:
   description.en: '[automatic] Share of expenses deducted from the social
@@ -3365,19 +3366,19 @@ contrat salarié . frais professionnels . part déductible:
   titre.fr: Frais professionnels déductibles
 contrat salarié . frais professionnels . titres-restaurant:
   description.en: >-
-    [automatic] The meal voucher is a special "meal" payment voucher issued by
+    [automatic] The meal voucher is a special "meal" payment voucher given by
     the employer to the employee.
 
 
-    The employee may only use the meal vouchers in his or her possession to pay for consumption:
+    The employee can only use the meal vouchers in his possession to pay for consumption:
 
-      - of a meal,
+      - a meal,
 
-      - of directly consumable food preparations,
-      
-      - of fruits and vegetables.
+      - directly consumable food preparations,
 
-    This security can be issued in paper or dematerialised form.
+      - fruit and vegetables.
+
+    This title can be issued on paper or in dematerialized form.
   description.fr: >-
     Le titre-restaurant est un titre spécial de paiement « des repas » remis par
     l’employeur au salarié.
@@ -3388,7 +3389,7 @@ contrat salarié . frais professionnels . titres-restaurant:
       - d’un repas,
 
       - de préparations alimentaires directement consommables,
-      
+
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
@@ -3396,15 +3397,15 @@ contrat salarié . frais professionnels . titres-restaurant:
   question.fr: Le salarié reçoit-il des titres-restaurant ?
   titre.en: '[automatic] restaurant vouchers'
   titre.fr: titres-restaurant
-? contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max
-: description.en:
+contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
+  description.en:
     "[automatic] The employer's share of the meal voucher must be a
     maximum of 60%."
   description.fr: La part employeur du titre-restaurant doit être de 60% au maximum
   titre.en: '[automatic] control max. employer rate'
   titre.fr: contrôle taux employeur max
-? contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min
-: description.en: "[automatic] The employer's share of the meal voucher must be at least 50%."
+contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min:
+  description.en: "[automatic] The employer's share of the meal voucher must be at least 50%."
   description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
   titre.en: '[automatic] control minimum employer rate'
   titre.fr: contrôle taux employeur min
@@ -3441,8 +3442,8 @@ contrat salarié . frais professionnels . titres-restaurant . nombre:
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre.en: '[automatic] Restaurant vouchers (deductible)'
   titre.fr: Titres-restaurant (déductible)
-? contrat salarié . frais professionnels . titres-restaurant . taux participation employeur
-: description.en:
+contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
+  description.en:
     '[automatic] Employer-paid portion of the meal voucher. Must be
     a minimum of 50% and a maximum of 60%.'
   description.fr:
@@ -3459,11 +3460,11 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 contrat salarié . frais professionnels . transports personnels:
   titre.en: '[automatic] personal transports'
   titre.fr: transports personnels
-? contrat salarié . frais professionnels . transports personnels . carburant faible émission
-: titre.en: '[automatic] low emission fuel'
+contrat salarié . frais professionnels . transports personnels . carburant faible émission:
+  titre.en: '[automatic] low emission fuel'
   titre.fr: carburant faible émission
-? contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant
-: description.en: >
+contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant:
+  description.en: >
     [automatic] The employer may cover all or part of the fuel costs incurred by
     the employee for his electric, plug-in hybrid or hydrogen vehicle, upon
     presentation of proof.
@@ -3502,16 +3503,16 @@ contrat salarié . frais professionnels . transports personnels:
   titre.en: '[automatic] Fuel support for electric, plug-in hybrid or hydrogen vehicles'
   titre.fr: Prise en charge du carburant pour véhicule électrique, hybride
     rechargeable ou hydrogène
-? contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible
-: titre.en: '[automatic] Fuel support for electric vehicles, plug-in hybrids or
+contrat salarié . frais professionnels . transports personnels . carburant faible émission . part déductible:
+  titre.en: '[automatic] Fuel support for electric vehicles, plug-in hybrids or
     hydrogen (deductible part)'
   titre.fr: Prise en charge du carburant pour véhicule électrique, hybride
     rechargeable ou hydrogène (part déductible)
-? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables
-: titre.en: '[automatic] sustainable mobility package'
+contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
+  titre.en: '[automatic] sustainable mobility package'
   titre.fr: forfait mobilités durables
-? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant
-: description.en: >
+contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant:
+  description.en: >
     [automatic] The employer may cover all or part of the travel expenses
     related to the use of vehicles included in the sustainable mobility package.
 
@@ -3572,19 +3573,19 @@ contrat salarié . frais professionnels . transports personnels:
     forfait mobilités durables ?
   titre.en: '[automatic] Coverage of transport costs for sustainable mobility packages'
   titre.fr: Prise en charge des frais de transports forfait mobilités durables
-? contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible
-: titre.en: '[automatic] Coverage of fixed-price transport costs for sustainable
+contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . part déductible:
+  titre.en: '[automatic] Coverage of fixed-price transport costs for sustainable
     mobility (deductible part)'
   titre.fr: Prise en charge des frais de transports forfait mobilités durables
     (part déductible)
 contrat salarié . frais professionnels . transports personnels . montant:
   titre.en: '[automatic] Personal transport'
   titre.fr: Transports personnels
-? contrat salarié . frais professionnels . transports personnels . part déductible
-: titre.en: '[automatic] deductible portion'
+contrat salarié . frais professionnels . transports personnels . part déductible:
+  titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
-? contrat salarié . frais professionnels . transports personnels . proportion déduction
-: titre.en: '[automatic] Deductibility Proportion Factor'
+contrat salarié . frais professionnels . transports personnels . proportion déduction:
+  titre.en: '[automatic] Deductibility Proportion Factor'
   titre.fr: Facteur de proportion de la déductibilité
 contrat salarié . intermittents du spectacle:
   question.en: To which "intermittent" status is the employee attached?
@@ -3656,11 +3657,11 @@ contrat salarié . intermittents du spectacle . artiste . acteur de complément:
     une production cinématographique ?
   titre.en: complementary actor
   titre.fr: acteur de complément
-? contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
-: titre.en: flat-rate base
+contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire:
+  titre.en: flat-rate base
   titre.fr: assiette forfaitaire
-? contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés
-: titre.en: number of days worked
+contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
+  titre.en: number of days worked
   titre.fr: nombre jours travaillés
 contrat salarié . intermittents du spectacle . artiste . activité accessoire:
   question.en: >
@@ -3671,8 +3672,8 @@ contrat salarié . intermittents du spectacle . artiste . activité accessoire:
     stages, etc) ?
   titre.en: incidental activity
   titre.fr: activité accessoire
-? contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés
-: question.en: For how many continuous days is the artist engaged?
+contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
+  question.en: For how many continuous days is the artist engaged?
   question.fr: Pour combien de jours continus l'artiste est-il engagé ?
   titre.en: number of days worked
   titre.fr: nombre jours travaillés
@@ -3685,8 +3686,8 @@ contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
 contrat salarié . intermittents du spectacle . artiste . réduction de taux:
   titre.en: rate reduction
   titre.fr: réduction de taux
-? contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP
-: titre.en: ATMP
+contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP:
+  titre.en: ATMP
   titre.fr: ATMP
 contrat salarié . intermittents du spectacle . caisse des congés spectacle:
   titre.en: '"spectacle" holiday fund'
@@ -3694,8 +3695,8 @@ contrat salarié . intermittents du spectacle . caisse des congés spectacle:
 contrat salarié . intermittents du spectacle . formation professionnelle:
   titre.en: formation professionnelle
   titre.fr: formation professionnelle
-? contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre
-: titre.en: supplementary pension for technicians and "cadre"
+contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre:
+  titre.en: supplementary pension for technicians and "cadre"
   titre.fr: retraite complémentaire techniciens et cadre
 contrat salarié . intermittents du spectacle . technicien:
   titre.en: technician
@@ -4031,8 +4032,8 @@ contrat salarié . retraite supplémentaire . exonération fiscale:
 contrat salarié . retraite supplémentaire . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
-? contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur
-: titre.en: "[automatic] employer's social security ceiling"
+contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
+  titre.en: "[automatic] employer's social security ceiling"
   titre.fr: plafond d'exonération sociale employeur
 contrat salarié . réduction générale:
   description.en: >
@@ -4245,8 +4246,8 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
-: question.en: |
+contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
+  question.en: |
     [automatic] How many meals per month are paid for by the company?
   question.fr: |
     Combien de repas par mois sont payés par l'entreprise ?
@@ -4472,8 +4473,8 @@ contrat salarié . rémunération . net imposable:
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
-? contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
-: titre.en: tax-free overtime hours
+contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
+  titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires et complémentaires défiscalisées
 contrat salarié . rémunération . primes:
   description.en: |
@@ -4537,8 +4538,8 @@ contrat salarié . rémunération . primes . fin d'année:
     travail.
   titre.en: Year-end or thirteenth month bonus
   titre.fr: Prime de fin d'année ou de treizième mois
-? contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois
-: note.en: >
+contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois:
+  note.en: >
     [automatic] Some companies offer an end-of-year bonus on a 13.5, 14 or even
     15-month basis.
   note.fr: >
@@ -4837,8 +4838,8 @@ contrat salarié . temps de travail . contrôle 48h max:
   description.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
   titre.en: '[automatic] control 48h max'
   titre.fr: contrôle 48h max
-? contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents
-: description.en:
+contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents:
+  description.en:
     '[automatic] Unless otherwise provided by agreement, the number
     of overtime hours may not exceed one tenth of the contractual duration of
     the part-time contract.'
@@ -5112,14 +5113,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
-? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace
-: titre.en: '[automatic] Alsace rate'
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
+  titre.en: '[automatic] Alsace rate'
   titre.fr: taux Alsace
-? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle
-: titre.en: '[automatic] Moselle rate'
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle:
+  titre.en: '[automatic] Moselle rate'
   titre.fr: taux Moselle
-? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
-: description.en: >
+dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
+  description.en: >
     [automatic] In addition to social security charges, self-employed
     entrepreneurs are liable for a
 
@@ -5164,8 +5165,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux dépend de la catégorie d'activité.
   titre.en: contributions
   titre.fr: cotisations
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE
-: description.en: >
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+  description.en: >
     [automatic] This rate corresponds to the contribution reduction that applies
     to
 
@@ -5182,8 +5183,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE auto-entrepreneur
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service
-: titre.en: '[automatic] service delivery rate with ACRE'
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
+  titre.en: '[automatic] service delivery rate with ACRE'
   titre.fr: taux prestation de service avec ACRE
 dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
@@ -5244,10 +5245,10 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
 dirigeant . auto-entrepreneur . net après impôt:
   description.en: >-
     [automatic] The net income of the auto-entrepreneur after deduction of
-    income tax and social security contributions.
+    income tax and social contributions.
 
 
-    **Caution: To properly assess the profitability of the business, do not forget to subtract from this amount the expenses incurred for the activity. This may include, for example: 
+    Note:** To properly assess the profitability of the business, do not forget to subtract from this amount the expenses incurred in the course of the activity. This may include, for example:
 
     - The purchase of raw materials
 
@@ -5255,15 +5256,15 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - Subscription to paid services
 
-    - Renting a room 
+    - Rental of premises
 
-    - and so on.
+    - etc...
   description.fr: >-
-    Le revenu net de l'auto-entrepreneur après déduction de l'impôt  sur le
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
     revenu et des cotisations sociales.
 
 
-    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas oublier de retrancher à ce montant les dépenses engagées dans le cadre de l'activité. Cela peut inclure par exemple : 
+    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas oublier de retrancher à ce montant les dépenses engagées dans le cadre de l'activité. Cela peut inclure par exemple :
 
     - L'achat des matière premières
 
@@ -5271,7 +5272,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - L'abonnement à des services payants
 
-    - La location d'un local 
+    - La location d'un local
 
     - etc...
   question.en: What is the desired net after-tax income?
@@ -5312,23 +5313,23 @@ dirigeant . indépendant . IJSS:
   description.en: >-
     [automatic] In case of illness, maternity or accident, including after a
     work stoppage or a stoppage for childcare related to the Covid-19 epidemic,
-    the general Social Security scheme provides "cash" benefits. 
+    the general Social Security scheme provides "cash" benefits.
 
     These are the Social Security daily allowances (IJSS).
 
-    The supplementary allowances to the Social Security daily allowances paid under a provident contract do not constitute replacement income.
-     
+    Benefits supplementing Social Security daily allowances paid under a provident contract do not constitute replacement income.
+
     Note: Disability benefits paid by disability and death schemes are not concerned
   description.fr: >-
     En cas de maladie, maternité, ou accident, y compris suite à un arrêt de
     travail ou un arrêt pour garde d’enfant en lien avec l’épidémie du Covid-19,
     le régime général de Sécurité sociale assure le versement de prestations «
-    en espèces ». 
+    en espèces ».
 
     Ce sont les indemnités journalières de Sécurité sociale (IJSS).
 
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
-     
+
     Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
   question.en: '[automatic] Have you received daily allowances for sickness,
     maternity or paternity as a result of your self-employed activity?'
@@ -5340,7 +5341,7 @@ dirigeant . indépendant . IJSS . imposable:
   description.en: >-
     [automatic] Indicate only taxable replacement income received, i.e. all
     replacement income received **except for daily allowances related to a Long
-    Term Condition (LTC)**. 
+    Term Condition (LTC)**.
 
 
     This income will be deducted from your contribution base, so that you are not subject to CSG-CRDS twice:
@@ -5349,7 +5350,7 @@ dirigeant . indépendant . IJSS . imposable:
   description.fr: >-
     Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
     les revenus de remplacement perçus **sauf les indemnités journalières en
-    lien avec une Affection de Longue Durée (ALD)**. 
+    lien avec une Affection de Longue Durée (ALD)**.
 
 
     Ces revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS :
@@ -5411,14 +5412,14 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
     Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
   titre.en: '[automatic] Supplementary old-age benefit (CARCDSF dental surgeon)'
   titre.fr: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
-? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire
-: titre.en: '[automatic] lump sum'
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
+  titre.en: '[automatic] lump sum'
   titre.fr: forfaitaire
-? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM
-: titre.en: '[automatic] CPAM participation in the supplementary old-age benefit'
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
+  titre.en: '[automatic] CPAM participation in the supplementary old-age benefit'
   titre.fr: Participation CPAM à la prestation complémentaire vieillesse
-? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle
-: titre.en: '[automatic] proportional'
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
+  titre.en: '[automatic] proportional'
   titre.fr: proportionnelle
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre.en: '[automatic] disability and death (CARCDSF Dental Surgeon)'
@@ -5435,17 +5436,17 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   titre.en: '[automatic] PCV exemption'
   titre.fr: exonération PCV
-? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation
-: titre.en: '[automatic] consulting fee'
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
+  titre.en: '[automatic] consulting fee'
   titre.fr: prix d'une consultation
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARCDSF)'
   titre.fr: retraite complémentaire (CARCDSF)
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire
-: titre.en: '[automatic] flat-rate contribution'
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire:
+  titre.en: '[automatic] flat-rate contribution'
   titre.fr: cotisation forfaitaire
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable
-: description.en: >
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
+  description.en: >
     [automatic] You have the possibility of benefiting from a contribution
     reduction
 
@@ -5460,8 +5461,8 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   titre.en: '[automatic] applicable reduction'
   titre.fr: réduction applicable
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction
-: description.en: >
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
+  description.en: >
     [automatic] Affiliates whose net professional income for the year N-1 is
     less than 85%.
 
@@ -5501,8 +5502,8 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   titre.en: '[automatic] discount rate'
   titre.fr: taux réduction
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle
-: titre.en: '[automatic] proportional contribution'
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
+  titre.en: '[automatic] proportional contribution'
   titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
   titre.en: '[automatic] midwife'
@@ -5668,16 +5669,17 @@ dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the
-    event of permanent disability and a death benefit as well as a pension for
-    surviving spouses and children in the event of the death of the insured. 
+    event of permanent disability and a capital sum in the event of death, as
+    well as an annuity for the surviving spouses and children in the event of
+    the death of the insured.
 
-    The contribution is divided into three flat-rate classes, the amount of which is determined according to your net income from self-employment in the penultimate year.
+    The contribution consists of three flat-rate classes, the amount of which is determined on the basis of your net self-employed income for the year before last.
 
-    Without communication of the self-employed earnings and the tax notice of the penultimate year, the compensation rate cannot be determined. Pending receipt of this document, compensation will be based on the rate for class A.
+    The rate of compensation cannot be determined unless you provide your self-employed income and the tax notice for the year before last. Pending receipt of this document, the compensation will be based on the rate for class A.
   description.fr: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. 
+    conjoints et enfants survivants en cas de décès de l'assuré.
 
     La cotisation comporte trois classes forfaitaires dont le montant est déterminé en fonction de vos revenus nets d'activité indépendante de l’avant-dernière année.
 
@@ -5701,13 +5703,13 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
   titre.fr: participation CPAM à la retraite de base
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   description.en: >-
-    [automatic] The CARMF manages the supplementary pension plan. 
+    [automatic] The CARMF manages the complementary pension scheme.
 
-    The amount of contributions is determined on the basis of net income from self-employment in the penultimate year.
+    The amount of the contributions is determined according to the net income from independent activity of the penultimate year.
 
-    Contributions for the first two years of affiliation are not due, unless you were over 40 when you started your self-employed activity. In that case, the contribution is proportional to the net self-employment income of 2018, with no further adjustment, with a maximum contribution of €14 110 .
+    Contributions for the first two years of membership are not due, unless you are over 40 years of age when you start your liberal activity. In that case, the contribution is proportional to the capped net self-employed income of 2018, without any subsequent adjustment, with a maximum contribution of € 14,110.
   description.fr: >-
-    La CARMF gère le régime de retraite complémentaire. 
+    La CARMF gère le régime de retraite complémentaire.
 
     Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
 
@@ -5768,8 +5770,8 @@ dirigeant . indépendant . PL . CIPAV:
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   titre.en: '[automatic] disability and death (CIPAV)'
   titre.fr: invalidité et décès (CIPAV)
-? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation
-: description.en: '[automatic] The Cipav manages a pension scheme that pays a
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
+  description.en: '[automatic] The Cipav manages a pension scheme that pays a
     pension in the event of permanent disability and a lump-sum death benefit as
     well as a pension for surviving spouses and children in the event of the
     death of the insured. By default, members contribute in "class A" but it is
@@ -5786,14 +5788,14 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   question.fr: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
   titre.en: '[automatic] contribution class'
   titre.fr: classe de cotisation
-? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A
-: titre.en: '[automatic] class A'
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
+  titre.en: '[automatic] class A'
   titre.fr: classe A
-? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B
-: titre.en: '[automatic] class B'
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
+  titre.en: '[automatic] class B'
   titre.fr: classe B
-? dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C
-: titre.en: '[automatic] class C'
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
+  titre.en: '[automatic] class C'
   titre.fr: classe C
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CIPAV)'
@@ -5832,8 +5834,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
 dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire:
   titre.en: '[automatic] flat-rate contribution'
   titre.fr: cotisation forfaitaire
-? dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle
-: titre.en: '[automatic] proportional contribution'
+dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle:
+  titre.en: '[automatic] proportional contribution'
   titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . PAMC:
   titre.en: '[automatic] PAMC'
@@ -5878,16 +5880,16 @@ dirigeant . indépendant . PL . PAMC . CURPS:
   titre.fr: Contribution aux unions régionales des professionnels de santé
 dirigeant . indépendant . PL . PAMC . IJSS:
   description.en: >-
-    [automatic] Social Security (IJSS) daily allowances are paid in the case of
-    maternity/paternity/adoption leave.
+    [automatic] The daily social security benefits (IJSS) are paid in the case
+    of maternity/paternity/adoption leave.
 
 
-    The CSG-CRDS is automatically deducted by Health Insurance at the time of payment. Their amount is therefore deducted from the base for the calculation of the CSG-CRDS remaining due.
+    The CSG-CRDS is automatically deducted by the Health Insurance at the time of payment. Their amount is therefore deducted from the base for the calculation of the remaining CSG-CRDS due.
 
 
-    Compensation in addition to the Social Security daily allowances paid under a provident fund contract does not constitute replacement income.
-     
-    Note: Disability benefits paid by disability/death plans are not affected.
+    The supplementary allowances to the daily allowances paid by the Social Security under a provident contract do not constitute replacement income.
+
+    Note: Disability benefits paid by the disability-death schemes are not concerned.
   description.fr: >-
     Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
     cas de congé maternité/paternité/adoption.
@@ -5897,7 +5899,7 @@ dirigeant . indépendant . PL . PAMC . IJSS:
 
 
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
-     
+
     Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
   question.en:
     '[automatic] What is the amount of the daily maternity or paternity
@@ -5909,8 +5911,8 @@ dirigeant . indépendant . PL . PAMC . IJSS:
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   titre.en: '[automatic] family allowances (after CPAM participation)'
   titre.fr: allocations familiales (après participation CPAM)
-? dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM
-: titre.en: '[automatic] CPAM participation in family allowances'
+dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
+  titre.en: '[automatic] CPAM participation in family allowances'
   titre.fr: Participation CPAM aux allocations familiales
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description.en:
@@ -5919,59 +5921,59 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description.fr: Aussi appelé revenu conventionnel, il s'agit du revenu des
     honoraires nets de dépassement.
   note.en: >
-    [automatic] The formula referenced in the Urssaf texts is as follows: 
+    [automatic] The formula referred to in the Urssaf texts is as follows:
 
-    &gt; (income from the agreed activity) x (total fees - total fee overruns) / total amount of fees. 
-
-
-    This formula can be simplified into: 
-
-    &gt; (income from the activity covered by the agreement) / (100% + average fee overrun)
+    &gt; (income from contracted activity) x (total fees - total excess fees) / total amount of fees.
 
 
-    ### Proof
+    This formula can be simplified to :
 
-    If we take the following variables, 
+    (income from the activity under agreement) / (100% + average fee overrun)
 
-    &gt; `h+`: total fees (with overruns)
-      `h` : fees without exceeding
-      d%': percentage by which the average fee is exceeded
 
-    We've got: 
+    Proof
 
-    &gt;  
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
+    If we take the following variables,
 
-    If we replace in the formula the CPAM participation base, we have :
+    h+` : total fees (with overrun)
+      h': fees without overrun
+      d%`: average overcharge percentage
 
-    &gt; 1. `(income from the activity covered by the agreement) * h / h+`
+    We have :
 
-    &gt; 2. `(income from the activity covered by the agreement) * h / (h * (100% + d%)) 
+    &gt;
+      h+ = h + h * d%`.
+      h+ = h * (100% + d%)`
 
-    &gt; 3. `(income from the agreement activity) / (100% + d%)`.
+    If we replace in the formula of the CPAM participation base, we have :
+
+    1. `(income from the contracted activity) * h / h+` &gt; 2.
+
+    2. `(income from activity under agreement) * h / (h * (100% + d%))
+
+    3. `(income from activity under agreement) / (100% + d%)
   note.fr: >
-    La formule référencée dans les textes Urssaf est la suivante : 
+    La formule référencée dans les textes Urssaf est la suivante :
 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires. 
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires.
 
 
-    On peut simplififer cette formule en : 
+    On peut simplififer cette formule en :
 
     > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
 
 
     ### Preuve
 
-    Si on prends les variables suivantes, 
+    Si on prends les variables suivantes,
 
     > `h+` : total des honoraires (avec dépassement)
       `h` : honoraires sans dépassement
       `d%`: pourcentage de dépassement d'honoraire moyen
 
-    On a : 
+    On a :
 
-    >  
+    >
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
@@ -5979,44 +5981,44 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 
     > 1. `(revenu de l’activité conventionnée) * h / h+`
 
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%)) 
+    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
 
     > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
-? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste
-: titre.en: '[automatic] CPAM participation plate (dental surgeon)'
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
+  titre.en: '[automatic] CPAM participation plate (dental surgeon)'
   titre.fr: assiette participation CPAM (chirurgien dentiste)
-? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf
-: description.en: >
-    [automatic] The "Urssaf rate" (UR rate) is used to calculate the share of
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
+  description.en: >
+    [automatic] The "Urssaf rate" (UR rate) is used to calculate the part of
     your
 
-    health and maternity insurance contribution paid by the CPAM. 
+    sickness and maternity insurance contribution paid by the CPAM.
 
 
-    This rate is pre-filled on your business tax return. It
+    This rate is pre-filled on your professional income tax return. It
 
-    is derived from your Individual Activity Report data and from
+    is taken from the data in your Relevé individuel d'activité et de
 
-    requirements (RIAP).
-
-
-    The lower the rate, the greater the CPAM participation, and therefore the greater the CPAM participation and therefore the greater the CPAM participation.
-
-    the share to be borne by the practitioner is low.
+    prescriptions (RIAP).
 
 
-    ## Rate calculation
+    The lower the rate, the higher the CPAM contribution and therefore the lower the
+
+    the practitioner's share of the cost is low.
 
 
-    The formula for calculating the rate of overshoot is as follows: 
+    Calculation of the rate
 
-    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursed acts + amounts reimbursed CMU lump sums)
+
+    The formula for calculating the overrun rate is as follows:
+
+    Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable acts + amounts reimbursed CMU lump sums)
   description.fr: >
     Le « taux Urssaf » (taux UR) permet de calculer la part de votre
 
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
+    cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
@@ -6034,15 +6036,15 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     ## Calcul du taux
 
 
-    La formule de calcul du taux de dépassement est la suivante : 
+    La formule de calcul du taux de dépassement est la suivante :
 
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
   question.en: '[automatic] What is your "Urssaf rate"?'
   question.fr: Quel est votre "taux Urssaf" ?
   titre.en: '[automatic] Urssaf rate'
   titre.fr: taux Urssaf
-? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification
-: description.en: '[automatic] The Urssaf rate must be less than 100'
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
+  description.en: '[automatic] The Urssaf rate must be less than 100'
   description.fr: Le taux Urssaf doit être inférieur à 100
   titre.en: '[automatic] notification'
   titre.fr: notification
@@ -6070,34 +6072,35 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
     d'une partie de leur cotisations par l'Assurance Maladie.
   titre.en: '[automatic] Health insurance participation'
   titre.fr: Participation assurance maladie
-? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée
-: description.en: >
-    [automatic] Non-agreement revenues are all those which do not fall within
-    the scope of
+dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
+  description.en: >
+    [automatic] Non-agreed revenues are all those that do not fall into the
+    following categories
 
-    the following categories: 
-        
-    - Reimbursable deed fees (including the
+    the following categories:
 
-    fee overruns and travel expenses shown on the statement
+
+    - Fees from reimbursable procedures (including excess fees and
+
+    Fees from reimbursable procedures (including overcharges and travel expenses listed on the
 
     SNIR)
 
 
-    - Fees resulting from retrocessions concerning reimbursable deeds
+    - Fees from retrocessions for reimbursable procedures
 
     received as a substitute
 
 
-    - All lump sums paid by health insurance
+    - All lump-sum payments made by the health insurance
 
-    (teletransmission assistance, compensation, compensation for training, etc.).
+    (assistance with teletransmission, compensation, compensation for continuing education
 
-    continuous, installation bonus, ...)
+    training, installation bonus, etc.)
   description.fr: |
     Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes : 
-        
+    les catégories suivantes :
+
     - Honoraires tirés des actes remboursables (y compris les
     dépassements d’honoraires et les frais de déplacement figurant sur le relevé
     SNIR)
@@ -6120,8 +6123,8 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
   suggestions.30%.fr: 30%
   titre.en: '[automatic] proportion of revenue from non-agreement activities'
   titre.fr: proportion recette activité non conventionnée
-? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification
-: description.en: |
+dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
+  description.en: |
     [automatic] The proportion cannot be more than 100%.
   description.fr: |
     La proportion ne peut pas être supérieure à 100%
@@ -6234,13 +6237,13 @@ dirigeant . indépendant . PL . métier . expert-comptable:
   titre.fr: expert-comptable
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
-    [automatic] You work in a regulated profession attached to the CIPAV. The
-    list of these professions is : 
+    [automatic] You work in a regulated trade that is affiliated with the CIPAV.
+    The list of these trades is :
 
 
-    - Architect (architect, interior designer, construction economist, project manager, expert surveyor)
+    - Architect (architect, interior architect, construction economist, project manager, surveyor)
 
-    - Mountain guide (ski instructor, high mountain guide, mid-mountain guide)
+    - Mountain guide (ski instructor, high mountain guide, medium mountain guide)
 
     - Osteopath
 
@@ -6248,18 +6251,18 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
 
     - Psychotherapist
 
-    - Occupational Therapist
+    - Occupational therapist
 
     - Dietician
 
     - Chiropractor
 
-    - Consulting Engineer
+    - Consulting engineer
 
-    - Speaker's guide
+    - Guide-lecturer
   description.fr: >
     Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces
-    métiers est : 
+    métiers est :
 
 
     - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
@@ -6363,34 +6366,34 @@ dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:
   titre.fr: non conventionné
 dirigeant . indépendant . PL . option régime général:
   description.en: >
-    [automatic] Persons already practising an unregulated professional practice
+    [automatic] Persons already practising an unregulated liberal profession
     before
 
-    2019 may opt between 2019 and 2023 for Social Security for the
+    2019 can opt between 2019 and 2023 for Social Security for the self-employed, provided that they
 
-    independent, provided that they are up to date in the payment of all of their
+    provided that they are up to date with the payment of all their
 
-    contributions to the CIPAV. 
-
-
-    This option will allow them to benefit from the same rights as artisans
-
-    and traders (daily allowances, retirement, disability, etc.).
+    contributions to the CIPAV.
 
 
-    In particular, they will have access to per diems in the event of the cessation of
+    This option will allow them to benefit from the same rights as craftsmen and tradesmen
 
-    work or maternity, which is not the case at the CIPAV.
+    This option will allow them to benefit from the same rights as artisans and traders (daily allowances, retirement, disability, etc.).
 
 
-    The application must be made to the CIPAV. It will take effect on 1 January 2010.
+    In particular, they will have access to daily allowances in the event of sick leave or maternity
 
-    January of the following year and will be final.
+    maternity, which is not the case with the CIPAV.
+
+
+    The application must be made to the CIPAV. It will take effect on January 1 of the following year and will be
+
+    January of the following year and will be definitive.
   description.fr: |
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV. 
+    cotisations à la CIPAV.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
@@ -6407,18 +6410,18 @@ dirigeant . indépendant . PL . option régime général:
   titre.fr: option régime général
 dirigeant . indépendant . PL . retraite CNAVPL:
   description.en: |
-    [automatic] All professions (except lawyers)
+    [automatic] All liberal professions (except lawyers)
     have the same contribution rates for their basic pension.
 
-    The National Old Age Insurance Fund for the Professions
-    is the organization that federates the various caisses 
-    existing (CIPAV, CARPIMKO, CARCDSF, CAVEC etc.)
+    The national old-age insurance fund for the liberal professions is
+    professions is the body that federates the various existing funds
+    (CIPAV, CARPIMKO, CARCDSF, CAVEC etc.)
   description.fr: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
 
     La caisse nationale d'assurance vieillesse des professions
-    libérales est l'organisme qui fédère les différentes caisses 
+    libérales est l'organisme qui fédère les différentes caisses
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
   titre.en: '[automatic] basic retirement (CNAVPL)'
   titre.fr: retraite de base (CNAVPL)
@@ -6442,8 +6445,8 @@ dirigeant . indépendant . PL . régime général:
     d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
   titre.en: '[automatic] overall regime'
   titre.fr: régime général
-? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire
-: description.en: |
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
+  description.en: |
     [automatic] The unregulated professions that started their activity at
     As of January 1, 2019 or those who started their activity before the
     date of 1 January 2019 and have opted for the general regime for the
@@ -6461,8 +6464,8 @@ dirigeant . indépendant . PL . régime général:
     complémentaire ?
   titre.en: unregulated specific rate for unregulated professions
   titre.fr: taux spécifique profession libérale non reglementée
-? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant
-: titre.en: '[automatic] supplementary pension (PLNR rate)'
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
+  titre.en: '[automatic] supplementary pension (PLNR rate)'
   titre.fr: retraite complémentaire (taux PLNR)
 dirigeant . indépendant . assiette des cotisations:
   description.en: '[automatic] This is the basis for social security
@@ -6510,28 +6513,28 @@ dirigeant . indépendant . assiette minimale . retraite:
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the manager's spouse to be covered by social protection
-    in return for the payment of additional social contributions. 
+    in return for the payment of additional social contributions.
 
     To benefit from this, the manager's spouse or PACS partner must
 
-    - carry out a regular and usual professional activity in the company 
+    - carry out a regular and usual professional activity in the company
 
-    - be listed in the RCS for traders or in the RM for craftsmen 
+    - be listed in the RCS for traders or in the RM for craftsmen
 
-    - not be remunerated 
+    - not be remunerated
 
     - not be a partner in the company.
   description.fr: >
     Permet au conjoint du dirigeant d'être couvert par la protection sociale
-    moyennant le paiement de cotisations sociales supplémentaires. 
+    moyennant le paiement de cotisations sociales supplémentaires.
 
     Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
 
-    - exercer une activité professionnelle régulière et habituelle dans l'entreprise 
+    - exercer une activité professionnelle régulière et habituelle dans l'entreprise
 
-    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans 
+    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans
 
-    - ne pas être rémunéré 
+    - ne pas être rémunéré
 
     - ne pas être associé de la société.
   question.en: Do you have a collaborating spouse?
@@ -6564,16 +6567,16 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
   description.en: >
     [automatic] The collaborating spouse will pay contributions equivalent to a
-    flat-rate professional income 
+    flat-rate professional income
 
-    fixed at 1/3 of the social security ceiling, 
+    fixed at 1/3 of the social security ceiling,
 
     with the exception of the daily allowance contribution which is calculated on
 
     a base equivalent to 40% of the PASS.
   description.fr: |
-    Le conjoint collaborateur paiera des cotisations équivalentes à un revenu 
-    professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale, 
+    Le conjoint collaborateur paiera des cotisations équivalentes à un revenu
+    professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale,
     à l’exception de la cotisation indemnités journalières qui est calculée sur
     une assiette équivalente à 40% du PASS.
   titre.en: '[automatic] flat-rate base'
@@ -6583,14 +6586,14 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
   titre.en: percentage
   titre.fr: pourcentage
-? dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié
-: titre.en: 1/2
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié:
+  titre.en: 1/2
   titre.fr: 1/2
-? dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers
-: titre.en: 1/3
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers:
+  titre.en: 1/3
   titre.fr: 1/3
-? dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage
-: description.en: >
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
+  description.en: >
     chacun sur une part du revenu professionnel.
 
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
@@ -6601,8 +6604,8 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   titre.en: split income
   titre.fr: revenu avec partage
-? dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage
-: description.en: '[automatic] The collaborating spouse will pay social security
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
+  description.en: '[automatic] The collaborating spouse will pay social security
     contributions calculated on the basis of a percentage of the contribution
     base of the company manager (one third or one half).'
   description.fr: Le conjoint collaborateur paiera des cotisations sociales
@@ -6616,26 +6619,26 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
   titre.en: collaborating spouse
   titre.fr: assiette conjoint collaborateur
-? dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite
-: titre.en: retirement base
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
+  titre.en: retirement base
   titre.fr: assiette retraite
-? dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie
-: titre.en: sick pay
+dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  titre.en: sick pay
   titre.fr: indemnités journalières maladie
-? dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès
-: titre.en: disability and death
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  titre.en: disability and death
   titre.fr: invalidité et décès
-? dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette
-: titre.en: disability and death base
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
+  titre.en: disability and death base
   titre.fr: assiette invalidité et décès
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire
-: titre.en: retirement supplement
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  titre.en: retirement supplement
   titre.fr: retraite complémentaire
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette
-: titre.en: supplementary pension base
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
+  titre.en: supplementary pension base
   titre.fr: assiette retraite complémentaire
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
-: titre.en: basic retirement
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  titre.en: basic retirement
   titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions:
   description.en: '[automatic] '
@@ -6713,8 +6716,8 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   titre.en: '[automatic] child benefit'
   titre.fr: allocations familiales
-? dirigeant . indépendant . cotisations et contributions . contributions spéciales
-: description.en: |
+dirigeant . indépendant . cotisations et contributions . contributions spéciales:
+  description.en: |
     [automatic] Some special plans may add additional contributions
     (e.g. CURPS for the CPAMs)
   description.fr: |
@@ -6735,7 +6738,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    These contributions will be adjusted and regularised according to your actual income for the year of exercise. 
+    These contributions will be adjusted and regularised according to your actual income for the year of exercise.
 
     the year of the exercise. If your income is higher than the flat rate taken into account for the calculation
 
@@ -6747,7 +6750,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     This simulator calculates the so-called definitive contributions on the basis of your actual income from
 
-    activity. It therefore enables you to anticipate the amount of this adjustment and to 
+    activity. It therefore enables you to anticipate the amount of this adjustment and to
 
     plan your cash flow** accordingly.
   description.fr: >
@@ -6759,7 +6762,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de 
+    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de
 
     l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
 
@@ -6771,7 +6774,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     Ce simulateur calcule les cotisations dites définitives sur la base des revenus réels de votre
 
-    activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de 
+    activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de
 
     **planifier votre trésorerie** en conséquence.
   note.en: '[automatic] The flat-rate base is 19% of the annual Social Security
@@ -6785,8 +6788,8 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     Sécurité sociale).
   titre.en: '[automatic] Flat-rate contributions at the beginning of the activity'
   titre.fr: Cotisations forfaitaires de début d'activité
-? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
-: titre.en: '[automatic] '
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
+  titre.en: '[automatic] '
   titre.fr: assiette forfaitaire
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
@@ -6813,8 +6816,8 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
     souhaitez exonérer de cotisation vieillesse ?
   titre.en: '[automatic] tobacco deduction'
   titre.fr: déduction tabac
-? dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits
-: titre.en: '[automatic] contribution base (with tobacco deduction)'
+dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits:
+  titre.en: '[automatic] contribution base (with tobacco deduction)'
   titre.fr: assiette des cotisations (avec déduction tabac)
 dirigeant . indépendant . cotisations et contributions . exonérations:
   titre.en: exemptions
@@ -6822,23 +6825,22 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   titre.en: ACRE
   titre.fr: ACRE
-? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année
-: description.en: >
-    [automatic] Since the calculation of self-employed contributions is made
-    over the entire year, 
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description.en: >
+    [automatic] As the calculation of the self-employed contributions is carried
+    out over the whole year
 
-    the exemption is prorated according to the effective duration of the ACRE over the current year.
-
-
-    For example, for a company created on February 1, 2018, the prorated calculation for the
-
-    2019 dues will be as follows :
+    the exemption is prorated according to the actual duration of the ACRE in the current year.
 
 
-    31 days of acreage remaining in 2019 / 365 days = 8.5%.
+    For example, for a company created on February 1, 2018, the calculation of the prorata for the
+
+    contributions for 2019 will be as follows:
+
+
+    31 days of acre remaining in 2019 / 365 days = 8.5%`
   description.fr: >
-    Comme le calcul des cotisations indépendants s'effectue sur l'année
-    entière, 
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
 
     l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
 
@@ -6851,17 +6853,17 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
     `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
   titre.en: prorated over the year
   titre.fr: prorata sur l'année
-? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux
-: titre.en: rates
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
+  titre.en: rates
   titre.fr: taux
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   titre.en: ZFU
   titre.fr: ZFU
-? dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux
-: titre.en: ZFU exemption rate
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
+  titre.en: ZFU exemption rate
   titre.fr: taux exonération ZFU
-? dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
-: description.en:
+dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
+  description.en:
     Persons receiving an invalidity pension from a non-agricultural
     self-employed workers' scheme enjoy full exemption from sickness and
     supplementary pension contributions.
@@ -6884,14 +6886,14 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question.fr: Bénéficiez-vous du dispositif d'exonération "âge"
   titre.en: age
   titre.fr: âge
-? dirigeant . indépendant . cotisations et contributions . formation professionnelle
-: note.en: '[automatic] The rate is not increased for artisans with a
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
+  note.en: '[automatic] The rate is not increased for artisans with a
     collaborating spouse.'
   note.fr: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
   titre.en: professional training
   titre.fr: formation professionnelle
-? dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie
-: description.en: >
+dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
+  description.en: >
     [automatic] Contributions for daily allowances for self-employed persons. If
     the
 
@@ -6929,11 +6931,11 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif
-: titre.en: '[automatic] progressive rate'
+dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
+  titre.en: '[automatic] progressive rate'
   titre.fr: taux progressif
-? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire
-: description.en: >
+dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire:
+  description.en: >
     [automatic] Additional reduction of the sickness rate for income below 40%
     of the social security ceiling
   description.fr: >
@@ -6941,8 +6943,8 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     du plafond de la sécurité sociale
   titre.en: '[automatic] further reduction'
   titre.fr: réduction supplémentaire
-? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
-: description.en:
+dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
+  description.en:
     '[automatic] In return for the CSG exemption, contributors have
     a higher sickness rate. In contrast to other insured tradesmen/artisans,
     they do not benefit from the reduction of the health contribution rate
@@ -6956,8 +6958,8 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-tax-deductible contributions'
   titre.fr: Cotisations et contributions non déductibles fiscalement
-? dirigeant . indépendant . cotisations et contributions . retraite complémentaire
-: titre.en: '[automatic] retirement supplement'
+dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  titre.en: '[automatic] retirement supplement'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   titre.en: '[automatic] basic retirement'
@@ -6966,7 +6968,7 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
   description.en: >
     [automatic] Contributions are calculated provisionally
 
-    on the basis of the last declared income
+    on the basis of the last income declared
 
     (or the lump sum, if no income has yet been declared).
 
@@ -6976,9 +6978,9 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
 
 
-    This simulator calculates the contributions **after adjustment**. 
+    This simulator calculates the contributions **after adjustment**.
 
-    It therefore enables you to anticipate the amount of this regularisation and to plan your cash flow 
+    It therefore enables you to anticipate the amount of this regularisation and to plan your cash flow
 
     your cash flow accordingly.
 
@@ -7004,9 +7006,9 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
 
 
-    Ce simulateur calcule les cotisations **après régularisation**. 
+    Ce simulateur calcule les cotisations **après régularisation**.
 
-    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre 
+    Il vous permet donc d'anticiper le montant de cette régularisation et de planifier votre
 
     trésorerie en conséquence.
 
@@ -7024,17 +7026,17 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 dirigeant . indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to subscribe to private
-    contracts for complementary health care or a retirement savings plan. 
+    contracts for complementary health care or a retirement savings plan.
 
-    Payments to these contracts are designated as "optional contributions" by the tax authorities. 
+    Payments to these contracts are designated as "optional contributions" by the tax authorities.
 
 
     They are tax deductible (up to a limit), but not deductible for the basis of social contributions.
   description.fr: >
     Il est possible pour l'indépendant de souscrire à des contrats privés pour
-    la complémentaire santé, ou un plan d'épargne retraite. 
+    la complémentaire santé, ou un plan d'épargne retraite.
 
-    Les versements à ces contrats sont désigné par l'appellation "cotisations facultative" par l'administration fiscale. 
+    Les versements à ces contrats sont désigné par l'appellation "cotisations facultative" par l'administration fiscale.
 
 
     Ils sont déductible d'impôts (dans la limite d'un plafond), mais non déductible pour l'assiette des cotisations et contributions sociales.
@@ -7070,17 +7072,17 @@ dirigeant . indépendant . cotisations facultatives . PER:
 dirigeant . indépendant . cotisations facultatives . contrats madelin:
   titre.en: '[automatic] Sum of contributions to Madelin contracts'
   titre.fr: Somme des cotisations à contrats Madelin
-? dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance
-: description.en: >
+dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
+  description.en: >
     [automatic] If you contribute to a supplementary insurance contract (health,
-    loss of employment) 
+    loss of employment)
 
     under the Madelin law, you can deduct these contributions from the taxable profits
 
     that you declare for your self-employed activity.
   description.fr: >
     Si vous cotisez au titre d'un contrat de prévoyance complémentaire (santé,
-    perte d'emploi subie) 
+    perte d'emploi subie)
 
     de type loi Madelin, vous pouvez déduire ces cotisations des bénéfices
 
@@ -7091,8 +7093,8 @@ dirigeant . indépendant . cotisations facultatives . contrats madelin:
     prévoyance complémentaire (santé, perte d'emploi subie) ?
   titre.en: '[automatic] Subscribing to a Madelin supplementary insurance contract'
   titre.fr: Souscription à un contrat de prévoyance complémentaire Madelin
-? dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite
-: description.en: |
+dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
+  description.en: |
     [automatic] If you contribute to a Madelin-type retirement contract
     you can deduct part of these contributions from the taxable profits
     that you declare for your self-employed activity.
@@ -7122,8 +7124,8 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
     un cycle.
   titre.en: '[automatic] planning ceiling'
   titre.fr: plafond prévoyance
-? dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire
-: note.en: >
+dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire:
+  note.en: >
     [automatic] Normally it is the tax result that should be used for the basis
     of the ceiling, but we use the professional income to avoid a cycle.
   note.fr: >
@@ -7144,19 +7146,19 @@ dirigeant . indépendant . revenu professionnel:
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
-    [automatic] Foreign income is income declared by self-employed persons in
-    respect of income received from self-employment in another EU/EEA country or
-    in Switzerland abroad.  
+    [automatic] Foreign income is income declared by self-employed persons for
+    income received from the exercise of a self-employed activity in another EU
+    or EEA country or in Switzerland abroad.
 
-    This income is subject only to contributions and is included in the social security base. However, these revenues are specifically identified in order to deduct them from the CSG/CRDS base. 
+    This income is only subject to contributions and is included in the social security base. However, this income is specifically identified in order to deduct it from the CSG/CRDS base.
 
-    To find out whether this income is subject to income tax, please refer to the explanatory note on the website [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere).
+    To find out whether this income is subject to income tax, please refer to the explanatory note on the website [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
   description.fr: >
     Les revenus étrangers sont des revenus déclarés par les travailleurs
     indépendants pour des revenus perçus au titre de l’exercice d’une activité
-    non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.  
+    non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.
 
-    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS. 
+    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS.
 
     Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
   question.en:
@@ -7192,7 +7194,7 @@ dirigeant . rémunération . nette:
 dirigeant . rémunération . nette après impôt:
   description.en: '[automatic] The net income after deduction of income tax and
     social security contributions.'
-  description.fr: Le revenu net après déduction de l'impôt  sur le revenu et des
+  description.fr: Le revenu net après déduction de l'impôt sur le revenu et des
     cotisations sociales.
   question.en: '[automatic] What is the desired net income after tax?'
   question.fr: Quel est le revenu net après impôt souhaité ?
@@ -7225,42 +7227,42 @@ entreprise:
   titre.fr: entreprise
 entreprise . ACRE:
   description.en: >-
-    [automatic] The aid for the creation or takeover of a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the exemption for the start of activity for 12 months. 
+    [automatic] The aid for creating or taking over a business (Acre) consists
+    of a partial exemption from social security charges, known as the start-up
+    exemption, for 12 months.
 
 
     It is **automatic** for **companies and sole proprietorships** (under certain conditions, such as not having benefited from it in the last three years).
 
 
-    For **auto-entrepreneurs** on the other hand, it must be requested and is reserved for the following beneficiaries: 
+    For **self-employed** entrepreneurs, however, it must be applied for and is reserved for the following beneficiaries
 
-    - Jobseekers (compensated or uncompensated but with at least 6 months of registration with Pôle Emploi in the last 18 months).
+    - Jobseekers (whether or not they receive compensation but have been registered with Pôle Emploi for at least 6 months during the last 18 months).
 
-    - Recipients of social assistance (RSA, ASS, ATA).
+    - Beneficiaries of social assistance (RSA, ASS, ATA)
 
-    - Young people between 18 and 25 years old (up to 29 years old for persons recognized as disabled)
+    - Young people between 18 and 25 years old (up to 29 years old for people recognized as disabled)
 
-    - People creating a micro-enterprise in a priority district of the city (QPPV)
+    - People setting up a micro-enterprise in a priority urban district (QPPV)
 
 
-    &gt; * *Historical*
+    *History*:
 
-    - For self-enterprises created from 1 January 2020, the exemption is again subject to conditions.
+    - For self-businesses created from 1 January 2020, the exemption is again subject to conditions.
 
-    - For companies created between 1 January 2019 and 31 December 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the three previous years.
+    - For businesses created between January 1, 2019 and December 31, 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the previous three years
 
-    - For companies created before 1 January 2019, the contribution exemption was called ACCRE and was subject to conditions and was not automatic: it had to be applied for.
+    - For companies created before January 1, 2019, the exemption from contributions called ACCRE was subject to conditions and was not automatic: you had to apply for it.
   description.fr: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois. 
+    d'activité pendant 12 mois.
 
 
     Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
 
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants: 
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
 
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
 
@@ -7415,7 +7417,7 @@ entreprise . activité . mixte:
     [automatic] It is possible to have several activities with different types
     of income for the same
 
-    for the same company. 
+    for the same company.
 
 
     For example, a plumbing company that charges for the purchase and installation of a faucet
@@ -7441,7 +7443,7 @@ entreprise . activité . mixte:
   description.fr: >
     Il est possible d'avoir plusieurs activités avec des types de revenus
 
-    différents pour une même entreprise. 
+    différents pour une même entreprise.
 
 
     Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
@@ -7676,21 +7678,22 @@ entreprise . chiffre d'affaires . service BIC:
   titre.fr: Prestations de service commerciales ou artisanales (BIC)
 entreprise . chiffre d'affaires . service BNC:
   description.en: >
-    [automatic] These are all operations whose intellectual activity is based on
+    [automatic] These are all operations in which intellectual activity plays an
+    essential role.
 
-    an essential role. 
-
-
-    **Examples**: consulting, support, translation, development,
-
-    training, education, sports
+    an essential role.
 
 
-    The income from this turnover is taxable under the BNC regime (non-trading profits).
+    Examples**: consulting, coaching, translation, development,
+
+    training, teaching, sports
+
+
+    The income from this turnover is taxable under the BNC regime (non-commercial profits)
   description.fr: >
     Ce sont toutes les opérations dont l'activité intellectuelle tient
 
-    un rôle essentiel. 
+    un rôle essentiel.
 
 
     **Exemples** : conseil, accompagnement, traduction, développement,
@@ -7709,22 +7712,22 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
   description.en: >
     [automatic] The status of micro-enterprise applies as long as the annual
     turnover (actually received during the calendar year) does not exceed the
-    thresholds of the micro-enterprise tax regime. 
+    thresholds of the micro-enterprise tax regime.
 
 
     If the thresholds are exceeded **over two consecutive years**, the company automatically switches to the [sole proprietorship](/simulator/self-employed) regime.
 
 
-    At the end of the first year of activity, the turnover is prorated according to the duration of activity. 
+    At the end of the first year of activity, the turnover is prorated according to the duration of activity.
 
 
     Example:
 
-    &gt; A taxpayer sets up a business on August 1 and collects revenues (excluding VAT) of `50,000` during the five months of activity of his first calendar year of operation. 
+    &gt; A taxpayer sets up a business on August 1 and collects revenues (excluding VAT) of `50,000` during the five months of activity of his first calendar year of operation.
 
     The receipts of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling:
 
-    &gt; 
+    &gt;
 
     &gt; `50 000€ x (365/153) = 119 280 €`
 
@@ -7734,7 +7737,7 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
 
 
 
-    Multi-activity 
+    Multi-activity
 
 
     When an entrepreneur carries out 2 activities within his micro-enterprise, the turnover
@@ -7747,22 +7750,22 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
   description.fr: >
     Le statut de micro-entreprise s'applique tant que le chiffre d'affaires
     annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas
-    les seuils du régime fiscal de la micro-entreprise. 
+    les seuils du régime fiscal de la micro-entreprise.
 
 
     En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
 
 
-    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité. 
+    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
 
 
     Exemple :
 
-    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation. 
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
 
     > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
 
-    > 
+    >
 
     > `50 000€ x (365/153) = 119 280 €`
 
@@ -7772,7 +7775,7 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
 
 
 
-    ### Multi-activité 
+    ### Multi-activité
 
 
     Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
@@ -7786,13 +7789,13 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
   titre.fr: seuil micro dépassé
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: >
-    [automatic] Sale of goods 
+    [automatic] Sale of goods
 
     This is the turnover of all transactions involving
 
     transfer of ownership of a tangible asset, i.e. an asset that has a physical
 
-    material existence. 
+    material existence.
 
 
     Catering and accommodation
@@ -7807,13 +7810,13 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
     This income is taxable in the BIC category
   description.fr: >
-    ### Vente de biens 
+    ### Vente de biens
 
     Il s’agit du chiffre d'affaires de toutes les opérations comportant
 
     transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
 
-    existence matérielle. 
+    existence matérielle.
 
 
     ### Restauration et hébergement
@@ -7838,23 +7841,23 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   titre.fr: Vente de biens, restauration, hébergement (BIC)
 entreprise . date de création:
   description.en: >
-    [automatic] The activity start date (or creation date) is set at the time of
-    the
+    [automatic] The date of commencement of activity (or date of creation) is
+    set when you declare your
 
-    declaration of your company.  
-
-
-    You can [fill in your company](/manage), in order to pre-fill in the following fields
-
-    automatically this information.
+    declaration of your company.
 
 
-    If you don't have the exact day, the month is usually enough for a good
+    You can [fill in your company](/manage), to pre-fill this information
+
+    this information automatically.
+
+
+    If you do not have the exact day, the month is usually enough for a good
 
     approximation.
   description.fr: |
     La date de début d'activité (ou date de création) est fixée lors de la
-    déclaration de votre entreprise.  
+    déclaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
     automatiquement cette information.
@@ -7972,14 +7975,14 @@ entreprise . exercice . fin:
   titre.fr: fin
 entreprise . exonérée de TVA:
   description.en: >
-    [automatic] Certain types of businesses are not subject to VAT. 
+    [automatic] Certain types of businesses are not subject to VAT.
 
-    They pay payroll tax in return.
+    These companies pay payroll tax in return.
 
 
-    This is the case, for example, with banking, financial or insurance institutions.
+    This is the case, for example, for banking, financial or insurance institutions.
   description.fr: >
-    Certains types d'entreprises ne sont pas assujetties à la TVA. 
+    Certains types d'entreprises ne sont pas assujetties à la TVA.
 
     Ces dernières payent la taxe sur les salaires en contrepartie.
 
@@ -8037,7 +8040,7 @@ entreprise . imposition . IR . micro-fiscal:
     percentage depends on the type of activity: 71% for sales, catering and
     accommodation (rental of classified furnished tourist accommodation and
     guest rooms), 50% for commercial or craft services, 34% for liberal
-    activities. 
+    activities.
 
 
     This option allows you to simplify your accounting and can be advantageous in terms of taxable income and subject to social security contributions if your operating expenses are low.
@@ -8047,7 +8050,7 @@ entreprise . imposition . IR . micro-fiscal:
     pourcentage dépend du type d’activité : 71% pour les activités de vente,
     restauration et hébergement (location de meublé de tourisme classé et
     chambre d’hôte), 50% pour les prestations de service commerciales ou
-    artisanales, 34% pour les activités libérales. 
+    artisanales, 34% pour les activités libérales.
 
 
     Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
@@ -8242,8 +8245,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   titre.en: '[automatic] family quotient'
   titre.fr: quotient familial
-? impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage
-: titre.en: '[automatic] advantage ceiling'
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
+  titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
 impôt . foyer fiscal . impôt à payer:
   titre.en: '[automatic] tax payable'
@@ -8433,8 +8436,8 @@ impôt . taux neutre d'impôt sur le revenu:
     abattu.
   titre.en: neutral income tax rate
   titre.fr: taux neutre d'impôt sur le revenu
-? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
-: note.en: '[automatic] This scale was not upgraded in 2021.'
+impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
+  note.en: '[automatic] This scale was not upgraded in 2021.'
   note.fr: Ce barème n'a pas été revalorisé en 2021.
   titre.en: Guadeloupe Reunion Island Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
@@ -8769,11 +8772,11 @@ protection sociale . retraite . complémentaire indépendants:
 protection sociale . retraite . complémentaire indépendants . points acquis:
   titre.en: acquired points
   titre.fr: points acquis
-? protection sociale . retraite . complémentaire indépendants . prix d'achat du point
-: titre.en: buying cost of the point
+protection sociale . retraite . complémentaire indépendants . prix d'achat du point:
+  titre.en: buying cost of the point
   titre.fr: prix d'achat du point
-? protection sociale . retraite . complémentaire indépendants . total points acquis
-: titre.en: '[automatic] total points earned'
+protection sociale . retraite . complémentaire indépendants . total points acquis:
+  titre.en: '[automatic] total points earned'
   titre.fr: total points acquis
 protection sociale . retraite . complémentaire indépendants . valeur du point:
   titre.en: value of the point
@@ -8806,11 +8809,11 @@ protection sociale . retraite . plr:
 protection sociale . retraite . trimestres validés:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
-? protection sociale . retraite . trimestres validés . barème trimestres générique
-: titre.en: generic quarters scale
+protection sociale . retraite . trimestres validés . barème trimestres générique:
+  titre.en: generic quarters scale
   titre.fr: barème trimestres générique
-? protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur
-: description.en: Minimum turnover thresholds for the validation of quarters for
+protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
+  description.en: Minimum turnover thresholds for the validation of quarters for
     retirement as a self-employed entrepreneur. Below the minimum amount, you
     will only have access to the solidarity allowance.
   description.fr:
