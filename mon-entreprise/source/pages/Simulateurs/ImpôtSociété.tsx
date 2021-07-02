@@ -54,7 +54,7 @@ export default function ISSimulation() {
 function ExerciceDate() {
 	const dispatch = useDispatch()
 	return (
-		<p
+		<div
 			css={`
 				display: flex;
 				justify-content: flex-end;
@@ -90,7 +90,7 @@ function ExerciceDate() {
 					}
 				/>
 			</Trans>
-		</p>
+		</div>
 	)
 }
 
