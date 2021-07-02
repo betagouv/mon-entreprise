@@ -168,6 +168,19 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		explanation.valeur = valeur
 	}
 
+	const parentMissing =
+		parent == null
+			? null
+			: parent.missingVariables === undefined
+			? []
+			: Object.keys(parent.missingVariables)
+	const selfMissing =
+		valeur == null
+			? null
+			: valeur.missingVariables === undefined
+			? []
+			: Object.keys(valeur.missingVariables)
+
 	const evaluation = {
 		...node,
 		explanation,
@@ -176,6 +189,10 @@ registerEvaluationFunction('rule', function evaluate(node) {
 			valeur?.missingVariables,
 			bonus(parent?.missingVariables)
 		),
+		missing: {
+			parent: parentMissing,
+			self: selfMissing,
+		},
 		...(valeur && 'unit' in valeur && { unit: valeur.unit }),
 	}
 

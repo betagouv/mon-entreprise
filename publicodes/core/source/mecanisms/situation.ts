@@ -1,4 +1,4 @@
-import { ASTNode, EvaluatedNode } from '../AST/types'
+import { ASTNode, EvaluatedNode, isNotYetDefined } from '../AST/types'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -49,7 +49,8 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 		...node,
 		nodeValue: valeur.nodeValue,
 		missingVariables:
-			Object.keys(missingVariables).length === 0 && valeur.nodeValue === null
+			Object.keys(missingVariables).length === 0 &&
+			isNotYetDefined(valeur.nodeValue)
 				? { [situationKey]: 1 }
 				: missingVariables,
 		...(unit !== undefined && { unit }),

@@ -49,9 +49,13 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		  })
 		: this
 
-	engine.cache._meta.inRecalcul = true
+	// console.debug(
+	// 	`Enter recalcul ${(node.explanation.recalcul as ReferenceNode).dottedName}`
+	// )
 	const evaluatedNode = engine.evaluate(node.explanation.recalcul)
-	engine.cache._meta.inRecalcul = false
+	// console.debug(
+	// 	`Exit recalcul ${(node.explanation.recalcul as ReferenceNode).dottedName}`
+	// )
 
 	return {
 		...node,

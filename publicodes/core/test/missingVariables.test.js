@@ -3,28 +3,74 @@ import Engine from '../source/index'
 import { parse } from 'yaml'
 
 describe('Missing variables', function () {
-	it('should identify missing variables', function () {
-		// Rules in tests can be expressed in YAML like to for more clarity than JS objects
-		const rawRules = parse(`
-ko: oui
-sum: oui
-sum . startHere:
-  formule: 2
-  non applicable si: sum . evt . ko
-sum . evt:
-  formule:
-    une possibilité:
-      - ko
-  titre: Truc
-  question: '?'
-sum . evt . ko:
-`)
-
+	it('should identify missing variables in applicability', function () {
+		const rawRules = {
+			startHere: {
+				formule: 2,
+				'non applicable si': 'ko',
+			},
+			ko: {},
+		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('sum . startHere').missingVariables
+			new Engine(rawRules).evaluate('startHere').missingVariables
 		)
 
-		expect(result).to.include('sum . evt')
+		expect(result).to.deep.equal(['ko'])
+	})
+
+	it('should identify missing variables in formulas', function () {
+		const rawRules = {
+			startHere: {
+				formule: '2 + ko',
+			},
+			ko: {},
+		}
+		const result = Object.keys(
+			new Engine(rawRules).evaluate('startHere').missingVariables
+		)
+
+		expect(result).to.deep.equal(['ko'])
+	})
+
+	it('should identify missing variables along the namespace tree', function () {
+		const rawRules = {
+			startHere: {
+				formule: 2,
+				'non applicable si': 'evt . ko',
+			},
+			evt: {
+				formule: { 'une possibilité': ['ko'] },
+				titre: 'Truc',
+				question: '?',
+			},
+			'evt . ko': {},
+		}
+		const result = Object.keys(
+			new Engine(rawRules).evaluate('startHere').missingVariables
+		)
+
+		expect(result).to.deep.equal(['evt . ko', 'evt'])
+	})
+
+	it('should not identify missing variables from static rules', function () {
+		const rawRules = {
+			startHere: {
+				formule: 2,
+				'non applicable si': 'evt . welldefined . ko',
+			},
+			evt: 'oui',
+			'evt . welldefined': {
+				formule: 1 + 1,
+				titre: 'Truc',
+				question: '?',
+			},
+			'evt . welldefined . ko': {},
+		}
+		const result = Object.keys(
+			new Engine(rawRules).evaluate('startHere').missingVariables
+		)
+
+		expect(result).to.deep.equal(['evt . welldefined . ko'])
 	})
 
 	it('should identify missing variables mentioned in expressions', function () {
@@ -139,7 +185,7 @@ somme: a + b
 a: 10
 b:
   formule:
-    variations: 
+    variations:
       - si: a > 100
         alors: c
       - sinon: 0
@@ -174,7 +220,7 @@ variations:
                 taux: trois
               - taux: 10
       - si: 3 > 4
-        alors: 
+        alors:
           barème:
             assiette: 2008
             multiplicateur: quatre
@@ -271,7 +317,7 @@ describe('nextSteps', function () {
 		// See https://github.com/betagouv/publicodes/issues/33
 		const rawRules = parse(`
 transport:
-  somme: 
+  somme:
     - voiture
     - avion
 
@@ -279,7 +325,7 @@ transport . voiture:
   formule: empreinte * km
 
 transport . voiture . empreinte: 0.12
-transport . voiture . km: 
+transport . voiture . km:
   question: COMBIENKM
   par défaut: 1000
 
@@ -287,7 +333,7 @@ transport . avion:
   applicable si: usager
   formule: empreinte * km
 
-transport . avion . km: 
+transport . avion . km:
   question: COMBIENKM
   par défaut: 10000
 
@@ -341,13 +387,13 @@ a:
   applicable si: d > 3
   valeur: oui
 
-d: 
- formule: 
-   somme: 
+d:
+ formule:
+   somme:
      - e
      - 8
 
-e: 
+e:
   question: Vous venez à combien à la soirée ?
   par défaut: 3
 

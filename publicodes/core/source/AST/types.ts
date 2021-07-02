@@ -109,6 +109,10 @@ export type Unit = {
 type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
 	missingVariables: Record<string, number>
+	missing?: {
+		self: string[] | null
+		parent: string[] | null
+	}
 	unit?: Unit
 }
 export type Types = number | boolean | string | Record<string, unknown>
