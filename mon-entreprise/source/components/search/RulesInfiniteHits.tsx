@@ -6,10 +6,16 @@ import RuleLink from '../RuleLink'
 const Hit = ({ hit }: { hit: { path: Array<string>; objectID: Names } }) => {
 	const { t } = useTranslation()
 	return (
-		<div className="hit-content">
-			<Highlight hit={hit} attribute="path" separator=" > " />
-			<RuleLink dottedName={hit.objectID}>{t('Voir la règle')}</RuleLink>
-		</div>
+		<RuleLink dottedName={hit.objectID} className="hit-content">
+			{hit.namespace && (
+				<div className="hit-namespace">
+					<Highlight hit={hit} attribute="namespace" separator=" > " />
+				</div>
+			)}
+			<div className="hit-ruleName">
+				<Highlight hit={hit} attribute="ruleName" />
+			</div>
+		</RuleLink>
 	)
 }
 

@@ -17,12 +17,18 @@ const formatRulesToAlgolia = (rules) => {
 		.map(([n, rule]) => {
 			if (rule) {
 				const path = n.split(' . ')
+				const ruleName = `${path[path.length - 1]} ${
+					rule.icônes ? ' ' + rule.icônes : ''
+				}`
+				const namespace = path.length === 1 ? [] : path.slice(0, -1)
 				return {
 					objectID: n,
 					path,
+					ruleName,
+					namespace,
 					pathDepth: path.length,
 					acronyme: rule.acronyme,
-					titre: rule.titre,
+					titre: rule.titre || ruleName,
 					icone: rule.icônes,
 					description: rule.description,
 				}
