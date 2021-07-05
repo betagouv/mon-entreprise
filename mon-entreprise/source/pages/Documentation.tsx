@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux'
 import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
+import rules from 'modele-social'
+import RuleLink from '../components/RuleLink'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -32,9 +34,15 @@ export default function RulePage() {
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
+
+	if (pathname === '/documentation/dev') {
+		return <DocumentationRulesList />
+	}
+
 	if (!documentationSitePaths[pathname]) {
 		return <Redirect to="/404" />
 	}
+
 	return (
 		<FromBottom>
 			<TrackPage
@@ -88,6 +96,18 @@ function DocumentationLanding() {
 			</h1>
 			<p>Explorez toutes les règles de la documentation</p>
 			<SearchRules />
+		</>
+	)
+}
+
+function DocumentationRulesList() {
+	const ruleEntries = Object.entries(rules)
+	return (
+		<>
+			<h1>Liste des règles</h1>
+			{ruleEntries.map(([name]) => (
+				<RuleLink dottedName={name}>{name}</RuleLink>
+			))}
 		</>
 	)
 }
