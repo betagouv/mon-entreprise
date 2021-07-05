@@ -1108,10 +1108,10 @@ pages:
         ogTitle: "Auto-entrepreneur: quickly calculate your net income from sales and
           vice versa"
         titre: "Auto-entrepreneurs: income simulator"
-      seo explanation: "<0>How do you calculate the net income for an
+      seo explanation: '<0>How do you calculate the net income for an
         auto-entrepreneur?</0><1>An auto-entrepreneur has to pay social
         security         contributions to the administration (also known as
-        \"social charge\"). These social contributions are used to finance
+        "social charge"). These social contributions are used to finance
         social security, and give rights for retirement or health insurance.
         They are also used to finance vocational training.</1><2><0></0> <2>See
         details of how the contributions are calculated</2></2><3>But this is
@@ -1119,7 +1119,7 @@ pages:
         account all expenses incurred in the course of the professional activity
         (assets, raw materials, premises, transport). Although they are not
         useful for the calculation of contributions and taxes, they must be
-        taken into account to estimate the viability of one''s
+        taken into account to estimate the viability of one''''s
         activity.</3><4>The complete calculation formula is therefore:<1><0>Net
         income = Turnover - Social contributions - Professional
         expenses</0></1></4><5>How to calculate income tax for an
@@ -1133,7 +1133,7 @@ pages:
         carried out. It is said to be lump-sum because it does not take into
         account the actual expenses incurred in the activity.</8><9><0></0>
         <2>See details of the calculation of the income allowance for an
-        auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'"
+        auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
       shortname: Auto-entrepreneur
       title: Self-entrepreneur Income Simulator
       titre: Auto-entrepreneur income simulator
@@ -1235,7 +1235,7 @@ pages:
       title: "Self-employed, assimilated employee or auto-entrepreneur: which plan to
         choose?"
     dirigean sasu:
-      explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
+      explication seo: '<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
         security contributions on the salary he or she pays. The contributions
         are calculated in the same way as for the employee: they are broken down
@@ -1244,15 +1244,15 @@ pages:
         manager-employee does not pay <2>unemployment contributions</2>.
         Moreover, they do not benefit from the <5>general reduction</5> in
         contributions or from the schemes governed by the Labour Code, such as
-        <9>overtime</9> or bonuses.</2><3>A SASU executive's salary can be
-        calculated by entering the total amount of the salary in the \"total
-        expense\" box, but he or she can claim the <2>ACRE reduction</2> at the
+        <9>overtime</9> or bonuses.</2><3>A SASU executive''s salary can be
+        calculated by entering the total amount of the salary in the "total
+        expense" box, but he or she can claim the <2>ACRE reduction</2> at the
         beginning of the activity, under certain conditions.</3><4>You can use
         our simulator to calculate the <2>net remuneration</2> from a
-        super-gross amount allocated to the executive's remuneration. To do
+        super-gross amount allocated to the executive''s remuneration. To do
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
-        questions.</4>"
+        questions.</4>'
     ei:
       meta:
         description: Calculation of income from turnover, after deduction of
@@ -1453,7 +1453,7 @@ pages:
           net income after tax from the total allocated to your compensation.
         ogTitle: "SASU executive compensation: a simulator to find out your net salary"
         titre: "SASU : income simulator for managers"
-      seo-explanation: "<0>How to calculate the salary of a SASU executive? </0><1>As
+      seo-explanation: '<0>How to calculate the salary of a SASU executive? </0><1>As
         for a classic employee, the SASU <2>manager</2> pays social security
         contributions on the remuneration he pays himself. The contributions are
         calculated in the same way as for the employee: they are broken down
@@ -1465,10 +1465,10 @@ pages:
         bonuses.</2><3>However, the employee is entitled to the <2>ACRE
         reduction</2> at the start of employment, under certain
         conditions.</3><4>You can use our simulator to calculate the <2>net
-        remuneration</2> from a super-gross amount allocated to the executive's
+        remuneration</2> from a super-gross amount allocated to the executive''s
         remuneration. To do this, simply enter the total amount allocated in the
-        \"total charged\" box. The simulation can then be refined by answering
-        the various questions.</4>"
+        "total charged" box. The simulation can then be refined by answering
+        the various questions.</4>'
       shortname: EURL
       title: EURL Simulator
       titre: Revenue simulator for SAS(U) executive
