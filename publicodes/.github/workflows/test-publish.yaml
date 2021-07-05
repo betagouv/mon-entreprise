@@ -1,0 +1,65 @@
+name: Test and Publish
+on: [push]
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn install
+      - run: yarn test
+
+  test-type:
+    name: Type checking
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn install
+      - run: yarn test:type
+
+  test-example-app:
+    name: Test example app
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install --frozen-lockfile
+      - working-directory: ./example/publicodes-react
+        run: |
+          yarn install
+          yarn test
+
+  # This job could be in a separate workflow triggered when all the tests passes
+  # using the `workflow_run` event, but it makes it difficult to retrieve the
+  # commit message.
+  publish:
+    if: contains(join(github.event.commits.*.message, ' | '), '📦 Publicodes v1.0.0-beta.')
+    needs: [test, test-type, test-example-app]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+      - run: yarn install --frozen-lockfile
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_PUBLISH_SECRET }}
+          dry-run: ${{ github.ref != 'refs/heads/master' }}
+          package: ./core/package.json
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_PUBLISH_SECRET }}
+          dry-run: ${{ github.ref != 'refs/heads/master' }}
+          package: ./ui-react/package.json

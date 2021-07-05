@@ -26,8 +26,11 @@
 
 -   Fix bug sur le mécanisme minimum, une valeur non applicable n'est plus considérée comme valant "0" (#1493)
 
-## 1.0.0-beta.16 (release candidate)
+## 1.0.0-beta.16
 
 **core**
 
 -   Répare un bug dans le mécanisme résoudre le cycle
+-   Suppression des variables temporelles
+-   Optimisation de la désactivation de branches
+-   Meilleures performances

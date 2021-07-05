@@ -1,0 +1,12 @@
+.tags*
+.tmp
+/tmp
+.DS_Store
+yarn-error.log
+package-lock.json
+node_modules/
+.env
+dist/
+
+# Local Netlify folder
+.netlify
