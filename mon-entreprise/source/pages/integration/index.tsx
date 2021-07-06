@@ -28,7 +28,10 @@ export default function Integration() {
 					</Link>
 				</BackNavigationForDevs>
 			)}
-			<div
+			{/* TODO: Nous pourrions automatiser la publication de cette bannière
+			de recrutement lorsqu'une annonce est postée sur beta.gouv.fr
+			https://github.com/betagouv/beta.gouv.fr/issues/6343 */}
+			{/* <div
 				className="ui__ card plain"
 				css={`
 					margin: 1rem 0;
@@ -45,7 +48,7 @@ export default function Integration() {
 					</a>
 				</strong>{' '}
 				<small>Freelance Typescript / React pour 6 mois minimum</small>
-			</div>
+			</div> */}
 			<Switch>
 				<Route exact path={sitePaths.integration.index} component={Options} />
 				<Route path={sitePaths.integration.iframe} component={Iframe} />
