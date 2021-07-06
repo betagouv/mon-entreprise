@@ -1,6 +1,0 @@
-export { default as CIPAV } from './cipav.png'
-export { default as CARPIMKO } from './carpimko.png'
-export { default as CARMF } from './carmf.png'
-export { default as CARCDSF } from './carcdsf.jpg'
-export { default as CNBF } from './cnbf.png'
-export { default as CAVEC } from './cavec.jpg'

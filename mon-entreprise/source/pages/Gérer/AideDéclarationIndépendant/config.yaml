@@ -1,9 +1,0 @@
-objectifs:
-  - aide déclaration revenu indépendant 2020 . cotisations obligatoires
-  - aide déclaration revenu indépendant 2020 . total charges sociales déductible
-  
-situation:
-  dirigeant: "'indépendant'"
-  aide déclaration revenu indépendant 2020: oui
-  dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements
-unité par défaut: '€/an'

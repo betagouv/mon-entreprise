@@ -1,8 +1,0 @@
-{
-	"files": [
-		{
-			"path": "./dist/*.bundle.js",
-			"maxSize": "650 kB"
-		}
-	]
-}

@@ -1,5 +1,0 @@
-extends: '../.eslintrc'
-overrides:
-  - files: ['*.test.js', 'cypress/integration/**/*.js']
-    env:
-      mocha: true
