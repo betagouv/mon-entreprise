@@ -11,7 +11,8 @@
 		"clean": "rimraf node_modules"
 	},
 	"devDependencies": {
-		"core-js": "^3.8.1"
+		"core-js": "^3.8.1",
+		"typescript": "^4.3.2"
 	},
 	"dependencies": {
 		"color-convert": "^2.0.1",

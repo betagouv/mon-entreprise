@@ -1,6 +1,6 @@
 {
 	"name": "publicodes",
-	"version": "1.0.0-beta.15",
+	"version": "1.0.0-beta.16",
 	"description": "A declarative language for encoding public algorithm",
 	"main": "dist/index.js",
 	"types": "dist/types/index.d.ts",
@@ -25,14 +25,27 @@
 	],
 	"private": false,
 	"devDependencies": {
+		"@babel/preset-typescript": "^7.14.5",
+		"babel-loader": "^8.2.2",
 		"chai": "^4.2.0",
+		"dedent-js": "1.0.1",
 		"intl": "^1.2.5",
+		"json-loader": "^0.5.7",
+		"mocha": "^9.0.1",
+		"mochapack": "^2.1.2",
+		"nearley-loader": "^2.0.0",
+		"rimraf": "^3.0.2",
 		"typescript": "^4.3.2",
-		"dedent-js": "1.0.1"
+		"webpack-cli": "^4.7.2",
+		"yaml-loader": "^0.6.0"
 	},
 	"dependencies": {
+		"@babel/core": "^7.14.6",
+		"@babel/preset-env": "^7.14.5",
+		"@types/webpack-env": "^1.16.0",
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
+		"webpack": "^5.39.1",
 		"yaml": "^1.9.2"
 	},
 	"scripts": {
@@ -41,7 +54,7 @@
 		"prepare": "yarn run rimraf dist && yarn run build",
 		"build": "yarn run webpack --config webpack.config.js && yarn run tsc",
 		"build:watch": "concurrently \"yarn run webpack --watch --config webpack.config.js\" \"yarn run tsc -w\"",
-		"test:file": "yarn mocha-webpack --include test/setupIntl.js --webpack-config ./webpack.test.js ",
+		"test:file": "yarn mochapack --include test/setupIntl.js --webpack-config ./webpack.test.js ",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
 	},
 	"engines": {

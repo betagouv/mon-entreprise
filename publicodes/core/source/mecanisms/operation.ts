@@ -41,10 +41,24 @@ const parseOperation = (k, symbol) => (v, context) => {
 }
 
 const evaluate: EvaluationFunction<'operation'> = function (node) {
+	// When we only need to evaluate the applicability of a rule, we don't enter
+	// inside “sum terms” since we know that the sum will always be applicable.
+	// However, if somewhere in the evaluation stack we do a comparison, we need
+	// to disable this optimization since in this case we'll need the exact value
+	// of sums in the evaluation subtree.
+	const disableApplicabilityContext = ['≠', '=', '<', '>', '≤', '≥'].includes(
+		node.operator
+	)
+	if (disableApplicabilityContext && this.inApplicabilityEvaluationContext) {
+		this.cache._meta.disableApplicabilityContextCounter += 1
+	}
 	const explanation = node.explanation.map((node) => this.evaluate(node)) as [
 		EvaluatedNode,
 		EvaluatedNode
 	]
+	if (disableApplicabilityContext && this.inApplicabilityEvaluationContext) {
+		this.cache._meta.disableApplicabilityContextCounter -= 1
+	}
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 

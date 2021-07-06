@@ -131,10 +131,10 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 
 	const missingVariables = mergeAllMissing(
 		explanation.reduce<ASTNode[]>(
-			(values, { condition, consequence }) => [
+			(values, { condition, satisfied, consequence }) => [
 				...values,
 				condition,
-				consequence,
+				...(satisfied ? [consequence] : []),
 			],
 			[]
 		)

@@ -1,0 +1,12 @@
+{
+	"name": "publicodes-monorepo",
+	"private": true,
+	"workspaces": [
+		"core",
+		"ui-react"
+	],
+	"scripts": {
+		"test": "yarn workspaces run test",
+		"test:type": "yarn workspaces run tsc"
+	}
+}
