@@ -31,7 +31,7 @@ Nous utilisons :
 ### Démarrage
 
 Si possible, assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier
-`mon-entreprise/.env`.  
+`mon-entreprise/.env` (un template est disponible dans `mon-entreprise/.env.template`).
 **NB : ne vous inquiétez pas, ceci n'est pas nécessaire pour effectuer une première contribution à
 la base de code !** Cependant, vous en aurez besoin pour la commande `yarn prepare` et pour les
 commandes de traduction automatique français -> anglais. Si vous êtes confronté à ce type de besoin,
