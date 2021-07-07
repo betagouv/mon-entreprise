@@ -1,0 +1,25 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+# We shall not define indent_size ⬇️  when using tabs.
+# tab_width doesn't make much sense as it can be left to the reader to decide.
+indent_style = tab
+insert_final_newline = true
+max_line_length = 80
+
+[**.{js,jsx,ts,tsx}]
+indent_size = 2
+
+[**.{yml,yaml}]
+# Spaces are mandatory for yaml files:
+indent_style = space
+indent_size = 2
+
+[*.md]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
