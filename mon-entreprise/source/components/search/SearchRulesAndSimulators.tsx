@@ -13,7 +13,7 @@ import {
 import { SimulatorHits } from './SimulatorHits'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 
-const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
