@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import NewsBanner from './NewsBanner'
+import SearchButton from 'Components/SearchButton'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
@@ -57,6 +58,7 @@ export default function Header() {
 					<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
 				</a>
 			</div>
+			<SearchButton />
 			<NewsBanner />
 		</>
 	)
