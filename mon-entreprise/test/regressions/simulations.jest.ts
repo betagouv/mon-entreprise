@@ -6,8 +6,11 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import rules from '../../../modele-social'
+
+import { expect, it } from '@jest/globals'
+import rules, { DottedName } from '../../../modele-social'
 import { engineFactory } from '../../source/components/utils/EngineContext'
+import { Simulation } from '../../source/reducers/rootReducer'
 import aideDéclarationConfig from '../../source/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -24,10 +27,15 @@ import professionsLibéralesSituations from './simulations-professions-libérale
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import employeeSituations from './simulations-salarié.yaml'
 
-const roundResult = (arr) => arr.map((x) => Math.round(x))
+type SituationsSpecs = Record<string, Simulation['situation'][]>
+const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
 const engine = engineFactory(rules)
-const runSimulations = (situations, targets, baseSituation = {}) =>
-	Object.entries(situations).map(([name, situations]) =>
+const runSimulations = (
+	situationsSpecs: SituationsSpecs,
+	objectifs: DottedName[],
+	baseSituation: Simulation['situation'] = {}
+) =>
+	Object.entries(situationsSpecs).map(([name, situations]) =>
 		situations.forEach((situation) => {
 			Object.keys(situation).forEach((situationRuleName) => {
 				// TODO: This check may be moved in the `engine.setSituation` method
@@ -38,7 +46,9 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 				}
 			})
 			engine.setSituation({ ...baseSituation, ...situation })
-			const res = targets.map((target) => engine.evaluate(target).nodeValue)
+			const res = objectifs.map(
+				(objectif) => engine.evaluate(objectif).nodeValue
+			)
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
 				.filter(
@@ -55,7 +65,8 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
 			expect(
-				JSON.stringify(roundResult(res)) + snapshotedDisplayedNotifications
+				JSON.stringify(roundResult(res as number[])) +
+					snapshotedDisplayedNotifications
 			).toMatchSnapshot(name)
 		})
 	)
@@ -69,7 +80,7 @@ it('calculate simulations-salarié', () => {
 })
 
 it('calculate simulations-indépendant', () => {
-	const targets = [
+	const objectifs = [
 		'dirigeant . rémunération . totale',
 		'dirigeant . rémunération . cotisations',
 		'dirigeant . rémunération . nette',
@@ -79,8 +90,8 @@ it('calculate simulations-indépendant', () => {
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
 		'dirigeant . indépendant . cotisations et contributions . début activité',
-	]
-	runSimulations(independentSituations, targets, independantConfig.situation)
+	] as DottedName[]
+	runSimulations(independentSituations, objectifs, independantConfig.situation)
 })
 
 it('calculate simulations-auto-entrepreneur', () => {
@@ -98,8 +109,7 @@ it('calculate simulations-rémunération-dirigeant (assimilé salarié)', () => 
 		{
 			...remunerationDirigeantConfig.situation,
 			dirigeant: "'assimilé salarié'",
-		},
-		'assimilé salarié'
+		}
 	)
 })
 
@@ -110,8 +120,7 @@ it('calculate simulations-rémunération-dirigeant (auto-entrepreneur)', () => {
 		{
 			...remunerationDirigeantConfig.situation,
 			dirigeant: "'auto-entrepreneur'",
-		},
-		'auto-entrepreneur'
+		}
 	)
 })
 
@@ -122,8 +131,7 @@ it('calculate simulations-rémunération-dirigeant (indépendant)', () => {
 		{
 			...remunerationDirigeantConfig.situation,
 			dirigeant: "'indépendant'",
-		},
-		'indépendant'
+		}
 	)
 })
 
