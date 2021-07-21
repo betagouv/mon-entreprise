@@ -11,6 +11,11 @@ const {
 
 module.exports = {
 	...common,
+	node: {
+		// This seems necessary to prevent a "Module not found: 'fs'" error when
+		// launching mocha-webpack:
+		fs: 'empty',
+	},
 	module: {
 		rules: [...commonLoaders(), styleLoader('style-loader')],
 	},
