@@ -44,7 +44,7 @@ export function SimulationGoals({
 				className={`ui__ card ${className}`}
 				style={{ marginTop: '0.6rem' }}
 			>
-				<div id="targetSelection">
+				<div id="objectifSelection">
 					<ul className="targets">{children}</ul>
 				</div>
 			</section>

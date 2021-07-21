@@ -81,7 +81,7 @@ function ExplanationSection() {
 	return (
 		<FromTop>
 			<div
-				id="targetSelection"
+				id="objectifSelection"
 				className="ui__ light card"
 				css={`
 					overflow: hidden;

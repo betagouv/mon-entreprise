@@ -3,7 +3,7 @@ import Conversation, {
 } from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback'
 import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
-import TargetSelection from 'Components/TargetSelection'
+import ObjectifSelection from 'Components/ObjectifSelection'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import React from 'react'
@@ -33,7 +33,7 @@ export default function Simulation({
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 
 	const simulationBloc = children ?? (
-		<TargetSelection showPeriodSwitch={showPeriodSwitch} />
+		<ObjectifSelection showPeriodSwitch={showPeriodSwitch} />
 	)
 	return (
 		<>

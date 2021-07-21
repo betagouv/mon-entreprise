@@ -1,107 +1,107 @@
-#targetSelection .targets {
+#objectifSelection .targets {
 	list-style: none;
 	padding: 0;
 	margin: -1rem 0;
 }
 
-#targetSelection .targets > li:first-child {
+#objectifSelection .targets > li:first-child {
 	border-top: none;
 }
 
-#targetSelection .targets li.small-target {
+#objectifSelection .targets li.small-target {
 	font-size: 85%;
 }
-#targetSelection .targets li.small-target .optionTitle a {
+#objectifSelection .targets li.small-target .optionTitle a {
 	font-weight: normal;
 }
 
-#targetSelection .targets li.small-target {
+#objectifSelection .targets li.small-target {
 	border-top: none;
 	padding: 0.4rem 1rem;
 }
 
-#targetSelection .targets li.small-target .targetInput,
-#targetSelection .targets li.small-target .editableTarget {
+#objectifSelection .targets li.small-target .targetInput,
+#objectifSelection .targets li.small-target .editableTarget {
 	border-width: 1px;
 	border-radius: 0.2rem;
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
-#targetSelection .targets > li {
+#objectifSelection .targets > li {
 	border-top: 1px dashed rgba(255, 255, 255, 0.6);
 	padding: 0.8rem 1rem;
 	margin-left: -1rem;
 	margin-right: -1rem;
 }
-.light #targetSelection .targets > li {
+.light #objectifSelection .targets > li {
 	border-top: 1px dashed var(--darkColor);
 }
-.light #targetSelection .targets > li.small-target,
-.light #targetSelection .targets > li:not(.small-target):first-of-type {
+.light #objectifSelection .targets > li.small-target,
+.light #objectifSelection .targets > li:not(.small-target):first-of-type {
 	border-top: none;
 }
 
-#targetSelection .targets > li .main {
+#objectifSelection .targets > li .main {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 }
-#targetSelection .targets > li .guide-lecture {
+#objectifSelection .targets > li .guide-lecture {
 	flex: 1;
 	border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
 	margin-left: 1rem;
 }
 
-#targetSelection li .header {
+#objectifSelection li .header {
 	display: flex;
 	align-items: center;
 }
-#targetSelection li:not(.small-target) .header {
+#objectifSelection li:not(.small-target) .header {
 	flex: 1;
 }
-#targetSelection .targets > li.small-target .header p {
+#objectifSelection .targets > li.small-target .header p {
 	display: none;
 }
-#targetSelection .optionTitle + p {
+#objectifSelection .optionTitle + p {
 	margin-top: 0.2rem;
 	margin-bottom: 0;
 }
-#targetSelection .optionTitle a {
+#objectifSelection .optionTitle a {
 	color: inherit;
 	font-weight: bold;
 	text-decoration: none;
 }
-#targetSelection .small-target .targetInputOrValue a {
+#objectifSelection .small-target .targetInputOrValue a {
 	text-decoration: none;
 }
-#targetSelection .optionTitle a:hover,
-#targetSelection .small-target .targetInputOrValue a:hover,
-#targetSelection .aidesGlimpse a:hover {
+#objectifSelection .optionTitle a:hover,
+#objectifSelection .small-target .targetInputOrValue a:hover,
+#objectifSelection .aidesGlimpse a:hover {
 	text-decoration: underline;
 }
 
 @media (min-width: 660px) {
-	#targetSelection {
+	#objectifSelection {
 		font-size: 115%;
 	}
 }
 
 @media (hover: none) {
-	#targetSelection .optionTitle a,
-	#targetSelection .small-target .targetInputOrValue a {
+	#objectifSelection .optionTitle a,
+	#objectifSelection .small-target .targetInputOrValue a {
 		text-decoration: underline;
 	}
 }
 
-#targetSelection #labelNew {
+#objectifSelection #labelNew {
 	background: #e2011c; /* Couleur de la marianne */
 	border-radius: 0.3em;
 	padding: 0 0.3em;
 }
 
-#targetSelection .targetInputOrValue {
+#objectifSelection .targetInputOrValue {
 	font-size: 115%;
 	margin-left: 1rem;
 	display: flex;
@@ -110,20 +110,20 @@
 	row-gap: 0.25rem;
 }
 
-#targetSelection .aidesGlimpse {
+#objectifSelection .aidesGlimpse {
 	font-size: 70%;
 	display: flex;
 }
-#targetSelection .aidesGlimpse a {
+#objectifSelection .aidesGlimpse a {
 	display: inline-block;
 	text-decoration: none;
 }
 
-#targetSelection input {
+#objectifSelection input {
 	margin: 2.7px 0;
 }
 
-#targetSelection .targetInput {
+#objectifSelection .targetInput {
 	width: 5.5em;
 	max-width: 7.5em;
 	text-align: right;
@@ -134,23 +134,23 @@
 	font-size: inherit;
 }
 
-#targetSelection .targetInput.focused {
+#objectifSelection .targetInput.focused {
 	box-shadow: 0 0 0px 2px white;
 }
 
-.light #targetSelection .targetInput {
+.light #objectifSelection .targetInput {
 	color: var(--darkColor);
 	border-color: var(--darkColor);
 	background: white;
 }
-.light #targetSelection .targetInput.focused {
+.light #objectifSelection .targetInput.focused {
 	box-shadow: 0 0 0px 2px var(--darkColor);
 }
-.light #targetSelection .optionTitle {
+.light #objectifSelection .optionTitle {
 	color: var(--darkColor);
 }
 
-#targetSelection .editableTarget {
+#objectifSelection .editableTarget {
 	max-width: 7.5em;
 	width: 5.5em;
 
@@ -166,7 +166,7 @@
 	font-size: inherit;
 }
 
-#targetSelection .unit {
+#objectifSelection .unit {
 	margin-left: 0.4em;
 	font-size: 110%;
 	vertical-align: middle;

@@ -24,16 +24,16 @@ import {
 } from 'Selectors/simulationSelectors'
 import InputSuggestions from './conversation/InputSuggestions'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import './TargetSelection.css'
+import './ObjectifSelection.css'
 import { Appear, FromTop } from './ui/animate'
 import Emoji from './utils/Emoji'
 
-export default function TargetSelection({ showPeriodSwitch = true }) {
+export default function ObjectifSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
 	return (
-		<div id="targetSelection">
+		<div id="objectifSelection">
 			{(
 				(typeof objectifs[0] === 'string'
 					? [{ objectifs }]
@@ -42,7 +42,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					nom?: string
 					objectifs: Array<DottedName>
 				}>
-			).map(({ icône, objectifs: targets, nom }, index: number) => (
+			).map(({ icône, objectifs, nom }, index: number) => (
 				<Fragment key={nom || '0'}>
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
@@ -62,7 +62,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					>
 						<ul className="targets">
 							{' '}
-							{targets.map((target) => (
+							{objectifs.map((target) => (
 								<Target key={target} dottedName={target} />
 							))}
 						</ul>
