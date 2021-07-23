@@ -542,6 +542,14 @@ entreprise . charges . dirigeant:
 # on ne prend en compte pour l'instant que le cas entreprise unipersonnelle
 entreprise . dividendes: bénéficiaire . dividendes . bruts
 
+# [TODO] [dividendes-indep]
+entreprise . capital social:
+  description: |
+    Cette valeur doit inclure la valeur des primes d'émission.
+  titre: Capital social
+  question: Quele est le capital social de la société ?
+  unité: €
+
 entreprise . ACRE:
   description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
