@@ -1518,16 +1518,18 @@ artiste-auteur . revenus . traitements et salaires:
 bénéficiaire:
   description.en: >
     [automatic] A beneficiary is a shareholder in a SAS or a partner in a
+
     SARL/EURL.
 
 
-    Attention: we only consider here the case of the sole shareholder (SASU and EURL).
-  description.fr: >
+    Attention: we only take into account here the case of the sole shareholder (SASU and EURL).
+      (SASU and EURL).
+  description.fr: |
     Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
     SARL/EURL.
 
-
-    Attention: nous ne prenons en compte ici que le cas de figure de l'associé unique (SASU et EURL).
+    Attention: nous ne prenons en compte ici que le cas de figure de l'associé
+      unique (SASU et EURL).
   titre.en: '[automatic] recipient'
   titre.fr: bénéficiaire
 bénéficiaire . compte courant d'associé:
@@ -1557,11 +1559,45 @@ bénéficiaire . dividendes:
   titre.en: '[automatic] dividends'
   titre.fr: dividendes
 bénéficiaire . dividendes . bruts:
-  titre.en: "[automatic] Beneficiary's share of dividends"
-  titre.fr: Part des dividendes revenant au bénéficiaire
+  titre.en: '[automatic] Gross dividends paid'
+  titre.fr: Dividendes bruts versés
 bénéficiaire . dividendes . cotisations et contributions:
+  note.en: '[automatic] The CSG on income subject to the PFU is never deductible'
+  note.fr: La CSG sur les revenus soumis au PFU n'est jamais déductible
   titre.en: '[automatic] Contributions on dividends'
   titre.fr: Cotisations et contributions sur dividendes
+bénéficiaire . dividendes . cotisations et contributions . assiette forfaitaire:
+  description.en: >
+    [automatic] This calculation extracts the basis for dividends that are
+    subject to the PFU in terms of
+
+    contributions.
+  description.fr: |
+    Ce calcul extrait l'assiette des dividendes qui sont soumis au PFU en termes
+    de cotisations et contributions.
+  titre.en: '[automatic] Basis for dividends subject to the PFU (or "flat tax")'
+  titre.fr:
+    Assiette des dividendes soumis aux cotisations et contributions au PFU
+    (ou "flat tax")
+bénéficiaire . dividendes . cotisations et contributions . assiette forfaitaire max indépendant:
+  titre.en: '[automatic] max self-employed flat rate'
+  titre.fr: assiette forfaitaire max indépendant
+bénéficiaire . dividendes . cotisations et contributions . assiette régime indépendant:
+  description.en: >
+    [automatic] This base represents the part of the dividends that is not
+    subject to the
+
+    social security contributions but to the contributions of the
+
+    contributions of the self-employed person's scheme.
+  description.fr: |
+    Cette assiette représente la partie des dividendes qui n'est pas soumise au
+    prélèvements sociaux forfaitaires mais aux cotisations et contributions du
+    régime du travailleur indépendant.
+  titre.en: '[automatic] Basis for dividends subject to contributions under the
+    self-employed scheme'
+  titre.fr: Assiette des dividendes soumis aux cotisations et contributions du
+    régime indépendant
 bénéficiaire . dividendes . imposables:
   description.en: >
     [automatic] A deduction of 40% applies in the case of
@@ -1569,17 +1605,15 @@ bénéficiaire . dividendes . imposables:
 
     - the company distributing the dividends is subject to corporation tax
 
-    - the company distributing the dividends is French or has its registered office in the EU or in a country that has concluded agreements in this regard with France
-
+    - the company distributing the dividends is French or has its headquarters in the EU or in a
+      state having concluded agreements in this sense with France
     - the dividends are decided in a general meeting.
-  description.fr: >
+  description.fr: |
     Un abattement de 40% s'applique dans le cas où
 
-
     - la société distributrice des dividendes relève de l'IS
-
-    - la société distributrice est française ou a son siège en UE ou dans un état ayant conclu des accords en ce sens avec la France
-
+    - la société distributrice est française ou a son siège en UE ou dans un
+      état ayant conclu des accords en ce sens avec la France
     - les dividendes sont décidés en assemblée générale.
   titre.en: '[automatic] Net taxable amount of dividends to which the income tax
     scale applies'
@@ -1590,8 +1624,10 @@ bénéficiaire . dividendes . nets:
   titre.en: '[automatic] Net dividends'
   titre.fr: Dividendes nets
 bénéficiaire . dividendes . nets d'impôt:
-  titre.en: '[automatic] Dividends net of contributions and taxes'
-  titre.fr: Dividendes nets de cotisations et d'impôts
+  résumé.en: '[automatic] After payment of contributions and taxes'
+  résumé.fr: Après paiements des cotisations et impôts
+  titre.en: '[automatic] Net dividends'
+  titre.fr: Dividendes nets
 chômage partiel:
   titre.en: '[automatic] short-time working'
   titre.fr: chômage partiel
@@ -8274,40 +8310,50 @@ impôt:
   titre.en: income tax
   titre.fr: impôt sur le revenu
 impôt . dividendes:
-  titre.en: '[automatic] Tax on dividends'
-  titre.fr: Impôt sur dividendes
+  titre.en: '[automatic] Taxation of dividends'
+  titre.fr: Impôsition des dividendes
 impôt . dividendes . PFU:
   description.en: >
     [automatic] This amount is to be paid in the form of a deposit at the time
-    of the dividend payment.
+    of payment of the
+
+    dividends.
 
 
     The advance payment is not compulsory if the tax income n-2 is less than
 
+    à
+
       - 50,000 € for a single person,
-      - 75,000 € for a couple subject to joint taxation (married or civil union).
+      - 75,000 for a couple subject to joint taxation (married or
+        married or in a civil union).
 
-    In this case, the beneficiary may apply for exemption no later than 30 November 
+    In this case, the beneficiary may apply for exemption no later than
 
-    of the year preceding the year of payment
-  description.fr: >
+    30 November of the year preceding the year of payment
+  description.fr: |
     Ce montant est à verser sous forme d'acompte au moment du versement des
     dividendes.
 
-
-    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur à
+    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
+    à
 
       - 50 000 € pour une personne seule,
-      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou pacsés).
+      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou
+        pacsés).
 
-    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard le 30 novembre 
-
-    de l'année précédant celle du paiement
+    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard
+    le 30 novembre de l'année précédant celle du paiement
   titre.en: '[automatic] Amount of tax on dividends under the Prélèvement
     Forfaitaire Unique (or "flat tax")'
   titre.fr:
     Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
     Unique (ou "flat tax")
+impôt . dividendes . montant en sus des autres revenus imposables:
+  titre.en: '[automatic] Amount of tax on dividends, in addition to tax on other
+    taxable income'
+  titre.fr: Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
+    revenus imposables
 impôt . domiciliation étranger non implémentée:
   description.en: >
     [automatic] Non-resident withholding tax is not yet implemented. For more
@@ -8347,6 +8393,9 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut:
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
   titre.en: '[automatic] uncapped'
   titre.fr: sans plafonnement
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement . sans parts rattachées:
+  titre.en: '[automatic] without attached units'
+  titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   description.en: >
     [automatic] Here is the famous income tax scale. It is a marginal scale with
@@ -8366,12 +8415,18 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   titre.en: '[automatic] gross tax per unit'
   titre.fr: impôt brut par part
+impôt . foyer fiscal . impôt sur le revenu . impôt brut par part . sans parts rattachées:
+  titre.en: '[automatic] without attached units'
+  titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   titre.en: '[automatic] family quotient'
   titre.fr: quotient familial
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . sans parts rattachées:
+  titre.en: '[automatic] without attached units'
+  titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt à payer:
   titre.en: '[automatic] tax payable'
   titre.fr: impôt à payer
@@ -8409,6 +8464,9 @@ impôt . foyer fiscal . nombre de parts . principales:
 impôt . foyer fiscal . nombre de parts . rattachées:
   titre.en: '[automatic] related'
   titre.fr: rattachées
+impôt . foyer fiscal . nombre de parts . sans parts rattachées:
+  titre.en: '[automatic] without attached units'
+  titre.fr: sans parts rattachées
 impôt . foyer fiscal . revenu fiscal de référence:
   description.en: "[automatic] The reference tax income corresponds to the
     household's slaughtered income adjusted with a quotient mechanism and
@@ -8425,8 +8483,8 @@ impôt . foyer fiscal . revenu imposable:
 impôt . foyer fiscal . revenu imposable . autres revenus imposables:
   question.en: '[automatic] What is the total amount of other taxable household income?'
   question.fr: Quel est le montant total des autres revenus imposables du foyer fiscal ?
-  titre.en: '[automatic] other taxable income'
-  titre.fr: autres revenus imposables
+  titre.en: '[automatic] Other taxable income of the tax household'
+  titre.fr: Autres revenus imposables du foyer fiscal
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description.en: >
     [automatic] In the general case, the tax is calculated after the application
@@ -8458,6 +8516,9 @@ impôt . foyer fiscal . taux effectif:
 impôt . montant:
   titre.en: '[automatic] Amount of income tax'
   titre.fr: Montant de l'impôt sur le revenu
+impôt . montant si autres revenus imposables uniquement:
+  titre.en: '[automatic] Amount of tax if no dividend is received'
+  titre.fr: Montant de l'impôt dans le cas où aucun dividende ne serait touché
 impôt . méthode de calcul:
   description.en: >
     We have implemented three ways to calculate income tax:

@@ -1108,7 +1108,7 @@ export function getSimulatorsData({
 				title: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
 				description: t(
 					'pages.simulateurs.dividendes.meta.description',
-					"Calculez le montant de l'impôt et des cotisations sur les dividendes perçus."
+					"Calculez le montant de l'impôt et des cotisations sur les dividendes versés par votre entreprise."
 				),
 				color: '#E71D66',
 			},
