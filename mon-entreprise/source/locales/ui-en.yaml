@@ -460,10 +460,9 @@ d'aides: of aid
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
-    managers affiliated to the self-employed workers' regime.</0><1>Please also
-    note that this simulator makes an approximate calculation of the share of
-    income tax resulting from dividends, based on the effective income tax rate.
-    </1>
+    managers affiliated to the self-employed workers' regime.</0><1>The amount
+    of tax on dividends is calculated in addition to the tax on other taxable
+    income. </1>
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
 déductible: deductible
@@ -1261,7 +1260,8 @@ pages:
         questions.</4>"
     dividendes:
       meta:
-        description: Calculate the amount of tax and contributions on dividends received.
+        description: Calculate the amount of tax and contributions on dividends paid by
+          your company.
         title: Dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the result of the previous year can be kept in reserve (for future

@@ -306,6 +306,8 @@ impôt . foyer fiscal . nombre de parts:
       - majoration personne seule avec enfant
       - majoration personne veuve avec enfant
 
+impôt . foyer fiscal . nombre de parts . sans parts rattachées: nombre de parts - nombre de parts . rattachées
+
 impôt . foyer fiscal . nombre de parts . principales:
   formule:
     variations:
@@ -391,7 +393,9 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
 impôt . foyer fiscal . revenu imposable . autres revenus imposables:
-  question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
+  titre: Autres revenus imposables du foyer fiscal
+  question: Quel est le montant total des autres revenus imposables du foyer
+    fiscal ?
   par défaut: 0 €/an
 
 impôt . foyer fiscal . revenu fiscal de référence:
@@ -412,7 +416,12 @@ impôt . foyer fiscal . impôt à payer:
       - impôt sur le revenu
       - CEHR
 
-# [TODO] Il semble y avoir un soucis: selon la doc impot.gouv, le "revenu brut" (sur lequel est basé l'impôt brut ci-dessous sans doute?) ne doit pas contenir les revenus de capitaux mobiliers. Donc les dividendes imposables au barème ne devraient dans ce cas pas se voir appliquer de décote pour les bas revenus. Il faudrait sans doute revoir l'ensemble des règles de calcul autour du barème pour bien séparer celles qui ne s'appliquent qu'aux revenus brut.
+# [TODO] Il semble y avoir un soucis: selon la doc impot.gouv, le "revenu brut"
+# (sur lequel est basé l'impôt brut ci-dessous sans doute?) ne doit pas contenir
+# les revenus de capitaux mobiliers. Donc les dividendes imposables au barème ne
+# devraient dans ce cas pas se voir appliquer de décote pour les bas revenus. Il
+# faudrait sans doute revoir l'ensemble des règles de calcul autour du barème
+# pour bien séparer celles qui ne s'appliquent qu'aux revenus brut.
 impôt . foyer fiscal . impôt sur le revenu:
   unité: €/an
   formule:
@@ -443,6 +452,10 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an
   formule: revenu imposable / nombre de parts
 
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . sans parts rattachées:
+  unité: €/part/an
+  formule: revenu imposable / nombre de parts . sans parts rattachées
+
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   formule:
     somme:
@@ -472,7 +485,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   formule:
     barème:
       assiette: quotient familial
-      tranches:
+      tranches: # ⚠️ Les tranches sont en doublon dans la règle "sans parts rattachées"
         - taux: 0%
           plafond: 10084 €/part/an
         - taux: 11%
@@ -490,21 +503,38 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
 
+impôt . foyer fiscal . impôt sur le revenu . impôt brut par part . sans parts rattachées:
+  formule:
+    barème:
+      assiette: quotient familial . sans parts rattachées
+      tranches:
+        - taux: 0%
+          plafond: 10084 €/part/an
+        - taux: 11%
+          plafond: 25710 €/part/an
+        - taux: 30%
+          plafond: 73516 €/part/an
+        - taux: 41%
+          plafond: 158122 €/part/an
+        - taux: 45%
+
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   formule:
     le maximum de:
       - impôt brut . sans plafonnement
       - somme:
-          - recalcul:
-              règle: impôt brut . sans plafonnement
-              avec:
-                nombre de parts . rattachées: 0 part
+          - impôt brut . sans plafonnement . sans parts rattachées
           - (- quotient familial . plafond avantage)
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
   produit:
     assiette: impôt brut par part
     facteur: nombre de parts
+
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement . sans parts rattachées:
+  produit:
+    assiette: impôt brut par part . sans parts rattachées
+    facteur: nombre de parts . sans parts rattachées
 
 impôt . foyer fiscal . CEHR:
   unité: €/an
@@ -541,32 +571,47 @@ impôt . domiciliation étranger non implémentée:
   description: |
     La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
 
-# [XXX] [taux effectif] En fait le calcul n'est pas top, ça sous-estime l'impact des dividendes sur l'impôt dans le cas barème car ça utilise le taux effectif
-# [XXX] [taux effectif] Si on est ok avec la règle, à virer. Simplement utiliser `impôt` d'autant plus que pr l'instant on ne peut pas avoir de concept du genre "partie de l'impôt", on ne peut avoir qu'un revenu principal soumis à la simulation (le reste étant dans foyer fiscal)
 impôt . dividendes:
+  valeur: oui
   applicable si: bénéficiaire . dividendes . bruts > 0
+  titre: Impôsition des dividendes
+
+impôt . montant si autres revenus imposables uniquement:
+  recalcul:
+    règle: impôt . foyer fiscal . impôt à payer
+    avec:
+      bénéficiaire . dividendes . bruts: 0 €/an
+      impôt . foyer fiscal . revenu imposable: foyer fiscal . revenu imposable . autres revenus imposables
+  titre: Montant de l'impôt dans le cas où aucun dividende ne serait touché
+
+impôt . dividendes . montant en sus des autres revenus imposables:
   variations:
     - si: méthode de calcul . PFU
       alors: PFU
-    - sinon: impôt . montant
-  titre: Impôt sur dividendes
+    - sinon: impôt . foyer fiscal . impôt à payer - montant si autres revenus imposables uniquement
+  titre: Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
+    revenus imposables
 
 impôt . dividendes . PFU:
   applicable si: impôt . méthode de calcul . PFU
   produit:
     assiette: bénéficiaire . dividendes . bruts
     taux: 12.8%
-  titre: Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire Unique (ou "flat tax")
+  titre: Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
+    Unique (ou "flat tax")
   description: |
-    Ce montant est à verser sous forme d'acompte au moment du versement des dividendes.
+    Ce montant est à verser sous forme d'acompte au moment du versement des
+    dividendes.
 
-    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur à
+    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
+    à
 
       - 50 000 € pour une personne seule,
-      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou pacsés).
+      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou
+        pacsés).
 
-    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard le 30 novembre
-    de l'année précédant celle du paiement
+    Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard
+    le 30 novembre de l'année précédant celle du paiement
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963
     Article 200 A du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/

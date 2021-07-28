@@ -15,7 +15,6 @@ import Warning from 'Components/ui/WarningBlock'
 
 export default function DividendesSimulation() {
 	return (
-		// [XXX] [taux effectif] Update warning
 		<>
 			<Warning
 				localStorageKey={'app::simulateurs:warning-folded:v1:dividendes'}
@@ -28,9 +27,8 @@ export default function DividendesSimulation() {
 						travailleurs indépendants.
 					</p>
 					<p>
-						Veuillez noter également que ce simulateur fait un calcul
-						approximatif de la part de l'impôt sur le revenu issu des
-						dividendes, basé sur le taux effectif de l'impôt sur le revenu.{' '}
+						Le montant de l'impôt sur les dividendes est calculé en sus de
+						l'impôt sur les autres revenus imposables.{' '}
 					</p>
 				</Trans>
 			</Warning>
@@ -65,8 +63,9 @@ function OptionBarèmeSwitch() {
 	const engine = useEngine()
 	const dottedName = 'impôt . méthode de calcul' as DottedName
 	const currentOptionPFU = engine.evaluate(dottedName + ' . PFU').nodeValue
-	const currentOptionBarème = engine.evaluate(dottedName + ' . barème standard')
-		.nodeValue
+	const currentOptionBarème = engine.evaluate(
+		dottedName + ' . barème standard'
+	).nodeValue
 
 	return (
 		<span className="base ui__ small radio toggle">
@@ -133,7 +132,7 @@ const DividendesExplanation = () => {
 
 	return (
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">
-			<section>
+			<section id="simulateur-dividendes-section-total">
 				<div
 					css={`
 						display: flex;
@@ -159,7 +158,8 @@ const DividendesExplanation = () => {
 							color: palettes[0][0],
 						},
 						{
-							dottedName: 'impôt . dividendes',
+							dottedName:
+								'impôt . dividendes . montant en sus des autres revenus imposables',
 							title: t('Impôt'),
 							color: palettes[1][0],
 						},

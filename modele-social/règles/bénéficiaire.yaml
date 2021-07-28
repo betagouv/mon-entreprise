@@ -1,9 +1,11 @@
 bénéficiaire:
   valeur: oui
   description: |
-    Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une SARL/EURL.
+    Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
+    SARL/EURL.
 
-    Attention: nous ne prenons en compte ici que le cas de figure de l'associé unique (SASU et EURL).
+    Attention: nous ne prenons en compte ici que le cas de figure de l'associé
+      unique (SASU et EURL).
 
 # [TODO] [dividendes-indep]
 bénéficiaire . compte courant d'associé:
@@ -33,7 +35,6 @@ bénéficiaire . compte courant d'associé:
 
 bénéficiaire . dividendes:
   # Désactivé par défaut:
-  # [XXX] Ou sinon ne faudrait-il pas laisser soin aux simulateurs de faire liste-noire?
   valeur: non
   applicable si: entreprise . imposition = 'IS'
 
@@ -43,7 +44,7 @@ bénéficiaire . dividendes . bruts:
   inversion numérique:
     avec:
       - nets d'impôt
-  titre: Dividendes bruts revenant au bénéficiaire
+  titre: Dividendes bruts versés
 
 bénéficiaire . dividendes . nets:
   somme:
@@ -52,8 +53,13 @@ bénéficiaire . dividendes . nets:
   titre: Dividendes nets
 
 bénéficiaire . dividendes . nets d'impôt:
-  valeur: bruts - dividendes . cotisations et contributions - impôt . dividendes
-  titre: Dividendes nets de cotisations et d'impôts
+  valeur:
+    somme:
+      - bruts
+      - (- dividendes . cotisations et contributions)
+      - (- impôt . dividendes . montant en sus des autres revenus imposables)
+  titre: Dividendes nets
+  résumé: Après paiements des cotisations et impôts
 
 bénéficiaire . dividendes . cotisations et contributions:
   produit:
@@ -80,6 +86,7 @@ bénéficiaire . dividendes . cotisations et contributions:
           nom: prélèvement de solidarité
         taux: 7.5%
   titre: Cotisations et contributions sur dividendes
+  note: La CSG sur les revenus soumis au PFU n'est jamais déductible
   références:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/les-revenus-mobiliers
     Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2329
@@ -91,12 +98,14 @@ bénéficiaire . dividendes . imposables:
     - bruts
     - (- cotisations et contributions . CSG déductible)
   abattement: 40%
-  titre: Net imposable des dividendes auxquels s'applique le barème de l'impôt sur le revenu
+  titre: Net imposable des dividendes auxquels s'applique le barème de l'impôt
+    sur le revenu
   description: |
     Un abattement de 40% s'applique dans le cas où
 
     - la société distributrice des dividendes relève de l'IS
-    - la société distributrice est française ou a son siège en UE ou dans un état ayant conclu des accords en ce sens avec la France
+    - la société distributrice est française ou a son siège en UE ou dans un
+      état ayant conclu des accords en ce sens avec la France
     - les dividendes sont décidés en assemblée générale.
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963
@@ -110,10 +119,11 @@ bénéficiaire . dividendes . cotisations et contributions . assiette forfaitair
         plafond: assiette forfaitaire max indépendant
     - sinon: bruts
   unité: €/an
-  titre: Assiette des dividendes soumis aux cotisations et contributions au PFU (ou "flat tax")
+  titre: Assiette des dividendes soumis aux cotisations et contributions au PFU
+    (ou "flat tax")
   description: |
-    Ce calcul extrait l'assiette des dividendes qui sont soumis au PFU en termes de cotisations
-    et contributions.
+    Ce calcul extrait l'assiette des dividendes qui sont soumis au PFU en termes
+    de cotisations et contributions.
   références:
     Article L131-6 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000033714224/
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-et-fiscal/les-revenus-pris-en-compte-pour.html
@@ -131,9 +141,11 @@ bénéficiaire . dividendes . cotisations et contributions . assiette régime in
   valeur: bruts - assiette forfaitaire
   par défaut: 0 €/an
   unité: €/an
-  titre: Assiette des dividendes soumis aux cotisations et contributions du régime indépendant
+  titre: Assiette des dividendes soumis aux cotisations et contributions du
+    régime indépendant
   description: |
-    Cette assiette représente la partie des dividendes qui n'est pas soumise au PFU mais aux
-    cotisations et contributions du régime du travailleur indépendant.
+    Cette assiette représente la partie des dividendes qui n'est pas soumise au
+    prélèvements sociaux forfaitaires mais aux cotisations et contributions du
+    régime du travailleur indépendant.
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-et-fiscal/les-revenus-pris-en-compte-pour.html
