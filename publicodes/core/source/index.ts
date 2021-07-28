@@ -33,7 +33,7 @@ type Cache = {
 					estimated: string
 			  }
 			| true
-		inRecalcul?: boolean
+		currentRecalcul?: ASTNode
 		filter?: string
 	}
 	nodes: Map<PublicodesExpression | ASTNode, EvaluatedNode>

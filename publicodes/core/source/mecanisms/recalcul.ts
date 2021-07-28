@@ -1,5 +1,6 @@
 import Engine, { EvaluationFunction } from '..'
 import { ASTNode, EvaluatedNode } from '../AST/types'
+import { warning } from '../error'
 import { defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -18,7 +19,21 @@ export type RecalculNode = {
 }
 
 const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
-	if (this.cache._meta.inRecalcul) {
+	// Caveat: for now, any nested recalcul is not applied. Ideally, we should
+	// only prevent nested recalculs when a cycle appears, or even do this
+	// statically. The only case which seems legit for now is when a rule is
+	// recalcul-ing itself.
+	if (this.cache._meta.currentRecalcul) {
+		if (
+			node.explanation.recalcul &&
+			this.cache._meta.currentRecalcul !== node.explanation.recalcul
+		) {
+			warning(
+				this.options.logger,
+				this.cache._meta.evaluationRuleStack[0],
+				`Un recalcul imbriqué a été tenté à l'intérieur du recalcul ${this.cache._meta.currentRecalcul}. La valeur null (non défini) est retournée.`
+			)
+		}
 		return defaultNode(null) as any as RecalculNode & EvaluatedNode
 	}
 
@@ -49,13 +64,9 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		  })
 		: this
 
-	// console.debug(
-	// 	`Enter recalcul ${(node.explanation.recalcul as ReferenceNode).dottedName}`
-	// )
+	engine.cache._meta.currentRecalcul = node.explanation.recalcul
 	const evaluatedNode = engine.evaluate(node.explanation.recalcul)
-	// console.debug(
-	// 	`Exit recalcul ${(node.explanation.recalcul as ReferenceNode).dottedName}`
-	// )
+	delete engine.cache._meta.currentRecalcul
 
 	return {
 		...node,
@@ -76,11 +87,13 @@ export const mecanismRecalcul = (v, context) => {
 		parse(dottedName, context),
 		parse(v.avec[dottedName], context),
 	])
-	const defaultRuleToEvaluate = context.dottedName
-	const nodeToEvaluate = parse(v.règle ?? defaultRuleToEvaluate, context)
+
+	// Caveat: v.règle can theoretically be an expression, not necessarily
+	// a dotted name.
+	const recalculNode = parse(v.règle ?? context.dottedName, context)
 	return {
 		explanation: {
-			recalcul: nodeToEvaluate,
+			recalcul: recalculNode,
 			amendedSituation,
 		},
 		nodeKind: 'recalcul',

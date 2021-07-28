@@ -94,7 +94,7 @@
     }
   },
   "recalcul": {
-    "description": "Relance le calcul d'une règle dans une situation différente de la situation courante. Permet par exemple de calculer le montant des cotisations au niveau du SMIC, même si le salaire est plus élevé dans la situation actuelle.",
+    "description": "Relance le calcul d'une règle dans une situation différente de la situation courante. Permet par exemple de calculer le montant des cotisations au niveau du SMIC, même si le salaire est plus élevé dans la situation actuelle.\n⚠️  Les recalculs imbriqués ne sont pas encore fonctionnels.",
     "exemples": {
       "base": "brut: 2000€\ncotisations:\n  produit:\n    assiette: brut\n    taux: 20%\n\ncotisations pour un SMIC:\n  recalcul:\n    règle: cotisations\n    avec:\n      brut: 1500 €"
     }
