@@ -68,12 +68,6 @@ blockquote {
 	border-radius: 0.3rem;
 }
 
-.ui__.center-flex {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-
 .ui__.hide {
 	display: none;
 }

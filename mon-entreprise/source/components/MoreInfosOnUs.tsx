@@ -24,7 +24,7 @@ export default function MoreInfosOnUs() {
 			<h3 style={{ textAlign: 'center', width: '100%' }}>
 				Plus d'infos sur mon-entreprise.fr
 			</h3>
-			<div className="ui__ full-width center-flex">
+			<div className="ui__ full-width box-container">
 				{!pathname.startsWith(sitePaths.nouveautés) && (
 					<Link className="ui__ interactive card box" to={sitePaths.nouveautés}>
 						<div className="ui__ big box-icon">{emoji('✨')}</div>

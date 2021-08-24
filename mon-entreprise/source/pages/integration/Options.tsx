@@ -1,9 +1,9 @@
+import { icons } from 'Components/ui/SocialIcon'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { icons } from 'Components/ui/SocialIcon'
 import illustration from './illustration.png'
 
 export default function Options() {
@@ -31,7 +31,7 @@ export default function Options() {
 					<img css="height: 250px" src={illustration} />
 				</div>
 			</div>
-			<section className="ui__ full-width dark-bg center-flex">
+			<section className="ui__ full-width dark-bg box-container">
 				<Link
 					className="ui__ interactive card box inverted-colors"
 					to={sitePaths.integration.iframe}
