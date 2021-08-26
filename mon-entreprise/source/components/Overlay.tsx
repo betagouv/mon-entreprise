@@ -1,8 +1,8 @@
-import * as animate from 'Components/ui/animate'
 import FocusTrap from 'focus-trap-react'
 import { PageInfo } from 'iframe-resizer'
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
+import { FromBottom } from './ui/animate'
 
 type OverlayProps = React.HTMLAttributes<HTMLDivElement> & {
 	onClose?: () => void
@@ -46,7 +46,7 @@ export default function Overlay({
 	return (
 		<StyledOverlayWrapper offsetTop={Math.max(0, offsetTop)}>
 			<div className="overlayContent">
-				<animate.fromBottom>
+				<FromBottom>
 					<FocusTrap
 						focusTrapOptions={{
 							onDeactivate: onClose,
@@ -70,7 +70,7 @@ export default function Overlay({
 							)}
 						</div>
 					</FocusTrap>
-				</animate.fromBottom>
+				</FromBottom>
 			</div>
 		</StyledOverlayWrapper>
 	)

@@ -1,5 +1,4 @@
 import Value, { Condition } from 'Components/EngineValue'
-import * as Animate from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
@@ -16,7 +15,7 @@ export default function PLExplanation() {
 	return (
 		<section>
 			<Trans i18nKey="simulateurs.explanation.pamc">
-				<Animate.fromBottom>
+				<FromBottom>
 					<h2>Vos institutions partenaires</h2>
 					<div className="ui__ box-container">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
@@ -52,7 +51,7 @@ export default function PLExplanation() {
 							compte l'exonération de début d'activité ACRE
 						</p>
 					</Condition>
-				</Animate.fromBottom>
+				</FromBottom>
 			</Trans>
 		</section>
 	)

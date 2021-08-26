@@ -2,11 +2,12 @@ import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { Names } from 'modele-social/dist/names'
 import { EvaluatedNode } from 'publicodes'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
@@ -83,20 +84,13 @@ export function roundedPercentages(values: Array<number>) {
 	)
 }
 
-type StackedBarChartProps = InnerStackedBarChartProps & {
-	disableAnimation: boolean
-}
-
-export function StackedBarChart({
-	data,
-	disableAnimation,
-}: StackedBarChartProps) {
+export function StackedBarChart({ data }: InnerStackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
 		threshold: 0.5,
 	})
 
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
-	return !disableAnimation ? (
+	return !useContext(DisableAnimationContext) ? (
 		<animated.div ref={intersectionRef} style={styles}>
 			<InnerStackedBarChart data={data} />
 		</animated.div>
@@ -154,13 +148,9 @@ function InnerStackedBarChart({ data }: InnerStackedBarChartProps) {
 
 type StackedRulesChartProps = {
 	data: Array<{ color?: string; dottedName: Names; title?: string }>
-	disableAnimation: boolean
 }
 
-export default function StackedRulesChart({
-	data,
-	disableAnimation,
-}: StackedRulesChartProps) {
+export default function StackedRulesChart({ data }: StackedRulesChartProps) {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
 	return (
@@ -172,7 +162,6 @@ export default function StackedRulesChart({
 				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
 				color,
 			}))}
-			disableAnimation={disableAnimation}
 		/>
 	)
 }

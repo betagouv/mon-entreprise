@@ -1,5 +1,4 @@
 import { hideNotification } from 'Actions/actions'
-import animate from 'Components/ui/animate'
 import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
@@ -9,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
 import RuleLink from './RuleLink'
+import { FromTop } from './ui/animate'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
 
@@ -65,7 +65,7 @@ export default function Notifications() {
 			<ul style={{ margin: 0, padding: 0 }}>
 				{messages.map(({ sévérité, dottedName, résumé, description }) =>
 					hiddenNotifications?.includes(dottedName) ? null : (
-						<animate.fromTop key={dottedName}>
+						<FromTop key={dottedName}>
 							<li>
 								<div className="notification">
 									{emoji(sévérité == 'avertissement' ? '⚠️' : '💁🏻')}
@@ -87,7 +87,7 @@ export default function Notifications() {
 								</div>
 							</li>
 							<ScrollToElement />
-						</animate.fromTop>
+						</FromTop>
 					)
 				)}
 			</ul>

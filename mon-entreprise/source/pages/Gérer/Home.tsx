@@ -7,7 +7,7 @@ import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
 import PageHeader from 'Components/PageHeader'
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -69,7 +69,7 @@ export default function Gérer() {
 			</Helmet>
 			<TrackPage name="accueil" />
 			<ScrollToTop />
-			<Animate.fromBottom>
+			<FromBottom>
 				<PageHeader
 					picture={businessPlan}
 					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
@@ -278,7 +278,7 @@ export default function Gérer() {
 						</Link>
 					</div>
 				</>
-			</Animate.fromBottom>
+			</FromBottom>
 		</>
 	)
 }

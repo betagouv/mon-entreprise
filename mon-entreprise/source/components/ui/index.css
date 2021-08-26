@@ -215,16 +215,16 @@ input.ui__::placeholder {
 }
 
 @media print {
-	.ui__ print-display-none {
+	.ui__.print-display-none {
 		display: none !important;
 	}
 
-	.print-break-avoid {
+	.ui__.print-break-avoid {
 		page-break-inside: avoid;
 		break-inside: avoid;
 	}
 
-	.print-background-force {
+	.ui__.print-background-force {
 		color-adjust: exact !important;
 		-webkit-print-color-adjust: exact !important;
 		print-color-adjust: exact !important;

@@ -1,4 +1,4 @@
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -46,7 +46,7 @@ export default function VotreSituation() {
 	).some((activité) => régimeGénéralDisponibleSelector(state, activité))
 
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="simulation terminée" />
 			<Helmet>
@@ -160,7 +160,7 @@ export default function VotreSituation() {
 					</a>
 				</div>
 			</section>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }
 

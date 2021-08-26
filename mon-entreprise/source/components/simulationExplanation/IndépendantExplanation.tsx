@@ -20,13 +20,7 @@ import CotisationsRégularisation from './IndépendantCotisationsRégularisation
 import PLExplanation from './PLExplanation'
 import { DistributionSection } from './SalaryExplanation'
 
-interface IndépendantExplanationProps {
-	disableAnimation: boolean
-}
-
-export default function IndépendantExplanation({
-	disableAnimation,
-}: IndépendantExplanationProps) {
+export default function IndépendantExplanation() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -45,7 +39,6 @@ export default function IndépendantExplanation({
 				<section>
 					<h2>Répartition du revenu</h2>
 					<StackedBarChart
-						disableAnimation={disableAnimation}
 						data={[
 							{
 								dottedName: 'dirigeant . rémunération . nette après impôt',
@@ -103,8 +96,8 @@ export default function IndépendantExplanation({
 				</ul>
 			</Trans>
 
-			<DistributionSection disableAnimation={disableAnimation}>
-				<Distribution disableAnimation={disableAnimation} />
+			<DistributionSection>
+				<Distribution />
 			</DistributionSection>
 		</>
 	)

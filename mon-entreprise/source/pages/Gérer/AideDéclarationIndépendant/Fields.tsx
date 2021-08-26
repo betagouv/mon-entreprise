@@ -1,7 +1,7 @@
 import { updateSituation } from 'Actions/actions'
 import { ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { DottedName } from 'modele-social'
@@ -82,7 +82,7 @@ export function SimpleField({
 				break-inside: avoid;
 			`}
 		>
-			<Animate.fromTop>
+			<FromTop>
 				<Question>
 					<div
 						css={`
@@ -102,7 +102,7 @@ export function SimpleField({
 						showSuggestions={showSuggestions}
 					/>
 				</Question>
-			</Animate.fromTop>
+			</FromTop>
 		</div>
 	)
 }

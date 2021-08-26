@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import Animate from 'Components/ui/animate'
 import AnimatedTargetValue from 'Components/ui/AnimatedTargetValue'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import {
@@ -34,6 +33,7 @@ import {
 import InputSuggestions from './conversation/InputSuggestions'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
+import { Appear, FromTop } from './ui/animate'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
@@ -109,7 +109,7 @@ const Target = ({ dottedName }: TargetProps) => {
 			key={target.dottedName}
 			className={isSmallTarget ? 'small-target' : undefined}
 		>
-			<Animate.appear unless={!isSmallTarget}>
+			<Appear unless={!isSmallTarget}>
 				<div>
 					<div className="main">
 						<Header target={target} />
@@ -122,7 +122,7 @@ const Target = ({ dottedName }: TargetProps) => {
 						/>
 					</div>
 				</div>
-			</Animate.appear>
+			</Appear>
 		</li>
 	)
 }
@@ -243,14 +243,14 @@ function TargetInputOrValue({
 			</span>
 			{(isActive || isFocused) && (
 				<div style={{ minWidth: '100%' }}>
-					<Animate.fromTop>
+					<FromTop>
 						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={onSuggestionClick}
 							/>
 						</div>
-					</Animate.fromTop>
+					</FromTop>
 				</div>
 			)}
 		</>
@@ -262,7 +262,7 @@ function TitreRestaurant() {
 		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<Animate.fromTop>
+			<FromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={dottedName}>
 						+{' '}
@@ -276,7 +276,7 @@ function TitreRestaurant() {
 						<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
 					</RuleLink>
 				</div>
-			</Animate.fromTop>
+			</FromTop>
 		</Condition>
 	)
 }
@@ -307,7 +307,7 @@ function AidesGlimpse() {
 	)
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<Animate.fromTop>
+			<FromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
@@ -321,7 +321,7 @@ function AidesGlimpse() {
 						<Trans>d'aides</Trans> {emoji(aides.rawNode.icônes ?? '')}
 					</RuleLink>
 				</div>
-			</Animate.fromTop>
+			</FromTop>
 		</Condition>
 	)
 }

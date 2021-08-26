@@ -6,7 +6,6 @@ import PageFeedback from 'Components/Feedback'
 import SearchButton from 'Components/SearchButton'
 import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
-import * as Animate from 'Components/ui/animate'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import React from 'react'
@@ -15,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
+import { FromTop } from './ui/animate'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -22,8 +22,6 @@ type SimulationProps = {
 	children?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 	showPeriodSwitch?: boolean
-	userWillExport: () => void
-	disableAnimation: boolean
 }
 
 export default function Simulation({
@@ -32,8 +30,6 @@ export default function Simulation({
 	children,
 	customEndMessages,
 	showPeriodSwitch,
-	userWillExport,
-	disableAnimation,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 
@@ -48,13 +44,10 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
 				<>
-					<Animate.fromTop>
+					<FromTop>
 						{results}
 						<ShareSimulationBanner />
-						<ExportSimulationBanner
-							userWillExport={userWillExport}
-							disableAnimation={disableAnimation}
-						/>
+						<ExportSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
 						<br />
 						<div className="ui__ full-width">
@@ -98,7 +91,7 @@ export default function Simulation({
 								</div>
 							</div>
 						</div>
-					</Animate.fromTop>
+					</FromTop>
 				</>
 			)}
 		</>

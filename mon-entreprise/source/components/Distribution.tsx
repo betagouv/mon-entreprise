@@ -1,8 +1,8 @@
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import BarChartBranch from './BarChart'
 import './Distribution.css'
@@ -10,11 +10,7 @@ import './PaySlip'
 import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 
-interface DistributionProps {
-	disableAnimation: boolean
-}
-
-export default function Distribution({ disableAnimation }: DistributionProps) {
+export default function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (getCotisationsBySection(
@@ -41,7 +37,6 @@ export default function Distribution({ disableAnimation }: DistributionProps) {
 					dottedName={sectionName}
 					value={value}
 					maximum={maximum}
-					disableAnimation={disableAnimation}
 				/>
 			))}
 		</div>
@@ -53,7 +48,6 @@ type DistributionBranchProps = {
 	value: number
 	maximum: number
 	icon?: string
-	disableAnimation: boolean
 }
 
 export function DistributionBranch({
@@ -61,7 +55,6 @@ export function DistributionBranch({
 	value,
 	icon,
 	maximum,
-	disableAnimation,
 }: DistributionBranchProps) {
 	const branche = useContext(EngineContext).getRule(dottedName)
 
@@ -73,7 +66,6 @@ export function DistributionBranch({
 			icon={icon ?? branche.rawNode.icônes}
 			description={branche.rawNode.résumé}
 			unit="€"
-			disableAnimation={disableAnimation}
 		/>
 	)
 }

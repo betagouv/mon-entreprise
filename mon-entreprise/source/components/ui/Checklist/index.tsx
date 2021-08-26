@@ -1,8 +1,8 @@
 import classnames from 'classnames'
-import Animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import React, { useEffect, useState } from 'react'
+import { Appear } from '../animate'
 import Checkbox from '../Checkbox'
 import './index.css'
 
@@ -55,7 +55,7 @@ export function CheckItem({
 				</button>
 			</div>
 			{displayExplanations && explanations && (
-				<Animate.appear>
+				<Appear>
 					{typeof explanations === 'string' ? (
 						<Markdown
 							className="ui__ checklist-explanation"
@@ -64,7 +64,7 @@ export function CheckItem({
 					) : (
 						explanations
 					)}
-				</Animate.appear>
+				</Appear>
 			)}
 		</ScrollToElement>
 	)

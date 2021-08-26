@@ -1,7 +1,7 @@
 import { Explicable } from 'Components/conversation/Explicable'
 import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
@@ -60,7 +60,7 @@ export default function ResultatsParFormulaire() {
 					<div className="ui__ box-container">
 						{informations.map((r) => (
 							<Condition key={r.dottedName} expression={r.dottedName}>
-								<Animate.fromTop style={{ display: 'flex' }}>
+								<FromTop style={{ display: 'flex' }}>
 									<div
 										className="ui__ box card"
 										css={`
@@ -88,7 +88,7 @@ export default function ResultatsParFormulaire() {
 											/>
 										</p>
 									</div>
-								</Animate.fromTop>
+								</FromTop>
 							</Condition>
 						))}
 					</div>
@@ -110,7 +110,7 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 	) as DottedName[]
 	return (
 		<Condition expression={dottedName} key={dottedName}>
-			<Animate.fromTop>
+			<FromTop>
 				<div
 					className="ui__ card"
 					css={`
@@ -127,7 +127,7 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 							.map((dottedName) => engine.getRule(dottedName))
 							.map((node) => (
 								<Condition expression={node.dottedName} key={node.dottedName}>
-									<Animate.fromTop>
+									<FromTop>
 										<li key={node.dottedName}>
 											<small>
 												{node.rawNode.résumé}
@@ -147,12 +147,12 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 											{/* <small style={{ marginLeft: '0.2rem' }}>
 											</small> */}
 										</li>
-									</Animate.fromTop>
+									</FromTop>
 								</Condition>
 							))}
 					</ul>
 				</div>
-			</Animate.fromTop>
+			</FromTop>
 		</Condition>
 	)
 }

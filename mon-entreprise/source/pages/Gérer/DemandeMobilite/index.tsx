@@ -2,7 +2,7 @@ import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
-import * as Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -154,10 +154,10 @@ function FormulairePublicodes() {
 	)
 
 	return (
-		<Animate.fromTop key={clearFieldsKey}>
+		<FromTop key={clearFieldsKey}>
 			{fields.map(
 				({ rawNode: { description, type, question }, title, dottedName }) => (
-					<Animate.fromTop key={dottedName}>
+					<FromTop key={dottedName}>
 						{type === 'groupe' ? (
 							<>
 								{createElement(
@@ -205,7 +205,7 @@ function FormulairePublicodes() {
 								/>
 							</>
 						)}
-					</Animate.fromTop>
+					</FromTop>
 				)
 			)}
 
@@ -228,6 +228,6 @@ function FormulairePublicodes() {
 			) : isMissingValues ? (
 				<TrackPage name="commence" />
 			) : null}
-		</Animate.fromTop>
+		</FromTop>
 	)
 }

@@ -3,7 +3,7 @@ import {
 	initializeCompanyCreationChecklist,
 } from 'Actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -51,7 +51,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		  })
 
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<TrackPage chapter2="statut" name={statut} />
 			<Helmet>
 				<title>{titre}</title>
@@ -565,7 +565,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					</a>
 				)}
 			</div>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }
 
