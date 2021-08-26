@@ -7,6 +7,13 @@ html {
 		font-size: 0.9em;
 	}
 }
+
+@media print {
+	html {
+		font-size: 0.9em;
+		line-height: 1.5rem;
+	}
+}
 @media (min-width: 500px) and (max-width: 1920px) {
 	html {
 		font-size: 1.1em;
@@ -15,12 +22,6 @@ html {
 @media (min-width: 1920px) {
 	html {
 		font-size: 1.16em;
-	}
-}
-
-@media print {
-	html {
-		font-size: 1em;
 	}
 }
 

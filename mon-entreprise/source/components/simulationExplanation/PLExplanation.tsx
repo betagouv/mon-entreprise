@@ -1,4 +1,5 @@
 import Value, { Condition } from 'Components/EngineValue'
+import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
