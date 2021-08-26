@@ -6,6 +6,7 @@ import { ASTNode, formatValue, ParsedRules, reduceAST } from 'publicodes'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { ExplicableRule } from './conversation/Explicable'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 
@@ -124,7 +125,10 @@ export default function PaySlip() {
 					return (
 						<Fragment key={section.dottedName}>
 							<h5 className="payslip__cotisationTitle">
-								<RuleLink dottedName={section.dottedName} />
+								{section.title}{' '}
+								<em className="ui__ print-display-none">
+									<ExplicableRule dottedName={section.dottedName} />
+								</em>
 							</h5>
 							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
@@ -216,14 +220,14 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 		<>
 			<RuleLink
 				dottedName={dottedName}
-				style={{ backgroundColor: 'var(--lightestColor)' }}
+				className="ui__ lighter-bg print-background-force"
 			/>
-			<span style={{ backgroundColor: 'var(--lightestColor)' }}>
+			<span className="ui__ lighter-bg print-background-force">
 				{partPatronale?.nodeValue
 					? formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
-			<span style={{ backgroundColor: 'var(--lightestColor)' }}>
+			<span className="ui__ lighter-bg print-background-force">
 				{partSalariale?.nodeValue
 					? formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}

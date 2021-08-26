@@ -1,11 +1,7 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
 export const DisableAnimationContext = createContext(false)
 
-export function DisableAnimationOnPrintProvider({
-	children,
-}: {
-	children: React.ReactNode
-}) {
+export const useIsPrintContext = () => {
 	const [isPrintContext, setPrintContext] = useState(false)
 	const onPrintContextChange = useCallback(
 		(matchMedia: MediaQueryListEvent | MediaQueryList) => {
@@ -22,6 +18,24 @@ export function DisableAnimationOnPrintProvider({
 		}
 	}, [onPrintContextChange])
 
+	// Fix for Firefox (see https://bugzilla.mozilla.org/show_bug.cgi?id=774398)
+	useEffect(() => {
+		window.onbeforeprint = () => setPrintContext(true)
+		return () => {
+			window.onbeforeprint = null
+		}
+	}, [setPrintContext])
+
+	return isPrintContext
+}
+
+export function DisableAnimationOnPrintProvider({
+	children,
+}: {
+	children: React.ReactNode
+}) {
+	const isPrintContext = useIsPrintContext()
+	console.log(isPrintContext)
 	return (
 		<DisableAnimationContext.Provider value={isPrintContext}>
 			{children}

@@ -242,7 +242,7 @@ function TargetInputOrValue({
 				)}
 			</span>
 			{(isActive || isFocused) && (
-				<div style={{ minWidth: '100%' }}>
+				<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
 					<FromTop>
 						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
 							<InputSuggestions

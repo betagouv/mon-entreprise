@@ -3,7 +3,6 @@ import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { FromTop } from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
@@ -108,7 +107,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 
 function PaySlipSection() {
 	return (
-		<section className="ui__ print-break-avoid">
+		<section>
 			<h2>
 				<Trans>Fiche de paie</Trans>
 			</h2>
@@ -129,11 +128,12 @@ export const DistributionSection = ({
 		{children}
 		<p className="ui__ notice">
 			<Trans>
-				<Emoji emoji="ℹ" /> Pour en savoir plus, rendez-vous sur le site{' '}
+				Pour en savoir plus, rendez-vous sur le site{' '}
 				<a href="https://www.aquoiserventlescotisations.urssaf.fr/">
 					aquoiserventlescotisations.urssaf.fr
 				</a>
 			</Trans>
 		</p>
+		<div className="ui__ print-break-after" />
 	</section>
 )

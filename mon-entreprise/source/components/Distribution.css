@@ -17,6 +17,8 @@
 
 .distribution-chart__bar {
 	border-radius: 0.4em;
+	background-color: var(--color);
+
 	min-height: 1.5em;
 }
 

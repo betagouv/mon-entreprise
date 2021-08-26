@@ -4,14 +4,14 @@ import { Trans } from 'react-i18next'
 
 export default function ExportRecover() {
 	return (
-		<section className="screen-display-none print-break-avoid">
-			<h2>
-				<Trans i18nKey="pages.simulateurs.print-info.title">
-					Vous souhaitez retrouver cette simulation ?
-				</Trans>
-			</h2>
-
+		<section className="ui__ screen-display-none print-break-avoid notice">
 			<p>
+				<strong>
+					<Trans i18nKey="pages.simulateurs.print-info.title">
+						Vous souhaitez retrouver cette simulation ?
+					</Trans>
+				</strong>
+
 				<Trans i18nKey="pages.simulateurs.print-info.recover">
 					Retrouvez la, ainsi que d'autres outils d'aide à la création et à la
 					gestion d'entreprise, sur{' '}

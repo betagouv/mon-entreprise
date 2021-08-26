@@ -1,6 +1,5 @@
 import { Condition } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
-import ExportRecover from 'Components/simulationExplanation/ExportRecover'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
@@ -87,10 +86,10 @@ export default function PageData({
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
 				{config && <PreviousSimulationBanner />}
+				<div className="ui__ print-break-after" />
 				{!inIframe && (
 					<>
 						{seoExplanations}
-						<ExportRecover></ExportRecover>
 						<NextSteps
 							iframePath={privateIframe ? undefined : iframePath}
 							nextSteps={nextSteps}

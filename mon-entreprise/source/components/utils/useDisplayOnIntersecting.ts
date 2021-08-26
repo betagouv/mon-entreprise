@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useIsPrintContext } from './DisableAnimationContext'
 
 export default function ({
 	root = null,
@@ -41,7 +42,8 @@ export default function ({
 		return () => {
 			node && unobserve && observer.unobserve(node)
 		}
-	}, [root, rootMargin, threshold, ref.current])
+	}, [root, rootMargin, threshold, unobserve])
 
-	return [ref, wasOnScreen]
+	const isPrintContext = useIsPrintContext()
+	return [ref, isPrintContext || wasOnScreen]
 }
