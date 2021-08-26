@@ -20,10 +20,11 @@ function ChartItemBar({
 	percentage,
 }: ChartItemBarProps) {
 	const language = useTranslation().i18n.language
+	const disableAnimation = useContext(DisableAnimationContext)
 	const style = useSpring({
 		config: config.slow,
 		delay: 100,
-		immediate: useContext(DisableAnimationContext),
+		immediate: disableAnimation,
 		from: {
 			flex: 0,
 		},

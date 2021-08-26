@@ -1,22 +1,24 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
+
 export const DisableAnimationContext = createContext(false)
 
 export const useIsPrintContext = () => {
 	const [isPrintContext, setPrintContext] = useState(false)
-	const onPrintContextChange = useCallback(
-		(matchMedia: MediaQueryListEvent | MediaQueryList) => {
-			setPrintContext(matchMedia.matches)
-		},
-		[setPrintContext]
-	)
+
 	useEffect(() => {
-		const matchMediaPrint = window.matchMedia('print')
-		onPrintContextChange(matchMediaPrint)
-		matchMediaPrint.addEventListener('change', onPrintContextChange)
-		return () => {
-			matchMediaPrint.removeEventListener('change', onPrintContextChange)
+		const matchListener = (matchMedia: MediaQueryListEvent) => {
+			setPrintContext(matchMedia.matches)
+			flushSync(() => setPrintContext(matchMedia.matches))
 		}
-	}, [onPrintContextChange])
+		const matchMediaPrint = window.matchMedia('print')
+
+		setPrintContext(matchMediaPrint.matches)
+		matchMediaPrint.addEventListener('change', matchListener)
+		return () => {
+			matchMediaPrint.removeEventListener('change', matchListener)
+		}
+	}, [])
 
 	// Fix for Firefox (see https://bugzilla.mozilla.org/show_bug.cgi?id=774398)
 	useEffect(() => {
@@ -35,7 +37,6 @@ export function DisableAnimationOnPrintProvider({
 	children: React.ReactNode
 }) {
 	const isPrintContext = useIsPrintContext()
-	console.log(isPrintContext)
 	return (
 		<DisableAnimationContext.Provider value={isPrintContext}>
 			{children}
