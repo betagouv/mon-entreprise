@@ -1,5 +1,5 @@
 import PageHeader from 'Components/PageHeader'
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -20,7 +20,7 @@ export default function Créer() {
 			!!Object.keys(state.inFranceApp.companyLegalStatus).length
 	)
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<TrackPage name="accueil" />
 
 			<Helmet>
@@ -102,6 +102,6 @@ export default function Créer() {
 					</Trans>
 				</Link>
 			</div>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }

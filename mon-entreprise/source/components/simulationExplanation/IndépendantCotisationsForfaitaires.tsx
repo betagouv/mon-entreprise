@@ -1,5 +1,5 @@
 import Value from 'Components/EngineValue'
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -10,7 +10,7 @@ export default function CotisationsForfaitaires() {
 		'dirigeant . indépendant . cotisations et contributions . début activité'
 	)
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<div className="ui__ lighter-bg content card">
 				<h2>{rule.title}</h2>
 				<p className="ui__ lead">
@@ -41,6 +41,6 @@ export default function CotisationsForfaitaires() {
 					</p>
 				)}
 			</div>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }

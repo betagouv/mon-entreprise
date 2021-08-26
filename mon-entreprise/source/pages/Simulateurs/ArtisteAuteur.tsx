@@ -9,27 +9,18 @@ import 'Components/TargetSelection.css'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import ircecSrc from 'Images/logos-caisses-retraite/ircec.jpg'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
 
 export default function ArtisteAuteur() {
 	useSimulationConfig(config)
-	const [animationDisabled, setAnimationDisabled] = useState(false)
 
 	return (
 		<>
 			<SimulateurWarning simulateur="artiste-auteur" />
-			<Simulation
-				userWillExport={() => {
-					setAnimationDisabled(true)
-				}}
-				disableAnimation={animationDisabled}
-				explanations={
-					<CotisationsResult disableAnimation={animationDisabled} />
-				}
-			>
+			<Simulation explanations={<CotisationsResult />}>
 				<PeriodSwitch />
 
 				<SimulationGoals className="plain">
@@ -42,16 +33,12 @@ export default function ArtisteAuteur() {
 	)
 }
 
-interface CotisationResultProps {
-	disableAnimation: boolean
-}
-
-function CotisationsResult({ disableAnimation }: CotisationResultProps) {
+function CotisationsResult() {
 	return (
 		<>
 			<CotisationsParOrganisme />
 			<Condition expression="artiste-auteur . cotisations > 0">
-				<RepartitionCotisations disableAnimation={disableAnimation} />
+				<RepartitionCotisations />
 			</Condition>
 		</>
 	)
@@ -112,13 +99,7 @@ const branches = [
 	},
 ] as const
 
-interface RepartitionCotisationsProps {
-	disableAnimation: boolean
-}
-
-function RepartitionCotisations({
-	disableAnimation,
-}: RepartitionCotisationsProps) {
+function RepartitionCotisations() {
 	const engine = useContext(EngineContext)
 	const cotisations = branches.map((branch) => ({
 		...branch,
@@ -137,7 +118,6 @@ function RepartitionCotisations({
 						<DistributionBranch
 							key={cotisation.dottedName}
 							maximum={maximum}
-							disableAnimation={disableAnimation}
 							{...cotisation}
 						/>
 					))}

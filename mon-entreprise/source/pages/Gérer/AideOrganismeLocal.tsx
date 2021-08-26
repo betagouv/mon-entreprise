@@ -1,7 +1,7 @@
+import { FromTop } from 'Components/ui/animate'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import animate from 'Components/ui/animate'
 import aideOrganismeSvg from './aideOrganisme.svg'
 
 const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {
@@ -26,7 +26,7 @@ export default function AideOrganismeLocal() {
 		return null
 	}
 	return (
-		<animate.fromTop>
+		<FromTop>
 			<section className="ui__ full-width" css="margin-top: 1rem;">
 				<div className="ui__ container" css="position:relative">
 					<img
@@ -50,6 +50,6 @@ export default function AideOrganismeLocal() {
 					</a>
 				</div>
 			</section>
-		</animate.fromTop>
+		</FromTop>
 	)
 }

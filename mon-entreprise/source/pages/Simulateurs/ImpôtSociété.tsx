@@ -3,7 +3,7 @@ import RuleInput from 'Components/conversation/RuleInput'
 import Value from 'Components/EngineValue'
 import Notifications from 'Components/Notifications'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
@@ -102,7 +102,7 @@ function Explanations() {
 		return <TrackPage name="accueil" />
 	}
 	return (
-		<Animate.fromTop>
+		<FromTop>
 			<p
 				className="ui__ lead card light-bg"
 				css={`
@@ -129,6 +129,6 @@ function Explanations() {
 					<Trans>Montant de l'impôt sur les sociétés</Trans>
 				</span>
 			</p>
-		</Animate.fromTop>
+		</FromTop>
 	)
 }

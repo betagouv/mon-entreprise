@@ -1,4 +1,3 @@
-import Animate from 'Components/ui/animate'
 import { LinkButton } from 'Components/ui/Button'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -6,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { TrackingContext } from '../ATInternetTracking'
 import Banner from './Banner'
+import { FromTop } from './ui/animate'
 import { useParamsFromSituation } from './utils/useSearchParamsSimulationSharing'
 
 export function useUrl() {
@@ -52,7 +52,7 @@ export default function ShareSimulationBanner() {
 			className="ui__ print-display-none"
 		>
 			{opened ? (
-				<Animate.fromTop>
+				<FromTop>
 					<div>
 						<span
 							className="ui__ close-button"
@@ -72,7 +72,7 @@ export default function ShareSimulationBanner() {
 						</p>
 						<ShareSimulationPopup url={url} />
 					</div>
-				</Animate.fromTop>
+				</FromTop>
 			) : (
 				<Trans i18nKey="shareSimulation.banner">
 					Pour partager cette simulation :{' '}

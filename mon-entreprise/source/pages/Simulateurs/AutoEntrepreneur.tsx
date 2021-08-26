@@ -6,21 +6,14 @@ import Simulation from 'Components/Simulation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { default as React, useContext, useState } from 'react'
+import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 export default function AutoEntrepreneur() {
-	const [animationDisabled, setAnimationDisabled] = useState(false)
 	return (
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
-			<Simulation
-				userWillExport={() => {
-					setAnimationDisabled(true)
-				}}
-				disableAnimation={animationDisabled}
-				explanations={<Explanation disableAnimation={animationDisabled} />}
-			>
+			<Simulation explanations={<Explanation />}>
 				<PeriodSwitch />
 				<SimulationGoals className="plain">
 					<ChiffreAffairesActivitéMixte dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires" />
@@ -43,11 +36,7 @@ export default function AutoEntrepreneur() {
 		</>
 	)
 }
-interface ExplanationProps {
-	disableAnimation: boolean
-}
-
-function Explanation({ disableAnimation }: ExplanationProps) {
+function Explanation() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 	return (
@@ -56,7 +45,6 @@ function Explanation({ disableAnimation }: ExplanationProps) {
 				<Trans>Répartition du chiffre d'affaires</Trans>
 			</h2>
 			<StackedBarChart
-				disableAnimation={disableAnimation}
 				data={[
 					{
 						dottedName: 'dirigeant . auto-entrepreneur . net après impôt',

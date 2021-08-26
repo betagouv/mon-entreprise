@@ -1,7 +1,7 @@
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
-import * as Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
@@ -9,13 +9,7 @@ import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 
-interface SalaryExplanationProps {
-	disableAnimation: boolean
-}
-
-export default function SalaryExplanation({
-	disableAnimation,
-}: SalaryExplanationProps) {
+export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
 
 	if (useInversionFail()) {
@@ -23,7 +17,7 @@ export default function SalaryExplanation({
 	}
 
 	return (
-		<Animate.fromTop>
+		<FromTop>
 			<RevenueRepartitionSection
 				onSeePayslip={() =>
 					payslipRef.current?.scrollIntoView({
@@ -31,10 +25,9 @@ export default function SalaryExplanation({
 						block: 'start',
 					})
 				}
-				disableAnimation={disableAnimation}
 			/>
 
-			<DistributionSection disableAnimation={disableAnimation} />
+			<DistributionSection />
 			<div ref={payslipRef}>
 				<PaySlipSection />
 			</div>
@@ -59,14 +52,11 @@ export default function SalaryExplanation({
 					<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
 				</Trans>
 			</p>
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 
-function RevenueRepartitionSection(props: {
-	onSeePayslip: () => void
-	disableAnimation: boolean
-}) {
+function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -111,7 +101,6 @@ function RevenueRepartitionSection(props: {
 						color: palettes[1][1],
 					},
 				]}
-				disableAnimation={props.disableAnimation}
 			/>
 		</section>
 	)
@@ -129,10 +118,8 @@ function PaySlipSection() {
 }
 
 export const DistributionSection = ({
-	disableAnimation,
-	children = <Distribution disableAnimation={disableAnimation} />,
+	children = <Distribution />,
 }: {
-	disableAnimation: boolean
 	children?: React.ReactNode
 }) => (
 	<section className="ui__ print-break-avoid">

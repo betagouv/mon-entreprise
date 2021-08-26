@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
-import { animated, config, useSpring } from 'react-spring'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'publicodes'
+import React, { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
+import { animated, config, useSpring } from 'react-spring'
+import { DisableAnimationContext } from './utils/DisableAnimationContext'
 
 const ANIMATION_SPRING = config.gentle
 
@@ -51,7 +52,6 @@ type BarChartBranchProps = {
 	maximum: number
 	description?: string
 	unit?: string
-	disableAnimation: boolean
 }
 
 export default function BarChartBranch({
@@ -61,7 +61,6 @@ export default function BarChartBranch({
 	maximum,
 	description,
 	unit,
-	disableAnimation,
 }: BarChartBranchProps) {
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5,
@@ -75,7 +74,7 @@ export default function BarChartBranch({
 		},
 	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
 
-	return !disableAnimation ? (
+	return !useContext(DisableAnimationContext) ? (
 		<animated.div
 			ref={intersectionRef}
 			className="distribution-chart__item"

@@ -1,6 +1,6 @@
 import Conversation from 'Components/conversation/Conversation'
 import { HiddenOptionContext } from 'Components/conversation/Question'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
@@ -254,7 +254,7 @@ function Results() {
 			/>
 		</>
 	) : (
-		<Animate.fromTop>
+		<FromTop>
 			<h3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aidesDisponibles">
 					Aides disponibles
@@ -267,7 +267,7 @@ function Results() {
 				</Trans>
 			</h3>
 			<AidesGrid aides={aidesInactives} />
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 
