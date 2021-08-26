@@ -209,7 +209,7 @@ input.ui__::placeholder {
 	color: grey;
 }
 @media screen {
-	.screen-display-none {
+	.ui__.screen-display-none {
 		display: none !important;
 	}
 }
@@ -220,14 +220,16 @@ input.ui__::placeholder {
 	}
 
 	.ui__.print-break-avoid {
-		page-break-inside: avoid;
 		break-inside: avoid;
+	}
+
+	.ui__.print-page-break {
+		break-before: always;
+		margin-top: -2rem;
 	}
 
 	.ui__.print-background-force {
 		color-adjust: exact !important;
-		-webkit-print-color-adjust: exact !important;
-		print-color-adjust: exact !important;
 	}
 
 	.ui__.toggle input[type='radio']:checked ~ * {

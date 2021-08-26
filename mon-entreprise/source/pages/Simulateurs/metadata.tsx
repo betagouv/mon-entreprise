@@ -139,7 +139,7 @@ export function getSimulatorsData({
 			shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.salarié.seo">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>Comment calculer le salaire net ?</h2>
 						<p>
 							Lors de l'entretien d'embauche l'employeur propose en général une
@@ -256,7 +256,7 @@ export function getSimulatorsData({
 			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>
 							Comment calculer le revenu net d'un dirigeant d'entreprise
 							individuelle (EI) ?
@@ -398,7 +398,7 @@ export function getSimulatorsData({
 			},
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
 						<p>
 							Comme pour un salarié classique, le{' '}
@@ -516,7 +516,7 @@ export function getSimulatorsData({
 			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>Comment calculer le revenu net d'un auto-entrepreneur ?</h2>
 						<p>
 							Un auto-entrepreneur doit payer des cotisations et contributions
@@ -673,7 +673,7 @@ export function getSimulatorsData({
 			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>Comment calculer l'indemnité d'activité partielle ?</h2>
 						<p>
 							L'indemnité d'activité partielle de base est fixée par la loi à{' '}
@@ -1077,7 +1077,7 @@ export function getSimulatorsData({
 			component: ISSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.is.seo">
-					<section className="ui__ print-break-avoid">
+					<section>
 						<h2>Comment est calculé l’impôt sur les sociétés ?</h2>
 						<p>
 							L’impôt sur les sociétés s’applique aux bénéfices réalisés par les

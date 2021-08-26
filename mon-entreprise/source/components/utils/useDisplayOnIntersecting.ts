@@ -41,7 +41,7 @@ export default function ({
 		return () => {
 			node && unobserve && observer.unobserve(node)
 		}
-	}, [root, rootMargin, threshold, ref.current])
+	}, [root, rootMargin, threshold, unobserve])
 
 	return [ref, wasOnScreen]
 }

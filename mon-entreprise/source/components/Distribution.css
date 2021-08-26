@@ -17,7 +17,15 @@
 
 .distribution-chart__bar {
 	border-radius: 0.4em;
-	min-height: 1.5em;
+	background-color: var(--color);
+
+	min-height: 1.5rem;
+}
+
+@media print {
+	.distribution-chart__bar {
+		min-height: 1rem;
+	}
 }
 
 .distribution-chart__item-content {
