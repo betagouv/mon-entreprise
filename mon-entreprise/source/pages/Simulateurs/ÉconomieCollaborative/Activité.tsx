@@ -1,4 +1,4 @@
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -36,7 +36,7 @@ export default function Activité({
 
 	if (activité.activités) {
 		return (
-			<Animate.fromBottom>
+			<FromBottom>
 				<TrackPage name={activité.titre} />
 				<ScrollToTop />
 				<h1>{activité.titre}</h1>
@@ -52,7 +52,7 @@ export default function Activité({
 						activités={activité.activités.map(({ titre }: Activity) => titre)}
 					/>
 				</section>
-			</Animate.fromBottom>
+			</FromBottom>
 		)
 	}
 
@@ -61,7 +61,7 @@ export default function Activité({
 	return (
 		<section key={title}>
 			<ScrollToTop />
-			<Animate.fromBottom>
+			<FromBottom>
 				<TrackPage name={activité.titre} />
 				<h1>
 					{emoji(activité.icônes)} {activité.titre}
@@ -188,7 +188,7 @@ export default function Activité({
 					</>
 				)}
 				<NextButton disabled={!seuilRevenus} activité={title} />
-			</Animate.fromBottom>
+			</FromBottom>
 		</section>
 	)
 }

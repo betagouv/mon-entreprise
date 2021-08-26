@@ -2,8 +2,8 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
-import Animate from 'Components/ui/animate'
 import './Banner.css'
+import { FadeIn } from './ui/animate'
 
 type BannerProps = {
 	children: React.ReactNode
@@ -24,11 +24,11 @@ export default function Banner({
 
 	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
 	return !hidden ? (
-		<Animate.fadeIn className={className}>
+		<FadeIn className={className}>
 			<div className={'ui__ banner ' + className}>
 				{icon && emoji(icon)}
 				<div className="ui__ banner-content">{children}</div>
 			</div>
-		</Animate.fadeIn>
+		</FadeIn>
 	) : null
 }

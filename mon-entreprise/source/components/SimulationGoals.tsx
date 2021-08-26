@@ -1,6 +1,5 @@
 import { updateSituation } from 'Actions/actions'
 import classnames from 'classnames'
-import Animate from 'Components/ui/animate'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import {
@@ -19,6 +18,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import RuleInput, { InputProps } from './conversation/RuleInput'
 import RuleLink from './RuleLink'
+import { Appear } from './ui/animate'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
 import { useEngine } from './utils/EngineContext'
 
@@ -100,7 +100,7 @@ export function SimulationGoal({
 			dispatch(updateSituation(dottedName, x))
 			onUpdateSituation?.(dottedName, x)
 		},
-		[dispatch, onUpdateSituation]
+		[dispatch, onUpdateSituation, dottedName]
 	)
 	if (
 		!alwaysShow &&
@@ -122,7 +122,7 @@ export function SimulationGoal({
 	}
 	return (
 		<li className={small ? 'small-target' : ''}>
-			<Animate.appear unless={!appear || initialRender}>
+			<Appear unless={!appear || initialRender}>
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
@@ -177,7 +177,7 @@ export function SimulationGoal({
 						)}
 					</div>
 				</div>
-			</Animate.appear>
+			</Appear>
 		</li>
 	)
 }

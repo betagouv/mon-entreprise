@@ -1,6 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -27,7 +27,6 @@ declare global {
 
 export default function ChômagePartiel() {
 	const inIframe = useContext(IsEmbeddedContext)
-	const [animationDisabled, setAnimationDisabled] = useState(false)
 	useEffect(() => {
 		if (inIframe) {
 			return
@@ -57,10 +56,6 @@ export default function ChômagePartiel() {
 				</ul>
 			</Warning>
 			<Simulation
-				userWillExport={() => {
-					setAnimationDisabled(true)
-				}}
-				disableAnimation={animationDisabled}
 				results={<ExplanationSection />}
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>
@@ -84,7 +79,7 @@ function ExplanationSection() {
 	const totalEntrepriseHabituel = 'chômage partiel . coût employeur habituel'
 
 	return (
-		<Animate.fromTop>
+		<FromTop>
 			<div
 				id="targetSelection"
 				className="ui__ light card"
@@ -149,7 +144,7 @@ function ExplanationSection() {
 					/>
 				</div>
 			</div>
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 

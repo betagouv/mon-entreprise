@@ -1,4 +1,4 @@
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -9,7 +9,7 @@ export default function CotisationsRégularisation() {
 		'dirigeant . indépendant . cotisations et contributions . régularisation'
 	)
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<div
 				className="ui__  lighter-bg card"
 				css={`
@@ -38,6 +38,6 @@ export default function CotisationsRégularisation() {
 					</p>
 				)}
 			</div>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }

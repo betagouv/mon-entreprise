@@ -1,5 +1,6 @@
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
+import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -155,15 +156,17 @@ export default function Provider({
 							})
 						}
 					>
-						<SiteNameContext.Provider value={basename}>
-							<SitePathProvider value={sitePaths}>
-								<I18nextProvider i18n={i18next}>
-									<Router history={history}>
-										<>{children}</>
-									</Router>
-								</I18nextProvider>
-							</SitePathProvider>
-						</SiteNameContext.Provider>
+						<DisableAnimationOnPrintProvider>
+							<SiteNameContext.Provider value={basename}>
+								<SitePathProvider value={sitePaths}>
+									<I18nextProvider i18n={i18next}>
+										<Router history={history}>
+											<>{children}</>
+										</Router>
+									</I18nextProvider>
+								</SitePathProvider>
+							</SiteNameContext.Provider>
+						</DisableAnimationOnPrintProvider>
 					</TrackingContext.Provider>
 				</ThemeColorsProvider>
 			</ReduxProvider>

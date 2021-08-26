@@ -6,7 +6,6 @@ import {
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import Value from 'Components/EngineValue'
-import * as Animate from 'Components/ui/animate'
 import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
@@ -19,6 +18,7 @@ import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
 import './SchemeComparaison.css'
 import { SimulationGoal, SimulationGoals } from './SimulationGoals'
+import { FromBottom } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
@@ -342,7 +342,7 @@ export default function SchemeComparaison({
 								<SimulationGoal dottedName="entreprise . charges" />
 							</SimulationGoals>
 							{displayResult && (
-								<Animate.fromBottom>
+								<FromBottom>
 									<div
 										className="ui__ card "
 										css={`
@@ -365,7 +365,7 @@ export default function SchemeComparaison({
 											}
 										/>
 									</div>
-								</Animate.fromBottom>
+								</FromBottom>
 							)}
 						</div>
 					)}

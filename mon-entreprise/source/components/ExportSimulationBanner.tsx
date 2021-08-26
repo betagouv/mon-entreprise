@@ -1,24 +1,9 @@
 import { LinkButton } from 'Components/ui/Button'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import Banner from './Banner'
 
-interface ExportSimulationBannerProps {
-	userWillExport: () => void
-	disableAnimation: boolean
-}
-
-export default function ExportSimulationBanner({
-	userWillExport,
-	disableAnimation,
-}: ExportSimulationBannerProps) {
-	const [printRequired, setPrintRequired] = useState(false)
-	useEffect(() => {
-		if (printRequired) {
-			window.print()
-			setPrintRequired(false)
-		}
-	}, [disableAnimation])
+export default function ExportSimulationBanner() {
 	return (
 		<Banner
 			hideAfterFirstStep={false}
@@ -30,8 +15,7 @@ export default function ExportSimulationBanner({
 					Pour conserver cette simulation :{' '}
 					<LinkButton
 						onClick={() => {
-							setPrintRequired(true)
-							disableAnimation ? window.print() : userWillExport()
+							window.print()
 						}}
 					>
 						Imprimer ou sauvegarder en PDF

@@ -1,4 +1,4 @@
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../ATInternetTracking'
@@ -12,7 +12,7 @@ export default function SocialSecurity() {
 				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
 			</Helmet>
 
-			<Animate.fromBottom>
+			<FromBottom>
 				<TrackPage name="securite_social" />
 				<Trans i18nKey="sécu.contenu">
 					<h1>Protection sociale </h1>
@@ -32,7 +32,7 @@ export default function SocialSecurity() {
 				<section style={{ marginTop: '2rem' }}>
 					<Video />
 				</section>
-			</Animate.fromBottom>
+			</FromBottom>
 		</>
 	)
 }

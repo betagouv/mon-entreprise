@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import Checkbox from 'Components/ui/Checkbox'
 import InfoBulle from 'Components/ui/InfoBulle'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -29,7 +29,7 @@ export default function ActivitésSelection() {
 	)
 	return (
 		<>
-			<Animate.fromBottom>
+			<FromBottom>
 				<TrackPage name="accueil" />
 				<ScrollToTop />
 				<h1>{titre}</h1>
@@ -70,7 +70,7 @@ export default function ActivitésSelection() {
 						{emoji('😌')}
 					</p>
 				</section>
-			</Animate.fromBottom>
+			</FromBottom>
 		</>
 	)
 }

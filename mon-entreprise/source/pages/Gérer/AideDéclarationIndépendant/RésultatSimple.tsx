@@ -1,6 +1,6 @@
 import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import emoji from 'react-easy-emoji'
@@ -54,7 +54,7 @@ export default function ResultatsSimples() {
 						return null
 					}
 					return (
-						<Animate.fromTop key={dottedName}>
+						<FromTop key={dottedName}>
 							<div
 								className="ui__ card"
 								css={`
@@ -94,7 +94,7 @@ export default function ResultatsSimples() {
 									</div>
 								)}
 							</div>
-						</Animate.fromTop>
+						</FromTop>
 					)
 				})}
 				<Condition
@@ -126,7 +126,7 @@ export default function ResultatsSimples() {
 								return null
 							}
 							return (
-								<Animate.fromTop style={{ display: 'flex' }} key={dottedName}>
+								<FromTop style={{ display: 'flex' }} key={dottedName}>
 									<div
 										className="ui__ box card"
 										css={`
@@ -155,7 +155,7 @@ export default function ResultatsSimples() {
 											</RuleLink>
 										</p>
 									</div>
-								</Animate.fromTop>
+								</FromTop>
 							)
 						})}
 					</div>

@@ -1,4 +1,4 @@
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -18,7 +18,7 @@ export default function AfterRegistration() {
 	const isAutoentrepreneur = statutChoisi?.match('auto-entrepreneur')
 
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
 			<div css="transform: translateY(2rem)">
@@ -116,6 +116,6 @@ export default function AfterRegistration() {
 					d'équipement professionnel auprès de fournisseurs, etc.
 				</Trans>
 			</p>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }

@@ -1,8 +1,8 @@
-import * as animate from 'Components/ui/animate'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
+import { FromBottom } from './ui/animate'
 
 // We don't want to load the full sendinblue iframe, so we reimplement a simple
 // logic to the a HTTP Post request to their URL with the email data.
@@ -37,7 +37,7 @@ export default function NewsletterRegister() {
 
 	if (userJustRegistered) {
 		return (
-			<animate.fromBottom>
+			<FromBottom>
 				<div
 					className="ui__ light-border"
 					css={`
@@ -52,7 +52,7 @@ export default function NewsletterRegister() {
 						</Trans>
 					</h4>
 				</div>
-			</animate.fromBottom>
+			</FromBottom>
 		)
 	}
 

@@ -5,7 +5,7 @@ import { Condition } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import 'Components/TargetSelection.css'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { useCallback } from 'react'
@@ -91,7 +91,7 @@ export default function AideDéclarationIndépendant() {
 
 			<ImpositionSection />
 
-			<Animate.fromTop>
+			<FromTop>
 				<FormBlock>
 					<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
 						<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
@@ -184,7 +184,7 @@ export default function AideDéclarationIndépendant() {
 						<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP" />
 					</Condition>
 				</FormBlock>
-			</Animate.fromTop>
+			</FromTop>
 			{FEATURE_FLAG_RESULTATS_COMPLETS ? (
 				<>
 					<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
@@ -235,7 +235,7 @@ function ImpositionSection() {
 								: 'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non'
 						}
 					>
-						<Animate.fromTop key={situation['entreprise . imposition']}>
+						<FromTop key={situation['entreprise . imposition']}>
 							<Condition expression="entreprise . imposition . IR">
 								<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
 								<Condition expression="entreprise . imposition . IR . micro-fiscal">
@@ -288,7 +288,7 @@ function ImpositionSection() {
 									/>
 								</BigInput>
 							</Condition>
-						</Animate.fromTop>
+						</FromTop>
 					</Condition>
 				</>
 			)}

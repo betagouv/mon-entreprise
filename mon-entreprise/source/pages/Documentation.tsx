@@ -1,6 +1,6 @@
 import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
-import * as Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -36,7 +36,7 @@ export default function RulePage() {
 		return <Redirect to="/404" />
 	}
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<TrackPage
 				chapter1="documentation"
 				name={documentationSitePaths[pathname]}
@@ -60,7 +60,7 @@ export default function RulePage() {
 					referenceImages={referencesImages}
 				/>
 			</ThemeColorsProvider>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }
 
