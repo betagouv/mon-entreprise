@@ -613,7 +613,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: JEI 1`] = `"[3441,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié: JEI 2`] = `
-"[26625,0,20000,15969,10503]
+"[26625,0,20000,15969,10332]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -623,7 +623,7 @@ exports[`calculate simulations-salarié: activité partielle 1`] = `"[27,0,1560,
 
 exports[`calculate simulations-salarié: activité partielle 2`] = `"[747,0,4000,2594,2392]"`;
 
-exports[`calculate simulations-salarié: activité partielle 3`] = `"[1989,0,8000,5209,4245]"`;
+exports[`calculate simulations-salarié: activité partielle 3`] = `"[1989,0,8000,5209,4148]"`;
 
 exports[`calculate simulations-salarié: activité partielle 4`] = `"[1428,0,4000,2704,2426]"`;
 
@@ -639,12 +639,12 @@ exports[`calculate simulations-salarié: activité partielle 9`] = `"[1241,0,200
 
 exports[`calculate simulations-salarié: activité partielle 10`] = `"[1407,0,6000,4182,3498]"`;
 
-exports[`calculate simulations-salarié: activité partielle 11`] = `"[3213,0,9000,6237,4945]"`;
+exports[`calculate simulations-salarié: activité partielle 11`] = `"[3213,0,9000,6237,4853]"`;
 
 exports[`calculate simulations-salarié: aides 1`] = `"[2303,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 2`] = `
-"[12825,0,10000,8911,7620]
+"[12825,0,10000,8911,7530]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé, contrat salarié . régime des impatriés . information"
 `;
 
@@ -994,21 +994,21 @@ exports[`calculate simulations-salarié: échelle de salaires 11`] = `"[5674,0,4
 exports[`calculate simulations-salarié: échelle de salaires 12`] = `"[7086,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: échelle de salaires 13`] = `
-"[14321,0,10000,7958,5975]
+"[14321,0,10000,7958,5874]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 14`] = `
-"[28349,0,20000,15969,10503]
+"[28349,0,20000,15969,10332]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 15`] = `
-"[128595,0,100000,87157,48426]
+"[128595,0,100000,87157,45797]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 16`] = `
-"[1244019,0,1000000,896257,498390]
+"[1244019,0,1000000,896257,445619]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;

@@ -35,7 +35,9 @@ situation:
     # Pour les hauts revenus le barème au taux neutre pose problème car il
     # provoque des effets de seuils importants (voir #1661). On revient donc à
     # la méthode “au barème” par défaut pour les hauts revenus. La valeur de
-    # 10000 €/mois car à partir de là les tranches du barème neutre augmentent
-    # par paliers de 4% ou 5%.
-    valeur: "'taux neutre'"
-    applicable si: contrat salarié . rémunération . brut de base <= 10000 €/mois
+    # 6000 €/mois correspond au seuil où les tranches du barème neutre
+    # augmentent par paliers de 4% ou 5%.
+    variations:
+      - si: contrat salarié . rémunération . brut de base <= 6000 €/mois
+        alors: "'taux neutre'"
+      - sinon: "'barème standard'"
