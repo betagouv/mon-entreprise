@@ -10,7 +10,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
-import { TrackPage } from '../../ATInternetTracking'
+import { toAtString, TrackPage } from '../../ATInternetTracking'
 import statsJson from '../../data/stats.json'
 import { debounce } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
@@ -18,9 +18,9 @@ import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Chart from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 import GlobalStats from './GlobalStats'
-import { formatDay, formatMonth, Indicators, Indicator } from './utils'
 import SatisfactionChart from './SatisfactionChart'
-import { StatsStruct, PageChapter2, Page, PageSatisfaction } from './types'
+import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
+import { formatDay, formatMonth, Indicator, Indicators } from './utils'
 
 const stats = statsJson as unknown as StatsStruct
 
@@ -291,6 +291,7 @@ const StatsDetail = () => {
 									period={'mois'}
 									data={repartition}
 									grid={false}
+									stack
 									layout={'vertical'}
 								/>
 							</>
@@ -339,7 +340,9 @@ function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 		return ''
 	}
 	const tracking = s.tracking as { chapter2?: Chapter2 }
-	return typeof tracking === 'string' ? tracking : tracking.chapter2 ?? ''
+	const chapter2 =
+		typeof tracking === 'string' ? tracking : tracking.chapter2 ?? ''
+	return toAtString(chapter2) as typeof chapter2
 }
 function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
 	const simulateur = Object.values(useSimulatorsData()).find(

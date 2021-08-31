@@ -35,7 +35,9 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	if (!data.length) {
 		return null
 	}
-	const flattenData = data.map((d) => ({ ...d, ...toPercentage(d.nombre) }))
+	const flattenData = data
+		.map((d) => ({ ...d, ...toPercentage(d.nombre) }))
+		.filter((d) => Object.values(d.nombre).reduce((a, b) => a + b, 0))
 	return (
 		<>
 			<ResponsiveContainer width="100%" height={400}>
