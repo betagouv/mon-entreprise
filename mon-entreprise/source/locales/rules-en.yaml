@@ -5057,6 +5057,9 @@ dirigeant . assimilé salarié:
 dirigeant . assimilé salarié . réduction ACRE:
   titre.en: '[automatic] ACRE reduction'
   titre.fr: réduction ACRE
+dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
+  titre.en: '[automatic] base reduced rate'
+  titre.fr: assiette taux réduit
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
   description.en: >
     [automatic] The ACRE rate used is an annual average. The
@@ -5067,9 +5070,6 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
     simulateur ne prends pas encore en compte le calcul de l'ACRE mois par mois.
   titre.en: '[automatic] notification annual rate'
   titre.fr: notification taux annuel
-dirigeant . assimilé salarié . réduction ACRE . taux:
-  titre.en: '[automatic] ACRE rate'
-  titre.fr: taux ACRE
 dirigeant . auto-entrepreneur:
   description.en: >
     Self-enterprise is a simplified sole proprietorship. At the beginning
