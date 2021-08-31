@@ -1,8 +1,8 @@
 import emoji from 'react-easy-emoji'
-import { Indicators, Indicator } from './utils'
-import { SatisfactionLevel, StatsStruct } from './types'
 import { useTranslation } from 'react-i18next'
 import { SatisfactionStyle } from './SatisfactionChart'
+import { SatisfactionLevel, StatsStruct } from './types'
+import { Indicator, Indicators } from './utils'
 
 const add = (a: number, b: number) => a + b
 const lastCompare = (startDate: Date, dateStr: string) =>
@@ -105,7 +105,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 	const last30dConv = Math.round((100 * last30dCommenceNum) / last30dVisitsNum)
 
 	const last30dSatisfactions = stats.satisfaction
-		.filter(({ date }) => lastCompare(day30before, date))
+		.filter(({ date }) => date.startsWith(new Date().toISOString().slice(0, 7)))
 		.reduce(
 			(acc, { click: satisfactionLevel, nombre }) => ({
 				...acc,
@@ -183,7 +183,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 							<RetoursAsProgress percentages={last30dSatisfactionPercentages} />
 						</div>
 					}
-					footnote={`${last30dSatisfactionTotal} avis sur les 30 derniers jours`}
+					footnote={`${last30dSatisfactionTotal} avis ce mois ci`}
 					width="75%"
 				/>
 			</Indicators>
