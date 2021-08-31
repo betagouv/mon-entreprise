@@ -116,26 +116,33 @@ dirigeant . assimilé salarié:
 
 dirigeant . assimilé salarié . réduction ACRE:
   applicable si: entreprise . ACRE
-  formule:
-    produit:
-      assiette:
+  non applicable si: contrat salarié . cotisations . assiette > 100% * plafond sécurité sociale temps plein
+  variations:
+    - si: contrat salarié . cotisations . assiette <= 75% * plafond sécurité sociale temps plein
+      alors:
         somme:
           - contrat salarié . maladie
           - contrat salarié . allocations familiales
           - contrat salarié . vieillesse
-      taux: taux
+    - sinon:
+        produit:
+          assiette: assiette taux réduit
+          taux: (plafond sécurité sociale temps plein - contrat salarié . cotisations . assiette) / (25% * plafond sécurité sociale temps plein)
 
-dirigeant . assimilé salarié . réduction ACRE . taux:
-  titre: taux ACRE
-  formule:
-    taux progressif:
-      assiette: contrat salarié . cotisations . assiette
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - plafond: 75%
-          taux: 100%
-        - plafond: 100%
-          taux: 0%
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/laccre/quelles-exonerations.html#FilAriane
+
+dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
+  recalcul:
+    règle:
+      somme:
+        - contrat salarié . maladie
+        - contrat salarié . allocations familiales
+        - contrat salarié . vieillesse
+    avec:
+      contrat salarié . cotisations . assiette: 75% * plafond sécurité sociale temps plein
+      entreprise . ACRE: non
+      contrat salarié . maladie . employeur . contribution solidarité autonomie: non
 
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
   formule: oui
