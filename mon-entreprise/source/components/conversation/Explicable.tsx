@@ -6,7 +6,6 @@ import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
 import usePortal from 'react-useportal'
-import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	const engine = useContext(EngineContext)
