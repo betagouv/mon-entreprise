@@ -25,34 +25,37 @@ export default function SalaryExplanation() {
 					})
 				}
 			/>
-
 			<DistributionSection />
-			<div ref={payslipRef}>
-				<PaySlipSection />
-			</div>
-			<br />
-			<p className="ui__ notice">
-				<Trans i18nKey="payslip.notice">
-					Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
-					être opposable. Pour plus d&apos;informations, rendez vous sur&nbsp;
-					<a href="https://www.service-public.fr/particuliers/vosdroits/F559">
-						service-public.fr
-					</a>
-					.
-				</Trans>
-			</p>
-			<p className="ui__ notice">
-				<Trans i18nKey="payslip.disclaimer">
-					Il ne prend pour l'instant pas en compte les accords et conventions
-					collectives, ni la myriade d'aides aux entreprises. Trouvez votre
-					convention collective{' '}
-					<a href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
-						ici
-					</a>
-					, et explorez les aides sur&nbsp;
-					<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
-				</Trans>
-			</p>
+
+			<section ref={payslipRef}>
+				<h2>
+					<Trans>Fiche de paie</Trans>
+				</h2>
+				<PaySlip />
+				<p className="ui__ notice">
+					<Trans i18nKey="payslip.notice">
+						Le simulateur vous aide à comprendre votre bulletin de paie, sans
+						lui être opposable. Pour plus d&apos;informations, rendez vous
+						sur&nbsp;
+						<a href="https://www.service-public.fr/particuliers/vosdroits/F559">
+							service-public.fr
+						</a>
+						.
+					</Trans>
+				</p>
+				<p className="ui__ notice">
+					<Trans i18nKey="payslip.disclaimer">
+						Il ne prend pour l'instant pas en compte les accords et conventions
+						collectives, ni la myriade d'aides aux entreprises. Trouvez votre
+						convention collective{' '}
+						<a href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
+							ici
+						</a>
+						, et explorez les aides sur&nbsp;
+						<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
+					</Trans>
+				</p>
+			</section>
 		</FromTop>
 	)
 }
@@ -107,23 +110,12 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	)
 }
 
-function PaySlipSection() {
-	return (
-		<section className="ui__ print-break-avoid">
-			<h2>
-				<Trans>Fiche de paie</Trans>
-			</h2>
-			<PaySlip />
-		</section>
-	)
-}
-
 export const DistributionSection = ({
 	children = <Distribution />,
 }: {
 	children?: React.ReactNode
 }) => (
-	<section className="ui__ print-break-avoid">
+	<section>
 		<h2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
 		</h2>

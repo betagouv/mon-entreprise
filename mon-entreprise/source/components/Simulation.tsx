@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
+import ExportRecover from './simulationExplanation/ExportRecover'
 import { FromTop } from './ui/animate'
 
 type SimulationProps = {
@@ -38,6 +39,7 @@ export default function Simulation({
 	)
 	return (
 		<>
+			<ExportRecover />
 			{simulationBloc}
 
 			<SearchButton invisibleButton />
@@ -49,7 +51,6 @@ export default function Simulation({
 						<ShareSimulationBanner />
 						<ExportSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
-						<br />
 						<div className="ui__ full-width">
 							<div className="ui__ container-and-side-block">
 								{explanations && (

@@ -1,25 +1,30 @@
 html {
 	transition: none !important;
-	line-height: 1.7rem;
 }
-@media (max-width: 500px) {
+
+@media print {
+	html {
+		line-height: 1.5em;
+	}
+}
+
+@media screen {
+	html {
+		line-height: 1.7em;
+	}
+}
+@media screen and (max-width: 500px) {
 	html {
 		font-size: 0.9em;
 	}
 }
 
-@media print {
-	html {
-		font-size: 0.9em;
-		line-height: 1.5rem;
-	}
-}
-@media (min-width: 500px) and (max-width: 1920px) {
+@media screen and (min-width: 500px) and (max-width: 1920px) {
 	html {
 		font-size: 1.1em;
 	}
 }
-@media (min-width: 1920px) {
+@media screen and (min-width: 1920px) {
 	html {
 		font-size: 1.16em;
 	}
@@ -46,6 +51,7 @@ h2:not(.h),
 	font-size: 1.4rem;
 	line-height: 2.1rem;
 }
+
 h3:not(.h),
 .ui__.h.h3 {
 	margin-top: 1rem;

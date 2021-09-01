@@ -1,3 +1,4 @@
+import { FromTop } from 'Components/ui/animate'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
@@ -94,9 +95,10 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 		},
 		[setSearchResults, setLoadingState]
 	)
-	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch,
-	])
+	const debouncedHandleSearch = useMemo(
+		() => debounce(300, handleSearch),
+		[handleSearch]
+	)
 
 	const handleSubmit = useCallback(
 		async (commune: Commune) => {

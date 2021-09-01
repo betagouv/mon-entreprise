@@ -85,16 +85,16 @@ export default function PageData({
 
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
+
 				{config && <PreviousSimulationBanner />}
 				{!inIframe && (
-					<div>
-						<div className="ui__ print-page-break" />
-						{seoExplanations}
+					<>
+						<section>{seoExplanations}</section>
 						<NextSteps
 							iframePath={privateIframe ? undefined : iframePath}
 							nextSteps={nextSteps}
 						/>
-					</div>
+					</>
 				)}
 			</ThemeColorsProvider>
 		</>

@@ -1,36 +1,37 @@
 section {
 	padding: 1rem 0;
 }
-
-.ui__.container {
-	width: 100%;
-	max-width: 850px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-right: 0.6rem;
-	padding-left: 0.6rem;
-}
-.ui__.container .ui__.full-width {
-	--margin: calc((850px - 100vw - 0.6rem) / 2);
-	margin-right: var(--margin);
-	margin-left: var(--margin);
-}
-@media (max-width: 850px) {
+@media screen {
+	.ui__.container {
+		width: 100%;
+		max-width: 850px;
+		margin-right: auto;
+		margin-left: auto;
+		padding-right: 0.6rem;
+		padding-left: 0.6rem;
+	}
 	.ui__.container .ui__.full-width {
-		margin: 0 -0.6rem;
+		--margin: calc((850px - 100vw - 0.6rem) / 2);
+		margin-right: var(--margin);
+		margin-left: var(--margin);
+	}
+	@media (max-width: 850px) {
+		.ui__.container .ui__.full-width {
+			margin: 0 -0.6rem;
+		}
+	}
+
+	.ui__.container-and-side-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.ui__.container-and-side-block > .container {
+		flex-shrink: 0;
 	}
 }
 
-.ui__.container-and-side-block {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.ui__.container-and-side-block > .container {
-	flex-shrink: 0;
-}
-
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
 	.ui__.container-and-side-block {
 		flex-direction: row;
 		align-items: flex-start;
@@ -42,13 +43,13 @@ section {
 	display: flex;
 	flex-direction: column;
 }
-@media (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
 	.ui__.side-block {
 		align-self: center;
 	}
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
 	.ui__.side-block {
 		margin-top: -1rem;
 
