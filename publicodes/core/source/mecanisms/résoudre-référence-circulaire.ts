@@ -14,83 +14,82 @@ export type RésoudreRéférenceCirculaireNode = {
 	nodeKind: 'résoudre référence circulaire'
 }
 
-export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoudre référence circulaire'> = function (
-	node
-) {
-	const originalCache = this.cache
-	let inversionNumberOfIterations = 0
+export const evaluateRésoudreRéférenceCirculaire: EvaluationFunction<'résoudre référence circulaire'> =
+	function (node) {
+		const originalCache = this.cache
+		let inversionNumberOfIterations = 0
 
-	const evaluateWithValue = (
-		n: number,
-		unit: Unit = { numerators: [], denominators: [] }
-	) => {
-		inversionNumberOfIterations++
-		this.resetCache()
+		const evaluateWithValue = (
+			n: number,
+			unit: Unit = { numerators: [], denominators: [] }
+		) => {
+			inversionNumberOfIterations++
+			this.resetCache()
 
-		this.parsedSituation[node.explanation.ruleToSolve] = {
-			unit: unit,
-			nodeKind: 'unité',
-			explanation: {
-				nodeKind: 'constant',
-				nodeValue: n,
-				type: 'number',
-			} as ConstantNode,
-		} as UnitéNode
-		return this.evaluate(node.explanation.valeur)
-	}
-
-	let nodeValue: number | null | undefined = null
-
-	const x0 = 0
-	let valeur = evaluateWithValue(x0)
-
-	const y0 = valeur.nodeValue as number
-	const unit = valeur.unit
-	const missingVariables = valeur.missingVariables
-	let i = 0
-	if (y0 !== null) {
-		// The `uniroot` function parameter. It will be called with its `min` and
-		// `max` arguments, so we can use our cached nodes if the function is called
-		// with the already computed x1 or x2.
-		const test = (x: number): number => {
-			if (x === x0) {
-				return y0 - x0
-			}
-			valeur = evaluateWithValue(x, unit)
-			const y = valeur.nodeValue
-			i++
-			return (y as number) - x
+			this.parsedSituation[node.explanation.ruleToSolve] = {
+				unit: unit,
+				nodeKind: 'unité',
+				explanation: {
+					nodeKind: 'constant',
+					nodeValue: n,
+					type: 'number',
+				} as ConstantNode,
+			} as UnitéNode
+			return this.evaluate(node.explanation.valeur)
 		}
 
-		const defaultMin = -1_000_000
-		const defaultMax = 100_000_000
+		let nodeValue: number | null | undefined = null
 
-		nodeValue = uniroot(test, defaultMin, defaultMax, 0.5, 30, 2)
-	}
+		const x0 = 0
+		let valeur = evaluateWithValue(x0)
 
-	this.cache = originalCache
+		const y0 = valeur.nodeValue as number
+		const unit = valeur.unit
+		const missingVariables = valeur.missingVariables
+		let i = 0
+		if (y0 !== null) {
+			// The `uniroot` function parameter. It will be called with its `min` and
+			// `max` arguments, so we can use our cached nodes if the function is called
+			// with the already computed x1 or x2.
+			const test = (x: number): number => {
+				if (x === x0) {
+					return y0 - x0
+				}
+				valeur = evaluateWithValue(x, unit)
+				const y = valeur.nodeValue
+				i++
+				return (y as number) - x
+			}
 
-	if (nodeValue === undefined) {
-		nodeValue = null
-		this.cache._meta.inversionFail = true
-	}
-	if (nodeValue !== null) {
-		valeur = evaluateWithValue(nodeValue, unit)
-	}
-	delete this.parsedSituation[node.explanation.ruleToSolve]
+			const defaultMin = -1_000_000
+			const defaultMax = 100_000_000
 
-	return {
-		...node,
-		unit,
-		nodeValue,
-		explanation: {
-			...node.explanation,
-			valeur,
-			inversionNumberOfIterations,
-		},
-		missingVariables,
+			nodeValue = uniroot(test, defaultMin, defaultMax, 0.5, 30, 2)
+		}
+
+		this.cache = originalCache
+
+		if (nodeValue === undefined) {
+			nodeValue = null
+			this.cache._meta.inversionFail = true
+		}
+		if (nodeValue !== null) {
+			valeur = evaluateWithValue(nodeValue, unit)
+		}
+		delete this.parsedSituation[node.explanation.ruleToSolve]
+
+		return {
+			...node,
+			unit,
+			nodeValue,
+			explanation: {
+				...node.explanation,
+				valeur,
+				inversionNumberOfIterations,
+			},
+			missingVariables,
+		}
 	}
-}
 
 export default function parseRésoudreRéférenceCirculaire(v, context: Context) {
 	return {

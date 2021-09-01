@@ -25,8 +25,8 @@ contrat salarié . convention collective . optique . prime d'ancienneté:
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichIDCC.do?idSectionTA=KALISCTA000005736434&cidTexte=KALITEXT000005649634&idConvention=KALICONT000005635912
 
-? contrat salarié . convention collective . optique . salaire minimum conventionnel
-: unité: €/mois
+contrat salarié . convention collective . optique . salaire minimum conventionnel:
+  unité: €/mois
   formule:
     variations:
       - si: coefficient < 110

@@ -85,8 +85,8 @@ contrat salarié . intermittents du spectacle . caisse des congés spectacle:
     audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
-? contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre
-: applicable si:
+contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre:
+  applicable si:
     une de ces conditions:
       - statut cadre
       - technicien
@@ -191,16 +191,16 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux:
       par: FNAL . taux * réduction de taux
   formule: 70%
 
-? contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP
-: remplace: ATMP . taux
+contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP:
+  remplace: ATMP . taux
   formule:
     variations:
       - si: régime alsace moselle
         alors: 1.54%
       - sinon: 1.12%
 
-? contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés
-: question: Pour combien de jours continus l'artiste est-il engagé ?
+contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
+  question: Pour combien de jours continus l'artiste est-il engagé ?
   par défaut: 5 jours
 
 contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
@@ -222,12 +222,12 @@ contrat salarié . intermittents du spectacle . artiste . acteur de complément:
   question: L'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
   par defaut: non
 
-? contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés
-: remplace: artiste . nombre jours travaillés
+contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
+  remplace: artiste . nombre jours travaillés
   formule: 1
 
-? contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
-: applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
+contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire:
+  applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
   remplace:
     - contrat salarié . cotisations . assiette forfaitaire
     - règle: nombre jours travaillés

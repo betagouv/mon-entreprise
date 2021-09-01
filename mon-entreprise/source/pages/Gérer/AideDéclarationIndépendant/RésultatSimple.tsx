@@ -45,10 +45,12 @@ export default function ResultatsSimples() {
 					Vous pouvez reporter les montants suivants dans votre déclaration,
 					calculés à partir des informations saisies.
 				</p>
-				{([
-					'aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires',
-					'aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible',
-				] as const).map((dottedName) => {
+				{(
+					[
+						'aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires',
+						'aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible',
+					] as const
+				).map((dottedName) => {
 					const r = engine.getRule(dottedName)
 					if (engine.evaluate(dottedName).nodeValue === false) {
 						return null
@@ -114,13 +116,15 @@ export default function ResultatsSimples() {
 							grid-template-columns: repeat(3, auto);
 						`}
 					>
-						{([
-							'aide déclaration revenu indépendant 2020 . réduction covid . total',
-							'aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal',
-							'aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible',
-							'aide déclaration revenu indépendant 2020 . résultat simple . CFP',
-							'aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale',
-						] as const).map((dottedName) => {
+						{(
+							[
+								'aide déclaration revenu indépendant 2020 . réduction covid . total',
+								'aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal',
+								'aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible',
+								'aide déclaration revenu indépendant 2020 . résultat simple . CFP',
+								'aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale',
+							] as const
+						).map((dottedName) => {
 							const r = engine.getRule(dottedName)
 							if (engine.evaluate(dottedName).nodeValue === false) {
 								return null
