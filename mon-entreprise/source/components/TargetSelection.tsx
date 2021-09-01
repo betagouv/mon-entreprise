@@ -4,7 +4,6 @@ import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
 import AnimatedTargetValue from 'Components/ui/AnimatedTargetValue'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import {
 	EngineContext,
 	useEngine,
@@ -41,13 +40,15 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 	)
 	return (
 		<div id="targetSelection">
-			{((typeof objectifs[0] === 'string'
-				? [{ objectifs }]
-				: objectifs) as Array<{
-				icône?: string
-				nom?: string
-				objectifs: Array<DottedName>
-			}>).map(({ icône, objectifs: targets, nom }, index: number) => (
+			{(
+				(typeof objectifs[0] === 'string'
+					? [{ objectifs }]
+					: objectifs) as Array<{
+					icône?: string
+					nom?: string
+					objectifs: Array<DottedName>
+				}>
+			).map(({ icône, objectifs: targets, nom }, index: number) => (
 				<Fragment key={nom || '0'}>
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
@@ -160,7 +161,6 @@ function TargetInputOrValue({
 	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
-	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
 	const [isFocused, setFocused] = useState(false)
 	const targetUnit = useSelector(targetUnitSelector)
@@ -201,10 +201,6 @@ function TargetInputOrValue({
 					<>
 						{!isFocused && <AnimatedTargetValue value={value} />}
 						<CurrencyInput
-							style={{
-								color: colors.textColor,
-								borderColor: colors.textColor,
-							}}
 							debounce={750}
 							name={target.dottedName}
 							value={value}
