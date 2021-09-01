@@ -177,20 +177,18 @@ Pour tester les règles, il est recommandé de:
 
 ### Documentation
 
-Un tutoriel sur publicodes est disponible sur https://publi.codes.
+La documentation de publicodes est disponible sur https://publi.codes.
 
 Un wiki contenant des informations intéressantes sur publicodes et le
 raisonnement ayant abouti à ce langage sont dispos sur le repository
-[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
-ailleurs inutilisé.
+[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki)
 
 Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
 contenant les règles elles-mêmes (dans le dossier `modele-social`) mais cela
 peut s'avérer assez abrupt.
 
-Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
-dans un premier temps, puis au [mécanismes en
-place](./publicodes/source/mecanisms).
+Essayez plutôt de jeter un oeil [aux tests](https://github.com/betagouv/publicodes/tree/master/core/test/m%C3%A9canismes)
+dans un premier temps, et pourquoi pas à [à l'implémentation des mécanismes](https://github.com/betagouv/publicodes/tree/master/core/source/mecanisms).
 
 ### Traduction des normes (lois) en règles Publicodes
 
