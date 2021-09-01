@@ -218,16 +218,6 @@ input.ui__::placeholder {
 	.ui__.print-display-none {
 		display: none !important;
 	}
-
-	.ui__.print-break-avoid {
-		break-inside: avoid;
-	}
-
-	.ui__.print-page-break {
-		break-before: always;
-		margin-top: -2rem;
-	}
-
 	.ui__.print-background-force {
 		color-adjust: exact !important;
 	}
@@ -235,4 +225,12 @@ input.ui__::placeholder {
 	.ui__.toggle input[type='radio']:checked ~ * {
 		box-shadow: none;
 	}
+
+	body {
+		margin: 00mm;
+	}
+}
+@page {
+	margin-top: 0.7cm;
+	margin-bottom: 0.7cm;
 }

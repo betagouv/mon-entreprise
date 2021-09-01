@@ -77,11 +77,7 @@ export function SimpleField({
 		return null
 	}
 	return (
-		<div
-			css={`
-				break-inside: avoid;
-			`}
-		>
+		<div>
 			<FromTop>
 				<Question>
 					<div
