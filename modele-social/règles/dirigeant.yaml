@@ -227,8 +227,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
-? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace
-: remplace:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
+  remplace:
     - règle: taux service
       par: 0.65%
     - règle: taux vente
@@ -239,8 +239,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
-? dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle
-: remplace:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle:
+  remplace:
     - règle: taux service
       par: 0.83%
     - règle: taux vente
@@ -249,8 +249,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
-? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
-: titre: Contribution à la formation professionnelle
+dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
+  titre: Contribution à la formation professionnelle
   description: |
     En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
     contribution à la formation professionnelle leur permettant de bénéficier du
@@ -310,8 +310,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-charges-sociales
     actualité urssaf.fr (2019): https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/nouveautes-2019--ce-qui-change-e.html
 
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE
-: titre: taux ACRE auto-entrepreneur
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+  titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . ACRE
   remplace:
     règle: taux vente restauration hébergement
@@ -356,8 +356,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service
-: remplace: taux prestation de service
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
+  remplace: taux prestation de service
   titre: taux prestation de service avec ACRE
   variations:
     - si:
@@ -553,8 +553,8 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
         plafond: 100%
     arrondi: oui
 
-? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année
-: description: |
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description: |
     Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
     l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
 
@@ -565,8 +565,8 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
 
   formule: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
 
-? dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux
-: formule:
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
+  formule:
     taux progressif:
       assiette: assiette des cotisations
       multiplicateur: PSS proratisé
@@ -601,8 +601,8 @@ dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
     une assiette équivalente à 40% du PASS.
   formule: assiette = 'forfaitaire'
 
-? dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage
-: description: |
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
+  description: |
     Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   formule: assiette = 'revenu avec partage'
@@ -613,8 +613,8 @@ dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
       - cotisations et contributions . retraite de base
       - cotisations et contributions . retraite complémentaire
       - cotisations et contributions . invalidité et décès
-? dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage
-: description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise (un tiers ou la moitié).
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise (un tiers ou la moitié).
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
@@ -627,12 +627,12 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
         - tiers
         - moitié
 
-? dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers
-: formule: pourcentage = 'tiers'
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers:
+  formule: pourcentage = 'tiers'
   titre: '1/3'
 
-? dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié
-: formule: pourcentage = 'moitié'
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié:
+  formule: pourcentage = 'moitié'
   titre: '1/2'
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
@@ -660,16 +660,16 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
       - invalidité et décès
       - indemnités journalières maladie
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite
-: le maximum de:
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
+  le maximum de:
     - cotisations . assiette
     - 5.25% * plafond sécurité sociale temps plein
     - 200 heures/an * SMIC horaire
   unité: €/an
   arrondi: oui
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
-: unité: €/an
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  unité: €/an
   barème:
     assiette: assiette retraite
     multiplicateur: plafond sécurité sociale temps plein
@@ -679,8 +679,8 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
       - taux: 0.6%
   arrondi: oui
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire
-: unité: €/an
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  unité: €/an
   barème:
     assiette: retraite complémentaire . assiette
     tranches:
@@ -690,8 +690,8 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
         plafond: 4 * plafond sécurité sociale temps plein
   arrondi: oui
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette
-: titre: assiette retraite complémentaire
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
+  titre: assiette retraite complémentaire
   unité: €/an
   valeur: assiette retraite
   plafond:
@@ -700,22 +700,22 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
         alors: 4 * plafond sécurité sociale temps plein
       - sinon: 3 * plafond sécurité sociale temps plein
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette
-: titre: assiette invalidité et décès
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
+  titre: assiette invalidité et décès
   formule:
     le maximum de:
       - cotisations . assiette
       - 20% * plafond sécurité sociale temps plein
-? dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès
-: unité: €/an
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  unité: €/an
   produit:
     assiette: assiette
     taux: 1.3%
     plafond: plafond sécurité sociale temps plein
   arrondi: oui
 
-? dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie
-: produit:
+dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  produit:
     assiette:
       valeur: 40% * plafond sécurité sociale temps plein
       unité: €/an
@@ -789,8 +789,8 @@ dirigeant . indépendant . assiette minimale . retraite:
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
 
-? dirigeant . indépendant . cotisations et contributions . contributions spéciales
-: description: |
+dirigeant . indépendant . cotisations et contributions . contributions spéciales:
+  description: |
     Certains régimes spéciaux peuvent ajouter des contributions additionnelles
     (par exemple, la CURPS pour les CPAM)
   formule: non
@@ -816,8 +816,8 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
     Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.
   par défaut: 0 €/an
 
-? dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits
-: titre: assiette des cotisations (avec déduction tabac)
+dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits:
+  titre: assiette des cotisations (avec déduction tabac)
   applicable si: déduction tabac
   remplace:
     règle: assiette des cotisations
@@ -879,8 +879,8 @@ dirigeant . indépendant . cotisations facultatives . contrats madelin:
     - prévoyance
     - retraite
 
-? dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance
-: titre: Souscription à un contrat de prévoyance complémentaire Madelin
+dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
+  titre: Souscription à un contrat de prévoyance complémentaire Madelin
   question: Quel est le montant que vous versez pour vos contrats Madelin de prévoyance complémentaire (santé, perte d'emploi subie) ?
   unité: €/an
   description: |
@@ -912,8 +912,8 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
   note: |
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
-? dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite
-: titre: Souscription à une retraite Madelin
+dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
+  titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez pour votre contrat Madelin retraite complémentaire ?
   description: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
@@ -925,8 +925,8 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
   par défaut: 0 €/an
 
-? dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire
-: unité: €/an
+dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire:
+  unité: €/an
   formule:
     le maximum de:
       - barème:
@@ -981,8 +981,8 @@ dirigeant . indépendant . cotisations et contributions . début activité:
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html
 
-? dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire
-: produit:
+dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
+  produit:
     assiette: PSS proratisé
     taux: 19%
   unité: €/an
@@ -1016,8 +1016,8 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
     Article L131-6-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037062224/
     Article D131-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000038786941/2021-03-01/?isSuggest=true
 
-? dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie
-: synonyme: maladie 2
+dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
+  synonyme: maladie 2
   description: |
     Cotisations pour les indemnités journalières des indépendants. Si l'état de
     santé des artisans, commerçants, industriels et conjoints collaborateurs
@@ -1061,8 +1061,8 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire
-: description: |
+dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire:
+  description: |
     La réduction supplémentaire du taux maladie pour les revenu inférieurs à 40% du plafond de la sécurité sociale
   non applicable si: situation personnelle . RSA
   remplace:
@@ -1080,8 +1080,8 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-? dirigeant . indépendant . cotisations et contributions . maladie . taux progressif
-: taux progressif:
+dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
+  taux progressif:
     assiette:
       nom: assiette
       valeur: assiette des cotisations
@@ -1109,8 +1109,8 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? dirigeant . indépendant . cotisations et contributions . retraite complémentaire
-: formule:
+dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  formule:
     barème:
       assiette: assiette des cotisations
       tranches:
@@ -1199,8 +1199,8 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
       - dirigeant . indépendant . IJSS . imposable
   plancher: 0 €/mois
 
-? dirigeant . indépendant . cotisations et contributions . formation professionnelle
-: acronyme: CFP
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
+  acronyme: CFP
   produit:
     assiette: plafond sécurité sociale temps plein
     taux:
@@ -1261,8 +1261,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   applicable si: entreprise . date de création < 01/2016
   rend non applicable: invalidité et décès
 
-? dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
-: question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
+dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
+  question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
   par défaut: non
   rend non applicable:
@@ -1271,8 +1271,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
     - indemnités journalières maladie
     - retraite complémentaire
 
-? dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux
-: titre: taux exonération ZFU
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
+  titre: taux exonération ZFU
   formule:
     taux progressif:
       assiette: établissement . ZFU . durée d'implantation en fin d'année
@@ -1310,8 +1310,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
               - plafond: 9 ans
                 taux: 0%
 
-? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
-: applicable si: situation personnelle . domiciliation fiscale à l'étranger
+dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
   titre: Maladie (domiciliation fiscale à l'étranger)
   description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
   remplace: maladie

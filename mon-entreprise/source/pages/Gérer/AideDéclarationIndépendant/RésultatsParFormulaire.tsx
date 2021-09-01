@@ -46,13 +46,15 @@ export default function ResultatsParFormulaire() {
 					déclaration correcte.{' '}
 				</p>
 				<p>En cas de doute, référez-vous à votre expert comptable.</p>
-				{([
-					'aide déclaration revenu indépendant 2020 . formulaire 2035',
-					'aide déclaration revenu indépendant 2020 . formulaire 2033',
-					'aide déclaration revenu indépendant 2020 . formulaire 2050',
-					'aide déclaration revenu indépendant 2020 . formulaire 2042',
-					'aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C',
-				] as const).map((dottedName) => (
+				{(
+					[
+						'aide déclaration revenu indépendant 2020 . formulaire 2035',
+						'aide déclaration revenu indépendant 2020 . formulaire 2033',
+						'aide déclaration revenu indépendant 2020 . formulaire 2050',
+						'aide déclaration revenu indépendant 2020 . formulaire 2042',
+						'aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C',
+					] as const
+				).map((dottedName) => (
 					<DeclarationForm key={dottedName} dottedName={dottedName} />
 				))}
 				<Condition expression="aide déclaration revenu indépendant 2020 . informations résultat par formulaire">

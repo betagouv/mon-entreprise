@@ -52,6 +52,10 @@ Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
 Plus d'informations: Plus d'informations
 Plusieurs associés: Plusieurs associés
+"Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
+  urssaf:
+    fr</2>: Pour en savoir plus, rendez-vous sur le site
+      <2>aquoiserventlescotisations.urssaf.fr</2>
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
 Précédent: Précédent
@@ -1009,8 +1013,9 @@ pages:
       shortname: PAMC
       title: "PAMC : simulateurs de cotisations et de revenu"
     print-info:
-      recover: Retrouvez la, ainsi que d'autres outils d'aide à la création et à la gestion d'entreprise, sur <2>mon-entreprise.fr</2>
-      date: Cette simulation a été effectuée le 
+      date: Cette simulation a été effectuée le
+      recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la
+        création et à la gestion d'entreprise, sur <2>mon-entreprise.fr</2>.
       title: Vous souhaitez retrouver cette simulation ?
     profession-libérale:
       meta:

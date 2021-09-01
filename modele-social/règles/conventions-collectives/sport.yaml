@@ -17,8 +17,8 @@ contrat salarié . convention collective . sport . cotisations . patronales:
       - prévoyance . employeur
       - financement du paritarisme
 
-? contrat salarié . convention collective . sport . cotisations . financement du paritarisme
-: # TODO
+contrat salarié . convention collective . sport . cotisations . financement du paritarisme:
+  # TODO
   note: se calcule sur la masse salariale
   formule:
     produit:
@@ -49,15 +49,15 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
   références:
     Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé
-: remplace: contrat salarié . complémentaire santé . forfait
+contrat salarié . convention collective . sport . cotisations . régime frais de santé:
+  remplace: contrat salarié . complémentaire santé . forfait
   formule:
     produit:
       assiette: plafond sécurité sociale temps plein
       taux: taux
 
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux
-: formule:
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux:
+  formule:
     variations:
       - si: régime alsace moselle
         alors:
@@ -80,8 +80,8 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
     unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
 
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option
-: question: Quel option a été choisi pour le régime des frais de santé ?
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option:
+  question: Quel option a été choisi pour le régime des frais de santé ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -92,15 +92,15 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
   par défaut: "'R1'"
   références:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1
-: formule: option = 'R1'
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2
-: formule: option = 'R2'
-? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3
-: formule: option = 'R3'
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1:
+  formule: option = 'R1'
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2:
+  formule: option = 'R2'
+contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3:
+  formule: option = 'R3'
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle
-: remplace: contrat salarié . formation professionnelle
+contrat salarié . convention collective . sport . cotisations . formation professionnelle:
+  remplace: contrat salarié . formation professionnelle
   formule:
     somme:
       - plan de formation
@@ -110,8 +110,8 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
   références:
     Article 8.6 de la CCNS (IDCC2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000034406905&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation
-: formule:
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation:
+  formule:
     produit:
       assiette: cotisations . assiette
       taux:
@@ -122,12 +122,12 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
             alors: 0.90%
     plancher: versement minimum
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum
-: applicable si: entreprise . effectif < 10
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum:
+  applicable si: entreprise . effectif < 10
   formule: 30 €/mois
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation
-: formule:
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation:
+  formule:
     produit:
       assiette: cotisations . assiette
       taux:
@@ -138,12 +138,12 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
             alors: 0.50%
     plancher: versement minimum
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum
-: applicable si: entreprise . effectif < 10
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum:
+  applicable si: entreprise . effectif < 10
   formule: 5 €/mois
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI
-: applicable si:
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI:
+  applicable si:
     toutes ces conditions:
       - CDI
       - entreprise . effectif >= 20
@@ -152,15 +152,15 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
       assiette: cotisations . assiette
       taux: 0.20%
 
-? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD
-: applicable si: CDD
+contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD:
+  applicable si: CDD
   formule:
     produit:
       assiette: cotisations . assiette
       taux: 1%
 
-? contrat salarié . convention collective . sport . cotisations . assiette franchisée
-: formule:
+contrat salarié . convention collective . sport . cotisations . assiette franchisée:
+  formule:
     valeur: cotisations . assiette
     abattement: franchise
 
@@ -178,13 +178,13 @@ contrat salarié . convention collective . sport . exonération cotisation AT:
     par: non
   formule: oui
 
-? contrat salarié . convention collective . sport . exonération cotisation AT . refus
-: titre: refus exonération AT
+contrat salarié . convention collective . sport . exonération cotisation AT . refus:
+  titre: refus exonération AT
   question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   par défaut: non
 
-? contrat salarié . convention collective . sport . cotisations . assiette forfaitaire
-: applicable si: assiette franchisée < SMIC horaire * 115 heures/mois
+contrat salarié . convention collective . sport . cotisations . assiette forfaitaire:
+  applicable si: assiette franchisée < SMIC horaire * 115 heures/mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
   formule:
     grille:
@@ -203,8 +203,8 @@ contrat salarié . convention collective . sport . exonération cotisation AT:
         - montant: 50 * SMIC horaire
           plafond: 115 heures
 
-? contrat salarié . convention collective . sport . primes . nombre de manifestations
-: question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
+contrat salarié . convention collective . sport . primes . nombre de manifestations:
+  question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
   #TODO : gérer la période
   par défaut: 0 manifestations
 
@@ -227,8 +227,8 @@ contrat salarié . convention collective . sport . primes . manifestation 1:
   applicable si: nombre de manifestations > 0
   par défaut: 100 €
 
-? contrat salarié . convention collective . sport . primes . manifestation 1 . franchise
-: titre: franchise manifestation 1
+contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
+  titre: franchise manifestation 1
   formule:
     valeur: manifestation 1
     plafond: 70% * plafond journalier sécurité sociale
@@ -238,8 +238,8 @@ contrat salarié . convention collective . sport . primes . manifestation 2:
   applicable si: nombre de manifestations > 1
   par défaut: 100 €
 
-? contrat salarié . convention collective . sport . primes . manifestation 2 . franchise
-: titre: franchise manifestation 2
+contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
+  titre: franchise manifestation 2
   formule:
     valeur: manifestation 2
     plafond: 70% * plafond journalier sécurité sociale
@@ -249,8 +249,8 @@ contrat salarié . convention collective . sport . primes . manifestation 3:
   applicable si: nombre de manifestations > 2
   par défaut: 100 €
 
-? contrat salarié . convention collective . sport . primes . manifestation 3 . franchise
-: titre: franchise manifestation 3
+contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
+  titre: franchise manifestation 3
   formule:
     valeur: manifestation 3
     plafond: 70% * plafond journalier sécurité sociale
@@ -260,8 +260,8 @@ contrat salarié . convention collective . sport . primes . manifestation 4:
   applicable si: nombre de manifestations > 3
   par défaut: 100 €
 
-? contrat salarié . convention collective . sport . primes . manifestation 4 . franchise
-: titre: franchise manifestation 4
+contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
+  titre: franchise manifestation 4
   formule:
     valeur: manifestation 4
     plafond: 70% * plafond journalier sécurité sociale
@@ -271,14 +271,14 @@ contrat salarié . convention collective . sport . primes . manifestation 5:
   applicable si: nombre de manifestations > 4
   par défaut: 100 €
 
-? contrat salarié . convention collective . sport . primes . manifestation 5 . franchise
-: titre: franchise manifestation 5
+contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
+  titre: franchise manifestation 5
   formule:
     valeur: manifestation 5
     plafond: 70% * plafond journalier sécurité sociale
 
-? contrat salarié . convention collective . sport . primes . autres manifestations
-: question: Quelles primes pour les autres manifestations ?
+contrat salarié . convention collective . sport . primes . autres manifestations:
+  question: Quelles primes pour les autres manifestations ?
   applicable si: nombre de manifestations > 5
   par défaut: 100 €
 

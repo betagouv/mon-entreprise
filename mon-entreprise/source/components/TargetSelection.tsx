@@ -12,13 +12,7 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
-import {
-	ASTNode,
-	EvaluatedNode,
-	formatValue,
-	reduceAST,
-	RuleNode,
-} from 'publicodes'
+import { EvaluatedNode, formatValue, reduceAST, RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -290,9 +284,8 @@ function AidesGlimpse() {
 				const aidesNotNul = node.explanation
 					.map((n) => engine.evaluate(n))
 					.filter(({ nodeValue }) => nodeValue !== false)
-				if (aidesNotNul.length === 1) {
-					return (aidesNotNul[0] as ASTNode & { nodeKind: 'reference' })
-						.dottedName as DottedName
+				if (aidesNotNul.length === 1 && 'dottedName' in aidesNotNul[0]) {
+					return aidesNotNul[0].dottedName as DottedName
 				} else {
 					return acc
 				}

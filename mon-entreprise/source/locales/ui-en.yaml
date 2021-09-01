@@ -126,6 +126,9 @@ Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
+"Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
+  urssaf:
+    fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
 Professionnels de santé: Health Care Professionals
@@ -1357,8 +1360,9 @@ pages:
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
     print-info:
-      recover: Find it, as well as other tools to help create and manage a business on <2>mycompanyinfrance.fr</2>
       date: This simulation was performed on
+      recover: You can find this simulation and other tools to help you create and
+        manage your business on <2>mon-entreprise.fr</2>.
       title: Would you like to recover this simulation?
     profession-libérale:
       meta:

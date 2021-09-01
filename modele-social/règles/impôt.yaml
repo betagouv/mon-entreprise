@@ -90,8 +90,8 @@ impôt . revenu imposable . abattement contrat court:
   références:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
 
-? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
-: icônes: 🇬🇵🇷🇪 🇲🇶
+impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
+  icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     grille:
       assiette: revenu imposable
@@ -426,8 +426,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an
   formule: revenu imposable / nombre de parts
 
-? impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage
-: formule:
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
+  formule:
     somme:
       - produit:
           assiette:
