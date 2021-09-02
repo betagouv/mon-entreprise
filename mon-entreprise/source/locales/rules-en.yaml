@@ -1716,7 +1716,7 @@ contrat salarié . CDD . contrôle congés non pris max:
     an)
   titre.en: '[automatic] check leave not taken max'
   titre.fr: contrôle congés non pris max
-contrat salarié . CDD . durée contrat:
+contrat salarié . durée:
   description.en: '[Click here]
     (https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     to know the maximum duration of a fixed-term contract.'

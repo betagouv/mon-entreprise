@@ -10,6 +10,7 @@ contrat salarié:
         - apprentissage
         - professionnalisation
         - stage
+  # Pour l'instant CDI, CDD, contrat pro et apprenti sont mutuellement exclusif, ce n'est pas le cas dans la loi (les contrats pro / apprentis sont signés via CDD ou CDI)
   par défaut: "'CDI'"
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
@@ -25,6 +26,11 @@ contrat salarié . ancienneté:
   formule:
     durée:
       depuis: date d'embauche
+
+contrat salarié . handicap:
+  titre: situation de handicap
+  par défaut: non
+  question: Le salarié a-t'il la reconnaissance de travailleur handicapé (RQTH) ?
 
 contrat salarié . ancienneté . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
@@ -698,12 +704,12 @@ contrat salarié . CDD . congés pris:
 contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:
     assiette: 253 jours ouvrés/an
-    facteur: durée contrat
+    facteur: durée
 
 contrat salarié . CDD . congés dus sur la durée du contrat:
   produit:
     assiette: 25 jours ouvrés/an
-    facteur: durée contrat
+    facteur: durée
   arrondi: 2 décimales
 
 contrat salarié . CDD . contrôle congés non pris max:
@@ -1089,21 +1095,27 @@ contrat salarié . CDD . motif . contrat aidé:
 # TODO Attention : il faudrait peut-être prendre en compte les interdictions du CDD.
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-contrat salarié . CDD . durée contrat:
+contrat salarié . durée:
   icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
+  non applicable si: CDI
   description: |
-    [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
+    Les contrats à durée déterminé, les contrats de professionnalisation ou d'apprentissage ont une durée limitée dans le temps.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+
   suggestions:
     18 mois: 18 mois
     1 an: 12 mois
     6 mois: 6 mois
     3 mois: 3 mois
-  # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
-  par défaut: 1 mois
+  note: 70% des CDD signées en 2015 avaient des durées inférieures à un mois
+  par défaut:
+    variations:
+      - si: CDD
+        alors: 1 mois
+      - sinon: 1 an
 
 contrat salarié . CDD . contrat jeune vacances:
   titre: Contrat jeune vacances
@@ -2040,19 +2052,91 @@ contrat salarié . aides employeur:
       - aides à l'embauche
       - activité partielle . indemnisation entreprise
 
-contrat salarié . aides employeur . aides à l'embauche:
+contrat salarié . aides employeur . embauche:
+  titre: Aide à l'embauche
   description: |
     L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
   formule:
-    le maximum de:
-      - aide à l'embauche d'apprentis
-      - aide exceptionnelle à l'embauche d'apprentis
-      - aide exceptionnelle à l'embauche des jeunes
-      - aide à l'embauche senior professionnalisation
-      - aide à l'embauche des travailleurs handicapés
-      - emploi franc
+    somme:
+      - travailleurs handicapés pro
+      - travailleurs handicapés apprentis
+      - le maximum de:
+        - apprentis
+        - apprentis ou contrat pro
+        - senior professionnalisation
+        - travailleurs handicapés
+        - emploi franc
 
-contrat salarié . aides employeur . aide à l'embauche d'apprentis:
+contrat salarié . aides employeur . embauche . travailleurs handicapés apprentis:
+  description:
+    L'employeur qui souhaite recruter une personne handicapée en contrat d'apprentissage peut bénéficier d'une aide si le contrat est d'une durée d'au moins 6 mois et de 24 heures par semaine minimum.
+
+    La demande d'aide se fait en remplissant un formulaire de demande d'intervention à adresser à l'Agefiph.
+
+    Cette aide est cumulable avec les autres aides.
+  références:
+    Formulaire demande intervention: https://www.agefiph.fr/sites/default/files/medias/fichiers/2020-04/demande-intervention-avec-notice-avril-2018.pdf
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F15204
+    Fiche Agefiph: https://www.agefiph.fr/actualites-handicap/majoration-des-aides-agefiph-pour-le-recrutement-dalternants
+  applicable si:
+    toutes ces conditions:
+      - handicap
+      - temps contractuel . temps hebdomadaire >= 24 heures/semaine
+      - apprentissage
+      - contrat salarié . durée >= 6 mois
+  variations:
+    - si: CDI
+      alors: 4000€
+    - sinon:
+        grille:
+          assiette: durée
+          tranches:
+            - montant: 1000€
+              plafond: 12 mois
+            - montant: 1500€
+              plafond: 18 mois
+            - montant: 2000€
+              plafond: 24 mois
+            - montant: 2500€
+              plafond: 30 mois
+            - montant: 3000€
+              plafond: 36 mois
+            - montant: 3500€
+
+contrat salarié . aides employeur . embauche . travailleurs handicapés pro:
+  description:
+    L'employeur qui souhaite recruter une personne handicapée en contrat professionnalisation peut bénéficier d'une aide si le contrat est d'une durée d'au moins 6 mois et de 24 heures par semaine minimum.
+
+    La demande d'aide se fait en remplissant un formulaire de demande d'intervention à adresser à l'Agefiph.
+
+    Cette aide est cumulable avec les autres aides.
+  références:
+    Formulaire demande intervention: https://www.agefiph.fr/sites/default/files/medias/fichiers/2020-04/demande-intervention-avec-notice-avril-2018.pdf
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F15204
+    Fiche Agefiph: https://www.agefiph.fr/actualites-handicap/majoration-des-aides-agefiph-pour-le-recrutement-dalternants
+  applicable si:
+    toutes ces conditions:
+      - handicap
+      - temps contractuel . temps hebdomadaire >= 24 heures/semaine
+      - apprentissage
+      - professionnalisation
+      - contrat salarié . durée >= 6 mois
+  variations:
+    - si: CDI
+      alors: 5000€
+    - sinon:
+        grille:
+          assiette: durée
+          tranches:
+            - montant: 1500€
+              plafond: 12 mois
+            - montant: 2500€
+              plafond: 18 mois
+            - montant: 3500€
+              plafond: 24 mois
+            - montant: 4500€
+
+contrat salarié . aides employeur . embauche . apprentis:
   description: |
     Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
 
@@ -2072,43 +2156,49 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
-  description: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des
-    apprentis.
 
-    Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et
-    le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les
+contrat salarié . aides employeur . embauche . apprentis ou contrat pro:
+  titre: Apprenti ou contrat Pro jeune
+  description: >-
+    Pour l’embauche d’un apprenti ou d’un jeune en contrat de professionnalisation.
+
+    L’aide est versée **mensuellement** et automatiquement par
+    l’Agence de services et de paiement (ASP).
+  note: >-
+    Cette aide se substitue à l’aide unique, dont bénéficient les
     entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à
     Bac.
+  rend non applicable: aides employeur . embauche . apprentis
   applicable si:
     toutes ces conditions:
       - une de ces conditions:
           - apprentissage
           - professionnalisation . jeune de moins de 30 ans
       - ancienneté . date d'embauche >= 01/07/2020
-      - ancienneté . date d'embauche <= 31/12/2021
+      - ancienneté . date d'embauche <= date de fin
       - temps de travail . temps effectif > 0 heures/mois
   formule:
     variations:
       - si: salarié majeur
         alors: 8000 €/an
       - sinon: 5000 €/an
-  rend non applicable: aide à l'embauche d'apprentis
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
+
+contrat salarié . aides employeur . embauche . apprentis . date de fin: 31/12/2021
 
 contrat salarié . jeune de moins de 26 ans:
   question: Le salarié a-t-il moins de 26 ans ?
   par défaut: non
 
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
-  non applicable si: aides employeur . emploi franc
+contrat salarié . aides employeur . embauche . jeunes:
+  non applicable si: aides employeur . embauche . emploi franc
   description: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des
-    jeunes de moins de 26 ans.
+    Pour l’embauche d’un jeune de moins de 26 ans en CDI ou pour un CDD d’au moins 3 mois.
+
+    L’aide est versée **trimestriellement** par l’Agence de services et de paiement (ASP).
+  note: >-
+    L’aide à l’embauche des jeunes est arrivée à échéance le 31 mai 2021. Si vous avez embauché un jeune correspondant aux critères de l’aide et signé un contrat de travail avant le 31 mai inclus, vous disposez encore de 4 mois pour faire votre demande. Par exemple, si vous avez signé un contrat le 24 mai 2021, vous avez jusqu’au 24 septembre pour demander l’aide (plus d’informations sur les démarches ci-dessous).
 
     L’aide est de 4 000 euros sur un an pour un salarié à temps plein. Ce
     montant est proratisé en fonction du temps de travail et de la durée du
@@ -2116,17 +2206,17 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   applicable si:
     toutes ces conditions:
       - ancienneté . date d'embauche >= 01/08/2020
-      - ancienneté . date d'embauche <= 31/05/2021
+      - ancienneté . date d'embauche <= date de fin
       - rémunération . brut de base <= 2 * SMIC
       - une de ces conditions:
           - CDI
           - toutes ces conditions:
               - CDD
-              - CDD . durée contrat >= 3 mois
+              - durée >= 3 mois
       - jeune de moins de 26 ans
   rend non applicable:
     # Dispositifs moins généreux et non cumulables
-    - aide à l'embauche des travailleurs handicapés
+    - travailleurs handicapés
   formule:
     produit:
       assiette: 4000 €/an
@@ -2134,8 +2224,35 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
     arrondi: oui
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
+contrat salarié . aides employeur . embauche . jeunes . date de fin: 31/05/2021
 
-contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
+contrat salarié . aides employeur . embauche . travailleurs handicapés:
+  description: >-
+    Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
+    à l’embauche visant à favoriser l’emploi des personnes en situation de
+    handicap quel que soit leur âge.
+  applicable si:
+    toutes ces conditions:
+      - situation de handicap
+      - ancienneté . date d'embauche >= 01/09/2020
+      - ancienneté . date d'embauche <= date de fin
+      - rémunération . brut de base <= 2 * SMIC
+
+  non applicable si:
+    une de ces conditions:
+      - emploi franc
+      - durée >= 3 mois
+      - stage
+  formule:
+    produit:
+      assiette: 4000 €/an
+      facteur: temps de travail . quotité de travail effective
+    arrondi: oui
+  références:
+    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
+contrat salarié . aides employeur . embauche . travailleurs handicapés . date de fin: 31/12/2021
+
+contrat salarié . aides employeur . embauche . aide senior professionnalisation:
   description: |
     Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
@@ -2149,7 +2266,12 @@ contrat salarié . aides employeur . aide à l'embauche senior professionnalisat
     Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
     Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 
-contrat salarié . aides employeur . emploi franc:
+contrat salarié . aides employeur . embauche . emploi franc:
+  résumé: >-
+    Pour l’embauche d’un jeune issu d’un quartier prioritaire de la ville
+    (QPV). L’aide peut aller jusqu’à **15 000 €** sur trois ans.
+
+    L’aide est versée tous les **6 mois** par Pôle emploi.
   description: |
     Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
     inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
@@ -2188,14 +2310,14 @@ contrat salarié . aides employeur . emploi franc:
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
-contrat salarié . aides employeur . emploi franc . éligible:
+contrat salarié . aides employeur . embauche . emploi franc . éligible:
   titre: éligibilité à l'aide emploi franc
   applicable si:
     une de ces conditions:
       - CDI
       - toutes ces conditions:
           - CDD
-          - CDD . durée contrat >= 6
+          - durée >= 6
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
     Conditions :
@@ -2212,33 +2334,6 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
-
-contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
-  non applicable si: aides employeur . emploi franc
-  description: >-
-    Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
-    à l’embauche visant à favoriser l’emploi des personnes en situation de
-    handicap quel que soit leur âge.
-  applicable si:
-    toutes ces conditions:
-      - nom: situation de handicap
-        question: Le salarié a-t'il la reconnaissance de travailleur handicapé (RQTH) ?
-        par défaut: non
-      - ancienneté . date d'embauche >= 01/09/2020
-      - ancienneté . date d'embauche <= 30/06/2021
-      - rémunération . brut de base <= 2 * SMIC
-      - une de ces conditions:
-          - CDI
-          - toutes ces conditions:
-              - CDD
-              - CDD . durée contrat >= 3 mois
-  formule:
-    produit:
-      assiette: 4000 €/an
-      facteur: temps de travail . quotité de travail effective
-    arrondi: oui
-  références:
-    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . temps de travail . temps effectif:
   formule:

@@ -39,7 +39,6 @@ const aides = [
 				'oui',
 		},
 		dateFin: new Date('2021/12/31'),
-		versement: <Trans>mensuel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.apprenti">
 				Pour l’embauche d’un apprenti ou d’un jeune en contrat de
@@ -79,12 +78,7 @@ const aides = [
 		dateFin: new Date('2021/05/31'),
 		versement: <Trans>tous les 6 mois</Trans>,
 		description: (
-			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc">
-				Pour l’embauche d’un jeune issu d’un quartier prioritaire de la ville
-				(QPV). L’aide peut aller jusqu’à 17 000 € sur trois ans.
-				<br />
-				L’aide est versée tous les <strong>6 mois</strong> par Pôle emploi.
-			</Trans>
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc"></Trans>
 		),
 	},
 	{
@@ -133,7 +127,7 @@ const config = {
 	'unité par défaut': '€/mois',
 	situation: {
 		'contrat salarié . rémunération . brut de base': '1700 €/mois',
-		'contrat salarié . CDD . durée contrat': '12 mois',
+		'contrat salarié . durée': '12 mois',
 		'contrat salarié . activité partielle': 'non',
 		"contrat salarié . ancienneté . date d'embauche": '01/02/2021',
 	},

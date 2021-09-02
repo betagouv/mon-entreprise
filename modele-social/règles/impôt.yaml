@@ -82,7 +82,7 @@ impôt . revenu imposable . abattement contrat court:
   applicable si:
     toutes ces conditions:
       - méthode de calcul . taux neutre
-      - contrat salarié . CDD . durée contrat <= 2 mois
+      - contrat salarié . durée <= 2 mois
   formule:
     valeur: 50% * SMIC temps plein . net imposable * 1 mois/an
     arrondi: oui
