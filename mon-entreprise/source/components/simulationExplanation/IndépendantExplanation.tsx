@@ -58,44 +58,7 @@ export default function IndépendantExplanation() {
 					/>
 				</section>
 			</Condition>
-			<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
-				<h2>Retraite : droits acquis sur l'année 2021</h2>
-				<ul>
-					<li>
-						Retraite de base :{' '}
-						<strong>
-							<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
-								<Value
-									expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
-									displayedUnit=""
-								/>{' '}
-								trimestres acquis
-							</RuleLink>
-						</strong>
-					</li>
-					<li>
-						Retraite complémentaire :{' '}
-						<Condition expression="entreprise . activité . libérale réglementée">
-							<em>
-								Ce simulateur ne gère pas les droits acquis de retraite
-								complémentaire pour les professions libérales
-							</em>
-						</Condition>
-						<Condition expression="entreprise . activité . libérale réglementée = non">
-							<strong>
-								<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
-									<Value
-										expression="protection sociale . retraite . complémentaire indépendants . points acquis"
-										displayedUnit=""
-									/>{' '}
-									points acquis
-								</RuleLink>
-							</strong>
-						</Condition>
-					</li>
-				</ul>
-			</Trans>
-
+			<DroitsRetraite />
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>
@@ -189,5 +152,54 @@ function DistributionBranch({
 			description={branche.rawNode.résumé}
 			unit="€"
 		/>
+	)
+}
+
+function DroitsRetraite() {
+	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
+	if (
+		document.referrer?.includes('secu-independants.fr') ||
+		document.referrer?.includes('simulateur-rsi.urssaf.fr')
+	) {
+		return null
+	}
+	return (
+		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
+			<h2>Retraite : droits acquis sur l'année 2021</h2>
+			<ul>
+				<li>
+					Retraite de base :{' '}
+					<strong>
+						<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
+							<Value
+								expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
+								displayedUnit=""
+							/>{' '}
+							trimestres acquis
+						</RuleLink>
+					</strong>
+				</li>
+				<li>
+					Retraite complémentaire :{' '}
+					<Condition expression="entreprise . activité . libérale réglementée">
+						<em>
+							Ce simulateur ne gère pas les droits acquis de retraite
+							complémentaire pour les professions libérales
+						</em>
+					</Condition>
+					<Condition expression="entreprise . activité . libérale réglementée = non">
+						<strong>
+							<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+								<Value
+									expression="protection sociale . retraite . complémentaire indépendants . points acquis"
+									displayedUnit=""
+								/>{' '}
+								points acquis
+							</RuleLink>
+						</strong>
+					</Condition>
+				</li>
+			</ul>
+		</Trans>
 	)
 }
