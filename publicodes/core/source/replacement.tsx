@@ -100,7 +100,7 @@ export function getReplacements(
 		}, {})
 }
 
-export function inlineReplacements(
+export function makeInlineReplacements(
 	replacements: Record<string, Array<ReplacementRule>>,
 	logger: Logger
 ): (n: ASTNode) => ASTNode {

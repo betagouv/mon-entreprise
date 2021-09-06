@@ -30,8 +30,8 @@ export type Rule = {
 	}
 	type?: string
 	note?: string
-	remplace?: RendNonApplicable | Array<RendNonApplicable>
-	'rend non applicable'?: Remplace | Array<string>
+	remplace?: Remplace | Array<Remplace>
+	'rend non applicable'?: RendNonApplicable | Array<string>
 	suggestions?: Record<string, string | number | Record<string, unknown>>
 	références?: { [source: string]: string }
 	API?: string

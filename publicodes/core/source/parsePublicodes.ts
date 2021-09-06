@@ -2,7 +2,7 @@ import yaml from 'yaml'
 import { ParsedRules, Logger } from '.'
 import { makeASTTransformer, traverseParsedRules } from './AST'
 import parse from './parse'
-import { getReplacements, inlineReplacements } from './replacement'
+import { getReplacements, makeInlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
 import { disambiguateRuleReference } from './ruleUtils'
 import { getUnitKey } from './units'
@@ -56,14 +56,14 @@ export default function parsePublicodes(
 
 	// STEP 4: Disambiguate reference
 	parsedRules = traverseParsedRules(
-		disambiguateReference(parsedRules),
+		makeDisambiguateReference(parsedRules),
 		parsedRules
 	)
 
 	// STEP 5: Inline replacements
 	const replacements = getReplacements(parsedRules)
 	parsedRules = traverseParsedRules(
-		inlineReplacements(replacements, context.logger),
+		makeInlineReplacements(replacements, context.logger),
 		parsedRules
 	)
 
@@ -104,7 +104,9 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 	}, {})
 }
 
-export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
+export const makeDisambiguateReference = (
+	parsedRules: Record<string, RuleNode>
+) =>
 	makeASTTransformer((node) => {
 		if (node.nodeKind === 'reference') {
 			const dottedName = disambiguateRuleReference(

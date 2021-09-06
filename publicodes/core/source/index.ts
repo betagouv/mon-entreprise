@@ -2,10 +2,10 @@ import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import parse from './parse'
-import parsePublicodes, { disambiguateReference } from './parsePublicodes'
+import parsePublicodes, { makeDisambiguateReference } from './parsePublicodes'
 import {
 	getReplacements,
-	inlineReplacements,
+	makeInlineReplacements,
 	ReplacementRule,
 } from './replacement'
 import { Rule, RuleNode } from './rule'
@@ -132,10 +132,14 @@ export default class Engine<Name extends string = string> {
 	}
 
 	private parse(...args: Parameters<typeof parse>) {
-		return inlineReplacements(
+		const parsedTree = parse(...args)
+		const disambiguateReference = makeDisambiguateReference(this.parsedRules)
+		const disambiguatedParsedTree = disambiguateReference(parsedTree)
+		const inlineReplacements = makeInlineReplacements(
 			this.replacements,
 			this.options.logger
-		)(disambiguateReference(this.parsedRules)(parse(...args)))
+		)
+		return inlineReplacements(disambiguatedParsedTree)
 	}
 
 	inversionFail(): boolean {
