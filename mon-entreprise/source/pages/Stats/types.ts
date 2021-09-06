@@ -1,5 +1,3 @@
-import statsJson from '../../data/stats.json'
-
 // Generated using app.quicktype.io
 
 export interface StatsStruct {
@@ -22,14 +20,18 @@ export interface Closed {
 }
 
 export interface BasePage {
-	date: string
+	date?: string
+	month?: string
 	nombre: number
 	page_chapter1: string
 	page_chapter2: PageChapter2
 	page_chapter3: string
 }
-export type Page = BasePage & { page: string }
-export type PageSatisfaction = BasePage & { click: SatisfactionLevel }
+export type Page = BasePage & { page: string; date: string }
+export type PageSatisfaction = BasePage & {
+	month: string
+	click: SatisfactionLevel
+}
 
 export enum SatisfactionLevel {
 	Bien = 'bien',

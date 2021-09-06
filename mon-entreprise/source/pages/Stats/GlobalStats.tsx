@@ -104,29 +104,37 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 	const last30dCommence = formatNumber(last30dCommenceNum)
 	const last30dConv = Math.round((100 * last30dCommenceNum) / last30dVisitsNum)
 
-	const last30dSatisfactions = stats.satisfaction
-		.filter(({ date }) => date.startsWith(new Date().toISOString().slice(0, 7)))
-		.reduce(
-			(acc, { click: satisfactionLevel, nombre }) => ({
-				...acc,
-				[satisfactionLevel]: acc[satisfactionLevel] + nombre,
-			}),
-			{
-				[SatisfactionLevel.Mauvais]: 0,
-				[SatisfactionLevel.Moyen]: 0,
-				[SatisfactionLevel.Bien]: 0,
-				[SatisfactionLevel.TrèsBien]: 0,
-			}
+	const currentMonthSatisfaction = (() => {
+		const currentMonthSatisfaction = stats.satisfaction
+			.filter(({ month }) =>
+				month.startsWith(new Date().toISOString().slice(0, 7))
+			)
+			.reduce(
+				(acc, { click: satisfactionLevel, nombre }) => ({
+					...acc,
+					[satisfactionLevel]: acc[satisfactionLevel] + nombre,
+				}),
+				{
+					[SatisfactionLevel.Mauvais]: 0,
+					[SatisfactionLevel.Moyen]: 0,
+					[SatisfactionLevel.Bien]: 0,
+					[SatisfactionLevel.TrèsBien]: 0,
+				}
+			)
+
+		const total = Object.values(currentMonthSatisfaction).reduce(
+			(a, b) => a + b
 		)
-	const last30dSatisfactionTotal = Object.values(last30dSatisfactions).reduce(
-		(a, b) => a + b
-	)
-	const last30dSatisfactionPercentages = Object.fromEntries(
-		Object.entries(last30dSatisfactions).map(([level, count]) => [
-			level,
-			(100 * count) / last30dSatisfactionTotal,
-		])
-	) as Record<SatisfactionLevel, number>
+		return {
+			total,
+			percentages: Object.fromEntries(
+				Object.entries(currentMonthSatisfaction).map(([level, count]) => [
+					level,
+					(100 * count) / total,
+				])
+			) as Record<SatisfactionLevel, number>,
+		}
+	})()
 
 	return (
 		<>
@@ -180,10 +188,12 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 							`}
 						>
 							{' '}
-							<RetoursAsProgress percentages={last30dSatisfactionPercentages} />
+							<RetoursAsProgress
+								percentages={currentMonthSatisfaction.percentages}
+							/>
 						</div>
 					}
-					footnote={`${last30dSatisfactionTotal} avis ce mois ci`}
+					footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
 					width="75%"
 				/>
 			</Indicators>
