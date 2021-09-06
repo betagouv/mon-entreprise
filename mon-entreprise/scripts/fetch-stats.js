@@ -247,7 +247,14 @@ async function main() {
 		const visitesMois = await fetchMonthlyVisits()
 		const satisfaction = uniformiseData(
 			flattenPage(await fetchApi(buildSatisfactionQuery()))
-		)
+		).map((page) => {
+			// eslint-disable-next-line no-unused-vars
+			const { date, ...satisfactionPage } = {
+				month: new Date(new Date(page.date).setDate(1)),
+				...page,
+			}
+			return satisfactionPage
+		})
 		const retoursUtilisateurs = await fetchUserFeedbackIssues()
 		writeInDataDir('stats.json', {
 			visitesJours,
