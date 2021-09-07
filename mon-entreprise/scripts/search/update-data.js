@@ -58,11 +58,87 @@ const formatSimulationDataToAlgolia = (simulations) => {
 
 		console.log('Clearing: rules')
 		await rulesIndex.clearObjects().wait()
+		console.log('Configure index: rules')
+		await rulesIndex
+			.setSettings({
+				minWordSizefor1Typo: 4,
+				minWordSizefor2Typos: 8,
+				hitsPerPage: 20,
+				maxValuesPerFacet: 100,
+				attributesToIndex: ['unordered(namespace)', 'unordered(ruleName)'],
+				numericAttributesToIndex: null,
+				attributesToRetrieve: null,
+				unretrievableAttributes: null,
+				optionalWords: null,
+				attributesForFaceting: null,
+				attributesToSnippet: null,
+				attributesToHighlight: ['namespace', 'ruleName'],
+				paginationLimitedTo: 1000,
+				attributeForDistinct: null,
+				exactOnSingleWordQuery: 'attribute',
+				ranking: [
+					'typo',
+					'geo',
+					'words',
+					'filters',
+					'proximity',
+					'attribute',
+					'exact',
+					'custom',
+				],
+				customRanking: null,
+				separatorsToIndex: '',
+				removeWordsIfNoResults: 'none',
+				queryType: 'prefixLast',
+				highlightPreTag: '<em>',
+				highlightPostTag: '</em>',
+				snippetEllipsisText: '',
+				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
+			})
+			.wait()
 		console.log('Uploading: rules')
 		await rulesIndex.saveObjects(formatRulesToAlgolia(rules)).wait()
 
 		console.log('Clearing: simulateurs')
 		await simulateursIndex.clearObjects().wait()
+		console.log('Configure index: simulateurs')
+		await simulateursIndex
+			.setSettings({
+				minWordSizefor1Typo: 4,
+				minWordSizefor2Typos: 8,
+				hitsPerPage: 20,
+				maxValuesPerFacet: 100,
+				attributesToIndex: ['unordered(title)'],
+				numericAttributesToIndex: null,
+				attributesToRetrieve: null,
+				unretrievableAttributes: null,
+				optionalWords: null,
+				attributesForFaceting: null,
+				attributesToSnippet: null,
+				attributesToHighlight: ['title'],
+				paginationLimitedTo: 1000,
+				attributeForDistinct: null,
+				exactOnSingleWordQuery: 'attribute',
+				ranking: [
+					'typo',
+					'geo',
+					'words',
+					'filters',
+					'proximity',
+					'attribute',
+					'exact',
+					'custom',
+				],
+				customRanking: null,
+				separatorsToIndex: '',
+				removeWordsIfNoResults: 'none',
+				queryType: 'prefixLast',
+				highlightPreTag: '<em>',
+				highlightPostTag: '</em>',
+				snippetEllipsisText: '',
+				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
+			})
+			.wait()
 		console.log('Updloading: simulateurs')
 		await simulateursIndex
 			.saveObjects(formatSimulationDataToAlgolia(getSimulationData()))
