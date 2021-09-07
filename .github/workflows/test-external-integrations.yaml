@@ -38,7 +38,9 @@ jobs:
           install: false
           working-directory: mon-entreprise
           # List here all the specs that are making external API calls:
-          spec: cypress/integration/mon-entreprise/english/gérer.js
+          spec: |
+            cypress/integration/mon-entreprise/english/gérer.js
+            cypress/integration/mon-entreprise/demande-mobilité.js
           record: true
           tag: external-mon-entreprise-e2e
           config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.fr
