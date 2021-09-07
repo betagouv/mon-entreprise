@@ -10,6 +10,8 @@ const {
 	ALGOLIA_INDEX_PREFIX = '',
 } = process.env
 
+console.log('ALGOLIA APP ID: ' + ALGOLIA_APP_ID)
+
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 
 const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
@@ -150,6 +152,6 @@ const formatSimulationDataToAlgolia = (simulations) => {
 
 		console.log('Algolia update DONE')
 	} catch (e) {
-		console.log(e)
+		console.log(JSON.stringify(e, null, 2))
 	}
 })()
