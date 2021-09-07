@@ -139,6 +139,7 @@ module.exports.default = {
 		new EnvironmentPlugin({
 			ALGOLIA_APP_ID: '',
 			ALGOLIA_SEARCH_KEY: '',
+			ALGOLIA_INDEX_PREFIX: '',
 		}),
 		new EnvironmentPlugin({
 			GITHUB_REF: '',

@@ -8,13 +8,18 @@ import { InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
-const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY
+const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY || ''
+const ALGOLIA_INDEX_PREFIX = process.env.ALGOLIA_INDEX_PREFIX || ''
+
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 export default function SearchRules() {
 	const { t } = useTranslation()
 	return (
-		<InstantSearch indexName="rules" searchClient={searchClient}>
+		<InstantSearch
+			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
+			searchClient={searchClient}
+		>
 			<SearchBox
 				translations={{
 					submitTitle: t('Valider votre recherche'),
