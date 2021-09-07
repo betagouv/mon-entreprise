@@ -12,6 +12,8 @@ describe(`Manage page test (${
 	let responses = {}
 	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
 	beforeEach(() => {
+		cy.clearLocalStorage() // Try to avoid flaky tests
+
 		pendingRequests = new Set()
 		responses = {}
 		cy.setInterceptResponses(
