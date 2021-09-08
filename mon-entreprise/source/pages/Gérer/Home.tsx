@@ -276,6 +276,46 @@ export default function Gérer() {
 								</p>
 							</Trans>
 						</Link>
+						{dirigeant === 'auto-entrepreneur' ? (
+							<a
+								className="ui__ interactive card box lighter-bg"
+								href={`https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000${
+									i18n.language === 'fr' ? '' : '?lang=en'
+								}`}
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<Trans i18nKey="gérer.ressources.kbis-autoentrepreneur">
+									<h3 className="ui__ h h5">Récupérer un extrait de Kbis?</h3>
+									<p className="ui__ notice">
+										Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent
+										cependant récupérer et présenter un extrait K. Voir le site
+										du service-public pour plus d'informations.
+									</p>
+								</Trans>
+							</a>
+						) : (
+							<a
+								className="ui__ interactive card box lighter-bg"
+								href="https://www.monidenum.fr"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<Trans i18nKey="gérer.ressources.kbis">
+									<h3 className="ui__ h h5">Récupérer un extrait de Kbis</h3>
+									<p className="ui__ notice">
+										Le Kbis est un document permettant de justifier de
+										l'enregistrement de l'entreprise au{' '}
+										<abbr title="Registre du Commerce et des Sociétés">
+											RCS
+										</abbr>{' '}
+										et de prouver son existence légale. Ce document peut être
+										récupéré gratuitement pour votre entreprise via le site
+										MonIdeNum.
+									</p>
+								</Trans>
+							</a>
+						)}
 					</div>
 				</>
 			</FromBottom>
