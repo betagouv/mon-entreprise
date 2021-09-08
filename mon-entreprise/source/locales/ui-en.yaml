@@ -777,6 +777,12 @@ gérer:
       <0>Discover the hiring process</0>
 
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
+    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the existence
+      of a commercial company. You can get the Kbis for your company using
+      monidenum.fr</1>
+    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs
+      do not have a Kbis. They can however retrieve and present a K extract.
+      See the service-public website for more information.</1>
     sécuritéSociale: <0>Understanding social security</0> <1>What are social
       security contributions used for? Update on the social protection system
       enjoyed by all workers in France</1>

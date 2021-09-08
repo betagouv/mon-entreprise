@@ -521,6 +521,14 @@ gérer:
     embaucher: <0>Découvrir les démarches d’embauche </0><1>La liste des choses à
       faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau
       salarié</1>
+    kbis: <0>Récupérer un extrait de Kbis</0><1>Le Kbis est un document permettant
+      de justifier de l'enregistrement de l'entreprise au <2>RCS</2> et de
+      prouver son existence légale. Ce document peut être récupéré gratuitement
+      pour votre entreprise via le site MonIdeNum.</1>
+    kbis-autoentrepreneur: <0>Récupérer un extrait de Kbis?</0><1>Les
+      auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer et
+      présenter un extrait K. Voir le site du service-public pour plus
+      d'informations.</1>
     sécuritéSociale: <0>Comprendre la sécurité sociale </0><1>A quoi servent les
       cotisations sociales ? Le point sur le système de protection sociale dont
       bénéficient tous les travailleurs en France</1>
