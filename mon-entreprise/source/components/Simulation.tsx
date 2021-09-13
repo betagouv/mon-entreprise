@@ -76,7 +76,7 @@ export default function Simulation({
 								>
 									<div
 										css={`
-											margin: 0 1rem;
+											margin: 1rem;
 										`}
 									>
 										<div className="ui__ card lighter-bg">

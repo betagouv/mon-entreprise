@@ -39,7 +39,6 @@ section {
 }
 
 .ui__.side-block {
-	padding-top: 1rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -51,8 +50,6 @@ section {
 
 @media screen and (min-width: 1200px) {
 	.ui__.side-block {
-		margin-top: -1rem;
-
 		flex-grow: 0;
 		flex-shrink: 1;
 		flex: 1;
