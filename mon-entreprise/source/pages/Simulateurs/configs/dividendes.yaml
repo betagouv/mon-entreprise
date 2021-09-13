@@ -12,7 +12,7 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'assimilé salarié'" # [TODO] [dividendes-indep]
-  bénéficiaire . dividendes: oui
+  bénéficiaire: oui
   entreprise . imposition: "'IS'"
   impôt . méthode de calcul: "'PFU'"
   dirigeant . rémunération . imposable: 0 €/an

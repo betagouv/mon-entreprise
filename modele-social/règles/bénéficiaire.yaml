@@ -1,5 +1,5 @@
 bénéficiaire:
-  valeur: oui
+  valeur: non
   description: |
     Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
     SARL/EURL.
@@ -34,8 +34,7 @@ bénéficiaire . compte courant d'associé:
     Circulaire RSI C2014-001: https://www.secu-independants.fr/uploads/tx_rsirss/C2014-001.pdf
 
 bénéficiaire . dividendes:
-  # Désactivé par défaut:
-  valeur: non
+  valeur: oui
   applicable si: entreprise . imposition = 'IS'
 
 bénéficiaire . dividendes . bruts:
