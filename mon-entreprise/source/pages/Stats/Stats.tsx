@@ -36,7 +36,7 @@ type Data =
 	| Array<{ date: string; nombre: number }>
 	| Array<{ date: string; nombre: Record<string, number> }>
 
-type Pageish = Page & PageSatisfaction
+type Pageish = Page | PageSatisfaction
 
 const isPAM = (name: string | undefined) =>
 	name &&
@@ -53,11 +53,11 @@ const filterByChapter2 = (
 ): Array<{ date: string; nombre: Record<string, number> }> => {
 	return toPairs(
 		groupBy(
-			(p) => p.date,
+			(p) => ('date' in p ? p.date : p.month),
 			pages.filter(
 				(p) =>
 					!chapter2 ||
-					(p.page !== 'accueil_pamc' &&
+					((!('page' in p) || p.page !== 'accueil_pamc') &&
 						(p.page_chapter2 === chapter2 ||
 							(chapter2 === 'PAM' && isPAM(p.page_chapter3))))
 			)
@@ -66,7 +66,7 @@ const filterByChapter2 = (
 		date,
 		nombre: mapObjIndexed(
 			(v: Array<{ nombre: number }>) => v.map((v) => v.nombre).reduce(add),
-			groupBy((x) => x.page ?? x.click ?? '', values)
+			groupBy((x) => ('page' in x ? x.page : x.click), values)
 		),
 	}))
 }
@@ -74,8 +74,8 @@ const filterByChapter2 = (
 function groupByDate(data: Pageish[]) {
 	return toPairs(
 		groupBy(
-			(p) => p.date,
-			data.filter((d) => d.page === 'accueil')
+			(p) => ('date' in p ? p.date : p.month),
+			data.filter((d) => 'page' in d && d.page === 'accueil')
 		)
 	).map(([date, values]) => ({
 		date,

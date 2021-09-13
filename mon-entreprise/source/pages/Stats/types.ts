@@ -20,8 +20,6 @@ export interface Closed {
 }
 
 export interface BasePage {
-	date?: string
-	month?: string
 	nombre: number
 	page_chapter1: string
 	page_chapter2: PageChapter2
