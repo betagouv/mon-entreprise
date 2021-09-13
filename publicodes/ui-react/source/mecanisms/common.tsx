@@ -37,7 +37,7 @@ export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
 			</span>
 		)
 	} else {
-		return <span className="value">{nodeValue}</span>
+		return <span className="value">{formatValue({ nodeValue, unit })}</span>
 	}
 }
 
