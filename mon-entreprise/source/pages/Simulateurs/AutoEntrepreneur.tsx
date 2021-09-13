@@ -52,7 +52,7 @@ function Explanation() {
 						color: palettes[0][0],
 					},
 					{
-						dottedName: 'impôt',
+						dottedName: 'impôt . montant',
 						title: t('impôt'),
 						color: palettes[1][0],
 					},
