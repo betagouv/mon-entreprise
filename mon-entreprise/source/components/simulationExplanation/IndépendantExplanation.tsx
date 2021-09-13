@@ -97,17 +97,17 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useEngine()
-	const distribution = (Object.entries(
-		CotisationsSection
-	).map(([section, cotisations]) => [
-		section,
-		cotisations
-			.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
-			.reduce(
-				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
-				0
-			),
-	]) as Array<[DottedName, number]>)
+	const distribution = (
+		Object.entries(CotisationsSection).map(([section, cotisations]) => [
+			section,
+			cotisations
+				.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
+				.reduce(
+					(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
+					0
+				),
+		]) as Array<[DottedName, number]>
+	)
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
 

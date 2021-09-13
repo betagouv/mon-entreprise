@@ -2,13 +2,18 @@ import classnames from 'classnames'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import styled from 'styled-components'
+import { EvaluatedNode } from 'publicodes/source/AST/types'
+import { VariationNode } from 'publicodes/dist/types/mecanisms/variations'
 import Explanation from '../Explanation'
 import writtenNumbers from '../writtenNumbers'
 import { CapitalizeFirstLetter, InlineMecanismName, Mecanism } from './common'
 
-export default function Variations({ nodeValue, explanation, unit }) {
-	let [expandedVariation, toggleVariation] = useState(null)
-
+export default function Variations({
+	nodeValue,
+	explanation,
+	unit,
+}: VariationNode & EvaluatedNode) {
+	const [expandedVariation, toggleVariation] = useState<null | number>(null)
 	return (
 		<StyledComponent>
 			<Mecanism
