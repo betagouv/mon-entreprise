@@ -8313,7 +8313,7 @@ impôt:
   titre.fr: impôt sur le revenu
 impôt . dividendes:
   titre.en: '[automatic] Taxation of dividends'
-  titre.fr: Impôsition des dividendes
+  titre.fr: Imposition des dividendes
 impôt . dividendes . PFU:
   description.en: >
     [automatic] This amount is to be paid in the form of a deposit at the time
