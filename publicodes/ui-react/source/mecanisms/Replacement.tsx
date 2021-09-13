@@ -2,10 +2,9 @@ import { VariationNode } from 'publicodes/source/mecanisms/variations'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Variations from './Variations'
-import Explanation from '../Explanation'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
-import { NodeValuePointer } from './common'
+import { NodeValuePointer, UnfoldIsEnabledContext } from './common'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
 
 export default function Replacement(node: VariationNode & EvaluatedNode) {
@@ -18,14 +17,16 @@ export default function Replacement(node: VariationNode & EvaluatedNode) {
 
 	const [displayReplacements, changeDisplayReplacement] = useState(false)
 	return (
-		<>
-			<Explanation node={replacedNode} />
+		<span>
+			<RuleLinkWithContext dottedName={replacedNode.dottedName} />
 			&nbsp;
 			{applicableReplacement && (
-				<NodeValuePointer
-					data={(applicableReplacement as any).nodeValue}
-					unit={(applicableReplacement as any).unit}
-				/>
+				<span>
+					<NodeValuePointer
+						data={(applicableReplacement as any).nodeValue}
+						unit={(applicableReplacement as any).unit}
+					/>
+				</span>
 			)}
 			&nbsp;
 			<button
@@ -52,6 +53,6 @@ export default function Replacement(node: VariationNode & EvaluatedNode) {
 					</p>
 				</Overlay>
 			)}
-		</>
+		</span>
 	)
 }
