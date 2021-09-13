@@ -2,7 +2,7 @@ import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
 import { isNotApplicable, isNotYetDefined } from 'publicodes'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useEngine } from './utils/EngineContext'
 
 export const SalaireBrutSection = () => {
@@ -28,6 +28,7 @@ export const SalaireBrutSection = () => {
 }
 
 export const SalaireNetSection = () => {
+	const { t } = useTranslation()
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
@@ -56,8 +57,13 @@ export const SalaireNetSection = () => {
 				rule="contrat salarié . rémunération . net"
 				className="payslip__total"
 			/>
-			<Condition expression="impôt > 0">
-				<Line negative rule="impôt" unit="€/mois" />
+			<Condition expression="impôt . montant > 0">
+				<Line
+					negative
+					rule="impôt . montant"
+					title={t('impôt sur le revenu')}
+					unit="€/mois"
+				/>
 				<Line
 					className="payslip__total"
 					rule="contrat salarié . rémunération . net après impôt"
@@ -69,6 +75,7 @@ export const SalaireNetSection = () => {
 
 type LineProps = {
 	rule: DottedName
+	title?: string
 	negative?: boolean
 } & Omit<ValueProps<DottedName>, 'expression'>
 
@@ -76,6 +83,7 @@ export function Line({
 	rule,
 	displayedUnit = '€',
 	negative = false,
+	title,
 	className,
 	...props
 }: LineProps) {
@@ -92,7 +100,9 @@ export function Line({
 
 	return (
 		<Condition expression={`${rule} > 0`}>
-			<RuleLink dottedName={rule} className={className} />
+			<RuleLink dottedName={rule} className={className}>
+				{title}
+			</RuleLink>
 			<Value
 				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}
