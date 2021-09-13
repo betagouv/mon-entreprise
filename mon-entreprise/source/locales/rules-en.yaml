@@ -1741,11 +1741,13 @@ contrat salarié . ATMP . taux moyen:
   titre.fr: taux moyen
 contrat salarié . ATMP . taux personnalisé:
   description.en: >
-    [automatic] Companies with more than 20 employees have an individualized
-    rate. The company can consult the rate that the
+    [automatic] Companies with more than 20 employees have an individualised
+    rate. The company can consult its effective rate directly on the
+    net-entreprise space.
   description.fr: >
     Les entreprises de plus de 20 salariés ont un taux individualisé.
-    L'entreprise peut consulter le taux qui la
+    L'entreprise peut consulter son taux effectif directement sur espace
+    net-entreprise.
   question.en: "[automatic] What is the company's AT/MP rate?"
   question.fr: Quel est le taux AT/MP de l'entreprise ?
   titre.en: '[automatic] personalized rate'
