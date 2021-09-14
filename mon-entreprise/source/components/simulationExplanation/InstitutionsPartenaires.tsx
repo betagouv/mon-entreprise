@@ -1,4 +1,8 @@
-import Value, { Condition, WhenNotApplicable } from 'Components/EngineValue'
+import Value, {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from 'Components/EngineValue'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -101,6 +105,10 @@ export function ImpôtsDGFIP() {
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
 						La direction générale des finances publiques (DGFiP) est l'organisme
 						qui collecte l'impôt sur le revenu.
+						<WhenApplicable dottedName="entreprise . imposition . IR . micro-fiscal">
+							Le montant calculé prend en compte l'abattement du régime
+							micro-fiscal.
+						</WhenApplicable>
 					</Trans>
 				</p>
 				<p className="ui__ lead">

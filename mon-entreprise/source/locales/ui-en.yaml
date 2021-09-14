@@ -1633,8 +1633,9 @@ simulateurs:
     institutions:
       cpam: As a health professional under agreement, you benefit from a part of your
         contributions being covered by the Health Insurance.
-      dgfip: The Directorate General of Public Finances (DGFiP) is the body that
-        collects income tax.
+      dgfip: The Direction générale des finances publiques (DGFiP) is the body that
+        collects income tax.<1>The amount calculated takes into account the
+        abatement of the micro-tax system.</1>
       notice acre: The amounts indicated above are calculated without taking into
         account the ACRE start-up exemption
       titre: Your partner institutions
