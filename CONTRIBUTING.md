@@ -88,25 +88,25 @@ A mettre sans retenue dans les messages de commit :
 
 ### Tests
 
-Pour la vérification syntaxique :
+#### Vérification syntaxique :
 
 ```sh
 $ yarn lint
 ```
 
-Pour la vérification du typage :
+#### Vérification du typage :
 
 ```sh
 $ yarn test:type
 ```
 
-Pour executer les tests unitaires :
+#### Tests unitaires
 
 ```sh
 $ yarn test
 ```
 
-Pour le snapshot testing :
+#### Tests de non-regression (snapshots)
 
 ```sh
 $ yarn test:regressions
@@ -114,7 +114,13 @@ $ yarn test:regressions
 
 Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
 
-Pour les tests d'intégration sur chacun des 3 sites :
+#### Tests d'integrations
+
+Pré-requis:
+
+-   le browser chromium doit être installé. Les builds peuvent être trouvés sur
+    le [site de Cypress](https://chromium.cypress.io/)
+-   le serveur doit être lancé via `yarn start`
 
 ```sh
 $ yarn workspace mon-entreprise test:dev-e2e:mon-entreprise
