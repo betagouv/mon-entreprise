@@ -29,10 +29,7 @@ describe('DottedNames graph', () => {
 				'dirigeant . rémunération . nette après impôt',
 				'dirigeant . rémunération . nette',
 				'dirigeant . rémunération . totale',
-				'dirigeant . rémunération . impôt',
-				"impôt . taux d'imposition",
-				"impôt . taux neutre d'impôt sur le revenu",
-				"impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
+				'impôt . montant',
 				'impôt . revenu imposable',
 			],
 		])
