@@ -13,7 +13,7 @@ impôt . montant:
     - impôt . dividendes . PFU
   arrondi: oui
   unité: €/an
-  titre: Montant de l'impôt sur le revenu
+  titre: Impôt sur le revenu
 
 impôt . taux d'imposition:
   formule:
