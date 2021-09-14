@@ -195,20 +195,20 @@ exports[`calculate simulations-impot-société: bénéfices 3`] = `"[300,0]"`;
 
 exports[`calculate simulations-impot-société: bénéfices 4`] = `"[3000,0]"`;
 
-exports[`calculate simulations-impot-société: bénéfices 5`] = `"[51044,0]"`;
+exports[`calculate simulations-impot-société: bénéfices 5`] = `"[48628,0]"`;
 
 exports[`calculate simulations-impot-société: bénéfices 6`] = `
-"[555044,0]
+"[525628,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: bénéfices 7`] = `
-"[5595044,159457]
+"[5295628,149646]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-impot-société: prorata temporis 1`] = `
-"[275044,0]
+"[260628,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 

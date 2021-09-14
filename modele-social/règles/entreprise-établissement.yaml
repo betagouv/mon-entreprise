@@ -344,11 +344,11 @@ entreprise . imposition . IR . information sur le report de déficit:
 entreprise . exercice: oui
 entreprise . exercice . début:
   type: date
-  par défaut: 01/01/2020
+  par défaut: 01/01/2021
 
 entreprise . exercice . fin:
   type: date
-  par défaut: 31/12/2020
+  par défaut: 31/12/2021
 
 entreprise . exercice . durée:
   titre: durée de l'exercice
