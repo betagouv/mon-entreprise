@@ -45,6 +45,7 @@
 		"@types/webpack-env": "^1.16.0",
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
+		"node-loader": "^2.0.0",
 		"webpack": "^5.39.1",
 		"yaml": "^1.9.2"
 	},
@@ -55,9 +56,12 @@
 		"build": "yarn run webpack --config webpack.config.js && yarn run tsc",
 		"build:watch": "concurrently \"yarn run webpack --watch --config webpack.config.js\" \"yarn run tsc -w\"",
 		"test:file": "yarn mochapack --include test/setupIntl.js --webpack-config ./webpack.test.js ",
-		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
+		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.{js,ts}\""
 	},
 	"engines": {
 		"node": ">=12.16.1"
+	},
+	"peerDependencies": {
+		"@types/mocha": "^9.0.0"
 	}
 }
