@@ -3,6 +3,9 @@ import { WhenAlreadyDefined } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
+import InstitutionsPartenaires, {
+	InstitutionsPartenairesAutoEntrepreneur,
+} from 'Components/simulationExplanation/InstitutionsPartenaires'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
@@ -64,6 +67,7 @@ function Explanation() {
 					},
 				]}
 			/>
+			<InstitutionsPartenairesAutoEntrepreneur />
 		</section>
 	)
 }
