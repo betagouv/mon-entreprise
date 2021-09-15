@@ -24,6 +24,6 @@ describe('Recherche globales', () => {
 
 		cy.wait(100)
 		cy.get(simulateursPath).children().should('have.length', 1)
-		cy.get(reglesPath).children().should('have.length', 1)
+		cy.get(reglesPath).children().should('have.length', 2)
 	})
 })
