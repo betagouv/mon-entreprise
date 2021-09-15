@@ -101,7 +101,7 @@ export function CotisationsUrssaf({ rule }: { rule: DottedName }) {
 export function ImpôtsDGFIP() {
 	const unit = useSelector(targetUnitSelector)
 	return (
-		<Condition expression="impôt > 0">
+		<Condition expression="impôt . montant > 0">
 			<InstitutionLine>
 				<InstitutionLogo target="_blank" href="https://www.impots.gouv.fr">
 					<img src={dgfipSrc} title="logo DGFiP" />
@@ -171,6 +171,36 @@ function CaisseRetraite() {
 				)
 			})}
 		</>
+	)
+}
+
+export function InstitutionsPartenairesArtisteAuteur() {
+	const unit = useSelector(targetUnitSelector)
+	const { description: descriptionIRCEC } = useEngine().getRule(
+		'artiste-auteur . cotisations . IRCEC'
+	).rawNode
+	return (
+		<section>
+			<h3>Vos cotisations</h3>
+			<InstitutionsTable className="ui__ card">
+				<CotisationsUrssaf rule="artiste-auteur . cotisations" />
+				<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
+					<InstitutionLine>
+						<InstitutionLogo target="_blank" href="http://www.ircec.fr/">
+							<img src={logosSrc['IRCEC']} title="logo IRCEC" />
+						</InstitutionLogo>
+						<p className="ui__ notice">{descriptionIRCEC}</p>
+						<p className="ui__ lead">
+							<Value
+								displayedUnit="€"
+								unit={unit}
+								expression="artiste-auteur . cotisations . IRCEC"
+							/>
+						</p>
+					</InstitutionLine>
+				</Condition>
+			</InstitutionsTable>
+		</section>
 	)
 }
 
