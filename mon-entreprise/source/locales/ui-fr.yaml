@@ -1208,11 +1208,14 @@ simulateurs:
       cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
         prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
-        collecte l'impôt sur le revenu.<1>Le montant calculé prend en compte
-        l'abattement du régime micro-fiscal.</1>
+        collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
+        l'abattement du régime micro-fiscal</2>.</2>
       notice acre: Les montants indiqués ci-dessus sont calculés sans prendre en
         compte l'exonération de début d'activité ACRE
       titre: Vos institutions partenaires
+      urssaf: Les cotisations recouvrées par l'Urssaf, qui servent au financement de
+        la sécurité sociale (assurance maladie, allocations familiales,
+        dépendance).
     pamc: <0><0>Vos institutions
       partenaires</0><1><0></0><1></1><2><0><0><0></0></0><1>En tant que
       professionnel de santé conventionné, vous bénéficiez d'une prise en charge

@@ -26,7 +26,7 @@ export default function InstitutionsPartenaires() {
 						Vos institutions partenaires
 					</Trans>
 				</h2>
-				<InstitutionsTable className="ui__ card">
+				<InstitutionsTable>
 					<Condition expression="entreprise . activité . libérale réglementée">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
 						<CaisseRetraite />
@@ -109,11 +109,14 @@ export function ImpôtsDGFIP() {
 				<p className="ui__ notice">
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
 						La direction générale des finances publiques (DGFiP) est l'organisme
-						qui collecte l'impôt sur le revenu.
-						<WhenApplicable dottedName="entreprise . imposition . IR . micro-fiscal">
-							Le montant calculé prend en compte l'abattement du régime
-							micro-fiscal.
-						</WhenApplicable>
+						qui collecte l'impôt sur le revenu.{' '}
+						<Condition expression="entreprise . imposition . IR . micro-fiscal">
+							Le montant calculé{' '}
+							<strong>
+								prend en compte l'abattement du régime micro-fiscal
+							</strong>
+							.
+						</Condition>
 					</Trans>
 				</p>
 				<p className="ui__ lead">
@@ -182,7 +185,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 	return (
 		<section>
 			<h3>Vos cotisations</h3>
-			<InstitutionsTable className="ui__ card">
+			<InstitutionsTable>
 				<CotisationsUrssaf rule="artiste-auteur . cotisations" />
 				<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
 					<InstitutionLine>
@@ -204,7 +207,25 @@ export function InstitutionsPartenairesArtisteAuteur() {
 	)
 }
 
-const InstitutionsTable = styled.div`
+export function InstitutionsPartenairesAutoEntrepreneur() {
+	return (
+		<section>
+			<FromBottom>
+				<h2>
+					<Trans i18nKey="simulateurs.explanation.institutions.titre">
+						Vos institutions partenaires
+					</Trans>
+				</h2>
+				<InstitutionsTable>
+					<CotisationsUrssaf rule="dirigeant . auto-entrepreneur . cotisations et contributions" />
+					<ImpôtsDGFIP />
+				</InstitutionsTable>
+			</FromBottom>
+		</section>
+	)
+}
+
+const InstitutionsTable = styled.div.attrs({ className: 'ui__ card' })`
 	padding-left: 0;
 	padding-right: 0;
 `

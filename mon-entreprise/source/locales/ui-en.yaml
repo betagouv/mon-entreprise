@@ -1634,11 +1634,13 @@ simulateurs:
       cpam: As a health professional under agreement, you benefit from a part of your
         contributions being covered by the Health Insurance.
       dgfip: The Direction générale des finances publiques (DGFiP) is the body that
-        collects income tax.<1>The amount calculated takes into account the
-        abatement of the micro-tax system.</1>
+        collects income tax. <2>The amount calculated <2>takes into account the
+        abatement of the micro-tax system</2>.</2>
       notice acre: The amounts indicated above are calculated without taking into
         account the ACRE start-up exemption
       titre: Your partner institutions
+      urssaf: The contributions collected by the Urssaf, which are used to finance
+        social security (health insurance, family allowances, dependence).
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.
