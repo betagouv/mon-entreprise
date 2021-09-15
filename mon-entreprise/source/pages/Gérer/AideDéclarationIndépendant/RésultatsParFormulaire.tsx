@@ -2,11 +2,11 @@ import { Explicable } from 'Components/conversation/Explicable'
 import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { FromTop } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
 import { useMemo } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 export default function ResultatsParFormulaire() {
@@ -33,7 +33,7 @@ export default function ResultatsParFormulaire() {
 				`}
 			>
 				<h2>
-					{emoji('📄')}{' '}
+					<Emoji emoji="📄" />{' '}
 					<Trans i18nKey="aide-déclaration-indépendant.results.title">
 						Vos déclarations fiscales
 					</Trans>
@@ -58,7 +58,9 @@ export default function ResultatsParFormulaire() {
 					<DeclarationForm key={dottedName} dottedName={dottedName} />
 				))}
 				<Condition expression="aide déclaration revenu indépendant 2020 . informations résultat par formulaire">
-					<h3>{emoji('ℹ️')} Pour votre information </h3>
+					<h3>
+						<Emoji emoji="ℹ️" /> Pour votre information{' '}
+					</h3>
 					<div className="ui__ box-container">
 						{informations.map((r) => (
 							<Condition key={r.dottedName} expression={r.dottedName}>

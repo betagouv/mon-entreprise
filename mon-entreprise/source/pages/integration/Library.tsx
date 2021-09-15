@@ -1,6 +1,5 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import Emoji from 'Components/utils/Emoji'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 export default function Library() {
@@ -142,7 +141,9 @@ export default function Library() {
 					</a>
 					, composant qui fait aussi appel à l'API commune.
 				</p>
-				<h2>Faire des graphiques économiques{emoji(' 📈')}</h2>
+				<h2>
+					Faire des graphiques économiques <Emoji emoji="📈" />
+				</h2>
 				<p>
 					Il est aussi possible d'utiliser la bibliothèque pour des calculs
 					d'analyse économique ou politique. Ici, on trace le prix du travail et

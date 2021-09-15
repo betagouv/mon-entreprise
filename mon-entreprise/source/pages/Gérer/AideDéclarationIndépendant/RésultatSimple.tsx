@@ -1,9 +1,9 @@
 import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { FromTop } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 export default function ResultatsSimples() {
@@ -24,7 +24,7 @@ export default function ResultatsSimples() {
 				`}
 			>
 				<h2>
-					{emoji('📄')}{' '}
+					<Emoji emoji="📄" />{' '}
 					<Trans i18nKey="aide-déclaration-indépendant.results.title">
 						Montants à reporter dans votre déclaration de revenus
 					</Trans>
@@ -107,7 +107,9 @@ export default function ResultatsSimples() {
 						],
 					}}
 				>
-					<h2>{emoji('ℹ️')} Pour votre information </h2>
+					<h2>
+						<Emoji emoji="ℹ️" /> Pour votre information{' '}
+					</h2>
 					<div
 						css={`
 							margin: 0 -0.5rem;

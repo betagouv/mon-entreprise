@@ -1,7 +1,7 @@
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -24,7 +24,7 @@ export default function Integration() {
 						className="ui__ simple small push-left button"
 						to={sitePaths.integration.index}
 					>
-						← <Trans>Outils pour les développeurs</Trans> {emoji('👨‍💻')}
+						← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 					</Link>
 				</BackNavigationForDevs>
 			)}

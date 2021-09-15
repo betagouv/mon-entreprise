@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { icons } from './ui/SocialIcon'
+import Emoji from './utils/Emoji'
 import { SitePathsContext } from './utils/SitePathsContext'
 
 export default function MoreInfosOnUs() {
@@ -27,7 +27,9 @@ export default function MoreInfosOnUs() {
 			<div className="ui__ full-width box-container">
 				{!pathname.startsWith(sitePaths.nouveautés) && (
 					<Link className="ui__ interactive card box" to={sitePaths.nouveautés}>
-						<div className="ui__ big box-icon">{emoji('✨')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji={'✨'} />
+						</div>
 						<h3>Les nouveautés</h3>
 						<p className="ui__ notice">
 							Qu'avons-nous mis en production ces derniers mois ?
@@ -37,7 +39,9 @@ export default function MoreInfosOnUs() {
 				)}
 				{!pathname.startsWith(sitePaths.stats) && (
 					<Link className="ui__ interactive card box" to={sitePaths.stats}>
-						<div className="ui__ big box-icon">{emoji('📊')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji="📊" />
+						</div>
 						<h3>Les statistiques</h3>
 						<p className="ui__ notice">Quel est notre impact ?</p>
 						<div className="ui__ small simple button">Découvrir</div>
@@ -45,7 +49,9 @@ export default function MoreInfosOnUs() {
 				)}
 				{!pathname.startsWith(sitePaths.budget) && (
 					<Link className="ui__ interactive card box" to={sitePaths.budget}>
-						<div className="ui__ big box-icon">{emoji('💶')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji="💶" />
+						</div>
 						<h3>Le budget</h3>
 						<p className="ui__ notice">
 							Quelles sont nos ressources et comment sont-elles employées ?

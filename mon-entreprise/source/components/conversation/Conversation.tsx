@@ -3,11 +3,11 @@ import RuleInput from 'Components/conversation/RuleInput'
 import Notifications from 'Components/Notifications'
 import QuickLinks from 'Components/QuickLinks'
 import { FadeIn } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -119,7 +119,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		<div style={{ textAlign: 'center' }}>
 			<TrackPage name="simulation terminée" />
 			<h3>
-				{emoji('🌟')}{' '}
+				<Emoji emoji="🌟" />{' '}
 				<Trans i18nKey="simulation-end.title">
 					Vous avez complété cette simulation
 				</Trans>

@@ -777,12 +777,12 @@ gérer:
       <0>Discover the hiring process</0>
 
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
-    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the existence
-      of a commercial company. You can get the Kbis for your company using
-      monidenum.fr</1>
-    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs
-      do not have a Kbis. They can however retrieve and present a K extract.
-      See the service-public website for more information.</1>
+    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the
+      existence of a commercial company. You can get the Kbis for your company
+      using monidenum.fr</1>
+    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs do not
+      have a Kbis. They can however retrieve and present a K extract. See the
+      service-public website for more information.</1>
     sécuritéSociale: <0>Understanding social security</0> <1>What are social
       security contributions used for? Update on the social protection system
       enjoyed by all workers in France</1>
@@ -923,53 +923,50 @@ pages:
         scheme (in french).</1></0>
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
-      site or service would benefit from displaying salary calculations, for
-      example switching from gross salary to net salary, good news: all the
-      contribution and tax calculations behind my-company.fr are free and easily
+      website or service would benefit from displaying salary calculations, for
+      example to switch from gross salary to net salary, good news: all the tax
+      and contribution calculations behind mon-entreprise.fr are free and easily
       reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
       this library?</2><3>All our calculation rules are written in `publicodes`,
-      a declarative language developed by beta.gouv.fr and Urssaf to encode
+      a declarative language developed by beta.gouv.fr and the Urssaf to encode
       algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
-      perform your own calculations, you need to install the publicodes
+      perform your own calculations, you must install the publicodes
       interpreter, download the rules used on my-company, call the evaluation
       function.</4><5>Installation</5><6><0>npm install --save publicodes
-      social-system</0></6><7><0></0> The following dependencies are also needed
-      for now, but will be made optional in a future version of the publicodes
-      package.</7><8><0>npm install --save react react-router-dom
-      react-router-hash-link</0></8><9>For more details on the installation,
-      please refer to the <2>dedicated documentation</2>.</9><10>Start the
-      calculation</10><11>All you have to do is set up the engine with the rules
-      in the `social-system' package, and call the `evaluate' function on the
-      rule you want the value of. Here is an example for the gross / net
-      calculation</11><12><0></0></12><13>Setting up the calculation</13><14>As
-      you will have seen in the previous example, the recipe for a calculation
-      is simple: input variables (gross salary), one or more output variables
-      (net salary).</14><15>However, the calculation can be parameterized with
-      all the possibilities allowed in the legislation.</15><16>All these
-      variables are listed and explained in the <2>online documentation</2>.
-      This documentation is auto-generated from the publicodes rule files, so it
-      is constantly updated.</16><17>Let's run a calculation closer to a
-      payslip: here is a description of the input situation annotated with links
-      to the corresponding pages of the documentation :</17><18><0> An
-      <3>executive</3> earning <7>3,400€ gross</7>, who benefits from
-      <11>restaurant vouchers</11> and works in a company with <15>22
-      employees</15>.</0></18><19>Here is the calculation for this more complete
-      example:</19><20><0></0></20><21><0></0>Note that in the previous example
-      we have to specify the transport payment rate ourselves.</21><22>Whereas
-      in the <2>employee</2> simulator, you only have to fill in the
+      modele-social</0></6><7>For more details on the installation, please refer
+      to the <2>dedicated documentation</2></7><8>Launch the
+      calculation</8><9>All you have to do is set up the engine with the rules
+      from the `social-modele` package and call the `evaluate` function on the
+      rule you want the value of. Here is an example for the gross/net
+      calculation</9><10><0></0></10><11>Setting up the calculation</11><12>As
+      you can see in the previous example, the recipe for a calculation is
+      simple: input variables (gross salary), one or more output variables (net
+      salary).</12><13>The calculation is however configurable with all the
+      possibilities allowed in the legislation.</13><14>All these variables are
+      listed and explained in the <2>online documentation</2>. This
+      documentation is auto-generated from the publicode rules files, so it is
+      constantly updated.</14><15>Let's run a calculation closer to a pay slip:
+      here is a description of the input situation with links to the
+      corresponding pages in the documentation:</15><16><0> An <3>executive</3>
+      earning <7>€3,400 gross</7>, who receives <11>meal vouchers</11> and works
+      in a company with <15>22 employees</15>.</0></16><17>Here is what the
+      calculation looks like for this more complete
+      example:</17><18><0></0></18><19><0></0>Note that in the previous example
+      we have to specify the rate of transport payment ourselves.</19><20>In the
+      <2>employee</2> simulator, however, you only have to enter the
       municipality and the corresponding rate is automatically determined. This
-      is intentional: to keep the library (and the site) light, we use two
-      online APIs. The<4>Geo - communes API</4> to switch from the commune name
-      to the commune code. Then the<7>Transport Pay API</7>, developed and
+      is deliberate: to keep the library (and the site) light, we use two online
+      APIs. The<4>Geo - communes API</4> to go from the commune name to the
+      commune code. Then the<7>Transport Payment API</7>, developed and
       maintained by us, which is not documented but its use is very simple and
-      understandable <10>in this React component that calls it</10>, a component
-      that also uses the common API.</22><23>Making economic graphics{emoji('
-      📈')}</23><24>It is also possible to use the library for economic or
-      political analysis calculations. Here, labour prices and net wages are
-      plotted against gross wages.</24><25>One can see the progressiveness of
-      the total wage, which is in percent lower for a minimum wage than for a
-      high income. In other words, high earners pay part of the social security
-      contributions of low earners.</25><26><0></0></26>"
+      understandable <10>in this React component that calls it</10>, component
+      that also calls the common API.</20><21>Making economic graphs
+      <1></1></21><22>It is also possible to use the library for economic or
+      political analysis calculations. Here, we plot the price of labor and the
+      net salary as a function of the gross.</22><23>We can see the
+      progressivity of the total wage, which is in percent lower for a minimum
+      wage than for a high income. In other words, high earners pay part of the
+      social contributions of low earners.</23><24><0></0></24>"
   développeurs:
     choice:
       github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
@@ -1733,12 +1730,12 @@ une de ces conditions: one of these applies
 à: to
 économieCollaborative:
   accueil:
-    contenu: <0> You have revenues from online platforms (Airbnb, Abritel, Drivy,
-      Blablacar, Leboncoin, etc.)? You must report them in most cases. However,
-      it can be difficult to find your way around.</0> <1>Follow this guide to
-      find out in a few clicks how to be in good standing.</1> <2>From 2020
-      onwards, these revenues will be automatically reported by the platforms to
-      the tax authorities and Urssaf.</2>
+    contenu: <0>Do you have income from <2>online platforms</2> (Airbnb, Abritel,
+      Drivy, Blablacar, Leboncoin, etc.)? You must declare them in most cases.
+      However, it can be difficult to find your way around
+      <5><0></0></5>.</0><1>Follow this guide to find out in a few clicks how to
+      be in order.</1><2>From 2020, these revenues will be automatically
+      communicated by the platforms to the tax authorities and the Urssaf.</2>
     question: What types of activity did you undertake?
     réassurance: "PS: this tool is only there to inform you, no data will be
       transmitted to the administrations"

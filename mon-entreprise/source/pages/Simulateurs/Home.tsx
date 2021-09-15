@@ -2,10 +2,10 @@ import classnames from 'classnames'
 import PageHeader from 'Components/PageHeader'
 import InfoBulle from 'Components/ui/InfoBulle'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -147,7 +147,7 @@ export function SimulateurCard({
 		>
 			{icône && (
 				<div className={classnames('ui__ box-icon', { big: !small })}>
-					{emoji(icône)}
+					<Emoji emoji={icône} />
 				</div>
 			)}
 			<>{small ? name : <h3>{name}</h3>}</>
