@@ -5,7 +5,6 @@ import SocialIcon from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
@@ -118,9 +117,13 @@ export default function Footer() {
 							<li key={hrefLang}>
 								<a href={href} style={{ textDecoration: 'underline' }}>
 									{hrefLang === 'fr' ? (
-										<>Passer en français {emoji('🇫🇷')}</>
+										<>
+											Passer en français <Emoji emoji="🇫🇷" />
+										</>
 									) : hrefLang === 'en' ? (
-										<>Switch to English {emoji('🇬🇧')}</>
+										<>
+											Switch to English <Emoji emoji="🇬🇧" />
+										</>
 									) : (
 										hrefLang
 									)}

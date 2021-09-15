@@ -2,10 +2,10 @@ import { BlobProvider } from '@react-pdf/renderer'
 import Overlay from 'Components/Overlay'
 import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
 import PDFDocument from './PDFDocument'
@@ -94,7 +94,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 							className="ui__ simple small button"
 							onClick={() => signatureRef.current?.clear()}
 						>
-							{emoji('🗑️')} Recommencer{' '}
+							<Emoji emoji="🗑️" /> Recommencer{' '}
 						</button>
 					</div>
 				</div>

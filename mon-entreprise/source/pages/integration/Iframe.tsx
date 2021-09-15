@@ -3,6 +3,7 @@ import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/Urssaf.svg'
 import React, {
@@ -13,7 +14,6 @@ import React, {
 	useRef,
 	useState,
 } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
@@ -98,7 +98,7 @@ function IntegrationCustomizer() {
 					<div className="ui__ left-side">
 						<h3>
 							<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
-							{emoji('🚩')}
+							<Emoji emoji="🚩" />
 						</h3>
 						<select
 							onChange={(event) => setCurrentModule(event.target.value)}
@@ -113,7 +113,7 @@ function IntegrationCustomizer() {
 							<Trans i18nKey="pages.développeurs.couleur">
 								Quelle couleur ?{' '}
 							</Trans>
-							{emoji('🎨')}
+							<Emoji emoji="🎨" />
 						</h3>
 						<Suspense fallback={<div>Chargement...</div>}>
 							<LazyColorPicker color={color} onChange={setColor} />
@@ -122,7 +122,7 @@ function IntegrationCustomizer() {
 							<Trans i18nKey="pages.développeurs.code.titre">
 								Code d'intégration
 							</Trans>
-							{emoji('🛠')}
+							<Emoji emoji="🛠" />
 						</h3>
 						<p>
 							<Trans i18nKey="pages.développeurs.code.description">

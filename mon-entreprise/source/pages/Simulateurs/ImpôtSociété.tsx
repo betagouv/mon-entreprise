@@ -6,9 +6,9 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import Emoji from 'Components/utils/Emoji'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SimulationConfig } from 'Reducers/rootReducer'
@@ -71,7 +71,8 @@ function ExerciceDate() {
 				}
 			`}
 		>
-			{emoji('📆')}&nbsp;
+			<Emoji emoji="📆" />
+			&nbsp;
 			<Trans i18nKey="impotSociété.exerciceDates">
 				Exercice du{' '}
 				<RuleInput

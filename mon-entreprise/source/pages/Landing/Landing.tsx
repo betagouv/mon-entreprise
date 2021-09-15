@@ -4,7 +4,6 @@ import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -64,7 +63,9 @@ export default function Landing() {
 								: sitePaths.créer.index
 						}
 					>
-						<div className="ui__ big box-icon">{emoji('💡')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji="💡" />
+						</div>
 						<Trans i18nKey="landing.choice.create">
 							<h3>Créer une entreprise</h3>
 							<p className="ui__ notice">
@@ -84,7 +85,9 @@ export default function Landing() {
 						className="ui__ interactive card light-border box "
 						to={sitePaths.gérer.index}
 					>
-						<div className="ui__ big box-icon">{emoji('💶')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji="💶" />
+						</div>
 						<Trans i18nKey="landing.choice.manage">
 							<h3>Gérer mon activité</h3>
 							<p className="ui__ notice">
@@ -100,7 +103,9 @@ export default function Landing() {
 						className="ui__ interactive card light-border box"
 						to={sitePaths.simulateurs.index}
 					>
-						<div className="ui__ big box-icon">{emoji('🧮')}</div>
+						<div className="ui__ big box-icon">
+							<Emoji emoji="🧮" />
+						</div>
 						<Trans i18nKey="landing.choice.simulators">
 							<h3>Accéder aux simulateurs</h3>
 							<p className="ui__ notice">

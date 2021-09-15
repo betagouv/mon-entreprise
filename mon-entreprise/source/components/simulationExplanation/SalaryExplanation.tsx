@@ -3,9 +3,9 @@ import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { FromTop } from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 
 export default function SalaryExplanation() {
@@ -85,7 +85,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					className="ui__ small simple button print-display-none"
 					onClick={props.onSeePayslip}
 				>
-					{emoji('📊')} <Trans>Voir la fiche de paie</Trans>
+					<Emoji emoji="📊" /> <Trans>Voir la fiche de paie</Trans>
 				</button>
 			</div>
 			<StackedBarChart

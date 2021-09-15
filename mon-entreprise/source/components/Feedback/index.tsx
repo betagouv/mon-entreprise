@@ -1,5 +1,5 @@
+import Emoji from 'Components/utils/Emoji'
 import React, { useCallback, useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -95,18 +95,18 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 						>
 							<div>
 								<EmojiButton onClick={() => handleFeedback('mauvais')}>
-									{emoji('🙁')}
+									<Emoji emoji="🙁" />
 								</EmojiButton>
 								<EmojiButton onClick={() => handleFeedback('moyen')}>
-									{emoji('😐')}
+									<Emoji emoji="😐" />
 								</EmojiButton>
 							</div>
 							<div>
 								<EmojiButton onClick={() => handleFeedback('bien')}>
-									{emoji('🙂')}
+									<Emoji emoji="🙂" />
 								</EmojiButton>
 								<EmojiButton onClick={() => handleFeedback('très bien')}>
-									{emoji('😀')}
+									<Emoji emoji="😀" />
 								</EmojiButton>
 							</div>
 						</div>

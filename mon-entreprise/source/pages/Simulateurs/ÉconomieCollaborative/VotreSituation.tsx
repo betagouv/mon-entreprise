@@ -1,8 +1,8 @@
 import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
@@ -141,7 +141,7 @@ export default function VotreSituation() {
 			</section>
 			<section>
 				<h2>
-					{emoji('🧰')} <Trans>Ressources utiles</Trans>
+					<Emoji emoji="🧰" /> <Trans>Ressources utiles</Trans>
 				</h2>
 				<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
 					<a

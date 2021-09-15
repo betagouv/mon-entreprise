@@ -18,7 +18,6 @@ import {
 	useContext,
 	useState,
 } from 'react'
-import emoji from 'react-easy-emoji'
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
@@ -70,7 +69,9 @@ export default function FormulaireMobilitéIndépendant() {
 
 			<blockquote>
 				<p className="ui__ lead">
-					<strong>Attention : ce document doit être signé {emoji('✍️')}</strong>
+					<strong>
+						Attention : ce document doit être signé <Emoji emoji="✍️" />
+					</strong>
 				</p>
 				<p>
 					Aussi, nous vous invitons à utiliser un écran tactile pour le

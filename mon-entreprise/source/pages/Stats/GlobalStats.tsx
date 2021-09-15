@@ -1,4 +1,4 @@
-import emoji from 'react-easy-emoji'
+import Emoji from 'Components/utils/Emoji'
 import { useTranslation } from 'react-i18next'
 import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
@@ -53,7 +53,7 @@ const RetoursAsProgress = ({
 					justify-content: center;
 				`}
 			>
-				{emoji(emojiStr)}
+				<Emoji emoji={emojiStr} />
 				<div
 					css={`
 						position: absolute;

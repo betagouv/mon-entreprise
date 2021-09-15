@@ -1,6 +1,6 @@
 import { AvailableLangs } from 'locales/i18n'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
+import Emoji from './utils/Emoji'
 
 const languageCodeToEmoji = {
 	en: '🇬🇧',
@@ -20,7 +20,7 @@ export default function LangSwitcher({ className }: { className: string }) {
 			className={className ?? 'ui__ link-button'}
 			onClick={changeLanguage}
 		>
-			{emoji(languageCodeToEmoji[languageCode as AvailableLangs])}{' '}
+			<Emoji emoji={languageCodeToEmoji[languageCode as AvailableLangs]} />{' '}
 			{languageCode.toUpperCase()}
 		</button>
 	)
