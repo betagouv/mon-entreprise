@@ -26,12 +26,14 @@ export default function IndépendantExplanation() {
 
 	return (
 		<>
-			<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
-				<CotisationsForfaitaires />
-			</WhenApplicable>
-			<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
-				<CotisationsRégularisation />
-			</WhenNotApplicable>
+			<section>
+				<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsForfaitaires />
+				</WhenApplicable>
+				<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsRégularisation />
+				</WhenNotApplicable>
+			</section>
 			<InstitutionsPartenaires />
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
