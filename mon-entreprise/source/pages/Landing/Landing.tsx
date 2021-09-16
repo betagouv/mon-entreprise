@@ -2,7 +2,6 @@ import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -33,11 +32,6 @@ export default function Landing() {
 					</div>
 				)}
 				<section className="landing-title">
-					<img
-						alt="logo mon-entreprise.fr"
-						className="landing-title__logo"
-						src={logoSvg}
-					/>
 					<header>
 						<h1>
 							<Trans i18nKey="landing.title">
@@ -54,69 +48,70 @@ export default function Landing() {
 					<img src={illustrationSvg} className="landing-title__img" />
 				</section>
 
-				<section className="ui__ full-width box-container">
-					<Link
-						className="ui__ interactive card light-border box"
-						to={
-							statutChoisi
-								? sitePaths.créer[statutChoisi]
-								: sitePaths.créer.index
-						}
+				<section className="ui__ light-bg full-width">
+					<div
+						className="ui__ container"
+						css={`
+							/* max-width: 1000px !important; */
+							display: flex;
+							flex-wrap: wrap;
+							align-items: end;
+							padding-bottom: 1rem;
+							justify-content: start;
+						`}
 					>
-						<div className="ui__ big box-icon">
-							<Emoji emoji="💡" />
+						<div
+							css={`
+								flex: 1.2;
+							`}
+						>
+							<h2 className="ui__ h h4">Rechercher une entreprise</h2>
+							<div>
+								<input
+									className="ui__ cta"
+									css={`
+										margin-top: 0 !important;
+										width: 100% !important;
+										min-width: 20rem;
+									`}
+									placeholder="Nom, SIREN ou SIRET"
+								/>
+							</div>
 						</div>
-						<Trans i18nKey="landing.choice.create">
-							<h3>Créer une entreprise</h3>
-							<p className="ui__ notice">
-								Un accompagnement au choix du statut juridique et la liste
-								complète des démarches de création
-							</p>
-						</Trans>
-						<div className="ui__ small simple button">
-							{statutChoisi ? (
-								<Trans>Continuer</Trans>
-							) : (
-								<Trans>Commencer</Trans>
-							)}
+						<div
+							className="ui__ h h4 notice cta"
+							css={`
+								margin: 1rem -1rem !important;
+								flex: 0.15;
+								text-align: center;
+								align-self: end !important;
+							`}
+						>
+							ou
 						</div>
-					</Link>
-					<Link
-						className="ui__ interactive card light-border box "
-						to={sitePaths.gérer.index}
-					>
-						<div className="ui__ big box-icon">
-							<Emoji emoji="💶" />
-						</div>
-						<Trans i18nKey="landing.choice.manage">
-							<h3>Gérer mon activité</h3>
-							<p className="ui__ notice">
-								Des outils personnalisés pour anticiper le montant des
-								cotisations sociales à payer et mieux gérer votre trésorerie.
-							</p>
-						</Trans>
-						<div className="ui__ small simple button">
-							<Trans>Commencer</Trans>
-						</div>
-					</Link>
-					<Link
-						className="ui__ interactive card light-border box"
-						to={sitePaths.simulateurs.index}
-					>
-						<div className="ui__ big box-icon">
-							<Emoji emoji="🧮" />
-						</div>
-						<Trans i18nKey="landing.choice.simulators">
-							<h3>Accéder aux simulateurs</h3>
-							<p className="ui__ notice">
-								La liste exhaustive de tous les simulateurs disponibles sur le
-								site.
-							</p>
-						</Trans>
-						<div className="ui__ small simple button">
-							<Trans>Découvrir</Trans>
-						</div>
-					</Link>
+						<h2>
+							<Link
+								className="ui__ button cta h h4"
+								css={`
+									white-space: nowrap;
+									text-transform: none !important;
+									margin: 0 !important;
+								`}
+								to={
+									statutChoisi
+										? sitePaths.créer[statutChoisi]
+										: sitePaths.créer.index
+								}
+							>
+								<span>
+									<Trans i18nKey="landing.choice.create">
+										Créer une entreprise
+									</Trans>
+								</span>{' '}
+								{emoji('💡')}
+							</Link>
+						</h2>
+					</div>
 				</section>
 				<section>
 					<Trans i18nKey="landing.aboutUs">

@@ -78,6 +78,7 @@ h6:not(.h),
 	color: var(--lighterTextColor);
 }
 
+.ui__.h,
 h1,
 h2,
 h3,
@@ -98,7 +99,7 @@ ul {
 	margin: 0 0 0.6rem;
 }
 
-p.ui__.lead {
+.ui__.lead {
 	font-size: 120%;
 	line-height: 2rem;
 	color: var(--darkColor);

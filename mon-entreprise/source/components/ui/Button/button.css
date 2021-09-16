@@ -23,6 +23,7 @@
 	border-radius: 0.3rem;
 	transition: all 0.15s;
 	text-align: center;
+	will-change: background-position-x;
 	text-transform: uppercase;
 
 	font-family: 'Roboto', sans-serif;
@@ -45,7 +46,7 @@
 		50deg,
 		var(--color) 5%,
 		var(--lightColor) 50%,
-		rgba(255, 255, 255, 0.52) 55%
+		white 55%
 	);
 	background-size: 280%;
 	background-position-x: 99%;
@@ -68,9 +69,13 @@
 }
 .ui__.button:not(:disabled):not(.disabled):not(.simple):hover,
 .ui__.button.selected {
-	background-position-x: 0%;
-	border-color: white;
+	background-position-x: 1%;
+
 	color: white;
+}
+.ui__.button:not(:disabled):not(.disabled):not(.simple):hover .h,
+.ui__.button.selected .h {
+	color: white !important;
 }
 
 .ui__.button.simple,
@@ -87,16 +92,14 @@
 .ui__.button.simple:not(:last-of-type) {
 	margin-right: 0.6em;
 }
-.ui__.button.cta {
+.ui__.cta {
 	margin: 1rem 0;
 	display: inline-block;
 	align-self: center;
-	font-size: 120%;
-	padding: 0.9rem 1.8rem;
+	padding: 1rem 1rem;
 }
 
 .ui__.link-button,
-.ui__.dashed-button,
 .ui__.text-button {
 	border: none;
 	display: inline;
@@ -106,7 +109,6 @@
 	margin: 0;
 }
 .ui__.link-button img[src*='twemoji.maxcdn'],
-.ui__.dashed-button img[src*='twemoji.maxcdn'],
 .ui__.text-button img[src*='twemoji.maxcdn'] {
 	margin-right: 0.2rem !important;
 	margin-left: 0.2rem !important;
@@ -128,23 +130,10 @@
 	font-weight: bold;
 }
 
-.ui__.dashed-button::before {
-	padding: 0.8rem 0;
-	display: block;
-}
-.ui__.dashed-button {
-	border-bottom: 1px dashed;
-	border-color: rgb(41, 117, 209);
-	border-color: var(--color);
-	padding: 0.15em 0em;
-}
-
 .ui__.link-button:not(:disabled):not(.disabled):hover,
 .ui__.text-button:not(:disabled):not(.disabled):hover,
-.ui__.dashed-button:not(:disabled):not(.disabled):hover,
 .ui__.link-button:not(:disabled):not(.disabled).selected,
-.ui__.text-button:not(:disabled):not(.disabled).selected,
-.ui__.dashed-button:not(:disabled):not(.disabled).selected {
+.ui__.text-button:not(:disabled):not(.disabled).selected {
 	opacity: 0.8;
 }
 

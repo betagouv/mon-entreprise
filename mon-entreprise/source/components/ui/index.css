@@ -179,6 +179,13 @@ select.ui__ {
 }
 input.ui__ {
 	width: 25rem;
+	box-shadow: 0 0 0px 0px var(--color);
+	transition: all 0.1s;
+}
+input.ui__:focus {
+	box-shadow: 0 0 0px 2px var(--color);
+	border: 1px solid var(--color);
+	outline: none;
 }
 textarea.ui__ {
 	width: 100%;
