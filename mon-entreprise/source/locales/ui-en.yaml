@@ -38,6 +38,12 @@ Code d'intégration: Integration Code
 Commencer: Get started
 "Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
 Commune ou code postal: Municipality or postal code
+CompanySearchField:
+  ariaClearLabel: Delete search
+  description: "The Siret number is a 14 digit number unique to each company. Ex:
+    40123778000127"
+  label: Company name, SIREN or SIRET
+  placeholder: Café de la gare or 40123778000127
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
@@ -110,7 +116,6 @@ Mon revenu: My income
 Montant: Amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
@@ -149,6 +154,7 @@ Quelques exemples de salaires: Some salary exemples
 Quelques intégrations: Some integrations
 Recherche en cours...: Searching...
 Rechercher: Search
+Rechercher une entreprise: Search for a company
 Recommencer: Start again
 Rend non applicable les règles suivantes: Makes the following rules not applicable
 Renseigner mon entreprise: Find my company
@@ -522,8 +528,7 @@ embauche:
       titre: Register to a work medicine office
     page:
       description: All the necessary steps to hire your first employee in France.
-      titre: |
-        Hiring procedure in France
+      titre: The formalities for hiring
     pension:
       description: Find your pension institute (Fr)
       titre: Contact the compulsory supplementary pension institution assigned to you
@@ -860,10 +865,11 @@ landing:
     to remove all uncertainties with regard to the administration so that you
     can concentrate on what matters: your business.</3>"
   choice:
+    continue: Continue with the company
     create:
       body: Assistance in choosing a legal status and a complete list of the steps
         involved in setting up a business
-      title: Create a company
+      title: Starting a business
     manage:
       body: Personalized tools to anticipate the amount of social contributions to be
         paid and better manage your cash flow.
@@ -871,7 +877,13 @@ landing:
     simulators:
       body: The exhaustive list of all the simulators available on the site.
       title: Browse the simulators
+  choices:
+    continue: Continue with the company
   covid19: "Covid-19: Calculating the impact of short-time work"
+  outils: <0>The tools at your disposal</0><1>We provide you with assistants and
+    simulators to help you manage your business, anticipate levies and plan your
+    cash flow accordingly.</1>
+  outils_cta: <0></0> Discover all simulators and assistants
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
     to hiring.
@@ -912,6 +924,7 @@ non: no
 non applicable si: not applicable if
 non déductible: not deductible
 noresults: No results
+ou: or
 oui: yes
 page:
   documentation:
@@ -980,10 +993,10 @@ pages:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
-      contribution calculations behind mycompanyinfrance are free and easily reusable
-      thanks to the <2>NPM publicodes library</2>.</1><2>How to use this
-      library?</2><3>All our calculation rules are written in `publicodes`, a
-      declarative language developed by beta.gouv.fr and the Urssaf to encode
+      contribution calculations behind mycompanyinfrance are free and easily
+      reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
+      this library?</2><3>All our calculation rules are written in `publicodes`,
+      a declarative language developed by beta.gouv.fr and the Urssaf to encode
       algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
       perform your own calculations, you must install the publicodes
       interpreter, download the rules used on my-company, call the evaluation
@@ -1054,9 +1067,10 @@ pages:
         library: <0>Using the calculation engine</0><1>The entire socio-fiscal
           calculation engine developed by Urssaf, freely available in the form
           of an NPM library.</1>
-      description: In addition to the mycompanyinfrance site, we provide free and open source
-        tools to integrate on your website. You can thus include the tools
-        created for <1>mycompanyinfrance</1> directly in the usual paths of your users.
+      description: In addition to the mycompanyinfrance site, we provide free and open
+        source tools to integrate on your website. You can thus include the
+        tools created for <1>mycompanyinfrance</1> directly in the usual paths
+        of your users.
       titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
@@ -1750,7 +1764,7 @@ simulation-end:
   text: You have reached the most accurate estimate.
   title: No more questions left!
 site:
-  titleTemplate: "%s"
+  titleTemplate: "%s - My Company"
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms

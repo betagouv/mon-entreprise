@@ -9,18 +9,15 @@
 	margin-top: 2rem;
 	max-width: 19.5rem;
 	margin-left: 1.5rem;
-	margin-bottom: -3.5rem;
-}
-@media (min-width: 500px) {
-	.landing-title__logo {
-		display: none;
-	}
+	margin-bottom: -2rem;
 }
 
 @media (max-width: 900px) {
 	.landing-title__img {
 		margin: 0;
-		margin-bottom: -3.5rem;
+		max-width: 19.5rem;
+		margin-right: -4rem;
+		margin-bottom: -2rem;
 	}
 	.landing-header__brand-logo {
 		height: 4rem;
@@ -41,15 +38,15 @@
 		margin-left: 1rem;
 	}
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 	.landing-title {
 		flex-direction: column;
 		text-align: center;
 	}
-	.landing-title__logo {
-		display: none;
-	}
 	.landing-title__img {
-		display: none;
+		align-self: center;
+		margin: 0;
+		max-width: 10rem;
+		margin-bottom: -2rem;
 	}
 }
