@@ -1,22 +1,14 @@
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import BrexitPDF from './Brexit_guide.pdf'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
+import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
-	const sitePaths = useContext(SitePathsContext)
-	const statutChoisi = useSelector(
-		(state: RootState) => state.inFranceApp.companyStatusChoice
-	)
 	const language = useTranslation().i18n.language
 	return (
 		<>
@@ -48,70 +40,13 @@ export default function Landing() {
 					<img src={illustrationSvg} className="landing-title__img" />
 				</section>
 
-				<section className="ui__ light-bg full-width">
-					<div
-						className="ui__ container"
-						css={`
-							/* max-width: 1000px !important; */
-							display: flex;
-							flex-wrap: wrap;
-							align-items: end;
-							padding-bottom: 1rem;
-							justify-content: start;
-						`}
-					>
-						<div
-							css={`
-								flex: 1.2;
-							`}
-						>
-							<h2 className="ui__ h h4">Rechercher une entreprise</h2>
-							<div>
-								<input
-									className="ui__ cta"
-									css={`
-										margin-top: 0 !important;
-										width: 100% !important;
-										min-width: 20rem;
-									`}
-									placeholder="Nom, SIREN ou SIRET"
-								/>
-							</div>
-						</div>
-						<div
-							className="ui__ h h4 notice cta"
-							css={`
-								margin: 1rem -1rem !important;
-								flex: 0.15;
-								text-align: center;
-								align-self: end !important;
-							`}
-						>
-							ou
-						</div>
-						<h2>
-							<Link
-								className="ui__ button cta h h4"
-								css={`
-									white-space: nowrap;
-									text-transform: none !important;
-									margin: 0 !important;
-								`}
-								to={
-									statutChoisi
-										? sitePaths.créer[statutChoisi]
-										: sitePaths.créer.index
-								}
-							>
-								<span>
-									<Trans i18nKey="landing.choice.create">
-										Créer une entreprise
-									</Trans>
-								</span>{' '}
-								{emoji('💡')}
-							</Link>
-						</h2>
-					</div>
+				<section
+					className="ui__ light-bg full-width"
+					css={`
+						padding-bottom: 1rem;
+					`}
+				>
+					<SearchOrCreate />
 				</section>
 				<section>
 					<Trans i18nKey="landing.aboutUs">

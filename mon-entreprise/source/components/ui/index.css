@@ -178,7 +178,6 @@ select.ui__ {
 	font-family: inherit;
 }
 input.ui__ {
-	width: 25rem;
 	box-shadow: 0 0 0px 0px var(--color);
 	transition: all 0.1s;
 }
