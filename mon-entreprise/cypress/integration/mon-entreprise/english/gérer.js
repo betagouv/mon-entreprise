@@ -2,50 +2,8 @@ const fr = Cypress.env('language') === 'fr'
 
 const FIXTURES_FOLDER = 'cypress/fixtures'
 const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
+
 const writeFixtures = Cypress.env('record_http') !== undefined
-const stubFixtures = !writeFixtures
-const setInterceptResponses = (pendingRequests, responses, hostnames) => {
-	if (writeFixtures) {
-		cy.intercept('*', (req) => {
-			if (!hostnames.includes(new URL(req.url).hostname)) return
-			pendingRequests.add(req.url)
-			req.on('after:response', (res) => {
-				pendingRequests.delete(req.url)
-				responses[res.url] = res.body
-			})
-		})
-	} else if (stubFixtures) {
-		const urlOfFilepath = (filename) => {
-			return atob(filename.slice(0, -'.json'.length))
-		}
-		cy.exec(`find ${GERER_FIXTURES_FOLDER} -type f`)
-			.then((result) => {
-				return result.stdout.split('\n')
-			})
-			.then((filepaths) => {
-				filepaths.forEach((filepath) => {
-					const shortPath = filepath.slice(FIXTURES_FOLDER.length + 1)
-					const filename = filepath.slice(GERER_FIXTURES_FOLDER.length + 1)
-					cy.intercept(urlOfFilepath(filename), { fixture: shortPath })
-				})
-			})
-	}
-}
-const writeResponses = (pendingRequests, responses) => {
-	if (writeFixtures) {
-		// We need to wait on all catched requests to be fulfilled and recorded,
-		// otherwise the stubbed cy run might error when a request is not stubbed.
-		// Caveat: we assume request.url to be unique amongst recorded requests.
-		cy.waitUntil(() => pendingRequests.size === 0)
-		Object.keys(responses).map((url) => {
-			if (responses[url] === undefined) return
-			cy.writeFile(
-				`${GERER_FIXTURES_FOLDER}/${btoa(url)}.json`,
-				JSON.stringify(responses[url], null, 2)
-			)
-		})
-	}
-}
 
 describe(`Manage page test (${
 	writeFixtures ? 'record mode' : 'stubbed mode'
@@ -54,13 +12,24 @@ describe(`Manage page test (${
 	let responses = {}
 	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
 	beforeEach(() => {
+		cy.clearLocalStorage() // Try to avoid flaky tests
+
 		pendingRequests = new Set()
 		responses = {}
-		setInterceptResponses(pendingRequests, responses, hostnamesToRecord)
+		cy.setInterceptResponses(
+			pendingRequests,
+			responses,
+			hostnamesToRecord,
+			GERER_FIXTURES_FOLDER
+		)
 		cy.visit(fr ? encodeURI('/gérer') : '/manage')
 	})
 	afterEach(() => {
-		writeResponses(pendingRequests, responses)
+		cy.writeInterceptResponses(
+			pendingRequests,
+			responses,
+			GERER_FIXTURES_FOLDER
+		)
 	})
 	it('should not crash', function () {
 		cy.contains(fr ? 'Gérer mon activité' : 'Manage my business')

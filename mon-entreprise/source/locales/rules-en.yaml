@@ -8313,7 +8313,7 @@ impôt:
   titre.fr: impôt sur le revenu
 impôt . dividendes:
   titre.en: '[automatic] Taxation of dividends'
-  titre.fr: Impôsition des dividendes
+  titre.fr: Imposition des dividendes
 impôt . dividendes . PFU:
   description.en: >
     [automatic] This amount is to be paid in the form of a deposit at the time
@@ -8516,8 +8516,8 @@ impôt . foyer fiscal . taux effectif:
   titre.en: '[automatic] yield rate'
   titre.fr: taux effectif
 impôt . montant:
-  titre.en: '[automatic] Amount of income tax'
-  titre.fr: Montant de l'impôt sur le revenu
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
 impôt . montant si autres revenus imposables uniquement:
   titre.en: '[automatic] Amount of tax if no dividend is received'
   titre.fr: Montant de l'impôt dans le cas où aucun dividende ne serait touché

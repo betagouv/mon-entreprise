@@ -13,7 +13,7 @@ impôt . montant:
     - impôt . dividendes . PFU
   arrondi: oui
   unité: €/an
-  titre: Montant de l'impôt sur le revenu
+  titre: Impôt sur le revenu
 
 impôt . taux d'imposition:
   formule:
@@ -573,7 +573,7 @@ impôt . domiciliation étranger non implémentée:
 impôt . dividendes:
   valeur: oui
   applicable si: bénéficiaire . dividendes . bruts > 0
-  titre: Impôsition des dividendes
+  titre: Imposition des dividendes
 
 impôt . montant si autres revenus imposables uniquement:
   recalcul:

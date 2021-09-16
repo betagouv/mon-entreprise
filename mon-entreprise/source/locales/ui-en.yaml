@@ -139,6 +139,7 @@ Professions libérales: By job
 Protection sociale: Social security
 Précédent: Previous
 Prévisualisation: Preview
+Que cherchez-vous ?: What are you looking for?
 Quel module ?: What module?
 Quelle couleur ?: What color?
 Quelques exemples de salaires: Some salary exemples
@@ -161,6 +162,7 @@ Revenu du dirigeant par statut: Executive income by status
 "Revenu net avec chômage partiel :": "Net income with short-time work :"
 Revenu net mensuel: Monthly net income
 Revenus étranger: Foreign income
+Règles de calculs: Rules
 Réductions: Discounts
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
@@ -176,6 +178,7 @@ Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
+Simulateurs: Simulations
 Simulations personnalisées: Customized simulations
 Sinon: Else
 Situation personnelle: Personal situation
@@ -774,6 +777,12 @@ gérer:
       <0>Discover the hiring process</0>
 
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
+    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the existence
+      of a commercial company. You can get the Kbis for your company using
+      monidenum.fr</1>
+    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs
+      do not have a Kbis. They can however retrieve and present a K extract.
+      See the service-public website for more information.</1>
     sécuritéSociale: <0>Understanding social security</0> <1>What are social
       security contributions used for? Update on the social protection system
       enjoyed by all workers in France</1>
@@ -1621,13 +1630,17 @@ simulateurs:
       soutien: <0>Listening and support</0><1>An <2>initial listening and
         psychological support unit</2> has been set up for company directors
         weakened by the crisis.</1><2><0>{emoji('📞')}</0> 08 05 65 50 50</2>
-    pamc: <0><0>Your partner institutions</0><1><0><0><0></0></0><1>Contributions
-      collected by Urssaf, which are used to finance social security (health
-      insurance, family allowances, dependency
-      care).</1><2><0></0></2></0><1></1><2><0><0><0></0></0><1>As a contracted
-      health professional, you benefit from having part of your contributions
-      covered by the Assurance Maladie.</1><2><0></0>
-      <2></2></2></0></2></1></0>
+    institutions:
+      cpam: As a health professional under agreement, you benefit from a part of your
+        contributions being covered by the Health Insurance.
+      dgfip: The Direction générale des finances publiques (DGFiP) is the body that
+        collects income tax. <2>The amount calculated <2>takes into account the
+        abatement of the micro-tax system</2>.</2>
+      notice acre: The amounts indicated above are calculated without taking into
+        account the ACRE start-up exemption
+      titre: Your partner institutions
+      urssaf: The contributions collected by the Urssaf, which are used to finance
+        social security (health insurance, family allowances, dependence).
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.

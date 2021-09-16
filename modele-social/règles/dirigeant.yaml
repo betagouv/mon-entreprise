@@ -24,7 +24,7 @@ dirigeant . rémunération . totale:
       alors:
         somme:
           - nette après impôt
-          - impôt
+          - impôt . montant
           - cotisations
         par défaut: entreprise . chiffre d'affaires - entreprise . charges
         plancher: cotisations
@@ -74,7 +74,7 @@ dirigeant . rémunération . nette après impôt:
   description: >-
     Le revenu net après déduction de l'impôt
     sur le revenu et des cotisations sociales.
-  valeur: rémunération . nette - impôt
+  valeur: rémunération . nette - impôt . montant
   résumé: Ce que vous rapporte cette activité
 
 dirigeant . assimilé salarié:

@@ -3,8 +3,8 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Variations from './Variations'
 import Overlay from '../Overlay'
+import Explanation from '../Explanation'
 import { RuleLinkWithContext } from '../RuleLink'
-import { NodeValuePointer, UnfoldIsEnabledContext } from './common'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
 
 export default function Replacement(node: VariationNode & EvaluatedNode) {
@@ -18,16 +18,7 @@ export default function Replacement(node: VariationNode & EvaluatedNode) {
 	const [displayReplacements, changeDisplayReplacement] = useState(false)
 	return (
 		<span>
-			<RuleLinkWithContext dottedName={replacedNode.dottedName} />
-			&nbsp;
-			{applicableReplacement && (
-				<span>
-					<NodeValuePointer
-						data={(applicableReplacement as any).nodeValue}
-						unit={(applicableReplacement as any).unit}
-					/>
-				</span>
-			)}
+			<Explanation node={applicableReplacement} />
 			&nbsp;
 			<button
 				onClick={() => changeDisplayReplacement(true)}

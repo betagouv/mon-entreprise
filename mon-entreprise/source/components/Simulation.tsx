@@ -3,7 +3,6 @@ import Conversation, {
 } from 'Components/conversation/Conversation'
 import ExportSimulationBanner from 'Components/ExportSimulationBanner'
 import PageFeedback from 'Components/Feedback'
-import SearchButton from 'Components/SearchButton'
 import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
 import Progress from 'Components/ui/Progress'
@@ -42,7 +41,6 @@ export default function Simulation({
 			<ExportRecover />
 			{simulationBloc}
 
-			<SearchButton invisibleButton />
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
 				<>
@@ -76,7 +74,7 @@ export default function Simulation({
 								>
 									<div
 										css={`
-											margin: 0 1rem;
+											margin: 1rem;
 										`}
 									>
 										<div className="ui__ card lighter-bg">
