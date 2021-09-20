@@ -61,10 +61,10 @@ export default function Budget() {
 					))}
 				</select>
 			</label>
+			<h2>Budget consommé</h2>
 			<Markdown source={ressources[selectedYear]} />
 			{selectedYear !== '2019' && (
 				<>
-					<h2>Emploi des ressources</h2>
 					<div
 						css={`
 							overflow: auto;
