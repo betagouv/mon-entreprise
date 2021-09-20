@@ -13,8 +13,6 @@ dont nous rappelons les principes ici&nbsp;:
 
 ---
 
-## Budget
-
 En 2019, le projet dispose d’un budget de **250 000 € HT** pris en charge :
 
 -   Par la DINSIC (ancien nom de la [DINUM](https://www.numerique.gouv.fr/dinum/)) à hauteur de 150 000 € HT
@@ -34,24 +32,14 @@ simulateur et une expérimentation sur la paie.
 
 ---
 
-## Budget
+En 2020, le budget est désormais pris en charge à 100% par
+l’[ACOSS](https://www.acoss.fr). En plus de sa contribution financière, l’ACOSS
+fournit des ressources métier expertes provenant du réseau des Urssaf.
 
-En 2020, le budget de **250 000 € HT** est reconduit. Il est pris en charge à
-100% par l’[ACOSS](https://www.acoss.fr). En plus de cette contribution
-financière, l’ACOSS fournit des ressources métier expertes provenant du réseau
-des Urssaf.
-
-Une enveloppe de **41 667 € HT** est allouée pour expérimenter la transformation
-du moteur de simulations en moteur de paie complète. La solution proposée ne
-sera finalement pas retenue pour la refonte des offres de service de l'Urssaf.
-Voir le [compte-rendu de
-l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
-
-|                             |                  |
-| --------------------------- | ---------------: |
-| Budget mon-entreprise       |     250 000 € HT |
-| Budget expérimentation paie |      41 667 € HT |
-| **Total**                   | **291 667 € HT** |
+Une enveloppe est allouée pour expérimenter la transformation du moteur de
+simulations en moteur de paie complète. La solution proposée ne sera finalement
+pas retenue pour la refonte des offres de service de l'Urssaf. Voir le
+[compte-rendu de l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 
 Au quatrième trimestre mon-entreprise rejoint le programme [programme
 Gamma](https://blog.beta.gouv.fr/dinsic/2020/08/20/acceleration-des-startups-d-etat-d-un-retour-d-experience-a-l-experimentation-d-un-programme-d-accompagnement-cible-1/)
@@ -60,11 +48,13 @@ programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ---
 
-## Budget
+En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) prend en charge à 100%
+le financement de mon-entreprise.
 
-En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) finance le projet à hauteur de **185 000 € HT**.
-
-Au premier trimestre 2021, l'équipe mon-entreprise continue de bénéficier de l'accompagnement du [programme Gamma](https://beta.gouv.fr/approche/acceleration) financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
+Au premier trimestre 2021, l'équipe mon-entreprise continue de bénéficier de
+l'accompagnement du [programme
+Gamma](https://beta.gouv.fr/approche/acceleration) financé par la
+[DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ---
 
