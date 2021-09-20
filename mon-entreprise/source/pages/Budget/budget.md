@@ -41,7 +41,7 @@ simulations en moteur de paie complète. La solution proposée ne sera finalemen
 pas retenue pour la refonte des offres de service de l'Urssaf. Voir le
 [compte-rendu de l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 
-Au quatrième trimestre mon-entreprise rejoint le programme [programme
+Au quatrième trimestre mon-entreprise rejoint le [programme
 Gamma](https://blog.beta.gouv.fr/dinsic/2020/08/20/acceleration-des-startups-d-etat-d-un-retour-d-experience-a-l-experimentation-d-un-programme-d-accompagnement-cible-1/)
 qui accompagne l'accélération des services publics crées par beta.gouv. Ce
 programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).

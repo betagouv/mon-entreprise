@@ -2,6 +2,7 @@ import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
 import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -88,33 +89,23 @@ export default function Footer() {
 					</p>
 				)}
 				<StyledFooter className="ui__ notice container">
-					<ul>
-						<li>
-							<LegalNotice />
-						</li>
-						<li>
-							<Privacy />
-						</li>
-						{language === 'fr' && (
-							<li>
-								<Link to={sitePaths.accessibilité}>
-									<Trans i18nKey="footer.accessibilité">
-										Accessibilité : non conforme
-									</Trans>
-								</Link>
-							</li>
-						)}
-					</ul>
 					{language === 'fr' && (
 						<ul>
 							<li>
-								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
+								<Link to={sitePaths.nouveautés}>
+									<Emoji emoji="✨" /> Nouveautés
+								</Link>
 							</li>
 							<li>
-								<Link to={sitePaths.stats}>Stats</Link>
+								<Link to={sitePaths.stats}>
+									<Emoji emoji="📊" /> Stats
+								</Link>
 							</li>
 							<li>
-								<Link to={sitePaths.budget}>Budget</Link>
+								<Link to={sitePaths.budget}>
+									{' '}
+									<Emoji emoji="💶" /> Budget{' '}
+								</Link>
 							</li>
 						</ul>
 					)}
@@ -137,6 +128,23 @@ export default function Footer() {
 								</a>
 							</li>
 						))}
+					</ul>
+					<ul>
+						<li>
+							<LegalNotice />
+						</li>
+						<li>
+							<Privacy />
+						</li>
+						{language === 'fr' && (
+							<li>
+								<Link to={sitePaths.accessibilité}>
+									<Trans i18nKey="footer.accessibilité">
+										Accessibilité : non conforme
+									</Trans>
+								</Link>
+							</li>
+						)}
 					</ul>
 				</StyledFooter>
 
