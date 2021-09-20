@@ -5873,6 +5873,79 @@ dirigeant . indépendant . PL . CAVEC . invalidité et décès:
 dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CAVEC)'
   titre.fr: retraite complémentaire (CAVEC)
+dirigeant . indépendant . PL . CAVP:
+  description.en: '[automatic] The CAVP is the pension fund for pharmacists.'
+  description.fr: La CAVP est la caisse de retraite des pharmaciens.
+  titre.en: '[automatic] CAVP'
+  titre.fr: CAVP
+dirigeant . indépendant . PL . CAVP . PCV:
+  titre.en: '[automatic] Old-age benefit (CAVP)'
+  titre.fr: Prestation complémentaire de vieillesse (CAVP)
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
+  titre.en: '[automatic] CPAM assistance'
+  titre.fr: aide CPAM
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM forfaitaire:
+  titre.en: '[automatic] flat-rate CPAM aid'
+  titre.fr: aide CPAM forfaitaire
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM proportionnelle:
+  titre.en: '[automatic] proportional CPAM assistance'
+  titre.fr: aide CPAM proportionnelle
+dirigeant . indépendant . PL . CAVP . PCV . cotisations forfaitaire:
+  titre.en: '[automatic] flat-rate contributions'
+  titre.fr: cotisations forfaitaire
+dirigeant . indépendant . PL . CAVP . PCV . cotisations proportionnelle:
+  titre.en: '[automatic] proportional contributions'
+  titre.fr: cotisations proportionnelle
+dirigeant . indépendant . PL . CAVP . cotisation de référence:
+  titre.en: '[automatic] benchmark contribution'
+  titre.fr: cotisation de référence
+dirigeant . indépendant . PL . CAVP . demande reduction:
+  résumé.en: >
+    [automatic] A reduction in contributions can be requested for the first 2
+    years, or
+
+    in case of low income. Thus, if your income for the year before last
+
+    or the previous year if known (i.e. 2018 or 2019 for 2020 contributions)
+
+    2020), were :
+      - less than 1/3 of the PASS (€13,712 in 2020), you can claim a 75% reduction;
+      - between 1/3 and 2/3 of the PASS (between €13,712 and €27,423 in 2020), you can apply for a 50% reduction;
+      - between 2/3 of the PASS and the PASS (between €27,424 and €41,135 in 2020), you can apply for a 25% reduction.
+
+    This possibility is reserved for pharmacists who contribute in class 3 (the lowest).
+  résumé.fr: >
+    Une réduction de cotisations peut être demandée les 2 premières années, ou
+
+    en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
+
+    ou de l'année précédente s'ils sont connus (soit 2018 ou 2019 pour les cotisations
+
+    2020), étaient :
+      - inférieurs à 1/3 du PASS (13 712 € en 2020), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 13 712 et 27 423 € en 2020), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 27 424 € et 41 135 € en 2020), vous pouvez demander une réduction de 25 %.
+
+    Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
+  titre.en: '[automatic] reduction request'
+  titre.fr: demande reduction
+dirigeant . indépendant . PL . CAVP . directeur non médecin:
+  question.en: '[automatic] Are you a registered medical biologist?'
+  question.fr: Êtes-vous biologiste médical conventionné ?
+  titre.en: '[automatic] non-physician director'
+  titre.fr: directeur non médecin
+dirigeant . indépendant . PL . CAVP . invalidité et décès:
+  titre.en: '[automatic] disability and death (CAVP)'
+  titre.fr: invalidité et décès (CAVP)
+dirigeant . indépendant . PL . CAVP . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CAVP)'
+  titre.fr: retraite complémentaire (CAVP)
+dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par capitalisation:
+  titre.en: '[automatic] share managed by capitalisation'
+  titre.fr: part géré par capitalisation
+dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par répartition:
+  titre.en: '[automatic] pay-as-you-go portion'
+  titre.fr: part géré par répartition
 dirigeant . indépendant . PL . CIPAV:
   description.en: >
     [automatic] CIPAV is the independent pension fund for the regulated
@@ -6456,6 +6529,9 @@ dirigeant . indépendant . PL . métier . santé . chirurgien-dentiste:
 dirigeant . indépendant . PL . métier . santé . médecin:
   titre.en: '[automatic] doctor'
   titre.fr: médecin
+dirigeant . indépendant . PL . métier . santé . pharmacien:
+  titre.en: '[automatic] pharmacist'
+  titre.fr: pharmacien
 dirigeant . indépendant . PL . métier . santé . sage-femme:
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme

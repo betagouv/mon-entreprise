@@ -12,10 +12,7 @@
 	"engines": {
 		"node": ">=12.16.1"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"devDependencies": {
 		"@babel/core": "^7.9.0",
 		"@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -125,6 +122,7 @@
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance,integrationFolder=cypress/integration/mon-entreprise/english --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
+		"i18n:check": "yarn run i18n:rules:check && yarn run i18n:ui:check",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",

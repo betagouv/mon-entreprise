@@ -1398,6 +1398,9 @@ pages:
         title: PAMC diet simulators
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
+    pharmacien:
+      shortname: Pharmacist
+      title: Income simulator for self-employed pharmacists
     print-info:
       date: This simulation was performed on
       recover: You can find this simulation and other tools to help you create and

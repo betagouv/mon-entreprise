@@ -1,5 +1,5 @@
-import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
+import Value, { Condition } from 'Components/EngineValue'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -145,6 +145,7 @@ function CaisseRetraite() {
 		'CARMF',
 		'CNBF',
 		'CAVEC',
+		'CAVP',
 	] as const
 
 	return (
