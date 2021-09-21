@@ -14,7 +14,7 @@ export function useUrl() {
 	searchParams.set('utm_source', 'sharing')
 	return [
 		window.location.origin,
-		window.location.pathname,
+		window.location.pathname.replace('iframes/', ''),
 		'?',
 		searchParams.toString(),
 	].join('')
