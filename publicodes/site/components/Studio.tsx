@@ -166,7 +166,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 				</small>
 				<div className="ui__ answer-group">
 					<button className="ui__ simple small button" onClick={onClickShare}>
-						{emoji('🔗')} Copier le lien
+						🔗 Copier le lien
 					</button>
 				</div>
 			</div>

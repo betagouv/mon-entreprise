@@ -24,7 +24,7 @@ export default function Replacement(node: VariationNode & EvaluatedNode) {
 				onClick={() => changeDisplayReplacement(true)}
 				className="ui__ simple small button"
 			>
-				{emoji('🔄')}
+				🔄
 			</button>
 			{displayReplacements && (
 				<Overlay onClose={() => changeDisplayReplacement(false)}>

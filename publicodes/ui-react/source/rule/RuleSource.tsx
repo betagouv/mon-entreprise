@@ -87,7 +87,7 @@ export default function RuleSource({ engine, dottedName }: Props) {
 					dottedName
 				)}?code=${encodeURIComponent(source)}`}
 			>
-				{emoji('✍️')} Voir la règle dans le bac à sable Publicodes
+				✍️ Voir la règle dans le bac à sable Publicodes
 			</a>
 		</div>
 	)

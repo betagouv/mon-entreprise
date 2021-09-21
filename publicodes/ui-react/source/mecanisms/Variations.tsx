@@ -47,14 +47,14 @@ export default function Variations({
 												className="ui__ link-button"
 												onClick={() => toggleVariation(i)}
 											>
-												détails {emoji('▶️')}
+												détails ▶️
 											</button>
 										) : (
 											<button
 												className="ui__ link-button"
 												onClick={() => toggleVariation(null)}
 											>
-												replier {emoji('🔽')}
+												replier 🔽
 											</button>
 										)}
 									</>
