@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { TrackingContext } from '../ATInternetTracking'
 import Banner from './Banner'
+import ExportSimulationBanner from './ExportSimulationBanner'
 import { FromTop } from './ui/animate'
 import { useParamsFromSituation } from './utils/useSearchParamsSimulationSharing'
 
@@ -20,7 +22,7 @@ export function useUrl() {
 	].join('')
 }
 
-export default function ShareSimulationBanner() {
+export default function ShareOrSaveSimulationBanner() {
 	const [opened, setOpened] = useState(false)
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
@@ -45,38 +47,32 @@ export default function ShareSimulationBanner() {
 		}
 	}
 
-	return (
-		<Banner
-			hideAfterFirstStep={false}
-			icon="💬"
-			className="ui__ print-display-none"
-		>
-			{opened ? (
-				<FromTop>
-					<div>
-						<span
-							className="ui__ close-button"
-							style={{ float: 'right' }}
-							onClick={() => setOpened(false)}
-						>
-							&times;
-						</span>
-						<h3>
-							{t('shareSimulation.modal.title', 'Votre lien de partage')}{' '}
-						</h3>
-						<p className="ui__ notice">
-							<Trans key="shareSimulation.modal.notice">
-								Voici le lien que vous pouvez envoyer pour accéder à votre
-								simulation.
-							</Trans>
-						</p>
-						<ShareSimulationPopup url={url} />
-					</div>
-				</FromTop>
-			) : (
+	return opened ? (
+		<FromTop>
+			<div style={{ margin: '2rem 0' }}>
+				<button
+					className="ui__ close-button"
+					style={{ float: 'right', fontSize: '1.5em', fontWeight: 200 }}
+					onClick={() => setOpened(false)}
+				>
+					&times;
+				</button>
+				<h3>{t('shareSimulation.modal.title', 'Votre lien de partage')} </h3>
+				<p className="ui__ notice">
+					<Trans key="shareSimulation.modal.notice">
+						Voici le lien que vous pouvez envoyer pour accéder à votre
+						simulation.
+					</Trans>
+				</p>
+				<ShareSimulationPopup url={url} />
+			</div>
+		</FromTop>
+	) : (
+		<SharingTools className="ui__ print-display-none">
+			<Banner hideAfterFirstStep={false} icon="💬">
 				<Trans i18nKey="shareSimulation.banner">
-					Pour partager cette simulation :{' '}
-					<LinkButton
+					<button
+						className="ui__ simple small button"
 						onClick={() => {
 							tracker.click.set({
 								chapter1: 'feature:partage',
@@ -87,13 +83,21 @@ export default function ShareSimulationBanner() {
 							startSharing()
 						}}
 					>
-						Générer un lien dédié
-					</LinkButton>
+						Générer un lien de partage
+					</button>
 				</Trans>
-			)}
-		</Banner>
+			</Banner>
+			<ExportSimulationBanner />
+		</SharingTools>
 	)
 }
+
+const SharingTools = styled.div`
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin: 0.5rem 0;
+`
 
 function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef: React.RefObject<HTMLInputElement> = React.createRef()
