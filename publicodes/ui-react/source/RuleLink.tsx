@@ -63,9 +63,7 @@ export function RuleLink<Name extends string>({
 			{...props}
 		>
 			{children || rule.title}{' '}
-			{displayIcon && rule.rawNode.icônes && (
-				<span>{emoji(rule.rawNode.icônes)} </span>
-			)}
+			{displayIcon && rule.rawNode.icônes && <span>{rule.rawNode.icônes}</span>}
 		</Link>
 	)
 }

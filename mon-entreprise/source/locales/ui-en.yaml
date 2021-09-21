@@ -1615,18 +1615,6 @@ simulateurs:
   explanation:
     CNAPL: It recovers contributions related to your retirement and disability/death
       plan.
-    aides covid:
-      deduction: <0>Deduction of turnover</0><1>The terms and conditions of the
-        "covid" discount are presented on the Urssaf
-        website.</1><2><0>{emoji('▶')}</0> More information</2>
-      portail: <0>Government assistance</0><1>The Ministry of the Economy offers a
-        portal listing business support measures.</1><2><0>{emoji('▶')}</0>
-        Support measures</2>
-      reduction: <0>Contribution reduction</0><1>You can benefit from a reduction in
-        your final contributions for the year 2020.</1><2><0></0></2>
-      soutien: <0>Listening and support</0><1>An <2>initial listening and
-        psychological support unit</2> has been set up for company directors
-        weakened by the crisis.</1><2><0>{emoji('📞')}</0> 08 05 65 50 50</2>
     institutions:
       cpam: As a health professional under agreement, you benefit from a part of your
         contributions being covered by the Health Insurance.
