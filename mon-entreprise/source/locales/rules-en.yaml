@@ -1,4 +1,18 @@
 SMIC horaire:
+  note.en: >
+    [automatic] In principle, and unless there is a "boost", the SMIC is
+    revalued on January 1 each year.
+
+    of each year. However, a revaluation must take place during the year if the reference price index has increased by 2% or more since the
+
+    if the reference price index has increased by 2% or more since the last
+
+    the last revaluation of the SMIC.
+  note.fr: |
+    En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
+    de chaque année. Toutefois une revalorisation doit intervenir en cours
+    d'année si l'indice des prix de référence a augmenté de 2% ou plus depuis la
+    dernière revalorisation du SMIC.
   titre.en: hourly minimum wage (SMIC)
   titre.fr: SMIC horaire
 SMIC temps plein:
