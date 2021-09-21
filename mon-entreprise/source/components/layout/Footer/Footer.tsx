@@ -93,18 +93,17 @@ export default function Footer() {
 						<ul>
 							<li>
 								<Link to={sitePaths.nouveautés}>
-									<Emoji emoji="✨" /> Nouveautés
+									Nouveautés <Emoji emoji="✨" />
 								</Link>
 							</li>
 							<li>
 								<Link to={sitePaths.stats}>
-									<Emoji emoji="📊" /> Stats
+									Stats <Emoji emoji="📊" />
 								</Link>
 							</li>
 							<li>
 								<Link to={sitePaths.budget}>
-									{' '}
-									<Emoji emoji="💶" /> Budget{' '}
+									Budget <Emoji emoji="💶" />
 								</Link>
 							</li>
 						</ul>
@@ -171,7 +170,7 @@ const StyledFooter = styled.div`
 	display: flex;
 	justify-content: space-between;
 	@media (max-width: 600px) {
-		flex-direction: column-reverse;
+		flex-direction: column;
 		text-align: center;
 		li {
 			display: inline-block;
