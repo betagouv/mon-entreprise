@@ -5,10 +5,10 @@ entreprise:
 
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
-  par défaut: 01/01/2017
+  par défaut: 01/01/2020
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
-    déclaration de votre entreprise.  
+    déclaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
     automatiquement cette information.
@@ -24,7 +24,7 @@ entreprise . date de création:
 entreprise . date de création . contrôle date future:
   type: notification
   sévérité: avertissement
-  formule: date de création > 01/2021
+  formule: date de création > 01/2025
   description: Nous ne pouvons voir aussi loin dans le futur
 
 entreprise . date de création . contrôle date passée:
@@ -41,9 +41,11 @@ entreprise . durée d'activité:
 entreprise . durée d'activité . en fin d'année:
   titre: durée d'activité à la fin de l'année
   formule:
-    durée:
-      depuis: date de création
-      jusqu'à: période . fin d'année
+    somme:
+      - durée:
+          depuis: date de création
+          jusqu'à: période . fin d'année
+      - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
   titre: durée d'activité au début de l'année
@@ -54,58 +56,54 @@ entreprise . durée d'activité . en début d'année:
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
+
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  variations:
-    - si: dirigeant . auto-entrepreneur
-      alors:
-        inversion numérique:
-          avec:
-            - dirigeant . auto-entrepreneur . net de cotisations
-            - dirigeant . auto-entrepreneur . net après impôt
-            - dirigeant . rémunération totale
-    - sinon: 
-        somme: 
-          - dirigeant . rémunération totale
-          - charges
-        
-      
-
+  somme:
+    - dirigeant . rémunération . nette après impôt
+    - dirigeant . rémunération . impôt
+    - dirigeant . rémunération . cotisations
+    - charges
+    - applicable si: entreprise . imposition . IS
+      somme:
+        - imposition . IS . résultat net
+        - imposition . IS . impôt sur les sociétés
+  plancher: 0€/an
   arrondi: oui
-  identifiant court: ca
-
+  identifiant court: CA
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
   résumé: Chiffre d'affaires hors taxe
-  question: Quel est le chiffre d'affaires issus de la vente de bien, restauration ou hébergement ?
+  question: Quel est le chiffre d'affaires issu de la vente de biens, restauration ou hébergement ?
   unité: €/an
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . vente restauration hébergement
-    - sinon: 
+    - sinon:
         applicable si: activité . service ou vente = 'vente'
         valeur: chiffre d'affaires
   arrondi: oui
   plancher: 0€/an
   description: |
-    ### Vente de biens 
+    ### Vente de biens
     Il s’agit du chiffre d'affaires de toutes les opérations comportant
     transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
-    existence matérielle. 
+    existence matérielle.
 
     ### Restauration et hébergement
     Il s’agit du chiffre d'affaires de toutes les opérations de restauration
-    ou hébergement (hors meublé de tourisme classé)
+    ou hébergement
 
-    Ces revenus sont imposable au régime BIC
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+
+    Ces revenus sont imposables dans la catégorie des BIC
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
     définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
-
 
 entreprise . chiffre d'affaires . service BIC:
   unité: €/an
@@ -113,7 +111,7 @@ entreprise . chiffre d'affaires . service BIC:
   arrondi: oui
   résumé: Chiffre d'affaires hors taxe
   titre: Prestations de service commerciales ou artisanales (BIC)
-  question: Quel est le chiffre d'affaires issus de prestations de service commerciales ou artisanales ?
+  question: Quel est le chiffre d'affaires issu de prestations de service commerciales ou artisanales ?
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle), dont
@@ -123,48 +121,47 @@ entreprise . chiffre d'affaires . service BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . service BIC
-    - sinon: 
+    - sinon:
         applicable si: activité . service ou vente = 'service'
         valeur: chiffre d'affaires
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
-  
-
 
 entreprise . chiffre d'affaires . service BNC:
   titre: Autres prestations de service et activités libérales (BNC)
-  résumé: Chiffre d'affaires hors taxe
-  question: Quel est le chiffre d'affaires issus de prestations de service libérale ?
+  résumé: Recettes hors taxes
+  question: Quelles sont les recettes issues de l’activité libérale ?
   arrondi: oui
   plancher: 0€/an
   description: |
     Ce sont toutes les opérations dont l'activité intellectuelle tient
-    un rôle essentiel. 
+    un rôle essentiel.
 
     **Exemples** : conseil, accompagnement, traduction, développement,
     formation, enseignement, sportif
 
     Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  variations: 
+  variations:
     - si: activité . mixte
       alors:
-        produit: 
-          assiette: chiffre d'affaires 
+        produit:
+          assiette: chiffre d'affaires
           taux: activité . mixte . proportions . service BNC
-    - sinon: 
+    - sinon:
         applicable si: activité = 'libérale'
         valeur: chiffre d'affaires
-  
+
   références:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . chiffre d'affaires . service:
+  titre: Chiffre d'affaires de prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle)
@@ -178,28 +175,12 @@ entreprise . chiffre d'affaires . BIC:
     Le chiffre d'affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
   unité: €/an
   somme:
-    - service BIC 
+    - service BIC
     - vente restauration hébergement
-    
-entreprise . chiffre d'affaires . franchise de TVA dépassée:
-  description: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
 
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  une de ces conditions:
-    - chiffre d'affaires > seuil vente + seuil service
-    - vente restauration hébergement > seuil vente
-    - service > seuil service
-  note: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+entreprise . chiffre d'affaires . franchise de TVA: oui
 
-entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
+entreprise . chiffre d'affaires . franchise de TVA . seuil vente:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 110000 €/an
@@ -207,7 +188,7 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil vente:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
+entreprise . chiffre d'affaires . franchise de TVA . seuil service:
   variations:
     - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
@@ -217,31 +198,41 @@ entreprise . chiffre d'affaires . franchise de TVA dépassée . seuil service:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . chiffre d'affaires . franchise de TVA dépassée . notification:
+entreprise . chiffre d'affaires . franchise de TVA . dépassement:
   type: notification
-  formule: oui
+  formule:
+    une de ces conditions:
+      - chiffre d'affaires > seuil vente + seuil service
+      - vente restauration hébergement > seuil vente
+      - service > seuil service
+  résumé: |
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
   description: |
-    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/franchise-de-TVA-dépassée)
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
 
-entreprise . chiffre d'affaires minimum:
-  identifiant court: entreprise-ca-min
-  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
-  question: Quel est votre chiffre d'affaires minimum envisagé ?
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  note: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . résultat fiscal:
   unité: €/an
-  formule: chiffre d'affaires
-
-entreprise . rémunération du dirigeant:
-  description: |
-    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
-  question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  par défaut: 100%
+  somme:
+    - chiffre d'affaires
+    - (- charges)
+    - (- charges . dirigeant)
 
 entreprise . imposition:
-  question: À quel régime d'imposition l'entreprise est-elle soumise ?
+  question: Comment l'entreprise est-elle imposée ?
   description: |
-    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition des bénéfices de son activité :
-    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
-    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+    Indiquez si le régime d’imposition des revenus liés à l’activité indépendante relèvent :
+    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleur indépendant, au barème progressif de l’impôt sur le revenu.
+    - de l’impôt sur les sociétés : les bénéfices de l’entreprise sont imposés au nom de la société, au taux de l’impôt sur les sociétés.
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -252,50 +243,112 @@ entreprise . imposition:
 
 entreprise . imposition . IR:
   valeur: imposition = 'IR'
-  titre: À l'impôt sur le revenu
+  titre: Impôt sur le revenu
 
-entreprise . imposition . IS:
-  valeur: imposition = 'IS'
-  titre: À l'impôt sur les sociétés
+entreprise . imposition . IR . micro-fiscal:
+  rend non applicable: dirigeant . indépendant . cotisations facultatives
 
-entreprise . imposition . IS . notification IS non intégré:
-  type: notification
-  formule:
-    une de ces conditions:
-      - dirigeant . assimilé salarié
-      - dirigeant . indépendant
+  question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
-    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
-    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
-    le calcul de l'impôt sur le revenu.
+    Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
 
-entreprise . bénéfice:
-  titre: Bénéfice de l'exercice
-  résumé: Imposable à l'impôt sur les sociétés
-  formule: chiffre d'affaires - charges dont rémunération dirigeant
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
+  par défaut: non
 
-entreprise . bénéfice . information sur le report de déficit:
-  type: notification
-  formule: bénéfice < 0 €/an
-  # TODO: Support des références dans les notifications
+entreprise . imposition . IR . micro-fiscal . revenu abattu:
+  remplace: résultat fiscal
+  résoudre la référence circulaire: oui
+  titre: abattement forfaitaire micro-fiscal
   description: |
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
 
-    [Plus d'infos sur service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F23628)
+    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+  somme:
+    - entreprise . chiffre d'affaires . vente restauration hébergement
+    - entreprise . chiffre d'affaires . service BIC
+    - entreprise . chiffre d'affaires . service BNC
+  abattement:
+    produit:
+      composantes:
+        - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+          taux: 71%
+        - assiette: entreprise . chiffre d'affaires . service BIC
+          taux: 50%
+        - assiette: entreprise . chiffre d'affaires . service BNC
+          taux: 34%
+    plancher:
+      variations:
+        - si: entreprise . activité . mixte
+          alors: 610 €/an
+        - sinon: 305 €/an
 
-entreprise . résultat net:
-  résumé: Ce qu'il reste après impôt sur les sociétés
-  formule: bénéfice - impôt sur les sociétés
+entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés:
+  type: notification
+  sévérité: avertissement
+  formule: chiffre d'affaires . seuil micro dépassé
+  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
 
-entreprise . exercice:
+entreprise . chiffre d'affaires . seuil micro dépassé:
+  applicable si: imposition . IR
+  description: |
+    Le statut de micro-entreprise s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise.
 
+    En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+
+    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
+
+    Exemple :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
+    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+    >
+    > `50 000€ x (365/153) = 119 280 €`
+
+
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
+
+
+    ### Multi-activité
+
+    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
+    effet l'exercice de plusieurs activités avec la même micro-entreprise
+    n’augmente pas les seuils.
+
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html
+    Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
+  unité: €/an
+  # TODO: les seuils micro sont dupliqués à plusieurs endroits (artiste-auteur .
+  # revenus . BNC . contrôle micro-bnc, tableau de la comparaison de régime,
+  # économie collaborative). Il faudrait référencer la même valeur partout où
+  # elle est utilisée.
+  une de ces conditions:
+    - entreprise . chiffre d'affaires > 176200 €/an
+    - entreprise . chiffre d'affaires . service > 72600 €/an
+
+entreprise . imposition . IR . information sur le report de déficit:
+  non applicable si: micro-fiscal
+  type: notification
+  formule: résultat fiscal < 0 €/an
+  description: |
+    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le revenu imposables du foyer fiscal.
+    Un déficit peut être imputé jusqu'à 6 ans après sa réalisation.
+
+    [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+  références:
+    bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301
+
+entreprise . exercice: oui
 entreprise . exercice . début:
   type: date
-  par défaut: 01/01/2020
+  par défaut: 01/01/2021
 
 entreprise . exercice . fin:
   type: date
-  par défaut: 31/12/2020
+  par défaut: 31/12/2021
 
 entreprise . exercice . durée:
   titre: durée de l'exercice
@@ -328,11 +381,36 @@ entreprise . exercice . durée maximale:
   formule: durée >= 24 mois
   description: La durée maximale d'un exercice comptable est de 24 mois.
 
-entreprise . impôt sur les sociétés:
+entreprise . imposition . IS:
+  valeur: imposition = 'IS'
+  titre: Impôt sur les sociétés
+
+entreprise . imposition . IS . résultat imposable:
+  titre: Résultat de l'exercice
+  résumé: Imposable à l'impôt sur les sociétés
+  valeur: résultat fiscal
+
+entreprise . imposition . IS . information sur le report de déficit:
+  type: notification
+  formule: résultat imposable < 0 €/an
+  # TODO: Support des références dans les notifications
+  description: |
+    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+
+entreprise . imposition . IS . résultat net:
+  résumé: Après déduction des charges et de l'impôt sur les société
+  somme:
+    - chiffre d'affaires
+    - (- charges)
+    - (- dirigeant . rémunération . totale)
+    - (- impôt sur les sociétés)
+  par défaut: 0€
+
+entreprise . imposition . IS . impôt sur les sociétés:
   unité: €/an
   formule:
     barème:
-      assiette: bénéfice
+      assiette: résultat imposable
       multiplicateur: prorata temporis
       variations:
         - si: exercice . début >= 01/01/2022
@@ -374,22 +452,22 @@ entreprise . impôt sur les sociétés:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-entreprise . impôt sur les sociétés . plafond taux réduit 1:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 1:
   applicable si: éligible taux réduit
   valeur: 38120 €/an
 
-entreprise . impôt sur les sociétés . plafond taux réduit 2:
+entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 2:
   applicable si: éligible taux réduit
   valeur: 500000 €/an
 
-entreprise . impôt sur les sociétés . éligible taux réduit:
+entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit:
   formule:
     toutes ces conditions:
       - chiffre d'affaires <= 7630 k€/an * prorata temporis
       - nom: capital détenu au moins à 75 pourcents par des personnes physiques
         valeur: oui
 
-entreprise . impôt sur les sociétés . prorata temporis:
+entreprise . imposition . IS . impôt sur les sociétés . prorata temporis:
   description: |
     Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
     plafonds utilisés dans le barème de l'impôt sur les sociétés.
@@ -402,7 +480,7 @@ entreprise . impôt sur les sociétés . prorata temporis:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
 
-entreprise . impôt sur les sociétés . contribution sociale:
+entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
   # description: |
   #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
 
@@ -420,14 +498,11 @@ entreprise . impôt sur les sociétés . contribution sociale:
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
-entreprise . charges dont rémunération dirigeant:
-  formule: charges + dirigeant . rémunération totale
-
 entreprise . charges:
   synonymes:
     - charges d'exploitation
     - charges de fonctionnement
-  titre: charges de fonctionnement
+  titre: charges (hors rémunération dirigeant)
   identifiant court: charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
@@ -442,7 +517,6 @@ entreprise . charges:
     - achat de matières premières pour une activité de production
     - achat de produits en vue de leur revente, pour une activité commerciale
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
-    - les cotisations aux contrats Madelin
 
     Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
 
@@ -452,11 +526,35 @@ entreprise . charges:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
 
+entreprise . charges . dirigeant:
+  titre: Charges déductibles dirigeant
+  description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
+  variations:
+    - si: imposition . IS
+      alors: dirigeant . rémunération . totale
+    # Note : le cas de dirigeant AS à l'IR n'est pas géré
+    # - si: dirigeant . assimilé salarié
+    #   alors: 0€/an
+    - sinon: # TNS dans entreprise à l'IR
+        valeur: dirigeant . indépendant . cotisations et contributions
+        abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
+
+# on ne prend en compte pour l'instant que le cas entreprise unipersonnelle
+entreprise . dividendes: bénéficiaire . dividendes . bruts
+
+# [TODO] [dividendes-indep]
+entreprise . capital social:
+  description: |
+    Cette valeur doit inclure la valeur des primes d'émission.
+  titre: Capital social
+  question: Quele est le capital social de la société ?
+  unité: €
+
 entreprise . ACRE:
   description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois. 
+    d'activité pendant 12 mois.
 
 
     Elle est **automatique** pour les **sociétés et les entreprises individuelles**
@@ -465,7 +563,7 @@ entreprise . ACRE:
 
 
     Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux
-    bénéficiaires suivants: 
+    bénéficiaires suivants:
 
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
 
@@ -586,7 +684,7 @@ entreprise . exonérée de TVA:
   question: L'entreprise est-elle exonérée de TVA (hors franchise de base) ?
   par défaut: non
   description: |
-    Certains types d'entreprises ne sont pas assujetties à la TVA. 
+    Certains types d'entreprises ne sont pas assujetties à la TVA.
     Ces dernières payent la taxe sur les salaires en contrepartie.
 
     C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
@@ -607,7 +705,8 @@ entreprise . taxe sur les salaires:
     une de ces conditions:
       - association non lucrative
       - entreprise . exonérée de TVA
-  description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
+  description:
+    Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
     Entre 1200 €/an et 2400 €/an une décote s'applique.
   formule:
@@ -624,13 +723,13 @@ entreprise . activité:
   titre: nature de l'activité
   question: Quelle est la nature de votre activité principale ?
   description: Votre type d'activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
-  par défaut: "'commerciale ou industrielle'"
+  par défaut: "'commerciale'"
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
         - artisanale
-        - commerciale ou industrielle
+        - commerciale
         - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
@@ -648,7 +747,7 @@ entreprise . activité . libérale:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . activité . commerciale ou industrielle:
+entreprise . activité . commerciale:
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
@@ -674,7 +773,7 @@ entreprise . activité . service ou vente:
   applicable si:
     une de ces conditions:
       - activité = 'artisanale'
-      - activité = 'commerciale ou industrielle'
+      - activité = 'commerciale'
   question: Quelle est le type d'activité de l'entreprise ?
   formule:
     une possibilité:
@@ -704,50 +803,47 @@ entreprise . activité . service ou vente . service:
 
 entreprise . activité . mixte:
   titre: Activités mixtes
+  applicable si: entreprise . imposition . IR . micro-fiscal
   question: Votre entreprise a-t-elle plusieurs types d'activités ?
   par défaut: non
   description: |
     Il est possible d'avoir plusieurs activités avec des types de revenus
-    différents pour une même entreprise. 
+    différents pour une même entreprise.
 
     Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
     robinet a une partie de son chiffre d'affaires en vente de materiel (le robinet)
-    et une partie en prestation de service (la pose)
+    et une partie en prestation de service (la pose).
 
-    Il existe trois principales familles de revenus au yeux de l'administration
-    fiscale et sociale :
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
 
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement)
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BIC)
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/prestations-de-service-BNC)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
-    Si votre entreprise a des activités correspondants à plus d'un type de
+    Si votre entreprise a des activités correspondants à plusieurs catégories de
     revenus, répondez oui à cette question.
 
 entreprise . activité . mixte . proportions:
   description: Part des différentes activités dans le chiffre d'affaires
   titre: proportion activité
   unité: '%'
-  somme: 
+  somme:
     - nom: service BIC
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 0
-          - sinon: 50%
+      variations:
+        - si: activité = 'libérale'
+          alors: 0%
+        - sinon: 50%
     - nom: service BNC
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 2 / 3
-          - sinon: 0
+      variations:
+        - si: activité = 'libérale'
+          alors: 2 / 3
+        - sinon: 0%
     - nom: vente restauration hébergement
-      par défaut: 
-        variations:
-          - si: activité = 'libérale'
-            alors: 1 / 3
-          - sinon: 50%
-        
+      variations:
+        - si: activité = 'libérale'
+          alors: 1 / 3
+        - sinon: 50%
+  note: Il appartient à l'utilisateur de bien vérifier que la somme des trois pourcentages renseignés vaut 100%.
 
 entreprise . activité . libérale réglementée:
   question: Est-ce une activité libérale réglementée ?
@@ -765,7 +861,7 @@ entreprise . activité . libérale réglementée:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . activité . débit de tabac:
-  applicable si: activité = 'commerciale ou industrielle'
+  applicable si: activité = 'commerciale'
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 
@@ -805,7 +901,7 @@ entreprise . activité . débit de tabac:
       chemin: nom
 
 établissement . taux du versement transport:
-  unité: "%"
+  unité: '%'
   formule:
     synchronisation:
       data: localisation
@@ -843,74 +939,3 @@ entreprise . activité . débit de tabac:
     durée:
       depuis: entreprise . date de création
       jusqu'à: 31/12/2019
-
-établissement . secteur d'activité covid:
-  question: |
-    Dispositif de réduction "covid" : votre activité principale relève-t'elle d'un des secteurs suivants ?
-  # Pas d'inigibilité explicite des PL réglementés à ce dispositif, mais il
-  # apparaît que les métiers concernés (médecins, avocats...) sont incompatibles
-  # avec les secteurs d'activités concernés par l'aide (hôtels, restaurants...)
-  non applicable si: entreprise . activité . libérale réglementée
-  description: |
-    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
-    d'activité de l'établissement. 
-
-    Les hôtels, restaurants, bars, etc. sont dans
-    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
-
-    Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
-    aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
-    d'affaires significative pendant le confinement.
-
-    Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
-    sont éligibles aux aides à condition d'avoir subit une fermeture
-    administrative.
-
-    Les modalités sont précisées sur le site de l'Urssaf.
-  références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
-  par défaut: non
-  formule:
-    une possibilité:
-      choix obligatoire: non
-      possibilités:
-        - S1
-        - S1-bis
-        - S2
-
-établissement . secteur d'activité covid . S1:
-  titre: Secteur "1" - tourisme, hôtellerie, restauration
-
-établissement . secteur d'activité covid . S1-bis:
-  titre: Secteur "1 bis" - dont l'activité dépend de celle des secteurs 1
-
-établissement . secteur d'activité covid . S2:
-  titre: Secteur "2" - activité impliquant l'accueil du public qui a été interrompue
-
-établissement . secteur d'activité covid . éligible aide:
-  formule:
-    une de ces conditions:
-      - secteur d'activité covid = 'S1'
-      - toutes ces conditions:
-          - secteur d'activité covid = 'S1-bis'
-          - baisse significative de chiffre d'affaires
-      - toutes ces conditions:
-          - secteur d'activité covid = 'S2'
-          - activité interrompue
-  références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
-
-établissement . secteur d'activité covid . baisse significative de chiffre d'affaires:
-  question: |
-    Votre activité a-t-elle subit une baisse d'au moins 80% de chiffre d'affaire
-    entre le 15 mars et le 15 mai 2020 par rapport à l'année précédentes ?
-  par défaut: oui
-  références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
-
-établissement . secteur d'activité covid . activité interrompue:
-  question: |
-    Votre activité a-t'elle été interrompue à cause de l’épidémie de Covid-19 ?
-  par défaut: oui
-  références:
-    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/

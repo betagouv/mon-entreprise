@@ -7,7 +7,12 @@ import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, formatValue, reduceAST } from 'publicodes'
+import Engine, {
+	ASTNode,
+	formatValue,
+	PublicodesExpression,
+	reduceAST,
+} from 'publicodes'
 import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
@@ -24,18 +29,33 @@ type Props<Name extends string = DottedName> = Omit<
 	required?: boolean
 	autoFocus?: boolean
 	dottedName: Name
-	onChange: (value: Parameters<Engine<Name>['evaluate']>[0]) => void
+	onChange: (
+		value: PublicodesExpression | undefined,
+		dottedName: DottedName
+	) => void
+	// TODO: It would be preferable to replace this "showSuggestions" parameter by
+	// a build-in logic in the engine, by setting the "applicability" of
+	// suggestions.
+	showSuggestions?: boolean
+	// TODO: having an option seems undesirable, but it's the easier way to
+	// implement this behavior currently
+	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
+	showDefaultDateValue?: boolean
 	useSwitch?: boolean
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
 	modifiers?: Record<string, string>
 }
 
-export type InputProps<Name extends string = string> = Props<Name> &
+export type InputProps<Name extends string = string> = Omit<
+	Props<Name>,
+	'onChange'
+> &
 	Pick<RuleNode, 'title' | 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
 		value: EvaluatedNode['nodeValue']
 		missing: boolean
+		onChange: (value: PublicodesExpression | undefined) => void
 	}
 
 export const binaryQuestion = [
@@ -52,7 +72,9 @@ export default function RuleInput({
 	onChange,
 	useSwitch = false,
 	isTarget = false,
+	showSuggestions = true,
 	onSubmit = () => null,
+	showDefaultDateValue = false,
 	modifiers = {},
 	...props
 }: Props<DottedName>) {
@@ -64,12 +86,13 @@ export default function RuleInput({
 	const commonProps: InputProps<DottedName> = {
 		dottedName,
 		value,
-		missing: !!evaluation.missingVariables[dottedName],
-		onChange,
+		missing: !showDefaultDateValue && !!evaluation.missingVariables[dottedName],
+		onChange: (value: PublicodesExpression | undefined) =>
+			onChange(value, dottedName),
 		title: rule.title,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
-		suggestions: rule.suggestions,
+		suggestions: showSuggestions ? rule.suggestions : {},
 		...props,
 	}
 	if (getVariant(engine.getRule(dottedName))) {
@@ -113,7 +136,7 @@ export default function RuleInput({
 			<ToggleSwitch
 				defaultChecked={value === true}
 				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-					onChange(evt.target.checked ? 'oui' : 'non')
+					commonProps.onChange(evt.target.checked ? 'oui' : 'non')
 				}
 			/>
 		) : (
@@ -146,7 +169,9 @@ export default function RuleInput({
 					name={dottedName}
 					{...commonProps}
 					onSubmit={() => {}}
-					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
+					onChange={(evt) =>
+						commonProps.onChange({ valeur: evt.target.value, unité })
+					}
 					value={value as number}
 				/>
 			</>
@@ -200,9 +225,11 @@ export const buildVariantTree = <Name extends string>(
 		variant
 			? {
 					canGiveUp,
-					children: (variant.explanation as (ASTNode & {
-						nodeKind: 'reference'
-					})[]).map(({ dottedName }) =>
+					children: (
+						variant.explanation as (ASTNode & {
+							nodeKind: 'reference'
+						})[]
+					).map(({ dottedName }) =>
 						buildVariantTree(engine, dottedName as Name)
 					),
 			  }

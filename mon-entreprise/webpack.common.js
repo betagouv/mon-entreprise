@@ -51,6 +51,11 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 
 	return [
 		{
+			test: /\.worker\.(js|ts|tsx)$/,
+			use: [babelLoader, 'worker-loader'],
+			exclude: /node_modules|dist/,
+		},
+		{
 			test: /\.(js|ts|tsx)$/,
 			use: babelLoader,
 			exclude: /node_modules|dist/,
@@ -130,6 +135,11 @@ module.exports.default = {
 			EN_BASE_URL: 'http://localhost:8080/infrance',
 			FR_BASE_URL: 'http://localhost:8080/mon-entreprise',
 			AT_INTERNET_SITE_ID: '',
+		}),
+		new EnvironmentPlugin({
+			ALGOLIA_APP_ID: '',
+			ALGOLIA_SEARCH_KEY: '',
+			ALGOLIA_INDEX_PREFIX: '',
 		}),
 		new EnvironmentPlugin({
 			GITHUB_REF: '',

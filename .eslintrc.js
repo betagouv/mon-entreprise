@@ -43,7 +43,15 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "mocha/no-skipped-tests": "warn",
-    "mocha/no-exclusive-tests": "error"
+    "mocha/no-exclusive-tests": "error",
+		'no-restricted-syntax': [
+      'error',
+      {
+        message: "Utilisez le composant <Emoji /> plutôt que la function emoji directement importée de react-easy-emoji",
+        selector:
+          "CallExpression[callee.name='emoji']"
+      }
+    ]
   },
   settings: {
     "react": {
@@ -59,7 +67,7 @@ module.exports = {
           "jsx": true
         },
         "tsconfigRootDir": __dirname,
-        "project": [ "./tsconfig.json" ]
+        "project": [ "./mon-entreprise/tsconfig.json", "./publicodes/tsconfig.json" ]
       },
       plugins: [ "@typescript-eslint" ],
       rules: {

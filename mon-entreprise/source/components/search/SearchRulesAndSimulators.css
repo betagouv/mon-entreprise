@@ -1,0 +1,57 @@
+.ais-InfiniteHits {
+}
+
+.ais-InfiniteHits-list > .ais-InfiniteHits-item {
+	padding: 0;
+}
+
+.ais-InfiniteHits-list > .ais-InfiniteHits-item > .hit-content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 0.5rem;
+	text-decoration: none;
+}
+
+.ais-InfiniteHits-list > .ais-InfiniteHits-item > .hit-content > .hit-ruleName {
+	text-decoration: underline;
+}
+
+.ais-InfiniteHits-list
+	> .ais-InfiniteHits-item
+	> .hit-content
+	> .ais-Highlight {
+	display: block;
+	flex-grow: 1;
+}
+
+.ais-Hits-list {
+	display: grid;
+	grid-column-gap: 0.5rem;
+	grid-row-gap: 0.7rem;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-rows: 1fr;
+}
+
+.ais-Hits-list > .box {
+	padding: 0.5em;
+}
+
+.simulator-hit-content {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 !important;
+}
+
+.simulator-hit-content .ais-Highlight {
+	font-size: 0.9em;
+}
+
+.simulator-icon {
+	height: 2em;
+}

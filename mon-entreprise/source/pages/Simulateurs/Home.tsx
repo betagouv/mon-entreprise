@@ -1,10 +1,11 @@
 import classnames from 'classnames'
+import PageHeader from 'Components/PageHeader'
 import InfoBulle from 'Components/ui/InfoBulle'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -24,23 +25,14 @@ export default function Simulateurs() {
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
-			<section css="display: flex; align-items: flex-start; justify-content: space-between">
-				<div>
-					<h1>{titre}</h1>
-					<p className="ui__ lead">
-						<Trans i18nKey="pages.simulateurs.accueil.header">
-							Tous les simulateurs sur ce site sont maintenus à jour avec les
-							dernières évolutions législatives.
-						</Trans>
-					</p>
-				</div>
-
-				<img
-					className="ui__ hide-mobile"
-					src={simulatorSvg}
-					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(3rem) scale(1.4);"
-				/>
-			</section>
+			<PageHeader titre={titre} picture={simulatorSvg}>
+				<p className="ui__ lead">
+					<Trans i18nKey="pages.simulateurs.accueil.header">
+						Tous les simulateurs sur ce site sont maintenus à jour avec les
+						dernières évolutions législatives.
+					</Trans>
+				</p>
+			</PageHeader>
 			<section>
 				<HeadingWithAnchorLink level={2}>
 					<Trans>Salariés et employeurs</Trans>
@@ -52,19 +44,30 @@ export default function Simulateurs() {
 				</div>
 
 				<HeadingWithAnchorLink level={2}>
-					<Trans>Par statut</Trans>
+					<Trans>Revenu du dirigeant par statut</Trans>
 				</HeadingWithAnchorLink>
+				<div className="ui__ small box-container">
+					<SimulateurCard small {...simulators['auto-entrepreneur']} />
+					<SimulateurCard small {...simulators['entreprise-individuelle']} />
+					<SimulateurCard small {...simulators.eirl} />
+					<SimulateurCard small {...simulators.sasu} />
+					<SimulateurCard small {...simulators.eurl} />
+					<SimulateurCard small {...simulators['comparaison-statuts']} />
+				</div>
+
+				<HeadingWithAnchorLink level={2}>
+					<Trans>Travailleurs Non Salariés (TNS)</Trans>
+				</HeadingWithAnchorLink>
+
 				<div className="ui__ box-container">
-					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators.indépendant} />
-					<SimulateurCard {...simulators.sasu} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
 				</div>
 				<>
 					<HeadingWithAnchorLink level={3}>
 						<small>
-							<Trans>Par profession</Trans>
+							<Trans>Professions libérales</Trans>
 						</small>
 					</HeadingWithAnchorLink>
 					<div className="ui__ small box-container">
@@ -76,15 +79,16 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['expert-comptable']} />
 					</div>
 				</>
+
 				<HeadingWithAnchorLink level={2}>
 					<Trans>Autres outils</Trans>
 				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['is']} />
+					<SimulateurCard {...simulators['dividendes']} />
 					{language === 'fr' && (
 						<SimulateurCard {...simulators['demande-mobilité']} />
 					)}
-					<SimulateurCard {...simulators['comparaison-statuts']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
 				</div>
@@ -102,7 +106,7 @@ export default function Simulateurs() {
 							de dispositifs pris en compte
 						</li>
 						<li>
-							<strong>Intégrable facilement et gratuitement</strong> sur
+							<strong>Intégrables facilement et gratuitement</strong> sur
 							n'importe quel site internet.{' '}
 							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
 						</li>
@@ -119,9 +123,11 @@ export function SimulateurCard({
 	meta,
 	path,
 	tooltip,
-	iframe,
+	iframePath,
 	icône,
-}: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
+}: SimulatorData[keyof SimulatorData] & {
+	small?: boolean
+}) {
 	const isIframe = useContext(IsEmbeddedContext)
 	const name = (
 		<span>
@@ -136,12 +142,14 @@ export function SimulateurCard({
 			key={path}
 			to={{
 				state: { fromSimulateurs: true },
-				pathname: (isIframe && iframe) || path,
+				pathname: (isIframe && iframePath) || path,
 			}}
 		>
-			<div className={classnames('ui__ box-icon', { big: !small })}>
-				{emoji(icône)}
-			</div>
+			{icône && (
+				<div className={classnames('ui__ box-icon', { big: !small })}>
+					<Emoji emoji={icône} />
+				</div>
+			)}
 			<>{small ? name : <h3>{name}</h3>}</>
 			{!small && meta?.description && (
 				<p className="ui__ notice">{meta.description}</p>

@@ -1,9 +1,9 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./dist/types",
 		"declaration": true,
 		"emitDeclarationOnly": true
 	},
-	"include": ["source/index.ts", "source/types"]
+	"include": ["source/index.ts", "source/types", "source/AST/**/*.ts"]
 }

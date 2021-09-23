@@ -1,6 +1,6 @@
 import Conversation from 'Components/conversation/Conversation'
 import { HiddenOptionContext } from 'Components/conversation/Question'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
@@ -38,7 +38,7 @@ const aides = [
 			'contrat salarié . professionnalisation . jeune de moins de 30 ans':
 				'oui',
 		},
-		dateFin: new Date('2020/02/28'),
+		dateFin: new Date('2021/12/31'),
 		versement: <Trans>mensuel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.apprenti">
@@ -58,7 +58,7 @@ const aides = [
 			"contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes . jeune de moins de 26 ans":
 				'oui',
 		},
-		dateFin: new Date('2020/03/31'),
+		dateFin: new Date('2021/05/31'),
 		versement: <Trans>trimestriel</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.jeune">
@@ -71,12 +71,12 @@ const aides = [
 		),
 	},
 	{
-		title: 'Emploi Franc+',
+		title: 'Emploi Franc',
 		dottedName: 'contrat salarié . aides employeur . emploi franc',
 		situation: {
 			'contrat salarié . aides employeur . emploi franc . éligible': 'oui',
 		},
-		dateFin: new Date('2020/03/31'),
+		dateFin: new Date('2021/05/31'),
 		versement: <Trans>tous les 6 mois</Trans>,
 		description: (
 			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.emploi franc">
@@ -84,6 +84,25 @@ const aides = [
 				(QPV). L’aide peut aller jusqu’à 17 000 € sur trois ans.
 				<br />
 				L’aide est versée tous les <strong>6 mois</strong> par Pôle emploi.
+			</Trans>
+		),
+	},
+	{
+		title: 'Travailleur handicapé',
+		dottedName:
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés",
+		situation: {
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés . situation de handicap":
+				'oui',
+		},
+		dateFin: new Date('2021/06/30'),
+		versement: <Trans>trimestriel</Trans>,
+		description: (
+			<Trans i18nKey="pages.simulateurs.aides-embauche.aides.handicapé">
+				Pour l’embauche d’un travailleur en situation de handicap.
+				<br />
+				L’aide est versée <strong>trimestriellement</strong> par l’Agence de
+				services et de paiement (ASP).
 			</Trans>
 		),
 	},
@@ -133,6 +152,7 @@ const config = {
 			'contrat salarié . temps de travail . heures complémentaires',
 			'contrat salarié . rémunération',
 			'contrat salarié . aides employeur . emploi franc . éligible',
+			"contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés . situation de handicap",
 			'contrat salarié . professionnalisation . jeune de moins de 30 ans',
 			'contrat salarié . professionnalisation . salarié de 45 ans et plus',
 		],
@@ -209,14 +229,17 @@ function Results() {
 	const progress = useSimulationProgress()
 	const baseEngine = useEngine()
 	const aidesEngines = aides.map((aide) => {
-		const engine = new Engine(baseEngine.parsedRules)
+		const engine = baseEngine.shallowCopy()
+		engine.setSituation({ ...aide.situation, ...baseEngine.parsedSituation })
+		const isActive =
+			typeof engine.evaluate(aide.dottedName).nodeValue === 'number'
 		const situation = { ...baseEngine.parsedSituation, ...aide.situation }
-		engine.setSituation(situation)
-		return { ...aide, situation, engine }
+		return { ...aide, situation, engine, isActive }
 	})
-	const [aidesActives, aidesInactives] = partition(({ dottedName, engine }) => {
-		return typeof engine.evaluate(dottedName).nodeValue === 'number'
-	}, aidesEngines)
+	const [aidesActives, aidesInactives] = partition(
+		({ isActive }) => isActive,
+		aidesEngines
+	)
 
 	return progress === 0 ? (
 		<>
@@ -226,10 +249,12 @@ function Results() {
 					Les aides
 				</Trans>
 			</h3>
-			<AidesGrid aides={aides} />
+			<AidesGrid
+				aides={aides.map((aide) => ({ ...aide, engine: baseEngine }))}
+			/>
 		</>
 	) : (
-		<Animate.fromTop>
+		<FromTop>
 			<h3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aidesDisponibles">
 					Aides disponibles
@@ -242,11 +267,15 @@ function Results() {
 				</Trans>
 			</h3>
 			<AidesGrid aides={aidesInactives} />
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 
-function AidesGrid({ aides }: { aides: Array<AideDescriptor> }) {
+function AidesGrid({
+	aides,
+}: {
+	aides: Array<AideDescriptor & { engine: Engine }>
+}) {
 	return (
 		<div className="ui__ box-container large">
 			{aides.map((aide, i) => (
@@ -260,11 +289,11 @@ function ResultCard({
 	situation,
 	title,
 	dottedName,
+	engine,
 	dateFin,
 	versement,
 	description,
-}: AideDescriptor) {
-	const engine = useEngine()
+}: AideDescriptor & { engine: Engine }) {
 	const rule = engine.getParsedRules()[dottedName]
 	const valueNode = (rule.explanation.valeur as any)?.explanation.valeur
 	const evaluation = engine.evaluate(valueNode)

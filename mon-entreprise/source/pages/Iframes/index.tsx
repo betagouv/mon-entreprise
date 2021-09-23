@@ -1,4 +1,5 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Route, Switch } from 'react-router-dom'
 import useSimulatorsData from '../Simulateurs/metadata'
@@ -7,6 +8,16 @@ import IframeFooter from './IframeFooter'
 
 export default function Iframes() {
 	const simulators = useSimulatorsData()
+
+	// We hide the vertical scrollbar in the iframe because the iframe is resized
+	// using the "iframe-resizer" module, and if we keep the scrollbar it appears
+	// briefly during transitions, cf.
+	// https://github.com/betagouv/mon-entreprise/issues/1462
+	useEffect(() => {
+		if ('parentIFrame' in window) {
+			document.body.style.overflowY = 'hidden'
+		}
+	}, [])
 
 	return (
 		<IsEmbeddedContext.Provider value={true}>
@@ -19,11 +30,11 @@ export default function Iframes() {
 			<div className="ui__ container">
 				<Switch>
 					{Object.values(simulators)
-						.filter(({ iframe }) => !!iframe)
+						.filter(({ iframePath }) => !!iframePath)
 						.map((s) => (
 							<Route
-								key={s.iframe}
-								path={`/iframes/${s.iframe}`}
+								key={s.iframePath}
+								path={`/iframes/${s.iframePath}`}
 								render={() => (
 									<>
 										<Helmet>

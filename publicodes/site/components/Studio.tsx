@@ -8,7 +8,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `
-# Bienvenue dans le bac à sable du langage publicode !
+# Bienvenue dans le bac à sable du langage publicodes !
 # Pour en savoir plus sur le langage :
 # => https://publi.codes/documentation/principes-de-base
 
@@ -166,7 +166,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 				</small>
 				<div className="ui__ answer-group">
 					<button className="ui__ simple small button" onClick={onClickShare}>
-						{emoji('🔗')} Copier le lien
+						🔗 Copier le lien
 					</button>
 				</div>
 			</div>

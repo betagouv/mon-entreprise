@@ -4,7 +4,7 @@ import { ATTracker, Log } from './Tracker'
 export const TrackingContext = createContext<ATTracker>(new Log())
 
 // From https://github.com/nclsmitchell/at-internet
-function toAtString(string: string): string {
+export function toAtString(string: string): string {
 	string = string.replace(/ /g, '_').toLowerCase()
 	string = string.replace(/[\300-\306]|[\340-\346]/g, 'a')
 	string = string.replace(/[\310-\313]|[\350-\353]/g, 'e')

@@ -1,7 +1,5 @@
 .footer {
 	margin-top: 5rem;
-	margin-left: -1rem;
-	margin-right: -1rem;
 }
 .footer img {
 	height: 2.5rem;
@@ -50,11 +48,11 @@
 	align-self: center;
 }
 .footer__separator {
-	margin: 2rem 0;
+	margin: 1.5rem 0;
 	border-top: 1px solid var(--lighterColor);
 	border-bottom: none;
 }
-.footer__registerField > input[type='submit'] {
+.footer__registerField > button[type='submit'] {
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 	margin: -1px !important;

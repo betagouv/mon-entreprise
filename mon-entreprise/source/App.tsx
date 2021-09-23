@@ -1,23 +1,20 @@
-import * as Sentry from '@sentry/browser'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
 import {
-	engineOptions,
+	engineFactory,
 	EngineProvider,
+	Rules,
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
-import { DottedName } from 'modele-social'
-import Engine, { Rule } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
-import createSentryMiddleware from 'redux-sentry-middleware'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import {
 	configSituationSelector,
 	situationSelector,
@@ -46,45 +43,19 @@ import {
 } from './storage/persistInFranceApp'
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
-if (process.env.NODE_ENV === 'production') {
-	let branch: string | undefined = process.env.GITHUB_REF?.split('/')?.slice(
-		-1
-	)?.[0]
-	if (branch === 'merge') {
-		branch = process.env.GITHUB_HEAD_REF
-	}
-	const release =
-		branch && `${branch}-` + process.env.GITHUB_SHA?.substring(0, 7)
-	const dsn = 'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
-	Sentry.init({ dsn, release })
-
-	if (branch && branch !== 'master') {
-		console.log(
-			`ℹ Vous êtes sur la branche : %c${branch}`,
-			'font-weight: bold; text-decoration: underline;'
-		)
-	}
-}
-
-const middlewares = [createSentryMiddleware(Sentry as any)]
-
 type RootProps = {
 	basename: ProviderProps['basename']
-	rules: Record<DottedName, Rule>
+	rules: Rules
 }
 
 export default function Root({ basename, rules }: RootProps) {
 	const { language } = useTranslation().i18n
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
-	const engine = useMemo(() => new Engine(rules, engineOptions), [
-		rules,
-		engineOptions,
-	])
+	const engine = useMemo(() => engineFactory(rules), [rules])
 	return (
 		<Provider
 			basename={basename}
 			sitePaths={paths}
-			reduxMiddlewares={middlewares}
 			onStoreCreated={(store) => {
 				setupInFranceAppPersistence(store)
 				setupSimulationPersistence(store)
@@ -114,6 +85,15 @@ const Router = () => {
 		<SituationProvider situation={situation}>
 			<Switch>
 				<Route exact path="/" component={Landing} />
+				{/* Removes trailing slashes */}
+				<Route
+					path={'/:url*(/+)'}
+					exact
+					strict
+					render={({ location }) => (
+						<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
+					)}
+				/>
 				<Route path="/iframes" component={Iframes} />
 				<Route component={App} />
 			</Switch>

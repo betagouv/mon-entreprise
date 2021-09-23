@@ -1,14 +1,15 @@
 import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
-import * as Animate from 'Components/ui/animate'
+import PageHeader from 'Components/PageHeader'
+import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
-import { equals, isEmpty } from 'ramda'
+import { equals, isEmpty, omit } from 'ramda'
 import {
 	createElement,
 	lazy,
@@ -17,7 +18,6 @@ import {
 	useContext,
 	useState,
 } from 'react'
-import emoji from 'react-easy-emoji'
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
@@ -28,13 +28,16 @@ export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
 		<EngineProvider value={engine}>
-			<h1>Demande de mobilité internationale pour travailleur indépendant</h1>
-			<h2>
-				<small>
+			<PageHeader
+				titre={
+					'Demande de mobilité internationale pour travailleur indépendant'
+				}
+			>
+				<p className="ui__ lead">
 					Travailleur indépendant exerçant son activité à l’étranger : Régime de
 					Sécurité sociale applicable{' '}
-				</small>
-			</h2>
+				</p>
+			</PageHeader>
 			<p>
 				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
 				Etats (pays) membres de l’UE, de l’
@@ -66,7 +69,9 @@ export default function FormulaireMobilitéIndépendant() {
 
 			<blockquote>
 				<p className="ui__ lead">
-					<strong>Attention : ce document doit être signé {emoji('✍️')}</strong>
+					<strong>
+						Attention : ce document doit être signé <Emoji emoji="✍️" />
+					</strong>
 				</p>
 				<p>
 					Aussi, nous vous invitons à utiliser un écran tactile pour le
@@ -123,10 +128,14 @@ function FormulairePublicodes() {
 	)
 	const onChange = useCallback(
 		(dottedName, value) => {
-			setSituation((situation) => ({
-				...situation,
-				[dottedName]: value,
-			}))
+			if (value === undefined) {
+				setSituation((situation) => omit([dottedName], situation))
+			} else {
+				setSituation((situation) => ({
+					...situation,
+					[dottedName]: value,
+				}))
+			}
 		},
 		[setSituation]
 	)
@@ -146,10 +155,10 @@ function FormulairePublicodes() {
 	)
 
 	return (
-		<Animate.fromTop key={clearFieldsKey}>
+		<FromTop key={clearFieldsKey}>
 			{fields.map(
 				({ rawNode: { description, type, question }, title, dottedName }) => (
-					<Animate.fromTop key={dottedName}>
+					<FromTop key={dottedName}>
 						{type === 'groupe' ? (
 							<>
 								{createElement(
@@ -197,7 +206,7 @@ function FormulairePublicodes() {
 								/>
 							</>
 						)}
-					</Animate.fromTop>
+					</FromTop>
 				)
 			)}
 
@@ -220,6 +229,6 @@ function FormulairePublicodes() {
 			) : isMissingValues ? (
 				<TrackPage name="commence" />
 			) : null}
-		</Animate.fromTop>
+		</FromTop>
 	)
 }

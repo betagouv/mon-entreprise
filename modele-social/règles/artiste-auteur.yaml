@@ -21,6 +21,7 @@ artiste-auteur . revenus . BNC:
 
 artiste-auteur . revenus . BNC . micro-bnc:
   non applicable si: contrôle micro-bnc
+  applicable si: recettes > 0 €/an
   par défaut: oui
   question: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
@@ -30,7 +31,7 @@ artiste-auteur . revenus . BNC . contrôle micro-bnc:
   formule:
     toutes ces conditions:
       - recettes != 0
-      - recettes > 72500 €/an
+      - recettes > 72600 €/an
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
@@ -53,6 +54,7 @@ artiste-auteur . cotisations:
       - vieillesse
       - CSG-CRDS
       - formation professionnelle
+    arrondi: oui
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
 
@@ -72,15 +74,32 @@ artiste-auteur . cotisations . option surcotisation:
     règle: assiette
     dans: vieillesse
     par: assiette surcotisation
-  question: Souhaitez-vous surcotiser ?
-  résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
+  question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
+  description: |
+    Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
+    de vos droits sociaux. Vous pouvez choisir de surcotiser pour augmenter vos
+    droits.
   par défaut: non
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
 artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
 
+artiste-auteur . cotisations . avertissement trimestres retraite:
+  type: notification
+  sévérité: avertissement
+  formule:
+    toutes ces conditions:
+      - assiette > 0 €/an
+      - assiette < 600 heures/an * SMIC horaire
+      - option surcotisation = non
+  description: |
+    Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
+    de base. Vous pouvez décider de « surcotiser » pour valider 4 trimestres et
+    bénéficier d'indemnités journalières.
+
 artiste-auteur . cotisations . vieillesse:
+  titre: Retraite de base
   formule:
     produit:
       assiette: assiette
@@ -130,38 +149,123 @@ artiste-auteur . cotisations . formation professionnelle:
       assiette: assiette
       taux: 0.35%
 
-artiste-auteur . cotisations . assiette 2019:
+artiste-auteur . cotisations . IRCEC:
+  titre: Retraite complémentaire
   description: |
-    Nous calculons l'aide covid sur la base d'une assiette des cotisations 2019
-    égale à l'assiette 2020.
-  par défaut: cotisations . assiette
-
-artiste-auteur . réduction de cotisations covid 2020:
-  description: |
-    Afin de tenir compte de l'impact de la crise du Covid-19 le gouvernement a
-    mis en place une prise en charge des cotisations sociales des
-    artistes-auteurs dues pour 2020 pouvant aller jusqu'à 2 000€.
-
-    Cette aide est calculée à partir de l'assiette des cotisations sociales de
-    2019.
-
-    La prise en charge est automatique et vous n'avez pas de démarche a
-    effectuer. Vous bénéficierez de cette aide après la déclaration annuelle de
-    revenus 2020, soit au second trimestre 2021.
-  applicable si:
-    toutes ces conditions:
-      - période . fin d'année = 31/12/2020
-      - cotisations . assiette >= 3000 €/an
+    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
+    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
+    gestion de votre retraite complémentaire obligatoire.
   formule:
-    # TODO: c'est inférieur ou égal ici
-    grille:
-      assiette: cotisations . assiette 2019
-      tranches:
-        - montant: 500 €/an
-          plafond: 800 heures/an * SMIC horaire
-        - montant: 1000 €/an
-          plafond: 2000 heures/an * SMIC horaire
-        - montant: 2000 €/an
-    plafond: cotisations
+    somme:
+      - cotisation RAAP
+      - cotisation RACD
+      - cotisation RACL
   références:
-    Infographie Urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5761-Infographie-Aide-AA-WEB.pdf
+    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP:
+  applicable si: assiette > seuil d'affiliation
+  description: |
+    Vous pouvez bénéficier d'un taux réduit à votre demande si vos revenus
+    n'atteignent pas à seuil minimal pour une année donnée. Ce taux réduit
+    s'applique également à vos revenus déjà soumis à cotisation auprès du RACL
+    ou du RACD.
+  formule:
+    variations:
+      - si: taux réduit
+        alors:
+          produit:
+            assiette: assiette
+            taux: 4%
+      - sinon:
+          barème:
+            assiette: assiette
+            tranches:
+              - taux: 4%
+                plafond:
+                  variations:
+                    - si: profession . RACD
+                      alors: cotisation RACD . plafond
+                    - si: profession . RACL
+                      alors: cotisation RACL . plafond
+              - taux: 8%
+    arrondi: oui
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 9135 €/an
+
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
+  applicable si: assiette < 3 * seuil d'affiliation
+  question: Souhaitez-vous cotiser sur la base d'un taux réduit pour votre retraite complémentaire à l'IRCEC ?
+  par défaut: non
+  description: |
+    Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
+    si vous en faite la demande.
+
+    Les points de retraite complémentaire sont acquis au pro-rata du montant
+    cotisé. En réduisant votre cotisation vous réduisez donc le nombre de points
+    acquis.
+  références:
+    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf#page=5
+
+artiste-auteur . cotisations . IRCEC . profession:
+  question: Exercez-vous l'une de professions suivantes ?
+  description: |
+    Selon  la  nature  de  leur  activité,  les  artistes-auteurs  cotisent  à
+    un  ou  plusieurs  régimes  de  retraite  complémentaire  gérés  par
+    l’IRCEC :  dans  tous  les  cas  et  si  vous  atteignez  le  seuil
+    d’affiliation,  au  RAAP,  puis  selon  votre  activité  artistique  au RACD
+    et/ou au RACL.
+  formule:
+    une possibilité:
+      choix obligatoire: non
+      possibilités:
+        - RACD
+        - RACL
+  par défaut: non
+
+artiste-auteur . cotisations . IRCEC . profession . RACD:
+  icônes: 🎞️
+  titre: auteur ou compositeur dramatique, de spectacle vivant, de films
+  description: |
+    Les professions suivantes cotisent au RACD :
+      - Les auteurs dramatiques exerçant l’une des professions suivantes : scénariste, dialoguiste, adaptateur, réalisateur, auteur de la bible littéraire, auteur graphique d’animation,  créateur  des  personnages  originaux  et  des  décors  s’il  s’agit  d’un  univers original, etc.
+      - Les  auteurs  et  compositeurs  dramatiques  et  du  spectacle  vivant  :  théâtre,  danse, opéra, cirque, arts de la rue, etc.
+  formule: profession = 'RACD'
+
+artiste-auteur . cotisations . IRCEC . profession . RACL:
+  icônes: 🎙️
+  titre: auteur ou compositeur lyrique, dialoguiste de doublage
+  description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes de doublage cotisent au RACL.
+  formule: profession = 'RACL'
+
+artiste-auteur . cotisations . IRCEC . régime RACL:
+  question: Cotisez-vous au RACL ?
+  par défaut: non
+
+artiste-auteur . cotisations . IRCEC . cotisation RACD:
+  applicable si: profession . RACD
+  formule:
+    produit:
+      assiette: assiette
+      plafond:
+        nom: plafond
+        valeur: 496250 €/an
+      taux: 8%
+    arrondi: oui
+
+artiste-auteur . cotisations . IRCEC . cotisation RACL:
+  applicable si: profession . RACL
+  formule:
+    barème:
+      assiette: assiette
+      tranches:
+        - taux: 0%
+          plafond: 2739 €/an
+        - taux: 6.5%
+          plafond:
+            nom: plafond
+            valeur: 376665 €/an
+        - taux:
+            nom: cotisation de solidarité
+            valeur: 1.5%
+    arrondi: oui

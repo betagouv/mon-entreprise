@@ -7,7 +7,6 @@ import {
 } from 'publicodes/source/AST/types'
 import { ReferenceNode } from 'publicodes/source/reference'
 import React, { createContext, useContext, useState } from 'react'
-import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { EngineContext } from '../contexts'
 import mecanismsDoc from '../data/mecanisms.json'
@@ -38,7 +37,7 @@ export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
 			</span>
 		)
 	} else {
-		return <span className="value">{nodeValue}</span>
+		return <span className="value">{formatValue({ nodeValue, unit })}</span>
 	}
 }
 
@@ -64,7 +63,7 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => {
 			}}
 		>
 			{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
-				formatUnit: engine?.options?.formatUnit,
+				formatUnit: engine?.getOptions()?.formatUnit,
 			})}
 		</small>
 	)
@@ -88,11 +87,7 @@ export function Mecanism({
 }: NodeProps) {
 	return (
 		<StyledMecanism name={name}>
-			{displayName && (
-				<MecanismName name={name}>
-					<Trans>{name}</Trans>
-				</MecanismName>
-			)}
+			{displayName && <MecanismName name={name}>{name}</MecanismName>}
 			<>
 				{children}
 
@@ -165,7 +160,7 @@ const StyledInfixMecanism = styled.div`
 export const InlineMecanismName = ({ name }: { name: string }) => {
 	return (
 		<MecanismName inline name={name}>
-			<Trans>{name}</Trans>
+			{name}
 		</MecanismName>
 	)
 }

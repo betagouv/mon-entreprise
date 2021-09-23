@@ -1,6 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -79,7 +79,7 @@ function ExplanationSection() {
 	const totalEntrepriseHabituel = 'chômage partiel . coût employeur habituel'
 
 	return (
-		<Animate.fromTop>
+		<FromTop>
 			<div
 				id="targetSelection"
 				className="ui__ light card"
@@ -144,7 +144,7 @@ function ExplanationSection() {
 					/>
 				</div>
 			</div>
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 

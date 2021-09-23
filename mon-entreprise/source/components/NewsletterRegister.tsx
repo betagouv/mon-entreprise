@@ -1,8 +1,8 @@
-import * as animate from 'Components/ui/animate'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
+import { FromBottom } from './ui/animate'
+import Emoji from './utils/Emoji'
 
 // We don't want to load the full sendinblue iframe, so we reimplement a simple
 // logic to the a HTTP Post request to their URL with the email data.
@@ -19,7 +19,7 @@ export default function NewsletterRegister() {
 	)
 	const formElement = useRef<HTMLFormElement>(null)
 	const [userJustRegistered, setUserJustRegistered] = useState(false)
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 
 	const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault()
@@ -37,7 +37,7 @@ export default function NewsletterRegister() {
 
 	if (userJustRegistered) {
 		return (
-			<animate.fromBottom>
+			<FromBottom>
 				<div
 					className="ui__ light-border"
 					css={`
@@ -46,13 +46,13 @@ export default function NewsletterRegister() {
 					`}
 				>
 					<h4>
-						{emoji('🎉')}{' '}
+						<Emoji emoji="🎉" />{' '}
 						<Trans i18nKey="newsletter.register.confirmation">
 							Votre inscription est confirmée !
 						</Trans>
 					</h4>
 				</div>
-			</animate.fromBottom>
+			</FromBottom>
 		)
 	}
 
@@ -61,7 +61,7 @@ export default function NewsletterRegister() {
 	}
 
 	return (
-		<>
+		<div className="ui__ print-display-none">
 			<h2>
 				<Trans i18nKey="newsletter.register.titre">Restez au courant</Trans>
 			</h2>
@@ -85,17 +85,18 @@ export default function NewsletterRegister() {
 						</label>
 						<div className="footer__registerField">
 							<input type="email" name="EMAIL" id="EMAIL" />
-							<input
-								className="ui__ plain small button"
+							<button
 								type="submit"
-								value={t("S'inscrire")!}
 								name="subscribe"
-							/>
+								className="ui__ plain small button"
+							>
+								<Trans>S'inscrire</Trans>
+							</button>
 							<input type="hidden" name="locale" value={i18n.language} />
 						</div>
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	)
 }

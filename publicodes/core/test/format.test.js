@@ -21,6 +21,12 @@ describe('format engine values', () => {
 		expect(formatValue(10, { displayedUnit: '%' })).to.equal('10 %')
 		expect(formatValue(100, { displayedUnit: '%' })).to.equal('100 %')
 		expect(formatValue(10.2, { displayedUnit: '%' })).to.equal('10,2 %')
+		expect(
+			formatValue({
+				nodeValue: 441,
+				unit: parseUnit('%.kgCO2e'),
+			})
+		).to.equal('4,41 kgCO2e')
 	})
 
 	it('format values', () => {

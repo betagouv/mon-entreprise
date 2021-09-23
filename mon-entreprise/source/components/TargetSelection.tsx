@@ -3,9 +3,7 @@ import classnames from 'classnames'
 import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import Animate from 'Components/ui/animate'
 import AnimatedTargetValue from 'Components/ui/AnimatedTargetValue'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import {
 	EngineContext,
 	useEngine,
@@ -14,15 +12,8 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
-import {
-	ASTNode,
-	EvaluatedNode,
-	formatValue,
-	reduceAST,
-	RuleNode,
-} from 'publicodes'
+import { EvaluatedNode, formatValue, reduceAST, RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -34,28 +25,30 @@ import {
 import InputSuggestions from './conversation/InputSuggestions'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
+import { Appear, FromTop } from './ui/animate'
+import Emoji from './utils/Emoji'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
-	const colors = useContext(ThemeColorsContext)
-
 	return (
 		<div id="targetSelection">
-			{((typeof objectifs[0] === 'string'
-				? [{ objectifs }]
-				: objectifs) as Array<{
-				icône?: string
-				nom?: string
-				objectifs: Array<DottedName>
-			}>).map(({ icône, objectifs: targets, nom }, index: number) => (
+			{(
+				(typeof objectifs[0] === 'string'
+					? [{ objectifs }]
+					: objectifs) as Array<{
+					icône?: string
+					nom?: string
+					objectifs: Array<DottedName>
+				}>
+			).map(({ icône, objectifs: targets, nom }, index: number) => (
 				<Fragment key={nom || '0'}>
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
 							{nom && (
 								<h2 style={{ marginBottom: 0 }}>
-									{!!icône && emoji(icône)} <Trans>{nom}</Trans>
+									<Emoji emoji={icône} /> <Trans>{nom}</Trans>
 								</h2>
 							)}
 						</div>
@@ -63,15 +56,9 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					</div>
 					<section
 						className="ui__ plain card"
-						style={{
-							marginTop: '.6em',
-							color: colors.textColor,
-							background: `linear-gradient(
-								60deg,
-								${colors.darkColor} 0%,
-								${colors.color} 100%
-								)`,
-						}}
+						css={`
+							margin-top: 0.6rem;
+						`}
 					>
 						<ul className="targets">
 							{' '}
@@ -117,7 +104,7 @@ const Target = ({ dottedName }: TargetProps) => {
 			key={target.dottedName}
 			className={isSmallTarget ? 'small-target' : undefined}
 		>
-			<Animate.appear unless={!isSmallTarget}>
+			<Appear unless={!isSmallTarget}>
 				<div>
 					<div className="main">
 						<Header target={target} />
@@ -130,7 +117,7 @@ const Target = ({ dottedName }: TargetProps) => {
 						/>
 					</div>
 				</div>
-			</Animate.appear>
+			</Appear>
 		</li>
 	)
 }
@@ -168,7 +155,6 @@ function TargetInputOrValue({
 	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
-	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
 	const [isFocused, setFocused] = useState(false)
 	const targetUnit = useSelector(targetUnitSelector)
@@ -209,10 +195,6 @@ function TargetInputOrValue({
 					<>
 						{!isFocused && <AnimatedTargetValue value={value} />}
 						<CurrencyInput
-							style={{
-								color: colors.textColor,
-								borderColor: colors.textColor,
-							}}
 							debounce={750}
 							name={target.dottedName}
 							value={value}
@@ -250,15 +232,15 @@ function TargetInputOrValue({
 				)}
 			</span>
 			{(isActive || isFocused) && (
-				<div style={{ minWidth: '100%' }}>
-					<Animate.fromTop>
+				<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
+					<FromTop>
 						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={onSuggestionClick}
 							/>
 						</div>
-					</Animate.fromTop>
+					</FromTop>
 				</div>
 			)}
 		</>
@@ -269,8 +251,8 @@ function TitreRestaurant() {
 	const dottedName =
 		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	return (
-		<Condition expression={dottedName}>
-			<Animate.fromTop>
+		<Condition expression={`${dottedName} > 0`}>
+			<FromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={dottedName}>
 						+{' '}
@@ -281,10 +263,10 @@ function TitreRestaurant() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
+						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
 				</div>
-			</Animate.fromTop>
+			</FromTop>
 		</Condition>
 	)
 }
@@ -302,9 +284,8 @@ function AidesGlimpse() {
 				const aidesNotNul = node.explanation
 					.map((n) => engine.evaluate(n))
 					.filter(({ nodeValue }) => nodeValue !== false)
-				if (aidesNotNul.length === 1) {
-					return (aidesNotNul[0] as ASTNode & { nodeKind: 'reference' })
-						.dottedName as DottedName
+				if (aidesNotNul.length === 1 && 'dottedName' in aidesNotNul[0]) {
+					return aidesNotNul[0].dottedName as DottedName
 				} else {
 					return acc
 				}
@@ -314,8 +295,8 @@ function AidesGlimpse() {
 		aides
 	)
 	return (
-		<Condition expression={dottedName}>
-			<Animate.fromTop>
+		<Condition expression={`${dottedName} > 0`}>
+			<FromTop>
 				<div className="aidesGlimpse">
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
@@ -326,10 +307,10 @@ function AidesGlimpse() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>d'aides</Trans> {emoji(aides.rawNode.icônes ?? '')}
+						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</div>
-			</Animate.fromTop>
+			</FromTop>
 		</Condition>
 	)
 }

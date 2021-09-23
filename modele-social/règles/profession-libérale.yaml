@@ -2,6 +2,7 @@
 dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . activité = 'libérale'
+  rend non applicable: entreprise . activité . mixte
   formule: oui
 
 dirigeant . indépendant . PL . métier:
@@ -20,7 +21,7 @@ dirigeant . indépendant . PL . métier:
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la CIPAV
   description: |
-    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est : 
+    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est :
 
     - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
     - Guide-montage (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
@@ -112,7 +113,7 @@ dirigeant . indépendant . PL . option régime général:
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV. 
+    cotisations à la CIPAV.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
@@ -153,7 +154,7 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
     travailleurs indépendants  ont la possibilité d’opter pour des taux
     spécifique de la cotisation retraite complémentaire.
   références:
-    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+    Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
   titre: retraite complémentaire (taux PLNR)
@@ -176,22 +177,23 @@ dirigeant . indépendant . PL . maladie:
       - régime général
       - PAMC
   remplace: cotisations et contributions . maladie
-  formule:
-    produit:
-      assiette: indépendant . assiette des cotisations
-      taux:
-        taux progressif:
-          assiette: indépendant . assiette des cotisations
-          multiplicateur: plafond sécurité sociale temps plein
-          tranches:
-            - plafond: 0%
-              taux: 1.5%
-            - plafond: 110%
-              taux: 6.5%
-    arrondi: oui
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
+    taux:
+      taux progressif:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale temps plein
+        tranches:
+          - plafond: 0%
+            taux: 1.5%
+          - plafond: 110%
+            taux: 6.5%
+  arrondi: oui
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
-    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf
   note: |
     Les professions libérales réglementée ne cotisent pour la part correspondante aux
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
@@ -242,47 +244,25 @@ dirigeant . indépendant . PL . CIPAV:
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   titre: retraite complémentaire (CIPAV)
-  formule:
-    somme:
-      - grille:
-          assiette: assiette des cotisations
-          unité: €/an
-          tranches:
-            - montant: 1457
-              plafond: 26581 €/an
-            - montant: 2913
-              plafond: 49281 €/an
-            - montant: 4370
-              plafond: 57851 €/an
-            - montant: 7283
-              plafond: 66401 €/an
-            - montant: 10196
-              plafond: 83061 €/an
-            - montant: 16023
-              plafond: 103181 €/an
-            - montant: 17479
-              plafond: 123301 €/an
-            - montant: 18936
-      - (- réduction COVID . montant)
-    plancher: 0
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID:
-  applicable si: entreprise . date de création < 01/01/2020
-  question: |
-    Avez-vous fait une demande pour bénéficier de la réduction de cotisations de
-    retraite complémentaire sans conditions de revenus ?
-  description: |
-    La Cipav met en place une réduction jusqu'à 1392€ de cotisation sur la
-    retraire complémentaire sans diminution du nombre de points acquis. Cette
-    aide n'est pas automatique, mais peut-être obtenue sur simple demande via la
-    messagerie de l'espace adhérent.
-
-    [Faire votre demande](https://www.lacipav.fr/dispositif-exceptionnel-procedure)
-  par défaut: non
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant:
-  titre: réduction COVID
-  formule: 1392 €/an
+  unité: €/an
+  grille:
+    assiette: assiette des cotisations
+    tranches:
+      - montant: 1457
+        plafond: 26581 €/an
+      - montant: 2913
+        plafond: 49281 €/an
+      - montant: 4370
+        plafond: 57851 €/an
+      - montant: 7283
+        plafond: 66401 €/an
+      - montant: 10196
+        plafond: 83061 €/an
+      - montant: 16023
+        plafond: 103181 €/an
+      - montant: 17479
+        plafond: 123301 €/an
+      - montant: 18936
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
@@ -325,30 +305,32 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     une de ces conditions:
       - régime général
       - PL . CNBF
-
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
 
     La caisse nationale d'assurance vieillesse des professions
-    libérales est l'organisme qui fédère les différentes caisses 
+    libérales est l'organisme qui fédère les différentes caisses
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
 
-  formule:
-    somme:
-      - produit:
-          assiette: cotisations et contributions . retraite de base . assiette
-          taux: 8.23%
-          plafond: plafond sécurité sociale temps plein
-        arrondi: oui
-      - produit:
-          assiette: cotisations et contributions . retraite de base . assiette
-          taux: 1.87%
-          plafond: 5 * plafond sécurité sociale temps plein
-        arrondi: oui
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+    composantes:
+      - attributs:
+          nom: tranche T1
+          arrondi: oui
+        taux: 8.23%
+        plafond: plafond sécurité sociale temps plein
+      - attributs:
+          nom: tranche t2
+          arrondi: oui
+        taux: 1.87%
+        plafond: 5 * plafond sécurité sociale temps plein
   références:
-    cnavpl.fr: https://www.cnavpl.fr/
+    cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     cotisation minimale (Guide CNAVPL): https://www.cnavpl.fr/wp-content/uploads/2020/10/guide-site-2020.pdf#page=21
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
@@ -373,7 +355,7 @@ dirigeant . indépendant . PL . PAMC:
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
-    - entreprise . chiffre d'affaires . franchise de TVA dépassée
+    - entreprise . chiffre d'affaires . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
@@ -388,8 +370,8 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     30%: 30%
   description: |
     Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes : 
-        
+    les catégories suivantes :
+
     - Honoraires tirés des actes remboursables (y compris les
     dépassements d’honoraires et les frais de déplacement figurant sur le relevé
     SNIR)
@@ -489,30 +471,31 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
         plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
+  description:
+    Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
     de dépassement.
   formule: revenus activité conventionnée  / (100% + dépassement d'honoraire moyen)
   note: |
-    La formule référencée dans les textes Urssaf est la suivante : 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires. 
+    La formule référencée dans les textes Urssaf est la suivante :
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires.
 
-    On peut simplififer cette formule en : 
+    On peut simplififer cette formule en :
     > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
 
     ### Preuve
-    Si on prends les variables suivantes, 
+    Si on prends les variables suivantes,
     > `h+` : total des honoraires (avec dépassement)
       `h` : honoraires sans dépassement
       `d%`: pourcentage de dépassement d'honoraire moyen
 
-    On a : 
-    >  
+    On a :
+    >
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
     Si on remplace dans la formule de l'assiette participation CPAM, on a :
     > 1. `(revenu de l’activité conventionnée) * h / h+`
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%)) 
+    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
     > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
 
   références:
@@ -578,7 +561,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description: |
     Le « taux Urssaf » (taux UR) permet de calculer la part de votre
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
+    cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
     est issu des données de votre Relevé individuel d’activité et de
@@ -589,7 +572,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
     ## Calcul du taux
 
-    La formule de calcul du taux de dépassement est la suivante : 
+    La formule de calcul du taux de dépassement est la suivante :
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre "taux Urssaf" ?
   unité: ''
@@ -633,7 +616,7 @@ dirigeant . indépendant . PL . PAMC . IJSS:
     Les indemnités complémentaires aux indemnités journalières de la Sécurité
     sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
     des revenus de remplacement.
-     
+
     Note: Les prestations d’invalidité versées par les régimes
     d’invalidité-décès ne sont pas concernées.
 
@@ -755,7 +738,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   description: >-
-    La CARMF gère le régime de retraite complémentaire. 
+    La CARMF gère le régime de retraite complémentaire.
 
     Le montant des cotisations est déterminé en fonction des revenus
     nets d’activité indépendante de l’avant-dernière année.
@@ -768,7 +751,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   titre: retraite complémentaire (CARMF)
   arrondi: oui
   variations:
-    - si: entreprise . durée d'activité . en fin d'année <= 2 ans
+    - si: entreprise . date de création >= 01/01/2020
       alors: 0€/an
     - sinon:
         produit:
@@ -785,7 +768,7 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. 
+    conjoints et enfants survivants en cas de décès de l'assuré.
 
     La cotisation comporte trois classes forfaitaires dont le montant est
     déterminé en fonction de vos revenus nets d'activité indépendante de
@@ -927,7 +910,8 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
   titre: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
   remplace: cotisations et contributions . PCV
   non applicable si: exonération PCV
-  note: Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+  note:
+    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
     inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
     soit 11 500 €.
 

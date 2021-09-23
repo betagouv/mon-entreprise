@@ -1,33 +1,32 @@
 import { AbattementNode } from '../mecanisms/abattement'
 import { ApplicableSiNode } from '../mecanisms/applicable'
 import { ArrondiNode } from '../mecanisms/arrondi'
-import { OperationNode } from '../mecanisms/operation'
 import { BarèmeNode } from '../mecanisms/barème'
-import { ReferenceNode } from '../reference'
-import { RuleNode } from '../rule'
 import { TouteCesConditionsNode } from '../mecanisms/condition-allof'
 import { UneDeCesConditionsNode } from '../mecanisms/condition-oneof'
 import { DuréeNode } from '../mecanisms/durée'
 import { GrilleNode } from '../mecanisms/grille'
 import { InversionNode } from '../mecanisms/inversion'
 import { MaxNode } from '../mecanisms/max'
-import { PlafondNode } from '../mecanisms/plafond'
 import { MinNode } from '../mecanisms/min'
 import { NonApplicableSiNode } from '../mecanisms/nonApplicable'
+import { PossibilityNode } from '../mecanisms/one-possibility'
+import { OperationNode } from '../mecanisms/operation'
 import { ParDéfautNode } from '../mecanisms/parDéfaut'
+import { PlafondNode } from '../mecanisms/plafond'
 import { PlancherNode } from '../mecanisms/plancher'
 import { ProductNode } from '../mecanisms/product'
 import { RecalculNode } from '../mecanisms/recalcul'
-import { PossibilityNode } from '../mecanisms/one-possibility'
+import { RésoudreRéférenceCirculaireNode } from '../mecanisms/résoudre-référence-circulaire'
 import { SituationNode } from '../mecanisms/situation'
 import { SommeNode } from '../mecanisms/sum'
 import { SynchronisationNode } from '../mecanisms/synchronisation'
 import { TauxProgressifNode } from '../mecanisms/tauxProgressif'
 import { UnitéNode } from '../mecanisms/unité'
-import { VariableTemporelleNode } from '../mecanisms/variableTemporelle'
 import { VariationNode } from '../mecanisms/variations'
+import { ReferenceNode } from '../reference'
 import { ReplacementRule } from '../replacement'
-import { Temporal } from '../temporal'
+import { RuleNode } from '../rule'
 
 export type ConstantNode = {
 	type: 'boolean' | 'objet' | 'number' | 'string'
@@ -57,12 +56,12 @@ export type ASTNode = (
 	| PlancherNode
 	| ProductNode
 	| RecalculNode
+	| RésoudreRéférenceCirculaireNode
 	| SituationNode
 	| SommeNode
 	| SynchronisationNode
 	| TauxProgressifNode
 	| UnitéNode
-	| VariableTemporelleNode
 	| VariationNode
 	| ConstantNode
 	| ReplacementRule
@@ -83,10 +82,13 @@ export type MecanismNode = Exclude<
 	ASTNode,
 	RuleNode | ConstantNode | ReferenceNode
 >
-export type NodeKind = ASTNode['nodeKind']
 
+export type ASTTransformer = (n: ASTNode) => ASTNode
+export type ASTVisitor = (n: ASTNode) => void
+
+export type NodeKind = ASTNode['nodeKind']
 export type TraverseFunction<Kind extends NodeKind> = (
-	fn: (n: ASTNode) => ASTNode,
+	fn: ASTTransformer,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind }
 
@@ -104,14 +106,24 @@ export type Unit = {
 }
 
 // Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
-// Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
 type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
 	missingVariables: Record<string, number>
 	unit?: Unit
-	temporalValue?: Temporal<Evaluation>
 }
 export type Types = number | boolean | string | Record<string, unknown>
-export type Evaluation<T extends Types = Types> = T | false | null
+// TODO: type NotYetDefined & NotApplicable properly (see #14) then refactor any code depending on these:
+export type NotYetDefined = null
+export function isNotYetDefined(value): value is NotYetDefined {
+	return value === null
+}
+export type NotApplicable = false
+export function isNotApplicable(value): value is NotApplicable {
+	return typeof value === 'boolean' && value === false
+}
+export type Evaluation<T extends Types = Types> =
+	| T
+	| NotApplicable
+	| NotYetDefined
 export type EvaluatedNode<T extends Types = Types> = ASTNode &
 	EvaluationDecoration<T>

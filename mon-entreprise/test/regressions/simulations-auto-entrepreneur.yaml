@@ -29,20 +29,18 @@ ACRE:
     entreprise . date de création: 01/01/2020
     entreprise . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 30000 €/an
-    entreprise . date de création: 01/06/2019
+    entreprise . date de création: 01/06/2020
     entreprise . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 40000 €/an
-    entreprise . date de création: 01/06/2018
+    entreprise . date de création: 01/06/2019
     entreprise . ACRE: oui
 
-
 activité mixte:
-  - entreprise . chiffre d'affaires: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
-  - entreprise . chiffre d'affaires: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
     entreprise . activité: "'libérale'"
-  - entreprise . chiffre d'affaires: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
     entreprise . activité: "'artisanale'"
-  

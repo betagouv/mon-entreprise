@@ -9,13 +9,13 @@ test:
 paramètre nommés:
   formule: test
   exemples:
-    - situation: 
+    - situation:
         test: cotisation . assiette
       valeur attendue: 1000
     - situation:
         test: cotisation . taux employeur
       valeur attendue: 4
-    
+
 cotisation 2:
   formule:
     multiplication:
@@ -28,12 +28,11 @@ paramètre nommés imbriqués:
   formule: cotisation 2 . assiette . plafond
   exemples:
     - valeur attendue: 100
-   
 
 paramètre nommé utilisé dans la règle:
   formule:
-    valeur [ref assiette] : 500€
-    abattement: 
+    valeur [ref assiette]: 500€
+    abattement:
       valeur: assiette * 10%
       plancher: 100€
   exemples:

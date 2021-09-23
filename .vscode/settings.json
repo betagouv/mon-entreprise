@@ -8,5 +8,8 @@
 	"cSpell.words": [
 		"mycompanyinfrance",
 		"smarttag"
-	]
+	],
+	"search.exclude": {
+		"**/dist": true
+	}
 }

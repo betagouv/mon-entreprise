@@ -41,17 +41,15 @@ export const attributesToTranslate = [
 	'identifiant court',
 ]
 
-const translateProp = (lang: string, translation: Translation) => (
-	rule: Rule,
-	prop: string
-) => {
-	if (prop === 'suggestions' && rule?.suggestions) {
-		return translateSuggestion(prop, rule, translation, lang)
+const translateProp =
+	(lang: string, translation: Translation) => (rule: Rule, prop: string) => {
+		if (prop === 'suggestions' && rule?.suggestions) {
+			return translateSuggestion(prop, rule, translation, lang)
+		}
+		let propTrans = translation[prop + '.' + lang]
+		propTrans = propTrans?.replace(/^\[automatic\] /, '')
+		return propTrans ? assoc(prop, propTrans, rule) : rule
 	}
-	let propTrans = translation[prop + '.' + lang]
-	propTrans = propTrans?.replace(/^\[automatic\] /, '')
-	return propTrans ? assoc(prop, propTrans, rule) : rule
-}
 
 function translateRule<Names extends string>(
 	lang: string,
@@ -69,11 +67,11 @@ function translateRule<Names extends string>(
 	)
 }
 
-export default function translateRules(
+export default function translateRules<Names extends string>(
 	lang: string,
-	translations: Record<string, Translation>,
-	rules: Record<string, Rule>
-): Record<string, Rule> {
+	translations: Record<Names, Translation>,
+	rules: Record<Names, Rule>
+): Record<Names, Rule> {
 	const translatedRules = mapObjIndexed(
 		(rule: Rule, name: string) => translateRule(lang, translations, name, rule),
 		rules

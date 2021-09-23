@@ -11,14 +11,9 @@ export const LegalNoticeContent = () => (
 			<Trans i18nKey="legalNotice.editeur.title">Editeur</Trans>
 		</h2>
 		<p>
-			<Trans i18nKey="legalNotice.editeur.content">
-				Incubateur des services numériques,
-				<br />
-				Direction interministérielle du numérique et du système d'information et
-				de communication de l'Etat (DINSIC),
-				<br />
-				Services du Premier ministre.
-			</Trans>
+			Agence Centrale des Organismes de Sécurité Sociale (ACOSS)
+			<br />
+			36 rue de Valmy - 93108 Montreuil Cedex
 		</p>
 		<h2>
 			<Trans i18nKey="legalNotice.publication.title">

@@ -1,35 +1,28 @@
 objectifs:
-  - icône: 👩‍💼
-    nom: Mon revenu
-    objectifs:
-      - dirigeant . rémunération totale
-      - dirigeant . indépendant . cotisations et contributions
-      - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . indépendant . revenu professionnel
-      - impôt
-      - revenu net après impôt
-  - icône: 🏢
-    nom: Mon entreprise
-    objectifs:
-      - entreprise . charges
-      - entreprise . chiffre d'affaires minimum
+  - entreprise . chiffre d'affaires
+  - dirigeant . rémunération . totale
+  - dirigeant . rémunération . nette
+  - dirigeant . rémunération . nette après impôt
 
 questions:
   à l'affiche:
     Type d'activité: entreprise . activité
     Date de création: entreprise . date de création
     ACRE: entreprise . ACRE
-    Contrats Madelins: dirigeant . indépendant . contrats madelin
+    Contrats Madelins: dirigeant . indépendant . cotisations facultatives
     Conjoint collaborateur: dirigeant . indépendant . conjoint collaborateur
     Impôt sur le revenu: impôt . méthode de calcul
   liste noire:
     - entreprise . charges
+    - entreprise . imposition
+    - entreprise . exercice . début
+    - entreprise . exercice . fin
   liste:
     - entreprise
     - établissement
     - dirigeant . indépendant
     - situation personnelle
-    - impôt
+    - impôt . montant
   non prioritaires:
     - dirigeant . indépendant . IJSS
     - dirigeant . indépendant . cotisations et contributions . exonérations

@@ -1,8 +1,15 @@
-Publicode est un langage déclaratif pour encoder les algorithmes d'intérêt
+> 🇬🇧 Most of the documentation (including issues and commit messages) is written in French, please raise an [issue](https://github.com/betagouv/publicodes/issues/new) if you are interested and do not speak French. We intend to translate the language and the documentation in the coming weeks.
+
+## <a href="https://publi.codes"><img src="https://mon-entreprise.fr/images/logo-publicodes.png" alt="Publicodes" width="200"/></a>
+
+[![Npm version](https://img.shields.io/npm/v/publicodes)](https://www.npmjs.com/package/publicodes)
+[![Gitter chat](https://badges.gitter.im/publicodes/publicodes.png)](https://gitter.im/publicodes/community)
+
+Publicodes est un langage déclaratif pour encoder les algorithmes d'intérêt
 public. Il permet de réaliser des calculs généraux tout en fournissant une
 explication permettant de comprendre et de documenter ces calculs.
 
-Publicode est adapté pour modéliser des domaines métiers complexes pouvant être
+Publicodes est adapté pour modéliser des domaines métiers complexes pouvant être
 décomposés en règles élémentaires simples (comme la [législation socio-fiscale](https://github.com/betagouv/mon-entreprise/tree/master/publicodes),
 [un bilan carbone](https://github.com/laem/futureco-data/blob/master/co2.yaml),
 un estimateur de rendement locatif, etc.).
@@ -32,7 +39,3 @@ npm install publicodes
 -   **[futur.eco](https://futur.eco/)** utilise publicodes pour calculer les bilans
     carbone d'un grand nombre d'activités, plats, transports ou biens.
 -   **[Nos Gestes Climat](https://ecolab.ademe.fr/apps/climat)** utilise publicodes pour proposer un calculateur d'empreinte climat personnel de référence complètement ouvert
-
-## Feuille de route
-
-Pour plus de détails sur les prochaines fonctionalités et notre future direction vous pouvez consulter nos [feuilles de route](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+label%3A%22%F0%9F%8E%AF+feuille+de+route%22+label%3A%22%E2%9A%99%EF%B8%8F+publicodes%22+).

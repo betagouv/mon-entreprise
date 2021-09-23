@@ -12,15 +12,21 @@ import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
 import { formatUnit, getUnitKey } from './units'
 
-const emptyCache = () => ({
-	_meta: { ruleStack: [] },
+const emptyCache = (): Cache => ({
+	_meta: {
+		parentRuleStack: [],
+		evaluationRuleStack: [],
+		disableApplicabilityContextCounter: 0,
+	},
 	nodes: new Map(),
+	nodesApplicability: new Map(),
 })
 
 type Cache = {
 	_meta: {
-		ruleStack: Array<string>
-		parentEvaluationStack?: Array<string>
+		parentRuleStack: Array<string>
+		evaluationRuleStack: Array<string>
+		disableApplicabilityContextCounter: number
 		inversionFail?:
 			| {
 					given: string
@@ -31,14 +37,22 @@ type Cache = {
 		filter?: string
 	}
 	nodes: Map<PublicodesExpression | ASTNode, EvaluatedNode>
+	nodesApplicability: Map<PublicodesExpression | ASTNode, EvaluatedNode>
 }
 
 export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { reduceAST, transformAST } from './AST/index'
-export { Evaluation, Unit } from './AST/types'
+export { reduceAST, makeASTTransformer as transformAST } from './AST/index'
+export {
+	Evaluation,
+	Unit,
+	NotYetDefined,
+	isNotYetDefined,
+	NotApplicable,
+	isNotApplicable,
+} from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
 export { default as serializeEvaluation } from './serializeEvaluation'
@@ -46,7 +60,7 @@ export { parseUnit, serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
 
-type PublicodesExpression = string | Record<string, unknown> | number
+export type PublicodesExpression = string | Record<string, unknown> | number
 
 export type Logger = {
 	log(message: string): void
@@ -59,14 +73,17 @@ type Options = {
 	getUnitKey?: getUnitKey
 	formatUnit?: formatUnit
 }
+
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind } & EvaluatedNode
+
 export type ParsedRules<Name extends string> = Record<
 	Name,
 	RuleNode & { dottedName: Name }
 >
+
 export default class Engine<Name extends string = string> {
 	parsedRules: ParsedRules<Name>
 	parsedSituation: Record<string, ASTNode> = {}
@@ -75,25 +92,11 @@ export default class Engine<Name extends string = string> {
 	options: Options
 
 	constructor(
-		rules: string | Record<string, Rule> | ParsedRules<Name> = {},
+		rules: string | Record<string, Rule> = {},
 		options: Partial<Options> = {}
 	) {
 		this.options = { ...options, logger: options.logger ?? console }
-		if (typeof rules === 'string') {
-			rules = parsePublicodes(rules, this.options) as ParsedRules<Name>
-		}
-		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
-		if (
-			typeof firstRuleObject !== 'object' ||
-			firstRuleObject == null ||
-			!('nodeKind' in firstRuleObject)
-		) {
-			rules = parsePublicodes(
-				rules as Record<string, Rule>,
-				this.options
-			) as ParsedRules<Name>
-		}
-		this.parsedRules = rules as ParsedRules<Name>
+		this.parsedRules = parsePublicodes(rules, this.options) as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
 	}
 
@@ -150,12 +153,25 @@ export default class Engine<Name extends string = string> {
 		return this.parsedRules
 	}
 
+	getOptions(): Options {
+		return this.options
+	}
+
 	evaluate<N extends ASTNode = ASTNode>(value: N): N & EvaluatedNode
 	evaluate(value: PublicodesExpression): EvaluatedNode
 	evaluate(value: PublicodesExpression | ASTNode): EvaluatedNode {
 		const cachedNode = this.cache.nodes.get(value)
+		// The evaluation of parent applicabilty is slightly different from
+		// regular rules since we cut some of the paths (sums) for optimization.
+		// That's why we need to have a separate cache for this evaluation.
+
 		if (cachedNode !== undefined) {
 			return cachedNode
+		} else if (this.inApplicabilityEvaluationContext) {
+			const cachedNodeApplicability = this.cache.nodesApplicability.get(value)
+			if (cachedNodeApplicability) {
+				return cachedNodeApplicability
+			}
 		}
 
 		let parsedNode: ASTNode
@@ -177,8 +193,37 @@ export default class Engine<Name extends string = string> {
 			this,
 			parsedNode
 		)
-		this.cache.nodes.set(value, evaluatedNode)
+
+		// TODO: In most cases the two evaluation provide the same result, this
+		// could be optimized. The idea would be to use the “nodesApplicability”
+		// cache iff the rule uses a sum mechanism (ie, some paths are cut from
+		// the full evaluaiton).
+		if (!this.inApplicabilityEvaluationContext) {
+			this.cache.nodes.set(value, evaluatedNode)
+		} else {
+			this.cache.nodesApplicability.set(value, evaluatedNode)
+		}
 		return evaluatedNode
+	}
+
+	/**
+	 * Shallow Engine instance copy. Keeps references to the original Engine instance attributes.
+	 */
+	shallowCopy(): Engine<Name> {
+		const newEngine = new Engine<Name>()
+		newEngine.options = this.options
+		newEngine.parsedRules = this.parsedRules
+		newEngine.replacements = this.replacements
+		newEngine.parsedSituation = this.parsedSituation
+		newEngine.cache = this.cache
+		return newEngine
+	}
+
+	get inApplicabilityEvaluationContext(): boolean {
+		return (
+			this.cache._meta.parentRuleStack.length > 0 &&
+			this.cache._meta.disableApplicabilityContextCounter === 0
+		)
 	}
 }
 

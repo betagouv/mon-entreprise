@@ -1,6 +1,6 @@
 import yaml from 'yaml'
 import { ParsedRules, Logger } from '.'
-import { transformAST, traverseParsedRules } from './AST'
+import { makeASTTransformer, traverseParsedRules } from './AST'
 import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
@@ -15,20 +15,17 @@ export type Context = {
 	logger: Logger
 }
 
-type RawRule = Omit<Rule, 'nom'> | string | undefined | number
-export type RawPublicodes = Record<string, RawRule> | string
+type RawRule = Omit<Rule, 'nom'> | string | number
+export type RawPublicodes = Record<string, RawRule>
 
 export default function parsePublicodes(
-	rawRules: RawPublicodes,
+	rawRules: RawPublicodes | string,
 	partialContext: Partial<Context> = {}
 ): ParsedRules<string> {
 	// STEP 1: parse Yaml
 	let rules =
 		typeof rawRules === 'string'
-			? (yaml.parse(('' + rawRules).replace(/\t/g, '  ')) as Record<
-					string,
-					RawRule
-			  >)
+			? (yaml.parse(('' + rawRules).replace(/\t/g, '  ')) as RawPublicodes)
 			: { ...rawRules }
 
 	// STEP 2: transpile [ref] writing
@@ -43,13 +40,15 @@ export default function parsePublicodes(
 	}
 
 	Object.entries(rules).forEach(([dottedName, rule]) => {
-		if (rule == null) {
-			rule = {}
+		if (typeof rule === 'string' || typeof rule === 'number') {
+			rule = {
+				formule: `${rule}`,
+			}
 		}
 		if (typeof rule !== 'object') {
-			rule = {
-				formule: '' + rule,
-			}
+			throw new SyntaxError(
+				`Rule ${dottedName} is incorrectly written. Please give it a proper value.`
+			)
 		}
 		parse({ nom: dottedName, ...rule }, context)
 	})
@@ -106,7 +105,7 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 }
 
 export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
-	transformAST((node) => {
+	makeASTTransformer((node) => {
 		if (node.nodeKind === 'reference') {
 			const dottedName = disambiguateRuleReference(
 				parsedRules,

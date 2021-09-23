@@ -1,7 +1,9 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { DottedName } from 'modele-social'
-import { Trans } from 'react-i18next'
+import { isNotApplicable, isNotYetDefined } from 'publicodes'
+import { Trans, useTranslation } from 'react-i18next'
+import { useEngine } from './utils/EngineContext'
 
 export const SalaireBrutSection = () => {
 	return (
@@ -26,6 +28,7 @@ export const SalaireBrutSection = () => {
 }
 
 export const SalaireNetSection = () => {
+	const { t } = useTranslation()
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
@@ -33,10 +36,12 @@ export const SalaireNetSection = () => {
 			</h4>
 			<Line rule="contrat salarié . rémunération . net imposable" />
 			<Condition
-				expression={[
-					'contrat salarié . rémunération . avantages en nature',
-					'contrat salarié . frais professionnels . titres-restaurant',
-				]}
+				expression={{
+					['toutes ces conditions']: [
+						'contrat salarié . rémunération . avantages en nature', // bool
+						'contrat salarié . frais professionnels . titres-restaurant', // bool
+					],
+				}}
 			>
 				<Line rule="contrat salarié . rémunération . net de cotisations" />
 			</Condition>
@@ -52,8 +57,13 @@ export const SalaireNetSection = () => {
 				rule="contrat salarié . rémunération . net"
 				className="payslip__total"
 			/>
-			<Condition expression="impôt">
-				<Line negative rule="impôt" unit="€/mois" />
+			<Condition expression="impôt . montant > 0">
+				<Line
+					negative
+					rule="impôt . montant"
+					title={t('impôt sur le revenu')}
+					unit="€/mois"
+				/>
 				<Line
 					className="payslip__total"
 					rule="contrat salarié . rémunération . net après impôt"
@@ -65,6 +75,7 @@ export const SalaireNetSection = () => {
 
 type LineProps = {
 	rule: DottedName
+	title?: string
 	negative?: boolean
 } & Omit<ValueProps<DottedName>, 'expression'>
 
@@ -72,12 +83,26 @@ export function Line({
 	rule,
 	displayedUnit = '€',
 	negative = false,
+	title,
 	className,
 	...props
 }: LineProps) {
+	const engine = useEngine()
+
+	const evaluatedNode = engine.evaluate(rule)
+	if (
+		isNotYetDefined(evaluatedNode.nodeValue) ||
+		// ⚠️ isNotApplicable is a bad func only here to help with further refactoring:
+		isNotApplicable(evaluatedNode.nodeValue) ||
+		evaluatedNode.nodeValue === 0
+	)
+		return null
+
 	return (
-		<Condition expression={rule}>
-			<RuleLink dottedName={rule} className={className} />
+		<Condition expression={`${rule} > 0`}>
+			<RuleLink dottedName={rule} className={className}>
+				{title}
+			</RuleLink>
 			<Value
 				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}

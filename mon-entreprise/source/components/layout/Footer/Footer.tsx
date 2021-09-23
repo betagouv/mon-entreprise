@@ -2,12 +2,13 @@ import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
 import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import useSimulatorsData from '../../../pages/Simulateurs/metadata'
 import { hrefLangLink } from '../../../sitePaths'
 import './Footer.css'
@@ -39,16 +40,18 @@ export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
-	const hrefLink =
-		hrefLangLink[language][
-			decodeURIComponent(
-				(process.env.NODE_ENV === 'production'
-					? window.location.protocol + '//' + window.location.host
-					: '') + window.location.pathname
-			).replace(/\/$/, '')
-		] || []
+
+	const encodedUri =
+		(process.env.NODE_ENV === 'production' ||
+		process.env.NODE_ENV === 'development'
+			? window.location.protocol + '//' + window.location.host
+			: '') + window.location.pathname
+	const uri = decodeURIComponent(encodedUri).replace(/\/$/, '')
+
+	const hrefLink = hrefLangLink[language][uri] || []
+
 	return (
-		<div className="footer-container">
+		<div className="ui__ print-display-none">
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link
@@ -84,48 +87,68 @@ export default function Footer() {
 						security contributions collector.
 					</p>
 				)}
-				<p className="ui__ notice" style={{ textAlign: 'center' }}>
-					<LegalNotice />
-					{'  •  '}
-					<Privacy />
-
+				<StyledFooter className="ui__ notice container">
 					{language === 'fr' && (
-						<>
-							{'  •  '}
-							<Link to={sitePaths.nouveautés}>Nouveautés</Link>
-							{'  •  '}
-							<Link to={sitePaths.stats}>Stats</Link>
-							{'  •  '}
-							<Link to={sitePaths.budget}>Budget</Link>
-						</>
+						<ul>
+							<li>
+								<Link to={sitePaths.nouveautés}>
+									Nouveautés <Emoji emoji="✨" />
+								</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.stats}>
+									Stats <Emoji emoji="📊" />
+								</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.budget}>
+									Budget <Emoji emoji="💶" />
+								</Link>
+							</li>
+						</ul>
 					)}
-					{'  •  '}
-					<Link to={sitePaths.integration.index}>
-						<Trans>Intégrer nos simulateurs</Trans>
-					</Link>
-					{'  •  '}
-					<Link to={sitePaths.accessibilité}>
-						<Trans i18nKey="footer.accessibilité">
-							Accessibilité : non conforme
-						</Trans>
-					</Link>
-					{!!hrefLink.length && '  •  '}
-					{hrefLink.map(({ hrefLang, href }) => (
-						<a
-							href={href}
-							key={hrefLang}
-							style={{ textDecoration: 'underline' }}
-						>
-							{hrefLang === 'fr' ? (
-								<> Passer en français {emoji('🇫🇷')}</>
-							) : hrefLang === 'en' ? (
-								<> Switch to English {emoji('🇬🇧')}</>
-							) : (
-								hrefLang
-							)}
-						</a>
-					))}
-				</p>
+					<ul>
+						<li>
+							<Link to={sitePaths.integration.index}>
+								<Trans>Intégrer nos simulateurs</Trans>
+							</Link>
+						</li>
+						{hrefLink.map(({ hrefLang, href }) => (
+							<li key={hrefLang}>
+								<a href={href} style={{ textDecoration: 'underline' }}>
+									{hrefLang === 'fr' ? (
+										<>
+											Passer en français <Emoji emoji="🇫🇷" />
+										</>
+									) : hrefLang === 'en' ? (
+										<>
+											Switch to English <Emoji emoji="🇬🇧" />
+										</>
+									) : (
+										hrefLang
+									)}
+								</a>
+							</li>
+						))}
+					</ul>
+					<ul>
+						<li>
+							<LegalNotice />
+						</li>
+						<li>
+							<Privacy />
+						</li>
+						{language === 'fr' && (
+							<li>
+								<Link to={sitePaths.accessibilité}>
+									<Trans i18nKey="footer.accessibilité">
+										Accessibilité : non conforme
+									</Trans>
+								</Link>
+							</li>
+						)}
+					</ul>
+				</StyledFooter>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<a href="https://twitter.com/monentreprisefr">
@@ -142,3 +165,22 @@ export default function Footer() {
 		</div>
 	)
 }
+
+const StyledFooter = styled.div`
+	a {
+		white-space: nowrap;
+	}
+	display: flex;
+	justify-content: space-between;
+	@media (max-width: 600px) {
+		flex-direction: column;
+		text-align: center;
+		li {
+			display: inline-block;
+		}
+		li:not(:last-child)::after {
+			content: '•';
+			margin: 0.3rem;
+		}
+	}
+`

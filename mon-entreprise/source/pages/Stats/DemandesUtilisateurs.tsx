@@ -1,4 +1,4 @@
-import Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import { useState } from 'react'
 import stats from '../../data/stats.json'
 
@@ -6,7 +6,7 @@ export default function DemandeUtilisateurs() {
 	const [extendedView, setExtendedView] = useState(false)
 	return (
 		<section>
-			<h2>Demandes utilisateurs</h2>
+			<h2 id="demandes-utilisateurs">Demandes utilisateurs</h2>
 			<p>
 				<small>
 					Demandes formulées en utilisant le bouton "faire une suggestion"
@@ -47,7 +47,7 @@ function Issue({
 	closedAt: string | null
 }) {
 	return (
-		<Animate.fromTop>
+		<FromTop>
 			<li>
 				{count > 1 && (
 					<span className="ui__ small label">{count} demandes</span>
@@ -59,7 +59,7 @@ function Issue({
 					<small>(Résolu en {formatMonth(new Date(closedAt))})</small>
 				)}
 			</li>
-		</Animate.fromTop>
+		</FromTop>
 	)
 }
 

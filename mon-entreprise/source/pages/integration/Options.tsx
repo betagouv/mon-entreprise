@@ -1,9 +1,9 @@
+import { icons } from 'Components/ui/SocialIcon'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { icons } from 'Components/ui/SocialIcon'
 import illustration from './illustration.png'
 
 export default function Options() {
@@ -11,7 +11,7 @@ export default function Options() {
 	return (
 		<>
 			<h1 css="margin-bottom: 0">
-				<Trans>Outils pour les développeurs</Trans> <>{emoji('👨‍💻')}</>
+				<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 			</h1>
 
 			<div css="display: flex; align-items: flex-start; justify-content: space-between">
@@ -31,12 +31,14 @@ export default function Options() {
 					<img css="height: 250px" src={illustration} />
 				</div>
 			</div>
-			<section className="ui__ full-width dark-bg center-flex">
+			<section className="ui__ full-width dark-bg box-container">
 				<Link
 					className="ui__ interactive card box inverted-colors"
 					to={sitePaths.integration.iframe}
 				>
-					<div className="ui__ big box-icon">{emoji('📱')}</div>
+					<div className="ui__ big box-icon">
+						<Emoji emoji="📱" />
+					</div>
 					<Trans i18nKey="pages.développeurs.home.choice.iframe">
 						<h3>Intégrer un simulateur</h3>
 						<p className="ui__ notice">
@@ -52,7 +54,9 @@ export default function Options() {
 					className="ui__ interactive card box inverted-colors"
 					to={sitePaths.integration.library}
 				>
-					<div className="ui__ big box-icon">{emoji('🧰')}</div>
+					<div className="ui__ big box-icon">
+						<Emoji emoji="🧰" />
+					</div>
 					<Trans i18nKey="pages.développeurs.choice.library">
 						<h3>Libraire de calcul</h3>
 						<p className="ui__ notice">
@@ -100,8 +104,10 @@ export default function Options() {
 					target="_blank"
 					href="https://publi.codes"
 				>
-					<div className="ui__ big box-icon">{emoji('📚')}</div>
-					<Trans i18nKey="pages.développeurs.choice.publicode">
+					<div className="ui__ big box-icon">
+						<Emoji emoji="📚" />
+					</div>
+					<Trans i18nKey="pages.développeurs.choice.publicodes">
 						<h3>Publicodes</h3>
 						<p className="ui__ notice">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour

@@ -1,6 +1,5 @@
 import { updateSituation } from 'Actions/actions'
 import classnames from 'classnames'
-import Animate from 'Components/ui/animate'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import {
@@ -8,6 +7,7 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
+	useMemo,
 	useState,
 } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,6 +18,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import RuleInput, { InputProps } from './conversation/RuleInput'
 import RuleLink from './RuleLink'
+import { Appear } from './ui/animate'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
 import { useEngine } from './utils/EngineContext'
 
@@ -32,7 +33,10 @@ export function SimulationGoals({
 	className = '',
 	children,
 }: SimulationGoalsProps) {
-	const initialRender = useInitialRender()
+	const [initialRender, setInitialRender] = useState(true)
+	useEffect(() => {
+		setInitialRender(false)
+	}, [])
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
@@ -49,11 +53,9 @@ export function SimulationGoals({
 }
 
 function useInitialRender() {
-	const [initialRender, setInitialRender] = useState(true)
-	useEffect(() => {
-		setInitialRender(false)
-	}, [])
-	return initialRender
+	const initialRender = useContext(InitialRenderContext)
+	const unChangedInitialRender = useMemo(() => initialRender, [])
+	return unChangedInitialRender
 }
 
 type SimulationGoalProps = {
@@ -63,6 +65,7 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	boolean?: boolean
+	alwaysShow?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
 		...rest: Parameters<InputProps['onChange']>
@@ -75,6 +78,7 @@ export function SimulationGoal({
 	small = false,
 	onUpdateSituation,
 	appear = true,
+	alwaysShow = false,
 	editable = true,
 	boolean = false, //TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
@@ -88,7 +92,7 @@ export function SimulationGoal({
 		...(!boolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
 	})
 	const rule = engine.getRule(dottedName)
-	const initialRender = useContext(InitialRenderContext)
+	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const onChange = useCallback(
@@ -96,13 +100,14 @@ export function SimulationGoal({
 			dispatch(updateSituation(dottedName, x))
 			onUpdateSituation?.(dottedName, x)
 		},
-		[dispatch, onUpdateSituation]
+		[dispatch, onUpdateSituation, dottedName]
 	)
 	if (
-		isNotApplicable === true ||
-		(!(dottedName in situation) &&
-			evaluation.nodeValue === false &&
-			!(dottedName in evaluation.missingVariables))
+		!alwaysShow &&
+		(isNotApplicable === true ||
+			(!(dottedName in situation) &&
+				evaluation.nodeValue === false &&
+				!(dottedName in evaluation.missingVariables)))
 	) {
 		return null
 	}
@@ -117,7 +122,7 @@ export function SimulationGoal({
 	}
 	return (
 		<li className={small ? 'small-target' : ''}>
-			<Animate.appear unless={!appear || initialRender}>
+			<Appear unless={!appear || initialRender}>
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
@@ -172,7 +177,7 @@ export function SimulationGoal({
 						)}
 					</div>
 				</div>
-			</Animate.appear>
+			</Appear>
 		</li>
 	)
 }

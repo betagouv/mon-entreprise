@@ -1,5 +1,5 @@
 import { Logger } from '.'
-import { transformAST } from './AST'
+import { makeASTTransformer } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
 import { defaultNode } from './evaluation'
@@ -25,7 +25,7 @@ export type ReplacementRule = {
 //
 // The implementation works by first attributing an identifier for each
 // replacementRule. We then use this identifier to create a cache key that
-// represent the combinaison of applicables replacements for a given reference.
+// represents the combinaison of applicables replacements for a given reference.
 // For example if replacements 12, 13 et 643 are applicable we use the key
 // `12-13-643` as the cache identifier in the `inlineReplacements` function.
 let remplacementRuleId = 0
@@ -104,31 +104,31 @@ export function inlineReplacements(
 	replacements: Record<string, Array<ReplacementRule>>,
 	logger: Logger
 ): (n: ASTNode) => ASTNode {
-	return transformAST((n, fn) => {
+	return makeASTTransformer((node, transform) => {
 		if (
-			n.nodeKind === 'replacementRule' ||
-			n.nodeKind === 'inversion' ||
-			n.nodeKind === 'une possibilité'
+			node.nodeKind === 'replacementRule' ||
+			node.nodeKind === 'inversion' ||
+			node.nodeKind === 'une possibilité'
 		) {
 			return false
 		}
-		if (n.nodeKind === 'recalcul') {
+		if (node.nodeKind === 'recalcul') {
 			// We don't replace references in recalcul keys
 			return {
-				...n,
+				...node,
 				explanation: {
-					recalcul: fn(n.explanation.recalcul),
-					amendedSituation: n.explanation.amendedSituation.map(
-						([name, value]) => [name, fn(value)]
+					recalcul: transform(node.explanation.recalcul),
+					amendedSituation: node.explanation.amendedSituation.map(
+						([name, value]) => [name, transform(value)]
 					),
 				},
 			}
 		}
-		if (n.nodeKind === 'reference') {
-			if (!n.dottedName) {
-				throw new InternalError(n)
+		if (node.nodeKind === 'reference') {
+			if (!node.dottedName) {
+				throw new InternalError(node)
 			}
-			return replace(n, replacements[n.dottedName] ?? [], logger)
+			return replace(node, replacements[node.dottedName] ?? [], logger)
 		}
 	})
 }

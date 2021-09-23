@@ -306,17 +306,16 @@ chaine de charactère:
         chaine de charactère: "'je t'y vois'"
       valeur attendue: je t'y vois
 
-
 a: oui
 b: 5
 a . b: b + 5
 a . c: b + 5
 désambiguation du nom de règle 1:
   formule: a . b
-  exemples: 
+  exemples:
     - valeur attendue: 10
 
 désambiguation du nom de règle 2:
   formule: a . c
-  exemples: 
+  exemples:
     - valeur attendue: 15

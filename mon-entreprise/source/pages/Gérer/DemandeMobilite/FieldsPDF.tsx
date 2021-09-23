@@ -34,10 +34,12 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 									{formatValue(engine.evaluate(dottedName)) +
 										(API === 'commune'
 											? ` (${
-													(engine.evaluate(dottedName).nodeValue as Record<
-														string,
-														unknown
-													>)?.codePostal as string
+													(
+														engine.evaluate(dottedName).nodeValue as Record<
+															string,
+															unknown
+														>
+													)?.codePostal as string
 											  })`
 											: '')}{' '}
 								</Text>

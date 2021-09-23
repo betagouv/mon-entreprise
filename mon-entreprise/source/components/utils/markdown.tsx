@@ -1,9 +1,9 @@
-import React, { Suspense, useContext, useEffect } from 'react'
-import emoji from 'react-easy-emoji'
+import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
+import Emoji from './Emoji'
 
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',
@@ -57,7 +57,7 @@ export function LinkRenderer({
 	)
 }
 const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(children)}</>
+	<Emoji emoji={children} />
 )
 
 type MarkdownProps = ReactMarkdownProps & {
@@ -86,7 +86,7 @@ const CodeBlock = ({
 				target="_blank"
 				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
 			>
-				{emoji('⚡')} Lancer le calcul
+				<Emoji emoji="⚡" /> Lancer le calcul
 			</a>
 		)}
 	</div>
@@ -132,7 +132,7 @@ const flatMapChildren = (children: React.ReactNode): Array<string> => {
 			: child.props?.value ?? flatMapChildren(child.props?.children)
 	)
 }
-function useScrollToHash() {
+export function useScrollToHash() {
 	useEffect(() => {
 		const { hash } = window.location
 		if (hash) {

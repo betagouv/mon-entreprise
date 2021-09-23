@@ -17,7 +17,7 @@ export default function PublicodesBlock({ source }: { source: string }) {
 				href={`${baseURL}/studio?code=${encodeURIComponent(source)}`}
 				target="_blank"
 			>
-				{emoji('⚡')} Lancer le calcul
+				⚡ Lancer le calcul
 			</LaunchButton>
 		</div>
 	)

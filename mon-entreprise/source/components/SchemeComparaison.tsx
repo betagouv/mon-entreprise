@@ -5,20 +5,21 @@ import {
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
-import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import Value from 'Components/EngineValue'
 import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { useCallback, useMemo, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
+import SeeAnswersButton from './conversation/SeeAnswersButton'
+import PeriodSwitch from './PeriodSwitch'
 import './SchemeComparaison.css'
-import { engineOptions, useEngine } from './utils/EngineContext'
+import { SimulationGoal, SimulationGoals } from './SimulationGoals'
+import { FromBottom } from './ui/animate'
+import Emoji from './utils/Emoji'
+import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
@@ -33,25 +34,23 @@ export default function SchemeComparaison({
 	useSimulationConfig(dirigeantComparaison)
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
-	const plafondAutoEntrepreneurDépassé =
-		engine.evaluate('dirigeant . auto-entrepreneur . seuils dépassés')
-			.nodeValue === true
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
 		!!Object.keys(useSelector(situationSelector)).length
 	)
-	const startConversation = useCallback(() => setConversationStarted(true), [
-		setConversationStarted,
-	])
+	const startConversation = useCallback(
+		() => setConversationStarted(true),
+		[setConversationStarted]
+	)
 
-	const parsedRules = engine.getParsedRules()
 	const situation = useSelector(situationSelector)
 	const displayResult =
-		useSelector(situationSelector)['entreprise . charges'] != undefined
+		useSelector(situationSelector)['dirigeant . rémunération . totale'] !=
+		undefined
 	const assimiléEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'assimilé salarié'",
 			}),
@@ -59,7 +58,7 @@ export default function SchemeComparaison({
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'auto-entrepreneur'",
 			}),
@@ -67,12 +66,17 @@ export default function SchemeComparaison({
 	)
 	const indépendantEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
+			engine.shallowCopy().setSituation({
 				...situation,
 				dirigeant: "'indépendant'",
 			}),
 		[situation]
 	)
+	const plafondAutoEntrepreneurDépassé =
+		autoEntrepreneurEngine.evaluate(
+			"entreprise . chiffre d'affaires . seuil micro dépassé"
+		).nodeValue === true
+
 	return (
 		<>
 			<div
@@ -82,7 +86,7 @@ export default function SchemeComparaison({
 				})}
 			>
 				<h2 className="AS">
-					{emoji('☂')} <Trans>Assimilé salarié</Trans>
+					<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.AS.tagline">
 							Le régime tout compris
@@ -90,7 +94,7 @@ export default function SchemeComparaison({
 					</small>
 				</h2>
 				<h2 className="indep">
-					{emoji('👩‍🔧')}{' '}
+					<Emoji emoji="👩‍🔧" />{' '}
 					{hideAssimiléSalarié ? (
 						<Trans>Entreprise Individuelle</Trans>
 					) : (
@@ -103,7 +107,7 @@ export default function SchemeComparaison({
 					</small>
 				</h2>
 				<h2 className="auto">
-					{emoji('🚶‍♂️')} <Trans>Auto-entrepreneur</Trans>
+					<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.auto.tagline">
 							Pour commencer sans risques
@@ -264,7 +268,7 @@ export default function SchemeComparaison({
 								<div className="auto">
 									<Trans>Oui</Trans>
 									<small>
-										(72 500 € en services / 176 200 € en vente de biens,
+										(72 600 € en services / 176 200 € en vente de biens,
 										restauration ou hébergement)
 									</small>
 								</div>
@@ -316,9 +320,54 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<div className="ui__ container">
-							<SeeAnswersButton />
-							<Conversation />
+						<div
+							className="ui__ container"
+							css={`
+								text-align: left;
+							`}
+						>
+							<PeriodSwitch />
+							<SimulationGoals
+								className="plain"
+								css={
+									displayResult
+										? `
+									border-bottom: none;
+									border-bottom-left-radius: 0 !important;
+									border-bottom-right-radius: 0 !important;
+								`
+										: ''
+								}
+							>
+								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
+								<SimulationGoal dottedName="entreprise . charges" />
+							</SimulationGoals>
+							{displayResult && (
+								<FromBottom>
+									<div
+										className="ui__ card "
+										css={`
+											padding: 1rem;
+											border-top: none;
+											border-top-left-radius: 0 !important;
+											border-top-right-radius: 0 !important;
+										`}
+									>
+										<Conversation
+											customEndMessages={
+												<>
+													<p className="ui__ notice">
+														Vous pouvez consulter les différentes estimations
+														dans le tableau ci-dessous
+													</p>
+
+													<SeeAnswersButton />
+												</>
+											}
+										/>
+									</div>
+								</FromBottom>
+							)}
 						</div>
 					)}
 				</div>
@@ -335,7 +384,7 @@ export default function SchemeComparaison({
 								engine={assimiléEngine}
 								precision={0}
 								unit="€/an"
-								expression="contrat salarié . rémunération . net"
+								expression="dirigeant . rémunération . nette"
 							/>
 						</div>
 						<div className="indep">
@@ -343,7 +392,7 @@ export default function SchemeComparaison({
 								linkToRule={false}
 								engine={indépendantEngine}
 								precision={0}
-								expression="dirigeant . indépendant . revenu net de cotisations"
+								expression="dirigeant . rémunération . nette"
 							/>
 						</div>
 						<div className="auto">
@@ -355,10 +404,11 @@ export default function SchemeComparaison({
 									precision={0}
 									className={''}
 									unit="€/an"
-									expression="dirigeant . auto-entrepreneur . net de cotisations"
+									expression="dirigeant . rémunération . nette - entreprise . charges"
 								/>
 							</>
 						</div>
+
 						<h3 className="legend">
 							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
 								<span>Pension de retraite</span>
@@ -388,8 +438,8 @@ export default function SchemeComparaison({
 							/>{' '}
 							<InfoBulle>
 								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-									Pension calculée pour 172 trimestres cotisés au régime des
-									indépendants sans variations de revenus.
+									Pension calculée à titre indicatif pour 172 trimestres cotisés
+									au régime des indépendants sans variations de revenus.
 								</Trans>
 							</InfoBulle>
 						</div>

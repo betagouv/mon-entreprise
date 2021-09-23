@@ -16,20 +16,50 @@
 	color: var(--grayColor);
 }
 
-.ui__.card.plain {
-	color: white;
-	color: var(--textColor);
-	background: linear-gradient(60deg, #215da6 0%, #297da1 100%);
-	background: linear-gradient(60deg, var(--darkColor) -100%, var(--color) 100%);
-}
-.ui__.card.plain h1,
-.ui__.card.plain h2,
-.ui__.card.plain h3,
-.ui__.card.plain h4,
-.ui__.card.plain h5,
-.ui__.card.plain h6 {
-	color: white;
-	color: var(--textColor);
+@media screen {
+	.ui__.card.plain small,
+	.ui__.card.plain .notice {
+		opacity: 0.9;
+		color: white;
+	}
+
+	.ui__.card.plain {
+		color: white;
+		color: var(--textColor);
+		background: linear-gradient(60deg, #215da6 0%, #297da1 100%);
+		background: linear-gradient(60deg, var(--darkColor) 0%, var(--color) 100%);
+	}
+
+	.ui__.card.disabled .ui__.card.plain,
+	.ui__.card.disabled.plain {
+		background: linear-gradient(
+			60deg,
+			var(--grayColor) -40%,
+			var(--grayColor) 70%
+		);
+		opacity: 0.7;
+	}
+	.ui__.card.plain .h,
+	.ui__.card.plain h1,
+	.ui__.card.plain h2,
+	.ui__.card.plain h3,
+	.ui__.card.plain h4,
+	.ui__.card.plain h5,
+	.ui__.card.plain h6,
+	.ui__.label a,
+	.ui__.card.plain a,
+	.ui__.label .link-button,
+	.ui__.card.plain .link-button {
+		color: white;
+		color: var(--textColor);
+	}
+
+	.ui__.card.plain .targetInput {
+		border-color: white;
+		border-color: var(--textColor);
+		color: white;
+		color: var(--textColor);
+	}
 }
 
 .ui__.card.light {
@@ -43,39 +73,16 @@
 .ui__.card.disabled img {
 	filter: saturate(0);
 }
-
-.ui__.card.disabled .ui__.card.plain,
-.ui__.card.disabled.plain {
-	background: linear-gradient(
-		60deg,
-		var(--grayColor) -40%,
-		var(--grayColor) 70%
-	);
-	opacity: 0.7;
+.ui__.card.content {
+	padding: 1rem;
+	padding-top: 0.1rem;
 }
 
-.ui__.label a,
-.ui__.card.plain a,
-.ui__.label .link-button,
-.ui__.card.plain .link-button {
-	color: white !important;
-}
 .ui__.card.plain a:hover {
 	text-decoration: underline;
 }
 .ui__.card.colored {
 	box-shadow: 0 1px 3px 0 var(--color), 0 0 0 1px var(--color);
-}
-.ui__.card.plain small,
-.ui__.card.plain .notice {
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.ui__.card.plain .targetInput {
-	border-color: white;
-	border-color: var(--textColor);
-	color: white;
-	color: var(--textColor);
 }
 
 .ui__.interactive.card {
@@ -104,6 +111,9 @@
 	align-items: center;
 	color: inherit;
 	font-size: inherit !important;
+}
+.ui__.card.box.thinner {
+	max-width: 15rem;
 }
 .ui__.card.box.ui__.interactive.light-border:hover {
 	border-color: var(--lightColor);

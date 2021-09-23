@@ -1,4 +1,4 @@
-import * as Animate from 'Components/ui/animate'
+import { FromTop } from 'Components/ui/animate'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
@@ -27,14 +27,29 @@ type Commune = {
 }
 
 async function tauxVersementTransport(
-	codeCommune: Commune['code']
+	commune: Commune
 ): Promise<number | null> {
-	const response = await fetch('/data/versement-transport.json')
-	if (!response.ok) {
-		return null
+	let codeCommune = commune.code
+	// 1. Si c'est une commune à arrondissement, on récupère le bon code correspondant à l'arrondissement.
+	//    Comme il n'y a pas d'API facile pour faire ça, on le fait à la mano
+
+	// 1. a : PARIS
+	if (codeCommune === '75056') {
+		codeCommune = '751' + commune.codePostal.slice(-2)
 	}
+	// 1. b : LYON
+	if (codeCommune === '69123') {
+		codeCommune = '6938' + commune.codePostal.slice(-1)
+	}
+	// 1. c : MARSEILLE
+	if (codeCommune === '13055') {
+		codeCommune = '132' + commune.codePostal.slice(-2)
+	}
+	// 2. On récupère le versement transport associé
+	const response = await fetch('/data/versement-transport.json')
 	const json = await response.json()
-	return json[codeCommune] ?? null
+
+	return json[codeCommune] ?? 0
 }
 function formatCommune(value: Commune) {
 	return value && `${value.nom} (${value.codePostal})`
@@ -80,9 +95,10 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 		},
 		[setSearchResults, setLoadingState]
 	)
-	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch,
-	])
+	const debouncedHandleSearch = useMemo(
+		() => debounce(300, handleSearch),
+		[handleSearch]
+	)
 
 	const handleSubmit = useCallback(
 		async (commune: Commune) => {
@@ -90,7 +106,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 			setName(formatCommune(commune))
 			let taux: number | null = null
 			try {
-				taux = await tauxVersementTransport(commune.code)
+				taux = await tauxVersementTransport(commune)
 			} catch (error) {
 				console.warn(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
@@ -195,7 +211,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 			)}
 
 			{!!searchResults && (
-				<Animate.fromTop>
+				<FromTop>
 					<ul
 						role="listbox"
 						aria-expanded="true"
@@ -224,7 +240,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 							)
 						})}
 					</ul>
-				</Animate.fromTop>
+				</FromTop>
 			)}
 		</div>
 	)

@@ -3,12 +3,12 @@ import Overlay from 'Components/Overlay'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { EvaluatedNode, formatValue } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
+import Emoji from 'Components/utils/Emoji'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -17,11 +17,9 @@ type AnswerListProps = {
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const answeredQuestions = (Object.keys(
-		useSelector(situationSelector)
-	) as Array<DottedName>).map((dottedName) =>
-		engine.evaluate(engine.getRule(dottedName))
-	)
+	const answeredQuestions = (
+		Object.keys(useSelector(situationSelector)) as Array<DottedName>
+	).map((dottedName) => engine.evaluate(engine.getRule(dottedName)))
 
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
@@ -32,10 +30,10 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 			{!!answeredQuestions.length && (
 				<>
 					<h2>
-						{emoji('📋 ')}
+						<Emoji emoji="📋 " />
 						<Trans>Mes réponses</Trans>
 						<small css="margin-left: 2em; img {font-size: .8em}">
-							{emoji('🗑')}{' '}
+							<Emoji emoji="🗑" />{' '}
 							<button
 								className="ui__ simple small button"
 								onClick={() => {
@@ -53,7 +51,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 			{!!nextSteps.length && (
 				<>
 					<h2>
-						{emoji('🔮 ')}
+						<Emoji emoji="🔮 " />
 						<Trans>Prochaines questions</Trans>
 					</h2>
 					<StepsTable {...{ rules: nextSteps, onClose }} />

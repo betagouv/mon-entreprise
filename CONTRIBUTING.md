@@ -18,17 +18,24 @@ L'application est écrite en JavaScript, elle est exécuté uniquement côté cl
 
 Nous utilisons :
 
-- [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
-- [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
-- [React](https://reactjs.org) pour la gestion de l'interface utilisateur
-- [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
-- [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
-- [Webpack](https://webpack.js.org) pour le “bundling”
-- [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
-- [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
-- [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
+-   [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
+-   [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
+-   [React](https://reactjs.org) pour la gestion de l'interface utilisateur
+-   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
+-   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
+-   [Webpack](https://webpack.js.org) pour le “bundling”
+-   [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
+-   [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
+-   [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
 ### Démarrage
+
+Si possible, assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier
+`mon-entreprise/.env` (un template est disponible dans `mon-entreprise/.env.template`).
+**NB : ne vous inquiétez pas, ceci n'est pas nécessaire pour effectuer une première contribution à
+la base de code !** Cependant, vous en aurez besoin pour la commande `yarn prepare` et pour les
+commandes de traduction automatique français -> anglais. Si vous êtes confronté à ce type de besoin,
+demandez l'aide des contributeurs du projet.
 
 Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramètre `depth` de git pour ne télécharger que les derniers commits.
 
@@ -36,69 +43,83 @@ Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramè
 # Clone this repo on your computer
 git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entreprise
 
+# Mettre à jour votre config git locale
+git config blame.ignoreRevsFile .git-blame-ignore-revs
+
 # Install the Javascript dependencies through Yarn
 yarn install
+
+# Download some data
+yarn prepare
 
 # Watch changes in publicodes and run the server for mon-entreprise
 yarn start
 ```
 
-L'application est exécuté sur https://localhost:8080/mon-entreprise pour la version française et http://localhost:8080/infrance pour la version anglaise.
+L'application est exécutée sur http://localhost:8080/mon-entreprise pour la version française et
+http://localhost:8080/infrance pour la version anglaise.
 
-Pour activer le tracing Redux:
+Pour activer le traçage Redux:
 
 ```
 REDUX_TRACE=true yarn start
 ```
 
-
 ### Messages de commit
 
 A mettre sans retenue dans les messages de commit :
 
-https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
-
-- 🎨 `:art:` when working on the app's visual style
-- 🐎 `:racehorse:` when improving performance
-- 📝 `:memo:` when writing docs
-- 🐛 `:bug:` when fixing a bug
-- 🔥 `:fire:` when removing code or files
-- 💚 `:green_heart:` when fixing the CI build
-- ✅ `:white_check_mark:` when adding tests
-- ⬆️ `:arrow_up:` when upgrading dependencies
-- :sparkles: `:sparkles:` when formatting, renaming, reorganizing files
-
-Et ceux spécifiques au projet :
-
-- :gear: `:gear:` pour une contribution au moteur qui traite les YAML
-- :hammer: `:hammer:` pour une contribution à la base de règles
-- :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
-- :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
-- :alien: `:alien:` pour ajouter des traductions
-- :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
-- :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
-- :mag: `:mag:` pour les modifications liées au référencement naturel
+-   🎨 `:art:` pour une modification de l'UI
+-   🐎 `:racehorse:` pour une amélioration de performance
+-   🐛 `:bug:` pour une correction de bug
+-   🔥 `:fire:` pour une suppression de code ou de fichier
+-   💚 `:green_heart:` pour une correction de CI
+-   ✅ `:white_check_mark:` pour un ajout de test
+-   ⬆️ `:arrow_up:` pour une mise à jour de dépendances
+-   ✨ `:sparkles:` pour une ré-organisation du code
+-   ⚙ `:gear:` pour une contribution sur le moteur publicodes
+-   🔨 `:hammer:` pour une contribution à la base de règles
+-   📆 `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
+-   📈 `:chart_with_upwards_trend:` pour une amélioration du tracking
+-   👽 `:alien:` pour ajouter des traductions
+-   ♿ `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
+-   🖋 `:fountain_pen:` pour séparer les commits liés à la modification du contenu
+-   🔍 `:mag:` pour les modifications liées au référencement naturel
 
 ### Tests
+
+Pour la vérification syntaxique :
+
+```sh
+$ yarn lint
+```
+
+Pour la vérification du typage :
+
+```sh
+$ yarn test:type
+```
 
 Pour executer les tests unitaires :
 
 ```sh
-$ yarn run test-common
+$ yarn test
 ```
 
 Pour le snapshot testing :
 
 ```sh
-$ yarn run test:regressions
+$ yarn test:regressions
 ```
 
 Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
 
-Enfin pour les tests d'intégration :
+Pour les tests d'intégration sur chacun des 3 sites :
 
 ```sh
-$ yarn run cypress run
+$ yarn workspace mon-entreprise test:dev-e2e:mon-entreprise
+$ yarn workspace mon-entreprise test:dev-e2e:mycompanyinfrance
+$ yarn workspace mon-entreprise test:dev-e2e:publicodes
 ```
 
 ### Traduction 👽
@@ -133,10 +154,9 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### CI/CD
 
-- [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
-  tests.
-- [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
-  sur internet avec gestion des DNS.
+-   Nous utilisons des [Github actions](https://github.com/features/actions) pour faire tourner les builds et
+    tests.
+-   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet avec gestion des DNS.
 
 ### Analyse des bundles
 
@@ -144,42 +164,74 @@ La commande `yarn run build:analyse-bundle` gènere une visualisation interactiv
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
-## Développement de modèles Publicodes 
+### Tests
+
+Pour tester les règles, il est recommandé de:
+
+-   faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
+    traduites ;
+-   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
+    `mon-entreprise/test/regressions`).
+
+En local, le moteur de recherche n'est pas mis à jour automatiquement et la liste des règles
+est exposée ici: http://localhost:8080/mon-entreprise/documentation/dev
+
+## Publicodes
+
+### Documentation
+
+La documentation de publicodes est disponible sur https://publi.codes.
+
+Un wiki contenant des informations intéressantes sur publicodes et le
+raisonnement ayant abouti à ce langage sont dispos sur le repository
+[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki)
+
+Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
+contenant les règles elles-mêmes (dans le dossier `modele-social`) mais cela
+peut s'avérer assez abrupt.
+
+Essayez plutôt de jeter un oeil [aux tests](https://github.com/betagouv/publicodes/tree/master/core/test/m%C3%A9canismes)
+dans un premier temps, et pourquoi pas à [à l'implémentation des mécanismes](https://github.com/betagouv/publicodes/tree/master/core/source/mecanisms).
 
 ### Traduction des normes (lois) en règles Publicodes
 
 Checklist:
 
-- [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
-- [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
-- [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
+-   [ ] Lire les articles de vulgarisation (sur le site de l'URSSAF, des impôts, etc.).
+-   [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
+-   [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
 
 [wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
 
-### Tests
+### Modifier publicodes
 
-Pour tester les règles, il est recommandé de:
+Publicodes dispose désormais de son propre dépôt GitHub https://github.com/betagouv/publicodes
 
-- faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
-  traduites ;
-- créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
-  `mon-entreprise/test/regressions`).
+Néanmoins pour certaines nouvelles fonctionnalités de mon-entreprise nous concervons le besoin de
+modifier publicodes avec le moins de frictions possible. Pour tester une évolution du moteur il
+serait en effet trop lourd d'avoir à ouvrir d'abord une PR côté publicodes, la merger, publier une
+nouvelle version du paquet, puis ré-intégrer cette nouvelle version sur mon-entreprise.
 
-## Documentation
+C'est pourquoi nous intégrons le code source du publicode dans le sous-répertoire `publicodes/`. La
+commande `git subtree` nous permet de synchroniser les changements effectués dans l'un ou l'autre
+des dépôts.
 
-### Publicodes
+La première chose à faire est d'ajouter une nouvelle `remote` pour `betagouv/publicodes`, ici nous l'appelons simplement `publicodes` :
 
-Un tutoriel sur publicode est disponible sur https://publi.codes.
+```sh
+git remote add publicodes git@github.com:betagouv/publicodes.git
+```
 
-Un wiki contenant des informations intéressantes sur publicode et le
-raisonnement ayant abouti à ce langage sont dispos sur le repository
-[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
-ailleurs inutilisé.
+Ensuite il est possible de remonter les changements effectués dans le sous-repertoire `publicodes/` vers la branche master de la remote `publicodes`.
 
-Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
-contenant les règles elles-mêmes (dans le dossier `rules`) mais cela peut
-s'avérer assez abrupt.
+```sh
+$ git subtree push --prefix=publicodes publicodes master
+```
 
-Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
-dans un premier temps, puis au [mécanismes en
-place](./publicodes/source/mecanisms).
+Dans l'autre sens il est possible de rapatrier les changements avec la commande
+
+```sh
+$ git subtree pull --prefix=publicodes publicodes master --squash
+```
+
+Les dépendances peuvent avoir changé côté publicodes, mieux vaut donc enchaîner avec un `yarn install` pour être à jour.

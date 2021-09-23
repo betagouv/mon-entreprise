@@ -132,7 +132,7 @@ module.exports = {
 	// testLocationInResults: false,
 
 	// The glob patterns Jest uses to detect test files
-	testMatch: ['**/*.jest.js'],
+	testMatch: ['**/*.jest.ts'],
 	// [
 	//   "**/__tests__/**/*.[jt]s?(x)",
 	//   "**/?(*.)+(spec|test).[tj]s?(x)"
@@ -163,7 +163,7 @@ module.exports = {
 		// It's not possible to have 2 piped transformers like in webpack
 		// ie ['jest-transform-nearley', 'babel-jest'], so we removed ES6 module from nearley output.
 		'\\.ne$': require.resolve('jest-transform-nearley'),
-		'\\.yaml$': require.resolve('yaml-jest'),
+		'\\.yaml$': 'mon-entreprise/test/regressions/yaml-transformer.js',
 		'\\.(js|tsx?)$': require.resolve('babel-jest'),
 	},
 

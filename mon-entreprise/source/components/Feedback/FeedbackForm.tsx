@@ -1,11 +1,14 @@
 import { ScrollToElement } from 'Components/utils/Scroll'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 
 declare global {
 	const $: any
 }
+
+// TODO: we could implement the form logic ourselves to avoid including
+// https://mon-entreprise.zammad.com and https://code.jquery.com scripts
 export default function FeedbackForm() {
 	// const tracker = useContext(TrackerContext)
 	const pathname = useLocation().pathname

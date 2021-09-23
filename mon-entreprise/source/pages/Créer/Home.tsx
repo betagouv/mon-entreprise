@@ -1,4 +1,5 @@
-import Animate from 'Components/ui/animate'
+import PageHeader from 'Components/PageHeader'
+import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -19,52 +20,44 @@ export default function Créer() {
 			!!Object.keys(state.inFranceApp.companyLegalStatus).length
 	)
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<TrackPage name="accueil" />
 
 			<Helmet>
 				<title>{t('créer.titre', 'Créer une entreprise')}</title>
 			</Helmet>
+			<PageHeader
+				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}
+				picture={créerSvg}
+			>
+				<p className="ui__ lead">
+					<Trans i18nKey="créer.description">
+						Avant d'entamer les démarches administratives pour créer votre
+						entreprise, vous devez choisir un statut juridique adapté à votre
+						activité
+					</Trans>
+				</p>
+				<Link
+					className="ui__ button plain cta"
+					to={
+						guideAlreadyStarted && nextQuestionUrl
+							? nextQuestionUrl
+							: sitePaths.créer.guideStatut.multipleAssociates
+					}
+				>
+					{!guideAlreadyStarted
+						? t('créer.cta.default', 'Trouver le bon statut')
+						: t('créer.cta.continue', 'Continuer le guide')}
+				</Link>
+				<p className="ui__ notice">
+					<Trans i18nKey="créer.warningPL">
+						Le cas des professions libérales réglementées n'est pas encore
+						traité
+					</Trans>
+				</p>
+			</PageHeader>
 
-			<h1>
-				<Trans i18nKey="créer.titre">Créer une entreprise</Trans>
-			</h1>
-			<div css="display: flex; align-items: flex-start; justify-content: space-between">
-				<div>
-					<p className="ui__ lead">
-						<Trans i18nKey="créer.description">
-							Avant d'entamer les démarches administratives pour créer votre
-							entreprise, vous devez choisir un statut juridique adapté à votre
-							activité
-						</Trans>
-					</p>
-					<Link
-						className="ui__ button plain cta"
-						to={
-							guideAlreadyStarted && nextQuestionUrl
-								? nextQuestionUrl
-								: sitePaths.créer.guideStatut.multipleAssociates
-						}
-					>
-						{!guideAlreadyStarted
-							? t('créer.cta.default', 'Trouver le bon statut')
-							: t('créer.cta.continue', 'Continuer le guide')}
-					</Link>
-					<p className="ui__ notice">
-						<Trans i18nKey="créer.warningPL">
-							Le cas des professions libérales réglementées n'est pas encore
-							traité
-						</Trans>
-					</p>
-				</div>
-
-				<img
-					className="ui__ hide-mobile"
-					src={créerSvg}
-					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) scale(1.4);"
-				/>
-			</div>
-			<h2>
+			<h2 className="ui__ h h3">
 				<Trans>Ressources utiles</Trans>
 			</h2>
 			<div className="ui__ box-container">
@@ -73,7 +66,7 @@ export default function Créer() {
 					to={sitePaths.créer.guideStatut.liste}
 				>
 					<Trans i18nKey="créer.ressources.listeStatuts">
-						<p>Liste des statuts juridiques</p>
+						<h3 className="ui__ h h5">Liste des statuts juridiques</h3>
 						<small>
 							Vous savez déjà quel statut choisir ? Accédez directement à la
 							liste des démarches associées
@@ -88,7 +81,7 @@ export default function Créer() {
 					}}
 				>
 					<Trans i18nKey="créer.ressources.comparaison">
-						<p>Comparateur de régimes</p>
+						<h3 className="ui__ h h5">Comparateur de régimes</h3>
 						<small>
 							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
 							différences en terme de revenus, cotisations, retraite, etc
@@ -101,7 +94,7 @@ export default function Créer() {
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
 					<Trans i18nKey="créer.ressources.autoEntrepreneur">
-						<p>Démarche auto-entrepreneur</p>
+						<h3 className="ui__ h h5">Démarche auto-entrepreneur</h3>
 						<small>
 							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
 							pour bien démarrer votre activité
@@ -109,6 +102,6 @@ export default function Créer() {
 					</Trans>
 				</Link>
 			</div>
-		</Animate.fromBottom>
+		</FromBottom>
 	)
 }

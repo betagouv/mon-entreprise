@@ -2,13 +2,14 @@ import {
 	checkHiringItem,
 	initializeHiringChecklist,
 } from 'Actions/hiringChecklistAction'
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
+import { SimulatorRessourceCard } from '../Simulateurs/Page'
 
 type EmbaucherProps = {
 	onChecklistInitialization: ChecklistProps['onInitialization']
@@ -21,7 +22,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 		(state: RootState) => state.inFranceApp.hiringChecklist
 	)
 	return (
-		<Animate.fromBottom>
+		<FromBottom>
 			<TrackPage name="embaucher" />
 			<Helmet>
 				<title>
@@ -216,7 +217,15 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					<li>Remettre la fiche de paie à votre employé</li>
 				</ul>
 			</Trans>
-		</Animate.fromBottom>
+
+			<h2 className="ui__ h h3">
+				<Trans>Ressources utiles</Trans>
+			</h2>
+
+			<div className="ui__ box-container">
+				<SimulatorRessourceCard simulatorId="salarié" />
+			</div>
+		</FromBottom>
 	)
 }
 

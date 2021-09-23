@@ -11,3 +11,18 @@
 	display: flex;
 	flex-direction: column;
 }
+
+/* Classe pour permettre la présence de labels pour les lecteur d'ecran 
+ * Source: https://a11y-guidelines.orange.com/en/web/components-examples/accessible-hiding/ 
+ * */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap; /* added line */
+	border: 0;
+}

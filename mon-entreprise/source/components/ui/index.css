@@ -68,12 +68,6 @@ blockquote {
 	border-radius: 0.3rem;
 }
 
-.ui__.center-flex {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-
 .ui__.hide {
 	display: none;
 }
@@ -96,6 +90,7 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	font-size: 85%;
 	line-height: initial;
 	padding: 0.4rem 0.6rem;
+	white-space: nowrap;
 	font-weight: bold;
 	color: white !important;
 	background: var(--darkColor);
@@ -212,4 +207,30 @@ input.ui__::-ms-clear {
 input.ui__::placeholder {
 	opacity: 0.6;
 	color: grey;
+}
+@media screen {
+	.ui__.screen-display-none {
+		display: none !important;
+	}
+}
+
+@media print {
+	.ui__.print-display-none {
+		display: none !important;
+	}
+	.ui__.print-background-force {
+		color-adjust: exact !important;
+	}
+
+	.ui__.toggle input[type='radio']:checked ~ * {
+		box-shadow: none;
+	}
+
+	body {
+		margin: 00mm;
+	}
+}
+@page {
+	margin-top: 0.7cm;
+	margin-bottom: 0.7cm;
 }

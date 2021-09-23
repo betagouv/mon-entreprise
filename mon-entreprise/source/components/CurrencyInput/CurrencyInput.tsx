@@ -24,7 +24,9 @@ export default function CurrencyInput({
 	dottedName,
 	...forwardedProps
 }: CurrencyInputProps) {
-	const valueProp = value ?? ''
+	const valueProp =
+		typeof value === 'number' && Number.isNaN(value) ? '' : value ?? ''
+
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
 
@@ -64,11 +66,8 @@ export default function CurrencyInput({
 		onChangeDebounced?.(event)
 	}
 
-	const {
-		isCurrencyPrefixed,
-		thousandSeparator,
-		decimalSeparator,
-	} = currencyFormat(language)
+	const { isCurrencyPrefixed, thousandSeparator, decimalSeparator } =
+		currencyFormat(language)
 	// Autogrow the input
 	const valueLength = currentValue.toString().length
 	const width = `${5 + (valueLength - 5) * 0.75}em`

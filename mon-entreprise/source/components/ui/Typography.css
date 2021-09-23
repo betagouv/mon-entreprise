@@ -1,26 +1,32 @@
 html {
 	transition: none !important;
-	line-height: 1.7rem;
-}
-@media (max-width: 500px) {
-	html {
-		font-size: 0.9em;
-	}
-}
-@media (min-width: 500px) and (max-width: 1920px) {
-	html {
-		font-size: 1.1em;
-	}
-}
-@media (min-width: 1920px) {
-	html {
-		font-size: 1.16em;
-	}
 }
 
 @media print {
 	html {
-		font-size: 1em;
+		line-height: 1.5em;
+	}
+}
+
+@media screen {
+	html {
+		line-height: 1.7em;
+	}
+}
+@media screen and (max-width: 500px) {
+	html {
+		font-size: 0.9em;
+	}
+}
+
+@media screen and (min-width: 500px) and (max-width: 1920px) {
+	html {
+		font-size: 1.1em;
+	}
+}
+@media screen and (min-width: 1920px) {
+	html {
+		font-size: 1.16em;
 	}
 }
 
@@ -31,33 +37,41 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-h1 {
+h1:not(.h),
+.ui__.h.h1 {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.9rem;
 	line-height: 2.6rem;
 }
-h2 {
+h2:not(.h),
+.ui__.h.h2 {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.4rem;
+	line-height: 2.1rem;
 }
-h3 {
+
+h3:not(.h),
+.ui__.h.h3 {
 	margin-top: 1rem;
 	margin-bottom: 0.6rem;
 	font-size: 1.2rem;
 }
-h4 {
+h4:not(.h),
+.ui__.h.h4 {
 	margin-top: 0.6rem;
 	margin-bottom: 0.4rem;
 	font-size: 1rem;
 }
-h5 {
+h5:not(.h),
+.ui__.h.h5 {
 	margin-top: 0.4rem;
 	margin-bottom: 0.2rem;
 	font-size: 0.9rem;
 }
-h6 {
+h6:not(.h),
+.ui__.h.h6 {
 	margin-top: 0.4rem;
 	margin-bottom: 0.2rem;
 	font-size: 0.9rem;

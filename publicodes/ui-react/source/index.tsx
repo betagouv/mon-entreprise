@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
 import Engine, { utils } from 'publicodes'
-import i18n from 'i18next'
+import { useCallback, useRef } from 'react'
+import { Route, useLocation } from 'react-router-dom'
 import {
 	BasepathContext,
 	EngineContext,
 	ReferencesImagesContext,
+	RegisterEngineContext,
 } from './contexts'
+import References from './rule/References'
 import RulePage from './rule/RulePage'
 const { decodeRuleName, encodeRuleName } = utils
-
-export { RuleLink } from './RuleLink'
 export { default as Explanation } from './Explanation'
-import References from './rule/References'
+export { RuleLink } from './RuleLink'
 export { References }
 
 type DocumentationProps = {
@@ -22,37 +21,73 @@ type DocumentationProps = {
 	referenceImages?: Record<string, string>
 }
 
+function useCacheEngineBySituation(
+	defaultEngine: Engine,
+	currentSituation?: Engine['parsedSituation']
+) {
+	const registeredEngines = useRef(
+		new WeakMap().set(
+			defaultEngine.parsedSituation,
+			defaultEngine.shallowCopy()
+		)
+	)
+	const registerEngine = useCallback(
+		(engine: Engine) =>
+			registeredEngines.current.set(
+				engine.parsedSituation,
+				engine.shallowCopy()
+			),
+		[registeredEngines]
+	)
+	if (currentSituation && !registeredEngines.current.has(currentSituation)) {
+		registeredEngines.current.set(
+			currentSituation,
+			defaultEngine.shallowCopy().setSituation(currentSituation)
+		)
+	}
+	const engine = currentSituation
+		? registeredEngines.current.get(currentSituation)
+		: defaultEngine
+	return [engine, registerEngine]
+}
+
 export function Documentation({
 	documentationPath,
-	engine,
-	language = 'fr',
+	engine: defaultEngine,
 	referenceImages = {},
 }: DocumentationProps) {
-	useEffect(() => {
-		if (language !== i18n.language) {
-			i18n.changeLanguage(language)
-		}
-	}, [language])
-
+	const { state } = useLocation<
+		| {
+				situation?: Engine['parsedSituation']
+				situationName?: string
+		  }
+		| undefined
+	>()
+	const [engine, cacheEngine] = useCacheEngineBySituation(
+		defaultEngine,
+		state?.situation
+	)
 	return (
-		<EngineContext.Provider value={engine}>
-			<BasepathContext.Provider value={documentationPath}>
-				<ReferencesImagesContext.Provider value={referenceImages}>
-					<Route
-						path={documentationPath + '/:name+'}
-						render={({ match }) => {
-							return (
-								<RulePage
-									dottedName={decodeRuleName(match.params.name)}
-									engine={engine}
-									language={'fr'}
-								/>
-							)
-						}}
-					/>
-				</ReferencesImagesContext.Provider>
-			</BasepathContext.Provider>
-		</EngineContext.Provider>
+		<RegisterEngineContext.Provider value={cacheEngine}>
+			<EngineContext.Provider value={engine}>
+				<BasepathContext.Provider value={documentationPath}>
+					<ReferencesImagesContext.Provider value={referenceImages}>
+						<Route
+							path={documentationPath + '/:name+'}
+							render={({ match }) => {
+								return (
+									<RulePage
+										situationName={state?.situationName}
+										dottedName={decodeRuleName(match.params.name)}
+										language={'fr'}
+									/>
+								)
+							}}
+						/>
+					</ReferencesImagesContext.Provider>
+				</BasepathContext.Provider>
+			</EngineContext.Provider>
+		</RegisterEngineContext.Provider>
 	)
 }
 

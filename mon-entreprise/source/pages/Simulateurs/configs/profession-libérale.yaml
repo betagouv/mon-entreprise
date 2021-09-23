@@ -2,9 +2,9 @@ objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - dirigeant . indépendant . cotisations et contributions
-  - dirigeant . indépendant . revenu net de cotisations
-  - impôt
-  - revenu net après impôt
+  - dirigeant . rémunération . nette
+  - impôt . montant
+  - dirigeant . rémunération . nette après impôt
 
 questions:
   liste noire:
@@ -17,9 +17,9 @@ questions:
     - entreprise
     - établissement
     - situation personnelle
-    - impôt
+    - impôt . montant
   non prioritaires:
-    - dirigeant . indépendant . contrats madelin
+    - dirigeant . indépendant . cotisations facultatives
     - dirigeant . indépendant . IJSS
     - dirigeant . indépendant . cotisations et contributions . exonérations
     - dirigeant . indépendant . revenus étrangers

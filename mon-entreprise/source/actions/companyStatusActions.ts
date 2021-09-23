@@ -85,17 +85,22 @@ const fetchCommuneDetails = async function (codeCommune: string) {
 export const useSetEntreprise = () => {
 	const dispatch = useDispatch()
 	return async (siren: string) => {
-		dispatch(setSiren(siren))
 		const companyDetails = await fetchCompanyDetails(siren)
+		if (companyDetails === null) {
+			return
+		}
+		dispatch(setSiren(siren))
 		dispatch(
 			setCompanyDetails(
 				companyDetails.categorie_juridique,
 				companyDetails.date_creation
 			)
 		)
-		const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
-			companyDetails.etablissement_siege.code_commune
-		)
-		dispatch(addCommuneDetails(communeDetails))
+		if (companyDetails.etablissement_siege) {
+			const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
+				companyDetails.etablissement_siege.code_commune
+			)
+			dispatch(addCommuneDetails(communeDetails))
+		}
 	}
 }

@@ -1,4 +1,6 @@
+import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
+import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -18,6 +20,7 @@ import {
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
+import logo from './static/images/logo.svg'
 import safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
 
@@ -118,29 +121,55 @@ export default function Provider({
 		) ?? undefined
 
 	return (
-		// If IE < 11 display nothing
-		<ReduxProvider store={store}>
-			<ThemeColorsProvider
-				color={iframeCouleur && decodeURIComponent(iframeCouleur)}
-			>
-				<TrackingContext.Provider
-					value={
-						new ATTracker({
-							language: i18next.language as 'fr' | 'en',
-						})
-					}
+		<ErrorBoundary
+			showDialog
+			fallback={
+				<>
+					<div className="ui__ container">
+						<img
+							src={logo}
+							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
+						></img>
+						<h1>Une erreur est survenue</h1>
+						<p>
+							L'équipe technique de mon-entreprise.fr a été automatiquement
+							prévenue. Vous pouvez également nous contacter directement à
+							l'adresse{' '}
+							<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+								contact@mon-entreprise.beta.gouv.fr
+							</a>{' '}
+							si vous souhaitez partager une remarque.
+						</p>
+						<p>Veuillez nous excuser pour la gêne occasionnée.</p>
+					</div>
+				</>
+			}
+		>
+			<ReduxProvider store={store}>
+				<ThemeColorsProvider
+					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
-					<SiteNameContext.Provider value={basename}>
-						<SitePathProvider value={sitePaths}>
-							<I18nextProvider i18n={i18next}>
-								<Router history={history}>
-									<>{children}</>
-								</Router>
-							</I18nextProvider>
-						</SitePathProvider>
-					</SiteNameContext.Provider>
-				</TrackingContext.Provider>
-			</ThemeColorsProvider>
-		</ReduxProvider>
+					<TrackingContext.Provider
+						value={
+							new ATTracker({
+								language: i18next.language as 'fr' | 'en',
+							})
+						}
+					>
+						<DisableAnimationOnPrintProvider>
+							<SiteNameContext.Provider value={basename}>
+								<SitePathProvider value={sitePaths}>
+									<I18nextProvider i18n={i18next}>
+										<Router history={history}>
+											<>{children}</>
+										</Router>
+									</I18nextProvider>
+								</SitePathProvider>
+							</SiteNameContext.Provider>
+						</DisableAnimationOnPrintProvider>
+					</TrackingContext.Provider>
+				</ThemeColorsProvider>
+			</ReduxProvider>
+		</ErrorBoundary>
 	)
 }

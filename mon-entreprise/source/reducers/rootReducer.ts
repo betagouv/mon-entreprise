@@ -103,9 +103,9 @@ function simulation(
 				unfoldedStep: null,
 			}
 		case 'BATCH_UPDATE_SITUATION': {
-			return (Object.entries(action.situation as any) as Array<
-				[Names, unknown]
-			>).reduce<Simulation | null>(
+			return (
+				Object.entries(action.situation as any) as Array<[Names, unknown]>
+			).reduce<Simulation | null>(
 				(newState, [fieldName, value]) =>
 					simulation(newState, {
 						type: 'UPDATE_SITUATION',

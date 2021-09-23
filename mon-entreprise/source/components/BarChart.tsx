@@ -1,24 +1,48 @@
-import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
-import { animated, config, useSpring } from 'react-spring'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { formatValue } from 'publicodes'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-
-const ANIMATION_SPRING = config.gentle
+import { animated, config, useSpring } from 'react-spring'
+import { DisableAnimationContext } from './utils/DisableAnimationContext'
+import Emoji from './utils/Emoji'
 
 type ChartItemBarProps = {
 	numberToPlot: number
 	unit?: string
-	style: React.CSSProperties
+	display: boolean
+	percentage: number
 }
 
-function ChartItemBar({ style, numberToPlot, unit }: ChartItemBarProps) {
+function ChartItemBar({
+	numberToPlot,
+	unit,
+	display,
+	percentage,
+}: ChartItemBarProps) {
 	const language = useTranslation().i18n.language
+	const disableAnimation = useContext(DisableAnimationContext)
+
+	const style = useSpring({
+		config: config.slow,
+		delay: 100,
+		from: {
+			flex: 0,
+		},
+		flex: display ? percentage : 0,
+	})
 	return (
-		<div className="distribution-chart__bar-container">
-			<animated.div className="distribution-chart__bar" style={style} />
+		<div className="distribution-chart__bar-container ">
+			{disableAnimation ? (
+				<div
+					className="distribution-chart__bar ui__ print-background-force"
+					style={{ flex: percentage }}
+				/>
+			) : (
+				<animated.div
+					className="distribution-chart__bar ui__ print-background-force"
+					style={style}
+				/>
+			)}
 			<div
 				css={`
 					font-weight: bold;
@@ -39,7 +63,9 @@ function ChartItemBar({ style, numberToPlot, unit }: ChartItemBarProps) {
 function BranchIcon({ icon }: { icon: string }) {
 	return (
 		<div className="distribution-chart__legend">
-			<span className="distribution-chart__icon">{emoji(icon)}</span>
+			<span className="distribution-chart__icon">
+				<Emoji emoji={icon} />
+			</span>
 		</div>
 	)
 }
@@ -64,22 +90,51 @@ export default function BarChartBranch({
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5,
 	})
-	const { color } = useContext(ThemeColorsContext)
-	const numberToPlot = brancheInViewport ? value : 0
-	const styles = useSpring({
-		config: ANIMATION_SPRING,
-		to: {
-			flex: numberToPlot / maximum,
-			opacity: numberToPlot ? 1 : 0,
+	const disableAnimation = useContext(DisableAnimationContext)
+	const display = disableAnimation || brancheInViewport
+	const style = useSpring({
+		from: {
+			opacity: 0,
 		},
-	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
-
+		immediate: disableAnimation,
+		opacity: display ? 1 : 0,
+	})
 	return (
-		<animated.div
-			ref={intersectionRef}
-			className="distribution-chart__item"
-			style={{ opacity: styles.opacity }}
-		>
+		<animated.div ref={intersectionRef} style={style}>
+			<InnerBarChartBranch
+				value={value}
+				display={display}
+				maximum={maximum}
+				title={title}
+				unit={unit}
+				icon={icon}
+				description={description}
+			/>
+		</animated.div>
+	)
+}
+
+type InnerBarChartBranchProps = {
+	title: React.ReactNode
+	icon?: string
+	maximum: number
+	description?: string
+	display: boolean
+	unit?: string
+	value: number
+}
+
+function InnerBarChartBranch({
+	value,
+	title,
+	icon,
+	maximum,
+	display,
+	description,
+	unit,
+}: InnerBarChartBranchProps) {
+	return (
+		<div className="distribution-chart__item">
 			{icon && <BranchIcon icon={icon} />}
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
@@ -88,14 +143,12 @@ export default function BarChartBranch({
 					{description && <small>{description}</small>}
 				</p>
 				<ChartItemBar
-					style={{
-						backgroundColor: color,
-						flex: styles.flex,
-					}}
-					numberToPlot={numberToPlot}
+					display={display}
+					numberToPlot={value}
+					percentage={value / maximum}
 					unit={unit}
 				/>
 			</div>
-		</animated.div>
+		</div>
 	)
 }

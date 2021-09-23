@@ -8,11 +8,12 @@
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
-Afficher la description publicode: Display publicode description
+Afficher la description publicodes: Display publicodes description
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Aides Covid-19: Covid-19 Aids
 Alors: Then
+Annuel: Yearly
 Année d'activité: Years of activity
 Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
@@ -70,6 +71,8 @@ Exemples: Examples
 Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
+ExportSimulation:
+  Banner: <0>Print or save as PDF</0>
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
@@ -80,9 +83,11 @@ Gérant minoritaire: Managing director
 Gérant minoritaire ou égalitaire: Minority or equal manager
 Habituellement: Usually
 Imprimer: Print
+Impôt au barème: Tax on the scale
 Impôts: Taxes
 "Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
 Indépendant: Indépendant
+Indépendants et dirigeants: Self-employed and executives
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
@@ -93,6 +98,7 @@ Janvier 2019: January 2019
 Jusqu’au: Until
 La somme de: This rule is the sum of
 Liste des statuts juridiques: List of legal statutes
+Mensuel: Monthly
 Mes réponses: My answers
 Modifier: Modify
 Modifier mes réponses: Change my answers
@@ -106,8 +112,8 @@ Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
+PFU (<1>"flat tax"</1>): Flat tax
 Pages associées: Related pages
-Par profession: By job
 Par statut: By status
 Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
@@ -116,18 +122,24 @@ Part salarié: Employee share
 Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
-Personnalisez l'integration: Customize the integration
+Personnalisez l'intégration: Customize the integration
 "Perte de revenu net :": "Loss of net income :"
 Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
+"Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
+  urssaf:
+    fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
 Professionnels de santé: Health Care Professionals
+Professions: Professions
+Professions libérales: By job
 Protection sociale: Social security
 Précédent: Previous
 Prévisualisation: Preview
+Que cherchez-vous ?: What are you looking for?
 Quel module ?: What module?
 Quelle couleur ?: What color?
 Quelques exemples de salaires: Some salary exemples
@@ -146,8 +158,11 @@ Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
+Revenu du dirigeant par statut: Executive income by status
 "Revenu net avec chômage partiel :": "Net income with short-time work :"
 Revenu net mensuel: Monthly net income
+Revenus étranger: Foreign income
+Règles de calculs: Rules
 Réductions: Discounts
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
@@ -163,6 +178,7 @@ Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
+Simulateurs: Simulations
 Simulations personnalisées: Customized simulations
 Sinon: Else
 Situation personnelle: Personal situation
@@ -175,10 +191,12 @@ Total des retenues: Total withheld
 Tout effacer: Delete all
 Tout le site: The whole site
 Tranche de l'assiette: Scale bracket
+Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
 Un seul associé: Only one partner
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
 "Versement : ": "Payment : "
 Vie privée: Privacy
+Voir la fiche Urssaf: See the Urssaf sheet
 Voir la fiche de paie: See the pay slip
 Voir la répartition des cotisations: View contribution breakdown
 Voir le code source: See the source code
@@ -190,29 +208,25 @@ Votre forme juridique: Your legal status
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you a SAS(U) manager? <2>Access the dedicated income simulator</2>
 aide: aid or subsidy
 aide-déclaration-indépendant:
-  description: <0>Help with your 2019 income tax return</0><1>This tool is a tax
-    (income) and social security<1> (ISD</1>) declaration aid for self-employed
-    workers. It enables you to find out the amount of social security charges
-    deductible from your net tax result.</1><2>You remain fully responsible for
-    any omissions or inaccuracies in your statements.</2><3><0><0>This tool
-    concerns you if you are in any of the following cases :</0><1><0>you
-    contribute to the general scheme for self-employed persons</0><1>your
-    company is in the actual tax system and in accrual accounting</1></1><2>It
-    does not concern you if you are in one of the following cases:</2><3><0>you
-    are self-employed under a pension scheme for the liberal
-    professions</0><1>you are managers of companies subject to corporate income
-    tax</1><2>you have opted for the micro-fiscal regime</2><3>your company is
-    domiciled in the DOM (French Overseas Departments and
-    Territories)</3></3></0></3><4>What is your tax result in
-    2019?<1></1><2>Social security charges and tax exemptions not
-    included<2></2></2> </4><5>The tax result corresponds to income less
-    expenses. It can be positive (profit) or negative (deficit).</5>
+  banner: Find out more about our tax<1>return</1>tool
+  description: <0><0>This tool is an aid for the declaration of income for
+    <2>self-employed workers</2>. It allows you to know the amount of deductible
+    social charges.</0><1>You remain entirely responsible for any omissions or
+    inaccuracies in your declaration.</1></0><1><0>This tool concerns you if you
+    are in the following situation:</0><1><0>you contribute to the general
+    scheme for self-employed workers</0></1><2>It does not concern you if you
+    are in one of the following cases:</2><3><0>you carry out a liberal activity
+    covered by a pension scheme for the liberal professions in accrual
+    accounting</0><1>your company is domiciled in the
+    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions help determine
+    the type of declaration to be completed, as well as the methods of
+    calculating social security contributions.</4>
   entreprise:
     description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
   results:
     ongoing: Calculation in progress...
-    title: Reporting help 📄
+    title: Your tax returns
 an: year
 année: year
 applicable si: applicable if
@@ -446,6 +460,12 @@ créer:
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: of aid
+dividendes:
+  warning: <0>This simulation is only given as an indication. It only concerns
+    French companies subject to corporation tax (IS), and does not concern
+    managers affiliated to the self-employed workers' regime.</0><1>The amount
+    of tax on dividends is calculated in addition to the tax on other taxable
+    income. </1>
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
 déductible: deductible
@@ -651,6 +671,7 @@ entreprise:
       titre: Write the company's articles
     titre: The to-do list for creating your business
     titre2: Recommended before starting your activity
+est un SIREN non diffusable: is a non-distributable SIREN
 examples: Examples
 expected: the expected result was
 facteur: multiplier
@@ -756,6 +777,12 @@ gérer:
       <0>Discover the hiring process</0>
 
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
+    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the
+      existence of a commercial company. You can get the Kbis for your company
+      using monidenum.fr</1>
+    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs do not
+      have a Kbis. They can however retrieve and present a K extract. See the
+      service-public website for more information.</1>
     sécuritéSociale: <0>Understanding social security</0> <1>What are social
       security contributions used for? Update on the social protection system
       enjoyed by all workers in France</1>
@@ -774,13 +801,13 @@ indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
 landing:
-  aboutUs: "<0>Who are we?</0><1>We are a small <2>, autonomous and
-    multidisciplinary<0>team</0></2> within<5>URSSAF</5>. We have at heart to be
-    close to your needs in order to constantly improve this site in accordance
-    with the <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to
-    <2>support entrepreneurs</2> in the development of their business.</2><3>Our
-    objective is to <2>remove all uncertainties regarding the administration</2>
-    so that you can concentrate on what matters: your business.</3>"
+  aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
+    <2>team</2> within the <5>Urssaf</5>. We are committed to being close to
+    your needs in order to constantly improve this site in accordance with the
+    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to <2>assist
+    entrepreneurs</2> in the development of their business.</2><3>Our objective
+    is to <2>remove all administrative uncertainties</2> so that you can focus
+    on what really matters: your business.</3>"
   choice:
     create: <0>Create a company</0><1>Assistance in choosing the status and the
       complete list of creation steps</1>
@@ -802,10 +829,6 @@ legalNotice:
       </0>
     title: Contact
   editeur:
-    content: >
-      Incubator of digital services,<1></1> Direction interministérielle du
-      numérique et du système d'information et de communication de l'Etat
-      (DINSIC),<3></3> Services of the Prime Minister
     title: Publisher
   hosting:
     content: >
@@ -831,6 +854,9 @@ newsletter:
       Subscribe to our monthly newsletter to receive <2>official advice on
       starting a business</2> and access new features in advance.
     titre: Stay informed
+nextSteps:
+  integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
+    to your website in one click with a simple script.</1>
 non: no
 non applicable si: not applicable if
 non déductible: not deductible
@@ -897,53 +923,50 @@ pages:
         scheme (in french).</1></0>
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
-      site or service would benefit from displaying salary calculations, for
-      example switching from gross salary to net salary, good news: all the
-      contribution and tax calculations behind my-company.fr are free and easily
+      website or service would benefit from displaying salary calculations, for
+      example to switch from gross salary to net salary, good news: all the tax
+      and contribution calculations behind mon-entreprise.fr are free and easily
       reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
       this library?</2><3>All our calculation rules are written in `publicodes`,
-      a declarative language developed by beta.gouv.fr and Urssaf to encode
+      a declarative language developed by beta.gouv.fr and the Urssaf to encode
       algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
-      perform your own calculations, you need to install the publicodes
+      perform your own calculations, you must install the publicodes
       interpreter, download the rules used on my-company, call the evaluation
       function.</4><5>Installation</5><6><0>npm install --save publicodes
-      social-system</0></6><7><0></0> The following dependencies are also needed
-      for now, but will be made optional in a future version of the publicodes
-      package.</7><8><0>npm install --save react react-router-dom
-      react-router-hash-link</0></8><9>For more details on the installation,
-      please refer to the <2>dedicated documentation</2>.</9><10>Start the
-      calculation</10><11>All you have to do is set up the engine with the rules
-      in the `social-system' package, and call the `evaluate' function on the
-      rule you want the value of. Here is an example for the gross / net
-      calculation</11><12><0></0></12><13>Setting up the calculation</13><14>As
-      you will have seen in the previous example, the recipe for a calculation
-      is simple: input variables (gross salary), one or more output variables
-      (net salary).</14><15>However, the calculation can be parameterized with
-      all the possibilities allowed in the legislation.</15><16>All these
-      variables are listed and explained in the <2>online documentation</2>.
-      This documentation is auto-generated from the publicodes rule files, so it
-      is constantly updated.</16><17>Let's run a calculation closer to a
-      payslip: here is a description of the input situation annotated with links
-      to the corresponding pages of the documentation :</17><18><0> An
-      <3>executive</3> earning <7>3,400€ gross</7>, who benefits from
-      <11>restaurant vouchers</11> and works in a company with <15>22
-      employees</15>.</0></18><19>Here is the calculation for this more complete
-      example:</19><20><0></0></20><21><0></0>Note that in the previous example
-      we have to specify the transport payment rate ourselves.</21><22>Whereas
-      in the <2>employee</2> simulator, you only have to fill in the
+      modele-social</0></6><7>For more details on the installation, please refer
+      to the <2>dedicated documentation</2></7><8>Launch the
+      calculation</8><9>All you have to do is set up the engine with the rules
+      from the `social-modele` package and call the `evaluate` function on the
+      rule you want the value of. Here is an example for the gross/net
+      calculation</9><10><0></0></10><11>Setting up the calculation</11><12>As
+      you can see in the previous example, the recipe for a calculation is
+      simple: input variables (gross salary), one or more output variables (net
+      salary).</12><13>The calculation is however configurable with all the
+      possibilities allowed in the legislation.</13><14>All these variables are
+      listed and explained in the <2>online documentation</2>. This
+      documentation is auto-generated from the publicode rules files, so it is
+      constantly updated.</14><15>Let's run a calculation closer to a pay slip:
+      here is a description of the input situation with links to the
+      corresponding pages in the documentation:</15><16><0> An <3>executive</3>
+      earning <7>€3,400 gross</7>, who receives <11>meal vouchers</11> and works
+      in a company with <15>22 employees</15>.</0></16><17>Here is what the
+      calculation looks like for this more complete
+      example:</17><18><0></0></18><19><0></0>Note that in the previous example
+      we have to specify the rate of transport payment ourselves.</19><20>In the
+      <2>employee</2> simulator, however, you only have to enter the
       municipality and the corresponding rate is automatically determined. This
-      is intentional: to keep the library (and the site) light, we use two
-      online APIs. The<4>Geo - communes API</4> to switch from the commune name
-      to the commune code. Then the<7>Transport Pay API</7>, developed and
+      is deliberate: to keep the library (and the site) light, we use two online
+      APIs. The<4>Geo - communes API</4> to go from the commune name to the
+      commune code. Then the<7>Transport Payment API</7>, developed and
       maintained by us, which is not documented but its use is very simple and
-      understandable <10>in this React component that calls it</10>, a component
-      that also uses the common API.</22><23>Making economic graphics{emoji('
-      📈')}</23><24>It is also possible to use the library for economic or
-      political analysis calculations. Here, labour prices and net wages are
-      plotted against gross wages.</24><25>One can see the progressiveness of
-      the total wage, which is in percent lower for a minimum wage than for a
-      high income. In other words, high earners pay part of the social security
-      contributions of low earners.</25><26><0></0></26>"
+      understandable <10>in this React component that calls it</10>, component
+      that also calls the common API.</20><21>Making economic graphs
+      <1></1></21><22>It is also possible to use the library for economic or
+      political analysis calculations. Here, we plot the price of labor and the
+      net salary as a function of the gross.</22><23>We can see the
+      progressivity of the total wage, which is in percent lower for a minimum
+      wage than for a high income. In other words, high earners pay part of the
+      social contributions of low earners.</23><24><0></0></24>"
   développeurs:
     choice:
       github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
@@ -951,7 +974,7 @@ pages:
       library: <0>Using the calculation engine</0><1>The entire socio-fiscal
         calculation engine developed by Urssaf, freely available in the form of
         an NPM library.</1>
-      publicode: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
+      publicodes: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
         language for encoding "explainable" algorithms.</1>
     code:
       description: "Here is the code to copy and paste on your site:"
@@ -969,12 +992,20 @@ pages:
         source tools to be integrated seemlessly in the usual journey of your
         users.
       titre: Integrate social security law at the heart of your tools
-    iframe: <0>Integrate the Web module</0><1>Our simulators can be seamlessly
-      integrated by adding a simple line of code to your web page.</1><2>You can
-      choose the simulator to integrate and <2>customize the main color of the
-      module</2> to blend it into the visual theme of your page.</2><3>The
-      attribute <1>data-lang="en"</1> allows you to choose English as the
-      simulator language.</3>
+    iframe:
+      csp-1: <0>Iframe integration and content security policy</0><1>The error below
+        that is displayed in the console is related to the communication between
+        the parent page and the iframe for automatic resizing to the displayed
+        content.</1>
+      csp-2: "You can correct it with the following policy:"
+      intro: <0><0>Integrate the web module</0><1>Our simulators can be integrated
+        seamlessly by adding a simple line of code to your web page.</1><2>You
+        can choose the simulator to integrate and <2>customize the main color of
+        the module</2> to fit the visual theme of your page.</2><3>The
+        <1>data-lang="en"</1> attribute allows you to choose English as the
+        simulator language.</3></0><1></1><2>Note that if your site uses a
+        content security policy via the HTTP <1>Content-Security-Policy</1>
+        response header, a benign error may appear in the console.<3></3></2>
     module: What module?
   gérer:
     aide-déclaration-indépendant:
@@ -991,6 +1022,41 @@ pages:
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
   simulateurs:
+    EI:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the auto-entrepreneur income simulator developed by
+          Urssaf, you can estimate your income based on your monthly or annual
+          turnover to better manage your cash flow. Or the other way round: find
+          out how much to charge to achieve a certain income."
+        ogTitle: "Sole proprietorship: quickly calculate your net income from your
+          turnover and vice versa"
+        titre: "Sole proprietorship (EI): income simulator"
+      seo explanation: <0>How to calculate the net income of a sole trader?</0><1>A
+        sole trader must pay social security contributions to the authorities.
+        These contributions are used to finance social security, and open up
+        rights, particularly for retirement and health insurance. They are also
+        used to finance professional training.</1><2><0></0> <2>See the details
+        of the calculation of contributions</2></2><3>Do not forget to deduct
+        all expenses incurred in the course of the business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means that you will not pay tax or contributions on their
+        amount (unless you have opted for the micro-tax option).</3><4>The
+        complete calculation formula is therefore :<1><0>Net income = Turnover -
+        Professional expenses - Social contributions</0></1></4><5>How do you
+        calculate the social security contributions of a sole
+        proprietorship?</5><6>The manager of a sole proprietorship pays social
+        security contributions, proportional to the company's <2></2>. Their
+        amount varies according to the type of activity (liberal profession,
+        craftsman, shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
+        etc.). To find out the amount, you can use this simulator, and refine
+        the</6><7> As a company's result is only known at the end of the
+        accounting year, the manager pays provisional contributions which will
+        then be adjusted once the real income has been declared, the following
+        year.</7>
+      shortname: Sole proprietorship
+      title: Income simulator for sole proprietorship (EI)
     accueil:
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
@@ -1003,6 +1069,8 @@ pages:
         emploi franc: For the hiring of a young person from a priority district of the
           city (QPV). The aid can be up to €17,000 over three years.<1></1>The
           aid is paid every <3>6 months</3> by Pôle Emploi.
+        handicapé: For the recruitment of a disabled worker.<1></1>The aid is paid
+          <3>quarterly</3> by the Agence de services et de paiement (ASP).
         jeune: For the hiring of a young person under the age of 26 on a permanent
           contract or for a fixed-term contract of at least 3 months.<1></1>The
           aid is paid <3>quarterly</3> by the Services and Payment Agency (ASP).
@@ -1020,6 +1088,8 @@ pages:
       message fin: You can now simulate the exact cost of hiring by selecting an
         eligible grant.
       meta:
+        description: Find out about the main forms of aid for hiring and estimate their
+          amount by answering a few questions.
         title: Hiring incentives
       outro: <0>Learn more about incentives</0><1>As part of the "Plan Relance" plan,
         the government is putting in place a series of measures to encourage new
@@ -1086,6 +1156,9 @@ pages:
     avocat:
       shortname: Lawyer
       title: Income simulator for private lawyers
+    cartes:
+      intégrer module web: <0>Integrate the web module</0><1>Add this simulator to
+        your website in one click</1>
     chirurgien-dentiste:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
@@ -1191,18 +1264,110 @@ pages:
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
         questions.</4>"
+    dividendes:
+      meta:
+        description: Calculate the amount of tax and contributions on dividends paid by
+          your company.
+        title: Dividends
+      seo: <0>Dividends and distributions</0><1>At the end of a company's financial
+        year, the result of the previous year can be kept in reserve (for future
+        investments) or paid out as dividends. From the point of view of the
+        beneficiaries, this is income from movable capital, subject to specific
+        contributions and taxation.</1><2>This simulator only takes into account
+        the case of the natural person beneficiary and the dividends decided by
+        the company.</2><3>How are the levies on dividends
+        calculated?</3><4>Dividends may be subject to a single flat-rate
+        withholding tax of 30% including tax and social security contributions
+        (also known as<1> flat tax</1>). Optionally, the tax scale can be
+        chosen. This simulator can be used to compare the two systems.</4><5>An
+        advance payment of the amount of tax (12.8%) is deducted at the time of
+        payment of the dividends, unless the beneficiary meets <2>certain
+        criteria</2>.</5><6>Particular case of the manager under the
+        self-employed worker regime</6><7> Under the self-employed worker's
+        regime, the portion of dividends exceeding 10% of the share capital will
+        be subject to contributions and levies in the same way as the manager's
+        income.</7><8>This case is not yet taken into account by this
+        simulator.</8>
+      title: Dividend Payment Simulator
+    ei:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the income simulator for sole proprietorships
+          developed by Urssaf, you can estimate your income based on your
+          monthly or annual turnover to better manage your cash flow. Or the
+          other way round: find out how much to charge to achieve a certain
+          income."
+        ogTitle: "Sole proprietorship: quickly calculate your net income from your
+          turnover and vice versa"
+        titre: "Sole proprietorship (EI): income simulator"
+      seo explanation: <0>How to calculate the net income of a sole trader?</0><1>A
+        sole trader must pay social security contributions to the authorities.
+        These contributions are used to finance social security, and open up
+        rights, particularly for retirement and health insurance. They are also
+        used to finance professional training.</1><2><0></0> <2>See the details
+        of the calculation of contributions</2></2><3>Do not forget to deduct
+        all expenses incurred in the course of the business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means that you will not pay tax or contributions on their
+        amount (unless you have opted for the micro-tax option).</3><4>The
+        complete calculation formula is therefore :<1><0>Net income = Turnover -
+        Professional expenses - Social contributions</0></1></4><5>How do you
+        calculate the social security contributions of a sole
+        proprietorship?</5><6>The manager of a sole proprietorship pays social
+        security contributions in proportion to the company's <2>taxable
+        income</2>. Their amount also varies according to the type of activity
+        (liberal profession, craftsman, tradesman, etc.), or any exemptions
+        granted (ACRE, ZFU, RSA, etc.).</6><7> As a company's result is only
+        known at the end of the accounting period, the manager pays provisional
+        contributions which will then be adjusted once the actual income has
+        been declared, the following year.</7><8>This simulator allows you to
+        calculate the exact amount of social security contributions based on a
+        desired turnover or net income. You can specify your situation by
+        answering the questions displayed below the simulation.</8>
+      shortname: EI
+      title: Simulator for sole proprietorship (EI)
+    eirl:
+      meta:
+        description: Calculation of income from turnover, after deduction of
+          contributions and taxes
+        ogDescription: "Thanks to the income simulator for EIRL developed by Urssaf, you
+          can estimate the amount of your income based on your monthly or annual
+          turnover to better manage your cash flow. Or in the opposite
+          direction: know how much to charge to reach a certain income."
+        ogTitle: "EIRL manager: quickly calculate your net income from your turnover and
+          vice versa"
+        titre: "EIRL : income simulator for managers"
+      shortname: EIRL
+      title: EIRL Simulator
+    eurl:
+      meta:
+        description: Calculation of the net salary from the total allocated to
+          remuneration and vice versa
+        ogDescription: As an employee-equivalent manager, you can immediately calculate
+          your net income after tax from the total allocated to your
+          remuneration.
+        ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
+        titre: "EURL : income simulator for managers"
     expert-comptable:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
     indépendant:
+      cotisations-forfaitaires: "Amount of lump sum contributions : "
       meta:
         description: Calculation of net income after tax and contributions based on
           turnover and vice versa
-        title: "Independent: Urssaf income simulator"
+        title: "Self-employed: income simulator"
+      retraite-droits-acquis: "<0>Retirement: rights acquired in 2021</0><1><0>Basic
+        pension : <2><0><0></0> vested quarters</0></2></0><1>Supplementary
+        pension : <2><0>This simulator does not manage the acquired rights of
+        supplementary pension for the liberal
+        professions</0></2><3><0><0><0></0> points acquired</0></0></3></1></1>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:
       meta:
+        description: Calculate your corporate tax
         title: Corporate Tax Simulator
       seo: <0>How is corporate tax calculated?</0><1>Corporate income tax applies to
         the profits made by corporations (SA, SAS, SASU, SARL, etc.) and on an
@@ -1233,6 +1398,11 @@ pages:
         title: PAMC diet simulators
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
+    print-info:
+      date: This simulation was performed on
+      recover: You can find this simulation and other tools to help you create and
+        manage your business on <2>mon-entreprise.fr</2>.
+      title: Would you like to recover this simulation?
     profession-libérale:
       meta:
         description: Net Income Calculation for Self-Employed Persons in Liberal Income
@@ -1244,6 +1414,9 @@ pages:
       shortname: Midwife
       title: Income simulator for private midwives
     salarié:
+      alt-image1: Net salary (received by the employee) = Gross salary (written in the
+        employment contract) - employee contributions (pension, social security,
+        etc.)
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount
         thus includes employee contributions, which are used to finance the
@@ -1315,7 +1488,7 @@ pages:
         ogDescription: As an officer in a similar position, immediately calculate your
           net income after tax from the total allocated to your compensation.
         ogTitle: "SASU executive compensation: a simulator to find out your net salary"
-        titre: "Head of SASU: Urssaf revenue simulator"
+        titre: "SASU : income simulator for managers"
       seo-explanation: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a classic employee, the SASU <2>manager</2> pays social security
         contributions on the remuneration he pays himself. The contributions are
@@ -1332,8 +1505,8 @@ pages:
         remuneration. To do this, simply enter the total amount allocated in the
         \"total charged\" box. The simulation can then be refined by answering
         the various questions.</4>"
-      shortname: Head of SASU
-      title: Income simulator for SASU manager
+      shortname: EURL
+      title: EURL Simulator
       titre: Revenue simulator for SAS(U) executive
   économie-collaborative:
     meta:
@@ -1429,7 +1602,7 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 shareSimulation:
-  banner: "To share this simulation: <2>Generate a dedicated link</2>"
+  banner: <0>Generate a share link</0>
   button:
     copied: Copied
     copy: Copy the link
@@ -1442,25 +1615,17 @@ simulateurs:
   explanation:
     CNAPL: It recovers contributions related to your retirement and disability/death
       plan.
-    aides covid:
-      deduction: <0>Deduction of turnover</0><1>The terms and conditions of the
-        "covid" discount are presented on the Urssaf
-        website.</1><2><0>{emoji('▶')}</0> More information</2>
-      portail: <0>Government assistance</0><1>The Ministry of the Economy offers a
-        portal listing business support measures.</1><2><0>{emoji('▶')}</0>
-        Support measures</2>
-      reduction: <0>Contribution reduction</0><1>You can benefit from a reduction in
-        your final contributions for the year 2020.</1><2><0></0></2>
-      soutien: <0>Listening and support</0><1>An <2>initial listening and
-        psychological support unit</2> has been set up for company directors
-        weakened by the crisis.</1><2><0>{emoji('📞')}</0> 08 05 65 50 50</2>
-    pamc: <0><0>Your partner institutions</0><1><0><0><0></0></0><1>Contributions
-      collected by Urssaf, which are used to finance social security (health
-      insurance, family allowances, dependency
-      care).</1><2><0></0></2></0><1></1><2><0><0><0></0></0><1>As a contracted
-      health professional, you benefit from having part of your contributions
-      covered by the Assurance Maladie.</1><2><0></0>
-      <2></2></2></0></2></1></0>
+    institutions:
+      cpam: As a health professional under agreement, you benefit from a part of your
+        contributions being covered by the Health Insurance.
+      dgfip: The Direction générale des finances publiques (DGFiP) is the body that
+        collects income tax. <2>The amount calculated <2>takes into account the
+        abatement of the micro-tax system</2>.</2>
+      notice acre: The amounts indicated above are calculated without taking into
+        account the ACRE start-up exemption
+      titre: Your partner institutions
+      urssaf: The contributions collected by the Urssaf, which are used to finance
+        social security (health insurance, family allowances, dependence).
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.
@@ -1553,12 +1718,12 @@ une de ces conditions: one of these applies
 à: to
 économieCollaborative:
   accueil:
-    contenu: <0> You have revenues from online platforms (Airbnb, Abritel, Drivy,
-      Blablacar, Leboncoin, etc.)? You must report them in most cases. However,
-      it can be difficult to find your way around.</0> <1>Follow this guide to
-      find out in a few clicks how to be in good standing.</1> <2>From 2020
-      onwards, these revenues will be automatically reported by the platforms to
-      the tax authorities and Urssaf.</2>
+    contenu: <0>Do you have income from <2>online platforms</2> (Airbnb, Abritel,
+      Drivy, Blablacar, Leboncoin, etc.)? You must declare them in most cases.
+      However, it can be difficult to find your way around
+      <5><0></0></5>.</0><1>Follow this guide to find out in a few clicks how to
+      be in order.</1><2>From 2020, these revenues will be automatically
+      communicated by the platforms to the tax authorities and the Urssaf.</2>
     question: What types of activity did you undertake?
     réassurance: "PS: this tool is only there to inform you, no data will be
       transmitted to the administrations"

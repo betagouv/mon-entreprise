@@ -6,11 +6,12 @@ import {
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
-import * as Animate from 'Components/ui/animate'
+import PageHeader from 'Components/PageHeader'
+import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,22 +22,33 @@ import { TrackPage } from '../../ATInternetTracking'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
-const infereDirigeantFromCompanyDetails = (company: Company | null) => {
+const infereDirigeantFromCompanyDetails = (
+	company: Company | null
+): Exclude<
+	keyof SitePaths['simulateurs'],
+	'index' | 'profession-libérale' | 'économieCollaborative'
+> | null => {
 	if (!company) {
 		return null
 	}
 	if (company.isAutoEntrepreneur) {
 		return 'auto-entrepreneur'
 	}
+	if (company.statutJuridique === 'EI') {
+		return 'entreprise-individuelle'
+	}
 	if (
-		['EI', 'EURL'].includes(company.statutJuridique ?? '') ||
-		(company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire)
+		company.statutJuridique &&
+		['EIRL', 'SASU', 'EURL'].includes(company.statutJuridique)
 	) {
+		return company.statutJuridique.toLowerCase() as 'eirl' | 'sasu' | 'eurl'
+	}
+	if (company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire) {
 		return 'indépendant'
 	}
 
-	if (['SASU', 'SAS'].includes(company.statutJuridique ?? '')) {
-		return 'SASU'
+	if (company.statutJuridique === 'SAS') {
+		return 'sasu'
 	}
 
 	return null
@@ -57,35 +69,28 @@ export default function Gérer() {
 			</Helmet>
 			<TrackPage name="accueil" />
 			<ScrollToTop />
-			<Animate.fromBottom>
-				<h1>
-					<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>
-				</h1>
-				<div css="display: flex; align-items: flex-start; justify-content: space-between">
-					<div>
-						{!company && (
-							<p className="ui__ lead">
-								<Trans i18nKey="gérer.description">
-									Vous souhaitez vous verser un revenu ou embaucher ? <br />
-									Vous aurez à payer des cotisations et des impôts. <br />
-									Anticipez leurs montants grâce aux simulateurs adaptés à votre
-									situation.
-								</Trans>
-							</p>
-						)}
-						<CompanySection company={company} />
-					</div>
-
-					<img
-						className="ui__ hide-mobile"
-						src={businessPlan}
-						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(-2.5rem) scale(1.2);"
-					/>
-				</div>
+			<FromBottom>
+				<PageHeader
+					picture={businessPlan}
+					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
+				>
+					{!company && (
+						<p className="ui__ lead">
+							<Trans i18nKey="gérer.description">
+								Vous souhaitez vous verser un revenu ou embaucher ? <br />
+								Vous aurez à payer des cotisations et des impôts. <br />
+								Anticipez leurs montants grâce aux simulateurs adaptés à votre
+								situation.
+							</Trans>
+						</p>
+					)}
+					<CompanySection company={company} />
+				</PageHeader>
 				<>
 					<section>
 						<div className="ui__ full-width box-container">
-							{company?.statutJuridique === 'EI' &&
+							{(company?.statutJuridique === 'EI' ||
+								company?.statutJuridique === 'SARL') &&
 								!company.isAutoEntrepreneur && (
 									<Link
 										className="ui__ interactive card box light-border"
@@ -93,13 +98,15 @@ export default function Gérer() {
 											pathname: sitePaths.gérer.déclarationIndépendant,
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('✍')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="✍" />
+										</div>
 										<Trans i18nKey="gérer.choix.déclaration">
 											<h3>Remplir ma déclaration de revenus</h3>
 											<p className="ui__ notice">
 												Calculez facilement les montants des charges sociales à
 												reporter dans votre déclaration de revenu au titre de
-												2019
+												2020
 											</p>
 										</Trans>
 										<div className="ui__ small simple button hide-mobile">
@@ -118,7 +125,9 @@ export default function Gérer() {
 										},
 									}}
 								>
-									<div className="ui__ big box-icon">{emoji('💶')}</div>
+									<div className="ui__ big box-icon">
+										<Emoji emoji="💶" />
+									</div>
 									<Trans i18nKey="gérer.choix.revenus">
 										<h3>Calculer mon revenu net de cotisations</h3>
 										<p className="ui__ notice">
@@ -139,7 +148,9 @@ export default function Gérer() {
 											pathname: sitePaths.simulateurs['chômage-partiel'],
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🕟')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🕟" />
+										</div>
 										<Trans i18nKey="gérer.choix.chomage-partiel">
 											<h3>Activité partielle</h3>
 											<p className="ui__ notice">
@@ -156,12 +167,15 @@ export default function Gérer() {
 										className="ui__ interactive card box light-border"
 										to={{
 											pathname: sitePaths.simulateurs.salarié,
+											search: '?view=employeur',
 											state: {
 												fromGérer: true,
 											},
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🤝')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🤝" />
+										</div>
 										<Trans i18nKey="gérer.choix.embauche">
 											<h3>Estimer le montant d’une embauche</h3>
 											<p className="ui__ notice">
@@ -182,7 +196,9 @@ export default function Gérer() {
 											},
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🗓')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🗓" />
+										</div>
 										<Trans i18nKey="gérer.choix.is">
 											<h3>Estimer le montant de l’impôt sur les sociétés</h3>
 											<p className="ui__ notice">
@@ -200,8 +216,8 @@ export default function Gérer() {
 					</section>
 					<AideOrganismeLocal />
 
-					<h2>
-						{emoji('🧰 ')}
+					<h2 className="ui__ h h3">
+						<Emoji emoji="🧰" />
 						<Trans>Ressources utiles</Trans>
 					</h2>
 					<div className="ui__ box-container">
@@ -213,7 +229,9 @@ export default function Gérer() {
 									to={sitePaths.gérer.formulaireMobilité}
 								>
 									<Trans i18nKey="gérer.ressources.embaucher">
-										<p>Exporter son activité en Europe</p>
+										<h3 className="ui__ h h5">
+											Exporter son activité en Europe
+										</h3>
 										<p className="ui__ notice">
 											Le formulaire pour effectuer une demande de mobilité
 											internationale (détachement ou pluriactivité)
@@ -227,7 +245,9 @@ export default function Gérer() {
 								to={sitePaths.gérer.embaucher}
 							>
 								<Trans i18nKey="gérer.ressources.embaucher">
-									<p>Découvrir les démarches d’embauche </p>
+									<h3 className="ui__ h h5">
+										Découvrir les démarches d’embauche{' '}
+									</h3>
 									<p className="ui__ notice">
 										La liste des choses à faire pour être sûr de ne rien oublier
 										lors de l’embauche d’un nouveau salarié
@@ -241,7 +261,9 @@ export default function Gérer() {
 								href="https://autoentrepreneur.urssaf.fr"
 							>
 								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
-									<p>Accéder au site officiel auto-entrepreneur</p>
+									<h3 className="ui__ h h5">
+										Accéder au site officiel auto-entrepreneur
+									</h3>
 									<p className="ui__ notice">
 										Vous pourrez effectuer votre déclaration de chiffre
 										d'affaires, payer vos cotisations, et plus largement trouver
@@ -256,7 +278,7 @@ export default function Gérer() {
 							to={sitePaths.gérer.sécuritéSociale}
 						>
 							<Trans i18nKey="gérer.ressources.sécuritéSociale">
-								<p>Comprendre la sécurité sociale </p>
+								<h3 className="ui__ h h5">Comprendre la sécurité sociale </h3>
 								<p className="ui__ notice">
 									A quoi servent les cotisations sociales ? Le point sur le
 									système de protection sociale dont bénéficient tous les
@@ -264,9 +286,49 @@ export default function Gérer() {
 								</p>
 							</Trans>
 						</Link>
+						{dirigeant === 'auto-entrepreneur' ? (
+							<a
+								className="ui__ interactive card box lighter-bg"
+								href={`https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000${
+									i18n.language === 'fr' ? '' : '?lang=en'
+								}`}
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<Trans i18nKey="gérer.ressources.kbis-autoentrepreneur">
+									<h3 className="ui__ h h5">Récupérer un extrait de Kbis?</h3>
+									<p className="ui__ notice">
+										Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent
+										cependant récupérer et présenter un extrait K. Voir le site
+										du service-public pour plus d'informations.
+									</p>
+								</Trans>
+							</a>
+						) : (
+							<a
+								className="ui__ interactive card box lighter-bg"
+								href="https://www.monidenum.fr"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<Trans i18nKey="gérer.ressources.kbis">
+									<h3 className="ui__ h h5">Récupérer un extrait de Kbis</h3>
+									<p className="ui__ notice">
+										Le Kbis est un document permettant de justifier de
+										l'enregistrement de l'entreprise au{' '}
+										<abbr title="Registre du Commerce et des Sociétés">
+											RCS
+										</abbr>{' '}
+										et de prouver son existence légale. Ce document peut être
+										récupéré gratuitement pour votre entreprise via le site
+										MonIdeNum.
+									</p>
+								</Trans>
+							</a>
+						)}
 					</div>
 				</>
-			</Animate.fromBottom>
+			</FromBottom>
 		</>
 	)
 }
@@ -278,9 +340,8 @@ type CompanySectionProps = {
 export const CompanySection = ({ company }: CompanySectionProps) => {
 	const [searchModal, showSearchModal] = useState(false)
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
-	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] = useState(
-		false
-	)
+	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] =
+		useState(false)
 
 	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {

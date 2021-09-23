@@ -1,0 +1,18 @@
+{
+	"name": "publicodes-monorepo",
+	"private": true,
+	"workspaces": [
+		"core",
+		"ui-react"
+	],
+	"scripts": {
+		"test": "yarn workspaces run test",
+		"test:type": "yarn workspaces run tsc",
+		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
+		"lint:prettier:fix": "yarn lint:prettier --write"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"prettier": "^2.3.2"
+	}
+}

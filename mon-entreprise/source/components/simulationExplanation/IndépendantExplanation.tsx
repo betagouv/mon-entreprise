@@ -1,23 +1,23 @@
 import BarChartBranch from 'Components/BarChart'
 import 'Components/Distribution.css'
-import Value, { Condition } from 'Components/EngineValue'
+import Value, {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
-import * as Animate from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import Emoji from 'Components/utils/Emoji'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
-import * as logosSrc from 'Images/logos-cnavpl'
-import urssafSrc from 'Images/Urssaf.svg'
+import { useEngine } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
-import styled from 'styled-components'
-import AidesCovid from './AidesCovid'
+import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
+import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
+import InstitutionsPartenaires from './InstitutionsPartenaires'
 import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
@@ -26,157 +26,46 @@ export default function IndépendantExplanation() {
 
 	return (
 		<>
-			<Condition expression="entreprise . activité . libérale réglementée">
-				<PLExplanation />
-			</Condition>
-			<AidesCovid aidesRule="dirigeant . indépendant . cotisations et contributions . aides covid 2020" />
-			<Condition expression="revenu net après impôt > 0 €/an">
+			<section>
+				<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsForfaitaires />
+				</WhenApplicable>
+				<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsRégularisation />
+				</WhenNotApplicable>
+			</section>
+			<InstitutionsPartenaires />
+			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
-					<h2>Répartition de la rémunération totale</h2>
+					<h2>Répartition du revenu</h2>
 					<StackedBarChart
 						data={[
 							{
-								dottedName: 'revenu net après impôt',
+								dottedName: 'dirigeant . rémunération . nette après impôt',
 								title: t('Revenu disponible'),
 								color: palettes[0][0],
 							},
 							{
-								dottedName: 'impôt',
+								dottedName: 'impôt . montant',
+								title: t('impôt sur le revenu'),
 								color: palettes[1][0],
 							},
 							{
 								dottedName:
 									'dirigeant . indépendant . cotisations et contributions',
-								title: t('Cotisations'),
 								color: palettes[1][1],
 							},
 						]}
 					/>
 				</section>
 			</Condition>
+			<DroitsRetraite />
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>
 		</>
 	)
 }
-
-function PLExplanation() {
-	const unit = useSelector(targetUnitSelector)
-	return (
-		<section>
-			<Trans i18nKey="simulateurs.explanation.pamc">
-				<Animate.fromBottom>
-					<h2>Vos institutions partenaires</h2>
-					<div className="ui__ box-container">
-						<div className="ui__  card box">
-							<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
-								<LogoImg src={urssafSrc} title="logo Urssaf" />
-							</a>
-							<p className="ui__ notice">
-								Les cotisations recouvrées par l'Urssaf, qui servent au
-								financement de la sécurité sociale (assurance maladie,
-								allocations familiales, dépendance)
-							</p>
-							<p className="ui__ lead">
-								<Value
-									unit={unit}
-									displayedUnit="€"
-									expression="dirigeant . indépendant . PL . cotisations Urssaf"
-								/>
-							</p>
-						</div>
-						<CaisseRetraite />
-						<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
-							<div className="ui__  card box">
-								<a
-									target="_blank"
-									href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
-								>
-									<LogoImg src={assuranceMaladieSrc} title="Logo CPAM" />
-								</a>
-								<p className="ui__ notice">
-									En tant que professionnel de santé conventionné, vous
-									bénéficiez d'une prise en charge d'une partie de vos
-									cotisations par l'Assurance Maladie.
-								</p>
-								<p className="ui__ lead">
-									<Emoji emoji="🎁" />{' '}
-									<Value
-										unit={unit}
-										displayedUnit="€"
-										expression="dirigeant . indépendant . PL . PAMC . participation CPAM"
-									/>
-								</p>
-							</div>
-						</Condition>
-					</div>
-					<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
-						<p className="ui__ notice">
-							{' '}
-							Les montants indiqués ci-dessus sont calculés sans prendre en
-							compte l'exonération de début d'activité ACRE
-						</p>
-					</Condition>
-				</Animate.fromBottom>
-			</Trans>
-		</section>
-	)
-}
-
-function CaisseRetraite() {
-	const engine = useEngine()
-	const unit = useSelector(targetUnitSelector)
-	const caisses = [
-		'CARCDSF',
-		'CARPIMKO',
-		'CIPAV',
-		'CARMF',
-		'CNBF',
-		'CAVEC',
-	] as const
-
-	return (
-		<>
-			{caisses.map((caisse) => {
-				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = engine.getRule(dottedName).rawNode
-				return (
-					<Condition expression={dottedName} key={caisse}>
-						<div className="ui__  card box">
-							<a
-								target="_blank"
-								href={références && Object.values(références)[0]}
-							>
-								<LogoImg src={logosSrc[caisse]} title={`logo ${caisse}`} />
-							</a>
-							<p className="ui__ notice">
-								{description}{' '}
-								<Trans i18nKey="simulateurs.explanation.CNAPL">
-									Elle recouvre les cotisations liées à votre retraite et au
-									régime d'invalidité-décès.
-								</Trans>
-							</p>
-
-							<p className="ui__ lead">
-								<Value
-									unit={unit}
-									displayedUnit="€"
-									expression="dirigeant . indépendant . PL . cotisations caisse de retraite"
-								/>
-							</p>
-						</div>
-					</Condition>
-				)
-			})}
-		</>
-	)
-}
-
-const LogoImg = styled.img`
-	padding: 1rem;
-	height: 5rem;
-`
 
 const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . retraite': [
@@ -207,18 +96,18 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 
 function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const engine = useContext(EngineContext)
-	const distribution = (Object.entries(
-		CotisationsSection
-	).map(([section, cotisations]) => [
-		section,
-		(cotisations as string[])
-			.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
-			.reduce(
-				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
-				0
-			),
-	]) as Array<[DottedName, number]>)
+	const engine = useEngine()
+	const distribution = (
+		Object.entries(CotisationsSection).map(([section, cotisations]) => [
+			section,
+			cotisations
+				.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
+				.reduce(
+					(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
+					0
+				),
+		]) as Array<[DottedName, number]>
+	)
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
 
@@ -244,7 +133,6 @@ type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
 	maximum: number
-
 	icon?: string
 }
 
@@ -254,7 +142,7 @@ function DistributionBranch({
 	icon,
 	maximum,
 }: DistributionBranchProps) {
-	const branche = useContext(EngineContext).getRule(dottedName)
+	const branche = useEngine().getRule(dottedName)
 
 	return (
 		<BarChartBranch
@@ -265,5 +153,54 @@ function DistributionBranch({
 			description={branche.rawNode.résumé}
 			unit="€"
 		/>
+	)
+}
+
+function DroitsRetraite() {
+	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
+	if (
+		document.referrer?.includes('secu-independants.fr') ||
+		document.referrer?.includes('simulateur-rsi.urssaf.fr')
+	) {
+		return null
+	}
+	return (
+		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
+			<h2>Retraite : droits acquis sur l'année 2021</h2>
+			<ul>
+				<li>
+					Retraite de base :{' '}
+					<strong>
+						<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
+							<Value
+								expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
+								displayedUnit=""
+							/>{' '}
+							trimestres acquis
+						</RuleLink>
+					</strong>
+				</li>
+				<li>
+					Retraite complémentaire :{' '}
+					<Condition expression="entreprise . activité . libérale réglementée">
+						<em>
+							Ce simulateur ne gère pas les droits acquis de retraite
+							complémentaire pour les professions libérales
+						</em>
+					</Condition>
+					<Condition expression="entreprise . activité . libérale réglementée = non">
+						<strong>
+							<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+								<Value
+									expression="protection sociale . retraite . complémentaire indépendants . points acquis"
+									displayedUnit=""
+								/>{' '}
+								points acquis
+							</RuleLink>
+						</strong>
+					</Condition>
+				</li>
+			</ul>
+		</Trans>
 	)
 }

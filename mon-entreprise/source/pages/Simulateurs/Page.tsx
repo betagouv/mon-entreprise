@@ -1,15 +1,19 @@
+import { Condition } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import Emoji from 'Components/utils/Emoji'
+import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { default as React, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
-import { SimulatorData } from './metadata'
+import { RessourceAutoEntrepreneur } from '../../pages/Créer/CreationChecklist'
+import useSimulatorsData, { SimulatorData } from './metadata'
 
 export default function PageData({
 	meta,
@@ -18,8 +22,11 @@ export default function PageData({
 	tracking,
 	tooltip,
 	description,
+	iframePath,
+	private: privateIframe,
 	component: Component,
 	seoExplanations,
+	nextSteps,
 	path,
 }: SimulatorData[keyof SimulatorData]) {
 	const inIframe = useContext(IsEmbeddedContext)
@@ -78,9 +85,140 @@ export default function PageData({
 
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
+
 				{config && <PreviousSimulationBanner />}
-				{seoExplanations && !inIframe && seoExplanations}
+				{!inIframe && (
+					<>
+						<section>{seoExplanations}</section>
+						<NextSteps
+							iframePath={privateIframe ? undefined : iframePath}
+							nextSteps={nextSteps}
+						/>
+					</>
+				)}
 			</ThemeColorsProvider>
 		</>
 	)
 }
+
+type NextStepsProps = Pick<
+	SimulatorData[keyof SimulatorData],
+	'iframePath' | 'nextSteps'
+>
+
+function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
+	const sitePaths = useContext(SitePathsContext)
+	const { language } = useTranslation().i18n
+	const engine = useEngine()
+
+	const guideUrssaf = guidesUrssaf.find(
+		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
+	)
+
+	if (!iframePath && !nextSteps && !guideUrssaf) {
+		return null
+	}
+	return (
+		<section className="ui__ print-display-none">
+			<h2 className="ui__ h h3">
+				<Trans>Ressources utiles</Trans>
+			</h2>
+			<div className="ui__ box-container">
+				<Condition expression="dirigeant . auto-entrepreneur">
+					<RessourceAutoEntrepreneur />
+				</Condition>
+				{guideUrssaf && language === 'fr' && (
+					<a
+						className="ui__ interactive card box lighter-bg thinner"
+						href={guideUrssaf.url}
+						target="_blank"
+					>
+						<h3 className="ui__ h h5">
+							<Emoji emoji="📖" /> {guideUrssaf.title}
+						</h3>
+						<p className="ui__ notice">
+							Des conseils pour se lancer dans la création et une présentation
+							détaillée de votre protection sociale.
+						</p>
+						<small className="ui__ small label">PDF</small>
+					</a>
+				)}
+				{nextSteps?.map((simulatorId) => (
+					<SimulatorRessourceCard key={simulatorId} simulatorId={simulatorId} />
+				))}
+				{iframePath && (
+					<Link
+						className="ui__ interactive card lighter-bg box thinner"
+						to={{
+							pathname: sitePaths.integration.iframe,
+							search: `?module=${iframePath}`,
+						}}
+					>
+						<Trans i18nKey="nextSteps.integration-iframe">
+							<h3 className="ui__ h h5">
+								<Emoji emoji="📱" /> Intégrer le module web
+							</h3>
+							<p className="ui__ notice">
+								Ajouter ce simulateur sur votre site internet en un clic via un
+								script clé en main.
+							</p>
+						</Trans>
+					</Link>
+				)}
+			</div>
+		</section>
+	)
+}
+
+type SimulatorRessourceCardProps = {
+	simulatorId: keyof SimulatorData
+}
+
+export function SimulatorRessourceCard({
+	simulatorId,
+}: SimulatorRessourceCardProps) {
+	const simulator = useSimulatorsData()[simulatorId]
+	return (
+		<Link
+			className="ui__ interactive card lighter-bg box thinner"
+			to={{
+				state: { fromSimulateurs: true },
+				pathname: simulator.path,
+			}}
+		>
+			<h3 className="ui__ h h5">
+				{simulator.icône && <Emoji emoji={simulator.icône} />}{' '}
+				{simulator.shortName}
+			</h3>
+			<p className="ui__ notice">{simulator.meta?.description}</p>
+		</Link>
+	)
+}
+
+const guidesUrssaf = [
+	{
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_Medecins.pdf',
+		associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
+		title: 'Guide Urssaf pour les médecins libéraux',
+	},
+	{
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
+		associatedRule: 'entreprise . activité . libérale réglementée',
+		title: 'Guide Urssaf pour les professions libérales réglementées',
+	},
+	{
+		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
+		associatedRule: 'dirigeant . auto-entrepreneur',
+		title: 'Guide Urssaf pour les auto-entrepreneurs',
+	},
+	{
+		url: 'http://www.secu-artistes-auteurs.fr/sites/default/files/pdf/Guide%20pratique%20de%20d%C3%A9but%20d%27activit%C3%A9.pdf',
+		associatedRule: "dirigeant = 'artiste-auteur'",
+		title: 'Guide Urssaf pour les artistes-auteurs',
+	},
+	{
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
+		associatedRule: 'dirigeant',
+		title: 'Guide Urssaf pour les indépendants',
+	},
+]

@@ -6,6 +6,7 @@ import InputSuggestions from './InputSuggestions'
 export default function DateInput({
 	suggestions,
 	onChange,
+	missing,
 	id,
 	onSubmit,
 	required,
@@ -16,11 +17,11 @@ export default function DateInput({
 		const [day, month, year] = value.split('/')
 		return `${year}-${month}-${day}`
 	}, [value])
-
+	// const [currentValue, setCurrentValue] = useState(dateValue)
 	const handleDateChange = useCallback(
 		(evt) => {
 			if (!evt.target.value) {
-				return
+				return onChange(undefined)
 			}
 			const [year, month, day] = evt.target.value.split('-')
 			if (+year < 1700) {
@@ -52,7 +53,7 @@ export default function DateInput({
 					className="ui__ input"
 					id={id}
 					type="date"
-					value={dateValue}
+					defaultValue={missing ? undefined : dateValue}
 					required={required}
 					onChange={handleDateChange}
 				/>

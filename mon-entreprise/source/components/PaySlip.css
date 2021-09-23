@@ -1,6 +1,7 @@
 .payslip__salarySection {
 	display: grid;
 	grid-template-columns: auto 8.2em;
+	overflow: visible;
 	grid-gap: 0.3em 0em;
 }
 .payslip__salaryTitle {
@@ -8,12 +9,15 @@
 }
 .payslip__cotisationsSection {
 	display: grid;
+	overflow: visible;
+
 	grid-template-columns: auto auto auto;
 	grid-gap: 0.3em 0em;
 }
 
 .payslip__container h4 {
 	border-bottom: 1px solid black;
+	color-adjust: exact !important;
 	margin: 0;
 	margin-top: 1.5em;
 	padding-bottom: 0.5em;

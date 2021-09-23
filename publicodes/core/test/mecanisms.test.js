@@ -1,7 +1,7 @@
 /*
 	Les mécanismes sont testés dans mécanismes/ comme le sont les variables
-	directement dans la base Publicode. On construit dans chaque fichier une base
-	Publicode autonome, dans laquelle intervient le mécanisme à tester, puis on
+	directement dans la base Publicodes. On construit dans chaque fichier une base
+	Publicodes autonome, dans laquelle intervient le mécanisme à tester, puis on
 	teste idéalement tous ses comportements sans en faire intervenir d'autres.
 */
 

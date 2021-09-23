@@ -4,11 +4,13 @@ var fs = require('fs')
 var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
+require('../../../modele-social/build')
 let rules = require('../../../modele-social')
 let { parse } = require('yaml')
 
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
 let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
+let UiOriginalTranslationPath = path.resolve('source/locales/ui-fr.yaml')
 
 let attributesToTranslate = [
 	'titre',
@@ -95,14 +97,24 @@ const getUiMissingTranslations = () => {
 		'source/locales/static-analysis-fr.json'
 	))
 	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
+	const originalKeys = parse(
+		fs.readFileSync(UiOriginalTranslationPath, 'utf-8')
+	)
 
-	const missingTranslations = Object.keys(staticKeys).filter((key) => {
-		if (key.match(/^\{.*\}$/)) {
-			return false
-		}
-		const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-		return !R.path(keys, translatedKeys)
-	}, staticKeys)
+	const missingTranslations = Object.entries(staticKeys)
+		.filter(([key, valueInSource]) => {
+			if (key.match(/^\{.*\}$/) || valueInSource === 'NO_TRANSLATION') {
+				return false
+			}
+			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
+
+			const isNewKey = !R.path(keys, translatedKeys)
+			const isInvalidatedKey = R.path(keys, originalKeys) !== valueInSource
+
+			return isNewKey || isInvalidatedKey
+		}, staticKeys)
+		.map(([key]) => key)
+
 	return R.pick(missingTranslations, staticKeys)
 }
 
@@ -131,4 +143,5 @@ module.exports = {
 	getUiMissingTranslations,
 	rulesTranslationPath,
 	UiTranslationPath,
+	UiOriginalTranslationPath,
 }

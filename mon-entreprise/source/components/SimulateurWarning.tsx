@@ -45,34 +45,19 @@ export default function SimulateurWarning({
 					<li>
 						<Trans i18nKey="simulateurs.warning.urssaf">
 							Les calculs sont indicatifs. Ils ne se substituent pas aux
-							décomptes réels de l’Urssaf, du fisc ou autre.
+							décomptes réels de l’Urssaf, de l’administration fiscale ou de
+							toute autre organisme.
 						</Trans>
 					</li>
 				)}
-				{simulateur == 'indépendant' && (
-					<Trans i18nKey="simulateurs.warning.indépendant">
-						<li>
-							Le simulateur ne prend pas en compte les régimes micro-BNC et
-							micro-BIC.
-						</li>
-					</Trans>
-				)}
+
 				{simulateur == 'profession-libérale' && (
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<li>
 							Ce simulateur est à destination des professions libérales en BNC.
-							Il ne prend pas en compte les sociétés d'exercice libéral ni le
-							régime micro-BNC.
+							Il ne prend pas en compte les sociétés d'exercice libéral.
 						</li>
 					</Trans>
-				)}
-				{simulateur === 'SASU' && (
-					<li>
-						<Trans i18nKey="simulateurs.warning.sasu">
-							L'impôt sur les sociétés et la gestion des dividendes ne sont pas
-							encore implémentés.
-						</Trans>
-					</li>
 				)}
 				{simulateur === 'artiste-auteur' && (
 					<>
@@ -96,8 +81,8 @@ export default function SimulateurWarning({
 				{['indépendant', 'profession-libérale'].includes(simulateur) && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.année-courante">
-							Le montant des cotisations est calculé pour un revenu sur l'année
-							2020.
+							Le montant calculé correspond aux cotisations de l’année 2021
+							(pour un revenu 2021).
 						</Trans>
 					</li>
 				)}

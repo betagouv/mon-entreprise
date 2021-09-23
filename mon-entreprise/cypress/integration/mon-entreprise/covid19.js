@@ -10,7 +10,7 @@ describe('Page covid-19', function () {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit('/simulateurs/chômage-partiel'))
+	before(() => cy.visit(encodeURI('/simulateurs/chômage-partiel')))
 	it('should not crash', () => {
 		cy.contains('Salaire brut mensuel')
 	})
@@ -23,6 +23,6 @@ describe('Page covid-19', function () {
 	it('should display 85 % de prise en charge pour un salaire médian', () => {
 		cy.contains('salaire médian').click()
 		testText('comparaison-net', 'Soit 85 % du revenu net')
-		testText('comparaison-total', 'Soit 8 % du coût habituel')
+		testText('comparaison-total', 'Soit 13 % du coût habituel')
 	})
 })

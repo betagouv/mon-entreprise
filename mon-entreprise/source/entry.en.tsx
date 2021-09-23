@@ -8,6 +8,7 @@ import i18next from './locales/i18n'
 import ruleTranslations from './locales/rules-en.yaml'
 import translateRules from './locales/translateRules'
 import translations from './locales/ui-en.yaml'
+import './sentry'
 
 i18next.addResourceBundle('en', 'translation', translations)
 i18next.changeLanguage('en')

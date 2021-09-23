@@ -1,4 +1,6 @@
 import classnames from 'classnames'
+import { useDebounce } from 'Components/utils'
+import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
@@ -10,7 +12,6 @@ import {
 	useEffect,
 	useState,
 } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
 import { binaryQuestion, InputProps } from './RuleInput'
@@ -69,12 +70,19 @@ export default function Question({
 		},
 		[onSubmit, onChange, setCurrentSelection]
 	)
+
+	const debouncedSelection = useDebounce(currentSelection, 300)
 	useEffect(() => {
-		if (currentSelection != null) {
-			const timeoutId = setTimeout(() => onChange(currentSelection), 300)
-			return () => clearTimeout(timeoutId)
+		if (
+			debouncedSelection !== null &&
+			(missing ||
+				serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode) !==
+					debouncedSelection)
+		) {
+			onChange(debouncedSelection)
 		}
-	}, [currentSelection])
+	}, [debouncedSelection])
+
 	const hiddenOptions = useContext(HiddenOptionContext)
 
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
@@ -167,8 +175,8 @@ export default function Question({
 	}
 
 	const choiceElements = Array.isArray(choices)
-		? renderBinaryQuestion(choices)
-		: renderChildren(choices)
+		? renderBinaryQuestion(choices as unknown as typeof binaryQuestion)
+		: renderChildren(choices as Choice)
 
 	return (
 		<div
@@ -252,8 +260,13 @@ export function RadioLabelContent({
 				checked={selected}
 			/>
 			<span>
-				{icônes && <>{emoji(icônes)}&nbsp;</>}
-				<Trans>{label}</Trans>
+				{icônes && (
+					<>
+						<Emoji emoji={icônes} />
+						&nbsp;
+					</>
+				)}
+				{label}
 			</span>
 		</label>
 	)

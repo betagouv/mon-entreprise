@@ -91,7 +91,7 @@ contrat salarié . frais professionnels . titres-restaurant:
       - d’un repas,
 
       - de préparations alimentaires directement consommables,
-      
+
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
@@ -126,14 +126,13 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 contrat salarié . frais professionnels . titres-restaurant . nombre:
   question: Combien de titres-restaurant sont distribués au salarié ?
   arrondi: oui
-  par défaut: 
-    produit: 
-      assiette: 19 titres-restaurant/mois 
+  par défaut:
+    produit:
+      assiette: 19 titres-restaurant/mois
       facteur: temps de travail . quotité de travail
   suggestions:
-    5 repas/semaines:  5 titres-restaurant/semaines * période . semaines par mois
-    3 repas/semaine:  3 titres-restaurant/semaines * période . semaines par mois
-      
+    5 repas/semaines: 5 titres-restaurant/semaines * période . semaines par mois
+    3 repas/semaine: 3 titres-restaurant/semaines * période . semaines par mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question: Quelle est la valeur unitaire du titre-restaurant ?
@@ -180,7 +179,7 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
   par défaut: 0 €/mois
   description: |
     L'employeur doit prendre en charge 50% du montant dépensé par le salarié pour les transports publics lui permettant de se rendre sur son lieu de travail.
-    
+
     Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
 
     Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
@@ -191,10 +190,8 @@ contrat salarié . frais professionnels . abonnement transports publics . montan
     Navigo: 75 €/mois
     Técély: 65 €/mois
     RTM: 40 €/mois
-    Tisséo: 42.50 €/mois  
+    Tisséo: 42.50 €/mois
     TBM: 42.20 €/mois
-
-
 
 contrat salarié . frais professionnels . abonnement transports publics . taux de participation employeur:
   valeur: 50%
@@ -203,7 +200,7 @@ contrat salarié . frais professionnels . abonnement transports publics . taux d
   titre: Taux de prise en charge
   valeur:
     produit:
-      assiette: 
+      assiette:
         le minimum de:
           - temps de travail . quotité de travail
           - 50%
@@ -275,9 +272,9 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
   valeur: montant
   plafond:
     le minimum de:
-       - proportion déduction * 200€/an
-       - valeur: proportion déduction * 500€/an
-         abattement: abonnement transports publics . prise en charge
+      - proportion déduction * 200€/an
+      - valeur: proportion déduction * 500€/an
+        abattement: abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
   valeur: oui
@@ -416,7 +413,12 @@ contrat salarié . activité partielle . indemnités . base:
   formule:
     multiplication:
       assiette: retrait absence
-      taux: 70%
+      # Historique:
+      # - avant le 01/07/2021: 70%
+      # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
+      taux:
+        valeur: 70%
+        nom: taux
 
 contrat salarié . activité partielle . indemnités . complémentaire:
   titre: indemnité complémentaire
@@ -444,11 +446,11 @@ contrat salarié . activité partielle . indemnités . conventionnelle:
         grille:
           assiette: rémunération . assiette congés payés
           tranches:
-            - montant: 95% - 70%
+            - montant: 95% - indemnités . base . taux
               plafond: 2000 €/mois
-            - montant: 80% - 70%
+            - montant: 80% - indemnités . base . taux
               plafond: plafond sécurité sociale temps plein
-            - montant: 75% - 70%
+            - montant: 75% - indemnités . base . taux
   références:
     Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
     Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
@@ -505,8 +507,17 @@ contrat salarié . activité partielle . indemnisation entreprise . taux d'indem
   formule:
     variations:
       - si: secteur d'activité restreint
+        # Historique:
+        # - avant le 01/07/2021: 70%
+        # - avant le 01/08/2021: 60%
+        # - avant le 01/09/2021: 52%
+        # - à partir du 01/09/2021: 36%
         alors: 70%
-      - sinon: 60%
+      # Historique:
+      # - avant le 01/06/2021: 60%
+      # - avant le 01/07/2021: 52%
+      # - à partir du 01/07/2021: 36%
+      - sinon: 52%
 
 contrat salarié . activité partielle . secteur d'activité restreint:
   question: >-
@@ -538,74 +549,120 @@ contrat salarié . activité partielle . convention syntec:
     de chômage partielle au dessus du minimum légal et à la charge de
     l'entreprise.
   par défaut: non
-  rend non applicable:
-    # TODO: this is not working, the question is still displayed. This should be
-    # fixed but is not critical
-    - profession spécifique
 
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
-    déduction forfaitaire spécifique pour frais professionnels sur la base de
-    calcul des cotisations sociales.
-  applicable si:
-    toutes ces conditions:
-      - application
-      - taux > 0%
+    déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base de
+    calcul des cotisations sociales. spécifique consiste en un abattement sur l'assiette
+    des cotisations sociales. Elle peut s'appliquer si le salarié supporte
+    effectivement des frais lors de son activité professionnelle.
+
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en
+    charge ou rembourse la totalité des frais professionnels, il est impossible
+    d’appliquer la DFS.
   titre: assiette avec DFS
+  question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
+  par défaut: non
   remplace:
     règle: cotisations . assiette
+    par:
+      valeur: cotisations . assiette
+      abattement:
+        valeur: taux * cotisations . assiette
+        plafond: 7600 €/an
+      plancher: cotisations . assiette minimale
     sauf dans: contrat salarié . CSG et CRDS
     # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
-  formule:
-    valeur: cotisations . assiette
-    abattement:
-      valeur: taux * cotisations . assiette
-      plafond: 7600 €/an
-    plancher: cotisations . assiette minimale
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
 contrat salarié . déduction forfaitaire spécifique . taux:
   formule:
     variations:
-      - si: profession spécifique = 'journaliste'
+      - si: profession = 'journaliste'
         alors: 20%
-      - si: profession spécifique = 'ouvrier du bâtiment'
+      - si: profession = 'ouvrier du bâtiment'
         alors: 10%
-      - si: profession spécifique = 'artiste musicien'
+      - si: profession = 'artiste musicien'
         alors: 20%
-      - si: profession spécifique = 'pilote de ligne ou personnel navigant'
+      - si: profession = 'pilote de ligne ou personnel navigant'
         alors: 30%
       - sinon: 0%
   références:
     Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
 
-contrat salarié . déduction forfaitaire spécifique . application:
+contrat salarié . déduction forfaitaire spécifique . profession:
+  question: Quelle est la profession du salarié pour l'application de la déduction forfaitaire spécifique ?
+  par défaut: non
+  formule:
+    une possibilité:
+      possibilités:
+        - journaliste
+        - ouvrier du bâtiment
+        - artiste musicien
+        - pilote de ligne ou personnel navigant
+      choix obligatoire: oui
+
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste:
+  formule: contrat salarié . déduction forfaitaire spécifique . profession = 'journaliste'
+  icônes: ✒
   description: >-
-    La déduction forfaitaire spécifique consiste en un abattement sur l'assiette
-    des cotisations sociales. L'employeur peut renoncer à appliquer cette
-    déduction afin d'accorder plus de droits au salarié, notamment en terme de
-    retraite et d'assurance chômage.
-  titre: application de la DFS
-  formule: oui
+    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
+    Critiques dramatiques et musicaux.
 
-contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
-  description: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
-    forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
-    taxe est de décourager le recours excessif aux contrats courts.
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
+  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+  remplace:
+    - règle: vieillesse . employeur . plafonnée . taux
+      par: vieillesse . employeur . plafonnée . taux * réduction de taux
+    - règle: vieillesse . employeur . déplafonnée . taux
+      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . plafonnée . taux
+      par: vieillesse . salarié . plafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . déplafonnée . taux
+      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
 
-    Certains secteurs d'activités définis dans le code du travail ne sont pas
-    concernés par cette taxe.
-  applicable si: motif = 'classique . usage'
-  # TODO: cette formule ne fonctionne pas pour des contrats dont la durée est
-  # inférieure à un mois
-  formule: 10 € / durée contrat
-  références:
-    Urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taxe-forfaitaire-sur-les-cdd-dus.html
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: ATMP . taux
+      par: ATMP . taux * réduction de taux
+    - règle: ATMP . taux minimum
+      par: ATMP . taux minimum * réduction de taux
+  formule: 80%
+
+contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
+  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
+  remplace: rémunération . net imposable
+  titre: net imposable journaliste
+  formule:
+    valeur: rémunération . net imposable
+    abattement: 7650€/an
+
+contrat salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment:
+  icônes: 👷‍♂️
+  description: >-
+    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
+    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
+    travaillent en usine ou en atelier.
+
+contrat salarié . déduction forfaitaire spécifique . profession . artiste musicien:
+  icônes: 🎼
+  description: >-
+    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
+    théâtre
+
+contrat salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant:
+  icônes: ✈
+  description: >-
+    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
+    transports aériens ; pilotes et mécaniciens employés par les maisons de
+    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
+    moniteurs d’aéro-clubs et des écoles d’aviation civile
 
 contrat salarié . CDD . CPF:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
@@ -626,7 +683,7 @@ contrat salarié . CDD . CPF:
       taux: 1%
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
-  
+
 contrat salarié . CDD . congés pris:
   question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
   description: |
@@ -637,17 +694,17 @@ contrat salarié . CDD . congés pris:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
   par défaut: 0 jours ouvrés
-  
-contrat salarié . CDD . jours ouvrés sur la durée du contrat: 
+
+contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:
-    assiette: 253 jours ouvrés/an  
+    assiette: 253 jours ouvrés/an
     facteur: durée contrat
 
 contrat salarié . CDD . congés dus sur la durée du contrat:
   produit:
     assiette: 25 jours ouvrés/an
     facteur: durée contrat
-  arrondi: 2 unités
+  arrondi: 2 décimales
 
 contrat salarié . CDD . contrôle congés non pris max:
   type: notification
@@ -677,7 +734,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     rémunération brute totale perçue par le salarié au cours de la période de
     référence.
 
-    ### Méthode "maintien du salaire" 
+    ### Méthode "maintien du salaire"
 
     Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
     bénéficié d’une augmentation de salaire.
@@ -694,7 +751,7 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
       produit:
         assiette: rémunération . assiette congés payés
         taux: 10%
-      abattement: 
+      abattement:
         nom: proportion congés pris
         unité: '%'
         valeur: congés pris / congés dus sur la durée du contrat
@@ -702,15 +759,14 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
     - nom: Méthode du maintien de salaire
       produit:
         assiette: rémunération . assiette congés payés / jours ouvrés sur la durée du contrat
-        facteur: 
+        facteur:
           nom: congés non pris
           valeur: congés dus sur la durée du contrat - congés pris
-        
-        
+
   note: |
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
     À noter, la loi El Khomri modifie l'article L3141-12:
-    - avant : Les congés peuvent être pris dès l'ouverture des droits 
+    - avant : Les congés peuvent être pris dès l'ouverture des droits
     - maintenant : Les congés peuvent être pris dès l’embauche
   références:
     Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
@@ -781,10 +837,10 @@ contrat salarié . ATMP:
       assiette: cotisations . assiette
       taux [ref]:
         variations:
-          - si: taux réduit
-            alors: 0.8%
           - si: taux connu
             alors: taux personnalisé
+          - si: taux réduit
+            alors: 0.8%
           - sinon: ATMP . taux collectif ATMP
   références:
     taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
@@ -834,7 +890,9 @@ contrat salarié . ATMP . taux connu:
 contrat salarié . ATMP . taux personnalisé:
   question: Quel est le taux AT/MP de l'entreprise ?
   description: >
-    Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter le taux qui la
+    Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter son taux effectif directement sur espace net-entreprise.
+  références:
+    Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/
   par défaut: taux moyen
 
 contrat salarié . ATMP . taux collectif ATMP:
@@ -1285,9 +1343,7 @@ contrat salarié . rémunération . brut de base:
         - rémunération . net
         - rémunération . net après impôt
         - équivalent temps plein
-        - dirigeant . rémunération totale
-        - entreprise . chiffre d'affaires
-        - entreprise . chiffre d'affaires minimum
+        - dirigeant . rémunération . totale
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -1735,7 +1791,6 @@ contrat salarié . cotisations . patronales:
     - formation professionnelle
     - versement transport
     - taxe d'apprentissage
-    - CDD . taxe forfaitaire sur les CDD d'usage
     - CDD . CPF
     - forfait social
     - conventionnelles
@@ -1767,7 +1822,7 @@ contrat salarié . rémunération . net imposable:
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   valeur:
-    nom: base 
+    nom: base
     description: Le net imposable avant les exonérations et déductions
     somme:
       - net avec revenus de remplacement
@@ -1783,8 +1838,6 @@ contrat salarié . rémunération . net imposable:
       - prévoyance . exonération fiscale
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   unité: €/mois
@@ -1851,7 +1904,7 @@ contrat salarié . rémunération . net après impôt:
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
-  formule: net - impôt
+  formule: net - impôt . montant
 
 contrat salarié . prix du travail:
   titre: Coût total
@@ -1892,11 +1945,11 @@ contrat salarié . cotisations . salariales . réductions de cotisations:
 contrat salarié . cotisations . patronales . réductions de cotisations:
   titre: réductions patronales
   description: >-
-    À l'exception de la déduction heure supplémentaire, les 
-    dispositifs de réduction de cotisations patronales sont 
+    À l'exception de la déduction heure supplémentaire, les
+    dispositifs de réduction de cotisations patronales sont
     mutuellement exclusif.
 
-    Le formule ci dessous selectionne donc automatiquement 
+    Le formule ci dessous selectionne donc automatiquement
     le plus avantageux pour l'employeur.
   formule:
     somme:
@@ -1986,11 +2039,19 @@ contrat salarié . aides employeur:
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
     somme:
+      - aides à l'embauche
+      - activité partielle . indemnisation entreprise
+
+contrat salarié . aides employeur . aides à l'embauche:
+  description: |
+    L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
+  formule:
+    le maximum de:
       - aide à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche des jeunes
       - aide à l'embauche senior professionnalisation
-      - activité partielle . indemnisation entreprise
+      - aide à l'embauche des travailleurs handicapés
       - emploi franc
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -2029,7 +2090,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
           - apprentissage
           - professionnalisation . jeune de moins de 30 ans
       - ancienneté . date d'embauche >= 01/07/2020
-      - ancienneté . date d'embauche <= 28/02/2021
+      - ancienneté . date d'embauche <= 31/12/2021
       - temps de travail . temps effectif > 0 heures/mois
   formule:
     variations:
@@ -2039,6 +2100,10 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
   rend non applicable: aide à l'embauche d'apprentis
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
+
+contrat salarié . jeune de moins de 26 ans:
+  question: Le salarié a-t-il moins de 26 ans ?
+  par défaut: non
 
 contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
   non applicable si: aides employeur . emploi franc
@@ -2053,16 +2118,17 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   applicable si:
     toutes ces conditions:
       - ancienneté . date d'embauche >= 01/08/2020
-      - ancienneté . date d'embauche <= 31/03/2021
+      - ancienneté . date d'embauche <= 31/05/2021
       - rémunération . brut de base <= 2 * SMIC
       - une de ces conditions:
           - CDI
           - toutes ces conditions:
               - CDD
               - CDD . durée contrat >= 3 mois
-      - nom: jeune de moins de 26 ans
-        question: Le salarié a-t-il moins de 26 ans ?
-        par défaut: non
+      - jeune de moins de 26 ans
+  rend non applicable:
+    # Dispositifs moins généreux et non cumulables
+    - aide à l'embauche des travailleurs handicapés
   formule:
     produit:
       assiette: 4000 €/an
@@ -2094,9 +2160,6 @@ contrat salarié . aides employeur . emploi franc:
     - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
     - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
 
-    > Dans le cadre du plan "France Relance", le dispositif est revalorisé pour
-    une embauche jusqu'au 31 janvier 2021.
-
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   applicable si: éligible
   formule:
@@ -2106,8 +2169,10 @@ contrat salarié . aides employeur . emploi franc:
           - si:
               toutes ces conditions:
                 - ancienneté . date d'embauche >= 15/10/2020
-                - ancienneté . date d'embauche <= 31/03/2021
+                - ancienneté . date d'embauche <= 31/05/2021
+                - jeune de moins de 26 ans
             alors:
+              nom: emploi franc plus
               variations:
                 - si: CDD
                   alors: 5500 €/an
@@ -2119,6 +2184,9 @@ contrat salarié . aides employeur . emploi franc:
                 - sinon: 5000 €/an
       facteur: temps de travail . quotité de travail effective
     arrondi: oui
+  rend non applicable:
+    # Dispositifs moins généreux et non cumulables
+    - aide à l'embauche des travailleurs handicapés
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
@@ -2132,7 +2200,7 @@ contrat salarié . aides employeur . emploi franc . éligible:
           - CDD . durée contrat >= 6
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
-    Conditions : 
+    Conditions :
     - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
@@ -2146,6 +2214,33 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
+  non applicable si: aides employeur . emploi franc
+  description: >-
+    Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
+    à l’embauche visant à favoriser l’emploi des personnes en situation de
+    handicap quel que soit leur âge.
+  applicable si:
+    toutes ces conditions:
+      - nom: situation de handicap
+        question: Le salarié a-t'il la reconnaissance de travailleur handicapé (RQTH) ?
+        par défaut: non
+      - ancienneté . date d'embauche >= 01/09/2020
+      - ancienneté . date d'embauche <= 30/06/2021
+      - rémunération . brut de base <= 2 * SMIC
+      - une de ces conditions:
+          - CDI
+          - toutes ces conditions:
+              - CDD
+              - CDD . durée contrat >= 3 mois
+  formule:
+    produit:
+      assiette: 4000 €/an
+      facteur: temps de travail . quotité de travail effective
+    arrondi: oui
+  références:
+    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . temps de travail . temps effectif:
   formule:
@@ -2458,7 +2553,7 @@ contrat salarié . réduction générale . plafond avec application de la DFS:
         recalcul:
           règle: réduction générale
           avec:
-            déduction forfaitaire spécifique . application: non
+            déduction forfaitaire spécifique: non
 
 contrat salarié . contribution d'équilibre général:
   description: >-
@@ -2725,7 +2820,7 @@ contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
   description: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre à sa charge au moins la moitié de son coût. 
+    doit prendre à sa charge au moins la moitié de son coût.
 
     Le montant peut varier, mais la prévoyance doit couvrir un panier minimum
     légal de soins.
@@ -3065,8 +3160,8 @@ contrat salarié . maladie . taux solidarité autonomie:
   acronyme: CSA
   formule: 0.3%
   références:
-    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
-    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
+    Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
 
 contrat salarié . maladie . taux employeur:
   formule:
@@ -3302,75 +3397,6 @@ contrat salarié . taxe sur les salaires . barème:
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
-contrat salarié . profession spécifique:
-  question: Le salarié exerce t-il l'une des professions suivantes ?
-  par défaut: non
-  formule:
-    une possibilité:
-      possibilités:
-        - journaliste
-        - ouvrier du bâtiment
-        - artiste musicien
-        - pilote de ligne ou personnel navigant
-
-contrat salarié . profession spécifique . journaliste:
-  formule: contrat salarié . profession spécifique = 'journaliste'
-  icônes: ✒
-  description: >-
-    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
-    Critiques dramatiques et musicaux.
-
-contrat salarié . profession spécifique . journaliste . réduction de taux:
-  applicable si: profession spécifique = 'journaliste'
-  remplace:
-    - règle: vieillesse . employeur . plafonnée . taux
-      par: vieillesse . employeur . plafonnée . taux * réduction de taux
-    - règle: vieillesse . employeur . déplafonnée . taux
-      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
-    - règle: vieillesse . salarié . plafonnée . taux
-      par: vieillesse . salarié . plafonnée . taux * réduction de taux
-    - règle: vieillesse . salarié . déplafonnée . taux
-      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
-
-    - règle: allocations familiales . taux
-      par: allocations familiales . taux * réduction de taux
-    - règle: établissement . taux du versement transport
-      par: établissement . taux du versement transport * réduction de taux
-    - règle: ATMP . taux
-      par: ATMP . taux * réduction de taux
-    - règle: ATMP . taux minimum
-      par: ATMP . taux minimum * réduction de taux
-  formule: 80%
-
-contrat salarié . profession spécifique . journaliste . abattement fiscal:
-  applicable si: profession spécifique = 'journaliste'
-  remplace: rémunération . net imposable
-  titre: net imposable journaliste
-  formule:
-    valeur: rémunération . net imposable
-    abattement: 7650€/an
-
-contrat salarié . profession spécifique . ouvrier du bâtiment:
-  icônes: 👷‍♂️
-  description: >-
-    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
-    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
-    travaillent en usine ou en atelier.
-
-contrat salarié . profession spécifique . artiste musicien:
-  icônes: 🎼
-  description: >-
-    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
-    théâtre
-
-contrat salarié . profession spécifique . pilote de ligne ou personnel navigant:
-  icônes: ✈
-  description: >-
-    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
-    transports aériens ; pilotes et mécaniciens employés par les maisons de
-    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
-    moniteurs d’aéro-clubs et des écoles d’aviation civile
-
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
   non applicable si: situation personnelle . domiciliation fiscale à l'étranger
@@ -3529,7 +3555,7 @@ contrat salarié . lodeom:
 contrat salarié . lodeom . zone un:
   titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
   références:
-    - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
   formule:
     une de ces conditions:
       - établissement . localisation . département = 'Guadeloupe'

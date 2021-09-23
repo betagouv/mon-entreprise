@@ -1,19 +1,33 @@
 import { updateUnit } from 'Actions/actions'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import './PeriodSwitch.css'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
-	const currentUnit = useSelector(targetUnitSelector)
 
-	const units = ['€/mois', '€/an']
+	const currentUnit = useSelector(targetUnitSelector)
+	const { t } = useTranslation()
+
+	const periods = [
+		{
+			label: t('Mensuel'),
+			unit: '€/mois',
+		},
+		{
+			label: t('Annuel'),
+			unit: '€/an',
+		},
+	]
 	return (
 		<div id="PeriodSwitch">
 			<span className="base ui__ small radio toggle">
-				{units.map((unit) => (
-					<label key={unit}>
+				{periods.map(({ label, unit }) => (
+					<label
+						key={unit}
+						className={currentUnit !== unit ? 'ui__ print-display-none' : ''}
+					>
 						<input
 							name="defaultUnit"
 							type="radio"
@@ -22,7 +36,7 @@ export default function PeriodSwitch() {
 							checked={currentUnit === unit}
 						/>
 						<span>
-							<Trans>{unit}</Trans>
+							<Trans>{label}</Trans>
 						</span>
 					</label>
 				))}

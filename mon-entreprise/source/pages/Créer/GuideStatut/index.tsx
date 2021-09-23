@@ -1,5 +1,5 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
-import Animate from 'Components/ui/animate'
+import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
@@ -63,7 +63,7 @@ export default function Créer() {
 				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
 			</h1>
 			<PreviousAnswers />
-			<Animate.fromBottom key={location.pathname}>
+			<FromBottom key={location.pathname}>
 				<Switch>
 					<Route path={sitePaths.créer.guideStatut.soleProprietorship}>
 						<SoleProprietorship />
@@ -84,7 +84,7 @@ export default function Créer() {
 						<PickLegalStatus />
 					</Route>
 				</Switch>
-			</Animate.fromBottom>
+			</FromBottom>
 		</>
 	)
 }

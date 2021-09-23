@@ -51,7 +51,7 @@ describe('inversions', () => {
               assiette: brut
               taux: 77%
 
-        brut:          
+        brut:
           formule:
             inversion numérique:
               unité: €
@@ -147,7 +147,7 @@ describe('inversions', () => {
           formule:
             produit:
               assiette: assiette
-              taux: 
+              taux:
                 variations:
                   - si: cadre
                     alors: 80%

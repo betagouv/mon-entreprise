@@ -21,6 +21,7 @@ const prerenderConfig = () => ({
 	staticDir: path.resolve('dist'),
 	renderer: new Renderer({
 		renderAfterTime: 5000,
+		inject: true,
 		skipThirdPartyRequests: true,
 	}),
 	postProcess: (context) => {

@@ -5,8 +5,9 @@ import Engine, {
 	utils,
 } from 'publicodes'
 import { isEmpty } from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
+import { useContext } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { EngineContext } from '../contexts'
 import Explanation from '../Explanation'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
@@ -14,17 +15,45 @@ import RuleHeader from './Header'
 import References from './References'
 import RuleSource from './RuleSource'
 
-export default function Rule({ dottedName, engine, language }) {
+export default function Rule({ dottedName, language, situationName }) {
+	const engine = useContext(EngineContext)
+	const { pathname } = useLocation()
+
+	if (!engine) {
+		throw new Error('Engine expected')
+	}
 	if (!(dottedName in engine.getParsedRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
 	const rule = engine.evaluate(engine.getRule(dottedName))
-
 	const { description, question } = rule.rawNode
 	const { parent, valeur } = rule.explanation
 	return (
 		<div id="documentationRuleRoot">
+			{situationName && (
+				<div
+					className="ui__ card notice light-bg"
+					style={{
+						display: 'flex',
+						alignItems: 'baseline',
+						flexWrap: 'wrap',
+						margin: '1rem 0',
+						paddingTop: '0.4rem',
+						paddingBottom: '0.4rem',
+					}}
+				>
+					<div>
+						Vous explorez la documentation avec le contexte{' '}
+						<strong className="ui__ label">{situationName}</strong>{' '}
+					</div>
+					<div style={{ flex: 1 }} />
+					<div>
+						<Link to={pathname}>Retourner à la version de base</Link>
+					</div>
+				</div>
+			)}
 			<RuleHeader dottedName={dottedName} />
+
 			<section>
 				<Markdown source={description || question} />
 			</section>
@@ -59,6 +88,7 @@ export default function Rule({ dottedName, engine, language }) {
 			)}
 
 			<h2>Comment cette donnée est-elle calculée ?</h2>
+
 			<Explanation node={valeur} />
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 
@@ -101,9 +131,7 @@ export default function Rule({ dottedName, engine, language }) {
 			)}
 			{rule.rawNode.références && (
 				<>
-					<h2>
-						<Trans>Références</Trans>
-					</h2>
+					<h2>Références</h2>
 					<References refs={rule.rawNode.références} />
 				</>
 			)}
@@ -138,9 +166,7 @@ function AssociatedRules({
 	}
 	return (
 		<section>
-			<h2>
-				<Trans>Pages associées</Trans>
-			</h2>
+			<h2>Pages associées</h2>
 			<ul>
 				{namespaceRules.map((dottedName) => (
 					<li key={dottedName}>
