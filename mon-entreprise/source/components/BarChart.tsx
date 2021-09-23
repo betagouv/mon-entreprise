@@ -1,10 +1,10 @@
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
+import Emoji from './utils/Emoji'
 
 type ChartItemBarProps = {
 	numberToPlot: number
@@ -63,7 +63,9 @@ function ChartItemBar({
 function BranchIcon({ icon }: { icon: string }) {
 	return (
 		<div className="distribution-chart__legend">
-			<span className="distribution-chart__icon">{emoji(icon)}</span>
+			<span className="distribution-chart__icon">
+				<Emoji emoji={icon} />
+			</span>
 		</div>
 	)
 }

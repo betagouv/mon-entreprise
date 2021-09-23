@@ -2,12 +2,12 @@ import classnames from 'classnames'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import InfoBulle from 'Components/ui/InfoBulle'
+import Emoji from 'Components/utils/Emoji'
 import { useScrollToHash } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toAtString, TrackPage } from '../../ATInternetTracking'
@@ -315,7 +315,7 @@ export default function Stats() {
 			<ScrollToTop />
 
 			<h1>
-				Statistiques <>{emoji('📊')}</>
+				Statistiques <Emoji emoji="📊" />
 			</h1>
 			<p>
 				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
@@ -394,7 +394,7 @@ function SimulateursChoice(props: {
 					checked={props.value === ''}
 				/>
 				<span>
-					{emoji('🌍')}
+					<Emoji emoji="🌍" />
 					<Trans>Tout le site</Trans>
 				</span>
 			</label>
@@ -415,7 +415,12 @@ function SimulateursChoice(props: {
 						checked={getChapter2(s) === props.value}
 					/>
 					<span>
-						{s.icône && <>{emoji(s.icône)}&nbsp;</>}
+						{s.icône && (
+							<>
+								<Emoji emoji={s.icône} />
+								&nbsp;
+							</>
+						)}
 						<Trans>{s.shortName}</Trans>
 					</span>
 				</label>

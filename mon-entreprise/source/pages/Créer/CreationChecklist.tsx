@@ -5,10 +5,10 @@ import {
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist } from 'Components/ui/Checklist'
+import Emoji from 'Components/utils/Emoji'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -95,7 +95,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			</p>
 
 			<h2>
-				{emoji('📋')}{' '}
+				<Emoji emoji="📋" />{' '}
 				<Trans i18nKey="entreprise.tâches.titre">
 					À faire pour créer votre entreprise
 				</Trans>
@@ -400,7 +400,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Checklist>
 			<h2>
-				{emoji('💭')}{' '}
+				<Emoji emoji="💭" />{' '}
 				<Trans i18nKey="entreprise.tâches.titre2">
 					Recommandé avant le début de l'activité
 				</Trans>
@@ -455,7 +455,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Checklist>
 			<h2 className="ui__ h h3">
-				{emoji('🧰')} <Trans>Ressources utiles</Trans>
+				<Emoji emoji="🧰" /> <Trans>Ressources utiles</Trans>
 			</h2>
 			<div className="ui__ box-container">
 				{isAutoentrepreneur && (

@@ -1,10 +1,10 @@
 import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
+import Emoji from 'Components/utils/Emoji'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import {
 	Link,
 	NavLink,
@@ -54,7 +54,9 @@ export default function Nouveautés() {
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />
 			<ScrollToTop key={selectedRelease} />
-			<h1>Les nouveautés {emoji('✨')}</h1>
+			<h1>
+				Les nouveautés <Emoji emoji="✨" />
+			</h1>
 			<p>
 				Nous améliorons le site en continu à partir de{' '}
 				<Link to={sitePaths.stats + '#demandes-utilisateurs'}>vos retours</Link>
@@ -117,7 +119,7 @@ const removeGithubIssuesReferences = (text: string) =>
 	text.replace(/#[0-9]{1,5}/g, '')
 
 const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(removeGithubIssuesReferences(children))}</>
+	<Emoji emoji={removeGithubIssuesReferences(children)} />
 )
 
 const NewsSection = styled.section`

@@ -1,5 +1,5 @@
+import Emoji from 'Components/utils/Emoji'
 import { add, mapObjIndexed } from 'ramda'
-import emoji from 'react-easy-emoji'
 import {
 	Bar,
 	BarChart,
@@ -98,13 +98,13 @@ const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
 					</strong>{' '}
 					satisfaits{' '}
 					<small>
-						({Math.round(data['très bien'] ?? 0)}% {emoji('😀')} /{' '}
-						{Math.round(data['bien'] ?? 0)}% {emoji('🙂')})
+						({Math.round(data['très bien'] ?? 0)}% <Emoji emoji="😀" /> /{' '}
+						{Math.round(data['bien'] ?? 0)}% <Emoji emoji="🙂" />)
 					</small>
 				</li>
 				<li>
 					<strong>{Math.round(data['mauvais'] ?? 0)}%</strong> négatifs
-					{emoji('🙁')}
+					<Emoji emoji="🙁" />
 				</li>
 			</ul>
 		</div>

@@ -134,6 +134,7 @@
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"serve:dev:publicodes": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
 		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"algolia:update": "node scripts/search/update-data.js"
+		"algolia:update": "node scripts/search/update-data.js",
+		"algolia:clean": "node scripts/search/clean.js"
 	}
 }

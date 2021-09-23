@@ -48,9 +48,7 @@ const CodeBlock = ({ value, language }: { value: string; language: string }) =>
 		</pre>
 	)
 
-const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(children)}</>
-)
+const TextRenderer = ({ children }: { children: string }) => <>{children}</>
 
 type MarkdownProps = ReactMarkdownProps & {
 	source: string | undefined

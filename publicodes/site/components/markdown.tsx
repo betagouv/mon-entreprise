@@ -56,9 +56,7 @@ export function LinkRenderer({
 		</a>
 	)
 }
-const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(children)}</>
-)
+const TextRenderer = ({ children }: { children: string }) => <>{children}</>
 
 type MarkdownProps = ReactMarkdownProps & {
 	source: string | undefined
@@ -93,7 +91,7 @@ const CodeBlock = ({
 				target="_blank"
 				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
 			>
-				{emoji('⚡')} Lancer le calcul
+				⚡ Lancer le calcul
 			</a>
 		)}
 	</div>

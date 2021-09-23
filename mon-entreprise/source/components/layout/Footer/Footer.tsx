@@ -2,9 +2,9 @@ import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
 import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
@@ -88,6 +88,49 @@ export default function Footer() {
 					</p>
 				)}
 				<StyledFooter className="ui__ notice container">
+					{language === 'fr' && (
+						<ul>
+							<li>
+								<Link to={sitePaths.nouveautés}>
+									Nouveautés <Emoji emoji="✨" />
+								</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.stats}>
+									Stats <Emoji emoji="📊" />
+								</Link>
+							</li>
+							<li>
+								<Link to={sitePaths.budget}>
+									Budget <Emoji emoji="💶" />
+								</Link>
+							</li>
+						</ul>
+					)}
+					<ul>
+						<li>
+							<Link to={sitePaths.integration.index}>
+								<Trans>Intégrer nos simulateurs</Trans>
+							</Link>
+						</li>
+						{hrefLink.map(({ hrefLang, href }) => (
+							<li key={hrefLang}>
+								<a href={href} style={{ textDecoration: 'underline' }}>
+									{hrefLang === 'fr' ? (
+										<>
+											Passer en français <Emoji emoji="🇫🇷" />
+										</>
+									) : hrefLang === 'en' ? (
+										<>
+											Switch to English <Emoji emoji="🇬🇧" />
+										</>
+									) : (
+										hrefLang
+									)}
+								</a>
+							</li>
+						))}
+					</ul>
 					<ul>
 						<li>
 							<LegalNotice />
@@ -104,39 +147,6 @@ export default function Footer() {
 								</Link>
 							</li>
 						)}
-					</ul>
-					{language === 'fr' && (
-						<ul>
-							<li>
-								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
-							</li>
-							<li>
-								<Link to={sitePaths.stats}>Stats</Link>
-							</li>
-							<li>
-								<Link to={sitePaths.budget}>Budget</Link>
-							</li>
-						</ul>
-					)}
-					<ul>
-						<li>
-							<Link to={sitePaths.integration.index}>
-								<Trans>Intégrer nos simulateurs</Trans>
-							</Link>
-						</li>
-						{hrefLink.map(({ hrefLang, href }) => (
-							<li key={hrefLang}>
-								<a href={href} style={{ textDecoration: 'underline' }}>
-									{hrefLang === 'fr' ? (
-										<>Passer en français {emoji('🇫🇷')}</>
-									) : hrefLang === 'en' ? (
-										<>Switch to English {emoji('🇬🇧')}</>
-									) : (
-										hrefLang
-									)}
-								</a>
-							</li>
-						))}
 					</ul>
 				</StyledFooter>
 
@@ -163,7 +173,7 @@ const StyledFooter = styled.div`
 	display: flex;
 	justify-content: space-between;
 	@media (max-width: 600px) {
-		flex-direction: column-reverse;
+		flex-direction: column;
 		text-align: center;
 		li {
 			display: inline-block;

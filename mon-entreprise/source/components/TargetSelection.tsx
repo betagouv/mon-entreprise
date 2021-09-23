@@ -14,7 +14,6 @@ import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import { EvaluatedNode, formatValue, reduceAST, RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -27,6 +26,7 @@ import InputSuggestions from './conversation/InputSuggestions'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 import { Appear, FromTop } from './ui/animate'
+import Emoji from './utils/Emoji'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
@@ -48,7 +48,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 						<div style={{ flex: 1 }}>
 							{nom && (
 								<h2 style={{ marginBottom: 0 }}>
-									{!!icône && emoji(icône)} <Trans>{nom}</Trans>
+									<Emoji emoji={icône} /> <Trans>{nom}</Trans>
 								</h2>
 							)}
 						</div>
@@ -263,7 +263,7 @@ function TitreRestaurant() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
+						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
 				</div>
 			</FromTop>
@@ -307,7 +307,7 @@ function AidesGlimpse() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>d'aides</Trans> {emoji(aides.rawNode.icônes ?? '')}
+						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</div>
 			</FromTop>

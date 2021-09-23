@@ -1,9 +1,8 @@
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
-import ExportSimulationBanner from 'Components/ExportSimulationBanner'
 import PageFeedback from 'Components/Feedback'
-import ShareSimulationBanner from 'Components/ShareSimulationBanner'
+import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
@@ -46,8 +45,7 @@ export default function Simulation({
 				<>
 					<FromTop>
 						{results}
-						<ShareSimulationBanner />
-						<ExportSimulationBanner />
+						<ShareOrSaveSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
 						<div className="ui__ full-width">
 							<div className="ui__ container-and-side-block">

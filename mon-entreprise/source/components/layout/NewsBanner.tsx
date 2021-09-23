@@ -1,7 +1,7 @@
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import lastRelease from '../../data/last-release.json'
@@ -32,7 +32,8 @@ export default function NewsBanner() {
 	return showBanner ? (
 		<div className="ui__ banner news print-display-none">
 			<span>
-				{emoji('✨')} Découvrez les nouveautés {determinant(lastRelease.name)}
+				<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
+				{determinant(lastRelease.name)}
 				<Link to={sitePaths.nouveautés}>{lastRelease.name.toLowerCase()}</Link>
 			</span>
 			<span onClick={hideNewsBanner} className="ui__ close-button">

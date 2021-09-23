@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
-import PLExplanation from './PLExplanation'
+import InstitutionsPartenaires from './InstitutionsPartenaires'
 import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
@@ -26,15 +26,15 @@ export default function IndépendantExplanation() {
 
 	return (
 		<>
-			<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
-				<CotisationsForfaitaires />
-			</WhenApplicable>
-			<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
-				<CotisationsRégularisation />
-			</WhenNotApplicable>
-			<Condition expression="entreprise . activité . libérale réglementée">
-				<PLExplanation />
-			</Condition>
+			<section>
+				<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsForfaitaires />
+				</WhenApplicable>
+				<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+					<CotisationsRégularisation />
+				</WhenNotApplicable>
+			</section>
+			<InstitutionsPartenaires />
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
 					<h2>Répartition du revenu</h2>
