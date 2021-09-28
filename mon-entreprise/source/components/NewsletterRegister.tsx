@@ -1,8 +1,8 @@
 import { usePersistingState } from 'Components/utils/persistState'
 import { useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { FromBottom } from './ui/animate'
+import Emoji from './utils/Emoji'
 
 // We don't want to load the full sendinblue iframe, so we reimplement a simple
 // logic to the a HTTP Post request to their URL with the email data.
@@ -46,7 +46,7 @@ export default function NewsletterRegister() {
 					`}
 				>
 					<h4>
-						{emoji('🎉')}{' '}
+						<Emoji emoji="🎉" />{' '}
 						<Trans i18nKey="newsletter.register.confirmation">
 							Votre inscription est confirmée !
 						</Trans>

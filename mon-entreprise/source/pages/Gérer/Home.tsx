@@ -8,10 +8,10 @@ import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -98,7 +98,9 @@ export default function Gérer() {
 											pathname: sitePaths.gérer.déclarationIndépendant,
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('✍')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="✍" />
+										</div>
 										<Trans i18nKey="gérer.choix.déclaration">
 											<h3>Remplir ma déclaration de revenus</h3>
 											<p className="ui__ notice">
@@ -123,7 +125,9 @@ export default function Gérer() {
 										},
 									}}
 								>
-									<div className="ui__ big box-icon">{emoji('💶')}</div>
+									<div className="ui__ big box-icon">
+										<Emoji emoji="💶" />
+									</div>
 									<Trans i18nKey="gérer.choix.revenus">
 										<h3>Calculer mon revenu net de cotisations</h3>
 										<p className="ui__ notice">
@@ -144,7 +148,9 @@ export default function Gérer() {
 											pathname: sitePaths.simulateurs['chômage-partiel'],
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🕟')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🕟" />
+										</div>
 										<Trans i18nKey="gérer.choix.chomage-partiel">
 											<h3>Activité partielle</h3>
 											<p className="ui__ notice">
@@ -167,7 +173,9 @@ export default function Gérer() {
 											},
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🤝')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🤝" />
+										</div>
 										<Trans i18nKey="gérer.choix.embauche">
 											<h3>Estimer le montant d’une embauche</h3>
 											<p className="ui__ notice">
@@ -188,7 +196,9 @@ export default function Gérer() {
 											},
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('🗓')}</div>
+										<div className="ui__ big box-icon">
+											<Emoji emoji="🗓" />
+										</div>
 										<Trans i18nKey="gérer.choix.is">
 											<h3>Estimer le montant de l’impôt sur les sociétés</h3>
 											<p className="ui__ notice">
@@ -207,7 +217,7 @@ export default function Gérer() {
 					<AideOrganismeLocal />
 
 					<h2 className="ui__ h h3">
-						{emoji('🧰 ')}
+						<Emoji emoji="🧰" />
 						<Trans>Ressources utiles</Trans>
 					</h2>
 					<div className="ui__ box-container">

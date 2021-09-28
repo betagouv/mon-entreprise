@@ -2,11 +2,11 @@ import classnames from 'classnames'
 import { FromBottom } from 'Components/ui/animate'
 import Checkbox from 'Components/ui/Checkbox'
 import InfoBulle from 'Components/ui/InfoBulle'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -40,7 +40,11 @@ export default function ActivitésSelection() {
 							<strong>plateformes en ligne</strong> (Airbnb, Abritel, Drivy,
 							Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans la
 							plupart des cas. Cependant, il peut être difficile de s'y
-							retrouver <span>{emoji('🤔')}</span>.
+							retrouver{' '}
+							<span>
+								<Emoji emoji="🤔" />
+							</span>
+							.
 						</p>
 						<p>
 							Suivez ce guide pour savoir en quelques clics comment être en
@@ -67,7 +71,7 @@ export default function ActivitésSelection() {
 							PS : cet outil est là uniquement pour vous informer, aucune donnée
 							ne sera transmise aux administrations
 						</Trans>{' '}
-						{emoji('😌')}
+						<Emoji emoji="😌" />
 					</p>
 				</section>
 			</FromBottom>
@@ -199,6 +203,8 @@ const ActivitéContent = ({
 
 		<p className="ui__ notice">{plateformes.join(', ')}</p>
 		{label && <div className="ui__ label"> {label}</div>}
-		<div className="ui__ box-icon">{emoji(icônes)}</div>
+		<div className="ui__ box-icon">
+			<Emoji emoji={icônes} />
+		</div>
 	</>
 )

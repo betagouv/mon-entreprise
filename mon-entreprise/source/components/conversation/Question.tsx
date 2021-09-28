@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import { useDebounce } from 'Components/utils'
+import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
@@ -11,7 +12,6 @@ import {
 	useEffect,
 	useState,
 } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
 import { binaryQuestion, InputProps } from './RuleInput'
@@ -260,7 +260,12 @@ export function RadioLabelContent({
 				checked={selected}
 			/>
 			<span>
-				{icônes && <>{emoji(icônes)}&nbsp;</>}
+				{icônes && (
+					<>
+						<Emoji emoji={icônes} />
+						&nbsp;
+					</>
+				)}
 				{label}
 			</span>
 		</label>

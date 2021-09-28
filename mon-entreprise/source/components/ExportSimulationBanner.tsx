@@ -1,25 +1,19 @@
-import { LinkButton } from 'Components/ui/Button'
-import React from 'react'
 import { Trans } from 'react-i18next'
 import Banner from './Banner'
 
 export default function ExportSimulationBanner() {
 	return (
-		<Banner
-			hideAfterFirstStep={false}
-			icon="🖨"
-			className="ui__ print-display-none"
-		>
+		<Banner hideAfterFirstStep={false} icon="🖨">
 			{
 				<Trans i18nKey="ExportSimulation.Banner">
-					Pour conserver cette simulation :{' '}
-					<LinkButton
+					<button
+						className="ui__ small simple button"
 						onClick={() => {
 							window.print()
 						}}
 					>
 						Imprimer ou sauvegarder en PDF
-					</LinkButton>
+					</button>
 				</Trans>
 			}
 		</Banner>

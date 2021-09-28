@@ -1,10 +1,10 @@
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
+import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'publicodes'
 import { sum, uniq } from 'ramda'
 import { useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -46,10 +46,12 @@ export default function Budget() {
 				<title>Le budget de mon-entreprise.fr</title>
 			</Helmet>
 			<ScrollToTop />
-			<h1>Budget {emoji('💶')}</h1>
+			<h1>
+				Budget <Emoji emoji="💶" />
+			</h1>
 			<Markdown source={intro} />
 			<label>
-				{emoji('📅')} Année{' '}
+				<Emoji emoji="📅" /> Année{' '}
 				<select
 					value={selectedYear}
 					onChange={(event) =>
@@ -61,10 +63,10 @@ export default function Budget() {
 					))}
 				</select>
 			</label>
+			<h2>Budget consommé</h2>
 			<Markdown source={ressources[selectedYear]} />
 			{selectedYear !== '2019' && (
 				<>
-					<h2>Emploi des ressources</h2>
 					<div
 						css={`
 							overflow: auto;

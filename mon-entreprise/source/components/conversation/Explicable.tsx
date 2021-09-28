@@ -1,9 +1,9 @@
 import { explainVariable } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
+import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import React, { useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
 import usePortal from 'react-useportal'
 
@@ -32,7 +32,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 				font-size: 110% !important;
 			`}
 		>
-			{emoji('ℹ️')}
+			<Emoji emoji="ℹ️" />
 		</button>
 	)
 }
@@ -62,7 +62,7 @@ export function Explicable({ children }: { children: React.ReactNode }) {
 					}
 				`}
 			>
-				{emoji('ℹ️')}
+				<Emoji emoji="ℹ️" />
 			</button>
 		</>
 	)

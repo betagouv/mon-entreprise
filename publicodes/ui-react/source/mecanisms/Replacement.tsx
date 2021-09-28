@@ -18,13 +18,13 @@ export default function Replacement(node: VariationNode & EvaluatedNode) {
 	const [displayReplacements, changeDisplayReplacement] = useState(false)
 	return (
 		<span>
-			<Explanation node={applicableReplacement} />
+			<Explanation node={applicableReplacement ?? replacedNode} />
 			&nbsp;
 			<button
 				onClick={() => changeDisplayReplacement(true)}
 				className="ui__ simple small button"
 			>
-				{emoji('🔄')}
+				🔄
 			</button>
 			{displayReplacements && (
 				<Overlay onClose={() => changeDisplayReplacement(false)}>

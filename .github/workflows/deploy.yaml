@@ -166,7 +166,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-preview.result == 'success'
     needs: [deploy-context, deploy-preview]
@@ -245,7 +245,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-prod.result == 'success'
     needs: [deploy-context, deploy-prod]

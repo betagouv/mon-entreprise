@@ -1,10 +1,10 @@
 import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Redirect } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -64,12 +64,12 @@ export default function Activité({
 			<FromBottom>
 				<TrackPage name={activité.titre} />
 				<h1>
-					{emoji(activité.icônes)} {activité.titre}
+					<Emoji emoji={activité.icônes} /> {activité.titre}
 				</h1>
 				<Markdown source={activité.explication} />
 				{activité.plateformes && (
 					<p className="ui__ notice">
-						{emoji('📱 ')}
+						<Emoji emoji={'📱 '} />
 						{activité.plateformes.join(', ')}
 					</p>
 				)}

@@ -2,13 +2,13 @@ import { hideNotification } from 'Actions/actions'
 import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
 import RuleLink from './RuleLink'
 import { FromTop } from './ui/animate'
+import Emoji from './utils/Emoji'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
 
@@ -68,7 +68,7 @@ export default function Notifications() {
 						<FromTop key={dottedName}>
 							<li>
 								<div className="notification">
-									{emoji(sévérité == 'avertissement' ? '⚠️' : '💁🏻')}
+									<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
 									<div className="notificationText ui__ card">
 										<Markdown source={résumé ?? description} />{' '}
 										{résumé && (

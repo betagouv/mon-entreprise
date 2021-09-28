@@ -1,0 +1,24 @@
+name: PR clean up
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy-context:
+    runs-on: ubuntu-18.04
+    outputs:
+      env-name: ${{ steps.deploy-env.outputs.name }}
+    steps:
+      - id: deploy-env
+        run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
+
+  algolia-rm-temp-index:
+    needs: deploy-context
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Remove temporary algolia index
+        run: yarn workspace mon-entreprise algolia:clean
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+          ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-

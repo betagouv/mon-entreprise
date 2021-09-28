@@ -9,7 +9,6 @@ import Value from 'Components/EngineValue'
 import InfoBulle from 'Components/ui/InfoBulle'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -19,6 +18,7 @@ import PeriodSwitch from './PeriodSwitch'
 import './SchemeComparaison.css'
 import { SimulationGoal, SimulationGoals } from './SimulationGoals'
 import { FromBottom } from './ui/animate'
+import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
@@ -86,7 +86,7 @@ export default function SchemeComparaison({
 				})}
 			>
 				<h2 className="AS">
-					{emoji('☂')} <Trans>Assimilé salarié</Trans>
+					<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.AS.tagline">
 							Le régime tout compris
@@ -94,7 +94,7 @@ export default function SchemeComparaison({
 					</small>
 				</h2>
 				<h2 className="indep">
-					{emoji('👩‍🔧')}{' '}
+					<Emoji emoji="👩‍🔧" />{' '}
 					{hideAssimiléSalarié ? (
 						<Trans>Entreprise Individuelle</Trans>
 					) : (
@@ -107,7 +107,7 @@ export default function SchemeComparaison({
 					</small>
 				</h2>
 				<h2 className="auto">
-					{emoji('🚶‍♂️')} <Trans>Auto-entrepreneur</Trans>
+					<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.auto.tagline">
 							Pour commencer sans risques

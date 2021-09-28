@@ -25,7 +25,7 @@ Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
 Explorez notre documentation: Explorez notre documentation
 ExportSimulation:
-  Banner: "Pour conserver cette simulation : <2>Imprimer ou sauvegarder en PDF</2>"
+  Banner: <0>Imprimer ou sauvegarder en PDF</0>
 Fiche de paie: Fiche de paie
 Gestion des données personnelles: Gestion des données personnelles
 Gérant majoritaire: Gérant majoritaire
@@ -693,13 +693,13 @@ pages:
       par nos soins, qui n'est pas documenté mais son utilisation est très
       simple et compréhensible <10>dans ce composant React qui l'appelle</10>,
       composant qui fait aussi appel à l'API commune.</20><21>Faire des
-      graphiques économiques{emoji(' 📈')}</21><22>Il est aussi possible
-      d'utiliser la bibliothèque pour des calculs d'analyse économique ou
-      politique. Ici, on trace le prix du travail et le salaire net en fonction
-      du brut.</22><23>On peut constater la progressivité du salaire total, qui
-      est en pourcent plus faible pour un SMIC que pour un haut revenu.
-      Autrement dit, les hauts salaires paient une partie des cotisations
-      sociales des bas salaires.</23><24><0></0></24>"
+      graphiques économiques <1></1></21><22>Il est aussi possible d'utiliser la
+      bibliothèque pour des calculs d'analyse économique ou politique. Ici, on
+      trace le prix du travail et le salaire net en fonction du brut.</22><23>On
+      peut constater la progressivité du salaire total, qui est en pourcent plus
+      faible pour un SMIC que pour un haut revenu. Autrement dit, les hauts
+      salaires paient une partie des cotisations sociales des bas
+      salaires.</23><24><0></0></24>"
   développeurs:
     choice:
       github: <0>Contribuer sur GitHub</0><1>Tous nos outils sont ouverts et
@@ -1191,7 +1191,7 @@ responsabilité:
     notamment la rédaction de statuts et le dépôt d'un capital."
   titre: Entreprise individuelle ou société ?
 shareSimulation:
-  banner: "Pour partager cette simulation : <2>Générer un lien dédié</2>"
+  banner: <0>Générer un lien de partage</0>
   button:
     copied: Copié
     copy: Copier le lien
@@ -1304,7 +1304,7 @@ trouver:
     contenu: <0>Vous avez des revenus issus des <2>plateformes en ligne</2> (Airbnb,
       Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans
       la plupart des cas. Cependant, il peut être difficile de s'y retrouver
-      <4>{emoji('🤔')}</4>.</0><1>Suivez ce guide pour savoir en quelques clics
+      <5><0></0></5>.</0><1>Suivez ce guide pour savoir en quelques clics
       comment être en règle.</1><2>À partir de 2020, ces revenus seront
       communiqués automatiquement par les plateformes à l’administration fiscale
       et à l’Urssaf.</2>
