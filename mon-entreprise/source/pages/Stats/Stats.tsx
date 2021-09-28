@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import PagesChart from 'Components/charts/PagesCharts'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import InfoBulle from 'Components/ui/InfoBulle'
@@ -285,15 +286,8 @@ const StatsDetail = () => {
 						)}
 						{chapter2 === '' && period === 'mois' && (
 							<>
-								<h2>Principales pages</h2>
-								<Chart
-									colored
-									period={'mois'}
-									data={repartition}
-									grid={false}
-									stack
-									layout={'vertical'}
-								/>
+								<h2>Simulateurs principaux</h2>
+								<PagesChart data={repartition} />
 							</>
 						)}
 					</div>

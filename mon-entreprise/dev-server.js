@@ -34,6 +34,20 @@ app.use(
 	webpackDevMiddleware(compiler, {
 		publicPath: config.output.publicPath,
 		hot: true,
+		stats: {
+			//'minimal',
+			all: false,
+			modules: true,
+			maxModules: 1,
+			errors: true,
+			warnings: true,
+			logging: 'warn',
+			moduleTrace: true,
+			errorDetails: true,
+			builtAt: true,
+			entrypoints: true,
+			colors: true,
+		},
 	})
 )
 
