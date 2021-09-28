@@ -34,7 +34,6 @@ export default function IndépendantExplanation() {
 					<CotisationsRégularisation />
 				</WhenNotApplicable>
 			</section>
-			<InstitutionsPartenaires />
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
 					<h2>Répartition du revenu</h2>
@@ -59,6 +58,7 @@ export default function IndépendantExplanation() {
 					/>
 				</section>
 			</Condition>
+			<InstitutionsPartenaires />
 			<DroitsRetraite />
 			<DistributionSection>
 				<Distribution />

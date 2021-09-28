@@ -1,8 +1,5 @@
-import Value, {
-	Condition,
-	WhenApplicable,
-	WhenNotApplicable,
-} from 'Components/EngineValue'
+import Value, { Condition } from 'Components/EngineValue'
+import RuleLink from 'Components/RuleLink'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -27,13 +24,13 @@ export default function InstitutionsPartenaires() {
 					</Trans>
 				</h2>
 				<InstitutionsTable>
-					<Condition expression="entreprise . activité . libérale réglementée">
+					<Condition expression="entreprise . activité . libérale réglementée = oui">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
 						<CaisseRetraite />
 					</Condition>
-					<WhenNotApplicable dottedName="entreprise . activité . libérale réglementée">
+					<Condition expression="entreprise . activité . libérale réglementée = non">
 						<CotisationsUrssaf rule="dirigeant . indépendant . cotisations et contributions" />
-					</WhenNotApplicable>
+					</Condition>
 					<ImpôtsDGFIP />
 					<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
 						<InstitutionLine>
@@ -52,11 +49,13 @@ export default function InstitutionsPartenaires() {
 							</p>
 							<p className="ui__ lead">
 								<Emoji emoji="🎁" />{' '}
-								<Value
-									unit={unit}
-									displayedUnit="€"
-									expression="dirigeant . indépendant . PL . PAMC . participation CPAM"
-								/>
+								<RuleLink dottedName="dirigeant . indépendant . PL . PAMC . participation CPAM">
+									<Value
+										unit={unit}
+										displayedUnit="€"
+										expression="- dirigeant . indépendant . PL . PAMC . participation CPAM"
+									/>
+								</RuleLink>
 							</p>
 						</InstitutionLine>
 					</Condition>
@@ -74,7 +73,15 @@ export default function InstitutionsPartenaires() {
 	)
 }
 
-export function CotisationsUrssaf({ rule }: { rule: DottedName }) {
+type CotisationsUrssafProps = {
+	rule: DottedName
+	extraNotice?: JSX.Element
+}
+
+export function CotisationsUrssaf({
+	rule,
+	extraNotice,
+}: CotisationsUrssafProps) {
 	const unit = useSelector(targetUnitSelector)
 	return (
 		<InstitutionLine>
@@ -86,10 +93,11 @@ export function CotisationsUrssaf({ rule }: { rule: DottedName }) {
 			</InstitutionLogo>
 			<p className="ui__ notice">
 				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
-					Les cotisations recouvrées par l'Urssaf, qui servent au financement de
-					la sécurité sociale (assurance maladie, allocations familiales,
+					L’Urssaf recouvre les cotisations servant au financement de la
+					sécurité sociale (assurance maladie, allocations familiales,
 					dépendance).
-				</Trans>
+				</Trans>{' '}
+				{extraNotice}
 			</p>
 			<p className="ui__ lead">
 				<Value unit={unit} displayedUnit="€" expression={rule} />
@@ -186,7 +194,18 @@ export function InstitutionsPartenairesArtisteAuteur() {
 		<section>
 			<h3>Vos cotisations</h3>
 			<InstitutionsTable>
-				<CotisationsUrssaf rule="artiste-auteur . cotisations" />
+				<CotisationsUrssaf
+					rule="artiste-auteur . cotisations"
+					extraNotice={
+						<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
+							<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
+								Pour vos revenus en traitement et salaires, ces cotisations sont
+								« précomptées », c'est à dire payées à la source par le
+								diffuseur.
+							</Trans>
+						</Condition>
+					}
+				/>
 				<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
 					<InstitutionLine>
 						<InstitutionLogo target="_blank" href="http://www.ircec.fr/">
@@ -233,6 +252,7 @@ const InstitutionsTable = styled.div.attrs({ className: 'ui__ card' })`
 const InstitutionLogo = styled.a`
 	img {
 		max-width: 100%;
+		max-height: 50px;
 	}
 `
 

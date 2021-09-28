@@ -1,4 +1,3 @@
-import { LinkButton } from 'Components/ui/Button'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
