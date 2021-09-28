@@ -1623,9 +1623,11 @@ simulateurs:
         abatement of the micro-tax system</2>.</2>
       notice acre: The amounts indicated above are calculated without taking into
         account the ACRE start-up exemption
+      précompte-artiste-auteur: For your salary and wages income, these contributions
+        are "deducted", i.e. paid at source by the broadcaster.
       titre: Your partner institutions
-      urssaf: The contributions collected by the Urssaf, which are used to finance
-        social security (health insurance, family allowances, dependence).
+      urssaf: The Urssaf collects the contributions used to finance social security
+        (health insurance, family allowances, dependence).
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.
