@@ -1,10 +1,11 @@
 import { CompanySearchField } from 'Components/companySearchField'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { animated, config, useSpring } from 'react-spring'
 import { RootState } from 'Reducers/rootReducer'
 
 export default function SearchOrCreate() {
@@ -12,8 +13,25 @@ export default function SearchOrCreate() {
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
-	const [fullWidthSearch, setFullwidthSearch] = useState(true)
+	const [fullWidthSearch, setFullwidthSearch] = useState(false)
+	const [{ value }, api] = useSpring(() => ({
+		value: 0,
 
+		config: config.stiff,
+	}))
+	const style = {
+		y: value.to((v) => v + '%'),
+
+		zIndex: 0,
+	}
+	useEffect(() => {
+		api({
+			value: (fullWidthSearch ? -1 : 1) * 100,
+
+			immediate: true,
+		})
+		api({ value: 0 })
+	}, [fullWidthSearch, api])
 	return (
 		<div
 			className="ui__ container"
@@ -23,18 +41,20 @@ export default function SearchOrCreate() {
 				gap: 1rem;
 				align-items: end;
 				padding-bottom: 1rem;
-				justify-content: start;
+				justify-content: end;
 				> * {
 					margin: 0rem !important;
 				}
 			`}
 		>
 			<div
+				style={fullWidthSearch ? { minWidth: '100%' } : {}}
 				css={`
 					min-width: min(20rem, 100%);
 					flex: 1.2;
+					z-index: 1;
+					position: relative;
 				`}
-				style={fullWidthSearch ? { minWidth: '100%' } : {}}
 			>
 				<h2 className="ui__ h h4">
 					<Trans>Rechercher une entreprise</Trans>
@@ -45,7 +65,8 @@ export default function SearchOrCreate() {
 				/>
 			</div>
 			<>
-				<div
+				<animated.div
+					style={style}
 					className="ui__ h h4 notice cta"
 					css={`
 						flex: 0;
@@ -57,9 +78,9 @@ export default function SearchOrCreate() {
 					`}
 				>
 					ou
-				</div>
+				</animated.div>
 
-				<h2>
+				<animated.h2 style={style}>
 					<Link
 						className="ui__ button cta h h4"
 						css={`
@@ -80,7 +101,7 @@ export default function SearchOrCreate() {
 						</span>{' '}
 						<Emoji emoji="💡" />
 					</Link>
-				</h2>
+				</animated.h2>
 			</>
 		</div>
 	)
