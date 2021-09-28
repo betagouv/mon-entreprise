@@ -5,7 +5,6 @@ import { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useSpring } from 'react-spring'
 import { RootState } from 'Reducers/rootReducer'
 
 export default function SearchOrCreate() {
@@ -13,8 +12,8 @@ export default function SearchOrCreate() {
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
-	const [showCreateButton, setShowCreateButton] = useState(true)
-	const { flex } = useSpring({ width: 1.2, to: {} })
+	const [fullWidthSearch, setFullwidthSearch] = useState(true)
+
 	return (
 		<div
 			className="ui__ container"
@@ -23,7 +22,7 @@ export default function SearchOrCreate() {
 				flex-wrap: wrap;
 				gap: 1rem;
 				align-items: end;
-
+				padding-bottom: 1rem;
 				justify-content: start;
 				> * {
 					margin: 0rem !important;
@@ -32,15 +31,18 @@ export default function SearchOrCreate() {
 		>
 			<div
 				css={`
-					flex: 1.2;
 					min-width: min(20rem, 100%);
-					max-width: 100%;
+					flex: 1.2;
 				`}
+				style={fullWidthSearch ? { minWidth: '100%' } : {}}
 			>
 				<h2 className="ui__ h h4">
 					<Trans>Rechercher une entreprise</Trans>
 				</h2>
-				<CompanySearchField />
+				<CompanySearchField
+					onValue={() => setFullwidthSearch(true)}
+					onClear={() => setFullwidthSearch(false)}
+				/>
 			</div>
 			<>
 				<div
