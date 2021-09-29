@@ -3,6 +3,7 @@ import { useSearchField } from '@react-aria/searchfield'
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
 import { animated, useSpring, useTrail } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
@@ -17,6 +18,7 @@ export function CompanySearchField(props: {
 	onClear?: () => void
 }) {
 	const { t } = useTranslation()
+	const history = useHistory()
 	const searchFieldProps = {
 		...props,
 		label: t("Nom de l'entreprise, SIREN ou SIRET"),
@@ -26,9 +28,17 @@ export function CompanySearchField(props: {
 				entreprise. Ex : 40123778000127
 			</Trans>
 		),
+		onSubmit(value: string) {
+			searchDenominationOrSiren(value).then((result) => {
+				if (!result || result.length !== 1) {
+					return
+				}
+				history.push(`/entreprise/${result[0].siren}`)
+			})
+		},
 		placeholder: t('Café de la gare ou 40123778000127'),
 	}
-	const state = useSearchFieldState(props)
+	const state = useSearchFieldState(searchFieldProps)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const clearButtonRef = useRef<HTMLButtonElement>(null)
 	const { labelProps, inputProps, descriptionProps, clearButtonProps } =
@@ -174,7 +184,7 @@ function Results({ value }: { value: string }) {
 						flex-direction: column;
 						text-decoration: none;
 						:hover > :last-child {
-							transform: translateX(10px);
+							transform: translateX(0.2rem);
 						}
 					`}
 				>
@@ -182,13 +192,13 @@ function Results({ value }: { value: string }) {
 					<div
 						css={`
 							position: absolute;
-							right: 1rem;
+							transition: transform 0.1s;
+							right: 0.1rem;
 							font-size: 2rem;
 							height: 100%;
-							color: var(--lightColor);
+							color: var(--lighterTextColor);
 							display: flex;
 							align-items: center;
-							transition: transform 0.1s;
 							will-change: transform;
 						`}
 					>
