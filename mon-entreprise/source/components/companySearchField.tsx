@@ -3,7 +3,6 @@ import { useSearchField } from '@react-aria/searchfield'
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router'
 import { animated, useSpring, useTrail } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
@@ -16,9 +15,9 @@ export function CompanySearchField(props: {
 	label?: ReactNode
 	onValue?: () => void
 	onClear?: () => void
+	onSubmit?: (établissement: Etablissement) => void
 }) {
 	const { t } = useTranslation()
-	const history = useHistory()
 	const searchFieldProps = {
 		...props,
 		label: t("Nom de l'entreprise, SIREN ou SIRET"),
@@ -33,7 +32,7 @@ export function CompanySearchField(props: {
 				if (!result || result.length !== 1) {
 					return
 				}
-				history.push(`/entreprise/${result[0].siren}`)
+				onSubmit(result[0])
 			})
 		},
 		placeholder: t('Café de la gare ou 40123778000127'),
@@ -103,7 +102,7 @@ export function CompanySearchField(props: {
 					</button>
 				)}
 			</animated.div>
-			<Results value={state.value} />
+			<Results value={state.value} onSubmit={props.onSubmit} />
 		</div>
 	)
 }
@@ -132,7 +131,13 @@ function useSearchCompany(value: string): [boolean, Array<Etablissement>] {
 	return [searchPending, result.slice(0, 5)]
 }
 
-function Results({ value }: { value: string }) {
+function Results({
+	value,
+	onSubmit,
+}: {
+	value: string
+	onSubmit: (établissement: Etablissement) => void
+}) {
 	const [searchPending, results] = useSearchCompany(value)
 
 	const styles = useTrail(results.length, {
@@ -153,7 +158,7 @@ function Results({ value }: { value: string }) {
 				display: flex;
 				margin-top: 0.4rem;
 				flex-direction: column;
-				padding: 0.6rem 1rem 0.4rem;
+				padding: 0.6rem 1rem 0;
 				border-radius: 0.3rem;
 			`}
 		>
@@ -171,24 +176,27 @@ function Results({ value }: { value: string }) {
 		</div>
 	) : (
 		<>
-			{results.map((r, i) => (
-				<animated.a
-					key={r.siren}
+			{results.map((établissement, i) => (
+				<animated.button
+					key={établissement.siren}
 					style={styles[i]}
 					className="ui__ interactive card"
-					href={`/entreprise/${r.siren}`}
 					css={`
 						position: relative;
 						display: flex;
+						text-align: left;
+						font-size: inherit;
+						font-family: inherit;
 						margin-top: 0.4rem;
+						width: 100%;
 						flex-direction: column;
-						text-decoration: none;
 						:hover > :last-child {
 							transform: translateX(0.2rem);
 						}
 					`}
+					onClick={() => onSubmit(établissement)}
 				>
-					<CompanyDetails {...r} />
+					<CompanyDetails {...établissement} />
 					<div
 						css={`
 							position: absolute;
@@ -204,7 +212,7 @@ function Results({ value }: { value: string }) {
 					>
 						〉
 					</div>
-				</animated.a>
+				</animated.button>
 			))}
 		</>
 	)
