@@ -96,7 +96,6 @@
 		"react-signature-pad-wrapper": "^1.2.11",
 		"react-spring": "^9.2.4",
 		"react-syntax-highlighter": "^10.1.1",
-		"react-transition-group": "^2.2.1",
 		"react-use-measure": "^2.0.4",
 		"react-useportal": "^1.0.13",
 		"recharts": "^1.8.5",
@@ -104,7 +103,7 @@
 		"redux": "^4.0.4",
 		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
-		"styled-components": "^5.1.0",
+		"styled-components": "^5.3.1",
 		"swr": "^0.1.16",
 		"whatwg-fetch": "^3.0.0",
 		"yaml": "^1.9.2"

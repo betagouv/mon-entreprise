@@ -1,13 +1,14 @@
 import { DisableAnimationContext } from 'Components/utils/DisableAnimationContext'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import {
 	animated,
 	config as configPresets,
-	interpolate,
-	Spring,
 	SpringConfig,
-	Trail,
+	useSpring,
+	useTrail,
 } from 'react-spring'
+import useMeasure from 'react-use-measure'
+import styled from 'styled-components'
 
 type Props = {
 	children: React.ReactNode
@@ -17,101 +18,93 @@ type Props = {
 	delay?: number
 }
 
-// Todo : better animate with fromRight on desktop
+const AnimatedDiv = styled(animated.div)``
+
 export function FromBottom({
 	children,
 	config = configPresets.stiff,
 	style: inheritedStyle = {},
 	delay = 0,
 }: Props) {
+	const trail = useTrail(React.Children.count(children), {
+		delay,
+		config,
+		from: { opacity: 0, y: 10 },
+		to: { opacity: 1, y: 0 },
+	})
 	if (useContext(DisableAnimationContext)) {
 		return <>{children}</>
 	}
+	const childrenArray = React.Children.toArray(children)
 	return (
-		<Trail
-			keys={React.Children.map(children, (_, i) => i) ?? []}
-			native={true}
-			delay={delay}
-			config={config}
-			from={{ opacity: 0, y: 10 }}
-			to={{ opacity: 1, y: 0 }}
-			items={children}
-		>
-			{(item) =>
-				({ y, ...style }) =>
-					(
-						<animated.div
-							style={{
-								transform: interpolate([y], (y) =>
-									y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-								),
-								...style,
-								...inheritedStyle,
-							}}
-						>
-							{item}
-						</animated.div>
-					)}
-		</Trail>
+		<>
+			{trail.map((style, i) => (
+				<AnimatedDiv
+					// @ts-expect-error:  bug when using babel-plugin-styled-components and react-spring
+					key={i}
+					style={{
+						...inheritedStyle,
+						...style,
+						position: 'relative',
+					}}
+				>
+					{childrenArray[i]}
+				</AnimatedDiv>
+			))}
+		</>
 	)
 }
+
 export function FromTop({
 	children,
 	config = configPresets.stiff,
 	style: inheritedStyle = {},
 	delay = 0,
 }: Props) {
+	const trail = useTrail(React.Children.count(children), {
+		delay,
+		config,
+		from: { opacity: 0, y: -20 },
+		to: { opacity: 1, y: 0 },
+	})
 	if (useContext(DisableAnimationContext)) {
 		return <>{children}</>
 	}
+	const childrenArray = React.Children.toArray(children)
 	return (
-		<Trail
-			keys={React.Children.map(children, (_, i) => i) ?? []}
-			native={true}
-			delay={delay}
-			config={config}
-			from={{ opacity: 0, y: -20 }}
-			to={{ opacity: 1, y: 0 }}
-			items={children}
-		>
-			{(item) =>
-				({ y, ...style }) =>
-					(
-						<animated.div
-							style={{
-								transform: interpolate([y], (y) =>
-									y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-								),
-								...style,
-								...inheritedStyle,
-							}}
-						>
-							{item}
-						</animated.div>
-					)}
-		</Trail>
+		<>
+			{trail.map((style, i) => (
+				<AnimatedDiv
+					key={i}
+					style={{
+						...inheritedStyle,
+						...style,
+						position: 'relative',
+					}}
+				>
+					{childrenArray[i]}
+				</AnimatedDiv>
+			))}
+		</>
 	)
 }
+
 export const FadeIn = ({
 	children,
 	config = configPresets.default,
 	delay = 0,
-}: Props) =>
-	useContext(DisableAnimationContext) ? (
-		<>{children}</>
-	) : (
-		<Spring
-			native={true}
-			delay={delay}
-			config={config}
-			from={{ opacity: 0 }}
-			to={{
-				opacity: 1,
-			}}
-		>
-			{(style) => <animated.div style={style}>{children}</animated.div>}
-		</Spring>
-	)
+}: Props) => {
+	const style = useSpring({
+		delay,
+		config,
+		from: { opacity: 0 },
+		to: { opacity: 1 },
+	})
+	if (useContext(DisableAnimationContext)) {
+		return <>{children}</>
+	}
+	return <animated.div style={style}>{children}</animated.div>
+}
 
 export function Appear({
 	children,
@@ -121,29 +114,31 @@ export function Appear({
 	delay = 0,
 	style,
 }: Props & { unless?: boolean }) {
-	const [show, setShow] = useState(unless)
-	useEffect(() => {
-		window.setTimeout(() => setShow(true), 0)
-	}, [])
-	if (useContext(DisableAnimationContext)) {
+	const [ref, { height }] = useMeasure()
+	const animatedStyle = useSpring({
+		delay,
+		config,
+		from: { opacity: 0, height: 0 },
+		reset: false,
+		to: { opacity: 1, height },
+	})
+
+	if (useContext(DisableAnimationContext) || unless) {
 		return <>{children}</>
 	}
 
 	return (
-		<Spring
-			delay={delay}
-			native
-			config={config}
-			to={{
-				opacity: show ? 1 : 0,
-				height: show ? 'auto' : '0px',
+		<animated.div
+			style={{
+				...style,
+				...animatedStyle,
+				overflow: 'hidden',
+				display: 'flex',
+				flexDirection: 'column',
 			}}
+			className={className}
 		>
-			{(animStyle) => (
-				<animated.div style={{ ...style, ...animStyle }} className={className}>
-					{children}
-				</animated.div>
-			)}
-		</Spring>
+			<div ref={ref}>{children}</div>
+		</animated.div>
 	)
 }

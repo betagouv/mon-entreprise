@@ -1,15 +1,17 @@
 import { useButton } from '@react-aria/button'
 import { useSearchField } from '@react-aria/searchfield'
 import { useSearchFieldState } from '@react-stately/searchfield'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { animated, useSpring, useTrail } from 'react-spring'
+import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
+import styled from 'styled-components'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import CompanyDetails from './CompanyDetails'
+import { FromTop } from './ui/animate'
 import InfoBulle from './ui/InfoBulle'
 import { useDebounce } from './utils'
-import { useInitialRender, WatchInitialRender } from './utils/useInitialRender'
+import { useInitialRender } from './utils/useInitialRender'
 
 const config = { mass: 0.5, tension: 250, friction: 25 }
 export function CompanySearchField(props: {
@@ -55,13 +57,15 @@ export function CompanySearchField(props: {
 		[state.value, onValue, onClear]
 	)
 	const [ref, { width }] = useMeasure()
+	const initialRender = useInitialRender()
 	const inputStyle = useSpring({
-		width,
+		from: { width: 'auto' },
+		width: initialRender ? 'auto' : width,
 		config,
 	})
 
 	return (
-		<WatchInitialRender>
+		<>
 			<div css={'display: flex, flex-direction: column, width: 100%'} ref={ref}>
 				<label className="ui__ notice" {...labelProps}>
 					{searchFieldProps.label}
@@ -69,13 +73,7 @@ export function CompanySearchField(props: {
 				<InfoBulle>
 					<span {...descriptionProps}>{searchFieldProps.description}</span>
 				</InfoBulle>
-				<animated.div
-					css={`
-						position: relative;
-						margin-top: 0.4rem;
-					`}
-					style={!useInitialRender() ? inputStyle : {}}
-				>
+				<AnimatedInputContainer style={inputStyle}>
 					<input
 						className="ui__ cta"
 						css={`
@@ -102,12 +100,17 @@ export function CompanySearchField(props: {
 							×
 						</button>
 					)}
-				</animated.div>
+				</AnimatedInputContainer>
 				<Results value={state.value} onSubmit={props.onSubmit ?? (() => {})} />
 			</div>
-		</WatchInitialRender>
+		</>
 	)
 }
+
+const AnimatedInputContainer = styled(animated.div)`
+	position: relative;
+	margin-top: 0.4rem;
+`
 
 function useSearchCompany(value: string): [boolean, Array<Etablissement>] {
 	const [result, setResult] = useState<Array<Etablissement>>([])
@@ -142,81 +145,78 @@ function Results({
 }) {
 	const [searchPending, results] = useSearchCompany(value)
 
-	const styles = useTrail(results.length, {
-		opacity: 1,
-		x: 0,
-		y: 0,
-		from: { opacity: 0, x: 5, y: -15 },
-		config,
-	})
 	if (!value) {
 		return null
 	}
 
 	return !results.length ? (
-		<div
-			className="ui__ lighter-bg"
-			css={`
-				display: flex;
-				margin-top: 0.4rem;
-				flex-direction: column;
-				padding: 0.6rem 1rem 0;
-				border-radius: 0.3rem;
-			`}
-		>
-			{searchPending ? (
-				<p className="ui__ notice">Recherche en cours...</p>
-			) : (
-				<>
-					<p>Aucune entreprise correspondante trouvée</p>
-					<p className="ui__  notice">
-						Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
-						meilleur résultat
-					</p>
-				</>
-			)}
-		</div>
+		<FromTop>
+			<div
+				className="ui__ lighter-bg"
+				css={`
+					display: flex;
+					margin-top: 0.4rem;
+					flex-direction: column;
+					padding: 0.6rem 1rem 0;
+					border-radius: 0.3rem;
+				`}
+			>
+				{searchPending ? (
+					<p className="ui__ notice">Recherche en cours...</p>
+				) : (
+					<>
+						<p>Aucune entreprise correspondante trouvée</p>
+						<p className="ui__  notice">
+							Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
+							meilleur résultat
+						</p>
+					</>
+				)}
+			</div>
+		</FromTop>
 	) : (
 		<>
-			{results.map((établissement, i) => (
-				<animated.button
-					key={établissement.siren}
-					style={styles[i]}
-					className="ui__ interactive card"
-					css={`
-						position: relative;
-						display: flex;
-						text-align: left;
-						font-size: inherit;
-						font-family: inherit;
-						margin-top: 0.4rem;
-						width: 100%;
-						flex-direction: column;
-						:hover > :last-child {
-							transform: translateX(0.2rem);
-						}
-					`}
-					onClick={() => onSubmit(établissement)}
-				>
-					<CompanyDetails {...établissement} />
-					<div
-						className="ui__ hide-mobile"
-						css={`
-							position: absolute;
-							transition: transform 0.1s;
-							right: 0.1rem;
-							font-size: 2rem;
-							height: 100%;
-							color: var(--lighterTextColor);
-							display: flex;
-							align-items: center;
-							will-change: transform;
-						`}
+			<FromTop>
+				{results.map((établissement) => (
+					<StyledResult
+						key={établissement.siren}
+						className="ui__ interactive card"
+						onClick={() => onSubmit(établissement)}
 					>
-						〉
-					</div>
-				</animated.button>
-			))}
+						<CompanyDetails {...établissement} />
+						<div
+							className="ui__ hide-mobile"
+							css={`
+								position: absolute;
+								transition: transform 0.1s;
+								right: 0.1rem;
+								font-size: 2rem;
+								height: 100%;
+								color: var(--lighterTextColor);
+								display: flex;
+								align-items: center;
+								will-change: transform;
+							`}
+						>
+							〉
+						</div>
+					</StyledResult>
+				))}
+			</FromTop>
 		</>
 	)
 }
+
+const StyledResult = styled('button')`
+	position: relative;
+	display: flex;
+	text-align: left;
+	font-size: inherit;
+	font-family: inherit;
+	margin-top: 0.4rem;
+	width: 100%;
+	flex-direction: column;
+	:hover > :last-child {
+		transform: translateX(0.2rem);
+	}
+`

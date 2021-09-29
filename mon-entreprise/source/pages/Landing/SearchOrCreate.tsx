@@ -16,12 +16,10 @@ export default function SearchOrCreate() {
 	const [fullWidthSearch, setFullwidthSearch] = useState(false)
 	const [{ value }, api] = useSpring(() => ({
 		value: 0,
-
 		config: config.stiff,
 	}))
 	const style = {
 		y: value.to((v) => v + '%'),
-
 		zIndex: 0,
 	}
 	useEffect(() => {

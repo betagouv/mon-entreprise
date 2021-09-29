@@ -7,7 +7,7 @@ import {
 	useState,
 } from 'react'
 
-const InitialRenderContext = createContext(true)
+const InitialRenderContext = createContext<boolean | null>(null)
 
 export function WatchInitialRender(props: { children: ReactNode }) {
 	const [initialRender, setInitialRender] = useState(true)
@@ -21,8 +21,18 @@ export function WatchInitialRender(props: { children: ReactNode }) {
 	)
 }
 
-export function useInitialRender() {
-	const initialRender = useContext(InitialRenderContext)
-	const unChangedInitialRender = useMemo(() => initialRender, [])
-	return unChangedInitialRender
+export function useInitialRender(): boolean {
+	const initialRenderFromContext = useContext(InitialRenderContext)
+	const unChangedInitialRender = useMemo(() => initialRenderFromContext, [])
+
+	const [initialRender, setInitialRender] = useState(true)
+	useEffect(() => {
+		setInitialRender(false)
+	}, [])
+
+	if (unChangedInitialRender !== null) {
+		return unChangedInitialRender
+	}
+
+	return initialRender
 }
