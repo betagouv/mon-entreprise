@@ -62,6 +62,7 @@ const sitePathsFr = {
 		'profession-libérale': {
 			index: '/profession-liberale',
 			médecin: '/medecin',
+			pharmacien: '/pharmacien',
 			auxiliaire: '/auxiliaire-medical',
 			'chirurgien-dentiste': '/chirurgien-dentiste',
 			'sage-femme': '/sage-femme',
@@ -130,6 +131,7 @@ const sitePathsEn = {
 		'profession-libérale': {
 			index: '/liberal-profession',
 			médecin: '/doctor',
+			pharmacien: '/pharmacist',
 			auxiliaire: '/medical-auxiliary',
 			'chirurgien-dentiste': '/dental-surgeon',
 			'sage-femme': '/midwife',

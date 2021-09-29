@@ -1057,6 +1057,9 @@ pages:
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: "PAMC : simulateurs de cotisations et de revenu"
+    pharmacien:
+      shortname: Pharmacien
+      title: Simulateur de revenus pour pharmacien en libéral
     print-info:
       date: Cette simulation a été effectuée le
       recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la

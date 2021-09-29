@@ -75,6 +75,7 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
 						<SimulateurCard small {...simulators.médecin} />
 						<SimulateurCard small {...simulators['sage-femme']} />
+						<SimulateurCard small {...simulators['pharmacien']} />
 						<SimulateurCard small {...simulators['avocat']} />
 						<SimulateurCard small {...simulators['expert-comptable']} />
 					</div>

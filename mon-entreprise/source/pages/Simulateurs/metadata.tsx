@@ -57,6 +57,7 @@ const simulateurs = [
 	'demande-mobilité',
 	'profession-libérale',
 	'médecin',
+	'pharmacien',
 	'chirurgien-dentiste',
 	'sage-femme',
 	'auxiliaire-médical',
@@ -608,6 +609,16 @@ export function getSimulatorsData({
 			path: sitePaths.gérer.formulaireMobilité,
 			private: true,
 		},
+		pharmacien: {
+			...pureSimulatorsData['pharmacien'],
+			config: pharmacienConfig,
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pharmacien',
+			},
+			path: sitePaths.simulateurs['profession-libérale'].pharmacien,
+			component: IndépendantPLSimulation,
+		},
 		médecin: {
 			...pureSimulatorsData['médecin'],
 			config: médecinConfig,
@@ -869,6 +880,7 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 const auxiliaireConfig = configFromPLMetier('santé . auxiliaire médical')
 const dentisteConfig = configFromPLMetier('santé . chirurgien-dentiste')
 const médecinConfig = configFromPLMetier('santé . médecin')
+const pharmacienConfig = configFromPLMetier('santé . pharmacien')
 const sageFemmeConfig = configFromPLMetier('santé . sage-femme')
 const avocatConfig = configFromPLMetier('avocat')
 const expertComptableConfig = configFromPLMetier('expert-comptable')

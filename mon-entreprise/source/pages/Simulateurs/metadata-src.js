@@ -369,12 +369,26 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			private: true,
 			iframePath: 'demande-mobilite',
 		},
+		pharmacien: {
+			tracking: {
+				chapter2: 'profession_liberale',
+				chapter3: 'pharmacien',
+			},
+			icône: '⚕️',
+			iframePath: 'pharmacien',
+			pathId: 'simulateurs.profession-libérale.pharmacien',
+			shortName: t('pages.simulateurs.pharmacien.shortname', 'Pharmacien'),
+			title: t(
+				'pages.simulateurs.pharmacien.title',
+				'Simulateur de revenus pour pharmacien en libéral'
+			),
+		},
 		médecin: {
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'medecin',
 			},
-			icône: '⚕️',
+			icône: '🩺',
 			iframePath: 'médecin',
 			pathId: 'simulateurs.profession-libérale.médecin',
 			shortName: t('pages.simulateurs.médecin.shortname', 'Médecin'),
