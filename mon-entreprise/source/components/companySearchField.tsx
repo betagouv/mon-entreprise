@@ -62,7 +62,7 @@ export function CompanySearchField(props: {
 			<animated.div
 				css={`
 					position: relative;
-					margin-top: 0.3rem;
+					margin-top: 0.4rem;
 				`}
 				style={inputStyle}
 			>
@@ -124,45 +124,41 @@ function useSearchCompany(value: string): [boolean, Array<Etablissement>] {
 
 function Results({ value }: { value: string }) {
 	const [searchPending, results] = useSearchCompany(value)
-	const [showSearchIndicator, setShowSearchIndicator] = useState(false)
-	useEffect(() => {
-		if (!searchPending) {
-			setShowSearchIndicator(false)
-			return
-		}
-		const timeout = setTimeout(() => setShowSearchIndicator(true), 500)
-		return () => clearTimeout(timeout)
-	}, [searchPending, setShowSearchIndicator])
-	const [styles, api] = useTrail(results.length, () => ({
+
+	const styles = useTrail(results.length, {
 		opacity: 1,
 		x: 0,
 		y: 0,
 		from: { opacity: 0, x: 5, y: -15 },
 		config,
-	}))
-	useEffect(() => {
-		if (value && results.length) {
-			api.start()
-		}
 	})
-	return showSearchIndicator ? (
-		<p
-			className="ui__ notice"
+	if (!value) {
+		return null
+	}
+
+	return !results.length ? (
+		<div
+			className="ui__ lighter-bg"
 			css={`
-				margin-top: 1rem;
+				display: flex;
+				margin-top: 0.4rem;
+				flex-direction: column;
+				padding: 0.6rem 1rem 0.4rem;
+				border-radius: 0.3rem;
 			`}
 		>
-			Recherche en cours
-		</p>
-	) : !searchPending && value && !results.length ? (
-		<p
-			className="ui__ notice"
-			css={`
-				margin-top: 1rem;
-			`}
-		>
-			Aucun résultat trouvé
-		</p>
+			{searchPending ? (
+				<p className="ui__ notice">Recherche en cours...</p>
+			) : (
+				<>
+					<p>Aucune entreprise correspondante trouvée</p>
+					<p className="ui__  notice">
+						Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
+						meilleur résultat
+					</p>
+				</>
+			)}
+		</div>
 	) : (
 		<>
 			{results.map((r, i) => (
@@ -177,9 +173,27 @@ function Results({ value }: { value: string }) {
 						margin-top: 0.4rem;
 						flex-direction: column;
 						text-decoration: none;
+						:hover > :last-child {
+							transform: translateX(10px);
+						}
 					`}
 				>
 					<CompanyDetails {...r} />
+					<div
+						css={`
+							position: absolute;
+							right: 1rem;
+							font-size: 2rem;
+							height: 100%;
+							color: var(--lightColor);
+							display: flex;
+							align-items: center;
+							transition: transform 0.1s;
+							will-change: transform;
+						`}
+					>
+						〉
+					</div>
 				</animated.a>
 			))}
 		</>

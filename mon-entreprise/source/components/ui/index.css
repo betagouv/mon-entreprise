@@ -13,7 +13,7 @@
 }
 @media (min-width: 400px) {
 	:focus:not(:active):not(input) {
-		outline: 1px dashed var(--darkColor);
+		outline: 2px dotted var(--darkColor);
 	}
 }
 :active {
