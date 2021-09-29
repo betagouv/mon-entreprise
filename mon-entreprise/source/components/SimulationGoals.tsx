@@ -2,14 +2,7 @@ import { updateSituation } from 'Actions/actions'
 import classnames from 'classnames'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
-import {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react'
+import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	firstStepCompletedSelector,
@@ -21,25 +14,19 @@ import RuleLink from './RuleLink'
 import { Appear } from './ui/animate'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
 import { useEngine } from './utils/EngineContext'
+import { useInitialRender, WatchInitialRender } from './utils/useInitialRender'
 
 type SimulationGoalsProps = {
 	className?: string
 	children: React.ReactNode
 }
 
-const InitialRenderContext = createContext(true)
-
 export function SimulationGoals({
 	className = '',
 	children,
 }: SimulationGoalsProps) {
-	const [initialRender, setInitialRender] = useState(true)
-	useEffect(() => {
-		setInitialRender(false)
-	}, [])
-
 	return (
-		<InitialRenderContext.Provider value={initialRender}>
+		<WatchInitialRender>
 			<section
 				className={`ui__ card ${className}`}
 				style={{ marginTop: '0.6rem' }}
@@ -48,14 +35,8 @@ export function SimulationGoals({
 					<ul className="targets">{children}</ul>
 				</div>
 			</section>
-		</InitialRenderContext.Provider>
+		</WatchInitialRender>
 	)
-}
-
-function useInitialRender() {
-	const initialRender = useContext(InitialRenderContext)
-	const unChangedInitialRender = useMemo(() => initialRender, [])
-	return unChangedInitialRender
 }
 
 type SimulationGoalProps = {

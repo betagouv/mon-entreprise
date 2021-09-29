@@ -9,6 +9,7 @@ import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import CompanyDetails from './CompanyDetails'
 import InfoBulle from './ui/InfoBulle'
 import { useDebounce } from './utils'
+import { useInitialRender, WatchInitialRender } from './utils/useInitialRender'
 
 const config = { mass: 0.5, tension: 250, friction: 25 }
 export function CompanySearchField(props: {
@@ -32,7 +33,7 @@ export function CompanySearchField(props: {
 				if (!result || result.length !== 1) {
 					return
 				}
-				onSubmit(result[0])
+				props.onSubmit?.(result[0])
 			})
 		},
 		placeholder: t('Café de la gare ou 40123778000127'),
@@ -53,7 +54,6 @@ export function CompanySearchField(props: {
 		() => (!state.value ? onClear() : onValue()),
 		[state.value, onValue, onClear]
 	)
-
 	const [ref, { width }] = useMeasure()
 	const inputStyle = useSpring({
 		width,
@@ -61,49 +61,51 @@ export function CompanySearchField(props: {
 	})
 
 	return (
-		<div css={'display: flex, flex-direction: column, width: 100%'} ref={ref}>
-			<label className="ui__ notice" {...labelProps}>
-				{searchFieldProps.label}
-			</label>{' '}
-			<InfoBulle>
-				<span {...descriptionProps}>{searchFieldProps.description}</span>
-			</InfoBulle>
-			<animated.div
-				css={`
-					position: relative;
-					margin-top: 0.4rem;
-				`}
-				style={inputStyle}
-			>
-				<input
-					className="ui__ cta"
+		<WatchInitialRender>
+			<div css={'display: flex, flex-direction: column, width: 100%'} ref={ref}>
+				<label className="ui__ notice" {...labelProps}>
+					{searchFieldProps.label}
+				</label>{' '}
+				<InfoBulle>
+					<span {...descriptionProps}>{searchFieldProps.description}</span>
+				</InfoBulle>
+				<animated.div
 					css={`
-						width: 100%;
-						margin: 0 !important;
+						position: relative;
+						margin-top: 0.4rem;
 					`}
-					{...inputProps}
-					ref={inputRef}
-				/>
-				{state.value !== '' && (
-					<button
-						ref={clearButtonRef}
+					style={!useInitialRender() ? inputStyle : {}}
+				>
+					<input
+						className="ui__ cta"
 						css={`
-							position: absolute;
-							padding: 0 1rem;
-							right: 0;
-							height: 100%;
-							font-size: 2rem;
-							color: var(--lighterTextColor);
-							text-decoration: none;
+							width: 100%;
+							margin: 0 !important;
 						`}
-						{...buttonProps}
-					>
-						×
-					</button>
-				)}
-			</animated.div>
-			<Results value={state.value} onSubmit={props.onSubmit} />
-		</div>
+						{...inputProps}
+						ref={inputRef}
+					/>
+					{state.value !== '' && (
+						<button
+							ref={clearButtonRef}
+							css={`
+								position: absolute;
+								padding: 0 1rem;
+								right: 0;
+								height: 100%;
+								font-size: 2rem;
+								color: var(--lighterTextColor);
+								text-decoration: none;
+							`}
+							{...buttonProps}
+						>
+							×
+						</button>
+					)}
+				</animated.div>
+				<Results value={state.value} onSubmit={props.onSubmit ?? (() => {})} />
+			</div>
+		</WatchInitialRender>
 	)
 }
 
@@ -198,6 +200,7 @@ function Results({
 				>
 					<CompanyDetails {...établissement} />
 					<div
+						className="ui__ hide-mobile"
 						css={`
 							position: absolute;
 							transition: transform 0.1s;
