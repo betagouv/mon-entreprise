@@ -1,5 +1,6 @@
 import Emoji from 'Components/utils/Emoji'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
 import { Indicator, Indicators } from './utils'
@@ -138,7 +139,6 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 
 	return (
 		<>
-			{' '}
 			<Indicators>
 				<BigIndicator
 					main={totalVisits}
@@ -150,8 +150,10 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 					subTitle="Simulations lancées"
 					footnote="depuis le 1ᵉ janvier 2019"
 				/>
-			</Indicators>
-			<Indicators>
+				<BigIndicator
+					main={`${last30dConv} %`}
+					footnote="Taux de conversion vers une simulation"
+				/>
 				<BigIndicator
 					main={last30dVisits}
 					subTitle="Visites"
@@ -162,20 +164,19 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 					subTitle="Simulations lancées"
 					footnote="sur les 30 derniers jours"
 				/>
+				<BigIndicator
+					main={stats.nbAnswersLast30days}
+					footnote={
+						<>
+							Réponses aux utilisateurs sur les 30 derniers jours
+							<br />
+							<Link to="#demandes-utilisateurs">
+								Voir les demandes populaires
+							</Link>
+						</>
+					}
+				/>
 			</Indicators>
-			<div
-				css={`
-					display: flex;
-					flex-direction: row;
-					justify-content: space-around;
-					margin: -1rem 0 0 0;
-				`}
-			>
-				<i>
-					<small>Taux de conversion vers une simulation&nbsp;:</small>{' '}
-					<b>{last30dConv}%</b>
-				</i>
-			</div>
 			<Indicators>
 				<Indicator
 					subTitle="Satisfaction utilisateurs"

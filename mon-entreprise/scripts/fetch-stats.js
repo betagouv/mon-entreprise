@@ -193,6 +193,19 @@ async function fetchMonthlyVisits() {
 	return { pages, site }
 }
 
+async function fetchUserAnswersStats() {
+	const ticketLists = await fetch(
+		'https://mon-entreprise.zammad.com/api/v1/ticket_overviews?view=tickets_repondus_le_mois_dernier',
+		{
+			headers: new Headers({
+				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
+			}),
+		}
+	)
+	const answer = await ticketLists.json()
+	return answer.index.count
+}
+
 async function fetchUserFeedbackIssues() {
 	const tags = await fetch(
 		'https://mon-entreprise.zammad.com/api/v1/tag_list',
@@ -256,11 +269,13 @@ async function main() {
 			return satisfactionPage
 		})
 		const retoursUtilisateurs = await fetchUserFeedbackIssues()
+		const nbAnswersLast30days = await fetchUserAnswersStats()
 		writeInDataDir('stats.json', {
 			visitesJours,
 			visitesMois,
 			satisfaction,
 			retoursUtilisateurs,
+			nbAnswersLast30days,
 		})
 	} catch (e) {
 		console.error(e)
@@ -273,6 +288,7 @@ async function main() {
 			visitesMois: [],
 			satisfaction: [],
 			retoursUtilisateurs: [],
+			nbAnswersLast30days: 0,
 		})
 	}
 }

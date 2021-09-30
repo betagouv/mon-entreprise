@@ -5,6 +5,7 @@ export interface StatsStruct {
 	visitesMois: Visites
 	satisfaction: PageSatisfaction[]
 	retoursUtilisateurs: RetoursUtilisateurs
+	nbAnswersLast30days: number
 }
 
 export interface RetoursUtilisateurs {
