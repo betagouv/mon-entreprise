@@ -23,6 +23,8 @@ export function Indicator({ main, subTitle, footnote, width }: IndicatorProps) {
 				margin: 1rem 0.5rem;
 				width: ${width || '210px'};
 				font-size: 110%;
+				display: flex;
+				flex-direction: column;
 			`}
 		>
 			<small
@@ -44,6 +46,7 @@ export function Indicator({ main, subTitle, footnote, width }: IndicatorProps) {
 					css={`
 						font-size: small;
 						display: block;
+						line-height: 1.6em;
 					`}
 				>
 					<i>{footnote}</i>

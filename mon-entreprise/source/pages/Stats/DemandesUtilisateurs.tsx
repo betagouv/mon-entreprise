@@ -3,7 +3,6 @@ import { useState } from 'react'
 import stats from '../../data/stats.json'
 
 export default function DemandeUtilisateurs() {
-	const [extendedView, setExtendedView] = useState(false)
 	return (
 		<section>
 			<h2 id="demandes-utilisateurs">Demandes utilisateurs</h2>
@@ -14,24 +13,51 @@ export default function DemandeUtilisateurs() {
 				</small>
 			</p>
 			<h3>En attente d'implémentation</h3>
+			<Pagination
+				items={stats.retoursUtilisateurs.open}
+				itemComponent={Issue}
+			/>
+
+			<h3>Réalisées</h3>
+			<Pagination
+				items={stats.retoursUtilisateurs.closed}
+				itemComponent={Issue}
+			/>
+		</section>
+	)
+}
+
+type PaginationProps<ItemProps> = {
+	itemComponent: React.FC<ItemProps>
+	items: Array<ItemProps>
+}
+
+function Pagination<ItemProps>({
+	itemComponent,
+	items,
+}: PaginationProps<ItemProps>) {
+	const [currentPage, setCurrentPage] = useState(0)
+	return (
+		<>
 			<ul>
-				{stats.retoursUtilisateurs.open
-					.slice(0, !extendedView ? 10 : undefined)
-					.map(Issue)}
+				{items
+					.slice(currentPage * 10, (currentPage + 1) * 10)
+					.map(itemComponent)}
 			</ul>
 			<div css={{ textAlign: 'center' }}>
-				<button
-					className="ui__ small button"
-					onClick={() => setExtendedView(!extendedView)}
-				>
-					{extendedView ? 'Replier' : 'Voir plus'}
-				</button>
+				Page :
+				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
+					<button
+						className="ui__ small"
+						onClick={() => setCurrentPage(i)}
+						style={i === currentPage ? { fontWeight: 'bold' } : {}}
+						key={i}
+					>
+						{i + 1}
+					</button>
+				))}
 			</div>
-			<h3>Réalisées</h3>
-			<ul style={{ opacity: 0.8 }}>
-				{stats.retoursUtilisateurs.closed.map(Issue)}
-			</ul>
-		</section>
+		</>
 	)
 }
 
