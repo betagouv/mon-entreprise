@@ -459,7 +459,6 @@ créer:
       <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
-d'aides: of aid
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
@@ -470,6 +469,7 @@ domiciliée à: domiciled in
 déductible: deductible
 déplier: show more
 dû par: owed by
+d’aides: aids
 embauche:
   chaque mois: >
     <0>Then each month</0> <1>

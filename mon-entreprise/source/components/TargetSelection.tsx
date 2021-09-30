@@ -226,23 +226,25 @@ function TargetInputOrValue({
 						)}
 					</span>
 				)}
+
+				{(isActive || isFocused) && (
+					<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
+						<FromTop>
+							<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
+								<InputSuggestions
+									suggestions={target.suggestions}
+									onFirstClick={onSuggestionClick}
+								/>
+							</div>
+						</FromTop>
+					</div>
+				)}
+				{/* TODO: HACK this shouldn't be in the generic component, but defined only in the Simulator UI */}
 				{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
 				{target.dottedName === 'contrat salarié . rémunération . net' && (
 					<TitreRestaurant />
 				)}
 			</span>
-			{(isActive || isFocused) && (
-				<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
-					<FromTop>
-						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
-							<InputSuggestions
-								suggestions={target.suggestions}
-								onFirstClick={onSuggestionClick}
-							/>
-						</div>
-					</FromTop>
-				</div>
-			)}
 		</>
 	)
 }
@@ -307,7 +309,7 @@ function AidesGlimpse() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
+						<Trans>d’aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</div>
 			</FromTop>
