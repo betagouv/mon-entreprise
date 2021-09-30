@@ -36,7 +36,7 @@ export default function SearchOrCreate() {
 			css={`
 				display: flex;
 				flex-wrap: wrap;
-				gap: 1rem;
+				gap: 0.6rem;
 				align-items: end;
 				padding-bottom: 1rem;
 				justify-content: end;
@@ -62,23 +62,28 @@ export default function SearchOrCreate() {
 					onClear={() => setFullwidthSearch(false)}
 				/>
 			</div>
-			<>
-				<animated.div
-					style={style}
-					className="ui__ h h4 notice cta"
+
+			<animated.div
+				style={style}
+				className="ui__ h h4 notice"
+				css={`
+					display: flex;
+					align-items: baseline;
+					> * {
+						margin: 0 !important;
+					}
+				`}
+			>
+				<div
+					className="ui__ h h4"
 					css={`
-						flex: 0;
-						flex-shrink: 0;
-						box-sizing: border-box;
-						text-align: center;
-						padding: 1rem 0 !important;
-						align-self: end !important;
+						padding-right: 0.6rem;
+						color: var(--lighterTextColor) !important;
 					`}
 				>
 					ou
-				</animated.div>
-
-				<animated.h2 style={style}>
+				</div>
+				<h2 className="ui__ h h4">
 					<Link
 						className="ui__ button cta h h4"
 						css={`
@@ -99,8 +104,8 @@ export default function SearchOrCreate() {
 						</span>{' '}
 						<Emoji emoji="💡" />
 					</Link>
-				</animated.h2>
-			</>
+				</h2>
+			</animated.div>
 		</div>
 	)
 }
