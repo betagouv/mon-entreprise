@@ -1123,6 +1123,7 @@ contrat salarié . CDD . contrat jeune vacances:
   par défaut: non
 
 contrat salarié . CDD . indemnités salarié:
+  titre: Indemnités CDD
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
