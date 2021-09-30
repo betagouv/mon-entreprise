@@ -1,11 +1,13 @@
+import { useSetEntreprise } from 'Actions/companyStatusActions'
+import { Etablissement } from 'api/sirene'
 import { CompanySearchField } from 'Components/companySearchField'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useInitialRender } from 'Components/utils/useInitialRender'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { animated, config, useSpring } from 'react-spring'
 import { RootState } from 'Reducers/rootReducer'
 
@@ -14,26 +16,10 @@ export default function SearchOrCreate() {
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
-	const [fullWidthSearch, setFullwidthSearch] = useState(false)
-	const [{ value }, api] = useSpring(() => ({
-		value: 0,
-		config: config.stiff,
-	}))
-	const createButtonStyle = {
-		y: value.to((v) => v + '%'),
-		zIndex: 0,
-	}
-	const isInitialRender = useInitialRender()
-	useEffect(() => {
-		if (isInitialRender) {
-			return
-		}
-		api({
-			value: (fullWidthSearch ? -1 : 1) * 100,
-			immediate: true,
-		})
-		api({ value: 0 })
-	}, [fullWidthSearch, api])
+	const { fullWidthSearch, handleValue, handleClear, createButtonStyle } =
+		useChangeLayoutOnValue()
+	const handleCompanySubmit = useHandleCompanySubmit()
+
 	return (
 		<div
 			className="ui__ container"
@@ -62,8 +48,9 @@ export default function SearchOrCreate() {
 					<Trans>Rechercher une entreprise</Trans>
 				</h2>
 				<CompanySearchField
-					onValue={() => setFullwidthSearch(true)}
-					onClear={() => setFullwidthSearch(false)}
+					onSubmit={handleCompanySubmit}
+					onValue={handleValue}
+					onClear={handleClear}
 				/>
 			</div>
 
@@ -112,4 +99,50 @@ export default function SearchOrCreate() {
 			</animated.div>
 		</div>
 	)
+}
+
+function useChangeLayoutOnValue() {
+	const [fullWidthSearch, setFullwidthSearch] = useState(false)
+	const [{ value }, api] = useSpring(() => ({
+		value: 0,
+		config: config.stiff,
+	}))
+	const createButtonStyle = {
+		y: value.to((v) => v + '%'),
+		zIndex: 0,
+	}
+	const isInitialRender = useInitialRender()
+	useEffect(() => {
+		if (isInitialRender) {
+			return
+		}
+		api({
+			value: (fullWidthSearch ? -1 : 1) * 100,
+			immediate: true,
+		})
+		api({ value: 0 })
+	}, [fullWidthSearch, api])
+	const handleValue = useCallback(
+		() => setFullwidthSearch(true),
+		[setFullwidthSearch]
+	)
+	const handleClear = useCallback(
+		() => setFullwidthSearch(false),
+		[setFullwidthSearch]
+	)
+	return { fullWidthSearch, handleValue, handleClear, createButtonStyle }
+}
+
+function useHandleCompanySubmit() {
+	const history = useHistory()
+	const sitePaths = useContext(SitePathsContext)
+	const setEntreprise = useSetEntreprise()
+	const handleCompanySubmit = useCallback(
+		(établissement: Etablissement) => {
+			setEntreprise(établissement.siren)
+			history.push(sitePaths.gérer.index)
+		},
+		[history, setEntreprise]
+	)
+	return handleCompanySubmit
 }

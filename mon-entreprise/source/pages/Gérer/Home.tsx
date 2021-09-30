@@ -1,10 +1,8 @@
 import {
-	resetEntreprise,
 	specifyIfAutoEntrepreneur,
 	specifyIfDirigeantMajoritaire,
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
-import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
@@ -432,14 +430,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					</Overlay>
 				</>
 			)}
-			{searchModal && (
-				<>
-					<ScrollToTop />
-					<Overlay onClose={() => showSearchModal(false)}>
-						<FindCompany />
-					</Overlay>
-				</>
-			)}
+
 			{company ? (
 				<>
 					<CompanyDetails siren={company.siren} />
@@ -468,28 +459,8 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 							</>
 						)}
 					</p>
-					<button
-						className="ui__ simple small button"
-						onClick={() => {
-							dispatch(resetEntreprise())
-							showSearchModal(true)
-						}}
-					>
-						<Trans i18nKey="gérer.entreprise.changer">
-							Changer l'entreprise sélectionnée
-						</Trans>
-					</button>
 				</>
-			) : (
-				<p>
-					<button
-						onClick={() => showSearchModal(true)}
-						className="ui__ plain cta button"
-					>
-						<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
-					</button>
-				</p>
-			)}
+			) : null}
 		</>
 	)
 }
