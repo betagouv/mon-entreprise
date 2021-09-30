@@ -22,11 +22,14 @@ export function CompanySearchField(props: {
 	onSubmit?: (établissement: Etablissement) => void
 }) {
 	const { t } = useTranslation()
+
 	const searchFieldProps = {
 		...props,
-		label: t("Nom de l'entreprise, SIREN ou SIRET"),
+		label: t('CompanySearchField.label', {
+			defaultValue: "Nom de l'entreprise, SIREN ou SIRET",
+		}),
 		description: (
-			<Trans>
+			<Trans i18nKey="CompanySearchField.description">
 				Le numéro Siret est un numéro de 14 chiffres unique pour chaque
 				entreprise. Ex : 40123778000127
 			</Trans>
@@ -39,7 +42,9 @@ export function CompanySearchField(props: {
 				props.onSubmit?.(result[0])
 			})
 		},
-		placeholder: t('Café de la gare ou 40123778000127'),
+		placeholder: t('CompanySearchField.placeholder', {
+			defaultValue: 'Café de la gare ou 40123778000127',
+		}),
 	}
 	const state = useSearchFieldState(searchFieldProps)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -48,7 +53,12 @@ export function CompanySearchField(props: {
 		useSearchField(searchFieldProps, state, inputRef)
 
 	const { buttonProps } = useButton(
-		{ ...clearButtonProps, 'aria-label': 'Effacer la recherche' },
+		{
+			...clearButtonProps,
+			'aria-label': t('CompanySearchField.ariaClearLabel', {
+				defaultValue: 'Effacer la recherche',
+			}),
+		},
 		clearButtonRef
 	)
 

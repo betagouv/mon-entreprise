@@ -14,6 +14,12 @@ Autres outils: Autres outils
 Cette commune n'existe pas: Cette commune n'existe pas
 Chercher dans la documentation: Chercher dans la documentation
 Commencer: Commencer
+CompanySearchField:
+  ariaClearLabel: Effacer la recherche
+  description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
+    entreprise. Ex : 40123778000127"
+  label: Nom de l'entreprise, SIREN ou SIRET
+  placeholder: Café de la gare ou 40123778000127
 Continuer: Continuer
 Cotisations sociales: Cotisations sociales
 Crée le: Crée le
@@ -38,11 +44,63 @@ International: International
 Intégrer nos simulateurs: Intégrer nos simulateurs
 J'ai compris: J'ai compris
 Jusqu’au: Jusqu’au
+"Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Ex : 40123778000127": "Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined\
+  
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex :
+  4012377800012undefined Ex : 4012377800012undefined Ex : 4012377800012undefined
+  Ex : 4012377800012undefined Ex : 4012377800012undefined Ex : 40123778000127"
 Liste des statuts juridiques: Liste des statuts juridiques
 Mes réponses: Mes réponses
 Modifier: Modifier
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
-"Nom de l'entreprise ou SIREN ": "Nom de l'entreprise ou SIREN "
 Non: Non
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
@@ -65,6 +123,7 @@ Prévisualisation: Prévisualisation
 Que cherchez-vous ?: Que cherchez-vous ?
 Quelques intégrations: Quelques intégrations
 Rechercher: Rechercher
+Rechercher une entreprise: Rechercher une entreprise
 Ressources utiles: Ressources utiles
 Retour: Retour
 Retour à la création: Retour à la création
@@ -125,6 +184,7 @@ après:
       et maladies professionnelles à payer.</6><7>En cas de code APE erroné,
       vous pouvez <2>demander une modification</2> à l'INSEE.</7>
     titre: Le code APE
+  entreprise: entreprise
   intro: "Une fois votre {{statutChoisi}} créée, vous recevez les informations
     suivantes :"
   kbis:
@@ -299,6 +359,7 @@ embauche:
       titre: S'inscrire à un bureau de médecine du travail
     page:
       description: Toutes les démarches nécessaires à l'embauche de votre premier salarié.
+      titre: Les formalités pour embaucher
     pension:
       description: Trouver mon institution de prévoyance
       titre: Prendre contact avec l'institution de prévoyance complémentaire
@@ -548,16 +609,21 @@ landing:
     les incertitudes vis à vis de l’administration</2> afin que vous puissiez
     vous concentrer sur ce qui compte : votre activité.</3>"
   choice:
-    create: <0>Créer une entreprise</0><1>Un accompagnement au choix du statut
-      juridique et la liste complète des démarches de création</1>
+    continue: Continuer avec l'entreprise
+    create: Créer une entreprise
     manage: <0>Gérer mon activité</0><1>Des outils personnalisés pour anticiper le
       montant des cotisations sociales à payer et mieux gérer votre
       trésorerie.</1>
     simulators: <0>Accéder aux simulateurs</0><1>La liste exhaustive de tous les
       simulateurs disponibles sur le site.</1>
+  outils: <0>Les outils à votre disposition</0><1>Nous mettons à votre disposition
+    des assistants et simulateurs pour vous aider à la gestion de votre
+    entreprise, anticiper les prélèvements et planifier votre trésorerie en
+    conséquence.</1>
+  outils_cta: <0></0> Découvrir tous les simulateurs et assistants
   subtitle: Les ressources nécessaires pour développer votre activité, du statut
     juridique à l'embauche.
-  title: L'assistant officiel de l'entrepreneur
+  title: L'assistant officiel des entrepreneurs
 legalNotice:
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
@@ -586,6 +652,7 @@ nextSteps:
   integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
     simulateur sur votre site internet en un clic via un script clé en main.</1>
 noresults: Aucun résultat ne correspond à cette recherche
+ou: ou
 page:
   documentation:
     title: Documentation
@@ -1276,6 +1343,8 @@ simulation-end:
     text: Vous pouvez maintenant concrétiser votre projet d'embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
+site:
+  titleTemplate: "%s - Mon-entreprise"
 statut du dirigeant:
   description: <0>Ce choix est important car il détermine le régime de sécurité
     sociale et la couverture sociale du dirigeant. Le montant et les modalités

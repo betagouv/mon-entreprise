@@ -110,7 +110,9 @@ const App = () => {
 			<Header />
 			<div className="app-container">
 				<Helmet
-					titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
+					titleTemplate={`${t('site.titleTemplate', {
+						defaultValue: '%s - Mon-entreprise',
+					})}`}
 				/>
 				{/* Passing location down to prevent update blocking */}
 				<div className="ui__ container app-content">

@@ -36,6 +36,12 @@ Code d'intégration: Integration Code
 Commencer: Get started
 "Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
 Commune ou code postal: Municipality or postal code
+CompanySearchField:
+  ariaClearLabel: Delete search
+  description: "The Siret number is a 14 digit number unique to each company. Ex:
+    40123778000127"
+  label: Company name, SIREN or SIRET
+  placeholder: Café de la gare or 40123778000127
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
@@ -97,6 +103,51 @@ J'ai compris: understood
 Janvier 2019: January 2019
 Jusqu’au: Until
 La somme de: This rule is the sum of
+"Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Ex : 40123778000127": "The Siret number is a 14 digit number unique to each company. Ex: 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined 4012377800012undefined\
+  
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 4012377800012undefined 4012377800012undefined
+  4012377800012undefined 40123778000127"
 Liste des statuts juridiques: List of legal statutes
 Mensuel: Monthly
 Mes réponses: My answers
@@ -107,7 +158,6 @@ Mon revenu: My income
 Montant: Amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
@@ -146,6 +196,7 @@ Quelques exemples de salaires: Some salary exemples
 Quelques intégrations: Some integrations
 Recherche en cours...: Searching...
 Rechercher: Search
+Rechercher une entreprise: Search for a company
 Recommencer: Start again
 Rend non applicable les règles suivantes: Makes the following rules not applicable
 Renseigner mon entreprise: Find my company
@@ -505,8 +556,7 @@ embauche:
       titre: Register to a work medicine office
     page:
       description: All the necessary steps to hire your first employee in France.
-      titre: |
-        Hiring procedure in France
+      titre: The formalities for hiring
     pension:
       description: Find your pension institute (Fr)
       titre: Contact your assigned compulsory complementary pension institution
@@ -809,14 +859,20 @@ landing:
     is to <2>remove all administrative uncertainties</2> so that you can focus
     on what really matters: your business.</3>"
   choice:
-    create: <0>Create a company</0><1>Assistance in choosing the status and the
-      complete list of creation steps</1>
+    continue: Continue with the company
+    create: Start a business
     manage: <0>Manage my business</0><1>Personalised tools to anticipate the amount
       of social security contributions to be paid and better manage your cash
       flow.</1>
     simulators: <0>Access the simulators</0><1>The exhaustive list of all the
       simulators available on the site.</1>
+  choices:
+    continue: Continue with the company
   covid19: "Covid-19: Calculating the impact of short-time work"
+  outils: <0>The tools at your disposal</0><1>We provide you with assistants and
+    simulators to help you manage your business, anticipate levies and plan your
+    cash flow accordingly.</1>
+  outils_cta: <0></0> Discover all simulators and assistants
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
     to hiring.
@@ -861,6 +917,7 @@ non: no
 non applicable si: not applicable if
 non déductible: not deductible
 noresults: No results
+ou: or
 oui: yes
 page:
   documentation:
@@ -1677,7 +1734,7 @@ simulation-end:
   text: You have reached the most accurate estimate.
   title: No more questions left!
 site:
-  titleTemplate: "%s"
+  titleTemplate: "%s - My Company"
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms

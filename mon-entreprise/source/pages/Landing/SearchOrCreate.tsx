@@ -1,6 +1,6 @@
 import { useSetEntreprise } from 'Actions/companyStatusActions'
 import { Etablissement } from 'api/sirene'
-import { CompanySearchField } from 'Components/companySearchField'
+import { CompanySearchField } from 'Components/CompanySearchField'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useInitialRender } from 'Components/utils/useInitialRender'
@@ -71,7 +71,7 @@ export default function SearchOrCreate() {
 						color: var(--lighterTextColor) !important;
 					`}
 				>
-					ou
+					<Trans>ou</Trans>
 				</div>
 				<h2 className="ui__ h h4">
 					<Link

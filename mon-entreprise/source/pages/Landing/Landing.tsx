@@ -64,7 +64,11 @@ export default function Landing() {
 					<div className="ui__ container">
 						{company && (
 							<Appear>
-								<h2 className="ui__ h h4">Continuer avec l'entreprise</h2>
+								<h2 className="ui__ h h4">
+									<Trans i18nKey="landing.choice.continue">
+										Continuer avec l'entreprise
+									</Trans>
+								</h2>
 								<CardSelection to={sitePaths.gérer.index}>
 									<CompanyDetails {...company} />
 								</CardSelection>

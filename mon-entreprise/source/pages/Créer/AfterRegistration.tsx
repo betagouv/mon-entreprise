@@ -40,7 +40,8 @@ export default function AfterRegistration() {
 					{{
 						statutChoisi: isAutoentrepreneur
 							? t('auto-entreprise')
-							: statutChoisi || t(['après.entreprise', 'entreprise']),
+							: statutChoisi ||
+							  t('après.entreprise', { defaultValue: 'entreprise' }),
 					}}{' '}
 					créée, vous recevez les informations suivantes :
 				</Trans>
