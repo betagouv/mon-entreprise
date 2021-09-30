@@ -17,9 +17,11 @@ import ChômagePartielComponent from './ChômagePartiel'
 import autoEntrepreneurConfig from './configs/auto-entrepreneur.yaml'
 import chômageParielConfig from './configs/chômage-partiel.yaml'
 import sasuConfig from './configs/dirigeant-sasu.yaml'
+import dividendesConfig from './configs/dividendes.yaml'
 import indépendantConfig from './configs/indépendant.yaml'
 import professionLibéraleConfig from './configs/profession-libérale.yaml'
 import salariéConfig from './configs/salarié.yaml'
+import DividendesSimulation from './Dividendes'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
@@ -29,17 +31,15 @@ import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import ISSimulation from './ImpôtSociété'
-import dividendesConfig from './configs/dividendes.yaml'
-import DividendesSimulation from './Dividendes'
 import IndépendantSimulation, {
 	EntrepriseIndividuelle,
 	IndépendantPLSimulation,
 } from './Indépendant'
+import getData from './metadata-src.js'
 import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
-import getData from './metadata-src.js'
 
 const simulateurs = [
 	'salarié',
@@ -197,13 +197,7 @@ export function getSimulatorsData({
 		},
 		'entreprise-individuelle': {
 			...pureSimulatorsData['entreprise-individuelle'],
-			config: {
-				...indépendantConfig,
-				situation: {
-					...indépendantConfig.situation,
-					'entreprise . imposition': "'IR'",
-				},
-			},
+			config: entrepriseIndividuelleConfig,
 			meta: {
 				...pureSimulatorsData['entreprise-individuelle'].meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -349,13 +343,7 @@ export function getSimulatorsData({
 		},
 		eurl: {
 			...pureSimulatorsData['eurl'],
-			config: {
-				...indépendantConfig,
-				situation: {
-					...indépendantConfig.situation,
-					'entreprise . imposition': "'IS'",
-				},
-			},
+			config: eurlConfig,
 			meta: {
 				...pureSimulatorsData['eurl'].meta,
 				ogImage: RémunérationSASUPreview,
@@ -884,3 +872,17 @@ const pharmacienConfig = configFromPLMetier('santé . pharmacien')
 const sageFemmeConfig = configFromPLMetier('santé . sage-femme')
 const avocatConfig = configFromPLMetier('avocat')
 const expertComptableConfig = configFromPLMetier('expert-comptable')
+const eurlConfig = {
+	...indépendantConfig,
+	situation: {
+		...indépendantConfig.situation,
+		'entreprise . imposition': "'IS'",
+	},
+}
+const entrepriseIndividuelleConfig = {
+	...indépendantConfig,
+	situation: {
+		...indépendantConfig.situation,
+		'entreprise . imposition': "'IR'",
+	},
+}
