@@ -22,7 +22,6 @@ export default function SearchOrCreate() {
 
 	return (
 		<div
-			className="ui__ container"
 			css={`
 				display: flex;
 				flex-wrap: wrap;
@@ -146,3 +145,5 @@ function useHandleCompanySubmit() {
 	)
 	return handleCompanySubmit
 }
+
+function CompanyButton() {}

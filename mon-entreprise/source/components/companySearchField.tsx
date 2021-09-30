@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import CompanyDetails from './CompanyDetails'
 import { FromTop } from './ui/animate'
+import CardSelection from './ui/CardSelection'
 import InfoBulle from './ui/InfoBulle'
 import { useDebounce } from './utils'
 import { useInitialRender } from './utils/useInitialRender'
@@ -183,45 +184,14 @@ function Results({
 		<>
 			<FromTop>
 				{results.map((établissement) => (
-					<StyledResult
+					<CardSelection
 						key={établissement.siren}
-						className="ui__ interactive card"
 						onClick={() => onSubmit(établissement)}
 					>
 						<CompanyDetails {...établissement} />
-						<div
-							className="ui__ hide-mobile"
-							css={`
-								position: absolute;
-								transition: transform 0.1s;
-								right: 0.1rem;
-								font-size: 2rem;
-								height: 100%;
-								color: var(--lighterTextColor);
-								display: flex;
-								align-items: center;
-								will-change: transform;
-							`}
-						>
-							〉
-						</div>
-					</StyledResult>
+					</CardSelection>
 				))}
 			</FromTop>
 		</>
 	)
 }
-
-const StyledResult = styled('button')`
-	position: relative;
-	display: flex;
-	text-align: left;
-	font-size: inherit;
-	font-family: inherit;
-	margin-top: 0.4rem;
-	width: 100%;
-	flex-direction: column;
-	:hover > :last-child {
-		transform: translateX(0.2rem);
-	}
-`

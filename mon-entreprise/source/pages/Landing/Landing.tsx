@@ -1,10 +1,15 @@
+import CompanyDetails from 'Components/CompanyDetails'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
+import { Appear } from 'Components/ui/animate'
+import CardSelection from 'Components/ui/CardSelection'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData from '../Simulateurs/metadata'
@@ -17,6 +22,9 @@ export default function Landing() {
 	const language = useTranslation().i18n.language
 	const simulators = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
+	const company = useSelector(
+		(state: RootState) => state.inFranceApp.existingCompany
+	)
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
@@ -53,7 +61,18 @@ export default function Landing() {
 						padding-bottom: 1rem;
 					`}
 				>
-					<SearchOrCreate />
+					<div className="ui__ container">
+						{company && (
+							<Appear>
+								<h2 className="ui__ h h4">Continuer avec l'entreprise</h2>
+								<CardSelection to={sitePaths.gérer.index}>
+									<CompanyDetails {...company} />
+								</CardSelection>
+								<br />
+							</Appear>
+						)}
+						<SearchOrCreate />
+					</div>
 				</section>
 				<section>
 					<Trans i18nKey="landing.outils">
