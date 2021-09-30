@@ -17,7 +17,7 @@ questions:
     - entreprise
     - établissement
     - situation personnelle
-    - impôt . montant
+    - impôt
   non prioritaires:
     - dirigeant . indépendant . cotisations facultatives
     - dirigeant . indépendant . IJSS

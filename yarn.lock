@@ -13495,7 +13495,7 @@ react-color@^2.14.0:
     object-assign "^4.1.1"
     scheduler "^0.20.0"
 
-react-easy-emoji@^1.2.0, react-easy-emoji@^1.4.0:
+react-easy-emoji@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-easy-emoji/-/react-easy-emoji-1.4.0.tgz#dfcbb743bf8439af265aa25a1e72998c6d2225ff"
   integrity sha512-TcufijpuWKgYgzbySEBukNef+y0HI/4PAJ4gc9vb1CF7Q4CcAS2ZV8VMZk0ObtKKwJJfVgAHVt86nXWOed8QXg==
