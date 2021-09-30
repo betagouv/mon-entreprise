@@ -5,12 +5,12 @@ export const Indicators = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	margin: 2rem 0;
+	flex-wrap: wrap;
 `
 type IndicatorProps = {
 	main?: React.ReactNode
 	subTitle?: React.ReactNode
-	footnote?: string
+	footnote?: React.ReactNode
 	width?: string
 }
 export function Indicator({ main, subTitle, footnote, width }: IndicatorProps) {
@@ -20,6 +20,7 @@ export function Indicator({ main, subTitle, footnote, width }: IndicatorProps) {
 			css={`
 				text-align: center;
 				padding: 1rem;
+				margin: 1rem 0.5rem;
 				width: ${width || '210px'};
 				font-size: 110%;
 			`}
