@@ -1,8 +1,13 @@
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
+import { SimulateurCard } from '../Simulateurs/Home'
+import useSimulatorsData from '../Simulateurs/metadata'
 import BrexitPDF from './Brexit_guide.pdf'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
@@ -10,6 +15,8 @@ import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
 	const language = useTranslation().i18n.language
+	const simulators = useSimulatorsData()
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
@@ -27,7 +34,7 @@ export default function Landing() {
 					<header>
 						<h1>
 							<Trans i18nKey="landing.title">
-								L'assistant officiel de l'entrepreneur
+								L'assistant officiel des entrepreneurs
 							</Trans>
 						</h1>
 						<p className="ui__ lead">
@@ -47,6 +54,37 @@ export default function Landing() {
 					`}
 				>
 					<SearchOrCreate />
+				</section>
+				<section>
+					<Trans i18nKey="landing.outils">
+						<h2>Les outils à votre disposition</h2>
+						<p>
+							Nous mettons à votre disposition des assistants et simulateurs
+							pour vous aider à la gestion de votre entreprise, anticiper les
+							prélèvements et planifier votre trésorerie en conséquence.
+						</p>
+					</Trans>
+					<div className="ui__ box-container">
+						<SimulateurCard {...simulators.salarié} />
+						<SimulateurCard {...simulators['auto-entrepreneur']} />
+						<SimulateurCard {...simulators['profession-libérale']} />
+					</div>
+					<div
+						css={`
+							text-align: center;
+							margin-top: 1rem;
+						`}
+					>
+						<Link
+							to={sitePaths.simulateurs.index}
+							className="ui__  simple small button"
+						>
+							<Trans i18nKey="landing.outils_cta">
+								<Emoji emoji={'🧮'} /> Découvrir tous les simulateurs et
+								assistants
+							</Trans>
+						</Link>
+					</div>
 				</section>
 				<section>
 					<Trans i18nKey="landing.aboutUs">
