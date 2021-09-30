@@ -58,11 +58,16 @@ export function CompanySearchField(props: {
 	)
 	const [ref, { width }] = useMeasure()
 	const initialRender = useInitialRender()
-	const inputStyle = useSpring({
-		from: { width: 'auto' },
-		width: initialRender ? 'auto' : width,
+	const [inputStyle, api] = useSpring(() => ({
 		config,
-	})
+		width: initialRender ? 'auto' : width,
+	}))
+	useEffect(() => {
+		if (initialRender) {
+			return
+		}
+		api({ width })
+	}, [width])
 
 	return (
 		<>

@@ -1,6 +1,7 @@
 import { CompanySearchField } from 'Components/companySearchField'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { useInitialRender } from 'Components/utils/useInitialRender'
 import { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -18,14 +19,17 @@ export default function SearchOrCreate() {
 		value: 0,
 		config: config.stiff,
 	}))
-	const style = {
+	const createButtonStyle = {
 		y: value.to((v) => v + '%'),
 		zIndex: 0,
 	}
+	const isInitialRender = useInitialRender()
 	useEffect(() => {
+		if (isInitialRender) {
+			return
+		}
 		api({
 			value: (fullWidthSearch ? -1 : 1) * 100,
-
 			immediate: true,
 		})
 		api({ value: 0 })
@@ -64,7 +68,7 @@ export default function SearchOrCreate() {
 			</div>
 
 			<animated.div
-				style={style}
+				style={createButtonStyle}
 				className="ui__ h h4 notice"
 				css={`
 					display: flex;
