@@ -113,7 +113,7 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
 
 [[redirects]]
   from = ":SITE_FR/sitemap.txt"
-  to = "/sitemap.infrance.fr.txt"
+  to = "/sitemap.fr.txt"
   status = 200
 
 [[redirects]]
@@ -207,7 +207,7 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
 
 [[redirects]]
   from = ":SITE_EN/sitemap.txt"
-  to = "/sitemap.infrance.en.txt"
+  to = "/sitemap.en.txt"
   status = 200
 
 [[redirects]]
