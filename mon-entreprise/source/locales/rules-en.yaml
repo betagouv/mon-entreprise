@@ -4070,19 +4070,21 @@ contrat salarié . prime d'impatriation:
   titre.fr: prime d'impatriation
 contrat salarié . prix du travail:
   description.en: >
-    Total cost of hiring an employee including, in addition to the remuneration
-    elements, deferred subsidies and occupational health service
+    [automatic] Total cost of hiring an employee including, in addition to the
+    remuneration elements, the deferred aid
+
+    It is therefore also a measure of the value brought by the employee to the company: the employer is ready to pay this amount in return for the work provided.
 
 
-    > It is therefore also a measure of the value that the employee brings to the company: the employer is willing to pay this amount in exchange of the work provided.
+    To this total cost, you must not forget to add the expenses specific to your company: finding the right candidate, workstation, equipment, initial training, occupational medicine, etc.
   description.fr: >
     Coût total d'embauche d'un salarié en incluant, en plus des éléments de
-    rémunération, les aides différées et les coûts de medecine du travail
+    rémunération, les aides différées
 
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
 
-    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, etc.
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
   question.en: What
   question.fr: Quel est le coût total de cette embauche ?
   résumé.en: Spent by the company
