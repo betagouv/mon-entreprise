@@ -108,7 +108,7 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
 # Mon-entreprise.fr
 [[redirects]]
   from = ":SITE_FR/robots.txt"
-  to = "/robots.infrance.txt"
+  to = "/robots.fr.txt"
   status = 200
 
 [[redirects]]
@@ -202,7 +202,7 @@ Content-Security-Policy-Report-Only = "default-src 'self' mon-entreprise.fr; sty
 
 [[redirects]]
   from = ":SITE_EN/robots.txt"
-  to = "/robots.infrance.txt"
+  to = "/robots.en.txt"
   status = 200
 
 [[redirects]]

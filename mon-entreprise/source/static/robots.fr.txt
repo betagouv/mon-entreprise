@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /dev
+
+Sitemap: https://mon-entreprise.fr/sitemap.txt
