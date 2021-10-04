@@ -20,12 +20,13 @@ En 2019, le projet dispose d’un budget de **250 000 € HT** pris en charge :
 
 [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
-|                            |                  |
-| -------------------------- | ---------------: |
-| Financement DINSIC         |     150 000 € HT |
-| Financement ACOSS initial  |     100 000 € HT |
-| Rallonge ACOSS fin d’année |      12 500 € HT |
-| **Total**                  | **262 500 € HT** |
+|                            |                   |
+| -------------------------- | ----------------: |
+| Financement DINSIC         |      150 000 € HT |
+| Financement ACOSS initial  |      100 000 € HT |
+| Rallonge ACOSS fin d’année |       12 500 € HT |
+| **Total HT**               |  **262 500 € HT** |
+| **Total TTC**              | **315 000 € TTC** |
 
 En fin d’année une rallonge est attribuée pour la réalisation d’un nouveau
 simulateur et une expérimentation sur la paie.
@@ -89,3 +90,14 @@ Gamma](https://beta.gouv.fr/approche/acceleration) financé par la
 
     La marge du porteur attributaire du
     [marché public de l’Acoss](https://www.acoss.fr/home/fournisseurs.html).
+
+> #### À propos de la TVA
+>
+> Contrairement aux entreprises du secteur privé, les administrations ne peuvent
+> pas récupérer la TVA supportée sur leurs achats dans le cadre de leur
+> activité.
+>
+> Le montant TTC inclut la TVA au taux de 20%.
+>
+> La TVA est collectée et reversée à l'État et diminue donc le montant du budget
+> utilisable sur le projet.

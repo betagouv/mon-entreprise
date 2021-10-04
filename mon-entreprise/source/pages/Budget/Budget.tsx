@@ -117,7 +117,7 @@ export default function Budget() {
 							</tbody>
 							<tfoot>
 								<tr>
-									<td>Total</td>
+									<td>Total HT</td>
 									{quarters.map((q) => {
 										const value = sum(
 											Object.values(budget[selectedYear]?.[q] ?? {})
@@ -138,6 +138,42 @@ export default function Budget() {
 											sum(
 												quarters.map((q) =>
 													sum(Object.values(budget[selectedYear]?.[q] ?? {}))
+												)
+											),
+											{
+												displayedUnit: '€',
+												language,
+											}
+										)}
+									</td>
+								</tr>
+								<tr>
+									<td>Total TTC</td>
+									{quarters.map((q) => {
+										const value = Math.round(
+											sum(Object.values(budget[selectedYear]?.[q] ?? {})) * 1.2
+										)
+										return (
+											<td key={q}>
+												{value
+													? formatValue(value, {
+															displayedUnit: '€',
+															language,
+													  })
+													: '-'}
+											</td>
+										)
+									})}
+									<td>
+										{formatValue(
+											Math.round(
+												sum(
+													quarters.map(
+														(q) =>
+															sum(
+																Object.values(budget[selectedYear]?.[q] ?? {})
+															) * 1.2
+													)
 												)
 											),
 											{
@@ -178,5 +214,9 @@ const RessourcesAllocationTable = styled.table`
 	thead,
 	tfoot {
 		font-weight: bold;
+	}
+
+	tfoot tr:last-child {
+		color: var(--lighterTextColor);
 	}
 `
