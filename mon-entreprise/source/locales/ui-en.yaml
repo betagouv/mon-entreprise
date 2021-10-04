@@ -847,13 +847,7 @@ mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
-newsletter:
-  register:
-    confirmation: Your registration is confirmed!
-    description: >
-      Subscribe to our monthly newsletter to receive <2>official advice on
-      starting a business</2> and access new features in advance.
-    titre: Stay informed
+
 nextSteps:
   integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
     to your website in one click with a simple script.</1>

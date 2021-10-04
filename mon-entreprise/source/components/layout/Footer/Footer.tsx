@@ -1,6 +1,5 @@
 import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
-import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -12,6 +11,7 @@ import styled from 'styled-components'
 import useSimulatorsData from '../../../pages/Simulateurs/metadata'
 import { hrefLangLink } from '../../../sitePaths'
 import './Footer.css'
+import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 
 const useShowFeedback = () => {
@@ -76,10 +76,6 @@ export default function Footer() {
 						</div>
 					</div>
 				)}
-				<div className="ui__ container">
-					<NewsletterRegister />
-					<hr className="footer__separator" />
-				</div>
 				{language === 'en' && (
 					<p className="ui__ notice" css="text-align: center">
 						This website is provided by the{' '}
@@ -113,6 +109,11 @@ export default function Footer() {
 								<Trans>Intégrer nos simulateurs</Trans>
 							</Link>
 						</li>
+						{language === 'fr' && (
+							<li>
+								<InscriptionBetaTesteur />
+							</li>
+						)}
 						{hrefLink.map(({ hrefLang, href }) => (
 							<li key={hrefLang}>
 								<a href={href} style={{ textDecoration: 'underline' }}>
