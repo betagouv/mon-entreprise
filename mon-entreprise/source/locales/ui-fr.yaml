@@ -576,12 +576,7 @@ listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 mensuel: mensuel
-newsletter:
-  register:
-    confirmation: Votre inscription est confirmée !
-    description: Inscrivez-vous à notre newsletter pour être informé des nouveautés
-      et accéder aux nouvelles fonctionnalités en avant-première.
-    titre: Restez au courant
+
 nextSteps:
   integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
     simulateur sur votre site internet en un clic via un script clé en main.</1>
