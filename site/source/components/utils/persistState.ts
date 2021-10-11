@@ -28,5 +28,5 @@ export const usePersistingState = <S>(key: string, defaultState?: any) => {
 	const initialState = persistedState != null ? persistedState : defaultState
 	const [state, setState] = useState<S>(initialState)
 	useSafeLocaleStorage(key, state)
-	return [state, setState]
+	return [state, setState] as const
 }

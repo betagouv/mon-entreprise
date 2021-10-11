@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import RuleInput from 'Components/conversation/RuleInput'
-import { Condition } from 'Components/EngineValue'
-import { FromTop } from 'Components/ui/animate'
+import { WhenApplicable, WhenNotApplicable } from 'Components/EngineValue'
+import PageHeader from 'Components/PageHeader'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -9,10 +9,12 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
 import { Spacing } from 'DesignSystem/layout'
 import { headings } from 'DesignSystem/typography'
-import { H1 } from 'DesignSystem/typography/heading'
-import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
-import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
+import Engine, {
+	PublicodesExpression,
+	UNSAFE_isNotApplicable,
+} from 'publicodes'
 import { equals, isEmpty, omit } from 'ramda'
 import {
 	Fragment,
@@ -25,93 +27,51 @@ import {
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
+import picture from './undraw_Traveling_re_weve.svg'
 
 const LazyEndBlock = lazy(() => import('./EndBlock'))
 
-export default function FormulaireMobilitéIndépendant() {
+export default function PageMobilité() {
 	const engine = new Engine(formulaire)
+
 	return (
-		<EngineProvider value={engine}>
-			<H1>Demande de mobilité internationale pour travailleur indépendant</H1>
-			<Intro>
-				Travailleur indépendant exerçant son activité à l’étranger : Régime de
-				Sécurité sociale applicable
-			</Intro>
-			<Body>
-				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
-				Etats (pays) membres de l’UE, de l’
-				<abbr title="Espace Économique Européen">EEE</abbr>*, en Suisse ou dans
-				un pays lié à la France par convention bilatérale. A ce titre, vous
-				devez <strong>compléter ce formulaire</strong> pour définir votre régime
-				de Sécurité sociale applicable durant cette période et l’envoyer par
-				email à{' '}
-				<a href="mailto:mobilite-internationale@urssaf.fr">
-					mobilite-internationale@urssaf.fr
-				</a>
-				.
-			</Body>
-			<Body>
-				Après étude de votre demande, si les conditions le permettent, vous
-				recevrez un certificat A1 (ou le formulaire spécifique) attestant du
-				maintien à la Sécurité sociale française.
-			</Body>
-
-			<SmallBody>
-				* Pays concernés : Allemagne, Autriche, Belgique, Bulgarie, Chypre,
-				Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande,
-				Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte,
-				Norvège, Pays-Bas, Pologne, Portugal, République Tchèque, Roumanie,
-				Royaume-Uni, Slovaquie, Slovénie, Suède, Suisse
-			</SmallBody>
-
-			<Intro>
-				<strong>
-					Attention : ce document doit être signé <Emoji emoji="✍️" />
-				</strong>
-			</Intro>
-			<Body>
-				Aussi, nous vous invitons à utiliser un écran tactile pour le compléter
-				(téléphone, tablette, etc.). Sinon, vous devrez l’imprimer, le signer et
-				le scanner avant envoi par mail.
-			</Body>
-
-			<Body>
-				En cas de difficultés pour{' '}
-				<strong>remplir ce formulaire, contactez un conseiller</strong> par
-				email{' '}
-				<a href="mailto:mobilite-internationale@urssaf.fr">
-					mobilite-internationale@urssaf.fr
-				</a>{' '}
-				ou par téléphone au{' '}
-				<strong>
-					<a href="tel:+33806804213">+33(0) 806 804 213</a>
-				</strong>{' '}
-				de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).
-			</Body>
-			<Spacing xl />
-			<FormulairePublicodes />
-		</EngineProvider>
+		<>
+			<PageHeader
+				titre={'Demande de mobilité internationale'}
+				picture={picture}
+			>
+				<Intro>
+					Vous trouverez ici toutes les informations pour remplir une demande de
+					certificat A1 afin d'être couverts pendant la période de travail à
+					l'étranger.
+				</Intro>
+			</PageHeader>
+			<EngineProvider value={engine}>
+				<FormulairePublicodes />
+			</EngineProvider>
+		</>
 	)
 }
 
 const useFields = (
-	engine: Engine<string>,
-	fieldNames: Array<string>
+	engine: Engine<string>
 ): Array<ReturnType<Engine['getRule']>> => {
-	return fieldNames
+	return Object.keys(engine.getParsedRules())
 		.filter((dottedName) => {
-			const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
 			const evaluation = engine.evaluate(dottedName)
 			const rule = engine.getRule(dottedName)
-			return (
-				isNotApplicable === false &&
-				(equals(evaluation.missingVariables, { [dottedName]: 1 }) ||
-					isEmpty(evaluation.missingVariables)) &&
-				(rule.rawNode.question ||
-					rule.rawNode.API ||
-					rule.rawNode.type ||
-					rule.rawNode.description)
-			)
+			const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
+			const displayRule =
+				(isNotApplicable === false &&
+					(equals(evaluation.missingVariables, { [dottedName]: 1 }) ||
+						isEmpty(evaluation.missingVariables)) &&
+					(rule.rawNode.question || rule.rawNode.API || rule.rawNode.type)) ||
+				(isNotApplicable === false &&
+					rule.rawNode.type === 'groupe' &&
+					Object.keys(evaluation.missingVariables).every((childDottedName) =>
+						childDottedName.startsWith(dottedName)
+					))
+			return displayRule
 		})
 		.map((dottedName) => engine.getRule(dottedName))
 }
@@ -119,10 +79,9 @@ const useFields = (
 const VERSION = hash(JSON.stringify(formulaire))
 function FormulairePublicodes() {
 	const engine = useContext(EngineContext)
-	const [situation, setSituation] = usePersistingState<Record<string, string>>(
-		`formulaire-détachement:${VERSION}`,
-		{}
-	)
+	const [situation, setSituation] = usePersistingState<
+		Record<string, PublicodesExpression>
+	>(`formulaire-détachement:${VERSION}`, {})
 	const onChange = useCallback(
 		(dottedName, value) => {
 			if (value === undefined) {
@@ -145,7 +104,7 @@ function FormulairePublicodes() {
 	}, [clearFieldsKey, setSituation])
 
 	engine.setSituation(situation)
-	const fields = useFields(engine, Object.keys(formulaire))
+	const fields = useFields(engine)
 
 	const missingValues = fields.filter(
 		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
@@ -162,37 +121,52 @@ function FormulairePublicodes() {
 							<Fragment key={dottedName}>
 								{type === 'groupe' ? (
 									<Grid item xs={12}>
-										<FromTop key={dottedName}>
-											<HeaderComponent>{title}</HeaderComponent>
-											{description && <Markdown source={description} />}
-										</FromTop>
+										{title && <HeaderComponent>{title}</HeaderComponent>}
+										{description && <Markdown source={description} />}
 									</Grid>
 								) : type === 'notification' ? (
-									<Condition expression={dottedName}>
+									<WhenApplicable dottedName={dottedName as DottedName}>
 										<Grid item xs={12}>
-											<FromTop key={dottedName}>
-												<SmallBody
-													css={`
-														color: #ff2d96;
-													`}
-												>
-													{description}
-												</SmallBody>
-											</FromTop>
+											<SmallBody
+												css={`
+													color: #ff2d96;
+												`}
+											>
+												{description}
+											</SmallBody>
 										</Grid>
-									</Condition>
+									</WhenApplicable>
 								) : (
 									<Grid
 										item
 										xs={12}
 										md={question || type === 'booléen' ? 12 : 6}
 									>
-										{question && <Body>{question}</Body>}
+										{question && (
+											<div
+												css={`
+													margin-top: -1rem;
+												`}
+											>
+												{' '}
+												<Markdown
+													source={
+														typeof question !== 'string'
+															? (engine.evaluate(question) as any).nodeValue
+															: question
+													}
+												/>
+											</div>
+										)}
+
 										<RuleInput
 											id={dottedName}
 											dottedName={dottedName as DottedName}
 											onChange={(value) => onChange(dottedName, value)}
 										/>
+										{question && type === undefined && description && (
+											<Markdown source={description} />
+										)}
 									</Grid>
 								)}
 							</Fragment>
@@ -200,10 +174,12 @@ function FormulairePublicodes() {
 					}
 				)}
 			</Grid>
-
-			<Suspense fallback={null}>
-				<LazyEndBlock fields={fields} missingValues={missingValues} />
-			</Suspense>
+			<Spacing xl />
+			<WhenNotApplicable dottedName={'situation . notification' as DottedName}>
+				<Suspense fallback={null}>
+					<LazyEndBlock fields={fields} missingValues={missingValues} />
+				</Suspense>
+			</WhenNotApplicable>
 			{!!Object.keys(situation).length && (
 				<div
 					css={`

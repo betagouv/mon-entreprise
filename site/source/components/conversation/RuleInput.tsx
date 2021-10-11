@@ -15,7 +15,7 @@ import React, { useContext } from 'react'
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
-import SelectEuropeCountry from './select/SelectEuropeCountry'
+import SelectPaysDétachement from './select/SelectPaysDétachement'
 import TextInput from './TextInput'
 
 type Props<Name extends string = DottedName> = Omit<
@@ -103,8 +103,8 @@ export default function RuleInput({
 	}
 	if (rule.rawNode.API && rule.rawNode.API === 'commune')
 		return <SelectCommune {...commonProps} />
-	if (rule.rawNode.API && rule.rawNode.API === 'pays européen')
-		return <SelectEuropeCountry {...commonProps} />
+	if (rule.rawNode.API && rule.rawNode.API === 'pays détachement')
+		return <SelectPaysDétachement {...commonProps} />
 	if (rule.rawNode.API)
 		throw new Error("Les seules API implémentées sont 'commune'")
 

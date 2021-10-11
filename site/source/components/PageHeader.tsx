@@ -18,7 +18,7 @@ export default function PageHeader({
 	picture,
 }: {
 	titre?: ReactNode
-	children: ReactNode
+	children?: ReactNode
 	picture?: string
 }) {
 	return (
