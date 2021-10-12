@@ -24,8 +24,9 @@ export const useSafeLocaleStorage = (key: string, state: any) => {
 }
 
 export const usePersistingState = <S>(key: string, defaultState?: any) => {
-	const initialState = getInitialState(key)
-	const state = initialState != null ? initialState : defaultState
+	const persistedState = getInitialState(key)
+	const initialState = persistedState != null ? persistedState : defaultState
+	const [state, setState] = useState<S>(initialState)
 	useSafeLocaleStorage(key, state)
-	return useState<S>(state)
+	return [state, setState]
 }
