@@ -4,7 +4,7 @@ const simulateursPath = '.ais-Hits-list'
 const reglesPath = '.ais-InfiniteHits-list'
 
 describe('Recherche globales', () => {
-	if (!fr) {
+	if (!fr || Cypress.config().baseUrl != 'https://mon-entreprise.fr') {
 		return
 	}
 
