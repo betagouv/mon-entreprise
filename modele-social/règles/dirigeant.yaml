@@ -297,10 +297,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     composantes:
       - assiette: entreprise . chiffre d'affaires . service
         taux:
-          nom: taux prestation de service
+          nom:
+            taux prestation de service
             # Historique : avant le 01/07/21 : 22%
           variations:
-            - si : entreprise . activité . libérale réglementée
+            - si: entreprise . activité . libérale réglementée
               alors: 22.20%
             - sinon: 22%
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
