@@ -1924,11 +1924,11 @@ contrat salarié . prix du travail:
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
     À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
-  formule:
-    somme:
-      - rémunération . total
-      - (- aides employeur)
-      - taxe sur les salaires
+
+  somme:
+    - rémunération . total
+    - taxe sur les salaires
+  abattement: aides employeur
   unité: €/mois
 
 contrat salarié . rémunération . total:
