@@ -298,7 +298,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       - assiette: entreprise . chiffre d'affaires . service
         taux:
           nom: taux prestation de service
-          valeur: 22%
+            # Historique : avant le 01/07/21 : 22%
+          variations:
+            - si : entreprise . activité . libérale réglementée
+              alors: 22.20%
+            - sinon: 22%
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux:
           nom: taux vente restauration hébergement
