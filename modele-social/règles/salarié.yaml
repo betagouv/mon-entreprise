@@ -508,7 +508,7 @@ contrat salarié . activité partielle . indemnisation entreprise:
 contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation
   description: >-
-   Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
+    Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
   formule:
     variations:
       - si: secteur d'activité restreint

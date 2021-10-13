@@ -2355,20 +2355,21 @@ contrat salarié . activité partielle . indemnisation entreprise:
   titre.en: '[automatic] Reimbursement of partial activity allowance'
   titre.fr: Remboursement de l'indemnité d'activité partielle
 contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
-  description.en: >-
-    [automatic] As of June 1, the company's compensation rate increases to 60%.
-    The compensation paid to the employee remains unchanged and it is therefore
-    the company that will have to pay the difference.
-
-    This measure does not concern sectors subject to specific legislative or regulatory restrictions due to the health crisis.
-  description.fr: >-
-    Depuis le 1er juin, le taux d'indemnisation de l'entreprise passe à 60%.
-    L'indemnité versée à l'employé reste inchangée et c'est donc l'entreprise
-    qui devra prendre en charge la différence.
-
-    Cette mesure ne concerne pas les secteurs faisant l’objet de restrictions législatives ou réglementaires particulières en raison de la crise sanitaire
-  titre.en: '[automatic] compensation rate'
-  titre.fr: taux d'indemnisation
+  description.en:
+    '[automatic] During the period of reduced activity, the employer
+    receives from the Agency for Services and Payment (ASP) an allowance
+    equivalent to a share of the hourly pay of the employee placed in partial
+    activity, within an average period of 12 days. The employee receives a
+    partial activity allowance from his employer, instead of his salary for the
+    period during which he is placed in partial activity.'
+  description.fr: Pendant la période de baisse d’activité, l’employeur reçoit de
+    l’Agence de services et de paiement (ASP) une allocation équivalente à une
+    part de la rémunération horaire du salarié placé en activité partielle, dans
+    un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur,
+    une indemnité d’activité partielle, en lieu et place de son salaire pour la
+    période durant laquelle il est placé en activité partielle.
+  titre.en: '[automatic] allocation rate'
+  titre.fr: taux d'allocation
 contrat salarié . activité partielle . indemnités:
   description.en: >-
     [automatic] If you are placed on short-time work, you are not entitled to a
@@ -2422,21 +2423,42 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
   titre.fr: rémunération mensuelle minimale
 contrat salarié . activité partielle . secteur d'activité restreint:
   description.en: >-
-    [automatic] Companies accommodating the public that experience a partial or
-    total interruption of their activity due to the Covid-19 epidemic receive an
-    increased partial activity allocation rate.
+    [automatic] Companies whose activity has been interrupted by administrative
+    decision as a result of the health crisis, or which are located in a
+    territorial district subject to specific restrictions on the conditions for
+    carrying out economic activity and the movement of persons adopted by the
+    administrative authority when they suffer a sharp drop in turnover, or which
+    are in the most affected sectors and which continue to suffer a very sharp
+    drop in turnover, will benefit from an allowance rate of 70 % until 31
+    October 2021
 
-    This concerns in particular the hotel and catering, sports, culture and events sectors.
 
-    The other companies benefit from an ordinary rate of compensation.
+    This includes:
+
+      - Companies in the sectors listed in Annex 2 of the decree of 29 June 2020 , which suffered a very sharp drop in turnover of at least 80% during the period between 15 March and 15 May 2020 ;
+
+      - establishments receiving the public that are administratively closed or located in an area subject to specific restrictions (e.g. curfew) and that have suffered a drop in turnover of at least 60%;
+
+      - establishments located in a catchment area of a ski resort and suffering a drop in turnover of at least 50% if the cable cars and ski lifts are closed.
   description.fr: >-
-    Les entreprises accueillant du public qui connaissent une interruption
-    partielle ou totale de leur activité en raison de l'épidémie de Covid-19
-    percoivent un taux d'allocation d'activité partielle majoré.
+    Les entreprises dont l'activité a été interrompue par décision
+    administrative en raison de la crise sanitaire, ou qui sont situées dans une
+    circonscription territoriale soumise à des restrictions spécifiques des
+    conditions d'exercice de l'activité économique et de circulation des
+    personnes prises par l'autorité administrative lorsqu'ils subissent une
+    forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus
+    affectés et qui continuent de subir une très forte baisse du chiffre
+    d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre
+    2021.
 
-    Il concerne notamment les secteurs de l'hôtellerie-restauration, du sport, de la culture et de l’événementiel.
 
-    Les autres entreprises bénéficient d'un taux d'indemnité de droit commun.
+    Sont concernées :
+
+      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
+
+      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
+
+      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
   question.en:
     "[automatic] Are there any regulatory restrictions on the company's
     line of business? (e.g. tourism, catering, culture, events)"
@@ -4017,21 +4039,6 @@ contrat salarié . maladie . taux salarié:
 contrat salarié . maladie . taux solidarité autonomie:
   titre.en: '[automatic] solidarity rate autonomy'
   titre.fr: taux solidarité autonomie
-contrat salarié . médecine du travail:
-  description.en: >-
-    The employer has the obligation to organize an occupational health service,
-    by joining a service for businesses, or by creating an internal service.
-
-
-    In the case of joining a service, the amount of this contribution is not defined by the law, but it must be proportional to the number of employees. We have chosen an indicative amount (see references) adjusted with inflation since 2007.
-  description.fr: >
-    L'employeur a l'obligation d'organiser un service de santé au travail, en
-    adhérant à un service interentreprises, ou en créant un service interne.
-
-
-    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
-  titre.en: Occupational Medicine
-  titre.fr: médecine du travail
 contrat salarié . participation effort de construction:
   description.en: Employer participation in the home building effort
   description.fr: Participation des employeurs à l'effort de construction
