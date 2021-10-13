@@ -417,7 +417,12 @@ contrat salarié . activité partielle . indemnités . base:
       # - avant le 01/07/2021: 70%
       # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
       taux:
-        valeur: 70%
+        valeur:
+          variations:
+            - si: secteur d'activité restreint
+              alors: 70%
+              # Historique 60% jusqu'au 31 octobre 2021, 70% après
+            - sinon: 60%
         nom: taux
 
 contrat salarié . activité partielle . indemnités . complémentaire:
@@ -490,20 +495,20 @@ contrat salarié . activité partielle . indemnisation entreprise:
     multiplication:
       assiette: retrait absence
       taux: taux d'indemnisation
-    plancher: 8.11 €/heure * heures chômées
+
+    plancher:
+      # Historique:
+      # - avant le 01/10/2021 : 8.11€
+      8.30 €/heure * heures chômées
     plafond:
       recalcul:
         avec:
           rémunération . brut de base: 4.5 * SMIC
 
 contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  titre: taux d'allocation
   description: >-
-    Depuis le 1er juin, le taux d'indemnisation de l'entreprise passe à 60%.
-    L'indemnité versée à l'employé reste inchangée et c'est donc l'entreprise
-    qui devra prendre en charge la différence.
-
-    Cette mesure ne concerne pas les secteurs faisant l’objet de restrictions
-    législatives ou réglementaires particulières en raison de la crise sanitaire
+   Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
   formule:
     variations:
       - si: secteur d'activité restreint
@@ -517,24 +522,27 @@ contrat salarié . activité partielle . indemnisation entreprise . taux d'indem
       # - avant le 01/06/2021: 60%
       # - avant le 01/07/2021: 52%
       # - à partir du 01/07/2021: 36%
-      - sinon: 52%
+      - sinon: 36%
 
 contrat salarié . activité partielle . secteur d'activité restreint:
   question: >-
     Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
     réglementaires ? (ex. : tourisme, restauration, culture, événementiel)
   description: >-
-    Les entreprises accueillant du public qui connaissent une interruption partielle
-    ou totale de leur activité en raison de l'épidémie de Covid-19 percoivent un taux
-    d'allocation d'activité partielle majoré.
+    Les entreprises dont l'activité a été interrompue par décision administrative en raison de la crise sanitaire, ou qui sont situées dans une circonscription territoriale soumise à des restrictions spécifiques des conditions d'exercice de l'activité économique et de circulation des personnes prises par l'autorité administrative lorsqu'ils subissent une forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus affectés et qui continuent de subir une très forte baisse du chiffre d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre 2021.
 
-    Il concerne notamment les secteurs de l'hôtellerie-restauration, du sport,
-    de la culture et de l’événementiel.
 
-    Les autres entreprises bénéficient d'un taux d'indemnité de droit commun.
+    Sont concernées :
+
+      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
+
+      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
+
+      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
+
   références:
     Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
-    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A14386
+    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A15140
 
   par défaut: non
 
