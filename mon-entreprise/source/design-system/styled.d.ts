@@ -21,12 +21,13 @@ type SmallPalette = {
 	500: Color
 	600: Color
 }
+type Metric = string
 
-type Spacing = string
+type Spacing = Metric
 
 type Font = string
 
-type FontSize = string
+type FontSize = Metric
 
 declare module 'styled-components' {
 	export interface DefaultTheme {
@@ -70,5 +71,11 @@ declare module 'styled-components' {
 		}
 
 		baseFontSize: FontSize
+
+		box: {
+			borderRadius: Metric
+			borderWidth: Metric
+			borderWidthLarge: Metric
+		}
 	}
 }

@@ -129,12 +129,12 @@ export const theme: DefaultTheme = {
 	spacings: {
 		xxs: '.25rem',
 		xs: '.5rem',
-		sm: '1rem',
-		md: '1.5rem',
-		lg: '2rem',
-		xl: '3rem',
-		xxl: '4rem',
-		xxxl: '8rem',
+		sm: '0.75rem',
+		md: '1rem',
+		lg: '1.5rem',
+		xl: '2rem',
+		xxl: '2.5rem',
+		xxxl: '3.25rem',
 	},
 
 	fonts: {
@@ -143,4 +143,10 @@ export const theme: DefaultTheme = {
 	},
 
 	baseFontSize: '16px',
+
+	box: {
+		borderRadius: '6px',
+		borderWidth: '1px',
+		borderWidthLarge: '2px',
+	},
 }
