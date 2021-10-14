@@ -17,7 +17,8 @@
 			"Images/*": ["static/images/*"],
 			"Reducers/*": ["reducers/*"],
 			"Selectors/*": ["selectors/*"],
-			"Types/*": ["types/*"]
+			"Types/*": ["types/*"],
+			"DesignSystem/*": ["design-system/*"]
 		},
 		"typeRoots": ["./types/", "./node_modules/@types"],
 		"noEmit": true,

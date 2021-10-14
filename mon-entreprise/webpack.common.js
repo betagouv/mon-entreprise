@@ -117,6 +117,7 @@ module.exports.default = {
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
 			Images: path.resolve('source/static/images/'),
+			DesignSystem: path.resolve('source/design-system'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
 	},

@@ -15,7 +15,7 @@ export default function Header() {
 	return (
 		<>
 			<div
-				className="ui__ container"
+				className=""
 				style={{
 					display: 'flex',
 					alignItems: 'center',

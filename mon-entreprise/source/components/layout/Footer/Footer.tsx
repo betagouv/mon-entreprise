@@ -83,7 +83,7 @@ export default function Footer() {
 						security contributions collector.
 					</p>
 				)}
-				<StyledFooter className="ui__ notice container">
+				<StyledFooter className="ui__ notice ">
 					{language === 'fr' && (
 						<ul>
 							<li>

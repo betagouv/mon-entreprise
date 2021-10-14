@@ -9,6 +9,7 @@ import {
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Container } from 'DesignSystem/layout'
 import 'iframe-resizer'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
@@ -106,41 +107,31 @@ const App = () => {
 	const sitePaths = useContext(SitePathsContext)
 
 	return (
-		<>
+		<Container>
 			<Header />
-			<div className="app-container">
-				<Helmet
-					titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
-				/>
-				{/* Passing location down to prevent update blocking */}
-				<div className="ui__ container app-content">
-					<Switch>
-						{redirects}
-						<Route path={sitePaths.créer.index} component={Créer} />
-						<Route path={sitePaths.gérer.index} component={Gérer} />
-						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
-						<Route
-							path={sitePaths.documentation.index}
-							component={Documentation}
-						/>
-						<Route path={sitePaths.integration.index} component={Integration} />
-						<Route path={sitePaths.nouveautés} component={Nouveautés} />
-						<Route path={sitePaths.stats} component={Stats} />
-						<Route path={sitePaths.budget} component={Budget} />
-						<Route path={sitePaths.accessibilité} component={Accessibilité} />
-						<Route exact path="/dev/sitemap" component={Sitemap} />
-						<Route
-							exact
-							path="/dev/integration-test"
-							component={IntegrationTest}
-						/>
-						<Route exact path="/dev/personas" component={Personas} />
+			<Helmet
+				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
+			/>
+			{/* Passing location down to prevent update blocking */}
+			<Switch>
+				{redirects}
+				<Route path={sitePaths.créer.index} component={Créer} />
+				<Route path={sitePaths.gérer.index} component={Gérer} />
+				<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
+				<Route path={sitePaths.documentation.index} component={Documentation} />
+				<Route path={sitePaths.integration.index} component={Integration} />
+				<Route path={sitePaths.nouveautés} component={Nouveautés} />
+				<Route path={sitePaths.stats} component={Stats} />
+				<Route path={sitePaths.budget} component={Budget} />
+				<Route path={sitePaths.accessibilité} component={Accessibilité} />
 
-						<Route component={Route404} />
-					</Switch>
-				</div>
-				<Footer />
-			</div>
-		</>
+				<Route exact path="/dev/sitemap" component={Sitemap} />
+				<Route exact path="/dev/integration-test" component={IntegrationTest} />
+				<Route exact path="/dev/personas" component={Personas} />
+
+				<Route component={Route404} />
+			</Switch>
+			<Footer />
+		</Container>
 	)
 }
