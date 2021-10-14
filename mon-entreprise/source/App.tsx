@@ -9,7 +9,9 @@ import {
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { GlobalStyle } from 'DesignSystem/global-style'
 import { Container } from 'DesignSystem/layout'
+import { theme } from 'DesignSystem/theme'
 import 'iframe-resizer'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
@@ -20,6 +22,7 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import { ThemeProvider } from 'styled-components'
 import './App.css'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -66,7 +69,10 @@ export default function Root({ basename, rules }: RootProps) {
 			}}
 		>
 			<EngineProvider value={engine}>
-				<Router />
+				<ThemeProvider theme={theme}>
+					<GlobalStyle />
+					<Router />
+				</ThemeProvider>
 			</EngineProvider>
 		</Provider>
 	)

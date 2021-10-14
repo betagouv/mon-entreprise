@@ -24,6 +24,10 @@ type SmallPalette = {
 
 type Spacing = string
 
+type Font = string
+
+type FontSize = string
+
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		colors: {
@@ -59,5 +63,12 @@ declare module 'styled-components' {
 			xxl: Spacing
 			xxxl: Spacing
 		}
+
+		fonts: {
+			main: Font
+			heading: Font
+		}
+
+		baseFontSize: FontSize
 	}
 }
