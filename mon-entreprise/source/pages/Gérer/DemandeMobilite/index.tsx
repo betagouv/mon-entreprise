@@ -181,7 +181,7 @@ function FormulairePublicodes() {
 						) : (
 							<>
 								<label htmlFor={dottedName}>
-									{question ? (
+									{question && (
 										<span
 											css={`
 												margin-top: 0.6rem;
@@ -189,8 +189,6 @@ function FormulairePublicodes() {
 										>
 											{question}
 										</span>
-									) : (
-										<small>{title}</small>
 									)}{' '}
 								</label>
 								{description && (

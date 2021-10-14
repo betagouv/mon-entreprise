@@ -75,7 +75,6 @@ declare module 'styled-components' {
 		box: {
 			borderRadius: Metric
 			borderWidth: Metric
-			borderWidthLarge: Metric
 		}
 	}
 }

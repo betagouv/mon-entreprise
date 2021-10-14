@@ -147,6 +147,5 @@ export const theme: DefaultTheme = {
 	box: {
 		borderRadius: '6px',
 		borderWidth: '1px',
-		borderWidthLarge: '2px',
 	},
 }
