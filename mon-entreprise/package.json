@@ -63,6 +63,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",
+		"@react-aria/textfield": "^3.4.0",
 		"@react-pdf/renderer": "^1.6.10",
 		"@rehooks/local-storage": "^2.1.1",
 		"@sentry/react": "^6.3.5",
