@@ -3,6 +3,8 @@ import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -39,17 +41,17 @@ export default function Landing() {
 					src={logoSvg}
 				/>
 				<header>
-					<h1>
+					<H1>
 						<Trans i18nKey="landing.title">
 							L'assistant officiel de l'entrepreneur
 						</Trans>
-					</h1>
-					<p className="ui__ lead">
+					</H1>
+					<Intro>
 						<Trans i18nKey="landing.subtitle">
 							Les ressources nécessaires pour développer votre activité, du
 							statut juridique à l'embauche.
 						</Trans>
-					</p>
+					</Intro>
 				</header>
 				<img src={illustrationSvg} className="landing-title__img" />
 			</section>
@@ -65,11 +67,11 @@ export default function Landing() {
 						<Emoji emoji="💡" />
 					</div>
 					<Trans i18nKey="landing.choice.create">
-						<h3>Créer une entreprise</h3>
-						<p className="ui__ notice">
+						<H3 as="h2">Créer une entreprise</H3>
+						<SmallBody>
 							Un accompagnement au choix du statut juridique et la liste
 							complète des démarches de création
-						</p>
+						</SmallBody>
 					</Trans>
 					<div className="ui__ small simple button">
 						{statutChoisi ? <Trans>Continuer</Trans> : <Trans>Commencer</Trans>}
@@ -83,11 +85,11 @@ export default function Landing() {
 						<Emoji emoji="💶" />
 					</div>
 					<Trans i18nKey="landing.choice.manage">
-						<h3>Gérer mon activité</h3>
-						<p className="ui__ notice">
+						<H3 as="h2">Gérer mon activité</H3>
+						<SmallBody>
 							Des outils personnalisés pour anticiper le montant des cotisations
 							sociales à payer et mieux gérer votre trésorerie.
-						</p>
+						</SmallBody>
 					</Trans>
 					<div className="ui__ small simple button">
 						<Trans>Commencer</Trans>
@@ -101,11 +103,11 @@ export default function Landing() {
 						<Emoji emoji="🧮" />
 					</div>
 					<Trans i18nKey="landing.choice.simulators">
-						<h3>Accéder aux simulateurs</h3>
-						<p className="ui__ notice">
+						<H3 as="h2">Accéder aux simulateurs</H3>
+						<SmallBody>
 							La liste exhaustive de tous les simulateurs disponibles sur le
 							site.
-						</p>
+						</SmallBody>
 					</Trans>
 					<div className="ui__ small simple button">
 						<Trans>Découvrir</Trans>
@@ -114,8 +116,8 @@ export default function Landing() {
 			</section>
 			<section>
 				<Trans i18nKey="landing.aboutUs">
-					<h2>Qui sommes-nous ?</h2>
-					<p>
+					<H2>Qui sommes-nous ?</H2>
+					<Body>
 						Nous sommes une petite{' '}
 						<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
 							équipe
@@ -125,21 +127,21 @@ export default function Landing() {
 						au près de vos besoins afin d’améliorer en permanence ce site
 						conformément à l'approche{' '}
 						<a href="https://beta.gouv.fr/approche/manifeste">beta.gouv.fr</a>.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Nous avons développé ce site pour{' '}
 						<strong>accompagner les créateurs d’entreprise</strong> dans le
 						développement de leur activité.
-					</p>
+					</Body>
 
-					<p>
+					<Body>
 						Notre objectif est de{' '}
 						<strong>
 							lever toutes les incertitudes vis à vis de l’administration
 						</strong>{' '}
 						afin que vous puissiez vous concentrer sur ce qui compte : votre
 						activité.
-					</p>
+					</Body>
 				</Trans>
 			</section>
 			<Footer />
