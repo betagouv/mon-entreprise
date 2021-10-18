@@ -53,6 +53,7 @@ export type InputProps<Name extends string = string> = Omit<
 > &
 	Pick<RuleNode, 'title' | 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
+		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		missing: boolean
 		onChange: (value: PublicodesExpression | undefined) => void
@@ -90,6 +91,7 @@ export default function RuleInput({
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,
+		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},

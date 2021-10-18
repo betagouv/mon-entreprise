@@ -7,7 +7,7 @@ import { TextField } from 'DesignSystem/field'
 export default function TextInput({
 	onChange,
 	value,
-	id,
+	description,
 	title,
 	missing,
 	autoFocus,
@@ -17,11 +17,11 @@ export default function TextInput({
 		<TextField
 			autoFocus={autoFocus}
 			type="text"
-			id={id}
 			label={title}
 			onChange={({ target }) => {
 				debouncedOnChange(`'${target.value}'`)
 			}}
+			description={description}
 			{...{
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}

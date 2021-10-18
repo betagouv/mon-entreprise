@@ -133,12 +133,12 @@ export const theme: DefaultTheme = {
 		md: '1rem',
 		lg: '1.5rem',
 		xl: '2rem',
-		xxl: '2.5rem',
-		xxxl: '3.25rem',
+		xxl: '3rem',
+		xxxl: '4rem',
 	},
 
 	fonts: {
-		main: '',
+		main: "'Roboto', sans-serif",
 		heading: '',
 	},
 

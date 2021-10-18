@@ -21,3 +21,9 @@ export const SmallBody = styled.p`
 	font-size: 0.875rem;
 	line-height: 1.25rem;
 `
+
+export const ExtraSmallBody = styled.p`
+	${baseParagraphStyle}
+	font-size: 0.75rem;
+	line-height: 1rem;
+`

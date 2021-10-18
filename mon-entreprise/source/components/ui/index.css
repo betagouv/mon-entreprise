@@ -23,6 +23,7 @@
 html,
 body,
 #js {
+	font-size: 16px !important;
 	min-height: 100%;
 }
 
