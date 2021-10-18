@@ -1,5 +1,6 @@
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
@@ -39,9 +40,9 @@ export const SimulatorHits = connectHits(({ hits }: SimulatorHitsProps) => {
 	return (
 		<>
 			{hits.length > 0 && (
-				<h2>
+				<H2>
 					<Trans>Simulateurs</Trans>
-				</h2>
+				</H2>
 			)}
 			<div className="ais-Hits-list">
 				{hits.map((hit) => (

@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import { useDebounce } from 'Components/utils'
 import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
 import { References } from 'publicodes-react'
@@ -204,13 +205,13 @@ export const RadioLabel = (props: RadioLabelProps) => (
 		<RadioLabelContent {...props} />
 		{props.description && (
 			<Explicable>
-				<h2>{props.label}</h2>
+				<H2>{props.label}</H2>
 				<Markdown source={props.description} />
 				{props.références && (
 					<>
-						<h3>
+						<H3>
 							<Trans>En savoir plus</Trans>
-						</h3>
+						</H3>
 						<References refs={props.références} />
 					</>
 				)}

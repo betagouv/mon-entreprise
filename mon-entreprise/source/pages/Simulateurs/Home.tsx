@@ -5,6 +5,7 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -151,7 +152,7 @@ export function SimulateurCard({
 					<Emoji emoji={icône} />
 				</div>
 			)}
-			<>{small ? name : <h3>{name}</h3>}</>
+			<>{small ? name : <H3>{name}</H3>}</>
 			{!small && meta?.description && (
 				<p className="ui__ notice">{meta.description}</p>
 			)}

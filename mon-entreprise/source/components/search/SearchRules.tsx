@@ -6,6 +6,7 @@ import algoliasearch from 'algoliasearch/lite'
 import { Trans, useTranslation } from 'react-i18next'
 import { InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
+import { H2 } from 'DesignSystem/typography/heading'
 
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY || ''
@@ -27,9 +28,9 @@ export default function SearchRules() {
 					placeholder: t('Cherchez par mot-clef ou acronyme...'),
 				}}
 			/>
-			<h2>
+			<H2>
 				<Trans>Règles de calculs</Trans>
-			</h2>
+			</H2>
 			<RulesInfiniteHits />
 		</InstantSearch>
 	)

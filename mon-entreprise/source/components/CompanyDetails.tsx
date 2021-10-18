@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Skeleton from 'Components/ui/Skeleton'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
+import { H3 } from 'DesignSystem/typography/heading'
 
 type Company = {
 	denomination: string
@@ -41,7 +42,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 
 	return (
 		<>
-			<h3>
+			<H3>
 				{denomination || company ? (
 					<>
 						{denomination ||
@@ -53,7 +54,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 				) : (
 					<Skeleton width={400} />
 				)}
-			</h3>
+			</H3>
 
 			<p className="ui__ notice">
 				<Trans>Crée le</Trans>{' '}

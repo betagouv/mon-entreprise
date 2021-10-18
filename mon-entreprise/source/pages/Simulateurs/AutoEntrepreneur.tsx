@@ -3,13 +3,12 @@ import { WhenAlreadyDefined } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
-import InstitutionsPartenaires, {
-	InstitutionsPartenairesAutoEntrepreneur,
-} from 'Components/simulationExplanation/InstitutionsPartenaires'
+import { InstitutionsPartenairesAutoEntrepreneur } from 'Components/simulationExplanation/InstitutionsPartenaires'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { default as React, useContext } from 'react'
+import { H2 } from 'DesignSystem/typography/heading'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 export default function AutoEntrepreneur() {
@@ -44,9 +43,9 @@ function Explanation() {
 	const { palettes } = useContext(ThemeColorsContext)
 	return (
 		<section>
-			<h2>
+			<H2>
 				<Trans>Répartition du chiffre d'affaires</Trans>
-			</h2>
+			</H2>
 			<StackedBarChart
 				data={[
 					{

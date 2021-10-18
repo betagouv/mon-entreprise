@@ -5,6 +5,7 @@ import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1, H2, H4 } from 'DesignSystem/typography/heading'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -32,7 +33,7 @@ export default function ActivitésSelection() {
 			<FromBottom>
 				<TrackPage name="accueil" />
 				<ScrollToTop />
-				<h1>{titre}</h1>
+				<H1>{titre}</H1>
 				<section css="margin-bottom: 2rem">
 					<Trans i18nKey="économieCollaborative.accueil.contenu">
 						<p>
@@ -58,11 +59,11 @@ export default function ActivitésSelection() {
 				</section>
 
 				<section className="ui__ full-width light-bg">
-					<h2 className="ui__ container" css="text-align: center">
+					<H2>
 						<Trans i18nKey="économieCollaborative.accueil.question">
 							Quels types d'activités avez-vous exercé ?
 						</Trans>
-					</h2>
+					</H2>
 					<ActivitéSelection
 						activités={activités.map(({ titre }: Activity) => titre)}
 					/>
@@ -194,12 +195,12 @@ const ActivitéContent = ({
 	label,
 }: any) => (
 	<>
-		<h4 className="title">
+		<H4>
 			{titre}{' '}
 			<InfoBulle>
 				<div css="line-height: initial">{explication}</div>
 			</InfoBulle>
-		</h4>
+		</H4>
 
 		<p className="ui__ notice">{plateformes.join(', ')}</p>
 		{label && <div className="ui__ label"> {label}</div>}

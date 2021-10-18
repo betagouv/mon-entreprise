@@ -2,6 +2,7 @@ import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -27,9 +28,9 @@ export default function NumberOfAssociates() {
 					)}
 				/>
 			</Helmet>
-			<h2>
+			<H2>
 				<Trans i18nKey="associés.titre">Seul ou à plusieurs</Trans>
-			</h2>
+			</H2>
 			<Trans i18nKey="associés.description">
 				<p>
 					Une entreprise avec un seul associé est plus simple à créer et gérer.

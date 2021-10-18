@@ -2,6 +2,7 @@ import {
 	directorIsInAMinority,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -27,11 +28,11 @@ export default function MinorityDirector() {
 					)}
 				/>
 			</Helmet>
-			<h2>
+			<H2>
 				<Trans i18nKey="gérant minoritaire.titre">
 					Gérant majoritaire ou minoritaire
 				</Trans>{' '}
-			</h2>
+			</H2>
 			<Trans i18nKey="gérant minoritaire.description">
 				<p>
 					Certaines règles spéciales s'appliquent selon le nombre d'actions

@@ -1,10 +1,11 @@
 import { Explicable } from 'Components/conversation/Explicable'
+import { H2 } from 'DesignSystem/typography/heading'
 
 export function ExplicationsResultatFiscal() {
 	return (
 		<Explicable>
 			<>
-				<h2>Quelles exonérations inclure ?</h2>
+				<H2>Quelles exonérations inclure ?</H2>
 				<p>
 					Pour calculer le montant du résultat fiscal avant déduction des
 					exonérations et des charges sociales à indiquer dans ce simulateur,

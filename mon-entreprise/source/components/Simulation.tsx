@@ -6,6 +6,7 @@ import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
+import { H2 } from 'DesignSystem/typography/heading'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -115,7 +116,7 @@ export function Questions({
 						`}
 					>
 						{progress < 1 && (
-							<h2
+							<H2
 								css={`
 									font-family: 'roboto';
 									font-weight: normal;
@@ -129,7 +130,7 @@ export function Questions({
 										Améliorez votre simulation en répondant aux questions
 									</Trans>
 								</small>
-							</h2>
+							</H2>
 						)}
 						<SeeAnswersButton />
 					</div>

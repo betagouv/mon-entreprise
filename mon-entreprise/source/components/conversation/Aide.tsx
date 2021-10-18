@@ -8,6 +8,7 @@ import { References } from 'publicodes-react'
 import { Trans } from 'react-i18next'
 import './Aide.css'
 import { EngineContext } from 'Components/utils/EngineContext'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
@@ -29,13 +30,13 @@ export default function Aide() {
 					padding: 0.6rem;
 				`}
 			>
-				<h2>{rule.title}</h2>
+				<H2>{rule.title}</H2>
 				<Markdown source={text} />
 				{refs && (
 					<>
-						<h3>
+						<H3>
 							<Trans>En savoir plus</Trans>
-						</h3>
+						</H3>
 						<References refs={refs} />
 					</>
 				)}

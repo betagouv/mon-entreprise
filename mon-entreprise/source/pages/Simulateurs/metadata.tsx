@@ -4,6 +4,7 @@ import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
@@ -123,7 +124,7 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs.salarié,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.salarié.seo">
-					<h2>Comment calculer le salaire net ?</h2>
+					<H2>Comment calculer le salaire net ?</H2>
 					<p>
 						Lors de l'entretien d'embauche l'employeur propose en général une
 						rémunération exprimée en « brut ». Le montant annoncé inclut ainsi
@@ -166,7 +167,7 @@ export function getSimulatorsData({
 						</RuleLink>
 						.
 					</p>
-					<h2>Comment calculer le coût d'embauche ?</h2>
+					<H2>Comment calculer le coût d'embauche ?</H2>
 					<p>
 						Si vous cherchez à embaucher, vous pouvez calculer le coût total de
 						la rémunération de votre salarié, ainsi que les montants de
@@ -206,10 +207,10 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs['entreprise-individuelle'],
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
-					<h2>
+					<H2>
 						Comment calculer le revenu net d'un dirigeant d'entreprise
 						individuelle (EI) ?
-					</h2>
+					</H2>
 					<p>
 						Un dirigeant d'entreprise individuelle doit payer des cotisations et
 						contributions sociales à l'administration. Ces cotisations servent
@@ -240,10 +241,10 @@ export function getSimulatorsData({
 							</strong>
 						</blockquote>
 					</p>
-					<h2>
+					<H2>
 						Comment calculer les cotisations sociales d'une entreprise
 						individuelle ?
-					</h2>
+					</H2>
 					<p>
 						Le dirigeant d'une entreprise individuelle paye des cotisations
 						sociales, proportionnelle au{' '}
@@ -300,7 +301,7 @@ export function getSimulatorsData({
 			},
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-					<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
+					<H2>Comment calculer le salaire d'un dirigeant de SASU ? </H2>
 					<p>
 						Comme pour un salarié classique, le{' '}
 						<strong>dirigeant de sasu</strong> paye des cotisations sociales sur
@@ -390,7 +391,7 @@ export function getSimulatorsData({
 			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
-					<h2>Comment calculer le revenu net d'un auto-entrepreneur ?</h2>
+					<H2>Comment calculer le revenu net d'un auto-entrepreneur ?</H2>
 					<p>
 						Un auto-entrepreneur doit payer des cotisations et contributions
 						sociales à l'administration. Ces cotisations servent au financement
@@ -422,9 +423,9 @@ export function getSimulatorsData({
 							</strong>
 						</blockquote>
 					</p>
-					<h2>
+					<H2>
 						Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?
-					</h2>
+					</H2>
 					<p>
 						Si vous avez opté pour le versement libératoire lors de la création
 						de votre auto-entreprise, l'impôt sur le revenu est payé en même
@@ -484,7 +485,7 @@ export function getSimulatorsData({
 			},
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
-					<h2>Comment calculer l'indemnité d'activité partielle ?</h2>
+					<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
 					<p>
 						L'indemnité d'activité partielle de base est fixée par la loi à{' '}
 						<strong>70% du brut</strong>. Elle est proratisée en fonction du
@@ -505,7 +506,7 @@ export function getSimulatorsData({
 							Voir le détail du calcul de l'indemnité
 						</RuleLink>
 					</p>
-					<h2>Comment calculer la part remboursée par l'État ?</h2>
+					<H2>Comment calculer la part remboursée par l'État ?</H2>
 					<p>
 						L'État prend en charge une partie de l'indemnité partielle pour les
 						salaires allant jusqu'à <strong>4,5 SMIC</strong>, avec un minimum à
@@ -522,7 +523,7 @@ export function getSimulatorsData({
 							Voir le détail du calcul du remboursement de l'indemnité
 						</RuleLink>
 					</p>
-					<h2>Comment déclarer une activité partielle ?</h2>
+					<H2>Comment déclarer une activité partielle ?</H2>
 					<p>
 						Face à la crise du coronavirus, les modalités de passage en activité
 						partielle ont été allégées. L'employeur est autorisé a placer ses
@@ -538,11 +539,11 @@ export function getSimulatorsData({
 							Effectuer la demande de chômage partiel
 						</a>
 					</p>
-					<h2>
+					<H2>
 						{' '}
 						Quelles sont les cotisations sociales à payer pour l'indemnité
 						d'activité partielle ?
-					</h2>
+					</H2>
 					<p>
 						L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
 						contribution maladie dans certains cas. Pour en savoir plus, voir la
@@ -737,7 +738,7 @@ export function getSimulatorsData({
 			component: ISSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.is.seo">
-					<h2>Comment est calculé l’impôt sur les sociétés ?</h2>
+					<H2>Comment est calculé l’impôt sur les sociétés ?</H2>
 					<p>
 						L’impôt sur les sociétés s’applique aux bénéfices réalisés par les
 						sociétés de capitaux (SA, SAS, SASU, SARL, etc.) et sur option
@@ -752,7 +753,7 @@ export function getSimulatorsData({
 						l’exercice, ce qui est pris en compte dans le simulateur en
 						modifiant les dates de début et de fin de l’exercice.
 					</p>
-					<h2>Taux réduit et régimes spécifiques</h2>
+					<H2>Taux réduit et régimes spécifiques</H2>
 					<p>
 						Les PME réalisant moins de 7,63 millions d’euros de chiffre
 						d’affaires et dont le capital est détenu à 75% par des personnes
@@ -792,7 +793,7 @@ export function getSimulatorsData({
 			config: dividendesConfig,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
-					<h2>Les dividendes et distributions</h2>
+					<H2>Les dividendes et distributions</H2>
 					<p>
 						A la fin de l'exercice d'une société, le résultat de l'exercice
 						précédent peut être conservé en réserve (pour de futurs
@@ -805,7 +806,7 @@ export function getSimulatorsData({
 						bénéficiaire personne physique et des dividendes décidés par la
 						société.
 					</p>
-					<h2>Comment sont calculés les prélèvements sur les dividendes ?</h2>
+					<H2>Comment sont calculés les prélèvements sur les dividendes ?</H2>
 					<p>
 						Les dividendes peuvent être soumis au prélèvement forfaitaire unique
 						de 30% incluant imposition et contributions sociales (aussi appelé
@@ -825,9 +826,9 @@ export function getSimulatorsData({
 						</a>
 						.
 					</p>
-					<h2>
+					<H2>
 						Cas particulier du dirigeant au régime du travailleur indépendant
-					</h2>
+					</H2>
 					<p>
 						{' '}
 						Au régime du travailleur indépendant, la part des dividendes

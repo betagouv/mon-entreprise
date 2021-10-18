@@ -1,6 +1,7 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1 } from 'DesignSystem/typography/heading'
 import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -59,9 +60,9 @@ export default function Créer() {
 				</NavLink>
 			</div>
 			<TrackChapter chapter2="guide" />
-			<h1>
+			<H1>
 				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
-			</h1>
+			</H1>
 			<PreviousAnswers />
 			<FromBottom key={location.pathname}>
 				<Switch>

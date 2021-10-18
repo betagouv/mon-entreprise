@@ -2,6 +2,7 @@ import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
+import { H1 } from 'DesignSystem/typography/heading'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import React, { createContext, useMemo } from 'react'
@@ -130,7 +131,7 @@ export default function Provider({
 							src={logo}
 							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
 						></img>
-						<h1>Une erreur est survenue</h1>
+						<H1>Une erreur est survenue</H1>
 						<p>
 							L'équipe technique de mon-entreprise.fr a été automatiquement
 							prévenue. Vous pouvez également nous contacter directement à

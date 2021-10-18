@@ -1,3 +1,4 @@
+import { H3 } from 'DesignSystem/typography/heading'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -56,7 +57,7 @@ export default function ShareOrSaveSimulationBanner() {
 				>
 					&times;
 				</button>
-				<h3>{t('shareSimulation.modal.title', 'Votre lien de partage')} </h3>
+				<H3>{t('shareSimulation.modal.title', 'Votre lien de partage')} </H3>
 				<p className="ui__ notice">
 					<Trans key="shareSimulation.modal.notice">
 						Voici le lien que vous pouvez envoyer pour accéder à votre

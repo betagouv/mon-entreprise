@@ -12,17 +12,18 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
 	return (
 		<section>
 			<FromBottom>
-				<h2>
+				<H2>
 					<Trans i18nKey="simulateurs.explanation.institutions.titre">
 						Vos institutions partenaires
 					</Trans>
-				</h2>
+				</H2>
 				<InstitutionsTable>
 					<Condition expression="entreprise . activité . libérale réglementée = oui">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
@@ -193,7 +194,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 	).rawNode
 	return (
 		<section>
-			<h3>Vos cotisations</h3>
+			<H3>Vos cotisations</H3>
 			<InstitutionsTable>
 				<CotisationsUrssaf
 					rule="artiste-auteur . cotisations"
@@ -231,11 +232,11 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 	return (
 		<section>
 			<FromBottom>
-				<h2>
+				<H2>
 					<Trans i18nKey="simulateurs.explanation.institutions.titre">
 						Vos institutions partenaires
 					</Trans>
-				</h2>
+				</H2>
 				<InstitutionsTable>
 					<CotisationsUrssaf rule="dirigeant . auto-entrepreneur . cotisations et contributions" />
 					<ImpôtsDGFIP />

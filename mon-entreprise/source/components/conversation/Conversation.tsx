@@ -6,6 +6,7 @@ import { FadeIn } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { H3 } from 'DesignSystem/typography/heading'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -65,11 +66,11 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<FadeIn>
 					<div className="step">
-						<h3>
+						<H3>
 							{engine.getRule(currentQuestion).rawNode.question}
 							&nbsp;
 							<ExplicableRule dottedName={currentQuestion} />
-						</h3>
+						</H3>
 
 						<fieldset>
 							<RuleInput
@@ -118,12 +119,12 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	) : (
 		<div style={{ textAlign: 'center' }}>
 			<TrackPage name="simulation terminée" />
-			<h3>
+			<H3>
 				<Emoji emoji="🌟" />{' '}
 				<Trans i18nKey="simulation-end.title">
 					Vous avez complété cette simulation
 				</Trans>
-			</h3>
+			</H3>
 			<p>
 				{customEndMessages ? (
 					customEndMessages

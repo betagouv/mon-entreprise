@@ -4,6 +4,7 @@ import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
@@ -44,7 +45,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	}
 	return (
 		<>
-			<h2>Déclaration sur l'honneur</h2>
+			<H2>Déclaration sur l'honneur</H2>
 			<Checkbox
 				name="certified"
 				id="certified"
@@ -115,7 +116,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			</p>
 			{showDownloadLink && (
 				<Overlay onClose={() => toggleDownloadLink(false)}>
-					<h2>Votre demande de mobilité</h2>
+					<H2>Votre demande de mobilité</H2>
 					<p>
 						Afin d’examiner votre situation au regard des règlements
 						communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez

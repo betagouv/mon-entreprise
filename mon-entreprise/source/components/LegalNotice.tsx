@@ -1,36 +1,38 @@
 import Overlay from 'Components/Overlay'
+import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
 
 export const LegalNoticeContent = () => (
 	<>
-		<h1>
+		<H1>
 			<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
-		</h1>
-		<h2>
+		</H1>
+		<H2>
 			<Trans i18nKey="legalNotice.editeur.title">Editeur</Trans>
-		</h2>
-		<p>
+		</H2>
+		<Body>
 			Agence Centrale des Organismes de Sécurité Sociale (ACOSS)
 			<br />
 			36 rue de Valmy - 93108 Montreuil Cedex
-		</p>
-		<h2>
+		</Body>
+		<H2>
 			<Trans i18nKey="legalNotice.publication.title">
 				Directeur de la publication
 			</Trans>
-		</h2>
-		<p>
+		</H2>
+		<Body>
 			<Trans i18nKey="legalNotice.publication.content">
 				M. Yann-Gaël Amghar, Directeur de l'Acoss
 			</Trans>
-		</p>
-		<h2>
+		</Body>
+		<H2>
 			<Trans i18nKey="legalNotice.hosting.title">
 				Prestataire d'hébergement
 			</Trans>
-		</h2>
-		<p>
+		</H2>
+		<Body>
 			<Trans i18nKey="legalNotice.hosting.content">
 				Netlify
 				<br />
@@ -42,17 +44,17 @@ export const LegalNoticeContent = () => (
 					https://www.netlify.com
 				</a>
 			</Trans>
-		</p>
-		<h2>
+		</Body>
+		<H2>
 			<Trans i18nKey="legalNotice.contact.title">Contact</Trans>
-		</h2>
-		<p>
+		</H2>
+		<Body>
 			<Trans i18nKey="legalNotice.contact.content">
 				<a target="_blank" href="mailto:contact@mon-entreprise.beta.gouv.fr">
 					contact@mon-entreprise.beta.gouv.fr
 				</a>
 			</Trans>
-		</p>
+		</Body>
 	</>
 )
 

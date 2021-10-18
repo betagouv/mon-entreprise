@@ -1,6 +1,7 @@
 import { icons } from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1, H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -10,9 +11,9 @@ export default function Options() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
-			<h1 css="margin-bottom: 0">
+			<H1>
 				<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
-			</h1>
+			</H1>
 
 			<div css="display: flex; align-items: flex-start; justify-content: space-between">
 				<p
@@ -40,7 +41,7 @@ export default function Options() {
 						<Emoji emoji="📱" />
 					</div>
 					<Trans i18nKey="pages.développeurs.home.choice.iframe">
-						<h3>Intégrer un simulateur</h3>
+						<H3>Intégrer un simulateur</H3>
 						<p className="ui__ notice">
 							Intégrer l'un de nos simulateurs en un clic dans votre site Web,
 							via un script clé en main.
@@ -58,7 +59,7 @@ export default function Options() {
 						<Emoji emoji="🧰" />
 					</div>
 					<Trans i18nKey="pages.développeurs.choice.library">
-						<h3>Libraire de calcul</h3>
+						<H3>Libraire de calcul</H3>
 						<p className="ui__ notice">
 							L'intégralité du moteur de calcul socio-fiscal développé par
 							l'Urssaf, mis à disposition librement sous forme de bibliothèque
@@ -89,7 +90,7 @@ export default function Options() {
 						</svg>
 					</div>
 					<Trans i18nKey="pages.développeurs.choice.github">
-						<h3>Contribuer sur GitHub</h3>
+						<H3>Contribuer sur GitHub</H3>
 						<p className="ui__ notice">
 							Tous nos outils sont ouverts et développés publiquement sur
 							GitHub.
@@ -108,7 +109,7 @@ export default function Options() {
 						<Emoji emoji="📚" />
 					</div>
 					<Trans i18nKey="pages.développeurs.choice.publicodes">
-						<h3>Publicodes</h3>
+						<H3>Publicodes</H3>
 						<p className="ui__ notice">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
 							encoder des algorithmes “explicables”.

@@ -2,6 +2,7 @@ import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { H1, H2 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { sum, uniq } from 'ramda'
 import { useState } from 'react'
@@ -46,9 +47,9 @@ export default function Budget() {
 				<title>Le budget de mon-entreprise.fr</title>
 			</Helmet>
 			<ScrollToTop />
-			<h1>
+			<H1>
 				Budget <Emoji emoji="💶" />
-			</h1>
+			</H1>
 			<Markdown source={intro} />
 			<label>
 				<Emoji emoji="📅" /> Année{' '}
@@ -63,7 +64,7 @@ export default function Budget() {
 					))}
 				</select>
 			</label>
-			<h2>Budget consommé</h2>
+			<H2>Budget consommé</H2>
 			<Markdown source={ressources[selectedYear]} />
 			{selectedYear !== '2019' && (
 				<>

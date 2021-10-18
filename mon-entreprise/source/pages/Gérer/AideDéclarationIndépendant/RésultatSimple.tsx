@@ -4,6 +4,7 @@ import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 
 export default function ResultatsSimples() {
@@ -23,12 +24,12 @@ export default function ResultatsSimples() {
 					flex-direction: column;
 				`}
 			>
-				<h2>
+				<H2>
 					<Emoji emoji="📄" />{' '}
 					<Trans i18nKey="aide-déclaration-indépendant.results.title">
 						Montants à reporter dans votre déclaration de revenus
 					</Trans>
-				</h2>
+				</H2>
 				<p>
 					L'ancienne Déclaration Sociale des Indépendant (DSI) qui était
 					précédemment à effectuer sur le site net-entreprises.fr est désormais
@@ -65,7 +66,7 @@ export default function ResultatsSimples() {
 									margin: 1rem 0;
 								`}
 							>
-								<h3>
+								<H3>
 									{r.title}
 									<Condition
 										expression={{
@@ -77,7 +78,7 @@ export default function ResultatsSimples() {
 									>
 										<small>{r.rawNode.résumé}</small>
 									</Condition>
-								</h3>
+								</H3>
 								<p className="ui__ lead" css="margin-bottom: 1rem;">
 									<strong>
 										<RuleLink dottedName={r.dottedName}>
@@ -107,9 +108,9 @@ export default function ResultatsSimples() {
 						],
 					}}
 				>
-					<h2>
+					<H2>
 						<Emoji emoji="ℹ️" /> Pour votre information{' '}
-					</h2>
+					</H2>
 					<div
 						css={`
 							margin: 0 -0.5rem;

@@ -1,24 +1,25 @@
 import { FromTop } from 'Components/ui/animate'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { useState } from 'react'
 import stats from '../../data/stats.json'
 
 export default function DemandeUtilisateurs() {
 	return (
 		<section>
-			<h2 id="demandes-utilisateurs">Demandes utilisateurs</h2>
+			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
 			<p>
 				<small>
 					Demandes formulées en utilisant le bouton "faire une suggestion"
 					présent sur toutes les pages
 				</small>
 			</p>
-			<h3>En attente d'implémentation</h3>
+			<H3>En attente d'implémentation</H3>
 			<Pagination
 				items={stats.retoursUtilisateurs.open}
 				itemComponent={Issue}
 			/>
 
-			<h3>Réalisées</h3>
+			<H3>Réalisées</H3>
 			<Pagination
 				items={stats.retoursUtilisateurs.closed}
 				itemComponent={Issue}

@@ -8,6 +8,7 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import 'Components/TargetSelection.css'
 import { EngineContext } from 'Components/utils/EngineContext'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import config from './configs/artiste-auteur.yaml'
@@ -71,9 +72,9 @@ function RepartitionCotisations() {
 	const maximum = Math.max(...cotisations.map((x) => x.value))
 	return (
 		<section>
-			<h2>
+			<H2>
 				<Trans>À quoi servent mes cotisations ?</Trans>
-			</h2>
+			</H2>
 			<div className="distribution-chart__container">
 				{cotisations
 					.filter(({ value }) => Boolean(value))

@@ -2,6 +2,7 @@ import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 
 export default function CotisationsRégularisation() {
@@ -17,7 +18,7 @@ export default function CotisationsRégularisation() {
 					padding-top: 0.1rem;
 				`}
 			>
-				<h2>{rule.title}</h2>
+				<H2>{rule.title}</H2>
 				<div className="ui__ notice">
 					<Markdown source={rule.rawNode.description} />
 				</div>

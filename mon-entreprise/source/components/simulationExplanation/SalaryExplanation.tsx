@@ -5,6 +5,7 @@ import { FromTop } from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -28,9 +29,9 @@ export default function SalaryExplanation() {
 			<DistributionSection />
 
 			<section ref={payslipRef}>
-				<h2>
+				<H2>
 					<Trans>Fiche de paie</Trans>
-				</h2>
+				</H2>
 				<PaySlip />
 				<p className="ui__ notice">
 					<Trans i18nKey="payslip.notice">
@@ -72,7 +73,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					align-items: baseline;
 				`}
 			>
-				<h2
+				<H2
 					css={`
 						flex: 1;
 					`}
@@ -80,7 +81,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					<Trans i18nKey="payslip.repartition">
 						Répartition du total chargé
 					</Trans>
-				</h2>
+				</H2>
 				<button
 					className="ui__ small simple button print-display-none"
 					onClick={props.onSeePayslip}
@@ -116,9 +117,9 @@ export const DistributionSection = ({
 	children?: React.ReactNode
 }) => (
 	<section>
-		<h2>
+		<H2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
-		</h2>
+		</H2>
 		{children}
 		<p className="ui__ notice">
 			<Trans>

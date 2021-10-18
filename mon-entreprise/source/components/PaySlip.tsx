@@ -1,6 +1,7 @@
 import Value from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { H4, H5 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { ASTNode, formatValue, ParsedRules, reduceAST } from 'publicodes'
 import { RuleNode } from 'publicodes/dist/types/rule'
@@ -113,25 +114,25 @@ export default function PaySlip() {
 			<SalaireBrutSection />
 			{/* Section cotisations */}
 			<div className="payslip__cotisationsSection">
-				<h4>
+				<H4>
 					<Trans>Cotisations sociales</Trans>
-				</h4>
-				<h4>
+				</H4>
+				<H4>
 					<Trans>Part employeur</Trans>
-				</h4>
-				<h4>
+				</H4>
+				<H4>
 					<Trans>Part salarié</Trans>
-				</h4>
+				</H4>
 				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 					const section = parsedRules[sectionDottedName]
 					return (
 						<Fragment key={section.dottedName}>
-							<h5 className="payslip__cotisationTitle">
+							<H5 className="payslip__cotisationTitle">
 								{section.title}{' '}
 								<em className="ui__ print-display-none">
 									<ExplicableRule dottedName={section.dottedName} />
 								</em>
-							</h5>
+							</H5>
 							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
 							))}

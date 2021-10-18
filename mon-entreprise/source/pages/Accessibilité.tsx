@@ -1,10 +1,11 @@
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 import { TrackPage } from '../ATInternetTracking'
 
 export default function Accessibilité() {
 	return (
 		<Trans i18nKey="pages.accessibilité">
-			<h1>Accessibilité</h1>
+			<H1>Accessibilité</H1>
 			<TrackPage chapter1="informations" name="accessibilite" />
 
 			<p>
@@ -17,7 +18,7 @@ export default function Accessibilité() {
 				sur le site conformément à la réglementation. Cette page est obligatoire
 				pour être conforme au RGAA 4.0.
 			</p>
-			<h2>Qu’est-ce que l’accessibilité numérique&nbsp;?</h2>
+			<H2>Qu’est-ce que l’accessibilité numérique&nbsp;?</H2>
 			<p>
 				Un site web accessible est un site qui permet à tous les internautes
 				d’accéder à ses contenus sans difficulté, y compris aux personnes qui
@@ -39,7 +40,7 @@ export default function Accessibilité() {
 					écran tactile.
 				</li>
 			</ul>
-			<h2>Déclaration d’accessibilité</h2>
+			<H2>Déclaration d’accessibilité</H2>
 			<p>
 				L'Acoss s’engage à rendre ses sites internet accessibles conformément à
 				l’article 47 de la loi n° 2005-102 du 11 février 2005.
@@ -59,7 +60,7 @@ export default function Accessibilité() {
 				Cette déclaration d’accessibilité s’applique à{' '}
 				<a href="https://mon-entreprise.fr">https://mon-entreprise.fr</a>.
 			</p>
-			<h3>État de conformité</h3>
+			<H3>État de conformité</H3>
 			<p>
 				<a href="https://mon-entreprise.fr">https://mon-entreprise.fr</a> n’est
 				actuellement pas en conformité avec le{' '}
@@ -73,7 +74,7 @@ export default function Accessibilité() {
 				. L’audit de conformité sera prochainement planifié. Les corrections
 				seront prises en compte suite à l’audit.
 			</p>
-			<h3>Droit à la compensation</h3>
+			<H3>Droit à la compensation</H3>
 			<p>
 				Dans l’attente d’une mise en conformité totale, vous pouvez obtenir une
 				version accessible des documents ou des informations qui y seraient
@@ -85,7 +86,7 @@ export default function Accessibilité() {
 				souhaiteriez obtenir. Les informations demandées vous seront transmises
 				dans les meilleurs délais.
 			</p>
-			<h3>Amélioration et contact</h3>
+			<H3>Amélioration et contact</H3>
 			<p>
 				Vous pouvez nous aider à améliorer l’accessibilité du site en nous
 				signalant les problèmes éventuels que vous rencontrez. Pour ce faire,
@@ -95,7 +96,7 @@ export default function Accessibilité() {
 				</a>
 				.
 			</p>
-			<h3>Défenseur des droits</h3>
+			<H3>Défenseur des droits</H3>
 			<p>Cette procédure est à utiliser dans le cas suivant.</p>
 			<p>
 				Vous avez signalé au responsable du site internet un défaut

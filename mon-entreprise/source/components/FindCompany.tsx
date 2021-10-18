@@ -1,5 +1,7 @@
 import { useSetEntreprise } from 'Actions/companyStatusActions'
 import CompanyDetails from 'Components/CompanyDetails'
+import { H1 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
@@ -27,16 +29,16 @@ export default function Search() {
 
 	return (
 		<>
-			<h1>
+			<H1>
 				<Trans i18nKey="trouver.titre">Retrouver mon entreprise</Trans>
-			</h1>
-			<p>
+			</H1>
+			<Body>
 				<Trans i18nKey="trouver.description">
 					Grâce à la base SIREN, les données publiques sur votre entreprise
 					seront automatiquement disponibles pour la suite du parcours sur le
 					site.
 				</Trans>
-			</p>
+			</Body>
 			<label className="ui__ notice">
 				<Trans>Nom de l'entreprise ou SIREN </Trans>:{' '}
 			</label>
@@ -68,9 +70,9 @@ export default function Search() {
 				}}
 			/>
 			{!isLoading && searchResults === null && (
-				<p>
+				<Body>
 					<Trans>Aucun résultat</Trans>
-				</p>
+				</Body>
 			)}
 
 			{searchResults &&

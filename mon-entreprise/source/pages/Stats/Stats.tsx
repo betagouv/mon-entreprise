@@ -6,6 +6,7 @@ import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { useScrollToHash } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { H1, H2 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -176,7 +177,7 @@ const StatsDetail = () => {
 
 	return (
 		<>
-			<h2>Statistiques détaillées</h2>
+			<H2>Statistiques détaillées</H2>
 			<p>
 				<strong>1. Sélectionner la fonctionnalité : </strong>
 			</p>
@@ -221,7 +222,7 @@ const StatsDetail = () => {
 						<SelectedSimulator chapter2={chapter2} />
 					</div>
 					<div className="ui__ container">
-						<h2>Visites</h2>
+						<H2>Visites</H2>
 
 						<Chart
 							key={period + visites.length}
@@ -232,7 +233,7 @@ const StatsDetail = () => {
 							endIndex={endDateIndex}
 						/>
 
-						<h2>
+						<H2>
 							Cumuls pour la période{' '}
 							{period === 'jours'
 								? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
@@ -244,7 +245,7 @@ const StatsDetail = () => {
 												slicedVisits[slicedVisits.length - 1].date
 										  )}`
 										: '')}
-						</h2>
+						</H2>
 						<Indicators>
 							<Indicator
 								main={formatValue(
@@ -280,13 +281,13 @@ const StatsDetail = () => {
 						</Indicators>
 						{period === 'mois' && !!satisfaction.length && (
 							<>
-								<h2>Satisfaction</h2>
+								<H2>Satisfaction</H2>
 								<SatisfactionChart key={chapter2} data={satisfaction} />
 							</>
 						)}
 						{chapter2 === '' && period === 'mois' && (
 							<>
-								<h2>Simulateurs principaux</h2>
+								<H2>Simulateurs principaux</H2>
 								<PagesChart data={repartition} />
 							</>
 						)}
@@ -308,9 +309,9 @@ export default function Stats() {
 			<TrackPage chapter1="informations" name="stats" />
 			<ScrollToTop />
 
-			<h1>
+			<H1>
 				Statistiques <Emoji emoji="📊" />
-			</h1>
+			</H1>
 			<p>
 				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
 				<br />

@@ -4,6 +4,7 @@ import RuleInput from 'Components/conversation/RuleInput'
 import { FromTop } from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
@@ -37,7 +38,7 @@ export function SubSection({
 
 	return (
 		<>
-			{!!subQuestions.length && title && <h3>{title}</h3>}
+			{!!subQuestions.length && title && <H3>{title}</H3>}
 			{subQuestions.map((dottedName) => (
 				<SimpleField key={dottedName} dottedName={dottedName} />
 			))}

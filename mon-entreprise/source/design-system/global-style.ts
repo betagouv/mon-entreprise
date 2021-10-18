@@ -82,7 +82,18 @@ export const GlobalStyle = createGlobalStyle`
 	font-display: swap;
 }
 
+html {
+	transition: none !important;
+}
+
+@media print {
+	html {
+		line-height: 1.5em;
+	}
+}
+
 body {
   font-size: 16px;
 }
+
 `

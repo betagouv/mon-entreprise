@@ -1,4 +1,5 @@
 import { FromBottom } from 'Components/ui/animate'
+import { H1 } from 'DesignSystem/typography/heading'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../ATInternetTracking'
@@ -15,7 +16,7 @@ export default function SocialSecurity() {
 			<FromBottom>
 				<TrackPage name="securite_social" />
 				<Trans i18nKey="sécu.contenu">
-					<h1>Protection sociale </h1>
+					<H1>Protection sociale </H1>
 					<p>
 						En France, tous les travailleurs bénéficient d'une protection
 						sociale de qualité. Ce système obligatoire repose sur la solidarité

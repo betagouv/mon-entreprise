@@ -1,4 +1,5 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { filter } from 'ramda'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -99,13 +100,13 @@ export default function SetMainStatus() {
 					)}
 				</title>
 			</Helmet>
-			<h2>
+			<H2>
 				{Object.keys(possibleStatus).every(Boolean) ? (
 					<Trans>Liste des statuts juridiques</Trans>
 				) : (
 					<Trans>Votre forme juridique</Trans>
 				)}
-			</h2>
+			</H2>
 
 			<ul>
 				{Object.keys(filter(Boolean, possibleStatus)).map(

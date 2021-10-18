@@ -12,6 +12,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { updateSituation } from 'Actions/actions'
 import { HiddenOptionContext } from 'Components/conversation/Question'
 import Warning from 'Components/ui/WarningBlock'
+import { H2 } from 'DesignSystem/typography/heading'
 
 export default function DividendesSimulation() {
 	return (
@@ -139,15 +140,11 @@ const DividendesExplanation = () => {
 						align-items: baseline;
 					`}
 				>
-					<h2
-						css={`
-							flex: 1;
-						`}
-					>
+					<H2>
 						<Trans i18nKey="payslip.repartition">
 							Répartition du total chargé
 						</Trans>
-					</h2>
+					</H2>
 				</div>
 				<StackedBarChart
 					precision={0.1}

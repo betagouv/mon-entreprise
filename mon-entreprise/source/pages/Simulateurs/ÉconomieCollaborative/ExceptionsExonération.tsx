@@ -4,6 +4,7 @@ import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import { changeCritèreExonération } from './actions'
 import { StoreContext } from './StoreContext'
 import { Activity } from './Activité'
+import { H2 } from 'DesignSystem/typography/heading'
 
 export default function ExceptionsExonération({
 	exceptionsExonération,
@@ -17,11 +18,11 @@ export default function ExceptionsExonération({
 
 	return (
 		<>
-			<h2>
+			<H2>
 				<Trans i18nKey="économieCollaborative.exonération.question">
 					Êtes-vous dans un des cas suivants ?
 				</Trans>
-			</h2>
+			</H2>
 			<Checklist
 				onItemCheck={(index, checked) =>
 					dispatch(changeCritèreExonération(activité, index, !checked))

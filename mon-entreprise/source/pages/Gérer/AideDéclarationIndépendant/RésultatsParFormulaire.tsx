@@ -5,6 +5,7 @@ import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
@@ -32,12 +33,12 @@ export default function ResultatsParFormulaire() {
 					flex-direction: column;
 				`}
 			>
-				<h2>
+				<H2>
 					<Emoji emoji="📄" />{' '}
 					<Trans i18nKey="aide-déclaration-indépendant.results.title">
 						Vos déclarations fiscales
 					</Trans>
-				</h2>
+				</H2>
 				<p>
 					Important : les montants affichés ici concernent uniquement le calcul
 					des cotisations de l'exploitant (et du conjoint collaborateur si
@@ -58,9 +59,9 @@ export default function ResultatsParFormulaire() {
 					<DeclarationForm key={dottedName} dottedName={dottedName} />
 				))}
 				<Condition expression="aide déclaration revenu indépendant 2020 . informations résultat par formulaire">
-					<h3>
+					<H3>
 						<Emoji emoji="ℹ️" /> Pour votre information{' '}
-					</h3>
+					</H3>
 					<div className="ui__ box-container">
 						{informations.map((r) => (
 							<Condition key={r.dottedName} expression={r.dottedName}>
@@ -123,9 +124,9 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 						margin: 1rem 0;
 					`}
 				>
-					<h3>
+					<H3>
 						{r.title} <small>{r.rawNode.résumé}</small>
-					</h3>
+					</H3>
 					<ul className="ui__ lead">
 						{rubriques
 							.map((dottedName) => engine.getRule(dottedName))

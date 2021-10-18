@@ -1,3 +1,4 @@
+import { H1 } from 'DesignSystem/typography/heading'
 import { ReactNode } from 'react'
 
 export default function PageHeader({
@@ -12,7 +13,7 @@ export default function PageHeader({
 	return (
 		<header css="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; ">
 			<div>
-				{titre && <h1>{titre}</h1>}
+				{titre && <H1>{titre}</H1>}
 				{children}
 			</div>
 

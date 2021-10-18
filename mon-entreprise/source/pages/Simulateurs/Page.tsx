@@ -8,6 +8,7 @@ import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { H1, H2, H3, H5 } from 'DesignSystem/typography/heading'
 import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
@@ -69,15 +70,11 @@ export default function PageData({
 			{meta && <Meta {...meta} />}
 			{title && !inIframe && (
 				<>
-					<h1>{title}</h1>
+					<H1>{title}</H1>
 					{tooltip && (
-						<h2
-							css={`
-								margin-top: 0;
-							`}
-						>
+						<H2>
 							<small>{tooltip}</small>
-						</h2>
+						</H2>
 					)}
 				</>
 			)}
@@ -120,9 +117,9 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	}
 	return (
 		<section className="ui__ print-display-none">
-			<h2 className="ui__ h h3">
+			<H3 as="h2">
 				<Trans>Ressources utiles</Trans>
-			</h2>
+			</H3>
 			<div className="ui__ box-container">
 				<Condition expression="dirigeant . auto-entrepreneur">
 					<RessourceAutoEntrepreneur />
@@ -133,9 +130,9 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						href={guideUrssaf.url}
 						target="_blank"
 					>
-						<h3 className="ui__ h h5">
+						<H5 as="h3">
 							<Emoji emoji="📖" /> {guideUrssaf.title}
-						</h3>
+						</H5>
 						<p className="ui__ notice">
 							Des conseils pour se lancer dans la création et une présentation
 							détaillée de votre protection sociale.
@@ -155,9 +152,9 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						}}
 					>
 						<Trans i18nKey="nextSteps.integration-iframe">
-							<h3 className="ui__ h h5">
+							<H5 as="h3">
 								<Emoji emoji="📱" /> Intégrer le module web
-							</h3>
+							</H5>
 							<p className="ui__ notice">
 								Ajouter ce simulateur sur votre site internet en un clic via un
 								script clé en main.
@@ -186,10 +183,10 @@ export function SimulatorRessourceCard({
 				pathname: simulator.path,
 			}}
 		>
-			<h3 className="ui__ h h5">
+			<H5 as="h3">
 				{simulator.icône && <Emoji emoji={simulator.icône} />}{' '}
 				{simulator.shortName}
-			</h3>
+			</H5>
 			<p className="ui__ notice">{simulator.meta?.description}</p>
 		</Link>
 	)

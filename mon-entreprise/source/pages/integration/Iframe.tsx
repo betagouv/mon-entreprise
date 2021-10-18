@@ -5,6 +5,7 @@ import {
 } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import urssafLogo from 'Images/Urssaf.svg'
 import React, {
 	Suspense,
@@ -54,9 +55,9 @@ function IntegrationCustomizer() {
 	const [color, setColor] = useState(defaultColor)
 	return (
 		<section>
-			<h2>
+			<H2>
 				<Trans>Personnalisez l'intégration</Trans>
-			</h2>
+			</H2>
 			<div
 				className="ui__ full-width"
 				css={`
@@ -96,10 +97,10 @@ function IntegrationCustomizer() {
 					`}
 				>
 					<div className="ui__ left-side">
-						<h3>
+						<H3>
 							<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
 							<Emoji emoji="🚩" />
-						</h3>
+						</H3>
 						<select
 							onChange={(event) => setCurrentModule(event.target.value)}
 							value={currentModule}
@@ -109,21 +110,21 @@ function IntegrationCustomizer() {
 							))}
 						</select>
 
-						<h3>
+						<H3>
 							<Trans i18nKey="pages.développeurs.couleur">
 								Quelle couleur ?{' '}
 							</Trans>
 							<Emoji emoji="🎨" />
-						</h3>
+						</H3>
 						<Suspense fallback={<div>Chargement...</div>}>
 							<LazyColorPicker color={color} onChange={setColor} />
 						</Suspense>
-						<h3>
+						<H3>
 							<Trans i18nKey="pages.développeurs.code.titre">
 								Code d'intégration
 							</Trans>
 							<Emoji emoji="🛠" />
-						</h3>
+						</H3>
 						<p>
 							<Trans i18nKey="pages.développeurs.code.description">
 								Voici le code à copier-coller sur votre site&nbsp;:
@@ -146,9 +147,9 @@ function IntegrationCustomizer() {
 							}
 						`}
 					>
-						<h3>
+						<H3>
 							<Trans>Prévisualisation</Trans>
-						</h3>
+						</H3>
 						<div
 							css={`
 								background-color: white;
@@ -180,7 +181,7 @@ export default function Integration() {
 			<TrackPage name="module_web" />
 			<Trans i18nKey="pages.développeurs.iframe.intro">
 				<div>
-					<h1>Intégrez le module Web</h1>
+					<H1>Intégrez le module Web</H1>
 					<p>
 						Nos simulateurs sont intégrables de manière transparente en ajoutant
 						une simple ligne de code à votre page Web.
@@ -203,50 +204,50 @@ export default function Integration() {
 				</p>
 			</Trans>
 			<section className="blocks" id="integrations">
-				<h2>
+				<H2>
 					<Trans>Quelques intégrations</Trans>
-				</h2>
+				</H2>
 				<div id="integrationList">
 					<article>
 						<a href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs">
 							<img src={urssafLogo} alt="urssaf.fr" />
-							<h2>Urssaf</h2>
+							<H2 as="h3">Urssaf</H2>
 						</a>
 					</article>
 					<article>
 						<a href="http://les-aides.fr/embauche">
 							<img src={cciLogo} alt="Les-aides.fr" />
-							<h2>CCI de France</h2>
+							<H2 as="h3">CCI de France</H2>
 						</a>
 					</article>
 					<article>
 						<a href="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche">
 							<img src={apecLogo} alt="" />
-							<h2>APEC</h2>
+							<H2 as="h3">APEC</H2>
 						</a>
 					</article>
 					<article>
 						<a href="https://code.travail.gouv.fr/outils/simulateur-embauche">
 							<img src={minTraLogo} alt="Ministère du travail" />
-							<h2>Code du travail numérique</h2>
+							<H2 as="h3">Code du travail numérique</H2>
 						</a>
 					</article>
 					<article>
 						<a href="https://entreprise.pole-emploi.fr/cout-salarie/">
 							<img src={poleEmploiLogo} alt="Pôle Emploi" />
-							<h2>Pôle Emploi</h2>
+							<H2 as="h3">Pôle Emploi</H2>
 						</a>
 					</article>
 					<article>
 						<a href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation">
 							<span className="question-mark">?</span>
-							<h2>
+							<H2 as="h3">
 								<Trans>
 									Une idée&nbsp;?
 									<br />
 									Contactez-nous&nbsp;!
 								</Trans>
-							</h2>
+							</H2>
 						</a>
 					</article>
 				</div>
@@ -265,7 +266,7 @@ function EnSavoirPlusCSP() {
 			{opened && (
 				<Overlay onClose={() => setOpened(false)} style={{ textAlign: 'left' }}>
 					<Trans i18nKey="pages.développeurs.iframe.csp-1">
-						<h3>Intégration iframe et politique de sécurité de contenu</h3>
+						<H3>Intégration iframe et politique de sécurité de contenu</H3>
 						<p>
 							L'erreur ci-dessous qui s'affiche dans la console est liée à la
 							communication entre la page parente et l'iframe pour le

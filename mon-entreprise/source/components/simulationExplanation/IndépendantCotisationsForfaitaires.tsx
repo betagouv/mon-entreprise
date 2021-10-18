@@ -3,6 +3,7 @@ import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 
 export default function CotisationsForfaitaires() {
@@ -12,7 +13,7 @@ export default function CotisationsForfaitaires() {
 	return (
 		<FromBottom>
 			<div className="ui__ lighter-bg content card">
-				<h2>{rule.title}</h2>
+				<H2>{rule.title}</H2>
 				<p className="ui__ lead">
 					<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
 						Montant des cotisations forfaitaires :{' '}

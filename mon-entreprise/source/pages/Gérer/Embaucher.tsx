@@ -4,6 +4,8 @@ import {
 } from 'Actions/hiringChecklistAction'
 import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
+import { H1, H3 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
@@ -36,16 +38,16 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					)}
 				/>
 			</Helmet>
-			<h1>
+			<H1>
 				<Trans i18nKey="embauche.tâches.titre">
 					Les formalités pour embaucher
 				</Trans>
-			</h1>
-			<p>
+			</H1>
+			<Body>
 				<Trans i18nKey="embauche.tâches.description">
 					Toutes les étapes nécessaires à l'embauche de votre premier employé.
 				</Trans>
-			</p>
+			</Body>
 			<Checklist
 				onInitialization={onChecklistInitialization}
 				onItemCheck={onItemCheck}
@@ -59,7 +61,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<a
 								className="ui__ button"
 								href="https://www.service-public.fr/particuliers/vosdroits/N19871"
@@ -68,7 +70,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								{' '}
 								<Trans>Plus d'informations</Trans>
 							</a>
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -79,7 +81,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<Trans i18nKey="embauche.tâches.dpae.description">
 								Ceci peut être fait par le biais du formulaire appelé DPAE, doit
 								être complété dans les 8 jours avant toute embauche, et peut{' '}
@@ -88,7 +90,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								</a>
 								.
 							</Trans>
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -99,7 +101,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<Trans i18nKey="embauche.tâches.logiciel de paie.description">
 								Les fiches de paie et les déclarations peuvent être traitées en
 								ligne gratuitement par le{' '}
@@ -114,7 +116,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									logiciel de paie privé.
 								</a>
 							</Trans>
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -125,7 +127,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<a
 								href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
 								className="ui__ button"
@@ -133,7 +135,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							>
 								<Trans>Plus d'informations</Trans>
 							</a>
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -145,7 +147,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<a
 								href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep"
 								className="ui__ button"
@@ -156,7 +158,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								</Trans>
 							</a>
 							{/* // The AGIRC-ARRCO complementary pension is mandatory. Those are only federations,{' '} */}
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -167,14 +169,14 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<Trans i18nKey="embauche.tâches.complémentaire santé.description">
 								Vous devez couvrir vos salariés avec l'assurance complémentaire
 								santé privée de votre choix (aussi appelée "mutuelle"), pour
 								autant qu'elle offre un ensemble de garanties minimales.
 								L'employeur doit payer au moins la moitié du forfait.
 							</Trans>
-						</p>
+						</Body>
 					}
 				/>
 				<CheckItem
@@ -185,7 +187,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<Body>
 							<Trans i18nKey="embauche.tâches.medecine.description">
 								N'oubliez pas de planifier un rendez-vous initial pour chaque
 								nouvelle embauche.{' '}
@@ -193,12 +195,12 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									Plus d'infos.
 								</a>
 							</Trans>
-						</p>
+						</Body>
 					}
 				/>
 			</Checklist>
 			<Trans i18nKey="embauche.chaque mois">
-				<h2>Tous les mois</h2>
+				<H2>Tous les mois</H2>
 				<ul>
 					<li>
 						Utiliser un logiciel de paie pour calculer les cotisations sociales
@@ -218,9 +220,9 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				</ul>
 			</Trans>
 
-			<h2 className="ui__ h h3">
+			<H3 as="h2">
 				<Trans>Ressources utiles</Trans>
-			</h2>
+			</H3>
 
 			<div className="ui__ box-container">
 				<SimulatorRessourceCard simulatorId="salarié" />

@@ -1,4 +1,5 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -20,11 +21,11 @@ export default function DefineDirectorStatus() {
 					)}
 				/>
 			</Helmet>
-			<h2>
+			<H2>
 				<Trans i18nKey="statut du dirigeant.titre">
 					Définir le statut du dirigeant
 				</Trans>
-			</h2>
+			</H2>
 			<Trans i18nKey="statut du dirigeant.description">
 				<p>
 					Ce choix est important car il détermine le régime de sécurité sociale

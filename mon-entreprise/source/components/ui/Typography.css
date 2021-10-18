@@ -1,59 +1,25 @@
-html {
-	transition: none !important;
-}
-
-@media print {
-	html {
-		line-height: 1.5em;
-	}
-}
-
-@media screen {
-	html {
-		line-height: 1.7em;
-	}
-}
-@media screen and (max-width: 500px) {
-	html {
-		font-size: 0.9em;
-	}
-}
-
-@media screen and (min-width: 500px) and (max-width: 1920px) {
-	html {
-		font-size: 1.1em;
-	}
-}
-@media screen and (min-width: 1920px) {
-	html {
-		font-size: 1.16em;
-	}
-}
-
 button {
 	font-weight: normal;
 }
-p,
+
 ul {
 	margin: 0 0 0.6rem;
 }
 
-p.ui__.lead {
-	font-size: 120%;
-	line-height: 2rem;
-	color: var(--darkColor);
-}
 ul {
 	list-style: '› ';
 	padding-left: 0.8rem;
 }
+
 ol {
 	margin: 0;
 	padding-left: 1.1rem;
 }
+
 li {
 	padding: 0.2em 0;
 }
+
 a {
 	border: none;
 	font-size: inherit;
@@ -79,16 +45,4 @@ b {
 
 textarea {
 	font-family: inherit;
-}
-
-small,
-.ui__.notice {
-	color: rgba(0, 0, 0, 0.6);
-	color: var(--lighterTextColor);
-	font-size: 85%;
-	line-height: 1.5rem;
-}
-
-small {
-	display: inline-block;
 }

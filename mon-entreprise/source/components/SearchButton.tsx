@@ -1,3 +1,4 @@
+import { H1 } from 'DesignSystem/typography/heading'
 import { useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router'
@@ -51,9 +52,9 @@ export default function SearchButton() {
 		<>
 			{visible && (
 				<Overlay onClose={close}>
-					<h1>
+					<H1>
 						<Trans>Que cherchez-vous ?</Trans>
-					</h1>
+					</H1>
 					<SearchRulesAndSimulators />
 				</Overlay>
 			)}

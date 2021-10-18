@@ -1,5 +1,6 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
+import { H4 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { isNotApplicable, isNotYetDefined } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
@@ -8,9 +9,9 @@ import { useEngine } from './utils/EngineContext'
 export const SalaireBrutSection = () => {
 	return (
 		<div className="payslip__salarySection">
-			<h4 className="payslip__salaryTitle">
+			<H4 className="payslip__salaryTitle">
 				<Trans>Salaire</Trans>
-			</h4>
+			</H4>
 			<Line rule="contrat salarié . rémunération . brut de base" />
 			<Line rule="contrat salarié . rémunération . avantages en nature . montant" />
 			<Line rule="contrat salarié . activité partielle . retrait absence" />
@@ -31,9 +32,9 @@ export const SalaireNetSection = () => {
 	const { t } = useTranslation()
 	return (
 		<div className="payslip__salarySection">
-			<h4 className="payslip__salaryTitle">
+			<H4 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
-			</h4>
+			</H4>
 			<Line rule="contrat salarié . rémunération . net imposable" />
 			<Condition
 				expression={{

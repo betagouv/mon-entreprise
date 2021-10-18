@@ -1,4 +1,6 @@
 import Overlay from 'Components/Overlay'
+import { H1 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
@@ -49,8 +51,8 @@ function PrivacyContent() {
 		<>
 			<Trans i18nKey="privacyContent.texte">
 				<TrackPage chapter1="informations" name={'donnees_personnelles'} />
-				<h1>Données personnelles</h1>
-				<p>
+				<H1>Données personnelles</H1>
+				<Body>
 					Nous recueillons des statistiques anonymes sur l'utilisation du site,
 					que nous utilisons dans le seul but d'améliorer le service,
 					conformément aux{' '}
@@ -59,12 +61,12 @@ function PrivacyContent() {
 					</a>{' '}
 					et au règlement RGPD. Ce sont les seules données qui quittent votre
 					navigateur.
-				</p>
-				<p>
+				</Body>
+				<Body>
 					Vous pouvez vous soustraire de cette mesure d'utilisation du site
 					ci-dessous :
-				</p>
-				<p>
+				</Body>
+				<Body>
 					<label>
 						<input
 							type="checkbox"
@@ -77,7 +79,7 @@ function PrivacyContent() {
 						Je souhaite ne pas envoyer de données anonymes sur mon utilisation
 						du site à des fins de mesures d'audience
 					</label>
-				</p>
+				</Body>
 			</Trans>
 			{valueChanged && (
 				<small className="ui__  label ">

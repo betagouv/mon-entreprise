@@ -1,10 +1,12 @@
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+
 export default function Personas() {
 	return (
 		<>
-			<h1>Nos personas</h1>
+			<H1>Nos personas</H1>
 
 			<div className="ui__ card" css="margin-bottom: 2rem">
-				<h2>Jules 38 ans, Marseille</h2>
+				<H2>Jules 38 ans, Marseille</H2>
 				<p>
 					<em>
 						Après 15 ans dans un salon de coiffure, souhaite devenir coiffeur à
@@ -31,7 +33,7 @@ export default function Personas() {
 			</div>
 
 			<div className="ui__ card" css="margin-bottom: 2rem">
-				<h2>Rania, 33 ans, Saint-Etienne</h2>
+				<H2>Rania, 33 ans, Saint-Etienne</H2>
 				<p>
 					<em>Aimerait créer une startup d’équipement sportif féminin</em>
 				</p>
@@ -55,7 +57,7 @@ export default function Personas() {
 				</ul>
 			</div>
 			<div className="ui__ card" css="margin-bottom: 2rem">
-				<h2>Paul, 40 ans, Pau</h2>
+				<H2>Paul, 40 ans, Pau</H2>
 				<p>
 					<em>
 						Directeur d’une agence de voyage en Asie, a besoin d’informations
@@ -81,7 +83,7 @@ export default function Personas() {
 				</ul>
 			</div>
 			<div className="ui__ card" css="margin-bottom: 2rem">
-				<h2>Valérie, 50 ans, Niort / Aidant</h2>
+				<H2>Valérie, 50 ans, Niort / Aidant</H2>
 				<p>
 					<em>
 						Conseille pôle emploi, accompagne plusieurs bénéficiaires dans la
@@ -104,7 +106,7 @@ export default function Personas() {
 				</ul>
 			</div>
 
-			<h1>Et les usages que nous avons identifiés</h1>
+			<H1>Et les usages que nous avons identifiés</H1>
 			<ul>
 				<li>
 					<strong>Type d’entreprise :</strong> Airbnb vs Freelance vs Startup &
@@ -128,7 +130,7 @@ export default function Personas() {
 				</li>
 			</ul>
 
-			<h3>Économie collaborative</h3>
+			<H3>Économie collaborative</H3>
 
 			<a href="https://github.com/betagouv/syso/files/3085598/Nouveau.document.2019-04-16.17.16.05.pdf">
 				Les personas détaillées

@@ -1,6 +1,8 @@
 import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -31,10 +33,10 @@ export default function AfterRegistration() {
 					← <Trans>Retour à la création</Trans>
 				</NavLink>
 			</div>
-			<h1>
+			<H1>
 				<Trans i18nKey="après.titre">Après la création</Trans>
-			</h1>
-			<p>
+			</H1>
+			<Body>
 				<Trans i18nKey="après.intro">
 					Une fois votre{' '}
 					{{
@@ -44,11 +46,11 @@ export default function AfterRegistration() {
 					}}{' '}
 					créée, vous recevez les informations suivantes :
 				</Trans>
-			</p>
-			<h2>
+			</Body>
+			<H2>
 				<Trans i18nKey="après.siret.titre">Le numéro SIRET</Trans>
-			</h2>
-			<p>
+			</H2>
+			<Body>
 				<Trans i18nKey="après.siret.description">
 					Le numéro SIREN <strong>est l'identifiant de votre entreprise</strong>{' '}
 					tandis que le numéro SIRET identifie chaque établissement de la même
@@ -61,11 +63,11 @@ export default function AfterRegistration() {
 					alt="SIRET and SIREN number"
 					style={{ maxWidth: '100%' }}
 				/>
-			</p>
-			<h2>
+			</Body>
+			<H2>
 				<Trans i18nKey="après.ape.titre">Le code APE</Trans>
-			</h2>
-			<p>
+			</H2>
+			<Body>
 				<Trans i18nKey="après.ape.description">
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise
@@ -93,12 +95,11 @@ export default function AfterRegistration() {
 						à l'INSEE.
 					</p>
 				</Trans>
-			</p>
-
-			<h2>
+			</Body>
+			<H2>
 				<Trans i18nKey="après.kbis.titre">Le Kbis</Trans>
-			</h2>
-			<p>
+			</H2>
+			<Body>
 				<Trans i18nKey="après.kbis.description.1">
 					C'est le document officiel qui atteste de{' '}
 					<strong>l'existence légale d'une entreprise commerciale</strong>. Le
@@ -108,14 +109,14 @@ export default function AfterRegistration() {
 						Plus d'infos.
 					</a>
 				</Trans>
-			</p>
-			<p>
+			</Body>
+			<Body>
 				<Trans i18nKey="après.kbis.description.2">
 					Ce document est généralement demandé lors de la candidature à un appel
 					d'offre public, de l'ouverture d'un compte bancaire, d'achats
 					d'équipement professionnel auprès de fournisseurs, etc.
 				</Trans>
-			</p>
+			</Body>
 		</FromBottom>
 	)
 }

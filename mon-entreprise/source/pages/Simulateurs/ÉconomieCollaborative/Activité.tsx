@@ -3,6 +3,7 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1, H2 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -39,7 +40,7 @@ export default function Activité({
 			<FromBottom>
 				<TrackPage name={activité.titre} />
 				<ScrollToTop />
-				<h1>{activité.titre}</h1>
+				<H1>{activité.titre}</H1>
 				<p>{activité.explication}</p>
 				<p>
 					<Trans i18nKey="économieCollaborative.activité.choix">
@@ -63,9 +64,9 @@ export default function Activité({
 			<ScrollToTop />
 			<FromBottom>
 				<TrackPage name={activité.titre} />
-				<h1>
+				<H1>
 					<Emoji emoji={activité.icônes} /> {activité.titre}
-				</h1>
+				</H1>
 				<Markdown source={activité.explication} />
 				{activité.plateformes && (
 					<p className="ui__ notice">
@@ -80,7 +81,7 @@ export default function Activité({
 
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
 					<Trans i18nKey="économieCollaborative.activité.pro">
-						<h2>Il s'agit d'une activité professionnelle</h2>
+						<H2>Il s'agit d'une activité professionnelle</H2>
 						<p>
 							Les revenus de cette activité sont considérés comme des{' '}
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
@@ -88,13 +89,13 @@ export default function Activité({
 					</Trans>
 				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
 					<Trans i18nKey="économieCollaborative.activité.impôt">
-						<h2>Vous devez déclarez vos revenus aux impôts</h2>
+						<H2>Vous devez déclarez vos revenus aux impôts</H2>
 						<p>Les revenus de cette activité sont imposables.</p>
 					</Trans>
 				) : (
 					<>
 						<Trans i18nKey="économieCollaborative.activité.revenusAnnuels">
-							<h2>Revenus annuels</h2>
+							<H2>Revenus annuels</H2>
 							<p>Vos revenus annuels pour cette activité sont :</p>
 						</Trans>
 						<ul

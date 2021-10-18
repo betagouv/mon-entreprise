@@ -1,3 +1,4 @@
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
@@ -21,16 +22,14 @@ export default function MoreInfosOnUs() {
 				margin-top: 3rem;
 			`}
 		>
-			<h3 style={{ textAlign: 'center', width: '100%' }}>
-				Plus d'infos sur mon-entreprise.fr
-			</h3>
+			<H2>Plus d'infos sur mon-entreprise.fr</H2>
 			<div className="ui__ full-width box-container">
 				{!pathname.startsWith(sitePaths.nouveautés) && (
 					<Link className="ui__ interactive card box" to={sitePaths.nouveautés}>
 						<div className="ui__ big box-icon">
 							<Emoji emoji={'✨'} />
 						</div>
-						<h3>Les nouveautés</h3>
+						<H3>Les nouveautés</H3>
 						<p className="ui__ notice">
 							Qu'avons-nous mis en production ces derniers mois ?
 						</p>
@@ -42,7 +41,7 @@ export default function MoreInfosOnUs() {
 						<div className="ui__ big box-icon">
 							<Emoji emoji="📊" />
 						</div>
-						<h3>Les statistiques</h3>
+						<H3>Les statistiques</H3>
 						<p className="ui__ notice">Quel est notre impact ?</p>
 						<div className="ui__ small simple button">Découvrir</div>
 					</Link>
@@ -52,7 +51,7 @@ export default function MoreInfosOnUs() {
 						<div className="ui__ big box-icon">
 							<Emoji emoji="💶" />
 						</div>
-						<h3>Le budget</h3>
+						<H3>Le budget</H3>
 						<p className="ui__ notice">
 							Quelles sont nos ressources et comment sont-elles employées ?
 						</p>
@@ -79,7 +78,7 @@ export default function MoreInfosOnUs() {
 							</g>
 						</svg>
 					</div>
-					<h3>Le code source</h3>
+					<H3>Le code source</H3>
 					<p className="ui__ notice">
 						Nos travaux sont ouverts et libres de droit, ça se passe sur GitHub
 					</p>

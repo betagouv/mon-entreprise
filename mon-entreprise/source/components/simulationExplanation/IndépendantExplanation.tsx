@@ -9,6 +9,7 @@ import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
@@ -36,7 +37,7 @@ export default function IndépendantExplanation() {
 			</section>
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
-					<h2>Répartition du revenu</h2>
+					<H2>Répartition du revenu</H2>
 					<StackedBarChart
 						data={[
 							{
@@ -166,7 +167,7 @@ function DroitsRetraite() {
 	}
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
-			<h2>Retraite : droits acquis sur l'année 2021</h2>
+			<H2>Retraite : droits acquis sur l'année 2021</H2>
 			<ul>
 				<li>
 					Retraite de base :{' '}

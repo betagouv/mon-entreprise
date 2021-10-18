@@ -2,6 +2,7 @@ import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -52,7 +53,7 @@ export default function VotreSituation() {
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
-			<h1>{titre}</h1>
+			<H1>{titre}</H1>
 			<div css="text-align: center">
 				<img css="height: 200px" src={illustration} />
 			</div>
@@ -60,7 +61,7 @@ export default function VotreSituation() {
 				{déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE.length > 0 && (
 					<>
 						<Trans i18nKey="économieCollaborative.obligations.pro">
-							<h2>Déclarer en tant qu'activité professionnelle</h2>
+							<H2>Déclarer en tant qu'activité professionnelle</H2>
 							<p>
 								Vos revenus sont considérés comme revenus professionnels, ils
 								sont soumis aux cotisations sociales. En contrepartie, ils
@@ -70,7 +71,7 @@ export default function VotreSituation() {
 						</Trans>
 						<ActivitéList activités={déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE} />
 						<Trans i18nKey="économieCollaborative.obligations.entreprise">
-							<h3>Avec une entreprise</h3>
+							<H3>Avec une entreprise</H3>
 							<p>
 								Si vous possédez déjà une activité déclarée, vous pouvez ajouter
 								ces revenus à ceux de l'entreprise. Il vous faudra seulement
@@ -89,7 +90,7 @@ export default function VotreSituation() {
 
 						{régimeGénéralDisponible && (
 							<Trans i18nKey="économieCollaborative.obligations.régimeGénéral">
-								<h3>Avec l'option régime général</h3>
+								<H3>Avec l'option régime général</H3>
 								<p>
 									Pour certaines activités, vous pouvez déclarer vos revenus
 									directement sur le site de l'Urssaf. C'est une option
@@ -111,7 +112,7 @@ export default function VotreSituation() {
 				{déclarations.IMPOSITION.length > 0 && (
 					<>
 						<Trans i18nKey="économieCollaborative.obligations.impôts">
-							<h2>Déclarer vos revenus aux impôts</h2>
+							<H2>Déclarer vos revenus aux impôts</H2>
 							<p>
 								Pour ces activités, vous avez uniquement besoin de déclarer vos
 								revenus sur votre feuille d'imposition. Pour en savoir plus,
@@ -129,7 +130,7 @@ export default function VotreSituation() {
 				{déclarations.AUCUN.length > 0 && (
 					<>
 						<Trans i18nKey="économieCollaborative.obligations.aucune">
-							<h2>Rien à faire</h2>
+							<H2>Rien à faire</H2>
 							<p>
 								Vous n'avez pas besoin de déclarer vos revenus pour ces
 								activités.
@@ -140,9 +141,9 @@ export default function VotreSituation() {
 				)}
 			</section>
 			<section>
-				<h2>
+				<H2>
 					<Emoji emoji="🧰" /> <Trans>Ressources utiles</Trans>
-				</h2>
+				</H2>
 				<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
 					<a
 						target="_blank"

@@ -1,13 +1,14 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import Emoji from 'Components/utils/Emoji'
 import { Trans } from 'react-i18next'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 
 export default function Library() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
 			<Trans i18nKey="pages.dévelopeurs.bibliothèque">
-				<h1>Intégrez notre bibliothèque de calcul</h1>
+				<H1>Intégrez notre bibliothèque de calcul</H1>
 				<p>
 					Si vous pensez que votre site ou service gagnerait à afficher des
 					calculs de salaire, par exemple passer du salaire brut au salaire net,
@@ -19,7 +20,7 @@ export default function Library() {
 					</a>
 					.
 				</p>
-				<h2>Comment utiliser cette librairie ?</h2>
+				<H2>Comment utiliser cette librairie ?</H2>
 				<p>
 					Toutes nos règles de calculs sont écrites en `publicodes`, un language
 					déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder des
@@ -31,7 +32,7 @@ export default function Library() {
 					l'interpréteur publicodes, télécharger les règles utilisées sur
 					mon-entreprise, appeler la fonction d'évaluation.
 				</p>
-				<h3>Installation</h3>
+				<H3>Installation</H3>
 				<pre>
 					<code>npm install --save publicodes modele-social</code>
 				</pre>
@@ -41,7 +42,7 @@ export default function Library() {
 						documentation dédiée
 					</a>
 				</em>
-				<h3>Lancer le calcul</h3>
+				<H3>Lancer le calcul</H3>
 				<p>
 					Il ne vous reste plus qu'à paramétrer le moteur avec les règles du
 					paquet `modele-social` et à appeler la fonction `evaluate` sur la
@@ -60,7 +61,7 @@ export default function Library() {
 						title="mon-entreprise (exemple 1)"
 					></iframe>
 				</div>
-				<h2>Paramétrer le calcul</h2>
+				<H2>Paramétrer le calcul</H2>
 				<p>
 					Vous l'aurez constaté dans l'exemple précédent, la recette d'un calcul
 					est simple : des variables d'entrée (le salaire brut), une ou
@@ -141,9 +142,9 @@ export default function Library() {
 					</a>
 					, composant qui fait aussi appel à l'API commune.
 				</p>
-				<h2>
+				<H2>
 					Faire des graphiques économiques <Emoji emoji="📈" />
-				</h2>
+				</H2>
 				<p>
 					Il est aussi possible d'utiliser la bibliothèque pour des calculs
 					d'analyse économique ou politique. Ici, on trace le prix du travail et

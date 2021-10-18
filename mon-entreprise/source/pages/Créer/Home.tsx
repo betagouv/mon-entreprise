@@ -1,6 +1,7 @@
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H3, H5 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -57,16 +58,16 @@ export default function Créer() {
 				</p>
 			</PageHeader>
 
-			<h2 className="ui__ h h3">
+			<H3 as="h2">
 				<Trans>Ressources utiles</Trans>
-			</h2>
+			</H3>
 			<div className="ui__ box-container">
 				<Link
 					className="ui__ interactive card box lighter-bg"
 					to={sitePaths.créer.guideStatut.liste}
 				>
 					<Trans i18nKey="créer.ressources.listeStatuts">
-						<h3 className="ui__ h h5">Liste des statuts juridiques</h3>
+						<H5 as="h3">Liste des statuts juridiques</H5>
 						<small>
 							Vous savez déjà quel statut choisir ? Accédez directement à la
 							liste des démarches associées
@@ -81,7 +82,7 @@ export default function Créer() {
 					}}
 				>
 					<Trans i18nKey="créer.ressources.comparaison">
-						<h3 className="ui__ h h5">Comparateur de régimes</h3>
+						<H5 as="h3">Comparateur de régimes</H5>
 						<small>
 							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
 							différences en terme de revenus, cotisations, retraite, etc
@@ -94,7 +95,7 @@ export default function Créer() {
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
 					<Trans i18nKey="créer.ressources.autoEntrepreneur">
-						<h3 className="ui__ h h5">Démarche auto-entrepreneur</h3>
+						<H5 as="h3">Démarche auto-entrepreneur</H5>
 						<small>
 							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
 							pour bien démarrer votre activité

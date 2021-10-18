@@ -4,6 +4,7 @@ import Emoji from 'Components/utils/Emoji'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H1 } from 'DesignSystem/typography/heading'
 import { useContext, useEffect } from 'react'
 import {
 	Link,
@@ -54,9 +55,9 @@ export default function Nouveautés() {
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />
 			<ScrollToTop key={selectedRelease} />
-			<h1>
+			<H1>
 				Les nouveautés <Emoji emoji="✨" />
-			</h1>
+			</H1>
 			<p>
 				Nous améliorons le site en continu à partir de{' '}
 				<Link to={sitePaths.stats + '#demandes-utilisateurs'}>vos retours</Link>

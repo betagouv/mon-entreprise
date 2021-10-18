@@ -13,6 +13,8 @@ import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
 import rules, { DottedName } from 'modele-social'
 import RuleLink from '../components/RuleLink'
+import { H1 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -90,10 +92,10 @@ function DocumentationLanding() {
 	return (
 		<>
 			<TrackPage chapter1="documentation" name="accueil" />
-			<h1>
+			<H1>
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
-			</h1>
-			<p>Explorez toutes les règles de la documentation</p>
+			</H1>
+			<Body>Explorez toutes les règles de la documentation</Body>
 			<SearchRules />
 		</>
 	)
@@ -103,7 +105,7 @@ function DocumentationRulesList() {
 	const ruleEntries = Object.keys(rules) as DottedName[]
 	return (
 		<>
-			<h1>Liste des règles</h1>
+			<H1>Liste des règles</H1>
 			{ruleEntries.map((name) => (
 				<RuleLink dottedName={name} key={name}>
 					{name}

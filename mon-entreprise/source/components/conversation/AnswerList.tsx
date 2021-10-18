@@ -9,6 +9,7 @@ import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
 import Emoji from 'Components/utils/Emoji'
+import { H2 } from 'DesignSystem/typography/heading'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -29,7 +30,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 		<Overlay onClose={onClose} className="answer-list">
 			{!!answeredQuestions.length && (
 				<>
-					<h2>
+					<H2>
 						<Emoji emoji="📋 " />
 						<Trans>Mes réponses</Trans>
 						<small css="margin-left: 2em; img {font-size: .8em}">
@@ -44,16 +45,16 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 								<Trans>Tout effacer</Trans>
 							</button>
 						</small>
-					</h2>
+					</H2>
 					<StepsTable {...{ rules: answeredQuestions, onClose }} />
 				</>
 			)}
 			{!!nextSteps.length && (
 				<>
-					<h2>
+					<H2>
 						<Emoji emoji="🔮 " />
 						<Trans>Prochaines questions</Trans>
-					</h2>
+					</H2>
 					<StepsTable {...{ rules: nextSteps, onClose }} />
 				</>
 			)}

@@ -1,4 +1,5 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -18,11 +19,11 @@ export default function Autoentrepreneur() {
 					)}
 				/>
 			</Helmet>
-			<h2>
+			<H2>
 				<Trans i18nKey="autoentrepreneur.titre">
 					Entreprise individuelle ou auto-entrepreneur
 				</Trans>
-			</h2>
+			</H2>
 			<Trans i18nKey="autoentrepreneur.description">
 				<p>
 					À la différence de l'entreprise individuelle, l'auto-entrepreneur

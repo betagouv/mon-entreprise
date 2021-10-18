@@ -1,3 +1,4 @@
+import Headings from 'DesignSystem/typography/heading'
 import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
@@ -206,6 +207,7 @@ type HeadingProps = {
 } & React.ComponentProps<'h1'>
 
 function Heading({ level, children, ...otherProps }: HeadingProps) {
+	// FIXME update to design system
 	return React.createElement(`h${level}`, otherProps, children)
 }
 

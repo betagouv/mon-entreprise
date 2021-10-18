@@ -10,6 +10,7 @@ import {
 	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import { EvaluatedNode, formatValue, reduceAST, RuleNode } from 'publicodes'
@@ -47,9 +48,9 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
 							{nom && (
-								<h2 style={{ marginBottom: 0 }}>
+								<H2>
 									<Emoji emoji={icône} /> <Trans>{nom}</Trans>
-								</h2>
+								</H2>
 							)}
 						</div>
 						{index === 0 && showPeriodSwitch && <PeriodSwitch />}

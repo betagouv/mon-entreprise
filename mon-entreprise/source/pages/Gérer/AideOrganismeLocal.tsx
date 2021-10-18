@@ -1,4 +1,5 @@
 import { FromTop } from 'Components/ui/animate'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -34,10 +35,10 @@ export default function AideOrganismeLocal() {
 						className="ui__ hide-mobile"
 						css="width: 230px; position: absolute; left: -230px; bottom: 0; padding: 1rem;"
 					/>
-					<h2>
+					<H2>
 						COVID-19 et auto-entrepreneurs : l'Urssaf Midi-Pyrénées vous
 						accompagne
-					</h2>
+					</H2>
 					<p>
 						Assistez au webinar dédié aux auto-entrepreneur pour faire le point
 						sur vos échéances et les mesures d’accompagnement.

@@ -8,6 +8,7 @@ import { Names } from '../../../../modele-social/dist/names'
 
 import RuleLink from '../RuleLink'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
+import { H2 } from 'DesignSystem/typography/heading'
 
 type Hit = AlgoliaHit<{ objectID: Names; namespace?: string }>
 
@@ -30,9 +31,9 @@ const HideableTitle = connectStats(({ nbHits }) => {
 	return nbHits === 0 ? (
 		<></>
 	) : (
-		<h2>
+		<H2>
 			<Trans>Règles de calculs</Trans>
-		</h2>
+		</H2>
 	)
 })
 

@@ -9,6 +9,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { H2, H3, H4 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
@@ -196,7 +197,7 @@ export default function AidesEmbauche() {
 			<Results />
 			<section>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.outro">
-					<h2>En savoir plus sur les aides</h2>
+					<H2>En savoir plus sur les aides</H2>
 					<p>
 						Vous pouvez retrouver une liste plus complète des aides à l'embauche
 						existantes sur le portail{' '}
@@ -244,28 +245,28 @@ function Results() {
 	return progress === 0 ? (
 		<>
 			<TrackPage name="accueil" />
-			<h3>
+			<H3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aides">
 					Les aides
 				</Trans>
-			</h3>
+			</H3>
 			<AidesGrid
 				aides={aides.map((aide) => ({ ...aide, engine: baseEngine }))}
 			/>
 		</>
 	) : (
 		<FromTop>
-			<h3>
+			<H3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.aidesDisponibles">
 					Aides disponibles
 				</Trans>
-			</h3>
+			</H3>
 			<AidesGrid aides={aidesActives} />
-			<h3>
+			<H3>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.titres.autresAides">
 					Les autres aides
 				</Trans>
-			</h3>
+			</H3>
 			<AidesGrid aides={aidesInactives} />
 		</FromTop>
 	)
@@ -304,7 +305,7 @@ function ResultCard({
 
 	return (
 		<AideCard className="ui__ card box">
-			<h4>{title}</h4>
+			<H4>{title}</H4>
 			<p className="ui__ notice">
 				<Emoji emoji={'💶'} />
 				&nbsp;{' '}
@@ -361,10 +362,5 @@ const AideCard = styled.div`
 	p.ui__.notice {
 		align-self: flex-start;
 		text-align: left;
-	}
-
-	h4,
-	.button {
-		align-self: center;
 	}
 `

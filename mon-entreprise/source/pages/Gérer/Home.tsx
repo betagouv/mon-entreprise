@@ -11,6 +11,7 @@ import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2, H3, H5 } from 'DesignSystem/typography/heading'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -102,7 +103,7 @@ export default function Gérer() {
 											<Emoji emoji="✍" />
 										</div>
 										<Trans i18nKey="gérer.choix.déclaration">
-											<h3>Remplir ma déclaration de revenus</h3>
+											<H3>Remplir ma déclaration de revenus</H3>
 											<p className="ui__ notice">
 												Calculez facilement les montants des charges sociales à
 												reporter dans votre déclaration de revenu au titre de
@@ -129,7 +130,7 @@ export default function Gérer() {
 										<Emoji emoji="💶" />
 									</div>
 									<Trans i18nKey="gérer.choix.revenus">
-										<h3>Calculer mon revenu net de cotisations</h3>
+										<H3>Calculer mon revenu net de cotisations</H3>
 										<p className="ui__ notice">
 											Estimez précisément le montant de vos cotisations grâce au
 											simulateur {{ régime: dirigeant }} de l'Urssaf
@@ -152,7 +153,7 @@ export default function Gérer() {
 											<Emoji emoji="🕟" />
 										</div>
 										<Trans i18nKey="gérer.choix.chomage-partiel">
-											<h3>Activité partielle</h3>
+											<H3>Activité partielle</H3>
 											<p className="ui__ notice">
 												Calculez le reste à payer après remboursement de l'État
 												lorsque vous activez le dispositif pour un employé.
@@ -177,7 +178,7 @@ export default function Gérer() {
 											<Emoji emoji="🤝" />
 										</div>
 										<Trans i18nKey="gérer.choix.embauche">
-											<h3>Estimer le montant d’une embauche</h3>
+											<H3>Estimer le montant d’une embauche</H3>
 											<p className="ui__ notice">
 												Calculez le montant total que votre entreprise devra
 												dépenser pour rémunérer votre prochain employé
@@ -200,7 +201,7 @@ export default function Gérer() {
 											<Emoji emoji="🗓" />
 										</div>
 										<Trans i18nKey="gérer.choix.is">
-											<h3>Estimer le montant de l’impôt sur les sociétés</h3>
+											<H3>Estimer le montant de l’impôt sur les sociétés</H3>
 											<p className="ui__ notice">
 												Calculez le montant de l'impôt sur les sociétés à partir
 												de votre bénéfice.
@@ -216,10 +217,10 @@ export default function Gérer() {
 					</section>
 					<AideOrganismeLocal />
 
-					<h2 className="ui__ h h3">
+					<H3 as="h2">
 						<Emoji emoji="🧰" />
 						<Trans>Ressources utiles</Trans>
-					</h2>
+					</H3>
 					<div className="ui__ box-container">
 						{dirigeant === 'indépendant' &&
 							i18n.language === 'fr' &&
@@ -229,9 +230,7 @@ export default function Gérer() {
 									to={sitePaths.gérer.formulaireMobilité}
 								>
 									<Trans i18nKey="gérer.ressources.embaucher">
-										<h3 className="ui__ h h5">
-											Exporter son activité en Europe
-										</h3>
+										<H5 as="h3">Exporter son activité en Europe</H5>
 										<p className="ui__ notice">
 											Le formulaire pour effectuer une demande de mobilité
 											internationale (détachement ou pluriactivité)
@@ -245,9 +244,7 @@ export default function Gérer() {
 								to={sitePaths.gérer.embaucher}
 							>
 								<Trans i18nKey="gérer.ressources.embaucher">
-									<h3 className="ui__ h h5">
-										Découvrir les démarches d’embauche{' '}
-									</h3>
+									<H5 as="h3">Découvrir les démarches d’embauche </H5>
 									<p className="ui__ notice">
 										La liste des choses à faire pour être sûr de ne rien oublier
 										lors de l’embauche d’un nouveau salarié
@@ -261,9 +258,7 @@ export default function Gérer() {
 								href="https://autoentrepreneur.urssaf.fr"
 							>
 								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
-									<h3 className="ui__ h h5">
-										Accéder au site officiel auto-entrepreneur
-									</h3>
+									<H5 as="h3">Accéder au site officiel auto-entrepreneur</H5>
 									<p className="ui__ notice">
 										Vous pourrez effectuer votre déclaration de chiffre
 										d'affaires, payer vos cotisations, et plus largement trouver
@@ -278,7 +273,7 @@ export default function Gérer() {
 							to={sitePaths.gérer.sécuritéSociale}
 						>
 							<Trans i18nKey="gérer.ressources.sécuritéSociale">
-								<h3 className="ui__ h h5">Comprendre la sécurité sociale </h3>
+								<H5 as="h3">Comprendre la sécurité sociale </H5>
 								<p className="ui__ notice">
 									A quoi servent les cotisations sociales ? Le point sur le
 									système de protection sociale dont bénéficient tous les
@@ -296,7 +291,7 @@ export default function Gérer() {
 								rel="noreferrer noopener"
 							>
 								<Trans i18nKey="gérer.ressources.kbis-autoentrepreneur">
-									<h3 className="ui__ h h5">Récupérer un extrait de Kbis?</h3>
+									<H5 as="h3">Récupérer un extrait de Kbis?</H5>
 									<p className="ui__ notice">
 										Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent
 										cependant récupérer et présenter un extrait K. Voir le site
@@ -312,7 +307,7 @@ export default function Gérer() {
 								rel="noreferrer noopener"
 							>
 								<Trans i18nKey="gérer.ressources.kbis">
-									<h3 className="ui__ h h5">Récupérer un extrait de Kbis</h3>
+									<H5 as="h3">Récupérer un extrait de Kbis</H5>
 									<p className="ui__ notice">
 										Le Kbis est un document permettant de justifier de
 										l'enregistrement de l'entreprise au{' '}
@@ -381,11 +376,11 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 				<>
 					<ScrollToTop />
 					<Overlay>
-						<h2>
+						<H2>
 							<Trans i18nKey="gérer.entreprise.auto">
 								Êtes-vous auto-entrepreneur ?{' '}
 							</Trans>
-						</h2>
+						</H2>
 						<div className="ui__ answer-group">
 							<button
 								className="ui__ button"
@@ -408,7 +403,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					<ScrollToTop />
 					<Overlay>
 						<Trans i18nKey="gérer.entreprise.dirigeant">
-							<h2>Êtes-vous dirigeant majoritaire ?</h2>
+							<H2>Êtes-vous dirigeant majoritaire ?</H2>
 							<p>
 								Si vous êtes administrateur majoritaire ou si vous faites partie
 								d'un conseil d'administration majoritaire, vous n'aurez pas le

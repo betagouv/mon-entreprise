@@ -7,6 +7,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
+import { H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
 import { equals, isEmpty, omit } from 'ramda'
@@ -193,7 +194,7 @@ function FormulairePublicodes() {
 								</label>
 								{description && (
 									<Explicable>
-										<h3>{title}</h3>
+										<H3>{title}</H3>
 										<Markdown source={description} />
 									</Explicable>
 								)}
