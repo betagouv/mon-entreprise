@@ -19,26 +19,14 @@ function SelectComponent({ onChange, onSubmit, options }) {
 	}, [options])
 	return (
 		<>
-			<input
+			<TextField
 				type="search"
-				css={`
-					padding: 0.4rem;
-					margin: 0.2rem 0;
-					width: 100%;
-					border: 1px solid var(--lighterTextColor);
-					border-radius: 0.3rem;
-					color: inherit;
-					font-size: inherit;
-					transition: border-color 0.1s;
-					position: relative;
-
-					:focus {
-						border-color: var(--color);
-					}
-				`}
 				placeholder={t("Saisissez votre domaine d'activité")}
-				onChange={(e) => {
-					let input = e.target.value
+				errorMessage={
+					searchResults &&
+					searchResults.length === 0 && <Trans>Aucun résultat</Trans>
+				}
+				onChange={(input) => {
 					if (input.length < 2) {
 						setSearchResults(undefined)
 						return
@@ -46,11 +34,6 @@ function SelectComponent({ onChange, onSubmit, options }) {
 					worker.postMessage({ input })
 				}}
 			/>
-			{searchResults && searchResults.length === 0 && (
-				<p>
-					<Trans>Aucun résultat</Trans>
-				</p>
-			)}
 
 			{searchResults &&
 				searchResults.map((option) => (

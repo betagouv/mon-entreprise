@@ -7,6 +7,7 @@ import {
 	StyledDescription,
 	StyledInput,
 	StyledInputContainer,
+	StyledErrorMessage,
 	StyledLabel,
 } from './TextField'
 import styled from 'styled-components'
@@ -14,8 +15,13 @@ import styled from 'styled-components'
 export default function SearchField(props: AriaSearchFieldProps) {
 	const state = useSearchFieldState(props)
 	const ref = useRef<HTMLInputElement>(null)
-	const { labelProps, inputProps, descriptionProps, clearButtonProps } =
-		useSearchField(props, state, ref)
+	const {
+		labelProps,
+		inputProps,
+		descriptionProps,
+		errorMessageProps,
+		clearButtonProps,
+	} = useSearchField(props, state, ref)
 
 	return (
 		<StyledContainer>
@@ -24,6 +30,7 @@ export default function SearchField(props: AriaSearchFieldProps) {
 			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
+					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}
 				/>
 				<StyledLabel {...labelProps}>{props.label}</StyledLabel>
@@ -31,8 +38,13 @@ export default function SearchField(props: AriaSearchFieldProps) {
 					<StyledClearButton {...clearButtonProps}>×</StyledClearButton>
 				)}
 			</StyledInputContainer>
+			{props.errorMessage && (
+				<StyledErrorMessage {...errorMessageProps}>
+					{props.errorMessage}
+				</StyledErrorMessage>
+			)}
 			{props.description && (
-				<StyledDescription {...descriptionProps} style={{ fontSize: 12 }}>
+				<StyledDescription {...descriptionProps}>
 					{props.description}
 				</StyledDescription>
 			)}

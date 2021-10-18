@@ -181,26 +181,8 @@ function FormulairePublicodes() {
 							</Condition>
 						) : (
 							<>
-								<label htmlFor={dottedName}>
-									{question && (
-										<span
-											css={`
-												margin-top: 0.6rem;
-											`}
-										>
-											{question}
-										</span>
-									)}{' '}
-								</label>
-								{description && (
-									<Explicable>
-										<H3>{title}</H3>
-										<Markdown source={description} />
-									</Explicable>
-								)}
 								<RuleInput
 									id={dottedName}
-									label={question ?? title}
 									dottedName={dottedName as DottedName}
 									onChange={(value) => onChange(dottedName, value)}
 								/>

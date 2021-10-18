@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '../../../utils'
-import { SearchField } from 'DesignSystem/field'
+import { TextField } from 'DesignSystem/field'
 import { InputProps } from '../RuleInput'
 
 export type ApiCommuneJson = {
@@ -184,15 +184,13 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 
 	return (
 		<div>
-			<SearchField
+			<TextField
 				role="combobox"
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
-				type="search"
 				id={id}
 				aria-autocomplete="list"
 				onBlur={submitFocusedElem}
 				aria-readonly="true"
-				className="ui__"
 				onKeyDown={handleKeyDown}
 				aria-controls="liste-commune"
 				label={t('Commune ou code postal')}

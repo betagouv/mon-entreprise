@@ -18,8 +18,8 @@ export default function TextInput({
 			autoFocus={autoFocus}
 			type="text"
 			label={title}
-			onChange={({ target }) => {
-				debouncedOnChange(`'${target.value}'`)
+			onChange={(value) => {
+				debouncedOnChange(`'${value}'`)
 			}}
 			description={description}
 			{...{

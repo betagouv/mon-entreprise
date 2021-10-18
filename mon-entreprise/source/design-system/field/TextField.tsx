@@ -9,7 +9,6 @@ export default function TextField(props: AriaTextFieldOptions) {
 	const ref = useRef<HTMLInputElement>(null)
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
 		useTextField({ ...props, inputElementType: 'input' }, ref)
-
 	return (
 		<StyledContainer>
 			<StyledInputContainer
@@ -17,6 +16,7 @@ export default function TextField(props: AriaTextFieldOptions) {
 			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
+					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}
 				/>
 				<StyledLabel {...labelProps}>{props.label}</StyledLabel>
@@ -53,30 +53,29 @@ export const StyledInput = styled.input`
 	position: absolute;
 	padding: calc(${LABEL_HEIGHT} + ${({ theme }) => theme.spacings.xs})
 		${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xs};
+	transition: color 0.2s;
 `
 
 export const StyledLabel = styled.label`
 	top: 0%;
+	pointer-events: none;
 	transform: translateY(0%);
-
 	font-size: 0.75rem;
 	line-height: ${LABEL_HEIGHT};
 	font-family: ${({ theme }) => theme.fonts.main};
-	padding: ${({ theme }) => theme.spacings.xs}
-		${({ theme }) => theme.spacings.sm};
+	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm}`};
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
 `
 
 export const StyledDescription = styled(ExtraSmallBody)`
-	padding: ${({ theme }) => theme.spacings.xxs}
-		${({ theme }) => theme.spacings.sm};
+	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm}`};
 	will-change: color;
 	transition: color 0.2s;
 `
 
-const StyledErrorMessage = styled(StyledDescription)`
+export const StyledErrorMessage = styled(StyledDescription)`
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
 `
 
@@ -103,10 +102,12 @@ export const StyledInputContainer = styled.div<{ error: boolean }>`
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
 	}
 
-	input:not(:focus):placeholder-shown + ${StyledLabel} {
+	${StyledInput}:not(:focus):placeholder-shown {
+		color: transparent;
+	}
+	${StyledInput}:not(:focus):placeholder-shown + ${StyledLabel} {
 		font-size: 1rem;
 		line-height: 1.5rem;
-		pointer-events: none;
 		top: 50%;
 		transform: translateY(-50%);
 	}
