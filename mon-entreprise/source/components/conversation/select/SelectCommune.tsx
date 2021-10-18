@@ -3,6 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '../../../utils'
+import { SearchField } from 'DesignSystem/field'
 import { InputProps } from '../RuleInput'
 
 export type ApiCommuneJson = {
@@ -140,15 +141,15 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	}, [searchResults, focusedElem, noResult, handleSubmit])
 
 	const handleChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
+		(value: string) => {
 			setFocusedElem(0)
-			setName(e.target.value)
-			if (e.target.value.length < 2) {
+			setName(value)
+			if (value.length < 2) {
 				setSearchResults(null)
 				return
 			}
 			setLoadingState(true)
-			debouncedHandleSearch(e.target.value)
+			debouncedHandleSearch(value)
 		},
 		[debouncedHandleSearch]
 	)
@@ -183,32 +184,21 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 
 	return (
 		<div>
-			<input
+			<SearchField
 				role="combobox"
+				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				type="search"
 				id={id}
 				aria-autocomplete="list"
 				onBlur={submitFocusedElem}
 				aria-readonly="true"
-				css={noResult ? 'border-color: firebrick !important' : ''}
 				className="ui__"
 				onKeyDown={handleKeyDown}
 				aria-controls="liste-commune"
-				placeholder={t('Commune ou code postal')}
+				label={t('Commune ou code postal')}
 				value={name}
 				onChange={handleChange}
 			/>
-			{noResult && (
-				<p
-					className="ui__ notice"
-					css={`
-						color: firebrick !important;
-						margin-top: -0.4rem;
-					`}
-				>
-					<Trans>Cette commune n'existe pas</Trans>
-				</p>
-			)}
 
 			{!!searchResults && (
 				<FromTop>

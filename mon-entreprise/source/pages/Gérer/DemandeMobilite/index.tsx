@@ -199,6 +199,7 @@ function FormulairePublicodes() {
 								)}
 								<RuleInput
 									id={dottedName}
+									label={question ?? title}
 									dottedName={dottedName as DottedName}
 									onChange={(value) => onChange(dottedName, value)}
 								/>

@@ -1,67 +1,46 @@
 import { InputHTMLAttributes, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useTextField, AriaTextFieldOptions } from '@react-aria/textfield'
 import { ExtraSmallBody } from 'DesignSystem/typography/paragraphs'
 
+const LABEL_HEIGHT = '1rem'
+
 export default function TextField(props: AriaTextFieldOptions) {
 	const ref = useRef<HTMLInputElement>(null)
-	const { labelProps, inputProps, descriptionProps } = useTextField(
-		{ ...props, inputElementType: 'input' },
-		ref
-	)
+	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+		useTextField({ ...props, inputElementType: 'input' }, ref)
 
 	return (
-		<>
-			<StyledInputContainer>
+		<StyledContainer>
+			<StyledInputContainer
+				error={!!props.errorMessage || props.validationState === 'invalid'}
+			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
 					ref={ref}
 				/>
 				<StyledLabel {...labelProps}>{props.label}</StyledLabel>
 			</StyledInputContainer>
+			{props.errorMessage && (
+				<StyledErrorMessage {...errorMessageProps}>
+					{props.errorMessage}
+				</StyledErrorMessage>
+			)}
 			{props.description && (
-				<StyledDescription {...descriptionProps} style={{ fontSize: 12 }}>
+				<StyledDescription {...descriptionProps}>
 					{props.description}
 				</StyledDescription>
 			)}
-		</>
+		</StyledContainer>
 	)
 }
 
-const labelHeight = '1rem'
-const StyledInputContainer = styled.div`
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: ${({ theme }) => theme.box.borderWidth} solid
-		${({ theme }) => theme.colors.extended.grey[500]};
-	outline: transparent solid 1px;
-	position: relative;
-	flex-direction: column;
-	transition: outline-color, border-color 0.3s;
-	height: ${({ theme }) => theme.spacings.xxxl};
-
-	:focus-within {
-		outline-color: ${({ theme }) => theme.colors.bases.primary[600]};
-		border-color: ${({ theme }) => theme.colors.bases.primary[600]};
-	}
-
-	:focus-within label {
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
-	}
-
-	:focus-within + p {
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
-	}
-
-	input:not(:focus):placeholder-shown + label {
-		font-size: 1rem;
-		line-height: 1.5rem;
-		pointer-events: none;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+export const StyledContainer = styled.div`
+	width: 100%;
+	min-width: fit-content;
+	margin-bottom: ${({ theme }) => theme.spacings.lg};
 `
-
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: none;
@@ -72,15 +51,16 @@ const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	position: absolute;
-	padding: calc(${labelHeight} + ${({ theme }) => theme.spacings.xs})
+	padding: calc(${LABEL_HEIGHT} + ${({ theme }) => theme.spacings.xs})
 		${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xs};
 `
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
 	top: 0%;
 	transform: translateY(0%);
+
 	font-size: 0.75rem;
-	line-height: ${labelHeight};
+	line-height: ${LABEL_HEIGHT};
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: ${({ theme }) => theme.spacings.xs}
 		${({ theme }) => theme.spacings.sm};
@@ -89,56 +69,56 @@ const StyledLabel = styled.label`
 	transition: all 0.1s;
 `
 
-const StyledDescription = styled(ExtraSmallBody)`
+export const StyledDescription = styled(ExtraSmallBody)`
 	padding: ${({ theme }) => theme.spacings.xxs}
 		${({ theme }) => theme.spacings.sm};
-	will-change: feColorMatrix;
+	will-change: color;
 	transition: color 0.2s;
 `
-// /* Type=Input text, Legend=False, Status=Default */
 
-// /* Auto Layout */
-// display: flex;
-// flex-direction: column;
-// align-items: flex-start;
-// padding: 20px 16px;
+const StyledErrorMessage = styled(StyledDescription)`
+	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
+`
 
-// position: absolute;
-// width: 360px;
-// height: 64px;
-// right: 1634px;
-// bottom: 1055px;
+export const StyledInputContainer = styled.div<{ error: boolean }>`
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border: ${({ theme }) =>
+		`${theme.box.borderWidth} solid ${theme.colors.extended.grey[500]}`};
+	outline: transparent solid 1px;
+	position: relative;
+	flex-direction: column;
+	transition: all 0.2s;
+	height: ${({ theme }) => theme.spacings.xxxl};
+	:focus-within {
+		outline-color: ${({ theme, error }) =>
+			error
+				? theme.colors.extended.error[400]
+				: theme.colors.bases.primary[600]};
+	}
+	:focus-within ${StyledLabel} {
+		color: ${({ theme }) => theme.colors.bases.primary[800]};
+	}
 
-// /* Base/UR White */
-// background: #FFFFFF;
-// /* Base/UR Grey N°5 */
-// border: 1px solid #6C757D;
-// box-sizing: border-box;
-// border-radius: 6px;
+	:focus-within + ${StyledDescription} {
+		color: ${({ theme }) => theme.colors.bases.primary[800]};
+	}
 
-// /* Label */
+	input:not(:focus):placeholder-shown + ${StyledLabel} {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		pointer-events: none;
+		top: 50%;
+		transform: translateY(-50%);
+	}
 
-// position: static;
-// left: 16px;
-// right: 16px;
-// top: 20px;
-// bottom: 20px;
-
-// /* Form/Label_inactive */
-// font-family: Roboto;
-// font-style: normal;
-// font-weight: normal;
-// font-size: 16px;
-// line-height: 24px;
-// /* identical to box height, or 150% */
-// text-align: justify;
-
-// /* Base/UR Grey N°7 */
-// color: #212529;
-
-// /* Inside Auto Layout */
-// flex: none;
-// order: 0;
-// align-self: stretch;
-// flex-grow: 0;
-// margin: 10px 0px;
+	${({ theme, error }) =>
+		error &&
+		css`
+			&& {
+				border-color: ${theme.colors.extended.error[400]};
+			}
+			&&& label {
+				color: ${theme.colors.extended.error[400]};
+			}
+		`}
+`
