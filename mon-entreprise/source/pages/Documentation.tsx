@@ -13,6 +13,7 @@ import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
 import rules, { DottedName } from 'modele-social'
 import RuleLink from '../components/RuleLink'
+import Meta from 'Components/utils/Meta'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -90,6 +91,11 @@ function DocumentationLanding() {
 	return (
 		<>
 			<TrackPage chapter1="documentation" name="accueil" />
+			<Meta
+				page="documentation"
+				title="Documentation"
+				description="Explorez toutes les règles de la documentation"
+			/>
 			<h1>
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>

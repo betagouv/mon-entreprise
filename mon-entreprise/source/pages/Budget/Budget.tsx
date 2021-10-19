@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import prose from './budget.md'
 import budget from './budget.yaml'
 
@@ -42,9 +43,11 @@ export default function Budget() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="budget" />
-			<Helmet>
-				<title>Le budget de mon-entreprise.fr</title>
-			</Helmet>
+			<Meta
+				page="budget"
+				title="Budget"
+				description="Le budget de mon-entreprise.fr"
+			/>
 			<ScrollToTop />
 			<h1>
 				Budget <Emoji emoji="💶" />

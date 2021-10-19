@@ -1,8 +1,8 @@
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
+import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -22,10 +22,12 @@ export default function Créer() {
 	return (
 		<FromBottom>
 			<TrackPage name="accueil" />
-
-			<Helmet>
-				<title>{t('créer.titre', 'Créer une entreprise')}</title>
-			</Helmet>
+			<Meta
+				page="créer"
+				title="Créer"
+				description="Créer une entreprise"
+				ogImage={créerSvg}
+			/>
 			<PageHeader
 				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}
 				picture={créerSvg}

@@ -12,6 +12,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toAtString, TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import statsJson from '../../data/stats.json'
 import { debounce } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
@@ -306,6 +307,11 @@ export default function Stats() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="stats" />
+			<Meta
+				page="stats"
+				title="Statistiques"
+				description="	Découvrez nos statistiques d'utilisation mises à jour quotidiennement."
+			/>
 			<ScrollToTop />
 
 			<h1>

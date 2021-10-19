@@ -4,12 +4,19 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import Meta from '../../components/utils/Meta'
 import illustration from './illustration.png'
 
 export default function Options() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
+			<Meta
+				page="intégration"
+				title="Intégration"
+				description="Outils pour les développeurs"
+				ogImage={illustration}
+			/>
 			<h1 css="margin-bottom: 0">
 				<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 			</h1>
