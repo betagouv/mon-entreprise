@@ -12,9 +12,11 @@ const useIsPrintContext = () => {
 		const matchMediaPrint = window.matchMedia('print')
 
 		setPrintContext(matchMediaPrint.matches)
-		matchMediaPrint.addEventListener('change', matchListener)
+		// `addEventListener` isn't supported by old versions of Safari and throws a
+		// fatal error. See #1790 and https://stackoverflow.com/a/56466334
+		matchMediaPrint?.addEventListener('change', matchListener)
 		return () => {
-			matchMediaPrint.removeEventListener('change', matchListener)
+			matchMediaPrint?.removeEventListener('change', matchListener)
 		}
 	}, [])
 
