@@ -24,7 +24,7 @@ import {
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
 import InputSuggestions from './conversation/InputSuggestions'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
+import NumberInput from './conversation/NumberInput'
 import './TargetSelection.css'
 import { Appear, FromTop } from './ui/animate'
 import Emoji from './utils/Emoji'
@@ -177,10 +177,10 @@ function TargetInputOrValue({
 	const isSituationEmpty = Object.keys(situation).length === 0
 	const isActive = target.dottedName in situation
 	const onChange = useCallback(
-		(evt) =>
+		(valeur) =>
 			dispatch(
 				updateSituation(target.dottedName, {
-					valeur: evt.target.value,
+					valeur,
 					unité: targetUnit,
 				})
 			),
@@ -195,19 +195,10 @@ function TargetInputOrValue({
 				{target.question ? (
 					<>
 						{!isFocused && <AnimatedTargetValue value={value} />}
-						<CurrencyInput
-							debounce={750}
+						<NumberInput
 							name={target.dottedName}
+							unit={{ numerators: ['€'], denominators: [] }}
 							value={value}
-							className={classnames(
-								isFocused ||
-									isActive ||
-									isSituationEmpty ||
-									(target.question && isSmallTarget)
-									? 'targetInput'
-									: 'editableTarget',
-								{ focused: isFocused }
-							)}
 							onChange={onChange}
 							onFocus={() => {
 								setFocused(true)

@@ -155,6 +155,9 @@ export function SimulationGoal({
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
 								onChange={onChange}
+								formatOptions={{
+									maximumFractionDigits: 0,
+								}}
 								useSwitch
 							/>
 						) : (
