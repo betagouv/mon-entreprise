@@ -26,14 +26,17 @@ export default function SearchField(props: AriaSearchFieldProps) {
 	return (
 		<StyledContainer>
 			<StyledInputContainer
-				error={!!props.errorMessage || props.validationState === 'invalid'}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label}
 			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}
 				/>
-				<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+				{props.label && (
+					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+				)}
 				{state.value !== '' && (
 					<StyledClearButton {...clearButtonProps}>×</StyledClearButton>
 				)}

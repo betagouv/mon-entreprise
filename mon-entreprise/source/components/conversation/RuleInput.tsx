@@ -1,9 +1,8 @@
-import Input from 'Components/conversation/Input'
+import NumberInput from 'Components/conversation/NumberInput'
 import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
-import PercentageField from 'Components/PercentageField'
+
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
@@ -45,6 +44,7 @@ type Props<Name extends string = DottedName> = Omit<
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
 	modifiers?: Record<string, string>
+	formatOptions: Intl.NumberFormatOptions
 }
 
 export type InputProps<Name extends string = string> = Omit<
@@ -82,7 +82,6 @@ export default function RuleInput({
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
-	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
 	const commonProps: InputProps<DottedName> = {
 		dottedName,
@@ -154,34 +153,6 @@ export default function RuleInput({
 		)
 	}
 
-	if (evaluation.unit?.numerators.includes('€') && isTarget) {
-		const unité = formatValue(
-			{ nodeValue: value ?? 0, unit: evaluation.unit },
-			{ language }
-		)
-			.replace(/[\d,.]/g, '')
-			.trim()
-
-		return (
-			<>
-				<CurrencyInput
-					className="targetInput"
-					language={language}
-					debounce={750}
-					name={dottedName}
-					{...commonProps}
-					onSubmit={() => {}}
-					onChange={(evt) =>
-						commonProps.onChange({ valeur: evt.target.value, unité })
-					}
-					value={value as number}
-				/>
-			</>
-		)
-	}
-	if (evaluation.unit?.numerators.includes('%') && isTarget) {
-		return <PercentageField {...commonProps} debounce={600} />
-	}
 	if (rule.rawNode.type === 'texte') {
 		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
@@ -192,7 +163,7 @@ export default function RuleInput({
 	}
 
 	return (
-		<Input
+		<NumberInput
 			{...commonProps}
 			onSubmit={onSubmit}
 			unit={evaluation.unit}

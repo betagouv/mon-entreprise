@@ -12,14 +12,17 @@ export default function TextField(props: AriaTextFieldOptions) {
 	return (
 		<StyledContainer>
 			<StyledInputContainer
-				error={!!props.errorMessage || props.validationState === 'invalid'}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label}
 			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}
 				/>
-				<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+				{props.label && (
+					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps}>
@@ -43,21 +46,18 @@ export const StyledContainer = styled.div`
 export const StyledInput = styled.input`
 	font-size: 1rem;
 	line-height: 1.5rem;
+	flex: 1;
 	border: none;
 	background: none;
 	font-family: ${({ theme }) => theme.fonts.main};
-	bottom: 0;
-	width: 100%;
 	height: 100%;
 	outline: none;
-	position: absolute;
-	padding: calc(${LABEL_HEIGHT} + ${({ theme }) => theme.spacings.xs})
-		${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xs};
 	transition: color 0.2s;
 `
 
 export const StyledLabel = styled.label`
 	top: 0%;
+	left: 0;
 	pointer-events: none;
 	transform: translateY(0%);
 	font-size: 0.75rem;
@@ -79,18 +79,29 @@ export const StyledErrorMessage = styled(StyledDescription)`
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
 `
 
-export const StyledInputContainer = styled.div<{ error: boolean }>`
+export const StyledSuffix = styled.span`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+export const StyledInputContainer = styled.div<{
+	hasError: boolean
+	hasLabel: boolean
+}>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
 		`${theme.box.borderWidth} solid ${theme.colors.extended.grey[500]}`};
 	outline: transparent solid 1px;
 	position: relative;
-	flex-direction: column;
+	display: flex;
+	background-color: white;
+	align-items: center;
 	transition: all 0.2s;
-	height: ${({ theme }) => theme.spacings.xxxl};
+
 	:focus-within {
-		outline-color: ${({ theme, error }) =>
-			error
+		outline-color: ${({ theme, hasError }) =>
+			hasError
 				? theme.colors.extended.error[400]
 				: theme.colors.bases.primary[600]};
 	}
@@ -102,9 +113,17 @@ export const StyledInputContainer = styled.div<{ error: boolean }>`
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
 	}
 
-	${StyledInput}:not(:focus):placeholder-shown {
-		color: transparent;
-	}
+	${({ hasLabel }) =>
+		hasLabel &&
+		css`
+			${StyledInput}:not(:focus):placeholder-shown {
+				color: transparent;
+			}
+			${StyledInput}:not(:focus):placeholder-shown + ${StyledSuffix} {
+				color: transparent;
+			}
+		`}
+
 	${StyledInput}:not(:focus):placeholder-shown + ${StyledLabel} {
 		font-size: 1rem;
 		line-height: 1.5rem;
@@ -112,8 +131,8 @@ export const StyledInputContainer = styled.div<{ error: boolean }>`
 		transform: translateY(-50%);
 	}
 
-	${({ theme, error }) =>
-		error &&
+	${({ theme, hasError }) =>
+		hasError &&
 		css`
 			&& {
 				border-color: ${theme.colors.extended.error[400]};
@@ -122,4 +141,10 @@ export const StyledInputContainer = styled.div<{ error: boolean }>`
 				color: ${theme.colors.extended.error[400]};
 			}
 		`}
+
+	${StyledInput}, ${StyledSuffix} {
+		padding: ${({ hasLabel, theme }) =>
+				css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${theme.spacings.xs})`}
+			${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xs};
+	}
 `

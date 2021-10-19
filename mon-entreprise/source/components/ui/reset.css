@@ -30,18 +30,8 @@ fieldset {
 	min-width: 0;
 }
 
-/* Remove spinner controls from Firefox */
-input[type='number'] {
-	appearance: textfield;
-}
-
 select {
 	width: auto;
-	height: auto;
-}
-
-input {
-	line-height: normal;
 	height: auto;
 }
 
