@@ -20,6 +20,7 @@ export default function PageHeader({
 				<img
 					className="ui__ hide-mobile"
 					src={picture}
+					alt={`${titre}`}
 					css={`
 						margin-left: 3rem;
 						z-index: -1;

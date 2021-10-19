@@ -128,6 +128,7 @@ export default function Provider({
 					<div className="ui__ container">
 						<img
 							src={logo}
+							alt="logo"
 							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
 						></img>
 						<h1>Une erreur est survenue</h1>

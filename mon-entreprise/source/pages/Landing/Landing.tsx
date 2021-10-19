@@ -58,7 +58,11 @@ export default function Landing() {
 							</Trans>
 						</p>
 					</header>
-					<img src={illustrationSvg} className="landing-title__img" />
+					<img
+						src={illustrationSvg}
+						alt="landing image"
+						className="landing-title__img"
+					/>
 				</section>
 
 				<section className="ui__ full-width box-container">
