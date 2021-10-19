@@ -13,7 +13,7 @@ export const theme: DefaultTheme = {
 				700: '#1D458C',
 				800: '#122F62',
 			},
-			seconday: {
+			secondary: {
 				100: '#E0FDFF',
 				200: '#AFFBFF',
 				300: '#7AEEF4',

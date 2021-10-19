@@ -34,7 +34,7 @@ declare module 'styled-components' {
 		colors: {
 			bases: {
 				primary: Palette
-				seconday: Palette
+				secondary: Palette
 				tertiary: Palette
 			}
 
