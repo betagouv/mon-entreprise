@@ -1,6 +1,7 @@
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
+import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
@@ -22,6 +23,12 @@ export default function Landing() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
+			<Meta
+				page="landing"
+				title="Mon-entreprise"
+				description="L'assistant officiel de l'entrepreneur"
+				ogImage={logoSvg}
+			/>
 			<Header />
 			<div className="app-content ui__ container">
 				{language === 'en' && (

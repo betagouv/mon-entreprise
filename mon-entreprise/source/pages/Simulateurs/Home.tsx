@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
 
@@ -22,6 +23,12 @@ export default function Simulateurs() {
 	return (
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil" />
+			<Meta
+				page="simulateurs"
+				title="simulateurs"
+				description="Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives."
+				ogImage={simulatorSvg}
+			/>
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>

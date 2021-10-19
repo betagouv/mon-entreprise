@@ -12,13 +12,13 @@ import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
@@ -64,9 +64,12 @@ export default function Gérer() {
 
 	return (
 		<>
-			<Helmet>
-				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
-			</Helmet>
+			<Meta
+				page="gérer"
+				title="Gérer"
+				description="Gérer mon activité"
+				ogImage={businessPlan}
+			/>
 			<TrackPage name="accueil" />
 			<ScrollToTop />
 			<FromBottom>

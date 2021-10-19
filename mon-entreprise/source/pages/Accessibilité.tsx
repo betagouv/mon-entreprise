@@ -1,9 +1,15 @@
 import { Trans } from 'react-i18next'
 import { TrackPage } from '../ATInternetTracking'
+import Meta from '../components/utils/Meta'
 
 export default function Accessibilité() {
 	return (
 		<Trans i18nKey="pages.accessibilité">
+			<Meta
+				page="accessibilité"
+				title="Accessibilité"
+				description="Référentiel Général d’Amélioration de l’Accessibilité"
+			/>
 			<h1>Accessibilité</h1>
 			<TrackPage chapter1="informations" name="accessibilite" />
 
