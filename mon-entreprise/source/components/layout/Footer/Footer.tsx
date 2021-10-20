@@ -152,13 +152,19 @@ export default function Footer() {
 				</StyledFooter>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<a href="https://twitter.com/monentreprisefr">
+					<a href="https://twitter.com/monentreprisefr" aria-label="twitter">
 						<SocialIcon media="twitter" />
 					</a>
-					<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
+					<a
+						href="https://www.linkedin.com/company/mon-entreprise-fr/"
+						aria-label="linkedin"
+					>
 						<SocialIcon media="linkedin" />
 					</a>
-					<a href="https://github.com/betagouv/mon-entreprise/">
+					<a
+						href="https://github.com/betagouv/mon-entreprise/"
+						aria-label="github"
+					>
 						<SocialIcon media="github" />
 					</a>
 				</div>
