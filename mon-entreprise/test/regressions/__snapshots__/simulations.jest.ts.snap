@@ -674,7 +674,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 exports[`calculate simulations-salarié: aides 3`] = `"[2013,0,2000,0,0,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 4`] = `
-"[3037,0,2000,0,420,1894,1812]
+"[2620,0,2000,0,200,1720,1656]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -690,7 +690,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7079,0,5000,0,0,3948,3298]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 3`] = `
-"[1766,0,1500,0,315,1415,1395]
+"[1453,0,1500,0,150,1284,1284]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -726,7 +726,7 @@ exports[`calculate simulations-salarié: avantages 3`] = `"[2537,0,2000,0,0,1549
 exports[`calculate simulations-salarié: cadre 1`] = `"[4116,0,3000,0,0,2348,2160]"`;
 
 exports[`calculate simulations-salarié: cdd 1`] = `
-"[3640,0,2200,0,462,2085,1973]
+"[3245,0,2200,0,220,1894,1815]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -741,7 +741,7 @@ Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 4`] = `
-"[4447,0,2200,0,481,2587,2394]
+"[4104,0,2200,0,229,2387,2262]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -867,7 +867,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 `;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 3`] = `
-"[4964,0,3000,0,630,2849,2561]
+"[4960,0,3000,0,627,2846,2559]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
