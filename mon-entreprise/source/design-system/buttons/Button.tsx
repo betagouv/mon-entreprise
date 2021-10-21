@@ -39,14 +39,14 @@ const StyledButton = styled.button<ButtonVisualProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 
-	&::hover {
+	&:hover {
 		background-color: ${({ theme, color }) =>
 			theme.colors.bases[color][
 				color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
 			]};
 	}
 
-	&::disabled {
+	&:disabled {
 		background-color: ${({ theme, color }) =>
 			theme.colors.bases[color][color === 'primary' ? 200 : 100]};
 		color: ${({ theme, color }) =>
