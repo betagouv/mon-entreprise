@@ -6011,6 +6011,47 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CIPAV)'
   titre.fr: retraite complémentaire (CIPAV)
+dirigeant . indépendant . PL . CNAVPL:
+  description.en: >
+    [automatic] The National Old Age Insurance Fund for the liberal professions
+    is
+
+    the body that federates the various existing funds (CIPAV, CARPIMKO,
+
+    CARCDSF, CAVEC etc.)
+  description.fr: |
+    La caisse nationale d'assurance vieillesse des professions libérales est
+    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    CARCDSF, CAVEC etc..)
+  titre.en: '[automatic] CNAVPL'
+  titre.fr: CNAVPL
+dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
+  description.en: |
+    [automatic] Since 1 July 2021, members of one of the pension funds of the
+    CNAVPL pension funds can receive daily allowances during a sick leave.
+    sick leave.
+
+    Consequently, a new contribution is created.
+  description.fr: |
+    Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
+    la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
+    maladie.
+
+    En conséquence une nouvelle cotisation est créée.
+  titre.en: '[automatic] per diems'
+  titre.fr: indemnités journalières
+dirigeant . indépendant . PL . CNAVPL . retraite:
+  description.en: |
+    [automatic] All liberal professions (except lawyers)
+    have the same contribution rates for their basic pension.
+  description.fr: |
+    Toutes les professions libérale (à l'exception des avocats)
+    ont les mêmes taux de cotisations pour leur retraite de base.
+  titre.en: '[automatic] basic pension (CNAVPL)'
+  titre.fr: retraite de base (CNAVPL)
+dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
+  titre.en: '[automatic] basic pension (CNAVPL)'
+  titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . CNBF:
   description.en: >
     [automatic] The Caisse Nationale des Barreaux Français (CNBF) is the
@@ -6622,26 +6663,6 @@ dirigeant . indépendant . PL . option régime général:
   question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
   titre.en: '[automatic] general regime option'
   titre.fr: option régime général
-dirigeant . indépendant . PL . retraite CNAVPL:
-  description.en: |
-    [automatic] All liberal professions (except lawyers)
-    have the same contribution rates for their basic pension.
-
-    The national old-age insurance fund for the liberal professions is
-    professions is the body that federates the various existing funds
-    (CIPAV, CARPIMKO, CARCDSF, CAVEC etc.)
-  description.fr: |
-    Toutes les professions libérale (à l'exception des avocats)
-    ont les mêmes taux de cotisations pour leur retraite de base.
-
-    La caisse nationale d'assurance vieillesse des professions
-    libérales est l'organisme qui fédère les différentes caisses
-    existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
-  titre.en: '[automatic] basic retirement (CNAVPL)'
-  titre.fr: retraite de base (CNAVPL)
-dirigeant . indépendant . PL . retraite CNAVPL . remplace:
-  titre.en: '[automatic] basic retirement (CNAVPL)'
-  titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . régime général:
   description.en: |
     [automatic] Unregulated liberal professions affiliated to the general scheme
@@ -9099,7 +9120,7 @@ protection sociale . retraite . plr:
   description.en: '[automatic] We have not implemented the specific rules for
     regulated professions.'
   description.fr: Nous n'avons pas implémenté les règles spécifiques aux
-    professions libérales relementées.
+    professions libérales réglementées.
   titre.en: '[automatic] Retirement from regulated professions'
   titre.fr: Retraite profession libérale réglementée
 protection sociale . retraite . trimestres validés:
