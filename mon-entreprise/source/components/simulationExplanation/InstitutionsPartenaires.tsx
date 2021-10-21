@@ -1,5 +1,9 @@
 import RuleLink from 'Components/RuleLink'
-import Value, { Condition } from 'Components/EngineValue'
+import Value, {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from 'Components/EngineValue'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -24,13 +28,13 @@ export default function InstitutionsPartenaires() {
 					</Trans>
 				</h2>
 				<InstitutionsTable>
-					<Condition expression="entreprise . activité . libérale réglementée = oui">
+					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
 						<CaisseRetraite />
-					</Condition>
-					<Condition expression="entreprise . activité . libérale réglementée = non">
+					</WhenApplicable>
+					<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<CotisationsUrssaf rule="dirigeant . indépendant . cotisations et contributions" />
-					</Condition>
+					</WhenNotApplicable>
 					<ImpôtsDGFIP />
 					<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
 						<InstitutionLine>

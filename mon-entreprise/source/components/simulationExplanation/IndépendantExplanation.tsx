@@ -182,13 +182,13 @@ function DroitsRetraite() {
 				</li>
 				<li>
 					Retraite complémentaire :{' '}
-					<Condition expression="entreprise . activité . libérale réglementée">
+					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<em>
 							Ce simulateur ne gère pas les droits acquis de retraite
 							complémentaire pour les professions libérales
 						</em>
-					</Condition>
-					<Condition expression="entreprise . activité . libérale réglementée = non">
+					</WhenApplicable>
+					<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<strong>
 							<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 								<Value
@@ -198,7 +198,7 @@ function DroitsRetraite() {
 								points acquis
 							</RuleLink>
 						</strong>
-					</Condition>
+					</WhenNotApplicable>
 				</li>
 			</ul>
 		</Trans>
