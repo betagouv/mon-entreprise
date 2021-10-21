@@ -2,26 +2,30 @@ import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Card } from 'DesignSystem/card/Card'
 import { Container } from 'DesignSystem/layout'
-import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { H1, H2 } from 'DesignSystem/typography/heading'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import BrexitPDF from './Brexit_guide.pdf'
+import { CardSection } from './CardSection'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
 
 export default function Landing() {
+	const {
+		t,
+		i18n: { language },
+	} = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
-	const language = useTranslation().i18n.language
 	return (
 		<Container>
 			<TrackPage chapter1="informations" name="accueil" />
@@ -56,64 +60,60 @@ export default function Landing() {
 				<img src={illustrationSvg} className="landing-title__img" />
 			</section>
 
-			<section className="ui__ full-width box-container">
-				<Link
-					className="ui__ interactive card light-border box"
-					to={
-						statutChoisi ? sitePaths.créer[statutChoisi] : sitePaths.créer.index
+			<CardSection>
+				<Card
+					icon={<Emoji emoji="💡" />}
+					title={t('landing.choice.create.title', 'Créer une entreprise')}
+					callToAction={
+						statutChoisi
+							? {
+									to: sitePaths.créer[statutChoisi],
+									label: t('Continuer'),
+							  }
+							: {
+									to: sitePaths.créer.index,
+									label: t('Commencer'),
+							  }
 					}
 				>
-					<div className="ui__ big box-icon">
-						<Emoji emoji="💡" />
-					</div>
-					<Trans i18nKey="landing.choice.create">
-						<H3 as="h2">Créer une entreprise</H3>
+					<Trans i18nKey="landing.choice.create.body">
 						<SmallBody>
 							Un accompagnement au choix du statut juridique et la liste
 							complète des démarches de création
 						</SmallBody>
 					</Trans>
-					<div className="ui__ small simple button">
-						{statutChoisi ? <Trans>Continuer</Trans> : <Trans>Commencer</Trans>}
-					</div>
-				</Link>
-				<Link
-					className="ui__ interactive card light-border box "
-					to={sitePaths.gérer.index}
+				</Card>
+				<Card
+					icon={<Emoji emoji="💶" />}
+					title={t('landing.choice.manage.title', 'Gérer mon activité')}
+					callToAction={{
+						label: t('Commencer'),
+						to: sitePaths.gérer.index,
+					}}
 				>
-					<div className="ui__ big box-icon">
-						<Emoji emoji="💶" />
-					</div>
-					<Trans i18nKey="landing.choice.manage">
-						<H3 as="h2">Gérer mon activité</H3>
+					<Trans i18nKey="landing.choice.manage.body">
 						<SmallBody>
 							Des outils personnalisés pour anticiper le montant des cotisations
 							sociales à payer et mieux gérer votre trésorerie.
 						</SmallBody>
 					</Trans>
-					<div className="ui__ small simple button">
-						<Trans>Commencer</Trans>
-					</div>
-				</Link>
-				<Link
-					className="ui__ interactive card light-border box"
-					to={sitePaths.simulateurs.index}
+				</Card>
+				<Card
+					icon={<Emoji emoji="🧮" />}
+					title={t(
+						'landing.choice.simulators.title',
+						'Accéder aux simulateurs'
+					)}
+					callToAction={{ label: t('Découvrir') }}
 				>
-					<div className="ui__ big box-icon">
-						<Emoji emoji="🧮" />
-					</div>
-					<Trans i18nKey="landing.choice.simulators">
-						<H3 as="h2">Accéder aux simulateurs</H3>
+					<Trans i18nKey="landing.choice.simulators.body">
 						<SmallBody>
 							La liste exhaustive de tous les simulateurs disponibles sur le
 							site.
 						</SmallBody>
 					</Trans>
-					<div className="ui__ small simple button">
-						<Trans>Découvrir</Trans>
-					</div>
-				</Link>
-			</section>
+				</Card>
+			</CardSection>
 			<section>
 				<Trans i18nKey="landing.aboutUs">
 					<H2>Qui sommes-nous ?</H2>

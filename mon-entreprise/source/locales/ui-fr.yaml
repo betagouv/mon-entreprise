@@ -548,13 +548,18 @@ landing:
     les incertitudes vis à vis de l’administration</2> afin que vous puissiez
     vous concentrer sur ce qui compte : votre activité.</3>"
   choice:
-    create: <0>Créer une entreprise</0><1>Un accompagnement au choix du statut
-      juridique et la liste complète des démarches de création</1>
-    manage: <0>Gérer mon activité</0><1>Des outils personnalisés pour anticiper le
-      montant des cotisations sociales à payer et mieux gérer votre
-      trésorerie.</1>
-    simulators: <0>Accéder aux simulateurs</0><1>La liste exhaustive de tous les
-      simulateurs disponibles sur le site.</1>
+    create:
+      body: <0>Un accompagnement au choix du statut juridique et la liste complète des
+        démarches de création</0>
+      title: Créer une entreprise
+    manage:
+      body: <0>Des outils personnalisés pour anticiper le montant des cotisations
+        sociales à payer et mieux gérer votre trésorerie.</0>
+      title: Gérer mon activité
+    simulators:
+      body: <0>La liste exhaustive de tous les simulateurs disponibles sur le
+        site.</0>
+      title: Accéder aux simulateurs
   subtitle: Les ressources nécessaires pour développer votre activité, du statut
     juridique à l'embauche.
   title: L'assistant officiel de l'entrepreneur
@@ -576,7 +581,6 @@ listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 mensuel: mensuel
-
 nextSteps:
   integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
     simulateur sur votre site internet en un clic via un script clé en main.</1>

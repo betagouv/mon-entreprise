@@ -809,13 +809,17 @@ landing:
     is to <2>remove all administrative uncertainties</2> so that you can focus
     on what really matters: your business.</3>"
   choice:
-    create: <0>Create a company</0><1>Assistance in choosing the status and the
-      complete list of creation steps</1>
-    manage: <0>Manage my business</0><1>Personalised tools to anticipate the amount
-      of social security contributions to be paid and better manage your cash
-      flow.</1>
-    simulators: <0>Access the simulators</0><1>The exhaustive list of all the
-      simulators available on the site.</1>
+    create:
+      body: <0>Assistance in choosing a legal status and a complete list of the steps
+        involved in setting up a business</0>
+      title: Create a company
+    manage:
+      body: <0>Personalized tools to anticipate the amount of social contributions to
+        be paid and better manage your cash flow.</0>
+      title: Manage my business
+    simulators:
+      body: <0>The exhaustive list of all the simulators available on the site.</0>
+      title: Browse the simulators
   covid19: "Covid-19: Calculating the impact of short-time work"
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
@@ -847,7 +851,6 @@ mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
-
 nextSteps:
   integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
     to your website in one click with a simple script.</1>
