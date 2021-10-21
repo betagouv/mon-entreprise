@@ -701,7 +701,8 @@ contrat salarié . CDD . congés pris:
   suggestions:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
-  par défaut: 0 jours ouvrés
+    aucun: 0 jours ouvrés
+  par défaut: congés dus sur la durée du contrat
 
 contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:

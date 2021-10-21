@@ -1817,6 +1817,8 @@ contrat salarié . CDD . congés pris:
     the fixed-term contract (in working days)?'
   question.fr: Combien de jours de congés seront pris sur la durée du CDD (en
     jours ouvrés) ?
+  suggestions.aucun.en: '[automatic] no'
+  suggestions.aucun.fr: aucun
   suggestions.la moitié.en: '[automatic] half'
   suggestions.la moitié.fr: la moitié
   suggestions.la totalité.en: '[automatic] the whole'
@@ -1959,8 +1961,8 @@ contrat salarié . CDD . indemnité compensatrice de congés payés:
 contrat salarié . CDD . indemnités salarié:
   description.en: '[automatic] Employer contributions specific to the CDD'
   description.fr: Cotisations employeur spécifiques au CDD
-  titre.en: '[automatic] employee compensation'
-  titre.fr: indemnités salarié
+  titre.en: '[automatic] CDD allowances'
+  titre.fr: Indemnités CDD
 contrat salarié . CDD . information:
   description.en: "[automatic] Remember that a fixed-term contract must always
     correspond to a temporary business need. [Labour Code - Article
