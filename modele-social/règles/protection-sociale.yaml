@@ -45,14 +45,11 @@ protection sociale . retraite:
       - On ne calcule pas le nombre de trimestres validés par année
 
 protection sociale . retraite . plr:
-  applicable si:
-    toutes ces conditions:
-      - entreprise . activité . libérale réglementée
-      - dirigeant . indépendant . PL . option régime général = non
+  applicable si: dirigeant . indépendant . PL . CNAVPL
   remplace: retraite
   rend non applicable: complémentaire indépendants
   titre: Retraite profession libérale réglementée
-  description: Nous n'avons pas implémenté les règles spécifiques aux professions libérales relementées.
+  description: Nous n'avons pas implémenté les règles spécifiques aux professions libérales réglementées.
   valeur: "'Non implémenté'"
 
 protection sociale . retraite . base:

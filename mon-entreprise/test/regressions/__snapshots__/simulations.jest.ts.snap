@@ -317,90 +317,90 @@ exports[`calculate simulations-indépendant: échelle de revenus 8`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[3147,0,2647,500,0,500]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[3174,0,2674,500,0,500]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[3708,0,2708,1000,0,1000]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[3735,0,2735,1000,0,1000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[4267,0,2767,1500,0,1500]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[4295,0,2795,1500,0,1500]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[4827,0,2827,2000,0,2000]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[4856,0,2856,2000,0,2000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[8245,0,3245,5000,0,5000]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[8273,0,3273,5000,0,5000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[14422,0,4422,10000,0,10000]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[14449,0,4449,10000,0,10000]"`;
 
 exports[`calculate simulations-professions-libérales: CIPAV 7`] = `
-"[146241,0,46241,100000,28546,71454]
+"[146413,0,46413,100000,28548,71452]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
-"[1238004,0,238004,1000000,473565,526435]
+"[1238208,0,238208,1000000,473568,526432]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7733,22267,1297,20970]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7765,22235,1292,20943]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8058,21942,1245,20697]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8089,21911,1240,20671]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61611,238389,90534,147855]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61782,238218,90457,147761]"`;
 
 exports[`calculate simulations-professions-libérales: avocat 1`] = `
-"[50000,0,11181,38819,6058,32761]
+"[50000,0,10891,39109,6145,32964]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `
-"[50000,0,11821,38179,5866,32313]
+"[50000,0,11534,38466,5952,32514]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,5076,14924,81,14843]"`;
+exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,4973,15027,97,14930]"`;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 2`] = `
-"[50000,0,14877,35123,4949,30174]
+"[50000,0,14664,35336,5013,30323]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,10817,39183,6167,33016]"`;
+exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,10874,39126,6150,32976]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0,17650,32350,4117,28233]"`;
+exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0,19691,30309,3505,26804]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,73630,226370,85125,141245]"`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,74902,225098,84553,140545]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,93706,306294,124328,181966]"`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,95376,304624,123526,181098]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 5`] = `
-"[120000,0,26977,93023,25393,67630]
+"[120000,0,28585,91415,24734,66681]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: médecin 6`] = `"[50000,0,10663,39337,6213,33124]"`;
+exports[`calculate simulations-professions-libérales: médecin 6`] = `"[50000,0,10703,39297,6202,33095]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,12354,37646,5706,31940]"`;
+exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,12402,37598,5692,31906]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
-"[20000,0,5136,14864,71,14793]
+"[20000,0,5158,14842,67,14775]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
-"[4000,0,1267,2733,0,2733]
+"[4000,0,1291,2709,0,2709]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
-"[20000,0,5136,14864,71,14793]
+"[20000,0,5158,14842,67,14775]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
-"[20000,0,5213,14787,59,14728]
+"[20000,0,5234,14766,55,14711]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[20000,0,5289,14711,47,14664]
+"[20000,0,5310,14690,43,14647]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -435,7 +435,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,10998,0,10651,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,null,4,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,10998,0,10651,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[917,10998,0,10651,4,20]"`;
 
@@ -497,7 +497,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Con
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,15580,15580,6600,4,18]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15520,15520,null,4,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,15520,15520,6600,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,17336,17336,2900,3,8]"`;
 
@@ -553,7 +553,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13768,0,10043,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14515,0,null,4,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14494,0,null,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 3`] = `"[0,13758,0,10035,4,21]"`;
 
