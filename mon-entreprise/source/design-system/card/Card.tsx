@@ -1,6 +1,7 @@
 import { Button } from 'DesignSystem/buttons'
 import { H3 } from 'DesignSystem/typography/heading'
 import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 type CardProps = {
@@ -8,7 +9,7 @@ type CardProps = {
 	icon: ReactNode
 	children: ReactNode
 	callToAction: {
-		callback?: () => void
+		callback?: (e: MouseEvent) => void
 		to?: string
 		label: string
 	}
@@ -20,9 +21,18 @@ export const Card = ({ title, icon, children, callToAction }: CardProps) => {
 			<IconContainer>{icon}</IconContainer>
 			<StyledHeader as="h2">{title}</StyledHeader>
 			<CardBody>{children}</CardBody>
-			<Button size="XS" color="primary">
-				{callToAction.label}
-			</Button>
+			{callToAction.to && (
+				<Link to={callToAction.to}>
+					<Button size="XS" color="primary">
+						{callToAction.label}
+					</Button>
+				</Link>
+			)}
+			{callToAction.callback && (
+				<Button size="XS" color="primary" onClick={callToAction.callback}>
+					{callToAction.label}
+				</Button>
+			)}
 		</StyledCardContainer>
 	)
 }

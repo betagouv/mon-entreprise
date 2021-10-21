@@ -10,7 +10,10 @@ type ButtonVisualProps = {
 	color: Color
 	size: Size
 }
-type ButtonProps = ButtonVisualProps & AriaButtonProps<'button'>
+type ButtonProps = {
+	onClick?: (e: MouseEvent) => void
+} & ButtonVisualProps &
+	AriaButtonProps<'button'>
 
 export const Button = (props: ButtonProps) => {
 	const { children, color, size } = props
