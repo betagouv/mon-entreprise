@@ -66,7 +66,7 @@ export default function PageData({
 	return (
 		<>
 			<TrackChapter {...trackInfo} />
-			{meta && <Meta {...meta} />}
+			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
 			{title && !inIframe && (
 				<>
 					<h1>{title}</h1>
