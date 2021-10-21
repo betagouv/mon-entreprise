@@ -29,6 +29,8 @@ type Font = string
 
 type FontSize = Metric
 
+type ShadowDefinition = string
+
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		colors: {
@@ -76,6 +78,15 @@ declare module 'styled-components' {
 			borderRadius: Metric
 			borderWidth: Metric
 		}
+
+		elevations: {
+			2: ShadowDefinition
+			3: ShadowDefinition
+			4: ShadowDefinition
+			5: ShadowDefinition
+			6: ShadowDefinition
+		}
+
 		breakpoints: {
 			xl: Metric
 			lg: Metric
