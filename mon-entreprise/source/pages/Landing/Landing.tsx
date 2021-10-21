@@ -104,7 +104,10 @@ export default function Landing() {
 						'landing.choice.simulators.title',
 						'Accéder aux simulateurs'
 					)}
-					callToAction={{ label: t('Découvrir') }}
+					callToAction={{
+						label: t('Découvrir'),
+						to: sitePaths.simulateurs.index,
+					}}
 				>
 					<Trans i18nKey="landing.choice.simulators.body">
 						<SmallBody>
