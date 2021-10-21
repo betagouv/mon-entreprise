@@ -463,9 +463,8 @@ d'aides: of aid
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
-    managers affiliated to the self-employed workers' regime.</0><1>The amount
-    of tax on dividends is calculated in addition to the tax on other taxable
-    income. </1>
+    self-employed workers.</0><1>The amount of tax on dividends is calculated in
+    addition to the tax on other taxable income.</1>
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
 déductible: deductible
@@ -847,7 +846,6 @@ mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
-
 nextSteps:
   integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
     to your website in one click with a simple script.</1>
@@ -1276,11 +1274,11 @@ pages:
         chosen. This simulator can be used to compare the two systems.</4><5>An
         advance payment of the amount of tax (12.8%) is deducted at the time of
         payment of the dividends, unless the beneficiary meets <2>certain
-        criteria</2>.</5><6>Particular case of the manager under the
-        self-employed worker regime</6><7> Under the self-employed worker's
-        regime, the portion of dividends exceeding 10% of the share capital will
-        be subject to contributions and levies in the same way as the manager's
-        income.</7><8>This case is not yet taken into account by this
+        criteria</2>.</5><6>Special case of the self-employed manager</6><7>For
+        the self-employed worker, the portion of the dividends exceeding 10% of
+        the share capital will be subject to contributions and fees according to
+        the same terms and conditions as his remuneration as a
+        manager.</7><8>This case is not yet taken into account by this
         simulator.</8>
       title: Dividend Payment Simulator
     ei:
