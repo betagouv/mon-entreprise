@@ -22,13 +22,12 @@ export default function DividendesSimulation() {
 				<Trans i18nKey="dividendes.warning">
 					<p>
 						Cette simulation est uniquement donnée à titre indicatif. Elle ne
-						concerne que les sociétés françaises à l'impôt sur les sociétés
-						(IS), et ne concerne pas les dirigeants affiliés au régime des
-						travailleurs indépendants.
+						concerne que les sociétés françaises à l’impôt sur les sociétés
+						(IS), et ne concerne pas les travailleurs indépendants non salariés.
 					</p>
 					<p>
 						Le montant de l'impôt sur les dividendes est calculé en sus de
-						l'impôt sur les autres revenus imposables.{' '}
+						l’impôt sur les autres revenus imposables.
 					</p>
 				</Trans>
 			</Warning>

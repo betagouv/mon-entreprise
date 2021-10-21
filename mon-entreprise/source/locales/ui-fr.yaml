@@ -260,10 +260,10 @@ créer:
 d'aides: d'aides
 dividendes:
   warning: <0>Cette simulation est uniquement donnée à titre indicatif. Elle ne
-    concerne que les sociétés françaises à l'impôt sur les sociétés (IS), et ne
-    concerne pas les dirigeants affiliés au régime des travailleurs
-    indépendants.</0><1>Le montant de l'impôt sur les dividendes est calculé en
-    sus de l'impôt sur les autres revenus imposables. </1>
+    concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne
+    concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
+    l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
+    revenus imposables.</1>
 domiciliation inconnue: domiciliation inconnue
 domiciliée à: domiciliée à
 embauche:
@@ -576,7 +576,6 @@ listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 mensuel: mensuel
-
 nextSteps:
   integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
     simulateur sur votre site internet en un clic via un script clé en main.</1>
@@ -913,11 +912,11 @@ pages:
         description: Calculez le montant de l'impôt et des cotisations sur les
           dividendes versés par votre entreprise.
         title: Dividendes
-      seo: <0>Les dividendes et distributions</0><1>A la fin de l'exercice d'une
+      seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
         dividendes. Du point de vue des bénéficiaires, ce sont des revenus de
-        capitaux mobiliers, soumis à des cotisations et une imposition
+        capitaux mobiliers, soumis à cotisations et à une imposition
         spécifiques.</1><2>Ne sont pris en compte dans ce simulateur que les cas
         de figure du bénéficiaire personne physique et des dividendes décidés
         par la société.</2><3>Comment sont calculés les prélèvements sur les
@@ -927,10 +926,10 @@ pages:
         être choisi. Ce simulateur peut être utilisé pour comparer les deux
         régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est prélevé au
         moment du versement des dividendes, sauf si le bénéficiaire remplit
-        <2>certains critères</2>.</5><6>Cas particulier du dirigeant au régime
-        du travailleur indépendant</6><7> Au régime du travailleur indépendant,
-        la part des dividendes dépassant 10% du capital social sera soumise au
-        cotisations et contributions au même titre que les revenus du
+        <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
+        salarié</6><7>Pour le travailleur indépendant non salarié, la part des
+        dividendes dépassant 10% du capital social sera soumise au cotisations
+        et contributions suivant les mêmes modalités que sa rémunération de
         dirigeant.</7><8>Ce cas de figure n'est pas encore pris en compte par ce
         simulateur.</8>
       title: Simulateur de versement de dividendes
