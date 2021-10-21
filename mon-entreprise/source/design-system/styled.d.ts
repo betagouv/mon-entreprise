@@ -76,5 +76,11 @@ declare module 'styled-components' {
 			borderRadius: Metric
 			borderWidth: Metric
 		}
+		breakpoints: {
+			xl: Metric
+			lg: Metric
+			md: Metric
+			sm: Metric
+		}
 	}
 }
