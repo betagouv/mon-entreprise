@@ -28,7 +28,7 @@ contrat salarié . ancienneté:
 
 contrat salarié . ancienneté . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
-  par défaut: 01/01/2021
+  par défaut: 01/10/2021
   suggestions:
     Début 2021: 01/01/2021
     Début 2020: 01/01/2020
