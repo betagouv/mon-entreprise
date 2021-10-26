@@ -10,7 +10,7 @@ import {
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
-import { useContext, useMemo } from 'react'
+import { StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -53,21 +53,23 @@ export default function Root({ basename, rules }: RootProps) {
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
 	const engine = useMemo(() => engineFactory(rules), [rules])
 	return (
-		<Provider
-			basename={basename}
-			sitePaths={paths}
-			onStoreCreated={(store) => {
-				setupInFranceAppPersistence(store)
-				setupSimulationPersistence(store)
-			}}
-			initialStore={{
-				inFranceApp: retrievePersistedInFranceApp(),
-			}}
-		>
-			<EngineProvider value={engine}>
-				<Router />
-			</EngineProvider>
-		</Provider>
+		<StrictMode>
+			<Provider
+				basename={basename}
+				sitePaths={paths}
+				onStoreCreated={(store) => {
+					setupInFranceAppPersistence(store)
+					setupSimulationPersistence(store)
+				}}
+				initialStore={{
+					inFranceApp: retrievePersistedInFranceApp(),
+				}}
+			>
+				<EngineProvider value={engine}>
+					<Router />
+				</EngineProvider>
+			</Provider>
+		</StrictMode>
 	)
 }
 
