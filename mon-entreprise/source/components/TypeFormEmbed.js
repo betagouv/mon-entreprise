@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 let createQueryParams = (params) =>
 	Object.keys(params)
