@@ -1275,11 +1275,10 @@ pages:
         advance payment of the amount of tax (12.8%) is deducted at the time of
         payment of the dividends, unless the beneficiary meets <2>certain
         criteria</2>.</5><6>Special case of the self-employed manager</6><7>For
-        the self-employed worker, the portion of the dividends exceeding 10% of
-        the share capital will be subject to contributions and fees according to
-        the same terms and conditions as his remuneration as a
-        manager.</7><8>This case is not yet taken into account by this
-        simulator.</8>
+        the self-employed worker, the portion of dividends exceeding 10% of the
+        share capital will be subject to contributions and levies in the same
+        way as his or her remuneration as a manager.</7><8>This case is not yet
+        taken into account by this simulator.</8>
       title: Dividend Payment Simulator
     ei:
       meta:

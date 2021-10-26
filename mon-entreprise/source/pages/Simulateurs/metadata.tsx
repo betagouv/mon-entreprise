@@ -828,7 +828,7 @@ export function getSimulatorsData({
 					<h2>Cas particulier du dirigeant non salarié</h2>
 					<p>
 						Pour le travailleur indépendant non salarié, la part des dividendes
-						dépassant 10% du capital social sera soumise au cotisations et
+						dépassant 10% du capital social sera soumise aux cotisations et
 						contributions suivant les mêmes modalités que sa rémunération de
 						dirigeant.
 					</p>
