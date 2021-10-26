@@ -2,7 +2,7 @@ import {
 	isSoleProprietorship,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 

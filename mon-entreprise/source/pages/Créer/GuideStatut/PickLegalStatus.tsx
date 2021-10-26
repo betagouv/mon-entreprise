@@ -1,7 +1,7 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { filter } from 'ramda'
 import { useContext } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'

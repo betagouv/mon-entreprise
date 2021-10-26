@@ -5,6 +5,7 @@ import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import React, { createContext, useMemo } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
@@ -161,9 +162,11 @@ export default function Provider({
 							<SiteNameContext.Provider value={basename}>
 								<SitePathProvider value={sitePaths}>
 									<I18nextProvider i18n={i18next}>
-										<Router history={history}>
-											<>{children}</>
-										</Router>
+										<HelmetProvider>
+											<Router history={history}>
+												<>{children}</>
+											</Router>
+										</HelmetProvider>
 									</I18nextProvider>
 								</SitePathProvider>
 							</SiteNameContext.Provider>

@@ -3,6 +3,7 @@
 
 import { createBrowserHistory } from 'history'
 import React, { createContext, useMemo } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { Router } from 'react-router-dom'
 import { ThemeColorsProvider } from './colors'
 
@@ -55,9 +56,11 @@ export default function Provider({ basename, children }: ProviderProps) {
 	return (
 		<ThemeColorsProvider>
 			<SiteNameContext.Provider value={basename}>
-				<Router history={history}>
-					<>{children}</>
-				</Router>
+				<HelmetProvider>
+					<Router history={history}>
+						<>{children}</>
+					</Router>
+				</HelmetProvider>
 			</SiteNameContext.Provider>
 		</ThemeColorsProvider>
 	)

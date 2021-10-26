@@ -11,7 +11,7 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
 import { StrictMode, useContext, useMemo } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'

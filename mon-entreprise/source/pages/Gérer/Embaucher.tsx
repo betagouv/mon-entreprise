@@ -4,7 +4,7 @@ import {
 } from 'Actions/hiringChecklistAction'
 import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
