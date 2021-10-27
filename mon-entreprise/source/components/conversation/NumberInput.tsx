@@ -62,7 +62,7 @@ export default function NumberInput({
 					displayedUnit={displayedUnit}
 					onChange={(valeur) => {
 						setCurrentValue(valeur)
-							debouncedOnChange({ valeur, unité })
+						debouncedOnChange({ valeur, unité })
 					}}
 					formatOptions={formatOptions}
 					placeholder={missing && value != null && typeof value === 'number' ? value : undefined}

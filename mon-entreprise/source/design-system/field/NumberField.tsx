@@ -15,40 +15,44 @@ import {
 	StyledSuffix,
 } from './TextField'
 
-// TODO : list Differences with useFieldState
-function useSimpleNumberFieldState(props: NumberFieldProps & {
-	locale: string,
-	placeholder?: number,
-	step: number,
-	onChange: (n?: number) => void,
+function useKeepCursorPositionOnUpdate(inputRef: RefObject<HTMLInputElement>): void {
+	const previousCursorPosition = useRef<number | null>(null)
 
-}, inputRef: RefObject<HTMLInputElement>): NumberFieldState {
-  const numberParser = useMemo(() => new NumberParser(props.locale, props.formatOptions), [props.locale, props.formatOptions]);
-
-	const [inputValue, setInputValue] = useState('')
-
-	const numberingSystem = useMemo(() => numberParser.getNumberingSystem(inputValue), [numberParser, inputValue]);
-  const formatter = useMemo(() => new NumberFormatter(props.locale, {...props.formatOptions, numberingSystem}), [props.locale, props.formatOptions, numberingSystem]);
-
-	const [numberValue, setNumberValue] = useState<undefined | number>(props.value ?? props.defaultValue)
-
-	const updateInputValue = useCallback((value: number | undefined) => {
-		const undefinedFormatted = formatter.formatToParts(0).filter((part) => ['unit', 'percentSign', 'currency', 'literal'].includes(part.type)).map(part => part.value).join('')
-		setInputValue(value === undefined ? undefinedFormatted : formatter.format(value))
-		if (!inputRef.current || !value) {
+	if (inputRef.current && inputRef.current.selectionStart && inputRef.current.selectionEnd) {
+		previousCursorPosition.current = inputRef.current.value.length - Math.max(inputRef.current.selectionStart, inputRef.current.selectionEnd)
+	}
+	const inputIsFocused = inputRef.current === document.activeElement
+	useEffect(() => {
+		previousCursorPosition.current = null
+	}, [inputIsFocused])
+	useEffect(() => {
+		if (!inputRef.current || !previousCursorPosition.current) {
 			return
 		}
-		const cursorPositionFromLast = inputRef.current.value.length - (inputRef.current.selectionEnd || 0)
-		setImmediate(() => {
-			if(!inputRef.current) {
-				return
-			}
-			inputRef.current.selectionStart = inputRef.current.value.length - cursorPositionFromLast
-			inputRef.current.selectionEnd = inputRef.current.value.length - cursorPositionFromLast
-		})
+		inputRef.current.selectionStart = inputRef.current.value.length - previousCursorPosition.current
+		inputRef.current.selectionEnd = inputRef.current.value.length - previousCursorPosition.current
+	})
+}
+// TODO : list differences with useFieldState
+function useSimpleNumberFieldState(props: NumberFieldProps & {
+	locale: string;
+	placeholder?: number;
+	step: number;
+	onChange: (n?: number) => void
 
+}): NumberFieldState {
+  const numberParser = useMemo(() => new NumberParser(props.locale, props.formatOptions), [props.locale, props.formatOptions]);
+	const [rawInputValue, setInputValue] = useState('')
+	const numberingSystem = useMemo(() => numberParser.getNumberingSystem(rawInputValue), [numberParser, rawInputValue]);
+  const formatter = useMemo(() => new NumberFormatter(props.locale, {...props.formatOptions, numberingSystem}), [props.locale, props.formatOptions, numberingSystem]);
+	const [numberValue, setNumberValue] = useState<undefined | number>(props.value ?? props.defaultValue)
 
-	}, [formatter, setInputValue])
+	const defaultInputValue = formatter.formatToParts(0).filter((part) => ['unit', 'percentSign', 'currency', 'literal'].includes(part.type)).map(part => part.value).join('')
+	const inputValue = rawInputValue === '' ? defaultInputValue : rawInputValue
+
+	const updateInputValue = useCallback((value: number | undefined) => {
+		setInputValue(value === undefined ? '' : formatter.format(value))
+	}, [formatter])
 
 	const updateNumberValue = useCallback((value: number | undefined)=> {
 		setNumberValue(value)
@@ -133,6 +137,7 @@ export default function NumberField(
 		locale,
 	}, ref)
 
+	useKeepCursorPositionOnUpdate(ref);
 
 	const {
 		labelProps,

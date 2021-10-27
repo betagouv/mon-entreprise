@@ -13,7 +13,7 @@ import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
-import { RessourceAutoEntrepreneur } from '../../pages/Créer/CreationChecklist'
+import { RessourceAutoEntrepreneur } from '../../pages/Creer/CreationChecklist'
 import useSimulatorsData, { SimulatorData } from './metadata'
 
 export default function PageData({
