@@ -1,4 +1,6 @@
 import Emoji from 'Components/utils/Emoji'
+import { Button } from 'DesignSystem/buttons'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -32,6 +34,11 @@ const askFeedback = (url: string) => {
 		new Date(new Date().setMonth(new Date().getMonth() - 4))
 	)
 }
+
+const Container = styled.div`
+	padding: 1rem 0 1.5rem 0;
+	text-align: center;
+`
 
 export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 	const url = useLocation().pathname
@@ -69,85 +76,80 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 	}
 
 	return (
-		<div
-			className="ui__ notice"
-			style={{
-				padding: '1rem 0',
-				position: 'relative',
-			}}
-		>
-			<div style={{ textAlign: 'center' }}>
-				{!state.showForm && !state.showThanks && (
-					<>
-						<p>
-							{customMessage || (
-								<Trans i18nKey="feedback.question">
-									Êtes-vous satisfait de cette page ?
-								</Trans>
-							)}{' '}
-						</p>
-						<div
-							css={`
-								display: flex;
-								flex-wrap: wrap;
-								justify-content: center;
-							`}
-						>
-							<div>
-								<EmojiButton onClick={() => handleFeedback('mauvais')}>
-									<Emoji emoji="🙁" />
-								</EmojiButton>
-								<EmojiButton onClick={() => handleFeedback('moyen')}>
-									<Emoji emoji="😐" />
-								</EmojiButton>
-							</div>
-							<div>
-								<EmojiButton onClick={() => handleFeedback('bien')}>
-									<Emoji emoji="🙂" />
-								</EmojiButton>
-								<EmojiButton onClick={() => handleFeedback('très bien')}>
-									<Emoji emoji="😀" />
-								</EmojiButton>
-							</div>
-						</div>
-					</>
-				)}
-				{(state.showThanks || state.showForm) && (
-					<button
-						onClick={() => setDisplay(false)}
-						style={{
-							position: 'absolute',
-							right: '-2.4rem',
-							top: '-0.6rem',
-							fontSize: '200%',
-						}}
+		<Container>
+			{!state.showForm && !state.showThanks && (
+				<>
+					<Body>
+						{customMessage || (
+							<Trans i18nKey="feedback.question">
+								Êtes-vous satisfait de cette page ?
+							</Trans>
+						)}{' '}
+					</Body>
+					<div
 						css={`
-							:hover {
-								opacity: 0.8;
-							}
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: center;
 						`}
-						aria-label="close"
 					>
-						<small>×</small>
-					</button>
-				)}
-				{state.showThanks && (
-					<div>
-						<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
+						<div>
+							<EmojiButton onClick={() => handleFeedback('mauvais')}>
+								<Emoji emoji="🙁" />
+							</EmojiButton>
+							<EmojiButton onClick={() => handleFeedback('moyen')}>
+								<Emoji emoji="😐" />
+							</EmojiButton>
+						</div>
+						<div>
+							<EmojiButton onClick={() => handleFeedback('bien')}>
+								<Emoji emoji="🙂" />
+							</EmojiButton>
+							<EmojiButton onClick={() => handleFeedback('très bien')}>
+								<Emoji emoji="😀" />
+							</EmojiButton>
+						</div>
 					</div>
-				)}
-				{state.showForm ? (
-					<Form />
-				) : (
-					<button
-						className="ui__  simple small button"
-						onClick={openSuggestionForm}
-					>
+				</>
+			)}
+			{(state.showThanks || state.showForm) && (
+				<button
+					onClick={() => setDisplay(false)}
+					style={{
+						position: 'absolute',
+						right: '-2.4rem',
+						top: '-0.6rem',
+						fontSize: '200%',
+					}}
+					css={`
+						:hover {
+							opacity: 0.8;
+						}
+					`}
+					aria-label="close"
+				>
+					<small>×</small>
+				</button>
+			)}
+			{state.showThanks && (
+				<Body>
+					<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
+				</Body>
+			)}
+			{state.showForm ? (
+				<Form />
+			) : (
+				<div
+					css={`
+						padding-top: 1rem;
+					`}
+				>
+					<Button onClick={openSuggestionForm} color="tertiary" size="XS" light>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
-					</button>
-				)}
-			</div>
-		</div>
+					</Button>
+				</div>
+			)}
+		</Container>
 	)
 }
 

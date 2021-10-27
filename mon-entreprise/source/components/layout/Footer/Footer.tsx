@@ -1,6 +1,5 @@
 import PageFeedback from 'Components/Feedback'
 import LegalNotice from 'Components/LegalNotice'
-import SocialIcon from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { FooterContainer } from 'DesignSystem/footer'
@@ -10,53 +9,28 @@ import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
-import useSimulatorsData from '../../../pages/Simulateurs/metadata'
 import { hrefLangLink } from '../../../sitePaths'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 import { SocialLinks } from './Social'
-
-const useShowFeedback = () => {
-	const currentPath = useLocation().pathname
-	const sitePath = useContext(SitePathsContext)
-	const simulators = useSimulatorsData()
-	if (
-		[
-			simulators['aide-déclaration-indépendant'],
-			simulators['comparaison-statuts'],
-			simulators['demande-mobilité'],
-		]
-			.map((s) => s.path)
-			.includes(currentPath)
-	) {
-		return true
-	}
-
-	return ![
-		sitePath.index,
-		...Object.values(simulators).map((s) => s.path),
-		'',
-		'/',
-	].includes(currentPath)
-}
+import { useShowFeedback } from './useShowFeedback'
 
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
 
+	const currentEnv = process.env.NODE_ENV
+	const { location } = window
 	const encodedUri =
-		(process.env.NODE_ENV === 'production' ||
-		process.env.NODE_ENV === 'development'
-			? window.location.protocol + '//' + window.location.host
+		(currentEnv === 'production' || currentEnv === 'development'
+			? `${location.protocol}//${location.host}`
 			: '') + window.location.pathname
 	const uri = decodeURIComponent(encodedUri).replace(/\/$/, '')
-
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (
-		<div className="">
+		<div>
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link
@@ -68,20 +42,8 @@ export default function Footer() {
 				))}
 			</Helmet>
 			<footer className="footer">
-				<Container>
-					{showFeedback && (
-						<div>
-							<div
-								className="ui__ lighter-bg"
-								css={`
-									display: flex;
-									justify-content: center;
-								`}
-							>
-								<PageFeedback />
-							</div>
-						</div>
-					)}
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+					{showFeedback && <PageFeedback />}
 					{language === 'en' && (
 						<p className="ui__ notice" css="text-align: center">
 							This website is provided by the{' '}

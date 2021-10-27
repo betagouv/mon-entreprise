@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 const baseParagraphStyle = css`
 	font-family: 'Roboto', sans-serif;
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
 
 export const Intro = styled.p`
