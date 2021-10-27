@@ -12,10 +12,7 @@
 	"engines": {
 		"node": ">=12.16.1"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"devDependencies": {
 		"@babel/core": "^7.9.0",
 		"@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -65,6 +62,8 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",
+		"@mui/material": "^5.0.4",
+		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
 		"@react-aria/button": "^3.3.4",
 		"@react-aria/i18n": "^3.3.2",
 		"@react-aria/numberfield": "^3.1.0",

@@ -27,7 +27,7 @@ export default function Landing() {
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
 	return (
-		<Container>
+		<>
 			<TrackPage chapter1="informations" name="accueil" />
 			<Header />
 			{language === 'en' && (
@@ -38,116 +38,119 @@ export default function Landing() {
 					</a>
 				</div>
 			)}
-			<section className="landing-title">
-				<img
-					alt="logo mon-entreprise.fr"
-					className="landing-title__logo"
-					src={logoSvg}
-				/>
-				<header>
-					<H1>
-						<Trans i18nKey="landing.title">
-							L'assistant officiel de l'entrepreneur
-						</Trans>
-					</H1>
-					<Intro>
-						<Trans i18nKey="landing.subtitle">
-							Les ressources nécessaires pour développer votre activité, du
-							statut juridique à l'embauche.
-						</Trans>
-					</Intro>
-				</header>
-				<img src={illustrationSvg} className="landing-title__img" />
-			</section>
+			<Container>
+				<section className="landing-title">
+					<img
+						alt="logo mon-entreprise.fr"
+						className="landing-title__logo"
+						src={logoSvg}
+					/>
+					<header>
+						<H1>
+							<Trans i18nKey="landing.title">
+								L'assistant officiel de l'entrepreneur
+							</Trans>
+						</H1>
+						<Intro>
+							<Trans i18nKey="landing.subtitle">
+								Les ressources nécessaires pour développer votre activité, du
+								statut juridique à l'embauche.
+							</Trans>
+						</Intro>
+					</header>
+					<img src={illustrationSvg} className="landing-title__img" />
+				</section>
 
-			<CardSection>
-				<Card
-					icon={<Emoji emoji="💡" />}
-					title={t('landing.choice.create.title', 'Créer une entreprise')}
-					callToAction={
-						statutChoisi
-							? {
-									to: sitePaths.créer[statutChoisi],
-									label: t('Continuer'),
-							  }
-							: {
-									to: sitePaths.créer.index,
-									label: t('Commencer'),
-							  }
-					}
-				>
-					<Trans i18nKey="landing.choice.create.body">
-						<SmallBody>
-							Un accompagnement au choix du statut juridique et la liste
-							complète des démarches de création
-						</SmallBody>
-					</Trans>
-				</Card>
-				<Card
-					icon={<Emoji emoji="💶" />}
-					title={t('landing.choice.manage.title', 'Gérer mon activité')}
-					callToAction={{
-						label: t('Commencer'),
-						to: sitePaths.gérer.index,
-					}}
-				>
-					<Trans i18nKey="landing.choice.manage.body">
-						<SmallBody>
-							Des outils personnalisés pour anticiper le montant des cotisations
-							sociales à payer et mieux gérer votre trésorerie.
-						</SmallBody>
-					</Trans>
-				</Card>
-				<Card
-					icon={<Emoji emoji="🧮" />}
-					title={t(
-						'landing.choice.simulators.title',
-						'Accéder aux simulateurs'
-					)}
-					callToAction={{
-						label: t('Découvrir'),
-						to: sitePaths.simulateurs.index,
-					}}
-				>
-					<Trans i18nKey="landing.choice.simulators.body">
-						<SmallBody>
-							La liste exhaustive de tous les simulateurs disponibles sur le
-							site.
-						</SmallBody>
-					</Trans>
-				</Card>
-			</CardSection>
-			<section>
-				<Trans i18nKey="landing.aboutUs">
-					<H2>Qui sommes-nous ?</H2>
-					<Body>
-						Nous sommes une petite{' '}
-						<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
-							équipe
-						</a>{' '}
-						autonome et pluridisciplinaire au sein de l’
-						<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à cœur d’être
-						au près de vos besoins afin d’améliorer en permanence ce site
-						conformément à l'approche{' '}
-						<a href="https://beta.gouv.fr/approche/manifeste">beta.gouv.fr</a>.
-					</Body>
-					<Body>
-						Nous avons développé ce site pour{' '}
-						<strong>accompagner les créateurs d’entreprise</strong> dans le
-						développement de leur activité.
-					</Body>
+				<CardSection>
+					<Card
+						icon={<Emoji emoji="💡" />}
+						title={t('landing.choice.create.title', 'Créer une entreprise')}
+						callToAction={
+							statutChoisi
+								? {
+										to: sitePaths.créer[statutChoisi],
+										label: t('Continuer'),
+								  }
+								: {
+										to: sitePaths.créer.index,
+										label: t('Commencer'),
+								  }
+						}
+					>
+						<Trans i18nKey="landing.choice.create.body">
+							<SmallBody>
+								Un accompagnement au choix du statut juridique et la liste
+								complète des démarches de création
+							</SmallBody>
+						</Trans>
+					</Card>
+					<Card
+						icon={<Emoji emoji="💶" />}
+						title={t('landing.choice.manage.title', 'Gérer mon activité')}
+						callToAction={{
+							label: t('Commencer'),
+							to: sitePaths.gérer.index,
+						}}
+					>
+						<Trans i18nKey="landing.choice.manage.body">
+							<SmallBody>
+								Des outils personnalisés pour anticiper le montant des
+								cotisations sociales à payer et mieux gérer votre trésorerie.
+							</SmallBody>
+						</Trans>
+					</Card>
+					<Card
+						icon={<Emoji emoji="🧮" />}
+						title={t(
+							'landing.choice.simulators.title',
+							'Accéder aux simulateurs'
+						)}
+						callToAction={{
+							label: t('Découvrir'),
+							to: sitePaths.simulateurs.index,
+						}}
+					>
+						<Trans i18nKey="landing.choice.simulators.body">
+							<SmallBody>
+								La liste exhaustive de tous les simulateurs disponibles sur le
+								site.
+							</SmallBody>
+						</Trans>
+					</Card>
+				</CardSection>
+				<section>
+					<Trans i18nKey="landing.aboutUs">
+						<H2>Qui sommes-nous ?</H2>
+						<Body>
+							Nous sommes une petite{' '}
+							<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
+								équipe
+							</a>{' '}
+							autonome et pluridisciplinaire au sein de l’
+							<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à cœur
+							d’être au près de vos besoins afin d’améliorer en permanence ce
+							site conformément à l'approche{' '}
+							<a href="https://beta.gouv.fr/approche/manifeste">beta.gouv.fr</a>
+							.
+						</Body>
+						<Body>
+							Nous avons développé ce site pour{' '}
+							<strong>accompagner les créateurs d’entreprise</strong> dans le
+							développement de leur activité.
+						</Body>
 
-					<Body>
-						Notre objectif est de{' '}
-						<strong>
-							lever toutes les incertitudes vis à vis de l’administration
-						</strong>{' '}
-						afin que vous puissiez vous concentrer sur ce qui compte : votre
-						activité.
-					</Body>
-				</Trans>
-			</section>
+						<Body>
+							Notre objectif est de{' '}
+							<strong>
+								lever toutes les incertitudes vis à vis de l’administration
+							</strong>{' '}
+							afin que vous puissiez vous concentrer sur ce qui compte : votre
+							activité.
+						</Body>
+					</Trans>
+				</section>
+			</Container>
 			<Footer />
-		</Container>
+		</>
 	)
 }

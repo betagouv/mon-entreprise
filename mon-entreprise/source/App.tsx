@@ -11,7 +11,7 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { GlobalStyle } from 'DesignSystem/global-style'
 import { Container } from 'DesignSystem/layout'
-import { theme } from 'DesignSystem/theme'
+import SystemRoot from 'DesignSystem/root'
 import 'iframe-resizer'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
@@ -22,7 +22,6 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { ThemeProvider } from 'styled-components'
 import './App.css'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -68,12 +67,12 @@ export default function Root({ basename, rules }: RootProps) {
 				inFranceApp: retrievePersistedInFranceApp(),
 			}}
 		>
-			<EngineProvider value={engine}>
-				<ThemeProvider theme={theme}>
+			<SystemRoot>
+				<EngineProvider value={engine}>
 					<GlobalStyle />
 					<Router />
-				</ThemeProvider>
-			</EngineProvider>
+				</EngineProvider>
+			</SystemRoot>
 		</Provider>
 	)
 }
@@ -113,31 +112,40 @@ const App = () => {
 	const sitePaths = useContext(SitePathsContext)
 
 	return (
-		<Container>
+		<>
 			<Header />
 			<Helmet
 				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
 			/>
-			{/* Passing location down to prevent update blocking */}
-			<Switch>
-				{redirects}
-				<Route path={sitePaths.créer.index} component={Créer} />
-				<Route path={sitePaths.gérer.index} component={Gérer} />
-				<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
-				<Route path={sitePaths.documentation.index} component={Documentation} />
-				<Route path={sitePaths.integration.index} component={Integration} />
-				<Route path={sitePaths.nouveautés} component={Nouveautés} />
-				<Route path={sitePaths.stats} component={Stats} />
-				<Route path={sitePaths.budget} component={Budget} />
-				<Route path={sitePaths.accessibilité} component={Accessibilité} />
+			<Container>
+				{/* Passing location down to prevent update blocking */}
+				<Switch>
+					{redirects}
+					<Route path={sitePaths.créer.index} component={Créer} />
+					<Route path={sitePaths.gérer.index} component={Gérer} />
+					<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
+					<Route
+						path={sitePaths.documentation.index}
+						component={Documentation}
+					/>
+					<Route path={sitePaths.integration.index} component={Integration} />
+					<Route path={sitePaths.nouveautés} component={Nouveautés} />
+					<Route path={sitePaths.stats} component={Stats} />
+					<Route path={sitePaths.budget} component={Budget} />
+					<Route path={sitePaths.accessibilité} component={Accessibilité} />
 
-				<Route exact path="/dev/sitemap" component={Sitemap} />
-				<Route exact path="/dev/integration-test" component={IntegrationTest} />
-				<Route exact path="/dev/personas" component={Personas} />
+					<Route exact path="/dev/sitemap" component={Sitemap} />
+					<Route
+						exact
+						path="/dev/integration-test"
+						component={IntegrationTest}
+					/>
+					<Route exact path="/dev/personas" component={Personas} />
 
-				<Route component={Route404} />
-			</Switch>
+					<Route component={Route404} />
+				</Switch>
+			</Container>
 			<Footer />
-		</Container>
+		</>
 	)
 }

@@ -1,5 +1,6 @@
 import Overlay from 'Components/Overlay'
 import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -69,9 +70,9 @@ export default function LegalNotice() {
 
 	return (
 		<>
-			<button onClick={handleOpen} className="ui__ link-button">
+			<Link onClick={handleOpen}>
 				<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
-			</button>
+			</Link>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
 					<LegalNoticeContent />

@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const baseParagraphStyle = `
+const baseParagraphStyle = css`
 	font-family: 'Roboto', sans-serif;
+	color: ${({ theme }) => theme.colors.bases.primary[700]};
 `
 
 export const Intro = styled.p`

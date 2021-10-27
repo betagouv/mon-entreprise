@@ -1,5 +1,6 @@
 import Overlay from 'Components/Overlay'
 import { H1 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -18,9 +19,9 @@ export default function Privacy({ label }: { label?: string }) {
 
 	return (
 		<>
-			<button onClick={handleOpen} className="ui__ link-button">
+			<Link onClick={handleOpen}>
 				{label ?? <Trans>Gestion des données personnelles</Trans>}
-			</button>
+			</Link>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
 					<PrivacyContent />

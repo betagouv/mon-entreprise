@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const baseHeading = `
+const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
+	color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
 
 export const H1 = styled.h1`

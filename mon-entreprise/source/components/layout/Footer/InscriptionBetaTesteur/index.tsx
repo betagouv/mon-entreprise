@@ -1,4 +1,5 @@
 import Overlay from 'Components/Overlay'
+import { Link } from 'DesignSystem/typography/link'
 import { useState } from 'react'
 import FeedbackSvg from './feedback.svg'
 
@@ -13,9 +14,7 @@ export default function InscriptionBetaTesteur() {
 
 	return (
 		<>
-			<button onClick={handleOpen} className="ui__ link-button">
-				Devenir beta-testeur
-			</button>
+			<Link onClick={handleOpen}>Devenir beta-testeur</Link>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
 					<img

@@ -20,22 +20,8 @@ li {
 	padding: 0.2em 0;
 }
 
-a {
-	border: none;
-	font-size: inherit;
-	padding: none;
-	text-decoration: underline;
-	text-underline-offset: 4px;
-	color: rgb(41, 117, 209);
-	color: var(--color);
-}
-
 p img {
 	max-width: 100%;
-}
-
-a:not(:disabled):not(.button):not(.button-choice):hover {
-	opacity: 0.8;
 }
 
 strong,

@@ -71,6 +71,7 @@ module.exports = {
       },
       plugins: [ "@typescript-eslint" ],
       rules: {
+        "@typescript-eslint/no-empty-interface": 0,
         "@typescript-eslint/no-empty-function": 0,
         "@typescript-eslint/no-use-before-define": 0,
         "@typescript-eslint/member-delimiter-style": [2, {

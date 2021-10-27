@@ -3,16 +3,19 @@ import LegalNotice from 'Components/LegalNotice'
 import SocialIcon from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { FooterContainer } from 'DesignSystem/footer'
+import { FooterColumn } from 'DesignSystem/footer/column'
+import { Container } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
 import useSimulatorsData from '../../../pages/Simulateurs/metadata'
 import { hrefLangLink } from '../../../sitePaths'
-import './Footer.css'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
+import { SocialLinks } from './Social'
 
 const useShowFeedback = () => {
 	const currentPath = useLocation().pathname
@@ -29,6 +32,7 @@ const useShowFeedback = () => {
 	) {
 		return true
 	}
+
 	return ![
 		sitePath.index,
 		...Object.values(simulators).map((s) => s.path),
@@ -36,6 +40,7 @@ const useShowFeedback = () => {
 		'/',
 	].includes(currentPath)
 }
+
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
@@ -51,7 +56,7 @@ export default function Footer() {
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (
-		<div className="ui__ print-display-none">
+		<div className="">
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link
@@ -63,125 +68,110 @@ export default function Footer() {
 				))}
 			</Helmet>
 			<footer className="footer">
-				{showFeedback && (
-					<div>
-						<div
-							className="ui__ lighter-bg"
-							css={`
-								display: flex;
-								justify-content: center;
-							`}
-						>
-							<PageFeedback />
+				<Container>
+					{showFeedback && (
+						<div>
+							<div
+								className="ui__ lighter-bg"
+								css={`
+									display: flex;
+									justify-content: center;
+								`}
+							>
+								<PageFeedback />
+							</div>
 						</div>
-					</div>
-				)}
-				{language === 'en' && (
-					<p className="ui__ notice" css="text-align: center">
-						This website is provided by the{' '}
-						<a href="https://www.urssaf.fr">Urssaf</a>, the French social
-						security contributions collector.
-					</p>
-				)}
-				<StyledFooter className="ui__ notice ">
-					{language === 'fr' && (
-						<ul>
-							<li>
-								<Link to={sitePaths.nouveautés}>
-									Nouveautés <Emoji emoji="✨" />
-								</Link>
-							</li>
-							<li>
-								<Link to={sitePaths.stats}>
-									Stats <Emoji emoji="📊" />
-								</Link>
-							</li>
-							<li>
-								<Link to={sitePaths.budget}>
-									Budget <Emoji emoji="💶" />
-								</Link>
-							</li>
-						</ul>
 					)}
-					<ul>
-						<li>
-							<Link to={sitePaths.integration.index}>
-								<Trans>Intégrer nos simulateurs</Trans>
-							</Link>
-						</li>
-						{language === 'fr' && (
-							<li>
-								<InscriptionBetaTesteur />
-							</li>
-						)}
-						{hrefLink.map(({ hrefLang, href }) => (
-							<li key={hrefLang}>
-								<a href={href} style={{ textDecoration: 'underline' }}>
-									{hrefLang === 'fr' ? (
-										<>
-											Passer en français <Emoji emoji="🇫🇷" />
-										</>
-									) : hrefLang === 'en' ? (
-										<>
-											Switch to English <Emoji emoji="🇬🇧" />
-										</>
-									) : (
-										hrefLang
-									)}
-								</a>
-							</li>
-						))}
-					</ul>
-					<ul>
-						<li>
-							<LegalNotice />
-						</li>
-						<li>
-							<Privacy />
-						</li>
-						{language === 'fr' && (
-							<li>
-								<Link to={sitePaths.accessibilité}>
-									<Trans i18nKey="footer.accessibilité">
-										Accessibilité : non conforme
-									</Trans>
-								</Link>
-							</li>
-						)}
-					</ul>
-				</StyledFooter>
+					{language === 'en' && (
+						<p className="ui__ notice" css="text-align: center">
+							This website is provided by the{' '}
+							<Link href="https://www.urssaf.fr">Urssaf</Link>, the French
+							social security contributions collector.
+						</p>
+					)}
+				</Container>
 
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<a href="https://twitter.com/monentreprisefr">
-						<SocialIcon media="twitter" />
-					</a>
-					<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
-						<SocialIcon media="linkedin" />
-					</a>
-					<a href="https://github.com/betagouv/mon-entreprise/">
-						<SocialIcon media="github" />
-					</a>
-				</div>
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[200]}>
+					<SocialLinks />
+				</Container>
+
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+					<FooterContainer>
+						<FooterColumn>
+							{language === 'fr' && (
+								<ul>
+									<li>
+										<Link to={sitePaths.nouveautés}>
+											Nouveautés <Emoji emoji="✨" />
+										</Link>
+									</li>
+									<li>
+										<Link to={sitePaths.stats}>
+											Stats <Emoji emoji="📊" />
+										</Link>
+									</li>
+									<li>
+										<Link to={sitePaths.budget}>
+											Budget <Emoji emoji="💶" />
+										</Link>
+									</li>
+								</ul>
+							)}
+						</FooterColumn>
+						<FooterColumn>
+							<ul>
+								<li>
+									<Link to={sitePaths.integration.index}>
+										<Trans>Intégrer nos simulateurs</Trans>
+									</Link>
+								</li>
+								{language === 'fr' && (
+									<li>
+										<InscriptionBetaTesteur />
+									</li>
+								)}
+								{hrefLink.map(({ hrefLang, href }) => (
+									<li key={hrefLang}>
+										<Link href={href}>
+											{hrefLang === 'fr' ? (
+												<>
+													Passer en français <Emoji emoji="🇫🇷" />
+												</>
+											) : hrefLang === 'en' ? (
+												<>
+													Switch to English <Emoji emoji="🇬🇧" />
+												</>
+											) : (
+												hrefLang
+											)}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</FooterColumn>
+
+						<FooterColumn>
+							<ul>
+								<li>
+									<LegalNotice />
+								</li>
+								<li>
+									<Privacy />
+								</li>
+								{language === 'fr' && (
+									<li>
+										<Link to={sitePaths.accessibilité}>
+											<Trans i18nKey="footer.accessibilité">
+												Accessibilité : non conforme
+											</Trans>
+										</Link>
+									</li>
+								)}
+							</ul>
+						</FooterColumn>
+					</FooterContainer>
+				</Container>
 			</footer>
 		</div>
 	)
 }
-
-const StyledFooter = styled.div`
-	a {
-		white-space: nowrap;
-	}
-	display: flex;
-	justify-content: space-between;
-	@media (max-width: 600px) {
-		flex-direction: column;
-		text-align: center;
-		li {
-			display: inline-block;
-		}
-		li:not(:last-child)::after {
-			content: '•';
-			margin: 0.3rem;
-		}
-	}
-`

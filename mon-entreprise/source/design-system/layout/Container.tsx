@@ -1,6 +1,7 @@
-import styled from 'styled-components'
+import { ReactNode } from 'react'
+import styled, { DefaultTheme } from 'styled-components'
 
-export default styled.div`
+const InnerContainer = styled.div`
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
@@ -34,3 +35,28 @@ export default styled.div`
 		max-width: 1200px;
 	}
 `
+
+type OuterContainerProps = {
+	backgroundColor?: (theme: DefaultTheme) => string
+}
+
+const OuterContainer = styled.div<OuterContainerProps>`
+	width: 100%;
+	background-color: ${({ theme, backgroundColor }) =>
+		backgroundColor ? backgroundColor(theme) : theme.colors};
+`
+
+type ContainerProps = {
+	children: ReactNode
+	backgroundColor?: (theme: DefaultTheme) => string
+}
+export default function Container({
+	backgroundColor,
+	children,
+}: ContainerProps) {
+	return (
+		<OuterContainer backgroundColor={backgroundColor}>
+			<InnerContainer>{children}</InnerContainer>
+		</OuterContainer>
+	)
+}

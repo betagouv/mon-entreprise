@@ -8,12 +8,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import NewsBanner from './NewsBanner'
 import SearchButton from 'Components/SearchButton'
+import { Container } from 'DesignSystem/layout'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
 	const { language } = useTranslation().i18n
 	return (
-		<>
+		<Container>
 			<div
 				className=""
 				style={{
@@ -60,6 +61,6 @@ export default function Header() {
 				{language === 'fr' && <SearchButton />}
 			</div>
 			<NewsBanner />
-		</>
+		</Container>
 	)
 }

@@ -31,67 +31,74 @@ type FontSize = Metric
 
 type ShadowDefinition = string
 
-declare module 'styled-components' {
-	export interface DefaultTheme {
-		colors: {
-			bases: {
-				primary: Palette
-				secondary: Palette
-				tertiary: Palette
-			}
-
-			publics: {
-				employeur: Palette
-				particulier: Palette
-				independant: Palette
-				artisteAuteur: Palette
-				marin: Palette
-			}
-
-			extended: {
-				grey: Palette
-				error: SmallPalette
-				success: SmallPalette
-				info: SmallPalette
-			}
+interface CustomTheme {
+	colors: {
+		bases: {
+			primary: Palette
+			secondary: Palette
+			tertiary: Palette
 		}
 
-		spacings: {
-			xxs: Spacing
-			xs: Spacing
-			sm: Spacing
-			md: Spacing
-			lg: Spacing
-			xl: Spacing
-			xxl: Spacing
-			xxxl: Spacing
+		publics: {
+			employeur: Palette
+			particulier: Palette
+			independant: Palette
+			artisteAuteur: Palette
+			marin: Palette
 		}
 
-		fonts: {
-			main: Font
-			heading: Font
-		}
-
-		baseFontSize: FontSize
-
-		box: {
-			borderRadius: Metric
-			borderWidth: Metric
-		}
-
-		elevations: {
-			2: ShadowDefinition
-			3: ShadowDefinition
-			4: ShadowDefinition
-			5: ShadowDefinition
-			6: ShadowDefinition
-		}
-
-		breakpoints: {
-			xl: Metric
-			lg: Metric
-			md: Metric
-			sm: Metric
+		extended: {
+			grey: Palette
+			error: SmallPalette
+			success: SmallPalette
+			info: SmallPalette
 		}
 	}
+
+	spacings: {
+		xxs: Spacing
+		xs: Spacing
+		sm: Spacing
+		md: Spacing
+		lg: Spacing
+		xl: Spacing
+		xxl: Spacing
+		xxxl: Spacing
+	}
+
+	fonts: {
+		main: Font
+		heading: Font
+	}
+
+	baseFontSize: FontSize
+
+	box: {
+		borderRadius: Metric
+		borderWidth: Metric
+	}
+
+	elevations: {
+		2: ShadowDefinition
+		3: ShadowDefinition
+		4: ShadowDefinition
+		5: ShadowDefinition
+		6: ShadowDefinition
+	}
+
+	breakpoints: {
+		xl: Metric
+		lg: Metric
+		md: Metric
+		sm: Metric
+	}
+}
+
+declare module 'styled-components' {
+	export interface DefaultTheme extends CustomTheme {}
+}
+
+declare module '@mui/material/styles' {
+	export interface Theme extends CustomTheme {}
+	export interface ThemeOptions extends CustomTheme {}
 }
