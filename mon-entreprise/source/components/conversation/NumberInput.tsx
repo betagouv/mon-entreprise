@@ -19,7 +19,7 @@ export default function NumberInput({
 	unit: Unit | undefined
 }) {
 	const unité = serializeUnit(unit)
-	const [currentValue, handleChange] = useState<number | undefined>(
+	const [currentValue, setCurrentValue] = useState<number | undefined>(
 		!missing && value != null && typeof value === 'number' ? value : undefined
 	)
 	const language = useTranslation().i18n.language
@@ -28,7 +28,7 @@ export default function NumberInput({
 
 	useEffect(() => {
 		if (!missing && value != null && typeof value === 'number') {
-			handleChange(value)
+			setCurrentValue(value)
 		}
 	}, [value])
 	formatOptions = {
@@ -37,6 +37,7 @@ export default function NumberInput({
 			? {
 					style: 'currency',
 					currency: 'EUR',
+					minimumFractionDigits: 0
 			  }
 			: {}),
 		...formatOptions,
@@ -48,8 +49,8 @@ export default function NumberInput({
 			<div>
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={(value) => {
-						handleChange(value)
+					onFirstClick={(value: Number) => {
+						setCurrentValue(value)
 						setImmediate(() => {
 							onChange(value)
 						})
@@ -60,13 +61,11 @@ export default function NumberInput({
 					autoFocus={autoFocus}
 					displayedUnit={displayedUnit}
 					onChange={(valeur) => {
-						handleChange(valeur)
-						if (!Number.isNaN(valeur)) {
+						setCurrentValue(valeur)
 							debouncedOnChange({ valeur, unité })
-						}
 					}}
 					formatOptions={formatOptions}
-					placeholder={missing && value != null ? value : undefined}
+					placeholder={missing && value != null && typeof value === 'number' ? value : undefined}
 					value={currentValue}
 				/>
 			</div>

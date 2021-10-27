@@ -2823,7 +2823,7 @@
     "@babel/runtime" "^7.6.2"
     intl-messageformat "^9.6.12"
 
-"@internationalized/number@^3.0.2":
+"@internationalized/number@^3.0.2", "@internationalized/number@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@internationalized/number/-/number-3.0.3.tgz#d29003dffdff54ca6f2287ec0cb77ff3d045478f"
   integrity sha512-ewFoVvsxSyd9QZnknvOWPjirYqdMQhXTeDhJg3hM6C/FeZt0banpGH1nZ0SGMZXHz8NK9uAa2KVIq+jqAIOg4w==
