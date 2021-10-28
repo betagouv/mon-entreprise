@@ -12,6 +12,7 @@ export type RecalculNode = {
 		recalcul: ASTNode
 		amendedSituation: Array<[ReferenceNode, ASTNode]>
 		parsedSituation?: Engine['parsedSituation']
+		subEngineId: number
 	}
 	nodeKind: 'recalcul'
 }
@@ -59,6 +60,7 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 			recalcul: evaluatedNode,
 			amendedSituation,
 			parsedSituation: engine.parsedSituation,
+			subEngineId: engine.subEngineId,
 		},
 		missingVariables: evaluatedNode.missingVariables,
 		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),

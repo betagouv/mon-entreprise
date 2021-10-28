@@ -6,7 +6,6 @@ import Engine, {
 } from 'publicodes'
 import { isEmpty } from 'ramda'
 import { useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { EngineContext } from '../contexts'
 import Explanation from '../Explanation'
 import { Markdown } from '../Markdown'
@@ -15,13 +14,19 @@ import RuleHeader from './Header'
 import References from './References'
 import RuleSource from './RuleSource'
 
-export default function Rule({ dottedName, language, situationName }) {
-	const engine = useContext(EngineContext)
-	const { pathname } = useLocation()
-
-	if (!engine) {
+export default function Rule({ dottedName, language, subEngineId }) {
+	const baseEngine = useContext(EngineContext)
+	if (!baseEngine) {
 		throw new Error('Engine expected')
 	}
+
+	const useSubEngine =
+		subEngineId && baseEngine.subEngines.length >= subEngineId
+
+	const engine = useSubEngine ? baseEngine.subEngines[subEngineId] : baseEngine
+	// HACK : currently we only use the subEngine feature in “recalcul”, we should attach this label to the subEngine
+	const situationName = useSubEngine ? 'recalcul' : null
+
 	if (!(dottedName in engine.getParsedRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
@@ -48,7 +53,9 @@ export default function Rule({ dottedName, language, situationName }) {
 					</div>
 					<div style={{ flex: 1 }} />
 					<div>
-						<Link to={pathname}>Retourner à la version de base</Link>
+						<RuleLinkWithContext dottedName={dottedName} useSubEngine={false}>
+							Retourner à la version de base
+						</RuleLinkWithContext>
 					</div>
 				</div>
 			)}

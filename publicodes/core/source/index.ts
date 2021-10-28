@@ -90,6 +90,8 @@ export default class Engine<Name extends string = string> {
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
 	options: Options
+	subEngines: Array<Engine<Name>> = []
+	subEngineId: number | undefined
 
 	constructor(
 		rules: string | Record<string, Rule> = {},
@@ -216,6 +218,8 @@ export default class Engine<Name extends string = string> {
 		newEngine.replacements = this.replacements
 		newEngine.parsedSituation = this.parsedSituation
 		newEngine.cache = this.cache
+		newEngine.subEngineId = this.subEngines.length
+		this.subEngines.push(newEngine)
 		return newEngine
 	}
 
