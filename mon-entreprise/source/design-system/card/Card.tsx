@@ -8,11 +8,19 @@ type CardProps = {
 	title: string
 	icon?: ReactNode
 	children: ReactNode
-	callToAction: {
-		callback?: ReactEventHandler
-		to?: string | { pathname: string; state: any }
-		label: string
-	}
+	callToAction:
+		| {
+				to: string | { pathname: string; state: any }
+				label: string
+		  }
+		| {
+				callback: ReactEventHandler
+				label: string
+		  }
+		| {
+				href: string
+				label: string
+		  }
 }
 
 export const Card = ({ title, icon, children, callToAction }: CardProps) => {
@@ -21,17 +29,24 @@ export const Card = ({ title, icon, children, callToAction }: CardProps) => {
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader as="h2">{title}</StyledHeader>
 			<CardBody>{children}</CardBody>
-			{callToAction.to && (
+			{'to' in callToAction && (
 				<Link to={callToAction.to}>
 					<Button size="XS" color="primary">
 						{callToAction.label}
 					</Button>
 				</Link>
 			)}
-			{callToAction.callback && (
+			{'callback' in callToAction && (
 				<Button size="XS" color="primary" onClick={callToAction.callback}>
 					{callToAction.label}
 				</Button>
+			)}
+			{'href' in callToAction && (
+				<a href={callToAction.href} target="_blank" rel="noreferrer">
+					<Button size="XS" color="primary">
+						{callToAction.label}
+					</Button>
+				</a>
 			)}
 		</StyledCardContainer>
 	)
@@ -62,5 +77,6 @@ export const StyledCardContainer = styled.div`
 	}
 	padding: 1.5rem;
 	width: 100%;
+	height: 100%;
 	transition: box-shadow 300ms;
 `

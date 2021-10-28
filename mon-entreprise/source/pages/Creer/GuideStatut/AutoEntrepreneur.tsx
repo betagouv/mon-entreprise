@@ -1,5 +1,7 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -25,26 +27,26 @@ export default function Autoentrepreneur() {
 				</Trans>
 			</H2>
 			<Trans i18nKey="autoentrepreneur.description">
-				<p>
+				<Body>
 					À la différence de l'entreprise individuelle, l'auto-entrepreneur
 					bénéficie d'un régime simplifié de déclaration et de paiement : les
 					cotisations sociales et l'impôt sur le revenu sont calculés sur le
 					chiffre d'affaires encaissé.
-				</p>
-				<p>
+				</Body>
+				<Body>
 					<strong>Note</strong> : Certaines activités sont exclues de ce statut
 					(
-					<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
+					<Link href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
 						{' '}
 						voir la liste
-					</a>
+					</Link>
 					). Certaines activités sont réglementées avec une qualification ou une
 					expérience professionnelle (
-					<a href="https://www.afecreation.fr/pid316/activites-reglementees.html">
+					<Link href="https://www.afecreation.fr/pid316/activites-reglementees.html">
 						voir la liste
-					</a>
+					</Link>
 					).
-				</p>
+				</Body>
 			</Trans>
 			<div className="ui__ full-width">
 				<SchemeComparaison hideAssimiléSalarié />
