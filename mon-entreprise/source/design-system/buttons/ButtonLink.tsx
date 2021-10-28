@@ -1,6 +1,5 @@
-import { useButton } from '@react-aria/button'
-import { AriaButtonProps } from '@react-types/button'
-import { ReactEventHandler, useRef } from 'react'
+import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 type Size = 'XL' | 'MD' | 'XS'
@@ -9,39 +8,23 @@ type Color = 'primary' | 'secondary' | 'tertiary'
 type ButtonProps = {
 	color: Color
 	size: Size
-	onClick?: ReactEventHandler
+	to: string
 	light?: boolean
-} & AriaButtonProps<'button'>
+	children: ReactNode
+}
 
-export const Button = (props: ButtonProps) => {
-	const { children, color, size, light = false, onClick } = props
-	const buttonRef = useRef<HTMLButtonElement>(null)
-	const buttonProps = useButton(props, buttonRef)
-
-	return light ? (
-		<StyledLightButton
-			{...buttonProps}
-			ref={buttonRef}
-			color={color}
-			size={size}
-			onClick={onClick}
-		>
-			{children}
-		</StyledLightButton>
+export const ButtonLink = (props: ButtonProps) => {
+	return props.light ? (
+		<StyledLightButton {...props} />
 	) : (
-		<StyledButton
-			{...buttonProps}
-			ref={buttonRef}
-			color={color}
-			size={size}
-			onClick={onClick}
-		>
-			{children}
-		</StyledButton>
+		<StyledButton {...props} />
 	)
 }
 
-const StyledButton = styled.button<ButtonProps>`
+const StyledButton = styled(Link)<ButtonProps>`
+	display: inline-block;
+	font-family: ${({ theme }) => theme.fonts.main};
+	text-decoration: none;
 	background-color: ${({ theme, color }) =>
 		theme.colors.bases[color][color === 'primary' ? 700 : 300]};
 	color: ${({ theme, color }) =>
@@ -71,7 +54,10 @@ const StyledButton = styled.button<ButtonProps>`
 	}
 `
 
-const StyledLightButton = styled.button<ButtonProps>`
+const StyledLightButton = styled(Link)<ButtonProps>`
+	display: inline-block;
+	font-family: ${({ theme }) => theme.fonts.main};
+	text-decoration: none;
 	border: 2px solid
 		${({ theme, color }) =>
 			theme.colors.bases[color][

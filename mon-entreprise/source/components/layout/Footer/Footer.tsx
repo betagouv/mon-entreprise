@@ -9,11 +9,16 @@ import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { hrefLangLink } from '../../../sitePaths'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 import { SocialLinks } from './Social'
 import { useShowFeedback } from './useShowFeedback'
+
+const StyledFooter = styled.footer`
+	margin-top: 2rem;
+`
 
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
@@ -30,7 +35,7 @@ export default function Footer() {
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (
-		<div>
+		<>
 			<Helmet>
 				{hrefLink.map(({ href, hrefLang }) => (
 					<link
@@ -41,7 +46,7 @@ export default function Footer() {
 					/>
 				))}
 			</Helmet>
-			<footer className="footer">
+			<StyledFooter>
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 					{showFeedback && <PageFeedback />}
 					{language === 'en' && (
@@ -133,7 +138,7 @@ export default function Footer() {
 						</FooterColumn>
 					</FooterContainer>
 				</Container>
-			</footer>
-		</div>
+			</StyledFooter>
+		</>
 	)
 }

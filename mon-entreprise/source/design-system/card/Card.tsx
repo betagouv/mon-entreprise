@@ -6,11 +6,11 @@ import styled from 'styled-components'
 
 type CardProps = {
 	title: string
-	icon: ReactNode
+	icon?: ReactNode
 	children: ReactNode
 	callToAction: {
 		callback?: (e: MouseEvent) => void
-		to?: string
+		to?: string | { pathname: string; state: any }
 		label: string
 	}
 }
@@ -18,7 +18,7 @@ type CardProps = {
 export const Card = ({ title, icon, children, callToAction }: CardProps) => {
 	return (
 		<StyledCardContainer>
-			<IconContainer>{icon}</IconContainer>
+			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader as="h2">{title}</StyledHeader>
 			<CardBody>{children}</CardBody>
 			{callToAction.to && (

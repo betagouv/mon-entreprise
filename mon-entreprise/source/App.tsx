@@ -25,7 +25,7 @@ import {
 import './App.css'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
-import Créer from './pages/Créer'
+import Créer from './pages/Creer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
