@@ -9,15 +9,17 @@ import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import Emoji from 'Components/utils/Emoji'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
 import { Card } from 'DesignSystem/card'
-import { H1, H2, H3, H5 } from 'DesignSystem/typography/heading'
+import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import { TrackPage } from '../../ATInternetTracking'
@@ -152,7 +154,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									c'est-à-dire qu'il ne porte pas atteinte à un nom déjà protégé
 									par une marque, une raison sociale, un nom commercial, un nom
 									de domaine Internet, etc. Vous pouvez vérifier dans la base de
-									données <a href="https://bases-marques.inpi.fr/">INPI</a>.
+									données{' '}
+									<Link href="https://bases-marques.inpi.fr/">INPI</Link>.
 								</SmallBody>
 							</Trans>
 						}
@@ -167,13 +170,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						</Trans>
 					}
 					explanations={
-						<p>
+						<SmallBody>
 							<Trans i18nKey="entreprise.tâches.objetSocial.description">
 								L'
 								<strong>objet social</strong> est l'activité principale de
 								l'entreprise. Une activité secondaire peut être enregistrée.
 							</Trans>
-						</p>
+						</SmallBody>
 					}
 				/>
 				{!isAutoentrepreneur && (
@@ -186,15 +189,15 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.adresse.description">
-								<p>
+								<SmallBody>
 									<strong>L'adresse</strong> est l'espace physique où votre
 									entreprise sera incorporée. Dans certains lieux et certaines
 									situations, vous pouvez bénéficier d'un financement public
 									important (exonération de charges, de taxes, etc.).{' '}
-									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
+									<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
 										Plus d'infos
-									</a>
-								</p>
+									</Link>
+								</SmallBody>
 							</Trans>
 						}
 					/>
@@ -208,7 +211,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							</Trans>
 						}
 						explanations={
-							<p>
+							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.statuts.description">
 									Il s'agit d'un document officiel qui intègre la forme
 									juridique, nomme les associés et leurs contributions au
@@ -226,7 +229,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								{['SARL', 'EURL'].includes(statut) && (
 									<StatutsExample statut={statut} />
 								)}
-							</p>
+							</SmallBody>
 						}
 					/>
 				)}
@@ -239,7 +242,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					}
 					explanations={
 						<>
-							<p>
+							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.banque.description.1">
 									Le but d'un <strong>compte bancaire d'entreprise</strong> est
 									de séparer les actifs de l'entreprise des vôtres.
@@ -253,15 +256,15 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								<Trans i18nKey="entreprise.tâches.banque.description.2">
 									Le compte d'entreprise vous permet de :
 								</Trans>
-							</p>
-							<ul>
+							</SmallBody>
+							<Ul small>
 								<Trans i18nKey="entreprise.tâches.banque.description.liste">
-									<li>
+									<Li>
 										Différencier vos opérations privées et professionnelles
-									</li>
-									<li>Faciliter les déclarations fiscales</li>
+									</Li>
+									<Li>Faciliter les déclarations fiscales</Li>
 								</Trans>
-							</ul>
+							</Ul>
 						</>
 					}
 				/>
@@ -275,22 +278,22 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.capital.description">
-								<p>
+								<SmallBody>
 									Le <strong>dépôt du capital social</strong> doit être fait au
 									moment de la constitution d'une société par une personne
 									agissant au nom de la société et ayant reçu des apports en
 									numéraire (somme d'argent) de la part des créanciers de la
 									société (actionnaire ou associé).
-								</p>
-								<p>
+								</SmallBody>
+								<SmallBody>
 									Le dépôt consiste en un transfert d'une somme d'argent sur un
 									compte bloqué auprès d'une banque ou de la{' '}
-									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+									<Link href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
 										Caisse des dépôts et consignations
-									</a>{' '}
+									</Link>{' '}
 									ou d'un notaire, qui doit alors fournir un certificat de dépôt
 									du capital.
-								</p>
+								</SmallBody>
 							</Trans>
 						}
 					/>
@@ -305,14 +308,14 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.affectation.description">
-								<p>
+								<SmallBody>
 									La <strong>déclaration d'affectation du patrimoine</strong>{' '}
 									permet de séparer le patrimoine professionnel de votre
 									patrimoine personnel, qui devient alors insaisissable. Cette
 									démarche est gratuite si elle est effectué au moment de la
 									création d'entreprise.
-								</p>
-								<p>
+								</SmallBody>
+								<SmallBody>
 									Pour cela, il suffit simplement de déclarer quelles biens sont
 									affectés au patrimoine de votre entreprise. Tous les apports
 									nécessaires à votre activité professionnelle doivent y figurer
@@ -320,12 +323,12 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									matériel professionnel). Vous pouvez vous charger vous-même de
 									l'évaluation de la valeur du bien si celle ci ne dépasse pas
 									les 30 000 €.
-								</p>
-								<p>
-									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31538">
+								</SmallBody>
+								<SmallBody>
+									<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31538">
 										Plus d'informations
-									</a>
-								</p>
+									</Link>
+								</SmallBody>
 							</Trans>
 						}
 					/>
@@ -340,35 +343,37 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						name="publishCreationNotice"
 						explanations={
 							<Trans i18nKey="entreprise.tâches.journal.description">
-								<p>
+								<SmallBody>
 									Vous devez publier la création de votre entreprise dans un
 									journal d'annonces légales (« JAL »), pour un coût de
 									publication qui dépend du volume de l'annonce et des tarifs
 									pratiqués par le journal choisi{' '}
-								</p>
-								<p>
-									<a href="https://actulegales.fr/journaux-annonces-legales">
+								</SmallBody>
+								<SmallBody>
+									<Link href="https://actulegales.fr/journaux-annonces-legales">
 										Trouver un journal d'annonces légales (JAL)
-									</a>
-								</p>
-								<p>Cette annonce doit contenir les informations suivantes : </p>
-								<ul>
-									<li>Le nom de l'entreprise et éventuellement son acronyme</li>
-									<li>La forme juridique</li>
-									<li>Le capital de l'entreprise</li>
-									<li>L'adresse du siège</li>
-									<li>L'objet social</li>
-									<li>La durée de l'entreprise</li>
-									<li>
+									</Link>
+								</SmallBody>
+								<SmallBody>
+									Cette annonce doit contenir les informations suivantes :{' '}
+								</SmallBody>
+								<Ul small>
+									<Li>Le nom de l'entreprise et éventuellement son acronyme</Li>
+									<Li>La forme juridique</Li>
+									<Li>Le capital de l'entreprise</Li>
+									<Li>L'adresse du siège</Li>
+									<Li>L'objet social</Li>
+									<Li>La durée de l'entreprise</Li>
+									<Li>
 										Les noms, prénoms et adresses des dirigeants et des
 										personnes ayant le pouvoir d'engager la société envers les
 										tiers
-									</li>
-									<li>
+									</Li>
+									<Li>
 										Le lieu et le numéro du RCS auprès duquel la société est
 										immatriculée
-									</li>
-								</ul>
+									</Li>
+								</Ul>
 							</Trans>
 						}
 					/>
@@ -383,23 +388,22 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					}
 					explanations={
 						<Trans i18nKey="entreprise.tâches.formulaire.description">
-							<p>
+							<SmallBody>
 								Vous pouvez faire votre inscription en ligne à tout moment,
 								l'enregistrer et y revenir comme vous le souhaitez.
-							</p>
-							<div style={{ textAlign: 'center' }}>
-								<a
-									className="ui__ button"
-									href={
-										isAutoentrepreneur
-											? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
-											: 'https://account.guichet-entreprises.fr/user/create'
-									}
-									target="blank"
-								>
-									Faire la démarche en ligne
-								</a>
-							</div>
+							</SmallBody>
+							<ButtonLink
+								color="primary"
+								light
+								size="XS"
+								href={
+									isAutoentrepreneur
+										? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
+										: 'https://account.guichet-entreprises.fr/user/create'
+								}
+							>
+								Faire la démarche en ligne
+							</ButtonLink>
 						</Trans>
 					}
 				/>
@@ -421,16 +425,16 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							</Trans>
 						}
 						explanations={
-							<p>
+							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.comptable.description">
 									La gestion d'une entreprise impose un certain nombre d'
-									<a href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
+									<Link href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
 										obligations comptables
-									</a>
+									</Link>
 									. Il est conseillé de faire appel aux services d'un comptable
 									ou d'un logiciel de comptabilité en ligne.
 								</Trans>
-							</p>
+							</SmallBody>
 						}
 					/>
 				)}
@@ -443,7 +447,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					}
 					explanations={
 						<Trans i18nKey="entreprise.tâches.assurance.description">
-							<p>
+							<SmallBody>
 								Une PME ou un travailleur indépendant doit se protéger contre
 								les principaux risques auxquels il est exposé et souscrire des
 								contrats de garantie. Qu'elle soit locataire ou propriétaire de
@@ -451,10 +455,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								professionnel, ses biens, ses matières premières, ses véhicules,
 								ainsi qu'en matière de responsabilité civile de l'entreprise et
 								de ses dirigeants ou en matière de perte d'exploitation.
-							</p>
-							<a href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
+							</SmallBody>
+							<Link href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
 								Plus d'infos
-							</a>
+							</Link>
 						</Trans>
 					}
 				/>
@@ -669,11 +673,11 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 	if (!(statut in links)) return null
 
 	return (
-		<a target="_blank" href={links[statut as keyof typeof links]}>
+		<Link href={links[statut as keyof typeof links]}>
 			<Trans i18nKey="entreprise.tâches.statuts.exemple">
 				Exemple de statuts pour votre
 			</Trans>{' '}
 			{statut}
-		</a>
+		</Link>
 	)
 }

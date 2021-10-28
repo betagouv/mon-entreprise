@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const baseLinkStyle = css`
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 	color: ${({ theme }) => theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -43,7 +43,8 @@ type LinkProps =
 	  }
 
 export const Link = (props: LinkProps) => {
-	if ('href' in props) return <AnchorLink {...props} />
+	if ('href' in props)
+		return <AnchorLink {...props} target="_blank" rel="noreferrer" />
 	if ('onClick' in props) return <ButtonLink {...props} />
 	if ('to' in props) return <StyledRouterLink {...props} />
 	else {
