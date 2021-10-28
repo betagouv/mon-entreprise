@@ -1,6 +1,6 @@
 import { Button } from 'DesignSystem/buttons'
 import { H3 } from 'DesignSystem/typography/heading'
-import { ReactNode } from 'react'
+import { ReactEventHandler, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -9,7 +9,7 @@ type CardProps = {
 	icon?: ReactNode
 	children: ReactNode
 	callToAction: {
-		callback?: (e: MouseEvent) => void
+		callback?: ReactEventHandler
 		to?: string | { pathname: string; state: any }
 		label: string
 	}
