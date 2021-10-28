@@ -4,19 +4,20 @@ import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { RulePageWithContext, getDocumentationSiteMap } from 'publicodes-react'
+import { RulePage, getDocumentationSiteMap } from 'publicodes-react'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, useHistory, useLocation } from 'react-router-dom'
+import { Redirect, useHistory, useLocation, Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../ATInternetTracking'
 import rules, { DottedName } from 'modele-social'
 import RuleLink from '../components/RuleLink'
 import Meta from 'Components/utils/Meta'
 import { Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
-export default function RulePage() {
+export default function MonEntrepriseRulePage() {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
@@ -64,12 +65,16 @@ export default function RulePage() {
 				<Route
 					path={documentationPath + '/:name+'}
 					render={({ match }) => (
-						<RulePageWithContext
+						<RulePage
 							language={i18n.language as 'fr' | 'en'}
 							rulePath={match.params.name}
 							engine={engine}
 							documentationPath={documentationPath}
 							referenceImages={referencesImages}
+							renderers={{
+								Head: Helmet,
+								Link,
+							}}
 						/>
 					)}
 				/>

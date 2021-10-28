@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import { HashLink as Link } from 'react-router-hash-link'
-import { EngineContext } from './contexts'
+import { EngineContext, RenderersContext } from './contexts'
 import { RuleLinkWithContext } from './RuleLink'
 import PublicodesBlock from './PublicodesBlock'
 
@@ -12,8 +11,12 @@ export function LinkRenderer({
 	...otherProps
 }: Omit<React.ComponentProps<'a'>, 'ref'>) {
 	const engine = useContext(EngineContext)
+	const { Link } = useContext(RenderersContext)
 	if (!engine) {
 		throw new Error('an engine should be provided in context')
+	}
+	if (!Link) {
+		throw new Error('a Link renderer must be provided')
 	}
 
 	if (href && href in engine.getParsedRules()) {
@@ -25,11 +28,7 @@ export function LinkRenderer({
 	}
 
 	if (href && !href.startsWith('http')) {
-		return (
-			<Link to={href} {...otherProps}>
-				{children}
-			</Link>
-		)
+		return <Link to={href}>{children}</Link>
 	}
 
 	return (

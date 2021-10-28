@@ -1,10 +1,15 @@
 import Engine from 'publicodes'
-import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
+import { RulePage, getDocumentationSiteMap } from 'publicodes-react'
 import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
-import { useHistory, useLocation } from 'react-router-dom'
+import {
+	Link,
+	MemoryRouter,
+	Route,
+	useHistory,
+	useLocation,
+} from 'react-router-dom'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `
@@ -171,13 +176,22 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 				</div>
 			</div>
 
-			<ErrorBoundary>
-				<Documentation
-					engine={engine}
-					documentationPath={documentationPath}
-					language="fr"
-				/>
-			</ErrorBoundary>
+			<Route
+				path={'/studio/:name+'}
+				render={({ match }) => (
+					<ErrorBoundary>
+						<RulePage
+							language={'fr'}
+							rulePath={match.params.name}
+							engine={engine}
+							documentationPath={documentationPath}
+							renderers={{
+								Link,
+							}}
+						/>
+					</ErrorBoundary>
+				)}
+			/>
 		</>
 	)
 }

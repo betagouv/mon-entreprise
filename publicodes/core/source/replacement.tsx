@@ -117,6 +117,7 @@ export function inlineReplacements(
 			return {
 				...node,
 				explanation: {
+					...node.explanation,
 					recalcul: transform(node.explanation.recalcul),
 					amendedSituation: node.explanation.amendedSituation.map(
 						([name, value]) => [name, transform(value)]

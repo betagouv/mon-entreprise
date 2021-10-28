@@ -1,14 +1,10 @@
 import Engine, { utils } from 'publicodes'
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { BasepathContext, EngineContext } from './contexts'
+import { BasepathContext, EngineContext, RenderersContext } from './contexts'
 
 const { encodeRuleName } = utils
 
-type RuleLinkProps<Name extends string> = Omit<
-	React.ComponentProps<Link>,
-	'to'
-> & {
+type RuleLinkProps<Name extends string> = {
 	dottedName: Name
 	engine: Engine<Name>
 	documentationPath: string
@@ -16,6 +12,7 @@ type RuleLinkProps<Name extends string> = Omit<
 	currentEngineId?: number
 	situationName?: string
 	children?: React.ReactNode
+	linkComponent?: React.ComponentType<{ to: string }>
 }
 
 export function RuleLink<Name extends string>({
@@ -25,8 +22,14 @@ export function RuleLink<Name extends string>({
 	documentationPath,
 	displayIcon = false,
 	children,
+	linkComponent,
 	...props
 }: RuleLinkProps<Name>) {
+	const renderers = useContext(RenderersContext)
+	const Link = linkComponent || renderers.Link
+	if (!Link) {
+		throw new Error('You must provide a <Link /> component.')
+	}
 	const rule = engine.getRule(dottedName)
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
@@ -49,10 +52,10 @@ export function RuleLink<Name extends string>({
 	}
 	return (
 		<Link
+			{...props}
 			to={
 				newPath + (currentEngineId ? `?currentEngineId=${currentEngineId}` : '')
 			}
-			{...props}
 		>
 			{children || rule.title}{' '}
 			{displayIcon && rule.rawNode.icônes && <span>{rule.rawNode.icônes}</span>}
