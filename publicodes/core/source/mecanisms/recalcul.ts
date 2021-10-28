@@ -60,7 +60,7 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 			recalcul: evaluatedNode,
 			amendedSituation,
 			parsedSituation: engine.parsedSituation,
-			subEngineId: engine.subEngineId,
+			subEngineId: engine.subEngineId as number,
 		},
 		missingVariables: evaluatedNode.missingVariables,
 		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),

@@ -19,22 +19,16 @@
 		"classnames": "^2.2.6",
 		"focus-trap-react": "^3.1.2",
 		"ramda": "^0.27.0",
-		"react-helmet-async": "^1.1.2",
 		"react-markdown": "^4.3.1",
-		"react-router-hash-link": "^2.4.3",
 		"styled-components": "^5.1.0",
 		"yaml": "^1.9.2"
 	},
 	"peerDependencies": {
 		"publicodes": "1.0.0-beta.16",
-		"react": "^17.0.2",
-		"react-router-dom": "^5.1.1",
-		"react-router-hash-link": "^1.2.2"
+		"react": "^17.0.2"
 	},
 	"devDependencies": {
 		"@types/react": "^17.0.0",
-		"@types/react-router-dom": "^5.1.7",
-		"@types/react-router-hash-link": "^2.4.0",
 		"@types/styled-components": "^5.1.10",
 		"js-yaml": "^4.1.0",
 		"typescript": "^4.3.2"

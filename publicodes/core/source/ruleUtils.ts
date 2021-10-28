@@ -4,12 +4,12 @@ import { RuleNode } from './rule'
 const splitName = (str: string) => str.split(' . ')
 const joinName = (strs: Array<string>) => strs.join(' . ')
 export const nameLeaf = (name: string) => splitName(name).slice(-1)?.[0]
-export const encodeRuleName = (name) =>
+export const encodeRuleName = (name: string): string =>
 	name
 		?.replace(/\s\.\s/g, '/')
 		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
 		.replace(/\s/g, '-')
-export const decodeRuleName = (name) =>
+export const decodeRuleName = (name: string): string =>
 	name
 		.replace(/\//g, ' . ')
 		.replace(/-/g, ' ')
