@@ -1,5 +1,7 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H2 } from 'DesignSystem/typography/heading'
+import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { filter } from 'ramda'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -21,16 +23,16 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	return (
-		<div className="ui__ answer-group">
-			<Link to={sitePaths.créer[statut]} className="ui__ button">
+		<ButtonLink to={sitePaths.créer[statut]} color="primary" light size="XS">
+			<>
 				{statut.includes('auto-entrepreneur') ? (
 					<Trans>Devenir</Trans>
 				) : (
 					<Trans>Créer une</Trans>
 				)}{' '}
 				{t(statut)}
-			</Link>
-		</div>
+			</>
+		</ButtonLink>
 	)
 }
 
@@ -113,12 +115,12 @@ export default function SetMainStatus() {
 					/* https://github.com/microsoft/TypeScript/issues/32811 */
 					(statut: any) => (
 						<li key={statut}>
-							<strong>
+							<H3>
 								<StatutTitle statut={statut} language={i18n.language} />
-							</strong>{' '}
-							<p>
+							</H3>
+							<Body>
 								<StatutDescription statut={statut} />
-							</p>
+							</Body>
 							<StatutButton statut={statut} />
 						</li>
 					)

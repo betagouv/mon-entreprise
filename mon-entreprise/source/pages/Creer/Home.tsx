@@ -4,13 +4,12 @@ import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
 import { Card } from 'DesignSystem/card'
-import { H2, H3, H5 } from 'DesignSystem/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
 import { TrackPage } from '../../ATInternetTracking'
@@ -75,10 +74,7 @@ export default function Créer() {
 							'Liste des statuts juridiques'
 						)}
 						callToAction={{
-							to: {
-								pathname: sitePaths.simulateurs.comparaison,
-								state: { fromCréer: true },
-							},
+							to: sitePaths.créer.guideStatut.liste,
 							label: t('créer.ressources.listeStatuts.cta', 'Voir la liste'),
 						}}
 					>
