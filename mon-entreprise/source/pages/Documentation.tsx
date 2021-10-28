@@ -4,7 +4,7 @@ import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
+import { RulePageWithContext, getDocumentationSiteMap } from 'publicodes-react'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import { TrackPage } from '../ATInternetTracking'
 import rules, { DottedName } from 'modele-social'
 import RuleLink from '../components/RuleLink'
 import Meta from 'Components/utils/Meta'
+import { Route } from 'react-router-dom'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -60,11 +61,17 @@ export default function RulePage() {
 				>
 					{currentSimulation ? <BackToSimulation /> : <span />}
 				</div>
-				<Documentation
-					language={i18n.language as 'fr' | 'en'}
-					engine={engine}
-					documentationPath={documentationPath}
-					referenceImages={referencesImages}
+				<Route
+					path={documentationPath + '/:name+'}
+					render={({ match }) => (
+						<RulePageWithContext
+							language={i18n.language as 'fr' | 'en'}
+							rulePath={match.params.name}
+							engine={engine}
+							documentationPath={documentationPath}
+							referenceImages={referencesImages}
+						/>
+					)}
 				/>
 			</ThemeColorsProvider>
 		</FromBottom>
