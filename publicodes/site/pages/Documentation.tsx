@@ -11,14 +11,18 @@ const items = [
 	[
 		'se-lancer',
 		'Se lancer',
-		() => <MarkdownWithAnchorLinks source={start} />,
+		() => <MarkdownWithAnchorLinks>{start}</MarkdownWithAnchorLinks>,
 	] as const,
 	[
 		'principes-de-base',
 		'Principes de base',
-		() => <MarkdownWithAnchorLinks source={principes} />,
+		() => <MarkdownWithAnchorLinks>{principes}</MarkdownWithAnchorLinks>,
 	] as const,
-	['api', 'API', () => <MarkdownWithAnchorLinks source={api} />] as const,
+	[
+		'api',
+		'API',
+		() => <MarkdownWithAnchorLinks>{api}</MarkdownWithAnchorLinks>,
+	] as const,
 	['mécanismes', 'Liste des mécanismes', Mécanismes] as const,
 ]
 

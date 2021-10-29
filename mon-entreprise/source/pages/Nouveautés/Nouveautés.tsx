@@ -95,11 +95,9 @@ export default function Nouveautés() {
 					))}
 				</Sidebar>
 				<MainBlock>
-					<MarkdownWithAnchorLinks
-						source={data[selectedRelease].description}
-						escapeHtml={false}
-						renderers={{ text: TextRenderer }}
-					/>
+					<MarkdownWithAnchorLinks>
+						{removeGithubIssuesReferences(data[selectedRelease].description)}
+					</MarkdownWithAnchorLinks>
 					<NavigationButtons>
 						{selectedRelease + 1 < data.length ? (
 							<Link to={getPath(selectedRelease + 1)}>
@@ -123,10 +121,6 @@ export default function Nouveautés() {
 
 const removeGithubIssuesReferences = (text: string) =>
 	text.replace(/#[0-9]{1,5}/g, '')
-
-const TextRenderer = ({ children }: { children: string }) => (
-	<Emoji emoji={removeGithubIssuesReferences(children)} />
-)
 
 const NewsSection = styled.section`
 	display: flex;

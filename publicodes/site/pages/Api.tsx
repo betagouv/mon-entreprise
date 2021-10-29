@@ -13,7 +13,7 @@ export default function Api() {
 				<ScrollToTop />
 				<Header />
 				<ReferenceStyle>
-					<MarkdownWithAnchorLinks source={api} />
+					<MarkdownWithAnchorLinks>{api}</MarkdownWithAnchorLinks>
 				</ReferenceStyle>
 			</div>
 		</>

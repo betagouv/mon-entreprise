@@ -16,7 +16,7 @@ export default function Landing() {
 			>
 				Le langage pour les algorithmes d'intérêt public.
 			</h2>
-			<MarkdownWithAnchorLinks source={content} />
+			<MarkdownWithAnchorLinks>{content}</MarkdownWithAnchorLinks>
 		</main>
 	)
 }

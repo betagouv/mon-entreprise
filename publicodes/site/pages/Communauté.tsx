@@ -7,7 +7,7 @@ export default function Landing() {
 		<div>
 			<ScrollToTop />
 			<main>
-				<MarkdownWithAnchorLinks source={content} />
+				<MarkdownWithAnchorLinks>{content}</MarkdownWithAnchorLinks>
 			</main>
 		</div>
 	)

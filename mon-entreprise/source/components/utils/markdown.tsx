@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
@@ -56,12 +56,7 @@ export function LinkRenderer({
 		</a>
 	)
 }
-const TextRenderer = ({ children }: { children: string }) => (
-	<Emoji emoji={children} />
-)
-
-type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
+type MarkdownProps = React.ComponentProps<typeof ReactMarkdown> & {
 	className?: string
 }
 
@@ -93,33 +88,30 @@ const CodeBlock = ({
 )
 
 export const Markdown = ({
-	source,
 	className = '',
-	renderers = {},
+	components = {},
 	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
 		transformLinkUri={(src) => src}
-		source={source}
 		className={`markdown ${className}`}
-		renderers={{
-			link: LinkRenderer,
-			text: TextRenderer,
+		components={{
+			a: LinkRenderer,
 			code: CodeBlock,
-			...renderers,
+			...components,
 		}}
 		{...otherProps}
 	/>
 )
 
 export const MarkdownWithAnchorLinks = ({
-	renderers = {},
+	components = {},
 	...otherProps
 }: MarkdownProps) => (
 	<Markdown
-		renderers={{
+		components={{
 			heading: HeadingWithAnchorLink,
-			...renderers,
+			...components,
 		}}
 		{...otherProps}
 	/>
