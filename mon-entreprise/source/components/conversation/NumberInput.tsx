@@ -1,5 +1,7 @@
+import { EngineContext } from 'Components/utils/EngineContext'
 import { NumberField } from 'DesignSystem/field'
-import { serializeUnit, Unit } from 'publicodes'
+import { ASTNode, serializeUnit, Unit } from 'publicodes'
+import { useContext } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { debounce } from '../../utils'
@@ -25,9 +27,9 @@ export default function NumberInput({
 	const language = useTranslation().i18n.language
 	const displayedUnit =
 		unit && getSerializedUnit(currentValue ?? 0, unit, language)
-
+	const engine = useContext(EngineContext)
 	useEffect(() => {
-		if (!missing && value != null && typeof value === 'number') {
+		if (!missing && value != null && typeof value === 'number' && value !== currentValue) {
 			setCurrentValue(value)
 		}
 	}, [value])
@@ -42,17 +44,16 @@ export default function NumberInput({
 			: {}),
 		...formatOptions,
 	}
-
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 	return (
 		<div className="step input">
 			<div>
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={(value: Number) => {
-						setCurrentValue(value)
+					onFirstClick={(valeur: ASTNode) => {
+						setCurrentValue(engine.evaluate(valeur).nodeValue as number ?? undefined)
 						setImmediate(() => {
-							onChange(value)
+							onChange(valeur)
 						})
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
@@ -62,7 +63,9 @@ export default function NumberInput({
 					displayedUnit={displayedUnit}
 					onChange={(valeur) => {
 						setCurrentValue(valeur)
-						debouncedOnChange({ valeur, unité })
+						if(valeur) {
+							debouncedOnChange({ valeur, unité })
+						}
 					}}
 					formatOptions={formatOptions}
 					placeholder={missing && value != null && typeof value === 'number' ? value : undefined}
