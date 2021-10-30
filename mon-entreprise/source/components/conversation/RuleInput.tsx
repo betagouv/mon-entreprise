@@ -8,14 +8,12 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
-	formatValue,
 	PublicodesExpression,
 	reduceAST,
 } from 'publicodes'
 import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -45,6 +43,7 @@ type Props<Name extends string = DottedName> = Omit<
 	onSubmit?: (source: string) => void
 	modifiers?: Record<string, string>
 	formatOptions: Intl.NumberFormatOptions
+	displayedUnit?: string
 }
 
 export type InputProps<Name extends string = string> = Omit<

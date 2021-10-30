@@ -143,6 +143,7 @@ export function SimulationGoal({
 									{ focused: isFocused }
 								)}
 								isTarget
+								displayedUnit=''
 								modifiers={
 									!boolean
 										? {
