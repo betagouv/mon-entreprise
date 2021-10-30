@@ -87,17 +87,21 @@ function useSimpleNumberFieldState(props: NumberFieldProps & {
 				inputValue = (`${match[1]},${match[2]}`)
 			}
 		}
-
-
 		const parsedValue = numberParser.parse(inputValue)
 		if (isNaN(parsedValue)) {
-			setInputValue(inputValue)
+			updateInputValue(numberValue)
 			return
 		}
 		updateNumberValue(parsedValue)
+
+		// Handle case for partially formatted input while typing decimal numbers
+		if (inputValue.match(/[\d][,.]([^\d]*$)|([\d]*[0]+$)/)) {
+			setInputValue(inputValue)
+			return
+		}
 		updateInputValue(parsedValue)
 
-	}, [props.locale, setInputValue])
+	}, [props.locale, numberParser, numberValue, updateInputValue, updateNumberValue])
 
 	const increment = () => {
 		const newValue = (numberValue ?? props.placeholder ?? 0) + props.step;
