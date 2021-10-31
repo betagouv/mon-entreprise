@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { FromBottom } from 'Components/ui/animate'
-import Checkbox from 'Components/ui/Checkbox'
+import { Checkbox } from 'DesignSystem/field'
 import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'

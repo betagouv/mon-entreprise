@@ -1,4 +1,5 @@
 import Overlay from 'Components/Overlay'
+import { Checkbox } from 'DesignSystem/field'
 import { H1 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
@@ -68,18 +69,17 @@ function PrivacyContent() {
 					ci-dessous :
 				</Body>
 				<Body>
-					<label>
-						<input
-							type="checkbox"
+
+						<Checkbox
 							name="opt-out mesure audience"
 							onChange={handleChange}
-							defaultChecked={
+							defaultSelected={
 								tracker.privacy.getVisitorMode().name === 'optout'
 							}
-						/>{' '}
+						>
 						Je souhaite ne pas envoyer de données anonymes sur mon utilisation
 						du site à des fins de mesures d'audience
-					</label>
+					</Checkbox>
 				</Body>
 			</Trans>
 			{valueChanged && (

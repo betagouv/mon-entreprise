@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { Appear } from '../animate'
-import Checkbox from '../Checkbox'
+import { Checkbox } from 'DesignSystem/field'
 import './index.css'
 
 type CheckItemProps = {
@@ -53,10 +53,8 @@ export function CheckItem({
 			style={{ width: '100%' }}
 		>
 			<CheckItemHeader>
-				{/* TODO ACCESSIBILITY: impossible to tick the checkbox with keyboard ?  */}
 				<Checkbox
 					name={name}
-					id={name}
 					onChange={handleChecked}
 					defaultChecked={defaultChecked}
 					label={title}

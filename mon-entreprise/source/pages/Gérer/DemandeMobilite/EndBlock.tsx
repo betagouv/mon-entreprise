@@ -1,6 +1,6 @@
 import { BlobProvider } from '@react-pdf/renderer'
 import Overlay from 'Components/Overlay'
-import Checkbox from 'Components/ui/Checkbox'
+import { Checkbox } from 'DesignSystem/field'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'

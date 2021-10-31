@@ -51,8 +51,8 @@ export default function DateInput({
 				)}
 				<DateField
 					label={title}
-					defaultValue={missing ? undefined : dateValue}
-					required={required}
+					value={missing ? undefined : dateValue}
+					isRequired={required}
 					onChange={handleDateChange}
 				/>
 			</div>
