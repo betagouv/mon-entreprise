@@ -7,7 +7,8 @@ let script =
 		document.getElementById('script-monentreprise') ||
 		document.getElementById('script-simulateur-embauche'),
 	moduleName = script.dataset.module || 'simulateur-embauche',
-	couleur = encodeURIComponent(script.dataset.couleur),
+	couleur =
+		script.dataset.couleur && encodeURIComponent(script.dataset.couleur),
 	lang = script.dataset.lang || 'fr',
 	fr = lang === 'fr',
 	baseUrl =
