@@ -17,7 +17,7 @@ const cheerio = require('cheerio')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-const prerenderConfig = () => ({
+const prerenderConfig = {
 	staticDir: path.resolve('dist'),
 	renderer: new Renderer({
 		renderAfterTime: 5000,
@@ -26,10 +26,6 @@ const prerenderConfig = () => ({
 	}),
 	postProcess: (context) => {
 		const $ = cheerio.load(context.html)
-		// force https on twitter emoji cdn
-		$('img[src^="http://twemoji.maxcdn.com"]').each((i, el) => {
-			$(el).attr('src', (_, path) => path.replace('http://', 'https://'))
-		})
 		// Remove loader
 		$('#outdated-browser').after(`
 			<style>
@@ -42,13 +38,11 @@ const prerenderConfig = () => ({
 				}
 			</style>
 		`)
-		// Remove piwik script
-		$('script[src$="stats.data.gouv.fr/piwik.js"]').remove()
 
 		context.html = $.html()
 		return context
 	},
-})
+}
 
 module.exports = {
 	...common,
@@ -86,14 +80,14 @@ module.exports = {
 		}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
-				...prerenderConfig(),
+				...prerenderConfig,
 				outputDir: path.resolve('dist', 'prerender', 'infrance'),
 				routes: ['/', '/calculators/salary', '/iframes/simulateur-embauche'],
 				indexPath: path.resolve('dist', 'infrance.html'),
 			}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
-				...prerenderConfig(),
+				...prerenderConfig,
 				outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
 				routes: [
 					'/',

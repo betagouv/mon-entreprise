@@ -116,10 +116,12 @@ export default function Provider({
 	display: none !important;
 }`
 	document.body.appendChild(css)
-	const iframeCouleur =
-		new URLSearchParams(document?.location.search.substring(1)).get(
-			'couleur'
-		) ?? undefined
+	// Note that the iframeColor is first set in the index.html file, but without
+	// the full palette generation that happen here. This is to prevent a UI
+	// flash, cf. #1786.
+	const iframeCouleur = new URLSearchParams(
+		document.location.search.substring(1)
+	).get('couleur')
 
 	return (
 		<ErrorBoundary
@@ -149,7 +151,7 @@ export default function Provider({
 		>
 			<ReduxProvider store={store}>
 				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+					color={iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined}
 				>
 					<TrackingContext.Provider
 						value={
