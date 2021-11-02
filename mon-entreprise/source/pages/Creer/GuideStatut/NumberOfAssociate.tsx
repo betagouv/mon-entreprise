@@ -2,7 +2,10 @@ import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -32,36 +35,38 @@ export default function NumberOfAssociates() {
 				<Trans i18nKey="associés.titre">Seul ou à plusieurs</Trans>
 			</H2>
 			<Trans i18nKey="associés.description">
-				<p>
+				<Body>
 					Une entreprise avec un seul associé est plus simple à créer et gérer.
 					Un associé peut-être une personne physique (un individu) ou une
 					personne morale (par exemple une société).
-				</p>
-				<p>
+				</Body>
+				<SmallBody>
 					Note : ce choix n'est pas définitif. Vous pouvez tout à fait commencer
 					votre société seul, et accueillir de nouveaux associés au cours de
 					votre développement.
-				</p>
+				</SmallBody>
 			</Trans>
 
-			<div className="ui__ answer-group">
-				<button
-					onClick={() => {
-						dispatch(companyHasMultipleAssociates(false))
-					}}
-					className="ui__ button"
-				>
-					<Trans i18nKey="associés.choix1">Seul</Trans>
-				</button>
-				<button
-					onClick={() => {
-						dispatch(companyHasMultipleAssociates(true))
-					}}
-					className="ui__ button"
-				>
-					<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
-				</button>
-			</div>
+			<AnswerGroup>
+				{[
+					<Button
+						key="associé=1"
+						onClick={() => {
+							dispatch(companyHasMultipleAssociates(false))
+						}}
+					>
+						<Trans i18nKey="associés.choix1">Seul</Trans>
+					</Button>,
+					<Button
+						key="associé=many"
+						onClick={() => {
+							dispatch(companyHasMultipleAssociates(true))
+						}}
+					>
+						<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
+					</Button>,
+				]}
+			</AnswerGroup>
 		</>
 	)
 }

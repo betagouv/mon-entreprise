@@ -1,5 +1,6 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -27,11 +28,11 @@ export default function DefineDirectorStatus() {
 				</Trans>
 			</H2>
 			<Trans i18nKey="statut du dirigeant.description">
-				<p>
+				<Body>
 					Ce choix est important car il détermine le régime de sécurité sociale
 					et la couverture sociale du dirigeant. Le montant et les modalités de
 					paiement des cotisations sociales sont également impactés.
-				</p>
+				</Body>
 				<div className="ui__ full-width">
 					<SchemeComparaison hideAutoEntrepreneur />
 				</div>

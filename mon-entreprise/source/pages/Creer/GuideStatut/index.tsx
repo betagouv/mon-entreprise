@@ -49,7 +49,7 @@ export default function Créer() {
 	useResetFollowingAnswers()
 	return (
 		<>
-			<div css="transform: translateY(2rem)">
+			<div>
 				<NavLink
 					to={sitePaths.créer.index}
 					exact

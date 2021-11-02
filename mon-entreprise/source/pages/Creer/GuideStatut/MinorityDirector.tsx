@@ -2,7 +2,11 @@ import {
 	directorIsInAMinority,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -34,42 +38,44 @@ export default function MinorityDirector() {
 				</Trans>{' '}
 			</H2>
 			<Trans i18nKey="gérant minoritaire.description">
-				<p>
+				<Body>
 					Certaines règles spéciales s'appliquent selon le nombre d'actions
 					détenues.
-				</p>
-				<ul>
-					<li>
+				</Body>
+				<Ul>
+					<Li>
 						<strong>Gérant majoritaire</strong> : Vous êtes l'administrateur
 						majoritaire (ou faite partie d'un conseil d'administration
 						majoritaire).
-					</li>
-					<li>
+					</Li>
+					<Li>
 						<strong>Gérant minoritaire</strong> : Vous êtes administrateur
 						minoritaire ou égalitaire (ou faites partie d'un conseil
 						d'administration minoritaire ou égalitaire).
-					</li>
-				</ul>
+					</Li>
+				</Ul>
 			</Trans>
 
-			<div className="ui__ answer-group">
-				<button
-					onClick={() => {
-						dispatch(directorIsInAMinority(false))
-					}}
-					className="ui__ button"
-				>
-					<Trans>Gérant majoritaire</Trans>
-				</button>
-				<button
-					onClick={() => {
-						dispatch(directorIsInAMinority(true))
-					}}
-					className="ui__ button"
-				>
-					<Trans>Gérant minoritaire ou égalitaire</Trans>
-				</button>
-			</div>
+			<AnswerGroup>
+				{[
+					<Button
+						key="director-minority-false"
+						onClick={() => {
+							dispatch(directorIsInAMinority(false))
+						}}
+					>
+						<Trans>Gérant majoritaire</Trans>
+					</Button>,
+					<Button
+						key="director-minority-true"
+						onClick={() => {
+							dispatch(directorIsInAMinority(true))
+						}}
+					>
+						<Trans>Gérant minoritaire ou égalitaire</Trans>
+					</Button>,
+				]}
+			</AnswerGroup>
 		</>
 	)
 }

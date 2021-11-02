@@ -1,8 +1,7 @@
 import SchemeComparaison from 'Components/SchemeComparaison'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 export default function SchemeComparaisonPage() {
-	const { t } = useTranslation()
 	return (
 		<>
 			<p>

@@ -3,9 +3,13 @@ import {
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { Ul, Li } from 'DesignSystem/typography/list'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
 
 export default function SoleProprietorship() {
 	const dispatch = useDispatchAndGoToNextQuestion()
@@ -38,15 +42,15 @@ export default function SoleProprietorship() {
 					Entreprise individuelle ou société ?
 				</Trans>
 			</H2>
-			<p>
+			<Body>
 				<Trans i18nKey="responsabilité.intro">
 					Ce choix determine votre degré de responsabilité et votre capacité à
 					accueillir de nouveaux associés dans le futur{' '}
 				</Trans>
 				:
-			</p>
-			<ul>
-				<li>
+			</Body>
+			<Ul>
+				<Li>
 					<Trans i18nKey="responsabilité.entreprise-individuelle">
 						<strong>Entreprise individuelle : </strong>
 						Une activité économique exercée par une seule personne physique, en
@@ -58,9 +62,9 @@ export default function SoleProprietorship() {
 							individuelle.
 						</strong>
 					</Trans>
-				</li>
+				</Li>
 
-				<li>
+				<Li>
 					<Trans i18nKey="responsabilité.société">
 						<strong>Société : </strong>
 						Vous ne pouvez pas être tenu personnellement responsable des dettes
@@ -68,28 +72,30 @@ export default function SoleProprietorship() {
 						sont un peu plus lourdes, puisqu'elles incluent notamment la
 						rédaction de statuts et le dépôt d'un capital.
 					</Trans>
-				</li>
-			</ul>
-			<div className="ui__ answer-group">
-				<button
-					onClick={() => {
-						dispatch(isSoleProprietorship(true))
-					}}
-					className="ui__ button"
-				>
-					<Trans i18nKey="responsabilité.bouton2">
-						Entreprise individuelle
-					</Trans>
-				</button>
-				<button
-					onClick={() => {
-						dispatch(isSoleProprietorship(false))
-					}}
-					className="ui__ button"
-				>
-					<Trans i18nKey="responsabilité.bouton1">Société</Trans>
-				</button>
-			</div>
+				</Li>
+			</Ul>
+			<AnswerGroup>
+				{[
+					<Button
+						key="isSoleProprietorship"
+						onClick={() => {
+							dispatch(isSoleProprietorship(true))
+						}}
+					>
+						<Trans i18nKey="responsabilité.bouton2">
+							Entreprise individuelle
+						</Trans>
+					</Button>,
+					<Button
+						key="isNotSoleProprietorship"
+						onClick={() => {
+							dispatch(isSoleProprietorship(false))
+						}}
+					>
+						<Trans i18nKey="responsabilité.bouton1">Société</Trans>
+					</Button>,
+				]}
+			</AnswerGroup>
 			{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 			{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}
 		</>

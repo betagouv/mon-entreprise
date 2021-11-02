@@ -1,23 +1,25 @@
 .comparaison-grid {
+	font-family: 'roboto', arial;
 	display: grid;
 	justify-items: stretch;
 	justify-content: center;
 	grid-template-columns:
-		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
 		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
 }
 .comparaison-grid.hideAutoEntrepreneur {
 	grid-template-columns:
-		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
 		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
 }
 
 .comparaison-grid.hideAssimiléSalarié {
 	grid-template-columns:
-		[row-legend] auto [assimilé-salarié] 0
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] 0
 		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
 }
 .comparaison-grid > * {
+	width: 100%;
 	border-bottom: 1px solid var(--lighterColor);
 	padding: 0.6rem 1.2rem;
 	border-right: 1px solid var(--lighterColor);
@@ -40,7 +42,6 @@
 	width: 1.6rem !important;
 }
 .comparaison-grid > .legend {
-	max-width: 15rem;
 	align-items: flex-end;
 	grid-column: row-legend;
 	text-align: right;
@@ -176,7 +177,6 @@
 	}
 	.comparaison-grid > * {
 		border: none;
-		max-width: inherit !important;
 		flex-direction: row;
 		text-align: right;
 		justify-content: right;

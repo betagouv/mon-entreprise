@@ -7,14 +7,20 @@ type Size = 'XL' | 'MD' | 'XS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
 type ButtonProps = {
-	color: Color
-	size: Size
+	color?: Color
+	size?: Size
 	onClick?: ReactEventHandler
 	light?: boolean
 } & AriaButtonProps<'button'>
 
 export const Button = (props: ButtonProps) => {
-	const { children, color, size, light = false, onClick } = props
+	const {
+		children,
+		color = 'primary',
+		size = 'MD',
+		light = false,
+		onClick,
+	} = props
 	const buttonRef = useRef<HTMLButtonElement>(null)
 	const buttonProps = useButton(props, buttonRef)
 

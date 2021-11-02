@@ -1,13 +1,13 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
 import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { filter } from 'ramda'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import {
 	LegalStatus,
 	possibleStatusSelector,
@@ -110,11 +110,11 @@ export default function SetMainStatus() {
 				)}
 			</H2>
 
-			<ul>
+			<Ul>
 				{Object.keys(filter(Boolean, possibleStatus)).map(
 					/* https://github.com/microsoft/TypeScript/issues/32811 */
 					(statut: any) => (
-						<li key={statut}>
+						<Li key={statut}>
 							<H3>
 								<StatutTitle statut={statut} language={i18n.language} />
 							</H3>
@@ -122,10 +122,10 @@ export default function SetMainStatus() {
 								<StatutDescription statut={statut} />
 							</Body>
 							<StatutButton statut={statut} />
-						</li>
+						</Li>
 					)
 				)}
-			</ul>
+			</Ul>
 		</>
 	)
 }

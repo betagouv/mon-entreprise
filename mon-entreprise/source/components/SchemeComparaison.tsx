@@ -7,6 +7,8 @@ import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import Value from 'Components/EngineValue'
 import InfoBulle from 'Components/ui/InfoBulle'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
 import { H2, H3 } from 'DesignSystem/typography/heading'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
@@ -295,16 +297,14 @@ export default function SchemeComparaison({
 				) : (
 					<Trans i18nKey="comparaisonRégimes.comparaisonDétaillée">
 						<div className="all">
-							<button
-								onClick={() => setShowMore(true)}
-								className="ui__ simple small button"
-							>
+							<Button light size="XS" onClick={() => setShowMore(true)}>
 								Afficher plus d'informations
-							</button>
+							</Button>
 						</div>
 					</Trans>
 				)}
-				<div className="all colored">
+
+				<div className=" all  colored">
 					{!conversationStarted ? (
 						<>
 							<Trans i18nKey="comparaisonRégimes.simulationText">
@@ -312,21 +312,13 @@ export default function SchemeComparaison({
 									Comparer mes revenus, pension de retraite et indemnité maladie
 								</H3>
 								<img src={revenusSVG} css="height: 8rem" />
-								<button
-									className="ui__ cta plain button"
-									onClick={startConversation}
-								>
+								<Button onClick={startConversation}>
 									Lancer la simulation
-								</button>
+								</Button>
 							</Trans>
 						</>
 					) : (
-						<div
-							className="ui__ container"
-							css={`
-								text-align: left;
-							`}
-						>
+						<div className="">
 							<PeriodSwitch />
 							<SimulationGoals
 								className="plain"
@@ -553,60 +545,65 @@ export default function SchemeComparaison({
 					</>
 				)}
 			</div>
-			<div className="ui__ container">
+
+			<div className="">
 				<br />
 				<H3>
 					<Trans i18nKey="comparaisonRégimes.titreSelection">
 						Créer mon entreprise en tant que :
 					</Trans>
 				</H3>
-				<div className="ui__ answer-group">
-					{!hideAssimiléSalarié && (
-						<button
-							className="ui__  button"
-							onClick={() => {
-								dispatch(defineDirectorStatus('SALARIED'))
-								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
-							}}
-						>
-							<Trans i18nKey="comparaisonRégimes.choix.AS">
-								Assimilé&nbsp;salarié
-							</Trans>
-						</button>
-					)}
-					<button
-						className="ui__  button"
-						onClick={() => {
-							!hideAssimiléSalarié &&
-								dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-							!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
-						}}
-					>
-						{hideAssimiléSalarié ? (
-							<Trans i18nKey="comparaisonRégimes.choix.EI">
-								Entreprise individuelle
-							</Trans>
-						) : (
-							<Trans i18nKey="comparaisonRégimes.choix.indep">
-								Indépendant
-							</Trans>
-						)}
-					</button>
-					{!hideAutoEntrepreneur && (
-						<button
-							className="ui__ button"
+				<AnswerGroup>
+					{[
+						!hideAssimiléSalarié && (
+							<Button
+								key="assimiléSalarié"
+								onClick={() => {
+									dispatch(defineDirectorStatus('SALARIED'))
+									!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+								}}
+							>
+								<Trans i18nKey="comparaisonRégimes.choix.AS">
+									Assimilé&nbsp;salarié
+								</Trans>
+							</Button>
+						),
+
+						<Button
+							key="EI"
 							onClick={() => {
 								!hideAssimiléSalarié &&
 									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-								dispatch(isAutoentrepreneur(true))
+								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 							}}
 						>
-							<Trans i18nKey="comparaisonRégimes.choix.auto">
-								Auto-entrepreneur
-							</Trans>
-						</button>
-					)}
-				</div>
+							{hideAssimiléSalarié ? (
+								<Trans i18nKey="comparaisonRégimes.choix.EI">
+									Entreprise individuelle
+								</Trans>
+							) : (
+								<Trans i18nKey="comparaisonRégimes.choix.indep">
+									Indépendant
+								</Trans>
+							)}
+						</Button>,
+
+						!hideAutoEntrepreneur && (
+							<Button
+								key="auto-entrepreneur"
+								onClick={() => {
+									!hideAssimiléSalarié &&
+										dispatch(defineDirectorStatus('SELF_EMPLOYED'))
+									dispatch(isAutoentrepreneur(true))
+								}}
+							>
+								<Trans i18nKey="comparaisonRégimes.choix.auto">
+									Auto-entrepreneur
+								</Trans>
+							</Button>
+						),
+					]}
+				</AnswerGroup>
 			</div>
 		</>
 	)
