@@ -1,11 +1,11 @@
-import { RadioAriaProps, useRadio } from '@react-aria/radio'
-import { RadioGroupState } from '@react-stately/radio'
+import { RadioAriaProps, useRadio, useRadioGroup } from '@react-aria/radio'
+import { RadioGroupState, useRadioGroupState } from '@react-stately/radio'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { createContext, useContext, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 const RadioContext = createContext<RadioGroupState | null>(null)
 
-export default function Radio(props: RadioAriaProps) {
+export function Radio(props: RadioAriaProps) {
 	const { children } = props
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -14,38 +14,49 @@ export default function Radio(props: RadioAriaProps) {
 	const ref = useRef(null)
 	const { inputProps } = useRadio(props, state, ref)
 	return (
-		<Label>
-			<input {...inputProps} className="sr-only" ref={ref} />
-			<RadioSvg aria-hidden="true" viewBox="0 0 12 12">
-				<OutsideCircle cx={6} cy={6} r={6} />
-				<InsideCircle cx={6} cy={6} r={4} />
-			</RadioSvg>
-			<LabelBody>{children}</LabelBody>
-		</Label>
+		<label>
+			<InputRadio {...inputProps} className="sr-only" ref={ref} />
+			<VisibleRadio aria-hidden="true">
+				<RadioButton>
+					<OutsideCircle />
+					<InsideCircle />
+				</RadioButton>
+				<LabelBody>{children}</LabelBody>
+			</VisibleRadio>
+		</label>
 	)
 }
 
-const OutsideCircle = styled.circle`
-	stroke: ${({ theme }) => theme.colors.extended.grey[500]};
-	stroke-width: 2px;
-	fill: none;
+const OutsideCircle = styled.span`
+	position: absolute;
+	border: 2px solid ${({ theme }) => theme.colors.extended.grey[500]};
 	transition: all 0.2s;
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
 `
 
-const InsideCircle = styled.circle`
-	fill: ${({ theme }) => theme.colors.bases.primary[700]};
-	stroke: none;
+const InsideCircle = styled.span`
+	--padding: 4px;
+	position: absolute;
+	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	border-radius: 50%;
 	transform: scale(0);
 	transition: all 0.2s;
+	top: var(--padding);
+	left: var(--padding);
+	height: calc(100% - 2 * var(--padding));
+	width: calc(100% - 2 * var(--padding));
 `
 
-const RadioSvg = styled.svg`
+const RadioButton = styled.span`
 	--size: ${({ theme }) => theme.spacings.md};
 	--halo: ${({ theme }) => theme.spacings.sm};
 	height: var(--size);
 	width: var(--size);
 	cursor: pointer;
-
+	position: relative;
+	margin-right: var(--halo);
 	::before {
 		content: '';
 		position: absolute;
@@ -59,30 +70,110 @@ const RadioSvg = styled.svg`
 		opacity: 0;
 		transition: opacity 0.2s ease;
 	}
+`
 
-	&:hover:before {
+const VisibleRadio = styled.div`
+	display: inline-flex;
+	align-items: baseline;
+	z-index: 1;
+	transition: all 0.2s;
+
+	:hover > ${RadioButton}::before {
 		opacity: 1;
 	}
 
-	&:hover ${OutsideCircle} {
-		stroke: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-`
-
-const Label = styled.label`
-	display: inline-flex;
-	align-items: start;
-	z-index: 1;
-	input:focus + ${RadioSvg} > ${OutsideCircle} {
-		stroke: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-
-	input:checked + ${RadioSvg} > ${InsideCircle} {
-		transform: scale(1);
+	:hover ${OutsideCircle} {
+		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	}
 `
 
 const LabelBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
+`
+const InputRadio = styled.input`
+	:focus
+		+ ${VisibleRadio}
+		${OutsideCircle},
+		:checked
+		+ ${VisibleRadio}
+		${OutsideCircle} {
+		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+
+	:checked + ${VisibleRadio} ${InsideCircle} {
+		transform: scale(1);
+	}
+`
+
+export function ToggleGroup(
+	props: RadioAriaGroupProps & { label?: string; hideRadio?: boolean }
+) {
+	const { children, label } = props
+	const state = useRadioGroupState(props)
+	const { radioGroupProps, labelProps } = useRadioGroup(
+		{ ...props, orientation: 'horizontal' },
+		state
+	)
+
+	return (
+		<div {...radioGroupProps}>
+			{label && <span {...labelProps}>{label}</span>}
+			<ToggleGroupContainer hideRadio={props.hideRadio ?? false}>
+				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
+			</ToggleGroupContainer>
+		</div>
+	)
+}
+
+const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
+	--radius: 4px;
+	display: inline-flex;
+	${VisibleRadio} {
+		position: relative;
+		align-items: center;
+		z-index: 1;
+		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+		margin-right: -1px;
+		cursor: pointer;
+		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
+	}
+	${VisibleRadio}:focus-within {
+		outline: 1px dashed ${({ theme }) => theme.colors.extended.grey[700]};
+	}
+
+	${LabelBody} {
+		margin: 0;
+		margin-left: ${({ theme }) => theme.spacings.xxs};
+	}
+	> :first-child ${VisibleRadio} {
+		border-top-left-radius: var(--radius);
+		border-bottom-left-radius: var(--radius);
+	}
+	> :last-child ${VisibleRadio} {
+		border-top-right-radius: var(--radius);
+		border-bottom-right-radius: var(--radius);
+		margin-right: 0;
+	}
+
+	${InputRadio}:checked + ${VisibleRadio} {
+		z-index: 2;
+		border: 1px solid ${({ theme }) => theme.colors.bases.primary[700]};
+		background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	}
+
+	${VisibleRadio}:hover {
+		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+	}
+	${RadioButton} {
+		${({ hideRadio }) =>
+			hideRadio &&
+			css`
+				display: none;
+			`}
+		margin-right: ${({ theme }) => theme.spacings.xxs};
+	}
+	${RadioButton}::before {
+		opacity: 0 !important;
+	}
 `
