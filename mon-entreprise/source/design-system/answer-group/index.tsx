@@ -13,7 +13,7 @@ const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
 			container
 			className="answer-group"
 			justifyContent="flex-end"
-			spacing="4"
+			spacing={1}
 		>
 			{children.map((c, i) => (
 				<Grid key={`answerGroup-${i}`} item sm={12} md="auto">
