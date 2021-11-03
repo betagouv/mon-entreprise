@@ -1,6 +1,7 @@
+import { createTheme } from '@mui/material'
 import { DefaultTheme } from 'styled-components'
 
-export const theme: DefaultTheme = {
+export const theme: DefaultTheme = createTheme(createTheme(), {
 	colors: {
 		bases: {
 			primary: {
@@ -157,10 +158,10 @@ export const theme: DefaultTheme = {
 		6: '0px 10px 24px rgba(0, 0, 0, 0.2)',
 	},
 
-	breakpoints: {
+	breakpointsWidth: {
 		xl: '1200px',
 		lg: '992px',
 		md: '768px',
 		sm: '576px',
 	},
-}
+})

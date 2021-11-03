@@ -6,11 +6,7 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	PublicodesExpression,
-	reduceAST,
-} from 'publicodes'
+import Engine, { ASTNode, PublicodesExpression, reduceAST } from 'publicodes'
 import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
@@ -42,7 +38,7 @@ type Props<Name extends string = DottedName> = Omit<
 	isTarget?: boolean
 	onSubmit?: (source: string) => void
 	modifiers?: Record<string, string>
-	formatOptions: Intl.NumberFormatOptions
+	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 }
 

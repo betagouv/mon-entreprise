@@ -23,7 +23,7 @@ const Title = styled.div`
 	justify-content: center;
 	margin-top: 1rem;
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
 		margin-top: 0;
 		justify-content: start;
 	}

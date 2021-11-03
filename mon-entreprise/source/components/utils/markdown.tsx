@@ -1,4 +1,3 @@
-import Headings from 'DesignSystem/typography/heading'
 import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'

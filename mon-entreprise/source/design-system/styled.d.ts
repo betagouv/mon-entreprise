@@ -1,3 +1,4 @@
+import { Theme as SystemTheme } from '@mui/system'
 import 'styled-components'
 
 type Color = string
@@ -86,7 +87,7 @@ interface CustomTheme {
 		6: ShadowDefinition
 	}
 
-	breakpoints: {
+	breakpointsWidth: {
 		xl: Metric
 		lg: Metric
 		md: Metric
@@ -94,11 +95,13 @@ interface CustomTheme {
 	}
 }
 
-declare module 'styled-components' {
-	export interface DefaultTheme extends CustomTheme {}
-}
+interface CustomThemeWithMui extends SystemTheme, CustomTheme {}
 
 declare module '@mui/material/styles' {
-	export interface Theme extends CustomTheme {}
-	export interface ThemeOptions extends CustomTheme {}
+	export interface Theme extends CustomThemeWithMui {}
+	export interface ThemeOptions extends CustomThemeWithMui {}
+}
+
+declare module 'styled-components' {
+	export interface DefaultTheme extends CustomThemeWithMui {}
 }

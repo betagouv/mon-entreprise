@@ -47,7 +47,12 @@ export const Button = (props: ButtonProps) => {
 	)
 }
 
-const StyledButton = styled.button<ButtonProps>`
+type StyledButtonProps = {
+	color: Color
+	size: Size
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
 	background-color: ${({ theme, color }) =>
 		theme.colors.bases[color][color === 'primary' ? 700 : 300]};
 	color: ${({ theme, color }) =>
@@ -77,7 +82,7 @@ const StyledButton = styled.button<ButtonProps>`
 	}
 `
 
-const StyledLightButton = styled.button<ButtonProps>`
+const StyledLightButton = styled.button<StyledButtonProps>`
 	border: 2px solid
 		${({ theme, color }) =>
 			theme.colors.bases[color][

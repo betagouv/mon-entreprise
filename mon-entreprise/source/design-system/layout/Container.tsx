@@ -6,30 +6,30 @@ const InnerContainer = styled.div`
 	margin-right: auto;
 	margin-left: auto;
 
-	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		padding-left: 16px;
 		padding-right: 16px;
 	}
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		padding-left: 16px;
 		padding-right: 16px;
 		max-width: 576px;
 	}
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		padding-left: 24px;
 		padding-right: 24px;
 		max-width: 768px;
 	}
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
 		padding-left: 24px;
 		padding-right: 24px;
 		max-width: 992px;
 	}
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
 		padding-left: 24px;
 		padding-right: 24px;
 		max-width: 1200px;
