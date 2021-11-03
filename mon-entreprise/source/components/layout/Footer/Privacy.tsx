@@ -69,14 +69,11 @@ function PrivacyContent() {
 					ci-dessous :
 				</Body>
 				<Body>
-
-						<Checkbox
-							name="opt-out mesure audience"
-							onChange={handleChange}
-							defaultSelected={
-								tracker.privacy.getVisitorMode().name === 'optout'
-							}
-						>
+					<Checkbox
+						name="opt-out mesure audience"
+						onChange={handleChange}
+						defaultSelected={tracker.privacy.getVisitorMode().name === 'optout'}
+					>
 						Je souhaite ne pas envoyer de données anonymes sur mon utilisation
 						du site à des fins de mesures d'audience
 					</Checkbox>
