@@ -1,9 +1,11 @@
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
+import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
+import 'iframe-resizer'
 import React, { createContext, useMemo } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
@@ -161,17 +163,19 @@ export default function Provider({
 						}
 					>
 						<DisableAnimationOnPrintProvider>
-							<SiteNameContext.Provider value={basename}>
-								<SitePathProvider value={sitePaths}>
-									<I18nextProvider i18n={i18next}>
-										<HelmetProvider>
-											<Router history={history}>
-												<>{children}</>
-											</Router>
-										</HelmetProvider>
-									</I18nextProvider>
-								</SitePathProvider>
-							</SiteNameContext.Provider>
+							<IsEmbeddedProvider>
+								<SiteNameContext.Provider value={basename}>
+									<SitePathProvider value={sitePaths}>
+										<I18nextProvider i18n={i18next}>
+											<HelmetProvider>
+												<Router history={history}>
+													<>{children}</>
+												</Router>
+											</HelmetProvider>
+										</I18nextProvider>
+									</SitePathProvider>
+								</SiteNameContext.Provider>
+							</IsEmbeddedProvider>
 						</DisableAnimationOnPrintProvider>
 					</TrackingContext.Provider>
 				</ThemeColorsProvider>

@@ -1,7 +1,8 @@
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { default as React, useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import Home from './Home'
@@ -22,6 +23,7 @@ export default function Simulateurs() {
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()
+	const isEmbedded = useIsEmbedded()
 	const simulatorRoutes = useMemo(
 		() =>
 			Object.values(simulatorsData)
@@ -56,7 +58,7 @@ export default function Simulateurs() {
 							← <Trans>Retour à la création</Trans>
 						</Link>
 					)}
-					{(!lastState || lastState?.fromSimulateurs) && (
+					{!isEmbedded && (!lastState || lastState?.fromSimulateurs) && (
 						<Link
 							to={sitePaths.simulateurs.index}
 							className="ui__ simple small push-left button print-display-none"

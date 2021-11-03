@@ -1,14 +1,14 @@
 import { Condition } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { IsEmbeddedContext, useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import { default as React, useContext } from 'react'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
@@ -29,7 +29,7 @@ export default function PageData({
 	nextSteps,
 	path,
 }: SimulatorData[keyof SimulatorData]) {
-	const inIframe = useContext(IsEmbeddedContext)
+	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
 	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
 	useSearchParamsSimulationSharing()

@@ -8,18 +8,24 @@ import ActivitésSelection from './ActivitésSelection'
 import reducer from './reducer'
 import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
+import useSimulatorsData from '../metadata'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 
 export default function ÉconomieCollaborative() {
 	const sitePaths = useContext(SitePathsContext)
+	const iframePath = useSimulatorsData()['économie-collaborative'].iframePath
+	const indexPath = useIsEmbedded()
+		? '/iframes/' + iframePath
+		: sitePaths.simulateurs.économieCollaborative.index
 	return (
 		<>
 			<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative" />
 			<div css="transform: translateY(2rem)">
 				<NavLink
-					to={sitePaths.simulateurs.économieCollaborative.index}
+					to={indexPath}
 					exact
 					activeClassName="ui__ hide"
-					className="ui__ simple small push-left button "
+					className="ui__ simple small push-left button"
 				>
 					←{' '}
 					<Trans i18nKey="économieCollaborative.retourAccueil">
@@ -34,7 +40,7 @@ export default function ÉconomieCollaborative() {
 				<Switch>
 					<Route
 						exact
-						path={sitePaths.simulateurs.économieCollaborative.index}
+						path={indexPath}
 						component={ActivitésSelection}
 					/>
 					<Route
