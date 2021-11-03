@@ -226,7 +226,8 @@ aide-déclaration-indépendant:
     titre: <0>Company and activity</0>
   results:
     ongoing: Calculation in progress...
-    title: Your tax returns
+    title: Amounts to report on your tax return
+    title-short: Your tax returns
 an: year
 année: year
 applicable si: applicable if
@@ -309,6 +310,13 @@ barème: scale
 calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on
+cards:
+  simulator-resource:
+    cta: Go to the simulator
+checklist:
+  showmore:
+    closed: Read more
+    open: Hide details
 cible: target
 clickexample: Click on a situation to see the result
 cliquez pour insérer cette suggestion: click to insert this suggestion
@@ -448,15 +456,21 @@ créer:
   description: Before starting the administrative procedures to create your
     company, you must choose a legal status adapted to your activity
   ressources:
-    autoEntrepreneur: <0>Become auto-entrepreneur</0> <1>Go to the simplified
-      creation process for starting a business</1>
-    comparaison: >
-      <0> SASU, EURL or auto-entrepreneur?</0>
-
-      <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
-    listeStatuts: |
-      <0>List of legal statuses</0>
-      <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
+    autoEntrepreneur:
+      body: Do you want to become an auto-entrepreneur? Discover the steps to start
+        your business
+      cta: Consult the procedures
+      title: Auto-entrepreneur procedure
+    comparaison:
+      body: Self-employed, assimilated employee or auto-entrepreneur? Calculate the
+        differences in terms of income, contributions, pension, etc.
+      cta: Compare
+      title: Plan Comparator
+    listeStatuts:
+      body: Do you already know which status to choose? Go directly to the list of
+        related procedures
+      cta: See the list
+      title: List of legal statuses
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: of aid
@@ -527,23 +541,27 @@ entreprise:
         French administration.`
       titre: Create an {{status}}
   ressources:
-    après: >
-      <0>After registration</0>
-
-      <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may (possibly) encounter after creation.</1>
+    après:
+      body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
+        (possibly) encounter after the creation.
+      cta: See the glossary
+      title: After the creation
     simu:
-      assimilé: >
-        <0>Assimilé-salarié: contribution simulator </0>
-
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
-      autoEntrepreneur: >
-        <0>Auto-entrepreneur: income simulator</0>
-
-        <1>Simulate the amount of your social security contributions and taxes and estimate your future net income.</1>
-      indépendant: >
-        <0>Independent: contribution simulator </0>
-
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
+      assimilé:
+        body: Simulate the amount of your social contributions to prepare your business
+          plan.
+        cta: Simulate compensation
+        title: Remuneration simulator for SASU managers
+      autoEntrepreneur:
+        body: Simulate the amount of your social security contributions and taxes and
+          estimate your future net income.
+        cta: Simulate income
+        title: Auto-entrepreneur income simulator
+      indépendant:
+        body: Simulate the amount of your social contributions to prepare your business
+          plan.
+        cta: Simulate contributions
+        title: Self-employed contribution simulator
   retour: Choose another status
   tâches:
     adresse:
@@ -609,9 +627,8 @@ entreprise:
     formeJuridique:
       titre: Choose the legal status
     formulaire:
-      description: <0>You can start your online registration process anytime, save it
-        and come back to it as you wish.</0><1><0>Start registration
-        process</0></1>
+      description: <0>You can register online at any time, save it and return to it as
+        you wish.</0><1>Doing it online</1>
       titre: Register my company online
     journal:
       description: >
@@ -651,11 +668,11 @@ entreprise:
       titre: Publish a notice of creation in a newspaper
     nom:
       description: <0><0>The corporate name</0> is the name of your company in the
-        eyes of the law, written on all your administrative documents. It can be
+        eyes of the law, written on all your administrative documents. It may be
         different from your business name.</0><1>It is advisable to check that
         the name is available, i.e. that it does not infringe on a name already
-        protected by a trademark, a company name, a trade name, an internet
-        domain name, etc. You can check in the <1>INPI database</1>.</1>
+        protected by a trademark, a company name, a trade name, an Internet
+        domain name, etc. You can check in the <2>INPI</2> database.</1>
       titre: Find a corporate name
     objetSocial:
       description: The <1>corporate purpose</1> of the company ("objet social") is the
@@ -777,6 +794,8 @@ gérer:
       <0>Discover the hiring process</0>
 
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
+    export: <0>Exporting your activity to Europe</0><1>The form to apply for
+      international mobility (secondment or multi-activity)</1>
     kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the
       existence of a commercial company. You can get the Kbis for your company
       using monidenum.fr</1>
@@ -852,8 +871,11 @@ mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
 nextSteps:
-  integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
-    to your website in one click with a simple script.</1>
+  integration-iframe:
+    body: Discover how to add this simulator on your website in one click via a
+      turnkey script.
+    cta: See the documentation
+    title: Integrate the web module
 non: no
 non applicable si: not applicable if
 non déductible: not deductible
@@ -912,12 +934,16 @@ pages:
     07</2></19><20>Updated on 15/01/2021</20>
   common:
     ressources-auto-entrepreneur:
-      FAQ: <0><0>Frequently Asked Questions</0><1>An exhaustive and up-to-date list of
-        all the frequently (and less frequently) asked questions that you may
-        have as an auto-entrepreneur (in french).</1></0>
-      impôt: <0><0>How to declare your income?</0><1>Official information from the tax
-        authorities concerning auto-entrepreneurs and the micro-enterprise
-        scheme (in french).</1></0>
+      FAQ:
+        body: An exhaustive and updated list of all the frequent (and less frequent)
+          questions that one is led to ask as an auto-entrepreneur
+        cta: See the answers
+        title: Frequently asked questions
+      impôt:
+        body: The official information of the tax authorities concerning
+          auto-entrepreneurs and the micro-enterprise regime.
+        cta: See the help
+        title: How to declare your income to the tax authorities?
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
@@ -1078,10 +1104,9 @@ pages:
         action: Estimate Hiring costs
         montant: Amount of aid
         première année: the first year
-      introduction: <0><0><0></0></0>Employers can receive financial assistance to
-        hire certain priority groups. Find out about existing schemes and
-        estimate the amount of incentives by answering a short number of
-        questions.</0>
+      introduction: Employers can benefit from financial aid for hiring certain
+        priority groups. Find out about the existing schemes and estimate the
+        amount of aid by answering the questions.
       message fin: You can now simulate the exact cost of hiring by selecting an
         eligible grant.
       meta:
@@ -1346,6 +1371,8 @@ pages:
           remuneration.
         ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
         titre: "EURL : income simulator for managers"
+      shortname: EURL
+      title: EURL Simulator
     expert-comptable:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
@@ -1505,8 +1532,8 @@ pages:
         remuneration. To do this, simply enter the total amount allocated in the
         \"total charged\" box. The simulation can then be refined by answering
         the various questions.</4>"
-      shortname: EURL
-      title: EURL Simulator
+      shortname: SASU
+      title: SASU Simulator
       titre: Revenue simulator for SAS(U) executive
   économie-collaborative:
     meta:

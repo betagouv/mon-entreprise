@@ -114,7 +114,8 @@ aide-déclaration-indépendant:
       pré-remplir le formulaire"
     titre: <0>Entreprise et activité</0>
   results:
-    title: Vos déclarations fiscales
+    title: Montants à reporter dans votre déclaration de revenus
+    title-short: Vos déclarations fiscales
 après:
   ape:
     description: Le code APE correspond au <1>secteur d'activité</1> de votre
@@ -174,6 +175,13 @@ autoentrepreneur:
     titre: Auto-entrepreneur
   titre: Entreprise individuelle ou auto-entrepreneur
 back: Reprendre la simulation
+cards:
+  simulator-resource:
+    cta: Accéder au simulateur
+checklist:
+  showmore:
+    closed: En savoir plus
+    open: Masquer les détails
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
     et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
@@ -247,14 +255,21 @@ créer:
   description: Avant d'entamer les démarches administratives pour créer votre
     entreprise, vous devez choisir un statut juridique adapté à votre activité
   ressources:
-    autoEntrepreneur: <0>Démarche auto-entrepreneur</0><1>Vous souhaitez devenir
-      auto-entrepreneur ? Découvrez les étapes pour bien démarrer votre
-      activité</1>
-    comparaison: <0>Comparateur de régimes</0><1>Indépendant, assimilé-salarié ou
-      auto-entrepreneur ? Calculez les différences en terme de revenus,
-      cotisations, retraite, etc</1>
-    listeStatuts: <0>Liste des statuts juridiques</0><1>Vous savez déjà quel statut
-      choisir ? Accédez directement à la liste des démarches associées</1>
+    autoEntrepreneur:
+      body: Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien
+        démarrer votre activité
+      cta: Consulter les démarches
+      title: Démarche auto-entrepreneur
+    comparaison:
+      body: Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
+        différences en terme de revenus, cotisations, retraite, etc
+      cta: Comparer
+      title: Comparateur de régimes
+    listeStatuts:
+      body: Vous savez déjà quel statut choisir ? Accédez directement à la liste des
+        démarches associées
+      cta: Voir la liste
+      title: Liste des statuts juridiques
   titre: Créer une entreprise
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides
@@ -311,18 +326,27 @@ en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 entreprise:
   ressources:
-    après: <0>Après la création</0><1>SIREN, SIRET, code APE, KBis. Un petit
-      glossaire des termes que vous pourrez (éventuellement) rencontrer après la
-      création.</1>
+    après:
+      body: SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous
+        pourrez (éventuellement) rencontrer après la création.
+      cta: Voir le glossaire
+      title: Après la création
     simu:
-      assimilé: <0>Simulateur de rémunération pour dirigeant de SASU</0><1>Simuler le
-        montant de vos cotisations sociales pour bien préparer votre business
-        plan.</1>
-      autoEntrepreneur: <0>Simulateur de revenus auto-entrepreneur</0><1>Simuler le
-        montant de vos cotisations sociales et de votre impôt et estimez votre
-        futur revenu net.</1>
-      indépendant: <0>Simulateur de cotisations indépendant</0><1>Simuler le montant
-        de vos cotisations sociales pour bien préparer votre business plan.</1>
+      assimilé:
+        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
+          business plan.
+        cta: Simuler la rémunération
+        title: Simulateur de rémunération pour dirigeant de SASU
+      autoEntrepreneur:
+        body: Simuler le montant de vos cotisations sociales et de votre impôt et
+          estimez votre futur revenu net.
+        cta: Simuler les revenus
+        title: Simulateur de revenus auto-entrepreneur
+      indépendant:
+        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
+          business plan.
+        cta: Simuler les cotisations
+        title: Simulateur de cotisations indépendant
   retour: ← Choisir un autre statut
   tâches:
     adresse:
@@ -384,8 +408,8 @@ entreprise:
       titre: Choisir la forme juridique
     formulaire:
       description: <0>Vous pouvez faire votre inscription en ligne à tout moment,
-        l'enregistrer et y revenir comme vous le souhaitez.</0><1><0>Faire la
-        démarche en ligne</0></1>
+        l'enregistrer et y revenir comme vous le souhaitez.</0><1>Faire la
+        démarche en ligne</1>
       titre: Créer mon entreprise en ligne
     journal:
       description: "<0>Vous devez publier la création de votre entreprise dans un
@@ -407,7 +431,7 @@ entreprise:
         vérifier que le nom est disponible, c'est-à-dire qu'il ne porte pas
         atteinte à un nom déjà protégé par une marque, une raison sociale, un
         nom commercial, un nom de domaine Internet, etc. Vous pouvez vérifier
-        dans la base de données <1>INPI</1>.</1>
+        dans la base de données <2>INPI</2>.</1>
       titre: Trouver un nom d'entreprise
     objetSocial:
       description: L'<1>objet social</1> est l'activité principale de l'entreprise.
@@ -521,6 +545,8 @@ gérer:
     embaucher: <0>Découvrir les démarches d’embauche </0><1>La liste des choses à
       faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau
       salarié</1>
+    export: <0>Exporter son activité en Europe</0><1>Le formulaire pour effectuer
+      une demande de mobilité internationale (détachement ou pluriactivité)</1>
     kbis: <0>Récupérer un extrait de Kbis</0><1>Le Kbis est un document permettant
       de justifier de l'enregistrement de l'entreprise au <2>RCS</2> et de
       prouver son existence légale. Ce document peut être récupéré gratuitement
@@ -582,8 +608,11 @@ listeformejuridique:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 mensuel: mensuel
 nextSteps:
-  integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
-    simulateur sur votre site internet en un clic via un script clé en main.</1>
+  integration-iframe:
+    body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic
+      via un script clé en main.
+    cta: Voir la documentation
+    title: Intégrer le module web
 noresults: Aucun résultat ne correspond à cette recherche
 page:
   documentation:
@@ -644,12 +673,17 @@ pages:
     29/01/2021</21>
   common:
     ressources-auto-entrepreneur:
-      FAQ: <0><0>❓ Questions fréquentes</0><1>Une liste exhaustive et maintenue à jour
-        de toutes les questions fréquentes (et moins fréquentes) que l'on est
-        amené à poser en tant qu'auto-entrepreneur</1></0>
-      impôt: <0><0>📑 Comment déclarer son revenu aux impôts ?</0><1>Les informations
-        officielles de l'administration fiscale concernant les
-        auto-entrepreneurs et le régime de la micro-entreprise.</1></0>
+      FAQ:
+        body: Une liste exhaustive et maintenue à jour de toutes les questions
+          fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+          qu'auto-entrepreneur
+        cta: Voir les réponses
+        title: Questions fréquentes
+      impôt:
+        body: Les informations officielles de l'administration fiscale concernant les
+          auto-entrepreneurs et le régime de la micro-entreprise.
+        cta: Consulter l'aide
+        title: Comment déclarer son revenu aux impôts ?
   dévelopeurs:
     bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
       votre site ou service gagnerait à afficher des calculs de salaire, par
@@ -776,10 +810,9 @@ pages:
         action: Simuler une embauche
         montant: Montant de l’aide
         première année: " la première année"
-      introduction: <0><0><0></0></0>Les employeurs peuvent bénéficier d'une aide
-        financière pour l'embauche de certains publics prioritaires. Découvrez
-        les dispositifs existants et estimez le montant de l'aide en répondant
-        aux questions.</0>
+      introduction: Les employeurs peuvent bénéficier d'une aide financière pour
+        l'embauche de certains publics prioritaires. Découvrez les dispositifs
+        existants et estimez le montant de l'aide en répondant aux questions.
       message fin: Vous pouvez maintenant simuler le coût d’embauche précis en
         sélectionnant une aide éligible.
       meta:
@@ -1004,6 +1037,8 @@ pages:
         ogTitle: "Rémunération du dirigeant d'EURL : un simulateur pour connaître votre
           salaire net"
         titre: "EURL : simulateur de revenus pour dirigeant"
+      shortname: EURL
+      title: Simulateur d'EURL
     expert-comptable:
       shortname: Expert-Comptable
       title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
@@ -1146,8 +1181,8 @@ pages:
         alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
         le montant total alloué dans la case \"total chargé\". La simulation
         peut ensuite être affinée en répondant aux différentes questions.</4>"
-      shortname: EURL
-      title: Simulateur d'EURL
+      shortname: SASU
+      title: Simulateur de SASU
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en

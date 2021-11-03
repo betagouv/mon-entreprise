@@ -177,7 +177,9 @@ export default function SchemeComparaison({
 				</Trans>
 
 				<Trans i18nKey="comparaisonRégimes.indemnités">
-					<H3 className="legend">Indemnités journalières</H3>
+					<H3 className="legend">
+						Indemnités journalières <small>(en cas d'arrêt maladie)</small>
+					</H3>
 				</Trans>
 				<div className="green AS">++</div>
 				<div className="green indep">++</div>

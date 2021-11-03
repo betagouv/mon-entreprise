@@ -117,7 +117,7 @@ export default function Créer() {
 						callToAction={{
 							to: sitePaths.créer['auto-entrepreneur'],
 							label: t(
-								'créer.ressources.autoEntrepreneur.title',
+								'créer.ressources.autoEntrepreneur.cta',
 								'Consulter les démarches'
 							),
 						}}

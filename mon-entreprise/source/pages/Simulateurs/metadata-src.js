@@ -156,8 +156,8 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				),
 			},
 			pathId: 'simulateurs.eurl',
-			shortName: t('pages.simulateurs.sasu.shortname', 'EURL'),
-			title: t('pages.simulateurs.sasu.title', "Simulateur d'EURL"),
+			shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
+			title: t('pages.simulateurs.eurl.title', "Simulateur d'EURL"),
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {

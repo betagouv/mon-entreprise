@@ -35,7 +35,7 @@ export default function ResultatsParFormulaire() {
 			>
 				<H2>
 					<Emoji emoji="📄" />{' '}
-					<Trans i18nKey="aide-déclaration-indépendant.results.title">
+					<Trans i18nKey="aide-déclaration-indépendant.results.title-short">
 						Vos déclarations fiscales
 					</Trans>
 				</H2>
