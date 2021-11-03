@@ -1209,9 +1209,8 @@ privacyContent:
     d'améliorer le service, conformément aux <2>recommandations de la CNIL</2>
     et au règlement RGPD. Ce sont les seules données qui quittent votre
     navigateur.</2><3>Vous pouvez vous soustraire de cette mesure d'utilisation
-    du site ci-dessous :</3><4><0><0></0> Je souhaite ne pas envoyer de données
-    anonymes sur mon utilisation du site à des fins de mesures
-    d'audience</0></4>
+    du site ci-dessous :</3><4><0>Je souhaite ne pas envoyer de données anonymes
+    sur mon utilisation du site à des fins de mesures d'audience</0></4>
 responsabilité:
   bouton1: Société
   bouton2: Entreprise individuelle
