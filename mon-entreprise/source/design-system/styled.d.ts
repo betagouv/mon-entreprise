@@ -1,4 +1,7 @@
-import { Theme as SystemTheme } from '@mui/system'
+import {
+	ThemeOptions as SystemThemeOptions,
+	Theme as SystemTheme,
+} from '@mui/system'
 import 'styled-components'
 
 type Color = string
@@ -95,13 +98,11 @@ interface CustomTheme {
 	}
 }
 
-interface CustomThemeWithMui extends SystemTheme, CustomTheme {}
-
 declare module '@mui/material/styles' {
-	export interface Theme extends CustomThemeWithMui {}
-	export interface ThemeOptions extends CustomThemeWithMui {}
+	export interface Theme extends SystemTheme, CustomTheme {}
+	export interface ThemeOptions extends SystemThemeOptions, CustomTheme {}
 }
 
 declare module 'styled-components' {
-	export interface DefaultTheme extends CustomThemeWithMui {}
+	export interface DefaultTheme extends SystemTheme, CustomTheme {}
 }
