@@ -1,7 +1,7 @@
 import { Condition } from 'Components/EngineValue'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { IsEmbeddedContext, useIsEmbedded } from 'Components/utils/embeddedContext'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'

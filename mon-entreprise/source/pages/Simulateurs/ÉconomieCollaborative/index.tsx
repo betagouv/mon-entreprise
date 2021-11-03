@@ -38,11 +38,7 @@ export default function ÉconomieCollaborative() {
 				localStorageKey="app::économie-collaborative:v1"
 			>
 				<Switch>
-					<Route
-						exact
-						path={indexPath}
-						component={ActivitésSelection}
-					/>
+					<Route exact path={indexPath} component={ActivitésSelection} />
 					<Route
 						path={sitePaths.simulateurs.économieCollaborative.votreSituation}
 						component={VotreSituation}

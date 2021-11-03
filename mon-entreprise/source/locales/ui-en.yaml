@@ -1718,8 +1718,8 @@ une de ces conditions: one of these applies
       Drivy, Blablacar, Leboncoin, etc.)? You must declare them in most cases.
       However, it can be difficult to find your way around
       <5><0></0></5>.</0><1>Follow this guide to find out in a few clicks how to
-      be in order.</1><2>From 2020, these revenues will be automatically
-      communicated by the platforms to the tax authorities and the Urssaf.</2>
+      be in order.</1><2>This income is automatically communicated by the
+      platforms to the tax authorities and the Urssaf.</2>
     question: What types of activity did you undertake?
     réassurance: "PS: this tool is only there to inform you, no data will be
       transmitted to the administrations"
@@ -1738,7 +1738,8 @@ une de ces conditions: one of these applies
       <1>Your annual income for this activity is: </1>
     voirObligations: See my obligations
   exonération:
-    notice: If none of these cases apply to you, you will have nothing to worry about.
+    exception-notice: If none of these cases apply to you, you will not have to report anything.
+    notice: If one of these cases applies to you, you will not have to report anything.
     question: Are you in one of the following situations?
   obligations:
     aucune: |

@@ -19,7 +19,6 @@ export default function Iframes() {
 		}
 	}, [])
 
-
 	return (
 		<>
 			{/** Open external links in the parent frame.

@@ -1305,9 +1305,8 @@ trouver:
       Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans
       la plupart des cas. Cependant, il peut être difficile de s'y retrouver
       <5><0></0></5>.</0><1>Suivez ce guide pour savoir en quelques clics
-      comment être en règle.</1><2>À partir de 2020, ces revenus seront
-      communiqués automatiquement par les plateformes à l’administration fiscale
-      et à l’Urssaf.</2>
+      comment être en règle.</1><2>Ces revenus sont communiqués automatiquement
+      par les plateformes à l’administration fiscale et à l’Urssaf.</2>
     question: Quels types d'activités avez-vous exercé ?
     réassurance: "PS : cet outil est là uniquement pour vous informer, aucune donnée
       ne sera transmise aux administrations"
@@ -1322,7 +1321,8 @@ trouver:
     revenusAnnuels: <0>Revenus annuels</0><1>Vos revenus annuels pour cette activité sont :</1>
     voirObligations: Voir mes obligations
   exonération:
-    notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
+    exception-notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
+    notice: Si un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
     question: Êtes-vous dans un des cas suivants ?
   obligations:
     aucune: <0>Rien à faire</0><1>Vous n'avez pas besoin de déclarer vos revenus
