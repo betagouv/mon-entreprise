@@ -4,6 +4,7 @@ import {
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
+import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/Urssaf.svg'
 import React, {
@@ -162,7 +163,9 @@ function IntegrationCustomizer() {
 								initialEntries={[`/iframes/${currentModule}`]}
 							>
 								<ThemeColorsProvider color={color}>
-									<Iframes />
+									<IsEmbeddedProvider>
+										<Iframes />
+									</IsEmbeddedProvider>
 								</ThemeColorsProvider>
 							</MemoryRouter>
 						</div>

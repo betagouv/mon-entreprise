@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import PageHeader from 'Components/PageHeader'
 import InfoBulle from 'Components/ui/InfoBulle'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -136,7 +136,7 @@ export function SimulateurCard({
 }: SimulatorData[keyof SimulatorData] & {
 	small?: boolean
 }) {
-	const isIframe = useContext(IsEmbeddedContext)
+	const isIframe = useIsEmbedded()
 	const name = (
 		<span>
 			{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
