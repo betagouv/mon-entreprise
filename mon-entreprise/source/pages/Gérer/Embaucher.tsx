@@ -4,14 +4,14 @@ import {
 } from 'Actions/hiringChecklistAction'
 import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
-import { H1, H3 } from 'DesignSystem/typography/heading'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
+import { SimulatorRessourceCard } from '../Simulateurs/cards/SimulatorRessourceCard'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
-import { SimulatorRessourceCard } from '../Simulateurs/Page'
 
 type EmbaucherProps = {
 	onChecklistInitialization: ChecklistProps['onInitialization']

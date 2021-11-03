@@ -10,7 +10,7 @@ type CardProps = {
 	children: ReactNode
 	callToAction:
 		| {
-				to: string | { pathname: string; state: any }
+				to: string | { pathname: string; state?: any; search?: string }
 				label: string
 		  }
 		| {

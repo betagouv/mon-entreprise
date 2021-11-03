@@ -587,55 +587,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 
 				{isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title={t(
-								'pages.common.ressources-auto-entrepreneur.FAQ.title',
-								'Questions fréquentes'
-							)}
-							icon={<Emoji emoji="❓" />}
-							callToAction={{
-								href: 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html',
-								label: t(
-									'pages.common.ressources-auto-entrepreneur.FAQ.cta',
-									'Voir les réponses'
-								),
-							}}
-						>
-							<Body>
-								<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
-									Une liste exhaustive et maintenue à jour de toutes les
-									questions fréquentes (et moins fréquentes) que l'on est amené
-									à poser en tant qu'auto-entrepreneur
-								</Trans>
-							</Body>
-						</Card>
+						<FAQAutoEntreprneurCard />
 					</Grid>
 				)}
 
 				{isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title={t(
-								'pages.common.ressources-auto-entrepreneur.impôt.title',
-								'Comment déclarer son revenu aux impôts ?'
-							)}
-							icon={<Emoji emoji="📑" />}
-							callToAction={{
-								href: 'https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur',
-								label: t(
-									'pages.common.ressources-auto-entrepreneur.impôt.cta',
-									"Consulter l'aide"
-								),
-							}}
-						>
-							<Body>
-								<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.body">
-									Les informations officielles de l'administration fiscale
-									concernant les auto-entrepreneurs et le régime de la
-									micro-entreprise.
-								</Trans>
-							</Body>
-						</Card>
+						<ImpotAECard />
 					</Grid>
 				)}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
@@ -679,5 +637,60 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 			</Trans>{' '}
 			{statut}
 		</Link>
+	)
+}
+
+export const FAQAutoEntreprneurCard = () => {
+	const { t } = useTranslation()
+	return (
+		<Card
+			title={t(
+				'pages.common.ressources-auto-entrepreneur.FAQ.title',
+				'Questions fréquentes'
+			)}
+			icon={<Emoji emoji="❓" />}
+			callToAction={{
+				href: 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html',
+				label: t(
+					'pages.common.ressources-auto-entrepreneur.FAQ.cta',
+					'Voir les réponses'
+				),
+			}}
+		>
+			<Body>
+				<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
+					Une liste exhaustive et maintenue à jour de toutes les questions
+					fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+					qu'auto-entrepreneur
+				</Trans>
+			</Body>
+		</Card>
+	)
+}
+
+export const ImpotAECard = () => {
+	const { t } = useTranslation()
+	return (
+		<Card
+			title={t(
+				'pages.common.ressources-auto-entrepreneur.impôt.title',
+				'Comment déclarer son revenu aux impôts ?'
+			)}
+			icon={<Emoji emoji="📑" />}
+			callToAction={{
+				href: 'https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur',
+				label: t(
+					'pages.common.ressources-auto-entrepreneur.impôt.cta',
+					"Consulter l'aide"
+				),
+			}}
+		>
+			<Body>
+				<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.body">
+					Les informations officielles de l'administration fiscale concernant
+					les auto-entrepreneurs et le régime de la micro-entreprise.
+				</Trans>
+			</Body>
+		</Card>
 	)
 }
