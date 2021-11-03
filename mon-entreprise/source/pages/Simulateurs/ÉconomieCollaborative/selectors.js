@@ -1,4 +1,4 @@
-import { hasConditions } from './activitésData'
+import { getActivité, hasConditions } from './activitésData'
 
 const filterActivités =
 	(filter = () => true) =>
@@ -15,11 +15,18 @@ export const nextActivitéSelector = (state, currentActivité) =>
 		({ vue }, activitéTitle) => !vue && activitéTitle !== currentActivité
 	)(state)[0]
 
-const estExonérée = (critèresExonération) =>
-	!!critèresExonération.length && critèresExonération.every(Boolean)
+const estExonérée = (critèresExonération, activité) => {
+	if (!critèresExonération.length) {
+		return false
+	}
+	if (getActivité(activité)['exonérée si']) {
+		return critèresExonération.some(Boolean)
+	}
+	return critèresExonération.every((value) => value === false)
+}
 
 export const estExonéréeSelector = (activité) => (state) =>
-	estExonérée(state[activité].critèresExonération)
+	estExonérée(state[activité].critèresExonération, activité)
 
 export const activitésEffectuéesSelector = filterActivités()
 export const activitésRéponduesSelector = filterActivités(
@@ -27,21 +34,22 @@ export const activitésRéponduesSelector = filterActivités(
 )
 export const déclarationsSelector = (state) => ({
 	RÉGIME_GÉNÉRAL_DISPONIBLE: filterActivités(
-		({ seuilRevenus, critèresExonération }) =>
+		({ seuilRevenus, critèresExonération }, activité) =>
 			['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'RÉGIME_GÉNÉRAL_DISPONIBLE'].includes(
 				seuilRevenus
-			) && !estExonérée(critèresExonération)
+			) && !estExonérée(critèresExonération, activité)
 	)(state),
 	AUCUN: filterActivités(
-		({ seuilRevenus, critèresExonération }) =>
-			seuilRevenus === 'AUCUN' || estExonérée(critèresExonération)
+		({ seuilRevenus, critèresExonération }, activité) =>
+			seuilRevenus === 'AUCUN' || estExonérée(critèresExonération, activité)
 	)(state),
 	IMPOSITION: filterActivités(
-		({ seuilRevenus, critèresExonération }) =>
-			seuilRevenus === 'IMPOSITION' && !estExonérée(critèresExonération)
+		({ seuilRevenus, critèresExonération }, activité) =>
+			seuilRevenus === 'IMPOSITION' &&
+			!estExonérée(critèresExonération, activité)
 	)(state),
 })
 
 export const régimeGénéralDisponibleSelector = (state, activité) =>
 	state[activité].seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE' &&
-	!estExonérée(state[activité].critèresExonération)
+	!estExonérée(state[activité].critèresExonération, activité)

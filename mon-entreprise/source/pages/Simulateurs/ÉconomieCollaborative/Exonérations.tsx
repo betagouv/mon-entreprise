@@ -5,16 +5,15 @@ import { changeCritèreExonération } from './actions'
 import { StoreContext } from './StoreContext'
 import { Activity } from './Activité'
 
-export default function ExceptionsExonération({
+export default function Exonération({
 	exceptionsExonération,
+	exonération,
 	activité,
 }: any) {
 	const { state, dispatch } = useContext(StoreContext)
-	if (!exceptionsExonération) return null
-	const defaultChecked = state[activité].critèresExonération.map(
-		(estRespecté: boolean) => !estRespecté
-	)
-
+	if (!exceptionsExonération && !exonération) return null
+	const defaultChecked = state[activité].critèresExonération
+	console.log(defaultChecked)
 	return (
 		<>
 			<h2>
@@ -24,11 +23,11 @@ export default function ExceptionsExonération({
 			</h2>
 			<Checklist
 				onItemCheck={(index, checked) =>
-					dispatch(changeCritèreExonération(activité, index, !checked))
+					dispatch(changeCritèreExonération(activité, index, checked))
 				}
 				defaultChecked={defaultChecked}
 			>
-				{exceptionsExonération.map(
+				{(exceptionsExonération || exonération).map(
 					({ titre, explication }: Activity, index: string) => (
 						<CheckItem
 							key={index}
@@ -40,10 +39,17 @@ export default function ExceptionsExonération({
 				)}
 			</Checklist>
 			<p className="ui__ notice">
-				<Trans i18nKey="économieCollaborative.exonération.notice">
-					Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à
-					déclarer.
-				</Trans>
+				{exceptionsExonération && (
+					<Trans i18nKey="économieCollaborative.exonération.exception-notice">
+						Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à
+						déclarer.
+					</Trans>
+				)}
+				{exonération && (
+					<Trans i18nKey="économieCollaborative.exonération.notice">
+						Si un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
+					</Trans>
+				)}
 			</p>
 		</>
 	)

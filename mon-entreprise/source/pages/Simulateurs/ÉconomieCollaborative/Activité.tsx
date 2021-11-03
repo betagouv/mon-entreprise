@@ -11,7 +11,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 import { selectSeuilRevenus } from './actions'
 import { getTranslatedActivité } from './activitésData'
 import { ActivitéSelection } from './ActivitésSelection'
-import ExceptionsExonération from './ExceptionsExonération'
+import Exonérations from './Exonérations'
 import NextButton from './NextButton'
 import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
@@ -73,9 +73,10 @@ export default function Activité({
 						{activité.plateformes.join(', ')}
 					</p>
 				)}
-				<ExceptionsExonération
+				<Exonérations
 					activité={title}
 					exceptionsExonération={activité['exonérée sauf si']}
+					exonération={activité['exonérée si']}
 				/>
 
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
@@ -187,7 +188,7 @@ export default function Activité({
 						</ul>
 					</>
 				)}
-				<NextButton disabled={!seuilRevenus} activité={title} />
+				<NextButton disabled={!seuilRevenus && !estExonérée} activité={title} />
 			</FromBottom>
 		</section>
 	)

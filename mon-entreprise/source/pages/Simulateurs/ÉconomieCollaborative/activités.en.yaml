@@ -7,16 +7,35 @@ Location meublée:
     - Guest room
     - classified tourism
 
-Location meublée standard:
-  titre: Standard furnished rental
-  explication: You have rented furnished accommodation for short periods of time to a visiting clientele who do not elect domicile there (excluding guest rooms or furnished tourist accommodation)
-  exonérations:
-    # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
-    - titre: This is a room in my main residence
+Location meublée de courte durée:
+  titre: Short-term furnished rental
+  description: You have rented a furnished accommodation for short periods of time to a passing clientele
+  exonérée si:
+    - titre: |
+        I rent a room in my main residence and earn less than 760€ per year
       explication: |
-        You rent one or more rooms in your main residence: you are exempt from tax provided that the rented room(s) constitute the tenant's main residence or temporary residence. To benefit from this last condition, the tenant must be able to prove a seasonal employment contract or a fixed-term contract of use. The rental price must be set within reasonable limits. For leases concluded in 2019, the rent must not exceed €187 per year per square metre in the Île-de-France region and €138 per square metre per year in other regions. These limits are increased on 1 January of each year.
-        > You rent in Paris, in your main residence, a room of 18 m² to a student. To be exempt from tax, the monthly rent excluding charges must not exceed in 2019 (187 x 18) / 12 = 280 €.
+        Seasonal rentals of one or more rooms of one's main residence that do not exceed
+        residence that do not exceed 760 € per year are exempted and are not
+        and do not have to be declared for income tax purposes. Beyond this amount, the income must be declared to
+        income must be declared for income tax purposes.
+    - &location-main-residence-furnished
+      titre: |
+        I rent a room in my principal residence to a person whose it is their primary or temporary residence with a reasonable rent.
+      explication: |
+        You rent one or more rooms in your main residence: you are exempt from tax provided that the room(s)
+        the rented room(s) is (are) the tenant's principal or temporary residence.
+        To benefit from this last condition, the tenant must be able to prove a seasonal work contract
+        or a fixed-term contract. For leases concluded in
+        2020, the annual rent must not exceed €190 per square meter in the Île-de-France region and 140 € per square meter in
+        other regions.
+        > You rent an 18 m² room in your main residence in Marseille to a student. To be tax-exempt, the monthly rent
+        must not exceed (190 x 18) / 12 = 210 € in 2019.
 
+Location meublée de longue durée:
+  titre: Long-term furnished rental
+  explication: You have rented a furnished apartment for a long period
+  exonérée si:
+    - <<: *location-main-residence-furnished
 Location meublée de tourisme classé:
   titre: Furnished rental of classified tourism
   explication: The property must have previously been declared to the municipality where it is located. At the end of this procedure, a declaration number (13 characters) is issued. Any change is subject to a new declaration.
