@@ -1,8 +1,7 @@
 import { EngineContext } from 'Components/utils/EngineContext'
 import { NumberField } from 'DesignSystem/field'
 import { ASTNode, serializeUnit, Unit } from 'publicodes'
-import { useContext } from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
@@ -19,7 +18,7 @@ export default function NumberInput({
 	unit,
 	autoFocus,
 }: InputProps & {
-	unit: Unit | undefined,
+	unit: Unit | undefined
 }) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
@@ -27,10 +26,16 @@ export default function NumberInput({
 	)
 	const language = useTranslation().i18n.language
 	displayedUnit =
-		displayedUnit ?? (unit && getSerializedUnit(currentValue ?? 0, unit, language))
+		displayedUnit ??
+		(unit && getSerializedUnit(currentValue ?? 0, unit, language))
 	const engine = useContext(EngineContext)
 	useEffect(() => {
-		if (!missing && value != null && typeof value === 'number' && value !== currentValue) {
+		if (
+			!missing &&
+			value != null &&
+			typeof value === 'number' &&
+			value !== currentValue
+		) {
 			setCurrentValue(value)
 		}
 	}, [value])
@@ -40,7 +45,7 @@ export default function NumberInput({
 			? {
 					style: 'currency',
 					currency: 'EUR',
-					minimumFractionDigits: 0
+					minimumFractionDigits: 0,
 			  }
 			: {}),
 		...formatOptions,
@@ -52,7 +57,9 @@ export default function NumberInput({
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={(valeur: ASTNode) => {
-						setCurrentValue(engine.evaluate(valeur).nodeValue as number ?? undefined)
+						setCurrentValue(
+							(engine.evaluate(valeur).nodeValue as number) ?? undefined
+						)
 						setImmediate(() => {
 							onChange(valeur)
 						})
@@ -64,12 +71,16 @@ export default function NumberInput({
 					displayedUnit={displayedUnit}
 					onChange={(valeur) => {
 						setCurrentValue(valeur)
-						if(valeur) {
+						if (valeur) {
 							debouncedOnChange({ valeur, unité })
 						}
 					}}
 					formatOptions={formatOptions}
-					placeholder={missing && value != null && typeof value === 'number' ? value : undefined}
+					placeholder={
+						missing && value != null && typeof value === 'number'
+							? value
+							: undefined
+					}
 					value={currentValue}
 				/>
 			</div>
@@ -136,5 +147,5 @@ function getFormatUnit(unit: Unit): Intl.NumberFormatOptions['unit'] | null {
 	if (denominator) {
 		formatUnit += `-per-${UNIT_MAP[denominator as keyof typeof UNIT_MAP]}`
 	}
-
+	return formatUnit
 }
