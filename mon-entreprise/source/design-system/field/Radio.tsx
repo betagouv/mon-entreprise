@@ -1,8 +1,10 @@
 import { RadioAriaProps, useRadio, useRadioGroup } from '@react-aria/radio'
+import { AriaRadioGroupProps } from '@react-types/radio'
 import { RadioGroupState, useRadioGroupState } from '@react-stately/radio'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
+import { ReactNode } from 'react'
 const RadioContext = createContext<RadioGroupState | null>(null)
 
 export function Radio(props: RadioAriaProps) {
@@ -107,7 +109,11 @@ const InputRadio = styled.input`
 `
 
 export function ToggleGroup(
-	props: RadioAriaGroupProps & { label?: string; hideRadio?: boolean }
+	props: AriaRadioGroupProps & {
+		label?: string
+		hideRadio?: boolean
+		children: ReactNode
+	}
 ) {
 	const { children, label } = props
 	const state = useRadioGroupState(props)

@@ -127,20 +127,18 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				<CheckItem
 					name="legalStatus"
 					defaultChecked={true}
-					title={
-						<Trans i18nKey="entreprise.tâches.formeJuridique.titre">
-							Choisir la forme juridique
-						</Trans>
-					}
+					title={t(
+						'entreprise.tâches.formeJuridique.titre',
+						'Choisir la forme juridique'
+					)}
 				/>
 				{!isEI && (
 					<CheckItem
 						name="corporateName"
-						title={
-							<Trans i18nKey="entreprise.tâches.nom.titre">
-								Trouver un nom d'entreprise
-							</Trans>
-						}
+						title={t(
+							'entreprise.tâches.nom.titre',
+							"Trouver un nom d'entreprise"
+						)}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.nom.description">
 								<SmallBody>
@@ -164,11 +162,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 
 				<CheckItem
 					name="corporatePurpose"
-					title={
-						<Trans i18nKey="entreprise.tâches.objetSocial.titre">
-							Déterminer l'objet social
-						</Trans>
-					}
+					title={t(
+						'entreprise.tâches.objetSocial.titre',
+						"Déterminer l'objet social"
+					)}
 					explanations={
 						<SmallBody>
 							<Trans i18nKey="entreprise.tâches.objetSocial.description">
@@ -182,11 +179,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				{!isAutoentrepreneur && (
 					<CheckItem
 						name="companyAddress"
-						title={
-							<Trans i18nKey="entreprise.tâches.adresse.titre">
-								Choisir une adresse pour le siège
-							</Trans>
-						}
+						title={t(
+							'entreprise.tâches.adresse.titre',
+							'Choisir une adresse pour le siège'
+						)}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.adresse.description">
 								<SmallBody>
@@ -205,11 +201,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				{!isEI && (
 					<CheckItem
 						name="statut"
-						title={
-							<Trans i18nKey="entreprise.tâches.statuts.titre">
-								Écrire les statuts
-							</Trans>
-						}
+						title={t('entreprise.tâches.statuts.titre', 'Écrire les statuts')}
 						explanations={
 							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.statuts.description">
@@ -235,11 +227,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				)}
 				<CheckItem
 					name="openBankAccount"
-					title={
-						<Trans i18nKey="entreprise.tâches.banque.titre">
-							Ouvrir un compte bancaire
-						</Trans>
-					}
+					title={t(
+						'entreprise.tâches.banque.titre',
+						'Ouvrir un compte bancaire'
+					)}
 					explanations={
 						<>
 							<SmallBody>
@@ -271,11 +262,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				{!isEI && (
 					<CheckItem
 						name="fundsDeposit"
-						title={
-							<Trans i18nKey="entreprise.tâches.capital.titre">
-								Déposer le capital
-							</Trans>
-						}
+						title={t('entreprise.tâches.capital.titre', 'Déposer le capital')}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.capital.description">
 								<SmallBody>
@@ -301,11 +288,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				{statut.includes('EIRL') && (
 					<CheckItem
 						name="declarationOfAssignement"
-						title={
-							<Trans i18nKey="entreprise.tâches.affectation.titre">
-								Effectuer une déclaration d'affectation de patrimoine
-							</Trans>
-						}
+						title={t(
+							'entreprise.tâches.affectation.titre',
+							"Effectuer une déclaration d'affectation de patrimoine"
+						)}
 						explanations={
 							<Trans i18nKey="entreprise.tâches.affectation.description">
 								<SmallBody>
@@ -335,11 +321,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				)}
 				{!isEI && (
 					<CheckItem
-						title={
-							<Trans i18nKey="entreprise.tâches.journal.titre">
-								Publier une annonce de création dans un journal
-							</Trans>
-						}
+						title={t(
+							'entreprise.tâches.journal.titre',
+							'Publier une annonce de création dans un journal'
+						)}
 						name="publishCreationNotice"
 						explanations={
 							<Trans i18nKey="entreprise.tâches.journal.description">
@@ -381,11 +366,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 
 				<CheckItem
 					name="registerCompanyOnline"
-					title={
-						<Trans i18nKey="entreprise.tâches.formulaire.titre">
-							Créer mon entreprise en ligne
-						</Trans>
-					}
+					title={t(
+						'entreprise.tâches.formulaire.titre',
+						'Créer mon entreprise en ligne'
+					)}
 					explanations={
 						<Trans i18nKey="entreprise.tâches.formulaire.description">
 							<SmallBody>
@@ -419,11 +403,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				{!isAutoentrepreneur && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
-						title={
-							<Trans i18nKey="entreprise.tâches.comptable.titre">
-								Choisir un comptable
-							</Trans>
-						}
+						title={t(
+							'entreprise.tâches.comptable.titre',
+							'Choisir un comptable'
+						)}
 						explanations={
 							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.comptable.description">
@@ -440,11 +423,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				)}
 				<CheckItem
 					name="checkoutProfessionalAssuranceNeeds"
-					title={
-						<Trans i18nKey="entreprise.tâches.assurance.titre">
-							Juger de la nécessité de prendre une assurance
-						</Trans>
-					}
+					title={t(
+						'entreprise.tâches.assurance.titre',
+						'Juger de la nécessité de prendre une assurance'
+					)}
 					explanations={
 						<Trans i18nKey="entreprise.tâches.assurance.description">
 							<SmallBody>

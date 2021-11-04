@@ -49,8 +49,8 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			<Checkbox
 				name="certified"
 				id="certified"
-				onChange={(e) => setCertified(e.target.checked)}
-				checked={isCertified}
+				onChange={(isSelected) => setCertified(isSelected)}
+				isSelected={isCertified}
 				label="Je certifie l’exactitude des informations communiquées ci-dessus."
 			/>
 			<p className="ui__ notice">

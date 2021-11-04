@@ -55,11 +55,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 			>
 				<CheckItem
 					name="contract"
-					title={
-						<Trans i18nKey="embauche.tâches.contrat.titre">
-							Signer un contrat de travail avec votre employé
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.contrat.titre',
+						'Signer un contrat de travail avec votre employé'
+					)}
 					explanations={
 						<Body>
 							<a
@@ -75,11 +74,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="dpae"
-					title={
-						<Trans i18nKey="embauche.tâches.dpae.titre">
-							Déclarer l'embauche à l'administration sociale
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.dpae.titre',
+						"Déclarer l'embauche à l'administration sociale"
+					)}
 					explanations={
 						<Body>
 							<Trans i18nKey="embauche.tâches.dpae.description">
@@ -95,11 +93,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="paySoftware"
-					title={
-						<Trans i18nKey="embauche.tâches.logiciel de paie.titre">
-							Choisir un logiciel de paie
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.logiciel de paie.titre',
+						'Choisir un logiciel de paie'
+					)}
 					explanations={
 						<Body>
 							<Trans i18nKey="embauche.tâches.logiciel de paie.description">
@@ -121,11 +118,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="registre"
-					title={
-						<Trans i18nKey="embauche.tâches.registre.titre">
-							Tenir un registre des employés à jour
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.registre.titre',
+						'Tenir un registre des employés à jour'
+					)}
 					explanations={
 						<Body>
 							<a
@@ -140,12 +136,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="complementaryPension"
-					title={
-						<Trans i18nKey="embauche.tâches.pension.titre">
-							Prendre contact avec l'institution de prévoyance complémentaire
-							obligatoire qui vous est assignée
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.pension.titre',
+						"rendre contact avec l'institution de prévoyance complémentaire obligatoire qui vous est assignée"
+					)}
 					explanations={
 						<Body>
 							<a
@@ -163,11 +157,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="complementaryHealth"
-					title={
-						<Trans i18nKey="embauche.tâches.complémentaire santé.titre">
-							Choisir une complémentaire santé
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.complémentaire santé.titre',
+						'Choisir une complémentaire santé'
+					)}
 					explanations={
 						<Body>
 							<Trans i18nKey="embauche.tâches.complémentaire santé.description">
@@ -181,11 +174,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 				<CheckItem
 					name="workMedicine"
-					title={
-						<Trans i18nKey="embauche.tâches.medecine.titre">
-							S'inscrire à un bureau de médecine du travail
-						</Trans>
-					}
+					title={t(
+						'embauche.tâches.medecine.titre',
+						"S'inscrire à un bureau de médecine du travail"
+					)}
 					explanations={
 						<Body>
 							<Trans i18nKey="embauche.tâches.medecine.description">

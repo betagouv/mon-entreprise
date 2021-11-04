@@ -55,7 +55,7 @@ export function CheckItem({
 				<Checkbox
 					name={name}
 					onChange={handleChecked}
-					defaultChecked={defaultChecked}
+					defaultSelected={defaultChecked}
 					label={title}
 				/>
 

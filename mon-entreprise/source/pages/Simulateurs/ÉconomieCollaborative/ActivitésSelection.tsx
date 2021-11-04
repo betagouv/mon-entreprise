@@ -167,7 +167,12 @@ export const ActivitéCard = ({
 		<div css="display: flex; flex-direction: column; height: 100%; width: 100%; align-items: center">
 			{selected !== undefined && (
 				<div css="font-size: 1.5rem;">
-					<Checkbox name={title} id={title} checked={selected} readOnly />
+					<Checkbox
+						name={title}
+						id={title}
+						isSelected={selected}
+						aria-label=""
+					/>
 				</div>
 			)}
 			<ActivitéContent
