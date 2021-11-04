@@ -4,7 +4,6 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
-import { References } from 'publicodes-react'
 import {
 	createContext,
 	useCallback,
@@ -13,6 +12,7 @@ import {
 	useState,
 } from 'react'
 import { Trans } from 'react-i18next'
+import { References } from '../../pages/Documentation'
 import { Explicable } from './Explicable'
 import { binaryQuestion, InputProps } from './RuleInput'
 
@@ -211,7 +211,7 @@ export const RadioLabel = (props: RadioLabelProps) => (
 						<h3>
 							<Trans>En savoir plus</Trans>
 						</h3>
-						<References refs={props.références} />
+						<References references={props.références} />
 					</>
 				)}
 			</Explicable>

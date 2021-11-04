@@ -2,20 +2,27 @@ import SearchRules from 'Components/search/SearchRules'
 import { FromBottom } from 'Components/ui/animate'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
+import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { RulePage, getDocumentationSiteMap } from 'publicodes-react'
+import rules, { DottedName } from 'modele-social'
+import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
 import { useCallback, useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, useHistory, useLocation, Link } from 'react-router-dom'
+import {
+	Link,
+	Redirect,
+	Route,
+	useHistory,
+	useLocation,
+} from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import styled from 'styled-components'
 import { TrackPage } from '../ATInternetTracking'
-import rules, { DottedName } from 'modele-social'
 import RuleLink from '../components/RuleLink'
-import Meta from 'Components/utils/Meta'
-import { Route } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import { capitalise0 } from '../utils'
 
 export default function MonEntrepriseRulePage() {
 	const currentSimulation = useSelector(
@@ -70,10 +77,10 @@ export default function MonEntrepriseRulePage() {
 							rulePath={match.params.name}
 							engine={engine}
 							documentationPath={documentationPath}
-							referenceImages={referencesImages}
 							renderers={{
 								Head: Helmet,
 								Link,
+								References,
 							}}
 						/>
 					)}
@@ -88,7 +95,7 @@ function BackToSimulation() {
 	const history = useHistory()
 	const handleClick = useCallback(() => {
 		url && history.push(url)
-	}, [])
+	}, [history, url])
 	return (
 		<button
 			className="ui__ simple small push-left button"
@@ -132,15 +139,86 @@ function DocumentationRulesList() {
 }
 
 const referencesImages = {
-	'service-public.fr': 'images/références/marianne.png',
-	'urssaf.fr': 'images/références/Urssaf.svg',
-	'secu-independants.fr': 'images/références/Urssaf.svg',
-	'gouv.fr': 'images/références/marianne.png',
-	'agirc-arrco.fr': 'images/références/agirc-arrco.png',
-	'pole-emploi.fr': 'images/références/pole-emploi.png',
+	'service-public.fr': '/images/références/marianne.png',
+	'legifrance.gouv.fr': '/images/références/marianne.png',
+	'urssaf.fr': '/images/références/Urssaf.svg',
+	'secu-independants.fr': '/images/références/Urssaf.svg',
+	'gouv.fr': '/images/références/marianne.png',
+	'agirc-arrco.fr': '/images/références/agirc-arrco.png',
+	'pole-emploi.fr': '/images/références/pole-emploi.png',
 	'ladocumentationfrançaise.fr':
-		'images/références/ladocumentationfrançaise.png',
-	'senat.fr': 'images/références/senat.png',
-	'ameli.fr': 'images/références/ameli.png',
-	'bpifrance-creation': 'images/références/bpi-création.png',
+		'/images/références/ladocumentationfrançaise.png',
+	'senat.fr': '/images/références/senat.png',
+	'ameli.fr': '/images/références/ameli.png',
+	'bpifrance-creation.fr': '/images/références/bpi-création.png',
 }
+
+type ReferencesProps = React.ComponentProps<
+	NonNullable<React.ComponentProps<typeof RulePage>['renderers']['References']>
+>
+
+export function References({ references }: ReferencesProps) {
+	const cleanDomain = (link: string) =>
+		(link.includes('://') ? link.split('/')[2] : link.split('/')[0]).replace(
+			'www.',
+			''
+		)
+
+	return (
+		<StyledReferences>
+			{Object.entries(references).map(([name, link]) => {
+				const domain = cleanDomain(link)
+				return (
+					<li key={name}>
+						<span className="imageWrapper">
+							{Object.keys(referencesImages).includes(domain) && (
+								<img
+									src={
+										referencesImages[domain as keyof typeof referencesImages]
+									}
+									alt={`logo de ${domain}`}
+								/>
+							)}
+						</span>
+						<a href={link} target="_blank">
+							{capitalise0(name)}
+						</a>
+						<span className="ui__ label">{domain}</span>
+					</li>
+				)
+			})}
+		</StyledReferences>
+	)
+}
+
+const StyledReferences = styled.ul`
+	list-style: none;
+	padding: 0;
+	a {
+		flex: 1;
+		min-width: 45%;
+		text-decoration: underline;
+		margin-right: 1rem;
+	}
+
+	li {
+		margin-bottom: 0.6em;
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	.imageWrapper {
+		width: 4.5rem;
+		height: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 1rem;
+	}
+	img {
+		max-height: 3rem;
+		vertical-align: sub;
+		max-width: 100%;
+		border-radius: 0.3em;
+	}
+`
