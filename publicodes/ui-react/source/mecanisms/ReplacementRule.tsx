@@ -13,17 +13,19 @@ export default function ReplacementMecanism(node: ReplacementRule) {
 			{node.rawNode.dans && (
 				<>
 					dans{' '}
-					{node.whiteListedNames
-						.map((child, i) => <Explanation key={i} node={child} />)
-						.join(', ')}
+					{node.whiteListedNames.map((child, i) => [
+						i > 0 && ', ',
+						<Explanation key={i} node={child} />,
+					])}
 				</>
 			)}
 			{node.rawNode['sauf dans'] && (
 				<>
 					sauf dans{' '}
-					{node.blackListedNames
-						.map((child, i) => <Explanation key={i} node={child} />)
-						.join(', ')}
+					{node.blackListedNames.map((child, i) => [
+						i > 0 && ', ',
+						<Explanation key={i} node={child} />,
+					])}
 				</>
 			)}
 		</span>
