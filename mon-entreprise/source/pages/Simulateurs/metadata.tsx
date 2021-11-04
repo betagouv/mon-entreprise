@@ -571,6 +571,7 @@ export function getSimulatorsData({
 				...pureSimulatorsData['économie-collaborative'].meta,
 			},
 			path: sitePaths.simulateurs.économieCollaborative.index,
+			nextSteps: ['auto-entrepreneur'],
 		},
 		'aide-déclaration-indépendant': {
 			...pureSimulatorsData['aide-déclaration-indépendant'],

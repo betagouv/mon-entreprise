@@ -1,5 +1,4 @@
 import { FromBottom } from 'Components/ui/animate'
-import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -138,27 +137,6 @@ export default function VotreSituation() {
 						<ActivitéList activités={déclarations.AUCUN} />
 					</>
 				)}
-			</section>
-			<section>
-				<h2>
-					<Emoji emoji="🧰" /> <Trans>Ressources utiles</Trans>
-				</h2>
-				<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
-					<a
-						target="_blank"
-						className="ui__ interactive card small box lighter-bg"
-						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5877Plaquetteecoeollaborative.pdf"
-					>
-						<Trans i18nKey="économieCollaborative.obligations.guide">
-							<p>Consulter le guide Urssaf</p>
-							<p className="ui__ notice">
-								Découvrez les modalités des statuts sociaux pour chaque type de
-								locations (bien, meublé, courte durée, classé, etc.).
-							</p>
-							<span className="ui__ small label">PDF</span>
-						</Trans>
-					</a>
-				</div>
 			</section>
 		</FromBottom>
 	)
