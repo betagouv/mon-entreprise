@@ -121,7 +121,7 @@
 		"test:type": "yarn workspaces run tsc",
 		"test:regressions": "yarn workspace modele-social build && jest --silent",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
-		"start": "stmux -e ERROR -t mon-entreprise-build -M -- [ [ 'yarn workspace publicodes build:watch' : 'yarn workspace publicodes-react build --watch' ] .. 'yarn workspace mon-entreprise start' ] ",
+		"start": "stmux -e ERROR -t mon-entreprise-build -M -- [ -s 3/4 [ [ 'yarn workspace publicodes build:watch' : 'yarn workspace publicodes-react build --watch' ] ..  [ 'yarn workspace mon-entreprise start' ] ] : [ 'yarn workspace mon-entreprise run tsc -- -w --noEmit --skipLibCheck' ] ]",
 		"moso:up": "yarn workspace modele-social run up && yarn workspace mon-entreprise upgrade modele-social",
 		"publicodes:up": "yarn workspace publicodes-react upgrade publicodes && yarn workspace mon-entreprise upgrade publicodes publicodes-react"
 	},
