@@ -11,8 +11,8 @@ export default function MinorityDirector() {
 	const dispatch = useDispatchAndGoToNextQuestion()
 	return (
 		<>
+			<TrackPage name="majoritaire_ou_minoritaire" />
 			<Helmet>
-				<TrackPage name="majoritaire_ou_minoritaire" />
 				<title>
 					{t(
 						'gérant minoritaire.page.titre',
