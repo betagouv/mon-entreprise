@@ -114,7 +114,6 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const guideUrssaf = guidesUrssaf.find(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
-
 	if (!iframePath && !nextSteps && !guideUrssaf) {
 		return null
 	}
@@ -146,6 +145,24 @@ function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				{nextSteps?.map((simulatorId) => (
 					<SimulatorRessourceCard key={simulatorId} simulatorId={simulatorId} />
 				))}
+				{iframePath === 'economie-collaborative' && (
+					<a
+						target="_blank"
+						className="ui__ interactive card small box lighter-bg"
+						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5877Plaquetteecoeollaborative.pdf"
+					>
+						<Trans i18nKey="économieCollaborative.obligations.guide">
+							<h3 className="ui__ h h5">
+								<Emoji emoji="📖" /> Consulter le guide Urssaf
+							</h3>
+							<p className="ui__ notice">
+								Découvrez les modalités des statuts sociaux pour chaque type de
+								locations (bien, meublé, courte durée, classé, etc.).
+							</p>
+							<span className="ui__ small label">PDF</span>
+						</Trans>
+					</a>
+				)}
 				{iframePath && (
 					<Link
 						className="ui__ interactive card lighter-bg box thinner"
