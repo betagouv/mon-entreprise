@@ -18,7 +18,7 @@ export default function NumberInput({
 	unit,
 	autoFocus,
 }: InputProps & {
-	unit: Unit | undefined
+	unit?: Unit
 }) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(

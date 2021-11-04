@@ -174,7 +174,6 @@ function TargetInputOrValue({
 		},
 		[target.dottedName, dispatch]
 	)
-	const isSituationEmpty = Object.keys(situation).length === 0
 	const isActive = target.dottedName in situation
 	const onChange = useCallback(
 		(valeur) =>
@@ -196,7 +195,7 @@ function TargetInputOrValue({
 					<>
 						{!isFocused && <AnimatedTargetValue value={value} />}
 						<NumberInput
-							name={target.dottedName}
+							dottedName={target.dottedName}
 							unit={{ numerators: ['€'], denominators: [] }}
 							value={value}
 							onChange={onChange}
@@ -204,7 +203,11 @@ function TargetInputOrValue({
 								setFocused(true)
 							}}
 							onBlur={() => setTimeout(() => setFocused(false), 200)}
-							language={language}
+							title={target.title}
+							suggestions={target.suggestions}
+							question={target.question}
+							description={target.description}
+							missing={false}
 						/>
 					</>
 				) : (

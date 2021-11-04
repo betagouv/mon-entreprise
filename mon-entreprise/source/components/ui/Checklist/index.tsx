@@ -1,7 +1,6 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import { Link } from 'DesignSystem/typography/link'
-import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
@@ -10,10 +9,10 @@ import { Checkbox } from 'DesignSystem/field'
 import './index.css'
 
 type CheckItemProps = {
-	title: React.ReactNode
+	title: string
 	name: string
 	explanations?: React.ReactNode
-	onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (isSelected: boolean) => void
 	defaultChecked?: boolean
 }
 
@@ -35,11 +34,11 @@ export function CheckItem({
 }: CheckItemProps) {
 	const [displayExplanations, setDisplayExplanations] = useState(false)
 
-	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.checked) {
+	const handleChecked = (isSelected: boolean) => {
+		if (isSelected) {
 			setDisplayExplanations(false)
 		}
-		onChange?.(e)
+		onChange?.(isSelected)
 	}
 
 	const handleClick = () => {

@@ -185,7 +185,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	return (
 		<div>
 			<TextField
-				role="combobox"
+				/* role="combobox" // FIXME: Need to use a proper combobox component here */
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				id={id}
 				aria-autocomplete="list"
