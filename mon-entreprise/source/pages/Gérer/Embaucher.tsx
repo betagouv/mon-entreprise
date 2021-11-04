@@ -138,7 +138,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					name="complementaryPension"
 					title={t(
 						'embauche.tâches.pension.titre',
-						"rendre contact avec l'institution de prévoyance complémentaire obligatoire qui vous est assignée"
+						"Prendre contact avec l'institution de prévoyance complémentaire obligatoire qui vous est assignée"
 					)}
 					explanations={
 						<Body>
