@@ -90,6 +90,16 @@ export default class Engine<Name extends string = string> {
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
 	options: Options
+
+	// The subEngines attribute is used to get an outside reference to the
+	// recalcul intermediate calculations. The recalcul mechanism uses
+	// `shallowCopy` to instanciate a new engine, and we want to keep a reference
+	// to it for the documentation.
+	//
+	// TODO: A better implementation would to remove the "runtime" concept of
+	// "subEngines" and instead duplicate all rules names in the scope of the
+	// recalcul as described in
+	// https://github.com/betagouv/publicodes/discussions/92
 	subEngines: Array<Engine<Name>> = []
 	subEngineId: number | undefined
 
