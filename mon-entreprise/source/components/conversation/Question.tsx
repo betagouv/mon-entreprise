@@ -2,7 +2,8 @@ import classnames from 'classnames'
 import { useDebounce } from 'Components/utils'
 import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
-import { H2, H3 } from 'DesignSystem/typography/heading'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
+import { H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
 import { References } from 'publicodes-react'
@@ -14,7 +15,6 @@ import {
 	useState,
 } from 'react'
 import { Trans } from 'react-i18next'
-import { Explicable } from './Explicable'
 import { binaryQuestion, InputProps } from './RuleInput'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
@@ -201,11 +201,15 @@ type RadioLabelProps = RadioLabelContentProps & {
 }
 
 export const RadioLabel = (props: RadioLabelProps) => (
-	<>
-		<RadioLabelContent {...props} />
+	<div
+		css={`
+			> :first-child {
+				margin-right: 0.5rem;
+			}
+		`}
+	>
 		{props.description && (
-			<Explicable>
-				<H2>{props.label}</H2>
+			<ButtonHelp type="info" title={props.label} light>
 				<Markdown source={props.description} />
 				{props.références && (
 					<>
@@ -215,9 +219,10 @@ export const RadioLabel = (props: RadioLabelProps) => (
 						<References refs={props.références} />
 					</>
 				)}
-			</Explicable>
+			</ButtonHelp>
 		)}
-	</>
+		<RadioLabelContent {...props} />
+	</div>
 )
 
 type RadioLabelContentProps = {

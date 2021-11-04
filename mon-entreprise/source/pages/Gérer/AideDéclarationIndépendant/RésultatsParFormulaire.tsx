@@ -1,10 +1,10 @@
-import { Explicable } from 'Components/conversation/Explicable'
 import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { H2, H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { useMemo } from 'react'
@@ -137,11 +137,9 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 											<small>
 												{node.rawNode.résumé}
 												{node.rawNode.description && (
-													<Explicable>
-														<div style={{ marginTop: '1rem' }}>
-															<Markdown source={node.rawNode.description} />
-														</div>
-													</Explicable>
+													<ButtonHelp title={node.title} type="info">
+														<Markdown source={node.rawNode.description} />
+													</ButtonHelp>
 												)}
 											</small>
 											<br />

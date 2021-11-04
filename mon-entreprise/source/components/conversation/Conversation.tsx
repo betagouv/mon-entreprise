@@ -66,11 +66,16 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<FadeIn>
 					<div className="step">
-						<H3>
-							{engine.getRule(currentQuestion).rawNode.question}
-							&nbsp;
-							<ExplicableRule dottedName={currentQuestion} />
-						</H3>
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+								gap: 0.5rem;
+							`}
+						>
+							<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
+							<ExplicableRule light dottedName={currentQuestion} />
+						</div>
 
 						<fieldset>
 							<RuleInput

@@ -1,11 +1,11 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
+import { Checkbox } from 'DesignSystem/field'
 import { Link } from 'DesignSystem/typography/link'
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { Appear } from '../animate'
-import { Checkbox } from 'DesignSystem/field'
 import './index.css'
 
 type CheckItemProps = {

@@ -3165,6 +3165,17 @@
     "@react-stately/toggle" "^3.2.3"
     "@react-types/checkbox" "^3.2.3"
 
+"@react-aria/dialog@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@react-aria/dialog/-/dialog-3.1.4.tgz#7fe3f33e09b75dcdf598d0523e982262d6c89220"
+  integrity sha512-OtQGBol3CfcbBpjqXDqXzH5Ygny44PIuyAsZ1e3dfIdtaI+XHsoglyZnvDaVVealIgedHkMubreZnyNYnlzPLg==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.4.1"
+    "@react-aria/utils" "^3.8.2"
+    "@react-stately/overlays" "^3.1.3"
+    "@react-types/dialog" "^3.3.1"
+
 "@react-aria/focus@^3.4.1", "@react-aria/focus@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.5.0.tgz#02b85f97d6114af1eccc0902ce40723b626cb7f9"
@@ -3233,6 +3244,21 @@
     "@react-types/numberfield" "^3.1.0"
     "@react-types/shared" "^3.9.0"
     "@react-types/textfield" "^3.3.0"
+
+"@react-aria/overlays@^3.7.2":
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/@react-aria/overlays/-/overlays-3.7.2.tgz#dca7693c0ec31371b19c2f51b482f03819b8c391"
+  integrity sha512-KAurJ5MJRnXCPRrO1OdAaXz253cwO5VOOp8wx3/40Zm05o5FBA15ZJZT6BD8rZQOKMCAjkI76tiZQeMQtDULcQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/i18n" "^3.3.2"
+    "@react-aria/interactions" "^3.5.1"
+    "@react-aria/utils" "^3.8.2"
+    "@react-aria/visually-hidden" "^3.2.3"
+    "@react-stately/overlays" "^3.1.3"
+    "@react-types/button" "^3.4.1"
+    "@react-types/overlays" "^3.5.1"
+    dom-helpers "^3.3.1"
 
 "@react-aria/radio@^3.1.5":
   version "3.1.5"
@@ -3417,6 +3443,15 @@
     "@react-types/numberfield" "^3.0.1"
     "@react-types/shared" "^3.8.0"
 
+"@react-stately/overlays@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@react-stately/overlays/-/overlays-3.1.3.tgz#b0bb4061c1b20e712dfc32c933ae4bb23e5ccc0e"
+  integrity sha512-X8H/h9F8ZjevwJ7P8ak7v500qQd5x4Y76LsXUXrR6LtcO8FXfp2I+W8sGmBtLZwLQpTJiF1U0WMQqXLE1g6eLA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/utils" "^3.2.2"
+    "@react-types/overlays" "^3.5.1"
+
 "@react-stately/radio@^3.3.2":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.3.2.tgz#be489c1e7fe00fadff579776a2e2f4908fae029f"
@@ -3467,6 +3502,14 @@
   dependencies:
     "@react-types/shared" "^3.8.0"
 
+"@react-types/dialog@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@react-types/dialog/-/dialog-3.3.1.tgz#eb07e3d703643f7967243d56951d58a2cf77096f"
+  integrity sha512-1i6fVtixUNlftSNbVPFRieyEy3N/GNqcqpeOsJUB1jby28ppbM+JCp3Icb0ijaNC9Nl8c/oI8srtOWIQIKUJiQ==
+  dependencies:
+    "@react-types/overlays" "^3.5.1"
+    "@react-types/shared" "^3.8.0"
+
 "@react-types/label@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-types/label/-/label-3.5.0.tgz#c7093871f42c62e1b5523f61a0856a2f58d4cf2a"
@@ -3480,6 +3523,13 @@
   integrity sha512-+QfvGqWD/QWOIyOCRDX/KyyV6QWdA/BQZKVpkFd0Vyy11GGT0eiKGyBevlN22/mwQkHbu53smVrRKXlHdB1tUQ==
   dependencies:
     "@react-types/shared" "^3.9.0"
+
+"@react-types/overlays@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.5.1.tgz#35350dfca639d04a8fbd973de59b141450df1b46"
+  integrity sha512-T3o6wQ5NNm1rSniIa01bIa6fALC8jbwpYxFMaQRrdEpIvwktt0Fi5Xo6/97+oe4HvzzU0JMhtwWDTdRySvgeZw==
+  dependencies:
+    "@react-types/shared" "^3.8.0"
 
 "@react-types/radio@^3.1.2":
   version "3.1.2"
@@ -7661,7 +7711,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-helpers@^3.4.0:
+dom-helpers@^3.3.1, dom-helpers@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
   integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==

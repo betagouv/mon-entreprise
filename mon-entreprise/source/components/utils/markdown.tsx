@@ -1,3 +1,4 @@
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
@@ -104,6 +105,7 @@ export const Markdown = ({
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
+			paragraph: Body,
 			text: TextRenderer,
 			code: CodeBlock,
 			...renderers,

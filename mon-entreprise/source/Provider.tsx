@@ -1,3 +1,4 @@
+import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
@@ -161,9 +162,11 @@ export default function Provider({
 							<SiteNameContext.Provider value={basename}>
 								<SitePathProvider value={sitePaths}>
 									<I18nextProvider i18n={i18next}>
-										<Router history={history}>
-											<>{children}</>
-										</Router>
+										<OverlayProvider>
+											<Router history={history}>
+												<>{children}</>
+											</Router>
+										</OverlayProvider>
 									</I18nextProvider>
 								</SitePathProvider>
 							</SiteNameContext.Provider>

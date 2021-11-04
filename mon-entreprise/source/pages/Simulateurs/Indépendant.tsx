@@ -9,6 +9,7 @@ import IndépendantExplanation from 'Components/simulationExplanation/Indépenda
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
@@ -132,34 +133,28 @@ function ImpositionSwitch() {
 	const currentImposition = engine.evaluate('entreprise . imposition').nodeValue
 
 	return (
-		<span className="base ui__ small radio toggle">
+		<ToggleGroup
+			defaultValue={currentImposition as string}
+			onChange={(imposition) =>
+				dispatch(updateSituation('entreprise . imposition', `'${imposition}'`))
+			}
+		>
 			{(['IR', 'IS'] as const).map((imposition) => (
-				<label
+				<span
 					key={imposition}
 					className={
 						currentImposition !== imposition ? 'ui__ print-display-none' : ''
 					}
 				>
-					<input
-						name="entreprise . imposition"
-						type="radio"
-						value={imposition}
-						onChange={() =>
-							dispatch(
-								updateSituation('entreprise . imposition', `'${imposition}'`)
-							)
-						}
-						checked={currentImposition === imposition}
-					/>
-					<span>
+					<Radio value={imposition}>
 						{
 							engine.getRule(
 								`entreprise . imposition . ${imposition}` as DottedName
 							).title
 						}
-					</span>
-				</label>
+					</Radio>
+				</span>
 			))}
-		</span>
+		</ToggleGroup>
 	)
 }

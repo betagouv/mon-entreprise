@@ -1,10 +1,10 @@
 import { batchUpdateSituation } from 'Actions/actions'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { Explicable } from './conversation/Explicable'
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './SimulationGoals'
 import { useEngine } from './utils/EngineContext'
@@ -141,9 +141,9 @@ function ActivitéMixte() {
 					onChange={(evt) => onMixteChecked(evt.target.checked)}
 				/>
 				&nbsp; Activité mixte
-				<Explicable>
-					<Markdown source={`## ${rule.title}\n ${rule.rawNode.description}`} />
-				</Explicable>
+				<ButtonHelp type="aide" title={rule.title}>
+					<Markdown source={rule.rawNode.description} />
+				</ButtonHelp>
 			</label>
 		</li>
 	)

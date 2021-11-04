@@ -1,18 +1,19 @@
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
-import { Condition } from 'Components/EngineValue'
-import { SimulationGoals, SimulationGoal } from 'Components/SimulationGoals'
-import { ThemeColorsContext } from 'Components/utils/colors'
-import Notifications from 'Components/Notifications'
-import Simulation from 'Components/Simulation'
-import StackedBarChart from 'Components/StackedBarChart'
-import { useDispatch } from 'react-redux'
-import { useEngine } from 'Components/utils/EngineContext'
 import { updateSituation } from 'Actions/actions'
 import { HiddenOptionContext } from 'Components/conversation/Question'
+import { Condition } from 'Components/EngineValue'
+import Notifications from 'Components/Notifications'
+import Simulation from 'Components/Simulation'
+import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
+import StackedBarChart from 'Components/StackedBarChart'
 import Warning from 'Components/ui/WarningBlock'
+import { ThemeColorsContext } from 'Components/utils/colors'
+import { useEngine } from 'Components/utils/EngineContext'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { H2 } from 'DesignSystem/typography/heading'
+import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 export default function DividendesSimulation() {
 	return (
@@ -63,40 +64,21 @@ function OptionBarèmeSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const dottedName = 'impôt . méthode de calcul' as DottedName
-	const currentOptionPFU = engine.evaluate(dottedName + ' . PFU').nodeValue
-	const currentOptionBarème = engine.evaluate(
-		dottedName + ' . barème standard'
-	).nodeValue
-
+	const currentOptionPFU = engine.evaluate(dottedName).nodeValue as string
 	return (
-		<span className="base ui__ small radio toggle">
-			<label>
-				<input
-					name={dottedName}
-					type="radio"
-					onChange={() => dispatch(updateSituation(dottedName, "'PFU'"))}
-					checked={!!currentOptionPFU}
-				/>
-				<span>
-					<Trans>
-						PFU (<i>"flat tax"</i>)
-					</Trans>
-				</span>
-			</label>
-			<label>
-				<input
-					name={dottedName}
-					type="radio"
-					onChange={() =>
-						dispatch(updateSituation(dottedName, "'barème standard'"))
-					}
-					checked={!!currentOptionBarème}
-				/>
-				<span>
-					<Trans>Impôt au barème</Trans>
-				</span>
-			</label>
-		</span>
+		<ToggleGroup
+			defaultValue={currentOptionPFU}
+			onChange={(value) => dispatch(updateSituation(dottedName, `'${value}'`))}
+		>
+			<Radio value="PFU">
+				<Trans>
+					PFU (<i>"flat tax"</i>)
+				</Trans>
+			</Radio>
+			<Radio value="barème standard">
+				<Trans>Impôt au barème</Trans>
+			</Radio>
+		</ToggleGroup>
 	)
 }
 

@@ -1,6 +1,6 @@
-export * as layout from './layout'
-export * as field from './field'
 export * as button from './buttons'
-export * as typography from './typography'
-
+export * as field from './field'
 export { GlobalStyle } from './global-style'
+export * as layout from './layout'
+export { default as Popover } from './Popover'
+export * as typography from './typography'
