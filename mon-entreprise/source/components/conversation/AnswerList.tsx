@@ -1,15 +1,15 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
-import Overlay from 'Components/Overlay'
+import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import Popover from 'DesignSystem/Popover'
+import { H2 } from 'DesignSystem/typography/heading'
+import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
-import Emoji from 'Components/utils/Emoji'
-import { H2 } from 'DesignSystem/typography/heading'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -27,38 +27,40 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	)
 
 	return (
-		<Overlay onClose={onClose} className="answer-list">
-			{!!answeredQuestions.length && (
-				<>
-					<H2>
-						<Emoji emoji="📋 " />
-						<Trans>Mes réponses</Trans>
-						<small css="margin-left: 2em; img {font-size: .8em}">
-							<Emoji emoji="🗑" />{' '}
-							<button
-								className="ui__ simple small button"
-								onClick={() => {
-									dispatch(resetSimulation())
-									onClose()
-								}}
-							>
-								<Trans>Tout effacer</Trans>
-							</button>
-						</small>
-					</H2>
-					<StepsTable {...{ rules: answeredQuestions, onClose }} />
-				</>
-			)}
-			{!!nextSteps.length && (
-				<>
-					<H2>
-						<Emoji emoji="🔮 " />
-						<Trans>Prochaines questions</Trans>
-					</H2>
-					<StepsTable {...{ rules: nextSteps, onClose }} />
-				</>
-			)}
-		</Overlay>
+		<Popover onClose={onClose} isDismissable>
+			<div className="answer-list">
+				{!!answeredQuestions.length && (
+					<>
+						<H2>
+							<Emoji emoji="📋 " />
+							<Trans>Mes réponses</Trans>
+							<small css="margin-left: 2em; img {font-size: .8em}">
+								<Emoji emoji="🗑" />{' '}
+								<button
+									className="ui__ simple small button"
+									onClick={() => {
+										dispatch(resetSimulation())
+										onClose()
+									}}
+								>
+									<Trans>Tout effacer</Trans>
+								</button>
+							</small>
+						</H2>
+						<StepsTable {...{ rules: answeredQuestions, onClose }} />
+					</>
+				)}
+				{!!nextSteps.length && (
+					<>
+						<H2>
+							<Emoji emoji="🔮 " />
+							<Trans>Prochaines questions</Trans>
+						</H2>
+						<StepsTable {...{ rules: nextSteps, onClose }} />
+					</>
+				)}
+			</div>
+		</Popover>
 	)
 }
 

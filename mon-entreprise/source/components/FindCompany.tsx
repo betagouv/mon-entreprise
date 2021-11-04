@@ -1,6 +1,5 @@
 import { useSetEntreprise } from 'Actions/companyStatusActions'
 import CompanyDetails from 'Components/CompanyDetails'
-import { H1 } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -29,9 +28,6 @@ export default function Search() {
 
 	return (
 		<>
-			<H1>
-				<Trans i18nKey="trouver.titre">Retrouver mon entreprise</Trans>
-			</H1>
 			<Body>
 				<Trans i18nKey="trouver.description">
 					Grâce à la base SIREN, les données publiques sur votre entreprise

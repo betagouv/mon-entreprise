@@ -5,13 +5,15 @@ import {
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
-import Overlay from 'Components/Overlay'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H2, H3, H5 } from 'DesignSystem/typography/heading'
+import { Button } from 'DesignSystem/buttons'
+import Popover from 'DesignSystem/Popover'
+import { H3, H5 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -369,70 +371,63 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 		dispatch(specifyIfDirigeantMajoritaire(DirigeantMajoritaire))
 		showDirigeantMajoritaireModal(false)
 	}
-
+	const { t } = useTranslation()
 	return (
 		<>
 			{autoEntrepreneurModal && (
 				<>
 					<ScrollToTop />
-					<Overlay>
-						<H2>
-							<Trans i18nKey="gérer.entreprise.auto">
-								Êtes-vous auto-entrepreneur ?{' '}
-							</Trans>
-						</H2>
+					<Popover
+						title={t('gérer.entreprise.auto', 'Êtes-vous auto-entrepreneur ?')}
+					>
 						<div className="ui__ answer-group">
-							<button
-								className="ui__ button"
-								onClick={() => handleAnswerAutoEntrepreneur(true)}
-							>
+							<Button onClick={() => handleAnswerAutoEntrepreneur(true)}>
 								<Trans>Oui</Trans>
-							</button>
-							<button
-								className="ui__ button"
-								onClick={() => handleAnswerAutoEntrepreneur(false)}
-							>
+							</Button>
+							<Button onClick={() => handleAnswerAutoEntrepreneur(false)}>
 								<Trans>Non</Trans>
-							</button>
+							</Button>
 						</div>
-					</Overlay>
+					</Popover>
 				</>
 			)}
 			{DirigeantMajoritaireModal && (
 				<>
 					<ScrollToTop />
-					<Overlay>
-						<Trans i18nKey="gérer.entreprise.dirigeant">
-							<H2>Êtes-vous dirigeant majoritaire ?</H2>
-							<p>
+					<Popover
+						title={t(
+							'gérer.entreprise.dirigeant.titre',
+							'Êtes-vous dirigeant majoritaire ?'
+						)}
+					>
+						<Body>
+							<Trans i18nKey="gérer.entreprise.dirigeant.description">
 								Si vous êtes administrateur majoritaire ou si vous faites partie
 								d'un conseil d'administration majoritaire, vous n'aurez pas le
 								même régime de sécurité sociale que si vous êtes minoritaire.
-							</p>
-						</Trans>
+							</Trans>
+						</Body>
 						<div className="ui__ answer-group">
-							<button
-								className="ui__ button"
-								onClick={() => handleAnswerDirigeantMajoritaire(true)}
-							>
+							<Button onClick={() => handleAnswerDirigeantMajoritaire(true)}>
 								<Trans>Oui</Trans>
-							</button>
-							<button
-								className="ui__ button"
-								onClick={() => handleAnswerDirigeantMajoritaire(false)}
-							>
+							</Button>
+							<Button onClick={() => handleAnswerDirigeantMajoritaire(false)}>
 								<Trans>Non</Trans>
-							</button>
+							</Button>
 						</div>
-					</Overlay>
+					</Popover>{' '}
 				</>
 			)}
 			{searchModal && (
 				<>
 					<ScrollToTop />
-					<Overlay onClose={() => showSearchModal(false)}>
+					<Popover
+						onClose={() => showSearchModal(false)}
+						isDismissable
+						title={t('trouver.titre', 'Retrouver mon entreprise')}
+					>
 						<FindCompany />
-					</Overlay>
+					</Popover>
 				</>
 			)}
 			{company ? (

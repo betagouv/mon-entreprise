@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import Aide from 'Components/conversation/Aide'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
@@ -204,8 +203,6 @@ export default function AideDéclarationIndépendant() {
 			) : (
 				<ResultatsSimples />
 			)}
-
-			<Aide />
 		</>
 	)
 }

@@ -28,7 +28,7 @@ const StyledRouterLink = styled(RouterLink)`
 	${baseLinkStyle}
 `
 
-type LinkProps =
+type LinkProps = (
 	| {
 			href: string
 			children: ReactNode
@@ -41,11 +41,14 @@ type LinkProps =
 			to: string
 			children: ReactNode
 	  }
+) & { linkType?: 'button' | 'anchor' }
 
 export const Link = (props: LinkProps) => {
-	if ('href' in props)
-		return <AnchorLink {...props} target="_blank" rel="noreferrer" />
-	if ('onClick' in props) return <ButtonLink {...props} />
+	const { linkType, ...otherProps } = props
+	if ('href' in props || linkType === 'anchor')
+		return <AnchorLink {...otherProps} target="_blank" rel="noreferrer" />
+	if ('onClick' in props || linkType === 'button')
+		return <ButtonLink {...otherProps} />
 	if ('to' in props) return <StyledRouterLink {...props} />
 	else {
 		return null

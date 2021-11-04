@@ -1,10 +1,13 @@
 import { BlobProvider } from '@react-pdf/renderer'
-import Overlay from 'Components/Overlay'
-import { Checkbox } from 'DesignSystem/field'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
+import { Button } from 'DesignSystem/buttons'
+import { Checkbox, TextField } from 'DesignSystem/field'
+import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
@@ -49,8 +52,8 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			<Checkbox
 				name="certified"
 				id="certified"
-				onChange={(isSelected) => setCertified(isSelected)}
-				isSelected={isCertified}
+				onChange={(checked) => setCertified(checked)}
+				defaultValue={isCertified}
 				label="Je certifie l’exactitude des informations communiquées ci-dessus."
 			/>
 			<p className="ui__ notice">
@@ -58,16 +61,11 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 				titre de l’article 441-1 du code pénal.
 			</p>
 
-			<label>
-				<small>Fait à :</small>
-				<br />
-				<input
-					type="text"
-					className="ui__"
-					value={place}
-					onChange={(e) => setPlace(e.target.value)}
-				/>
-			</label>
+			<TextField
+				defaultValue={place}
+				onChange={(value) => setPlace(value)}
+				label="Fait à"
+			/>
 			{IS_TOUCH_DEVICE && (
 				<div>
 					<small>
@@ -100,31 +98,19 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					</div>
 				</div>
 			)}
-			<div>
-				<button
-					className="ui__ cta plain button"
-					disabled={!place || !isCertified}
-					onClick={() => toggleDownloadLink(true)}
+			<p>
+				<PopoverWithTrigger
+					title="Votre demande de mobilité"
+					trigger={<Button>Générer la demande</Button>}
 				>
-					Générer la demande
-				</button>
-			</div>
-			<p className="ui__ notice">
-				<strong>Vie privée :</strong> aucune donnée n'est transmise à nos
-				serveurs, la génération du formulaire se fait entièrement depuis votre
-				navigateur.
-			</p>
-			{showDownloadLink && (
-				<Overlay onClose={() => toggleDownloadLink(false)}>
-					<H2>Votre demande de mobilité</H2>
-					<p>
+					<Body>
 						Afin d’examiner votre situation au regard des règlements
 						communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez
 						envoyer ce document à{' '}
-						<a href="mailto:mobilite-internationale@urssaf.fr">
+						<Link href="mailto:mobilite-internationale@urssaf.fr">
 							mobilite-internationale@urssaf.fr
-						</a>
-					</p>
+						</Link>
+					</Body>
 					<Suspense
 						fallback={
 							<blockquote>
@@ -190,8 +176,13 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 							}
 						</LazyBlobProvider>
 					</Suspense>
-				</Overlay>
-			)}
+				</PopoverWithTrigger>
+			</p>
+			<SmallBody>
+				<strong>Vie privée :</strong> aucune donnée n'est transmise à nos
+				serveurs, la génération du formulaire se fait entièrement depuis votre
+				navigateur.
+			</SmallBody>
 		</>
 	)
 }

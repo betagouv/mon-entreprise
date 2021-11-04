@@ -1,11 +1,13 @@
-import Overlay from 'Components/Overlay'
 import {
 	ThemeColorsContext,
-	ThemeColorsProvider,
+	ThemeColorsProvider
 } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import urssafLogo from 'Images/Urssaf.svg'
 import React, {
 	Suspense,
@@ -13,9 +15,9 @@ import React, {
 	useEffect,
 	useMemo,
 	useRef,
-	useState,
+	useState
 } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
 import Iframes from '../Iframes'
@@ -257,40 +259,42 @@ export default function Integration() {
 }
 
 function EnSavoirPlusCSP() {
-	const [opened, setOpened] = useState(false)
+	const { t } = useTranslation()
 	return (
-		<>
-			<button onClick={() => setOpened(true)} className="ui__ link-button">
-				<Trans>En savoir plus</Trans>
-			</button>
-			{opened && (
-				<Overlay onClose={() => setOpened(false)} style={{ textAlign: 'left' }}>
-					<Trans i18nKey="pages.développeurs.iframe.csp-1">
-						<H3>Intégration iframe et politique de sécurité de contenu</H3>
-						<p>
-							L'erreur ci-dessous qui s'affiche dans la console est liée à la
-							communication entre la page parente et l'iframe pour le
-							redimensionnement automatique au contenu affiché.
-						</p>
-					</Trans>
-					<blockquote>
-						Failed to execute 'postMessage' on 'DOMWindow': The target origin
-						provided ('https://mon-entreprise.fr') does not match the recipient
-						window's origin
-					</blockquote>
-					<p>
-						<Trans i18nKey="pages.développeurs.iframe.csp-2">
-							Vous pouvez la corriger avec la politique suivante :
-						</Trans>
-					</p>
-					<code>
-						script-src 'self' 'unsafe-inline' https://mon-entreprise.fr;
-						<br />
-						img-src 'self' https://mon-entreprise.fr;
-					</code>
-				</Overlay>
+		<PopoverWithTrigger
+			trigger={
+				<Link linkType="button">
+					<Trans>En savoir plus</Trans>
+				</Link>
+			}
+			title={t(
+				'pages.développeurs.iframe.csp-title',
+				'Intégration iframe et politique de sécurité de contenu'
 			)}
-		</>
+		>
+			<Trans i18nKey="pages.développeurs.iframe.csp-1">
+				<Body>
+					L'erreur ci-dessous qui s'affiche dans la console est liée à la
+					communication entre la page parente et l'iframe pour le
+					redimensionnement automatique au contenu affiché.
+				</Body>
+			</Trans>
+			<blockquote>
+				Failed to execute 'postMessage' on 'DOMWindow': The target origin
+				provided ('https://mon-entreprise.fr') does not match the recipient
+				window's origin
+			</blockquote>
+			<Body>
+				<Trans i18nKey="pages.développeurs.iframe.csp-2">
+					Vous pouvez la corriger avec la politique suivante :
+				</Trans>
+			</Body>
+			<code>
+				script-src 'self' 'unsafe-inline' https://mon-entreprise.fr;
+				<br />
+				img-src 'self' https://mon-entreprise.fr;
+			</code>
+		</PopoverWithTrigger>
 	)
 }
 

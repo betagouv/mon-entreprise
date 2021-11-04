@@ -1,9 +1,8 @@
-import { H1 } from 'DesignSystem/typography/heading'
-import { useEffect, useRef, useState } from 'react'
-import { Trans } from 'react-i18next'
+import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
+import { useEffect, useRef } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
-import Overlay from './Overlay'
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
 const SearchTriggerButton = styled.button`
@@ -21,26 +20,7 @@ const SearchTriggerButton = styled.button`
 export default function SearchButton() {
 	const { pathname } = useLocation()
 	const pathnameRef = useRef(pathname)
-	const [visible, setVisible] = useState(false)
-
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (!(e.ctrlKey && e.key === 'k')) return
-			setVisible(true)
-
-			e.preventDefault()
-			return false
-		}
-
-		window.addEventListener('keydown', handleKeyDown)
-
-		return () => {
-			window.removeEventListener('keydown', handleKeyDown)
-		}
-	}, [])
-
-	const close = () => setVisible(false)
-
+	const { t } = useTranslation()
 	useEffect(() => {
 		if (pathname !== pathnameRef.current) {
 			pathnameRef.current = pathname
@@ -49,38 +29,31 @@ export default function SearchButton() {
 	}, [pathname])
 
 	return (
-		<>
-			{visible && (
-				<Overlay onClose={close}>
-					<H1>
-						<Trans>Que cherchez-vous ?</Trans>
-					</H1>
-					<SearchRulesAndSimulators />
-				</Overlay>
-			)}
-
-			<SearchTriggerButton
-				onClick={() => setVisible(true)}
-				id="search-display-button"
-			>
-				<svg
-					style={{ height: '2rem' }}
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						strokeLinecap="square"
-						strokeLinejoin="round"
-						strokeWidth={3}
-						d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-					/>
-				</svg>
-				<div className="sr-only">
-					<Trans>Rechercher</Trans>
-				</div>
-			</SearchTriggerButton>
-		</>
+		<PopoverWithTrigger
+			title={t('Que cherchez-vous ?')}
+			trigger={
+				<SearchTriggerButton id="search-display-button">
+					<svg
+						style={{ height: '2rem' }}
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="square"
+							strokeLinejoin="round"
+							strokeWidth={3}
+							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+						/>
+					</svg>
+					<div className="sr-only">
+						<Trans>Rechercher</Trans>
+					</div>
+				</SearchTriggerButton>
+			}
+		>
+			<SearchRulesAndSimulators />
+		</PopoverWithTrigger>
 	)
 }

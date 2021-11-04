@@ -16,7 +16,6 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../../ATInternetTracking'
-import Aide from './Aide'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
 
@@ -62,7 +61,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<Aide />
 			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<FadeIn>
 					<div className="step">
