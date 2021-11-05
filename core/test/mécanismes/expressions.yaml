@@ -1,0 +1,321 @@
+entier:
+  formule: 5
+  exemples:
+    - valeur attendue: 5
+
+nombre décimal:
+  formule: 5.4
+  exemples:
+    - valeur attendue: 5.4
+
+addition de nombres:
+  formule: 28 + 1.1
+  exemples:
+    - valeur attendue: 29.1
+
+addition de plusieurs nombres:
+  formule: 27 + 1.1 + 0.9
+  exemples:
+    - valeur attendue: 29
+
+addition et produit:
+  formule: 27 + 1 * 2
+  exemples:
+    - valeur attendue: 29
+
+parenthèses:
+  formule: 14.5 * (6 - 4)
+  exemples:
+    - valeur attendue: 29
+
+salaire de base:
+  unité: $
+
+contrat: oui
+contrat . salaire de base:
+
+produit:
+  formule: salaire de base * 3
+  unité attendue: $
+  exemples:
+    - situation:
+        salaire de base: 1000
+      valeur attendue: 3000
+
+multiplication et variable avec espace:
+  formule: contrat . salaire de base * 3
+  exemples:
+    - situation:
+        contrat . salaire de base: 1000
+      valeur attendue: 3000
+
+taux:
+  unité: '%'
+
+soustraction:
+  unité: '%'
+  formule: 100% - taux
+  unité attendue: '%'
+  exemples:
+    - situation:
+        taux: 89
+      valeur attendue: 11
+
+addition:
+  formule: salaire de base + 2000
+  unité attendue: $
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 5000
+
+revenus fonciers:
+
+addition bis:
+  formule: salaire de base + revenus fonciers
+  exemples:
+    - situation:
+        salaire de base: 3000
+        revenus fonciers: 2000
+      valeur attendue: 5000
+
+division:
+  formule: salaire de base / 3
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 1000
+
+division deux:
+  formule: 2000 / salaire de base
+  unité attendue: /$
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 0.66667
+
+nombre de personnes:
+  unité: personne
+
+division trois:
+  formule: salaire de base / nombre de personnes
+  unité attendue: $/personne
+  exemples:
+    - situation:
+        salaire de base: 3000
+        nombre de personnes: 10
+      valeur attendue: 300
+
+comparaison stricte:
+  formule: salaire de base < 3001
+  exemples:
+    - nom: inférieur
+      situation:
+        salaire de base: 3000
+      valeur attendue: true
+    - nom: égal
+      situation:
+        salaire de base: 3001
+      valeur attendue: false
+    - nom: supérieur
+      situation:
+        salaire de base: 3002
+      valeur attendue: false
+
+comparaison non stricte:
+  formule: salaire de base <= 3000
+  exemples:
+    - nom: inférieur
+      situation:
+        salaire de base: 2999.999
+      valeur attendue: true
+    - nom: égal
+      situation:
+        salaire de base: 3000
+      valeur attendue: true
+    - nom: supérieur
+      situation:
+        salaire de base: 3000.1
+      valeur attendue: false
+
+plafond sécurité sociale:
+  unité: $
+
+CDD:
+
+CDD . poursuivi en CDI:
+
+variable booléene:
+  formule: CDD . poursuivi en CDI
+  exemples:
+    - situation:
+        CDD . poursuivi en CDI: oui
+      valeur attendue: true
+    - situation:
+        CDD . poursuivi en CDI: non
+      valeur attendue: false
+
+booléen:
+  formule: oui
+  exemples:
+    - valeur attendue: true
+
+négation:
+  formule: CDD . poursuivi en CDI != oui
+  exemples:
+    - situation:
+        CDD . poursuivi en CDI: oui
+      valeur attendue: false
+    - situation:
+        CDD . poursuivi en CDI: non
+      valeur attendue: true
+
+pourcentage:
+  formule: 38.1%
+  exemples:
+    - valeur attendue: 38.1
+      unité attendue: '%'
+      #- test: variable modifiée temporellement
+
+multiplication et pourcentage:
+  formule: 38.1% * salaire de base
+  unité: $
+  exemples:
+    - situation:
+        salaire de base: 1000
+      valeur attendue: 381
+      unité attendue: $
+
+litéral avec unité:
+  formule: 1 jour
+  unité attendue: jour
+
+litéral avec unité €:
+  formule: 2 €
+  unité attendue: €
+
+litéral avec unité complexe:
+  formule: 1 €/jour
+  unité attendue: €/jour
+
+inférence d'unité littéraux:
+  formule: 2 €/jour * 2 jour
+  valeur attendue: 4
+  unité attendue: €
+
+catégorie d'activité:
+  formule:
+    une possibilité:
+      possibilités:
+        - commerciale
+        - artisanale
+
+catégorie d'activité . artisanale:
+catégorie d'activité . commerciale:
+
+test de possibilités:
+  formule: catégorie d'activité = 'artisanale'
+  exemples:
+    - situation:
+        catégorie d'activité: "'artisanale'"
+      valeur attendue: true
+    - situation:
+        catégorie d'activité: "'commerciale'"
+      valeur attendue: false
+
+revenu:
+  unité: €/mois
+
+unité de variable modifiée:
+  formule: revenu
+  unité: k€/an
+  exemples:
+    - situation:
+        revenu: 1000
+      valeur attendue: 12
+
+opérations multiples:
+  formule: 4 * plafond sécurité sociale * 10%
+  unité: $
+  exemples:
+    - situation:
+        plafond sécurité sociale: 1000
+      valeur attendue: 400
+
+comparaison et opération:
+  formule: salaire de base < 4 * plafond sécurité sociale
+  exemples:
+    - situation:
+        salaire de base: 1000
+        plafond sécurité sociale: 3500
+      valeur attendue: true
+
+nombres négatifs:
+  formule: -5 * -10
+  exemples:
+    - valeur attendue: 50
+
+négation de variable:
+  formule: '- salaire de base'
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -3000
+
+négation d'expressions:
+  formule: '- (10 * 3 + 5)'
+  exemples:
+    - valeur attendue: -35
+
+variables négatives dans expression:
+  formule: 10% * (- salaire de base)
+  unité: $
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -300
+
+expression dans situation:
+  formule: 10% * salaire de base
+  unité: $
+  exemples:
+    - situation:
+        salaire de base: 12 * 100
+      unité attendue: $
+      valeur attendue: 120
+
+salaire:
+  unité: €/mois
+expression dans situation 2:
+  formule: 10% * salaire
+  unité: €/mois
+  exemples:
+    - situation:
+        salaire: 48k€/an
+      unité attendue: €/mois
+      valeur attendue: 400
+
+chaine de charactère:
+  formule: "'loup y es-tu ? 🐺'"
+  exemples:
+    - valeur attendue: loup y es-tu ? 🐺
+    - situation:
+        chaine de charactère: "'je suis là !'"
+      valeur attendue: je suis là !
+    - situation:
+        chaine de charactère: "'je t'y vois'"
+      valeur attendue: je t'y vois
+
+a: oui
+b: 5
+a . b: b + 5
+a . c: b + 5
+désambiguation du nom de règle 1:
+  formule: a . b
+  exemples:
+    - valeur attendue: 10
+
+désambiguation du nom de règle 2:
+  formule: a . c
+  exemples:
+    - valeur attendue: 15

@@ -1,0 +1,65 @@
+assiette:
+  unité: €
+
+Grille:
+  formule:
+    unité: €
+    grille:
+      assiette: assiette
+      tranches:
+        - montant: 50
+          plafond: 1000 €
+        - montant: 170
+          plafond: 2000 €
+        - montant: 400
+
+  unité attendue: €
+  exemples:
+    - nom: 'petite assiette'
+      situation:
+        assiette: 200
+      valeur attendue: 50
+    - nom: 'moyenne assiette'
+      situation:
+        assiette: 1500
+      valeur attendue: 170
+    - nom: 'grande assiette'
+      situation:
+        assiette: 10000
+      valeur attendue: 400
+    - nom: 'assiette limite'
+      situation:
+        assiette: 999.3
+      valeur attendue: 50
+
+plafond:
+  unité: €
+Grille avec valeur manquante:
+  formule:
+    unité: €
+    grille:
+      assiette: assiette
+      tranches:
+        - montant: 100
+          plafond: plafond
+        - montant: 200
+          plafond: 2000 €
+        - montant: 300
+          plafond: 4000 €
+
+  unité attendue: €
+  exemples:
+    - nom: 'variable manquante'
+      situation:
+        assiette: 1000
+      variables manquantes:
+        - plafond
+      valeur attendue: null
+    - nom: 'assiette non concernée par variable manquante'
+      situation:
+        assiette: 3000
+      valeur attendue: 300
+    - nom: 'assiette au delà du plafond'
+      situation:
+        assiette: 5000
+      valeur attendue: false

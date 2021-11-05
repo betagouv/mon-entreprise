@@ -1,0 +1,554 @@
+applicable si:
+  chainable: oui
+  description: >-
+    Renvoie `non` si la condition est égale à `non`. Renvoie la valeur sinon.
+
+    Permet de désactiver une règle ou une valeur.
+
+  retourne: Valeur | non
+  exemples:
+    base: >-
+      ancienneté: 4 mois
+      prime de vacances:
+        applicable si: ancienneté >= 1 an
+        valeur: 200€
+
+non applicable si:
+  chainable: oui
+  description: >-
+    Renvoit `non` si la condition n'est pas égale à `non`
+
+    Permet de désactiver une règle ou une valeur.
+
+  retourne: Valeur | non
+  exemples:
+    base: >-
+      ancienneté: 4 mois
+      prime de vacances:
+        non applicable si: ancienneté < 1 an
+        valeur: 200€
+
+une de ces conditions:
+  description: >-
+    Renvoie `oui` si l'une des règles listées est _applicable_.
+
+
+    Équivaut à un `ou` logique.
+  retourne: Booléen
+  exemples:
+    base: >-
+      âge: 17 ans
+      mineur émancipé: oui
+      peut voter:
+        une de ces conditions:
+          - âge >= 18 ans
+          - mineur émancipé
+
+toutes ces conditions:
+  description: >-
+    Renvoie `oui` si toutes toutes les règles listées sont _applicables_.
+
+
+    Équivaut à un `et` logique.
+  argument:
+    - '*'
+    - ...
+  exemples:
+    base: >-
+      âge: 17 ans
+      citoyenneté française: oui
+      peut voter:
+        toutes ces conditions:
+          - citoyenneté française
+          - âge >= 18 ans
+
+produit:
+  description: >-
+    C'est une multiplication adaptée pour exprimer au mieux les cotisations.
+
+
+    Sa propriété `assiette` est multipliée par un pourcentage `taux`, ou par un
+    `facteur` quand ce nom est plus approprié.
+
+
+    La multiplication peut être plafonnée : ce plafond sépare l'assiette en
+    deux, et la partie au-dessus du plafond est tout simplement ignorée. Dans ce
+    cas, elle se comporte comme une barème en taux marginaux à deux tranches, la
+    deuxième au taux nul et allant de `plafond` à l'infini.
+  argument:
+    assiette: Valeur à multiplier
+    taux: Taux à appliquer
+    facteur: Facteur multiplicatif
+    plafond: Plafond au-dessus duquel le taux appliqué est nul
+
+  exemples:
+    base: >-
+      cotisation:
+        produit:
+          assiette: 2000 €/mois
+          taux: 5%
+
+    assiette plafonnée: >-
+      plafond sécurité sociale: 3000 €/mois
+      assiette cotisation: 15000 €/mois
+      chômage:
+        produit:
+          assiette: assiette cotisation
+          plafond: 400% * plafond sécurité sociale
+          taux: 4%
+
+variations:
+  description: >-
+    Contient une liste de conditions (`si`) et leurs conséquences associées
+    (`alors`), ainsi qu'un cas par défaut (`sinon`).
+
+
+    Pour la première condition vraie dans la liste, on retient la valeur qui lui
+    est associée.
+
+
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement
+    `non`.
+
+
+    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme avec des attributs,
+    tel que `produit` ou `barème`.
+  arguments:
+    - si: condition à vérifier
+      alors: consequence évaluée si la condition est vrai
+    - ...
+    - sinon: consequence évaluée si aucune des conditions précédente n'était applicable
+  exemples:
+    base: >-
+      taux réduit: oui
+
+      taux allocation familiales:
+        variations:
+          - si: taux réduit
+            alors: 3.45%
+          - sinon: 5.25%
+
+    dans un produit: >-
+      assiette cotisation: 2300 €/mois
+
+      taux réduit: oui
+
+      allocation familiales:
+        produit:
+          assiette: assiette cotisation
+          variations:
+            - si: taux réduit
+              alors:
+                taux: 3.45%
+            - sinon:
+                taux: 5.25%
+
+somme:
+  description: >-
+    Somme de chaque terme de la liste.
+
+
+    Si un des termes n'est pas applicable, il vaut zéro.
+
+
+    On peut retrancher des valeurs grâce à l'opérateur unaire `-`
+  arguments:
+    - '*'
+    - ...
+
+  exemples:
+    base: >-
+      exemple:
+        somme:
+          - 15.89 €
+          - 12% * 14 €
+          - (-20 €)
+    terme non applicable: >-
+      a: 50 €
+      b:
+        applicable si: non
+        valeur: 20 €
+
+      somme:
+        somme:
+          - a
+          - b
+          - 40 €
+
+le maximum de:
+  description: >-
+    Renvoie la valeur numérique de la liste de propositions fournie qui est la
+    plus grande.
+
+
+    Pour ajouter un plancher à une valeur, préférer l'utilisation du
+    mécanisme `encadrement`.
+  exemples:
+    base: >-
+      max:
+        le maximum de:
+          - 50
+          - 100
+
+le minimum de:
+  description: >-
+    Renvoie la valeur numérique de la liste de propositions fournie qui est la
+    plus petite.
+
+
+    Pour plafonner une valeur, préférer l'utilisation du mécanisme `encadrement`.
+  exemples:
+    base: >-
+      min:
+        le minimum de:
+          - 50
+          - 100
+
+arrondi:
+  chainable: oui
+  description: >-
+    Arrondit à l'entier le plus proche, ou à une précision donnée.
+  exemples:
+    base: >-
+      arrondi:
+        arrondi: oui
+        valeur: 12.45
+    nombre de décimales: >-
+      arrondi:
+        arrondi: 2 décimales
+        valeur: 2/3
+
+recalcul:
+  description: >-
+    Relance le calcul d'une règle dans une situation différente de la situation
+    courante. Permet par exemple de calculer le montant des cotisations au niveau du
+    SMIC, même si le salaire est plus élevé dans la situation actuelle.
+
+  exemples:
+    base: >-
+      brut: 2000€
+
+      cotisations:
+        produit:
+          assiette: brut
+          taux: 20%
+
+      cotisations pour un SMIC:
+        recalcul:
+          règle: cotisations
+          avec:
+            brut: 1500 €
+
+barème:
+  description: C'est un barème en taux marginaux, mécanisme de calcul connu de
+    par son utilisation dans le calcul de l'impôt sur le revenu.
+
+    L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un
+    taux spécifique et enfin additionnées pour donner le résultat.
+
+    Les tranches sont souvent exprimées sous forme de facteurs d'une variable
+    que l'on appelle `multiplicateur`, par exemple une fois le plafond de la
+    sécurité sociale.
+  exemples:
+    sans multiplicateur: >-
+      revenu imposable: 54126 €
+      impôt sur le revenu:
+        barème:
+          assiette: revenu imposable
+          tranches:
+            - taux: 0%
+              plafond: 9807 €
+            - taux: 14%
+              plafond: 27086 €
+            - taux: 30%
+              plafond: 72617 €
+            - taux: 41%
+              plafond: 153783 €
+            - taux: 45%
+
+    avec multiplicateur: >-
+      retraite de base:
+        barème:
+          assiette: assiette retraite
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - taux: 17.75%
+              plafond: 1
+            - taux: 0.6%
+        arrondi: oui
+
+grille:
+  description: >-
+    C'est un barème sous la forme d'une grille de correspondance simple. C'est
+    le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non
+    personnalisé.
+
+    Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette
+    qui correspond à la tranche, et de selectionner le montant associé à
+    l'assiette.
+  exemples:
+    grille avec multiplicateur et unité: >-
+      SMIC horaire: 10 €/heure
+      revenu moyen: 1200€/an
+      trimestres validés:
+        grille:
+          unité: trimestres validés/an
+          assiette: revenu moyen
+          multiplicateur: SMIC horaire
+          tranches:
+            - montant: 0
+              plafond: 150 heures/an
+            - montant: 1
+              plafond: 300 heures/an
+            - montant: 2
+              plafond: 450 heures/an
+            - montant: 3
+              plafond: 600 heures/an
+            - montant: 4
+
+taux progressif:
+  description: >-
+    Ce mécanisme permet de calculer un taux progressif. On spécifie pour chaque
+    tranche le plafond et le taux associé. Le taux effectif renvoyé est calculé
+    en lissant la différence de taux entre la borne inférieure et supérieure de
+    l'assiette.
+
+
+    Par exemple, si nous nous avons les tranches suivantes :
+
+
+    - taux: 50% / plafond: 0
+
+    - taux: 100% / plafond: 1000
+
+
+    Pour une assiette de 500, le taux retourné sera 75%, car il correspond au
+    taux situé à la moitié de la tranche correspondante.
+  exemples:
+    base: >-
+      chiffre d'affaires: 30000 €/an
+      plafond: 3000 €/mois
+      taux réduction de cotisation:
+        taux progressif:
+          assiette: chiffre d'affaires
+          multiplicateur: plafond
+          tranches:
+            - taux: 100%
+              plafond: 75%
+            - taux: 0%
+              plafond: 100%
+
+composantes:
+  description: >-
+    Beaucoup de cotisations sont composées de deux parties qui partagent la
+    méthode de calcul mais diffèrent selons certains paramètres. Pour ne pas
+    définir deux variables quasi-redondantes, on utilise ce mécanisme.
+
+    Cela permet d'avoir une écriture factorisée, plus facile à lire.
+
+    Dans les calculs, `composantes` se comporte **exactement comme une somme**.
+    La documentation, elle, sera adaptée pour montrer chaque composante.
+
+    Il est possible par exemple pour le mécanisme `produit` de garder en
+    commun l'assiette, et de déclarer des composantes pour le taux.
+
+    Chaque composante peut également contenir un champs `attributs` de type objet
+    contenant les mécanismes chainés à appliquer à la composante en question.
+
+    Lorsque l'on utilise l'attribut `nom`, cela aboutit à la définition de règles
+    imbriquées pour chacun des termes de la somme.
+
+  exemples:
+    base: >-
+      composante:
+        produit:
+          assiette: assiette de base
+          composantes:
+            - taux: 2%
+            - taux: 4%
+              plafond: plafond sécurité sociale
+
+    Cotisations: >-
+      cotisation 1:
+        produit:
+          assiette: assiette de base
+          composantes:
+            - attributs:
+                nom: employeur
+              taux: 5%
+            - attributs:
+                nom: salarié
+              taux: 1%
+
+      cotisations salariales :
+        somme:
+          - cotisation 1 . salarié
+          # ...
+    TVA: >-
+      prix:
+        produit:
+          assiette: 50€
+          composantes:
+            - attributs:
+                nom: HT
+            - attributs:
+                nom: TVA
+              taux: 20%
+
+      vérification:
+        prix = prix . HT + prix . TVA
+
+abattement:
+  chainable: oui
+  description: >-
+    Permet de réduire le montant d'une valeur.
+
+    Le résultat vaudra toujours au moins zéro, y compris quand le montant de l'abattement est plus grand que le montant abattu.
+
+    Il est possible d'utiliser le mécanisme `abattement` de deux manières :
+      - soit en indiquant un montant de la même unité que la valeur, qui lui sera alors soustrait
+      - soit en indiquant un pourcentage qui sera utilisé pour calculer l'abattement de manière relative
+  exemples:
+    abattement simple: >-
+      revenu imposable:
+        valeur: 10000€
+        abattement: 2000€
+    abattement supérieur à la valeur: >-
+      revenu imposable:
+        valeur: 1000€
+        abattement: 2000€
+    abattement relatif: >-
+      revenu imposable:
+        valeur: 2000€
+        abattement: 10%
+
+plancher:
+  chainable: oui
+  description: Permet d'ajouter un plancher à une valeur.
+  exemples:
+    base: >-
+      revenus: -500€
+      assiette des cotisations:
+        valeur: revenus
+        plancher: 0 €
+plafond:
+  chainable: oui
+  description: Permet de plafonner une valeur.
+  exemples:
+    base: >-
+      salaire: 1300€/mois
+      déduction fiscale:
+        valeur: salaire * 10%
+        plafond: 5000 €/an
+durée:
+  description: Permet d'obtenir le nombre de jours entre deux dates
+  exemples:
+    base: >-
+      date d'embauche: 14/04/2008
+      ancienneté en fin d'année:
+        unité: an
+        durée:
+          depuis: date d'embauche
+          jusqu'à: 31/12/2020
+
+unité:
+  chainable: oui
+  description: |
+    Permet de convertir explicitement une unité.
+
+    Affiche un avertissement si la conversion n'est pas possible à cause d'unités incompatibles.
+
+  exemples:
+    base: >-
+      salaire:
+        valeur: 35 k€/an
+        unité: €/mois
+
+par défaut:
+  chainable: oui
+  description: |
+    Permet de donner une valeur par défaut pour le calcul, sans influer sur les variables manquantes retournées.
+
+    Utile dans le cas d'une situation incomplète où l'on veut quand même retourner une première estimation.
+
+  exemples:
+    base: >-
+      prix TTC:
+        assiette: prix HT * (100% + TVA)
+      TVA:
+        par défaut: 20%
+
+synchronisation:
+  description: >-
+    Permet de récupérer certaines informations, telles que les
+    codes postaux des villes, à partir d'APIs externes, telles que l'[API
+    des communes de France](https://geo.api.gouv.fr/decoupage-administratif/communes).
+
+
+    Attention : ce mécanisme est encore en cours de développement, et sa syntaxe
+    n'est pas stable. Se référer aux exemples existants.
+
+inversion numérique:
+  chainable: oui
+  description: >-
+    Il est souhaitable de rédiger les règles de calcul
+    en publicodes de la même façon qu'elles sont décrites dans la loi ou les
+    interprétations administratives ou juridiques existantes. En conséquence,
+    certaines variables n'auront donc pas de méthode de calcul clairement
+    explicitée, il s'agira donc de la déduire des autres valeurs renseignées.
+
+
+    De façon simplifiée, il s'agira donc, à partir d'une règle existante
+    explicitant `y = ƒ(x)` de calculer `x` à partir de `y`.
+
+
+    L'inversion numérique permet d'estimer la valeur de la variable en question
+    au plus près à partir d'un des _objectifs_, listés dans la propriété `avec`.
+    Il faut alors renseigner une valeur cible pour ces objectifs.
+
+
+    L'algorithme utilisé est la [méthode de
+    Brent](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Brent). L'idée générale
+    est de prendre une valeur au hasard pour la variable en question, et
+    d'améliorer mathématiquement le choix jusqu'à ce que les valeurs cibles
+    soient toutes suffisamment proches des objectifs.
+
+
+    Si on demande au moteur la valeur d'une variable qui a pour formule une
+    inversion, il va vérifier qu'une des variables `avec` a bien une valeur
+    (calculée ou saisie), et procéder à l'inversion décrite plus haut à partir
+    de celle-ci. Sinon, ces possibilités d'inversions seront listées comme
+    manquantes.
+
+résoudre la référence circulaire:
+  description: |
+    Active le calcul itératif pour trouver la valeur de la règle qui résout
+    la référence circulaire.
+
+    Il est possible pour une règle de se référencer elle-même. Par défaut, le
+    moteur considère qu'il s'agit d'un cycle non voulu, et renvoie 'null' comme valeur
+    pour la règle en question, en affichant un avertissement.
+
+    Mais dans certains cas, la formule est bonne et le cycle est voulu. La valeur de la
+    règle attendue est donc celle qui résout l'équation obtenue via la référence cyclique.
+
+    Lorsque l'on active cette fonctionnalité, le moteur va procéder par essai-erreur jusqu'à
+    trouver cette valeur.
+
+    Note : la résolution de cycle est coûteuse en temps de calcul. Il faut donc veiller à
+    ne pas la cumuler avec l'évaluation d'un autre mécanisme coûteux comme l'inversion numérique
+    par exemple.
+
+  exemples:
+    base: >-
+      x:
+        valeur: 4 * x - 5
+        résoudre la référence circulaire: oui
+    calcul du revenu professionnel: >-
+      chiffre d'affaires: 10000 €/an
+
+      cotisations: 25% * revenu professionnel
+
+      revenu professionnel:
+        valeur: chiffre d'affaires - cotisations
+        résoudre la référence circulaire: oui

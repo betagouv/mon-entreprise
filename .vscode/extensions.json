@@ -1,9 +1,0 @@
-{
-	"recommendations": [
-		"esbenp.prettier-vscode",
-		"ban.spellright",
-		"jpoissonnier.vscode-styled-components",
-		"bungcip.better-toml",
-		"mikestead.dotenv"
-	]
-}
