@@ -3,8 +3,13 @@ import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { H4, H5 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
-import { ASTNode, formatValue, ParsedRules, reduceAST } from 'publicodes'
-import { RuleNode } from 'publicodes/dist/types/rule'
+import {
+	ASTNode,
+	formatValue,
+	ParsedRules,
+	reduceAST,
+	RuleNode,
+} from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ExplicableRule } from './conversation/Explicable'

@@ -1,8 +1,8 @@
-import { Evaluation } from 'publicodes/dist/types/AST/types'
+import { TextField } from 'DesignSystem/field'
+import { Evaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
 import { InputProps } from './RuleInput'
-import { TextField } from 'DesignSystem/field'
 
 export default function TextInput({
 	onChange,

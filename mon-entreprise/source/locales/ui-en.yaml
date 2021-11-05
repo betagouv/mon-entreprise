@@ -777,12 +777,210 @@ gérer:
     contributions and taxes. Anticipate their amounts thanks to simulators
     adapted to your situation.
   entreprise:
-    auto: Are you auto-entrepreneur?
+    auto: Are you an auto-entrepreneur?
     changer: Change the selected company
-    dirigeant: >
-      <0>Are you the majority director?</0>
-
-      <1>If you are a majority director or a member of a majority board of directors, you will not have the same social security system as if you are a minority.</1>
+    dirigeant:
+      "0": <
+      "1": "0"
+      "10": " "
+      "100": a
+      "101": r
+      "102": d
+      "103": " "
+      "104": o
+      "105": f
+      "106": " "
+      "107": d
+      "108": i
+      "109": r
+      "11": t
+      "110": e
+      "111": c
+      "112": t
+      "113": o
+      "114": r
+      "115": s
+      "116": ","
+      "117": " "
+      "118": y
+      "119": o
+      "12": h
+      "120": u
+      "121": " "
+      "122": w
+      "123": i
+      "124": l
+      "125": l
+      "126": " "
+      "127": n
+      "128": o
+      "129": t
+      "13": e
+      "130": " "
+      "131": h
+      "132": a
+      "133": v
+      "134": e
+      "135": " "
+      "136": t
+      "137": h
+      "138": e
+      "139": " "
+      "14": " "
+      "140": s
+      "141": a
+      "142": m
+      "143": e
+      "144": " "
+      "145": s
+      "146": o
+      "147": c
+      "148": i
+      "149": a
+      "15": m
+      "150": l
+      "151": " "
+      "152": s
+      "153": e
+      "154": c
+      "155": u
+      "156": r
+      "157": i
+      "158": t
+      "159": y
+      "16": a
+      "160": " "
+      "161": s
+      "162": y
+      "163": s
+      "164": t
+      "165": e
+      "166": m
+      "167": " "
+      "168": a
+      "169": s
+      "17": j
+      "170": " "
+      "171": i
+      "172": f
+      "173": " "
+      "174": y
+      "175": o
+      "176": u
+      "177": " "
+      "178": a
+      "179": r
+      "18": o
+      "180": e
+      "181": " "
+      "182": a
+      "183": " "
+      "184": m
+      "185": i
+      "186": n
+      "187": o
+      "188": r
+      "189": i
+      "19": r
+      "190": t
+      "191": y
+      "192": .
+      "193": <
+      "194": /
+      "195": "1"
+      "196": ">"
+      "197": "\n"
+      "2": ">"
+      "20": i
+      "21": t
+      "22": y
+      "23": " "
+      "24": d
+      "25": i
+      "26": r
+      "27": e
+      "28": c
+      "29": t
+      "3": A
+      "30": o
+      "31": r
+      "32": "?"
+      "33": <
+      "34": /
+      "35": "0"
+      "36": ">"
+      "37": "\n"
+      "38": <
+      "39": "1"
+      "4": r
+      "40": ">"
+      "41": I
+      "42": f
+      "43": " "
+      "44": y
+      "45": o
+      "46": u
+      "47": " "
+      "48": a
+      "49": r
+      "5": e
+      "50": e
+      "51": " "
+      "52": a
+      "53": " "
+      "54": m
+      "55": a
+      "56": j
+      "57": o
+      "58": r
+      "59": i
+      "6": " "
+      "60": t
+      "61": y
+      "62": " "
+      "63": d
+      "64": i
+      "65": r
+      "66": e
+      "67": c
+      "68": t
+      "69": o
+      "7": y
+      "70": r
+      "71": " "
+      "72": o
+      "73": r
+      "74": " "
+      "75": a
+      "76": " "
+      "77": m
+      "78": e
+      "79": m
+      "8": o
+      "80": b
+      "81": e
+      "82": r
+      "83": " "
+      "84": o
+      "85": f
+      "86": " "
+      "87": a
+      "88": " "
+      "89": m
+      "9": u
+      "90": a
+      "91": j
+      "92": o
+      "93": r
+      "94": i
+      "95": t
+      "96": y
+      "97": " "
+      "98": b
+      "99": o
+      description: If you are a majority director or a member of a majority board, you
+        will not have the same social security coverage as a minority director.
+      titre: Are you a majority shareholder?
     majoritaire: Majority director
     minoritaire: Minority director
   ressources:
@@ -1016,11 +1214,11 @@ pages:
         users.
       titre: Integrate social security law at the heart of your tools
     iframe:
-      csp-1: <0>Iframe integration and content security policy</0><1>The error below
-        that is displayed in the console is related to the communication between
-        the parent page and the iframe for automatic resizing to the displayed
-        content.</1>
+      csp-1: <0>The error below that appears in the console is related to the
+        communication between the parent page and the iframe for automatic
+        resizing to the displayed content.</0>
       csp-2: "You can correct it with the following policy:"
+      csp-title: Iframe integration and content security policy
       intro: <0><0>Integrate the web module</0><1>Our simulators can be integrated
         seamlessly by adding a simple line of code to your web page.</1><2>You
         can choose the simulator to integrate and <2>customize the main color of
@@ -1558,13 +1756,13 @@ previousSimulationBanner:
   retrieveButton: Retrieve my last simulation
 privacyContent:
   ok: Your preferences have been saved
-  texte: <0></0><1>Personal data</1><2>We collect anonymous statistics on the use
-    of the site, which we use for the sole purpose of improving the service, in
-    accordance with the <2>recommendations of the CNIL</2> and the RGPD
-    regulation. This is the only data that leaves your browser.</2><3>You can
-    opt out of this site usage measure below:</3><4><0>I do not wish to send
-    anonymous data on my use of the site for audience measurement
-    purposes</0></4>
+  texte: <0></0><1>We collect anonymous statistics on the use of the site, which
+    we use for the sole purpose of improving the service, in accordance with the
+    <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only
+    data that leaves your browser.</1><2>You can opt out of this site usage
+    measure below:</2><3><0>I do not wish to send anonymous data on my use of
+    the site for audience measurement purposes</0></3>
+  title: Personal data
 quicklinks:
   Avantages: Benefits
   CDD: Fixed-term

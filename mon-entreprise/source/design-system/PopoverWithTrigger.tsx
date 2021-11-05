@@ -7,7 +7,7 @@ import Popover from './Popover'
 type PopoverWithTriggerProps = {
 	trigger: React.ReactElement<HTMLButtonElement>
 	children: React.ReactNode
-	title: string
+	title?: string
 }
 
 export default function PopoverWithTrigger({
@@ -52,6 +52,7 @@ export default function PopoverWithTrigger({
 					onClose={state.close.bind(state)}
 					isDismissable
 					{...overlayProps}
+					role="dialog"
 				>
 					{children}
 				</Popover>

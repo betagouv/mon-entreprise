@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
-import Value from 'Components/EngineValue'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { formatValue } from 'publicodes'
-import { RuleNode } from 'publicodes/dist/types/rule'
+import { formatValue, RuleNode } from 'publicodes'
 import { useContext } from 'react'
 
 type FieldsPDFProps = {

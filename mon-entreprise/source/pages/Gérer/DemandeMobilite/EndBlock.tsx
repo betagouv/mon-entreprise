@@ -8,7 +8,7 @@ import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
-import { RuleNode } from 'publicodes/dist/types/rule'
+import { RuleNode } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
@@ -28,7 +28,6 @@ type EndBlockProps = {
 export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
-	const [showDownloadLink, toggleDownloadLink] = useState(false)
 	const engine = useContext(EngineContext)
 	const { darkColor } = useContext(ThemeColorsContext)
 	const signatureRef = useRef<SignaturePadInstance>()
@@ -53,7 +52,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 				name="certified"
 				id="certified"
 				onChange={(checked) => setCertified(checked)}
-				defaultValue={isCertified}
+				defaultSelected={isCertified}
 				label="Je certifie l’exactitude des informations communiquées ci-dessus."
 			/>
 			<p className="ui__ notice">

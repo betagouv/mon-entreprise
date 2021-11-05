@@ -1,9 +1,9 @@
-import { useRef } from 'react'
-import styled from 'styled-components'
-import { useToggleState } from '@react-stately/toggle'
 import { useCheckbox } from '@react-aria/checkbox'
+import { useToggleState } from '@react-stately/toggle'
 import { AriaCheckboxProps } from '@react-types/checkbox'
 import { Body } from 'DesignSystem/typography/paragraphs'
+import { useRef } from 'react'
+import styled from 'styled-components'
 
 export default function Checkbox(
 	props: AriaCheckboxProps &

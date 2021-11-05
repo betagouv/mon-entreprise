@@ -2,19 +2,22 @@ import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { FocusScope } from '@react-aria/focus'
 import {
-	AriaDialogProps,
 	OverlayContainer,
 	OverlayProps,
 	useModal,
 	useOverlay,
 	usePreventScroll,
 } from '@react-aria/overlays'
-import { useRef } from 'react'
+import { AriaDialogProps } from '@react-types/dialog'
+import React, { useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Container } from './layout'
 import { H2 } from './typography/heading'
 
-export default function Popover(props: OverlayProps & AriaDialogProps) {
+export default function Popover(
+	props: OverlayProps &
+		AriaDialogProps & { children: React.ReactNode; title?: string }
+) {
 	const { title, children } = props
 
 	// Handle interacting outside the dialog and pressing
@@ -74,7 +77,11 @@ export default function Popover(props: OverlayProps & AriaDialogProps) {
 								</CloseButtonContainer>
 							)}
 							<PopoverContent>
-								<H2 {...titleProps}>{title}</H2>
+								{title && (
+									<H2 as="h1" {...titleProps}>
+										{title}
+									</H2>
+								)}
 								{children}
 							</PopoverContent>
 						</PopoverContainer>
@@ -113,14 +120,14 @@ const PopoverContainer = styled.div`
 	display: flex;
 
 	flex-direction: column;
-	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		flex-direction: column-reverse;
 	}
 	animation: ${fromtop} 0.2s;
 `
 const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-	@media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		border-top: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
 		position: sticky;
 		bottom: 0;

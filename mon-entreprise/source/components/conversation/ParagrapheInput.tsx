@@ -1,4 +1,4 @@
-import { Evaluation } from 'publicodes/dist/types/AST/types'
+import { Evaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
 import { InputProps } from './RuleInput'

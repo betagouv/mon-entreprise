@@ -2,18 +2,16 @@ import NumberInput from 'Components/conversation/NumberInput'
 import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, PublicodesExpression, reduceAST } from 'publicodes'
-import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
-import { RuleNode } from 'publicodes/dist/types/rule'
+import Engine, { ASTNode, EvaluatedNode, Evaluation, PublicodesExpression, reduceAST, RuleNode } from 'publicodes'
 import React, { useContext } from 'react'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import TextInput from './TextInput'
+
 
 type Props<Name extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,

@@ -1,6 +1,6 @@
 import {
 	ThemeColorsContext,
-	ThemeColorsProvider
+	ThemeColorsProvider,
 } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -15,7 +15,7 @@ import React, {
 	useEffect,
 	useMemo,
 	useRef,
-	useState
+	useState,
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
