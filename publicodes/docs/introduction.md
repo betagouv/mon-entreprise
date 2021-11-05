@@ -13,7 +13,7 @@ nombre de repas: 5 repas
 
 prix: nombre de repas * prix d'un repas
 
-prix . HT: prix * (1 - TVA)
+prix . HT: prix / (1 + TVA)
 
 prix . TVA: 20%
 ```

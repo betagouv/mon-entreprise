@@ -5,7 +5,6 @@ import Engine, {
 	utils,
 } from 'publicodes'
 import { decodeRuleName } from 'publicodes/source/ruleUtils'
-import { isEmpty } from 'ramda'
 import { useContext } from 'react'
 import {
 	BasepathContext,
@@ -147,7 +146,7 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 			<Explanation node={valeur} />
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 
-			{!isEmpty(rule.missingVariables) && (
+			{Object.entries(rule.missingVariables).length > 0 && (
 				<>
 					<h3>Données manquantes</h3>
 					<p className="ui__ notice">

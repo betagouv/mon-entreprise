@@ -1,15 +1,11 @@
-import { dissoc, scan } from 'ramda'
-import emoji from 'react-easy-emoji'
 import yaml from 'yaml'
 import Engine, { formatValue, reduceAST, utils } from 'publicodes'
 const { encodeRuleName } = utils
 
-const getParents = (dottedName) =>
-	scan(
-		(acc, part) => [acc, part].filter(Boolean).join(' . '),
-		'',
-		dottedName.split(' . ') as Array<string>
-	).filter(Boolean)
+const getParents = (dottedName: string) =>
+	dottedName
+		.split(' . ')
+		.map((_name, i, parts) => parts.slice(0, i + 1).join(' . '))
 
 function getDependancies(engine: Engine, dottedName: string): Array<string> {
 	const rule = engine.evaluate(engine.getRule(dottedName))
@@ -23,7 +19,7 @@ function getDependancies(engine: Engine, dottedName: string): Array<string> {
 				) {
 					return [...acc, ...getDependancies(engine, node.dottedName)]
 				} else {
-					return [...acc, ...getParents(node.dottedName)]
+					return [...acc, ...getParents(node.dottedName as string)]
 				}
 			}
 			if (node.nodeKind === 'variations' && typeof node.rawNode === 'string') {
@@ -46,14 +42,13 @@ export default function RuleSource({ engine, dottedName }: Props) {
 
 	// When we import a rule in the Publicodes Studio, we need to provide a
 	// simplified definition of its dependencies to avoid undefined references.
-	const dependenciesValues = dissoc(
-		dottedName,
-		Object.fromEntries(
-			dependancies.map((dottedName) => [
+	const dependenciesValues = Object.fromEntries(
+		dependancies
+			.filter((name) => name !== dottedName)
+			.map((dottedName) => [
 				dottedName,
 				formatValueForStudio(engine.evaluate(engine.getRule(dottedName))),
 			])
-		)
 	)
 
 	const source =
@@ -68,7 +63,9 @@ export default function RuleSource({ engine, dottedName }: Props) {
 ` +
 		yaml
 			.stringify({
-				[dottedName]: dissoc('nom', rule.rawNode),
+				[dottedName]: Object.fromEntries(
+					Object.entries(rule.rawNode).filter(([key]) => key !== 'nom')
+				),
 			})
 			.replace(`${dottedName}:`, `\n${dottedName}:`) +
 		'\n\n# Situation :\n' +

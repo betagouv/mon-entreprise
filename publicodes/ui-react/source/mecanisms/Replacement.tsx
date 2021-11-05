@@ -1,6 +1,5 @@
 import { VariationNode } from 'publicodes/source/mecanisms/variations'
 import { useState } from 'react'
-import emoji from 'react-easy-emoji'
 import Variations from './Variations'
 import Overlay from '../Overlay'
 import Explanation from '../Explanation'

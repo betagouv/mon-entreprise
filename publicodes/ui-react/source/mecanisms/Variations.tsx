@@ -1,6 +1,4 @@
-import classnames from 'classnames'
 import { useState } from 'react'
-import emoji from 'react-easy-emoji'
 import styled from 'styled-components'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
 import { VariationNode } from 'publicodes/dist/types/mecanisms/variations'
@@ -85,16 +83,16 @@ export default function Variations({
 											}}
 										>
 											<span
-												className={classnames('consequenceType', {
-													satisfied,
-												})}
+												className={`consequenceType ${
+													satisfied ? 'satisfied' : ''
+												}`}
 											>
 												{!condition.isDefault ? 'Alors' : 'Sinon'} :&nbsp;
 											</span>
 											<span
-												className={classnames('consequenceContent', {
-													satisfied,
-												})}
+												className={`consequenceContent ${
+													satisfied ? 'satisfied' : ''
+												}`}
 											>
 												{consequence && <Explanation node={consequence} />}
 											</span>

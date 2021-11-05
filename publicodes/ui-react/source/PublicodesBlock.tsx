@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import styled from 'styled-components'
 
 export default function PublicodesBlock({ source }: { source: string }) {

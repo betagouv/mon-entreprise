@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { EngineContext, RenderersContext } from './contexts'
 import { RuleLinkWithContext } from './RuleLink'
