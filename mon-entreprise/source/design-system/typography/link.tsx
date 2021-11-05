@@ -1,4 +1,4 @@
-import { ReactEventHandler, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -29,27 +29,33 @@ const StyledRouterLink = styled(RouterLink)`
 `
 
 type LinkProps = (
-	| {
-			href: string
-			children: ReactNode
-	  }
-	| {
-			onClick: ReactEventHandler
-			children: ReactNode
-	  }
-	| {
-			to: string
-			children: ReactNode
-	  }
-) & { linkType?: 'button' | 'anchor' }
+	| React.HTMLAttributes<HTMLAnchorElement>
+	| React.HTMLAttributes<HTMLButtonElement>
+	| React.ComponentProps<typeof RouterLink>
+) & { linkType?: 'button' | 'anchor'; children: ReactNode }
 
 export const Link = (props: LinkProps) => {
 	const { linkType, ...otherProps } = props
 	if ('href' in props || linkType === 'anchor')
-		return <AnchorLink {...otherProps} target="_blank" rel="noreferrer" />
+		return (
+			<AnchorLink
+				{...(otherProps as React.HTMLAttributes<HTMLAnchorElement>)}
+				target="_blank"
+				rel="noreferrer"
+			/>
+		)
 	if ('onClick' in props || linkType === 'button')
-		return <ButtonLink {...otherProps} />
-	if ('to' in props) return <StyledRouterLink {...props} />
+		return (
+			<ButtonLink
+				{...(otherProps as React.HTMLAttributes<HTMLButtonElement>)}
+			/>
+		)
+	if ('to' in props)
+		return (
+			<StyledRouterLink
+				{...(props as React.ComponentProps<typeof RouterLink>)}
+			/>
+		)
 	else {
 		return null
 	}

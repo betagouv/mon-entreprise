@@ -54,18 +54,6 @@ export default function NumberInput({
 	return (
 		<div className="step input">
 			<div>
-				<InputSuggestions
-					suggestions={suggestions}
-					onFirstClick={(valeur: ASTNode) => {
-						setCurrentValue(
-							(engine.evaluate(valeur).nodeValue as number) ?? undefined
-						)
-						setImmediate(() => {
-							onChange(valeur)
-						})
-					}}
-					onSecondClick={() => onSubmit?.('suggestion')}
-				/>
 				<NumberField
 					autoFocus={autoFocus}
 					displayedUnit={displayedUnit}
@@ -82,6 +70,18 @@ export default function NumberInput({
 							: undefined
 					}
 					value={currentValue}
+				/>
+				<InputSuggestions
+					suggestions={suggestions}
+					onFirstClick={(valeur: ASTNode) => {
+						setCurrentValue(
+							(engine.evaluate(valeur).nodeValue as number) ?? undefined
+						)
+						setImmediate(() => {
+							onChange(valeur)
+						})
+					}}
+					onSecondClick={() => onSubmit?.('suggestion')}
 				/>
 			</div>
 		</div>

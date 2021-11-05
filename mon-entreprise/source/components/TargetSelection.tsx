@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import classnames from 'classnames'
 import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
@@ -23,7 +22,6 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
-import InputSuggestions from './conversation/InputSuggestions'
 import NumberInput from './conversation/NumberInput'
 import './TargetSelection.css'
 import { Appear, FromTop } from './ui/animate'
@@ -226,18 +224,6 @@ function TargetInputOrValue({
 					<TitreRestaurant />
 				)}
 			</span>
-			{(isActive || isFocused) && (
-				<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
-					<FromTop>
-						<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
-							<InputSuggestions
-								suggestions={target.suggestions}
-								onFirstClick={onSuggestionClick}
-							/>
-						</div>
-					</FromTop>
-				</div>
-			)}
 		</>
 	)
 }

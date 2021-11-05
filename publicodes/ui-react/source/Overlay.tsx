@@ -1,13 +1,16 @@
 import FocusTrap from 'focus-trap-react'
-import { PageInfo } from 'iframe-resizer'
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { FromBottom } from './ui/animate'
 
 type OverlayProps = React.HTMLAttributes<HTMLDivElement> & {
 	onClose?: () => void
 	xPosition?: number
 	children: React.ReactNode
+}
+declare global {
+	interface Window {
+		parentIFrame?: any
+	}
 }
 
 const useIFrameOffset = () => {
@@ -17,7 +20,7 @@ const useIFrameOffset = () => {
 			setOffset(0)
 			return
 		}
-		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }: PageInfo) => {
+		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }) => {
 			setOffset(scrollTop - offsetTop)
 			window.parentIFrame.getPageInfo(false)
 		})
@@ -46,31 +49,29 @@ export default function Overlay({
 	return (
 		<StyledOverlayWrapper offsetTop={Math.max(0, offsetTop)}>
 			<div className="overlayContent">
-				<FromBottom>
-					<FocusTrap
-						focusTrapOptions={{
-							onDeactivate: onClose,
-							clickOutsideDeactivates: !!onClose,
-						}}
+				<FocusTrap
+					focusTrapOptions={{
+						onDeactivate: onClose,
+						clickOutsideDeactivates: !!onClose,
+					}}
+				>
+					<div
+						aria-modal="true"
+						className={'ui__ card  ' + className ?? ''}
+						{...otherProps}
 					>
-						<div
-							aria-modal="true"
-							className={'ui__ card  ' + className ?? ''}
-							{...otherProps}
-						>
-							{children}
-							{onClose && (
-								<button
-									aria-label="Fermer"
-									onClick={onClose}
-									className="overlayCloseButton"
-								>
-									×
-								</button>
-							)}
-						</div>
-					</FocusTrap>
-				</FromBottom>
+						{children}
+						{onClose && (
+							<button
+								aria-label="Fermer"
+								onClick={onClose}
+								className="overlayCloseButton"
+							>
+								×
+							</button>
+						)}
+					</div>
+				</FocusTrap>
 			</div>
 		</StyledOverlayWrapper>
 	)
@@ -82,8 +83,8 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	max-height: 100vh;
 	background: rgba(255, 255, 255, 0.9);
+	max-height: 100vh;
 	overflow: auto;
 	z-index: 2;
 	.overlayContent {

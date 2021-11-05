@@ -1,3 +1,4 @@
+import { Link } from 'DesignSystem/typography/link'
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
 import { useState } from 'react'
@@ -15,7 +16,7 @@ export default function InputSuggestions({
 	onFirstClick,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	return (
 		<div
@@ -29,15 +30,8 @@ export default function InputSuggestions({
 		>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
-					<button
-						className="ui__ link-button"
+					<Link
 						key={text}
-						css={`
-							margin: 0 0.4rem !important;
-							:first-child {
-								margin-left: 0rem !important;
-							}
-						`}
 						onClick={() => {
 							onFirstClick(value)
 							if (suggestion !== value) setSuggestion(value)
@@ -46,7 +40,7 @@ export default function InputSuggestions({
 						title={t('cliquez pour insérer cette suggestion')}
 					>
 						{text}
-					</button>
+					</Link>
 				)
 			})}
 		</div>
