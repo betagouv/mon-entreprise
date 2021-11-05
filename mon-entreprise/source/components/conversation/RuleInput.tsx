@@ -5,13 +5,19 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, EvaluatedNode, Evaluation, PublicodesExpression, reduceAST, RuleNode } from 'publicodes'
+import Engine, {
+	ASTNode,
+	EvaluatedNode,
+	Evaluation,
+	PublicodesExpression,
+	reduceAST,
+	RuleNode,
+} from 'publicodes'
 import React, { useContext } from 'react'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import TextInput from './TextInput'
-
 
 type Props<Name extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
