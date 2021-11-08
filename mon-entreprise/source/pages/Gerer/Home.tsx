@@ -13,7 +13,7 @@ import { SitePaths } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -91,14 +91,14 @@ export default function Gérer() {
 					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
 				>
 					{!company && (
-						<p className="ui__ lead">
+						<Intro>
 							<Trans i18nKey="gérer.description">
 								Vous souhaitez vous verser un revenu ou embaucher ? <br />
 								Vous aurez à payer des cotisations et des impôts. <br />
 								Anticipez leurs montants grâce aux simulateurs adaptés à votre
 								situation.
 							</Trans>
-						</p>
+						</Intro>
 					)}
 					<CompanySection company={company} />
 				</PageHeader>
@@ -312,14 +312,9 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					</button>
 				</>
 			) : (
-				<p>
-					<button
-						onClick={() => showSearchModal(true)}
-						className="ui__ plain cta button"
-					>
-						<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
-					</button>
-				</p>
+				<Button size="XL" onClick={() => showSearchModal(true)}>
+					<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
+				</Button>
 			)}
 		</>
 	)

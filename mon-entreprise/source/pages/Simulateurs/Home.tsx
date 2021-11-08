@@ -6,6 +6,7 @@ import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H3 } from 'DesignSystem/typography/heading'
+import { Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -27,12 +28,12 @@ export default function Simulateurs() {
 				<title>{titre}</title>
 			</Helmet>
 			<PageHeader titre={titre} picture={simulatorSvg}>
-				<p className="ui__ lead">
+				<Intro>
 					<Trans i18nKey="pages.simulateurs.accueil.header">
 						Tous les simulateurs sur ce site sont maintenus à jour avec les
 						dernières évolutions législatives.
 					</Trans>
-				</p>
+				</Intro>
 			</PageHeader>
 			<section>
 				<HeadingWithAnchorLink level={2}>
