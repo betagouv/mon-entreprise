@@ -2,7 +2,7 @@ import { Grid } from '@mui/material'
 import {
 	resetEntreprise,
 	specifyIfAutoEntrepreneur,
-	specifyIfDirigeantMajoritaire
+	specifyIfDirigeantMajoritaire,
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
