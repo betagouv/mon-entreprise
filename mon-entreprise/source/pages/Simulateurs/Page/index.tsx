@@ -1,6 +1,6 @@
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
@@ -27,7 +27,7 @@ export default function PageData({
 	nextSteps,
 	path,
 }: SimulatorData[keyof SimulatorData]) {
-	const inIframe = useContext(IsEmbeddedContext)
+	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
 	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
 	useSearchParamsSimulationSharing()
@@ -55,16 +55,12 @@ export default function PageData({
 			typeof tracking === 'string' || !('chapter1' in tracking)
 				? ('simulateurs' as const)
 				: tracking.chapter1,
-		...(typeof tracking === 'string'
-			? {
-					chapter2: tracking,
-			  }
-			: tracking),
+		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	}
 	return (
 		<>
 			<TrackChapter {...trackInfo} />
-			{meta && <Meta {...meta} />}
+			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
 			{title && !inIframe && (
 				<>
 					<H1>{title}</H1>
