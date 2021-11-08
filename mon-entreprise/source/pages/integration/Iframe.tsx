@@ -2,8 +2,8 @@ import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
-import Emoji from 'Components/utils/Emoji'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
@@ -266,7 +266,7 @@ function EnSavoirPlusCSP() {
 	return (
 		<PopoverWithTrigger
 			trigger={
-				<Link elementType="button">
+				<Link>
 					<Trans>En savoir plus</Trans>
 				</Link>
 			}

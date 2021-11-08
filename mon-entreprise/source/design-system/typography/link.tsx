@@ -1,5 +1,5 @@
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
-import React, { ComponentPropsWithRef } from 'react'
+import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -32,18 +32,9 @@ const StyledRouterLink = styled(RouterLink)`
 export const Link = (
 	props: GenericButtonOrLinkProps & { children: React.ReactNode }
 ) => {
-	if (
-		'href' in props ||
-		('elementType' in props && props.elementType === 'anchor')
-	)
+	if ('href' in props)
 		return <AnchorLink {...props} target="_blank" rel="noreferrer" />
-	if (
-		'onClick' in props ||
-		('elementType' in props && props.elementType === 'button')
-	)
-		return <ButtonLink {...(props as ComponentPropsWithRef<'button'>)} />
 	if ('to' in props) return <StyledRouterLink {...props} />
-	else {
-		return null
-	}
+
+	return <ButtonLink {...props} />
 }

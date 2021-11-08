@@ -9,7 +9,7 @@ export default function LegalNotice() {
 	return (
 		<PopoverWithTrigger
 			trigger={
-				<Link elementType="button">
+				<Link>
 					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
 				</Link>
 			}
