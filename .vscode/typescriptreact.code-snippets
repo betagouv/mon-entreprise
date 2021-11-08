@@ -24,13 +24,12 @@
 		"'${1:i18n-namespace}.title',",
 		"'Simulateur de revenus auto-entrepreneur'",
 	")}",
-	"callToAction={{",
-		"to: '$2',",
-		"label: t(",
-			"'${1:i18n-namespace}.cta',",
+	"callToAction={<Button",
+		"to: '$2'>",
+		"<Trans i18nKey='${1:i18n-namespace}.cta'>",
 			"'Simuler les revenus'",
-		"),",
-	"}}",
+		"</Trans>",
+	"</Button>}",
 ">",
 	"<Body>",
 		"<Trans i18nKey=\"${1:i18n-namespace}.body\">",
@@ -38,7 +37,7 @@
 		"</Trans>",
 	"</Body>",
 "</Card>",
-	]
+	],
 	"description": "Add a new <Card /> component"
 	}
 }

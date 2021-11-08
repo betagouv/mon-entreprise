@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import {
 	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist,
+	initializeCompanyCreationChecklist
 } from 'Actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { FromBottom } from 'Components/ui/animate'
@@ -9,7 +9,7 @@ import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import Emoji from 'Components/utils/Emoji'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
+import { Button } from 'DesignSystem/buttons'
 import { Card } from 'DesignSystem/card'
 import { H1, H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
@@ -376,8 +376,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								Vous pouvez faire votre inscription en ligne à tout moment,
 								l'enregistrer et y revenir comme vous le souhaitez.
 							</SmallBody>
-							<ButtonLink
-								color="primary"
+							<Button
 								light
 								size="XS"
 								href={
@@ -387,7 +386,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								}
 							>
 								Faire la démarche en ligne
-							</ButtonLink>
+							</Button>
 						</Trans>
 					}
 				/>

@@ -27,7 +27,12 @@ const activitéReducer = (reducerActivité: any) =>
 			return !!state
 		},
 		seuilRevenus: (
-			state = getMinimumDéclaration(reducerActivité),
+			state:
+				| 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
+				| 'RÉGIME_GÉNÉRAL_DISPONIBLE'
+				| 'IMPOSITION'
+				| 'AUCUN'
+				| null = getMinimumDéclaration(reducerActivité),
 			action: Action
 		) =>
 			action.type === 'SELECT_SEUIL_REVENUS_ATTEINT' &&

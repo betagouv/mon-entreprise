@@ -2,7 +2,7 @@ import { Grid } from '@mui/material'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
+import { Button } from 'DesignSystem/buttons'
 import { Card } from 'DesignSystem/card'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
@@ -41,8 +41,7 @@ export default function Créer() {
 						activité
 					</Trans>
 				</Intro>
-				<ButtonLink
-					color="primary"
+				<Button
 					size="XL"
 					to={
 						guideAlreadyStarted && nextQuestionUrl
@@ -53,7 +52,7 @@ export default function Créer() {
 					{!guideAlreadyStarted
 						? t('créer.cta.default', 'Trouver le bon statut')
 						: t('créer.cta.continue', 'Continuer le guide')}
-				</ButtonLink>
+				</Button>
 				<SmallBody>
 					<Trans i18nKey="créer.warningPL">
 						Le cas des professions libérales réglementées n'est pas encore

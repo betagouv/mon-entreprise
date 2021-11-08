@@ -1,53 +1,30 @@
 import { Button } from 'DesignSystem/buttons'
+import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { H3 } from 'DesignSystem/typography/heading'
-import { ReactEventHandler, ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 type CardProps = {
 	title: string
 	icon?: ReactNode
 	children: ReactNode
-	callToAction:
-		| {
-				to: string | { pathname: string; state?: any; search?: string }
-				label: string
-		  }
-		| {
-				callback: ReactEventHandler
-				label: string
-		  }
-		| {
-				href: string
-				label: string
-		  }
+	callToAction: GenericButtonOrLinkProps & { label: string }
 }
 
-export const Card = ({ title, icon, children, callToAction }: CardProps) => {
+export const Card = ({
+	title,
+	icon,
+	children,
+	callToAction: { label, ...CTAProps },
+}: CardProps) => {
 	return (
 		<StyledCardContainer>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader as="h2">{title}</StyledHeader>
 			<CardBody>{children}</CardBody>
-			{'to' in callToAction && (
-				<Link to={callToAction.to}>
-					<Button size="XS" color="primary">
-						{callToAction.label}
-					</Button>
-				</Link>
-			)}
-			{'callback' in callToAction && (
-				<Button size="XS" color="primary" onClick={callToAction.callback}>
-					{callToAction.label}
-				</Button>
-			)}
-			{'href' in callToAction && (
-				<a href={callToAction.href} target="_blank" rel="noreferrer">
-					<Button size="XS" color="primary">
-						{callToAction.label}
-					</Button>
-				</a>
-			)}
+			<Button {...(CTAProps as any)} size="XS">
+				{label}
+			</Button>
 		</StyledCardContainer>
 	)
 }

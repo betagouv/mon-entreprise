@@ -4,7 +4,14 @@ export type Action =
 	| ReturnType<typeof activitéVue>
 	| ReturnType<typeof changeCritèreExonération>
 
-export const selectSeuilRevenus = (activité: string, seuilAtteint: number) =>
+export const selectSeuilRevenus = (
+	activité: string,
+	seuilAtteint:
+		| 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
+		| 'RÉGIME_GÉNÉRAL_DISPONIBLE'
+		| 'IMPOSITION'
+		| 'AUCUN'
+) =>
 	({
 		type: 'SELECT_SEUIL_REVENUS_ATTEINT',
 		activité,

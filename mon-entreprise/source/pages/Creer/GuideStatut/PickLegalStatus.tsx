@@ -1,5 +1,5 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { ButtonLink } from 'DesignSystem/buttons/ButtonLink'
+import { Button } from 'DesignSystem/buttons'
 import { H2, H3 } from 'DesignSystem/typography/heading'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
@@ -23,7 +23,7 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	return (
-		<ButtonLink to={sitePaths.créer[statut]} color="primary" light size="XS">
+		<Button to={sitePaths.créer[statut]} light size="XS">
 			<>
 				{statut.includes('auto-entrepreneur') ? (
 					<Trans>Devenir</Trans>
@@ -32,7 +32,7 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 				)}{' '}
 				{t(statut)}
 			</>
-		</ButtonLink>
+		</Button>
 	)
 }
 

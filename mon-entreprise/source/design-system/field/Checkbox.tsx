@@ -48,7 +48,7 @@ const CheckboxVisual = styled.svg`
 	width: 100%;
 	stroke-linecap: round;
 	stroke-linejoin: round;
-	border-color: ${({ theme }) => theme.colors.extended.grey[500]};
+	border-color: ${({ theme }) => theme.colors.extended.grey[600]};
 	stroke: ${({ theme }) => theme.colors.extended.grey[100]};
 	stroke-width: 2px;
 	transition: all 0.2s ease;
@@ -83,11 +83,13 @@ const CheckboxVisualContainer = styled.div`
 		background: ${({ theme }) => theme.colors.bases.primary[100]};
 		z-index: 0;
 		opacity: 0;
-		transition: opacity 0.2s ease;
+		transition: all 0.15s ease;
+		transform: scale(0.5);
 	}
 
 	&:hover:before {
 		opacity: 1;
+		transform: scale(1);
 	}
 
 	&:hover ${CheckboxVisual} {

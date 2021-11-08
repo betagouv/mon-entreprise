@@ -31,7 +31,7 @@ export function Radio(props: RadioAriaProps) {
 
 const OutsideCircle = styled.span`
 	position: absolute;
-	border: 2px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	border: 2px solid ${({ theme }) => theme.colors.extended.grey[600]};
 	transition: all 0.2s;
 	border-radius: 50%;
 	height: 100%;
@@ -71,18 +71,20 @@ const RadioButton = styled.span`
 		background: ${({ theme }) => theme.colors.bases.primary[100]};
 		z-index: 0;
 		opacity: 0;
-		transition: opacity 0.2s ease;
+		transition: all 0.15s ease;
+		transform: scale(0.5);
 	}
 `
 
 const VisibleRadio = styled.div`
 	display: inline-flex;
-	align-items: baseline;
+	align-items: center;
 	z-index: 1;
 	transition: all 0.2s;
 
 	:hover > ${RadioButton}::before {
 		opacity: 1;
+		transform: scale(1);
 	}
 
 	:hover ${OutsideCircle} {
@@ -184,4 +186,32 @@ const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 	${RadioButton}::before {
 		opacity: 0 !important;
 	}
+`
+
+export function RadioGroup(
+	props: RadioGroupProps & {
+		children: React.ReactNode
+	}
+) {
+	const { children, label } = props
+	const state = useRadioGroupState(props)
+	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
+
+	return (
+		<div {...radioGroupProps}>
+			{label && <span {...labelProps}>{label}</span>}
+			<RadioGroupContainer orientation={props.orientation ?? 'vertical'}>
+				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
+			</RadioGroupContainer>
+		</div>
+	)
+}
+
+const RadioGroupContainer = styled.div<{
+	orientation: 'horizontal' | 'vertical'
+}>`
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: ${({ orientation }) =>
+		orientation === 'horizontal' ? 'row' : 'column'};
 `

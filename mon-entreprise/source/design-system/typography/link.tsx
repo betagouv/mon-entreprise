@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import React, { ComponentPropsWithRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -28,34 +29,20 @@ const StyledRouterLink = styled(RouterLink)`
 	${baseLinkStyle}
 `
 
-type LinkProps = (
-	| React.HTMLAttributes<HTMLAnchorElement>
-	| React.HTMLAttributes<HTMLButtonElement>
-	| React.ComponentProps<typeof RouterLink>
-) & { linkType?: 'button' | 'anchor'; children: ReactNode }
-
-export const Link = (props: LinkProps) => {
-	const { linkType, ...otherProps } = props
-	if ('href' in props || linkType === 'anchor')
-		return (
-			<AnchorLink
-				{...(otherProps as React.HTMLAttributes<HTMLAnchorElement>)}
-				target="_blank"
-				rel="noreferrer"
-			/>
-		)
-	if ('onClick' in props || linkType === 'button')
-		return (
-			<ButtonLink
-				{...(otherProps as React.HTMLAttributes<HTMLButtonElement>)}
-			/>
-		)
-	if ('to' in props)
-		return (
-			<StyledRouterLink
-				{...(props as React.ComponentProps<typeof RouterLink>)}
-			/>
-		)
+export const Link = (
+	props: GenericButtonOrLinkProps & { children: React.ReactNode }
+) => {
+	if (
+		'href' in props ||
+		('elementType' in props && props.elementType === 'anchor')
+	)
+		return <AnchorLink {...props} target="_blank" rel="noreferrer" />
+	if (
+		'onClick' in props ||
+		('elementType' in props && props.elementType === 'button')
+	)
+		return <ButtonLink {...(props as ComponentPropsWithRef<'button'>)} />
+	if ('to' in props) return <StyledRouterLink {...props} />
 	else {
 		return null
 	}

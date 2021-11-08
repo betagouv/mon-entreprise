@@ -1,11 +1,12 @@
-import { useButton } from '@react-aria/button'
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import React, { useMemo, useRef } from 'react'
+import { Button } from 'DesignSystem/buttons'
+import React, { ReactElement, useMemo, useRef } from 'react'
 import Popover from './Popover'
+import { Link } from './typography/link'
 
 type PopoverWithTriggerProps = {
-	trigger: React.ReactElement<HTMLButtonElement>
+	trigger: ReactElement<typeof Button> | ReactElement<typeof Link>
 	children: React.ReactNode
 	title?: string
 }
@@ -16,17 +17,7 @@ export default function PopoverWithTrigger({
 	trigger,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
-	const openButtonRef = useRef(null)
-
-	// useButton ensures that focus management is handled correctly,
-	// across all browsers. Focus is restored to the button once the
-	// dialog closes.
-	const { buttonProps } = useButton(
-		{
-			onPress: state.open.bind(state),
-		},
-		openButtonRef
-	)
+	const openButtonRef = useRef<HTMLButtonElement>(null)
 	const { triggerProps, overlayProps } = useOverlayTrigger(
 		{ type: 'dialog' },
 		state,
@@ -36,11 +27,11 @@ export default function PopoverWithTrigger({
 	const triggerButton = useMemo(
 		() =>
 			React.cloneElement(trigger, {
+				onClick: () => state.open.bind(state),
 				ref: openButtonRef,
-				...buttonProps,
 				...triggerProps,
-			}),
-		[openButtonRef, buttonProps, triggerProps, trigger]
+			} as any),
+		[openButtonRef, triggerProps, trigger, state]
 	)
 
 	return (

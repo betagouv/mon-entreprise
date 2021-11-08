@@ -7,7 +7,7 @@ import FeedbackSvg from './feedback.svg'
 export default function InscriptionBetaTesteur() {
 	return (
 		<PopoverWithTrigger
-			trigger={<Link linkType="button">Devenir beta-testeur</Link>}
+			trigger={<Link elementType="button">Devenir beta-testeur</Link>}
 			title="Votre avis nous intéresse"
 		>
 			<img

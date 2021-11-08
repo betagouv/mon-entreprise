@@ -3,7 +3,9 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Radio, RadioGroup } from 'DesignSystem/field'
 import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -41,12 +43,12 @@ export default function Activité({
 				<TrackPage name={activité.titre} />
 				<ScrollToTop />
 				<H1>{activité.titre}</H1>
-				<p>{activité.explication}</p>
-				<p>
+				<Intro>{activité.explication}</Intro>
+				<H2>
 					<Trans i18nKey="économieCollaborative.activité.choix">
 						Quelles sont plus précisément les activités exercées ?
 					</Trans>
-				</p>
+				</H2>
 				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
 						currentActivité={title}
@@ -69,10 +71,10 @@ export default function Activité({
 				</H1>
 				<Markdown source={activité.explication} />
 				{activité.plateformes && (
-					<p className="ui__ notice">
+					<SmallBody>
 						<Emoji emoji={'📱 '} />
 						{activité.plateformes.join(', ')}
-					</p>
+					</SmallBody>
 				)}
 				<ExceptionsExonération
 					activité={title}
@@ -96,96 +98,63 @@ export default function Activité({
 					<>
 						<Trans i18nKey="économieCollaborative.activité.revenusAnnuels">
 							<H2>Revenus annuels</H2>
-							<p>Vos revenus annuels pour cette activité sont :</p>
+							<Body>Vos revenus annuels pour cette activité sont :</Body>
 						</Trans>
-						<ul
-							key={title}
-							css="
-								list-style: none;
-								padding-left: 0;
-							"
-							onChange={(e: any) => {
-								dispatch(selectSeuilRevenus(title, e.target.value))
+						<RadioGroup
+							onChange={(value) => {
+								dispatch(
+									selectSeuilRevenus(
+										title,
+										value as Parameters<typeof selectSeuilRevenus>[1]
+									)
+								)
 							}}
+							defaultValue={seuilRevenus}
 						>
 							{activité['seuil déclaration'] &&
 								activité['seuil déclaration'] !== 0 && (
-									<li>
-										<label>
-											<input
-												type="radio"
-												name={title + '.seuilRevenus'}
-												value="AUCUN"
-												defaultChecked={seuilRevenus === 'AUCUN'}
-											/>{' '}
-											<Trans>inférieurs à</Trans>{' '}
-											{formatValue(activité['seuil déclaration'], {
-												precision: 0,
-												language,
-												displayedUnit: '€',
-											})}
-										</label>
-									</li>
+									<Radio value="AUCUN">
+										<Trans>inférieurs à</Trans>{' '}
+										{formatValue(activité['seuil déclaration'], {
+											precision: 0,
+											language,
+											displayedUnit: '€',
+										})}
+									</Radio>
 								)}
-							<li>
-								<label>
-									<input
-										type="radio"
-										name={title + '.seuilRevenus'}
-										value="IMPOSITION"
-										defaultChecked={seuilRevenus === 'IMPOSITION'}
-									/>{' '}
-									<Trans>inférieurs à</Trans>{' '}
+							<Radio value="IMPOSITION">
+								<Trans>inférieurs à</Trans>{' '}
+								{formatValue(activité['seuil pro'], {
+									precision: 0,
+									language,
+									displayedUnit: '€',
+								})}
+							</Radio>
+							{activité['seuil régime général'] && (
+								<Radio value="RÉGIME_GÉNÉRAL_DISPONIBLE">
+									{' '}
+									<Trans>supérieurs à</Trans>{' '}
 									{formatValue(activité['seuil pro'], {
 										precision: 0,
 										language,
 										displayedUnit: '€',
 									})}
-								</label>
-							</li>
-							{activité['seuil régime général'] && (
-								<li>
-									<label>
-										<input
-											type="radio"
-											name={title + '.seuilRevenus'}
-											value="RÉGIME_GÉNÉRAL_DISPONIBLE"
-											defaultChecked={
-												seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE'
-											}
-										/>{' '}
-										<Trans>supérieurs à</Trans>{' '}
-										{formatValue(activité['seuil pro'], {
-											precision: 0,
-											language,
-											displayedUnit: '€',
-										})}
-									</label>
-								</li>
+								</Radio>
 							)}
 
-							<li>
-								<label>
-									<input
-										type="radio"
-										name={title + '.seuilRevenus'}
-										value="RÉGIME_GÉNÉRAL_NON_DISPONIBLE"
-										defaultChecked={
-											seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
-										}
-									/>{' '}
-									<Trans>supérieurs à</Trans>{' '}
-									{formatValue(
-										activité['seuil régime général'] || activité['seuil pro'],
-										{
-											precision: 0,
-											language,
-											displayedUnit: '€',
-										}
-									)}
-								</label>
-							</li>
-						</ul>
+							<Radio value="RÉGIME_GÉNÉRAL_NON_DISPONIBLE">
+								{' '}
+								<Trans>supérieurs à</Trans>{' '}
+								{formatValue(
+									activité['seuil régime général'] || activité['seuil pro'],
+									{
+										precision: 0,
+										language,
+										displayedUnit: '€',
+									}
+								)}
+							</Radio>
+						</RadioGroup>
 					</>
 				)}
 				<NextButton disabled={!seuilRevenus} activité={title} />

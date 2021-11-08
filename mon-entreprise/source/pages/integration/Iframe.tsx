@@ -263,7 +263,7 @@ function EnSavoirPlusCSP() {
 	return (
 		<PopoverWithTrigger
 			trigger={
-				<Link linkType="button">
+				<Link elementType="button">
 					<Trans>En savoir plus</Trans>
 				</Link>
 			}
