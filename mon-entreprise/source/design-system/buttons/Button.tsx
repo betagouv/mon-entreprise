@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ReactEventHandler } from 'react'
+import { ComponentPropsWithRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -6,14 +6,9 @@ type Size = 'XL' | 'MD' | 'XS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
 export type GenericButtonOrLinkProps =
-	| (({ href: string } | { elementType: 'anchor' }) &
-			ComponentPropsWithRef<'a'>)
-	| ((
-			| { onClick: ReactEventHandler<HTMLButtonElement> }
-			| { elementType: 'button' }
-	  ) &
-			ComponentPropsWithRef<'button'>)
+	| ({ href: string } & ComponentPropsWithRef<'a'>)
 	| ComponentPropsWithRef<typeof RouterLink>
+	| ComponentPropsWithRef<'button'>
 
 type ButtonProps = GenericButtonOrLinkProps & {
 	color?: Color
@@ -30,11 +25,7 @@ export const Button = (props: ButtonProps) => {
 		...props,
 	}
 
-	if (
-		'href' in propsWithDefault ||
-		('elementType' in propsWithDefault &&
-			propsWithDefault.elementType === 'anchor')
-	)
+	if ('href' in propsWithDefault) {
 		return (
 			<StyledButton
 				{...propsWithDefault}
@@ -43,22 +34,11 @@ export const Button = (props: ButtonProps) => {
 				rel="noreferrer"
 			/>
 		)
-	if (
-		'onClick' in propsWithDefault ||
-		('elementType' in propsWithDefault &&
-			propsWithDefault.elementType === 'button')
-	)
-		return (
-			<StyledButton
-				{...(propsWithDefault as StyledButtonProps &
-					ComponentPropsWithRef<'button'>)}
-			/>
-		)
-	if ('to' in propsWithDefault)
-		return <StyledButton as={RouterLink} {...propsWithDefault} />
-	else {
-		return null
 	}
+	if ('to' in propsWithDefault) {
+		return <StyledButton as={RouterLink} {...propsWithDefault} />
+	}
+	return <StyledButton {...propsWithDefault} />
 }
 
 type StyledButtonProps = {
