@@ -256,14 +256,21 @@ créer:
   description: Avant d'entamer les démarches administratives pour créer votre
     entreprise, vous devez choisir un statut juridique adapté à votre activité
   ressources:
-    autoEntrepreneur: <0>Démarche auto-entrepreneur</0><1>Vous souhaitez devenir
-      auto-entrepreneur ? Découvrez les étapes pour bien démarrer votre
-      activité</1>
-    comparaison: <0>Comparateur de régimes</0><1>Indépendant, assimilé-salarié ou
-      auto-entrepreneur ? Calculez les différences en terme de revenus,
-      cotisations, retraite, etc</1>
-    listeStatuts: <0>Liste des statuts juridiques</0><1>Vous savez déjà quel statut
-      choisir ? Accédez directement à la liste des démarches associées</1>
+    autoEntrepreneur:
+      body: Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien
+        démarrer votre activité
+      cta: Consulter les démarches
+      title: Démarche auto-entrepreneur
+    comparaison:
+      body: Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
+        différences en terme de revenus, cotisations, retraite, etc
+      cta: Comparer
+      title: Comparateur de régimes
+    listeStatuts:
+      body: Vous savez déjà quel statut choisir ? Accédez directement à la liste des
+        démarches associées
+      cta: Voir la liste
+      title: Liste des statuts juridiques
   titre: Créer une entreprise
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides

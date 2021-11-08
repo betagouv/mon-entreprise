@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import {
 	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
+	initializeCompanyCreationChecklist,
 } from 'Actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { FromBottom } from 'Components/ui/animate'

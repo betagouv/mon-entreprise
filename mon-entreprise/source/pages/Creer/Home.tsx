@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
+import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { Card } from 'DesignSystem/card'
@@ -26,6 +27,12 @@ export default function Créer() {
 	return (
 		<FromBottom>
 			<TrackPage name="accueil" />
+			<Meta
+				page="créer"
+				title="Créer"
+				description="Créer une entreprise"
+				ogImage={créerSvg}
+			/>
 
 			<Helmet>
 				<title>{t('créer.titre', 'Créer une entreprise')}</title>

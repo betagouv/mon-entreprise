@@ -457,13 +457,21 @@ créer:
   description: Before starting the administrative procedures to create your
     company, you must choose a legal status adapted to your activity
   ressources:
-    autoEntrepreneur: <0>The auto-entrepreneur process</0><1>Do you want to become
-      an auto-entrepreneur? Discover the steps to start your business</1>
-    comparaison: <0>Comparing regimes</0><1>Self-employed, assimilated employee or
-      auto-entrepreneur? Calculate the differences in terms of income,
-      contributions, pension, etc.</1>
-    listeStatuts: <0>List of legal statuses</0><1>You already know which status to
-      choose? Go directly to the list of associated procedures</1>
+    autoEntrepreneur:
+      body: Do you want to become an auto-entrepreneur? Discover the steps to start
+        your business
+      cta: Consult the procedures
+      title: Auto-entrepreneur procedure
+    comparaison:
+      body: Self-employed, assimilated employee or auto-entrepreneur? Calculate the
+        differences in terms of income, contributions, pension, etc.
+      cta: Compare
+      title: Plan Comparator
+    listeStatuts:
+      body: Do you already know which status to choose? Go directly to the list of
+        related procedures
+      cta: See the list
+      title: List of legal statuses
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: aids
