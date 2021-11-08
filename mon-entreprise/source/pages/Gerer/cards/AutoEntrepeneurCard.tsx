@@ -1,19 +1,26 @@
-import { H5 } from 'DesignSystem/typography/heading'
-import { Trans } from 'react-i18next'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { Trans, useTranslation } from 'react-i18next'
 export function AutoEntrepreneurCard() {
+	const { t } = useTranslation()
 	return (
-		<a
-			className="ui__ interactive card box lighter-bg"
-			href="https://autoentrepreneur.urssaf.fr"
+		<Card
+			title={t(
+				'gérer.ressources.autoEntrepreneur.title',
+				'Site officiel des auto-entrepreneurs'
+			)}
+			callToAction={{
+				href: 'https://autoentrepreneur.urssaf.fr',
+				label: t('gérer.ressources.autoEntrepreneur.cta', 'Visiter le site'),
+			}}
 		>
-			<Trans i18nKey="gérer.ressources.autoEntrepreneur">
-				<H5 as="h3">Accéder au site officiel auto-entrepreneur</H5>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.ressources.autoEntrepreneur.body">
 					Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer
 					vos cotisations, et plus largement trouver toutes les informations
 					relatives au statut d'auto-entrepreneur
-				</p>
-			</Trans>
-		</a>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }

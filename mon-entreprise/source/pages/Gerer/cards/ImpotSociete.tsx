@@ -1,35 +1,37 @@
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H3 } from 'DesignSystem/typography/heading'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 
 export function ImpotSocieteCard() {
 	const sitePaths = useContext(SitePathsContext)
+	const { t } = useTranslation()
+
 	return (
-		<Link
-			className="ui__ interactive card box light-border"
-			to={{
-				pathname: sitePaths.simulateurs.is,
-				state: {
-					fromGérer: true,
+		<Card
+			title={t(
+				'gérer.choix.is.title',
+				'Estimer le montant de l’impôt sur les sociétés'
+			)}
+			icon={<Emoji emoji="🧾" />}
+			callToAction={{
+				to: {
+					pathname: sitePaths.simulateurs.is,
+					state: {
+						fromGérer: true,
+					},
 				},
+				label: t('gérer.choix.is.cta', 'Lancer le simulateur'),
 			}}
 		>
-			<div className="ui__ big box-icon">
-				<Emoji emoji="🗓" />
-			</div>
-			<Trans i18nKey="gérer.choix.is">
-				<H3>Estimer le montant de l’impôt sur les sociétés</H3>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.choix.is.body">
 					Calculez le montant de l'impôt sur les sociétés à partir de votre
 					bénéfice.
-				</p>
-			</Trans>
-			<div className="ui__ small simple button hide-mobile">
-				<Trans>Commencer</Trans>
-			</div>
-		</Link>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }

@@ -741,6 +741,13 @@ formeJuridique:
     liability, subject to a flat-rate scheme for the calculation of taxes and
     the payment of social security contributions.
   titre: Choice of legal status
+gerer:
+  choix:
+    embauche:
+      body: Calculate the total amount your company will have to spend to pay your
+        next employee
+      cta: Launch the simulator
+      title: Estimate the amount of a hiring
 gérant minoritaire:
   description: >
     <0>Some special rules apply depending on the amount of shares owned by the
@@ -756,21 +763,29 @@ gérant minoritaire:
   titre: Chairman or managing director
 gérer:
   choix:
-    chomage-partiel: <0>Partial activity</0><1>Calculate the remaining amount to be
-      paid after government reimbursement when you activate the device for an
-      employee.</1>
-    déclaration: <0>Completing my tax return</0><1>Easily calculate the amounts to
-      carry forward on your 2019 tax return</1>
+    chomage-partiel:
+      body: Calculate the remaining amount to be paid after reimbursement from the
+        state when you activate the device for an employee.
+      cta: See the simulator
+      title: Partial activity
+    déclaration:
+      body: Easily calculate the amount of payroll taxes to be reported on your 2020
+        tax return
+      cta: Completing my return
+      title: Income tax return (self-employed)
     embauche: >
       <0>Estimate the amount spent for hiring</0>
 
       <1>Calculate how much your company will have to spend to pay your next employee</1>
-    is: <0>Estimate the amount of corporate income tax</0><1>Calculate the amount of
-      corporation tax based on your gross profit.</1>
-    revenus: >
-      <0>Calculate my net income</0>
-
-      <1>Estimate precisely the amount of your contributions thanks to the Urssaf simulator for {{régime}}</1>
+    is:
+      body: Calculate the amount of corporate tax from your profit.
+      cta: Launch the simulator
+      title: Estimating the amount of corporate tax
+    revenus:
+      body: Estimate the exact amount of your contributions thanks to the {{regime}}
+        simulator of the Urssaf
+      cta: Calculate my net income
+      title: Income as an officer
     titre: What do you want to do?
   cta: Find my company
   description: Do you want to earn an income or hire? You will have to pay
@@ -780,229 +795,44 @@ gérer:
     auto: Are you an auto-entrepreneur?
     changer: Change the selected company
     dirigeant:
-      "0": <
-      "1": "0"
-      "10": " "
-      "100": a
-      "101": r
-      "102": d
-      "103": " "
-      "104": o
-      "105": f
-      "106": " "
-      "107": d
-      "108": i
-      "109": r
-      "11": t
-      "110": e
-      "111": c
-      "112": t
-      "113": o
-      "114": r
-      "115": s
-      "116": ","
-      "117": " "
-      "118": y
-      "119": o
-      "12": h
-      "120": u
-      "121": " "
-      "122": w
-      "123": i
-      "124": l
-      "125": l
-      "126": " "
-      "127": n
-      "128": o
-      "129": t
-      "13": e
-      "130": " "
-      "131": h
-      "132": a
-      "133": v
-      "134": e
-      "135": " "
-      "136": t
-      "137": h
-      "138": e
-      "139": " "
-      "14": " "
-      "140": s
-      "141": a
-      "142": m
-      "143": e
-      "144": " "
-      "145": s
-      "146": o
-      "147": c
-      "148": i
-      "149": a
-      "15": m
-      "150": l
-      "151": " "
-      "152": s
-      "153": e
-      "154": c
-      "155": u
-      "156": r
-      "157": i
-      "158": t
-      "159": y
-      "16": a
-      "160": " "
-      "161": s
-      "162": y
-      "163": s
-      "164": t
-      "165": e
-      "166": m
-      "167": " "
-      "168": a
-      "169": s
-      "17": j
-      "170": " "
-      "171": i
-      "172": f
-      "173": " "
-      "174": y
-      "175": o
-      "176": u
-      "177": " "
-      "178": a
-      "179": r
-      "18": o
-      "180": e
-      "181": " "
-      "182": a
-      "183": " "
-      "184": m
-      "185": i
-      "186": n
-      "187": o
-      "188": r
-      "189": i
-      "19": r
-      "190": t
-      "191": y
-      "192": .
-      "193": <
-      "194": /
-      "195": "1"
-      "196": ">"
-      "197": "\n"
-      "2": ">"
-      "20": i
-      "21": t
-      "22": y
-      "23": " "
-      "24": d
-      "25": i
-      "26": r
-      "27": e
-      "28": c
-      "29": t
-      "3": A
-      "30": o
-      "31": r
-      "32": "?"
-      "33": <
-      "34": /
-      "35": "0"
-      "36": ">"
-      "37": "\n"
-      "38": <
-      "39": "1"
-      "4": r
-      "40": ">"
-      "41": I
-      "42": f
-      "43": " "
-      "44": y
-      "45": o
-      "46": u
-      "47": " "
-      "48": a
-      "49": r
-      "5": e
-      "50": e
-      "51": " "
-      "52": a
-      "53": " "
-      "54": m
-      "55": a
-      "56": j
-      "57": o
-      "58": r
-      "59": i
-      "6": " "
-      "60": t
-      "61": y
-      "62": " "
-      "63": d
-      "64": i
-      "65": r
-      "66": e
-      "67": c
-      "68": t
-      "69": o
-      "7": y
-      "70": r
-      "71": " "
-      "72": o
-      "73": r
-      "74": " "
-      "75": a
-      "76": " "
-      "77": m
-      "78": e
-      "79": m
-      "8": o
-      "80": b
-      "81": e
-      "82": r
-      "83": " "
-      "84": o
-      "85": f
-      "86": " "
-      "87": a
-      "88": " "
-      "89": m
-      "9": u
-      "90": a
-      "91": j
-      "92": o
-      "93": r
-      "94": i
-      "95": t
-      "96": y
-      "97": " "
-      "98": b
-      "99": o
       description: If you are a majority director or a member of a majority board, you
         will not have the same social security coverage as a minority director.
       titre: Are you a majority shareholder?
     majoritaire: Majority director
     minoritaire: Minority director
   ressources:
-    autoEntrepreneur: <0>Access the official auto-entrepreneur website</0> <1>You
-      will be able to make your turnover declaration, pay your contributions,
-      and more widely find all the information relating to the status of
-      auto-entrepreneur</1>
-    embaucher: >
-      <0>Discover the hiring process</0>
-
-      <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
-    export: <0>Exporting your activity to Europe</0><1>The form to apply for
-      international mobility (secondment or multi-activity)</1>
-    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the
-      existence of a commercial company. You can get the Kbis for your company
-      using monidenum.fr</1>
-    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs do not
-      have a Kbis. They can however retrieve and present a K extract. See the
-      service-public website for more information.</1>
-    sécuritéSociale: <0>Understanding social security</0> <1>What are social
-      security contributions used for? Update on the social protection system
-      enjoyed by all workers in France</1>
+    autoEntrepreneur:
+      body: You will be able to declare your turnover, pay your contributions, and
+        more generally find all the information relating to the status of
+        auto-entrepreneur
+      cta: Visit the site
+      title: Official website of auto-entrepreneurs
+    embaucher:
+      body: The list of things to do to make sure you don't forget anything when
+        hiring a new employee
+      cta: See the list of steps
+      title: "Discover the hiring process "
+    export:
+      body: The form to apply for international mobility (secondment or multi-job)
+      cta: Fill in the form
+      title: Exporting your business to Europe
+    kbis:
+      body: The Kbis is a document to justify the registration of the company at the
+        <2>RCS</2> and to prove its legal existence. This document can be
+        retrieved free of charge for your company via the MonIdeNum website.
+      cta: Go to monIdeNum.fr
+      title: Get a Kbis extract
+    kbis-autoentrepreneur:
+      body: Self-employed entrepreneurs do not have a Kbis. However, they can obtain
+        and present a K extract. See the service-public website for more
+        information.
+      cta: Visit the site
+      title: How to get a Kbis extract?
+    sécuritéSociale:
+      body: What are social security contributions for? An update on the social
+        protection system from which all workers in France benefit.
+      cta: Read the guide
+      title: "Understanding Social Security "
   titre: Manage my business
 heure: hour
 heures: hours

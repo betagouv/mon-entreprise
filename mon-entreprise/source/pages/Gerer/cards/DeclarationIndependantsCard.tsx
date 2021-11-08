@@ -1,32 +1,31 @@
-import Emoji from 'Components/utils/Emoji'
-import { H3 } from 'DesignSystem/typography/heading'
-import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 export function DeclarationIndedependantsCard() {
 	const sitePaths = useContext(SitePathsContext)
+	const { t } = useTranslation()
 	return (
-		<Link
-			className="ui__ interactive card box light-border"
-			to={{
-				pathname: sitePaths.gérer.déclarationIndépendant,
+		<Card
+			title={t(
+				'gérer.choix.déclaration.title',
+				'Déclaration de revenus (indépendants)'
+			)}
+			callToAction={{
+				label: t('gérer.choix.déclaration.cta', 'Remplir ma déclaration'),
+				to: {
+					pathname: sitePaths.gérer.déclarationIndépendant,
+				},
 			}}
 		>
-			<div className="ui__ big box-icon">
-				<Emoji emoji="✍" />
-			</div>
-			<Trans i18nKey="gérer.choix.déclaration">
-				<H3>Remplir ma déclaration de revenus</H3>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.choix.déclaration.body">
 					Calculez facilement les montants des charges sociales à reporter dans
 					votre déclaration de revenu au titre de 2020
-				</p>
-			</Trans>
-			<div className="ui__ small simple button hide-mobile">
-				<Trans>Commencer</Trans>
-			</div>
-		</Link>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }

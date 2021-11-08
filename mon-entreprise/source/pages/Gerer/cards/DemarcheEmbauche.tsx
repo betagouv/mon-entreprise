@@ -1,23 +1,32 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H5 } from 'DesignSystem/typography/heading'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 
 export function DemarcheEmbaucheCard() {
 	const sitePaths = useContext(SitePathsContext)
+	const { t } = useTranslation()
 	return (
-		<Link
-			className="ui__ interactive card box lighter-bg"
-			to={sitePaths.gérer.embaucher}
+		<Card
+			title={t(
+				'gérer.ressources.embaucher.title',
+				'Découvrir les démarches d’embauche '
+			)}
+			callToAction={{
+				to: sitePaths.gérer.embaucher,
+				label: t(
+					'gérer.ressources.embaucher.cta',
+					'Voir la liste des démarches'
+				),
+			}}
 		>
-			<Trans i18nKey="gérer.ressources.embaucher">
-				<H5 as="h3">Découvrir les démarches d’embauche </H5>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.ressources.embaucher.body">
 					La liste des choses à faire pour être sûr de ne rien oublier lors de
 					l’embauche d’un nouveau salarié
-				</p>
-			</Trans>
-		</Link>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }

@@ -1,10 +1,10 @@
 import { Card } from 'DesignSystem/card'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import { Dirigeant } from 'pages/Gerer/Home'
 import { Trans, useTranslation } from 'react-i18next'
+import { DirigeantOrNull } from '../Home'
 
 type KbisCardProps = {
-	dirigeant: Dirigeant
+	dirigeant: DirigeantOrNull
 }
 
 export function KbisCard({ dirigeant }: KbisCardProps) {

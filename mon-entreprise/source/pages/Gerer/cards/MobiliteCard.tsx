@@ -1,23 +1,29 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H5 } from 'DesignSystem/typography/heading'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 
 export function MobiliteCard() {
 	const sitePaths = useContext(SitePathsContext)
+	const { t } = useTranslation()
 	return (
-		<Link
-			className="ui__ interactive card box lighter-bg"
-			to={sitePaths.gérer.formulaireMobilité}
+		<Card
+			title={t(
+				'gérer.ressources.export.title',
+				'Exporter son activité en Europe'
+			)}
+			callToAction={{
+				to: sitePaths.gérer.formulaireMobilité,
+				label: t('gérer.ressources.export.cta', 'Remplir le formulaire'),
+			}}
 		>
-			<Trans i18nKey="gérer.ressources.export">
-				<H5 as="h3">Exporter son activité en Europe</H5>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.ressources.export.body">
 					Le formulaire pour effectuer une demande de mobilité internationale
 					(détachement ou pluriactivité)
-				</p>
-			</Trans>
-		</Link>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }

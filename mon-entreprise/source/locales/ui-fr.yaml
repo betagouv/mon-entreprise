@@ -496,6 +496,13 @@ formeJuridique:
     responsabilité limitée", avec à un régime forfaitaire pour le calcul des
     impôts et le paiement des cotisations de sécurité sociale.
   titre: Choix du statut juridique
+gerer:
+  choix:
+    embauche:
+      body: Calculez le montant total que votre entreprise devra dépenser pour
+        rémunérer votre prochain employé
+      cta: Lancer le simulateur
+      title: Estimer le montant d’une embauche
 gérant minoritaire:
   description: "<0>Certaines règles spéciales s'appliquent selon le nombre
     d'actions détenues.</0><1><0><0>Gérant majoritaire</0> : Vous êtes
@@ -511,19 +518,29 @@ gérant minoritaire:
   titre: Gérant majoritaire ou minoritaire
 gérer:
   choix:
-    chomage-partiel: <0>Activité partielle</0><1>Calculez le reste à payer après
-      remboursement de l'État lorsque vous activez le dispositif pour un
-      employé.</1>
-    déclaration: <0>Remplir ma déclaration de revenus</0><1>Calculez facilement les
-      montants des charges sociales à reporter dans votre déclaration de revenu
-      au titre de 2020</1>
+    chomage-partiel:
+      body: Calculez le reste à payer après remboursement de l'État lorsque vous
+        activez le dispositif pour un employé.
+      cta: Voir le simulateur
+      title: Activité partielle
+    déclaration:
+      body: Calculez facilement les montants des charges sociales à reporter dans
+        votre déclaration de revenu au titre de 2020
+      cta: Remplir ma déclaration
+      title: Déclaration de revenus (indépendants)
     embauche: <0>Estimer le montant d’une embauche</0><1>Calculez le montant total
       que votre entreprise devra dépenser pour rémunérer votre prochain
       employé</1>
-    is: <0>Estimer le montant de l’impôt sur les sociétés</0><1>Calculez le montant
-      de l'impôt sur les sociétés à partir de votre bénéfice.</1>
-    revenus: <0>Calculer mon revenu net de cotisations</0><1>Estimez précisément le
-      montant de vos cotisations grâce au simulateur {{régime}} de l'Urssaf</1>
+    is:
+      body: Calculez le montant de l'impôt sur les sociétés à partir de votre
+        bénéfice.
+      cta: Lancer le simulateur
+      title: Estimer le montant de l’impôt sur les sociétés
+    revenus:
+      body: Estimez précisément le montant de vos cotisations grâce au simulateur
+        {{régime}} de l'Urssaf
+      cta: Calculer mon revenu net
+      title: Revenus en tant que dirigeant
   cta: Renseigner mon entreprise
   description: Vous souhaitez vous verser un revenu ou embaucher ? <1></1>Vous
     aurez à payer des cotisations et des impôts. <3></3>Anticipez leurs montants
@@ -532,242 +549,6 @@ gérer:
     auto: Êtes-vous auto-entrepreneur ?
     changer: Changer l'entreprise sélectionnée
     dirigeant:
-      "0": <
-      "1": "0"
-      "10": u
-      "100": " "
-      "101": p
-      "102": a
-      "103": r
-      "104": t
-      "105": i
-      "106": e
-      "107": " "
-      "108": d
-      "109": "'"
-      "11": s
-      "110": u
-      "111": n
-      "112": " "
-      "113": c
-      "114": o
-      "115": n
-      "116": s
-      "117": e
-      "118": i
-      "119": l
-      "12": " "
-      "120": " "
-      "121": d
-      "122": "'"
-      "123": a
-      "124": d
-      "125": m
-      "126": i
-      "127": n
-      "128": i
-      "129": s
-      "13": d
-      "130": t
-      "131": r
-      "132": a
-      "133": t
-      "134": i
-      "135": o
-      "136": n
-      "137": " "
-      "138": m
-      "139": a
-      "14": i
-      "140": j
-      "141": o
-      "142": r
-      "143": i
-      "144": t
-      "145": a
-      "146": i
-      "147": r
-      "148": e
-      "149": ","
-      "15": r
-      "150": " "
-      "151": v
-      "152": o
-      "153": u
-      "154": s
-      "155": " "
-      "156": n
-      "157": "'"
-      "158": a
-      "159": u
-      "16": i
-      "160": r
-      "161": e
-      "162": z
-      "163": " "
-      "164": p
-      "165": a
-      "166": s
-      "167": " "
-      "168": l
-      "169": e
-      "17": g
-      "170": " "
-      "171": m
-      "172": ê
-      "173": m
-      "174": e
-      "175": " "
-      "176": r
-      "177": é
-      "178": g
-      "179": i
-      "18": e
-      "180": m
-      "181": e
-      "182": " "
-      "183": d
-      "184": e
-      "185": " "
-      "186": s
-      "187": é
-      "188": c
-      "189": u
-      "19": a
-      "190": r
-      "191": i
-      "192": t
-      "193": é
-      "194": " "
-      "195": s
-      "196": o
-      "197": c
-      "198": i
-      "199": a
-      "2": ">"
-      "20": n
-      "200": l
-      "201": e
-      "202": " "
-      "203": q
-      "204": u
-      "205": e
-      "206": " "
-      "207": s
-      "208": i
-      "209": " "
-      "21": t
-      "210": v
-      "211": o
-      "212": u
-      "213": s
-      "214": " "
-      "215": ê
-      "216": t
-      "217": e
-      "218": s
-      "219": " "
-      "22": " "
-      "220": m
-      "221": i
-      "222": n
-      "223": o
-      "224": r
-      "225": i
-      "226": t
-      "227": a
-      "228": i
-      "229": r
-      "23": m
-      "230": e
-      "231": .
-      "232": <
-      "233": /
-      "234": "1"
-      "235": ">"
-      "24": a
-      "25": j
-      "26": o
-      "27": r
-      "28": i
-      "29": t
-      "3": Ê
-      "30": a
-      "31": i
-      "32": r
-      "33": e
-      "34": " "
-      "35": "?"
-      "36": <
-      "37": /
-      "38": "0"
-      "39": ">"
-      "4": t
-      "40": <
-      "41": "1"
-      "42": ">"
-      "43": S
-      "44": i
-      "45": " "
-      "46": v
-      "47": o
-      "48": u
-      "49": s
-      "5": e
-      "50": " "
-      "51": ê
-      "52": t
-      "53": e
-      "54": s
-      "55": " "
-      "56": a
-      "57": d
-      "58": m
-      "59": i
-      "6": s
-      "60": n
-      "61": i
-      "62": s
-      "63": t
-      "64": r
-      "65": a
-      "66": t
-      "67": e
-      "68": u
-      "69": r
-      "7": "-"
-      "70": " "
-      "71": m
-      "72": a
-      "73": j
-      "74": o
-      "75": r
-      "76": i
-      "77": t
-      "78": a
-      "79": i
-      "8": v
-      "80": r
-      "81": e
-      "82": " "
-      "83": o
-      "84": u
-      "85": " "
-      "86": s
-      "87": i
-      "88": " "
-      "89": v
-      "9": o
-      "90": o
-      "91": u
-      "92": s
-      "93": " "
-      "94": f
-      "95": a
-      "96": i
-      "97": t
-      "98": e
-      "99": s
       description: Si vous êtes administrateur majoritaire ou si vous faites partie
         d'un conseil d'administration majoritaire, vous n'aurez pas le même
         régime de sécurité sociale que si vous êtes minoritaire.
@@ -775,26 +556,40 @@ gérer:
     majoritaire: Dirigeant majoritaire
     minoritaire: Dirigeant minoritaire
   ressources:
-    autoEntrepreneur: <0>Accéder au site officiel auto-entrepreneur</0><1>Vous
-      pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
-      cotisations, et plus largement trouver toutes les informations relatives
-      au statut d'auto-entrepreneur</1>
-    embaucher: <0>Découvrir les démarches d’embauche </0><1>La liste des choses à
-      faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau
-      salarié</1>
-    export: <0>Exporter son activité en Europe</0><1>Le formulaire pour effectuer
-      une demande de mobilité internationale (détachement ou pluriactivité)</1>
-    kbis: <0>Récupérer un extrait de Kbis</0><1>Le Kbis est un document permettant
-      de justifier de l'enregistrement de l'entreprise au <2>RCS</2> et de
-      prouver son existence légale. Ce document peut être récupéré gratuitement
-      pour votre entreprise via le site MonIdeNum.</1>
-    kbis-autoentrepreneur: <0>Récupérer un extrait de Kbis?</0><1>Les
-      auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer et
-      présenter un extrait K. Voir le site du service-public pour plus
-      d'informations.</1>
-    sécuritéSociale: <0>Comprendre la sécurité sociale </0><1>A quoi servent les
-      cotisations sociales ? Le point sur le système de protection sociale dont
-      bénéficient tous les travailleurs en France</1>
+    autoEntrepreneur:
+      body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
+        cotisations, et plus largement trouver toutes les informations relatives
+        au statut d'auto-entrepreneur
+      cta: Visiter le site
+      title: Site officiel des auto-entrepreneurs
+    embaucher:
+      body: La liste des choses à faire pour être sûr de ne rien oublier lors de
+        l’embauche d’un nouveau salarié
+      cta: Voir la liste des démarches
+      title: "Découvrir les démarches d’embauche "
+    export:
+      body: Le formulaire pour effectuer une demande de mobilité internationale
+        (détachement ou pluriactivité)
+      cta: Remplir le formulaire
+      title: Exporter son activité en Europe
+    kbis:
+      body: Le Kbis est un document permettant de justifier de l'enregistrement de
+        l'entreprise au <2>RCS</2> et de prouver son existence légale. Ce
+        document peut être récupéré gratuitement pour votre entreprise via le
+        site MonIdeNum.
+      cta: Aller sur monIdeNum.fr
+      title: Récupérer un extrait de Kbis
+    kbis-autoentrepreneur:
+      body: Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer
+        et présenter un extrait K. Voir le site du service-public pour plus
+        d'informations.
+      cta: Visiter le site
+      title: Récupérer un extrait de Kbis?
+    sécuritéSociale:
+      body: A quoi servent les cotisations sociales ? Le point sur le système de
+        protection sociale dont bénéficient tous les travailleurs en France.
+      cta: Lire le guide
+      title: "Comprendre la sécurité sociale "
   titre: Gérer mon activité
 impotSociété:
   exerciceDates: Exercice du <2></2> au <6></6>

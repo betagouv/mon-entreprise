@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import {
 	resetEntreprise,
 	specifyIfAutoEntrepreneur,
@@ -36,11 +37,13 @@ import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 export type Dirigeant = Exclude<
 	keyof SitePaths['simulateurs'],
 	'index' | 'profession-libérale' | 'économieCollaborative'
-> | null
+>
+
+export type DirigeantOrNull = Dirigeant | null
 
 const infereDirigeantFromCompanyDetails = (
 	company: Company | null
-): Dirigeant => {
+): DirigeantOrNull => {
 	if (!company) {
 		return null
 	}
@@ -79,6 +82,7 @@ export default function Gérer() {
 			<Helmet>
 				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
 			</Helmet>
+
 			<TrackPage name="accueil" />
 			<ScrollToTop />
 			<FromBottom>
@@ -100,39 +104,67 @@ export default function Gérer() {
 				</PageHeader>
 				<>
 					<section>
-						<div className="ui__ full-width box-container">
+						<Grid container spacing={2}>
 							{(company?.statutJuridique === 'EI' ||
 								company?.statutJuridique === 'SARL') &&
 								!company.isAutoEntrepreneur && (
-									<DeclarationIndedependantsCard />
+									<Grid item sm={12} md={4}>
+										<DeclarationIndedependantsCard />
+									</Grid>
 								)}
 
-							<RevenuDirigeantCard dirigeant={dirigeant} />
+							{dirigeant !== null && (
+								<Grid item>
+									<RevenuDirigeantCard dirigeant={dirigeant} />
+								</Grid>
+							)}
 
 							{dirigeant !== 'auto-entrepreneur' && (
 								<>
-									<ActivitePartielleCard />
-									<MontantEmbaucheCard />
-									<ImpotSocieteCard />
+									<Grid item sm={12} md={4}>
+										<ActivitePartielleCard />
+									</Grid>
+									<Grid item sm={12} md={4}>
+										<MontantEmbaucheCard />
+									</Grid>
+									<Grid item sm={12} md={4}>
+										<ImpotSocieteCard />
+									</Grid>
 								</>
 							)}
-						</div>
+						</Grid>
 					</section>
 					<AideOrganismeLocal />
 
 					<H2>
 						<Trans>Ressources utiles</Trans>
 					</H2>
-					<div className="ui__ box-container">
+					<Grid container spacing={2}>
 						{dirigeant === 'indépendant' &&
 							i18n.language === 'fr' &&
-							process.env.HEAD !== 'master' && <MobiliteCard />}
-						{!company?.isAutoEntrepreneur && <DemarcheEmbaucheCard />}
-						{company?.isAutoEntrepreneur && <AutoEntrepreneurCard />}
-						<SecuriteSocialeCard />
+							process.env.HEAD !== 'master' && (
+								<Grid item sm={12} md={4}>
+									<MobiliteCard />
+								</Grid>
+							)}
+						{!company?.isAutoEntrepreneur && (
+							<Grid item sm={12} md={4}>
+								<DemarcheEmbaucheCard />
+							</Grid>
+						)}
+						{company?.isAutoEntrepreneur && (
+							<Grid item sm={12} md={4}>
+								<AutoEntrepreneurCard />
+							</Grid>
+						)}
+						<Grid item sm={12} md={4}>
+							<SecuriteSocialeCard />
+						</Grid>
 
-						<KbisCard dirigeant={dirigeant} />
-					</div>
+						<Grid item sm={12} md={4}>
+							<KbisCard dirigeant={dirigeant} />
+						</Grid>
+					</Grid>
 				</>
 			</FromBottom>
 		</>

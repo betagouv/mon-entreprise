@@ -1,9 +1,9 @@
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H3 } from 'DesignSystem/typography/heading'
+import { Card } from 'DesignSystem/card'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 import { Dirigeant } from '../Home'
 
 type RevenuDirigeantCardProps = {
@@ -12,32 +12,28 @@ type RevenuDirigeantCardProps = {
 
 export function RevenuDirigeantCard({ dirigeant }: RevenuDirigeantCardProps) {
 	const sitePaths = useContext(SitePathsContext)
-
-	if (dirigeant === null) return null
+	const { t } = useTranslation()
 
 	return (
-		<Link
-			className="ui__ interactive card box light-border"
-			to={{
-				pathname: sitePaths.simulateurs[dirigeant],
-				state: {
-					fromGérer: true,
+		<Card
+			title={t('gérer.choix.revenus.title', 'Revenus en tant que dirigeant')}
+			icon={<Emoji emoji="💶" />}
+			callToAction={{
+				label: t('gérer.choix.revenus.cta', 'Calculer mon revenu net'),
+				to: {
+					pathname: sitePaths.simulateurs[dirigeant],
+					state: {
+						fromGérer: true,
+					},
 				},
 			}}
 		>
-			<div className="ui__ big box-icon">
-				<Emoji emoji="💶" />
-			</div>
-			<Trans i18nKey="gérer.choix.revenus">
-				<H3>Calculer mon revenu net de cotisations</H3>
-				<p className="ui__ notice">
+			<Body>
+				<Trans i18nKey="gérer.choix.revenus.body">
 					Estimez précisément le montant de vos cotisations grâce au simulateur{' '}
 					{{ régime: dirigeant }} de l'Urssaf
-				</p>
-			</Trans>
-			<div className="ui__ small simple button hide-mobile">
-				<Trans>Commencer</Trans>
-			</div>
-		</Link>
+				</Trans>
+			</Body>
+		</Card>
 	)
 }
