@@ -2,7 +2,7 @@ import { Grid } from '@mui/material'
 import {
 	resetEntreprise,
 	specifyIfAutoEntrepreneur,
-	specifyIfDirigeantMajoritaire,
+	specifyIfDirigeantMajoritaire
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
@@ -15,7 +15,7 @@ import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useEffect, useRef, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Company } from 'Reducers/inFranceAppReducer'

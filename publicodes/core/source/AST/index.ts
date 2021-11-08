@@ -325,6 +325,7 @@ const traverseProductNode: TraverseFunction<'produit'> = (fn, node) => ({
 const traverseRecalculNode: TraverseFunction<'recalcul'> = (fn, node) => ({
 	...node,
 	explanation: {
+		...node.explanation,
 		amendedSituation: node.explanation.amendedSituation.map(([name, value]) => [
 			fn(name),
 			fn(value),

@@ -223,6 +223,7 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
       - cotisations et contributions . retraite de base
       - cotisations et contributions . retraite complémentaire
       - cotisations et contributions . invalidité et décès
+      - cotisations et contributions . indemnités journalières maladie
       - cotisations et contributions . PCV
     arrondi: oui
 
@@ -230,7 +231,6 @@ dirigeant . indépendant . PL . CIPAV:
   description: |
     La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
   rend non applicable:
-    - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
   références:
     Site web: https://www.lacipav.fr/
@@ -302,20 +302,19 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
   titre: classe C
 
-dirigeant . indépendant . PL . retraite CNAVPL:
-  non applicable si:
-    une de ces conditions:
-      - régime général
-      - PL . CNBF
+dirigeant . indépendant . PL . CNAVPL:
+  description: |
+    La caisse nationale d'assurance vieillesse des professions libérales est
+    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    CARCDSF, CAVEC etc..)
+  non applicable si: régime général
+  valeur: oui
+
+dirigeant . indépendant . PL . CNAVPL . retraite:
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
-
-    La caisse nationale d'assurance vieillesse des professions
-    libérales est l'organisme qui fédère les différentes caisses
-    existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
-
   produit:
     assiette:
       valeur: assiette des cotisations
@@ -338,11 +337,35 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
-dirigeant . indépendant . PL . retraite CNAVPL . remplace:
+dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
   titre: retraite de base (CNAVPL)
-  non applicable si: CARMF . retraite CNAVPL
+  non applicable si:
+    une de ces conditions:
+      - PL . CNBF
+      - PL . CARMF
   remplace: cotisations et contributions . retraite de base
-  formule: retraite CNAVPL
+  formule: CNAVPL . retraite
+
+dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
+  description: |
+    Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
+    la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
+    maladie.
+
+    En conséquence une nouvelle cotisation est créée.
+  remplace: cotisations et contributions . indemnités journalières maladie
+  non applicable si: PL . CNBF
+  formule:
+    produit:
+      assiette:
+        valeur: assiette des cotisations
+        plafond: 3 * plafond sécurité sociale temps plein
+        plancher: 40% * plafond sécurité sociale temps plein
+      # TODO: Le taux est exceptionnellement de 0,15% en 2021 et passera à 0,30% à partir de 2022
+      taux: 0.15%
+    arrondi: oui
+  références:
+    Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:
@@ -355,7 +378,6 @@ dirigeant . indépendant . PL . PAMC:
       - métier = 'santé . auxiliaire médical'
 
   rend non applicable:
-    - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
     - entreprise . chiffre d'affaires . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
@@ -837,7 +859,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   remplace: cotisations et contributions . retraite de base
   formule:
-    valeur: PL . retraite CNAVPL
+    valeur: CNAVPL . retraite
     abattement: participation CPAM
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
@@ -1172,6 +1194,7 @@ dirigeant . indépendant . PL . CNBF:
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.
   rend non applicable:
+    - cotisations et contributions . indemnités journalières maladie
     # Applicable mais pas encore supporté
     - conjoint collaborateur
   références:

@@ -117,6 +117,7 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 			{/* This div is only used to set the CSS variables */}
 			<div
 				ref={divRef}
+				className="js-color-element"
 				css={`
 					height: 100%;
 					display: flex;

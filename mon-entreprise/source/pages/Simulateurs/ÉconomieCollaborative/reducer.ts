@@ -40,9 +40,7 @@ const activitéReducer = (reducerActivité: any) =>
 				? action.seuilAtteint
 				: state,
 		critèresExonération: (
-			state: Array<boolean> = new Array(
-				(getActivité(reducerActivité)['exonérée sauf si'] || []).length
-			).fill(true),
+			state: Array<boolean> = getDefaultCritères(reducerActivité),
 			action: Action
 		) => {
 			if (
@@ -55,6 +53,13 @@ const activitéReducer = (reducerActivité: any) =>
 			return state
 		},
 	})
+function getDefaultCritères(reducerActivité: string) {
+	const exonération = getActivité(reducerActivité)['exonérée si']
+	const exceptionExonération = getActivité(reducerActivité)['exonérée sauf si']
+	return new Array((exonération ?? exceptionExonération ?? []).length).fill(
+		false
+	)
+}
 
 type ActivityTitle = string
 type State = Record<

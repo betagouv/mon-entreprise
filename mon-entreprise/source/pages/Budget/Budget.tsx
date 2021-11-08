@@ -6,10 +6,11 @@ import { H1, H2 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { sum, uniq } from 'ramda'
 import { useState } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import prose from './budget.md'
 import budget from './budget.yaml'
 
@@ -43,9 +44,11 @@ export default function Budget() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="budget" />
-			<Helmet>
-				<title>Le budget de mon-entreprise.fr</title>
-			</Helmet>
+			<Meta
+				page="budget"
+				title="Budget"
+				description="Le budget de mon-entreprise.fr"
+			/>
 			<ScrollToTop />
 			<H1>
 				Budget <Emoji emoji="💶" />

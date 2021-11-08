@@ -34,7 +34,12 @@ export default function PageHeader({
 					md={3}
 					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
 				>
-					<Illustration className="hide-mobile" titre={titre} src={picture} />
+					<Illustration
+						className="hide-mobile"
+						titre={titre}
+						src={picture}
+						alt={`${titre}`}
+					/>
 				</Grid>
 			)}
 		</Grid>

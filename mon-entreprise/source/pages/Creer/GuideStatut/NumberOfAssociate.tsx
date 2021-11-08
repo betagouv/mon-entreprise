@@ -6,7 +6,7 @@ import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 

@@ -1,11 +1,17 @@
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 import { TrackPage } from '../ATInternetTracking'
+import Meta from '../components/utils/Meta'
 
 export default function Accessibilité() {
 	return (
 		<Trans i18nKey="pages.accessibilité">
 			<H1>Accessibilité</H1>
+			<Meta
+				page="accessibilité"
+				title="Accessibilité"
+				description="Référentiel Général d’Amélioration de l’Accessibilité"
+			/>
 			<TrackPage chapter1="informations" name="accessibilite" />
 
 			<p>

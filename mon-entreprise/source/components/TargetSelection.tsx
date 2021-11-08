@@ -9,7 +9,6 @@ import {
 	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H2 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import { EvaluatedNode, formatValue, reduceAST, RuleNode } from 'publicodes'
@@ -22,6 +21,7 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
+import InputSuggestions from './conversation/InputSuggestions'
 import NumberInput from './conversation/NumberInput'
 import './TargetSelection.css'
 import { Appear, FromTop } from './ui/animate'
@@ -46,9 +46,9 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
 							{nom && (
-								<H2>
+								<h2 style={{ marginBottom: 0 }}>
 									<Emoji emoji={icône} /> <Trans>{nom}</Trans>
-								</H2>
+								</h2>
 							)}
 						</div>
 						{index === 0 && showPeriodSwitch && <PeriodSwitch />}
@@ -172,12 +172,13 @@ function TargetInputOrValue({
 		},
 		[target.dottedName, dispatch]
 	)
+	const isSituationEmpty = Object.keys(situation).length === 0
 	const isActive = target.dottedName in situation
 	const onChange = useCallback(
-		(valeur) =>
+		(evt) =>
 			dispatch(
 				updateSituation(target.dottedName, {
-					valeur,
+					valeur: evt.target.value,
 					unité: targetUnit,
 				})
 			),
@@ -193,19 +194,15 @@ function TargetInputOrValue({
 					<>
 						{!isFocused && <AnimatedTargetValue value={value} />}
 						<NumberInput
-							dottedName={target.dottedName}
-							unit={{ numerators: ['€'], denominators: [] }}
+							debounce={750}
+							name={target.dottedName}
 							value={value}
 							onChange={onChange}
 							onFocus={() => {
 								setFocused(true)
 							}}
 							onBlur={() => setTimeout(() => setFocused(false), 200)}
-							title={target.title}
-							suggestions={target.suggestions}
-							question={target.question}
-							description={target.description}
-							missing={false}
+							language={language}
 						/>
 					</>
 				) : (
@@ -219,6 +216,20 @@ function TargetInputOrValue({
 						)}
 					</span>
 				)}
+
+				{(isActive || isFocused) && (
+					<div style={{ minWidth: '100%' }} className="ui__ print-display-none">
+						<FromTop>
+							<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
+								<InputSuggestions
+									suggestions={target.suggestions}
+									onFirstClick={onSuggestionClick}
+								/>
+							</div>
+						</FromTop>
+					</div>
+				)}
+				{/* TODO: HACK this shouldn't be in the generic component, but defined only in the Simulator UI */}
 				{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
 				{target.dottedName === 'contrat salarié . rémunération . net' && (
 					<TitreRestaurant />
@@ -288,7 +299,7 @@ function AidesGlimpse() {
 								unit={targetUnit}
 							/>
 						</strong>{' '}
-						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
+						<Trans>d’aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</div>
 			</FromTop>

@@ -1,6 +1,6 @@
 import { FromBottom } from 'Components/ui/animate'
 import { H1 } from 'DesignSystem/typography/heading'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../ATInternetTracking'
 import Video from './Video'

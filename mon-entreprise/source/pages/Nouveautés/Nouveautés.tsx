@@ -2,6 +2,7 @@ import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Emoji from 'Components/utils/Emoji'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
+import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H1 } from 'DesignSystem/typography/heading'
@@ -54,6 +55,11 @@ export default function Nouveautés() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />
+			<Meta
+				page="nouveautés"
+				title="Nouveautés"
+				description="Nous améliorons le site en continu à partir de vos retours. Découvrez les dernières nouveautés"
+			/>
 			<ScrollToTop key={selectedRelease} />
 			<H1>
 				Les nouveautés <Emoji emoji="✨" />

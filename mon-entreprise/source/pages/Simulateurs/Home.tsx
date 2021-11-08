@@ -1,17 +1,18 @@
 import classnames from 'classnames'
 import PageHeader from 'Components/PageHeader'
 import InfoBulle from 'Components/ui/InfoBulle'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H3 } from 'DesignSystem/typography/heading'
 import { Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
 
@@ -24,6 +25,12 @@ export default function Simulateurs() {
 	return (
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil" />
+			<Meta
+				page="simulateurs"
+				title="simulateurs"
+				description="Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives."
+				ogImage={simulatorSvg}
+			/>
 			<Helmet>
 				<title>{titre}</title>
 			</Helmet>
@@ -131,7 +138,7 @@ export function SimulateurCard({
 }: SimulatorData[keyof SimulatorData] & {
 	small?: boolean
 }) {
-	const isIframe = useContext(IsEmbeddedContext)
+	const isIframe = useIsEmbedded()
 	const name = (
 		<span>
 			{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}

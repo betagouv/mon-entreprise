@@ -275,12 +275,13 @@ créer:
 d'aides: d'aides
 dividendes:
   warning: <0>Cette simulation est uniquement donnée à titre indicatif. Elle ne
-    concerne que les sociétés françaises à l'impôt sur les sociétés (IS), et ne
-    concerne pas les dirigeants affiliés au régime des travailleurs
-    indépendants.</0><1>Le montant de l'impôt sur les dividendes est calculé en
-    sus de l'impôt sur les autres revenus imposables. </1>
+    concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne
+    concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
+    l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
+    revenus imposables.</1>
 domiciliation inconnue: domiciliation inconnue
 domiciliée à: domiciliée à
+d’aides: d’aides
 embauche:
   chaque mois: <0>Tous les mois</0><1><0>Utiliser un logiciel de paie pour
     calculer les cotisations sociales et les transmettre via la déclaration
@@ -657,52 +658,52 @@ page:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
-  accessibilité: <0>Accessibilité</0><1></1><2>Cette page n'est pas une page
-    d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui vise
-    à définir le niveau d'accessibilité général constaté sur le site
+  accessibilité: <0></0><1>Accessibilité</1><2></2><3>Cette page n'est pas une
+    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
+    vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
-    conforme au RGAA 4.0.</2><3>Qu’est-ce que l’accessibilité
-    numérique&nbsp;?</3><4>Un site web accessible est un site qui permet à tous
+    conforme au RGAA 4.0.</3><4>Qu’est-ce que l’accessibilité
+    numérique&nbsp;?</4><5>Un site web accessible est un site qui permet à tous
     les internautes d’accéder à ses contenus sans difficulté, y compris aux
     personnes qui présentent un handicap et utilisent des logiciels ou matériels
-    spécialisés.</4><5>Un site accessible permet par exemple
-    de&nbsp;:</5><6><0>Naviguer avec des synthèses vocales ou des plages braille
+    spécialisés.</5><6>Un site accessible permet par exemple
+    de&nbsp;:</6><7><0>Naviguer avec des synthèses vocales ou des plages braille
     (notamment utilisées par les internautes aveugles ou
     malvoyants).</0><1>Personnaliser l’affichage du site selon ses besoins
     (grossissement des caractères, modification des couleurs,
     etc.).</1><2>Naviguer sans utiliser la souris, avec le clavier uniquement ou
-    via un écran tactile.</2></6><7>Déclaration d’accessibilité</7><8>L'Acoss
+    via un écran tactile.</2></7><8>Déclaration d’accessibilité</8><9>L'Acoss
     s’engage à rendre ses sites internet accessibles conformément à l’article 47
-    de la loi n° 2005-102 du 11 février 2005.</8><9>À cette fin, elle rédige
-    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</9><10>Cette
+    de la loi n° 2005-102 du 11 février 2005.</9><10>À cette fin, elle rédige
+    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</10><11>Cette
     déclaration d’accessibilité s’applique à
-    <2>https://mon-entreprise.fr</2>.</10><11>État de
-    conformité</11><12><0>https://mon-entreprise.fr</0> n’est actuellement pas
+    <2>https://mon-entreprise.fr</2>.</11><12>État de
+    conformité</12><13><0>https://mon-entreprise.fr</0> n’est actuellement pas
     en conformité avec le <3>référentiel général d’amélioration de
     l’accessibilité (RGAA)</3>. L’audit de conformité sera prochainement
     planifié. Les corrections seront prises en compte suite à
-    l’audit.</12><13>Droit à la compensation</13><14>Dans l’attente d’une mise
+    l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
     en conformité totale, vous pouvez obtenir une version accessible des
     documents ou des informations qui y seraient contenues en envoyant un
     courriel à <2>accessibilite@acoss.fr</2> en indiquant le nom du document
     concerné et/ou les informations que vous souhaiteriez obtenir. Les
     informations demandées vous seront transmises dans les meilleurs
-    délais.</14><15>Amélioration et contact</15><16>Vous pouvez nous aider à
+    délais.</15><16>Amélioration et contact</16><17>Vous pouvez nous aider à
     améliorer l’accessibilité du site en nous signalant les problèmes éventuels
     que vous rencontrez. Pour ce faire, envoyez-nous un courriel à
-    <2>accessibilite@acoss.fr</2>.</16><17>Défenseur des droits</17><18>Cette
-    procédure est à utiliser dans le cas suivant.</18><19>Vous avez signalé au
+    <2>accessibilite@acoss.fr</2>.</17><18>Défenseur des droits</18><19>Cette
+    procédure est à utiliser dans le cas suivant.</19><20>Vous avez signalé au
     responsable du site internet un défaut d’accessibilité qui vous empêche
     d’accéder à un contenu ou à un des services du portail et vous n’avez pas
-    obtenu de réponse satisfaisante.</19><20><0>Écrire un message au Défenseur
+    obtenu de réponse satisfaisante.</20><21><0>Écrire un message au Défenseur
     des droits
     (<1>https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contacter le
     délégué du Défenseur des droits dans votre région
     (<1>https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Envoyer un
     courrier par la poste (gratuit, ne pas mettre de timbre)
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
-    71120<5></5>75342&nbsp;Paris CEDEX 07</2></20><21>Mis à jour le
-    29/01/2021</21>
+    71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
+    29/01/2021</22>
   common:
     ressources-auto-entrepreneur:
       FAQ:
@@ -982,11 +983,11 @@ pages:
         description: Calculez le montant de l'impôt et des cotisations sur les
           dividendes versés par votre entreprise.
         title: Dividendes
-      seo: <0>Les dividendes et distributions</0><1>A la fin de l'exercice d'une
+      seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
         dividendes. Du point de vue des bénéficiaires, ce sont des revenus de
-        capitaux mobiliers, soumis à des cotisations et une imposition
+        capitaux mobiliers, soumis à cotisations et à une imposition
         spécifiques.</1><2>Ne sont pris en compte dans ce simulateur que les cas
         de figure du bénéficiaire personne physique et des dividendes décidés
         par la société.</2><3>Comment sont calculés les prélèvements sur les
@@ -996,10 +997,10 @@ pages:
         être choisi. Ce simulateur peut être utilisé pour comparer les deux
         régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est prélevé au
         moment du versement des dividendes, sauf si le bénéficiaire remplit
-        <2>certains critères</2>.</5><6>Cas particulier du dirigeant au régime
-        du travailleur indépendant</6><7> Au régime du travailleur indépendant,
-        la part des dividendes dépassant 10% du capital social sera soumise au
-        cotisations et contributions au même titre que les revenus du
+        <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
+        salarié</6><7>Pour le travailleur indépendant non salarié, la part des
+        dividendes dépassant 10% du capital social sera soumise aux cotisations
+        et contributions suivant les mêmes modalités que sa rémunération de
         dirigeant.</7><8>Ce cas de figure n'est pas encore pris en compte par ce
         simulateur.</8>
       title: Simulateur de versement de dividendes
@@ -1376,9 +1377,8 @@ trouver:
       Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans
       la plupart des cas. Cependant, il peut être difficile de s'y retrouver
       <5><0></0></5>.</0><1>Suivez ce guide pour savoir en quelques clics
-      comment être en règle.</1><2>À partir de 2020, ces revenus seront
-      communiqués automatiquement par les plateformes à l’administration fiscale
-      et à l’Urssaf.</2>
+      comment être en règle.</1><2>Ces revenus sont communiqués automatiquement
+      par les plateformes à l’administration fiscale et à l’Urssaf.</2>
     question: Quels types d'activités avez-vous exercé ?
     réassurance: "PS : cet outil est là uniquement pour vous informer, aucune donnée
       ne sera transmise aux administrations"
@@ -1393,7 +1393,8 @@ trouver:
     revenusAnnuels: <0>Revenus annuels</0><1>Vos revenus annuels pour cette activité sont :</1>
     voirObligations: Voir mes obligations
   exonération:
-    notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
+    exception-notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
+    notice: Si un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
     question: Êtes-vous dans un des cas suivants ?
   obligations:
     aucune: <0>Rien à faire</0><1>Vous n'avez pas besoin de déclarer vos revenus
@@ -1403,9 +1404,9 @@ trouver:
       faudra seulement vérifier que son objet social est compatible avec les
       activités concernées (et le changer si besoin). Sinon, vous aurez à créer
       une nouvelle entreprise.</1><2>Créer une entreprise</2>
-    guide: <0>Consulter le guide Urssaf</0><1>Découvrez les modalités des statuts
-      sociaux pour chaque type de locations (bien, meublé, courte durée, classé,
-      etc.).</1><2>PDF</2>
+    guide: <0><0></0> Consulter le guide Urssaf</0><1>Découvrez les modalités des
+      statuts sociaux pour chaque type de locations (bien, meublé, courte durée,
+      classé, etc.).</1><2>PDF</2>
     impôts: <0>Déclarer vos revenus aux impôts</0><1>Pour ces activités, vous avez
       uniquement besoin de déclarer vos revenus sur votre feuille d'imposition.
       Pour en savoir plus, vous pouvez consulter la <2>page dédiée sur

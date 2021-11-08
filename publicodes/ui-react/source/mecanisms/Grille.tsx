@@ -1,4 +1,3 @@
-import React from 'react'
 import { BarèmeAttributes, TrancheTable, StyledComponent } from './Barème'
 import { Mecanism } from './common'
 

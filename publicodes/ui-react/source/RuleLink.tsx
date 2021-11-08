@@ -1,36 +1,35 @@
 import Engine, { utils } from 'publicodes'
 import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
-import { Link, useLocation } from 'react-router-dom'
-import {
-	BasepathContext,
-	EngineContext,
-	SituationMetaContext,
-} from './contexts'
+import { BasepathContext, EngineContext, RenderersContext } from './contexts'
 
 const { encodeRuleName } = utils
 
-type RuleLinkProps<Name extends string> = Omit<
-	React.ComponentProps<Link>,
-	'to'
-> & {
+type RuleLinkProps<Name extends string> = {
 	dottedName: Name
 	engine: Engine<Name>
 	documentationPath: string
 	displayIcon?: boolean
+	currentEngineId?: number
 	situationName?: string
 	children?: React.ReactNode
+	linkComponent?: React.ComponentType<{ to: string }>
 }
 
 export function RuleLink<Name extends string>({
 	dottedName,
 	engine,
+	currentEngineId,
 	documentationPath,
-	situationName,
 	displayIcon = false,
 	children,
+	linkComponent,
 	...props
 }: RuleLinkProps<Name>) {
+	const renderers = useContext(RenderersContext)
+	const Link = linkComponent || renderers.Link
+	if (!Link) {
+		throw new Error('You must provide a <Link /> component.')
+	}
 	const rule = engine.getRule(dottedName)
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
@@ -53,14 +52,10 @@ export function RuleLink<Name extends string>({
 	}
 	return (
 		<Link
-			to={{
-				pathname: newPath,
-				state: {
-					situation: engine.parsedSituation,
-					situationName,
-				},
-			}}
 			{...props}
+			to={
+				newPath + (currentEngineId ? `?currentEngineId=${currentEngineId}` : '')
+			}
 		>
 			{children || rule.title}{' '}
 			{displayIcon && rule.rawNode.icônes && <span>{rule.rawNode.icônes}</span>}
@@ -69,21 +64,28 @@ export function RuleLink<Name extends string>({
 }
 
 export function RuleLinkWithContext(
-	props: Omit<RuleLinkProps<string>, 'engine' | 'documentationPath'>
+	props: Omit<RuleLinkProps<string>, 'engine' | 'documentationPath'> & {
+		useSubEngine?: boolean
+	}
 ) {
 	const engine = useContext(EngineContext)
 	if (!engine) {
 		throw new Error('an engine should be provided in context')
 	}
 	const documentationPath = useContext(BasepathContext)
-	const { state } = useLocation<{ situationName?: string } | undefined>()
-	const situationName =
-		useContext(SituationMetaContext)?.name ?? state?.situationName
+	const currentEngineIdFromUrl = new URLSearchParams(
+		window.location.search
+	).get('currentEngineId')
+	const currentEngineId =
+		props.useSubEngine !== false
+			? engine.subEngineId ||
+			  (currentEngineIdFromUrl ? Number(currentEngineIdFromUrl) : undefined)
+			: undefined
 	return (
 		<RuleLink
 			engine={engine}
+			currentEngineId={currentEngineId}
 			documentationPath={documentationPath}
-			situationName={situationName}
 			{...props}
 		/>
 	)

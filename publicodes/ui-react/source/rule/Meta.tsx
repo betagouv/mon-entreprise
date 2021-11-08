@@ -1,4 +1,5 @@
-import { Helmet } from 'react-helmet'
+import { useContext } from 'react'
+import { RenderersContext } from '../contexts'
 
 type PropType = {
 	title: string
@@ -6,13 +7,17 @@ type PropType = {
 }
 
 export default function Meta({ title, description }: PropType) {
+	const { Head } = useContext(RenderersContext)
+	if (!Head) {
+		return null
+	}
 	return (
-		<Helmet>
+		<Head>
 			<title>{title}</title>
 			<meta property="og:type" content="article" />
 			<meta property="og:title" content={title} />
 			{description && <meta property="og:description" content={description} />}
 			{description && <meta name="description" content={description} />}
-		</Helmet>
+		</Head>
 	)
 }

@@ -28,7 +28,7 @@ contrat salarié . ancienneté:
 
 contrat salarié . ancienneté . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
-  par défaut: 01/01/2021
+  par défaut: 01/10/2021
   suggestions:
     Début 2021: 01/01/2021
     Début 2020: 01/01/2020
@@ -701,7 +701,8 @@ contrat salarié . CDD . congés pris:
   suggestions:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
-  par défaut: 0 jours ouvrés
+    aucun: 0 jours ouvrés
+  par défaut: congés dus sur la durée du contrat
 
 contrat salarié . CDD . jours ouvrés sur la durée du contrat:
   produit:
@@ -983,7 +984,7 @@ contrat salarié . CDD . motif:
         - complément formation
         - issue d'apprentissage
   # les CDD d'usage "concentrent la moitié des embauches en CDD"
-  par défaut: "'classique . usage'"
+  par défaut: "'classique . accroissement activité'"
   références:
     Code du travail - Articles L1242-1 à 4: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=E318966AA9DEB9E32465297F15B04D86.tpdila20v_1?idSectionTA=LEGISCTA000006195639&cidTexte=LEGITEXT000006072050&dateTexte=20170420
     le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
@@ -1123,6 +1124,7 @@ contrat salarié . CDD . contrat jeune vacances:
   par défaut: non
 
 contrat salarié . CDD . indemnités salarié:
+  titre: Indemnités CDD
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:

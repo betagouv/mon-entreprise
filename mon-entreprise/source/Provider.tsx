@@ -2,11 +2,14 @@ import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
+import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { H1 } from 'DesignSystem/typography/heading'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
+import 'iframe-resizer'
 import React, { createContext, useMemo } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
@@ -117,10 +120,12 @@ export default function Provider({
 	display: none !important;
 }`
 	document.body.appendChild(css)
-	const iframeCouleur =
-		new URLSearchParams(document?.location.search.substring(1)).get(
-			'couleur'
-		) ?? undefined
+	// Note that the iframeColor is first set in the index.html file, but without
+	// the full palette generation that happen here. This is to prevent a UI
+	// flash, cf. #1786.
+	const iframeCouleur = new URLSearchParams(
+		document.location.search.substring(1)
+	).get('couleur')
 
 	return (
 		<ErrorBoundary
@@ -130,6 +135,7 @@ export default function Provider({
 					<div className="ui__ container">
 						<img
 							src={logo}
+							alt="logo"
 							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
 						></img>
 						<H1>Une erreur est survenue</H1>
@@ -149,7 +155,7 @@ export default function Provider({
 		>
 			<ReduxProvider store={store}>
 				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+					color={iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined}
 				>
 					<TrackingContext.Provider
 						value={
@@ -159,17 +165,21 @@ export default function Provider({
 						}
 					>
 						<DisableAnimationOnPrintProvider>
-							<SiteNameContext.Provider value={basename}>
-								<SitePathProvider value={sitePaths}>
-									<I18nextProvider i18n={i18next}>
-										<OverlayProvider>
-											<Router history={history}>
-												<>{children}</>
-											</Router>
-										</OverlayProvider>
-									</I18nextProvider>
-								</SitePathProvider>
-							</SiteNameContext.Provider>
+							<IsEmbeddedProvider>
+								<SiteNameContext.Provider value={basename}>
+									<SitePathProvider value={sitePaths}>
+										<I18nextProvider i18n={i18next}>
+											<HelmetProvider>
+												<OverlayProvider>
+													<Router history={history}>
+														<>{children}</>
+													</Router>
+												</OverlayProvider>
+											</HelmetProvider>
+										</I18nextProvider>
+									</SitePathProvider>
+								</SiteNameContext.Provider>
+							</IsEmbeddedProvider>
 						</DisableAnimationOnPrintProvider>
 					</TrackingContext.Provider>
 				</ThemeColorsProvider>

@@ -52,8 +52,8 @@ export default function ActivitésSelection() {
 							règle.
 						</p>
 						<p className="ui__ notice">
-							À partir de 2020, ces revenus seront communiqués automatiquement
-							par les plateformes à l’administration fiscale et à l’Urssaf.
+							Ces revenus sont communiqués automatiquement par les plateformes à
+							l’administration fiscale et à l’Urssaf.
 						</p>
 					</Trans>
 				</section>

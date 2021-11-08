@@ -314,6 +314,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			},
 			icône: '🙋',
 			pathId: 'simulateurs.économieCollaborative.index',
+			iframePath: 'economie-collaborative',
 			shortName: t(
 				'pages.économie-collaborative.shortname',
 				'Guide économie collaborative'

@@ -36,6 +36,7 @@ export const hasConditions = (a: string) => {
 	const activité = getActivité(a)
 	return !!(
 		activité['exonérée sauf si'] ||
+		activité['exonérée si'] ||
 		(activité['seuil pro'] && activité['seuil pro'] !== 0) ||
 		activité['seuil déclaration'] ||
 		activité['seuil pro'] ||

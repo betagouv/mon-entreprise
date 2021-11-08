@@ -1,6 +1,7 @@
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Emoji from 'Components/utils/Emoji'
+import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card/Card'
 import { Container } from 'DesignSystem/layout'
@@ -29,6 +30,12 @@ export default function Landing() {
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
+			<Meta
+				page="landing"
+				title="Mon-entreprise"
+				description="L'assistant officiel de l'entrepreneur"
+				ogImage={logoSvg}
+			/>
 			<Header />
 			{language === 'en' && (
 				<div className="ui__ plain card" style={{ textAlign: 'center' }}>
@@ -58,7 +65,11 @@ export default function Landing() {
 							</Trans>
 						</Intro>
 					</header>
-					<img src={illustrationSvg} className="landing-title__img" />
+					<img
+						src={illustrationSvg}
+						alt="landing image"
+						className="landing-title__img"
+					/>
 				</section>
 
 				<CardSection>

@@ -7,7 +7,7 @@ import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -16,8 +16,8 @@ export default function MinorityDirector() {
 	const dispatch = useDispatchAndGoToNextQuestion()
 	return (
 		<>
+			<TrackPage name="majoritaire_ou_minoritaire" />
 			<Helmet>
-				<TrackPage name="majoritaire_ou_minoritaire" />
 				<title>
 					{t(
 						'gérant minoritaire.page.titre',

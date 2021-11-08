@@ -30,11 +30,7 @@ export default function RuleHeader({ dottedName }) {
 					))}
 			</ul>{' '}
 			<h1 className="rule-header__title">
-				<RuleLinkWithContext
-					dottedName={dottedName}
-					displayIcon
-					style={{ textDecoration: 'none' }}
-				/>
+				<RuleLinkWithContext dottedName={dottedName} displayIcon />
 			</h1>
 		</StyledHeader>
 	)
@@ -54,5 +50,9 @@ const StyledHeader = styled.header`
 
 	.rule-header__title {
 		margin: 0.6rem 0;
+	}
+
+	.rule-header__title > a {
+		text-decoration: none;
 	}
 `

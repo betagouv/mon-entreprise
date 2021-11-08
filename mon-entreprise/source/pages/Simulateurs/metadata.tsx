@@ -572,6 +572,7 @@ export function getSimulatorsData({
 				...pureSimulatorsData['économie-collaborative'].meta,
 			},
 			path: sitePaths.simulateurs.économieCollaborative.index,
+			nextSteps: ['auto-entrepreneur'],
 		},
 		'aide-déclaration-indépendant': {
 			...pureSimulatorsData['aide-déclaration-indépendant'],
@@ -795,11 +796,11 @@ export function getSimulatorsData({
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
 					<H2>Les dividendes et distributions</H2>
 					<p>
-						A la fin de l'exercice d'une société, le résultat de l'exercice
+						À la fin de l'exercice d'une société, le résultat de l'exercice
 						précédent peut être conservé en réserve (pour de futurs
 						investissements) ou bien être versé en dividendes. Du point de vue
 						des bénéficiaires, ce sont des revenus de capitaux mobiliers, soumis
-						à des cotisations et une imposition spécifiques.
+						à cotisations et à une imposition spécifiques.
 					</p>
 					<p>
 						Ne sont pris en compte dans ce simulateur que les cas de figure du
@@ -826,14 +827,12 @@ export function getSimulatorsData({
 						</a>
 						.
 					</p>
-					<H2>
-						Cas particulier du dirigeant au régime du travailleur indépendant
-					</H2>
+					<H2>Cas particulier du dirigeant non salarié</H2>
 					<p>
-						{' '}
-						Au régime du travailleur indépendant, la part des dividendes
-						dépassant 10% du capital social sera soumise au cotisations et
-						contributions au même titre que les revenus du dirigeant.
+						Pour le travailleur indépendant non salarié, la part des dividendes
+						dépassant 10% du capital social sera soumise aux cotisations et
+						contributions suivant les mêmes modalités que sa rémunération de
+						dirigeant.
 					</p>
 					<p>
 						Ce cas de figure n'est pas encore pris en compte par ce simulateur.

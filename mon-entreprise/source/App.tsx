@@ -2,6 +2,7 @@ import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import {
 	engineFactory,
 	EngineProvider,
@@ -9,12 +10,11 @@ import {
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { GlobalStyle } from 'DesignSystem/global-style'
 import { Container } from 'DesignSystem/layout'
 import SystemRoot from 'DesignSystem/root'
 import 'iframe-resizer'
-import { useContext, useMemo } from 'react'
-import { Helmet } from 'react-helmet'
+import { StrictMode, useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
@@ -56,24 +56,25 @@ export default function Root({ basename, rules }: RootProps) {
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
 	const engine = useMemo(() => engineFactory(rules), [rules])
 	return (
-		<Provider
-			basename={basename}
-			sitePaths={paths}
-			onStoreCreated={(store) => {
-				setupInFranceAppPersistence(store)
-				setupSimulationPersistence(store)
-			}}
-			initialStore={{
-				inFranceApp: retrievePersistedInFranceApp(),
-			}}
-		>
-			<SystemRoot>
-				<EngineProvider value={engine}>
-					<GlobalStyle />
-					<Router />
-				</EngineProvider>
-			</SystemRoot>
-		</Provider>
+		<StrictMode>
+			<Provider
+				basename={basename}
+				sitePaths={paths}
+				onStoreCreated={(store) => {
+					setupInFranceAppPersistence(store)
+					setupSimulationPersistence(store)
+				}}
+				initialStore={{
+					inFranceApp: retrievePersistedInFranceApp(),
+				}}
+			>
+				<SystemRoot>
+					<EngineProvider value={engine}>
+						<Router />
+					</EngineProvider>
+				</SystemRoot>
+			</Provider>
+		</StrictMode>
 	)
 }
 
@@ -110,10 +111,10 @@ const Router = () => {
 const App = () => {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-
+	const isEmbedded = useIsEmbedded()
 	return (
 		<>
-			<Header />
+			{!isEmbedded && <Header />}
 			<Helmet
 				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
 			/>
@@ -145,7 +146,7 @@ const App = () => {
 					<Route component={Route404} />
 				</Switch>
 			</Container>
-			<Footer />
+			{!isEmbedded && <Footer />}
 		</>
 	)
 }

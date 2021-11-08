@@ -2,7 +2,7 @@ import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
@@ -26,7 +26,7 @@ declare global {
 }
 
 export default function ChômagePartiel() {
-	const inIframe = useContext(IsEmbeddedContext)
+	const inIframe = useIsEmbedded()
 	useEffect(() => {
 		if (inIframe) {
 			return

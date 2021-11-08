@@ -91,6 +91,18 @@ export default class Engine<Name extends string = string> {
 	cache: Cache = emptyCache()
 	options: Options
 
+	// The subEngines attribute is used to get an outside reference to the
+	// recalcul intermediate calculations. The recalcul mechanism uses
+	// `shallowCopy` to instanciate a new engine, and we want to keep a reference
+	// to it for the documentation.
+	//
+	// TODO: A better implementation would to remove the "runtime" concept of
+	// "subEngines" and instead duplicate all rules names in the scope of the
+	// recalcul as described in
+	// https://github.com/betagouv/publicodes/discussions/92
+	subEngines: Array<Engine<Name>> = []
+	subEngineId: number | undefined
+
 	constructor(
 		rules: string | Record<string, Rule> = {},
 		options: Partial<Options> = {}
@@ -216,6 +228,8 @@ export default class Engine<Name extends string = string> {
 		newEngine.replacements = this.replacements
 		newEngine.parsedSituation = this.parsedSituation
 		newEngine.cache = this.cache
+		newEngine.subEngineId = this.subEngines.length
+		this.subEngines.push(newEngine)
 		return newEngine
 	}
 

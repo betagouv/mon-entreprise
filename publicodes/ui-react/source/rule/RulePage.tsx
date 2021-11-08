@@ -4,24 +4,76 @@ import Engine, {
 	simplifyNodeUnit,
 	utils,
 } from 'publicodes'
-import { isEmpty } from 'ramda'
+import { decodeRuleName } from 'publicodes/source/ruleUtils'
 import { useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { EngineContext } from '../contexts'
+import {
+	BasepathContext,
+	EngineContext,
+	RenderersContext,
+	SupportedRenderers,
+} from '../contexts'
 import Explanation from '../Explanation'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
 import RuleHeader from './Header'
-import References from './References'
 import RuleSource from './RuleSource'
 
-export default function Rule({ dottedName, language, situationName }) {
-	const engine = useContext(EngineContext)
-	const { pathname } = useLocation()
+type RulePageProps = {
+	documentationPath: string
+	rulePath: string
+	engine: Engine
+	language: 'fr' | 'en'
+	renderers: SupportedRenderers
+}
 
-	if (!engine) {
+export default function RulePage({
+	documentationPath,
+	rulePath,
+	engine,
+	renderers,
+	language,
+}: RulePageProps) {
+	const currentEngineId = new URLSearchParams(window.location.search).get(
+		'currentEngineId'
+	)
+
+	return (
+		<EngineContext.Provider value={engine}>
+			<BasepathContext.Provider value={documentationPath}>
+				<RenderersContext.Provider value={renderers}>
+					<Rule
+						dottedName={decodeRuleName(rulePath)}
+						subEngineId={
+							currentEngineId ? parseInt(currentEngineId) : undefined
+						}
+						language={language}
+					/>
+				</RenderersContext.Provider>
+			</BasepathContext.Provider>
+		</EngineContext.Provider>
+	)
+}
+
+type RuleProps = {
+	dottedName: string
+	subEngineId?: number
+	language: RulePageProps['language']
+}
+
+export function Rule({ dottedName, language, subEngineId }: RuleProps) {
+	const baseEngine = useContext(EngineContext)
+	const { References } = useContext(RenderersContext)
+	if (!baseEngine) {
 		throw new Error('Engine expected')
 	}
+
+	const useSubEngine =
+		subEngineId && baseEngine.subEngines.length >= subEngineId
+
+	const engine = useSubEngine
+		? baseEngine.subEngines[subEngineId as number]
+		: baseEngine
+
 	if (!(dottedName in engine.getParsedRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
@@ -30,7 +82,7 @@ export default function Rule({ dottedName, language, situationName }) {
 	const { parent, valeur } = rule.explanation
 	return (
 		<div id="documentationRuleRoot">
-			{situationName && (
+			{useSubEngine && (
 				<div
 					className="ui__ card notice light-bg"
 					style={{
@@ -44,11 +96,13 @@ export default function Rule({ dottedName, language, situationName }) {
 				>
 					<div>
 						Vous explorez la documentation avec le contexte{' '}
-						<strong className="ui__ label">{situationName}</strong>{' '}
+						<strong className="ui__ label">mécanisme recalcul</strong>
 					</div>
 					<div style={{ flex: 1 }} />
 					<div>
-						<Link to={pathname}>Retourner à la version de base</Link>
+						<RuleLinkWithContext dottedName={dottedName} useSubEngine={false}>
+							Retourner à la version de base
+						</RuleLinkWithContext>
 					</div>
 				</div>
 			)}
@@ -92,7 +146,7 @@ export default function Rule({ dottedName, language, situationName }) {
 			<Explanation node={valeur} />
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 
-			{!isEmpty(rule.missingVariables) && (
+			{Object.entries(rule.missingVariables).length > 0 && (
 				<>
 					<h3>Données manquantes</h3>
 					<p className="ui__ notice">
@@ -129,10 +183,10 @@ export default function Rule({ dottedName, language, situationName }) {
 					</div>
 				</>
 			)}
-			{rule.rawNode.références && (
+			{rule.rawNode.références && References && (
 				<>
-					<h2>Références</h2>
-					<References refs={rule.rawNode.références} />
+					<h3>Références</h3>
+					<References references={rule.rawNode.références} />
 				</>
 			)}
 			{/* <Examples

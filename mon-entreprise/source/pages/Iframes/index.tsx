@@ -1,6 +1,6 @@
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useSetEmbedded } from 'Components/utils/embeddedContext'
 import { useEffect } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { Route, Switch } from 'react-router-dom'
 import useSimulatorsData from '../Simulateurs/metadata'
 import SimulateurPage from '../Simulateurs/Page'
@@ -8,7 +8,7 @@ import IframeFooter from './IframeFooter'
 
 export default function Iframes() {
 	const simulators = useSimulatorsData()
-
+	useSetEmbedded()
 	// We hide the vertical scrollbar in the iframe because the iframe is resized
 	// using the "iframe-resizer" module, and if we keep the scrollbar it appears
 	// briefly during transitions, cf.
@@ -20,12 +20,11 @@ export default function Iframes() {
 	}, [])
 
 	return (
-		<IsEmbeddedContext.Provider value={true}>
+		<>
 			{/** Open external links in the parent frame.
 			This behavior can be configured on individual link, eg <a target="_blank" />.
 			Our own link are handled in-app by the router, and aren't affected by this directive.
 			*/}
-
 			<base target="_parent" />
 			<div className="ui__ container">
 				<Switch>
@@ -48,6 +47,6 @@ export default function Iframes() {
 				</Switch>
 				<IframeFooter />
 			</div>
-		</IsEmbeddedContext.Provider>
+		</>
 	)
 }

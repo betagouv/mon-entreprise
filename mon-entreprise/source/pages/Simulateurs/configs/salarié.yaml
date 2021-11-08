@@ -2,6 +2,8 @@ objectifs:
   - contrat salarié . prix du travail
   - contrat salarié . rémunération . brut de base . équivalent temps plein
   - contrat salarié . rémunération . brut de base
+  - contrat salarié . rémunération . primes
+  - contrat salarié . CDD . indemnités salarié
   - contrat salarié . rémunération . net
   - contrat salarié . rémunération . net après impôt
 

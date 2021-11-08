@@ -101,11 +101,10 @@ intermédiaires qui permettent d'aboutir au résultat affiché.
 
 [Voir un exemple sur mon-entreprise.fr](https://mon-entreprise.fr/documentation/imp%C3%B4t/foyer-fiscal/imp%C3%B4t-sur-le-revenu/imp%C3%B4t-brut-par-part)
 
-## `<Documentation />`
+## `<RulePage />`
 
-Composant React permettant d'afficher une documentation explorable d'une base de
-règles publicodes. Se base sur react-router pour créer une arborescence de pages
-correspondant aux espaces de noms existants dans les règles.
+Composant React permettant d'afficher la page de documentation d’une règle
+donnée.
 
 Voir le [bac à sable](https://publi.codes/studio) pour voir le composant en
 action (il est affiché sur l'écran de droite).
@@ -115,8 +114,97 @@ action (il est affiché sur l'écran de droite).
 -   `engine`: l'objet moteur dont on veut afficher les calculs.
 -   `documentationPath` : (`string`) le chemin de base sur lequel la documentation sera
     montée. Par exemple, si c'est `/documentation` l'url de la règle `rémunération . primes` sera `/documentation/rémunération/primes`
+-   `rulePath`: (`string`) le chemin de la règle à afficher
 -   `language`: le language dans lequel afficher la documentation (pour l'instant,
     seuls `fr` et `en` sont supportés).
+-   `renderers`: `{ Head?: React.Component, Link: React.Component }` :
+    les composants React qui seront utilisés dans la page de documentation.
+    -   `Link`: pour afficher les liens. Le composant prend un argument `to`
+    -   `Head`: pour afficher les en-têtes de la page, balises `<meta>`, `<title>`, etc.
+    -   `References`: pour personnaliser l'affichage des références en pied de page. Le composant reçoit l'objet `références` brut définit dans le Yaml.
+
+En général, on voudra afficher la documentation pour l'ensemble des pages et non
+pour une page en particulier. Il faut donc associer le composant `<RulePage />`
+avec le routeur utilisé.
+
+Par exemple pour `react-router` :
+
+```jsx
+import { Route, Link } from 'react-router-dom'
+import { RulePage } from 'publicodes/react-ui'
+
+export function Documentation() {
+    return (
+        <Route
+            path="documentation/:name+"
+            render={({ match }) => (
+                <RulePage
+                    documentationPath="/documentation"
+                    rulePath={match.params.name}
+                    language="fr"
+                    renderers={{ Link }}
+                />
+            )}
+        />
+    )
+}
+```
+
+Autre exemple pour intégrer la documentation dans une application Next.js :
+
+```jsx
+// pages/documentation/[...slug].jsx
+import Head from 'next/head';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+export default Documentation() {
+  const { slug } = useRouter().query;
+  return <RulePage
+    documentationPath="/documentation"
+    rulePath={slug.join('/')}
+    language="fr"
+    renderers={{
+      Head,
+      Link: ({to, children}) => <Link href={to}><a>{children}</a></Link>
+    }}
+  />
+}
+```
+
+Vous pouvez même afficher cette documentation dans une application qui n'est pas développée en React, en “montant” React seulement pour la partie documentation. Par exemple dans une application Svelte :
+
+```html
+<script>
+    import { onMount } from 'svelte'
+    import { goto } from '$app/navigation'
+    import { createElement } from 'react'
+    import { render } from 'react-dom'
+    import { RulePage } from 'publicodes/react-ui'
+
+    let domElement
+
+    // A Link React component that calls SvelteKit `goto` on click
+    function Link({ to, children }) {
+        const onClick = (evt) => {
+            evt.preventDefault()
+            goto(to)
+        }
+        return createElement('a', { onClick }, children)
+    }
+
+    const props = {
+        renderers: { Link },
+        // other props left as an exercice to the reader
+    }
+
+    onMount(() => {
+        render(createElement(RulePage, props), domElement)
+    })
+</script>
+
+<div bind:this="{domElement}" />
+```
 
 ## `<RuleLink />`
 
@@ -127,8 +215,11 @@ Par défaut, le texte affiché est le nom de la règle.
 
 -   `engine`: l'objet moteur dont on veut afficher la règle.
 -   `documentationPath` : (`string`) le chemin de base sur lequel la documentation est
-    montée. Doit correspondre à celui précisé pour le composant `<Documentation />`
+    montée. Doit correspondre à celui précisé pour le composant `<RulePage />`
 -   `dottedName`: le nom de la règle à afficher
+-   `linkComponent`: le composant utilisé pour afficher le lien. C'est la même
+    interface que pour le composant `<RulePage />`. Il prend une unique prop `to`
+    qui est le chemin vers la règle.
 -   `displayIcon`: affiche l'icône de la règle dans le lien (par défaut à `false`)
 -   `children`: un noeud React quelconque. Par défaut, c'est le nom de la règle
     qui est utilisé.

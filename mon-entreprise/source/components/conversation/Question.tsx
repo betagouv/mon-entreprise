@@ -6,7 +6,6 @@ import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { H3 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, Rule, RuleNode, serializeEvaluation } from 'publicodes'
-import { References } from 'publicodes-react'
 import {
 	createContext,
 	useCallback,
@@ -15,6 +14,7 @@ import {
 	useState,
 } from 'react'
 import { Trans } from 'react-i18next'
+import { References } from '../../pages/Documentation'
 import { binaryQuestion, InputProps } from './RuleInput'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
@@ -216,7 +216,7 @@ export const RadioLabel = (props: RadioLabelProps) => (
 						<H3>
 							<Trans>En savoir plus</Trans>
 						</H3>
-						<References refs={props.références} />
+						<References references={props.références} />
 					</>
 				)}
 			</ButtonHelp>

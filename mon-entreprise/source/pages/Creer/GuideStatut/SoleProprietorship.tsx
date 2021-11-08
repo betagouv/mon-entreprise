@@ -2,14 +2,14 @@ import {
 	isSoleProprietorship,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
-import { H2 } from 'DesignSystem/typography/heading'
-import { Body } from 'DesignSystem/typography/paragraphs'
-import { Ul, Li } from 'DesignSystem/typography/list'
-import { Helmet } from 'react-helmet'
-import { Trans, useTranslation } from 'react-i18next'
-import { TrackPage } from '../../../ATInternetTracking'
 import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
+import { H2 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { Helmet } from 'react-helmet-async'
+import { Trans, useTranslation } from 'react-i18next'
+import { TrackPage } from '../../../ATInternetTracking'
 
 export default function SoleProprietorship() {
 	const dispatch = useDispatchAndGoToNextQuestion()
