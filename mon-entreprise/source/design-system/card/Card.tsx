@@ -22,7 +22,7 @@ export const Card = ({
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader as="h2">{title}</StyledHeader>
 			<CardBody>{children}</CardBody>
-			<Button {...(CTAProps as any)} size="XS">
+			<Button {...(CTAProps as any)} size="XS" light>
 				{label}
 			</Button>
 		</StyledCardContainer>

@@ -72,7 +72,8 @@ const StyledButton = styled.button<StyledButtonProps>`
 		theme.colors.bases[color][color === 'primary' ? 700 : 300]};
 	color: ${({ theme, color }) =>
 		theme.colors.extended.grey[color === 'primary' ? 100 : 800]};
-
+	text-decoration: none;
+	font-family: ${({ theme }) => theme.fonts.main};
 	padding: ${({ size }) => {
 		if (size === 'XL') return '1.25rem 2rem'
 		if (size === 'MD') return '0.875rem 2rem'
@@ -80,6 +81,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 	}};
 
 	border-radius: 2.5rem;
+	transition: all 0.15s;
 	font-size: 1rem;
 	line-height: 1.5rem;
 
@@ -97,6 +99,10 @@ const StyledButton = styled.button<StyledButtonProps>`
 			theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
 	}
 
+	&:active {
+		transform: translateY(3px);
+	}
+
 	${({ light, color, theme }) =>
 		light &&
 		css`
@@ -105,6 +111,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 					color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
 				]};
 			color: ${theme.colors.bases[color][color === 'primary' ? 700 : 700]};
+			background-color: ${theme.colors.extended.grey[100]};
 			&:hover {
 				background-color: ${theme.colors.bases[color][
 					color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
