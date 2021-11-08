@@ -2,7 +2,6 @@ import NumberInput from 'Components/conversation/NumberInput'
 import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, {
@@ -38,12 +37,11 @@ type Props<Name extends string = DottedName> = Omit<
 	// implement this behavior currently
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
-	useSwitch?: boolean
-	isTarget?: boolean
 	onSubmit?: (source: string) => void
-	modifiers?: Record<string, string>
+
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
+	modifiers?: Record<string, string>
 }
 
 export type InputProps<Name extends string = string> = Omit<
@@ -70,8 +68,6 @@ export const binaryQuestion = [
 export default function RuleInput({
 	dottedName,
 	onChange,
-	useSwitch = false,
-	isTarget = false,
 	showSuggestions = true,
 	onSubmit = () => null,
 	showDefaultDateValue = false,
@@ -132,14 +128,7 @@ export default function RuleInput({
 		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
-		return useSwitch ? (
-			<ToggleSwitch
-				defaultChecked={value === true}
-				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-					commonProps.onChange(evt.target.checked ? 'oui' : 'non')
-				}
-			/>
-		) : (
+		return (
 			<Question
 				{...commonProps}
 				dottedName={dottedName}

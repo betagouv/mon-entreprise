@@ -6,6 +6,7 @@ import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H1 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
@@ -13,13 +14,7 @@ import { useCallback, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import {
-	Link,
-	Redirect,
-	Route,
-	useHistory,
-	useLocation,
-} from 'react-router-dom'
+import { Redirect, Route, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import { TrackPage } from '../ATInternetTracking'

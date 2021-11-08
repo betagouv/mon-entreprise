@@ -1,5 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
+import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
@@ -60,8 +61,11 @@ export default function ChômagePartiel() {
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>
 				}
-				showPeriodSwitch={false}
-			/>
+			>
+				<SimulationGoals legend="Salaire brut avant chômage partiel">
+					<SimulationGoal dottedName="contrat salarié . rémunération . brut de base" />
+				</SimulationGoals>
+			</Simulation>
 		</>
 	)
 }

@@ -126,7 +126,7 @@ export const theme: DefaultTheme = createTheme(createTheme(), {
 			},
 		},
 	},
-
+	darkMode: false,
 	spacings: {
 		xxs: '.25rem',
 		xs: '.5rem',

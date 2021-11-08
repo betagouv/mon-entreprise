@@ -41,9 +41,11 @@ export default function ISSimulation() {
 					les taux réduits de l’impôt sur les sociétés.
 				</Trans>
 			</Warning>
-			<ExerciceDate />
 			<Notifications />
-			<SimulationGoals className="plain">
+			<SimulationGoals
+				toggles={<ExerciceDate />}
+				legend="Résultat imposable de l'entreprise"
+			>
 				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
 			</SimulationGoals>
 			<Explanations />

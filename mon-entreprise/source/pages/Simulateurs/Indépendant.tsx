@@ -21,8 +21,7 @@ export function IndépendantPLSimulation() {
 		<>
 			<SimulateurWarning simulateur="profession-libérale" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<PeriodSwitch />
-				<IndépendantSimulationGoals />
+				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
 			</Simulation>
 		</>
 	)
@@ -33,8 +32,7 @@ export function EntrepriseIndividuelle() {
 		<>
 			<SimulateurWarning simulateur="entreprise-individuelle" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<PeriodSwitch />
-				<IndépendantSimulationGoals />
+				<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
 			</Simulation>
 		</>
 	)
@@ -59,11 +57,16 @@ export default function IndépendantSimulation() {
 							justify-content: space-between;
 						}
 					`}
-				>
-					<ImpositionSwitch />
-					<PeriodSwitch />
-				</div>
-				<IndépendantSimulationGoals />
+				></div>
+				<IndépendantSimulationGoals
+					legend="Vos revenus d'indépendant"
+					toggles={
+						<>
+							<ImpositionSwitch />
+							<PeriodSwitch />
+						</>
+					}
+				/>
 				<Banner icon={'✍️'}>
 					<Trans i18nKey="aide-déclaration-indépendant.banner">
 						Découvrez notre outil d'
@@ -76,9 +79,15 @@ export default function IndépendantSimulation() {
 		</>
 	)
 }
-function IndépendantSimulationGoals() {
+function IndépendantSimulationGoals({
+	toggles = <PeriodSwitch />,
+	legend,
+}: {
+	toggles?: React.ReactNode
+	legend: string
+}) {
 	return (
-		<SimulationGoals className="plain">
+		<SimulationGoals toggles={toggles} legend={legend}>
 			<Condition expression="entreprise . imposition = 'IR'">
 				<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 					<SimulationGoal

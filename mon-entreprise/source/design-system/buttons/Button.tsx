@@ -48,10 +48,6 @@ type StyledButtonProps = {
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
-	background-color: ${({ theme, color }) =>
-		theme.colors.bases[color][color === 'primary' ? 700 : 300]};
-	color: ${({ theme, color }) =>
-		theme.colors.extended.grey[color === 'primary' ? 100 : 800]};
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: ${({ size }) => {
@@ -65,26 +61,35 @@ const StyledButton = styled.button<StyledButtonProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 
-	&:hover {
-		background-color: ${({ theme, color }) =>
-			theme.colors.bases[color][
-				color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
+	/* Primary, secondary & tertiary colors */
+	${({ theme, color }) =>
+		!theme.darkMode &&
+		css`
+			&:hover {
+				background-color: ${theme.colors.bases[color][
+					color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
+				]};
+			}
+
+			&:disabled {
+				background-color: ${theme.colors.bases[color][
+					color === 'primary' ? 200 : 100
+				]};
+				color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
+			}
+			background-color: ${theme.colors.bases[color][
+				color === 'primary' ? 700 : 300
 			]};
-	}
+			color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 800]};
+			&:active {
+				transform: translateY(3px);
+			}
+		`}
 
-	&:disabled {
-		background-color: ${({ theme, color }) =>
-			theme.colors.bases[color][color === 'primary' ? 200 : 100]};
-		color: ${({ theme, color }) =>
-			theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
-	}
-
-	&:active {
-		transform: translateY(3px);
-	}
-
+	/* Primary, secondary & tertiary light colors */
 	${({ light, color, theme }) =>
 		light &&
+		!theme.darkMode &&
 		css`
 			border: 2px solid
 				${theme.colors.bases[color][
@@ -103,6 +108,35 @@ const StyledButton = styled.button<StyledButtonProps>`
 					color === 'primary' ? 200 : 100
 				]};
 				color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
+			}
+		`}
+
+	/* White color (dark background mode) */
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			background-color: ${theme.colors.extended.grey[100]};
+			color: transparent;
+			&:hover {
+				opacity: 80%;
+			}
+
+			&:disabled {
+				opacity: 50%;
+			}
+		`}
+
+		/* White color and light mode (dark background mode) */
+		${({ light, theme }) =>
+		theme.darkMode &&
+		light &&
+		css`
+			background-color: transparent;
+			border-color: 2px solid ${theme.colors.extended.grey[100]};
+			color: ${theme.colors.extended.grey[100]};
+			&:hover {
+				color: rgba(255, 255, 255, 25%);
+				opacity: 1;
 			}
 		`}
 `

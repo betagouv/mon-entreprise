@@ -9,6 +9,7 @@ export default function TextField(props: AriaTextFieldOptions) {
 	const ref = useRef<HTMLInputElement>(null)
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
 		useTextField({ ...props, inputElementType: 'input' }, ref)
+
 	return (
 		<StyledContainer>
 			<StyledInputContainer
@@ -39,9 +40,7 @@ export default function TextField(props: AriaTextFieldOptions) {
 }
 
 export const StyledContainer = styled.div`
-	width: 100%;
 	min-width: fit-content;
-	margin-bottom: ${({ theme }) => theme.spacings.lg};
 `
 export const StyledInput = styled.input`
 	font-size: 1rem;
@@ -53,6 +52,11 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			color: ${theme.colors.extended.grey[100]} !important;
+		`}
 `
 
 export const StyledLabel = styled.label`
@@ -67,6 +71,11 @@ export const StyledLabel = styled.label`
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			color: ${theme.colors.extended.grey[100]} !important;
+		`}
 `
 
 export const StyledDescription = styled(ExtraSmallBody)`
@@ -91,18 +100,30 @@ export const StyledInputContainer = styled.div<{
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${theme.colors.extended.grey[500]}`};
+		`${theme.box.borderWidth} solid ${
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[500]
+		}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: white;
+	background-color: ${({ theme }) =>
+		theme.darkMode ? 'transparent' : theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 
 	:focus-within {
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
+				background-color: rgba(255, 255, 255, 20%);
+			`}
 		outline-color: ${({ theme, hasError }) =>
 			hasError
 				? theme.colors.extended.error[400]
+				: theme.darkMode
+				? theme.colors.bases.primary[100]
 				: theme.colors.bases.primary[600]};
 	}
 	:focus-within ${StyledLabel} {

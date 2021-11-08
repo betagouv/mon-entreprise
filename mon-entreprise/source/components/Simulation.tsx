@@ -20,7 +20,6 @@ type SimulationProps = {
 	results?: React.ReactNode
 	children?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
-	showPeriodSwitch?: boolean
 }
 
 export default function Simulation({
@@ -28,7 +27,6 @@ export default function Simulation({
 	results,
 	children,
 	customEndMessages,
-	showPeriodSwitch,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 

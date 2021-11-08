@@ -6,16 +6,22 @@ import styled, { css } from 'styled-components'
 const baseLinkStyle = css`
 	display: inline-flex;
 	flex-direction: row;
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
-	font-weight: 300;
+	font-weight: 700;
 	font-size: inherit;
 	text-decoration: none;
 	padding: 0;
 
 	&:hover {
 		text-decoration: underline;
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[100]
+				: theme.colors.bases.primary[800]};
 	}
 `
 

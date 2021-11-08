@@ -321,9 +321,11 @@ export default function SchemeComparaison({
 						</>
 					) : (
 						<div className="">
-							<PeriodSwitch />
 							<SimulationGoals
-								className="plain"
+								toggles={<PeriodSwitch />}
+								legend={
+									'Estimations sur votre rémunération brute et vos charges'
+								}
 								css={
 									displayResult
 										? `
