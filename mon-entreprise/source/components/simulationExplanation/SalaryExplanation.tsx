@@ -6,6 +6,8 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -33,29 +35,32 @@ export default function SalaryExplanation() {
 					<Trans>Fiche de paie</Trans>
 				</H2>
 				<PaySlip />
-				<p className="ui__ notice">
+				<SmallBody>
 					<Trans i18nKey="payslip.notice">
 						Le simulateur vous aide à comprendre votre bulletin de paie, sans
 						lui être opposable. Pour plus d&apos;informations, rendez vous
 						sur&nbsp;
-						<a href="https://www.service-public.fr/particuliers/vosdroits/F559">
+						<Link href="https://www.service-public.fr/particuliers/vosdroits/F559">
 							service-public.fr
-						</a>
+						</Link>
 						.
 					</Trans>
-				</p>
-				<p className="ui__ notice">
+				</SmallBody>
+				<SmallBody>
 					<Trans i18nKey="payslip.disclaimer">
 						Il ne prend pour l'instant pas en compte les accords et conventions
 						collectives, ni la myriade d'aides aux entreprises. Trouvez votre
 						convention collective{' '}
-						<a href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
+						<Link href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
 							ici
-						</a>
+						</Link>
 						, et explorez les aides sur&nbsp;
-						<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
+						<Link href="https://www.aides-entreprises.fr">
+							aides-entreprises.fr
+						</Link>
+						.
 					</Trans>
-				</p>
+				</SmallBody>
 			</section>
 		</FromTop>
 	)
@@ -121,13 +126,13 @@ export const DistributionSection = ({
 			<Trans>À quoi servent mes cotisations ?</Trans>
 		</H2>
 		{children}
-		<p className="ui__ notice">
+		<SmallBody>
 			<Trans>
 				Pour en savoir plus, rendez-vous sur le site{' '}
-				<a href="https://www.aquoiserventlescotisations.urssaf.fr/">
+				<Link href="https://www.aquoiserventlescotisations.urssaf.fr/">
 					aquoiserventlescotisations.urssaf.fr
-				</a>
+				</Link>
 			</Trans>
-		</p>
+		</SmallBody>
 	</section>
 )

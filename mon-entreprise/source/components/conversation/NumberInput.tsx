@@ -52,39 +52,37 @@ export default function NumberInput({
 	}
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 	return (
-		<div className="step input">
-			<div>
-				<NumberField
-					autoFocus={autoFocus}
-					displayedUnit={displayedUnit}
-					onChange={(valeur) => {
-						setCurrentValue(valeur)
-						if (valeur) {
-							debouncedOnChange({ valeur, unité })
-						}
-					}}
-					formatOptions={formatOptions}
-					placeholder={
-						missing && value != null && typeof value === 'number'
-							? value
-							: undefined
+		<>
+			<InputSuggestions
+				suggestions={suggestions}
+				onFirstClick={(valeur: ASTNode) => {
+					setCurrentValue(
+						(engine.evaluate(valeur).nodeValue as number) ?? undefined
+					)
+					setImmediate(() => {
+						onChange(valeur)
+					})
+				}}
+				onSecondClick={() => onSubmit?.('suggestion')}
+			/>
+			<NumberField
+				autoFocus={autoFocus}
+				displayedUnit={displayedUnit}
+				onChange={(valeur) => {
+					setCurrentValue(valeur)
+					if (valeur) {
+						debouncedOnChange({ valeur, unité })
 					}
-					value={currentValue}
-				/>
-				<InputSuggestions
-					suggestions={suggestions}
-					onFirstClick={(valeur: ASTNode) => {
-						setCurrentValue(
-							(engine.evaluate(valeur).nodeValue as number) ?? undefined
-						)
-						setImmediate(() => {
-							onChange(valeur)
-						})
-					}}
-					onSecondClick={() => onSubmit?.('suggestion')}
-				/>
-			</div>
-		</div>
+				}}
+				formatOptions={formatOptions}
+				placeholder={
+					missing && value != null && typeof value === 'number'
+						? value
+						: undefined
+				}
+				value={currentValue}
+			/>
+		</>
 	)
 }
 

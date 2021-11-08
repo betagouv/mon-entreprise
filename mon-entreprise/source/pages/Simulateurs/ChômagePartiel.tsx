@@ -6,7 +6,7 @@ import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -81,7 +81,6 @@ function ExplanationSection() {
 	return (
 		<FromTop>
 			<div
-				id="targetSelection"
 				className="ui__ light card"
 				css={`
 					overflow: hidden;
