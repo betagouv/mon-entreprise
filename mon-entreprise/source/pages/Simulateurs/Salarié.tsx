@@ -18,6 +18,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 
 export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
@@ -44,9 +45,6 @@ export default function SalariéSimulation() {
 					</>
 				}
 			>
-				<div>
-					<PeriodSwitch />
-				</div>
 				<SalariéSimulationGoals />
 				{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
 				 * le simulateur dirigeant de SASU sur son site. */}
@@ -67,16 +65,19 @@ export default function SalariéSimulation() {
 
 function SalariéSimulationGoals() {
 	return (
-		<SimulationGoals className="plain">
+		<SimulationGoals
+			toggles={<PeriodSwitch />}
+			legend="Rémunération du salarié"
+		>
 			<SimulationGoal dottedName="contrat salarié . prix du travail" />
 			<AidesGlimpse />
 			<SimulationGoal dottedName="contrat salarié . rémunération . brut de base" />
-			<TitreRestaurant />
 			<SimulationGoal
 				small
 				dottedName="contrat salarié . rémunération . brut de base . équivalent temps plein"
 			/>
 			<SimulationGoal dottedName="contrat salarié . rémunération . net" />
+			<TitreRestaurant />
 			<SimulationGoal dottedName="contrat salarié . rémunération . net après impôt" />
 		</SimulationGoals>
 	)
@@ -89,7 +90,7 @@ function TitreRestaurant() {
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<FromTop>
-				<div className="aidesGlimpse">
+				<StyledInfo>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
 						<strong>
@@ -101,7 +102,7 @@ function TitreRestaurant() {
 						</strong>{' '}
 						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
-				</div>
+				</StyledInfo>
 			</FromTop>
 		</Condition>
 	)
@@ -134,18 +135,25 @@ function AidesGlimpse() {
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<FromTop>
-				<RuleLink dottedName={aideLink}>
-					<Trans>en incluant</Trans>{' '}
-					<strong>
-						<Value
-							expression={dottedName}
-							displayedUnit="€"
-							unit={targetUnit}
-						/>
-					</strong>{' '}
-					<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
-				</RuleLink>
+				<StyledInfo>
+					<RuleLink dottedName={aideLink}>
+						<Trans>en incluant</Trans>{' '}
+						<strong>
+							<Value
+								expression={dottedName}
+								displayedUnit="€"
+								unit={targetUnit}
+							/>
+						</strong>{' '}
+						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
+					</RuleLink>
+				</StyledInfo>
 			</FromTop>
 		</Condition>
 	)
 }
+
+const StyledInfo = styled.div`
+	display: flex;
+	justify-content: flex-end;
+`

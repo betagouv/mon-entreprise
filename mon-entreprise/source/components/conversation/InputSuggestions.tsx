@@ -1,8 +1,10 @@
 import { Link } from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>
@@ -19,15 +21,7 @@ export default function InputSuggestions({
 	const { t } = useTranslation()
 
 	return (
-		<div
-			className="ui__ notice"
-			css={`
-				display: flex;
-				align-items: baseline;
-				justify-content: flex-end;
-				margin-bottom: 0.4rem;
-			`}
-		>
+		<StyledInputSuggestion>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<Link
@@ -43,6 +37,11 @@ export default function InputSuggestions({
 					</Link>
 				)
 			})}
-		</div>
+		</StyledInputSuggestion>
 	)
 }
+
+const StyledInputSuggestion = styled(SmallBody)`
+	display: flex;
+	gap: ${({ theme }) => theme.spacings.sm};
+`

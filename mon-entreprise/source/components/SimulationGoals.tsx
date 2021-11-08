@@ -1,8 +1,9 @@
+import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
-import classnames from 'classnames'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
-import {
+import React, {
 	createContext,
 	useCallback,
 	useContext,
@@ -16,6 +17,7 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
+import styled, { css, ThemeProvider } from 'styled-components'
 import RuleInput, { InputProps } from './conversation/RuleInput'
 import RuleLink from './RuleLink'
 import { Appear } from './ui/animate'
@@ -24,13 +26,24 @@ import { useEngine } from './utils/EngineContext'
 
 type SimulationGoalsProps = {
 	className?: string
+	legend: string
+	publique?:
+		| 'employeur'
+		| 'particulier'
+		| 'artisteAuteur'
+		| 'independant'
+		| 'marin'
+		| undefined
 	children: React.ReactNode
+	toggles?: React.ReactNode
 }
 
 const InitialRenderContext = createContext(true)
 
 export function SimulationGoals({
-	className = '',
+	publique,
+	legend,
+	toggles,
 	children,
 }: SimulationGoalsProps) {
 	const [initialRender, setInitialRender] = useState(true)
@@ -40,15 +53,47 @@ export function SimulationGoals({
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
-			<section
-				className={`ui__ card ${className}`}
-				style={{ marginTop: '0.6rem' }}
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+				`}
 			>
-				<ul className="targets">{children}</ul>
-			</section>
+				<Grid item sm={12} lg={10}>
+					{toggles && <ToggleSection>{toggles}</ToggleSection>}
+					<StyledSimulationGoals
+						publique={publique}
+						role="group"
+						aria-labelledby="simulator-legend"
+					>
+						<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+							<div className="sr-only" id="simulator-legend">
+								{legend}
+							</div>
+							{children}
+						</ThemeProvider>
+					</StyledSimulationGoals>
+				</Grid>
+			</div>
 		</InitialRenderContext.Provider>
 	)
 }
+const ToggleSection = styled.div`
+	margin-bottom: ${({ theme }) => theme.spacings.md};
+`
+
+const StyledSimulationGoals = styled.div<
+	Pick<SimulationGoalsProps, 'publique'>
+>`
+	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.xl}`};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	background: ${({ theme, publique }) => {
+		const colorPalette = publique
+			? theme.colors.publics[publique]
+			: theme.colors.bases.primary
+		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
+	}};
+`
 
 function useInitialRender() {
 	const initialRender = useContext(InitialRenderContext)
@@ -119,67 +164,77 @@ export function SimulationGoal({
 		return null
 	}
 	return (
-		<li className={small ? 'small-target' : ''}>
-			<Appear unless={!appear || initialRender}>
-				<div className="main">
-					<div className="header">
-						<label htmlFor={dottedName}>
-							<span className="optionTitle">
-								{(labelWithQuestion && rule.rawNode.question) || (
-									<RuleLink dottedName={dottedName} />
-								)}
-							</span>
-							{!small && <p className="ui__ notice">{rule.rawNode.résumé}</p>}
-						</label>
-					</div>
-					{small && <span className="guide-lecture" />}
-					<div className="targetInputOrValue">
-						{editable ? (
-							<RuleInput
-								className={classnames(
-									displayAsInput ? 'targetInput' : 'editableTarget',
-									{ focused: isFocused }
-								)}
-								isTarget
-								displayedUnit=""
-								modifiers={
-									!boolean
-										? {
-												unité: currentUnit,
-												arrondi: 'oui',
-										  }
-										: undefined
-								}
-								dottedName={dottedName}
-								onFocus={() => setFocused(true)}
-								onBlur={() => setFocused(false)}
-								onChange={onChange}
-								formatOptions={{
-									maximumFractionDigits: 0,
-								}}
-								useSwitch
-							/>
-						) : (
-							<RuleLink
-								dottedName={dottedName}
-								css={`
-										padding-right: 0.6rem
-										&:not(:hover) {
-											text-decoration: none;
-										}
-									`}
-							>
-								{formatValue(evaluation, { displayedUnit: '€' })}
-							</RuleLink>
+		<Appear unless={!appear || initialRender}>
+			<StyledGoal>
+				<StyledGoalHeader>
+					<Body>
+						{(labelWithQuestion && rule.rawNode.question) || (
+							<RuleLink dottedName={dottedName} />
 						)}
-						{!isFocused && !small && (
-							<span style={{ position: 'relative', top: '-1rem' }}>
-								<AnimatedTargetValue value={evaluation.nodeValue as number} />
-							</span>
-						)}
-					</div>
-				</div>
-			</Appear>
-		</li>
+					</Body>
+					<SmallBody
+						className={small ? 'sr-only' : ''}
+						id={`${dottedName}-description`}
+					>
+						{rule.rawNode.résumé}
+					</SmallBody>
+				</StyledGoalHeader>
+
+				{small && <StyledGuideLecture aria-hidden className="guide-lecture" />}
+				{editable ? (
+					<RuleInput
+						// className={classnames(
+						// 	displayAsInput ? 'targetInput' : 'editableTarget',
+						// 	{ focused: isFocused }
+						// )}
+						modifiers={
+							!boolean
+								? {
+										unité: currentUnit,
+										arrondi: 'oui',
+								  }
+								: undefined
+						}
+						aria-labelledby={`${dottedName}-label`}
+						aria-describedBy={`${dottedName}-description`}
+						displayedUnit=""
+						dottedName={dottedName}
+						onFocus={() => setFocused(true)}
+						onBlur={() => setFocused(false)}
+						onChange={onChange}
+						formatOptions={{
+							maximumFractionDigits: 0,
+						}}
+					/>
+				) : (
+					<RuleLink dottedName={dottedName}>
+						{formatValue(evaluation, { displayedUnit: '€' })}
+					</RuleLink>
+				)}
+				{!isFocused && !small && (
+					<span style={{ position: 'relative', top: '-1rem' }}>
+						<AnimatedTargetValue value={evaluation.nodeValue as number} />
+					</span>
+				)}
+			</StyledGoal>
+		</Appear>
 	)
 }
+
+const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })``
+const StyledGoalHeader = styled.div`
+	flex: 1;
+	margin-top: ${({ theme }) => theme.spacings.xs};
+	margin-right: ${({ theme }) => theme.spacings.xs};
+	min-width: 50%;
+`
+
+const StyledGoal = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+	> :not(${StyledGoalHeader}) {
+		margin-bottom: ${({ theme }) => theme.spacings.sm};
+	}
+`

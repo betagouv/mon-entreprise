@@ -49,9 +49,7 @@ export default function DividendesSimulation() {
 								justify-content: space-between;
 							}
 						`}
-					>
-						<OptionBarèmeSwitch />
-					</div>
+					></div>
 					<DividendesSimulationGoals />
 				</Simulation>
 			</HiddenOptionContext.Provider>
@@ -82,7 +80,10 @@ function OptionBarèmeSwitch() {
 }
 
 const DividendesSimulationGoals = () => (
-	<SimulationGoals className="plain">
+	<SimulationGoals
+		toggles={<OptionBarèmeSwitch />}
+		legend="Les dividendes de l'entreprise"
+	>
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}

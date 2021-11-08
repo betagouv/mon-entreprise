@@ -3,6 +3,7 @@ import { NumberField } from 'DesignSystem/field'
 import { ASTNode, serializeUnit, Unit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
 import { InputProps } from './RuleInput'
@@ -52,7 +53,7 @@ export default function NumberInput({
 	}
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 	return (
-		<>
+		<StyledNumberInput>
 			<InputSuggestions
 				suggestions={suggestions}
 				onFirstClick={(valeur: ASTNode) => {
@@ -82,7 +83,7 @@ export default function NumberInput({
 				}
 				value={currentValue}
 			/>
-		</>
+		</StyledNumberInput>
 	)
 }
 
@@ -147,3 +148,9 @@ function getFormatUnit(unit: Unit): Intl.NumberFormatOptions['unit'] | null {
 	}
 	return formatUnit
 }
+
+const StyledNumberInput = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+`

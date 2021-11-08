@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components'
 
 const baseParagraphStyle = css`
-	font-family: 'Roboto', sans-serif;
-	color: ${({ theme }) => theme.colors.bases.primary[800]};
+	font-family: ${({ theme }) => theme.fonts.main};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[800]};
 `
 
 export const Intro = styled.p`

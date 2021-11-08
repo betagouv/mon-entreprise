@@ -1,6 +1,6 @@
 import {
-	ThemeOptions as SystemThemeOptions,
 	Theme as SystemTheme,
+	ThemeOptions as SystemThemeOptions,
 } from '@mui/system'
 import 'styled-components'
 
@@ -96,6 +96,8 @@ interface CustomTheme {
 		md: Metric
 		sm: Metric
 	}
+
+	darkMode: boolean
 }
 
 declare module '@mui/material/styles' {

@@ -16,8 +16,10 @@ export default function AutoEntrepreneur() {
 		<>
 			<SimulateurWarning simulateur="auto-entrepreneur" />
 			<Simulation explanations={<Explanation />}>
-				<PeriodSwitch />
-				<SimulationGoals className="plain">
+				<SimulationGoals
+					toggles={<PeriodSwitch />}
+					legend="Vos revenus d'auto-entrepreneur"
+				>
 					<ChiffreAffairesActivitéMixte dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires" />
 					<SimulationGoal
 						small
