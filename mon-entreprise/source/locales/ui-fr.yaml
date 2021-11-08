@@ -1,3 +1,4 @@
+.cta: Lancer le simulateur
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
@@ -255,21 +256,14 @@ créer:
   description: Avant d'entamer les démarches administratives pour créer votre
     entreprise, vous devez choisir un statut juridique adapté à votre activité
   ressources:
-    autoEntrepreneur:
-      body: Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien
-        démarrer votre activité
-      cta: Consulter les démarches
-      title: Démarche auto-entrepreneur
-    comparaison:
-      body: Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
-        différences en terme de revenus, cotisations, retraite, etc
-      cta: Comparer
-      title: Comparateur de régimes
-    listeStatuts:
-      body: Vous savez déjà quel statut choisir ? Accédez directement à la liste des
-        démarches associées
-      cta: Voir la liste
-      title: Liste des statuts juridiques
+    autoEntrepreneur: <0>Démarche auto-entrepreneur</0><1>Vous souhaitez devenir
+      auto-entrepreneur ? Découvrez les étapes pour bien démarrer votre
+      activité</1>
+    comparaison: <0>Comparateur de régimes</0><1>Indépendant, assimilé-salarié ou
+      auto-entrepreneur ? Calculez les différences en terme de revenus,
+      cotisations, retraite, etc</1>
+    listeStatuts: <0>Liste des statuts juridiques</0><1>Vous savez déjà quel statut
+      choisir ? Accédez directement à la liste des démarches associées</1>
   titre: Créer une entreprise
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides
@@ -658,7 +652,7 @@ page:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
-  accessibilité: <0></0><1>Accessibilité</1><2></2><3>Cette page n'est pas une
+  accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être

@@ -1,3 +1,4 @@
+.cta: Launch the simulator
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
@@ -456,23 +457,16 @@ créer:
   description: Before starting the administrative procedures to create your
     company, you must choose a legal status adapted to your activity
   ressources:
-    autoEntrepreneur:
-      body: Do you want to become an auto-entrepreneur? Discover the steps to start
-        your business
-      cta: Consult the procedures
-      title: Auto-entrepreneur procedure
-    comparaison:
-      body: Self-employed, assimilated employee or auto-entrepreneur? Calculate the
-        differences in terms of income, contributions, pension, etc.
-      cta: Compare
-      title: Plan Comparator
-    listeStatuts:
-      body: Do you already know which status to choose? Go directly to the list of
-        related procedures
-      cta: See the list
-      title: List of legal statuses
+    autoEntrepreneur: <0>The auto-entrepreneur process</0><1>Do you want to become
+      an auto-entrepreneur? Discover the steps to start your business</1>
+    comparaison: <0>Comparing regimes</0><1>Self-employed, assimilated employee or
+      auto-entrepreneur? Calculate the differences in terms of income,
+      contributions, pension, etc.</1>
+    listeStatuts: <0>List of legal statuses</0><1>You already know which status to
+      choose? Go directly to the list of associated procedures</1>
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
+d'aides: aids
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
@@ -919,7 +913,7 @@ page:
         of devices considered</1><2><0>Easily and freely integrates</0> on any
         website. <3>Learn more about</3> it.</2></1>
 pages:
-  accessibilité: <0></0><1>Accessibility</1><2></2><3>This page is not a help
+  accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
     define the general level of accessibility found on the site in accordance
     with the regulations. This page is mandatory to be compliant with the RGAA
