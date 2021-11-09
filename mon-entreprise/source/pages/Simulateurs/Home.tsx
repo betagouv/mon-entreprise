@@ -1,12 +1,12 @@
-import classnames from 'classnames'
+import { Grid } from '@mui/material'
 import PageHeader from 'Components/PageHeader'
-import InfoBulle from 'Components/ui/InfoBulle'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
-import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H3 } from 'DesignSystem/typography/heading'
-import { Intro } from 'DesignSystem/typography/paragraphs'
+import { Card } from 'DesignSystem/card'
+import { SmallCard } from 'DesignSystem/card/SmallCard'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -43,43 +43,41 @@ export default function Simulateurs() {
 				</Intro>
 			</PageHeader>
 			<section>
-				<HeadingWithAnchorLink level={2}>
+				<H2>
 					<Trans>Salariés et employeurs</Trans>
-				</HeadingWithAnchorLink>
-				<div className="ui__ box-container">
+				</H2>
+				<Grid container spacing={2}>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
 					<SimulateurCard {...simulators['aides-embauche']} />
-				</div>
+				</Grid>
 
-				<HeadingWithAnchorLink level={2}>
+				<H3>
 					<Trans>Revenu du dirigeant par statut</Trans>
-				</HeadingWithAnchorLink>
-				<div className="ui__ small box-container">
+				</H3>
+				<Grid container spacing={2}>
 					<SimulateurCard small {...simulators['auto-entrepreneur']} />
 					<SimulateurCard small {...simulators['entreprise-individuelle']} />
 					<SimulateurCard small {...simulators.eirl} />
 					<SimulateurCard small {...simulators.sasu} />
 					<SimulateurCard small {...simulators.eurl} />
 					<SimulateurCard small {...simulators['comparaison-statuts']} />
-				</div>
+				</Grid>
 
-				<HeadingWithAnchorLink level={2}>
+				<H2>
 					<Trans>Travailleurs Non Salariés (TNS)</Trans>
-				</HeadingWithAnchorLink>
+				</H2>
 
-				<div className="ui__ box-container">
+				<Grid container spacing={2}>
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
-				</div>
+				</Grid>
 				<>
-					<HeadingWithAnchorLink level={3}>
-						<small>
-							<Trans>Professions libérales</Trans>
-						</small>
-					</HeadingWithAnchorLink>
-					<div className="ui__ small box-container">
+					<H3>
+						<Trans>Professions libérales</Trans>
+					</H3>
+					<Grid container spacing={2}>
 						<SimulateurCard small {...simulators['auxiliaire-médical']} />
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
 						<SimulateurCard small {...simulators.médecin} />
@@ -87,13 +85,13 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['pharmacien']} />
 						<SimulateurCard small {...simulators['avocat']} />
 						<SimulateurCard small {...simulators['expert-comptable']} />
-					</div>
+					</Grid>
 				</>
 
-				<HeadingWithAnchorLink level={2}>
+				<H2>
 					<Trans>Autres outils</Trans>
-				</HeadingWithAnchorLink>
-				<div className="ui__ box-container">
+				</H2>
+				<Grid container spacing={2}>
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
 					{language === 'fr' && (
@@ -101,7 +99,7 @@ export default function Simulateurs() {
 					)}
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
-				</div>
+				</Grid>
 			</section>
 			<section>
 				<Trans i18nKey="page.simulateurs.accueil.description">
@@ -139,31 +137,37 @@ export function SimulateurCard({
 	small?: boolean
 }) {
 	const isIframe = useIsEmbedded()
-	const name = (
-		<span>
-			{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
-		</span>
-	)
-	return (
-		<Link
-			className={classnames('ui__ interactive card box light-border', {
-				small,
-			})}
-			key={path}
-			to={{
-				state: { fromSimulateurs: true },
-				pathname: (isIframe && iframePath) || path,
-			}}
-		>
-			{icône && (
-				<div className={classnames('ui__ box-icon', { big: !small })}>
-					<Emoji emoji={icône} />
-				</div>
-			)}
-			<>{small ? name : <H3>{name}</H3>}</>
-			{!small && meta?.description && (
-				<p className="ui__ notice">{meta.description}</p>
-			)}
-		</Link>
+	const { t } = useTranslation()
+
+	return small ? (
+		<Grid item xs={6} md={4} lg={3}>
+			<SmallCard
+				icon={<Emoji emoji={icône} />}
+				callToAction={{
+					to: {
+						state: { fromSimulateurs: true },
+						pathname: (isIframe && iframePath) || path,
+					},
+				}}
+				title={shortName}
+				tooltip={tooltip}
+			/>
+		</Grid>
+	) : (
+		<Grid item xs={12} md={4}>
+			<Card
+				title={shortName}
+				icon={<Emoji emoji={icône} />}
+				callToAction={{
+					to: {
+						state: { fromSimulateurs: true },
+						pathname: (isIframe && iframePath) || path,
+					},
+					label: t('.cta', 'Lancer le simulateur'),
+				}}
+			>
+				<Body>{meta?.description}</Body>
+			</Card>
+		</Grid>
 	)
 }
