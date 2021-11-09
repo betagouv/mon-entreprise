@@ -5,6 +5,7 @@ import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanatio
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -703,10 +704,9 @@ export function getSimulatorsData({
 			// Cette description est surchargé car elle contient ici du JSX
 			description: (
 				<Body>
-					<a
+					<Link
 						href="https://www.gouvernement.fr/france-relance"
 						title="Aller sur le site France Relance"
-						target="_blank"
 					>
 						<img
 							src={logoFranceRelance}
@@ -718,7 +718,7 @@ export function getSimulatorsData({
 								float: 'right',
 							}}
 						/>
-					</a>
+					</Link>
 					<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
 						Les employeurs peuvent bénéficier d'une aide financière pour
 						l'embauche de certains publics prioritaires. Découvrez les

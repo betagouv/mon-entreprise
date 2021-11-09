@@ -10,6 +10,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -22,15 +23,15 @@ export default function DividendesSimulation() {
 				localStorageKey={'app::simulateurs:warning-folded:v1:dividendes'}
 			>
 				<Trans i18nKey="dividendes.warning">
-					<p>
+					<Body>
 						Cette simulation est uniquement donnée à titre indicatif. Elle ne
 						concerne que les sociétés françaises à l’impôt sur les sociétés
 						(IS), et ne concerne pas les travailleurs indépendants non salariés.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Le montant de l'impôt sur les dividendes est calculé en sus de
 						l’impôt sur les autres revenus imposables.
-					</p>
+					</Body>
 				</Trans>
 			</Warning>
 			<Notifications />

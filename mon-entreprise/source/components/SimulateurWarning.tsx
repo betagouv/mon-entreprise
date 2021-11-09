@@ -1,4 +1,6 @@
 import Warning from 'Components/ui/WarningBlock'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Trans } from 'react-i18next'
 import { SitePaths } from './utils/SitePathsContext'
 
@@ -13,10 +15,10 @@ export default function SimulateurWarning({
 		<Warning
 			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
 		>
-			<ul>
+			<Ul>
 				{simulateur == 'auto-entrepreneur' && (
 					<>
-						<li>
+						<Li>
 							<Trans i18nKey="simulateurs.warning.auto-entrepreneur">
 								Les auto-entrepreneurs bénéficient d’un régime très simplifié
 								avec un taux forfaitaire pour le calcul des cotisations et
@@ -27,41 +29,41 @@ export default function SimulateurWarning({
 								revenu net est donc le chiffre d’affaires moins toutes les
 								charges engagées pour l’entreprise.
 							</Trans>
-						</li>
-						<li>
+						</Li>
+						<Li>
 							<Trans i18nKey="simulateurs.warning.cfe">
 								Le simulateur n'intègre pas la cotisation foncière des
 								entreprise (CFE) qui est dûe dès la deuxième année d'exercice.
 								Son montant varie fortement en fonction du chiffre d'affaires et
 								de la domiciliation de l'entreprise.{' '}
-								<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
+								<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
 									Plus d'infos.
-								</a>
+								</Link>
 							</Trans>
-						</li>
+						</Li>
 					</>
 				)}
 				{simulateur !== 'artiste-auteur' && (
-					<li>
+					<Li>
 						<Trans i18nKey="simulateurs.warning.urssaf">
 							Les calculs sont indicatifs. Ils ne se substituent pas aux
 							décomptes réels de l’Urssaf, de l’administration fiscale ou de
 							toute autre organisme.
 						</Trans>
-					</li>
+					</Li>
 				)}
 
 				{simulateur == 'profession-libérale' && (
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
-						<li>
+						<Li>
 							Ce simulateur est à destination des professions libérales en BNC.
 							Il ne prend pas en compte les sociétés d'exercice libéral.
-						</li>
+						</Li>
 					</Trans>
 				)}
 				{simulateur === 'artiste-auteur' && (
 					<>
-						<li>
+						<Li>
 							<Trans i18nKey="simulateurs.warning.artiste-auteur.1">
 								Cette estimation est proposée à titre indicatif. Elle est faite
 								à partir des éléments réglementaires applicables et des éléments
@@ -69,33 +71,33 @@ export default function SimulateurWarning({
 								l'ensemble de votre situation. Le montant réel de vos
 								cotisations peut donc être différent.
 							</Trans>
-						</li>
-						<li>
+						</Li>
+						<Li>
 							<Trans i18nKey="simulateurs.warning.artiste-auteur.2">
 								Ce simulateur permet d'estimer le montant de vos cotisations à
 								partir de votre revenu projeté
 							</Trans>
-						</li>
+						</Li>
 					</>
 				)}
 				{['indépendant', 'profession-libérale'].includes(simulateur) && (
-					<li>
+					<Li>
 						<Trans i18nKey="simulateurs.warning.année-courante">
 							Le montant calculé correspond aux cotisations de l’année 2021
 							(pour un revenu 2021).
 						</Trans>
-					</li>
+					</Li>
 				)}
 				{['profession-libérale'].includes(simulateur) && (
-					<li>
+					<Li>
 						<Trans i18nKey="simulateurs.warning.cotisations-ordinales">
 							Pour les professions réglementées, le simulateur ne calcule pas le
 							montant des cotisations à l'ordre. Elles doivent être ajoutées
 							manuellement dans la case « charges de fonctionnement ».
 						</Trans>
-					</li>
+					</Li>
 				)}
-			</ul>
+			</Ul>
 		</Warning>
 	)
 }

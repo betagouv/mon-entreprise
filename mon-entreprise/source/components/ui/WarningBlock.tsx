@@ -5,16 +5,24 @@ import { Link } from 'DesignSystem/typography/link'
 import { Intro } from 'DesignSystem/typography/paragraphs'
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
 type WarningProps = {
 	localStorageKey: string
 	children: ReactNode
 }
 
+const WarningSection = styled.section`
+	background-color: ${({ theme }) => theme.colors.extended.info[100]};
+	color: ${({ theme }) => theme.colors.extended.info[600]};
+	padding: 1rem;
+	border-radius: 0.375rem;
+`
+
 export default function Warning({ localStorageKey, children }: WarningProps) {
 	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
-		<section>
+		<WarningSection>
 			<Intro className={folded ? 'ui__ print-display-none' : ''}>
 				<Emoji emoji="🚩 " />
 				<Trans i18nKey="simulateurs.warning.titre">
@@ -32,12 +40,12 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 				<div>
 					{children}
 					<div className="ui__ answer-group print-display-none">
-						<Button size="XS" onClick={() => fold(true)}>
+						<Button size="XS" light color="tertiary" onClick={() => fold(true)}>
 							<Trans>J'ai compris</Trans>
 						</Button>
 					</div>
 				</div>
 			)}
-		</section>
+		</WarningSection>
 	)
 }

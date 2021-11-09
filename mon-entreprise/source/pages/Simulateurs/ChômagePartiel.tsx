@@ -5,6 +5,7 @@ import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useEffect, useState } from 'react'
@@ -49,12 +50,12 @@ export default function ChômagePartiel() {
 	return (
 		<>
 			<Warning localStorageKey="covid19">
-				<ul>
-					<li>
+				<Ul>
+					<Li>
 						Ce simulateur ne prend pas en compte les rémunérations brut définies
 						sur 39h hebdomadaires.
-					</li>
-				</ul>
+					</Li>
+				</Ul>
 			</Warning>
 			<Simulation
 				results={<ExplanationSection />}

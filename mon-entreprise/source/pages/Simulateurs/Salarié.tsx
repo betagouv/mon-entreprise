@@ -10,6 +10,9 @@ import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Button } from 'DesignSystem/buttons'
+import { Strong } from 'DesignSystem/typography'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import { reduceAST } from 'publicodes'
@@ -20,6 +23,10 @@ import { Link } from 'react-router-dom'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 
+const ButtonContainer = styled.div`
+	margin: 2rem 1rem;
+`
+
 export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
@@ -28,21 +35,18 @@ export default function SalariéSimulation() {
 			<Simulation
 				explanations={<SalaryExplanation />}
 				customEndMessages={
-					<>
+					<Body>
 						<Trans i18nKey="simulation-end.hiring.text">
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
-						<div style={{ textAlign: 'center', margin: '1rem' }}>
-							<Link
-								className="ui__ plain button"
-								to={sitePaths.gérer.embaucher}
-							>
+						<ButtonContainer>
+							<Button to={sitePaths.gérer.embaucher}>
 								<Trans i18nKey="simulation-end.cta">
 									Connaître les démarches
 								</Trans>
-							</Link>
-						</div>
-					</>
+							</Button>
+						</ButtonContainer>
+					</Body>
 				}
 			>
 				<SalariéSimulationGoals />
@@ -93,13 +97,13 @@ function TitreRestaurant() {
 				<StyledInfo>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
-						<strong>
+						<Strong>
 							<Value
 								expression={dottedName}
 								displayedUnit="€"
 								unit={targetUnit}
 							/>
-						</strong>{' '}
+						</Strong>{' '}
 						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
 				</StyledInfo>
@@ -138,13 +142,13 @@ function AidesGlimpse() {
 				<StyledInfo>
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
-						<strong>
+						<Strong>
 							<Value
 								expression={dottedName}
 								displayedUnit="€"
 								unit={targetUnit}
 							/>
-						</strong>{' '}
+						</Strong>{' '}
 						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</StyledInfo>
