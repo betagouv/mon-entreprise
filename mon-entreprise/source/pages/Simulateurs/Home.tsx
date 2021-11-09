@@ -5,12 +5,14 @@ import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card'
 import { SmallCard } from 'DesignSystem/card/SmallCard'
+import { Strong } from 'DesignSystem/typography'
 import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
@@ -103,22 +105,22 @@ export default function Simulateurs() {
 			</section>
 			<section>
 				<Trans i18nKey="page.simulateurs.accueil.description">
-					<p>Tous les simulateurs sur ce site sont :</p>
-					<ul>
-						<li>
+					<Body>Tous les simulateurs sur ce site sont :</Body>
+					<Ul>
+						<Li>
 							<strong>Maintenus à jour</strong> avec les dernières évolutions
 							législatives
-						</li>
-						<li>
+						</Li>
+						<Li>
 							<strong>Améliorés en continu</strong> afin d'augmenter le nombre
 							de dispositifs pris en compte
-						</li>
-						<li>
-							<strong>Intégrables facilement et gratuitement</strong> sur
+						</Li>
+						<Li>
+							<Strong>Intégrables facilement et gratuitement</Strong> sur
 							n'importe quel site internet.{' '}
 							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
-						</li>
-					</ul>
+						</Li>
+					</Ul>
 				</Trans>
 			</section>
 		</>
