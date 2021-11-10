@@ -3,9 +3,9 @@ import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
 } from 'Components/utils/colors'
-import Emoji from 'Components/utils/Emoji'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import Emoji from 'Components/utils/Emoji'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import urssafLogo from 'Images/Urssaf.svg'
 import React, {
 	Suspense,
@@ -16,9 +16,12 @@ import React, {
 	useState,
 } from 'react'
 import { Trans } from 'react-i18next'
+import { Route } from 'react-router'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import { TrackPage } from '../../ATInternetTracking'
+import Documentation from '../Documentation'
 import Iframes from '../Iframes'
+import Simulateurs from '../Simulateurs'
 import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
 import apecLogo from './images/apec.png'
@@ -31,6 +34,7 @@ const LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
 function IntegrationCustomizer() {
 	const { search } = useLocation()
 	const simulators = useSimulatorsData()
+	const sitePaths = useContext(SitePathsContext)
 	const history = useHistory()
 	const integrableModuleNames = useMemo(
 		() =>
@@ -164,6 +168,14 @@ function IntegrationCustomizer() {
 							>
 								<ThemeColorsProvider color={color}>
 									<IsEmbeddedProvider>
+										<Route
+											path={sitePaths.simulateurs.index}
+											component={Simulateurs}
+										/>
+										<Route
+											path={sitePaths.documentation.index}
+											component={Documentation}
+										/>
 										<Iframes />
 									</IsEmbeddedProvider>
 								</ThemeColorsProvider>
@@ -179,7 +191,6 @@ function IntegrationCustomizer() {
 export default function Integration() {
 	return (
 		<>
-			<ScrollToTop />
 			<TrackPage name="module_web" />
 			<Trans i18nKey="pages.développeurs.iframe.intro">
 				<div>

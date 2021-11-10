@@ -1,3 +1,4 @@
+import PageFeedback from 'Components/Feedback'
 import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -138,6 +139,9 @@ export default function VotreSituation() {
 					</>
 				)}
 			</section>
+			<PageFeedback
+				customMessage={<Trans>Êtes vous satisfait de ce guide ?</Trans>}
+			/>
 		</FromBottom>
 	)
 }
