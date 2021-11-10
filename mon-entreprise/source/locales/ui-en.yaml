@@ -73,7 +73,7 @@ Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
 ExportSimulation:
-  Banner: <0>Print or save as PDF</0>
+  Banner: Print or save as PDF
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
@@ -2073,7 +2073,7 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 shareSimulation:
-  banner: <0>Generate a share link</0>
+  banner: Generate a share link
   button:
     copied: Copied
     copy: Copy the link

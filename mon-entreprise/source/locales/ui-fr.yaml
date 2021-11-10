@@ -26,7 +26,7 @@ Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
 Explorez notre documentation: Explorez notre documentation
 ExportSimulation:
-  Banner: <0>Imprimer ou sauvegarder en PDF</0>
+  Banner: Imprimer ou sauvegarder en PDF
 Fiche de paie: Fiche de paie
 Gestion des données personnelles: Gestion des données personnelles
 Gérant majoritaire: Gérant majoritaire
@@ -1694,7 +1694,7 @@ responsabilité:
     notamment la rédaction de statuts et le dépôt d'un capital."
   titre: Entreprise individuelle ou société ?
 shareSimulation:
-  banner: <0>Générer un lien de partage</0>
+  banner: Générer un lien de partage
   button:
     copied: Copié
     copy: Copier le lien
