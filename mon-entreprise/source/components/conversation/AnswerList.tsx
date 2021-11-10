@@ -2,7 +2,6 @@ import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
@@ -27,40 +26,38 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	)
 
 	return (
-		<Popover onClose={onClose} isDismissable>
-			<div className="answer-list">
-				{!!answeredQuestions.length && (
-					<>
-						<H2>
-							<Emoji emoji="📋 " />
-							<Trans>Mes réponses</Trans>
-							<small css="margin-left: 2em; img {font-size: .8em}">
-								<Emoji emoji="🗑" />{' '}
-								<button
-									className="ui__ simple small button"
-									onClick={() => {
-										dispatch(resetSimulation())
-										onClose()
-									}}
-								>
-									<Trans>Tout effacer</Trans>
-								</button>
-							</small>
-						</H2>
-						<StepsTable {...{ rules: answeredQuestions, onClose }} />
-					</>
-				)}
-				{!!nextSteps.length && (
-					<>
-						<H2>
-							<Emoji emoji="🔮 " />
-							<Trans>Prochaines questions</Trans>
-						</H2>
-						<StepsTable {...{ rules: nextSteps, onClose }} />
-					</>
-				)}
-			</div>
-		</Popover>
+		<div className="answer-list">
+			{!!answeredQuestions.length && (
+				<>
+					<H2>
+						<Emoji emoji="📋 " />
+						<Trans>Mes réponses</Trans>
+						<small css="margin-left: 2em; img {font-size: .8em}">
+							<Emoji emoji="🗑" />{' '}
+							<button
+								className="ui__ simple small button"
+								onClick={() => {
+									dispatch(resetSimulation())
+									onClose()
+								}}
+							>
+								<Trans>Tout effacer</Trans>
+							</button>
+						</small>
+					</H2>
+					<StepsTable {...{ rules: answeredQuestions, onClose }} />
+				</>
+			)}
+			{!!nextSteps.length && (
+				<>
+					<H2>
+						<Emoji emoji="🔮 " />
+						<Trans>Prochaines questions</Trans>
+					</H2>
+					<StepsTable {...{ rules: nextSteps, onClose }} />
+				</>
+			)}
+		</div>
 	)
 }
 
@@ -77,12 +74,7 @@ function StepsTable({
 		<table>
 			<tbody>
 				{rules.map((rule) => (
-					<tr
-						key={rule.dottedName}
-						css={`
-							background: var(--lightestColor);
-						`}
-					>
+					<tr key={rule.dottedName}>
 						<td>
 							<button
 								className="ui__ link-button"

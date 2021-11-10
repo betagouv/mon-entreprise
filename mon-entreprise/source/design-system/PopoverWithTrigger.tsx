@@ -15,7 +15,7 @@ type PopoverWithTriggerProps = {
 	trigger: (
 		propsToDispatch: ButtonBuilderProps
 	) => ReactElement<typeof Button> | ReactElement<typeof Link>
-	children: React.ReactNode
+	children: React.ReactNode | ((close: () => void) => React.ReactNode)
 	title?: string
 }
 
@@ -55,7 +55,9 @@ export default function PopoverWithTrigger({
 					{...overlayProps}
 					role="dialog"
 				>
-					{children}
+					{typeof children === 'function'
+						? children(() => state.close())
+						: children}
 				</Popover>
 			)}
 		</>
