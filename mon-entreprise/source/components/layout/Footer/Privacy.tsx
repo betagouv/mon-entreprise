@@ -27,9 +27,11 @@ export default function Privacy({ label }: { label?: string }) {
 
 	return (
 		<PopoverWithTrigger
-			trigger={
-				<Link>{label ?? <Trans>Gestion des données personnelles</Trans>}</Link>
-			}
+			trigger={(propsToDispatch) => (
+				<Link {...propsToDispatch}>
+					{label ?? <Trans>Gestion des données personnelles</Trans>}
+				</Link>
+			)}
 			title={t('privacyContent.title', 'Données personnelles')}
 		>
 			<Trans i18nKey="privacyContent.texte">

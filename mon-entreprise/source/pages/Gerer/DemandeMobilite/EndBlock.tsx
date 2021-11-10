@@ -100,7 +100,9 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			<p>
 				<PopoverWithTrigger
 					title="Votre demande de mobilité"
-					trigger={<Button>Générer la demande</Button>}
+					trigger={(propsToDispatch) => (
+						<Button {...propsToDispatch}>Générer la demande</Button>
+					)}
 				>
 					<Body>
 						Afin d’examiner votre situation au regard des règlements

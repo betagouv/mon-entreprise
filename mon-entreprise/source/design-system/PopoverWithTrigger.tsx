@@ -1,12 +1,20 @@
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
+import { AriaButtonProps } from '@react-types/button'
 import { Button } from 'DesignSystem/buttons'
-import React, { ReactElement, useMemo, useRef } from 'react'
+import React, { ReactElement, Ref, useMemo, useRef } from 'react'
 import Popover from './Popover'
 import { Link } from './typography/link'
 
+type ButtonBuilderProps = AriaButtonProps & {
+	onClick: () => void
+	ref: Ref<HTMLButtonElement>
+}
+
 type PopoverWithTriggerProps = {
-	trigger: ReactElement<typeof Button> | ReactElement<typeof Link>
+	trigger: (
+		propsToDispatch: ButtonBuilderProps
+	) => ReactElement<typeof Button> | ReactElement<typeof Link>
 	children: React.ReactNode
 	title?: string
 }
@@ -26,11 +34,13 @@ export default function PopoverWithTrigger({
 
 	const triggerButton = useMemo(
 		() =>
-			React.cloneElement(trigger, {
-				onClick: () => state.open.bind(state),
+			trigger({
+				onClick: () => {
+					state.open()
+				},
 				ref: openButtonRef,
 				...triggerProps,
-			} as any),
+			}),
 		[openButtonRef, triggerProps, trigger, state]
 	)
 

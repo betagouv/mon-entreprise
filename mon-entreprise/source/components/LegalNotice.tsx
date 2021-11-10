@@ -8,11 +8,11 @@ export default function LegalNotice() {
 	const { t } = useTranslation()
 	return (
 		<PopoverWithTrigger
-			trigger={
-				<Link>
+			trigger={(propsToDispatch) => (
+				<Link {...propsToDispatch}>
 					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
 				</Link>
-			}
+			)}
 			title={t('legalNotice.title', 'Mentions légales')}
 		>
 			<H2>

@@ -265,11 +265,11 @@ function EnSavoirPlusCSP() {
 	const { t } = useTranslation()
 	return (
 		<PopoverWithTrigger
-			trigger={
-				<Link>
+			trigger={(propsToDispatch) => (
+				<Link {...propsToDispatch}>
 					<Trans>En savoir plus</Trans>
 				</Link>
-			}
+			)}
 			title={t(
 				'pages.développeurs.iframe.csp-title',
 				'Intégration iframe et politique de sécurité de contenu'
