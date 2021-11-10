@@ -1,5 +1,6 @@
 import PageFeedback from 'Components/Feedback'
 import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
@@ -140,8 +141,16 @@ export default function VotreSituation() {
 				)}
 			</section>
 			<PageFeedback
-				customMessage={<Trans>Êtes vous satisfait de ce guide ?</Trans>}
+				customMessage={<Trans>Êtes vous satisfait de cet assistant ?</Trans>}
 			/>
+			<blockquote className="ui__ notice">
+				<Emoji emoji="🏗️" />{' '}
+				<Trans i18nKey="économieCollaborative.WIP">
+					<strong>Cet assistant est en cours de développement.</strong>{' '}
+					N'hésitez pas à nous faire part de toute vos remarques, idées,
+					questions en cliquant sur le bouton "Faire une suggestion" ci dessus.
+				</Trans>
+			</blockquote>
 		</FromBottom>
 	)
 }
