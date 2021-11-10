@@ -1,14 +1,19 @@
 import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
 import { ExtraSmallBody } from 'DesignSystem/typography/paragraphs'
-import { InputHTMLAttributes, useRef } from 'react'
+import { InputHTMLAttributes, RefObject, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 const LABEL_HEIGHT = '1rem'
 
-export default function TextField(props: AriaTextFieldOptions) {
+type TextFieldProps = AriaTextFieldOptions & {
+	inputRef?: RefObject<HTMLInputElement>
+}
+
+export default function TextField(props: TextFieldProps) {
 	const ref = useRef<HTMLInputElement>(null)
+
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
-		useTextField({ ...props, inputElementType: 'input' }, ref)
+		useTextField({ ...props, inputElementType: 'input' }, props.inputRef || ref)
 
 	return (
 		<StyledContainer>
