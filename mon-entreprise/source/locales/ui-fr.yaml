@@ -1300,7 +1300,11 @@ trouver:
   titre: Retrouver mon entreprise
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Êtes vous satisfait de ce guide ?: Êtes vous satisfait de ce guide ?
+Êtes vous satisfait de cet assistant ?: Êtes vous satisfait de cet assistant ?
 économieCollaborative:
+  WIP: <0>Cet assistant est en cours de développement.</0> N'hésitez pas à nous
+    faire part de toute vos remarques, idées, questions en cliquant sur le
+    bouton "Faire une suggestion" ci dessus.
   accueil:
     contenu: <0>Vous avez des revenus issus des <2>plateformes en ligne</2> (Airbnb,
       Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans
