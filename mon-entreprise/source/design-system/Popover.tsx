@@ -109,6 +109,8 @@ const Underlay = styled.div`
 `
 
 const PopoverContainer = styled.div`
+	max-height: calc(100vh - 4rem);
+
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[4]};
 	display: flex;
@@ -154,6 +156,7 @@ const CloseButton = styled.button`
 `
 
 const PopoverContent = styled.div`
+	overflow: scroll;
 	padding: ${({ theme }) => theme.spacings.xxl};
 	padding-top: ${({ theme }) => theme.spacings.lg};
 `
