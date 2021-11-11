@@ -104,7 +104,7 @@ export default function Gérer() {
 				</PageHeader>
 				<>
 					<section>
-						<Grid container spacing={2}>
+						<Grid container spacing={3}>
 							{(company?.statutJuridique === 'EI' ||
 								company?.statutJuridique === 'SARL') &&
 								!company.isAutoEntrepreneur && (
@@ -139,7 +139,7 @@ export default function Gérer() {
 					<H2>
 						<Trans>Ressources utiles</Trans>
 					</H2>
-					<Grid container spacing={2}>
+					<Grid container spacing={3}>
 						{dirigeant === 'indépendant' &&
 							i18n.language === 'fr' &&
 							process.env.HEAD !== 'master' && (
@@ -222,10 +222,10 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 						title={t('gérer.entreprise.auto', 'Êtes-vous auto-entrepreneur ?')}
 					>
 						<div className="ui__ answer-group">
-							<Button onClick={() => handleAnswerAutoEntrepreneur(true)}>
+							<Button onPress={() => handleAnswerAutoEntrepreneur(true)}>
 								<Trans>Oui</Trans>
 							</Button>
-							<Button onClick={() => handleAnswerAutoEntrepreneur(false)}>
+							<Button onPress={() => handleAnswerAutoEntrepreneur(false)}>
 								<Trans>Non</Trans>
 							</Button>
 						</div>
@@ -249,10 +249,10 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 							</Trans>
 						</Body>
 						<div className="ui__ answer-group">
-							<Button onClick={() => handleAnswerDirigeantMajoritaire(true)}>
+							<Button onPress={() => handleAnswerDirigeantMajoritaire(true)}>
 								<Trans>Oui</Trans>
 							</Button>
-							<Button onClick={() => handleAnswerDirigeantMajoritaire(false)}>
+							<Button onPress={() => handleAnswerDirigeantMajoritaire(false)}>
 								<Trans>Non</Trans>
 							</Button>
 						</div>
@@ -299,9 +299,9 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 							</>
 						)}
 					</p>
-					<button
-						className="ui__ simple small button"
-						onClick={() => {
+					<Button
+						light
+						onPress={() => {
 							dispatch(resetEntreprise())
 							showSearchModal(true)
 						}}
@@ -309,10 +309,10 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 						<Trans i18nKey="gérer.entreprise.changer">
 							Changer l'entreprise sélectionnée
 						</Trans>
-					</button>
+					</Button>
 				</>
 			) : (
-				<Button size="XL" onClick={() => showSearchModal(true)}>
+				<Button size="XL" onPress={() => showSearchModal(true)}>
 					<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
 				</Button>
 			)}

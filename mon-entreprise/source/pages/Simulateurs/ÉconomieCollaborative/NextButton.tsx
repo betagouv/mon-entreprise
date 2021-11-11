@@ -1,8 +1,7 @@
-import classnames from 'classnames'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Button } from 'DesignSystem/buttons'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { activitéVue } from './actions'
 import { nextActivitéSelector } from './selectors'
 import { StoreContext } from './StoreContext'
@@ -18,17 +17,9 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 	const nextActivité = nextActivitéSelector(state, activité)
 	return (
 		<p css="text-align: center">
-			<Link
-				className={classnames('ui__ cta plain button', {
-					disabled,
-				})}
-				onClick={(e) => {
-					if (disabled) {
-						e.preventDefault()
-					} else {
-						dispatch(activitéVue(activité))
-					}
-				}}
+			<Button
+				isDisabled={disabled}
+				onPress={() => dispatch(activitéVue(activité))}
 				to={
 					nextActivité
 						? sitePaths.simulateurs.économieCollaborative.index +
@@ -44,7 +35,7 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 						Voir mes obligations
 					</Trans>
 				)}
-			</Link>
+			</Button>
 		</p>
 	)
 }

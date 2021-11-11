@@ -299,7 +299,7 @@ export default function SchemeComparaison({
 				) : (
 					<Trans i18nKey="comparaisonRégimes.comparaisonDétaillée">
 						<div className="all">
-							<Button light size="XS" onClick={() => setShowMore(true)}>
+							<Button light size="XS" onPress={() => setShowMore(true)}>
 								Afficher plus d'informations
 							</Button>
 						</div>
@@ -314,7 +314,7 @@ export default function SchemeComparaison({
 									Comparer mes revenus, pension de retraite et indemnité maladie
 								</H3>
 								<img src={revenusSVG} css="height: 8rem" />
-								<Button onClick={startConversation}>
+								<Button onPress={startConversation}>
 									Lancer la simulation
 								</Button>
 							</Trans>
@@ -562,7 +562,7 @@ export default function SchemeComparaison({
 						!hideAssimiléSalarié && (
 							<Button
 								key="assimiléSalarié"
-								onClick={() => {
+								onPress={() => {
 									dispatch(defineDirectorStatus('SALARIED'))
 									!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 								}}
@@ -575,7 +575,7 @@ export default function SchemeComparaison({
 
 						<Button
 							key="EI"
-							onClick={() => {
+							onPress={() => {
 								!hideAssimiléSalarié &&
 									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
 								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
@@ -595,7 +595,7 @@ export default function SchemeComparaison({
 						!hideAutoEntrepreneur && (
 							<Button
 								key="auto-entrepreneur"
-								onClick={() => {
+								onPress={() => {
 									!hideAssimiléSalarié &&
 										dispatch(defineDirectorStatus('SELF_EMPLOYED'))
 									dispatch(isAutoentrepreneur(true))

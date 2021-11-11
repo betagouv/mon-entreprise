@@ -88,20 +88,17 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 							text-align: right;
 						`}
 					>
-						<button
-							className="ui__ simple small button"
-							onClick={() => signatureRef.current?.clear()}
-						>
+						<Link onPress={() => signatureRef.current?.clear()}>
 							<Emoji emoji="🗑️" /> Recommencer{' '}
-						</button>
+						</Link>
 					</div>
 				</div>
 			)}
 			<p>
 				<PopoverWithTrigger
 					title="Votre demande de mobilité"
-					trigger={(propsToDispatch) => (
-						<Button {...propsToDispatch}>Générer la demande</Button>
+					trigger={(buttonProps) => (
+						<Button {...buttonProps}>Générer la demande</Button>
 					)}
 				>
 					<Body>
@@ -157,19 +154,18 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 													</strong>
 												</blockquote>
 											)}
-											<a
+											<Button
 												href={url}
-												onClick={() => {
+												onPress={() => {
 													tracker.click.set({
 														type: 'download',
 														name: 'demande-mobilité-internationale.pdf',
 													})
 												}}
-												className="ui__ cta plain button"
 												download="demande-mobilité-internationale.pdf"
 											>
 												Télécharger le fichier
-											</a>
+											</Button>
 											<TrackPage name="pdf généré" />
 										</>
 									)

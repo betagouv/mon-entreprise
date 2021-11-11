@@ -4,19 +4,29 @@ const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
-	color: ${({ theme }) => theme.colors.bases.primary[800]};
+	color: ${({ theme }) => theme.colors.bases.primary[700]};
 `
-
+const underline = css`
+	::after {
+		height: 1.25rem;
+		width: 5rem;
+		display: block;
+		content: ' ';
+		border-bottom: 4px solid ${({ theme }) => theme.colors.bases.secondary[500]};
+	}
+`
 export const H1 = styled.h1`
 	${baseHeading}
 	font-size: 2rem;
 	line-height: 2.375rem;
+	${underline}
 `
 
 export const H2 = styled.h2`
 	${baseHeading}
 	font-size: 1.625rem;
 	line-height: 2rem;
+	${underline}
 `
 
 export const H3 = styled.h3`

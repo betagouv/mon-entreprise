@@ -18,8 +18,8 @@ export default function ButtonHelp({
 }: ButtonHelpProps) {
 	return (
 		<PopoverWithTrigger
-			trigger={(propsToDispatch) => (
-				<StyledButton light={light ?? false} {...propsToDispatch}>
+			trigger={(buttonProps) => (
+				<StyledButton light={light ?? false} {...buttonProps}>
 					<CircleIcon
 						aria-hidden="true"
 						width="24"

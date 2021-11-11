@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import PageHeader from 'Components/PageHeader'
+import InfoBulle from 'Components/ui/InfoBulle'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -48,7 +49,7 @@ export default function Simulateurs() {
 				<H2>
 					<Trans>Salariés et employeurs</Trans>
 				</H2>
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
 					<SimulateurCard {...simulators['aides-embauche']} />
@@ -57,7 +58,7 @@ export default function Simulateurs() {
 				<H3>
 					<Trans>Revenu du dirigeant par statut</Trans>
 				</H3>
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<SimulateurCard small {...simulators['auto-entrepreneur']} />
 					<SimulateurCard small {...simulators['entreprise-individuelle']} />
 					<SimulateurCard small {...simulators.eirl} />
@@ -70,7 +71,7 @@ export default function Simulateurs() {
 					<Trans>Travailleurs Non Salariés (TNS)</Trans>
 				</H2>
 
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
@@ -79,7 +80,7 @@ export default function Simulateurs() {
 					<H3>
 						<Trans>Professions libérales</Trans>
 					</H3>
-					<Grid container spacing={2}>
+					<Grid container spacing={3}>
 						<SimulateurCard small {...simulators['auxiliaire-médical']} />
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
 						<SimulateurCard small {...simulators.médecin} />
@@ -93,7 +94,7 @@ export default function Simulateurs() {
 				<H2>
 					<Trans>Autres outils</Trans>
 				</H2>
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
 					{language === 'fr' && (
@@ -142,17 +143,18 @@ export function SimulateurCard({
 	const { t } = useTranslation()
 
 	return small ? (
-		<Grid item xs={6} md={4} lg={3}>
+		<Grid item xs={6} md={4}>
 			<SmallCard
 				icon={<Emoji emoji={icône} />}
-				callToAction={{
-					to: {
-						state: { fromSimulateurs: true },
-						pathname: (isIframe && iframePath) || path,
-					},
+				to={{
+					state: { fromSimulateurs: true },
+					pathname: (isIframe && iframePath) || path,
 				}}
-				title={shortName}
-				tooltip={tooltip}
+				title={
+					<h4>
+						{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+					</h4>
+				}
 			/>
 		</Grid>
 	) : (
@@ -160,15 +162,13 @@ export function SimulateurCard({
 			<Card
 				title={shortName}
 				icon={<Emoji emoji={icône} />}
-				callToAction={{
-					to: {
-						state: { fromSimulateurs: true },
-						pathname: (isIframe && iframePath) || path,
-					},
-					label: t('.cta', 'Lancer le simulateur'),
+				ctaLabel={t('.cta', 'Lancer le simulateur')}
+				to={{
+					state: { fromSimulateurs: true },
+					pathname: (isIframe && iframePath) || path,
 				}}
 			>
-				<Body>{meta?.description}</Body>
+				{meta?.description}
 			</Card>
 		</Grid>
 	)

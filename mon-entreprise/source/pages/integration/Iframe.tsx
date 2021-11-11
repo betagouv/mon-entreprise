@@ -265,8 +265,8 @@ function EnSavoirPlusCSP() {
 	const { t } = useTranslation()
 	return (
 		<PopoverWithTrigger
-			trigger={(propsToDispatch) => (
-				<Link {...propsToDispatch}>
+			trigger={(buttonProps) => (
+				<Link {...buttonProps}>
 					<Trans>En savoir plus</Trans>
 				</Link>
 			)}

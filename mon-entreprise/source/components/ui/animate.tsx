@@ -8,6 +8,7 @@ import {
 	SpringConfig,
 	Trail,
 } from 'react-spring/renderprops'
+import styled from 'styled-components'
 
 type Props = {
 	children: React.ReactNode
@@ -28,31 +29,33 @@ export function FromBottom({
 		return <>{children}</>
 	}
 	return (
-		<Trail
-			keys={React.Children.map(children, (_, i) => i) ?? []}
-			native={true}
-			delay={delay}
-			config={config}
-			from={{ opacity: 0, y: 10 }}
-			to={{ opacity: 1, y: 0 }}
-			items={children}
-		>
-			{(item) =>
-				({ y, ...style }) =>
-					(
-						<animated.div
-							style={{
-								transform: interpolate([y], (y) =>
-									y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-								),
-								...style,
-								...inheritedStyle,
-							}}
-						>
-							{item}
-						</animated.div>
-					)}
-		</Trail>
+		<ContainerDiv>
+			<Trail
+				keys={React.Children.map(children, (_, i) => i) ?? []}
+				native={true}
+				delay={delay}
+				config={config}
+				from={{ opacity: 0, y: 10 }}
+				to={{ opacity: 1, y: 0 }}
+				items={children}
+			>
+				{(item) =>
+					({ y, ...style }) =>
+						(
+							<animated.div
+								style={{
+									transform: interpolate([y], (y) =>
+										y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
+									),
+									...style,
+									...inheritedStyle,
+								}}
+							>
+								{item}
+							</animated.div>
+						)}
+			</Trail>
+		</ContainerDiv>
 	)
 }
 export function FromTop({
@@ -65,31 +68,33 @@ export function FromTop({
 		return <>{children}</>
 	}
 	return (
-		<Trail
-			keys={React.Children.map(children, (_, i) => i) ?? []}
-			native={true}
-			delay={delay}
-			config={config}
-			from={{ opacity: 0, y: -20 }}
-			to={{ opacity: 1, y: 0 }}
-			items={children}
-		>
-			{(item) =>
-				({ y, ...style }) =>
-					(
-						<animated.div
-							style={{
-								transform: interpolate([y], (y) =>
-									y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
-								),
-								...style,
-								...inheritedStyle,
-							}}
-						>
-							{item}
-						</animated.div>
-					)}
-		</Trail>
+		<ContainerDiv>
+			<Trail
+				keys={React.Children.map(children, (_, i) => i) ?? []}
+				native={true}
+				delay={delay}
+				config={config}
+				from={{ opacity: 0, y: -20 }}
+				to={{ opacity: 1, y: 0 }}
+				items={children}
+			>
+				{(item) =>
+					({ y, ...style }) =>
+						(
+							<animated.div
+								style={{
+									transform: interpolate([y], (y) =>
+										y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
+									),
+									...style,
+									...inheritedStyle,
+								}}
+							>
+								{item}
+							</animated.div>
+						)}
+			</Trail>
+		</ContainerDiv>
 	)
 }
 export const FadeIn = ({
@@ -147,3 +152,9 @@ export function Appear({
 		</Spring>
 	)
 }
+
+const ContainerDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+`

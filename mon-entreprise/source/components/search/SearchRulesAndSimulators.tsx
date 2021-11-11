@@ -1,8 +1,5 @@
-import '../ui/Card.css'
-import './SearchRulesAndSimulators.css'
-import 'instantsearch.css/themes/satellite.css'
-
 import algoliasearch from 'algoliasearch/lite'
+import 'instantsearch.css/themes/satellite.css'
 import { useTranslation } from 'react-i18next'
 import {
 	Configure,
@@ -10,8 +7,9 @@ import {
 	InstantSearch,
 	SearchBox,
 } from 'react-instantsearch-dom'
-import { SimulatorHits } from './SimulatorHits'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
+import './SearchRulesAndSimulators.css'
+import { SimulatorHits } from './SimulatorHits'
 
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY || ''

@@ -1249,7 +1249,7 @@ gérer:
       body: What are social security contributions for? An update on the social
         protection system from which all workers in France benefit.
       cta: Read the guide
-      title: "Understanding Social Security "
+      title: Understanding Social Security
   titre: Manage my business
 heure: hour
 heures: hours
@@ -1274,15 +1274,15 @@ landing:
     on what really matters: your business.</3>"
   choice:
     create:
-      body: <0>Assistance in choosing a legal status and a complete list of the steps
-        involved in setting up a business</0>
+      body: Assistance in choosing a legal status and a complete list of the steps
+        involved in setting up a business
       title: Create a company
     manage:
-      body: <0>Personalized tools to anticipate the amount of social contributions to
-        be paid and better manage your cash flow.</0>
+      body: Personalized tools to anticipate the amount of social contributions to be
+        paid and better manage your cash flow.
       title: Manage my business
     simulators:
-      body: <0>The exhaustive list of all the simulators available on the site.</0>
+      body: The exhaustive list of all the simulators available on the site.
       title: Browse the simulators
   covid19: "Covid-19: Calculating the impact of short-time work"
   seeSimulators: See the simulators list
@@ -1616,7 +1616,7 @@ pages:
       title: Self-entrepreneur Income Simulator
       titre: Auto-entrepreneur income simulator
     auxiliaire:
-      shortname: Medical Axiliary
+      shortname: Medical Auxiliary
       title: Income simulator for a private medical assistant
       tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
         orthoptists
@@ -1791,7 +1791,7 @@ pages:
         calculate the exact amount of social security contributions based on a
         desired turnover or net income. You can specify your situation by
         answering the questions displayed below the simulation.</8>
-      shortname: EI
+      shortname: Individual company
       title: Simulator for sole proprietorship (EI)
     eirl:
       meta:

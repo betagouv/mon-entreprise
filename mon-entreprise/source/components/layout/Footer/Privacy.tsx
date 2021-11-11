@@ -27,8 +27,8 @@ export default function Privacy({ label }: { label?: string }) {
 
 	return (
 		<PopoverWithTrigger
-			trigger={(propsToDispatch) => (
-				<Link {...propsToDispatch}>
+			trigger={(buttonProps) => (
+				<Link {...buttonProps}>
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
 				</Link>
 			)}

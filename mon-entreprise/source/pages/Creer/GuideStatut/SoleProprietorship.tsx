@@ -75,26 +75,22 @@ export default function SoleProprietorship() {
 				</Li>
 			</Ul>
 			<AnswerGroup>
-				{[
-					<Button
-						key="isSoleProprietorship"
-						onClick={() => {
-							dispatch(isSoleProprietorship(true))
-						}}
-					>
-						<Trans i18nKey="responsabilité.bouton2">
-							Entreprise individuelle
-						</Trans>
-					</Button>,
-					<Button
-						key="isNotSoleProprietorship"
-						onClick={() => {
-							dispatch(isSoleProprietorship(false))
-						}}
-					>
-						<Trans i18nKey="responsabilité.bouton1">Société</Trans>
-					</Button>,
-				]}
+				<Button
+					onPress={() => {
+						dispatch(isSoleProprietorship(true))
+					}}
+				>
+					<Trans i18nKey="responsabilité.bouton2">
+						Entreprise individuelle
+					</Trans>
+				</Button>
+				<Button
+					onPress={() => {
+						dispatch(isSoleProprietorship(false))
+					}}
+				>
+					<Trans i18nKey="responsabilité.bouton1">Société</Trans>
+				</Button>
 			</AnswerGroup>
 			{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 			{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}

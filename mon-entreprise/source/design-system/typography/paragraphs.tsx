@@ -5,7 +5,7 @@ const baseParagraphStyle = css`
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
-			: theme.colors.bases.primary[800]};
+			: theme.colors.extended.grey[800]};
 `
 
 export const Intro = styled.p`

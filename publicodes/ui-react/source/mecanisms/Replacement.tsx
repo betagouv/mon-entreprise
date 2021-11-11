@@ -1,10 +1,10 @@
+import { EvaluatedNode } from 'publicodes/source/AST/types'
 import { VariationNode } from 'publicodes/source/mecanisms/variations'
 import { useState } from 'react'
-import Variations from './Variations'
-import Overlay from '../Overlay'
 import Explanation from '../Explanation'
+import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
-import { EvaluatedNode } from 'publicodes/source/AST/types'
+import Variations from './Variations'
 
 export default function Replacement(node: VariationNode & EvaluatedNode) {
 	const applicableReplacement = node.explanation.find(

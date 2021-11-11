@@ -1,5 +1,5 @@
 import Emoji from 'Components/utils/Emoji'
-import { Card } from 'DesignSystem/card'
+import { Article } from 'DesignSystem/card'
 import { Body } from 'DesignSystem/typography/paragraphs'
 
 type GuideURSSAFCardProps = {
@@ -11,18 +11,16 @@ type GuideURSSAFCardProps = {
 
 export function GuideURSSAFCard({ guideUrssaf }: GuideURSSAFCardProps) {
 	return (
-		<Card
+		<Article
 			title={guideUrssaf.title}
 			icon={<Emoji emoji="📖" />}
-			callToAction={{
-				href: guideUrssaf.url,
-				label: 'Voir le guide',
-			}}
+			ctaLabel={'Voir le guide'}
+			href={guideUrssaf.url}
 		>
 			<Body>
 				Des conseils pour se lancer dans la création et une présentation
 				détaillée de votre protection sociale.
 			</Body>
-		</Card>
+		</Article>
 	)
 }

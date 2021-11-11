@@ -6,7 +6,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card/Card'
 import { Container } from 'DesignSystem/layout'
 import { H1, H2 } from 'DesignSystem/typography/heading'
-import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -76,38 +76,27 @@ export default function Landing() {
 					<Card
 						icon={<Emoji emoji="💡" />}
 						title={t('landing.choice.create.title', 'Créer une entreprise')}
-						callToAction={
+						ctaLabel={statutChoisi ? t('Continuer') : t('Commencer')}
+						to={
 							statutChoisi
-								? {
-										to: sitePaths.créer[statutChoisi],
-										label: t('Continuer'),
-								  }
-								: {
-										to: sitePaths.créer.index,
-										label: t('Commencer'),
-								  }
+								? sitePaths.créer[statutChoisi]
+								: sitePaths.créer.index
 						}
 					>
 						<Trans i18nKey="landing.choice.create.body">
-							<SmallBody>
-								Un accompagnement au choix du statut juridique et la liste
-								complète des démarches de création
-							</SmallBody>
+							Un accompagnement au choix du statut juridique et la liste
+							complète des démarches de création
 						</Trans>
 					</Card>
 					<Card
 						icon={<Emoji emoji="💶" />}
 						title={t('landing.choice.manage.title', 'Gérer mon activité')}
-						callToAction={{
-							label: t('Commencer'),
-							to: sitePaths.gérer.index,
-						}}
+						ctaLabel={t('Commencer')}
+						to={sitePaths.gérer.index}
 					>
 						<Trans i18nKey="landing.choice.manage.body">
-							<SmallBody>
-								Des outils personnalisés pour anticiper le montant des
-								cotisations sociales à payer et mieux gérer votre trésorerie.
-							</SmallBody>
+							Des outils personnalisés pour anticiper le montant des cotisations
+							sociales à payer et mieux gérer votre trésorerie.
 						</Trans>
 					</Card>
 					<Card
@@ -116,16 +105,12 @@ export default function Landing() {
 							'landing.choice.simulators.title',
 							'Accéder aux simulateurs'
 						)}
-						callToAction={{
-							label: t('Découvrir'),
-							to: sitePaths.simulateurs.index,
-						}}
+						ctaLabel={t('Découvrir')}
+						to={sitePaths.simulateurs.index}
 					>
 						<Trans i18nKey="landing.choice.simulators.body">
-							<SmallBody>
-								La liste exhaustive de tous les simulateurs disponibles sur le
-								site.
-							</SmallBody>
+							La liste exhaustive de tous les simulateurs disponibles sur le
+							site.
 						</Trans>
 					</Card>
 				</CardSection>

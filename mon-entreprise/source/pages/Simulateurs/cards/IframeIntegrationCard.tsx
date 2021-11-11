@@ -1,6 +1,5 @@
 import Emoji from 'Components/utils/Emoji'
-import { Card } from 'DesignSystem/card'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Article } from 'DesignSystem/card'
 import { Trans, useTranslation } from 'react-i18next'
 
 type IframeIntegrationCardProps = {
@@ -14,23 +13,23 @@ export function IframeIntegrationCard({
 }: IframeIntegrationCardProps) {
 	const { t } = useTranslation()
 	return (
-		<Card
-			title={t('nextSteps.integration-iframe.title', 'Intégrer le module web')}
+		<Article
 			icon={<Emoji emoji="👩‍🔧" />}
-			callToAction={{
-				to: {
-					pathname: sitePaths.integration.iframe,
-					search: `?module=${iframePath}`,
-				},
-				label: t('nextSteps.integration-iframe.cta', 'Voir la documentation'),
+			title={
+				<Trans i18nKey="nextSteps.integration-iframe.title">
+					Intégrer le module web
+				</Trans>
+			}
+			ctaLabel={t('nextSteps.integration-iframe.cta', 'Voir la documentation')}
+			to={{
+				pathname: sitePaths.integration.iframe,
+				search: `?module=${iframePath}`,
 			}}
 		>
-			<Body>
-				<Trans i18nKey="nextSteps.integration-iframe.body">
-					Decouvrez comment ajouter ce simulateur sur votre site internet en un
-					clic via un script clé en main.
-				</Trans>
-			</Body>
-		</Card>
+			<Trans i18nKey="nextSteps.integration-iframe.body">
+				Decouvrez comment ajouter ce simulateur sur votre site internet en un
+				clic via un script clé en main.
+			</Trans>
+		</Article>
 	)
 }

@@ -10,7 +10,7 @@ import Emoji from 'Components/utils/Emoji'
 import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
-import { Card } from 'DesignSystem/card'
+import { Article } from 'DesignSystem/card'
 import { H1, H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
@@ -19,7 +19,6 @@ import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import { TrackPage } from '../../ATInternetTracking'
@@ -36,7 +35,6 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		(state: RootState) => state.inFranceApp.companyCreationChecklist
 	)
 	const dispatch = useDispatch()
-	const history = useHistory()
 
 	// TODO : add this logic inside selector
 	const isAutoentrepreneur = statut.startsWith('auto-entrepreneur')
@@ -84,17 +82,14 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Helmet>
 			<Scroll.toTop />
-			<div css="transform: translateY(2rem);">
-				<button
-					onClick={() => {
-						dispatch(resetCompanyStatusChoice())
-						history.push(sitePaths.créer.index)
-					}}
-					className="ui__ simple small push-left button"
-				>
-					<Trans i18nKey="entreprise.retour">← Choisir un autre statut</Trans>
-				</button>
-			</div>
+			<Link
+				to={sitePaths.créer.index}
+				onPress={() => {
+					dispatch(resetCompanyStatusChoice())
+				}}
+			>
+				<Trans i18nKey="entreprise.retour">← Choisir un autre statut</Trans>
+			</Link>
 
 			<H1>{titre}</H1>
 			<Body>
@@ -102,10 +97,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			</Body>
 
 			<H2>
-				<Emoji emoji="📋" />{' '}
 				<Trans i18nKey="entreprise.tâches.titre">
 					À faire pour créer votre entreprise
-				</Trans>
+				</Trans>{' '}
+				<Emoji emoji="📋" />
 			</H2>
 			<Body>
 				<Trans i18nKey="entreprise.tâches.avancement">
@@ -392,10 +387,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Checklist>
 			<H2>
-				<Emoji emoji="💭" />{' '}
 				<Trans i18nKey="entreprise.tâches.titre2">
 					Recommandé avant le début de l'activité
-				</Trans>
+				</Trans>{' '}
+				<Emoji emoji="💭" />
 			</H2>
 
 			<Checklist>
@@ -445,153 +440,146 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Checklist>
 			<H2>
-				<Emoji emoji="🧰" /> <Trans>Ressources utiles</Trans>
+				<Trans>Ressources utiles</Trans> <Emoji emoji="🧰" />
 			</H2>
 
-			<Grid container spacing={2}>
+			<Grid container>
 				{isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title={t(
-								'entreprise.ressources.simu.autoEntrepreneur.title',
-								'Simulateur de revenus auto-entrepreneur'
-							)}
-							callToAction={{
-								to: {
-									pathname: sitePaths.simulateurs['auto-entrepreneur'],
-									state: { fromCréer: true },
-								},
-
-								label: t(
-									'entreprise.ressources.simu.autoEntrepreneur.cta',
-									'Simuler les revenus'
-								),
+						<Article
+							title={
+								<h3>
+									{t(
+										'entreprise.ressources.simu.autoEntrepreneur.title',
+										'Simulateur de revenus auto-entrepreneur'
+									)}
+								</h3>
+							}
+							to={{
+								pathname: sitePaths.simulateurs['auto-entrepreneur'],
+								state: { fromCréer: true },
 							}}
+							ctaLabel={t(
+								'entreprise.ressources.simu.autoEntrepreneur.cta',
+								'Simuler les revenus'
+							)}
 						>
-							<Body>
-								<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur.body">
-									Simuler le montant de vos cotisations sociales et de votre
-									impôt et estimez votre futur revenu net.
-								</Trans>
-							</Body>
-						</Card>
+							<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur.body">
+								Simuler le montant de vos cotisations sociales et de votre impôt
+								et estimez votre futur revenu net.
+							</Trans>
+						</Article>
 					</Grid>
 				)}
 				{['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title={t(
-								'entreprise.ressources.simu.indépendant.title',
-								'Simulateur de cotisations indépendant'
-							)}
-							callToAction={{
-								to: {
-									pathname: sitePaths.simulateurs.indépendant,
-									state: { fromCréer: true },
-								},
-								label: t(
-									'entreprise.ressources.simu.indépendant.cta',
-									'Simuler les cotisations'
-								),
+						<Article
+							title={
+								<h3>
+									{t(
+										'entreprise.ressources.simu.indépendant.title',
+										'Simulateur de cotisations indépendant'
+									)}
+								</h3>
+							}
+							to={{
+								pathname: sitePaths.simulateurs.indépendant,
+								state: { fromCréer: true },
 							}}
+							ctaLabel={t(
+								'entreprise.ressources.simu.indépendant.cta',
+								'Simuler les cotisations'
+							)}
 						>
-							<Body>
-								<Trans i18nKey="entreprise.ressources.simu.indépendant.body">
-									Simuler le montant de vos cotisations sociales pour bien
-									préparer votre business plan.
-								</Trans>
-							</Body>
-						</Card>
+							<Trans i18nKey="entreprise.ressources.simu.indépendant.body">
+								Simuler le montant de vos cotisations sociales pour bien
+								préparer votre business plan.
+							</Trans>
+						</Article>
 					</Grid>
 				)}
 				{['SAS', 'SASU'].includes(statut) && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title={t(
-								'entreprise.ressources.simu.assimilé.title',
-								'Simulateur de rémunération pour dirigeant de SASU'
-							)}
-							callToAction={{
-								to: {
-									pathname: sitePaths.simulateurs.sasu,
-									state: { fromCréer: true },
-								},
-								label: t(
-									'entreprise.ressources.simu.assimilé.cta',
-									'Simuler la rémunération'
-								),
+						<Article
+							title={
+								<h3>
+									{t(
+										'entreprise.ressources.simu.assimilé.title',
+										'Simulateur de rémunération pour dirigeant de SASU'
+									)}
+								</h3>
+							}
+							to={{
+								pathname: sitePaths.simulateurs.sasu,
+								state: { fromCréer: true },
 							}}
+							ctaLabel={t(
+								'entreprise.ressources.simu.assimilé.cta',
+								'Simuler la rémunération'
+							)}
 						>
-							<Body>
-								<Trans i18nKey="entreprise.ressources.simu.assimilé.body">
-									Simuler le montant de vos cotisations sociales pour bien
-									préparer votre business plan.
-								</Trans>
-							</Body>
-						</Card>
+							<Trans i18nKey="entreprise.ressources.simu.assimilé.body">
+								Simuler le montant de vos cotisations sociales pour bien
+								préparer votre business plan.
+							</Trans>
+						</Article>
 					</Grid>
 				)}
 				<Grid item xs={12} sm={6} lg={4}>
-					<Card
-						title={t('entreprise.ressources.après.title', 'Après la création')}
-						callToAction={{
-							to: sitePaths.créer.après,
-							label: t('entreprise.ressources.après.cta', 'Voir le glossaire'),
-						}}
+					<Article
+						title={
+							<h3>
+								<Trans i18nKey="entreprise.ressources.après.title">
+									Après la création
+								</Trans>
+							</h3>
+						}
+						to={sitePaths.créer.après}
+						ctaLabel={t('entreprise.ressources.après.cta', 'Voir le glossaire')}
 					>
-						<Body>
-							<Trans i18nKey="entreprise.ressources.après.body">
-								SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
-								vous pourrez (éventuellement) rencontrer après la création.
-							</Trans>
-						</Body>
-					</Card>
+						<Trans i18nKey="entreprise.ressources.après.body">
+							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
+							vous pourrez (éventuellement) rencontrer après la création.
+						</Trans>
+					</Article>
 				</Grid>
 
 				{i18n.language === 'fr' && isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title="Guide pratique Urssaf"
-							callToAction={{
-								href: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
-								label: 'Consulter le guide',
-							}}
+						<Article
+							title={<h3>Guide pratique Urssaf</h3>}
+							href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf"
+							ctaLabel="Consulter le guide"
 						>
-							<Body>
-								Des conseils pour les auto-entrepreneurs : comment préparer son
-								projet pour se lancer dans la création et une présentation
-								détaillée de votre protection sociale.
-							</Body>
-						</Card>
+							Des conseils pour les auto-entrepreneurs : comment préparer son
+							projet pour se lancer dans la création et une présentation
+							détaillée de votre protection sociale.
+						</Article>
 					</Grid>
 				)}
 
 				{isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<FAQAutoEntreprneurCard />
+						<FAQAutoEntrepreneurArticle />
 					</Grid>
 				)}
 
 				{isAutoentrepreneur && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<ImpotAECard />
+						<ImpotAEArticle />
 					</Grid>
 				)}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<Grid item xs={12} sm={6} lg={4}>
-						<Card
-							title="Guide Urssaf pour les travailleur indépendant"
-							callToAction={{
-								href: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
-								label: 'Consulter le guide',
-							}}
+						<Article
+							title={<h3>Guide Urssaf pour les travailleur indépendant</h3>}
+							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf"
+							ctaLabel="Consulter le guide"
 						>
-							<Body>
-								Des conseils sur comment préparer son projet pour se lancer dans
-								la création et une présentation détaillée de votre protection
-								sociale.
-							</Body>
-						</Card>
+							Des conseils sur comment préparer son projet pour se lancer dans
+							la création et une présentation détaillée de votre protection
+							sociale.
+						</Article>
 					</Grid>
 				)}
 			</Grid>
@@ -621,57 +609,56 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 	)
 }
 
-export const FAQAutoEntreprneurCard = () => {
+export const FAQAutoEntrepreneurArticle = () => {
 	const { t } = useTranslation()
 	return (
-		<Card
-			title={t(
-				'pages.common.ressources-auto-entrepreneur.FAQ.title',
-				'Questions fréquentes'
+		<Article
+			title={
+				<h3>
+					{t(
+						'pages.common.ressources-auto-entrepreneur.FAQ.title',
+						'Questions fréquentes'
+					)}{' '}
+					<Emoji emoji="❓" />
+				</h3>
+			}
+			href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
+			ctaLabel={t(
+				'pages.common.ressources-auto-entrepreneur.FAQ.cta',
+				'Voir les réponses'
 			)}
-			icon={<Emoji emoji="❓" />}
-			callToAction={{
-				href: 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html',
-				label: t(
-					'pages.common.ressources-auto-entrepreneur.FAQ.cta',
-					'Voir les réponses'
-				),
-			}}
 		>
-			<Body>
-				<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
-					Une liste exhaustive et maintenue à jour de toutes les questions
-					fréquentes (et moins fréquentes) que l'on est amené à poser en tant
-					qu'auto-entrepreneur
-				</Trans>
-			</Body>
-		</Card>
+			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
+				Une liste exhaustive et maintenue à jour de toutes les questions
+				fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+				qu'auto-entrepreneur
+			</Trans>
+		</Article>
 	)
 }
 
-export const ImpotAECard = () => {
+export const ImpotAEArticle = () => {
 	const { t } = useTranslation()
 	return (
-		<Card
-			title={t(
-				'pages.common.ressources-auto-entrepreneur.impôt.title',
-				'Comment déclarer son revenu aux impôts ?'
+		<Article
+			title={
+				<h3>
+					<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.title">
+						Comment déclarer son revenu aux impôts ?
+					</Trans>{' '}
+					<Emoji emoji="📑" />
+				</h3>
+			}
+			href="https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur"
+			ctaLabel={t(
+				'pages.common.ressources-auto-entrepreneur.impôt.cta',
+				"Consulter l'aide"
 			)}
-			icon={<Emoji emoji="📑" />}
-			callToAction={{
-				href: 'https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur',
-				label: t(
-					'pages.common.ressources-auto-entrepreneur.impôt.cta',
-					"Consulter l'aide"
-				),
-			}}
 		>
-			<Body>
-				<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.body">
-					Les informations officielles de l'administration fiscale concernant
-					les auto-entrepreneurs et le régime de la micro-entreprise.
-				</Trans>
-			</Body>
-		</Card>
+			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.body">
+				Les informations officielles de l'administration fiscale concernant les
+				auto-entrepreneurs et le régime de la micro-entreprise.
+			</Trans>
+		</Article>
 	)
 }

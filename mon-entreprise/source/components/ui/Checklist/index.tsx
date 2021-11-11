@@ -62,7 +62,7 @@ export function CheckItem({
 				<Spacer></Spacer>
 
 				{explanations && (
-					<Link onClick={handleClick}>
+					<Link onPress={handleClick}>
 						{displayExplanations ? (
 							<Trans i18nKey="checklist.showmore.open">
 								Masquer les détails

@@ -7,8 +7,8 @@ import FeedbackSvg from './feedback.svg'
 export default function InscriptionBetaTesteur() {
 	return (
 		<PopoverWithTrigger
-			trigger={(propsToDispatch) => (
-				<Link {...propsToDispatch}>Devenir beta-testeur</Link>
+			trigger={(buttonProps) => (
+				<Link {...buttonProps}>Devenir beta-testeur</Link>
 			)}
 			title="Votre avis nous intéresse"
 		>

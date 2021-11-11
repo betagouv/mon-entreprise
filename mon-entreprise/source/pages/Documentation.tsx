@@ -94,12 +94,9 @@ function BackToSimulation() {
 		url && history.push(url)
 	}, [history, url])
 	return (
-		<button
-			className="ui__ simple small push-left button"
-			onClick={handleClick}
-		>
+		<Link onPress={handleClick}>
 			← <Trans i18nKey="back">Reprendre la simulation</Trans>
-		</button>
+		</Link>
 	)
 }
 

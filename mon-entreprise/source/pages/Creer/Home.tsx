@@ -6,7 +6,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { Card } from 'DesignSystem/card'
 import { H2 } from 'DesignSystem/typography/heading'
-import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -68,28 +68,24 @@ export default function Créer() {
 				</SmallBody>
 			</PageHeader>
 
-			<H2>
+			<H2 className="sr-only">
 				<Trans>Ressources utiles</Trans>
 			</H2>
 
-			<Grid container spacing={2}>
+			<Grid container spacing={3}>
 				<Grid item xs={12} sm={6} lg={4}>
 					<Card
 						title={t(
 							'créer.ressources.listeStatuts.title',
 							'Liste des statuts juridiques'
 						)}
-						callToAction={{
-							to: sitePaths.créer.guideStatut.liste,
-							label: t('créer.ressources.listeStatuts.cta', 'Voir la liste'),
-						}}
+						to={sitePaths.créer.guideStatut.liste}
+						ctaLabel={t('créer.ressources.listeStatuts.cta', 'Voir la liste')}
 					>
-						<Body>
-							<Trans i18nKey="créer.ressources.listeStatuts.body">
-								Vous savez déjà quel statut choisir ? Accédez directement à la
-								liste des démarches associées
-							</Trans>
-						</Body>
+						<Trans i18nKey="créer.ressources.listeStatuts.body">
+							Vous savez déjà quel statut choisir ? Accédez directement à la
+							liste des démarches associées
+						</Trans>
 					</Card>
 				</Grid>
 				<Grid item xs={12} sm={6} lg={4}>
@@ -98,20 +94,16 @@ export default function Créer() {
 							'créer.ressources.comparaison.title',
 							'Comparateur de régimes'
 						)}
-						callToAction={{
-							to: {
-								pathname: sitePaths.simulateurs.comparaison,
-								state: { fromCréer: true },
-							},
-							label: t('créer.ressources.comparaison.cta', 'Comparer'),
+						to={{
+							pathname: sitePaths.simulateurs.comparaison,
+							state: { fromCréer: true },
 						}}
+						ctaLabel={t('créer.ressources.comparaison.cta', 'Comparer')}
 					>
-						<Body>
-							<Trans i18nKey="créer.ressources.comparaison.body">
-								Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez
-								les différences en terme de revenus, cotisations, retraite, etc
-							</Trans>
-						</Body>
+						<Trans i18nKey="créer.ressources.comparaison.body">
+							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
+							différences en terme de revenus, cotisations, retraite, etc
+						</Trans>
 					</Card>
 				</Grid>
 				<Grid item xs={12} sm={6} lg={4}>
@@ -120,20 +112,16 @@ export default function Créer() {
 							'créer.ressources.autoEntrepreneur.title',
 							'Démarche auto-entrepreneur'
 						)}
-						callToAction={{
-							to: sitePaths.créer['auto-entrepreneur'],
-							label: t(
-								'créer.ressources.autoEntrepreneur.cta',
-								'Consulter les démarches'
-							),
-						}}
+						to={sitePaths.créer['auto-entrepreneur']}
+						ctaLabel={t(
+							'créer.ressources.autoEntrepreneur.cta',
+							'Consulter les démarches'
+						)}
 					>
-						<Body>
-							<Trans i18nKey="créer.ressources.autoEntrepreneur.body">
-								Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
-								pour bien démarrer votre activité
-							</Trans>
-						</Body>
+						<Trans i18nKey="créer.ressources.autoEntrepreneur.body">
+							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
+							pour bien démarrer votre activité
+						</Trans>
 					</Card>
 				</Grid>
 			</Grid>

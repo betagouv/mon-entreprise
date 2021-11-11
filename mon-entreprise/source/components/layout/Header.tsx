@@ -1,66 +1,58 @@
+import SearchButton from 'Components/SearchButton'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Container } from 'DesignSystem/layout'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
-import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/Urssaf.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
-import SearchButton from 'Components/SearchButton'
-import { Container } from 'DesignSystem/layout'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
 	const { language } = useTranslation().i18n
 	return (
 		<Container>
-			<div
-				className=""
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-				}}
-			>
-				<Link style={{ height: '4rem' }} to={sitePaths.index}>
+			<StyledHeader>
+				<Link to={sitePaths.index}>
 					<img
 						alt="logo mon-entreprise.fr"
-						style={{
-							padding: '0.4rem 0',
-							height: '100%',
-						}}
 						src={language === 'fr' ? logoSvg : logoEnSvg}
 					/>
 				</Link>
-				<div style={{ flex: 1 }} />
-				<a
-					href="https://beta.gouv.fr"
-					target="_blank"
-					style={{
-						height: '4rem',
-						padding: '0.8rem',
-					}}
-				>
-					<img
-						alt="logo marianne"
-						style={{ height: '100%' }}
-						src={marianneSvg}
-					/>
-				</a>
+				{language === 'fr' && <SearchButton />}
+
+				<div
+					css={`
+						flex: 1;
+					`}
+				/>
+
 				<a
 					href="https://www.urssaf.fr"
 					target="_blank"
-					style={{
-						height: '4rem',
-						padding: '0.8rem',
-					}}
 					className="landing-header__institutional-logo"
 				>
-					<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
+					<img alt="logo urssaf" src={urssafSvg} />
 				</a>
-				{language === 'fr' && <SearchButton />}
-			</div>
-			<NewsBanner />
+				<NewsBanner />
+			</StyledHeader>
 		</Container>
 	)
 }
+
+const StyledHeader = styled.div`
+	height: ${({ theme }) => theme.spacings.xxxl};
+	display: flex;
+	align-items: center;
+	a {
+		height: 100%;
+	}
+	img {
+		height: 100%;
+		padding: ${({ theme }) => theme.spacings.xxs};
+	}
+	margin: ${({ theme }) => theme.spacings.sm} 0;
+`

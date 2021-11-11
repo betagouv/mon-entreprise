@@ -50,7 +50,7 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 				{navigator.clipboard ? (
 					<Button
 						size="XS"
-						onClick={() => {
+						onPress={() => {
 							tracker.click.set({
 								chapter1: 'feature:partage',
 								type: 'action',

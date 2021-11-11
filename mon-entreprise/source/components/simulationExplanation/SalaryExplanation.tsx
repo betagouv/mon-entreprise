@@ -87,12 +87,9 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 						Répartition du total chargé
 					</Trans>
 				</H2>
-				<button
-					className="ui__ small simple button print-display-none"
-					onClick={props.onSeePayslip}
-				>
+				<Link onPress={props.onSeePayslip}>
 					<Emoji emoji="📊" /> <Trans>Voir la fiche de paie</Trans>
-				</button>
+				</Link>
 			</div>
 			<StackedBarChart
 				data={[

@@ -61,7 +61,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				),
 			},
 			pathId: 'simulateurs.entreprise-individuelle',
-			shortName: t('pages.simulateurs.ei.shortname', 'EI'),
+			shortName: t('pages.simulateurs.ei.shortname', 'Entreprise Individuelle'),
 			title: t(
 				'pages.simulateurs.ei.title',
 				'Simulateur pour entreprise individuelle (EI)'
@@ -441,7 +441,10 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			icône: '🩹',
 			iframePath: 'auxiliaire-medical',
 			pathId: 'simulateurs.profession-libérale.auxiliaire',
-			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire méd.'),
+			shortName: t(
+				'pages.simulateurs.auxiliaire.shortname',
+				'Auxiliaire médical'
+			),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'

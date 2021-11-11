@@ -1,5 +1,5 @@
 import { loadPreviousSimulation } from 'Actions/actions'
-import { LinkButton } from 'Components/ui/Button'
+import { Link } from 'DesignSystem/typography/link'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -19,11 +19,11 @@ export default function PreviousSimulationBanner() {
 				<Trans i18nKey="previousSimulationBanner.info">
 					Votre précédente simulation a été sauvegardée :
 				</Trans>{' '}
-				<LinkButton onClick={() => dispatch(loadPreviousSimulation())}>
+				<Link onPress={() => dispatch(loadPreviousSimulation())}>
 					<Trans i18nKey="previousSimulationBanner.retrieveButton">
 						Retrouver ma simulation
 					</Trans>
-				</LinkButton>
+				</Link>
 			</Banner>
 		</div>
 	)

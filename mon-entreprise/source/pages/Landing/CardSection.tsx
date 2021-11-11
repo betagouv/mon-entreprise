@@ -9,5 +9,5 @@ export const CardSection = styled.section`
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
-	gap: 1rem;
+	gap: ${({ theme }) => theme.spacings.sm};
 `

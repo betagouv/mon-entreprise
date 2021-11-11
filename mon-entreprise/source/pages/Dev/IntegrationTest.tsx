@@ -1,5 +1,6 @@
+import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
-import { lazy, useState, useRef, useEffect, Suspense, useMemo } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import useSimulatorsData from '../Simulateurs/metadata'
 const LazyColorPicker = lazy(() => import('./ColorPicker'))
 
@@ -42,12 +43,9 @@ export default function IntegrationTest() {
 				<LazyColorPicker color={color} onChange={setColor} />
 			</Suspense>
 
-			<button
-				className="ui__ button plain"
-				onClick={() => setVersion(version + 1)}
-			>
+			<Button onPress={() => setVersion(version + 1)}>
 				{!version ? 'Visualiser le module' : 'Valider les changements'}
-			</button>
+			</Button>
 
 			<div
 				style={{ border: '2px dashed blue' }}

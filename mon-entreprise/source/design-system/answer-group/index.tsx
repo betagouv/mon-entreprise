@@ -1,13 +1,11 @@
 import { Grid } from '@mui/material'
-import { FunctionComponent, ReactNode } from 'react'
+import { Children, FunctionComponent, ReactNode } from 'react'
 
 type AnswerGroupProps = {
-	children: ReactNode[]
+	children: ReactNode
 }
 
-const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
-	children = [],
-}) => {
+const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({ children }) => {
 	return (
 		<Grid
 			container
@@ -15,7 +13,7 @@ const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
 			justifyContent="flex-end"
 			spacing={1}
 		>
-			{children.map((c, i) => (
+			{Children.map(children, (c, i) => (
 				<Grid key={`answerGroup-${i}`} item sm={12} md="auto">
 					{c}
 				</Grid>

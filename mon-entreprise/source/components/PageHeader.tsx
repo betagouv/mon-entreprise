@@ -21,8 +21,17 @@ export default function PageHeader({
 	picture?: string
 }) {
 	return (
-		<Grid container spacing={4}>
-			<Grid item sm={12} md={9}>
+		<Grid container spacing={3}>
+			<Grid
+				item
+				sm={12}
+				md={9}
+				css={`
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+				`}
+			>
 				{titre && <H1>{titre}</H1>}
 				{children}
 			</Grid>

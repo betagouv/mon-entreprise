@@ -1023,7 +1023,7 @@ gérer:
       body: A quoi servent les cotisations sociales ? Le point sur le système de
         protection sociale dont bénéficient tous les travailleurs en France.
       cta: Lire le guide
-      title: "Comprendre la sécurité sociale "
+      title: Comprendre la sécurité sociale
   titre: Gérer mon activité
 impotSociété:
   exerciceDates: Exercice du <2></2> au <6></6>
@@ -1041,16 +1041,15 @@ landing:
     vous concentrer sur ce qui compte : votre activité.</3>"
   choice:
     create:
-      body: <0>Un accompagnement au choix du statut juridique et la liste complète des
-        démarches de création</0>
+      body: Un accompagnement au choix du statut juridique et la liste complète des
+        démarches de création
       title: Créer une entreprise
     manage:
-      body: <0>Des outils personnalisés pour anticiper le montant des cotisations
-        sociales à payer et mieux gérer votre trésorerie.</0>
+      body: Des outils personnalisés pour anticiper le montant des cotisations
+        sociales à payer et mieux gérer votre trésorerie.
       title: Gérer mon activité
     simulators:
-      body: <0>La liste exhaustive de tous les simulateurs disponibles sur le
-        site.</0>
+      body: La liste exhaustive de tous les simulateurs disponibles sur le site.
       title: Accéder aux simulateurs
   subtitle: Les ressources nécessaires pour développer votre activité, du statut
     juridique à l'embauche.
@@ -1349,7 +1348,7 @@ pages:
       shortname: Auto-entrepreneur
       title: Simulateur de revenus auto-entrepreneur
     auxiliaire:
-      shortname: Auxiliaire méd.
+      shortname: Auxiliaire médical
       title: Simulateur de revenus pour auxiliaire médical en libéral
       tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
         orthophonistes et orthoptistes
@@ -1477,7 +1476,7 @@ pages:
         chiffre d'affaires ou d'un revenu net souhaité. Vous pourrez préciser
         votre situation en répondant aux questions s'affichant en dessous de la
         simulation.</8>
-      shortname: EI
+      shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
       meta:

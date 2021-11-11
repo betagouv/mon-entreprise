@@ -31,8 +31,8 @@ export default function SearchButton() {
 	return (
 		<PopoverWithTrigger
 			title={t('Que cherchez-vous ?')}
-			trigger={(propsToDispatch) => (
-				<SearchTriggerButton {...propsToDispatch} id="search-display-button">
+			trigger={(buttonProps) => (
+				<SearchTriggerButton {...buttonProps} id="search-display-button">
 					<svg
 						style={{ height: '2rem' }}
 						xmlns="http://www.w3.org/2000/svg"

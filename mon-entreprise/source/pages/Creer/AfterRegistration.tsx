@@ -2,11 +2,11 @@ import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import siret from './siret.jpg'
@@ -23,16 +23,9 @@ export default function AfterRegistration() {
 		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
-			<div css="transform: translateY(2rem)">
-				<NavLink
-					to={sitePaths.créer.index}
-					exact
-					activeClassName="ui__ hide"
-					className="ui__ simple small button"
-				>
-					← <Trans>Retour à la création</Trans>
-				</NavLink>
-			</div>
+			<Link to={sitePaths.créer.index}>
+				← <Trans>Retour à la création</Trans>
+			</Link>
 			<H1>
 				<Trans i18nKey="après.titre">Après la création</Trans>
 			</H1>

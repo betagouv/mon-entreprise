@@ -2,12 +2,12 @@ import { Grid } from '@mui/material'
 import { Condition } from 'Components/EngineValue'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H2, H3 } from 'DesignSystem/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
-	FAQAutoEntreprneurCard,
-	ImpotAECard,
+	FAQAutoEntrepreneurArticle,
+	ImpotAEArticle,
 } from '../../../pages/Creer/CreationChecklist'
 import { GuideURSSAFCard } from '../cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '../cards/IframeIntegrationCard'
@@ -37,16 +37,16 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>
-			<Grid container spacing={2}>
+			<Grid container spacing={3}>
 				<Condition expression="dirigeant . auto-entrepreneur">
 					<Grid item xs={12} sm={6} lg={4}>
-						<ImpotAECard />
+						<ImpotAEArticle />
 					</Grid>
 				</Condition>
 
 				<Condition expression="dirigeant . auto-entrepreneur">
 					<Grid item xs={12} sm={6} lg={4}>
-						<FAQAutoEntreprneurCard />
+						<FAQAutoEntrepreneurArticle />
 					</Grid>
 				</Condition>
 

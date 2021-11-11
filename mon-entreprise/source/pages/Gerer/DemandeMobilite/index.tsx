@@ -6,6 +6,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
+import { Button } from 'DesignSystem/buttons'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
 import { equals, isEmpty, omit } from 'ramda'
@@ -199,9 +200,9 @@ function FormulairePublicodes() {
 						text-align: right;
 					`}
 				>
-					<button className="ui__  small button" onClick={handleClear}>
+					<Button size="XS" light onPress={handleClear}>
 						<Emoji emoji={'🗑️'} /> Effacer mes réponses
-					</button>
+					</Button>
 				</div>
 			)}
 			{!Object.keys(situation).length ? (

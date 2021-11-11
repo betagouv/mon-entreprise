@@ -49,12 +49,12 @@ export default function ShareOrSaveSimulationBanner() {
 		<SharingTools className=" print-display-none">
 			<PopoverWithTrigger
 				title={t('shareSimulation.modal.title', 'Votre lien de partage')}
-				trigger={(propsToDispatch) => (
+				trigger={(buttonProps) => (
 					<Button
-						{...propsToDispatch}
+						{...buttonProps}
 						light
 						size="XS"
-						onClick={() => {
+						onPress={(e) => {
 							tracker.click.set({
 								chapter1: 'feature:partage',
 								type: 'action',
@@ -63,7 +63,7 @@ export default function ShareOrSaveSimulationBanner() {
 							tracker.dispatch()
 							startSharing()
 
-							propsToDispatch.onClick()
+							buttonProps?.onPress?.(e)
 						}}
 					>
 						<Emoji emoji="🔗" />
@@ -82,7 +82,7 @@ export default function ShareOrSaveSimulationBanner() {
 				<Button
 					light
 					size="XS"
-					onClick={() => {
+					onPress={() => {
 						window.print()
 					}}
 				>

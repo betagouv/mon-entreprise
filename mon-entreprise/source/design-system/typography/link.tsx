@@ -1,9 +1,17 @@
+import { useButton } from '@react-aria/button'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-const baseLinkStyle = css`
+export const StyledLinkHover = css`
+	text-decoration: underline;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[100]
+			: theme.colors.bases.primary[800]};
+`
+export const StyledLink = styled.a`
 	display: inline-flex;
 	flex-direction: row;
 	color: ${({ theme }) =>
@@ -17,30 +25,28 @@ const baseLinkStyle = css`
 	padding: 0;
 
 	&:hover {
-		text-decoration: underline;
-		color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[800]};
+		${StyledLinkHover}
 	}
 `
 
-const AnchorLink = styled.a`
-	${baseLinkStyle}
-`
-const ButtonLink = styled.button`
-	${baseLinkStyle}
-`
-const StyledRouterLink = styled(RouterLink)`
-	${baseLinkStyle}
-`
-
 export const Link = (
-	props: GenericButtonOrLinkProps & { children: React.ReactNode }
+	ariaButtonProps: GenericButtonOrLinkProps & { children: React.ReactNode }
 ) => {
-	if ('href' in props)
-		return <AnchorLink {...props} target="_blank" rel="noreferrer" />
-	if ('to' in props) return <StyledRouterLink {...props} />
+	const elementType: 'a' | 'button' | typeof RouterLink =
+		'href' in ariaButtonProps
+			? 'a'
+			: 'to' in ariaButtonProps
+			? RouterLink
+			: 'button'
 
-	return <ButtonLink {...props} />
+	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
+	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
+	return (
+		<StyledLink
+			{...ariaButtonProps}
+			{...buttonProps}
+			as={elementType}
+			ref={ref as any}
+		/>
+	)
 }

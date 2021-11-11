@@ -50,7 +50,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 						<Button
 							size="XS"
 							light
-							onClick={() => {
+							onPress={() => {
 								dispatch(resetSimulation())
 								onClose()
 							}}
@@ -100,7 +100,7 @@ function StepsTable({
 					<tr key={rule.dottedName}>
 						<td>
 							<Link
-								onClick={() => {
+								onPress={() => {
 									dispatch(goToQuestion(rule.dottedName))
 									onClose()
 								}}

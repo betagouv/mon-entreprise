@@ -48,24 +48,20 @@ export default function NumberOfAssociates() {
 			</Trans>
 
 			<AnswerGroup>
-				{[
-					<Button
-						key="associé=1"
-						onClick={() => {
-							dispatch(companyHasMultipleAssociates(false))
-						}}
-					>
-						<Trans i18nKey="associés.choix1">Seul</Trans>
-					</Button>,
-					<Button
-						key="associé=many"
-						onClick={() => {
-							dispatch(companyHasMultipleAssociates(true))
-						}}
-					>
-						<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
-					</Button>,
-				]}
+				<Button
+					onPress={() => {
+						dispatch(companyHasMultipleAssociates(false))
+					}}
+				>
+					<Trans i18nKey="associés.choix1">Seul</Trans>
+				</Button>
+				<Button
+					onPress={() => {
+						dispatch(companyHasMultipleAssociates(true))
+					}}
+				>
+					<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
+				</Button>
 			</AnswerGroup>
 		</>
 	)

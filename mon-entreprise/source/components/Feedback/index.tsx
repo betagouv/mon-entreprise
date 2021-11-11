@@ -144,7 +144,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 						padding-top: 1rem;
 					`}
 				>
-					<Button onClick={openSuggestionForm} color="tertiary" size="XS" light>
+					<Button onPress={openSuggestionForm} color="tertiary" size="XS" light>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</Button>
 				</div>

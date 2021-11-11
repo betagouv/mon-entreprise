@@ -7,8 +7,8 @@ import './conversation.css'
 export default function SeeAnswersButton() {
 	return (
 		<PopoverWithTrigger
-			trigger={(propsToDispatch) => (
-				<Button {...propsToDispatch} light size="XS">
+			trigger={(buttonProps) => (
+				<Button {...buttonProps} light size="XS">
 					<Trans>Voir mes paramètres</Trans>
 				</Button>
 			)}

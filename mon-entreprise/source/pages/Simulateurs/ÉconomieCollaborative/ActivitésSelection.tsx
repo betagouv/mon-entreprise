@@ -1,15 +1,15 @@
 import classnames from 'classnames'
 import { FromBottom } from 'Components/ui/animate'
-import { Checkbox } from 'DesignSystem/field'
 import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Checkbox } from 'DesignSystem/field'
 import { H1, H2, H4 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
 import { debounce } from '../../../utils'
 import { toggleActivité } from './actions'
@@ -182,7 +182,6 @@ export const ActivitéCard = ({
 			{answered && (
 				<Link
 					onClick={(e) => e.stopPropagation()}
-					className="ui__ small simple button"
 					to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
 				>
 					<Trans>Modifier</Trans>

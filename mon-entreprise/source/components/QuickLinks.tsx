@@ -1,4 +1,5 @@
 import { goToQuestion } from 'Actions/actions'
+import { Link } from 'DesignSystem/typography/link'
 import { DottedName } from 'modele-social'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
@@ -8,6 +9,7 @@ import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from 'Selectors/simulationSelectors'
+import { css } from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
@@ -36,16 +38,19 @@ export default function QuickLinks() {
 		<small>
 			Questions :
 			{links.map(([label, dottedName]) => (
-				<button
+				<Link
 					key={dottedName}
-					className={`ui__ link-button ${
-						dottedName === currentQuestion ? 'active' : ''
-					}`}
-					css="margin: 0 0.4rem !important"
-					onClick={() => dispatch(goToQuestion(dottedName))}
+					css={
+						dottedName === currentQuestion
+							? css`
+									text-decoration: underline;
+							  `
+							: ''
+					}
+					onPress={() => dispatch(goToQuestion(dottedName))}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
-				</button>
+				</Link>
 			))}{' '}
 			{/* <button className="ui__ link-button">Voir la liste</button> */}
 		</small>

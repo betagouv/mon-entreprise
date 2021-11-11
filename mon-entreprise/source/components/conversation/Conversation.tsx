@@ -6,6 +6,7 @@ import { FadeIn } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { Button } from 'DesignSystem/buttons'
 import { H3 } from 'DesignSystem/typography/heading'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
@@ -89,30 +90,21 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				<div className="ui__ answer-group">
 					{previousAnswers.length > 0 && (
 						<>
-							<button
-								onClick={goToPrevious}
-								className="ui__ simple small push-left button"
-							>
+							<Button light onPress={goToPrevious} size="XS">
 								← <Trans>Précédent</Trans>
-							</button>
+							</Button>
 						</>
 					)}
 					{currentQuestionIsAnswered ? (
-						<button
-							className="ui__ plain small button"
-							onClick={() => submit('accept')}
-						>
+						<Button size="XS" onPress={() => submit('accept')}>
 							<span className="text">
 								<Trans>Suivant</Trans> →
 							</span>
-						</button>
+						</Button>
 					) : (
-						<button
-							onClick={setDefault}
-							className="ui__ simple small push-right button"
-						>
+						<Button onPress={setDefault} light>
 							<Trans>Passer</Trans> →
-						</button>
+						</Button>
 					)}
 				</div>
 				<Notifications />

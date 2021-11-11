@@ -26,7 +26,7 @@ export default function InputSuggestions({
 				return (
 					<Link
 						key={text}
-						onClick={() => {
+						onPress={() => {
 							onFirstClick(value)
 							if (suggestion !== value) setSuggestion(value)
 							else onSecondClick && onSecondClick(value)

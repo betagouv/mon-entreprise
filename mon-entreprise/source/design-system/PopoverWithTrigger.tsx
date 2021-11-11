@@ -7,7 +7,6 @@ import Popover from './Popover'
 import { Link } from './typography/link'
 
 type ButtonBuilderProps = AriaButtonProps & {
-	onClick: () => void
 	ref: Ref<HTMLButtonElement>
 }
 
@@ -35,7 +34,7 @@ export default function PopoverWithTrigger({
 	const triggerButton = useMemo(
 		() =>
 			trigger({
-				onClick: () => {
+				onPress: () => {
 					state.open()
 				},
 				ref: openButtonRef,

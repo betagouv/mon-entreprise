@@ -57,24 +57,21 @@ export default function MinorityDirector() {
 			</Trans>
 
 			<AnswerGroup>
-				{[
-					<Button
-						key="director-minority-false"
-						onClick={() => {
-							dispatch(directorIsInAMinority(false))
-						}}
-					>
-						<Trans>Gérant majoritaire</Trans>
-					</Button>,
-					<Button
-						key="director-minority-true"
-						onClick={() => {
-							dispatch(directorIsInAMinority(true))
-						}}
-					>
-						<Trans>Gérant minoritaire ou égalitaire</Trans>
-					</Button>,
-				]}
+				<Button
+					onPress={() => {
+						dispatch(directorIsInAMinority(false))
+					}}
+				>
+					<Trans>Gérant majoritaire</Trans>
+				</Button>
+				<Button
+					key="director-minority-true"
+					onPress={() => {
+						dispatch(directorIsInAMinority(true))
+					}}
+				>
+					<Trans>Gérant minoritaire ou égalitaire</Trans>
+				</Button>
 			</AnswerGroup>
 		</>
 	)

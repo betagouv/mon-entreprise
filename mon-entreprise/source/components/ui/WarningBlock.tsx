@@ -29,7 +29,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 					Avant de commencer...
 				</Trans>{' '}
 				{folded && (
-					<Link onClick={() => fold(false)}>
+					<Link onPress={() => fold(false)}>
 						<Trans i18nKey="simulateurs.warning.plus">
 							Lire les précisions
 						</Trans>
@@ -40,7 +40,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 				<div>
 					{children}
 					<div className="ui__ answer-group print-display-none">
-						<Button size="XS" light color="tertiary" onClick={() => fold(true)}>
+						<Button size="XS" light color="tertiary" onPress={() => fold(true)}>
 							<Trans>J'ai compris</Trans>
 						</Button>
 					</div>

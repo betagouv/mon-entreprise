@@ -1,3 +1,4 @@
+import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { FocusScope } from '@react-aria/focus'
 import {
@@ -34,6 +35,12 @@ export default function Popover(
 
 	// Get props for the close button
 	const closeButtonRef = useRef(null)
+	const { buttonProps: closeButtonProps } = useButton(
+		{
+			onPress: props.onClose,
+		},
+		closeButtonRef
+	)
 
 	return (
 		<OverlayContainer>
@@ -49,7 +56,7 @@ export default function Popover(
 							{props.isDismissable && (
 								<CloseButtonContainer>
 									{/* TODO : replace with Link when in design system */}
-									<CloseButton onClick={props.onClose} ref={closeButtonRef}>
+									<CloseButton {...closeButtonProps} ref={closeButtonRef}>
 										Fermer
 										<svg
 											viewBox="0 0 24 24"
