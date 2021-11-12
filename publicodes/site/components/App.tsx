@@ -1,4 +1,3 @@
-import 'Components/ui/index.css'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
 import { Redirect, Route, Switch } from 'react-router-dom'

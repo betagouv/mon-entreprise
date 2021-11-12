@@ -34,12 +34,12 @@ function ChartItemBar({
 		<div className="distribution-chart__bar-container ">
 			{disableAnimation ? (
 				<div
-					className="distribution-chart__bar ui__ print-background-force"
+					className="distribution-chart__bar print-background-force"
 					style={{ flex: percentage }}
 				/>
 			) : (
 				<animated.div
-					className="distribution-chart__bar ui__ print-background-force"
+					className="distribution-chart__bar print-background-force"
 					style={style}
 				/>
 			)}

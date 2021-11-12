@@ -1,10 +1,11 @@
 import { useUrl } from 'Components/ShareSimulationBanner'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
 export default function ExportRecover() {
 	return (
-		<section className="ui__ screen-display-none  notice">
-			<p>
+		<section className="print-only">
+			<SmallBody>
 				<Trans i18nKey="pages.simulateurs.print-info.recover">
 					Retrouvez cette simulation ainsi que d'autres outils d'aide à la
 					création et à la gestion d'entreprise, sur{' '}
@@ -13,14 +14,14 @@ export default function ExportRecover() {
 					</a>
 					.
 				</Trans>
-			</p>
+			</SmallBody>
 
-			<p>
+			<SmallBody>
 				<Trans i18nKey="pages.simulateurs.print-info.date">
 					Cette simulation a été effectuée le
 				</Trans>{' '}
 				{new Date().toLocaleDateString()}.
-			</p>
+			</SmallBody>
 		</section>
 	)
 }

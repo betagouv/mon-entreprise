@@ -134,7 +134,7 @@ export default function PaySlip() {
 						<Fragment key={section.dottedName}>
 							<H5 className="payslip__cotisationTitle">
 								{section.title}{' '}
-								<em className="ui__ print-display-none">
+								<em className="print-hidden">
 									<ExplicableRule dottedName={section.dottedName} />
 								</em>
 							</H5>

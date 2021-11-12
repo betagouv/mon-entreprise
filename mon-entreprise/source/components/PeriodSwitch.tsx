@@ -30,7 +30,7 @@ export default function PeriodSwitch() {
 				{periods.map(({ label, unit }) => (
 					<span
 						key={unit}
-						className={currentUnit !== unit ? 'ui__ print-display-none' : ''}
+						className={currentUnit !== unit ? 'print-hidden' : ''}
 					>
 						<Radio value={unit}>
 							<Trans>{label}</Trans>

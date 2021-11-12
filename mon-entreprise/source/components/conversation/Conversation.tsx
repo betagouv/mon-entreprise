@@ -6,6 +6,7 @@ import { FadeIn } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
 import { H3 } from 'DesignSystem/typography/heading'
 import { PublicodesExpression } from 'publicodes'
@@ -87,7 +88,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					</div>
 				</FadeIn>
 
-				<div className="ui__ answer-group">
+				<AnswerGroup>
 					{previousAnswers.length > 0 && (
 						<>
 							<Button light onPress={goToPrevious} size="XS">
@@ -102,11 +103,11 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 							</span>
 						</Button>
 					) : (
-						<Button onPress={setDefault} light>
+						<Button onPress={setDefault} size="XS" light>
 							<Trans>Passer</Trans> →
 						</Button>
 					)}
-				</div>
+				</AnswerGroup>
 				<Notifications />
 			</div>
 			<QuickLinks />

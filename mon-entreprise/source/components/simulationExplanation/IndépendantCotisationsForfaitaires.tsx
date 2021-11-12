@@ -3,7 +3,9 @@ import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { Button } from 'DesignSystem/buttons'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
 export default function CotisationsForfaitaires() {
@@ -12,36 +14,29 @@ export default function CotisationsForfaitaires() {
 	)
 	return (
 		<FromBottom>
-			<div className="ui__ lighter-bg content card">
-				<H2>{rule.title}</H2>
-				<p className="ui__ lead">
-					<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
-						Montant des cotisations forfaitaires :{' '}
-					</Trans>
-					<strong>
-						<Value expression="dirigeant . indépendant . cotisations et contributions . début activité" />
-					</strong>
-				</p>
-				<div className="ui__ notice">
-					<Markdown source={rule.rawNode.description} />
-				</div>
+			<H2>{rule.title}</H2>
+			<Intro>
+				<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
+					Montant des cotisations forfaitaires :{' '}
+				</Trans>
+				<strong>
+					<Value expression="dirigeant . indépendant . cotisations et contributions . début activité" />
+				</strong>
+			</Intro>
 
+			<Markdown source={rule.rawNode.description} />
+			<Body>
 				{rule.rawNode.références && (
-					<p
-						css={`
-							text-align: right;
-						`}
+					<Button
+						href={Object.values(rule.rawNode.références)[0]}
+						target="_blank"
+						size="XS"
+						light
 					>
-						<a
-							className="ui__  small button"
-							href={Object.values(rule.rawNode.références)[0]}
-							target="_blank"
-						>
-							<Emoji emoji="👉" /> <Trans>Voir la fiche Urssaf</Trans>
-						</a>
-					</p>
+						<Emoji emoji="👉" /> <Trans>Voir la fiche Urssaf</Trans>
+					</Button>
 				)}
-			</div>
+			</Body>
 		</FromBottom>
 	)
 }

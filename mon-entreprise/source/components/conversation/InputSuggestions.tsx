@@ -19,7 +19,9 @@ export default function InputSuggestions({
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t } = useTranslation()
-
+	if (!suggestions || !Object.keys(suggestions).length) {
+		return null
+	}
 	return (
 		<StyledInputSuggestion>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {

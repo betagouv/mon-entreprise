@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import React, {
@@ -53,12 +53,7 @@ export function SimulationGoals({
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
-			<div
-				css={`
-					display: flex;
-					justify-content: center;
-				`}
-			>
+			<StyledContainer>
 				<Grid item sm={12} lg={10}>
 					{toggles && <ToggleSection>{toggles}</ToggleSection>}
 					<StyledSimulationGoals
@@ -74,10 +69,15 @@ export function SimulationGoals({
 						</ThemeProvider>
 					</StyledSimulationGoals>
 				</Grid>
-			</div>
+			</StyledContainer>
 		</InitialRenderContext.Provider>
 	)
 }
+const StyledContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: ${({ theme }) => theme.spacings.xl};
+`
 const ToggleSection = styled.div`
 	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
@@ -154,8 +154,7 @@ export function SimulationGoal({
 	) {
 		return null
 	}
-	const displayAsInput =
-		!isFirstStepCompleted || isFocused || dottedName in situation
+	const selected = !isFirstStepCompleted || isFocused || dottedName in situation
 	if (
 		small &&
 		!editable &&
@@ -165,14 +164,15 @@ export function SimulationGoal({
 	}
 	return (
 		<Appear unless={!appear || initialRender}>
-			<StyledGoal>
+			<StyledGoal selected={selected}>
 				<StyledGoalHeader>
-					<Body>
-						{(labelWithQuestion && rule.rawNode.question) || (
-							<RuleLink dottedName={dottedName} />
-						)}
-					</Body>
+					{(labelWithQuestion && rule.rawNode.question) || (
+						<RuleLink dottedName={dottedName} />
+					)}
 					<SmallBody
+						css={`
+							margin-bottom: 0;
+						`}
 						className={small ? 'sr-only' : ''}
 						id={`${dottedName}-description`}
 					>
@@ -180,61 +180,64 @@ export function SimulationGoal({
 					</SmallBody>
 				</StyledGoalHeader>
 
-				{small && <StyledGuideLecture aria-hidden className="guide-lecture" />}
-				{editable ? (
-					<RuleInput
-						// className={classnames(
-						// 	displayAsInput ? 'targetInput' : 'editableTarget',
-						// 	{ focused: isFocused }
-						// )}
-						modifiers={
-							!boolean
-								? {
-										unité: currentUnit,
-										arrondi: 'oui',
-								  }
-								: undefined
-						}
-						aria-labelledby={`${dottedName}-label`}
-						aria-describedBy={`${dottedName}-description`}
-						displayedUnit=""
-						dottedName={dottedName}
-						onFocus={() => setFocused(true)}
-						onBlur={() => setFocused(false)}
-						onChange={onChange}
-						formatOptions={{
-							maximumFractionDigits: 0,
-						}}
-					/>
-				) : (
-					<RuleLink dottedName={dottedName}>
-						{formatValue(evaluation, { displayedUnit: '€' })}
-					</RuleLink>
-				)}
-				{!isFocused && !small && (
-					<span style={{ position: 'relative', top: '-1rem' }}>
-						<AnimatedTargetValue value={evaluation.nodeValue as number} />
-					</span>
-				)}
+				<StyledGuideLecture small={small} />
+				<StyledInputOrValue small={small} selected={selected}>
+					{editable ? (
+						<RuleInput
+							modifiers={
+								!boolean
+									? {
+											unité: currentUnit,
+											arrondi: 'oui',
+									  }
+									: undefined
+							}
+							aria-labelledby={`${dottedName}-label`}
+							aria-describedBy={`${dottedName}-description`}
+							displayedUnit=""
+							dottedName={dottedName}
+							onFocus={() => setFocused(true)}
+							onBlur={() => setFocused(false)}
+							onChange={onChange}
+							small={small}
+							formatOptions={{
+								maximumFractionDigits: 0,
+							}}
+						/>
+					) : (
+						<RuleLink dottedName={dottedName}>
+							{formatValue(evaluation, { displayedUnit: '€' })}
+						</RuleLink>
+					)}
+					{!isFocused && !small && (
+						<span style={{ position: 'relative', top: '-1rem' }}>
+							<AnimatedTargetValue value={evaluation.nodeValue as number} />
+						</span>
+					)}
+				</StyledInputOrValue>
 			</StyledGoal>
 		</Appear>
 	)
 }
-
-const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })``
-const StyledGoalHeader = styled.div`
-	flex: 1;
-	margin-top: ${({ theme }) => theme.spacings.xs};
-	margin-right: ${({ theme }) => theme.spacings.xs};
-	min-width: 50%;
+const StyledInputOrValue = styled.div<{ small: boolean; selected: boolean }>`
+	max-width: ${({ small }) => (small ? '8rem' : '12rem')};
 `
+const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
+	small: boolean
+}>`
+	border-bottom: 1px dashed ${({ theme }) => theme.colors.extended.grey[100]};
+	align-self: baseline;
+	opacity: 50%;
+	flex: 1;
+	margin: 0 ${({ theme }) => theme.spacings.sm};
+`
+const StyledGoalHeader = styled.div``
 
-const StyledGoal = styled.div`
+const StyledGoal = styled.div<{ selected: boolean }>`
+	position: relative;
 	display: flex;
+	padding: ${({ theme }) => theme.spacings.sm} 0;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	align-items: flex-end;
-	> :not(${StyledGoalHeader}) {
-		margin-bottom: ${({ theme }) => theme.spacings.sm};
-	}
+	align-items: baseline;
 `

@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 
 const InnerContainer = styled.div`
-	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
 

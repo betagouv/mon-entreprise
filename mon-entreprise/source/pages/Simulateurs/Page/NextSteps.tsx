@@ -33,7 +33,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	}
 
 	return (
-		<section className="ui__ print-display-none">
+		<section className="print-hidden">
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>

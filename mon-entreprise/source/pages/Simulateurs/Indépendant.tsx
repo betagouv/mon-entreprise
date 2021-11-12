@@ -15,6 +15,7 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -44,27 +45,13 @@ export default function IndépendantSimulation() {
 		<>
 			<SimulateurWarning simulateur="indépendant" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<div
-					css={`
-						display: flex;
-						flex-wrap: wrap-reverse;
-						> * {
-							margin-top: 0.6rem;
-						}
-						justify-content: center;
-
-						@media (min-width: 590px) {
-							justify-content: space-between;
-						}
-					`}
-				></div>
 				<IndépendantSimulationGoals
 					legend="Vos revenus d'indépendant"
 					toggles={
-						<>
+						<StyledToggleContainer>
 							<ImpositionSwitch />
 							<PeriodSwitch />
-						</>
+						</StyledToggleContainer>
 					}
 				/>
 				<Banner icon={'✍️'}>
@@ -79,6 +66,16 @@ export default function IndépendantSimulation() {
 		</>
 	)
 }
+const StyledToggleContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap-reverse;
+	gap: ${({ theme }) => theme.spacings.md};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		justify-content: center;
+	}
+`
+
 function IndépendantSimulationGoals({
 	toggles = <PeriodSwitch />,
 	legend,
@@ -151,9 +148,7 @@ function ImpositionSwitch() {
 			{(['IR', 'IS'] as const).map((imposition) => (
 				<span
 					key={imposition}
-					className={
-						currentImposition !== imposition ? 'ui__ print-display-none' : ''
-					}
+					className={currentImposition !== imposition ? 'print-hidden' : ''}
 				>
 					<Radio value={imposition}>
 						{

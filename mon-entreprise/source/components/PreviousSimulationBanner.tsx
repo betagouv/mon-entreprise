@@ -14,7 +14,7 @@ export default function PreviousSimulationBanner() {
 	const dispatch = useDispatch()
 
 	return (
-		<div className="ui__ print-display-none">
+		<div className="print-hidden">
 			<Banner hidden={!previousSimulation || newSimulationStarted} icon="💾">
 				<Trans i18nKey="previousSimulationBanner.info">
 					Votre précédente simulation a été sauvegardée :

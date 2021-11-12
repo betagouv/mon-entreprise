@@ -23,7 +23,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
 		<WarningSection>
-			<Intro className={folded ? 'ui__ print-display-none' : ''}>
+			<Intro className={folded ? 'print-hidden' : ''}>
 				<Emoji emoji="🚩 " />
 				<Trans i18nKey="simulateurs.warning.titre">
 					Avant de commencer...

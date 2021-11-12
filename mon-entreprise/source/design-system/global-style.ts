@@ -84,16 +84,42 @@ export const GlobalStyle = createGlobalStyle`
 
 html {
 	transition: none !important;
+	box-sizing: border-box;
 }
 
-@media print {
-	html {
-		line-height: 1.5em;
-	}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
+
+html, body {
+	height: 100%;
+}
+
 
 body {
   font-size: 16px;
+	margin: 0;
+}
+
+
+/* Reset fieldset style */
+fieldset {
+	border: 0;
+	padding: 0;
+	padding-top: 0.01em;
+	margin: 0;
+	min-width: 0;
+}
+
+button {
+	background: none;
+	border: none;
+}
+
+button:enabled {
+	cursor: pointer;
 }
 
 
@@ -107,6 +133,37 @@ body {
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap; /* added line */
 	border: 0;
+}
+
+.print-only {
+	display: none;
+}
+@media print {
+	.print-only {
+		display: none !important;
+	}
+}
+
+
+@media print {
+	.print-hidden {
+		display: none !important;
+	}
+	.print-background-force {
+		color-adjust: exact !important;
+	}
+
+	body {
+		margin: 00mm;
+	}
+
+	html {
+		line-height: 1.5em;
+	}
+}
+@page {
+	margin-top: 0.7cm;
+	margin-bottom: 0.7cm;
 }
 
 

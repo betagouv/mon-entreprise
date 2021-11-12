@@ -39,19 +39,18 @@ export default function Checkbox(
 }
 
 const CheckboxVisual = styled.svg`
-	position: relative;
 	z-index: 1;
 	fill: none;
-	border: 2px solid;
-	border-radius: 2px;
-	height: 100%;
-	width: 100%;
 	stroke-linecap: round;
 	stroke-linejoin: round;
-	border-color: ${({ theme }) => theme.colors.extended.grey[600]};
 	stroke: ${({ theme }) => theme.colors.extended.grey[100]};
-	stroke-width: 2px;
+	stroke-width: ${({ theme }) => (theme.darkMode ? '3px' : '2px')};
 	transition: all 0.2s ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 
 	& polyline {
 		stroke-dasharray: 22;
@@ -59,28 +58,37 @@ const CheckboxVisual = styled.svg`
 	}
 `
 
-const CheckboxVisualContainer = styled.div`
+const CheckboxVisualContainer = styled.span`
 	--size: ${({ theme }) => theme.spacings.md};
 	--halo: ${({ theme }) => theme.spacings.sm};
 	cursor: pointer;
 	position: relative;
-	margin-right: var(--halo);
-	margin-top: var(--halo);
+	border: 2px solid;
+	border-radius: 2px;
+	border-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[300]
+			: theme.colors.extended.grey[600]};
+	margin: var(--halo);
+	margin-left: 0;
 	width: var(--size);
 	height: var(--size);
 	flex-shrink: 0;
-	line-height: ${({ theme }) => theme.spacings.lg};
 	-webkit-tap-highlight-color: transparent;
+	transition: all 0.2s ease;
 
 	::before {
 		content: '';
 		position: absolute;
-		top: calc(var(--halo) * -1);
-		left: calc(var(--halo) * -1);
-		width: calc((var(--halo) + 1px) * 2 + var(--size));
-		height: calc((var(--halo) + 1px) * 2 + var(--size));
+		top: calc(var(--halo) * -1 - 2px);
+		left: calc(var(--halo) * -1 - 2px);
+		width: calc((var(--halo)) * 2 + var(--size));
+		height: calc((var(--halo)) * 2 + var(--size));
 		border-radius: 50%;
-		background: ${({ theme }) => theme.colors.bases.primary[100]};
+		background: ${({ theme }) =>
+			theme.darkMode
+				? 'rgba(255,255,255,20%)'
+				: theme.colors.bases.primary[100]};
 		z-index: 0;
 		opacity: 0;
 		transition: all 0.15s ease;
@@ -93,27 +101,36 @@ const CheckboxVisualContainer = styled.div`
 	}
 
 	&:hover ${CheckboxVisual} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 `
 
 const Label = styled.label`
 	display: inline-flex;
-	align-items: start;
 	z-index: 1;
+	align-items: center;
 
 	:focus-within > ${CheckboxVisualContainer} {
 		opacity: 1;
 	}
 
 	:focus-within > ${CheckboxVisual} {
-		stroke: ${({ theme }) => theme.colors.bases.primary[700]};
+		stroke: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 
 	> input:checked + ${CheckboxVisualContainer} > ${CheckboxVisual} {
 		background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 		stroke: ${({ theme }) => theme.colors.extended.grey[100]};
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 
 		& > polyline {
 			stroke-dashoffset: 42;

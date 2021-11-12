@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { Appear } from '../animate'
-import './index.css'
 
 type CheckItemProps = {
 	title: string

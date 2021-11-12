@@ -7,6 +7,7 @@ const LABEL_HEIGHT = '1rem'
 
 type TextFieldProps = AriaTextFieldOptions & {
 	inputRef?: RefObject<HTMLInputElement>
+	small?: boolean
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -19,7 +20,7 @@ export default function TextField(props: TextFieldProps) {
 		<StyledContainer>
 			<StyledInputContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				hasLabel={!!props.label}
+				hasLabel={!!props.label && !props.small}
 			>
 				<StyledInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
@@ -27,7 +28,9 @@ export default function TextField(props: TextFieldProps) {
 					ref={ref}
 				/>
 				{props.label && (
-					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
+						{props.label}
+					</StyledLabel>
 				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
@@ -45,13 +48,15 @@ export default function TextField(props: TextFieldProps) {
 }
 
 export const StyledContainer = styled.div`
-	min-width: fit-content;
+	max-width: 100%;
+	width: fit-content;
 `
 export const StyledInput = styled.input`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	flex: 1;
 	border: none;
+	max-width: 100%;
 	background: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	height: 100%;
@@ -102,6 +107,7 @@ export const StyledSuffix = styled.span`
 export const StyledInputContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
+	small?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
@@ -114,16 +120,13 @@ export const StyledInputContainer = styled.div<{
 	position: relative;
 	display: flex;
 	background-color: ${({ theme }) =>
-		theme.darkMode ? 'transparent' : theme.colors.extended.grey[100]};
+		theme.darkMode
+			? 'rgba(255, 255, 255, 20%)'
+			: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 
 	:focus-within {
-		${({ theme }) =>
-			theme.darkMode &&
-			css`
-				background-color: rgba(255, 255, 255, 20%);
-			`}
 		outline-color: ${({ theme, hasError }) =>
 			hasError
 				? theme.colors.extended.error[400]
@@ -169,8 +172,22 @@ export const StyledInputContainer = styled.div<{
 		`}
 
 	${StyledInput}, ${StyledSuffix} {
-		padding: ${({ hasLabel, theme }) =>
-				css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${theme.spacings.xs})`}
-			${({ theme }) => theme.spacings.sm} ${({ theme }) => theme.spacings.xs};
+		padding: ${({ hasLabel, theme, small }) =>
+			small
+				? css`
+						${theme.spacings.xxs} ${theme.spacings.xs}
+				  `
+				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
+						theme.spacings.xs
+				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
 	}
+
+	${({ small }) =>
+		small &&
+		css`
+			${StyledSuffix}, ${StyledInput} {
+				font-size: 1rem;
+				line-height: 1.25rem;
+			}
+		`}
 `

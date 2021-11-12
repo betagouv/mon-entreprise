@@ -89,6 +89,8 @@ const CardBody = styled(Body)`
 `
 export const StyledCardContainer = styled.div`
 	display: flex;
+	width: 100%;
+	height: 100%;
 	text-decoration: none;
 	cursor: pointer;
 	flex-direction: column;
@@ -99,8 +101,6 @@ export const StyledCardContainer = styled.div`
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
 	}
-	padding: 1.5rem;
-	width: 100%;
-	height: 100%;
+	padding: ${({ theme }) => theme.spacings.lg};
 	transition: all 0.15s;
 `

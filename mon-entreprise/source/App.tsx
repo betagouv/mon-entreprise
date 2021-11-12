@@ -1,7 +1,6 @@
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import Route404 from 'Components/Route404'
-import 'Components/ui/index.css'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import {
 	engineFactory,

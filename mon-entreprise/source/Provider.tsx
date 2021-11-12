@@ -4,6 +4,7 @@ import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
+import { GlobalStyle } from 'DesignSystem/global-style'
 import { H1 } from 'DesignSystem/typography/heading'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -128,62 +129,67 @@ export default function Provider({
 	).get('couleur')
 
 	return (
-		<ErrorBoundary
-			showDialog
-			fallback={
-				<>
-					<div className="ui__ container">
-						<img
-							src={logo}
-							alt="logo"
-							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
-						></img>
-						<H1>Une erreur est survenue</H1>
-						<p>
-							L'équipe technique de mon-entreprise.fr a été automatiquement
-							prévenue. Vous pouvez également nous contacter directement à
-							l'adresse{' '}
-							<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-								contact@mon-entreprise.beta.gouv.fr
-							</a>{' '}
-							si vous souhaitez partager une remarque.
-						</p>
-						<p>Veuillez nous excuser pour la gêne occasionnée.</p>
-					</div>
-				</>
-			}
-		>
-			<ReduxProvider store={store}>
-				<ThemeColorsProvider
-					color={iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined}
-				>
-					<TrackingContext.Provider
-						value={
-							new ATTracker({
-								language: i18next.language as 'fr' | 'en',
-							})
+		<>
+			<GlobalStyle />
+			<ErrorBoundary
+				showDialog
+				fallback={
+					<>
+						<div className="ui__ container">
+							<img
+								src={logo}
+								alt="logo"
+								style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
+							></img>
+							<H1>Une erreur est survenue</H1>
+							<p>
+								L'équipe technique de mon-entreprise.fr a été automatiquement
+								prévenue. Vous pouvez également nous contacter directement à
+								l'adresse{' '}
+								<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+									contact@mon-entreprise.beta.gouv.fr
+								</a>{' '}
+								si vous souhaitez partager une remarque.
+							</p>
+							<p>Veuillez nous excuser pour la gêne occasionnée.</p>
+						</div>
+					</>
+				}
+			>
+				<ReduxProvider store={store}>
+					<ThemeColorsProvider
+						color={
+							iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined
 						}
 					>
-						<DisableAnimationOnPrintProvider>
-							<IsEmbeddedProvider>
-								<SiteNameContext.Provider value={basename}>
-									<SitePathProvider value={sitePaths}>
-										<I18nextProvider i18n={i18next}>
-											<HelmetProvider>
-												<OverlayProvider>
-													<Router history={history}>
-														<>{children}</>
-													</Router>
-												</OverlayProvider>
-											</HelmetProvider>
-										</I18nextProvider>
-									</SitePathProvider>
-								</SiteNameContext.Provider>
-							</IsEmbeddedProvider>
-						</DisableAnimationOnPrintProvider>
-					</TrackingContext.Provider>
-				</ThemeColorsProvider>
-			</ReduxProvider>
-		</ErrorBoundary>
+						<TrackingContext.Provider
+							value={
+								new ATTracker({
+									language: i18next.language as 'fr' | 'en',
+								})
+							}
+						>
+							<DisableAnimationOnPrintProvider>
+								<IsEmbeddedProvider>
+									<SiteNameContext.Provider value={basename}>
+										<SitePathProvider value={sitePaths}>
+											<I18nextProvider i18n={i18next}>
+												<HelmetProvider>
+													<OverlayProvider>
+														<Router history={history}>
+															<>{children}</>
+														</Router>
+													</OverlayProvider>
+												</HelmetProvider>
+											</I18nextProvider>
+										</SitePathProvider>
+									</SiteNameContext.Provider>
+								</IsEmbeddedProvider>
+							</DisableAnimationOnPrintProvider>
+						</TrackingContext.Provider>
+					</ThemeColorsProvider>
+				</ReduxProvider>
+			</ErrorBoundary>
+		</>
 	)
 }

@@ -1,11 +1,13 @@
+import { Grid } from '@mui/material'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
+import PageHeader from 'Components/PageHeader'
 import Emoji from 'Components/utils/Emoji'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card/Card'
 import { Container } from 'DesignSystem/layout'
-import { H1, H2 } from 'DesignSystem/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
@@ -14,7 +16,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import BrexitPDF from './Brexit_guide.pdf'
-import { CardSection } from './CardSection'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
 
@@ -46,74 +47,70 @@ export default function Landing() {
 				</div>
 			)}
 			<Container>
-				<section className="landing-title">
-					<img
-						alt="logo mon-entreprise.fr"
-						className="landing-title__logo"
-						src={logoSvg}
-					/>
-					<header>
-						<H1>
-							<Trans i18nKey="landing.title">
-								L'assistant officiel de l'entrepreneur
-							</Trans>
-						</H1>
-						<Intro>
-							<Trans i18nKey="landing.subtitle">
-								Les ressources nécessaires pour développer votre activité, du
-								statut juridique à l'embauche.
-							</Trans>
-						</Intro>
-					</header>
-					<img
-						src={illustrationSvg}
-						alt="landing image"
-						className="landing-title__img"
-					/>
-				</section>
+				<PageHeader
+					titre={
+						<Trans i18nKey="landing.title">
+							L'assistant officiel de l'entrepreneur
+						</Trans>
+					}
+					picture={illustrationSvg}
+				>
+					<Intro>
+						<Trans i18nKey="landing.subtitle">
+							Les ressources nécessaires pour développer votre activité, du
+							statut juridique à l'embauche.
+						</Trans>
+					</Intro>
+				</PageHeader>
 
-				<CardSection>
-					<Card
-						icon={<Emoji emoji="💡" />}
-						title={t('landing.choice.create.title', 'Créer une entreprise')}
-						ctaLabel={statutChoisi ? t('Continuer') : t('Commencer')}
-						to={
-							statutChoisi
-								? sitePaths.créer[statutChoisi]
-								: sitePaths.créer.index
-						}
-					>
-						<Trans i18nKey="landing.choice.create.body">
-							Un accompagnement au choix du statut juridique et la liste
-							complète des démarches de création
-						</Trans>
-					</Card>
-					<Card
-						icon={<Emoji emoji="💶" />}
-						title={t('landing.choice.manage.title', 'Gérer mon activité')}
-						ctaLabel={t('Commencer')}
-						to={sitePaths.gérer.index}
-					>
-						<Trans i18nKey="landing.choice.manage.body">
-							Des outils personnalisés pour anticiper le montant des cotisations
-							sociales à payer et mieux gérer votre trésorerie.
-						</Trans>
-					</Card>
-					<Card
-						icon={<Emoji emoji="🧮" />}
-						title={t(
-							'landing.choice.simulators.title',
-							'Accéder aux simulateurs'
-						)}
-						ctaLabel={t('Découvrir')}
-						to={sitePaths.simulateurs.index}
-					>
-						<Trans i18nKey="landing.choice.simulators.body">
-							La liste exhaustive de tous les simulateurs disponibles sur le
-							site.
-						</Trans>
-					</Card>
-				</CardSection>
+				<Grid container spacing={3} alignItems="stretch">
+					<Grid item md={4} sm={6}>
+						<Card
+							icon={<Emoji emoji="💡" />}
+							title={t('landing.choice.create.title', 'Créer une entreprise')}
+							ctaLabel={statutChoisi ? t('Continuer') : t('Commencer')}
+							to={
+								statutChoisi
+									? sitePaths.créer[statutChoisi]
+									: sitePaths.créer.index
+							}
+						>
+							<Trans i18nKey="landing.choice.create.body">
+								Un accompagnement au choix du statut juridique et la liste
+								complète des démarches de création
+							</Trans>
+						</Card>
+					</Grid>
+					<Grid item md={4} sm={6}>
+						<Card
+							icon={<Emoji emoji="💶" />}
+							title={t('landing.choice.manage.title', 'Gérer mon activité')}
+							ctaLabel={t('Commencer')}
+							to={sitePaths.gérer.index}
+						>
+							<Trans i18nKey="landing.choice.manage.body">
+								Des outils personnalisés pour anticiper le montant des
+								cotisations sociales à payer et mieux gérer votre trésorerie.
+							</Trans>
+						</Card>
+					</Grid>
+					<Grid item md={4} sm={6}>
+						<Card
+							icon={<Emoji emoji="🧮" />}
+							title={t(
+								'landing.choice.simulators.title',
+								'Accéder aux simulateurs'
+							)}
+							ctaLabel={t('Découvrir')}
+							to={sitePaths.simulateurs.index}
+						>
+							<Trans i18nKey="landing.choice.simulators.body">
+								La liste exhaustive de tous les simulateurs disponibles sur le
+								site.
+							</Trans>
+						</Card>
+					</Grid>
+				</Grid>
 				<section>
 					<Trans i18nKey="landing.aboutUs">
 						<H2>Qui sommes-nous ?</H2>

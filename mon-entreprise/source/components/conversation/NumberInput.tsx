@@ -1,3 +1,4 @@
+import { NumberFieldProps } from '@react-types/numberfield'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { NumberField } from 'DesignSystem/field'
 import { ASTNode, serializeUnit, Unit } from 'publicodes'
@@ -13,11 +14,11 @@ export default function NumberInput({
 	onChange,
 	onSubmit,
 	value,
-	displayedUnit,
-	formatOptions,
 	missing,
 	unit,
-	autoFocus,
+	formatOptions,
+	displayedUnit,
+	...fieldProps
 }: InputProps & {
 	unit?: Unit
 }) {
@@ -54,20 +55,9 @@ export default function NumberInput({
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 	return (
 		<StyledNumberInput>
-			<InputSuggestions
-				suggestions={suggestions}
-				onFirstClick={(valeur: ASTNode) => {
-					setCurrentValue(
-						(engine.evaluate(valeur).nodeValue as number) ?? undefined
-					)
-					setImmediate(() => {
-						onChange(valeur)
-					})
-				}}
-				onSecondClick={() => onSubmit?.('suggestion')}
-			/>
 			<NumberField
-				autoFocus={autoFocus}
+				{...(fieldProps as NumberFieldProps)}
+				description=""
 				displayedUnit={displayedUnit}
 				onChange={(valeur) => {
 					setCurrentValue(valeur)
@@ -82,6 +72,18 @@ export default function NumberInput({
 						: undefined
 				}
 				value={currentValue}
+			/>
+			<InputSuggestions
+				suggestions={suggestions}
+				onFirstClick={(valeur: ASTNode) => {
+					setCurrentValue(
+						(engine.evaluate(valeur).nodeValue as number) ?? undefined
+					)
+					setImmediate(() => {
+						onChange(valeur)
+					})
+				}}
+				onSecondClick={() => onSubmit?.('suggestion')}
 			/>
 		</StyledNumberInput>
 	)

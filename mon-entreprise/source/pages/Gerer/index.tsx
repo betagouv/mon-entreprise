@@ -1,8 +1,10 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
+import { useRouteMatch } from 'react-router'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import useSimulatorsData from '../Simulateurs/metadata'
 import PageData from '../Simulateurs/Page'
@@ -14,19 +16,16 @@ export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
+	const showLink = !useRouteMatch({ path: sitePaths.gérer.index, exact: true })
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
-			<div css="transform: translateY(2rem);">
-				<NavLink
-					to={sitePaths.gérer.index}
-					exact
-					activeClassName="ui__ hide"
-					className="ui__ simple push-left small button"
-				>
+			{showLink && (
+				<Link to={sitePaths.gérer.index}>
 					← <Trans>Retour à mon activité</Trans>
-				</NavLink>
-			</div>
+				</Link>
+			)}
+
 			<TrackChapter chapter1="gerer" />
 			<Switch>
 				<Route exact path={sitePaths.gérer.index} component={Home} />

@@ -25,6 +25,7 @@ import {
 type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
 	name?: string
 	displayedUnit?: string
+	small?: boolean
 	placeholder?: number
 	onChange: (n?: number) => void
 }
@@ -83,6 +84,7 @@ export default function NumberField(props: NumberFieldProps) {
 				{...groupProps}
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label}
+				small={props.small}
 			>
 				<StyledNumberInput
 					{...inputProps}

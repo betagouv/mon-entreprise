@@ -37,8 +37,8 @@ export default function Simulation({
 
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			{firstStepCompleted && (
-				<>
-					<FromTop>
+				<FromTop>
+					<>
 						{results}
 						<ShareOrSaveSimulationBanner />
 						<Questions customEndMessages={customEndMessages} />
@@ -83,8 +83,8 @@ export default function Simulation({
 								</div>
 							</div>
 						</div>
-					</FromTop>
-				</>
+					</>
+				</FromTop>
 			)}
 		</>
 	)
@@ -98,7 +98,7 @@ export function Questions({
 	const progress = useSimulationProgress()
 
 	return (
-		<div className="ui__ print-display-none">
+		<div className="print-hidden">
 			<section className="ui__ full-width lighter-bg">
 				<div className="ui__ container">
 					<div

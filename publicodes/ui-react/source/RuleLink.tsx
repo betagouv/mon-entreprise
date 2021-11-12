@@ -11,6 +11,7 @@ type RuleLinkProps<Name extends string> = {
 	displayIcon?: boolean
 	currentEngineId?: number
 	situationName?: string
+	small?: boolean
 	children?: React.ReactNode
 	linkComponent?: React.ComponentType<{ to: string }>
 }

@@ -24,6 +24,7 @@ type Props<Name extends string = DottedName> = Omit<
 > & {
 	required?: boolean
 	autoFocus?: boolean
+	small?: boolean
 	dottedName: Name
 	onChange: (
 		value: PublicodesExpression | undefined,

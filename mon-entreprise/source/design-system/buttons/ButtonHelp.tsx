@@ -67,10 +67,12 @@ const StyledButton = styled.button<{ light: boolean }>`
 	padding-right: ${({ theme }) => theme.spacings.xs};
 	font-size: 14px;
 	line-height: 20px;
+	vertical-align: baseline;
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-transform: capitalize;
 	font-weight: 700;
 	display: inline-flex;
+	margin-left: ${({ theme }) => theme.spacings.sm};
 	align-items: center;
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
 	border: 1px solid ${({ theme }) => theme.colors.bases.primary[600]};

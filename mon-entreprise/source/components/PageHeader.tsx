@@ -6,9 +6,9 @@ import styled from 'styled-components'
 const Illustration = styled.img<{ titre: ReactNode }>`
 	height: 100%;
 	width: 100%;
-	max-width: 15rem;
-	transform-origin: center right;
-	transform: scale(1.25);
+	padding-top: ${({ theme }) => theme.spacings.xl};
+	/* transform-origin: center right;
+	transform: scale(1.25); */
 `
 
 export default function PageHeader({
@@ -21,11 +21,13 @@ export default function PageHeader({
 	picture?: string
 }) {
 	return (
-		<Grid container spacing={3}>
+		<Grid container spacing={3} alignItems="center">
 			<Grid
 				item
 				sm={12}
 				md={9}
+				lg={8}
+				xl={7}
 				css={`
 					display: flex;
 					flex-direction: column;
@@ -41,6 +43,8 @@ export default function PageHeader({
 					item
 					className="hide-mobile"
 					md={3}
+					lg={4}
+					xl={5}
 					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
 				>
 					<Illustration
