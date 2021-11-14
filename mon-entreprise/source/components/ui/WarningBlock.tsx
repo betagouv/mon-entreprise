@@ -16,7 +16,7 @@ const WarningSection = styled.section`
 	background-color: ${({ theme }) => theme.colors.extended.info[100]};
 	color: ${({ theme }) => theme.colors.extended.info[600]};
 	padding: 1rem;
-	border-radius: 0.375rem;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 `
 
 export default function Warning({ localStorageKey, children }: WarningProps) {
