@@ -63,29 +63,29 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
+			<div onKeyDown={handleKeyDown}>
 				<FadeIn>
-					<div className="step">
-						<div
-							css={`
-								display: flex;
-								align-items: center;
-								gap: 0.5rem;
-							`}
-						>
-							<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
-							<ExplicableRule light dottedName={currentQuestion} />
-						</div>
-
-						<fieldset>
-							<RuleInput
-								dottedName={currentQuestion}
-								onChange={onChange}
-								key={currentQuestion}
-								onSubmit={submit}
-							/>
-						</fieldset>
+					<div
+						css={`
+							display: inline-flex;
+							align-items: baseline;
+						`}
+					>
+						<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
+						<ExplicableRule light dottedName={currentQuestion} />
 					</div>
+					<fieldset
+						css={`
+							text-align: left;
+						`}
+					>
+						<RuleInput
+							dottedName={currentQuestion}
+							onChange={onChange}
+							key={currentQuestion}
+							onSubmit={submit}
+						/>
+					</fieldset>
 				</FadeIn>
 
 				<AnswerGroup>

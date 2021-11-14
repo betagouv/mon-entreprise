@@ -1,5 +1,4 @@
 import NumberInput from 'Components/conversation/NumberInput'
-import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import { EngineContext } from 'Components/utils/EngineContext'
@@ -13,6 +12,7 @@ import Engine, {
 	RuleNode,
 } from 'publicodes'
 import React, { useContext } from 'react'
+import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -86,6 +86,7 @@ export default function RuleInput({
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,
+		onSubmit,
 		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
@@ -94,11 +95,9 @@ export default function RuleInput({
 	}
 	if (getVariant(engine.getRule(dottedName))) {
 		return (
-			<Question
+			<MultipleAnswerInput
 				{...commonProps}
-				dottedName={dottedName}
-				onSubmit={onSubmit}
-				choices={buildVariantTree(engine, dottedName)}
+				choice={buildVariantTree(engine, dottedName)}
 			/>
 		)
 	}
@@ -110,18 +109,10 @@ export default function RuleInput({
 		throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
-		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
+		return <SelectAtmp {...commonProps} />
 
 	if (rule.rawNode.type === 'date') {
-		return (
-			<DateInput
-				{...commonProps}
-				value={commonProps.value}
-				onChange={commonProps.onChange}
-				onSubmit={onSubmit}
-				suggestions={commonProps.suggestions}
-			/>
-		)
+		return <DateInput {...commonProps} />
 	}
 
 	if (
@@ -129,17 +120,7 @@ export default function RuleInput({
 		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
-		return (
-			<Question
-				{...commonProps}
-				dottedName={dottedName}
-				choices={[
-					{ value: 'oui', label: 'Oui' },
-					{ value: 'non', label: 'Non' },
-				]}
-				onSubmit={onSubmit}
-			/>
-		)
+		return <OuiNonInput {...commonProps} />
 	}
 
 	if (rule.rawNode.type === 'texte') {
@@ -154,7 +135,6 @@ export default function RuleInput({
 	return (
 		<NumberInput
 			{...commonProps}
-			onSubmit={onSubmit}
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>

@@ -1,5 +1,5 @@
+import { HiddenOptionContext } from 'Components/conversation/ChoicesInput'
 import Conversation from 'Components/conversation/Conversation'
-import { HiddenOptionContext } from 'Components/conversation/Question'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'

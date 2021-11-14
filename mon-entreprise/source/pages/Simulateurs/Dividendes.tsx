@@ -1,5 +1,5 @@
 import { updateSituation } from 'Actions/actions'
-import { HiddenOptionContext } from 'Components/conversation/Question'
+import { HiddenOptionContext } from 'Components/conversation/ChoicesInput'
 import { Condition } from 'Components/EngineValue'
 import Notifications from 'Components/Notifications'
 import Simulation from 'Components/Simulation'
