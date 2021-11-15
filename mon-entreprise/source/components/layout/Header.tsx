@@ -37,8 +37,9 @@ export default function Header() {
 				>
 					<img alt="logo urssaf" src={urssafSvg} />
 				</a>
-				<NewsBanner />
 			</StyledHeader>
+
+			<NewsBanner />
 		</Container>
 	)
 }
