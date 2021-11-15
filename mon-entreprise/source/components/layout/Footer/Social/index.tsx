@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import SocialIcon from 'Components/ui/SocialIcon'
+import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { Link } from 'DesignSystem/typography/link'
 import styled from 'styled-components'
 
@@ -29,28 +30,33 @@ const Title = styled.div`
 	}
 `
 
+const SocialLink = styled(Link)<GenericButtonOrLinkProps>`
+	display: flex;
+	flex-direction: row;
+`
+
 export const SocialLinks = () => (
 	<Container container>
 		<Grid item lg={3} xs={12}>
 			<Title>Suivez-nous</Title>
 		</Grid>
 		<Grid item lg={3} xs={4}>
-			<Link href="https://twitter.com/monentreprisefr">
+			<SocialLink href="https://twitter.com/monentreprisefr">
 				<SocialIcon media="twitter" />
 				<Label>Twitter</Label>
-			</Link>
+			</SocialLink>
 		</Grid>
 		<Grid item lg={3} xs={4}>
-			<Link href="https://www.linkedin.com/company/mon-entreprise-fr/">
+			<SocialLink href="https://www.linkedin.com/company/mon-entreprise-fr/">
 				<SocialIcon media="linkedin" />
 				<Label>LinkedIn</Label>
-			</Link>
+			</SocialLink>
 		</Grid>
 		<Grid item lg={3} xs={4}>
-			<Link href="https://github.com/betagouv/mon-entreprise/">
+			<SocialLink href="https://github.com/betagouv/mon-entreprise/">
 				<SocialIcon media="github" />
 				<Label>GitHub</Label>
-			</Link>
+			</SocialLink>
 		</Grid>
 	</Container>
 )
