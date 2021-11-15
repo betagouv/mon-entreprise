@@ -79,7 +79,6 @@ export default function Simulation({
 					)}
 				</Grid>
 			</Grid>
-			<Spacing xxl />
 		</>
 	)
 }
