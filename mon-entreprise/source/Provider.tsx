@@ -5,6 +5,7 @@ import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimati
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { GlobalStyle } from 'DesignSystem/global-style'
+import { Container } from 'DesignSystem/layout'
 import { H1 } from 'DesignSystem/typography/heading'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -135,7 +136,7 @@ export default function Provider({
 				showDialog
 				fallback={
 					<>
-						<div className="ui__ container">
+						<Container>
 							<img
 								src={logo}
 								alt="logo"
@@ -152,7 +153,7 @@ export default function Provider({
 								si vous souhaitez partager une remarque.
 							</p>
 							<p>Veuillez nous excuser pour la gêne occasionnée.</p>
-						</div>
+						</Container>
 					</>
 				}
 			>

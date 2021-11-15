@@ -2,7 +2,6 @@ import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import Notifications from 'Components/Notifications'
 import QuickLinks from 'Components/QuickLinks'
-import { FadeIn } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
@@ -20,6 +19,7 @@ import {
 import { TrackPage } from '../../ATInternetTracking'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
+import SeeAnswersButton from './SeeAnswersButton'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -63,51 +63,62 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<div onKeyDown={handleKeyDown}>
-				<FadeIn>
-					<div
-						css={`
-							display: inline-flex;
-							align-items: baseline;
-						`}
-					>
-						<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
-						<ExplicableRule light dottedName={currentQuestion} />
-					</div>
-					<fieldset
-						css={`
-							text-align: left;
-						`}
-					>
-						<RuleInput
-							dottedName={currentQuestion}
-							onChange={onChange}
-							key={currentQuestion}
-							onSubmit={submit}
-						/>
-					</fieldset>
-				</FadeIn>
-
-				<AnswerGroup>
-					{previousAnswers.length > 0 && (
-						<>
-							<Button light onPress={goToPrevious} size="XS">
-								← <Trans>Précédent</Trans>
+			<div
+				css={`
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+				`}
+				onKeyDown={handleKeyDown}
+			>
+				<div
+					css={`
+						display: inline-flex;
+						align-items: baseline;
+					`}
+				>
+					<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
+					<ExplicableRule light dottedName={currentQuestion} />
+				</div>
+				<fieldset>
+					<RuleInput
+						dottedName={currentQuestion}
+						onChange={onChange}
+						key={currentQuestion}
+						onSubmit={submit}
+					/>
+				</fieldset>
+				<div
+					css={`
+						display: flex;
+						align-self: stretch;
+						justify-content: space-between;
+						align-items: center;
+						flex-wrap: wrap;
+					`}
+				>
+					<AnswerGroup>
+						{previousAnswers.length > 0 && (
+							<>
+								<Button light onPress={goToPrevious} size="XS">
+									← <Trans>Précédent</Trans>
+								</Button>
+							</>
+						)}
+						{currentQuestionIsAnswered ? (
+							<Button size="XS" onPress={() => submit('accept')}>
+								<span className="text">
+									<Trans>Suivant</Trans> →
+								</span>
 							</Button>
-						</>
-					)}
-					{currentQuestionIsAnswered ? (
-						<Button size="XS" onPress={() => submit('accept')}>
-							<span className="text">
-								<Trans>Suivant</Trans> →
-							</span>
-						</Button>
-					) : (
-						<Button onPress={setDefault} size="XS" light>
-							<Trans>Passer</Trans> →
-						</Button>
-					)}
-				</AnswerGroup>
+						) : (
+							<Button onPress={setDefault} size="XS" light>
+								<Trans>Passer</Trans> →
+							</Button>
+						)}
+					</AnswerGroup>
+					<SeeAnswersButton />
+				</div>
 				<Notifications />
 			</div>
 			<QuickLinks />

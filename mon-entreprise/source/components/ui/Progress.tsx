@@ -4,7 +4,7 @@ import './Progress.css'
 type ProgressProps = {
 	progress: number
 	style?: React.CSSProperties
-	className: string
+	className?: string
 }
 
 export default function Progress({

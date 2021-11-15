@@ -152,7 +152,7 @@ function useSelection({
 		if (
 			debouncedSelection !== null &&
 			(missing ||
-				serializeEvaluation({ nodeValue: currentValue } as EvaluatedNode) !==
+				serializeEvaluation({ nodeValue: value } as EvaluatedNode) !==
 					debouncedSelection)
 		) {
 			onChange(debouncedSelection)

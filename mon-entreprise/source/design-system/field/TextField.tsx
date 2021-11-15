@@ -114,7 +114,7 @@ export const StyledInputContainer = styled.div<{
 		`${theme.box.borderWidth} solid ${
 			theme.darkMode
 				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[500]
+				: theme.colors.extended.grey[700]
 		}`};
 	outline: transparent solid 1px;
 	position: relative;
@@ -132,7 +132,7 @@ export const StyledInputContainer = styled.div<{
 				? theme.colors.extended.error[400]
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[600]};
+				: theme.colors.bases.primary[700]};
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};

@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
@@ -5,13 +6,12 @@ import PageFeedback from 'Components/Feedback'
 import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
-import { H2 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
-import SeeAnswersButton from './conversation/SeeAnswersButton'
 import ExportRecover from './simulationExplanation/ExportRecover'
 import { FromTop } from './ui/animate'
 
@@ -98,43 +98,28 @@ export function Questions({
 	const progress = useSimulationProgress()
 
 	return (
-		<div className="print-hidden">
-			<section className="ui__ full-width lighter-bg">
-				<div className="ui__ container">
-					<div
-						css={`
-							display: flex;
-							flex-wrap: wrap;
-							justify-content: center;
-							align-items: baseline;
-						`}
-					>
-						{progress < 1 && (
-							<H2
-								css={`
-									font-family: 'roboto';
-									font-weight: normal;
-									flex: 1;
-									font-size: 1.1rem !important;
-									margin-top: 0 !important;
-								`}
-							>
-								<small>
-									<Trans i18nKey="simulateurs.précision.défaut">
-										Améliorez votre simulation en répondant aux questions
-									</Trans>
-								</small>
-							</H2>
-						)}
-						<SeeAnswersButton />
-					</div>
+		<Grid container className="print-hidden">
+			<Grid
+				item
+				xs={12}
+				md={10}
+				css={`
+					margin: auto;
+				`}
+			>
+				{progress < 1 && (
+					<Body as="h2">
+						<small>
+							<Trans i18nKey="simulateurs.précision.défaut">
+								Améliorez votre simulation en répondant aux questions
+							</Trans>
+						</small>
+					</Body>
+				)}
 
-					<Conversation customEndMessages={customEndMessages} />
-				</div>
-			</section>
-			{progress < 1 && (
-				<Progress progress={progress} className="ui__ full-width" />
-			)}
-		</div>
+				<Conversation customEndMessages={customEndMessages} />
+			</Grid>
+			{progress < 1 && <Progress progress={progress} />}
+		</Grid>
 	)
 }
