@@ -153,6 +153,11 @@ function getFormatUnit(unit: Unit): Intl.NumberFormatOptions['unit'] | null {
 
 const StyledNumberInput = styled.div`
 	display: flex;
+	width: fit-content;
+	flex: 1;
 	flex-direction: column;
+	max-width: 300px;
+	min-width: fit-content;
+	width: 100%;
 	align-items: flex-end;
 `

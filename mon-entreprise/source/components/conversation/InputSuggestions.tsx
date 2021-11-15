@@ -45,5 +45,8 @@ export default function InputSuggestions({
 
 const StyledInputSuggestion = styled(SmallBody)`
 	display: flex;
+	> * {
+		white-space: nowrap;
+	}
 	gap: ${({ theme }) => theme.spacings.sm};
 `

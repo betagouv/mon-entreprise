@@ -7,6 +7,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import { H3 } from 'DesignSystem/typography/heading'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
@@ -63,14 +64,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<div
-				css={`
-					display: flex;
-					flex-direction: column;
-					align-items: flex-start;
-				`}
-				onKeyDown={handleKeyDown}
-			>
+			<div onKeyDown={handleKeyDown}>
 				<div
 					css={`
 						display: inline-flex;
@@ -88,41 +82,32 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						onSubmit={submit}
 					/>
 				</fieldset>
-				<div
-					css={`
-						display: flex;
-						align-self: stretch;
-						justify-content: space-between;
-						align-items: center;
-						flex-wrap: wrap;
-					`}
-				>
-					<Grid container spacing={2}>
-						{previousAnswers.length > 0 && (
-							<Grid item xs={6} sm="auto">
-								<Button light onPress={goToPrevious} size="XS">
-									← <Trans>Précédent</Trans>
-								</Button>
-							</Grid>
-						)}
+				<Spacing md />
+				<Grid container spacing={2}>
+					{previousAnswers.length > 0 && (
 						<Grid item xs={6} sm="auto">
-							{currentQuestionIsAnswered ? (
-								<Button size="XS" onPress={() => submit('accept')}>
-									<span className="text">
-										<Trans>Suivant</Trans> →
-									</span>
-								</Button>
-							) : (
-								<Button onPress={setDefault} size="XS" light>
-									<Trans>Passer</Trans> →
-								</Button>
-							)}
+							<Button light onPress={goToPrevious} size="XS">
+								← <Trans>Précédent</Trans>
+							</Button>
 						</Grid>
-						<Grid container item xs={12} sm justifyContent="flex-end">
-							<SeeAnswersButton />
-						</Grid>
+					)}
+					<Grid item xs={6} sm="auto">
+						{currentQuestionIsAnswered ? (
+							<Button size="XS" onPress={() => submit('accept')}>
+								<span className="text">
+									<Trans>Suivant</Trans> →
+								</span>
+							</Button>
+						) : (
+							<Button onPress={setDefault} size="XS" light>
+								<Trans>Passer</Trans> →
+							</Button>
+						)}
 					</Grid>
-				</div>
+					<Grid container item xs={12} sm justifyContent="flex-end">
+						<SeeAnswersButton />
+					</Grid>
+				</Grid>
 				<Notifications />
 			</div>
 			<QuickLinks />
