@@ -1,6 +1,8 @@
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import './Banner.css'
 import { FadeIn } from './ui/animate'
 import Emoji from './utils/Emoji'
@@ -12,6 +14,15 @@ type BannerProps = {
 	icon?: string
 	className?: string
 }
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`
+const Content = styled(Body)`
+	margin-left: 1rem;
+`
 
 export default function Banner({
 	children,
@@ -25,10 +36,10 @@ export default function Banner({
 	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
 	return !hidden ? (
 		<FadeIn className={className}>
-			<div className={'ui__ banner ' + className}>
+			<Container>
 				<Emoji emoji={icon} />
-				<div className="ui__ banner-content">{children}</div>
-			</div>
+				<Content>{children}</Content>
+			</Container>
 		</FadeIn>
 	) : null
 }
