@@ -99,6 +99,8 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	boolean?: boolean
+	description?: React.ReactNode
+
 	alwaysShow?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
@@ -111,6 +113,7 @@ export function SimulationGoal({
 	labelWithQuestion = false,
 	small = false,
 	onUpdateSituation,
+	description = null,
 	appear = true,
 	alwaysShow = false,
 	editable = true,

@@ -72,6 +72,10 @@ const StyledButton = styled.button<StyledButtonProps>`
 	${({ theme, color }) =>
 		!theme.darkMode &&
 		css`
+			border: 2px solid
+				${theme.colors.bases[color][
+					color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
+				]};
 			&:disabled {
 				background-color: ${theme.colors.bases[color][
 					color === 'primary' ? 200 : 100
@@ -92,10 +96,6 @@ const StyledButton = styled.button<StyledButtonProps>`
 		light &&
 		!theme.darkMode &&
 		css`
-			border: 2px solid
-				${theme.colors.bases[color][
-					color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
-				]};
 			color: ${theme.colors.bases[color][color === 'primary' ? 700 : 700]};
 			background-color: ${theme.colors.extended.grey[100]};
 

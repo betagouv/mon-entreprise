@@ -12,8 +12,6 @@ export const StyledLinkHover = css`
 			: theme.colors.bases.primary[800]};
 `
 export const StyledLink = styled.a`
-	display: inline-flex;
-	flex-direction: row;
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]

@@ -11,9 +11,8 @@ import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
-import { Strong } from 'DesignSystem/typography'
 import { Link } from 'DesignSystem/typography/link'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import { reduceAST } from 'publicodes'
@@ -75,6 +74,7 @@ function SalariéSimulationGoals() {
 		>
 			<SimulationGoal dottedName="contrat salarié . prix du travail" />
 			<AidesGlimpse />
+
 			<SimulationGoal dottedName="contrat salarié . rémunération . brut de base" />
 			<SimulationGoal
 				small
@@ -97,13 +97,11 @@ function TitreRestaurant() {
 				<StyledInfo>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
-						<Strong>
-							<Value
-								expression={dottedName}
-								displayedUnit="€"
-								unit={targetUnit}
-							/>
-						</Strong>{' '}
+						<Value
+							expression={dottedName}
+							displayedUnit="€"
+							unit={targetUnit}
+						/>
 						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
 				</StyledInfo>
@@ -142,13 +140,11 @@ function AidesGlimpse() {
 				<StyledInfo>
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
-						<Strong>
-							<Value
-								expression={dottedName}
-								displayedUnit="€"
-								unit={targetUnit}
-							/>
-						</Strong>{' '}
+						<Value
+							expression={dottedName}
+							displayedUnit="€"
+							unit={targetUnit}
+						/>{' '}
 						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
 				</StyledInfo>
@@ -157,7 +153,11 @@ function AidesGlimpse() {
 	)
 }
 
-const StyledInfo = styled.div`
-	display: flex;
-	justify-content: flex-end;
+const StyledInfo = styled(SmallBody)`
+	position: relative;
+	text-align: right;
+	margin-top: -1.5rem;
+	margin-bottom: 1.5rem;
+	right: 0;
+	z-index: 3;
 `
