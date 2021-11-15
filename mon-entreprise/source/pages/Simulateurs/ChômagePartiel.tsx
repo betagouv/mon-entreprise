@@ -265,6 +265,7 @@ function RowLabel({ dottedName }: { dottedName: DottedName }) {
 }
 
 const ResultTable = styled.table`
+	font-family: ${({ theme }) => theme.fonts.main};
 	width: 100%;
 	border-collapse: collapse;
 
