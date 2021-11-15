@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
@@ -76,7 +77,7 @@ const ToggleSection = styled.div`
 const StyledSimulationGoals = styled.div<
 	Pick<SimulationGoalsProps, 'publique'>
 >`
-	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.xl}`};
+	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	background: ${({ theme, publique }) => {
 		const colorPalette = publique
@@ -158,63 +159,80 @@ export function SimulationGoal({
 	}
 	return (
 		<Appear unless={!appear || initialRender}>
-			<StyledGoal selected={selected}>
-				<StyledGoalHeader>
-					{(labelWithQuestion && rule.rawNode.question) || (
-						<RuleLink dottedName={dottedName} />
-					)}
-					<SmallBody
-						css={`
-							margin-bottom: 0;
-						`}
-						className={small ? 'sr-only' : ''}
-						id={`${dottedName}-description`}
-					>
-						{rule.rawNode.résumé}
-					</SmallBody>
-				</StyledGoalHeader>
-
-				<StyledGuideLecture small={small} />
-				<StyledInputOrValue small={small} selected={selected}>
+			<StyledGoal>
+				<Grid
+					container
+					alignItems="baseline"
+					spacing={2}
+					justifyContent="flex-end"
+				>
+					<Grid item md="auto" sm={small ? 9 : 8} xs={12}>
+						<StyledGoalHeader>
+							{(labelWithQuestion && rule.rawNode.question) || (
+								<RuleLink dottedName={dottedName} />
+							)}
+							<SmallBody
+								css={`
+									margin-bottom: 0;
+								`}
+								className={small ? 'sr-only' : ''}
+								id={`${dottedName}-description`}
+							>
+								{rule.rawNode.résumé}
+							</SmallBody>
+						</StyledGoalHeader>
+					</Grid>
+					<Grid item md sx={{ display: { sm: 'none', md: 'block' } }}>
+						<StyledGuideLecture small={small} />
+					</Grid>
 					{editable ? (
-						<RuleInput
-							modifiers={
-								!boolean
-									? {
-											unité: currentUnit,
-											arrondi: 'oui',
-									  }
-									: undefined
-							}
-							aria-labelledby={`${dottedName}-label`}
-							aria-describedBy={`${dottedName}-description`}
-							displayedUnit=""
-							dottedName={dottedName}
-							onFocus={() => setFocused(true)}
-							onBlur={() => setFocused(false)}
-							onChange={onChange}
-							small={small}
-							formatOptions={{
-								maximumFractionDigits: 0,
-							}}
-						/>
+						<Grid
+							item
+							md={small ? 2 : 3}
+							sm={small ? 3 : 4}
+							xs={small ? 6 : 12}
+						>
+							<RuleInput
+								modifiers={
+									!boolean
+										? {
+												unité: currentUnit,
+												arrondi: 'oui',
+										  }
+										: undefined
+								}
+								aria-labelledby={`${dottedName}-label`}
+								aria-describedBy={`${dottedName}-description`}
+								displayedUnit=""
+								dottedName={dottedName}
+								onFocus={() => setFocused(true)}
+								onBlur={() => setFocused(false)}
+								onChange={onChange}
+								small={small}
+								formatOptions={{
+									maximumFractionDigits: 0,
+								}}
+							/>
+							{!isFocused && !small && (
+								<span style={{ position: 'relative', top: '-1rem' }}>
+									<AnimatedTargetValue value={evaluation.nodeValue as number} />
+								</span>
+							)}
+						</Grid>
 					) : (
-						<RuleLink dottedName={dottedName}>
-							{formatValue(evaluation, { displayedUnit: '€' })}
-						</RuleLink>
+						<Grid item md="auto">
+							<RuleLink dottedName={dottedName}>
+								{formatValue(evaluation, { displayedUnit: '€' })}
+							</RuleLink>
+						</Grid>
 					)}
-					{!isFocused && !small && (
-						<span style={{ position: 'relative', top: '-1rem' }}>
-							<AnimatedTargetValue value={evaluation.nodeValue as number} />
-						</span>
-					)}
-				</StyledInputOrValue>
+				</Grid>
 			</StyledGoal>
 		</Appear>
 	)
 }
-const StyledInputOrValue = styled.div<{ small: boolean; selected: boolean }>`
-	max-width: ${({ small }) => (small ? '8rem' : '12rem')};
+const StyledInputOrValue = styled.div`
+	position: relative;
 `
 const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	small: boolean
@@ -223,15 +241,10 @@ const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	align-self: baseline;
 	opacity: 50%;
 	flex: 1;
-	margin: 0 ${({ theme }) => theme.spacings.sm};
 `
 const StyledGoalHeader = styled.div``
 
-const StyledGoal = styled.div<{ selected: boolean }>`
+const StyledGoal = styled.div`
 	position: relative;
-	display: flex;
 	padding: ${({ theme }) => theme.spacings.sm} 0;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-	align-items: baseline;
 `

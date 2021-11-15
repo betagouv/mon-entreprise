@@ -1,11 +1,11 @@
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import {Spacing} from 'DesignSystem/layout'
-import {Body, SmallBody} from 'DesignSystem/typography/paragraphs'
-import {formatValue} from 'publicodes'
-import React, {useContext} from 'react'
-import {useTranslation} from 'react-i18next'
-import {animated, config, useSpring} from 'react-spring'
-import {DisableAnimationContext} from './utils/DisableAnimationContext'
+import { Spacing } from 'DesignSystem/layout'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { formatValue } from 'publicodes'
+import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
+import { animated, config, useSpring } from 'react-spring'
+import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import Emoji from './utils/Emoji'
 
 type ChartItemBarProps = {

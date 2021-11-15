@@ -94,7 +94,6 @@ const VisibleRadio = styled.div`
 
 const LabelBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
-	text-align: center;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 `
 const InputRadio = styled.input`

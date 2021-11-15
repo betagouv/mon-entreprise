@@ -118,7 +118,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 								</Button>
 							)}
 						</Grid>
-						<Grid item xs={12} sm="auto">
+						<Grid container item xs={12} sm justifyContent="flex-end">
 							<SeeAnswersButton />
 						</Grid>
 					</Grid>

@@ -48,15 +48,13 @@ export default function TextField(props: TextFieldProps) {
 }
 
 export const StyledContainer = styled.div`
-	max-width: 100%;
-	width: fit-content;
+	width: 100%;
 `
 export const StyledInput = styled.input`
 	font-size: 1rem;
 	line-height: 1.5rem;
-	flex: 1;
 	border: none;
-	max-width: 100%;
+	width: 100%;
 	background: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	height: 100%;
