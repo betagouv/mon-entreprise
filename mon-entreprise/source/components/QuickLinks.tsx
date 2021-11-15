@@ -36,30 +36,29 @@ export default function QuickLinks() {
 	}
 
 	return (
-		<SmallBody>
-			Aller à la question :{' '}
-			<StyledLinks>
-				{links.map(([label, dottedName]) => (
-					<Link
-						key={dottedName}
-						css={
-							dottedName === currentQuestion
-								? css`
-										text-decoration: underline;
-								  `
-								: ''
-						}
-						onPress={() => dispatch(goToQuestion(dottedName))}
-					>
-						<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
-					</Link>
-				))}
-			</StyledLinks>
-		</SmallBody>
+		<StyledLinks>
+			<span>Aller à la question : </span>
+			{links.map(([label, dottedName]) => (
+				<Link
+					key={dottedName}
+					css={
+						dottedName === currentQuestion
+							? css`
+									text-decoration: underline;
+							  `
+							: ''
+					}
+					onPress={() => dispatch(goToQuestion(dottedName))}
+				>
+					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
+				</Link>
+			))}
+		</StyledLinks>
 	)
 }
 
-const StyledLinks = styled.span`
+const StyledLinks = styled(SmallBody)`
 	display: inline-flex;
+	flex-wrap: wrap;
 	gap: ${({ theme }) => theme.spacings.sm};
 `

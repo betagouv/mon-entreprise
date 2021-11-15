@@ -37,7 +37,7 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<ExportRecover />
 			<Spacing xxl />
-			<Grid container spacing={2}>
+			<Grid container spacing={3}>
 				<Grid item sm={12} md={10}>
 					{children}
 					{!firstStepCompleted && <PreviousSimulationBanner />}
@@ -53,15 +53,26 @@ export default function Simulation({
 						</FromTop>
 					)}
 				</Grid>
-				<Grid item sm={12} md={2}>
+				<Grid
+					item
+					sm={12}
+					md={2}
+					css={`
+						display: flex;
+						flex-direction: column;
+					`}
+				>
 					{firstStepCompleted && (
 						<>
-							<Spacing lg />
 							<div
 								css={`
-									margin-right: -2rem;
+									flex: 1;
+								`}
+							/>
+							<div
+								css={`
 									position: sticky;
-									top: 0;
+									bottom: 0px;
 								`}
 								className=" print-display-none"
 							>

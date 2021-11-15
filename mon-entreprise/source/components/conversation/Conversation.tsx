@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import Notifications from 'Components/Notifications'
@@ -5,7 +6,6 @@ import QuickLinks from 'Components/QuickLinks'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
 import { H3 } from 'DesignSystem/typography/heading'
 import { PublicodesExpression } from 'publicodes'
@@ -97,27 +97,31 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						flex-wrap: wrap;
 					`}
 				>
-					<AnswerGroup>
+					<Grid container spacing={2}>
 						{previousAnswers.length > 0 && (
-							<>
+							<Grid item xs={6} sm="auto">
 								<Button light onPress={goToPrevious} size="XS">
 									← <Trans>Précédent</Trans>
 								</Button>
-							</>
+							</Grid>
 						)}
-						{currentQuestionIsAnswered ? (
-							<Button size="XS" onPress={() => submit('accept')}>
-								<span className="text">
-									<Trans>Suivant</Trans> →
-								</span>
-							</Button>
-						) : (
-							<Button onPress={setDefault} size="XS" light>
-								<Trans>Passer</Trans> →
-							</Button>
-						)}
-					</AnswerGroup>
-					<SeeAnswersButton />
+						<Grid item xs={6} sm="auto">
+							{currentQuestionIsAnswered ? (
+								<Button size="XS" onPress={() => submit('accept')}>
+									<span className="text">
+										<Trans>Suivant</Trans> →
+									</span>
+								</Button>
+							) : (
+								<Button onPress={setDefault} size="XS" light>
+									<Trans>Passer</Trans> →
+								</Button>
+							)}
+						</Grid>
+						<Grid item xs={12} sm="auto">
+							<SeeAnswersButton />
+						</Grid>
+					</Grid>
 				</div>
 				<Notifications />
 			</div>

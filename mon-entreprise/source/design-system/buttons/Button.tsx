@@ -62,7 +62,9 @@ const StyledButton = styled.button<StyledButtonProps>`
 		if (size === 'MD') return '0.875rem 2rem'
 		if (size === 'XS') return '0.5rem 2rem'
 	}};
-
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		width: 100%;
+	}
 	border-radius: 2.5rem;
 	transition: all 0.15s;
 	font-size: 1rem;

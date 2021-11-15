@@ -1,6 +1,6 @@
 import Emoji from 'Components/utils/Emoji'
 import { Button } from 'DesignSystem/buttons'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -79,13 +79,13 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 		<Container>
 			{!state.showForm && !state.showThanks && (
 				<>
-					<Body>
+					<SmallBody>
 						{customMessage || (
 							<Trans i18nKey="feedback.question">
 								Êtes-vous satisfait de cette page ?
 							</Trans>
 						)}{' '}
-					</Body>
+					</SmallBody>
 					<div
 						css={`
 							display: flex;
