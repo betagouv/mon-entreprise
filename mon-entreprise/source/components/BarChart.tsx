@@ -1,4 +1,6 @@
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { Spacing } from 'DesignSystem/layout'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -137,11 +139,18 @@ function InnerBarChartBranch({
 		<div className="distribution-chart__item">
 			{icon && <BranchIcon icon={icon} />}
 			<div className="distribution-chart__item-content">
-				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">{title}</span>
-					<br />
-					{description && <small>{description}</small>}
-				</p>
+				<div className="distribution-chart__counterparts">
+					<Body
+						as="h3"
+						css={`
+							margin-bottom: 0;
+						`}
+					>
+						{title}
+					</Body>
+					{description && <SmallBody>{description}</SmallBody>}
+				</div>
+				<Spacing md />
 				<ChartItemBar
 					display={display}
 					numberToPlot={value}

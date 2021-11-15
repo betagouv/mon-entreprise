@@ -4,7 +4,8 @@ import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import { H1, H2 } from 'DesignSystem/typography/heading'
+import { H1 } from 'DesignSystem/typography/heading'
+import { Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -63,11 +64,7 @@ export default function PageData({
 			{title && !inIframe && (
 				<>
 					<H1>{title}</H1>
-					{tooltip && (
-						<H2>
-							<small>{tooltip}</small>
-						</H2>
-					)}
+					{tooltip && <Intro>{tooltip}</Intro>}
 				</>
 			)}
 			{description && !inIframe && description}

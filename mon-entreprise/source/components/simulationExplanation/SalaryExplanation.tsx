@@ -5,7 +5,7 @@ import { FromTop } from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
-import { H2 } from 'DesignSystem/typography/heading'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useRef } from 'react'
@@ -78,7 +78,8 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					align-items: baseline;
 				`}
 			>
-				<H2
+				<H3
+					as="h2"
 					css={`
 						flex: 1;
 					`}
@@ -86,7 +87,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					<Trans i18nKey="payslip.repartition">
 						Répartition du total chargé
 					</Trans>
-				</H2>
+				</H3>
 				<Link onPress={props.onSeePayslip}>
 					<Emoji emoji="📊" /> <Trans>Voir la fiche de paie</Trans>
 				</Link>

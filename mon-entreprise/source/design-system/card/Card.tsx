@@ -81,7 +81,7 @@ const StyledButton = styled(Button)`
 
 const IconContainer = styled.div`
 	transform: scale(2.3);
-	padding: 1rem;
+	margin-top: ${({ theme }) => theme.spacings.md};
 `
 
 const CardBody = styled(Body)`

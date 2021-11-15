@@ -18,6 +18,10 @@ const underline = css`
 export const H1 = styled.h1`
 	${baseHeading}
 	font-size: 2rem;
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.xxxl} 0 ${theme.spacings.xl}
+		`};
 	line-height: 2.375rem;
 	${underline}
 `
@@ -26,17 +30,29 @@ export const H2 = styled.h2`
 	${baseHeading}
 	font-size: 1.625rem;
 	line-height: 2rem;
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.xxl} 0 ${theme.spacings.lg}
+		`};
 	${underline}
 `
 
 export const H3 = styled.h3`
 	${baseHeading}
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.xl} 0 ${theme.spacings.md}
+		`};
 	font-size: 1.25rem;
 	line-height: 1.5rem;
 `
 
 export const H4 = styled.h4`
 	${baseHeading}
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.lg} 0 ${theme.spacings.sm}
+		`};
 	font-size: 1.125rem;
 	line-height: 1.5rem;
 `
@@ -44,12 +60,20 @@ export const H4 = styled.h4`
 export const H5 = styled.h5`
 	${baseHeading}
 	font-size: 1rem;
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.md} 0 ${theme.spacings.xs}
+		`};
 	line-height: 1.5rem;
 	text-transform: capitalize;
 `
 
 export const H6 = styled.h6`
 	${baseHeading}
+	margin: ${({ theme }) =>
+		css`
+			${theme.spacings.sm} 0 ${theme.spacings.xxs}
+		`};
 	font-size: 1rem;
 	line-height: 1.5rem;
 `
