@@ -15,9 +15,11 @@ const BarStack = styled.div`
 	display: flex;
 	border-radius: 0.4em;
 	overflow: hidden;
+	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const BarItem = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	height: 26px;
 	border-right: 2px solid white;
 	transition: width 0.3s ease-out;
@@ -28,6 +30,7 @@ const BarItem = styled.div`
 `
 
 const BarStackLegend = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	display: flex;
 	margin-top: 10px;
 	flex-direction: column;
@@ -40,6 +43,7 @@ const BarStackLegend = styled.div`
 `
 
 const BarStackLegendItem = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	color: #555;
 	strong {
 		display: inline-block;
