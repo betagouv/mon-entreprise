@@ -22,8 +22,7 @@ export function useUrl() {
 	].join('')
 }
 
-const ButtonLabel = styled.div`
-	display: inline;
+const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
@@ -106,7 +105,7 @@ export default function ShareOrSaveSimulationBanner() {
 const SharingTools = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	margin: 0.5rem 0;
 `

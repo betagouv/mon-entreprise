@@ -5,15 +5,17 @@ import Conversation, {
 import PageFeedback from 'Components/Feedback'
 import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
 import Progress from 'Components/ui/Progress'
-import { useSimulationProgress } from 'Components/utils/useNextQuestion'
+import { Spacing } from 'DesignSystem/layout'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../ATInternetTracking'
+import PreviousSimulationBanner from './PreviousSimulationBanner'
 import ExportRecover from './simulationExplanation/ExportRecover'
-import { FromTop } from './ui/animate'
+import { FadeIn, FromTop } from './ui/animate'
+import { useSimulationProgress } from './utils/useNextQuestion'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -32,60 +34,52 @@ export default function Simulation({
 
 	return (
 		<>
-			<ExportRecover />
-			{children}
-
 			{!firstStepCompleted && <TrackPage name="accueil" />}
-			{firstStepCompleted && (
-				<FromTop>
-					<>
-						{results}
-						<ShareOrSaveSimulationBanner />
-						<Questions customEndMessages={customEndMessages} />
-						<div className="ui__ full-width">
-							<div className="ui__ container-and-side-block">
-								{explanations && (
-									<>
-										<div
-											css={`
-												flex: 1;
-											`}
-										/>
-										<div
-											className="ui__ container"
-											css={`
-												flex-shrink: 0;
-											`}
-										>
-											{explanations}
-										</div>
-									</>
-								)}
-								<div
-									className="ui__ side-block print-display-none"
-									css={!explanations ? 'justify-content: center;' : ''}
-								>
-									<div
-										css={`
-											margin: 1rem;
-										`}
-									>
-										<div className="ui__ card lighter-bg">
-											<PageFeedback
-												customMessage={
-													<Trans i18nKey="feedback.simulator">
-														Êtes-vous satisfait de ce simulateur&nbsp;?
-													</Trans>
-												}
-											/>
-										</div>
-									</div>
-								</div>
+			<ExportRecover />
+			<Spacing xxl />
+			<Grid container spacing={2}>
+				<Grid item sm={12} md={10}>
+					{children}
+					{!firstStepCompleted && <PreviousSimulationBanner />}
+
+					{firstStepCompleted && (
+						<FromTop>
+							<Spacing lg />
+							{results}
+							<ShareOrSaveSimulationBanner />
+							<Questions customEndMessages={customEndMessages} />
+							<Spacing lg />
+							{explanations}
+						</FromTop>
+					)}
+				</Grid>
+				<Grid item sm={12} md={2}>
+					{firstStepCompleted && (
+						<>
+							<Spacing lg />
+							<div
+								css={`
+									margin-right: -2rem;
+									position: sticky;
+									top: 0;
+								`}
+								className=" print-display-none"
+							>
+								<FadeIn>
+									<PageFeedback
+										customMessage={
+											<Trans i18nKey="feedback.simulator">
+												Êtes-vous satisfait de ce simulateur&nbsp;?
+											</Trans>
+										}
+									/>
+								</FadeIn>
 							</div>
-						</div>
-					</>
-				</FromTop>
-			)}
+						</>
+					)}
+				</Grid>
+			</Grid>
+			<Spacing xxl />
 		</>
 	)
 }
@@ -98,28 +92,17 @@ export function Questions({
 	const progress = useSimulationProgress()
 
 	return (
-		<Grid container className="print-hidden">
-			<Grid
-				item
-				xs={12}
-				md={10}
-				css={`
-					margin: auto;
-				`}
-			>
-				{progress < 1 && (
-					<Body as="h2">
-						<small>
-							<Trans i18nKey="simulateurs.précision.défaut">
-								Améliorez votre simulation en répondant aux questions
-							</Trans>
-						</small>
-					</Body>
-				)}
+		<div className="print-hidden">
+			{progress < 1 && (
+				<Body as="h2">
+					<Trans i18nKey="simulateurs.précision.défaut">
+						Améliorez votre simulation en répondant aux questions :
+					</Trans>
+				</Body>
+			)}
 
-				<Conversation customEndMessages={customEndMessages} />
-			</Grid>
+			<Conversation customEndMessages={customEndMessages} />
 			{progress < 1 && <Progress progress={progress} />}
-		</Grid>
+		</div>
 	)
 }

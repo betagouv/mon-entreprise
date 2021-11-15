@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
@@ -53,31 +52,23 @@ export function SimulationGoals({
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
-			<StyledContainer>
-				<Grid item sm={12} lg={10}>
-					{toggles && <ToggleSection>{toggles}</ToggleSection>}
-					<StyledSimulationGoals
-						publique={publique}
-						role="group"
-						aria-labelledby="simulator-legend"
-					>
-						<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-							<div className="sr-only" id="simulator-legend">
-								{legend}
-							</div>
-							{children}
-						</ThemeProvider>
-					</StyledSimulationGoals>
-				</Grid>
-			</StyledContainer>
+			{toggles && <ToggleSection>{toggles}</ToggleSection>}
+			<StyledSimulationGoals
+				publique={publique}
+				role="group"
+				aria-labelledby="simulator-legend"
+			>
+				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+					<div className="sr-only" id="simulator-legend">
+						{legend}
+					</div>
+					{children}
+				</ThemeProvider>
+			</StyledSimulationGoals>
 		</InitialRenderContext.Provider>
 	)
 }
-const StyledContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	margin-top: ${({ theme }) => theme.spacings.xl};
-`
+
 const ToggleSection = styled.div`
 	margin-bottom: ${({ theme }) => theme.spacings.md};
 `

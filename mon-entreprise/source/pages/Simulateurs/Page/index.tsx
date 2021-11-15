@@ -1,4 +1,3 @@
-import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
@@ -76,7 +75,6 @@ export default function PageData({
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
 
-				{config && <PreviousSimulationBanner />}
 				{!inIframe && (
 					<>
 						<section>{seoExplanations}</section>

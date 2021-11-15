@@ -10,6 +10,7 @@ import InfoBulle from 'Components/ui/InfoBulle'
 import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
 import { H2, H3 } from 'DesignSystem/typography/heading'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -305,8 +306,9 @@ export default function SchemeComparaison({
 						</div>
 					</Trans>
 				)}
+				<div className="legend" />
 
-				<div className=" all  colored">
+				<div className=" AS-indep-et-auto  ">
 					{!conversationStarted ? (
 						<>
 							<Trans i18nKey="comparaisonRégimes.simulationText">
@@ -320,7 +322,12 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<div className="">
+						<div
+							css={`
+								width: 100%;
+								text-align: left;
+							`}
+						>
 							<SimulationGoals
 								toggles={<PeriodSwitch />}
 								legend={
@@ -341,28 +348,18 @@ export default function SchemeComparaison({
 							</SimulationGoals>
 							{displayResult && (
 								<FromBottom>
-									<div
-										className="ui__ card "
-										css={`
-											padding: 1rem;
-											border-top: none;
-											border-top-left-radius: 0 !important;
-											border-top-right-radius: 0 !important;
-										`}
-									>
-										<Conversation
-											customEndMessages={
-												<>
-													<p className="ui__ notice">
-														Vous pouvez consulter les différentes estimations
-														dans le tableau ci-dessous
-													</p>
+									<Conversation
+										customEndMessages={
+											<>
+												<SmallBody>
+													Vous pouvez consulter les différentes estimations dans
+													le tableau ci-dessous
+												</SmallBody>
 
-													<SeeAnswersButton />
-												</>
-											}
-										/>
-									</div>
+												<SeeAnswersButton />
+											</>
+										}
+									/>
 								</FromBottom>
 							)}
 						</div>
@@ -370,6 +367,22 @@ export default function SchemeComparaison({
 				</div>
 				{displayResult && (
 					<>
+						<div className="legend" />
+
+						<H3 className="AS">
+							<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
+						</H3>
+						<H3 className="indep">
+							<Emoji emoji="👩‍🔧" />{' '}
+							{hideAssimiléSalarié ? (
+								<Trans>Entreprise Individuelle</Trans>
+							) : (
+								<Trans>Indépendant</Trans>
+							)}
+						</H3>
+						<H3 className="auto">
+							<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
+						</H3>
 						<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
 							<H3 className="legend">
 								Revenu net de cotisations <small>(avant impôts)</small>

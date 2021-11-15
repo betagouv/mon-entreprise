@@ -18,8 +18,8 @@ export function Radio(props: RadioAriaProps) {
 	return (
 		<label>
 			<InputRadio {...inputProps} className="sr-only" ref={ref} />
-			<VisibleRadio aria-hidden="true">
-				<RadioButton>
+			<VisibleRadio>
+				<RadioButton aria-hidden="true">
 					<OutsideCircle />
 					<InsideCircle />
 				</RadioButton>

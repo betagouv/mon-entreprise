@@ -64,6 +64,7 @@
 }
 .comparaison-grid > .all {
 	border-right: none;
+	border-bottom: none;
 	grid-column: row-legend / end;
 }
 .comparaison-grid > .all.colored {

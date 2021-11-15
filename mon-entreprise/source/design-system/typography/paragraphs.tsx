@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
+	font-weight: normal;
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
