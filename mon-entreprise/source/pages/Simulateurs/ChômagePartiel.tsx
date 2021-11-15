@@ -92,61 +92,55 @@ function ExplanationSection() {
 					margin: 1rem 0;
 				`}
 			>
-				<div
-					css={`
-						margin: 0 -1rem;
-					`}
-				>
-					<ComparaisonTable
-						rows={[
-							['', t('Habituellement'), t('Avec chômage partiel')],
-							[
-								{ dottedName: net },
-								{ dottedName: netHabituel },
-								{
-									dottedName: net,
-									additionalText: language === 'fr' && (
-										<span data-test-id="comparaison-net">
-											Soit{' '}
-											<strong>
-												{formatValue(
-													engine.evaluate({
-														valeur: `${net} / ${netHabituel}`,
-														unité: '%',
-														arrondi: 'oui',
-													})
-												)}
-											</strong>{' '}
-											du revenu net
-										</span>
-									),
-								},
-							],
-							[
-								{ dottedName: totalEntreprise },
-								{ dottedName: totalEntrepriseHabituel },
-								{
-									dottedName: totalEntreprise,
-									additionalText: language === 'fr' && (
-										<span data-test-id="comparaison-total">
-											Soit{' '}
-											<strong>
-												{formatValue(
-													engine.evaluate({
-														valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
-														unité: '%',
-														arrondi: 'oui',
-													})
-												)}
-											</strong>{' '}
-											du coût habituel
-										</span>
-									),
-								},
-							],
-						]}
-					/>
-				</div>
+				<ComparaisonTable
+					rows={[
+						['', t('Habituellement'), t('Avec chômage partiel')],
+						[
+							{ dottedName: net },
+							{ dottedName: netHabituel },
+							{
+								dottedName: net,
+								additionalText: language === 'fr' && (
+									<span data-test-id="comparaison-net">
+										Soit{' '}
+										<strong>
+											{formatValue(
+												engine.evaluate({
+													valeur: `${net} / ${netHabituel}`,
+													unité: '%',
+													arrondi: 'oui',
+												})
+											)}
+										</strong>{' '}
+										du revenu net
+									</span>
+								),
+							},
+						],
+						[
+							{ dottedName: totalEntreprise },
+							{ dottedName: totalEntrepriseHabituel },
+							{
+								dottedName: totalEntreprise,
+								additionalText: language === 'fr' && (
+									<span data-test-id="comparaison-total">
+										Soit{' '}
+										<strong>
+											{formatValue(
+												engine.evaluate({
+													valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
+													unité: '%',
+													arrondi: 'oui',
+												})
+											)}
+										</strong>{' '}
+										du coût habituel
+									</span>
+								),
+							},
+						],
+					]}
+				/>
 			</div>
 		</FromTop>
 	)
