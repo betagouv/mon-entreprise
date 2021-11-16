@@ -1,9 +1,9 @@
 import { Grid } from '@mui/material'
+import PageHeader from 'Components/PageHeader'
 import { icons } from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card'
-import { H1 } from 'DesignSystem/typography/heading'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -22,11 +22,14 @@ export default function Options() {
 				description="Outils pour les développeurs"
 				ogImage={illustration}
 			/>
-			<H1>
-				<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
-			</H1>
-
-			<div css="display: flex; align-items: flex-start; justify-content: space-between">
+			<PageHeader
+				picture={illustration}
+				titre={
+					<>
+						<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
+					</>
+				}
+			>
 				<Intro>
 					<Trans i18nKey="pages.développeurs.home.description">
 						En plus du site mon-entreprise.fr, nous mettons à disposition des
@@ -35,10 +38,7 @@ export default function Options() {
 						directement dans les parcours habituels de vos utilisateurs.
 					</Trans>
 				</Intro>
-				<div css="text-align: center; " className="ui__ hide-mobile">
-					<img css="height: 250px" src={illustration} />
-				</div>
-			</div>
+			</PageHeader>
 			<Grid container spacing={2}>
 				<Grid item xs={12} md={6} xl={3}>
 					<Card

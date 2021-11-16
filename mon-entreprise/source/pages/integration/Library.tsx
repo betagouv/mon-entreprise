@@ -1,7 +1,9 @@
-import { ScrollToTop } from 'Components/utils/Scroll'
 import Emoji from 'Components/utils/Emoji'
-import { Trans } from 'react-i18next'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { Trans } from 'react-i18next'
 
 export default function Library() {
 	return (
@@ -9,46 +11,49 @@ export default function Library() {
 			<ScrollToTop />
 			<Trans i18nKey="pages.dévelopeurs.bibliothèque">
 				<H1>Intégrez notre bibliothèque de calcul</H1>
-				<p>
+				<Body>
 					Si vous pensez que votre site ou service gagnerait à afficher des
 					calculs de salaire, par exemple passer du salaire brut au salaire net,
 					bonne nouvelle : tous les calculs de cotisations et impôts qui sont
 					derrière mon-entreprise.fr sont libres et facilement réutilisable
 					grâce à la{' '}
-					<a href="https://www.npmjs.com/package/publicodes">
+					<Link href="https://www.npmjs.com/package/publicodes">
 						bibliothèque NPM publicodes
-					</a>
+					</Link>
 					.
-				</p>
+				</Body>
 				<H2>Comment utiliser cette librairie ?</H2>
-				<p>
+				<Body>
 					Toutes nos règles de calculs sont écrites en `publicodes`, un language
 					déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder des
 					algorithme d'intérêt public.{' '}
-					<a href="https://publi.codes">En savoir plus sur publicodes</a>
-				</p>
-				<p>
+					<Link href="https://publi.codes">En savoir plus sur publicodes</Link>
+				</Body>
+				<Body>
 					Pour effectuer vos propre calculs, vous devons donc installer
 					l'interpréteur publicodes, télécharger les règles utilisées sur
 					mon-entreprise, appeler la fonction d'évaluation.
-				</p>
+				</Body>
 				<H3>Installation</H3>
 				<pre>
 					<code>npm install --save publicodes modele-social</code>
 				</pre>
 				<em>
 					Pour plus de détails sur l'installation, se référer à la{' '}
-					<a href="https://publi.codes/documentation/se-lancer" target="_blank">
+					<Link
+						href="https://publi.codes/documentation/se-lancer"
+						target="_blank"
+					>
 						documentation dédiée
-					</a>
+					</Link>
 				</em>
 				<H3>Lancer le calcul</H3>
-				<p>
+				<Body>
 					Il ne vous reste plus qu'à paramétrer le moteur avec les règles du
 					paquet `modele-social` et à appeler la fonction `evaluate` sur la
 					règle que dont vous souhaitez la valeur. Voici un exemple pour le
 					calcul brut / net
-				</p>
+				</Body>
 				<div
 					className="ui__ full-width"
 					css={`
@@ -62,51 +67,53 @@ export default function Library() {
 					></iframe>
 				</div>
 				<H2>Paramétrer le calcul</H2>
-				<p>
+				<Body>
 					Vous l'aurez constaté dans l'exemple précédent, la recette d'un calcul
 					est simple : des variables d'entrée (le salaire brut), une ou
 					plusieurs variables de sorties (le salaire net).
-				</p>
-				<p>
+				</Body>
+				<Body>
 					Le calcul est cependant paramétrable avec toutes les possibilités
 					permise dans la legislation.
-				</p>
-				<p>
+				</Body>
+				<Body>
 					Toutes ces variables sont listées et expliquées sur la{' '}
-					<a target="_blank" href="/documentation">
+					<Link target="_blank" href="/documentation">
 						documentation en ligne
-					</a>
+					</Link>
 					. Cette documentation est auto-générée depuis les fichiers de règles
 					publicodes, elle est donc constamment à jour.
-				</p>
-				<p>
+				</Body>
+				<Body>
 					Lançons un calcul plus proche d'une fiche de paie : voici une
 					description de la situation d'entrée annotée de liens vers les pages
 					correspondantes de la documentation :
-				</p>
+				</Body>
 				<blockquote>
-					<p>
+					<Body>
 						{' '}
 						Un{' '}
-						<a href="https://mon-entreprise.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
+						<Link href="https://mon-entreprise.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
 							cadre
-						</a>{' '}
+						</Link>{' '}
 						gagnant{' '}
-						<a href="https://mon-entreprise.fr/documentation/contrat-salarié/rémunération/brut-de-base">
+						<Link href="https://mon-entreprise.fr/documentation/contrat-salarié/rémunération/brut-de-base">
 							3 400€ bruts
-						</a>{' '}
+						</Link>{' '}
 						, qui bénéficie de{' '}
-						<a href="https://mon-entreprise.fr/documentation/contrat-salari%C3%A9/frais-professionnels/titres%E2%80%91restaurant">
+						<Link href="https://mon-entreprise.fr/documentation/contrat-salari%C3%A9/frais-professionnels/titres%E2%80%91restaurant">
 							titres-restaurant
-						</a>{' '}
+						</Link>{' '}
 						et qui travaille dans une entreprise de{' '}
-						<a href="https://mon-entreprise.fr/documentation/entreprise/effectif">
+						<Link href="https://mon-entreprise.fr/documentation/entreprise/effectif">
 							22 salariés
-						</a>
+						</Link>
 						.
-					</p>
+					</Body>
 				</blockquote>
-				<p>Voici ce que donne le calcul pour cet exemple plus complet :</p>
+				<Body>
+					Voici ce que donne le calcul pour cet exemple plus complet :
+				</Body>
 				<div
 					className="ui__ full-width"
 					css={`
@@ -119,43 +126,45 @@ export default function Library() {
 						title="mon-entreprise (exemple 2)"
 					></iframe>
 				</div>
-				<p>
+				<Body>
 					<Emoji emoji="ℹ️ " />
 					Notez que dans l'exemple précédent nous devons spécifier nous-même le
 					taux de versement transport.
-				</p>
-				<p>
+				</Body>
+				<Body>
 					Alors que dans le simulateur{' '}
-					<a href="https://mon-entreprise.fr/simulateurs/salarié">salarié</a>,
-					il suffit de renseigner la commune et le taux correspondant est
+					<Link href="https://mon-entreprise.fr/simulateurs/salarié">
+						salarié
+					</Link>
+					, il suffit de renseigner la commune et le taux correspondant est
 					automatiquement déterminé. C'est voulu : pour garder la bibliothèque
 					(et le site) légers, nous utilisons deux API en ligne. L'
-					<a href="https://api.gouv.fr/api/api-geo.html#doc_tech">
+					<Link href="https://api.gouv.fr/api/api-geo.html#doc_tech">
 						API Géo - communes
-					</a>{' '}
+					</Link>{' '}
 					pour passer du nom de la commune au code commune. Puis l'
-					<a href="">API versement transport</a>, développé et maintenu par nos
-					soins, qui n'est pas documenté mais son utilisation est très simple et
-					compréhensible{' '}
-					<a href="https://github.com/betagouv/mon-entreprise/blob/f3e79f42516c0822e8c6d8f6e9fc5646c82fd018/source/components/conversation/select/SelectGéo.js#L7-L14">
+					<Link href="">API versement transport</Link>, développé et maintenu
+					par nos soins, qui n'est pas documenté mais son utilisation est très
+					simple et compréhensible{' '}
+					<Link href="https://github.com/betagouv/mon-entreprise/blob/f3e79f42516c0822e8c6d8f6e9fc5646c82fd018/source/components/conversation/select/SelectGéo.js#L7-L14">
 						dans ce composant React qui l'appelle
-					</a>
+					</Link>
 					, composant qui fait aussi appel à l'API commune.
-				</p>
+				</Body>
 				<H2>
 					Faire des graphiques économiques <Emoji emoji="📈" />
 				</H2>
-				<p>
+				<Body>
 					Il est aussi possible d'utiliser la bibliothèque pour des calculs
 					d'analyse économique ou politique. Ici, on trace le prix du travail et
 					le salaire net en fonction du brut.
-				</p>
-				<p css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
+				</Body>
+				<Body css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
 					On peut constater la progressivité du salaire total, qui est en
 					pourcent plus faible pour un SMIC que pour un haut revenu. Autrement
 					dit, les hauts salaires paient une partie des cotisations sociales des
 					bas salaires.
-				</p>
+				</Body>
 				<div
 					className="ui__ full-width"
 					css={`
