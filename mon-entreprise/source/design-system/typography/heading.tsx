@@ -15,7 +15,8 @@ const underline = css`
 		border-bottom: 4px solid ${({ theme }) => theme.colors.bases.secondary[500]};
 	}
 `
-export const H1 = styled.h1`
+
+export const H1 = styled.h1<{ noUnderline?: boolean }>`
 	${baseHeading}
 	font-size: 2rem;
 	margin: ${({ theme }) =>
@@ -23,10 +24,10 @@ export const H1 = styled.h1`
 			${theme.spacings.xxxl} 0 ${theme.spacings.xl}
 		`};
 	line-height: 2.375rem;
-	${underline}
+	${({ noUnderline }) => (!noUnderline ? underline : '')}
 `
 
-export const H2 = styled.h2`
+export const H2 = styled.h2<{ noUnderline?: boolean }>`
 	${baseHeading}
 	font-size: 1.625rem;
 	line-height: 2rem;
@@ -34,7 +35,7 @@ export const H2 = styled.h2`
 		css`
 			${theme.spacings.xxl} 0 ${theme.spacings.lg}
 		`};
-	${underline}
+	${({ noUnderline }) => (!noUnderline ? underline : '')}
 `
 
 export const H3 = styled.h3`

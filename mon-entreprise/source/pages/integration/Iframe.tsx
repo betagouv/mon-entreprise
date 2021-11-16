@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import {
 	ThemeColorsContext,
 	ThemeColorsProvider,
@@ -5,6 +6,7 @@ import {
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { Article } from 'DesignSystem/card'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
@@ -20,6 +22,7 @@ import React, {
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Iframes from '../Iframes'
 import useSimulatorsData from '../Simulateurs/metadata'
@@ -128,11 +131,11 @@ function IntegrationCustomizer() {
 							</Trans>
 							<Emoji emoji="🛠" />
 						</H3>
-						<p>
+						<Body>
 							<Trans i18nKey="pages.développeurs.code.description">
 								Voici le code à copier-coller sur votre site&nbsp;:
 							</Trans>
-						</p>
+						</Body>
 						<IntegrationCode color={color} module={currentModule} />
 					</div>
 					<div
@@ -179,6 +182,11 @@ function IntegrationCustomizer() {
 	)
 }
 
+const Logo = styled.img`
+	max-width: 100%;
+	max-height: 3rem;
+`
+
 export default function Integration() {
 	return (
 		<>
@@ -187,75 +195,87 @@ export default function Integration() {
 			<Trans i18nKey="pages.développeurs.iframe.intro">
 				<div>
 					<H1>Intégrez le module Web</H1>
-					<p>
+					<Body>
 						Nos simulateurs sont intégrables de manière transparente en ajoutant
 						une simple ligne de code à votre page Web.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Vous pouvez choisir le simulateur à intégrer et{' '}
 						<strong>personnaliser la couleur principale du module</strong> pour
 						le fondre dans le thème visuel de votre page.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						L'attribut <i>data-lang="en"</i> vous permet quant à lui de choisir
 						l'anglais comme langue du simulateur.
-					</p>
+					</Body>
 				</div>
 				<IntegrationCustomizer />
-				<p>
+				<Body>
 					À noter que si votre site utilise une politique de sécurité de contenu
 					via l'en-tête de réponse HTTP <i>Content-Security-Policy</i>, une
 					erreur bénigne peut apparaître dans la console. <EnSavoirPlusCSP />
-				</p>
+				</Body>
 			</Trans>
 			<section className="blocks" id="integrations">
 				<H2>
-					<Trans>Quelques intégrations</Trans>
+					<Trans>Liste des intégrations</Trans>
 				</H2>
-				<div id="integrationList">
-					<article>
-						<a href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs">
-							<img src={urssafLogo} alt="urssaf.fr" />
-							<H2 as="h3">Urssaf</H2>
-						</a>
-					</article>
-					<article>
-						<a href="http://les-aides.fr/embauche">
-							<img src={cciLogo} alt="Les-aides.fr" />
-							<H2 as="h3">CCI de France</H2>
-						</a>
-					</article>
-					<article>
-						<a href="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche">
-							<img src={apecLogo} alt="" />
-							<H2 as="h3">APEC</H2>
-						</a>
-					</article>
-					<article>
-						<a href="https://code.travail.gouv.fr/outils/simulateur-embauche">
-							<img src={minTraLogo} alt="Ministère du travail" />
-							<H2 as="h3">Code du travail numérique</H2>
-						</a>
-					</article>
-					<article>
-						<a href="https://entreprise.pole-emploi.fr/cout-salarie/">
-							<img src={poleEmploiLogo} alt="Pôle Emploi" />
-							<H2 as="h3">Pôle Emploi</H2>
-						</a>
-					</article>
-					<article>
-						<a href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation">
-							<span className="question-mark">?</span>
-							<H2 as="h3">
-								<Trans>
-									Une idée&nbsp;?
-									<br />
-									Contactez-nous&nbsp;!
-								</Trans>
-							</H2>
-						</a>
-					</article>
-				</div>
+				<Grid container id="integrationList" spacing={2}>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="Urssaf"
+							to="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
+							ctaLabel="Voir l'intégration"
+						>
+							<Logo src={urssafLogo} alt="urssaf.fr" />
+						</Article>
+					</Grid>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="CCI de France"
+							to="http://les-aides.fr/embauche"
+							ctaLabel="Voir l'intégration"
+						>
+							<Logo src={cciLogo} alt="Les-aides.fr" />
+						</Article>
+					</Grid>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="APEC"
+							to="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche"
+							ctaLabel="Voir le simulateur"
+						>
+							<Logo src={apecLogo} alt="Agence pour l'emploi des cadres" />
+						</Article>
+					</Grid>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="Code du travail numérique"
+							to="https://code.travail.gouv.fr/outils/simulateur-embauche"
+							ctaLabel="Voir le simulateur"
+						>
+							<Logo src={minTraLogo} alt="Ministère du travail" />
+						</Article>
+					</Grid>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="Pôle Emploi"
+							to="https://entreprise.pole-emploi.fr/cout-salarie/"
+							ctaLabel="Voir le simulateur"
+						>
+							<Logo src={poleEmploiLogo} alt="Pôle Emploi" />
+						</Article>
+					</Grid>
+					<Grid xs={12} md={6} xl={4}>
+						<Article
+							title="Une idée&nbsp;?"
+							to="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
+							ctaLabel="Contactez-nous"
+						>
+							Vous avez un projet ou une idée à nous partager?
+						</Article>
+					</Grid>
+				</Grid>
 			</section>
 		</>
 	)
