@@ -17,6 +17,7 @@ type CardProps = GenericCardProps & {
 	ctaLabel: React.ReactNode
 	children: React.ReactNode
 }
+
 export function Card({
 	title,
 	icon,

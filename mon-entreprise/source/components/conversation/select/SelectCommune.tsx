@@ -1,7 +1,13 @@
 import { FromTop } from 'Components/ui/animate'
 import { TextField } from 'DesignSystem/field'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import React, { useCallback, useMemo, useState } from 'react'
+import {
+	KeyboardEvent,
+	SyntheticEvent,
+	useCallback,
+	useMemo,
+	useState,
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '../../../utils'
@@ -156,7 +162,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	)
 
 	const handleKeyDown = useCallback(
-		(e: React.KeyboardEvent) => {
+		(e: KeyboardEvent) => {
 			switch (e.key) {
 				case 'ArrowDown':
 				case 'ArrowUp':
@@ -216,7 +222,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 									as="li"
 									onMouseDown={
 										// Prevent input blur and focus elem selection
-										(e) => e.preventDefault()
+										(e: SyntheticEvent) => e.preventDefault()
 									}
 									onClick={() => handleSubmit(result)}
 									role="option"
@@ -236,7 +242,9 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	)
 }
 
-const Option = styled(Body)<{ focused: boolean }>`
+const Option = styled(Body)<{
+	focused: boolean
+}>`
 	text-align: left;
 	display: block;
 	color: inherit;
