@@ -1,11 +1,12 @@
+import { Grid } from '@mui/material'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import { Checkbox } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
-import { Appear } from '../animate'
 
 type CheckItemProps = {
 	title: string
@@ -58,10 +59,8 @@ export function CheckItem({
 					label={title}
 				/>
 
-				<Spacer></Spacer>
-
 				{explanations && (
-					<Link onPress={handleClick}>
+					<StyledLink onPress={handleClick}>
 						{displayExplanations ? (
 							<Trans i18nKey="checklist.showmore.open">
 								Masquer les détails
@@ -69,22 +68,35 @@ export function CheckItem({
 						) : (
 							<Trans i18nKey="checklist.showmore.closed">En savoir plus</Trans>
 						)}
-					</Link>
+					</StyledLink>
 				)}
 			</CheckItemHeader>
 			{displayExplanations && explanations && (
-				<Appear>
+				<Grid
+					item
+					xs={11}
+					sm={10}
+					md={8}
+					lg={6}
+					css={`
+						margin-left: 2rem;
+					`}
+				>
 					{typeof explanations === 'string' ? (
 						<Markdown source={explanations} />
 					) : (
 						explanations
 					)}
-				</Appear>
+					<Spacing lg />
+				</Grid>
 			)}
 		</ScrollToElement>
 	)
 }
 
+const StyledLink = styled(Link)`
+	margin-left: ${({ theme }) => theme.spacings.sm};
+`
 export type ChecklistProps = {
 	children: React.ReactNode
 	onItemCheck?: (name: string, isChecked: boolean) => void
