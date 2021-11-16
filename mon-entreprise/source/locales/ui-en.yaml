@@ -98,6 +98,7 @@ J'ai compris: understood
 Janvier 2019: January 2019
 Jusqu’au: Until
 La somme de: This rule is the sum of
+Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
 Mensuel: Monthly
 Mes réponses: My answers
@@ -458,432 +459,16 @@ créer:
     company, you must choose a legal status adapted to your activity
   ressources:
     autoEntrepreneur:
-      "0": <
-      "1": "0"
-      "10": o
-      "100": s
-      "101": " "
-      "102": t
-      "103": o
-      "104": " "
-      "105": s
-      "106": t
-      "107": a
-      "108": r
-      "109": t
-      "11": "-"
-      "110": " "
-      "111": y
-      "112": o
-      "113": u
-      "114": r
-      "115": " "
-      "116": b
-      "117": u
-      "118": s
-      "119": i
-      "12": e
-      "120": n
-      "121": e
-      "122": s
-      "123": s
-      "124": <
-      "125": /
-      "126": "1"
-      "127": ">"
-      "13": n
-      "14": t
-      "15": r
-      "16": e
-      "17": p
-      "18": r
-      "19": e
-      "2": ">"
-      "20": n
-      "21": e
-      "22": u
-      "23": r
-      "24": " "
-      "25": p
-      "26": r
-      "27": o
-      "28": c
-      "29": e
-      "3": T
-      "30": s
-      "31": s
-      "32": <
-      "33": /
-      "34": "0"
-      "35": ">"
-      "36": <
-      "37": "1"
-      "38": ">"
-      "39": D
-      "4": h
-      "40": o
-      "41": " "
-      "42": y
-      "43": o
-      "44": u
-      "45": " "
-      "46": w
-      "47": a
-      "48": n
-      "49": t
-      "5": e
-      "50": " "
-      "51": t
-      "52": o
-      "53": " "
-      "54": b
-      "55": e
-      "56": c
-      "57": o
-      "58": m
-      "59": e
-      "6": " "
-      "60": " "
-      "61": a
-      "62": n
-      "63": " "
-      "64": a
-      "65": u
-      "66": t
-      "67": o
-      "68": "-"
-      "69": e
-      "7": a
-      "70": n
-      "71": t
-      "72": r
-      "73": e
-      "74": p
-      "75": r
-      "76": e
-      "77": n
-      "78": e
-      "79": u
-      "8": u
-      "80": r
-      "81": "?"
-      "82": " "
-      "83": D
-      "84": i
-      "85": s
-      "86": c
-      "87": o
-      "88": v
-      "89": e
-      "9": t
-      "90": r
-      "91": " "
-      "92": t
-      "93": h
-      "94": e
-      "95": " "
-      "96": s
-      "97": t
-      "98": e
-      "99": p
       body: Do you want to become an auto-entrepreneur? Discover the steps to start
         your business
       cta: Consult the procedures
       title: Auto-entrepreneur procedure
     comparaison:
-      "0": <
-      "1": "0"
-      "10": n
-      "100": i
-      "101": f
-      "102": f
-      "103": e
-      "104": r
-      "105": e
-      "106": n
-      "107": c
-      "108": e
-      "109": s
-      "11": g
-      "110": " "
-      "111": i
-      "112": n
-      "113": " "
-      "114": t
-      "115": e
-      "116": r
-      "117": m
-      "118": s
-      "119": " "
-      "12": " "
-      "120": o
-      "121": f
-      "122": " "
-      "123": i
-      "124": n
-      "125": c
-      "126": o
-      "127": m
-      "128": e
-      "129": ","
-      "13": r
-      "130": " "
-      "131": c
-      "132": o
-      "133": n
-      "134": t
-      "135": r
-      "136": i
-      "137": b
-      "138": u
-      "139": t
-      "14": e
-      "140": i
-      "141": o
-      "142": n
-      "143": s
-      "144": ","
-      "145": " "
-      "146": p
-      "147": e
-      "148": n
-      "149": s
-      "15": g
-      "150": i
-      "151": o
-      "152": n
-      "153": ","
-      "154": " "
-      "155": e
-      "156": t
-      "157": c
-      "158": .
-      "159": <
-      "16": i
-      "160": /
-      "161": "1"
-      "162": ">"
-      "17": m
-      "18": e
-      "19": s
-      "2": ">"
-      "20": <
-      "21": /
-      "22": "0"
-      "23": ">"
-      "24": <
-      "25": "1"
-      "26": ">"
-      "27": S
-      "28": e
-      "29": l
-      "3": C
-      "30": f
-      "31": "-"
-      "32": e
-      "33": m
-      "34": p
-      "35": l
-      "36": o
-      "37": y
-      "38": e
-      "39": d
-      "4": o
-      "40": ","
-      "41": " "
-      "42": a
-      "43": s
-      "44": s
-      "45": i
-      "46": m
-      "47": i
-      "48": l
-      "49": a
-      "5": m
-      "50": t
-      "51": e
-      "52": d
-      "53": " "
-      "54": e
-      "55": m
-      "56": p
-      "57": l
-      "58": o
-      "59": y
-      "6": p
-      "60": e
-      "61": e
-      "62": " "
-      "63": o
-      "64": r
-      "65": " "
-      "66": a
-      "67": u
-      "68": t
-      "69": o
-      "7": a
-      "70": "-"
-      "71": e
-      "72": n
-      "73": t
-      "74": r
-      "75": e
-      "76": p
-      "77": r
-      "78": e
-      "79": n
-      "8": r
-      "80": e
-      "81": u
-      "82": r
-      "83": "?"
-      "84": " "
-      "85": C
-      "86": a
-      "87": l
-      "88": c
-      "89": u
-      "9": i
-      "90": l
-      "91": a
-      "92": t
-      "93": e
-      "94": " "
-      "95": t
-      "96": h
-      "97": e
-      "98": " "
-      "99": d
       body: Self-employed, assimilated employee or auto-entrepreneur? Calculate the
         differences in terms of income, contributions, pension, etc.
       cta: Compare
       title: Plan Comparator
     listeStatuts:
-      "0": <
-      "1": "0"
-      "10": " "
-      "100": a
-      "101": s
-      "102": s
-      "103": o
-      "104": c
-      "105": i
-      "106": a
-      "107": t
-      "108": e
-      "109": d
-      "11": l
-      "110": " "
-      "111": p
-      "112": r
-      "113": o
-      "114": c
-      "115": e
-      "116": d
-      "117": u
-      "118": r
-      "119": e
-      "12": e
-      "120": s
-      "121": <
-      "122": /
-      "123": "1"
-      "124": ">"
-      "13": g
-      "14": a
-      "15": l
-      "16": " "
-      "17": s
-      "18": t
-      "19": a
-      "2": ">"
-      "20": t
-      "21": u
-      "22": s
-      "23": e
-      "24": s
-      "25": <
-      "26": /
-      "27": "0"
-      "28": ">"
-      "29": <
-      "3": L
-      "30": "1"
-      "31": ">"
-      "32": Y
-      "33": o
-      "34": u
-      "35": " "
-      "36": a
-      "37": l
-      "38": r
-      "39": e
-      "4": i
-      "40": a
-      "41": d
-      "42": y
-      "43": " "
-      "44": k
-      "45": n
-      "46": o
-      "47": w
-      "48": " "
-      "49": w
-      "5": s
-      "50": h
-      "51": i
-      "52": c
-      "53": h
-      "54": " "
-      "55": s
-      "56": t
-      "57": a
-      "58": t
-      "59": u
-      "6": t
-      "60": s
-      "61": " "
-      "62": t
-      "63": o
-      "64": " "
-      "65": c
-      "66": h
-      "67": o
-      "68": o
-      "69": s
-      "7": " "
-      "70": e
-      "71": "?"
-      "72": " "
-      "73": G
-      "74": o
-      "75": " "
-      "76": d
-      "77": i
-      "78": r
-      "79": e
-      "8": o
-      "80": c
-      "81": t
-      "82": l
-      "83": y
-      "84": " "
-      "85": t
-      "86": o
-      "87": " "
-      "88": t
-      "89": h
-      "9": f
-      "90": e
-      "91": " "
-      "92": l
-      "93": i
-      "94": s
-      "95": t
-      "96": " "
-      "97": o
-      "98": f
-      "99": " "
       body: Do you already know which status to choose? Go directly to the list of
         related procedures
       cta: See the list
@@ -1437,13 +1022,21 @@ pages:
       social contributions of low earners.</23><24><0></0></24>"
   développeurs:
     choice:
-      github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
-        developed on GitHub.</1>
-      library: <0>Using the calculation engine</0><1>The entire socio-fiscal
-        calculation engine developed by Urssaf, freely available in the form of
-        an NPM library.</1>
-      publicodes: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
-        language for encoding "explainable" algorithms.</1>
+      github:
+        body: The entire socio-fiscal calculation engine developed by the Urssaf, freely
+          available as an NPM library.
+        cta: Start
+        title: Calculation library
+      library:
+        body: The entire socio-fiscal calculation engine developed by the Urssaf, freely
+          available as an NPM library.
+        cta: Start
+        title: Calculation library
+      publicodes:
+        body: Our tools are powered by Publicodes, a new language for encoding
+          "explainable" algorithms.
+        cta: Discover
+        title: Publicodes
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
@@ -1451,14 +1044,18 @@ pages:
     couleur: "What color? "
     home:
       choice:
-        iframe: <0>Integrating a simulator</0><1>Integrate one of our simulators in one
-          click into your website, via a turnkey script.</1>
+        iframe:
+          body: Integrate one of our simulators in one click into your website, via a
+            turnkey script.
+          cta: Start
+          title: Integrate a simulator
         library: <0>Using the calculation engine</0><1>The entire socio-fiscal
           calculation engine developed by Urssaf, freely available in the form
           of an NPM library.</1>
-      description: In addition to the site mon-entreprise.fr, we develop free and open
-        source tools to be integrated seemlessly in the usual journey of your
-        users.
+      description: In addition to the mon-entreprise.fr website, we provide free and
+        open-source tools to integrate into your website. You can thus include
+        the tools created for <1>my-company</1> directly in the usual paths of
+        your users.
       titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
@@ -2106,7 +1703,7 @@ simulateurs:
 
     We invite you to try again by slightly modifying the amount entered (a few euros more for example).
   précision:
-    défaut: "Refine your simulation by answering the questions:"
+    défaut: "Improve your simulation by answering the questions :"
   warning:
     année-courante: The amount of the contributions is calculated for an income over
       the year 2020.
