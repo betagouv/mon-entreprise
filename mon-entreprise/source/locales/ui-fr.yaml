@@ -411,8 +411,8 @@ entreprise:
       titre: Choisir la forme juridique
     formulaire:
       description: <0>Vous pouvez faire votre inscription en ligne à tout moment,
-        l'enregistrer et y revenir comme vous le souhaitez.</0><1>Faire la
-        démarche en ligne</1>
+        l'enregistrer et y revenir comme vous le souhaitez.</0><1></1><2>Faire
+        la démarche en ligne</2>
       titre: Créer mon entreprise en ligne
     journal:
       description: "<0>Vous devez publier la création de votre entreprise dans un
@@ -1095,11 +1095,10 @@ pages:
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
       retraite-droits-acquis: "<0>Retraite : droits acquis sur l'année
-        2021</0><1><0>Retraite de base : <2><0><0></0> trimestres
-        acquis</0></2></0><1>Retraite complémentaire : <2><0>Ce simulateur ne
-        gère pas les droits acquis de retraite complémentaire pour les
-        professions libérales</0></2><3><0><0><0></0> points
-        acquis</0></0></3></1></1>"
+        2021</0><1><0>Retraite de base : <2><0></0> trimestres
+        acquis</2></0><1>Retraite complémentaire : <2><0>Ce simulateur ne gère
+        pas les droits acquis de retraite complémentaire pour les professions
+        libérales</0></2><3><0><0></0> points acquis</0></3></1></1>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
     is:

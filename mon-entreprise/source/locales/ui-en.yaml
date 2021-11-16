@@ -630,7 +630,7 @@ entreprise:
       titre: Choose the legal status
     formulaire:
       description: <0>You can register online at any time, save it and return to it as
-        you wish.</0><1>Doing it online</1>
+        you wish.</0><1></1><2>Doing it online</2>
       titre: Register my company online
     journal:
       description: >
@@ -1424,10 +1424,10 @@ pages:
           turnover and vice versa
         title: "Self-employed: income simulator"
       retraite-droits-acquis: "<0>Retirement: rights acquired in 2021</0><1><0>Basic
-        pension : <2><0><0></0> vested quarters</0></2></0><1>Supplementary
-        pension : <2><0>This simulator does not manage the acquired rights of
-        supplementary pension for the liberal
-        professions</0></2><3><0><0><0></0> points acquired</0></0></3></1></1>"
+        pension: <2><0></0> acquired quarters</2></0><1>Supplementary pension:
+        <2><0>This simulator does not manage the acquired rights of
+        supplementary pension for the liberal professions</0></2><3><0><0></0>
+        points acquired</0></3></1></1>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:
