@@ -34,6 +34,8 @@ const OutsideCircle = styled.span`
 	border: 2px solid ${({ theme }) => theme.colors.extended.grey[600]};
 	transition: all 0.2s;
 	border-radius: 50%;
+	background-color: ${({ theme }) => theme.colors.extended.grey[100]};
+
 	height: 100%;
 	width: 100%;
 `
@@ -81,7 +83,6 @@ const VisibleRadio = styled.div`
 	align-items: center;
 	z-index: 1;
 	transition: all 0.2s;
-
 	:hover > ${RadioButton}::before {
 		opacity: 1;
 		transform: scale(1);

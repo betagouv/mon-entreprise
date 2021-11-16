@@ -82,7 +82,7 @@ function RadioChoice({ choice }: { choice: Choice }) {
 							{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 						</Radio>{' '}
 						{node.rawNode.description && (
-							<ButtonHelp type="info" title={node.title}>
+							<ButtonHelp type="info" light title={node.title}>
 								<Markdown source={node.rawNode.description} />
 							</ButtonHelp>
 						)}
