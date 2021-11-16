@@ -33,7 +33,6 @@ type SimulationGoalsProps = {
 		| 'artisteAuteur'
 		| 'independant'
 		| 'marin'
-		| undefined
 	children: React.ReactNode
 	toggles?: React.ReactNode
 }
@@ -71,14 +70,15 @@ export function SimulationGoals({
 }
 
 const ToggleSection = styled.div`
-	margin-bottom: ${({ theme }) => theme.spacings.md};
+	padding-bottom: ${({ theme }) => theme.spacings.xs};
 `
 
 const StyledSimulationGoals = styled.div<
 	Pick<SimulationGoalsProps, 'publique'>
 >`
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border-radius: ${({ theme }) =>
+		`${theme.box.borderRadius} ${theme.box.borderRadius} 0 0 `};
 	background: ${({ theme, publique }) => {
 		const colorPalette = publique
 			? theme.colors.publics[publique]
@@ -89,6 +89,9 @@ const StyledSimulationGoals = styled.div<
 
 function useInitialRender() {
 	const initialRender = useContext(InitialRenderContext)
+	// We use meme to prevent renders after the first one. That's why we disable
+	// the rule on the next line
+	// eslint-disable-next-line
 	const unChangedInitialRender = useMemo(() => initialRender, [])
 	return unChangedInitialRender
 }

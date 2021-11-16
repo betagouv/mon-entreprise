@@ -138,6 +138,7 @@ export function ToggleGroup(
 const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 	--radius: 4px;
 	display: inline-flex;
+
 	${VisibleRadio} {
 		position: relative;
 		align-items: center;
@@ -146,7 +147,9 @@ const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 		margin-right: -1px;
 		cursor: pointer;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
+		background: ${({ theme }) => theme.colors.extended.grey[100]};
 	}
+
 	${VisibleRadio}:focus-within {
 		outline: 1px dashed ${({ theme }) => theme.colors.extended.grey[700]};
 	}
@@ -155,10 +158,12 @@ const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 		margin: 0;
 		margin-left: ${({ theme }) => theme.spacings.xxs};
 	}
+
 	> :first-child ${VisibleRadio} {
 		border-top-left-radius: var(--radius);
 		border-bottom-left-radius: var(--radius);
 	}
+
 	> :last-child ${VisibleRadio} {
 		border-top-right-radius: var(--radius);
 		border-bottom-right-radius: var(--radius);

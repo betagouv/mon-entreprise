@@ -1,21 +1,19 @@
 import { Grid } from '@mui/material'
-import Conversation, {
-	ConversationProps,
-} from 'Components/conversation/Conversation'
+import { ConversationProps } from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback'
 import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
-import Progress from 'Components/ui/Progress'
 import { Spacing } from 'DesignSystem/layout'
-import { Body } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
-import { TrackPage } from '../ATInternetTracking'
-import PreviousSimulationBanner from './PreviousSimulationBanner'
-import ExportRecover from './simulationExplanation/ExportRecover'
-import { FadeIn, FromTop } from './ui/animate'
-import { useSimulationProgress } from './utils/useNextQuestion'
+import { TrackPage } from '../../ATInternetTracking'
+import PreviousSimulationBanner from './../PreviousSimulationBanner'
+import ExportRecover from './../simulationExplanation/ExportRecover'
+import { FadeIn, FromTop } from './../ui/animate'
+import { Questions } from './Questions'
+
+export { Questions } from './Questions'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -44,10 +42,10 @@ export default function Simulation({
 
 					{firstStepCompleted && (
 						<FromTop>
-							<Spacing lg />
 							{results}
-							<ShareOrSaveSimulationBanner />
 							<Questions customEndMessages={customEndMessages} />
+							<Spacing sm />
+							<ShareOrSaveSimulationBanner />
 							<Spacing lg />
 							{explanations}
 						</FromTop>
@@ -91,28 +89,5 @@ export default function Simulation({
 				</Grid>
 			</Grid>
 		</>
-	)
-}
-
-export function Questions({
-	customEndMessages,
-}: {
-	customEndMessages?: ConversationProps['customEndMessages']
-}) {
-	const progress = useSimulationProgress()
-
-	return (
-		<div className="print-hidden">
-			{progress < 1 && (
-				<Body as="h2">
-					<Trans i18nKey="simulateurs.précision.défaut">
-						Améliorez votre simulation en répondant aux questions :
-					</Trans>
-				</Body>
-			)}
-
-			<Conversation customEndMessages={customEndMessages} />
-			{progress < 1 && <Progress progress={progress} />}
-		</div>
 	)
 }

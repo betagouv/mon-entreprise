@@ -24,7 +24,7 @@ export default function QuickLinks() {
 	const dispatch = useDispatch()
 
 	if (!quickLinks) {
-		return null
+		return <Spacing sm />
 	}
 	const links = pipe(
 		reject((dottedName: DottedName) => contains(dottedName, quickLinksToHide)),

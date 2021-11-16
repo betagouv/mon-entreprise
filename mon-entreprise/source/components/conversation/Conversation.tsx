@@ -131,6 +131,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					</Trans>
 				)}
 			</Body>
+			<SeeAnswersButton />
 		</div>
 	)
 }
