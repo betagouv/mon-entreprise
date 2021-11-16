@@ -2,7 +2,6 @@ import Banner from 'Components/Banner'
 import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
@@ -30,7 +29,6 @@ export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
-			<SimulateurWarning simulateur="indépendant" />
 			<Simulation
 				explanations={<SalaryExplanation />}
 				customEndMessages={

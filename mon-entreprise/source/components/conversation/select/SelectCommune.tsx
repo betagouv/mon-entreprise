@@ -1,13 +1,7 @@
 import { FromTop } from 'Components/ui/animate'
 import { TextField } from 'DesignSystem/field'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import {
-	KeyboardEvent,
-	SyntheticEvent,
-	useCallback,
-	useMemo,
-	useState,
-} from 'react'
+import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '../../../utils'
@@ -222,7 +216,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 									as="li"
 									onMouseDown={
 										// Prevent input blur and focus elem selection
-										(e: SyntheticEvent) => e.preventDefault()
+										(e: React.MouseEvent) => e.preventDefault()
 									}
 									onClick={() => handleSubmit(result)}
 									role="option"

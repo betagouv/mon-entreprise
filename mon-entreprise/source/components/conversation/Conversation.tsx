@@ -9,6 +9,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { Button } from 'DesignSystem/buttons'
 import { Spacing } from 'DesignSystem/layout'
 import { H3 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -121,7 +122,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					Vous avez complété cette simulation
 				</Trans>
 			</H3>
-			<p>
+			<Body>
 				{customEndMessages ? (
 					customEndMessages
 				) : (
@@ -129,7 +130,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						Vous avez maintenant accès à l'estimation la plus précise possible.
 					</Trans>
 				)}
-			</p>
+			</Body>
 		</div>
 	)
 }

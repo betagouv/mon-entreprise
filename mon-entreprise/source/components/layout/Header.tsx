@@ -22,13 +22,13 @@ export default function Header() {
 						src={language === 'fr' ? logoSvg : logoEnSvg}
 					/>
 				</Link>
-				{language === 'fr' && <SearchButton />}
 
 				<div
 					css={`
 						flex: 1;
 					`}
 				/>
+				{language === 'fr' && <SearchButton />}
 
 				<a
 					href="https://www.urssaf.fr"

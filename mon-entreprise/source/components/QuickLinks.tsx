@@ -1,4 +1,5 @@
 import { goToQuestion } from 'Actions/actions'
+import { Spacing } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
@@ -32,7 +33,7 @@ export default function QuickLinks() {
 	)(quickLinks)
 
 	if (links.length < 1) {
-		return null
+		return <Spacing lg />
 	}
 
 	return (

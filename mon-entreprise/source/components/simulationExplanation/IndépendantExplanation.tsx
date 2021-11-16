@@ -9,7 +9,8 @@ import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
-import { H2 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
@@ -37,7 +38,7 @@ export default function IndépendantExplanation() {
 			</section>
 			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
 				<section>
-					<H2>Répartition du revenu</H2>
+					<H3 as="h2">Répartition du revenu</H3>
 					<StackedBarChart
 						data={[
 							{
@@ -167,21 +168,19 @@ function DroitsRetraite() {
 	}
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
-			<H2>Retraite : droits acquis sur l'année 2021</H2>
-			<ul>
-				<li>
+			<H3 as="h2">Retraite : droits acquis sur l'année 2021</H3>
+			<Ul>
+				<Li>
 					Retraite de base :{' '}
-					<strong>
-						<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
-							<Value
-								expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
-								displayedUnit=""
-							/>{' '}
-							trimestres acquis
-						</RuleLink>
-					</strong>
-				</li>
-				<li>
+					<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
+						<Value
+							expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
+							displayedUnit=""
+						/>{' '}
+						trimestres acquis
+					</RuleLink>
+				</Li>
+				<Li>
 					Retraite complémentaire :{' '}
 					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<em>
@@ -190,18 +189,16 @@ function DroitsRetraite() {
 						</em>
 					</WhenApplicable>
 					<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-						<strong>
-							<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
-								<Value
-									expression="protection sociale . retraite . complémentaire indépendants . points acquis"
-									displayedUnit=""
-								/>{' '}
-								points acquis
-							</RuleLink>
-						</strong>
+						<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+							<Value
+								expression="protection sociale . retraite . complémentaire indépendants . points acquis"
+								displayedUnit=""
+							/>{' '}
+							points acquis
+						</RuleLink>
 					</WhenNotApplicable>
-				</li>
-			</ul>
+				</Li>
+			</Ul>
 		</Trans>
 	)
 }

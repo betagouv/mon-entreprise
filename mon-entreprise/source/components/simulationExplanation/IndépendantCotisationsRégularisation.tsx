@@ -1,8 +1,9 @@
 import { FromBottom } from 'Components/ui/animate'
-import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
-import { H2 } from 'DesignSystem/typography/heading'
+import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
+import { H3 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 
 export default function CotisationsRégularisation() {
@@ -11,32 +12,22 @@ export default function CotisationsRégularisation() {
 	)
 	return (
 		<FromBottom>
-			<div
-				className="ui__  lighter-bg card"
-				css={`
-					padding: 1rem;
-					padding-top: 0.1rem;
-				`}
-			>
-				<H2>{rule.title}</H2>
-				<div className="ui__ notice">
-					<Markdown source={rule.rawNode.description} />
-				</div>
+			<div>
+				<H3 as="h2">{rule.title}</H3>
+				<Markdown source={rule.rawNode.description} />
 
 				{rule.rawNode.références && (
-					<p
-						css={`
-							text-align: right;
-						`}
-					>
-						<a
-							className="ui__  small button"
+					<>
+						<Spacing lg />
+						<Button
+							light
+							size="XS"
 							href={Object.values(rule.rawNode.références)[0]}
-							target="_blank"
 						>
-							<Emoji emoji="👉" /> <Trans>Voir la fiche Urssaf</Trans>
-						</a>
-					</p>
+							<Trans>Voir la fiche Urssaf</Trans>
+						</Button>
+						<Spacing lg />
+					</>
 				)}
 			</div>
 		</FromBottom>

@@ -1,7 +1,4 @@
 import RuleLink from 'Components/RuleLink'
-import SimulateurWarning from 'Components/SimulateurWarning'
-import Simulation from 'Components/Simulation'
-import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H2 } from 'DesignSystem/typography/heading'
@@ -41,6 +38,7 @@ import IndépendantSimulation, {
 import getData from './metadata-src.js'
 import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
+import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
 
@@ -293,14 +291,7 @@ export function getSimulatorsData({
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.sasu,
-			component: function SasuSimulation() {
-				return (
-					<>
-						<SimulateurWarning simulateur="sasu" />
-						<Simulation explanations={<SalaryExplanation />} />
-					</>
-				)
-			},
+			component: SASUSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
 					<H2>Comment calculer le salaire d'un dirigeant de SASU ? </H2>

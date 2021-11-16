@@ -7,7 +7,7 @@ import { InstitutionsPartenairesAutoEntrepreneur } from 'Components/simulationEx
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { H2 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -45,9 +45,9 @@ function Explanation() {
 	const { palettes } = useContext(ThemeColorsContext)
 	return (
 		<section>
-			<H2>
+			<H3 as="h2">
 				<Trans>Répartition du chiffre d'affaires</Trans>
-			</H2>
+			</H3>
 			<StackedBarChart
 				data={[
 					{

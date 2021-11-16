@@ -1,12 +1,14 @@
-import RuleLink from 'Components/RuleLink'
 import Value, {
 	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
 } from 'Components/EngineValue'
+import RuleLink from 'Components/RuleLink'
 import { FromBottom } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
 import dgfipSrc from 'Images/logo-dgfip.svg'
 import * as logosSrc from 'Images/logos-caisses-retraite'
@@ -16,18 +18,17 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import { H2, H3 } from 'DesignSystem/typography/heading'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
 	return (
 		<section>
 			<FromBottom>
-				<H2>
+				<H3 as="h2">
 					<Trans i18nKey="simulateurs.explanation.institutions.titre">
 						Vos institutions partenaires
 					</Trans>
-				</H2>
+				</H3>
 				<InstitutionsTable>
 					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
@@ -45,14 +46,14 @@ export default function InstitutionsPartenaires() {
 							>
 								<img src={assuranceMaladieSrc} title="Logo CPAM" />
 							</InstitutionLogo>
-							<p className="ui__ notice">
+							<Body>
 								<Trans i18nKey="simulateurs.explanation.institutions.cpam">
 									En tant que professionnel de santé conventionné, vous
 									bénéficiez d'une prise en charge d'une partie de vos
 									cotisations par l'Assurance Maladie.
 								</Trans>
-							</p>
-							<p className="ui__ lead">
+							</Body>
+							<Body className="ui__ lead">
 								<Emoji emoji="🎁" />{' '}
 								<RuleLink dottedName="dirigeant . indépendant . PL . PAMC . participation CPAM">
 									<Value
@@ -61,17 +62,17 @@ export default function InstitutionsPartenaires() {
 										expression="- dirigeant . indépendant . PL . PAMC . participation CPAM"
 									/>
 								</RuleLink>
-							</p>
+							</Body>
 						</InstitutionLine>
 					</Condition>
 				</InstitutionsTable>
 				<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
-					<p className="ui__ notice">
+					<SmallBody>
 						<Trans i18nKey="simulateurs.explanation.institutions.notice acre">
 							Les montants indiqués ci-dessus sont calculés sans prendre en
 							compte l'exonération de début d'activité ACRE
 						</Trans>
-					</p>
+					</SmallBody>
 				</Condition>
 			</FromBottom>
 		</section>
@@ -96,17 +97,15 @@ export function CotisationsUrssaf({
 			>
 				<img src={urssafSrc} title="logo Urssaf" />
 			</InstitutionLogo>
-			<p className="ui__ notice">
+			<Body>
 				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
 					L’Urssaf recouvre les cotisations servant au financement de la
 					sécurité sociale (assurance maladie, allocations familiales,
 					dépendance).
 				</Trans>{' '}
 				{extraNotice}
-			</p>
-			<p className="ui__ lead">
-				<Value unit={unit} displayedUnit="€" expression={rule} />
-			</p>
+			</Body>
+			<Value unit={unit} displayedUnit="€" expression={rule} />
 		</InstitutionLine>
 	)
 }
@@ -119,7 +118,7 @@ export function ImpôtsDGFIP() {
 				<InstitutionLogo target="_blank" href="https://www.impots.gouv.fr">
 					<img src={dgfipSrc} title="logo DGFiP" />
 				</InstitutionLogo>
-				<p className="ui__ notice">
+				<Body>
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
 						La direction générale des finances publiques (DGFiP) est l'organisme
 						qui collecte l'impôt sur le revenu.{' '}
@@ -131,10 +130,8 @@ export function ImpôtsDGFIP() {
 							.
 						</Condition>
 					</Trans>
-				</p>
-				<p className="ui__ lead">
-					<Value unit={unit} displayedUnit="€" expression="impôt . montant" />
-				</p>
+				</Body>
+				<Value unit={unit} displayedUnit="€" expression="impôt . montant" />
 			</InstitutionLine>
 		</Condition>
 	)
@@ -168,21 +165,19 @@ function CaisseRetraite() {
 							>
 								<img src={logosSrc[caisse]} title={`logo ${caisse}`} />
 							</InstitutionLogo>
-							<p className="ui__ notice">
+							<Body>
 								{description}{' '}
 								<Trans i18nKey="simulateurs.explanation.CNAPL">
 									Elle recouvre les cotisations liées à votre retraite et au
 									régime d'invalidité-décès.
 								</Trans>
-							</p>
+							</Body>
 
-							<p className="ui__ lead">
-								<Value
-									unit={unit}
-									displayedUnit="€"
-									expression="dirigeant . indépendant . PL . cotisations caisse de retraite"
-								/>
-							</p>
+							<Value
+								unit={unit}
+								displayedUnit="€"
+								expression="dirigeant . indépendant . PL . cotisations caisse de retraite"
+							/>
 						</InstitutionLine>
 					</Condition>
 				)
@@ -217,14 +212,12 @@ export function InstitutionsPartenairesArtisteAuteur() {
 						<InstitutionLogo target="_blank" href="http://www.ircec.fr/">
 							<img src={logosSrc['IRCEC']} title="logo IRCEC" />
 						</InstitutionLogo>
-						<p className="ui__ notice">{descriptionIRCEC}</p>
-						<p className="ui__ lead">
-							<Value
-								displayedUnit="€"
-								unit={unit}
-								expression="artiste-auteur . cotisations . IRCEC"
-							/>
-						</p>
+						<Body>{descriptionIRCEC}</Body>
+						<Value
+							displayedUnit="€"
+							unit={unit}
+							expression="artiste-auteur . cotisations . IRCEC"
+						/>
 					</InstitutionLine>
 				</Condition>
 			</InstitutionsTable>
@@ -250,9 +243,11 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 	)
 }
 
-const InstitutionsTable = styled.div.attrs({ className: 'ui__ card' })`
-	padding-left: 0;
-	padding-right: 0;
+const InstitutionsTable = styled.div`
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	box-shadow: ${({ theme }) => theme.elevations[2]};
+	padding: ${({ theme }) => theme.spacings.xs}
+		${({ theme }) => theme.spacings.md};
 `
 
 const InstitutionLogo = styled.a`
@@ -279,23 +274,23 @@ const InstitutionLine = styled.div`
 		text-align: center;
 	}
 
-	> .ui__.notice {
+	> :nth-child(2) {
 		flex: 1;
 		padding: 0 4rem 0 2rem;
 		margin: 0;
 	}
 
-	> .ui__.lead {
+	> :nth-child(3) {
 		font-weight: bold;
 		text-align: right;
 	}
 
 	@media (max-width: 680px) {
-		> .ui__.lead {
+		> :nth-child(3) {
 			flex-grow: 9;
 		}
 
-		> .ui__.notice {
+		> :nth-child(2) {
 			order: 3;
 			padding: 0;
 			min-width: 80vw;

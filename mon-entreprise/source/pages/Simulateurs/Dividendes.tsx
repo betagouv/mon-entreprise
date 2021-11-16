@@ -9,7 +9,7 @@ import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
-import { H2 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
@@ -123,11 +123,11 @@ const DividendesExplanation = () => {
 						align-items: baseline;
 					`}
 				>
-					<H2>
+					<H3 as="h2">
 						<Trans i18nKey="payslip.repartition">
 							Répartition du total chargé
 						</Trans>
-					</H2>
+					</H3>
 				</div>
 				<StackedBarChart
 					precision={0.1}

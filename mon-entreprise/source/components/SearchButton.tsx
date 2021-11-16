@@ -1,21 +1,10 @@
+import { Button } from 'DesignSystem/buttons'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
-
-const SearchTriggerButton = styled.button`
-	display: flex;
-	border: 0px solid;
-	border-color: rgb(41, 117, 209);
-	padding: 0.6rem;
-	font-size: 2rem;
-	align-items: center;
-	justify-items: center;
-	color: rgb(31, 42, 106);
-	margin: auto;
-`
 
 export default function SearchButton() {
 	const { pathname } = useLocation()
@@ -32,9 +21,8 @@ export default function SearchButton() {
 		<PopoverWithTrigger
 			title={t('Que cherchez-vous ?')}
 			trigger={(buttonProps) => (
-				<SearchTriggerButton {...buttonProps} id="search-display-button">
-					<svg
-						style={{ height: '2rem' }}
+				<StyledButton light {...buttonProps}>
+					<StyledIcon
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
@@ -46,14 +34,22 @@ export default function SearchButton() {
 							strokeWidth={3}
 							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
 						/>
-					</svg>
-					<div className="sr-only">
-						<Trans>Rechercher</Trans>
-					</div>
-				</SearchTriggerButton>
+					</StyledIcon>
+					<Trans>Rechercher</Trans>
+				</StyledButton>
 			)}
 		>
 			<SearchRulesAndSimulators />
 		</PopoverWithTrigger>
 	)
 }
+const StyledButton = styled(Button)`
+	display: flex;
+	align-items: center;
+	margin-right: ${({ theme }) => theme.spacings.md};
+`
+
+const StyledIcon = styled.svg`
+	height: ${({ theme }) => theme.spacings.md};
+	margin-right: ${({ theme }) => theme.spacings.xs};
+`
