@@ -49,7 +49,7 @@ export default function PopoverWithTrigger({
 			{state.isOpen && (
 				<Popover
 					title={title}
-					onClose={state.close.bind(state)}
+					onClose={() => state.close()}
 					isDismissable
 					{...overlayProps}
 					role="dialog"

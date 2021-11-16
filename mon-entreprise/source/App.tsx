@@ -21,7 +21,6 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import './App.css'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'

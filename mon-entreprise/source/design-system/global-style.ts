@@ -1,5 +1,16 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
+export const SROnly = css`
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap; /* added line */
+	border: 0;
+`
 /*
  * Les @font-face sont généré avec https://google-webfonts-helper.herokuapp.com/
  * Les fonts sont stockées dans source/static/fonts
@@ -124,15 +135,7 @@ button:enabled {
 
 
 .sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap; /* added line */
-	border: 0;
+	${SROnly}
 }
 
 .print-only {

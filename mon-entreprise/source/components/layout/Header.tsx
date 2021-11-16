@@ -48,12 +48,16 @@ const StyledHeader = styled.div`
 	height: ${({ theme }) => theme.spacings.xxxl};
 	display: flex;
 	align-items: center;
+	gap: ${({ theme }) => theme.spacings.xs};
 	a {
 		height: 100%;
 	}
 	img {
 		height: 100%;
-		padding: ${({ theme }) => theme.spacings.xxs};
+		padding: ${({ theme }) => theme.spacings.xs} 0;
+	}
+	img[alt='logo urssaf'] {
+		padding: ${({ theme }) => theme.spacings.sm} 0;
 	}
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `

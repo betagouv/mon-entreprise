@@ -1,4 +1,5 @@
 import { Button } from 'DesignSystem/buttons'
+import { SROnly } from 'DesignSystem/global-style'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -35,7 +36,9 @@ export default function SearchButton() {
 							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
 						/>
 					</StyledIcon>
-					<Trans>Rechercher</Trans>
+					<StyledLabel>
+						<Trans>Rechercher</Trans>
+					</StyledLabel>
 				</StyledButton>
 			)}
 		>
@@ -45,11 +48,25 @@ export default function SearchButton() {
 }
 const StyledButton = styled(Button)`
 	display: flex;
+	flex: 0;
 	align-items: center;
 	margin-right: ${({ theme }) => theme.spacings.md};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		order: 3;
+		margin-right: 0;
+	}
 `
 
 const StyledIcon = styled.svg`
 	height: ${({ theme }) => theme.spacings.md};
 	margin-right: ${({ theme }) => theme.spacings.xs};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		margin-right: 0;
+	}
+`
+
+const StyledLabel = styled.span`
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		${SROnly}
+	}
 `
