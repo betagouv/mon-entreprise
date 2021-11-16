@@ -11,6 +11,7 @@ import Scroll from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { Article } from 'DesignSystem/card'
+import { Spacing } from 'DesignSystem/layout'
 import { H1, H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
@@ -371,9 +372,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								Vous pouvez faire votre inscription en ligne à tout moment,
 								l'enregistrer et y revenir comme vous le souhaitez.
 							</SmallBody>
+							<Spacing lg />
 							<Button
-								light
-								size="XS"
 								href={
 									isAutoentrepreneur
 										? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
