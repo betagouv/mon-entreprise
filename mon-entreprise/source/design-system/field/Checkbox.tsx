@@ -89,7 +89,7 @@ const CheckboxVisualContainer = styled.span`
 			theme.darkMode
 				? 'rgba(255,255,255,20%)'
 				: theme.colors.bases.primary[100]};
-		z-index: 0;
+		z-index: -1;
 		opacity: 0;
 		transition: all 0.15s ease;
 		transform: scale(0.5);
@@ -100,7 +100,7 @@ const CheckboxVisualContainer = styled.span`
 		transform: scale(1);
 	}
 
-	&:hover ${CheckboxVisual} {
+	&:hover {
 		border-color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
@@ -127,16 +127,19 @@ const Label = styled.label`
 	> input:checked + ${CheckboxVisualContainer} > ${CheckboxVisual} {
 		background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 		stroke: ${({ theme }) => theme.colors.extended.grey[100]};
-		border-color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.bases.primary[700]};
 
 		& > polyline {
 			stroke-dashoffset: 42;
 			transition: all 0.1s linear;
 			transition-delay: 0.075s;
 		}
+	}
+
+	> input:checked + ${CheckboxVisualContainer} {
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 `
 const LabelBody = styled(Body)`
