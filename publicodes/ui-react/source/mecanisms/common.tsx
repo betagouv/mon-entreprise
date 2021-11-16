@@ -49,23 +49,24 @@ type NodeValuePointerProps = {
 export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => {
 	const engine = useContext(EngineContext)
 	return (
-		<small
-			className="nodeValue"
+		<span
 			style={{
 				background: 'white',
 				borderBottom: '0 !important',
+				fontSize: '0.875rem',
+				lineHeight: '1.25rem',
 				margin: '0 0.2rem',
-				padding: '0 0.2rem',
+				padding: '0.1rem 0.2rem',
 				textDecoration: 'none !important',
 				boxShadow: '0px 1px 2px 1px #d9d9d9, 0 0 0 1px #d9d9d9',
-				lineHeight: '1.6em',
+				border: '1px solid #F8F9FA',
 				borderRadius: '0.2rem',
 			}}
 		>
 			{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
 				formatUnit: engine?.getOptions()?.formatUnit,
 			})}
-		</small>
+		</span>
 	)
 }
 
@@ -235,10 +236,10 @@ const StyledMecanism = styled.div<{ name: string }>`
 	position: relative;
 	flex: 1;
 	flex-direction: column;
+	text-align: left;
 	border-color: ${({ name }) => mecanismColors(name)};
-
-	.key {
-		font-weight: bold;
+	.properties > li {
+		margin: 1rem 0;
 	}
 `
 
@@ -308,7 +309,14 @@ export function Leaf(
 		return <Explanation node={engine?.evaluate(rule)} />
 	}
 	return (
-		<div style={{ display: 'inline' }}>
+		<div
+			style={{
+				display: 'inline',
+				whiteSpace: 'nowrap',
+				maxWidth: '100%',
+				textOverflow: 'ellipsis',
+			}}
+		>
 			<span>
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
@@ -326,11 +334,7 @@ export function Leaf(
 				)}
 			</span>{' '}
 			{!folded && (
-				<div
-					style={{
-						width: '100%',
-					}}
-				>
+				<div>
 					<UnfoldIsEnabledContext.Provider value={false}>
 						<Explanation node={engine?.evaluate(rule)} />
 					</UnfoldIsEnabledContext.Provider>

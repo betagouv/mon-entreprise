@@ -1,20 +1,22 @@
+import { Grid } from '@mui/material'
 import SearchRules from 'Components/search/SearchRules'
 import { FromBottom } from 'Components/ui/animate'
-import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H1 } from 'DesignSystem/typography/heading'
-import { Link } from 'DesignSystem/typography/link'
+import { Button } from 'DesignSystem/buttons'
+import { H1, H2, H3, H4, H5 } from 'DesignSystem/typography/heading'
+import { Link, StyledLink } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useCallback, useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, Route, useHistory, useLocation } from 'react-router-dom'
+import { Redirect, Route, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import { TrackPage } from '../ATInternetTracking'
@@ -22,12 +24,6 @@ import RuleLink from '../components/RuleLink'
 import { capitalise0 } from '../utils'
 
 export default function MonEntrepriseRulePage() {
-	const currentSimulation = useSelector(
-		(state: RootState) => !!state.simulation?.url
-	)
-	const documentationColor = useSelector(
-		(state: RootState) => state.simulation?.config.color
-	)
 	const engine = useEngine()
 	const documentationPath = useContext(SitePathsContext).documentation.index
 	const { pathname } = useLocation()
@@ -56,47 +52,40 @@ export default function MonEntrepriseRulePage() {
 				name={documentationSitePaths[pathname]}
 			/>
 			<ScrollToTop key={pathname} />
-			<ThemeColorsProvider color={documentationColor}>
-				<div
-					css={`
-						display: flex;
-						margin-top: 2rem;
-						justify-content: space-between;
-					`}
-				>
-					{currentSimulation ? <BackToSimulation /> : <span />}
-				</div>
-				<Route
-					path={documentationPath + '/:name+'}
-					render={({ match }) => (
-						<RulePage
-							language={i18n.language as 'fr' | 'en'}
-							rulePath={match.params.name}
-							engine={engine}
-							documentationPath={documentationPath}
-							renderers={{
-								Head: Helmet,
-								Link,
-								References,
-							}}
-						/>
-					)}
-				/>
-			</ThemeColorsProvider>
+			<Grid item md={10}>
+				<BackToSimulation />
+				<StyledDocumentation>
+					<Route
+						path={documentationPath + '/:name+'}
+						render={({ match }) => (
+							<RulePage
+								language={i18n.language as 'fr' | 'en'}
+								rulePath={match.params.name}
+								engine={engine}
+								documentationPath={documentationPath}
+								renderers={{
+									Head: Helmet,
+									Link,
+									References,
+								}}
+							/>
+						)}
+					/>
+				</StyledDocumentation>
+			</Grid>
 		</FromBottom>
 	)
 }
 
 function BackToSimulation() {
 	const url = useSelector((state: RootState) => state.simulation?.url)
-	const history = useHistory()
-	const handleClick = useCallback(() => {
-		url && history.push(url)
-	}, [history, url])
+	if (!url) {
+		return null
+	}
 	return (
-		<Link onPress={handleClick}>
-			← <Trans i18nKey="back">Reprendre la simulation</Trans>
-		</Link>
+		<Button to={url}>
+			← <Trans i18nKey="back">Retourner à la simulation</Trans>
+		</Button>
 	)
 }
 
@@ -215,4 +204,61 @@ const StyledReferences = styled.ul`
 		max-width: 100%;
 		border-radius: 0.3em;
 	}
+`
+
+// HACKKKKY THING. DO NOT DO THIS AT HOME
+function componentCSS(rules: any, props: any) {
+	return rules
+		.map((x: any) => {
+			if (typeof x !== 'function') {
+				return x
+			}
+			const result = x(props)
+			if (typeof result === 'string') {
+				return result
+			}
+			if (Array.isArray(result)) {
+				return componentCSS(result, props)
+			}
+			console.error('Should not happen', result)
+		})
+		.join('')
+}
+
+const StyledDocumentation = styled.div`
+	h1 {
+		${(props) => componentCSS((H1.componentStyle as any).rules, props)}
+	}
+	h2 {
+		${(props) => componentCSS((H2.componentStyle as any).rules, props)}
+	}
+	h3 {
+		${(props) => componentCSS((H3.componentStyle as any).rules, props)}
+	}
+	h4 {
+		${(props) => componentCSS((H4.componentStyle as any).rules, props)}
+	}
+	h5 {
+		${(props) => componentCSS((H5.componentStyle as any).rules, props)}
+	}
+	p {
+		${(props) => componentCSS((Body.componentStyle as any).rules, props)}
+	}
+	Ul {
+		${(props) => componentCSS((Ul.componentStyle as any).rules, props)}
+	}
+	Li {
+		${(props) => componentCSS((Li.componentStyle as any).rules, props)}
+	}
+	a {
+		${(props) => componentCSS((StyledLink.componentStyle as any).rules, props)}
+	}
+	button {
+		font-size: ${({ theme }) => theme.baseFontSize};
+		font-family: ${({ theme }) => theme.fonts.main};
+	}
+	font-size: ${({ theme }) => theme.baseFontSize};
+	font-family: ${({ theme }) => theme.fonts.main};
+	font-size: 1rem;
+	line-height: 1.5rem;
 `

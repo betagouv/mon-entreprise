@@ -2,11 +2,12 @@ import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { FromBottom } from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H1 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackChapter } from '../../../ATInternetTracking'
 import AutoEntrepreneur from './AutoEntrepreneur'
@@ -49,16 +50,9 @@ export default function Créer() {
 	useResetFollowingAnswers()
 	return (
 		<>
-			<div>
-				<NavLink
-					to={sitePaths.créer.index}
-					exact
-					activeClassName="ui__ hide"
-					className="ui__ simple push-left small button"
-				>
-					← <Trans>Retour</Trans>
-				</NavLink>
-			</div>
+			<Link to={sitePaths.créer.index}>
+				← <Trans>Retour</Trans>
+			</Link>
 			<TrackChapter chapter2="guide" />
 			<H1>
 				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>

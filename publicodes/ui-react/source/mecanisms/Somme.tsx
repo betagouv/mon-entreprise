@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
+import styled from 'styled-components'
 import Explanation from '../Explanation'
 import { Mecanism, UnfoldIsEnabledContext } from './common'
 
@@ -87,9 +87,8 @@ const StyledRow = styled.div`
 		display: flex;
 		max-width: 100%;
 		align-items: baseline;
+		line-height: 2rem;
 
-		padding: 0.1em 0.4em;
-		padding-top: 0.2em;
 		overflow: hidden;
 		flex-wrap: wrap;
 	}

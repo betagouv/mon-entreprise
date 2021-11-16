@@ -76,9 +76,7 @@ function Issue({
 	return (
 		<FromTop>
 			<li>
-				{count > 1 && (
-					<span className="ui__ small label">{count} demandes</span>
-				)}{' '}
+				{count > 1 && <span>{count} demandes</span>}{' '}
 				<a href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}>
 					{title}
 				</a>{' '}

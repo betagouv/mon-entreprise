@@ -54,7 +54,7 @@ type StyledButtonProps = {
 	light: boolean
 }
 
-const StyledButton = styled.button<StyledButtonProps>`
+export const StyledButton = styled.button<StyledButtonProps>`
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: ${({ size }) => {
