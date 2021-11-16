@@ -2,6 +2,7 @@ import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+import { Button } from '.'
 
 type ButtonHelpProps = {
 	type: 'aide' | 'info'
@@ -60,15 +61,15 @@ const CircleIcon = styled.svg`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
 `
 
-const StyledButton = styled.button<{ light: boolean }>`
+const StyledButton = styled(Button)<{ light: boolean }>`
 	--padding: 2px;
 	height: calc(${({ theme }) => theme.spacings.md} + 2 * var(--padding));
+	padding: 0;
 	padding-left: var(--padding);
 	padding-right: ${({ theme }) => theme.spacings.xs};
 	font-size: 14px;
 	line-height: 20px;
 	vertical-align: baseline;
-	font-family: ${({ theme }) => theme.fonts.main};
 	text-transform: capitalize;
 	font-weight: 700;
 	display: inline-flex;
@@ -79,7 +80,6 @@ const StyledButton = styled.button<{ light: boolean }>`
 	background-color: ${({ theme, light }) =>
 		light ? theme.colors.extended.grey[100] : theme.colors.bases.primary[100]};
 	border-radius: calc(${({ theme }) => theme.spacings.md} / 2 + var(--padding));
-	transition: all 0.1s;
 
 	:hover {
 		background-color: ${({ theme, light }) => theme.colors.bases.primary[200]};
