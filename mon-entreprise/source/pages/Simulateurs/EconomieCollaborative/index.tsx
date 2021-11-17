@@ -22,7 +22,7 @@ export default function ÉconomieCollaborative() {
 		<>
 			<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative" />
 			<div css="transform: translateY(2rem)">
-				<Link to={indexPath}>
+				<Link exact activeStyle={{ display: 'none' }} to={indexPath}>
 					←{' '}
 					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités

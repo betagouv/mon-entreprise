@@ -1,7 +1,7 @@
 import { useButton } from '@react-aria/button'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import React, { useRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 export const StyledLinkHover = css`
@@ -30,11 +30,11 @@ export const StyledLink = styled.a`
 export const Link = (
 	ariaButtonProps: GenericButtonOrLinkProps & { children: React.ReactNode }
 ) => {
-	const elementType: 'a' | 'button' | typeof RouterLink =
+	const elementType: 'a' | 'button' | typeof NavLink =
 		'href' in ariaButtonProps
 			? 'a'
 			: 'to' in ariaButtonProps
-			? RouterLink
+			? NavLink
 			: 'button'
 
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
