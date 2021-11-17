@@ -233,17 +233,18 @@
 			// Set the main colors from the provided customization in the URL We do it
 			// before loading the whole JS bundle to avoid a UI flash. cf. #1786
 			try {
-				let iframeColor = new URLSearchParams(
+				let rawColor = new URLSearchParams(
 					document.location.search.substring(1)
-				).get('couleur')
+				).get('couleur');
+				let iframeColor = rawColor && (JSON.parse(decodeURIComponent(rawColor)));
+
 				if (iframeColor) {
 					;[
 						document.documentElement,
 						...document.querySelectorAll('.js-color-element'),
 					].forEach((element) => {
-						element.style.setProperty('--color', iframeColor)
-						element.style.setProperty('--lightColor', iframeColor)
-						element.style.setProperty('--darkColor', iframeColor)
+						element.style.setProperty('--COLOR_HUE', iframeColor[0])
+						element.style.setProperty('--COLOR_SATURATION', iframeColor[1])
 					})
 				}
 			} catch (e) {

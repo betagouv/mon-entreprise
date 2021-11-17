@@ -11,9 +11,10 @@ import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePaths } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
-import { Body, Intro } from 'DesignSystem/typography/paragraphs'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -102,6 +103,7 @@ export default function Gérer() {
 					)}
 					<CompanySection company={company} />
 				</PageHeader>
+				<Spacing xl />
 				<>
 					<section>
 						<Grid container spacing={3}>
@@ -221,14 +223,18 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					<Popover
 						title={t('gérer.entreprise.auto', 'Êtes-vous auto-entrepreneur ?')}
 					>
-						<div className="ui__ answer-group">
-							<Button onPress={() => handleAnswerAutoEntrepreneur(true)}>
-								<Trans>Oui</Trans>
-							</Button>
-							<Button onPress={() => handleAnswerAutoEntrepreneur(false)}>
-								<Trans>Non</Trans>
-							</Button>
-						</div>
+						<Grid container spacing={1}>
+							<Grid item>
+								<Button onPress={() => handleAnswerAutoEntrepreneur(true)}>
+									<Trans>Oui</Trans>
+								</Button>
+							</Grid>
+							<Grid item>
+								<Button onPress={() => handleAnswerAutoEntrepreneur(false)}>
+									<Trans>Non</Trans>
+								</Button>
+							</Grid>
+						</Grid>
 					</Popover>
 				</>
 			)}
@@ -248,14 +254,18 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 								même régime de sécurité sociale que si vous êtes minoritaire.
 							</Trans>
 						</Body>
-						<div className="ui__ answer-group">
-							<Button onPress={() => handleAnswerDirigeantMajoritaire(true)}>
-								<Trans>Oui</Trans>
-							</Button>
-							<Button onPress={() => handleAnswerDirigeantMajoritaire(false)}>
-								<Trans>Non</Trans>
-							</Button>
-						</div>
+						<Grid container spacing={1}>
+							<Grid item>
+								<Button onPress={() => handleAnswerDirigeantMajoritaire(true)}>
+									<Trans>Oui</Trans>
+								</Button>
+							</Grid>
+							<Grid item>
+								<Button onPress={() => handleAnswerDirigeantMajoritaire(false)}>
+									<Trans>Non</Trans>
+								</Button>
+							</Grid>
+						</Grid>
 					</Popover>{' '}
 				</>
 			)}
@@ -274,31 +284,28 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 			{company ? (
 				<>
 					<CompanyDetails siren={company.siren} />
-					<p>
-						{' '}
-						{company.statutJuridique !== 'NON_IMPLÉMENTÉ' && (
-							<>
-								<span className="ui__ label">
-									{company.isAutoEntrepreneur
-										? 'Auto-entrepreneur'
-										: company.statutJuridique}
+
+					{company.statutJuridique !== 'NON_IMPLÉMENTÉ' && (
+						<SmallBody>
+							{company.isAutoEntrepreneur
+								? 'Auto-entrepreneur'
+								: company.statutJuridique}
+
+							{company.isDirigeantMajoritaire != null && (
+								<span css="margin-left: 1rem;" className="ui__ label">
+									{company.isDirigeantMajoritaire ? (
+										<Trans i18nKey="gérer.entreprise.majoritaire">
+											Dirigeant majoritaire
+										</Trans>
+									) : (
+										<Trans i18nKey="gérer.entreprise.minoritaire">
+											Dirigeant minoritaire
+										</Trans>
+									)}
 								</span>
-								{company.isDirigeantMajoritaire != null && (
-									<span css="margin-left: 1rem;" className="ui__ label">
-										{company.isDirigeantMajoritaire ? (
-											<Trans i18nKey="gérer.entreprise.majoritaire">
-												Dirigeant majoritaire
-											</Trans>
-										) : (
-											<Trans i18nKey="gérer.entreprise.minoritaire">
-												Dirigeant minoritaire
-											</Trans>
-										)}
-									</span>
-								)}
-							</>
-						)}
-					</p>
+							)}
+						</SmallBody>
+					)}
 					<Button
 						light
 						onPress={() => {

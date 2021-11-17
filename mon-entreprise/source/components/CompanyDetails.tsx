@@ -1,8 +1,10 @@
+import Skeleton from 'Components/ui/Skeleton'
+import { Strong } from 'DesignSystem/typography'
+import { H3 } from 'DesignSystem/typography/heading'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Skeleton from 'Components/ui/Skeleton'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
-import { H3 } from 'DesignSystem/typography/heading'
 
 type Company = {
 	denomination: string
@@ -56,15 +58,15 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 				)}
 			</H3>
 
-			<p className="ui__ notice">
+			<SmallBody>
 				<Trans>Crée le</Trans>{' '}
-				<strong>
+				<Strong>
 					{company ? (
 						DateFormatter.format(new Date(company.date_creation))
 					) : (
 						<Skeleton width={80} />
 					)}
-				</strong>
+				</Strong>
 				,&nbsp;
 				{company ? (
 					company.etablissement_siege ? (
@@ -79,7 +81,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 				) : (
 					<Skeleton width={100} />
 				)}
-			</p>
+			</SmallBody>
 		</>
 	)
 }

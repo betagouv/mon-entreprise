@@ -5,6 +5,7 @@ import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
+import { ThemeContext } from 'styled-components'
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import Emoji from './utils/Emoji'
 
@@ -23,7 +24,11 @@ function ChartItemBar({
 }: ChartItemBarProps) {
 	const language = useTranslation().i18n.language
 	const disableAnimation = useContext(DisableAnimationContext)
-
+	const {
+		colors: {
+			bases: { primary },
+		},
+	} = useContext(ThemeContext)
 	const style = useSpring({
 		config: config.slow,
 		delay: 100,
@@ -37,11 +42,13 @@ function ChartItemBar({
 			{disableAnimation ? (
 				<div
 					className="distribution-chart__bar print-background-force"
+					css={{ backgroundColor: primary[600] }}
 					style={{ flex: percentage }}
 				/>
 			) : (
 				<animated.div
 					className="distribution-chart__bar print-background-force"
+					css={{ backgroundColor: primary[600] }}
 					style={style}
 				/>
 			)}

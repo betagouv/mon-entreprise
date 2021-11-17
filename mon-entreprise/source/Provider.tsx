@@ -6,6 +6,7 @@ import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { GlobalStyle } from 'DesignSystem/global-style'
 import { Container } from 'DesignSystem/layout'
+import DesignSystemThemeProvider from 'DesignSystem/root'
 import { H1 } from 'DesignSystem/typography/heading'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
@@ -125,9 +126,11 @@ export default function Provider({
 	// Note that the iframeColor is first set in the index.html file, but without
 	// the full palette generation that happen here. This is to prevent a UI
 	// flash, cf. #1786.
-	const iframeCouleur = new URLSearchParams(
+	const rawCouleur = new URLSearchParams(
 		document.location.search.substring(1)
 	).get('couleur')
+	const iframeCouleur: [number, number, number] | undefined =
+		rawCouleur && JSON.parse(decodeURIComponent(rawCouleur))
 
 	return (
 		<>
@@ -158,35 +161,35 @@ export default function Provider({
 				}
 			>
 				<ReduxProvider store={store}>
-					<ThemeColorsProvider
-						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
-					>
-						<TrackingContext.Provider
-							value={
-								new ATTracker({
-									language: i18next.language as 'fr' | 'en',
-								})
-							}
-						>
-							<DisableAnimationOnPrintProvider>
-								<IsEmbeddedProvider>
-									<SiteNameContext.Provider value={basename}>
-										<SitePathProvider value={sitePaths}>
-											<I18nextProvider i18n={i18next}>
-												<HelmetProvider>
-													<OverlayProvider>
-														<Router history={history}>
-															<>{children}</>
-														</Router>
-													</OverlayProvider>
-												</HelmetProvider>
-											</I18nextProvider>
-										</SitePathProvider>
-									</SiteNameContext.Provider>
-								</IsEmbeddedProvider>
-							</DisableAnimationOnPrintProvider>
-						</TrackingContext.Provider>
-					</ThemeColorsProvider>
+					<DesignSystemThemeProvider>
+						<ThemeColorsProvider color={iframeCouleur}>
+							<TrackingContext.Provider
+								value={
+									new ATTracker({
+										language: i18next.language as 'fr' | 'en',
+									})
+								}
+							>
+								<DisableAnimationOnPrintProvider>
+									<IsEmbeddedProvider>
+										<SiteNameContext.Provider value={basename}>
+											<SitePathProvider value={sitePaths}>
+												<I18nextProvider i18n={i18next}>
+													<HelmetProvider>
+														<OverlayProvider>
+															<Router history={history}>
+																<>{children}</>
+															</Router>
+														</OverlayProvider>
+													</HelmetProvider>
+												</I18nextProvider>
+											</SitePathProvider>
+										</SiteNameContext.Provider>
+									</IsEmbeddedProvider>
+								</DisableAnimationOnPrintProvider>
+							</TrackingContext.Provider>
+						</ThemeColorsProvider>
+					</DesignSystemThemeProvider>
 				</ReduxProvider>
 			</ErrorBoundary>
 		</>

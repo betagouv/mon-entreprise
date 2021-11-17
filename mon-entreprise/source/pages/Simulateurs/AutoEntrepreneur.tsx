@@ -6,10 +6,10 @@ import Simulation from 'Components/Simulation'
 import { InstitutionsPartenairesAutoEntrepreneur } from 'Components/simulationExplanation/InstitutionsPartenaires'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { ThemeContext } from 'styled-components'
 
 export default function AutoEntrepreneur() {
 	return (
@@ -42,7 +42,8 @@ export default function AutoEntrepreneur() {
 }
 function Explanation() {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
+
 	return (
 		<section>
 			<H3 as="h2">
@@ -53,18 +54,18 @@ function Explanation() {
 					{
 						dottedName: 'dirigeant . auto-entrepreneur . net après impôt',
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
-						color: palettes[0][0],
+						color: colors.bases.primary[600],
 					},
 					{
 						dottedName: 'impôt . montant',
 						title: t('impôt'),
-						color: palettes[1][0],
+						color: colors.bases.secondary[500],
 					},
 					{
 						dottedName:
 							'dirigeant . auto-entrepreneur . cotisations et contributions',
 						title: t('Cotisations'),
-						color: palettes[1][1],
+						color: colors.bases.secondary[300],
 					},
 				]}
 			/>

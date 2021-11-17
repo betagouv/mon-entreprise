@@ -1,4 +1,3 @@
-import { ThemeColorsProvider } from 'Components/utils/colors'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -69,19 +68,17 @@ export default function PageData({
 			)}
 			{description && !inIframe && description}
 
-			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
-				<Component />
+			<Component />
 
-				{!inIframe && (
-					<>
-						<section>{seoExplanations}</section>
-						<NextSteps
-							iframePath={privateIframe ? undefined : iframePath}
-							nextSteps={nextSteps}
-						/>
-					</>
-				)}
-			</ThemeColorsProvider>
+			{!inIframe && (
+				<>
+					<section>{seoExplanations}</section>
+					<NextSteps
+						iframePath={privateIframe ? undefined : iframePath}
+						nextSteps={nextSteps}
+					/>
+				</>
+			)}
 		</>
 	)
 }

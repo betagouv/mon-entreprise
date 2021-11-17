@@ -6,7 +6,6 @@ import Simulation from 'Components/Simulation'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
 import Warning from 'Components/ui/WarningBlock'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { H3 } from 'DesignSystem/typography/heading'
@@ -15,6 +14,7 @@ import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { ThemeContext } from 'styled-components'
 
 export default function DividendesSimulation() {
 	return (
@@ -112,7 +112,7 @@ const DividendesSimulationGoals = () => (
 
 const DividendesExplanation = () => {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 
 	return (
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">
@@ -135,19 +135,19 @@ const DividendesExplanation = () => {
 						{
 							dottedName: "bénéficiaire . dividendes . nets d'impôt",
 							title: t('Dividendes nets'),
-							color: palettes[0][0],
+							color: colors.bases.primary[600],
 						},
 						{
 							dottedName:
 								'impôt . dividendes . montant en sus des autres revenus imposables',
 							title: t('Impôt'),
-							color: palettes[1][0],
+							color: colors.bases.secondary[500],
 						},
 						{
 							dottedName:
 								'bénéficiaire . dividendes . cotisations et contributions',
 							title: t('Cotisations'),
-							color: palettes[1][1],
+							color: colors.bases.secondary[300],
 						},
 					]}
 				/>

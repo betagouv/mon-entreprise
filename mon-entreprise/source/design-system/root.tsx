@@ -1,5 +1,5 @@
+import { theme as urssafTheme } from 'DesignSystem/theme'
 import { ReactNode } from 'react'
-import { theme as ursaafTheme } from 'DesignSystem/theme'
 import { ThemeProvider } from 'styled-components'
 
 type SystemRootProps = {
@@ -7,7 +7,7 @@ type SystemRootProps = {
 }
 
 const SystemRoot = ({ children }: SystemRootProps) => {
-	return <ThemeProvider theme={ursaafTheme}>{children}</ThemeProvider>
+	return <ThemeProvider theme={urssafTheme}>{children}</ThemeProvider>
 }
 
 export default SystemRoot

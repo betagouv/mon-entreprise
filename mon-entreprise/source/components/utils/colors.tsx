@@ -1,16 +1,8 @@
-import convert from 'color-convert'
-import React, { createContext, useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-export const ThemeColorsContext = createContext({
-	palettes: [
-		['red', 'red', 'red'],
-		['blue', 'blue', 'blue'],
-	],
-})
-
 type ProviderProps = {
-	color?: string | null
+	color?: [number, number, number]
 	children: React.ReactNode
 }
 
@@ -30,8 +22,7 @@ const PALETTE = {
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	const divRef = useRef<HTMLDivElement>(null)
 	const [hue, saturation] = useMemo(
-		() =>
-			color ? convert.hex.hsl(color.slice(1)).slice(0, 2) : DEFAULT_COLOR_HS,
+		() => (color ? color.slice(0, 2) : DEFAULT_COLOR_HS),
 		[color]
 	)
 	useEffect(() => {

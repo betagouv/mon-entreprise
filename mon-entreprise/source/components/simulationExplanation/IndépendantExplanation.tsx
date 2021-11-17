@@ -7,7 +7,6 @@ import Value, {
 } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
 import { H3 } from 'DesignSystem/typography/heading'
 import { Li, Ul } from 'DesignSystem/typography/list'
@@ -17,6 +16,7 @@ import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import { ThemeContext } from 'styled-components'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
 import InstitutionsPartenaires from './InstitutionsPartenaires'
@@ -24,7 +24,7 @@ import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 
 	return (
 		<>
@@ -44,17 +44,17 @@ export default function IndépendantExplanation() {
 							{
 								dottedName: 'dirigeant . rémunération . nette après impôt',
 								title: t('Revenu disponible'),
-								color: palettes[0][0],
+								color: colors.bases.primary[600],
 							},
 							{
 								dottedName: 'impôt . montant',
 								title: t('impôt sur le revenu'),
-								color: palettes[1][0],
+								color: colors.bases.secondary[500],
 							},
 							{
 								dottedName:
 									'dirigeant . indépendant . cotisations et contributions',
-								color: palettes[1][1],
+								color: colors.bases.secondary[300],
 							},
 						]}
 					/>

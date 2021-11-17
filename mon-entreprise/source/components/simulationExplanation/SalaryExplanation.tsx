@@ -2,7 +2,6 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { FromTop } from 'Components/ui/animate'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
 import { H2, H3 } from 'DesignSystem/typography/heading'
@@ -10,6 +9,7 @@ import { Link } from 'DesignSystem/typography/link'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { ThemeContext } from 'styled-components'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
@@ -68,7 +68,7 @@ export default function SalaryExplanation() {
 
 function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 
 	return (
 		<section>
@@ -97,16 +97,16 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					{
 						dottedName: 'contrat salarié . rémunération . net après impôt',
 						title: t('Revenu disponible'),
-						color: palettes[0][0],
+						color: colors.bases.primary[600],
 					},
 					{
 						dottedName: 'impôt . montant',
 						title: t('impôt'),
-						color: palettes[1][0],
+						color: colors.bases.secondary[500],
 					},
 					{
 						dottedName: 'contrat salarié . cotisations',
-						color: palettes[1][1],
+						color: colors.bases.secondary[300],
 					},
 				]}
 			/>

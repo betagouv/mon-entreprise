@@ -14,6 +14,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
+import { hexToHSL } from '../../hexToHSL'
 import Iframes from '../Iframes'
 import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
@@ -47,7 +48,7 @@ function IntegrationCustomizer() {
 		history.replace({ search: `?module=${currentModule}` })
 	}, [currentModule])
 
-	const [color, setColor] = useState<string>()
+	const [color, setColor] = useState<string | undefined>()
 	return (
 		<section>
 			<H2>
@@ -157,7 +158,9 @@ function IntegrationCustomizer() {
 								key={currentModule}
 								initialEntries={[`/iframes/${currentModule}`]}
 							>
-								<ThemeColorsProvider color={color}>
+								<ThemeColorsProvider
+									color={color == null ? color : hexToHSL(color)}
+								>
 									<IsEmbeddedProvider>
 										<Iframes />
 									</IsEmbeddedProvider>

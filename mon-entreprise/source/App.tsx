@@ -10,7 +10,6 @@ import {
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
-import SystemRoot from 'DesignSystem/root'
 import 'iframe-resizer'
 import { StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -66,11 +65,9 @@ export default function Root({ basename, rules }: RootProps) {
 					inFranceApp: retrievePersistedInFranceApp(),
 				}}
 			>
-				<SystemRoot>
-					<EngineProvider value={engine}>
-						<Router />
-					</EngineProvider>
-				</SystemRoot>
+				<EngineProvider value={engine}>
+					<Router />
+				</EngineProvider>
 			</Provider>
 		</StrictMode>
 	)
