@@ -55,6 +55,8 @@ type StyledButtonProps = {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
+	display: flex;
+	width: fit-content;
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: ${({ size }) => {

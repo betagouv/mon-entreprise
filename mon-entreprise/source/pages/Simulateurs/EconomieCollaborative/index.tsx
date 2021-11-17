@@ -1,15 +1,16 @@
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { NavLink, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
+import useSimulatorsData from '../metadata'
 import Activité from './Activité'
 import ActivitésSelection from './ActivitésSelection'
 import reducer from './reducer'
 import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
-import useSimulatorsData from '../metadata'
-import { useIsEmbedded } from 'Components/utils/embeddedContext'
 
 export default function ÉconomieCollaborative() {
 	const sitePaths = useContext(SitePathsContext)
@@ -21,17 +22,12 @@ export default function ÉconomieCollaborative() {
 		<>
 			<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative" />
 			<div css="transform: translateY(2rem)">
-				<NavLink
-					to={indexPath}
-					exact
-					activeClassName="ui__ hide"
-					className="ui__ simple small push-left button"
-				>
+				<Link to={indexPath}>
 					←{' '}
 					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités
 					</Trans>
-				</NavLink>
+				</Link>
 			</div>
 			<StoreProvider
 				reducer={reducer}

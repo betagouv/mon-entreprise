@@ -15,18 +15,18 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const { state, dispatch } = useContext(StoreContext)
 	const nextActivité = nextActivitéSelector(state, activité)
+	const nextTo = nextActivité
+		? sitePaths.simulateurs.économieCollaborative.index + '/' + nextActivité
+		: sitePaths.simulateurs.économieCollaborative.votreSituation
 	return (
 		<p css="text-align: center">
 			<Button
 				isDisabled={disabled}
 				onPress={() => dispatch(activitéVue(activité))}
-				to={
-					nextActivité
-						? sitePaths.simulateurs.économieCollaborative.index +
-						  '/' +
-						  nextActivité
-						: sitePaths.simulateurs.économieCollaborative.votreSituation
-				}
+				to={nextTo}
+				css={`
+					margin: auto;
+				`}
 			>
 				{nextActivité || disabled ? (
 					<Trans>Continuer</Trans>

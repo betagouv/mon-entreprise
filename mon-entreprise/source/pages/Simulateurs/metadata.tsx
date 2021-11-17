@@ -22,6 +22,7 @@ import indépendantConfig from './configs/indépendant.yaml'
 import professionLibéraleConfig from './configs/profession-libérale.yaml'
 import salariéConfig from './configs/salarié.yaml'
 import DividendesSimulation from './Dividendes'
+import ÉconomieCollaborative from './EconomieCollaborative'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
@@ -40,7 +41,6 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
-import ÉconomieCollaborative from './ÉconomieCollaborative'
 
 const simulateurs = [
 	'salarié',

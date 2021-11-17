@@ -41,6 +41,7 @@ export default function Simulateurs() {
 	return (
 		<>
 			<ScrollToTop key={pathname} />
+
 			{pathname !== sitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
 					<Link to={sitePaths.gérer.index}>
@@ -57,6 +58,7 @@ export default function Simulateurs() {
 						</Link>
 					)
 				) : null)}
+
 			<Switch>
 				<Route exact path={sitePaths.simulateurs.index} component={Home} />
 				{simulatorRoutes}

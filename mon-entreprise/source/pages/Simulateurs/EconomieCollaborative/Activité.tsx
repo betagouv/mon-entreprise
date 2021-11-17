@@ -5,7 +5,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Radio, RadioGroup } from 'DesignSystem/field'
 import { H1, H2 } from 'DesignSystem/typography/heading'
-import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -43,7 +43,7 @@ export default function Activité({
 				<TrackPage name={activité.titre} />
 				<ScrollToTop />
 				<H1>{activité.titre}</H1>
-				<Intro>{activité.explication}</Intro>
+				<Body>{activité.explication}</Body>
 				<H2>
 					<Trans i18nKey="économieCollaborative.activité.choix">
 						Quelles sont plus précisément les activités exercées ?
@@ -85,15 +85,15 @@ export default function Activité({
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
 					<Trans i18nKey="économieCollaborative.activité.pro">
 						<H2>Il s'agit d'une activité professionnelle</H2>
-						<p>
+						<Body>
 							Les revenus de cette activité sont considérés comme des{' '}
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
-						</p>
+						</Body>
 					</Trans>
 				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
 					<Trans i18nKey="économieCollaborative.activité.impôt">
 						<H2>Vous devez déclarez vos revenus aux impôts</H2>
-						<p>Les revenus de cette activité sont imposables.</p>
+						<Body>Les revenus de cette activité sont imposables.</Body>
 					</Trans>
 				) : (
 					<>

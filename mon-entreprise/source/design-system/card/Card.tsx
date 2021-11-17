@@ -14,7 +14,7 @@ export type GenericCardProps = {
 } & GenericButtonOrLinkProps
 
 type CardProps = GenericCardProps & {
-	ctaLabel: React.ReactNode
+	ctaLabel?: React.ReactNode
 	children: React.ReactNode
 }
 
@@ -36,14 +36,16 @@ export function Card({
 	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h2')
 	return (
-		<StyledCardContainer {...ariaButtonProps} {...buttonProps} as={elementType}>
+		<CardContainer {...ariaButtonProps} {...buttonProps} as={elementType}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader {...titleProps} />
 			<CardBody>{children}</CardBody>
-			<StyledButton size="XS" light>
-				{ctaLabel}
-			</StyledButton>
-		</StyledCardContainer>
+			{ctaLabel && (
+				<StyledButton size="XS" light>
+					{ctaLabel}
+				</StyledButton>
+			)}
+		</CardContainer>
 	)
 }
 
@@ -88,7 +90,7 @@ const IconContainer = styled.div`
 const CardBody = styled(Body)`
 	flex-grow: 1;
 `
-export const StyledCardContainer = styled.div`
+export const CardContainer = styled.div`
 	display: flex;
 	width: 100%;
 	height: 100%;

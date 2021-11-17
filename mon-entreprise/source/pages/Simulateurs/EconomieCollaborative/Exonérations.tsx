@@ -1,10 +1,11 @@
+import { CheckItem, Checklist } from 'Components/ui/Checklist'
+import { H2 } from 'DesignSystem/typography/heading'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import { changeCritèreExonération } from './actions'
-import { StoreContext } from './StoreContext'
 import { Activity } from './Activité'
-import { H2 } from 'DesignSystem/typography/heading'
+import { StoreContext } from './StoreContext'
 
 export default function Exonération({
 	exceptionsExonération,
@@ -39,7 +40,7 @@ export default function Exonération({
 					)
 				)}
 			</Checklist>
-			<p className="ui__ notice">
+			<SmallBody className="ui__ notice">
 				{exceptionsExonération && (
 					<Trans i18nKey="économieCollaborative.exonération.exception-notice">
 						Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à
@@ -51,7 +52,7 @@ export default function Exonération({
 						Si un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
 					</Trans>
 				)}
-			</p>
+			</SmallBody>
 		</>
 	)
 }

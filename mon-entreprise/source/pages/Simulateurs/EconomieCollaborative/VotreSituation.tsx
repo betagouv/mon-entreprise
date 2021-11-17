@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -10,7 +11,7 @@ import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { Redirect } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
-import { ActivitéCard } from './ActivitésSelection'
+import { ActiviteCard } from './ActiviteCard'
 import illustration from './images/multitasking.svg'
 import {
 	activitésEffectuéesSelector,
@@ -144,22 +145,22 @@ export default function VotreSituation() {
 const ActivitéList = ({ activités }: { activités: string[] }) => {
 	const { state } = useContext(StoreContext)
 	return (
-		<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
+		<Grid container spacing={2}>
 			{activités.map((title) => (
-				<ActivitéCard
-					key={title}
-					title={title}
-					className="lighter-bg"
-					answered
-					label={
-						régimeGénéralDisponibleSelector(state, title) ? (
-							<Trans i18nKey="économieCollaborative.obligations.régimeGénéralDisponible">
-								Régime général disponible
-							</Trans>
-						) : null
-					}
-				/>
+				<Grid item key={title} xs={6} md={4}>
+					<ActiviteCard
+						title={title}
+						answered
+						label={
+							régimeGénéralDisponibleSelector(state, title) ? (
+								<Trans i18nKey="économieCollaborative.obligations.régimeGénéralDisponible">
+									Régime général disponible
+								</Trans>
+							) : null
+						}
+					/>
+				</Grid>
 			))}
-		</div>
+		</Grid>
 	)
 }
