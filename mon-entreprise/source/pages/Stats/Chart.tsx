@@ -1,4 +1,3 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { formatValue } from 'publicodes'
 import React, { Fragment, useContext } from 'react'
 import {
@@ -14,6 +13,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
+import { ThemeContext } from 'styled-components'
 
 type Period = 'mois' | 'jours'
 
@@ -64,7 +64,7 @@ export default function VisitsChart({
 	startIndex,
 	endIndex,
 }: VisitsChartProps) {
-	const { darkColor, lightColor, lighterColor } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 	if (!data.length) {
 		return null
 	}
@@ -80,7 +80,11 @@ export default function VisitsChart({
 
 	function getColor(i: number): string {
 		if (!colored) {
-			return [lighterColor, lightColor, darkColor][i % 3]
+			return [
+				colors.bases.primary[200],
+				colors.bases.primary[400],
+				colors.bases.primary[600],
+			][i % 3]
 		}
 		return Palette[i % Palette.length]
 	}

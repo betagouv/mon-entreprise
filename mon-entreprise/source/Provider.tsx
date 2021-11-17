@@ -159,9 +159,7 @@ export default function Provider({
 			>
 				<ReduxProvider store={store}>
 					<ThemeColorsProvider
-						color={
-							iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined
-						}
+						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 					>
 						<TrackingContext.Provider
 							value={

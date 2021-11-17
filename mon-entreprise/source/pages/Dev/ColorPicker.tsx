@@ -1,7 +1,7 @@
-import { ChromePicker, ChromePickerProps } from 'react-color'
+import { ChromePicker } from 'react-color'
 
 type ColorPickerProps = {
-	color: ChromePickerProps['color']
+	color: string | undefined
 	onChange: (color: string) => void
 }
 

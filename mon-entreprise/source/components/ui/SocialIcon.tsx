@@ -1,5 +1,3 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
-import { useContext } from 'react'
 import styled from 'styled-components'
 
 export const icons = {

@@ -5,11 +5,9 @@ import Notifications from 'Components/Notifications'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { SimulationConfig } from 'Reducers/rootReducer'
@@ -27,8 +25,6 @@ const ISConfig = {
 } as SimulationConfig
 
 export default function ISSimulation() {
-	const { color } = useContext(ThemeColorsContext)
-	ISConfig.color = color
 	useSimulationConfig(ISConfig)
 
 	return (

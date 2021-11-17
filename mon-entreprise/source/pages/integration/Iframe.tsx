@@ -1,8 +1,5 @@
 import { Grid } from '@mui/material'
-import {
-	ThemeColorsContext,
-	ThemeColorsProvider,
-} from 'Components/utils/colors'
+import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -12,14 +9,7 @@ import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import urssafLogo from 'Images/Urssaf.svg'
-import React, {
-	Suspense,
-	useContext,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react'
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -57,8 +47,7 @@ function IntegrationCustomizer() {
 		history.replace({ search: `?module=${currentModule}` })
 	}, [currentModule])
 
-	const { color: defaultColor } = useContext(ThemeColorsContext)
-	const [color, setColor] = useState(defaultColor)
+	const [color, setColor] = useState<string>()
 	return (
 		<section>
 			<H2>

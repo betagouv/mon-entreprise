@@ -1,5 +1,4 @@
 import { BlobProvider } from '@react-pdf/renderer'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Button } from 'DesignSystem/buttons'
@@ -11,6 +10,7 @@ import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { RuleNode } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
+import { ThemeContext } from 'styled-components'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
 import PDFDocument from './PDFDocument'
 
@@ -29,10 +29,9 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
 	const engine = useContext(EngineContext)
-	const { darkColor } = useContext(ThemeColorsContext)
 	const signatureRef = useRef<SignaturePadInstance>()
 	const tracker = useContext(TrackingContext)
-
+	const { colors } = useContext(ThemeContext)
 	if (isMissingValues) {
 		return (
 			<blockquote>
@@ -72,14 +71,14 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					</small>
 					<div
 						css={`
-							border: 1px solid var(--darkColor);
+							border: 1px solid ${colors.bases.primary[700]};
 							border-radius: 0.3rem;
 							position: relative;
 						`}
 					>
 						<SignaturePad
 							height={200}
-							options={{ penColor: darkColor }}
+							options={{ penColor: colors.extended.grey[600] }}
 							ref={signatureRef}
 						/>
 					</div>

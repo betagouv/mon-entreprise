@@ -2,7 +2,6 @@ import { HiddenOptionContext } from 'Components/conversation/ChoicesInput'
 import Conversation from 'Components/conversation/Conversation'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -161,8 +160,6 @@ const config = {
 } as SimulationConfig
 
 export default function AidesEmbauche() {
-	const { color } = useContext(ThemeColorsContext)
-	config.color = color
 	useSimulationConfig(config)
 
 	return (
