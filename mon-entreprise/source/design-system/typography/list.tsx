@@ -1,12 +1,34 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { baseParagraphStyle } from './paragraphs'
 
 type UlProps = {
 	small?: boolean
 }
 export const Ul = styled.ul<UlProps>`
-	color: ${({ theme }) => theme.colors.bases.primary[800]};
-	font-family: ${({ theme }) => theme.fonts.main};
-	font-size: ${({ small }) => (small ? '0.875rem' : '1rem')};
-	line-height: ${({ small }) => (small ? '1.25rem' : '1.5rem')};
+	${baseParagraphStyle}
+	font-size: 1rem;
+
+	line-height: 1.5rem;
+	list-style: none;
+	position: relative;
+	padding-left: ${({ theme }) => theme.spacings.lg};
+	${({ small }) =>
+		small &&
+		css`
+			font-size: 0.875rem;
+			line-height: 1.25rem;
+		`}
 `
-export const Li = styled.li``
+export const Li = styled.li`
+	&::before {
+		content: '●';
+		font-size: 80%;
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		width: ${({ theme }) => theme.spacings.lg};
+		text-align: center;
+		color: ${({ theme }) => theme.colors.bases.secondary[400]};
+		margin-bottom: ${({ theme }) => theme.spacings.xs};
+	}
+`

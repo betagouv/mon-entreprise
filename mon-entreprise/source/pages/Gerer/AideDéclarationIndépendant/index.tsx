@@ -6,7 +6,10 @@ import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { Strong } from 'DesignSystem/typography'
 import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useCallback } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -45,33 +48,39 @@ export default function AideDéclarationIndépendant() {
 		<>
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<PageHeader picture={illustration}>
-					<p className="ui__ lead">
+					<Intro>
 						Cet outil est une aide à la déclaration de revenus à destination des{' '}
-						<strong>travailleurs indépendants</strong>. Il vous permet de
+						<Strong>travailleurs indépendants</Strong>. Il vous permet de
 						connaître le montant des charges sociales déductibles.
-					</p>
-					<p className="ui__ notice">
+					</Intro>
+					<SmallBody>
 						Vous restez entièrement responsable d'éventuelles omissions ou
 						inexactitudes dans votre déclaration.
-					</p>
+					</SmallBody>
 				</PageHeader>
 				<Warning localStorageKey="aide-déclaration-indépendant.warning">
-					<H3>Cet outil vous concerne si vous êtes dans le cas suivant :</H3>
-					<ul>
-						<li>
-							vous cotisez au régime général des travailleurs indépendants
-						</li>
-					</ul>
-					<H3>
-						Il ne vous concerne pas si vous êtes dans un des cas suivants :
-					</H3>
-					<ul>
-						<li>
-							vous exercez une activité libérale relevant d’un régime de
+					<Body>
+						<Strong>
+							Cet outil vous concerne si vous êtes dans le cas suivant :
+						</Strong>
+					</Body>
+					<Ul>
+						<Li>
+							Vous cotisez au régime général des travailleurs indépendants
+						</Li>
+					</Ul>
+					<Body>
+						<Strong>
+							Il ne vous concerne pas si vous êtes dans un des cas suivants :
+						</Strong>
+					</Body>
+					<Ul>
+						<Li>
+							Vous exercez une activité libérale relevant d’un régime de
 							retraite des professions libérales en comptabilité d'engagement
-						</li>
-						<li>votre entreprise est domiciliée dans les DOM</li>
-					</ul>
+						</Li>
+						<Li>Votre entreprise est domiciliée dans les DOM</Li>
+					</Ul>
 				</Warning>
 				<PreviousSimulationBanner />
 

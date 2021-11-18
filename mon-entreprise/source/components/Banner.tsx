@@ -3,7 +3,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import './Banner.css'
 import { FadeIn } from './ui/animate'
 import Emoji from './utils/Emoji'
 

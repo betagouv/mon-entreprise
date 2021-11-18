@@ -67,6 +67,7 @@ const StyledButton = styled(Button)<{ light: boolean }>`
 	padding: 0;
 	padding-left: var(--padding);
 	padding-right: ${({ theme }) => theme.spacings.xs};
+	width: auto;
 	font-size: 14px;
 	line-height: 20px;
 	vertical-align: baseline;

@@ -86,6 +86,7 @@ export function FromTop({
 									transform: interpolate([y], (y) =>
 										y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
 									),
+									zIndex: 0,
 									...style,
 									...inheritedStyle,
 								}}

@@ -1,11 +1,11 @@
-import Emoji from 'Components/utils/Emoji'
+import { Grid } from '@mui/material'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H2 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { connectHits, Highlight } from 'react-instantsearch-dom'
-import { Link } from 'react-router-dom'
+import { connectHits } from 'react-instantsearch-dom'
+import { SimulateurCard } from '../../pages/Simulateurs/Home'
 
 type AlgoliaSimulatorHit = {
 	objectID: string
@@ -13,23 +13,6 @@ type AlgoliaSimulatorHit = {
 	title: string
 	pathId: string
 }
-
-type SimulatorHitProps = {
-	hit: AlgoliaSimulatorHit
-	path?: string
-}
-
-const SimulatorHit = ({ hit, path = '' }: SimulatorHitProps) => (
-	<Link
-		className="simulator-hit-content ui__ interactive card box"
-		to={path || ''}
-	>
-		<div className="ui__ box-icon">
-			{hit.icône && <Emoji emoji={hit.icône} />}{' '}
-		</div>
-		<Highlight hit={hit} attribute="title" />
-	</Link>
-)
 
 type SimulatorHitsProps = {
 	hits: Array<AlgoliaSimulatorHit>
@@ -40,19 +23,21 @@ export const SimulatorHits = connectHits(({ hits }: SimulatorHitsProps) => {
 	return (
 		<>
 			{hits.length > 0 && (
-				<H2>
+				<H3 as="h2">
 					<Trans>Simulateurs</Trans>
-				</H2>
+				</H3>
 			)}
-			<div className="ais-Hits-list">
+			<Grid container spacing={2}>
 				{hits.map((hit) => (
-					<SimulatorHit
+					<SimulateurCard
 						key={hit.objectID}
-						hit={hit}
+						small
+						shortName={hit.title}
+						icône={hit.icône}
 						path={path(hit.pathId.split('.'), sitePaths)}
 					/>
 				))}
-			</div>
+			</Grid>
 		</>
 	)
 })

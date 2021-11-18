@@ -1,5 +1,5 @@
 import { FromTop } from 'Components/ui/animate'
-import { TextField } from 'DesignSystem/field'
+import { SearchField } from 'DesignSystem/field'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -185,7 +185,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 
 	return (
 		<div>
-			<TextField
+			<SearchField
 				/* role="combobox" // FIXME: Need to use a proper combobox component here */
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				id={id}

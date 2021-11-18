@@ -79,7 +79,7 @@ export default function NumberField(props: NumberFieldProps) {
 		ref.current.setSelectionRange(0, length * 2)
 	}, [])
 	return (
-		<StyledContainer>
+		<StyledNumberFieldContainer>
 			<StyledInputContainer
 				{...groupProps}
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
@@ -119,9 +119,12 @@ export default function NumberField(props: NumberFieldProps) {
 					{props.description}
 				</StyledDescription>
 			)}
-		</StyledContainer>
+		</StyledNumberFieldContainer>
 	)
 }
+const StyledNumberFieldContainer = styled(StyledContainer)`
+	max-width: 300px;
+`
 
 const StyledUnit = styled(StyledSuffix)`
 	color: ${({ theme }) => theme.colors.extended.grey[600]};

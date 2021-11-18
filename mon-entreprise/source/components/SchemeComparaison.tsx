@@ -4,8 +4,8 @@ import {
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
-import Conversation from 'Components/conversation/Conversation'
 import Value from 'Components/EngineValue'
+import Simulation from 'Components/Simulation'
 import InfoBulle from 'Components/ui/InfoBulle'
 import AnswerGroup from 'DesignSystem/answer-group'
 import { Button } from 'DesignSystem/buttons'
@@ -16,12 +16,11 @@ import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
-import './SchemeComparaison.css'
 import { SimulationGoal, SimulationGoals } from './SimulationGoals'
-import { FromBottom } from './ui/animate'
 import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
@@ -83,7 +82,7 @@ export default function SchemeComparaison({
 
 	return (
 		<>
-			<div
+			<StyledGrid
 				className={classnames('comparaison-grid', {
 					hideAutoEntrepreneur,
 					hideAssimiléSalarié,
@@ -322,47 +321,28 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<div
-							css={`
-								width: 100%;
-								text-align: left;
-							`}
+						<Simulation
+							customEndMessages={
+								<>
+									<SmallBody>
+										Vous pouvez consulter les différentes estimations dans le
+										tableau ci-dessous
+									</SmallBody>
+
+									<SeeAnswersButton />
+								</>
+							}
 						>
 							<SimulationGoals
 								toggles={<PeriodSwitch />}
 								legend={
 									'Estimations sur votre rémunération brute et vos charges'
 								}
-								css={
-									displayResult
-										? `
-									border-bottom: none;
-									border-bottom-left-radius: 0 !important;
-									border-bottom-right-radius: 0 !important;
-								`
-										: ''
-								}
 							>
 								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
 								<SimulationGoal dottedName="entreprise . charges" />
 							</SimulationGoals>
-							{displayResult && (
-								<FromBottom>
-									<Conversation
-										customEndMessages={
-											<>
-												<SmallBody>
-													Vous pouvez consulter les différentes estimations dans
-													le tableau ci-dessous
-												</SmallBody>
-
-												<SeeAnswersButton />
-											</>
-										}
-									/>
-								</FromBottom>
-							)}
-						</div>
+						</Simulation>
 					)}
 				</div>
 				{displayResult && (
@@ -561,7 +541,7 @@ export default function SchemeComparaison({
 						</div>
 					</>
 				)}
-			</div>
+			</StyledGrid>
 
 			<div className="">
 				<br />
@@ -625,3 +605,213 @@ export default function SchemeComparaison({
 		</>
 	)
 }
+
+const StyledGrid = styled.div`
+	display: grid;
+	font-family: ${({ theme }) => theme.fonts.main};
+	justify-items: stretch;
+	justify-content: center;
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+
+&.hideAutoEntrepreneur {
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
+}
+
+&.hideAssimiléSalarié {
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] 0
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+}
+& > * {
+	width: 100%;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+	padding: 0.6rem 1.2rem;
+	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+& > h2 {
+	margin: 0;
+	border: none;
+	align-self: stretch;
+}
+
+& > h2 img {
+	height: 1.6rem !important;
+	width: 1.6rem !important;
+}
+& > .legend {
+	align-items: flex-end;
+	grid-column: row-legend;
+	text-align: right;
+}
+
+& > .AS-et-indep {
+	grid-column: assimilé-salarié / auto-entrepreneur;
+}
+& > .AS {
+	grid-column: assimilé-salarié;
+	min-width: 11rem;
+}
+& > .indep {
+	grid-column: indépendant;
+}
+& > .auto {
+	grid-column: auto-entrepreneur;
+	border-right: none;
+	min-width: 14rem;
+}
+& > .all {
+	border-right: none;
+	border-bottom: none;
+	grid-column: row-legend / end;
+}
+& > .all.colored {
+	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+}
+
+& > .indep-et-auto {
+	grid-column: indépendant / end;
+	border-right: none;
+}
+& > .AS-indep-et-auto {
+	grid-column: assimilé-salarié / end;
+	border-right: none;
+}
+
+&.hideAutoEntrepreneur > .auto {
+	display: none;
+}
+&.hideAutoEntrepreneur > .indep-et-auto {
+	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+}
+
+&.hideAssimiléSalarié > .AS {
+	display: none;
+}
+
+& > .green {
+	font-weight: bold;
+	color: limegreen;
+}
+
+& > .red {
+	font-weight: bold;
+	color: red;
+}
+
+& > .no-border {
+	border: none;
+}
+& .button {
+	align-self: stretch;
+}
+
+@media (max-width: 800px) {
+	& > * {
+		padding: 0.6rem;
+	}
+}
+@media (max-width: 600px) {
+	& {
+		display: block;
+		padding: 0 0.6rem;
+	}
+
+	& h2 {
+		flex-direction: column;
+	}
+	& small {
+		margin-left: 0.2rem;
+	}
+
+	& > *::before {
+		flex: 1;
+		text-align: left;
+		flex-shrink: 0;
+		white-space: nowrap;
+		user-select: text;
+		font-weight: normal;
+	}
+	& > :not(.button)::before {
+		color: ${({ theme }) => theme.colors.bases.primary[700]}; !important;
+		opacity: 0.6;
+	}
+	& > .AS::before {
+		content: 'Assimilé-salarié :';
+	}
+	& > .indep::before,
+	&.hideAutoEntrepreneur > .indep-et-auto::before {
+		content: 'Indépendant :';
+	}
+
+	&.hideAssimiléSalarié > .AS-et-indep::before,
+	&.hideAssimiléSalarié > .indep::before {
+		content: 'Entreprise individuelle :';
+	}
+
+	& > .auto::before {
+		content: 'Auto-entrepreneur :';
+	}
+	& > .indep-et-auto::before {
+		content: 'Indépendant / auto-entrepreneur :';
+	}
+	& > .AS-et-indep::before {
+		content: 'Assimilé salarié / indépendant ';
+	}
+	& > h2::before {
+		display: none;
+	}
+	& > h2.AS::after,
+	&:not(.hideAutoEntrepreneur) > h2.indep::after {
+		display: block;
+		font-size: 1rem;
+		margin-top: 1rem;
+		content: 'vs';
+	}
+	& > .legend {
+		justify-content: flex-start;
+		align-items: baseline;
+		text-align: left;
+	}
+	& > * {
+		border: none;
+		flex-direction: row;
+		text-align: right;
+		justify-content: right;
+	}
+	& > :not(.all):not(.button) {
+		padding-left: 0;
+	}
+	& > .all {
+		margin: 0 -0.6rem;
+		text-align: center;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+	& > .no-border > .button {
+		flex: 1;
+	}
+	& > .no-border::before {
+		display: none;
+	}
+}
+@media (min-width: 600px) {
+	& > h3 {
+		margin: 0;
+		font-weight: normal;
+
+		font-size: 1rem;
+	}
+}
+
+`

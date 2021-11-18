@@ -49,7 +49,6 @@ export default function TextField(props: TextFieldProps) {
 
 export const StyledContainer = styled.div`
 	width: 100%;
-	max-width: 300px;
 `
 export const StyledInput = styled.input`
 	font-size: 1rem;

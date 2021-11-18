@@ -49,11 +49,13 @@ export function SimulationGoals({
 	useEffect(() => {
 		setInitialRender(false)
 	}, [])
+	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
 			{toggles && <ToggleSection>{toggles}</ToggleSection>}
 			<StyledSimulationGoals
+				isFirstStepCompleted={isFirstStepCompleted}
 				publique={publique}
 				role="group"
 				aria-labelledby="simulator-legend"
@@ -74,11 +76,19 @@ const ToggleSection = styled.div`
 `
 
 const StyledSimulationGoals = styled.div<
-	Pick<SimulationGoalsProps, 'publique'>
+	Pick<SimulationGoalsProps, 'publique'> & { isFirstStepCompleted: boolean }
 >`
+	z-index: 1;
+	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-radius: ${({ theme }) =>
-		`${theme.box.borderRadius} ${theme.box.borderRadius} 0 0 `};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	${({ isFirstStepCompleted }) =>
+		isFirstStepCompleted &&
+		css`
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		`}
+	transition: border-radius 0.15s;
 	background: ${({ theme, publique }) => {
 		const colorPalette = publique
 			? theme.colors.publics[publique]
@@ -234,9 +244,6 @@ export function SimulationGoal({
 		</Appear>
 	)
 }
-const StyledInputOrValue = styled.div`
-	position: relative;
-`
 const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	small: boolean
 }>`

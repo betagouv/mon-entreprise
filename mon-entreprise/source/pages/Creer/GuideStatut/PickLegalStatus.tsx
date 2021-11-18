@@ -1,10 +1,9 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { H2, H3 } from 'DesignSystem/typography/heading'
-import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { filter } from 'ramda'
-import { useContext } from 'react'
+import { Fragment, useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -110,22 +109,20 @@ export default function SetMainStatus() {
 				)}
 			</H2>
 
-			<Ul>
-				{Object.keys(filter(Boolean, possibleStatus)).map(
-					/* https://github.com/microsoft/TypeScript/issues/32811 */
-					(statut: any) => (
-						<Li key={statut}>
-							<H3>
-								<StatutTitle statut={statut} language={i18n.language} />
-							</H3>
-							<Body>
-								<StatutDescription statut={statut} />
-							</Body>
-							<StatutButton statut={statut} />
-						</Li>
-					)
-				)}
-			</Ul>
+			{Object.keys(filter(Boolean, possibleStatus)).map(
+				/* https://github.com/microsoft/TypeScript/issues/32811 */
+				(statut: any) => (
+					<Fragment key={statut}>
+						<H3>
+							<StatutTitle statut={statut} language={i18n.language} />
+						</H3>
+						<Body>
+							<StatutDescription statut={statut} />
+						</Body>
+						<StatutButton statut={statut} />
+					</Fragment>
+				)
+			)}
 		</>
 	)
 }

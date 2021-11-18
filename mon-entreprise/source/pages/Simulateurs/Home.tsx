@@ -136,7 +136,10 @@ export function SimulateurCard({
 	tooltip,
 	iframePath,
 	icône,
-}: SimulatorData[keyof SimulatorData] & {
+}: Pick<
+	SimulatorData[keyof SimulatorData],
+	'shortName' | 'meta' | 'path' | 'tooltip' | 'iframePath' | 'icône'
+> & {
 	small?: boolean
 }) {
 	const isIframe = useIsEmbedded()

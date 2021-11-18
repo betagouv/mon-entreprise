@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const baseParagraphStyle = css`
+export const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
 	color: ${({ theme }) =>
