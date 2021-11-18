@@ -1,5 +1,4 @@
 export function hexToHSL(hex: string): [number, number, number] {
-	console.log('joiohjiiojjoi', hex)
 	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 	if (result === null) {
 		throw new Error('Accept only hex strings')
@@ -29,5 +28,5 @@ export function hexToHSL(hex: string): [number, number, number] {
 		}
 		h /= 6
 	}
-	return [h * 255, s * 100, l * 100].map(Math.round) as [number, number, number]
+	return [h * 360, s * 100, l * 100].map(Math.round) as [number, number, number]
 }

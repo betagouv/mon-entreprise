@@ -10,11 +10,13 @@ import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import urssafLogo from 'Images/Urssaf.svg'
 import {
-	lazy, Suspense,
+	lazy,
+	Suspense,
 	useContext,
 	useEffect,
-	useMemo, useRef,
-	useState
+	useMemo,
+	useRef,
+	useState,
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'

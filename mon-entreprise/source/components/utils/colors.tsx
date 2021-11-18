@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import { ThemeProvider } from 'styled-components'
+import { useIsEmbedded } from './embeddedContext'
 
 type ProviderProps = {
 	color?: [number, number, number]
@@ -19,10 +20,22 @@ const PALETTE = {
 	700: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 34%), 33%)`,
 	800: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 31%), 23%)`,
 }
+
+const rawIframeColor = new URLSearchParams(
+	document.location.search.substring(1)
+).get('couleur')
+const IFRAME_COLOR: [number, number] = rawIframeColor
+	? JSON.parse(decodeURIComponent(rawIframeColor))
+	: DEFAULT_COLOR_HS
+
+// Note that the iframeColor is first set in the index.html file, but without
+// the full palette generation that happen here. This is to prevent a UI
+// flash, cf. #1786.
+
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	const divRef = useRef<HTMLDivElement>(null)
 	const [hue, saturation] = useMemo(
-		() => (color ? color.slice(0, 2) : DEFAULT_COLOR_HS),
+		() => (color ? color.slice(0, 2) : IFRAME_COLOR),
 		[color]
 	)
 	useEffect(() => {
@@ -32,7 +45,9 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 			`${saturation}%`
 		)
 	}, [hue, saturation])
-	if (!color) {
+	const isEmbedded = useIsEmbedded()
+
+	if (!color && !isEmbedded) {
 		return <>{children}</>
 	}
 

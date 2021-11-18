@@ -123,14 +123,6 @@ export default function Provider({
 	display: none !important;
 }`
 	document.body.appendChild(css)
-	// Note that the iframeColor is first set in the index.html file, but without
-	// the full palette generation that happen here. This is to prevent a UI
-	// flash, cf. #1786.
-	const rawCouleur = new URLSearchParams(
-		document.location.search.substring(1)
-	).get('couleur')
-	const iframeCouleur: [number, number, number] | undefined =
-		rawCouleur && JSON.parse(decodeURIComponent(rawCouleur))
 
 	return (
 		<>
@@ -162,16 +154,16 @@ export default function Provider({
 			>
 				<ReduxProvider store={store}>
 					<DesignSystemThemeProvider>
-						<ThemeColorsProvider color={iframeCouleur}>
-							<TrackingContext.Provider
-								value={
-									new ATTracker({
-										language: i18next.language as 'fr' | 'en',
-									})
-								}
-							>
-								<DisableAnimationOnPrintProvider>
-									<IsEmbeddedProvider>
+						<IsEmbeddedProvider>
+							<ThemeColorsProvider>
+								<TrackingContext.Provider
+									value={
+										new ATTracker({
+											language: i18next.language as 'fr' | 'en',
+										})
+									}
+								>
+									<DisableAnimationOnPrintProvider>
 										<SiteNameContext.Provider value={basename}>
 											<SitePathProvider value={sitePaths}>
 												<I18nextProvider i18n={i18next}>
@@ -185,10 +177,10 @@ export default function Provider({
 												</I18nextProvider>
 											</SitePathProvider>
 										</SiteNameContext.Provider>
-									</IsEmbeddedProvider>
-								</DisableAnimationOnPrintProvider>
-							</TrackingContext.Provider>
-						</ThemeColorsProvider>
+									</DisableAnimationOnPrintProvider>
+								</TrackingContext.Provider>
+							</ThemeColorsProvider>
+						</IsEmbeddedProvider>
 					</DesignSystemThemeProvider>
 				</ReduxProvider>
 			</ErrorBoundary>
