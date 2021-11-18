@@ -3,6 +3,7 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { Radio, RadioGroup } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
 import { H4 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
@@ -69,8 +70,15 @@ function RadioChoice({ choice }: { choice: Choice }) {
 				hiddenOptions.includes(
 					node.dottedName as DottedName
 				) ? null : 'children' in node ? (
-					<div role="group" aria-describedby={node.dottedName + '-legend'}>
+					<div
+						role="group"
+						aria-describedby={node.dottedName + '-legend'}
+						css={`
+							margin-top: -1rem;
+						`}
+					>
 						<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
+						<Spacing lg />
 						<StyledSubRadioGroup>
 							<RadioChoice choice={node} />
 						</StyledSubRadioGroup>

@@ -72,8 +72,10 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						align-items: baseline;
 					`}
 				>
-					<H3>{engine.getRule(currentQuestion).rawNode.question}</H3>
-					<ExplicableRule light dottedName={currentQuestion} />
+					<H3>
+						{engine.getRule(currentQuestion).rawNode.question}
+						<ExplicableRule light dottedName={currentQuestion} />
+					</H3>
 				</div>
 				<fieldset>
 					<RuleInput

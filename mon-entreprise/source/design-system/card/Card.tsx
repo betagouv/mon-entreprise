@@ -1,7 +1,7 @@
 import { useButton } from '@react-aria/button'
 import { Button } from 'DesignSystem/buttons'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
-import { H3 } from 'DesignSystem/typography/heading'
+import { H3, HeadingUnderline } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -69,13 +69,9 @@ export function getTitleProps(children: React.ReactNode, as: keyof ReactHTML) {
 
 const StyledHeader = styled(H3)`
 	text-align: center;
+	${HeadingUnderline}
 	::after {
-		height: 1.25rem;
-		width: 5rem;
-		display: block;
-		content: ' ';
 		margin: auto;
-		border-bottom: 4px solid ${({ theme }) => theme.colors.bases.secondary[500]};
 	}
 `
 const StyledButton = styled(Button)`

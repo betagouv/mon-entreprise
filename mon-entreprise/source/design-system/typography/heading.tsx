@@ -6,7 +6,7 @@ const baseHeading = css`
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
 	color: ${({ theme }) => theme.colors.bases.primary[700]};
 `
-const underline = css`
+export const HeadingUnderline = css`
 	::after {
 		height: 1.25rem;
 		width: 5rem;
@@ -24,7 +24,7 @@ export const H1 = styled.h1<{ noUnderline?: boolean }>`
 			${theme.spacings.xxxl} 0 ${theme.spacings.xl}
 		`};
 	line-height: 2.375rem;
-	${({ noUnderline }) => (!noUnderline ? underline : '')}
+	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 `
 
 export const H2 = styled.h2<{ noUnderline?: boolean }>`
@@ -35,7 +35,7 @@ export const H2 = styled.h2<{ noUnderline?: boolean }>`
 		css`
 			${theme.spacings.xxl} 0 ${theme.spacings.lg}
 		`};
-	${({ noUnderline }) => (!noUnderline ? underline : '')}
+	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 `
 
 export const H3 = styled.h3`

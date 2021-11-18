@@ -65,6 +65,7 @@ const StyledButton = styled(Button)<{ light: boolean }>`
 	--padding: 2px;
 	height: calc(${({ theme }) => theme.spacings.md} + 2 * var(--padding));
 	padding: 0;
+	vertical-align: middle;
 	padding-left: var(--padding);
 	padding-right: ${({ theme }) => theme.spacings.xs};
 	width: auto;
