@@ -2,20 +2,29 @@ import { Grid } from '@mui/material'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Article } from 'DesignSystem/card'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import urssafLogo from 'Images/Urssaf.svg'
-import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import {
+	lazy, Suspense,
+	useContext,
+	useEffect,
+	useMemo, useRef,
+	useState
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Route } from 'react-router'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
+import Documentation from '../Documentation'
 import Iframes from '../Iframes'
+import Simulateurs from '../Simulateurs'
 import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
 import apecLogo from './images/apec.png'
@@ -23,11 +32,12 @@ import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
 
-const LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
+const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
 function IntegrationCustomizer() {
 	const { search } = useLocation()
 	const simulators = useSimulatorsData()
+	const sitePaths = useContext(SitePathsContext)
 	const history = useHistory()
 	const integrableModuleNames = useMemo(
 		() =>
@@ -38,7 +48,7 @@ function IntegrationCustomizer() {
 	)
 	const defaultModuleFromUrl =
 		new URLSearchParams(search ?? '').get('module') ?? ''
-	const [currentModule, setCurrentModule] = React.useState(
+	const [currentModule, setCurrentModule] = useState(
 		integrableModuleNames.includes(defaultModuleFromUrl)
 			? defaultModuleFromUrl
 			: integrableModuleNames[0]
@@ -162,6 +172,14 @@ function IntegrationCustomizer() {
 									color={color == null ? color : hexToHSL(color)}
 								>
 									<IsEmbeddedProvider>
+										<Route
+											path={sitePaths.simulateurs.index}
+											component={Simulateurs}
+										/>
+										<Route
+											path={sitePaths.documentation.index}
+											component={Documentation}
+										/>
 										<Iframes />
 									</IsEmbeddedProvider>
 								</ThemeColorsProvider>
@@ -182,7 +200,6 @@ const Logo = styled.img`
 export default function Integration() {
 	return (
 		<>
-			<ScrollToTop />
 			<TrackPage name="module_web" />
 			<Trans i18nKey="pages.développeurs.iframe.intro">
 				<div>

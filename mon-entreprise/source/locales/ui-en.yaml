@@ -1785,8 +1785,13 @@ une de ces conditions: one of these applies
 Échap: Esc
 Économie collaborative: Collaborative Economy
 État: State
+Êtes vous satisfait de ce guide ?: Are you satisfied with this guide?
+Êtes vous satisfait de cet assistant ?: Are you satisfied with this assistant?
 à: to
 économieCollaborative:
+  WIP: <0>This assistant is under development.</0> Do not hesitate to send us all
+    your remarks, ideas, questions by clicking on the "Make a suggestion" button
+    above.
   accueil:
     contenu: <0>Do you have income from <2>online platforms</2> (Airbnb, Abritel,
       Drivy, Blablacar, Leboncoin, etc.)? You must declare them in most cases.
