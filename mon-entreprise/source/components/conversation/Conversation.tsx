@@ -81,6 +81,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					<RuleInput
 						dottedName={currentQuestion}
 						onChange={onChange}
+						autoFocus
 						key={currentQuestion}
 						onSubmit={submit}
 					/>
@@ -134,6 +135,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				)}
 			</Body>
 			<SeeAnswersButton />
+			<Spacing lg />
 		</div>
 	)
 }

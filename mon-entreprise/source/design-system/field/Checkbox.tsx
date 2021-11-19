@@ -27,14 +27,14 @@ export default function Checkbox(
 	return (
 		<CheckboxContainer>
 			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
-			<Label>
+			<VisibleContainer>
 				<CheckboxVisualContainer aria-hidden="true">
 					<CheckboxVisual viewBox="0 0 18 18">
 						<polyline points="1 9 7 14 15 4" />
 					</CheckboxVisual>
 				</CheckboxVisualContainer>
 				{label && <LabelBody> {label}</LabelBody>}
-			</Label>
+			</VisibleContainer>
 		</CheckboxContainer>
 	)
 }
@@ -109,7 +109,7 @@ const CheckboxVisualContainer = styled.span`
 	}
 `
 
-const Label = styled.label`
+const VisibleContainer = styled.span`
 	display: inline-flex;
 	z-index: 1;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -121,23 +121,26 @@ const LabelBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 `
-const CheckboxContainer = styled.span`
-	input:focus-visible + ${Label} {
+const CheckboxContainer = styled.label`
+	input:focus-visible + ${VisibleContainer} {
 		${FocusStyle}
 		outline-offset: 0;
 	}
-	input :focus + ${Label} ${CheckboxVisualContainer} {
+	input :focus + ${VisibleContainer} ${CheckboxVisualContainer} {
 		opacity: 1;
 	}
 
-	input:focus + ${Label} ${CheckboxVisual} {
+	input:focus + ${VisibleContainer} ${CheckboxVisual} {
 		stroke: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	}
 
-	input:checked + ${Label} ${CheckboxVisualContainer} > ${CheckboxVisual} {
+	input:checked
+		+ ${VisibleContainer}
+		${CheckboxVisualContainer}
+		> ${CheckboxVisual} {
 		background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 		stroke: ${({ theme }) => theme.colors.extended.grey[100]};
 
@@ -148,7 +151,7 @@ const CheckboxContainer = styled.span`
 		}
 	}
 
-	input:checked + ${Label} ${CheckboxVisualContainer} {
+	input:checked + ${VisibleContainer} ${CheckboxVisualContainer} {
 		border-color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]

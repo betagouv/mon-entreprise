@@ -77,7 +77,7 @@ const StyledButton = styled(Button)<{ light: boolean }>`
 	display: inline-flex;
 	margin-left: ${({ theme }) => theme.spacings.sm};
 	align-items: center;
-	color: ${({ theme }) => theme.colors.bases.primary[600]};
+	color: ${({ theme }) => theme.colors.bases.primary[600]} !important;
 	border: 1px solid ${({ theme }) => theme.colors.bases.primary[600]};
 	background-color: ${({ theme, light }) =>
 		light ? theme.colors.extended.grey[100] : theme.colors.bases.primary[100]};

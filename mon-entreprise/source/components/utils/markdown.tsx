@@ -1,8 +1,10 @@
+import { Strong } from 'DesignSystem/typography'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
 
@@ -16,7 +18,10 @@ export function LinkRenderer({
 	href,
 	children,
 	...otherProps
-}: Omit<React.ComponentProps<'a'>, 'ref'>) {
+}: {
+	href?: string
+	children: React.ReactNode
+}) {
 	const siteName = useContext(SiteNameContext)
 
 	if (href && !href.startsWith('http')) {
@@ -52,9 +57,9 @@ export function LinkRenderer({
 	}
 
 	return (
-		<a target="_blank" href={href} {...otherProps}>
+		<Link target="_blank" href={href} {...otherProps}>
 			{children}
-		</a>
+		</Link>
 	)
 }
 const TextRenderer = ({ children }: { children: string }) => (
@@ -108,6 +113,9 @@ export const Markdown = ({
 			paragraph: Body,
 			text: TextRenderer,
 			code: CodeBlock,
+			list: Ul,
+			strong: Strong,
+			listItem: Li,
 			...renderers,
 		}}
 		{...otherProps}

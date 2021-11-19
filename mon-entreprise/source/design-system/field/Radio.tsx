@@ -84,6 +84,7 @@ const VisibleRadio = styled.div`
 	align-items: center;
 	padding: 0 ${({ theme }) => theme.spacings.sm};
 	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	z-index: 1;
 	:hover > ${RadioButton}::before {
 		opacity: 1;
@@ -110,6 +111,7 @@ const InputRadio = styled.input`
 	}
 	:focus-visible + ${VisibleRadio} {
 		${FocusStyle}
+		outline-offset: 0;
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {
@@ -150,7 +152,9 @@ const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 		align-items: center;
 		z-index: 1;
 		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+		margin: 0;
 		margin-right: -1px;
+		border-radius: 0;
 		cursor: pointer;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
 		background: ${({ theme }) => theme.colors.extended.grey[100]};

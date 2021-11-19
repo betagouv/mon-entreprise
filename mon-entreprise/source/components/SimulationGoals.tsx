@@ -251,5 +251,6 @@ const StyledGoalHeader = styled.div``
 
 const StyledGoal = styled.div`
 	position: relative;
+	z-index: 1;
 	padding: ${({ theme }) => theme.spacings.sm} 0;
 `

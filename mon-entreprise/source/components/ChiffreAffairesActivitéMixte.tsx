@@ -124,6 +124,8 @@ function ActivitéMixte() {
 		<div
 			css={`
 				text-align: right;
+				position: relative;
+				z-index: 2;
 				margin-top: -1.5rem;
 			`}
 		>

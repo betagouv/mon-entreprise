@@ -1,20 +1,38 @@
-import React from 'react'
-import './Progress.css'
-
+import { useProgressBar } from '@react-aria/progress'
+import styled from 'styled-components'
 type ProgressProps = {
 	progress: number
-	style?: React.CSSProperties
-	className?: string
 }
 
-export default function Progress({
-	progress,
-	style,
-	className,
-}: ProgressProps) {
+export default function Progress({ progress }: ProgressProps) {
+	const props = {
+		showValueLabel: false,
+		label: 'Précision de votre simulation',
+		minValue: 0,
+		maxValue: 1,
+		value: progress,
+	}
+
+	const { progressBarProps, labelProps } = useProgressBar(props)
 	return (
-		<div className={'progress__container ' + className} style={style}>
-			<div className="progress__bar" style={{ width: `${progress * 100}%` }} />
-		</div>
+		<>
+			<span {...labelProps} className="sr-only">
+				{props.label}
+			</span>
+			<ProgressContainer {...progressBarProps}>
+				<ProgressBar style={{ width: `${progress * 100}%` }} />
+			</ProgressContainer>
+		</>
 	)
 }
+
+const ProgressContainer = styled.div`
+	width: 100%;
+	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+`
+const ProgressBar = styled.div`
+	width: 0;
+	transition: width 0.15s;
+	background-color: ${({ theme }) => theme.colors.bases.primary[500]};
+	height: ${({ theme }) => theme.spacings.xxs};
+`

@@ -25,7 +25,7 @@ export const StyledLink = styled.a`
 	&:hover {
 		${StyledLinkHover}
 	}
-	&:focus {
+	&:focus-visible {
 		${FocusStyle}
 	}
 `

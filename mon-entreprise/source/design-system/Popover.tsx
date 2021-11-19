@@ -11,7 +11,7 @@ import {
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
 import React, { useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, ThemeProvider } from 'styled-components'
 import { Container } from './layout'
 import { H2 } from './typography/heading'
 
@@ -48,57 +48,59 @@ export default function Popover(
 	)
 
 	return (
-		<OverlayContainer>
-			<Underlay {...underlayProps}>
-				<Container>
-					<Grid container justifyContent="center">
-						<Grid item sm={10} md={8}>
-							<FocusScope contain restoreFocus autoFocus>
-								<PopoverContainer
-									{...overlayProps}
-									{...dialogProps}
-									{...modalProps}
-									ref={ref}
-								>
-									{props.isDismissable && (
-										<CloseButtonContainer>
-											{/* TODO : replace with Link when in design system */}
-											<CloseButton {...closeButtonProps} ref={closeButtonRef}>
-												Fermer
-												<svg
-													viewBox="0 0 24 24"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														fillRule="evenodd"
-														clipRule="evenodd"
-														d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
-													/>
-													<path
-														fillRule="evenodd"
-														clipRule="evenodd"
-														d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
-													/>
-												</svg>
-											</CloseButton>
-										</CloseButtonContainer>
-									)}
-									<PopoverContent>
-										{title && (
-											<H2 as="h1" {...titleProps}>
-												{title}
-											</H2>
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+			<OverlayContainer>
+				<Underlay {...underlayProps}>
+					<Container>
+						<Grid container justifyContent="center">
+							<Grid item sm={10} md={8}>
+								<FocusScope contain restoreFocus autoFocus>
+									<PopoverContainer
+										{...overlayProps}
+										{...dialogProps}
+										{...modalProps}
+										ref={ref}
+									>
+										{props.isDismissable && (
+											<CloseButtonContainer>
+												{/* TODO : replace with Link when in design system */}
+												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
+													Fermer
+													<svg
+														viewBox="0 0 24 24"
+														fill="none"
+														xmlns="http://www.w3.org/2000/svg"
+													>
+														<path
+															fillRule="evenodd"
+															clipRule="evenodd"
+															d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
+														/>
+														<path
+															fillRule="evenodd"
+															clipRule="evenodd"
+															d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
+														/>
+													</svg>
+												</CloseButton>
+											</CloseButtonContainer>
 										)}
-										{children}
-									</PopoverContent>
-								</PopoverContainer>
-							</FocusScope>
+										<PopoverContent>
+											{title && (
+												<H2 as="h1" {...titleProps}>
+													{title}
+												</H2>
+											)}
+											{children}
+										</PopoverContent>
+									</PopoverContainer>
+								</FocusScope>
+							</Grid>
 						</Grid>
-					</Grid>
-				</Container>
-			</Underlay>
-		</OverlayContainer>
+					</Container>
+				</Underlay>
+			</OverlayContainer>
+		</ThemeProvider>
 	)
 }
 

@@ -1,5 +1,5 @@
 import { FromTop } from 'Components/ui/animate'
-import { SearchField } from 'DesignSystem/field'
+import { TextField } from 'DesignSystem/field'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -185,7 +185,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 
 	return (
 		<div>
-			<SearchField
+			<TextField
 				/* role="combobox" // FIXME: Need to use a proper combobox component here */
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				id={id}
@@ -235,31 +235,32 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 		</div>
 	)
 }
-
+const FocusedOption = css`
+	background-color: ${({ theme }) =>
+		theme.colors.bases.primary[100]} !important;
+	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
+`
 const Option = styled(Body)<{
 	focused: boolean
 }>`
 	text-align: left;
 	display: block;
 	color: inherit;
-	background-color: var(--lightestColor) !important;
+	background-color: ${({ theme }) =>
+		theme.colors.extended.grey[100]} !important;
 	width: 100%;
+
 	border-radius: 0.3rem;
+	border: 2px solid transparent;
 	:hover,
 	:focus {
-		background-color: var(--lighterColor) !important;
+		${FocusedOption}
 	}
-	background: white;
 	transition: background-color 0.2s;
 	width: 25rem;
 	max-width: 100%;
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${(props) =>
-		props.focused &&
-		css`
-			background-color: var(--lighterColor) !important;
-			border: 1px solid var(--color) !important;
-		`}
+	${(props) => props.focused && FocusedOption}
 `

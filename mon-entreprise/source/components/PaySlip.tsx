@@ -226,10 +226,7 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	}
 	return (
 		<>
-			<RuleLink
-				dottedName={dottedName}
-				className="ui__ lighter-bg print-background-force"
-			/>
+			<RuleLink dottedName={dottedName} />
 			<span className="ui__ lighter-bg print-background-force">
 				{partPatronale?.nodeValue
 					? formatValue(partPatronale, { displayedUnit: '€', language })

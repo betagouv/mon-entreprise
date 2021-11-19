@@ -146,7 +146,7 @@ function useSelection({
 	)
 	const handleChange = useCallback(
 		(value) => {
-			setCurrentSelection(value)
+			value && setCurrentSelection(value)
 		},
 		[setCurrentSelection]
 	)
@@ -162,7 +162,7 @@ function useSelection({
 	const debouncedSelection = useDebounce(currentSelection, 300)
 	useEffect(() => {
 		if (
-			debouncedSelection !== null &&
+			debouncedSelection &&
 			(missing ||
 				serializeEvaluation({ nodeValue: value } as EvaluatedNode) !==
 					debouncedSelection)

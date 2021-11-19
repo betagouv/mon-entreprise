@@ -36,7 +36,7 @@ export function Article({
 			<StyledHeader as={titleProps.as}>
 				{titleProps.children} {icon}
 			</StyledHeader>
-			<Body>{children}</Body>
+			{typeof children === 'string' ? <Body>{children}</Body> : children}
 			<StyledLink
 				as="span"
 				css={`

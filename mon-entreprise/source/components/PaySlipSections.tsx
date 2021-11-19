@@ -85,7 +85,6 @@ export function Line({
 	displayedUnit = '€',
 	negative = false,
 	title,
-	className,
 	...props
 }: LineProps) {
 	const engine = useEngine()
@@ -101,15 +100,12 @@ export function Line({
 
 	return (
 		<Condition expression={`${rule} > 0`}>
-			<RuleLink dottedName={rule} className={className}>
-				{title}
-			</RuleLink>
+			<RuleLink dottedName={rule}>{title}</RuleLink>
 			<Value
 				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}
 				unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
 				displayedUnit={displayedUnit}
-				className={className}
 				{...props}
 			/>
 		</Condition>

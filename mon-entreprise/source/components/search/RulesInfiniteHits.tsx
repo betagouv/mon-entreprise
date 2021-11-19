@@ -1,20 +1,19 @@
+import { H2 } from 'DesignSystem/typography/heading'
 import { Trans, useTranslation } from 'react-i18next'
+import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import {
 	connectInfiniteHits,
 	connectStats,
 	Highlight,
 } from 'react-instantsearch-dom'
 import { Names } from '../../../../modele-social/dist/names'
-
 import RuleLink from '../RuleLink'
-import { Hit as AlgoliaHit } from 'react-instantsearch-core'
-import { H2 } from 'DesignSystem/typography/heading'
 
 type Hit = AlgoliaHit<{ objectID: Names; namespace?: string }>
 
 const Hit = (hit: Hit) => {
 	return (
-		<RuleLink dottedName={hit.objectID} className="hit-content">
+		<RuleLink dottedName={hit.objectID}>
 			{hit.namespace && (
 				<div className="hit-amespace ui__ notice">
 					<Highlight hit={hit} attribute="namespace" separator=" > " />

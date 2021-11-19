@@ -17,7 +17,7 @@ import { Markdown } from './utils/markdown'
 // the "sévérité" attribute. The notification will only be displayed if the
 // publicodes rule is applicable.
 type Notification = {
-	dottedName: DottedName
+	dottedName: DottedName | 'inversion fail'
 	description: RuleNode['rawNode']['description']
 	résumé?: RuleNode['rawNode']['description']
 	sévérité: 'avertissement' | 'information'
@@ -46,44 +46,43 @@ export default function Notifications() {
 	)
 	const dispatch = useDispatch()
 
-	const messages: Array<Notification> = inversionFail
-		? [
-				{
-					dottedName: 'inversion fail' as any,
-					description: t(
-						'simulateurs.inversionFail',
-						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
-					),
-					sévérité: 'avertissement',
-				},
-		  ]
-		: (getNotifications(engine) as Array<Notification>)
-	if (!messages?.length) return null
+	const messages: Array<Notification> = (
+		inversionFail
+			? [
+					{
+						dottedName: 'inversion fail',
+						description: t(
+							'simulateurs.inversionFail',
+							'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
+						),
+						sévérité: 'avertissement',
+					} as Notification,
+			  ]
+			: (getNotifications(engine) as Array<Notification>)
+	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
 
 	return (
 		<NotificationsContainer id="notificationsBlock">
-			{messages.map(({ sévérité, dottedName, résumé, description }) =>
-				hiddenNotifications?.includes(dottedName) ? null : (
-					<Notification className="notification" key={dottedName}>
-						<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
-						<NotificationContent className="notificationText">
-							<Markdown source={résumé ?? description} />{' '}
-							{résumé && (
-								<RuleLink dottedName={dottedName}>
-									<Trans>En savoir plus</Trans>
-								</RuleLink>
-							)}
-						</NotificationContent>
-						<HideButton
-							className="hide"
-							aria-label="close"
-							onClick={() => dispatch(hideNotification(dottedName))}
-						>
-							×
-						</HideButton>
-					</Notification>
-				)
-			)}
+			{messages.map(({ sévérité, dottedName, résumé, description }) => (
+				<Notification className="notification" key={dottedName}>
+					<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
+					<NotificationContent className="notificationText">
+						<Markdown source={résumé ?? description} />{' '}
+						{résumé && (
+							<RuleLink dottedName={dottedName as DottedName}>
+								<Trans>En savoir plus</Trans>
+							</RuleLink>
+						)}
+					</NotificationContent>
+					<HideButton
+						className="hide"
+						aria-label="close"
+						onClick={() => dispatch(hideNotification(dottedName))}
+					>
+						×
+					</HideButton>
+				</Notification>
+			))}
 		</NotificationsContainer>
 	)
 }
@@ -109,6 +108,11 @@ const Notification = styled.li`
 
 	&:last-child {
 		margin-bottom: 0;
+	}
+	& img {
+		height: ${({ theme }) => theme.spacings.xl} !important;
+		width: ${({ theme }) => theme.spacings.xl} !important;
+		margin-right: ${({ theme }) => theme.spacings.sm} !important;
 	}
 `
 

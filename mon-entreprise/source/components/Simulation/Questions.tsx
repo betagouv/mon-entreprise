@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import { useSimulationProgress } from './../utils/useNextQuestion'
 
 const QuestionsContainer = styled.div`
-	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
+	padding: ${({ theme }) => ` ${theme.spacings.xs} ${theme.spacings.lg}`};
 	border-radius: ${({ theme }) =>
 		`0 0 ${theme.box.borderRadius} ${theme.box.borderRadius}`};
 	background: ${({ theme }) => {
@@ -29,17 +29,19 @@ export function Questions({
 	const progress = useSimulationProgress()
 
 	return (
-		<QuestionsContainer className="print-hidden">
-			{progress < 1 && (
-				<Notice>
-					<Trans i18nKey="simulateurs.précision.défaut">
-						Améliorez votre simulation en répondant aux questions :
-					</Trans>
-				</Notice>
-			)}
+		<>
+			<Progress progress={progress} />
+			<QuestionsContainer className="print-hidden">
+				{progress < 1 && (
+					<Notice>
+						<Trans i18nKey="simulateurs.précision.défaut">
+							Améliorez votre simulation en répondant aux questions :
+						</Trans>
+					</Notice>
+				)}
 
-			<Conversation customEndMessages={customEndMessages} />
-			{progress < 1 && <Progress progress={progress} />}
-		</QuestionsContainer>
+				<Conversation customEndMessages={customEndMessages} />
+			</QuestionsContainer>
+		</>
 	)
 }

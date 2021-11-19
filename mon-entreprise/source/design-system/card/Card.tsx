@@ -40,7 +40,7 @@ export function Card({
 		<CardContainer {...ariaButtonProps} {...buttonProps} as={elementType}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader {...titleProps} />
-			<CardBody>{children}</CardBody>
+			{typeof children === 'string' ? <Body>{children}</Body> : children}
 			{ctaLabel && (
 				<StyledButton excludeFromTabOrder size="XS" light>
 					{ctaLabel}
