@@ -1,6 +1,7 @@
 import { RadioAriaProps, useRadio, useRadioGroup } from '@react-aria/radio'
 import { RadioGroupState, useRadioGroupState } from '@react-stately/radio'
 import { RadioGroupProps } from '@react-types/radio'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
@@ -81,8 +82,9 @@ const RadioButton = styled.span`
 const VisibleRadio = styled.div`
 	display: inline-flex;
 	align-items: center;
+	padding: 0 ${({ theme }) => theme.spacings.sm};
+	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
 	z-index: 1;
-	transition: all 0.2s;
 	:hover > ${RadioButton}::before {
 		opacity: 1;
 		transform: scale(1);
@@ -105,6 +107,9 @@ const InputRadio = styled.input`
 		+ ${VisibleRadio}
 		${OutsideCircle} {
 		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+	:focus-visible + ${VisibleRadio} {
+		${FocusStyle}
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {
@@ -149,10 +154,6 @@ const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 		cursor: pointer;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
 		background: ${({ theme }) => theme.colors.extended.grey[100]};
-	}
-
-	${VisibleRadio}:focus-within {
-		outline: 1px dashed ${({ theme }) => theme.colors.extended.grey[700]};
 	}
 
 	${LabelBody} {

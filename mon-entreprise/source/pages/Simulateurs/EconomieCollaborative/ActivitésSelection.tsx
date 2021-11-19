@@ -64,6 +64,7 @@ export default function ActivitésSelection() {
 					<ActivitéSelection
 						activités={activités.map(({ titre }: Activity) => titre)}
 					/>
+					<Spacing xl />
 					<SmallBody className="notice">
 						<Trans i18nKey="économieCollaborative.accueil.réassurance">
 							PS : cet outil est là uniquement pour vous informer, aucune donnée
@@ -100,7 +101,7 @@ export const ActivitéSelection = ({
 					const selected = state[title].effectuée
 					const answered = activitéRépondue.includes(title)
 					return (
-						<Grid key={title} item xs={6} md={4}>
+						<Grid key={title} item xs={6} sm={4} md={3}>
 							<ActiviteCard
 								title={title}
 								interactive
@@ -111,7 +112,7 @@ export const ActivitéSelection = ({
 					)
 				})}
 			</Grid>
-			<Spacing md />
+			<Spacing xl />
 			<NextButton
 				disabled={nextButtonDisabled}
 				activité={currentActivité as any}

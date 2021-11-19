@@ -1,13 +1,15 @@
+import { useButton } from '@react-aria/button'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { CardContainer } from 'DesignSystem/card/Card'
 import { Checkbox } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
 import { Tag } from 'DesignSystem/tag'
 import { H4 } from 'DesignSystem/typography/heading'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { debounce } from '../../../../utils'
@@ -45,16 +47,28 @@ export const ActiviteCard = ({
 		title,
 		language
 	)
-
+	const ref = useRef(null)
+	const { buttonProps } = useButton(
+		{ onPress: toggle, elementType: 'div' },
+		ref
+	)
 	return (
-		<CardContainer as={interactive ? 'button' : 'div'} onMouseDown={toggle}>
+		<CardContainer {...(interactive ? buttonProps : {})} ref={ref}>
 			{selected !== undefined && (
-				<div css="font-size: 1.5rem;">
+				<div
+					css={`
+						transform: scale(1.15);
+						margin-bottom: -1rem;
+						margin-left: 0.75rem;
+					`}
+				>
 					<Checkbox
 						name={title}
 						id={title}
 						isSelected={selected}
-						aria-label=""
+						excludeFromTabOrder
+						onChange={toggle}
+						aria-label={titre}
 					/>
 				</div>
 			)}
@@ -63,34 +77,48 @@ export const ActiviteCard = ({
 				<ButtonHelp title={titre} type="aide">
 					<Body>{explication}</Body>
 				</ButtonHelp>
-				<SmallBody>{plateformes.join(', ')}</SmallBody>
+				<SmallBody
+					css={`
+						flex: 1;
+					`}
+				>
+					{plateformes.join(', ')}
+				</SmallBody>
 				{label && <Tag>{label}</Tag>}
-				<BoxIcon className="box-icon">
+				<BoxIcon>
 					<Emoji emoji={icônes} />
 				</BoxIcon>
 			</ActiviteContent>
 			{answered && (
-				<Button
-					size="XS"
-					light
-					onClick={(e) => e.stopPropagation()}
-					to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
-				>
-					<Trans>Modifier</Trans>
-				</Button>
+				<>
+					<Spacing md />
+					<Button
+						size="XS"
+						light
+						onClick={(e) => e.stopPropagation()}
+						to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
+					>
+						<Trans>Modifier</Trans>
+					</Button>
+				</>
 			)}
 		</CardContainer>
 	)
 }
 
 const BoxIcon = styled.div`
-	margin: 0.5rem;
+	> img {
+		height: ${({ theme }) => theme.spacings.lg} !important;
+		width: ${({ theme }) => theme.spacings.lg} !important;
+		margin: ${({ theme }) => theme.spacings.xxs} !important;
+	}
 `
 
 const ActiviteContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	text-align: center;
 	align-items: center;
 	justify-content: stretch;
 `

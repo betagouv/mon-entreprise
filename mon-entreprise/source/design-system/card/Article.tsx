@@ -1,4 +1,5 @@
 import { useButton } from '@react-aria/button'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { Chevron } from 'DesignSystem/icons'
 import { H4 } from 'DesignSystem/typography/heading'
 import { StyledLink, StyledLinkHover } from 'DesignSystem/typography/link'
@@ -54,7 +55,7 @@ const StyledArticle = styled.div`
 	padding: ${({ theme }) => theme.spacings.lg};
 	padding-top: ${({ theme }) => theme.spacings.sm};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	transition: all 0.15s;
+	transition: background-color 0.15s;
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
@@ -63,6 +64,9 @@ const StyledArticle = styled.div`
 	}
 	&:hover ${StyledLink} {
 		${StyledLinkHover}
+	}
+	&:focus-visible {
+		${FocusStyle}
 	}
 `
 

@@ -60,6 +60,7 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
+
 	${({ theme }) =>
 		theme.darkMode &&
 		css`

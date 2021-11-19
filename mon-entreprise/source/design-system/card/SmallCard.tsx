@@ -1,4 +1,5 @@
 import { useButton } from '@react-aria/button'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { H6 } from 'DesignSystem/typography/heading'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useRef } from 'react'
@@ -52,10 +53,13 @@ const Container = styled.div`
 		box-shadow: ${({ theme }) => theme.elevations[3]};
 		background-color: ${({ theme }) => theme.colors.bases.primary[400]};
 	}
+	&:focus-visible {
+		${FocusStyle}
+	}
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.md}`};
 	width: 100%;
 	height: 100%;
-	transition: all 0.15s;
+	transition: background-color box-shadow 0.15s;
 `
 
 const IconPlaceholder = styled.div`

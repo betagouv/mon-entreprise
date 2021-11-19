@@ -4,7 +4,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Radio, RadioGroup } from 'DesignSystem/field'
-import { H1, H2 } from 'DesignSystem/typography/heading'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
@@ -98,7 +98,7 @@ export default function Activité({
 				) : (
 					<>
 						<Trans i18nKey="économieCollaborative.activité.revenusAnnuels">
-							<H2>Revenus annuels</H2>
+							<H3 as="h2">Revenus annuels</H3>
 							<Body>Vos revenus annuels pour cette activité sont :</Body>
 						</Trans>
 						<RadioGroup

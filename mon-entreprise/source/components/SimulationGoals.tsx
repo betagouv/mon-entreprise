@@ -229,7 +229,7 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item md="auto">
-							<RuleLink dottedName={dottedName}>
+							<RuleLink dottedName={dottedName} excludeFromTabOrder>
 								{formatValue(evaluation, { displayedUnit: '€' })}
 							</RuleLink>
 						</Grid>

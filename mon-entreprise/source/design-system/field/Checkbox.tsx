@@ -1,6 +1,7 @@
 import { useCheckbox } from '@react-aria/checkbox'
 import { useToggleState } from '@react-stately/toggle'
 import { AriaCheckboxProps } from '@react-types/checkbox'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useRef } from 'react'
 import styled from 'styled-components'
@@ -24,9 +25,9 @@ export default function Checkbox(
 	const ref = useRef<HTMLInputElement | null>(null)
 	const { inputProps } = useCheckbox(props, state, ref)
 	return (
-		<>
+		<CheckboxContainer>
+			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
 			<Label>
-				<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
 				<CheckboxVisualContainer aria-hidden="true">
 					<CheckboxVisual viewBox="0 0 18 18">
 						<polyline points="1 9 7 14 15 4" />
@@ -34,7 +35,7 @@ export default function Checkbox(
 				</CheckboxVisualContainer>
 				{label && <LabelBody> {label}</LabelBody>}
 			</Label>
-		</>
+		</CheckboxContainer>
 	)
 }
 
@@ -111,20 +112,32 @@ const CheckboxVisualContainer = styled.span`
 const Label = styled.label`
 	display: inline-flex;
 	z-index: 1;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	padding: 0 ${({ theme }) => theme.spacings.xs};
+	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.xs});
 	align-items: center;
-
-	:focus-within > ${CheckboxVisualContainer} {
+`
+const LabelBody = styled(Body)`
+	margin: ${({ theme }) => theme.spacings.xs} 0px;
+	margin-left: ${({ theme }) => theme.spacings.xxs};
+`
+const CheckboxContainer = styled.span`
+	input:focus-visible + ${Label} {
+		${FocusStyle}
+		outline-offset: 0;
+	}
+	input :focus + ${Label} ${CheckboxVisualContainer} {
 		opacity: 1;
 	}
 
-	:focus-within > ${CheckboxVisual} {
+	input:focus + ${Label} ${CheckboxVisual} {
 		stroke: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	}
 
-	> input:checked + ${CheckboxVisualContainer} > ${CheckboxVisual} {
+	input:checked + ${Label} ${CheckboxVisualContainer} > ${CheckboxVisual} {
 		background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 		stroke: ${({ theme }) => theme.colors.extended.grey[100]};
 
@@ -135,14 +148,10 @@ const Label = styled.label`
 		}
 	}
 
-	> input:checked + ${CheckboxVisualContainer} {
+	input:checked + ${Label} ${CheckboxVisualContainer} {
 		border-color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	}
-`
-const LabelBody = styled(Body)`
-	margin: ${({ theme }) => theme.spacings.xs} 0px;
-	margin-left: ${({ theme }) => theme.spacings.xxs};
 `

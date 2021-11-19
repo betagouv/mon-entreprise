@@ -19,10 +19,7 @@ type CheckItemProps = {
 const CheckItemHeader = styled.div`
 	display: flex;
 	width: 100%;
-`
-
-const Spacer = styled.div`
-	flex-grow: 1;
+	align-items: flex-start;
 `
 
 export function CheckItem({
@@ -95,7 +92,9 @@ export function CheckItem({
 }
 
 const StyledLink = styled(Link)`
-	margin-left: ${({ theme }) => theme.spacings.sm};
+	margin: ${({ theme }) => theme.spacings.sm} 0;
+	margin-left: ${({ theme }) => theme.spacings.xs};
+	white-space: nowrap;
 `
 export type ChecklistProps = {
 	children: React.ReactNode
@@ -137,10 +136,10 @@ export function Checklist({
 }
 
 const StyledList = styled.ul`
+	padding-left: 1rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const StyledListItem = styled.li`
-	display: flex;
-	flex-direction: row;
+	list-style: none;
 `

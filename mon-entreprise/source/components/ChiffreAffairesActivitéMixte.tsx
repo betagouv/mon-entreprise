@@ -124,6 +124,7 @@ function ActivitéMixte() {
 		<div
 			css={`
 				text-align: right;
+				margin-top: -1.5rem;
 			`}
 		>
 			<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>

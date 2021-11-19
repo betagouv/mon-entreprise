@@ -1,5 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { ComponentPropsWithRef, forwardRef, useCallback, useRef } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -57,6 +58,7 @@ export const Button = forwardRef<
 		},
 		[forwardedRef]
 	)
+
 	const initialProps = Object.fromEntries(
 		Object.entries(ariaButtonProps).filter(
 			([key]) =>
@@ -87,6 +89,7 @@ type StyledButtonProps = {
 	color: Color
 	size: Size
 	light: boolean
+	isDisabled?: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -106,6 +109,18 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 
+	${({ isDisabled }) =>
+		isDisabled &&
+		css`
+			opacity: 50%;
+			cursor: not-allowed;
+		`}
+	&:active {
+		transform: translateY(3px);
+	}
+	&:focus-visible {
+		${FocusStyle}
+	}
 	/* Primary, secondary & tertiary colors */
 	${({ theme, color }) =>
 		!theme.darkMode &&
@@ -114,19 +129,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				${theme.colors.bases[color][
 					color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
 				]};
-			&:disabled {
-				background-color: ${theme.colors.bases[color][
-					color === 'primary' ? 200 : 100
-				]};
-				color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
-			}
+
 			background-color: ${theme.colors.bases[color][
 				color === 'primary' ? 700 : 300
 			]};
 			color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 800]};
-			&:active {
-				transform: translateY(3px);
-			}
 		`}
 
 	/* Primary, secondary & tertiary light colors */
@@ -136,25 +143,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		css`
 			color: ${theme.colors.bases[color][color === 'primary' ? 700 : 700]};
 			background-color: ${theme.colors.extended.grey[100]};
-
-			&:disabled {
-				border-color: ${theme.colors.bases[color][
-					color === 'primary' ? 200 : 100
-				]};
-				color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 400]};
-			}
 		`}
 
 	/* White color (dark background mode) */
-	${({ theme }) =>
+		${({ theme }) =>
 		theme.darkMode &&
 		css`
 			background-color: ${theme.colors.extended.grey[100]};
 			color: transparent;
-
-			&:disabled {
-				opacity: 50%;
-			}
 		`}
 
 		/* White color and light mode (dark background mode) */
@@ -167,40 +163,34 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			color: ${theme.colors.extended.grey[100]};
 		`}
 
+		/* HOVER STYLE */
 		:hover {
-		/* Primary, secondary & tertiary colors */
-		${({ theme, color }) =>
-			!theme.darkMode &&
-			css`
-				background-color: ${theme.colors.bases[color][
-					color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
-				]};
-			`}
-
-		/* Primary, secondary & tertiary light colors */
-		${({ light, color, theme }) =>
-			light &&
-			!theme.darkMode &&
-			css`
-				background-color: ${theme.colors.bases[color][
-					color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
-				]};
-			`}
-
-		/* White color (dark background mode) */
-		${({ theme }) =>
-			theme.darkMode &&
-			css`
-				opacity: 80%;
-			`}
-
-		/* White color and light mode (dark background mode) */
-		${({ light, theme }) =>
-			theme.darkMode &&
-			light &&
-			css`
-				color: rgba(255, 255, 255, 25%);
-				opacity: 1;
-			`}
+		${({ theme, color, isDisabled, light }) =>
+			isDisabled
+				? ''
+				: /* Primary, secondary & tertiary light colors */
+				light && !theme.darkMode
+				? css`
+						background-color: ${theme.colors.bases[color][
+							color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
+						]};
+				  `
+				: /* Primary, secondary & tertiary colors */
+				!theme.darkMode
+				? css`
+						background-color: ${theme.colors.bases[color][
+							color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
+						]};
+				  `
+				: /* White color and light mode (dark background mode) */
+				light
+				? css`
+						color: rgba(255, 255, 255, 25%);
+						opacity: 1;
+				  `
+				: /* White color (dark background mode) */
+				  css`
+						opacity: 80%;
+				  `}
 	}
 `

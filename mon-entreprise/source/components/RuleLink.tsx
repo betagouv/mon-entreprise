@@ -10,7 +10,8 @@ export default function RuleLink(
 	props: {
 		dottedName: DottedName
 		displayIcon?: boolean
-	} & Omit<React.ComponentProps<RouterLink>, 'to'>
+		children?: React.ReactNode
+	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useContext(EngineContext)

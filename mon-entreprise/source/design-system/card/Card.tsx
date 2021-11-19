@@ -1,6 +1,7 @@
 import { useButton } from '@react-aria/button'
 import { Button } from 'DesignSystem/buttons'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import { FocusStyle } from 'DesignSystem/global-style'
 import { H3, HeadingUnderline } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
@@ -41,7 +42,7 @@ export function Card({
 			<StyledHeader {...titleProps} />
 			<CardBody>{children}</CardBody>
 			{ctaLabel && (
-				<StyledButton size="XS" light>
+				<StyledButton excludeFromTabOrder size="XS" light>
 					{ctaLabel}
 				</StyledButton>
 			)}
@@ -100,6 +101,9 @@ export const CardContainer = styled.div`
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
 	}
+	&:focus-visible {
+		${FocusStyle}
+	}
 	padding: ${({ theme }) => theme.spacings.lg};
-	transition: all 0.15s;
+	transition: box-shadow 0.15s;
 `

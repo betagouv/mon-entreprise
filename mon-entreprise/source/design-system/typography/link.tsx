@@ -1,5 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import { FocusStyle } from 'DesignSystem/global-style'
 import React, { forwardRef, useCallback, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -20,10 +21,12 @@ export const StyledLink = styled.a`
 	font-weight: 700;
 	font-size: inherit;
 	text-decoration: none;
-	padding: 0;
-
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
 		${StyledLinkHover}
+	}
+	&:focus {
+		${FocusStyle}
 	}
 `
 

@@ -5,9 +5,10 @@ import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
+import { Strong } from 'DesignSystem/typography'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -143,14 +144,14 @@ export default function VotreSituation() {
 			<PageFeedback
 				customMessage={<Trans>Êtes vous satisfait de cet assistant ?</Trans>}
 			/>
-			<blockquote className="ui__ notice">
+			<SmallBody>
 				<Emoji emoji="🏗️" />{' '}
 				<Trans i18nKey="économieCollaborative.WIP">
-					<strong>Cet assistant est en cours de développement.</strong>{' '}
+					<Strong>Cet assistant est en cours de développement.</Strong>{' '}
 					N'hésitez pas à nous faire part de toute vos remarques, idées,
 					questions en cliquant sur le bouton "Faire une suggestion" ci dessus.
 				</Trans>
-			</blockquote>
+			</SmallBody>
 		</FromBottom>
 	)
 }
