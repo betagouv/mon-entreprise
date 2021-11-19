@@ -64,7 +64,7 @@ export default function Notifications() {
 		<NotificationsContainer id="notificationsBlock">
 			{messages.map(({ sévérité, dottedName, résumé, description }) =>
 				hiddenNotifications?.includes(dottedName) ? null : (
-					<Notification className="notification">
+					<Notification className="notification" key={dottedName}>
 						<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
 						<NotificationContent className="notificationText">
 							<Markdown source={résumé ?? description} />{' '}

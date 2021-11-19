@@ -65,7 +65,10 @@ export default function MonEntrepriseRulePage() {
 								documentationPath={documentationPath}
 								renderers={{
 									Head: Helmet,
-									Link,
+									Link: Link as React.ComponentType<{
+										to: string
+										children: React.ReactNode
+									}>,
 									References,
 								}}
 							/>

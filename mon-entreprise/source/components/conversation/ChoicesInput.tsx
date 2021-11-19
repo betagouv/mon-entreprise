@@ -9,6 +9,7 @@ import { DottedName } from 'modele-social'
 import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
 import {
 	createContext,
+	Fragment,
 	useCallback,
 	useContext,
 	useEffect,
@@ -66,37 +67,40 @@ function RadioChoice({ choice }: { choice: Choice }) {
 
 	return (
 		<>
-			{choice.children.map((node) =>
-				hiddenOptions.includes(
-					node.dottedName as DottedName
-				) ? null : 'children' in node ? (
-					<div
-						role="group"
-						aria-describedby={node.dottedName + '-legend'}
-						css={`
-							margin-top: -1rem;
-						`}
-					>
-						<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
-						<Spacing lg />
-						<StyledSubRadioGroup>
-							<RadioChoice choice={node} />
-						</StyledSubRadioGroup>
-					</div>
-				) : (
-					<span>
-						<Radio value={`'${relativeDottedName(node.dottedName)}'`}>
-							{node.title}{' '}
-							{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
-						</Radio>{' '}
-						{node.rawNode.description && (
-							<ButtonHelp type="info" light title={node.title}>
-								<Markdown source={node.rawNode.description} />
-							</ButtonHelp>
-						)}
-					</span>
-				)
-			)}
+			{choice.children.map((node) => (
+				<Fragment key={node.dottedName}>
+					{' '}
+					{hiddenOptions.includes(
+						node.dottedName as DottedName
+					) ? null : 'children' in node ? (
+						<div
+							role="group"
+							aria-describedby={node.dottedName + '-legend'}
+							css={`
+								margin-top: -1rem;
+							`}
+						>
+							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
+							<Spacing lg />
+							<StyledSubRadioGroup>
+								<RadioChoice choice={node} />
+							</StyledSubRadioGroup>
+						</div>
+					) : (
+						<span>
+							<Radio value={`'${relativeDottedName(node.dottedName)}'`}>
+								{node.title}{' '}
+								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
+							</Radio>{' '}
+							{node.rawNode.description && (
+								<ButtonHelp type="info" light title={node.title}>
+									<Markdown source={node.rawNode.description} />
+								</ButtonHelp>
+							)}
+						</span>
+					)}
+				</Fragment>
+			))}
 		</>
 	)
 }

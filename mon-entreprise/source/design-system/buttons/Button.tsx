@@ -1,6 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
-import { ComponentPropsWithRef, useRef } from 'react'
+import { ComponentPropsWithRef, forwardRef, useCallback, useRef } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -21,12 +21,18 @@ type ButtonProps = GenericButtonOrLinkProps & {
 	light?: boolean
 }
 
-export function Button({
-	size = 'MD',
-	light = false,
-	color = 'primary' as const,
-	...ariaButtonProps
-}: ButtonProps) {
+export const Button = forwardRef<
+	HTMLAnchorElement | HTMLButtonElement,
+	ButtonProps
+>(function Button(
+	{
+		size = 'MD',
+		light = false,
+		color = 'primary' as const,
+		...ariaButtonProps
+	},
+	forwardedRef
+) {
 	const elementType: 'a' | 'button' | typeof NavLink =
 		'href' in ariaButtonProps
 			? 'a'
@@ -34,11 +40,39 @@ export function Button({
 			? NavLink
 			: 'button'
 
-	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
+	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
+	const { buttonProps } = useButton(
+		{ elementType, ...ariaButtonProps },
+		defaultRef
+	)
+	const ref = useCallback(
+		(instance) => {
+			defaultRef.current = instance
+			if (typeof forwardedRef === 'function') {
+				forwardedRef(instance)
+			}
+			if (forwardedRef && 'current' in forwardedRef) {
+				forwardedRef.current = instance
+			}
+		},
+		[forwardedRef]
+	)
+	const initialProps = Object.fromEntries(
+		Object.entries(ariaButtonProps).filter(
+			([key]) =>
+				![
+					'onPress',
+					'onPressChange',
+					'onPressEnd',
+					'onPressStart',
+					'onPressUp',
+				].includes(key)
+		)
+	)
+
 	return (
 		<StyledButton
-			{...ariaButtonProps}
+			{...initialProps}
 			{...buttonProps}
 			size={size}
 			light={light}
@@ -47,7 +81,7 @@ export function Button({
 			as={elementType}
 		/>
 	)
-}
+})
 
 type StyledButtonProps = {
 	color: Color

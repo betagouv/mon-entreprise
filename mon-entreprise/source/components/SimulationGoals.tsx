@@ -113,7 +113,6 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	boolean?: boolean
-	description?: React.ReactNode
 
 	alwaysShow?: boolean
 	onUpdateSituation?: (
@@ -127,7 +126,7 @@ export function SimulationGoal({
 	labelWithQuestion = false,
 	small = false,
 	onUpdateSituation,
-	description = null,
+
 	appear = true,
 	alwaysShow = false,
 	editable = true,
@@ -145,7 +144,6 @@ export function SimulationGoal({
 	const rule = engine.getRule(dottedName)
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
-	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const onChange = useCallback(
 		(x) => {
 			dispatch(updateSituation(dottedName, x))
@@ -162,7 +160,6 @@ export function SimulationGoal({
 	) {
 		return null
 	}
-	const selected = !isFirstStepCompleted || isFocused || dottedName in situation
 	if (
 		small &&
 		!editable &&
@@ -205,6 +202,9 @@ export function SimulationGoal({
 							sm={small ? 3 : 4}
 							xs={small ? 6 : 12}
 						>
+							{!isFocused && !small && (
+								<AnimatedTargetValue value={evaluation.nodeValue as number} />
+							)}
 							<RuleInput
 								modifiers={
 									!boolean
@@ -226,11 +226,6 @@ export function SimulationGoal({
 									maximumFractionDigits: 0,
 								}}
 							/>
-							{!isFocused && !small && (
-								<span style={{ position: 'relative', top: '-1rem' }}>
-									<AnimatedTargetValue value={evaluation.nodeValue as number} />
-								</span>
-							)}
 						</Grid>
 					) : (
 						<Grid item md="auto">

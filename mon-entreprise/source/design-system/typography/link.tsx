@@ -1,6 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
-import React, { useRef } from 'react'
+import React, { forwardRef, useCallback, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -27,9 +27,10 @@ export const StyledLink = styled.a`
 	}
 `
 
-export const Link = (
-	ariaButtonProps: GenericButtonOrLinkProps & { children: React.ReactNode }
-) => {
+export const Link = forwardRef<
+	HTMLAnchorElement | HTMLButtonElement,
+	GenericButtonOrLinkProps & { children: React.ReactNode }
+>((ariaButtonProps, forwardedRef) => {
 	const elementType: 'a' | 'button' | typeof NavLink =
 		'href' in ariaButtonProps
 			? 'a'
@@ -37,14 +38,42 @@ export const Link = (
 			? NavLink
 			: 'button'
 
-	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
+	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
+	const { buttonProps } = useButton(
+		{ elementType, ...ariaButtonProps },
+		defaultRef
+	)
+
+	const ref = useCallback(
+		(instance) => {
+			defaultRef.current = instance
+			if (typeof forwardedRef === 'function') {
+				forwardedRef(instance)
+			}
+			if (forwardedRef && 'current' in forwardedRef) {
+				forwardedRef.current = instance
+			}
+		},
+		[forwardedRef]
+	)
+	const initialProps = Object.fromEntries(
+		Object.entries(ariaButtonProps).filter(
+			([key]) =>
+				![
+					'onPress',
+					'onPressChange',
+					'onPressEnd',
+					'onPressStart',
+					'onPressUp',
+				].includes(key)
+		)
+	)
 	return (
 		<StyledLink
-			{...ariaButtonProps}
+			{...initialProps}
 			{...buttonProps}
 			as={elementType}
 			ref={ref as any}
 		/>
 	)
-}
+})

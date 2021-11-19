@@ -232,7 +232,7 @@ export default function Integration() {
 					<Trans>Liste des intégrations</Trans>
 				</H2>
 				<Grid container id="integrationList" spacing={2}>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
 							to="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
@@ -241,7 +241,7 @@ export default function Integration() {
 							<Logo src={urssafLogo} alt="urssaf.fr" />
 						</Article>
 					</Grid>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="CCI de France"
 							to="http://les-aides.fr/embauche"
@@ -250,7 +250,7 @@ export default function Integration() {
 							<Logo src={cciLogo} alt="Les-aides.fr" />
 						</Article>
 					</Grid>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="APEC"
 							to="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche"
@@ -259,7 +259,7 @@ export default function Integration() {
 							<Logo src={apecLogo} alt="Agence pour l'emploi des cadres" />
 						</Article>
 					</Grid>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Code du travail numérique"
 							to="https://code.travail.gouv.fr/outils/simulateur-embauche"
@@ -268,7 +268,7 @@ export default function Integration() {
 							<Logo src={minTraLogo} alt="Ministère du travail" />
 						</Article>
 					</Grid>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Pôle Emploi"
 							to="https://entreprise.pole-emploi.fr/cout-salarie/"
@@ -277,7 +277,7 @@ export default function Integration() {
 							<Logo src={poleEmploiLogo} alt="Pôle Emploi" />
 						</Article>
 					</Grid>
-					<Grid xs={12} md={6} xl={4}>
+					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
 							to="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
