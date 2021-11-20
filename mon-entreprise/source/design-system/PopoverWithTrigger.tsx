@@ -48,10 +48,10 @@ export default function PopoverWithTrigger({
 			{triggerButton}
 			{state.isOpen && (
 				<Popover
+					{...overlayProps}
 					title={title}
 					onClose={() => state.close()}
 					isDismissable
-					{...overlayProps}
 					role="dialog"
 				>
 					{typeof children === 'function'

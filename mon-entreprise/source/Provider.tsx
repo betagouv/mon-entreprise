@@ -161,35 +161,35 @@ export default function Provider({
 						</>
 					}
 				>
-					<ReduxProvider store={store}>
-						<IsEmbeddedProvider>
-							<ThemeColorsProvider>
-								<TrackingContext.Provider
-									value={
-										new ATTracker({
-											language: i18next.language as 'fr' | 'en',
-										})
-									}
-								>
-									<DisableAnimationOnPrintProvider>
-										<SiteNameContext.Provider value={basename}>
-											<SitePathProvider value={sitePaths}>
-												<I18nextProvider i18n={i18next}>
-													<HelmetProvider>
-														<OverlayProvider>
+					<OverlayProvider>
+						<ReduxProvider store={store}>
+							<IsEmbeddedProvider>
+								<ThemeColorsProvider>
+									<TrackingContext.Provider
+										value={
+											new ATTracker({
+												language: i18next.language as 'fr' | 'en',
+											})
+										}
+									>
+										<DisableAnimationOnPrintProvider>
+											<SiteNameContext.Provider value={basename}>
+												<SitePathProvider value={sitePaths}>
+													<I18nextProvider i18n={i18next}>
+														<HelmetProvider>
 															<Router history={history}>
 																<>{children}</>
 															</Router>
-														</OverlayProvider>
-													</HelmetProvider>
-												</I18nextProvider>
-											</SitePathProvider>
-										</SiteNameContext.Provider>
-									</DisableAnimationOnPrintProvider>
-								</TrackingContext.Provider>
-							</ThemeColorsProvider>
-						</IsEmbeddedProvider>
-					</ReduxProvider>
+														</HelmetProvider>
+													</I18nextProvider>
+												</SitePathProvider>
+											</SiteNameContext.Provider>
+										</DisableAnimationOnPrintProvider>
+									</TrackingContext.Provider>
+								</ThemeColorsProvider>
+							</IsEmbeddedProvider>
+						</ReduxProvider>
+					</OverlayProvider>
 				</ErrorBoundary>
 			</DesignSystemThemeProvider>
 		</>

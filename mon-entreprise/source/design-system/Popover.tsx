@@ -28,8 +28,10 @@ export default function Popover(
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
 	const ref = useRef(null)
-	const { overlayProps, underlayProps } = useOverlay(props, ref)
-
+	const { overlayProps, underlayProps } = useOverlay(
+		{ isOpen: true, ...props },
+		ref
+	)
 	// Prevent scrolling while the modal is open, and hide content
 	// outside the modal from screen readers.
 	usePreventScroll()
@@ -54,13 +56,13 @@ export default function Popover(
 					<Container>
 						<Grid container justifyContent="center">
 							<Grid item sm={10} md={8}>
-								<FocusScope contain restoreFocus autoFocus>
-									<PopoverContainer
-										{...overlayProps}
-										{...dialogProps}
-										{...modalProps}
-										ref={ref}
-									>
+								<PopoverContainer
+									{...dialogProps}
+									{...modalProps}
+									{...overlayProps}
+									ref={ref}
+								>
+									<FocusScope contain restoreFocus autoFocus>
 										{props.isDismissable && (
 											<CloseButtonContainer>
 												{/* TODO : replace with Link when in design system */}
@@ -93,8 +95,8 @@ export default function Popover(
 											)}
 											{children}
 										</PopoverContent>
-									</PopoverContainer>
-								</FocusScope>
+									</FocusScope>
+								</PopoverContainer>
 							</Grid>
 						</Grid>
 					</Container>
@@ -114,12 +116,12 @@ const fromtop = keyframes`
 `
 const Underlay = styled.div`
 	position: fixed;
+	width: 100vw;
+	height: 100vh;
 	top: 0;
 	left: 0;
-	bottom: 0;
-	right: 0;
 	overflow: auto;
-	z-index: 2;
+	z-index: 10;
 	background: rgba(255, 255, 255, 0.5);
 	display: flex;
 	align-items: center;
@@ -174,7 +176,7 @@ const CloseButton = styled.button`
 `
 
 const PopoverContent = styled.div`
-	overflow: scroll;
+	overflow: auto;
 	padding: 0 ${({ theme }) => theme.spacings.xxl}
 		${({ theme }) => theme.spacings.md};
 `

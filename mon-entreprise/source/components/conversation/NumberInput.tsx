@@ -157,7 +157,6 @@ const StyledNumberInput = styled.div`
 	flex: 1;
 	flex-direction: column;
 	max-width: 300px;
-	min-width: fit-content;
 	width: 100%;
 	align-items: flex-end;
 `

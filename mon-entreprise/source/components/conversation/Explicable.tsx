@@ -22,7 +22,12 @@ export function ExplicableRule({
 	//TODO montrer les variables de type 'une possibilité'
 
 	return (
-		<ButtonHelp type="info" title={rule.title} light={light}>
+		<ButtonHelp
+			key={rule.dottedName}
+			type="info"
+			title={rule.title}
+			light={light}
+		>
 			<Markdown source={rule.rawNode.description} />
 		</ButtonHelp>
 	)
