@@ -45,6 +45,7 @@ const InsideCircle = styled.span`
 	--padding: 4px;
 	position: absolute;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color-adjust: exact;
 	border-radius: 50%;
 	transform: scale(0);
 	transition: all 0.2s;

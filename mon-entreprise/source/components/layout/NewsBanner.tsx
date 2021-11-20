@@ -71,7 +71,7 @@ export default function NewsBanner() {
 		lastViewedRelease !== lastRelease.name && i18n.language === 'fr'
 
 	return showBanner ? (
-		<Container className="print-display-none">
+		<Container className="print-hidden">
 			<InnerContainer>
 				<span>
 					<Emoji emoji="✨" /> Découvrez les nouveautés{' '}

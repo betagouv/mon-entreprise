@@ -39,7 +39,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 			{!folded && (
 				<div>
 					{children}
-					<div className="ui__ answer-group print-display-none">
+					<div className="ui__ answer-group print-hidden">
 						<Button size="XS" light color="tertiary" onPress={() => fold(true)}>
 							<Trans>J'ai compris</Trans>
 						</Button>

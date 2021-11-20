@@ -1,5 +1,7 @@
+import { Grid } from '@mui/material'
 import Emoji from 'Components/utils/Emoji'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -45,67 +47,69 @@ export default function ShareOrSaveSimulationBanner() {
 	}
 
 	return (
-		<SharingTools className=" print-display-none">
-			<PopoverWithTrigger
-				title={t('shareSimulation.modal.title', 'Votre lien de partage')}
-				trigger={(buttonProps) => (
+		<>
+			<Spacing md />
+			<Grid
+				container
+				className=" print-hidden"
+				spacing={3}
+				justifyContent="center"
+			>
+				<Grid item xs={12} sm="auto">
+					<PopoverWithTrigger
+						title={t('shareSimulation.modal.title', 'Votre lien de partage')}
+						trigger={(buttonProps) => (
+							<Button
+								{...buttonProps}
+								light
+								size="XS"
+								onPress={(e) => {
+									tracker.click.set({
+										chapter1: 'feature:partage',
+										type: 'action',
+										name: 'démarré',
+									})
+									tracker.dispatch()
+									startSharing()
+
+									buttonProps?.onPress?.(e)
+								}}
+							>
+								<Emoji emoji="🔗" />
+								<ButtonLabel>
+									<Trans i18nKey="shareSimulation.banner">
+										Générer un lien de partage
+									</Trans>
+								</ButtonLabel>
+							</Button>
+						)}
+					>
+						<ShareSimulationPopup url={url} />
+					</PopoverWithTrigger>
+				</Grid>
+
+				<Grid item xs={12} sm="auto">
 					<Button
-						{...buttonProps}
 						light
 						size="XS"
-						onPress={(e) => {
-							tracker.click.set({
-								chapter1: 'feature:partage',
-								type: 'action',
-								name: 'démarré',
-							})
-							tracker.dispatch()
-							startSharing()
-
-							buttonProps?.onPress?.(e)
+						onPress={() => {
+							window.print()
 						}}
 					>
-						<Emoji emoji="🔗" />
+						<Emoji
+							css={`
+								margin-right: 1rem;
+							`}
+							emoji="🖨"
+						/>
 						<ButtonLabel>
-							<Trans i18nKey="shareSimulation.banner">
-								Générer un lien de partage
+							<Trans i18nKey="ExportSimulation.Banner">
+								Imprimer ou sauvegarder en PDF
 							</Trans>
 						</ButtonLabel>
 					</Button>
-				)}
-			>
-				<ShareSimulationPopup url={url} />
-			</PopoverWithTrigger>
-
-			<div>
-				<Button
-					light
-					size="XS"
-					onPress={() => {
-						window.print()
-					}}
-				>
-					<Emoji
-						css={`
-							margin-right: 1rem;
-						`}
-						emoji="🖨"
-					/>
-					<ButtonLabel>
-						<Trans i18nKey="ExportSimulation.Banner">
-							Imprimer ou sauvegarder en PDF
-						</Trans>
-					</ButtonLabel>
-				</Button>
-			</div>
-		</SharingTools>
+				</Grid>
+			</Grid>
+		</>
 	)
 }
-
-const SharingTools = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	margin: 0.5rem 0;
-`

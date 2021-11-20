@@ -20,6 +20,7 @@ Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
+Aucun: No
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
@@ -214,15 +215,15 @@ aide-déclaration-indépendant:
   description: <0><0>This tool is an aid for the declaration of income for
     <2>self-employed workers</2>. It allows you to know the amount of deductible
     social charges.</0><1>You remain entirely responsible for any omissions or
-    inaccuracies in your declaration.</1></0><1><0>This tool concerns you if you
-    are in the following situation:</0><1><0>you contribute to the general
-    scheme for self-employed workers</0></1><2>It does not concern you if you
-    are in one of the following cases:</2><3><0>you carry out a liberal activity
-    covered by a pension scheme for the liberal professions in accrual
-    accounting</0><1>your company is domiciled in the
-    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions help determine
-    the type of declaration to be completed, as well as the methods of
-    calculating social security contributions.</4>
+    inaccuracies in your declaration.</1></0><1><0><0>This tool concerns you if
+    you are in the following case:</0></0><1><0>You contribute to the general
+    scheme for independent workers</0></1><2><0>It does not concern you if you
+    are in one of the following cases:</0></2><3><0>You carry out a liberal
+    activity covered by a pension scheme for the liberal professions in accrual
+    accounting</0><1>Your company is domiciled in the
+    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions allow you to
+    determine the type of declaration to be completed, as well as the methods of
+    calculating social contributions.</4>
   entreprise:
     description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
@@ -941,7 +942,7 @@ pages:
     plan to be</2> implemented.</10><11>This declaration of accessibility
     applies to <2>https://mon-entreprise.fr</2>.</11><12>Compliance
     status</12><13><0>https://mon-entreprise.fr</0> is not currently compliant
-    with the <3>General Accessibility Improvement Framework (GA</3>F). The
+    with the <4>General Accessibility Improvement Framework (GA</4>F). The
     compliance audit will be scheduled soon. Corrections will be taken into
     account following the audit.</13><14>Right to compensation</14><15>While
     waiting for full compliance, you can obtain an accessible version of the
@@ -1620,6 +1621,8 @@ quicklinks:
   JEI: Innovating company (JEI)
   Temps partiel: Part time
   Type d'activité: Activity type
+recherche-globale:
+  placeholder: Keyword or acronym (e.g. CSG)
 replier: show less
 responsabilité:
   bouton1: Limited liability company

@@ -72,7 +72,7 @@ export default function Simulation({
 									position: sticky;
 									bottom: 0px;
 								`}
-								className=" print-display-none"
+								className=" print-hidden"
 							>
 								<FadeIn>
 									<PageFeedback

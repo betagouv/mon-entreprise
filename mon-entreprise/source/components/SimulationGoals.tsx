@@ -72,7 +72,7 @@ export function SimulationGoals({
 }
 
 const ToggleSection = styled.div`
-	padding-bottom: ${({ theme }) => theme.spacings.xs};
+	padding-bottom: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledSimulationGoals = styled.div<
@@ -196,12 +196,7 @@ export function SimulationGoal({
 						<StyledGuideLecture small={small} />
 					</Grid>
 					{editable ? (
-						<Grid
-							item
-							md={small ? 2 : 3}
-							sm={small ? 3 : 4}
-							xs={small ? 6 : 12}
-						>
+						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4}>
 							{!isFocused && !small && (
 								<AnimatedTargetValue value={evaluation.nodeValue as number} />
 							)}

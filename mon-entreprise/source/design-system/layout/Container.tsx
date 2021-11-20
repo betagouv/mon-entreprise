@@ -33,6 +33,11 @@ const InnerContainer = styled.div`
 		padding-right: 24px;
 		max-width: 1200px;
 	}
+
+	@media print {
+		max-width: 100%;
+		padding: 0;
+	}
 `
 
 type OuterContainerProps = {
