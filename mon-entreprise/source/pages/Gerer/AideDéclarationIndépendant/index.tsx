@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
@@ -85,10 +86,10 @@ export default function AideDéclarationIndépendant() {
 				<PreviousSimulationBanner />
 
 				<H2>Imposition</H2>
-				<p className="ui__ notice">
+				<Body>
 					Ces quelques questions permettent de déterminer le type de déclaration
 					à remplir, ainsi que les modalités de calcul des cotisations sociales.
-				</p>
+				</Body>
 			</Trans>
 			{Object.keys(situation).length ? (
 				<TrackPage name="commence" />
@@ -99,98 +100,103 @@ export default function AideDéclarationIndépendant() {
 			<ImpositionSection />
 
 			<FromTop>
-				<FormBlock>
-					<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
-						<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
-							<H2>Entreprise et activité</H2>
-						</Trans>
-						<div>
-							{!company && (
-								<p className="ui__ notice">
-									<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
-										<strong>Facultatif : </strong>Vous pouvez renseigner votre
-										entreprise pour pré-remplir le formulaire
-									</Trans>
-								</p>
-							)}
-							<CompanySection company={company} />
-						</div>
-						<SimpleField
-							dottedName="entreprise . date de création"
-							showSuggestions={false}
-						/>
-						<Condition expression="entreprise . date de création > 31/12/2020">
-							<small
-								css={`
-									color: #ff2d96;
-								`}
-							>
-								Cette aide à la déclaration concerne uniquement les entreprises
-								déjà en activité en 2020
-							</small>
-						</Condition>
+				<Grid container>
+					<Grid item xs={12} sm={10} md={9} lg={8}>
+						<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
+							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
+								<H2>Entreprise et activité</H2>
+							</Trans>
+							<>
+								{!company && (
+									<SmallBody>
+										<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
+											<strong>Facultatif : </strong>Vous pouvez renseigner votre
+											entreprise pour pré-remplir le formulaire
+										</Trans>
+									</SmallBody>
+								)}
+								<CompanySection company={company} />
+							</>
+							<SimpleField
+								dottedName="entreprise . date de création"
+								showSuggestions={false}
+							/>
+							<Condition expression="entreprise . date de création > 31/12/2020">
+								<SmallBody
+									css={`
+										color: #ff2d96;
+									`}
+								>
+									Cette aide à la déclaration concerne uniquement les
+									entreprises déjà en activité en 2020
+								</SmallBody>
+							</Condition>
 
-						<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-						{/* PLNR */}
-						<SimpleField dottedName="entreprise . activité . débit de tabac" />
-						<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
-						<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+							{/* PLNR */}
+							<SimpleField dottedName="entreprise . activité . débit de tabac" />
+							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
+							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 
-						<H2>
-							<Trans>Situation personnelle</Trans>
-						</H2>
-						<SimpleField dottedName="situation personnelle . RSA" />
-						<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
-							<SubSection dottedName="dirigeant . indépendant . IJSS" />
-						</Condition>
-						<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+							<H2>
+								<Trans>Situation personnelle</Trans>
+							</H2>
+							<SimpleField dottedName="situation personnelle . RSA" />
+							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+								<SubSection dottedName="dirigeant . indépendant . IJSS" />
+							</Condition>
+							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-						<H2>
-							<Trans>Exonérations</Trans>
-						</H2>
-						<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
-						<SimpleField dottedName="établissement . ZFU" />
-						<SubSection hideTitle dottedName="entreprise . effectif . seuil" />
-						<SubSection
-							dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-							hideTitle
-						/>
-						{FEATURE_FLAG_RESULTATS_COMPLETS && (
-							<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
-						)}
-						<H2>
-							<Trans>International</Trans>
-						</H2>
-						<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-						<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+							<H2>
+								<Trans>Exonérations</Trans>
+							</H2>
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
+							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
-								dottedName="dirigeant . indépendant . revenus étrangers"
+								hideTitle
+								dottedName="entreprise . effectif . seuil"
+							/>
+							<SubSection
+								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle
 							/>
+							{FEATURE_FLAG_RESULTATS_COMPLETS && (
+								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
+							)}
+							<H2>
+								<Trans>International</Trans>
+							</H2>
+							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+								<SubSection
+									dottedName="dirigeant . indépendant . revenus étrangers"
+									hideTitle
+								/>
+							</Condition>
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
 						</Condition>
-						<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
-					</Condition>
 
-					<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées">
-						<SubSection dottedName="aide déclaration revenu indépendant 2020 . cotisations payées" />
-						<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
-						<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
-						<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
-						{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
-						<H3>
-							<Trans>Revenus étranger</Trans>
-						</H3>
-						<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
-						<Condition expression="dirigeant . indépendant . revenus étrangers">
-							<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
+						<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées">
+							<SubSection dottedName="aide déclaration revenu indépendant 2020 . cotisations payées" />
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+							<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
+							<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
+							{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
+							<H3>
+								<Trans>Revenus étranger</Trans>
+							</H3>
+							<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
+							<Condition expression="dirigeant . indépendant . revenus étrangers">
+								<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
+							</Condition>
 						</Condition>
-					</Condition>
 
-					<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées version simple">
-						<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales" />
-						<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP" />
-					</Condition>
-				</FormBlock>
+						<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées version simple">
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales" />
+							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP" />
+						</Condition>
+					</Grid>
+				</Grid>
 			</FromTop>
 			{FEATURE_FLAG_RESULTATS_COMPLETS ? (
 				<>
@@ -247,12 +253,12 @@ function ImpositionSection() {
 									<H2>
 										Quel est votre chiffre d'affaires hors taxes en 2020 ?
 									</H2>
-									<p className="ui__ notice">
+									<SmallBody>
 										Indiquez le montant hors taxes de votre chiffre d’affaires
 										ou de vos recettes bruts (avant déduction de l’abattement
 										forfaitaire pour frais et charges) et avant déduction des
 										exonérations fiscales dont vous avez bénéficié
-									</p>
+									</SmallBody>
 									<SimpleField dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
 									<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
 									<SimpleField dottedName="entreprise . chiffre d'affaires . service BNC" />
@@ -265,11 +271,11 @@ function ImpositionSection() {
 											<ExplicationsResultatFiscal />
 										</small>
 									</H2>
-									<p className="ui__ notice">
+									<SmallBody>
 										Le résultat fiscal correspond aux produits moins les
 										charges. Il peut être positif (bénéfice) ou négatif
 										(déficit).
-									</p>
+									</SmallBody>
 									<BigInput>
 										<RuleInput
 											dottedName="dirigeant . rémunération . totale"
@@ -306,19 +312,4 @@ export const Question = styled.div`
 `
 const BigInput = styled.div`
 	font-size: 130%;
-`
-
-const FormBlock = styled.section`
-	max-width: 500px;
-	padding: 0;
-
-	select,
-	input[type='text'] {
-		font-size: 1.05em;
-		padding: 5px 10px;
-	}
-	ul {
-		padding: 0;
-		margin: 0;
-	}
 `

@@ -68,6 +68,7 @@ export const Link = forwardRef<
 					'onPressEnd',
 					'onPressStart',
 					'onPressUp',
+					'excludeFromTabOrder',
 				].includes(key)
 		)
 	)

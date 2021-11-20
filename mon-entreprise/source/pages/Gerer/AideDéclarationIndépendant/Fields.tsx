@@ -5,6 +5,7 @@ import { FromTop } from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { H3 } from 'DesignSystem/typography/heading'
+import { Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
@@ -81,18 +82,12 @@ export function SimpleField({
 		<div>
 			<FromTop>
 				<Question>
-					<div
-						css={`
-							border-left: 3px solid var(--lightColor);
-							padding-left: 0.6rem;
-						`}
-					>
-						<p>
-							{question ?? rule.rawNode.question}&nbsp;
-							<ExplicableRule dottedName={dottedName} />
-						</p>
-						<p className="ui__ notice">{summary ?? rule.rawNode.résumé}</p>
-					</div>
+					<Intro>
+						{question ?? rule.rawNode.question}&nbsp;
+						<ExplicableRule dottedName={dottedName} />
+					</Intro>
+					<SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>
+
 					<RuleInput
 						dottedName={dottedName}
 						onChange={dispatchValue}
