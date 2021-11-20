@@ -101,6 +101,13 @@ function RadioChoice({ choice }: { choice: Choice }) {
 					)}
 				</Fragment>
 			))}
+			{choice.canGiveUp && (
+				<>
+					<Radio value={'non'}>
+						<Trans>Aucun</Trans>
+					</Radio>
+				</>
+			)}
 		</>
 	)
 }
