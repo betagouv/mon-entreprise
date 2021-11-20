@@ -44,6 +44,7 @@ export default function ChiffreAffairesActivitéMixte({
 		<fieldset aria-label={t("Chiffre d'affaires")}>
 			<SimulationGoal
 				appear={false}
+				alwaysShow
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>

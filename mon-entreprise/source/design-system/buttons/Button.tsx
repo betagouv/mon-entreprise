@@ -68,6 +68,7 @@ export const Button = forwardRef<
 					'onPressEnd',
 					'onPressStart',
 					'onPressUp',
+					'excludeFromTabOrder',
 				].includes(key)
 		)
 	)

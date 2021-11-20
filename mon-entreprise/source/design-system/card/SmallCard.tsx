@@ -33,7 +33,7 @@ export function SmallCard({
 					`}
 					{...titleProps}
 				/>
-				{children && <SmallBody>{children}</SmallBody>}
+				<SmallBody>{children}</SmallBody>
 			</Content>
 		</Container>
 	)

@@ -28,7 +28,6 @@ export default function PageHeader({
 				sm={12}
 				md={9}
 				lg={8}
-				xl={7}
 				css={`
 					display: flex;
 					flex-direction: column;
@@ -45,7 +44,6 @@ export default function PageHeader({
 					className="hide-mobile"
 					md={3}
 					lg={4}
-					xl={5}
 					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
 				>
 					<Illustration

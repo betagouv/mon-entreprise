@@ -1,6 +1,5 @@
 import Emoji from 'Components/utils/Emoji'
 import { Article } from 'DesignSystem/card'
-import { Body } from 'DesignSystem/typography/paragraphs'
 
 type GuideURSSAFCardProps = {
 	guideUrssaf: {
@@ -17,10 +16,8 @@ export function GuideURSSAFCard({ guideUrssaf }: GuideURSSAFCardProps) {
 			ctaLabel={'Voir le guide'}
 			href={guideUrssaf.url}
 		>
-			<Body>
-				Des conseils pour se lancer dans la création et une présentation
-				détaillée de votre protection sociale.
-			</Body>
+			Des conseils pour se lancer dans la création et une présentation détaillée
+			de votre protection sociale.
 		</Article>
 	)
 }

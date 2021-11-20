@@ -1,4 +1,5 @@
 import { Strong } from 'DesignSystem/typography'
+import { H1, H2, H3, H4, H5, H6 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
@@ -116,6 +117,7 @@ export const Markdown = ({
 			list: Ul,
 			strong: Strong,
 			listItem: Li,
+			heading: Heading,
 			...renderers,
 		}}
 		{...otherProps}
@@ -216,8 +218,21 @@ type HeadingProps = {
 } & React.ComponentProps<'h1'>
 
 function Heading({ level, children, ...otherProps }: HeadingProps) {
-	// FIXME update to design system
-	return React.createElement(`h${level}`, otherProps, children)
+	return React.createElement(
+		level === 1
+			? H1
+			: level === 2
+			? H2
+			: level === 3
+			? H3
+			: level === 4
+			? H4
+			: level === 5
+			? H5
+			: H6,
+		otherProps,
+		children
+	)
 }
 
 // https://stackoverflow.com/a/41164587/1652064

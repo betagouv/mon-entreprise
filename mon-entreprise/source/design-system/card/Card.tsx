@@ -40,7 +40,13 @@ export function Card({
 		<CardContainer {...ariaButtonProps} {...buttonProps} as={elementType}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader {...titleProps} />
-			{typeof children === 'string' ? <Body>{children}</Body> : children}
+			<div
+				css={`
+					flex: 1;
+				`}
+			>
+				<Body>{children}</Body>
+			</div>
 			{ctaLabel && (
 				<StyledButton excludeFromTabOrder size="XS" light>
 					{ctaLabel}
@@ -84,9 +90,6 @@ const IconContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.md};
 `
 
-const CardBody = styled(Body)`
-	flex-grow: 1;
-`
 export const CardContainer = styled.div`
 	display: flex;
 	width: 100%;

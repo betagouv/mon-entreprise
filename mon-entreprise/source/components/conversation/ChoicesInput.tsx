@@ -52,22 +52,28 @@ export function MultipleAnswerInput({
 }: { choice: Choice } & InputProps<DottedName>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
-	const { handleChange, handleSubmit, currentSelection } = useSelection(props)
+	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 	return (
 		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
-			<RadioChoice choice={choice} />
+			<RadioChoice autoFocus={defaultValue} choice={choice} />
 		</RadioGroup>
 	)
 }
 
-function RadioChoice({ choice }: { choice: Choice }) {
+function RadioChoice({
+	choice,
+	autoFocus,
+}: {
+	choice: Choice
+	autoFocus?: string
+}) {
 	const relativeDottedName = (radioDottedName: string) =>
 		radioDottedName.split(choice.dottedName + ' . ')[1]
 	const hiddenOptions = useContext(HiddenOptionContext)
 
 	return (
 		<>
-			{choice.children.map((node) => (
+			{choice.children.map((node, i) => (
 				<Fragment key={node.dottedName}>
 					{' '}
 					{hiddenOptions.includes(
@@ -88,7 +94,12 @@ function RadioChoice({ choice }: { choice: Choice }) {
 						</div>
 					) : (
 						<span>
-							<Radio value={`'${relativeDottedName(node.dottedName)}'`}>
+							<Radio
+								autoFocus={
+									autoFocus === `'${relativeDottedName(node.dottedName)}'`
+								}
+								value={`'${relativeDottedName(node.dottedName)}'`}
+							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 							</Radio>{' '}
@@ -129,27 +140,25 @@ const StyledSubRadioGroup = styled.div`
 export function OuiNonInput(props: InputProps<DottedName>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
-	const { handleChange, handleSubmit, currentSelection } = useSelection(props)
+	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 	return (
 		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
-			<Radio value="oui">
+			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
 				<Trans>Oui</Trans>
 			</Radio>
-			<Radio value="non">
+			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
 				<Trans>Non</Trans>
 			</Radio>
 		</RadioGroup>
 	)
 }
 
-function useSelection({
-	value,
-	onChange,
-	missing,
-	onSubmit,
-}: InputProps<DottedName>) {
+function useSelection({ value, onChange, missing }: InputProps<DottedName>) {
+	const defaultValue = serializeEvaluation({
+		nodeValue: value,
+	} as EvaluatedNode)
 	const [currentSelection, setCurrentSelection] = useState(
-		missing ? null : serializeEvaluation({ nodeValue: value } as EvaluatedNode)
+		missing ? null : defaultValue
 	)
 	const handleChange = useCallback(
 		(value) => {
@@ -157,15 +166,6 @@ function useSelection({
 		},
 		[setCurrentSelection]
 	)
-	const handleSubmit = useCallback(
-		(src, value) => {
-			setCurrentSelection(value)
-			onChange(value)
-			onSubmit?.(src)
-		},
-		[onSubmit, onChange, setCurrentSelection]
-	)
-
 	const debouncedSelection = useDebounce(currentSelection, 300)
 	useEffect(() => {
 		if (
@@ -178,5 +178,5 @@ function useSelection({
 		}
 	}, [debouncedSelection])
 
-	return { currentSelection, handleChange, handleSubmit }
+	return { currentSelection, handleChange, defaultValue }
 }

@@ -39,25 +39,13 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-	const setDefault = () => dispatch(stepAction(currentQuestion))
+	const goToNextQuestion = () => dispatch(stepAction(currentQuestion))
 
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 
-	const submit = (source: string) => {
-		dispatch(stepAction(currentQuestion, source))
-	}
-
 	const onChange = (value: PublicodesExpression | undefined) => {
 		dispatch(updateSituation(currentQuestion, value))
-	}
-
-	const handleKeyDown = ({ key }: React.KeyboardEvent) => {
-		if (key === 'Escape') {
-			setDefault()
-		} else if (key === 'Enter') {
-			submit('enter')
-		}
 	}
 
 	return currentQuestion ? (
@@ -65,7 +53,12 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<div onKeyDown={handleKeyDown}>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault()
+					goToNextQuestion()
+				}}
+			>
 				<div
 					css={`
 						display: inline-flex;
@@ -83,7 +76,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						onChange={onChange}
 						autoFocus
 						key={currentQuestion}
-						onSubmit={submit}
+						onSubmit={goToNextQuestion}
 					/>
 				</fieldset>
 				<Spacing md />
@@ -96,24 +89,26 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</Grid>
 					)}
 					<Grid item xs={6} sm="auto">
-						{currentQuestionIsAnswered ? (
-							<Button size="XS" onPress={() => submit('accept')}>
-								<span className="text">
-									<Trans>Suivant</Trans> →
-								</span>
-							</Button>
-						) : (
-							<Button onPress={setDefault} size="XS" light>
-								<Trans>Passer</Trans> →
-							</Button>
-						)}
+						<Button
+							size="XS"
+							type="submit"
+							light={!currentQuestionIsAnswered}
+							onPress={goToNextQuestion}
+						>
+							{currentQuestionIsAnswered ? (
+								<Trans>Suivant</Trans>
+							) : (
+								<Trans>Passer</Trans>
+							)}{' '}
+							→
+						</Button>
 					</Grid>
 					<Grid container item xs={12} sm justifyContent="flex-end">
 						<SeeAnswersButton />
 					</Grid>
 				</Grid>
 				<Notifications />
-			</div>
+			</form>
 			<QuickLinks />
 		</>
 	) : (
