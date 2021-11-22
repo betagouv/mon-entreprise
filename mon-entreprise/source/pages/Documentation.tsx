@@ -257,11 +257,10 @@ const StyledDocumentation = styled.div`
 		${(props) => componentCSS((StyledLink.componentStyle as any).rules, props)}
 	}
 	button {
-		font-size: ${({ theme }) => theme.baseFontSize};
+		font-size: 1rem;
 		font-family: ${({ theme }) => theme.fonts.main};
 	}
-	font-size: ${({ theme }) => theme.baseFontSize};
-	font-family: ${({ theme }) => theme.fonts.main};
 	font-size: 1rem;
+	font-family: ${({ theme }) => theme.fonts.main};
 	line-height: 1.5rem;
 `

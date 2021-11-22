@@ -146,7 +146,7 @@ export function SimulateurCard({
 	const { t } = useTranslation()
 
 	return small ? (
-		<Grid item xs={6} md={4}>
+		<Grid item xs={12} sm={6} md={4}>
 			<SmallCard
 				icon={<Emoji emoji={icône} />}
 				to={{

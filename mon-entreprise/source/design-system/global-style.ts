@@ -107,10 +107,11 @@ html {
 html, body {
 	height: 100%;
 }
-
+html {
+	font-size: 16px;
+}
 
 body {
-  font-size: 16px;
 	margin: 0;
 }
 
@@ -169,7 +170,11 @@ button:enabled {
 	margin-bottom: 0.7cm;
 }
 
-
+@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+	html {
+		font-size: 0.9rem;
+	}
+}
 `
 
 export const FocusStyle = css`

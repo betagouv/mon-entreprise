@@ -174,9 +174,9 @@ export function SimulationGoal({
 					container
 					alignItems="baseline"
 					spacing={2}
-					justifyContent="flex-end"
+					justifyContent="space-between"
 				>
-					<Grid item md="auto" sm={small ? 9 : 8} xs={12}>
+					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
 							{(labelWithQuestion && rule.rawNode.question) || (
 								<RuleLink dottedName={dottedName} />
@@ -192,11 +192,15 @@ export function SimulationGoal({
 							</SmallBody>
 						</StyledGoalHeader>
 					</Grid>
-					<Grid item md sx={{ display: { sm: 'none', md: 'block' } }}>
+					<Grid
+						item
+						md
+						sx={{ display: { sm: 'none', xs: 'none', md: 'block' } }}
+					>
 						<StyledGuideLecture small={small} />
 					</Grid>
 					{editable ? (
-						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4}>
+						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
 							{!isFocused && !small && (
 								<AnimatedTargetValue value={evaluation.nodeValue as number} />
 							)}
@@ -223,7 +227,7 @@ export function SimulationGoal({
 							/>
 						</Grid>
 					) : (
-						<Grid item md="auto">
+						<Grid item>
 							<RuleLink dottedName={dottedName} excludeFromTabOrder>
 								{formatValue(evaluation, { displayedUnit: '€' })}
 							</RuleLink>

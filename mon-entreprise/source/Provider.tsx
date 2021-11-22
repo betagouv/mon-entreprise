@@ -128,8 +128,8 @@ export default function Provider({
 
 	return (
 		<>
-			<GlobalStyle />
 			<DesignSystemThemeProvider>
+				<GlobalStyle />
 				<ErrorBoundary
 					showDialog
 					fallback={
