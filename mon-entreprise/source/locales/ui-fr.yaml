@@ -605,10 +605,10 @@ landing:
     autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
     conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
-    site pour <2>accompagner les créateurs d’entreprise</2> dans le
-    développement de leur activité.</2><3>Notre objectif est de <2>lever toutes
-    les incertitudes vis à vis de l’administration</2> afin que vous puissiez
-    vous concentrer sur ce qui compte : votre activité.</3>"
+    site pour accompagner les créateurs d’entreprise dans le développement de
+    leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
+    à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
+    compte : votre activité.</3>"
   choice:
     create:
       body: Un accompagnement au choix du statut juridique et la liste complète des

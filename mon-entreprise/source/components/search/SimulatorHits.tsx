@@ -27,7 +27,7 @@ export const SimulatorHits = connectHits(({ hits }: SimulatorHitsProps) => {
 					<Trans>Simulateurs</Trans>
 				</H3>
 			)}
-			<Grid container spacing={2}>
+			<Grid container spacing={2} columns={4}>
 				{hits.map((hit) => (
 					<SimulateurCard
 						key={hit.objectID}

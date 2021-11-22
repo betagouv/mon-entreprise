@@ -8,6 +8,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card/Card'
 import { Container } from 'DesignSystem/layout'
 import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
@@ -116,29 +117,27 @@ export default function Landing() {
 						<H2>Qui sommes-nous ?</H2>
 						<Body>
 							Nous sommes une petite{' '}
-							<a href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
+							<Link href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
 								équipe
-							</a>{' '}
+							</Link>{' '}
 							autonome et pluridisciplinaire au sein de l’
-							<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à cœur
-							d’être au près de vos besoins afin d’améliorer en permanence ce
-							site conformément à l'approche{' '}
-							<a href="https://beta.gouv.fr/approche/manifeste">beta.gouv.fr</a>
+							<Link href="https://www.urssaf.fr">Urssaf</Link>. Nous avons à
+							cœur d’être au près de vos besoins afin d’améliorer en permanence
+							ce site conformément à l'approche{' '}
+							<Link href="https://beta.gouv.fr/approche/manifeste">
+								beta.gouv.fr
+							</Link>
 							.
 						</Body>
 						<Body>
-							Nous avons développé ce site pour{' '}
-							<strong>accompagner les créateurs d’entreprise</strong> dans le
-							développement de leur activité.
+							Nous avons développé ce site pour accompagner les créateurs
+							d’entreprise dans le développement de leur activité.
 						</Body>
 
 						<Body>
-							Notre objectif est de{' '}
-							<strong>
-								lever toutes les incertitudes vis à vis de l’administration
-							</strong>{' '}
-							afin que vous puissiez vous concentrer sur ce qui compte : votre
-							activité.
+							Notre objectif est de lever toutes les incertitudes vis à vis de
+							l’administration afin que vous puissiez vous concentrer sur ce qui
+							compte : votre activité.
 						</Body>
 					</Trans>
 				</section>

@@ -65,9 +65,9 @@ export default function AfterRegistration() {
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise
 					dans la nomenclature nationale d'activités françaises « NAF » (
-					<a href="https://www.insee.fr/fr/metadonnees/nafr2/section/A?champRecherche=false">
+					<Link href="https://www.insee.fr/fr/metadonnees/nafr2/section/A?champRecherche=false">
 						voir la liste
-					</a>
+					</Link>
 					).{' '}
 					<span
 						style={
@@ -82,9 +82,9 @@ export default function AfterRegistration() {
 					</span>
 					<p>
 						En cas de code APE erroné, vous pouvez{' '}
-						<a href="https://www.insee.fr/fr/information/2015441">
+						<Link href="https://www.insee.fr/fr/information/2015441">
 							demander une modification
-						</a>{' '}
+						</Link>{' '}
 						à l'INSEE.
 					</p>
 				</Trans>
@@ -98,9 +98,9 @@ export default function AfterRegistration() {
 					<strong>l'existence légale d'une entreprise commerciale</strong>. Le
 					plus souvent, pour être valable par les procédures administratives, il
 					doit dater de moins de 3 mois.{' '}
-					<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
+					<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
 						Plus d'infos.
-					</a>
+					</Link>
 				</Trans>
 			</Body>
 			<Body>
