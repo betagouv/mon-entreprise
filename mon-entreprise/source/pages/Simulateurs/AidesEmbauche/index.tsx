@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { HiddenOptionContext } from 'Components/conversation/ChoicesInput'
 import Conversation from 'Components/conversation/Conversation'
 import { FromTop } from 'Components/ui/animate'
@@ -8,16 +9,17 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { useParamsFromSituation } from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
-import { H2, H3, H4 } from 'DesignSystem/typography/heading'
+import { Card } from 'DesignSystem/card'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { SimulationConfig, Situation } from 'Reducers/rootReducer'
-import styled from 'styled-components'
-import { TrackPage } from '../../ATInternetTracking'
+import { TrackPage } from '../../../ATInternetTracking'
 
 type AideDescriptor = {
 	title: string
@@ -164,10 +166,10 @@ export default function AidesEmbauche() {
 
 	return (
 		<>
-			<div style={{ '--lighterColor': '#e9fff6' } as React.CSSProperties}>
-				<Warning
-					localStorageKey={'app::simulateurs:warning-folded:v1:aides-embauche'}
-				>
+			<Warning
+				localStorageKey={'app::simulateurs:warning-folded:v1:aides-embauche'}
+			>
+				<Body>
 					<Trans i18nKey="pages.simulateurs.aides-embauche.warning">
 						Ce simulateur présente une liste réduite des aides à l'embauche et
 						n'intègre pas l'ensemble des conditions d'éligibilité.
@@ -175,48 +177,41 @@ export default function AidesEmbauche() {
 						Une simulation plus complète peut être réalisée en cliquant sur «
 						Simuler une Embauche ».
 					</Trans>
-				</Warning>
-			</div>
-			<section className="ui__ full-width lighter-bg">
-				<div className="ui__ container">
-					<HiddenOptionContext.Provider value={['contrat salarié . stage']}>
-						<Conversation
-							customEndMessages={
-								<Trans i18nKey="pages.simulateurs.aides-embauche.message fin">
-									Vous pouvez maintenant simuler le coût d’embauche précis en
-									sélectionnant une aide éligible.
-								</Trans>
-							}
-						/>
-					</HiddenOptionContext.Provider>
-				</div>
+				</Body>
+			</Warning>
+			<section>
+				<HiddenOptionContext.Provider value={['contrat salarié . stage']}>
+					<Conversation
+						customEndMessages={
+							<Trans i18nKey="pages.simulateurs.aides-embauche.message fin">
+								Vous pouvez maintenant simuler le coût d’embauche précis en
+								sélectionnant une aide éligible.
+							</Trans>
+						}
+					/>
+				</HiddenOptionContext.Provider>
 			</section>
 			<Results />
 			<section>
 				<Trans i18nKey="pages.simulateurs.aides-embauche.outro">
 					<H2>En savoir plus sur les aides</H2>
-					<p>
+					<Body>
 						Vous pouvez retrouver une liste plus complète des aides à l'embauche
 						existantes sur le portail{' '}
-						<a href="https://les-aides.fr" target="_blank">
-							les-aides.fr
-						</a>{' '}
-						édité par les chambres de commerce et d'industrie.
-					</p>
-					<p>
+						<Link href="https://les-aides.fr">les-aides.fr</Link> édité par les
+						chambres de commerce et d'industrie.
+					</Body>
+					<Body>
 						Dans le cadre du plan « France Relance » le gouvernement met en
 						place une série de mesures pour encourager les nouvelles embauches.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Rendez-vous sur le portail{' '}
-						<a
-							href="https://www.1jeune1solution.gouv.fr/je-recrute/articles"
-							target="_blank"
-						>
+						<Link href="https://www.1jeune1solution.gouv.fr/je-recrute/articles">
 							#1jeune1solution
-						</a>{' '}
+						</Link>{' '}
 						pour en savoir plus
-					</p>
+					</Body>
 				</Trans>
 			</section>
 		</>
@@ -275,11 +270,13 @@ function AidesGrid({
 	aides: Array<AideDescriptor & { engine: Engine }>
 }) {
 	return (
-		<div className="ui__ box-container large">
+		<Grid container spacing={2}>
 			{aides.map((aide, i) => (
-				<ResultCard {...aide} key={i} />
+				<Grid item xs={12} md={6} lg={4} key={i}>
+					<ResultCard {...aide} />
+				</Grid>
 			))}
-		</div>
+		</Grid>
 	)
 }
 
@@ -292,18 +289,30 @@ function ResultCard({
 	versement,
 	description,
 }: AideDescriptor & { engine: Engine }) {
+	const {
+		t,
+		i18n: { language },
+	} = useTranslation()
 	const rule = engine.getParsedRules()[dottedName]
 	const valueNode = (rule.explanation.valeur as any)?.explanation.valeur
 	const evaluation = engine.evaluate(valueNode)
 	const search =
 		useParamsFromSituation(situation).toString() + '&view=employeur'
 	const sitePaths = useContext(SitePathsContext)
-	const lang = useTranslation().i18n.language
 
 	return (
-		<AideCard className="ui__ card box">
-			<H4>{title}</H4>
-			<p className="ui__ notice">
+		<Card
+			title={title}
+			to={{
+				pathname: sitePaths.simulateurs.salarié,
+				search,
+			}}
+			ctaLabel={t(
+				'pages.simulateurs.aides-embauche.card.action',
+				'Simuler une embauche'
+			)}
+		>
+			<Body>
 				<Emoji emoji={'💶'} />
 				&nbsp;{' '}
 				<Trans i18nKey="pages.simulateurs.aides-embauche.card.montant">
@@ -327,37 +336,14 @@ function ResultCard({
 						<br />
 						<Emoji emoji={'📆'} />
 						&nbsp; <Trans>Jusqu’au</Trans>{' '}
-						{new Intl.DateTimeFormat(lang, {
+						{new Intl.DateTimeFormat(language, {
 							month: 'long',
 							day: 'numeric',
 						}).format(dateFin)}
 					</>
 				)}
-			</p>
-			<hr />
-			<p className="ui__ notice">{description}</p>
-			<hr />
-			<div className="ui__ small simple button">
-				<Link
-					to={{
-						pathname: sitePaths.simulateurs.salarié,
-						search,
-					}}
-				>
-					<Trans i18nKey="pages.simulateurs.aides-embauche.card.action">
-						Simuler une embauche
-					</Trans>
-				</Link>
-			</div>
-		</AideCard>
+			</Body>
+			<Body className="ui__ notice">{description}</Body>
+		</Card>
 	)
 }
-
-const AideCard = styled.div`
-	max-width: none !important;
-
-	p.ui__.notice {
-		align-self: flex-start;
-		text-align: left;
-	}
-`
