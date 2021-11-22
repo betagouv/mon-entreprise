@@ -42,7 +42,7 @@ const OutsideCircle = styled.span`
 `
 
 const InsideCircle = styled.span`
-	--padding: 4px;
+	--padding: 0.25rem;
 	position: absolute;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	color-adjust: exact;
@@ -145,7 +145,7 @@ export function ToggleGroup(
 }
 
 const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
-	--radius: 4px;
+	--radius: 0.25rem;
 	display: inline-flex;
 
 	${VisibleRadio} {
