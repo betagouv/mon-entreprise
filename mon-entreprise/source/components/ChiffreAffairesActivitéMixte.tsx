@@ -7,6 +7,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './SimulationGoals'
 import { useEngine } from './utils/EngineContext'
@@ -122,20 +123,22 @@ function ActivitéMixte() {
 		[dispatch, situation]
 	)
 	return (
-		<div
-			css={`
-				text-align: right;
-				position: relative;
-				z-index: 2;
-				margin-top: -1.5rem;
-			`}
-		>
+		<StyledActivitéMixteContainer>
 			<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
 				Activité mixte
 			</Checkbox>
 			<ButtonHelp type="aide" title={rule.title} light>
 				<Markdown source={rule.rawNode.description} />
 			</ButtonHelp>
-		</div>
+		</StyledActivitéMixteContainer>
 	)
 }
+
+const StyledActivitéMixteContainer = styled.div`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		text-align: right;
+		margin-top: -1.5rem;
+		position: relative;
+		z-index: 2;
+	}
+`
