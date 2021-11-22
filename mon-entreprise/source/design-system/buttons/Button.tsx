@@ -104,6 +104,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	}};
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		width: 100%;
+		text-align: center;
 	}
 	border-radius: 2.5rem;
 	transition: all 0.15s;
