@@ -91,8 +91,8 @@ function TitreRestaurant() {
 		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<FromTop>
-				<StyledInfo>
+			<StyledInfo>
+				<FromTop>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
 						<Value
@@ -102,8 +102,8 @@ function TitreRestaurant() {
 						/>
 						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
-				</StyledInfo>
-			</FromTop>
+				</FromTop>
+			</StyledInfo>
 		</Condition>
 	)
 }
@@ -134,8 +134,8 @@ function AidesGlimpse() {
 	)
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<FromTop>
-				<StyledInfo>
+			<StyledInfo>
+				<FromTop>
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
 						<Value
@@ -145,8 +145,8 @@ function AidesGlimpse() {
 						/>{' '}
 						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
 					</RuleLink>
-				</StyledInfo>
-			</FromTop>
+				</FromTop>
+			</StyledInfo>
 		</Condition>
 	)
 }
