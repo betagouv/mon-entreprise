@@ -115,8 +115,8 @@ export function Checklist({
 				throw new Error('Invalid child passed to Checklist')
 			}
 			return React.cloneElement(child, {
-				onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
-					onItemCheck?.(child.props.name, evt.target.checked),
+				onChange: (isSelected: boolean) =>
+					onItemCheck?.(child.props.name, isSelected),
 				defaultChecked:
 					child.props.defaultChecked || defaultChecked?.[child.props.name],
 			})
