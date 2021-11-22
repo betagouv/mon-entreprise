@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
-import PageHeader from 'Components/PageHeader'
 import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
@@ -9,6 +8,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
 import { headings } from 'DesignSystem/typography'
+import { H1 } from 'DesignSystem/typography/heading'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
@@ -24,16 +24,11 @@ export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
 		<EngineProvider value={engine}>
-			<PageHeader
-				titre={
-					'Demande de mobilité internationale pour travailleur indépendant'
-				}
-			>
-				<Intro>
-					Travailleur indépendant exerçant son activité à l’étranger : Régime de
-					Sécurité sociale applicable
-				</Intro>
-			</PageHeader>
+			<H1>Demande de mobilité internationale pour travailleur indépendant</H1>
+			<Intro>
+				Travailleur indépendant exerçant son activité à l’étranger : Régime de
+				Sécurité sociale applicable
+			</Intro>
 			<Body>
 				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
 				Etats (pays) membres de l’UE, de l’
