@@ -16,14 +16,14 @@ coordonnées assuré . prénoms:
 coordonnées assuré . nationalité:
   type: texte
   note: 1.6
+coordonnées assuré . date de naissance:
+  type: date
+  note: 1.5
 coordonnées assuré . numéro de sécurité sociale:
   description: Saisissez les 15 chiffres de votre numéro tel qu'il apparaît sur votre carte vitale par exemple.
   type: texte
   # API: numéro sécurité sociale
   note: 1.1
-coordonnées assuré . date de naissance:
-  type: date
-  note: 1.5
 
 coordonnées assuré . commune de naissance:
   type: groupe

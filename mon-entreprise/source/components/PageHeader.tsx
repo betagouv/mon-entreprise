@@ -26,8 +26,8 @@ export default function PageHeader({
 			<Grid
 				item
 				sm={12}
-				md={9}
-				lg={8}
+				md={picture ? 9 : 12}
+				lg={picture ? 8 : 12}
 				css={`
 					display: flex;
 					flex-direction: column;

@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import RuleInput from 'Components/conversation/RuleInput'
 import { Condition } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
@@ -7,17 +8,12 @@ import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
+import { headings } from 'DesignSystem/typography'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
 import { equals, isEmpty, omit } from 'ramda'
-import {
-	createElement,
-	lazy,
-	Suspense,
-	useCallback,
-	useContext,
-	useState,
-} from 'react'
+import { lazy, Suspense, useCallback, useContext, useState } from 'react'
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
@@ -33,12 +29,12 @@ export default function FormulaireMobilitéIndépendant() {
 					'Demande de mobilité internationale pour travailleur indépendant'
 				}
 			>
-				<p className="ui__ lead">
+				<Intro>
 					Travailleur indépendant exerçant son activité à l’étranger : Régime de
-					Sécurité sociale applicable{' '}
-				</p>
+					Sécurité sociale applicable
+				</Intro>
 			</PageHeader>
-			<p>
+			<Body>
 				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
 				Etats (pays) membres de l’UE, de l’
 				<abbr title="Espace Économique Européen">EEE</abbr>*, en Suisse ou dans
@@ -50,36 +46,34 @@ export default function FormulaireMobilitéIndépendant() {
 					mobilite-internationale@urssaf.fr
 				</a>
 				.
-			</p>
-			<p>
+			</Body>
+			<Body>
 				Après étude de votre demande, si les conditions le permettent, vous
 				recevrez un certificat A1 (ou le formulaire spécifique) attestant du
 				maintien à la Sécurité sociale française.
-			</p>
+			</Body>
 
-			<p>
-				<small>
-					* Pays concernés : Allemagne, Autriche, Belgique, Bulgarie, Chypre,
-					Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie,
-					Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie,
-					Luxembourg, Malte, Norvège, Pays-Bas, Pologne, Portugal, République
-					Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède, Suisse
-				</small>
-			</p>
+			<SmallBody>
+				* Pays concernés : Allemagne, Autriche, Belgique, Bulgarie, Chypre,
+				Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande,
+				Islande, Italie, Lettonie, Liechtenstein, Lituanie, Luxembourg, Malte,
+				Norvège, Pays-Bas, Pologne, Portugal, République Tchèque, Roumanie,
+				Royaume-Uni, Slovaquie, Slovénie, Suède, Suisse
+			</SmallBody>
 
 			<blockquote>
-				<p className="ui__ lead">
+				<Intro>
 					<strong>
 						Attention : ce document doit être signé <Emoji emoji="✍️" />
 					</strong>
-				</p>
-				<p>
+				</Intro>
+				<Body>
 					Aussi, nous vous invitons à utiliser un écran tactile pour le
 					compléter (téléphone, tablette, etc.). Sinon, vous devrez l’imprimer,
 					le signer et le scanner avant envoi par mail.
-				</p>
+				</Body>
 			</blockquote>
-			<p className="ui__ notice">
+			<Body>
 				En cas de difficultés pour{' '}
 				<strong>remplir ce formulaire, contactez un conseiller</strong> par
 				email{' '}
@@ -91,7 +85,7 @@ export default function FormulaireMobilitéIndépendant() {
 					<a href="tel:+33806804213">+33(0) 806 804 213</a>
 				</strong>{' '}
 				de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).
-			</p>
+			</Body>
 			<FormulairePublicodes />
 		</EngineProvider>
 	)
@@ -156,40 +150,52 @@ function FormulairePublicodes() {
 
 	return (
 		<FromTop key={clearFieldsKey}>
-			{fields.map(
-				({ rawNode: { description, type, question }, title, dottedName }) => (
-					<FromTop key={dottedName}>
-						{type === 'groupe' ? (
-							<>
-								{createElement(
-									`h${Math.min(dottedName.split(' . ').length + 1, 6)}`,
-									{},
-									title
-								)}
-								{description && <Markdown source={description} />}
-							</>
+			<Grid container spacing={2}>
+				{fields.map(
+					({ rawNode: { description, type, question }, title, dottedName }) => {
+						const headerLevel = Math.min(dottedName.split(' . ').length + 1, 6)
+						const HeaderComponent = headings.fromLevel(headerLevel)
+
+						return type === 'groupe' ? (
+							<Grid item xs={12}>
+								<FromTop key={dottedName}>
+									<HeaderComponent>{title}</HeaderComponent>
+									{description && <Markdown source={description} />}
+								</FromTop>
+							</Grid>
 						) : type === 'notification' ? (
 							<Condition expression={dottedName}>
-								<small
-									css={`
-										color: #ff2d96;
-									`}
-								>
-									{description}
-								</small>
+								<Grid item xs={12}>
+									<FromTop key={dottedName}>
+										<SmallBody
+											css={`
+												color: #ff2d96;
+											`}
+										>
+											{description}
+										</SmallBody>
+									</FromTop>
+								</Grid>
 							</Condition>
 						) : (
-							<>
-								<RuleInput
-									id={dottedName}
-									dottedName={dottedName as DottedName}
-									onChange={(value) => onChange(dottedName, value)}
-								/>
-							</>
-						)}
-					</FromTop>
-				)
-			)}
+							<Grid
+								item
+								xs={12}
+								md={question || type === 'booléen' || !type ? 12 : 6}
+							>
+								<FromTop key={dottedName}>
+									{question && <SmallBody>{question}</SmallBody>}
+									<RuleInput
+										id={dottedName}
+										dottedName={dottedName as DottedName}
+										onChange={(value) => onChange(dottedName, value)}
+									/>
+								</FromTop>
+							</Grid>
+						)
+					}
+				)}
+			</Grid>
 
 			<Suspense fallback={null}>
 				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />

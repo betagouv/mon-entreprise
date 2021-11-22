@@ -35,12 +35,13 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	if (isMissingValues) {
 		return (
 			<blockquote>
-				<strong>Certains champs ne sont pas renseignés.</strong>
-				<br />{' '}
-				<small>
+				<Body>
+					<strong>Certains champs ne sont pas renseignés.</strong>
+				</Body>
+				<SmallBody>
 					Vous devez compléter l'intégralité du formulaire avant de pouvoir le
 					signer et générer votre demande.
-				</small>
+				</SmallBody>
 			</blockquote>
 		)
 	}
@@ -54,10 +55,10 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 				defaultSelected={isCertified}
 				label="Je certifie l’exactitude des informations communiquées ci-dessus."
 			/>
-			<p className="ui__ notice">
+			<SmallBody>
 				L’auteur d’une fausse déclaration est passible d’une condamnation au
 				titre de l’article 441-1 du code pénal.
-			</p>
+			</SmallBody>
 
 			<TextField
 				defaultValue={place}
@@ -66,9 +67,9 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			/>
 			{IS_TOUCH_DEVICE && (
 				<div>
-					<small>
+					<SmallBody>
 						Signez ci dessous en utilisant la totalité de l'espace :{' '}
-					</small>
+					</SmallBody>
 					<div
 						css={`
 							border: 1px solid ${colors.bases.primary[700]};
@@ -93,87 +94,84 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					</div>
 				</div>
 			)}
-			<p>
-				<PopoverWithTrigger
-					title="Votre demande de mobilité"
-					trigger={(buttonProps) => (
-						<Button {...buttonProps}>Générer la demande</Button>
-					)}
+			<PopoverWithTrigger
+				title="Votre demande de mobilité"
+				trigger={(buttonProps) => (
+					<Button {...buttonProps}>Générer la demande</Button>
+				)}
+			>
+				<Body>
+					Afin d’examiner votre situation au regard des règlements
+					communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez
+					envoyer ce document à{' '}
+					<Link href="mailto:mobilite-internationale@urssaf.fr">
+						mobilite-internationale@urssaf.fr
+					</Link>
+				</Body>
+				<Suspense
+					fallback={
+						<blockquote>
+							<small>Génération du pdf en cours...</small>
+						</blockquote>
+					}
 				>
-					<Body>
-						Afin d’examiner votre situation au regard des règlements
-						communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez
-						envoyer ce document à{' '}
-						<Link href="mailto:mobilite-internationale@urssaf.fr">
-							mobilite-internationale@urssaf.fr
-						</Link>
-					</Body>
-					<Suspense
-						fallback={
-							<blockquote>
-								<small>Génération du pdf en cours...</small>
-							</blockquote>
+					<LazyBlobProvider
+						document={
+							<EngineProvider value={engine}>
+								<PDFDocument
+									fields={fields}
+									signatureURL={
+										IS_TOUCH_DEVICE && signatureRef.current?.toDataURL()
+									}
+									place={place}
+								/>
+							</EngineProvider>
 						}
 					>
-						<LazyBlobProvider
-							document={
-								<EngineProvider value={engine}>
-									<PDFDocument
-										fields={fields}
-										signatureURL={
-											IS_TOUCH_DEVICE && signatureRef.current?.toDataURL()
-										}
-										place={place}
-									/>
-								</EngineProvider>
-							}
-						>
-							{({ url, loading, error }) =>
-								error ? (
-									<blockquote>
-										<strong>Erreur lors de la génération du pdf</strong>
-										<br />
-										<small>
-											Veuillez envoyer un mail à
-											contact@mon-entreprise.beta.gouv.fr
-										</small>
-									</blockquote>
-								) : loading ? (
-									<blockquote>
-										<small>Génération du pdf en cours...</small>
-									</blockquote>
-								) : (
-									url && (
-										<>
-											{!IS_TOUCH_DEVICE && (
-												<blockquote>
-													<strong>
-														N'oubliez pas de signer le document avant de
-														l'envoyer
-													</strong>
-												</blockquote>
-											)}
-											<Button
-												href={url}
-												onPress={() => {
-													tracker.click.set({
-														type: 'download',
-														name: 'demande-mobilité-internationale.pdf',
-													})
-												}}
-												download="demande-mobilité-internationale.pdf"
-											>
-												Télécharger le fichier
-											</Button>
-											<TrackPage name="pdf généré" />
-										</>
-									)
+						{({ url, loading, error }) =>
+							error ? (
+								<blockquote>
+									<strong>Erreur lors de la génération du pdf</strong>
+									<br />
+									<small>
+										Veuillez envoyer un mail à
+										contact@mon-entreprise.beta.gouv.fr
+									</small>
+								</blockquote>
+							) : loading ? (
+								<blockquote>
+									<small>Génération du pdf en cours...</small>
+								</blockquote>
+							) : (
+								url && (
+									<>
+										{!IS_TOUCH_DEVICE && (
+											<blockquote>
+												<strong>
+													N'oubliez pas de signer le document avant de l'envoyer
+												</strong>
+											</blockquote>
+										)}
+										<Button
+											href={url}
+											onPress={() => {
+												tracker.click.set({
+													type: 'download',
+													name: 'demande-mobilité-internationale.pdf',
+												})
+											}}
+											download="demande-mobilité-internationale.pdf"
+										>
+											Télécharger le fichier
+										</Button>
+										<TrackPage name="pdf généré" />
+									</>
 								)
-							}
-						</LazyBlobProvider>
-					</Suspense>
-				</PopoverWithTrigger>
-			</p>
+							)
+						}
+					</LazyBlobProvider>
+				</Suspense>
+			</PopoverWithTrigger>
 			<SmallBody>
 				<strong>Vie privée :</strong> aucune donnée n'est transmise à nos
 				serveurs, la génération du formulaire se fait entièrement depuis votre
