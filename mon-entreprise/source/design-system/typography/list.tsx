@@ -19,7 +19,9 @@ export const Ul = styled.ul<UlProps>`
 			font-size: 0.875rem;
 			line-height: 1.25rem;
 		`}
+
 	> ${Li} {
+		margin-bottom: ${({ theme }) => theme.spacings.xs};
 		&::before {
 			content: '●';
 			font-size: 80%;
