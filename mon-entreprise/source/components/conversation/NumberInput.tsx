@@ -32,13 +32,12 @@ export default function NumberInput({
 		(unit && getSerializedUnit(currentValue ?? 0, unit, language))
 	const engine = useContext(EngineContext)
 	useEffect(() => {
-		if (
-			!missing &&
-			value != null &&
-			typeof value === 'number' &&
-			value !== currentValue
-		) {
-			setCurrentValue(value)
+		if (value !== currentValue) {
+			setCurrentValue(
+				!missing && value != null && typeof value === 'number'
+					? value
+					: undefined
+			)
 		}
 	}, [value])
 	formatOptions = {
