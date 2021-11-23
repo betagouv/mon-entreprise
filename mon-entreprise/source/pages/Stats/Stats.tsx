@@ -1,32 +1,28 @@
 import { Grid } from '@mui/material'
 import PagesChart from 'Components/charts/PagesCharts'
-import Privacy from 'Components/layout/Footer/Privacy'
-import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { useScrollToHash } from 'Components/utils/markdown'
-import { ScrollToTop } from 'Components/utils/Scroll'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { Item, Select } from 'DesignSystem/field/Select'
 import { Spacing } from 'DesignSystem/layout'
-import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { H2, H3 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
-import { toAtString, TrackPage } from '../../ATInternetTracking'
-import Meta from '../../components/utils/Meta'
+import { toAtString } from '../../ATInternetTracking'
 import statsJson from '../../data/stats.json'
 import { debounce } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Chart from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
-import GlobalStats from './GlobalStats'
+import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
-import { formatDay, formatMonth, Indicator, Indicators } from './utils'
+import { formatDay, formatMonth } from './utils'
 
 const stats = statsJson as unknown as StatsStruct
 
@@ -235,8 +231,8 @@ const StatsDetail = () => {
 							? ` à ${formatMonth(slicedVisits[slicedVisits.length - 1].date)}`
 							: '')}
 			</H3>
-			<Indicators>
-				<Indicator
+			<Grid container spacing={2}>
+				<BigIndicator
 					main={formatValue(
 						typeof totals === 'number' ? totals : totals.accueil
 					)}
@@ -245,11 +241,11 @@ const StatsDetail = () => {
 				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
 					<>
 						{' '}
-						<Indicator
+						<BigIndicator
 							main={formatValue(totals.simulation_commencee)}
 							subTitle="Simulations "
 						/>
-						<Indicator
+						<BigIndicator
 							main={formatValue(
 								Math.round(
 									(100 * totals.simulation_commencee) / totals.accueil
@@ -267,10 +263,10 @@ const StatsDetail = () => {
 						/>
 					</>
 				)}
-			</Indicators>
+			</Grid>
 			{period === 'mois' && !!satisfaction.length && (
 				<>
-					<H2>Satisfaction</H2>
+					<H3>Satisfaction</H3>
 					<SatisfactionChart key={chapter2} data={satisfaction} />
 				</>
 			)}
@@ -288,28 +284,10 @@ const StatsDetail = () => {
 export default function Stats() {
 	return (
 		<>
-			<TrackPage chapter1="informations" name="stats" />
-			<Meta
-				page="stats"
-				title="Statistiques"
-				description="	Découvrez nos statistiques d'utilisation mises à jour quotidiennement."
-			/>
-			<ScrollToTop />
-
-			<H1>
-				Statistiques <Emoji emoji="📊" />
-			</H1>
-			<p>
-				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
-				<br />
-				Les données recueillies sont anonymisées.{' '}
-				<Privacy label="En savoir plus" />
-			</p>
 			<GlobalStats stats={stats} />
 			<StatsDetail />
 
 			<DemandeUtilisateurs />
-			<MoreInfosOnUs />
 		</>
 	)
 }

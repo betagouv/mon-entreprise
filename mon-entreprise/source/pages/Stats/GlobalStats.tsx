@@ -1,29 +1,24 @@
+import { Grid } from '@mui/material'
 import Emoji from 'Components/utils/Emoji'
+import { Spacing } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
-import { Indicator, Indicators } from './utils'
+import { Indicator } from './utils'
 
 const add = (a: number, b: number) => a + b
 const lastCompare = (startDate: Date, dateStr: string) =>
 	startDate < new Date(dateStr)
 
-const BigIndicator: typeof Indicator = ({ main, subTitle, footnote }) => (
-	<Indicator
-		main={
-			<div
-				css={`
-					font-size: 2rem;
-					line-height: 3rem;
-				`}
-			>
-				{main}
-			</div>
-		}
-		subTitle={subTitle}
-		footnote={footnote}
-	/>
+export const BigIndicator: typeof Indicator = ({
+	main,
+	subTitle,
+	footnote,
+}) => (
+	<Grid item xs={6} md={4} lg={3}>
+		<Indicator main={main} subTitle={subTitle} footnote={footnote} />
+	</Grid>
 )
 
 const RetoursAsProgress = ({
@@ -34,10 +29,12 @@ const RetoursAsProgress = ({
 	<div
 		className="progress__container"
 		css={`
-			width: 95%;
+			width: 100%;
+			overflow: hidden;
 			height: 2.5rem;
+			border-radius: 3px;
 			margin-top: 1rem;
-			margin-bottom: 1.5rem;
+			margin-bottom: 2.5rem;
 			display: flex;
 			font-size: 1.8rem;
 		`}
@@ -139,20 +136,11 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 
 	return (
 		<>
-			<Indicators>
-				<BigIndicator
-					main={totalVisits}
-					subTitle="Visites"
-					footnote="depuis le 1ᵉ janvier 2019"
-				/>
-				<BigIndicator
-					main={totalCommence}
-					subTitle="Simulations lancées"
-					footnote="depuis le 1ᵉ janvier 2019"
-				/>
+			<Grid container spacing={2}>
 				<BigIndicator
 					main={`${last30dConv} %`}
-					footnote="Taux de conversion vers une simulation"
+					subTitle="Taux de conversion"
+					footnote="visites avec une simulation"
 				/>
 				<BigIndicator
 					main={last30dVisits}
@@ -166,38 +154,44 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 				/>
 				<BigIndicator
 					main={stats.nbAnswersLast30days}
+					subTitle="Réponses aux utilisateurs"
 					footnote={
 						<>
-							Réponses aux utilisateurs sur les 30 derniers jours
-							<br />
+							sur les 30 derniers jours.{' '}
 							<Link to="#demandes-utilisateurs">
 								Voir les demandes populaires
 							</Link>
 						</>
 					}
 				/>
-			</Indicators>
-			<Indicators>
-				<Indicator
-					subTitle="Satisfaction utilisateurs"
-					main={
-						<div
-							css={`
-								display: flex;
-								flex-direction: row;
-								justify-content: space-around;
-							`}
-						>
-							{' '}
-							<RetoursAsProgress
-								percentages={currentMonthSatisfaction.percentages}
-							/>
-						</div>
-					}
-					footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
-					width="75%"
+
+				<Grid item lg={12}>
+					<Indicator
+						subTitle="Satisfaction utilisateurs"
+						main={
+							<>
+								<RetoursAsProgress
+									percentages={currentMonthSatisfaction.percentages}
+								/>{' '}
+							</>
+						}
+						footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
+					/>
+				</Grid>
+			</Grid>
+			<Spacing md />
+			<Grid container spacing={2}>
+				<BigIndicator
+					main={totalVisits}
+					subTitle="Visites"
+					footnote="depuis le 1ᵉ janvier 2019"
 				/>
-			</Indicators>
+				<BigIndicator
+					main={totalCommence}
+					subTitle="Simulations lancées"
+					footnote="depuis le 1ᵉ janvier 2019"
+				/>
+			</Grid>
 		</>
 	)
 }

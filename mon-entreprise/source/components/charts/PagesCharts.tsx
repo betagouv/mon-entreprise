@@ -1,3 +1,6 @@
+import { Strong } from 'DesignSystem/typography'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import {
 	Bar,
@@ -9,6 +12,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
+import styled, { css } from 'styled-components'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
@@ -98,41 +102,40 @@ const CustomTooltip = ({ active, payload }: TooltipProps) => {
 	const data = payload[0].payload
 
 	return (
-		<p className="ui__ card">
-			<small>{formatMonth(data.date)}</small>
-			<br />
-			{payload
-				.map(({ color, value, name }) => (
-					<div
-						key={name}
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-						}}
-					>
-						<div
-							style={{
-								background: color,
-								width: '1rem',
-								height: '0.7rem',
-							}}
-						></div>
-						<strong
-							style={{
-								margin: '0.3rem',
-							}}
-						>
-							{typeof value === 'number' ? formatValue(value) : value}
-						</strong>
-						<div>{formatLegend(name)}</div>
-						<br />
-					</div>
-				))
-				.reverse()}
-		</p>
+		<StyledLegend>
+			<Body>{formatMonth(data.date)}</Body>
+			<Ul>
+				{payload
+					.map(({ color, value, name }) => (
+						<ColoredLi key={name} color={color}>
+							<Strong>
+								{typeof value === 'number' ? formatValue(value) : value}
+							</Strong>{' '}
+							{formatLegend(name)}
+						</ColoredLi>
+					))
+					.reverse()}
+			</Ul>
+		</StyledLegend>
 	)
 }
 
 const formatLegend = (key: string) =>
 	key.replace('simulateurs / ', '').replace(/_/g, ' ')
+
+const ColoredLi = styled(Li)<{ color?: string }>`
+	::before {
+		${({ color }) =>
+			color &&
+			css`
+				color: ${color} !important;
+			`};
+	}
+`
+
+export const StyledLegend = styled.div`
+	background-color: white;
+	padding: 0.125rem 1rem;
+	box-shadow: ${({ theme }) => theme.elevations[3]};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+`
