@@ -150,40 +150,15 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 			<Explanation node={valeur} />
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 
-			{Object.entries(rule.missingVariables).length > 0 && (
-				<>
-					<h3>Données manquantes</h3>
-					<p className="ui__ notice">
-						Les règles suivantes sont nécessaires pour le calcul mais n'ont pas
-						été saisies dans la situation. Leur valeur par défaut est utilisée.
-					</p>
-					{rule.missing && rule.missing.self && rule.missing.self.length && (
-						<>
-							<ul>
-								{rule.missing.self.map((dottedName) => (
-									<li key={dottedName}>
-										<RuleLinkWithContext dottedName={dottedName} />
-									</li>
-								))}
-							</ul>
-						</>
-					)}
-					{rule.missing &&
-						rule.missing.parent &&
-						rule.missing.parent.length > 0 && (
-							<>
-								<h4>… dont celles provenant du parent</h4>
-								<ul>
-									{rule.missing.parent.map((dottedName) => (
-										<li key={dottedName}>
-											<RuleLinkWithContext dottedName={dottedName} />
-										</li>
-									))}
-								</ul>
-							</>
-						)}
-				</>
-			)}
+			{rule.missing &&
+				((rule.missing.self && rule.missing.self.length > 0) ||
+					(rule.missing.parent && rule.missing.parent.length > 0)) && (
+					<MissingVars
+						dottedName={dottedName}
+						selfMissing={rule.missing.self}
+						parentMissing={rule.missing.parent}
+					/>
+				)}
 
 			{isNotYetDefined(rule.nodeValue) && (
 				<ReverseMissing dottedName={dottedName} engine={engine} />
@@ -219,6 +194,69 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 				</>
 			)}
 		</div>
+	)
+}
+function MissingVars({
+	dottedName,
+	selfMissing,
+	parentMissing,
+}: {
+	dottedName: string
+	selfMissing: string[] | null
+	parentMissing: string[] | null
+}) {
+	const [opened, setOpened] = useState(false)
+	useEffect(() => {
+		setOpened(false)
+	}, [dottedName])
+
+	return (
+		<>
+			<span>
+				<h3 style={{ display: 'inline-block', marginRight: '1rem' }}>
+					Données manquantes
+				</h3>
+				<a
+					className="ui__ simple small button"
+					onClick={() => {
+						setOpened(!opened)
+					}}
+				>
+					{opened ? 'cacher' : 'voir'}
+				</a>
+			</span>
+			<p className="ui__ notice">
+				Les règles suivantes sont nécessaires pour le calcul mais n'ont pas été
+				saisies dans la situation. Leur valeur par défaut est utilisée.
+			</p>
+			{opened && (
+				<>
+					{selfMissing && selfMissing.length > 0 && (
+						<>
+							<ul>
+								{selfMissing.map((dottedName) => (
+									<li key={dottedName}>
+										<RuleLinkWithContext dottedName={dottedName} />
+									</li>
+								))}
+							</ul>
+						</>
+					)}
+					{parentMissing && parentMissing.length > 0 && (
+						<>
+							<h4>… dont celles provenant du parent</h4>
+							<ul>
+								{parentMissing.map((dottedName) => (
+									<li key={dottedName}>
+										<RuleLinkWithContext dottedName={dottedName} />
+									</li>
+								))}
+							</ul>
+						</>
+					)}
+				</>
+			)}
+		</>
 	)
 }
 
