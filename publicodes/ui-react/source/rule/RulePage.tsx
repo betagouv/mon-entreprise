@@ -84,6 +84,12 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 	}
 	const { description, question } = rule.rawNode
 	const { parent, valeur } = rule.explanation
+	console.debug(`Rule ${rule.dottedName} value: ${rule.nodeValue}`)
+	console.debug(
+		`Rule ${rule.dottedName} missingVariables: ${JSON.stringify(
+			rule.missingVariables
+		)}`
+	)
 	return (
 		<div id="documentationRuleRoot">
 			{useSubEngine && (
@@ -162,22 +168,26 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 							</ul>
 						</>
 					)}
-					{rule.missing && rule.missing.parent && rule.missing.parent.length && (
-						<>
-							<h4>… dont celles provenant du parent</h4>
-							<ul>
-								{rule.missing.parent.map((dottedName) => (
-									<li key={dottedName}>
-										<RuleLinkWithContext dottedName={dottedName} />
-									</li>
-								))}
-							</ul>
-						</>
-					)}
+					{rule.missing &&
+						rule.missing.parent &&
+						rule.missing.parent.length > 0 && (
+							<>
+								<h4>… dont celles provenant du parent</h4>
+								<ul>
+									{rule.missing.parent.map((dottedName) => (
+										<li key={dottedName}>
+											<RuleLinkWithContext dottedName={dottedName} />
+										</li>
+									))}
+								</ul>
+							</>
+						)}
 				</>
 			)}
 
-			<ReverseMissing dottedName={dottedName} engine={engine} />
+			{isNotYetDefined(rule.nodeValue) && (
+				<ReverseMissing dottedName={dottedName} engine={engine} />
+			)}
 
 			{!!rule.replacements.length && (
 				<>
