@@ -224,7 +224,7 @@ recalcul:
     courante. Permet par exemple de calculer le montant des cotisations au niveau du
     SMIC, même si le salaire est plus élevé dans la situation actuelle.
 
-    ⚠️  Les recalculs imbriqués ne sont pas encore fonctionnels. On parle de recalcul imbriqués lorsqu'une variable `a` recalcul une règle `b` qui elle même recalcul la règle `a`. 
+    ⚠️  Les recalculs imbriqués ne sont pas encore fonctionnels. On parle de recalcul imbriqués lorsqu'une variable `a` recalcul une règle `b` qui elle même recalcul la règle `a`.
 
   exemples:
     base: >-
