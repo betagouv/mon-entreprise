@@ -174,7 +174,7 @@ function FormulairePublicodes() {
 							</Condition>
 						) : (
 							<Grid item xs={12} md={question || type === 'booléen' ? 12 : 6}>
-								{question && <SmallBody>{question}</SmallBody>}
+								{question && <Body>{question}</Body>}
 								<RuleInput
 									id={dottedName}
 									dottedName={dottedName as DottedName}
