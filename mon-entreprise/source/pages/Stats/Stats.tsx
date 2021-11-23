@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import { Grid } from '@mui/material'
 import PagesChart from 'Components/charts/PagesCharts'
 import Privacy from 'Components/layout/Footer/Privacy'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
@@ -6,7 +6,10 @@ import InfoBulle from 'Components/ui/InfoBulle'
 import Emoji from 'Components/utils/Emoji'
 import { useScrollToHash } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { H1, H2 } from 'DesignSystem/typography/heading'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
+import { Item, Select } from 'DesignSystem/field/Select'
+import { Spacing } from 'DesignSystem/layout'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -179,127 +182,105 @@ const StatsDetail = () => {
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
-			<p>
-				<strong>1. Sélectionner la fonctionnalité : </strong>
-			</p>
-			<p>
-				<SimulateursChoice
-					onChange={setChapter2}
-					value={chapter2}
-					possibleValues={chapters2}
-				/>
-			</p>
-			<p>
-				<strong>2. Choisir l'échelle de temps : </strong>
-
-				{['jours', 'mois'].map((p) => (
-					<label
-						key={p}
-						className={classnames('ui__ small button', {
-							selected: period === p,
-						})}
-						css={{ marginRight: '0.4rem' }}
-					>
-						<input
-							type="radio"
-							value={p}
-							onChange={(event) => setPeriod(event.target.value as Period)}
-							checked={period === p}
-						/>
-						<span>
-							<Trans>{p}</Trans>
-						</span>
-					</label>
-				))}
-			</p>
-			<div className="ui__ full-width">
-				<div className="ui__ container-and-side-block">
-					<div
-						className="ui__ side-block"
-						css={`
-							align-items: flex-end;
-						`}
-					>
-						<SelectedSimulator chapter2={chapter2} />
-					</div>
-					<div className="ui__ container">
-						<H2>Visites</H2>
-
-						<Chart
-							key={period + visites.length}
-							period={period}
-							data={visites}
-							onDateChange={handleDateChange}
-							startIndex={startDateIndex}
-							endIndex={endDateIndex}
-						/>
-
-						<H2>
-							Cumuls pour la période{' '}
-							{period === 'jours'
-								? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
-										slicedVisits[slicedVisits.length - 1].date
-								  )}`
-								: `de ${formatMonth(slicedVisits[0].date)}` +
-								  (slicedVisits.length > 1
-										? ` à ${formatMonth(
-												slicedVisits[slicedVisits.length - 1].date
-										  )}`
-										: '')}
-						</H2>
-						<Indicators>
-							<Indicator
-								main={formatValue(
-									typeof totals === 'number' ? totals : totals.accueil
-								)}
-								subTitle="Visites"
-							/>
-							{typeof totals !== 'number' && 'simulation_commencee' in totals && (
-								<>
-									{' '}
-									<Indicator
-										main={formatValue(totals.simulation_commencee)}
-										subTitle="Simulations "
-									/>
-									<Indicator
-										main={formatValue(
-											Math.round(
-												(100 * totals.simulation_commencee) / totals.accueil
-											),
-											{ displayedUnit: '%' }
-										)}
-										subTitle={
-											<>
-												Taux de conversion&nbsp;
-												<InfoBulle>
-													Pourcentage de personne qui commencent une simulation
-												</InfoBulle>
-											</>
-										}
-									/>
-								</>
-							)}
-						</Indicators>
-						{period === 'mois' && !!satisfaction.length && (
-							<>
-								<H2>Satisfaction</H2>
-								<SatisfactionChart key={chapter2} data={satisfaction} />
-							</>
-						)}
-						{chapter2 === '' && period === 'mois' && (
-							<>
-								<H2>Simulateurs principaux</H2>
-								<PagesChart data={repartition} />
-							</>
-						)}
-					</div>
-					<div
-						css={`
-							flex: 1;
-						`}
+			<Grid
+				container
+				spacing={2}
+				justifyContent="space-between"
+				alignItems="flex-end"
+			>
+				<Grid item xs={12} sm={6} md={4}>
+					<SimulateursChoice
+						onChange={setChapter2}
+						value={chapter2}
+						possibleValues={chapters2}
 					/>
-				</div>
-			</div>
+					<Spacing sm />
+					<Grid container columns={4}>
+						<SelectedSimulator chapter2={chapter2} />
+					</Grid>
+				</Grid>
+				<Grid item>
+					<ToggleGroup onChange={setPeriod as any} defaultValue={period}>
+						<Radio value="jours">
+							<Trans>jours</Trans>
+						</Radio>
+						<Radio value="mois">
+							<Trans>mois</Trans>
+						</Radio>
+					</ToggleGroup>
+				</Grid>
+			</Grid>
+
+			<Spacing lg />
+
+			<H3>Visites</H3>
+
+			<Chart
+				key={period + visites.length}
+				period={period}
+				data={visites}
+				onDateChange={handleDateChange}
+				startIndex={startDateIndex}
+				endIndex={endDateIndex}
+			/>
+
+			<H3>
+				Cumuls pour la période{' '}
+				{period === 'jours'
+					? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
+							slicedVisits[slicedVisits.length - 1].date
+					  )}`
+					: `de ${formatMonth(slicedVisits[0].date)}` +
+					  (slicedVisits.length > 1
+							? ` à ${formatMonth(slicedVisits[slicedVisits.length - 1].date)}`
+							: '')}
+			</H3>
+			<Indicators>
+				<Indicator
+					main={formatValue(
+						typeof totals === 'number' ? totals : totals.accueil
+					)}
+					subTitle="Visites"
+				/>
+				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
+					<>
+						{' '}
+						<Indicator
+							main={formatValue(totals.simulation_commencee)}
+							subTitle="Simulations "
+						/>
+						<Indicator
+							main={formatValue(
+								Math.round(
+									(100 * totals.simulation_commencee) / totals.accueil
+								),
+								{ displayedUnit: '%' }
+							)}
+							subTitle={
+								<>
+									Taux de conversion&nbsp;
+									<InfoBulle>
+										Pourcentage de personne qui commencent une simulation
+									</InfoBulle>
+								</>
+							}
+						/>
+					</>
+				)}
+			</Indicators>
+			{period === 'mois' && !!satisfaction.length && (
+				<>
+					<H2>Satisfaction</H2>
+					<SatisfactionChart key={chapter2} data={satisfaction} />
+				</>
+			)}
+
+			{chapter2 === '' && period === 'mois' && (
+				<>
+					<H2>Simulateurs principaux</H2>
+					<PagesChart data={repartition} />
+				</>
+			)}
 		</>
 	)
 }
@@ -352,7 +333,7 @@ function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
 	if (!simulateur) {
 		return null
 	}
-	return <SimulateurCard {...simulateur} />
+	return <SimulateurCard small {...simulateur} />
 }
 
 function SimulateursChoice(props: {
@@ -360,72 +341,40 @@ function SimulateursChoice(props: {
 	value: Chapter2 | ''
 	possibleValues: Array<Chapter2>
 }) {
-	const simulateurs = Object.values(useSimulatorsData()).filter((s) => {
-		const chapter2 = getChapter2(s)
-		return (
-			chapter2 &&
-			props.possibleValues.includes(chapter2) &&
-			!(s.tracking as any).chapter3
-		)
-	})
+	const simulateurs = Object.values(useSimulatorsData())
+		.filter((s) => {
+			const chapter2 = getChapter2(s)
+			return (
+				chapter2 &&
+				props.possibleValues.includes(chapter2) &&
+				!(s.tracking as any).chapter3
+			)
+		})
+		.sort((a, b) => (a.shortName < b.shortName ? -1 : 1))
 
 	return (
-		<div
-			css={`
-				display: flex;
-				flex-wrap: wrap;
-				margin-right: -0.4rem;
-				> * {
-					margin-bottom: 0.4rem;
-
-					margin-right: 0.4rem;
-				}
-			`}
+		<Select
+			onSelectionChange={props.onChange as any}
+			defaultSelectedKey={props.value}
+			label={'Selectionner la fonctionnalité'}
 		>
-			<label
-				className={classnames('ui__ small button', {
-					selected: props.value === '',
-				})}
-			>
-				<input
-					type="radio"
-					name="simulateur"
-					value={'site'}
-					onChange={() => props.onChange('')}
-					checked={props.value === ''}
-				/>
-				<span>
-					<Emoji emoji="🌍" />
-					<Trans>Tout le site</Trans>
-				</span>
-			</label>
-			{simulateurs.map((s) => (
-				<label
-					key={s.shortName}
-					className={classnames('ui__ small button', {
-						selected: getChapter2(s) === props.value,
-					})}
-				>
-					<input
-						type="radio"
-						name="simulateur"
-						value={getChapter2(s)}
-						onChange={(evt) =>
-							props.onChange(evt.target.value as Chapter2 | '')
-						}
-						checked={getChapter2(s) === props.value}
-					/>
-					<span>
+			<Item key={''} textValue="Tout le site">
+				<Emoji emoji="🌍" />
+				Tout le site
+			</Item>
+			{
+				simulateurs.map((s) => (
+					<Item key={getChapter2(s)} textValue={s.shortName}>
 						{s.icône && (
 							<>
 								<Emoji emoji={s.icône} />
 								&nbsp;
 							</>
 						)}
-						<Trans>{s.shortName}</Trans>
-					</span>
-				</label>
-			))}
-		</div>
+						{s.shortName}
+					</Item>
+				)) as any
+			}
+		</Select>
 	)
 }

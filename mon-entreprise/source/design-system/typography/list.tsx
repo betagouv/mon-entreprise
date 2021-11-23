@@ -20,7 +20,7 @@ export const Ul = styled.ul<UlProps>`
 			line-height: 1.25rem;
 		`}
 
-	> ${Li} {
+	${Li} {
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 		&::before {
 			content: '●';

@@ -1,5 +1,8 @@
 import { FromTop } from 'Components/ui/animate'
 import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useState } from 'react'
 import stats from '../../data/stats.json'
 
@@ -7,12 +10,11 @@ export default function DemandeUtilisateurs() {
 	return (
 		<section>
 			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
-			<p>
-				<small>
-					Demandes formulées en utilisant le bouton "faire une suggestion"
-					présent sur toutes les pages
-				</small>
-			</p>
+			<Body>
+				Demandes formulées en utilisant le bouton "faire une suggestion" présent
+				sur toutes les pages
+			</Body>
+
 			<H3>En attente d'implémentation</H3>
 			<Pagination
 				items={stats.retoursUtilisateurs.open}
@@ -40,11 +42,11 @@ function Pagination<ItemProps>({
 	const [currentPage, setCurrentPage] = useState(0)
 	return (
 		<>
-			<ul>
+			<Ul>
 				{items
 					.slice(currentPage * 10, (currentPage + 1) * 10)
 					.map(itemComponent)}
-			</ul>
+			</Ul>
 			<div css={{ textAlign: 'center' }}>
 				Page :
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
@@ -75,15 +77,17 @@ function Issue({
 }) {
 	return (
 		<FromTop>
-			<li>
+			<Li>
 				{count > 1 && <span>{count} demandes</span>}{' '}
-				<a href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}>
+				<Link
+					href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
+				>
 					{title}
-				</a>{' '}
+				</Link>{' '}
 				{closedAt && (
 					<small>(Résolu en {formatMonth(new Date(closedAt))})</small>
 				)}
-			</li>
+			</Li>
 		</FromTop>
 	)
 }

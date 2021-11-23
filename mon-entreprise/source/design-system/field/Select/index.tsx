@@ -202,7 +202,7 @@ export function Select<T extends Record<string, unknown>>(
 					</Label>
 				)}
 				<Value {...valueProps}>
-					{state.selectedItem
+					{state.selectedItem != null
 						? state.selectedItem.rendered
 						: t('select.value.default', 'Choisissez une option')}
 				</Value>
