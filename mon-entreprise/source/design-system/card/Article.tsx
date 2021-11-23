@@ -2,7 +2,12 @@ import { useButton } from '@react-aria/button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { Chevron } from 'DesignSystem/icons'
 import { H4 } from 'DesignSystem/typography/heading'
-import { StyledLink, StyledLinkHover } from 'DesignSystem/typography/link'
+import {
+	NewWindowLinkIcon,
+	StyledLink,
+	StyledLinkHover,
+	useExternalLinkProps,
+} from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -31,8 +36,15 @@ export function Article({
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
 	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h3')
+	const linkProps = useExternalLinkProps(ariaButtonProps)
+
 	return (
-		<StyledArticle {...ariaButtonProps} {...buttonProps} as={elementType}>
+		<StyledArticle
+			{...ariaButtonProps}
+			{...buttonProps}
+			{...linkProps}
+			as={elementType}
+		>
 			<StyledHeader as={titleProps.as}>
 				{titleProps.children} {icon}
 			</StyledHeader>
@@ -45,6 +57,7 @@ export function Article({
 				`}
 			>
 				{ctaLabel}
+				{linkProps.external && <NewWindowLinkIcon />}
 				<StyledChevron aria-hidden />
 			</StyledLink>
 		</StyledArticle>

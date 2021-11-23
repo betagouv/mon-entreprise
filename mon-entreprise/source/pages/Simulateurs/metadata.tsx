@@ -187,9 +187,9 @@ export function getSimulatorsData({
 						</RuleLink>{' '}
 						à l'embauche qui ne sont pas toutes prises en compte par notre
 						simulateur, vous pouvez les retrouver sur{' '}
-						<a href="http://www.aides-entreprises.fr" target="_blank">
+						<Link href="http://www.aides-entreprises.fr">
 							le portail officiel
-						</a>
+						</Link>
 						.
 					</Body>
 				</Trans>

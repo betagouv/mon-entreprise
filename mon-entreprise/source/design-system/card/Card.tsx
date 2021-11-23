@@ -3,6 +3,10 @@ import { Button } from 'DesignSystem/buttons'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { H3, HeadingUnderline } from 'DesignSystem/typography/heading'
+import {
+	NewWindowLinkIcon,
+	useExternalLinkProps,
+} from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -36,8 +40,14 @@ export function Card({
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
 	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h2')
+	const linkProps = useExternalLinkProps(ariaButtonProps)
 	return (
-		<CardContainer {...ariaButtonProps} {...buttonProps} as={elementType}>
+		<CardContainer
+			{...ariaButtonProps}
+			{...buttonProps}
+			{...linkProps}
+			as={elementType}
+		>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader {...titleProps} />
 			<div
@@ -50,6 +60,7 @@ export function Card({
 			{ctaLabel && (
 				<StyledButton excludeFromTabOrder size="XS" light>
 					{ctaLabel}
+					{linkProps.external && <NewWindowLinkIcon />}
 				</StyledButton>
 			)}
 		</CardContainer>

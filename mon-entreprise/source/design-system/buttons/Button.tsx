@@ -1,7 +1,7 @@
-import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
 import { FocusStyle } from 'DesignSystem/global-style'
-import { ComponentPropsWithRef, forwardRef, useCallback, useRef } from 'react'
+import { useButtonOrLink } from 'DesignSystem/typography/link'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -9,7 +9,7 @@ type Size = 'XL' | 'MD' | 'XS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
 export type GenericButtonOrLinkProps =
-	| ({ href: string } & AriaButtonProps<'a'>)
+	| ({ href: string; title?: string } & AriaButtonProps<'a'>)
 	| (AriaButtonProps<typeof NavLink> &
 			ComponentPropsWithRef<typeof NavLink> &
 			NavLinkProps)
@@ -34,54 +34,13 @@ export const Button = forwardRef<
 	},
 	forwardedRef
 ) {
-	const elementType: 'a' | 'button' | typeof NavLink =
-		'href' in ariaButtonProps
-			? 'a'
-			: 'to' in ariaButtonProps
-			? NavLink
-			: 'button'
-
-	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
-	const { buttonProps } = useButton(
-		{ elementType, ...ariaButtonProps },
-		defaultRef
-	)
-	const ref = useCallback(
-		(instance) => {
-			defaultRef.current = instance
-			if (typeof forwardedRef === 'function') {
-				forwardedRef(instance)
-			}
-			if (forwardedRef && 'current' in forwardedRef) {
-				forwardedRef.current = instance
-			}
-		},
-		[forwardedRef]
-	)
-
-	const initialProps = Object.fromEntries(
-		Object.entries(ariaButtonProps).filter(
-			([key]) =>
-				![
-					'onPress',
-					'onPressChange',
-					'onPressEnd',
-					'onPressStart',
-					'onPressUp',
-					'excludeFromTabOrder',
-				].includes(key)
-		)
-	)
-
+	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 	return (
 		<StyledButton
-			{...initialProps}
-			{...buttonProps}
+			{...buttonOrLinkProps}
 			size={size}
 			light={light}
 			color={color}
-			ref={ref as any}
-			as={elementType}
 		/>
 	)
 })
