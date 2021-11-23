@@ -1,7 +1,9 @@
-import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Grid } from '@mui/material'
+import { SmallCard } from 'DesignSystem/card'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { icons } from './ui/SocialIcon'
 import Emoji from './utils/Emoji'
 import { SitePathsContext } from './utils/SitePathsContext'
@@ -16,75 +18,65 @@ export default function MoreInfosOnUs() {
 	}
 
 	return (
-		<section
-			className="ui__ full-width light-bg"
-			css={`
-				margin-top: 3rem;
-			`}
-		>
+		<>
 			<H2>Plus d'infos sur mon-entreprise.fr</H2>
-			<div className="ui__ full-width box-container">
+			<Grid container spacing={2}>
 				{!pathname.startsWith(sitePaths.nouveautés) && (
-					<Link className="ui__ interactive card box" to={sitePaths.nouveautés}>
-						<div className="ui__ big box-icon">
-							<Emoji emoji={'✨'} />
-						</div>
-						<H3>Les nouveautés</H3>
-						<p className="ui__ notice">
+					<Grid item xs={12} sm={6} md={4}>
+						<SmallCard
+							icon={<Emoji emoji={'✨'} />}
+							title={<h3>Les nouveautés</h3>}
+							to={sitePaths.nouveautés}
+						>
 							Qu'avons-nous mis en production ces derniers mois ?
-						</p>
-						<div className="ui__ small simple button">Découvrir</div>
-					</Link>
+						</SmallCard>
+					</Grid>
 				)}
 				{!pathname.startsWith(sitePaths.stats) && (
-					<Link className="ui__ interactive card box" to={sitePaths.stats}>
-						<div className="ui__ big box-icon">
-							<Emoji emoji="📊" />
-						</div>
-						<H3>Les statistiques</H3>
-						<p className="ui__ notice">Quel est notre impact ?</p>
-						<div className="ui__ small simple button">Découvrir</div>
-					</Link>
+					<Grid item xs={12} sm={6} md={4}>
+						<SmallCard
+							icon={<Emoji emoji="📊" />}
+							to={sitePaths.stats}
+							title={<h3>Les statistiques</h3>}
+						>
+							Quel est notre impact ?
+						</SmallCard>
+					</Grid>
 				)}
 				{!pathname.startsWith(sitePaths.budget) && (
-					<Link className="ui__ interactive card box" to={sitePaths.budget}>
-						<div className="ui__ big box-icon">
-							<Emoji emoji="💶" />
-						</div>
-						<H3>Le budget</H3>
-						<p className="ui__ notice">
-							Quelles sont nos ressources et comment sont-elles employées ?
-						</p>
-						<div className="ui__ small simple button">Découvrir</div>
-					</Link>
-				)}
-				<a
-					href="https://github.com/betagouv/mon-entreprise"
-					target="_blank"
-					className="ui__ interactive card box"
-				>
-					<div className="ui__ big box-icon">
-						{' '}
-						<svg
-							viewBox="15 15 34 34"
-							style={{
-								width: '3rem',
-								height: '3rem',
-								margin: 0,
-							}}
+					<Grid item xs={12} sm={6} md={4}>
+						<SmallCard
+							icon={<Emoji emoji="💶" />}
+							to={sitePaths.budget}
+							title={<h3>Le budget</h3>}
 						>
-							<g>
-								<path d={icons['github'].icon} />
-							</g>
-						</svg>
-					</div>
-					<H3>Le code source</H3>
-					<p className="ui__ notice">
+							Quelles sont nos ressources et comment sont-elles employées ?
+						</SmallCard>
+					</Grid>
+				)}
+				<Grid item xs={12} sm={6} md={4}>
+					<SmallCard
+						icon={
+							<svg
+								viewBox="15 15 34 34"
+								style={{
+									width: '3rem',
+									height: '3rem',
+									margin: 0,
+								}}
+							>
+								<g>
+									<path d={icons['github'].icon} />
+								</g>
+							</svg>
+						}
+						href="https://github.com/betagouv/mon-entreprise"
+						title={<h3>Le code source</h3>}
+					>
 						Nos travaux sont ouverts et libres de droit, ça se passe sur GitHub
-					</p>
-					<div className="ui__ small simple button">Découvrir</div>
-				</a>
-			</div>
-		</section>
+					</SmallCard>
+				</Grid>
+			</Grid>
+		</>
 	)
 }

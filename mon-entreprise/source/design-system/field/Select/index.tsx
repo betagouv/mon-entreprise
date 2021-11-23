@@ -6,6 +6,7 @@ import { useSelectState } from '@react-stately/select'
 import type { AriaSelectProps } from '@react-types/select'
 import { CarretDown } from 'DesignSystem/icons/carret-down'
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
@@ -180,7 +181,7 @@ export function Select<T extends Record<string, unknown>>(
 	const { buttonProps } = useButton(triggerProps, ref)
 
 	const { focusProps, isFocusVisible } = useFocusRing()
-
+	const { t } = useTranslation()
 	return (
 		<Wrapper isOpen={state.isOpen} hasError={false} hasLabel={false}>
 			<HiddenSelect
@@ -202,7 +203,7 @@ export function Select<T extends Record<string, unknown>>(
 				<Value {...valueProps}>
 					{state.selectedItem
 						? state.selectedItem.rendered
-						: 'Select an option'}
+						: t('Choisir un élément')}
 				</Value>
 				<StyledIcon isOpen={state.isOpen} />
 			</Button>
