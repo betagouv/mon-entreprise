@@ -144,7 +144,7 @@ function FormulairePublicodes() {
 	)
 
 	return (
-		<FromTop key={clearFieldsKey}>
+		<>
 			<Grid container spacing={2}>
 				{fields.map(
 					({ rawNode: { description, type, question }, title, dottedName }) => {
@@ -205,6 +205,6 @@ function FormulairePublicodes() {
 			) : isMissingValues ? (
 				<TrackPage name="commence" />
 			) : null}
-		</FromTop>
+		</>
 	)
 }

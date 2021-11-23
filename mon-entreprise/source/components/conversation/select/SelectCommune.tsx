@@ -1,4 +1,3 @@
-import { FromTop } from 'Components/ui/animate'
 import { TextField } from 'DesignSystem/field'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
@@ -184,7 +183,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	)
 
 	return (
-		<div>
+		<Container>
 			<TextField
 				/* role="combobox" // FIXME: Need to use a proper combobox component here */
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
@@ -200,39 +199,30 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 			/>
 
 			{!!searchResults && (
-				<FromTop>
-					<ul
-						role="listbox"
-						aria-expanded="true"
-						id="liste-commune"
-						css={`
-							padding: 0;
-						`}
-					>
-						{searchResults.map((result, i) => {
-							const nom = formatCommune(result)
-							return (
-								<Option
-									as="li"
-									onMouseDown={
-										// Prevent input blur and focus elem selection
-										(e: React.MouseEvent) => e.preventDefault()
-									}
-									onClick={() => handleSubmit(result)}
-									role="option"
-									focused={i === focusedElem}
-									data-role="commune-option"
-									key={nom}
-									onFocus={() => setFocusedElem(i)}
-								>
-									{nom}
-								</Option>
-							)
-						})}
-					</ul>
-				</FromTop>
+				<OptionList role="listbox" aria-expanded="true" id="liste-commune">
+					{searchResults.map((result, i) => {
+						const nom = formatCommune(result)
+						return (
+							<Option
+								as="li"
+								onMouseDown={
+									// Prevent input blur and focus elem selection
+									(e: React.MouseEvent) => e.preventDefault()
+								}
+								onClick={() => handleSubmit(result)}
+								role="option"
+								focused={i === focusedElem}
+								data-role="commune-option"
+								key={nom}
+								onFocus={() => setFocusedElem(i)}
+							>
+								{nom}
+							</Option>
+						)
+					})}
+				</OptionList>
 			)}
-		</div>
+		</Container>
 	)
 }
 const FocusedOption = css`
@@ -240,6 +230,21 @@ const FocusedOption = css`
 		theme.colors.bases.primary[100]} !important;
 	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
 `
+
+const Container = styled.div`
+	position: relative;
+`
+
+const OptionList = styled.ul`
+	position: absolute;
+	top: 100%;
+	padding: 0;
+	z-index: 900;
+	background: ${({ theme }) => theme.colors.extended.grey[100]};
+	border-radius: 0.3rem;
+	box-shadow: 0 4px 8px #eee;
+`
+
 const Option = styled(Body)<{
 	focused: boolean
 }>`
