@@ -15,7 +15,7 @@ module.exports = {
 		// This seems necessary to prevent a "Module not found: 'fs'" error when
 		// launching mocha-webpack:
 		fs: 'empty',
-	},
+	}.name,
 	module: {
 		rules: [...commonLoaders(), styleLoader('style-loader')],
 	},
@@ -23,6 +23,7 @@ module.exports = {
 		aggregateTimeout: 600,
 	},
 	mode: 'development',
+	devtool: 'eval-source-map',
 	entry: map((entry) => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
 		...common.plugins,

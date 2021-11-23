@@ -178,14 +178,12 @@ function FormulairePublicodes() {
 								xs={12}
 								md={question || type === 'booléen' || !type ? 12 : 6}
 							>
-								<FromTop key={dottedName}>
-									{question && <SmallBody>{question}</SmallBody>}
-									<RuleInput
-										id={dottedName}
-										dottedName={dottedName as DottedName}
-										onChange={(value) => onChange(dottedName, value)}
-									/>
-								</FromTop>
+								{question && <SmallBody>{question}</SmallBody>}
+								<RuleInput
+									id={dottedName}
+									dottedName={dottedName as DottedName}
+									onChange={(value) => onChange(dottedName, value)}
+								/>
 							</Grid>
 						)
 					}

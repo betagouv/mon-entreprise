@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { StyledSVG } from './shared'
 
 export const Chevron = (props: HTMLAttributes<SVGElement>) => (
 	<StyledSVG
@@ -15,9 +15,3 @@ export const Chevron = (props: HTMLAttributes<SVGElement>) => (
 		/>
 	</StyledSVG>
 )
-
-const StyledSVG = styled.svg`
-	width: ${({ theme }) => theme.spacings.lg};
-	height: ${({ theme }) => theme.spacings.lg};
-	fill: ${({ theme }) => theme.colors.bases.primary[800]};
-`
