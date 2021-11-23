@@ -1,6 +1,10 @@
 import { useButton } from '@react-aria/button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { H6 } from 'DesignSystem/typography/heading'
+import {
+	NewWindowLinkIcon,
+	useExternalLinkProps,
+} from 'DesignSystem/typography/link'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -23,8 +27,15 @@ export function SmallCard({
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
 	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h4')
+	const linkProps = useExternalLinkProps(ariaButtonProps)
+
 	return (
-		<Container {...ariaButtonProps} {...buttonProps} as={elementType}>
+		<Container
+			{...ariaButtonProps}
+			{...buttonProps}
+			{...linkProps}
+			as={elementType}
+		>
 			<IconPlaceholder>{icon}</IconPlaceholder>
 			<Content>
 				<H6
@@ -32,7 +43,10 @@ export function SmallCard({
 						margin: 0;
 					`}
 					{...titleProps}
-				/>
+				>
+					{titleProps.children}
+					{linkProps.external && <NewWindowLinkIcon />}
+				</H6>
 				{children && <SmallBody>{children}</SmallBody>}
 			</Content>
 		</Container>
