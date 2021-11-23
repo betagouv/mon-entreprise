@@ -1647,6 +1647,9 @@ responsabilité:
   titre: Limited liability company or sole proprietorship
 salaire: salary
 salarié: employee
+select:
+  value:
+    default: Choose an option
 selectionRégime:
   comparer:
     cta: Compare social schemes

@@ -1274,6 +1274,9 @@ responsabilité:
     démarches de création sont un peu plus lourdes, puisqu'elles incluent
     notamment la rédaction de statuts et le dépôt d'un capital."
   titre: Entreprise individuelle ou société ?
+select:
+  value:
+    default: Choisissez une option
 shareSimulation:
   banner: Générer un lien de partage
   button:

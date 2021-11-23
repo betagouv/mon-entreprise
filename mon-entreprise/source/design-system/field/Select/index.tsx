@@ -166,6 +166,8 @@ export const Wrapper = styled.div<{
 export function Select<T extends Record<string, unknown>>(
 	props: AriaSelectProps<T> & { small?: boolean }
 ) {
+	const { t } = useTranslation()
+
 	// Create state based on the incoming props
 	const state = useSelectState(props)
 
@@ -181,7 +183,6 @@ export function Select<T extends Record<string, unknown>>(
 	const { buttonProps } = useButton(triggerProps, ref)
 
 	const { focusProps, isFocusVisible } = useFocusRing()
-	const { t } = useTranslation()
 	return (
 		<Wrapper isOpen={state.isOpen} hasError={false} hasLabel={false}>
 			<HiddenSelect
@@ -203,7 +204,7 @@ export function Select<T extends Record<string, unknown>>(
 				<Value {...valueProps}>
 					{state.selectedItem
 						? state.selectedItem.rendered
-						: t('Choisir un élément')}
+						: t('select.value.default', 'Choisissez une option')}
 				</Value>
 				<StyledIcon isOpen={state.isOpen} />
 			</Button>
