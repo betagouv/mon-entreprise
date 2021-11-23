@@ -20,6 +20,7 @@ export const StyledLink = styled.a`
 			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
+	padding: 0;
 	font-size: inherit;
 	text-decoration: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};

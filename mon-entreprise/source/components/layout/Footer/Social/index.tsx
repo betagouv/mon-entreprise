@@ -33,6 +33,9 @@ const Title = styled.div`
 const SocialLink = styled(Link)<GenericButtonOrLinkProps>`
 	display: flex;
 	flex-direction: row;
+	svg:last-child {
+		display: none !important;
+	}
 `
 
 export const SocialLinks = () => (
