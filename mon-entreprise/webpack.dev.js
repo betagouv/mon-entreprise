@@ -15,7 +15,7 @@ module.exports = {
 		// This seems necessary to prevent a "Module not found: 'fs'" error when
 		// launching mocha-webpack:
 		fs: 'empty',
-	}.name,
+	},
 	module: {
 		rules: [...commonLoaders(), styleLoader('style-loader')],
 	},
