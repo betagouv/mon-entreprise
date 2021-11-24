@@ -55,7 +55,7 @@ describe(`Formulaire demande mobilité (${
 
 		cy.tab().type('{downarrow}').wait(500)
 
-		cy.focused().tab().type('Pouts').wait(2500).type('{enter}')
+		cy.focused().tab().type('Pouts').wait(500).type('{enter}')
 
 		cy.tab().type('{downarrow}').wait(500)
 
@@ -64,7 +64,7 @@ describe(`Formulaire demande mobilité (${
 			.type('3 rue de la Rhumerie')
 			.tab()
 			.type('Brest')
-			.wait(1500)
+			.wait(500)
 			.type('{enter}')
 			.tab()
 			.type('jean.deaux@gmail.com')
@@ -79,7 +79,7 @@ describe(`Formulaire demande mobilité (${
 			.type('14 chemin des Docks')
 			.tab()
 			.type('Bre')
-			.wait(1500)
+			.wait(500)
 		cy.contains('29240').click()
 		cy.contains('Organisme Urssaf').click({ force: true })
 		cy.focused().type('Bretagne').tab().type('Boulangerie')

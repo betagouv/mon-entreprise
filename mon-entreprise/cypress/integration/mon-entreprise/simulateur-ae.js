@@ -11,6 +11,7 @@ describe('Simulateur auto-entrepreneur', () => {
 	it('should allow to enter the date of creation', () => {
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('Passer').click()
+		cy.contains('Passer').click()
 		cy.contains('Début 2021').click()
 		cy.contains('ACRE')
 	})

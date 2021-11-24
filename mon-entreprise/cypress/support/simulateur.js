@@ -1,5 +1,5 @@
 const inputSelector =
-	'div[aria-labelledby="simulator-legend"] input:not([aria-labelledby="entreprise . charges-label"])'
+	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]:not([aria-labelledby="entreprise . charges-label"])'
 const chargeInputSelector =
 	'input[aria-labelledby="entreprise . charges-label"]'
 const fr = Cypress.env('language') === 'fr'

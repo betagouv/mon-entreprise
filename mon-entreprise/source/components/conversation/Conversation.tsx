@@ -89,12 +89,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</Grid>
 					)}
 					<Grid item xs={6} sm="auto">
-						<Button
-							size="XS"
-							type="submit"
-							light={!currentQuestionIsAnswered}
-							onPress={goToNextQuestion}
-						>
+						<Button size="XS" type="submit" light={!currentQuestionIsAnswered}>
 							{currentQuestionIsAnswered ? (
 								<Trans>Suivant</Trans>
 							) : (
