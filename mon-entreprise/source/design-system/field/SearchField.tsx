@@ -1,20 +1,31 @@
-import { InputHTMLAttributes, useRef } from 'react'
+import { useButton } from '@react-aria/button'
 import { useSearchField } from '@react-aria/searchfield'
-import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { useSearchFieldState } from '@react-stately/searchfield'
+import { AriaSearchFieldProps } from '@react-types/searchfield'
+import { InputHTMLAttributes, useRef } from 'react'
+import styled from 'styled-components'
 import {
 	StyledContainer,
 	StyledDescription,
+	StyledErrorMessage,
 	StyledInput,
 	StyledInputContainer,
-	StyledErrorMessage,
 	StyledLabel,
 } from './TextField'
-import styled from 'styled-components'
+
+const SearchInput = styled(StyledInput)`
+	&::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		-webkit-appearance: none;
+	}
+`
 
 export default function SearchField(props: AriaSearchFieldProps) {
 	const state = useSearchFieldState(props)
 	const ref = useRef<HTMLInputElement>(null)
+	const buttonRef = useRef(null)
 	const {
 		labelProps,
 		inputProps,
@@ -22,6 +33,7 @@ export default function SearchField(props: AriaSearchFieldProps) {
 		errorMessageProps,
 		clearButtonProps,
 	} = useSearchField(props, state, ref)
+	const { buttonProps } = useButton(clearButtonProps, buttonRef)
 
 	return (
 		<StyledContainer>
@@ -29,7 +41,7 @@ export default function SearchField(props: AriaSearchFieldProps) {
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label}
 			>
-				<StyledInput
+				<SearchInput
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}
@@ -38,7 +50,9 @@ export default function SearchField(props: AriaSearchFieldProps) {
 					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
 				)}
 				{state.value !== '' && (
-					<StyledClearButton {...clearButtonProps}>×</StyledClearButton>
+					<StyledClearButton {...buttonProps} ref={buttonRef}>
+						×
+					</StyledClearButton>
 				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
