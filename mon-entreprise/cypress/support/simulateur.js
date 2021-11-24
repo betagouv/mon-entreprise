@@ -49,7 +49,7 @@ export const runSimulateurTest = (simulateur) => {
 				.invoke('val')
 				.should('match', /1[\s]000/)
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
+				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
 			}
 			cy.contains('Annuel').click()
 		})

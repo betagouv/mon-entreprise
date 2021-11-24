@@ -1,5 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
-const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
+const inputSelector =
+	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
 
 describe('Simulateur auto-entrepreneur', () => {
 	if (!fr) {
@@ -9,7 +10,6 @@ describe('Simulateur auto-entrepreneur', () => {
 
 	it('should allow to enter the date of creation', () => {
 		cy.get(inputSelector).first().type('{selectall}50000')
-		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.contains('Début 2021').click()
 		cy.contains('ACRE')
