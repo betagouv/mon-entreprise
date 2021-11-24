@@ -50,6 +50,8 @@ const PreviousAnswersList = styled.ul`
 	font-family: ${({ theme }) => theme.fonts.main};
 	display: flex;
 	list-style-type: none;
+	z-index: 2;
+	position: relative;
 	padding: 0;
 	margin-bottom: -1rem;
 `

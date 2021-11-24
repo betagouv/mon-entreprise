@@ -9,7 +9,11 @@ type Size = 'XL' | 'MD' | 'XS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
 export type GenericButtonOrLinkProps =
-	| ({ href: string; title?: string } & AriaButtonProps<'a'>)
+	| ({
+			href: string
+			title?: string
+			openInSameWindow?: true
+	  } & AriaButtonProps<'a'>)
 	| (AriaButtonProps<typeof NavLink> &
 			ComponentPropsWithRef<typeof NavLink> &
 			NavLinkProps)

@@ -44,13 +44,16 @@ export function useExternalLinkProps({
 	title,
 	href,
 	children,
+	openInSameWindow,
 }: {
 	title?: string | null
 	href?: string
 	children?: React.ReactNode
+	openInSameWindow?: true
 }) {
 	const { t } = useTranslation()
 	if (
+		openInSameWindow ||
 		!href ||
 		!(href.match(/^https?:\/\//) || href.match(/\.(pdf|jpe?g|png|docx?)/))
 	) {
