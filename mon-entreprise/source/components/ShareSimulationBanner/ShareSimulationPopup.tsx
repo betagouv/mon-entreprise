@@ -1,21 +1,11 @@
+import { Grid } from '@mui/material'
 import { Button } from 'DesignSystem/buttons'
 import { TextField } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
-
-const LinkAndButton = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 1rem;
-
-	& > :first-child {
-		flex-grow: 1;
-	}
-`
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -40,42 +30,50 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 				</Trans>
 			</Body>
 
-			<LinkAndButton>
-				<TextField
-					inputRef={inputRef}
-					onFocus={selectInput}
-					value={url}
-					aria-label="URL de votre simulation"
-				/>
+			<Grid container spacing={2}>
+				<Grid item xs={12} sm>
+					<TextField
+						inputRef={inputRef}
+						onFocus={selectInput}
+						value={url}
+						aria-label="URL de votre simulation"
+					/>
+				</Grid>
+
 				{navigator.clipboard ? (
-					<Button
-						size="XS"
-						onPress={() => {
-							tracker.click.set({
-								chapter1: 'feature:partage',
-								type: 'action',
-								name: 'lien copié',
-							})
-							tracker.dispatch()
-							navigator.clipboard.writeText(url)
-							setLinkCopied(true)
-						}}
-					>
-						{linkCopied ? (
-							<>✅ {t('shareSimulation.button.copied', 'Copié')}</>
-						) : (
-							<>📋 {t('shareSimulation.button.copy', 'Copier le lien')}</>
-						)}
-					</Button>
+					<Grid item xs={12} sm="auto">
+						<Button
+							size="XS"
+							onPress={() => {
+								tracker.click.set({
+									chapter1: 'feature:partage',
+									type: 'action',
+									name: 'lien copié',
+								})
+								tracker.dispatch()
+								navigator.clipboard.writeText(url)
+								setLinkCopied(true)
+							}}
+						>
+							{linkCopied ? (
+								<>✅ {t('shareSimulation.button.copied', 'Copié')}</>
+							) : (
+								<>📋 {t('shareSimulation.button.copy', 'Copier le lien')}</>
+							)}
+						</Button>
+					</Grid>
 				) : (
-					<SmallBody>
-						{t(
-							'shareSimulation.modal.helpText',
-							'Le lien est sélectionné, vous pouvez le copier/coller'
-						)}
-					</SmallBody>
+					<Grid item lg={12}>
+						<SmallBody>
+							{t(
+								'shareSimulation.modal.helpText',
+								'Le lien est sélectionné, vous pouvez le copier/coller'
+							)}
+						</SmallBody>
+					</Grid>
 				)}
-			</LinkAndButton>
+			</Grid>
+			<Spacing xl />
 		</>
 	)
 }
