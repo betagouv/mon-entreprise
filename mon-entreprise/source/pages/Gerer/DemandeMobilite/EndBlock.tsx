@@ -1,12 +1,15 @@
+import { Grid } from '@mui/material'
 import { BlobProvider } from '@react-pdf/renderer'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Button } from 'DesignSystem/buttons'
 import { Checkbox, TextField } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { RuleNode } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
@@ -22,19 +25,19 @@ type SignaturePadInstance = {
 
 type EndBlockProps = {
 	fields: Array<RuleNode>
-	isMissingValues: boolean
+	missingValues: Array<RuleNode>
 }
 
-export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
+export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
 	const engine = useContext(EngineContext)
 	const signatureRef = useRef<SignaturePadInstance>()
 	const tracker = useContext(TrackingContext)
 	const { colors } = useContext(ThemeContext)
-	if (isMissingValues) {
+	if (missingValues.length) {
 		return (
-			<blockquote>
+			<>
 				<Body>
 					<strong>Certains champs ne sont pas renseignés.</strong>
 				</Body>
@@ -42,7 +45,21 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					Vous devez compléter l'intégralité du formulaire avant de pouvoir le
 					signer et générer votre demande.
 				</SmallBody>
-			</blockquote>
+				<PopoverWithTrigger
+					title="Champs manquants"
+					trigger={(props) => (
+						<Button {...props} light size="XS">
+							Voir les champs manquants
+						</Button>
+					)}
+				>
+					<Ul>
+						{missingValues.map(({ title, dottedName }) => (
+							<Li key={dottedName}>{title}</Li>
+						))}
+					</Ul>
+				</PopoverWithTrigger>
+			</>
 		)
 	}
 	return (
@@ -59,12 +76,13 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 				L’auteur d’une fausse déclaration est passible d’une condamnation au
 				titre de l’article 441-1 du code pénal.
 			</SmallBody>
-
-			<TextField
-				defaultValue={place}
-				onChange={(value) => setPlace(value)}
-				label="Fait à"
-			/>
+			<Grid item xs={12} sm={6}>
+				<TextField
+					defaultValue={place}
+					onChange={(value) => setPlace(value)}
+					label="Fait à"
+				/>
+			</Grid>
 			{IS_TOUCH_DEVICE && (
 				<div>
 					<SmallBody>
@@ -94,10 +112,13 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					</div>
 				</div>
 			)}
+			<Spacing lg />
 			<PopoverWithTrigger
 				title="Votre demande de mobilité"
 				trigger={(buttonProps) => (
-					<Button {...buttonProps}>Générer la demande</Button>
+					<Button {...buttonProps} isDisabled={!isCertified || !place}>
+						Générer la demande
+					</Button>
 				)}
 			>
 				<Body>
@@ -146,14 +167,15 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 								url && (
 									<>
 										{!IS_TOUCH_DEVICE && (
-											<blockquote>
-												<strong>
-													N'oubliez pas de signer le document avant de l'envoyer
-												</strong>
-											</blockquote>
+											<Intro>
+												N'oubliez pas de signer le document avant de l'envoyer
+											</Intro>
 										)}
+										<Spacing xxl />
+
 										<Button
 											href={url}
+											size="XL"
 											onPress={() => {
 												tracker.click.set({
 													type: 'download',
@@ -164,6 +186,8 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 										>
 											Télécharger le fichier
 										</Button>
+										<Spacing xxl />
+
 										<TrackPage name="pdf généré" />
 									</>
 								)

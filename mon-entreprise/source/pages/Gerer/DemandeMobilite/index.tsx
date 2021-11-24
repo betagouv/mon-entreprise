@@ -7,13 +7,21 @@ import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import { headings } from 'DesignSystem/typography'
 import { H1 } from 'DesignSystem/typography/heading'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import Engine, { UNSAFE_isNotApplicable } from 'publicodes'
 import { equals, isEmpty, omit } from 'ramda'
-import { lazy, Suspense, useCallback, useContext, useState } from 'react'
+import {
+	Fragment,
+	lazy,
+	Suspense,
+	useCallback,
+	useContext,
+	useState,
+} from 'react'
 import { TrackPage } from '../../../ATInternetTracking'
 import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
@@ -56,18 +64,17 @@ export default function FormulaireMobilitéIndépendant() {
 				Royaume-Uni, Slovaquie, Slovénie, Suède, Suisse
 			</SmallBody>
 
-			<blockquote>
-				<Intro>
-					<strong>
-						Attention : ce document doit être signé <Emoji emoji="✍️" />
-					</strong>
-				</Intro>
-				<Body>
-					Aussi, nous vous invitons à utiliser un écran tactile pour le
-					compléter (téléphone, tablette, etc.). Sinon, vous devrez l’imprimer,
-					le signer et le scanner avant envoi par mail.
-				</Body>
-			</blockquote>
+			<Intro>
+				<strong>
+					Attention : ce document doit être signé <Emoji emoji="✍️" />
+				</strong>
+			</Intro>
+			<Body>
+				Aussi, nous vous invitons à utiliser un écran tactile pour le compléter
+				(téléphone, tablette, etc.). Sinon, vous devrez l’imprimer, le signer et
+				le scanner avant envoi par mail.
+			</Body>
+
 			<Body>
 				En cas de difficultés pour{' '}
 				<strong>remplir ce formulaire, contactez un conseiller</strong> par
@@ -81,6 +88,7 @@ export default function FormulaireMobilitéIndépendant() {
 				</strong>{' '}
 				de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).
 			</Body>
+			<Spacing xl />
 			<FormulairePublicodes />
 		</EngineProvider>
 	)
@@ -139,10 +147,9 @@ function FormulairePublicodes() {
 	engine.setSituation(situation)
 	const fields = useFields(engine, Object.keys(formulaire))
 
-	const isMissingValues = fields.some(
+	const missingValues = fields.filter(
 		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
 	)
-
 	return (
 		<>
 			<Grid container spacing={2}>
@@ -151,43 +158,51 @@ function FormulairePublicodes() {
 						const headerLevel = Math.min(dottedName.split(' . ').length + 1, 6)
 						const HeaderComponent = headings.fromLevel(headerLevel)
 
-						return type === 'groupe' ? (
-							<Grid item xs={12}>
-								<FromTop key={dottedName}>
-									<HeaderComponent>{title}</HeaderComponent>
-									{description && <Markdown source={description} />}
-								</FromTop>
-							</Grid>
-						) : type === 'notification' ? (
-							<Condition expression={dottedName}>
-								<Grid item xs={12}>
-									<FromTop key={dottedName}>
-										<SmallBody
-											css={`
-												color: #ff2d96;
-											`}
-										>
-											{description}
-										</SmallBody>
-									</FromTop>
-								</Grid>
-							</Condition>
-						) : (
-							<Grid item xs={12} md={question || type === 'booléen' ? 12 : 6}>
-								{question && <Body>{question}</Body>}
-								<RuleInput
-									id={dottedName}
-									dottedName={dottedName as DottedName}
-									onChange={(value) => onChange(dottedName, value)}
-								/>
-							</Grid>
+						return (
+							<Fragment key={dottedName}>
+								{type === 'groupe' ? (
+									<Grid item xs={12}>
+										<FromTop key={dottedName}>
+											<HeaderComponent>{title}</HeaderComponent>
+											{description && <Markdown source={description} />}
+										</FromTop>
+									</Grid>
+								) : type === 'notification' ? (
+									<Condition expression={dottedName}>
+										<Grid item xs={12}>
+											<FromTop key={dottedName}>
+												<SmallBody
+													css={`
+														color: #ff2d96;
+													`}
+												>
+													{description}
+												</SmallBody>
+											</FromTop>
+										</Grid>
+									</Condition>
+								) : (
+									<Grid
+										item
+										xs={12}
+										md={question || type === 'booléen' ? 12 : 6}
+									>
+										{question && <Body>{question}</Body>}
+										<RuleInput
+											id={dottedName}
+											dottedName={dottedName as DottedName}
+											onChange={(value) => onChange(dottedName, value)}
+										/>
+									</Grid>
+								)}
+							</Fragment>
 						)
 					}
 				)}
 			</Grid>
 
 			<Suspense fallback={null}>
-				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />
+				<LazyEndBlock fields={fields} missingValues={missingValues} />
 			</Suspense>
 			{!!Object.keys(situation).length && (
 				<div
@@ -202,7 +217,7 @@ function FormulairePublicodes() {
 			)}
 			{!Object.keys(situation).length ? (
 				<TrackPage name="accueil" />
-			) : isMissingValues ? (
+			) : missingValues.length ? (
 				<TrackPage name="commence" />
 			) : null}
 		</>
