@@ -2,7 +2,7 @@ import { Link } from 'DesignSystem/typography/link'
 import { DottedName } from 'modele-social'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { useContext } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { EngineContext } from './utils/EngineContext'
 import { SitePathsContext } from './utils/SitePathsContext'
 
@@ -18,7 +18,7 @@ export default function RuleLink(
 	return (
 		<EngineRuleLink
 			{...props}
-			linkComponent={Link as typeof RouterLink}
+			linkComponent={Link as typeof NavLink}
 			engine={engine}
 			documentationPath={sitePaths.documentation.index}
 		/>

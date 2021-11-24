@@ -152,7 +152,7 @@ export const StyledInputContainer = styled.div<{
 			}
 		`}
 
-	${StyledInput}:not(:focus):placeholder-shown + ${StyledLabel} {
+	${StyledInput}:not(:focus):placeholder-shown:not(:empty) + ${StyledLabel} {
 		font-size: 1rem;
 		line-height: 1.5rem;
 		top: 50%;
