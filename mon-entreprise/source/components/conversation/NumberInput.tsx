@@ -74,12 +74,13 @@ export default function NumberInput({
 			/>
 			<InputSuggestions
 				suggestions={suggestions}
-				onFirstClick={(valeur: ASTNode) => {
-					setCurrentValue(
-						(engine.evaluate(valeur).nodeValue as number) ?? undefined
-					)
+				onFirstClick={(node: ASTNode) => {
+					const evaluatedNode = engine.evaluate(node)
+					if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
+						setCurrentValue(evaluatedNode.nodeValue as number)
+					}
 					setImmediate(() => {
-						onChange(valeur)
+						onChange(node)
 					})
 				}}
 				onSecondClick={() => onSubmit?.('suggestion')}
