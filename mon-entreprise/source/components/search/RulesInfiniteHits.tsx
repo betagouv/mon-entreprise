@@ -1,4 +1,5 @@
-import { H2 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import {
@@ -6,23 +7,34 @@ import {
 	connectStats,
 	Highlight,
 } from 'react-instantsearch-dom'
+import styled from 'styled-components'
 import { Names } from '../../../../modele-social/dist/names'
 import RuleLink from '../RuleLink'
 
 type Hit = AlgoliaHit<{ objectID: Names; namespace?: string }>
 
+const StyledRuleLink = styled(RuleLink)`
+	${SmallBody}, ${Body} {
+		margin: 0;
+	}
+
+	${Body} {
+		font-weight: 600;
+	}
+`
+
 const Hit = (hit: Hit) => {
 	return (
-		<RuleLink dottedName={hit.objectID}>
+		<StyledRuleLink dottedName={hit.objectID}>
 			{hit.namespace && (
-				<div className="hit-amespace ui__ notice">
+				<SmallBody className="hit-namespace">
 					<Highlight hit={hit} attribute="namespace" separator=" > " />
-				</div>
+				</SmallBody>
 			)}
-			<div className="hit-ruleName">
+			<Body className="hit-ruleName">
 				<Highlight hit={hit} attribute="ruleName" />
-			</div>
-		</RuleLink>
+			</Body>
+		</StyledRuleLink>
 	)
 }
 
@@ -30,9 +42,9 @@ const HideableTitle = connectStats(({ nbHits }) => {
 	return nbHits === 0 ? (
 		<></>
 	) : (
-		<H2>
+		<H3 as="h2">
 			<Trans>Règles de calculs</Trans>
-		</H2>
+		</H3>
 	)
 })
 

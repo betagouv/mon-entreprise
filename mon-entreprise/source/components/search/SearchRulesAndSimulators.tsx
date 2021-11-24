@@ -10,7 +10,6 @@ import {
 	InstantSearch,
 } from 'react-instantsearch-dom'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
-import './SearchRulesAndSimulators.css'
 import { SimulatorHits } from './SimulatorHits'
 
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''

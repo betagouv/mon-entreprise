@@ -4,7 +4,6 @@ import 'instantsearch.css/themes/satellite.css'
 import { Trans, useTranslation } from 'react-i18next'
 import { InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
-import './SearchRulesAndSimulators.css'
 
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY || ''
