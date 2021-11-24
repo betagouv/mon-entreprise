@@ -8,7 +8,8 @@ import { SimulatorData } from 'pages/Simulateurs/metadata'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { connectHits, Highlight } from 'react-instantsearch-dom'
+import { connectHits } from 'react-instantsearch-dom'
+import { Highlight } from './Hightlight'
 
 type AlgoliaSimulatorHit = {
 	objectID: string

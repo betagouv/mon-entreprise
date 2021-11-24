@@ -4,14 +4,11 @@ import { H3 } from 'DesignSystem/typography/heading'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
-import {
-	connectInfiniteHits,
-	connectStats,
-	Highlight,
-} from 'react-instantsearch-dom'
+import { connectInfiniteHits, connectStats } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import { Names } from '../../../../../modele-social/dist/names'
 import RuleLink from '../../RuleLink'
+import { Highlight } from '../Hightlight'
 
 type Hit = AlgoliaHit<{ objectID: Names; namespace?: string }>
 

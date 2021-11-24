@@ -8,7 +8,6 @@ export const SearchBox = connectSearchBox(
 		return (
 			<form noValidate action="" role="search">
 				<SearchField
-					label="Votre recherche"
 					type="search"
 					autoFocus
 					value={currentRefinement}
@@ -18,8 +17,8 @@ export const SearchBox = connectSearchBox(
 						'recherche-globale.placeholder',
 						'Mot-clé ou acronyme (ex : CSG)'
 					)}
+					isSearchStalled={isSearchStalled}
 				/>
-				{isSearchStalled ? 'My search is stalled' : ''}
 			</form>
 		)
 	}
