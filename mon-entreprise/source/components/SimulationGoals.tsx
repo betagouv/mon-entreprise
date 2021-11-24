@@ -108,7 +108,7 @@ function useInitialRender() {
 
 type SimulationGoalProps = {
 	dottedName: DottedName
-	labelWithQuestion?: boolean
+	label?: React.ReactNode
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
@@ -123,10 +123,9 @@ type SimulationGoalProps = {
 
 export function SimulationGoal({
 	dottedName,
-	labelWithQuestion = false,
+	label,
 	small = false,
 	onUpdateSituation,
-
 	appear = true,
 	alwaysShow = false,
 	editable = true,
@@ -178,9 +177,8 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							{(labelWithQuestion && rule.rawNode.question) || (
-								<RuleLink dottedName={dottedName} />
-							)}
+							<RuleLink dottedName={dottedName}>{label}</RuleLink>
+
 							<SmallBody
 								css={`
 									margin-bottom: 0;

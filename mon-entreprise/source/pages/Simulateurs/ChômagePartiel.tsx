@@ -29,6 +29,7 @@ declare global {
 
 export default function ChômagePartiel() {
 	const inIframe = useIsEmbedded()
+	const { t } = useTranslation()
 	useEffect(() => {
 		if (inIframe) {
 			return
@@ -64,7 +65,10 @@ export default function ChômagePartiel() {
 				}
 			>
 				<SimulationGoals legend="Salaire brut avant chômage partiel">
-					<SimulationGoal dottedName="contrat salarié . rémunération . brut de base" />
+					<SimulationGoal
+						label={t('Salaire brut mensuel')}
+						dottedName="contrat salarié . rémunération . brut de base"
+					/>
 				</SimulationGoals>
 			</Simulation>
 		</>

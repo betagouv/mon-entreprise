@@ -14,7 +14,6 @@ describe('Page covid-19', function () {
 		cy.contains('Salaire brut mensuel')
 	})
 	it('should display 100% de prise en charge pour un SMIC', () => {
-		cy.get('input.currencyInput__input').click()
 		cy.contains('SMIC').click()
 		testText('comparaison-net', (text) =>
 			expect(text).to.eq('Soit 100 % du revenu net')
