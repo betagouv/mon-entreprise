@@ -41,12 +41,6 @@ export function softCatch<ArgType, ReturnType>(
 	}
 }
 
-export function mapOrApply<A, B>(fn: (a: A) => B, x: A): B
-export function mapOrApply<A, B>(fn: (a: A) => B, x: Array<A>): Array<B>
-export function mapOrApply<A, B>(fn: (a: A) => B, x: A | Array<A>) {
-	return Array.isArray(x) ? x.map(fn) : fn(x)
-}
-
 export function getSessionStorage() {
 	// In some browsers like Brave, even just reading the variable sessionStorage
 	// is throwing an error in the iframe, so we can't do things if sessionStorage !== undefined
