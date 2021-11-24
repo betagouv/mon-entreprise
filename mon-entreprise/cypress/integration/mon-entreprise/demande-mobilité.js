@@ -39,7 +39,7 @@ describe(`Formulaire demande mobilité (${
 	})
 	it('should allow to complete and download', () => {
 		// "coordonnées" section
-		cy.contains('SIRET').click()
+		cy.contains('SIRET').click({ force: true })
 		cy.focused()
 			.type('684 064 0011')
 			.tab()
@@ -48,23 +48,16 @@ describe(`Formulaire demande mobilité (${
 			.type('Jean')
 			.tab()
 			.type('Française')
-		cy.contains('sécurité sociale').click()
-		cy.focused().type('1 91 07 468 054 75').tab().type('1991-07-25')
+			.tab()
+			.type('1991-07-25')
+		cy.contains('sécurité sociale').click({ force: true })
+		cy.focused().type('1 91 07 468 054 75')
 
-		cy.get(
-			"input[name='coordonnées assuré . commune de naissance . étranger'][value='non']"
-		)
-			.next()
-			.click()
-			.wait(500)
+		cy.tab().type('{downarrow}').wait(500)
 
-		cy.focused().tab().type('Pouts').wait(1500).type('{enter}')
+		cy.focused().tab().type('Pouts').wait(2500).type('{enter}')
 
-		cy.get(
-			"input[name='coordonnées assuré . domicile personnel . commune . étranger'][value='non']"
-		)
-			.next()
-			.click()
+		cy.tab().type('{downarrow}').wait(500)
 
 		cy.focused()
 			.tab()
@@ -88,42 +81,44 @@ describe(`Formulaire demande mobilité (${
 			.type('Bre')
 			.wait(1500)
 		cy.contains('29240').click()
-		cy.contains('Organisme Urssaf').click()
-		cy.focused().type('Bretagne').tab().tab().type('Boulangerie')
+		cy.contains('Organisme Urssaf').click({ force: true })
+		cy.focused().type('Bretagne').tab().type('Boulangerie')
 
 		// "votre demande" section
-		cy.get("input[name='demande . pays unique'][value='oui']").next().click()
-		cy.get("input[name='demande . infrastructure sauvegardée'][value='oui']")
-			.next()
-			.click()
-		cy.get("input[name='demande . activité semblable'][value='oui']")
-			.next()
-			.click()
-		cy.get("input[name='demande . date de fin connue'][value='oui']")
-			.next()
-			.click()
-		cy.get('label[for="détachement . pays"]').wait(1500).click()
+		// Oui x 4
 		cy.focused()
-			.select('Irlande')
+			.tab()
+			.type('{downArrow}{downArrow}')
+			.wait(500)
+			.tab()
+			.type('{downArrow}{downArrow}')
+			.wait(500)
+			.tab()
+			.type('{downArrow}{downArrow}')
+			.wait(500)
+			.tab()
+			.type('{downArrow}{downArrow}')
+			.wait(500)
+
+		cy.get('#détachement\\ \\.\\ pays').wait(500).click()
+		cy.focused().type('Irl').contains('Irlande').click()
+		cy.focused()
 			.tab()
 			.type('2020-11-06')
 			.tab()
 			.type('2021-04-09')
 			.tab()
-			.tab()
 			.type('Fabrications de gateaux bretons')
-		cy.get("input[name='détachement . base fixe'][value='non']").next().click()
-		cy.get(
-			"input[name='commentaires additionnels . commentaires'][value='non']"
-		)
-			.next()
-			.click()
+
+		// 2 x NON
+		cy.tab().type('{downarrow}').wait(500)
+		cy.tab().type('{downarrow}').wait(500)
 
 		// download PDF
 		cy.contains(
 			'Je certifie l’exactitude des informations communiquées ci-dessus'
 		).click()
-		cy.contains('Fait à').click()
+		cy.contains('Fait à').click({ force: true })
 		cy.focused().type('Plougastel')
 		cy.contains('Générer la demande').click()
 		cy.contains('Télécharger le fichier').click()

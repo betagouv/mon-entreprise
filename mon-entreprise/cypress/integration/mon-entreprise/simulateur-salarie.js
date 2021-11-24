@@ -19,7 +19,7 @@ describe('Simulateur salarié', () => {
 
 		it('should permit selecting the smic before part-time contrat', () => {
 			cy.get('input[name$="brut de base"]').should(($input) => {
-				expect(+$input.val().replace(/[\s,.]/g, ''))
+				expect(+$input.val().replace(/[\s,.€]/g, ''))
 					.to.be.above(1300)
 					.and.to.be.below(1500)
 			})
@@ -29,12 +29,12 @@ describe('Simulateur salarié', () => {
 			cy.contains('Suivant').click()
 			cy.get('fieldset input[type="text"]').type(25)
 			cy.get('input[name$="net après impôt"]').should(($input) => {
-				expect(+$input.val().replace(/[\s,.]/g, '')).to.be.below(1000)
+				expect(+$input.val().replace(/[\s,.€]/g, '')).to.be.below(1000)
 			})
 
 			cy.get('fieldset input[type="text"]').clear()
 			cy.get('input[name$="net après impôt"]').should(($input) => {
-				expect(+$input.val().replace(/[\s,.]/g, '')).to.be.above(1000)
+				expect(+$input.val().replace(/[\s,.€]/g, '')).to.be.above(1000)
 			})
 		})
 	})

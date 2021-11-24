@@ -20,7 +20,7 @@ describe('Simulateur auto-entrepreneur', () => {
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).should(($i) => {
-				const val = +$i.val().replace(/[\s,.]/g, '')
+				const val = +$i.val().replace(/[\s,.€]/g, '')
 				expect(val).not.to.be.below(4000)
 			})
 		})
