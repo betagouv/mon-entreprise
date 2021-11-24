@@ -10,10 +10,32 @@ import {
 	usePreventScroll,
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
-import React, { useRef } from 'react'
-import styled, { keyframes, ThemeProvider } from 'styled-components'
+import React, { useEffect, useRef, useState } from 'react'
+import styled, { css, keyframes, ThemeProvider } from 'styled-components'
 import { Container } from './layout'
 import { H2 } from './typography/heading'
+
+const useIFrameOffset = () => {
+	const [offsetTop, setOffset] = useState<number | null | undefined>(
+		'parentIFrame' in window ? undefined : null
+	)
+	useEffect(() => {
+		'parentIFrame' in window &&
+			window.parentIFrame.getPageInfo(
+				({
+					scrollTop,
+					offsetTop,
+				}: {
+					scrollTop: number
+					offsetTop: number
+				}) => {
+					setOffset(Math.max(scrollTop - offsetTop, 0))
+					window.parentIFrame.getPageInfo(false)
+				}
+			)
+	}, [])
+	return offsetTop
+}
 
 export default function Popover(
 	props: OverlayProps &
@@ -49,6 +71,11 @@ export default function Popover(
 		closeButtonRef
 	)
 
+	const offsetTop = useIFrameOffset()
+	if (offsetTop === undefined) {
+		return null
+	}
+
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<OverlayContainer>
@@ -60,6 +87,7 @@ export default function Popover(
 									{...dialogProps}
 									{...modalProps}
 									{...overlayProps}
+									offsetTop={offsetTop}
 									ref={ref}
 								>
 									<FocusScope contain restoreFocus autoFocus>
@@ -123,13 +151,21 @@ const Underlay = styled.div`
 	overflow: auto;
 	z-index: 10;
 	background: rgba(255, 255, 255, 0.5);
-	display: flex;
-	align-items: center;
 	animation: ${appear} 0.2s;
 `
 
-const PopoverContainer = styled.div`
-	max-height: calc(100vh - 4rem);
+const PopoverContainer = styled.div<{ offsetTop: number | null }>`
+	${({ offsetTop }) =>
+		offsetTop !== null
+			? css`
+					top: calc(${offsetTop}px + 2rem);
+			  `
+			: css`
+					top: 10vh;
+			  `}
+
+	position: relative;
+	max-height: calc(90vh - 1px);
 
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[4]};
@@ -140,6 +176,16 @@ const PopoverContainer = styled.div`
 		flex-direction: column-reverse;
 	}
 	animation: ${fromtop} 0.2s;
+
+	${({ theme, offsetTop }) =>
+		!offsetTop &&
+		css`
+			@media (max-width: ${theme.breakpointsWidth.sm}) {
+				top: calc(100vh - 100% - 1px);
+				max-height: calc(100vh - 1px);
+				margin: 0 -16px;
+			}
+		`}
 `
 const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
