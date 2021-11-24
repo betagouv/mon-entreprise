@@ -4,6 +4,7 @@ import { useNumberField } from '@react-aria/numberfield'
 import { NumberFieldState } from '@react-stately/numberfield'
 import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
+	InputHTMLAttributes,
 	RefObject,
 	useCallback,
 	useEffect,
@@ -47,8 +48,6 @@ export default function NumberField(props: NumberFieldProps) {
 		locale,
 	})
 
-	useKeepCursorPositionOnUpdate(ref)
-
 	const {
 		labelProps,
 		inputProps,
@@ -60,12 +59,15 @@ export default function NumberField(props: NumberFieldProps) {
 		state as NumberFieldState,
 		ref
 	)
+	const inputWithCursorHandlingProps = useKeepCursorPositionOnUpdate(
+		inputProps,
+		ref
+	)
 
 	const handleClickOnUnit = useCallback(() => {
 		if (!ref.current) {
 			return
 		}
-		ref.current.focus()
 		const length = ref.current.value.length * 2
 		ref.current.setSelectionRange(length * 2, length * 2)
 	}, [])
@@ -87,7 +89,7 @@ export default function NumberField(props: NumberFieldProps) {
 				small={props.small}
 			>
 				<StyledNumberInput
-					{...inputProps}
+					{...inputWithCursorHandlingProps}
 					placeholder={
 						props.placeholder != null
 							? state.formatter.format(props.placeholder)
@@ -142,32 +144,58 @@ const StyledNumberInput = styled(StyledInput)<{ withUnit: boolean }>`
 `
 
 function useKeepCursorPositionOnUpdate(
+	inputProps: InputHTMLAttributes<HTMLInputElement>,
 	inputRef: RefObject<HTMLInputElement>
-): void {
-	const previousCursorPosition = useRef<number | null>(null)
-
-	if (
-		inputRef.current &&
-		inputRef.current.selectionStart &&
-		inputRef.current.selectionEnd
-	) {
-		previousCursorPosition.current =
-			inputRef.current.value.length -
-			Math.max(inputRef.current.selectionStart, inputRef.current.selectionEnd)
-	}
-	const inputIsFocused = inputRef.current === document.activeElement
+): InputHTMLAttributes<HTMLInputElement> {
+	const [selection, setSelection] = useState<null | number>(null)
+	const [value, setValue] = useState<string | undefined>()
+	const [rerenderSwitch, toggle] = useState(false)
+	const onChange = useCallback(
+		(e) => {
+			const input = e.target
+			setValue(input.value)
+			setSelection(Math.max(0, input.selectionStart, input.selectionEnd))
+			toggle(!rerenderSwitch)
+			inputProps.onChange?.(e)
+		},
+		[rerenderSwitch, toggle, setValue, setSelection]
+	)
+	const onKeyDown = useCallback(
+		(e) => {
+			inputProps.onKeyDown?.(e)
+			const input = e.target
+			if (
+				!(
+					e.key === 'Backspace' &&
+					input.value
+						?.slice(input.selectionStart - 1, input.selectionStart)
+						.match(/[\s]/)
+				)
+			) {
+				return
+			}
+			setSelection(
+				Math.max(0, e.target.selectionStart - 2, e.target.selectionEnd - 2)
+			)
+			toggle(!rerenderSwitch)
+		},
+		[setSelection, rerenderSwitch, toggle]
+	)
 	useEffect(() => {
-		previousCursorPosition.current = null
-	}, [inputIsFocused])
-	useEffect(() => {
-		if (!inputRef.current || !previousCursorPosition.current) {
+		const input = inputRef.current
+		if (!input || selection === null) {
 			return
 		}
-		inputRef.current.selectionStart =
-			inputRef.current.value.length - previousCursorPosition.current
-		inputRef.current.selectionEnd =
-			inputRef.current.value.length - previousCursorPosition.current
-	})
+
+		let adjustedSelection = selection
+		if (value && input.value) {
+			adjustedSelection += input.value.length - value.length
+		}
+		input.selectionStart = Math.max(adjustedSelection, 0)
+		input.selectionEnd = Math.max(adjustedSelection, 0)
+	}, [inputRef, selection, value, rerenderSwitch])
+
+	return { ...inputProps, onChange, onKeyDown }
 }
 
 /*
@@ -270,6 +298,7 @@ function useSimpleNumberFieldState(
 				setInputValue(inputValue)
 				return
 			}
+
 			updateInputValue(parsedValue)
 		},
 		[
