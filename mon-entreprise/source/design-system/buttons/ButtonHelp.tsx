@@ -63,27 +63,34 @@ const CircleIcon = styled.svg`
 
 const StyledButton = styled(Button)<{ light: boolean }>`
 	--padding: 2px;
-	height: calc(${({ theme }) => theme.spacings.md} + 2 * var(--padding));
-	padding: 0;
-	vertical-align: middle;
-	padding-left: var(--padding);
-	padding-right: ${({ theme }) => theme.spacings.xs};
-	width: auto;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	vertical-align: baseline;
-	text-transform: capitalize;
-	font-weight: 700;
-	display: inline-flex;
-	margin-left: ${({ theme }) => theme.spacings.sm};
-	align-items: center;
-	color: ${({ theme }) => theme.colors.bases.primary[600]} !important;
-	border: 1px solid ${({ theme }) => theme.colors.bases.primary[600]};
-	background-color: ${({ theme, light }) =>
-		light ? theme.colors.extended.grey[100] : theme.colors.bases.primary[100]};
-	border-radius: calc(${({ theme }) => theme.spacings.md} / 2 + var(--padding));
+	&& {
+		height: calc(${({ theme }) => theme.spacings.md} + 2 * var(--padding));
+		padding: 0;
+		vertical-align: middle;
+		padding-left: var(--padding);
+		padding-right: ${({ theme }) => theme.spacings.xs};
+		width: auto;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		vertical-align: baseline;
+		text-transform: capitalize;
+		font-weight: 700;
+		display: inline-flex;
+		margin-left: ${({ theme }) => theme.spacings.sm};
+		align-items: center;
+		color: ${({ theme }) => theme.colors.bases.primary[600]} !important;
+		border: 1px solid ${({ theme }) => theme.colors.bases.primary[600]};
+		background-color: ${({ theme, light }) =>
+			light
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[100]};
+		border-radius: calc(
+			${({ theme }) => theme.spacings.md} / 2 + var(--padding)
+		);
 
-	:hover {
-		background-color: ${({ theme, light }) => theme.colors.bases.primary[200]};
+		:hover {
+			background-color: ${({ theme, light }) =>
+				theme.colors.bases.primary[200]};
+		}
 	}
 `

@@ -83,6 +83,7 @@ const RadioButton = styled.span`
 const VisibleRadio = styled.div`
 	display: inline-flex;
 	align-items: center;
+	text-align: initial;
 	padding: 0 ${({ theme }) => theme.spacings.sm};
 	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
 	border-radius: ${({ theme }) => theme.box.borderRadius};
