@@ -5,7 +5,7 @@ import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import Emoji from './utils/Emoji'
 
@@ -52,22 +52,22 @@ function ChartItemBar({
 					style={style}
 				/>
 			)}
-			<div
-				css={`
-					font-weight: bold;
-					margin-left: 1rem;
-					color: var(--textColorOnWhite);
-				`}
-			>
+			<Value>
 				{formatValue(numberToPlot, {
 					displayedUnit: unit,
 					precision: 0,
 					language,
 				})}
-			</div>
+			</Value>
 		</div>
 	)
 }
+
+const Value = styled.div`
+	font-weight: bold;
+	margin-left: 1rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+`
 
 function BranchIcon({ icon }: { icon: string }) {
 	return (
