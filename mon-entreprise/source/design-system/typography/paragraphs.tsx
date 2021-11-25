@@ -3,10 +3,14 @@ import styled, { css } from 'styled-components'
 export const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[100]
-			: theme.colors.extended.grey[800]};
+	color: ${({ theme }) => theme.colors.extended.grey[800]};
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			@media not print {
+				color: ${theme.colors.extended.grey[100]};
+			}
+		`}
 `
 
 export const Intro = styled.p`

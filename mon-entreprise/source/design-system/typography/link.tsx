@@ -14,10 +14,14 @@ export const StyledLinkHover = css`
 			: theme.colors.bases.primary[800]};
 `
 export const StyledLink = styled.a`
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[100]
-			: theme.colors.bases.primary[700]};
+	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			@media not print {
+				color: ${theme.colors.extended.grey[100]};
+			}
+		`}
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
 	padding: 0;

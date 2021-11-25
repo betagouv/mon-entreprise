@@ -30,7 +30,9 @@ export const Label = styled.label`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			color: ${theme.colors.extended.grey[100]} !important;
+			@media not print {
+				color: ${theme.colors.extended.grey[100]} !important;
+			}
 		`}
 `
 
@@ -55,7 +57,9 @@ const Button = styled.button<{
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			color: ${theme.colors.extended.grey[100]} !important;
+			@media not print {
+				color: ${theme.colors.extended.grey[100]} !important;
+			}
 		`}
 `
 

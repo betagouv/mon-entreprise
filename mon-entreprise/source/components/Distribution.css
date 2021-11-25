@@ -35,7 +35,7 @@
 	width: 35em;
 }
 
-@media screen and (max-width: 600px) {
+@media not print and (max-width: 600px) {
 	.distribution-chart__item {
 		flex-direction: column;
 		align-items: stretch;
@@ -108,7 +108,7 @@
 }
 
 /* IE11 Special */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media not print and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	.distribution-chart__total > * {
 		margin: 8px;
 	}

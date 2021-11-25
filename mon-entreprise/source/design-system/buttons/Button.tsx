@@ -110,52 +110,61 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			background-color: ${theme.colors.extended.grey[100]};
 		`}
 
-	/* White color (dark background mode) */
+	@media not print {
+		/* White color (dark background mode) */
 		${({ theme }) =>
-		theme.darkMode &&
-		css`
-			background-color: ${theme.colors.extended.grey[100]};
-			color: transparent;
-		`}
+			theme.darkMode &&
+			css`
+				background-color: ${theme.colors.extended.grey[100]};
+				color: transparent;
+			`}
 
 		/* White color and light mode (dark background mode) */
 		${({ light, theme }) =>
-		theme.darkMode &&
-		light &&
-		css`
-			background-color: transparent;
-			border-color: 2px solid ${theme.colors.extended.grey[100]};
-			color: ${theme.colors.extended.grey[100]};
-		`}
-
-		/* HOVER STYLE */
-		:hover {
+			theme.darkMode &&
+			light &&
+			css`
+				background-color: transparent;
+				border-color: 2px solid ${theme.colors.extended.grey[100]};
+				color: ${theme.colors.extended.grey[100]};
+			`}
+	}
+	/* HOVER STYLE */
+	:hover {
 		${({ theme, color, isDisabled, light }) =>
-			isDisabled
+			isDisabled || theme.darkMode
 				? ''
 				: /* Primary, secondary & tertiary light colors */
-				light && !theme.darkMode
+				light
 				? css`
 						background-color: ${theme.colors.bases[color][
 							color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
 						]};
 				  `
 				: /* Primary, secondary & tertiary colors */
-				!theme.darkMode
-				? css`
+				  css`
 						background-color: ${theme.colors.bases[color][
 							color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
 						]};
-				  `
-				: /* White color and light mode (dark background mode) */
-				light
-				? css`
-						color: rgba(255, 255, 255, 25%);
-						opacity: 1;
-				  `
-				: /* White color (dark background mode) */
-				  css`
-						opacity: 80%;
 				  `}
+	}
+
+	/* Dark mode */
+	@media not print {
+		:hover {
+			${({ light, theme, isDisabled }) =>
+				isDisabled || !theme.darkMode
+					? ''
+					: /* White color and light mode (dark background mode) */
+					light
+					? css`
+							color: rgba(255, 255, 255, 25%);
+							opacity: 1;
+					  `
+					: /* White color (dark background mode) */
+					  css`
+							opacity: 80%;
+					  `}
+		}
 	}
 `

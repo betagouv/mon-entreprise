@@ -64,7 +64,9 @@ export const StyledInput = styled.input`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			color: ${theme.colors.extended.grey[100]} !important;
+			@media not print {
+				color: ${theme.colors.extended.grey[100]} !important;
+			}
 		`}
 `
 
@@ -83,7 +85,9 @@ export const StyledLabel = styled.label`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			color: ${theme.colors.extended.grey[100]} !important;
+			@media not print {
+				color: ${theme.colors.extended.grey[100]} !important;
+			}
 		`}
 `
 
