@@ -123,22 +123,24 @@ const NotificationContent = styled.div`
 `
 
 const HideButton = styled(Button)<GenericButtonOrLinkProps>`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 1.5rem;
-	width: 1.5rem;
-	padding: 0;
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
-	color: ${({ theme }) => theme.colors.bases.primary[600]};
-	font-weight: bold;
-	margin-left: 1rem;
+	&& {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 1.5rem;
+		width: 1.5rem;
+		padding: 0;
+		background: ${({ theme }) => theme.colors.extended.grey[100]};
+		color: ${({ theme }) => theme.colors.bases.primary[600]};
+		font-weight: bold;
+		margin-left: 1rem;
 
-	position: absolute;
-	top: 0.375rem;
-	right: 0.375rem;
+		position: absolute;
+		top: 0.375rem;
+		right: 0.375rem;
 
-	&:hover {
-		background: ${({ theme }) => theme.colors.bases.primary[300]};
+		&:hover {
+			background: ${({ theme }) => theme.colors.bases.primary[300]};
+		}
 	}
 `
