@@ -13978,6 +13978,19 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+publicodes@^1.0.0-beta.17:
+  version "1.0.0-beta.18"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.18.tgz#a8c9ad2aa1880d13fd0fd28785588cae66b7b138"
+  integrity sha512-4unzgiKJcW9f+NxCq0rwAXEhJeCbiEKBuk1IkE0ljtZPaL02lgetGgdM3wAXK20+ThRychBnRhCVifRvdssybQ==
+  dependencies:
+    "@babel/core" "^7.14.6"
+    "@babel/preset-env" "^7.14.5"
+    "@types/webpack-env" "^1.16.0"
+    moo "^0.5.1"
+    nearley "^2.19.2"
+    webpack "^5.39.1"
+    yaml "^1.9.2"
+
 pump@^2.0.0, pump@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pump/-/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"

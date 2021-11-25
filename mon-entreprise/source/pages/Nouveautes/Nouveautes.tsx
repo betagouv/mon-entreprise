@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { determinant, hideNewsBanner } from 'Components/layout/NewsBanner'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Emoji from 'Components/utils/Emoji'
@@ -5,15 +6,14 @@ import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import { Item, Select } from 'DesignSystem/field/Select'
+import { Container } from 'DesignSystem/layout'
 import { H1 } from 'DesignSystem/typography/heading'
-import { useContext, useEffect } from 'react'
-import {
-	Link,
-	NavLink,
-	Redirect,
-	useHistory,
-	useRouteMatch,
-} from 'react-router-dom'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { useContext, useEffect, useMemo } from 'react'
+import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
 import useSWR from 'swr'
 import { TrackPage } from '../../ATInternetTracking'
@@ -36,6 +36,11 @@ export default function Nouveautés() {
 	const slug = useRouteMatch<{ slug: string }>(`${sitePaths.nouveautés}/:slug`)
 		?.params?.slug
 	useEffect(hideNewsBanner, [])
+
+	const releasesWithId = useMemo(
+		() => data && data.map((v, id) => ({ ...v, id })),
+		[data]
+	)
 
 	if (!data) {
 		return null
@@ -61,63 +66,74 @@ export default function Nouveautés() {
 				description="Nous améliorons le site en continu à partir de vos retours. Découvrez les dernières nouveautés"
 			/>
 			<ScrollToTop key={selectedRelease} />
-			<H1>
-				Les nouveautés <Emoji emoji="✨" />
-			</H1>
-			<p>
-				Nous améliorons le site en continu à partir de{' '}
-				<Link to={sitePaths.stats + '#demandes-utilisateurs'}>vos retours</Link>
-				. Découvrez les{' '}
-				{selectedRelease === 0
-					? 'dernières nouveautés'
-					: `nouveautés ${determinant(releaseName)}${releaseName}`}
-				&nbsp;:
-			</p>
-			<SmallScreenSelect
-				value={selectedRelease}
-				onChange={(evt) => {
-					history.push(getPath(Number(evt.target.value)))
-				}}
-			>
-				{data.map(({ name }, index) => (
-					<option key={index} value={index}>
-						{name}
-					</option>
-				))}
-			</SmallScreenSelect>
-			<NewsSection>
-				<Sidebar>
-					{data.map(({ name }, index) => (
-						<li key={name}>
-							<NavLink activeClassName="active" to={getPath(index)}>
-								{name}
-							</NavLink>
-						</li>
-					))}
-				</Sidebar>
-				<MainBlock>
-					<MarkdownWithAnchorLinks
-						source={data[selectedRelease].description}
-						escapeHtml={false}
-						renderers={{ text: TextRenderer }}
-					/>
-					<NavigationButtons>
-						{selectedRelease + 1 < data.length ? (
-							<Link to={getPath(selectedRelease + 1)}>
-								← {data[selectedRelease + 1].name}
-							</Link>
-						) : (
-							<span /> // For spacing
-						)}
-						{selectedRelease > 0 && (
-							<Link to={getPath(selectedRelease - 1)}>
-								{data[selectedRelease - 1].name} →
-							</Link>
-						)}
-					</NavigationButtons>
-				</MainBlock>
-			</NewsSection>
-			<MoreInfosOnUs />
+
+			<Container>
+				<H1>
+					Les nouveautés <Emoji emoji="✨" />
+				</H1>
+				<Body>
+					Nous améliorons le site en continu à partir de{' '}
+					<Link to={sitePaths.stats + '#demandes-utilisateurs'}>
+						vos retours
+					</Link>
+					. Découvrez les{' '}
+					{selectedRelease === 0
+						? 'dernières nouveautés'
+						: `nouveautés ${determinant(releaseName)}${releaseName}`}
+					&nbsp;:
+				</Body>
+
+				<Grid container spacing={2}>
+					<Grid item xs={12} sx={{ display: { xs: 'block', lg: 'none' } }}>
+						<Select
+							label="Date de la newsletter"
+							value={selectedRelease}
+							items={releasesWithId}
+							onSelectionChange={(id) => {
+								history.push(getPath(Number(id)))
+							}}
+						>
+							{(release) => (
+								<Item textValue={release.name}>{release.name}</Item>
+							)}
+						</Select>
+					</Grid>
+					<Grid item lg={3} sx={{ display: { xs: 'none', lg: 'block' } }}>
+						<Sidebar>
+							{data.map(({ name }, index) => (
+								<li key={name}>
+									<SidebarLink to={getPath(index)}>{name}</SidebarLink>
+								</li>
+							))}
+						</Sidebar>
+					</Grid>
+					<Grid item xs={12} lg={9}>
+						<MainBlock>
+							<MarkdownWithAnchorLinks
+								source={data[selectedRelease].description}
+								escapeHtml={false}
+								renderers={{ text: TextRenderer }}
+							/>
+
+							<NavigationButtons>
+								{selectedRelease + 1 < data.length ? (
+									<Link to={getPath(selectedRelease + 1)}>
+										← {data[selectedRelease + 1].name}
+									</Link>
+								) : (
+									<span /> // For spacing
+								)}
+								{selectedRelease > 0 && (
+									<Link to={getPath(selectedRelease - 1)}>
+										{data[selectedRelease - 1].name} →
+									</Link>
+								)}
+							</NavigationButtons>
+						</MainBlock>
+					</Grid>
+				</Grid>
+				<MoreInfosOnUs />
+			</Container>
 		</>
 	)
 }
@@ -139,6 +155,16 @@ const NewsSection = styled.section`
 	}
 `
 
+const SidebarLink = styled(Link)<GenericButtonOrLinkProps>`
+	display: block;
+	border-radius: 0;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid #e6e9ec;
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+	}
+`
+
 const Sidebar = styled.ul`
 	display: flex;
 	flex-direction: column;
@@ -149,43 +175,15 @@ const Sidebar = styled.ul`
 	font-size: 0.9em;
 	border-right: 1px solid var(--lighterColor);
 
-	@media (max-width: 700px) {
-		display: none;
-	}
-
 	li {
 		list-style-type: none;
 		list-style-position: inside;
-		width: 150px;
 		padding: 0;
 		margin: 0;
-
-		a {
-			display: block;
-			color: inherit;
-			text-decoration: none;
-			padding: 4px 10px;
-			margin: 0;
-
-			&:hover,
-			&.active {
-				background: var(--lightestColor);
-			}
-
-			&.active {
-				font-weight: bold;
-			}
-		}
 	}
 `
 
-const SmallScreenSelect = styled.select`
-	display: none;
-
-	@media (max-width: 700px) {
-		display: initial;
-	}
-`
+const SmallScreenSelect = styled.select``
 
 const MainBlock = styled.div`
 	flex: 1;
@@ -194,6 +192,10 @@ const MainBlock = styled.div`
 	h2:first-child,
 	h3:first-child {
 		margin-top: 0px;
+	}
+
+	img {
+		max-width: 100%;
 	}
 `
 

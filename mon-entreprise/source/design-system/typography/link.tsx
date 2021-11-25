@@ -1,7 +1,7 @@
 import { useButton } from '@react-aria/button'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { FocusStyle } from 'DesignSystem/global-style'
-import React, { ForwardedRef, forwardRef, useCallback, useRef } from 'react'
+import React, { ForwardedRef, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -32,7 +32,7 @@ export const StyledLink = styled.a`
 	}
 `
 
-export const Link = forwardRef<
+export const Link = React.forwardRef<
 	HTMLAnchorElement | HTMLButtonElement,
 	GenericButtonOrLinkProps & { children: React.ReactNode }
 >(function Link(ariaButtonProps, forwardedRef) {

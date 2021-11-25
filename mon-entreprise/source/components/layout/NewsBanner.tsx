@@ -1,4 +1,4 @@
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import { useLocalStorage } from '@rehooks/local-storage'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
@@ -11,8 +11,9 @@ import lastRelease from '../../data/last-release.json'
 
 const localStorageKey = 'last-viewed-release'
 
-export const hideNewsBanner = () =>
-	writeStorage(localStorageKey, lastRelease.name)
+export const hideNewsBanner = () => {
+	// writeStorage(localStorageKey, lastRelease.name)
+}
 
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '

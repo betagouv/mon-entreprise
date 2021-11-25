@@ -164,12 +164,20 @@ export const Wrapper = styled.div<{
 `
 
 export function Select<T extends Record<string, unknown>>(
-	props: AriaSelectProps<T> & { small?: boolean }
+	props: AriaSelectProps<T> & { small?: boolean; value?: number }
 ) {
 	const { t } = useTranslation()
 
 	// Create state based on the incoming props
 	const state = useSelectState(props)
+
+	React.useEffect(() => {
+		if (props.value && props.value !== state.selectedKey) {
+			state.setSelectedKey(props.value)
+		}
+		// On ne veut pas d'update bidirectionnel, c'est pourquoi state n'est pas dans
+		// les dépendances
+	}, [props.value])
 
 	// Get props for child elements from useSelect
 	const ref = React.useRef(null)
