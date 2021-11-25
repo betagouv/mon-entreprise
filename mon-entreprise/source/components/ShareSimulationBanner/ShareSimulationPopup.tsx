@@ -13,8 +13,11 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 	const [linkCopied, setLinkCopied] = useState(false)
 	const tracker = useContext(TrackingContext)
 
-	const selectInput = () => inputRef.current?.select()
+	const selectInput = () => {
+		inputRef.current?.select()
+	}
 	useEffect(selectInput, [])
+
 	useEffect(() => {
 		const handler = setTimeout(() => setLinkCopied(false), 5000)
 		return () => {
@@ -36,6 +39,7 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 						inputRef={inputRef}
 						onFocus={selectInput}
 						value={url}
+						autoFocus
 						aria-label="URL de votre simulation"
 					/>
 				</Grid>

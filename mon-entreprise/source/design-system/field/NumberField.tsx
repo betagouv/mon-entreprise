@@ -4,6 +4,7 @@ import { useNumberField } from '@react-aria/numberfield'
 import { NumberFieldState } from '@react-stately/numberfield'
 import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
+	HTMLAttributes,
 	InputHTMLAttributes,
 	RefObject,
 	useCallback,
@@ -28,7 +29,7 @@ type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
 	displayedUnit?: string
 	small?: boolean
 	placeholder?: number
-	onChange: (n?: number) => void
+	onChange?: (n?: number) => void
 }
 export default function NumberField(props: NumberFieldProps) {
 	const { locale } = useLocale()
@@ -89,6 +90,7 @@ export default function NumberField(props: NumberFieldProps) {
 				small={props.small}
 			>
 				<StyledNumberInput
+					{...(props as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
 					placeholder={
 						props.placeholder != null
