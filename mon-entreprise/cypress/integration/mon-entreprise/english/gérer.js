@@ -52,7 +52,7 @@ describe(`Manage page test (${
 		cy.contains('MONSIEUR').click()
 		// ask if auto-entrepreneur
 		cy.contains(
-			fr ? 'Êtes-vous auto-entrepreneur ?' : 'Are you auto-entrepreneur?'
+			fr ? 'Êtes-vous auto-entrepreneur ?' : 'Are you an auto-entrepreneur?'
 		)
 		cy.contains(fr ? 'Oui' : 'Yes').click()
 		cy.contains(

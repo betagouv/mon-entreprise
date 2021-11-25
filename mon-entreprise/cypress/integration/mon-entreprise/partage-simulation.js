@@ -1,7 +1,8 @@
 const fr = Cypress.env('language') === 'fr'
 
 describe('Partage (simulateur salarié)', () => {
-	const brutInputSelector = `#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base`
+	const brutInputSelector =
+		'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
 		'contrat salarié': "'CDD'",

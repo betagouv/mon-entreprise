@@ -1381,7 +1381,6 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   unité: €/mois
   formule: brut de base / temps de travail . quotité de travail
 
-
 contrat salarié . rémunération . taux horaire:
   unité: €/heure
   formule: assiette de vérification du SMIC / temps de travail
