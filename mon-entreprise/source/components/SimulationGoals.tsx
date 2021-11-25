@@ -212,7 +212,7 @@ export function SimulationGoal({
 										: undefined
 								}
 								aria-labelledby={`${dottedName}-label`}
-								aria-describedBy={`${dottedName}-description`}
+								aria-describedby={`${dottedName}-description`}
 								displayedUnit=""
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}

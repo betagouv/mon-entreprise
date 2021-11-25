@@ -1,10 +1,11 @@
-import { useLocalStorage } from '@rehooks/local-storage'
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import { Appear } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { Link } from 'DesignSystem/typography/link'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import lastRelease from '../../data/last-release.json'
@@ -12,9 +13,8 @@ import lastRelease from '../../data/last-release.json'
 const localStorageKey = 'last-viewed-release'
 
 export const hideNewsBanner = () => {
-	// writeStorage(localStorageKey, lastRelease.name)
+	writeStorage(localStorageKey, lastRelease.name)
 }
-
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
@@ -59,30 +59,39 @@ const HideButton = styled(Button)<GenericButtonOrLinkProps>`
 export default function NewsBanner() {
 	const [lastViewedRelease] = useLocalStorage(localStorageKey)
 	const sitePaths = useContext(SitePathsContext)
-	const { i18n } = useTranslation()
+	const { i18n, t } = useTranslation()
 
 	// We only want to show the banner to returning visitors, so we initiate the
 	// local storage value with the last release.
-	if (lastViewedRelease === undefined) {
-		hideNewsBanner()
-		return null
-	}
+	useEffect(() => {
+		writeStorage(
+			localStorageKey,
+			lastViewedRelease === undefined ? lastRelease.name : lastViewedRelease
+		)
+	}, [])
 
 	const showBanner =
 		lastViewedRelease !== lastRelease.name && i18n.language === 'fr'
 
-	return showBanner ? (
-		<Container className="print-hidden">
-			<InnerContainer>
-				<span>
-					<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
-					{determinant(lastRelease.name)}
-					<Link to={sitePaths.nouveautés}>
-						{lastRelease.name.toLowerCase()}
-					</Link>
-				</span>
-				<HideButton onClick={hideNewsBanner}>&times;</HideButton>
-			</InnerContainer>
-		</Container>
-	) : null
+	if (!showBanner) {
+		return null
+	}
+	return (
+		<Appear>
+			<Container className="print-hidden">
+				<InnerContainer>
+					<span>
+						<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
+						{determinant(lastRelease.name)}
+						<Link to={sitePaths.nouveautés}>
+							{lastRelease.name.toLowerCase()}
+						</Link>
+					</span>
+					<HideButton onPress={hideNewsBanner} aria-label={t('Fermer')}>
+						&times;
+					</HideButton>
+				</InnerContainer>
+			</Container>
+		</Appear>
+	)
 }
