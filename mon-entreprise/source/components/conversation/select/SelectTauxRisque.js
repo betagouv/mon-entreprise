@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import Worker from './SelectTauxRisque.worker.js'
 const worker = new Worker()
 
-function SelectComponent({ onChange, onSubmit, options }) {
+function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = (option) => {
 		onChange(option['Taux net'].replace(',', '.') + '%')
@@ -23,6 +23,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 			<TextField
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
+				autoFocus={autoFocus}
 				errorMessage={
 					searchResults &&
 					searchResults.length === 0 && <Trans>Aucun résultat</Trans>

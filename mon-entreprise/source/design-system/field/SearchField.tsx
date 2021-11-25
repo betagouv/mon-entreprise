@@ -51,6 +51,7 @@ export default function SearchField(
 			>
 				{props.isSearchStalled ? <Loader /> : <SearchIcon />}
 				<SearchInput
+					{...(props as InputHTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={ref}

@@ -1,6 +1,6 @@
 import { InputProps } from 'Components/conversation/RuleInput'
-import { useCallback, useMemo } from 'react'
 import { DateField } from 'DesignSystem/field'
+import { useCallback, useMemo } from 'react'
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({
@@ -10,6 +10,7 @@ export default function DateInput({
 	title,
 	onSubmit,
 	required,
+	autoFocus,
 	value,
 }: InputProps) {
 	const dateValue = useMemo(() => {
@@ -52,6 +53,7 @@ export default function DateInput({
 				<DateField
 					label={title}
 					value={missing ? undefined : dateValue}
+					autoFocus={autoFocus}
 					isRequired={required}
 					onChange={handleDateChange}
 				/>

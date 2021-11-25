@@ -80,6 +80,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					/>
 				</fieldset>
 				<Spacing md />
+				<button aria-hidden className="sr-only" type="submit" tabIndex={-1} />
 				<Grid container spacing={2}>
 					{previousAnswers.length > 0 && (
 						<Grid item xs={6} sm="auto">
@@ -89,7 +90,11 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</Grid>
 					)}
 					<Grid item xs={6} sm="auto">
-						<Button size="XS" type="submit" light={!currentQuestionIsAnswered}>
+						<Button
+							size="XS"
+							onPress={goToNextQuestion}
+							light={!currentQuestionIsAnswered}
+						>
 							{currentQuestionIsAnswered ? (
 								<Trans>Suivant</Trans>
 							) : (

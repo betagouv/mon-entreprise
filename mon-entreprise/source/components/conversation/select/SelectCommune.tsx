@@ -77,7 +77,13 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, value, id, missing }: InputProps) {
+export default function Select({
+	onChange,
+	value,
+	id,
+	missing,
+	autoFocus,
+}: InputProps) {
 	const [name, setName] = useState(
 		missing ? '' : formatCommune(value as Commune)
 	)
@@ -188,6 +194,7 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 				/* role="combobox" // FIXME: Need to use a proper combobox component here */
 				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				id={id}
+				autoFocus={autoFocus}
 				aria-autocomplete="list"
 				onBlur={submitFocusedElem}
 				aria-readonly="true"
