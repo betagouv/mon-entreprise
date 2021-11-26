@@ -96,6 +96,8 @@ export const GlobalStyle = createGlobalStyle`
 html {
 	transition: none !important;
 	box-sizing: border-box;
+	font-size: 16px;
+
 }
 
 *,
@@ -104,17 +106,15 @@ html {
 	box-sizing: inherit;
 }
 
-html, body {
-	height: 100%;
-}
-html {
-	font-size: 16px;
-}
-
 body {
 	margin: 0;
 }
 
+#js {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
 
 /* Reset fieldset style */
 fieldset {
@@ -175,6 +175,7 @@ button:enabled {
 		font-size: 0.9rem;
 	}
 }
+
 `
 
 export const FocusStyle = css`

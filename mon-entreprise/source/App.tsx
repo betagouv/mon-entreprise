@@ -9,7 +9,7 @@ import {
 	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Container } from 'DesignSystem/layout'
+import { Container, Spacing } from 'DesignSystem/layout'
 import 'iframe-resizer'
 import { StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -113,6 +113,7 @@ const App = () => {
 			<Helmet
 				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
 			/>
+
 			<Container>
 				{/* Passing location down to prevent update blocking */}
 				<Switch>
@@ -140,6 +141,7 @@ const App = () => {
 
 					<Route component={Route404} />
 				</Switch>
+				<Spacing xxl />
 			</Container>
 			{!isEmbedded && <Footer />}
 		</>

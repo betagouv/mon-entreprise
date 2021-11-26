@@ -6,7 +6,7 @@ import Emoji from 'Components/utils/Emoji'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card/Card'
-import { Container } from 'DesignSystem/layout'
+import { Container, Spacing } from 'DesignSystem/layout'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
@@ -16,8 +16,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
-import BrexitPDF from './Brexit_guide.pdf'
 import illustrationSvg from './illustration.svg'
+import illustration2Svg from './illustration2.svg'
 import './Landing.css'
 
 export default function Landing() {
@@ -39,14 +39,6 @@ export default function Landing() {
 				ogImage={logoSvg}
 			/>
 			<Header />
-			{language === 'en' && (
-				<div className="ui__ plain card" style={{ textAlign: 'center' }}>
-					<Emoji emoji="🇬🇧" /> <strong>Brexit</strong> :{' '}
-					<a href={BrexitPDF} target="_blank">
-						Discover the impact on your social protection{' '}
-					</a>
-				</div>
-			)}
 			<Container>
 				<PageHeader
 					titre={
@@ -63,7 +55,9 @@ export default function Landing() {
 						</Trans>
 					</Intro>
 				</PageHeader>
-
+			</Container>
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[500]}>
+				<Spacing xl />
 				<Grid container spacing={4} alignItems="stretch">
 					<Grid item lg={4} sm={6}>
 						<Card
@@ -112,35 +106,57 @@ export default function Landing() {
 						</Card>
 					</Grid>
 				</Grid>
-				<section>
-					<Trans i18nKey="landing.aboutUs">
-						<H2>Qui sommes-nous ?</H2>
-						<Body>
-							Nous sommes une petite{' '}
-							<Link href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
-								équipe
-							</Link>{' '}
-							autonome et pluridisciplinaire au sein de l’
-							<Link href="https://www.urssaf.fr">Urssaf</Link>. Nous avons à
-							cœur d’être au près de vos besoins afin d’améliorer en permanence
-							ce site conformément à l'approche{' '}
-							<Link href="https://beta.gouv.fr/approche/manifeste">
-								beta.gouv.fr
-							</Link>
-							.
-						</Body>
-						<Body>
-							Nous avons développé ce site pour accompagner les créateurs
-							d’entreprise dans le développement de leur activité.
-						</Body>
+				<Spacing xl />
+			</Container>
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+				<Spacing lg />
+				<Grid container alignItems="flex-end">
+					<Grid
+						item
+						xs={2}
+						md={2}
+						sx={{ display: { xs: 'none', md: 'block' } }}
+					>
+						<img
+							src={illustration2Svg}
+							css={`
+								width: 100%;
+								padding-right: 2rem;
+								padding-bottom: 1rem;
+							`}
+						/>
+					</Grid>
+					<Grid item md={10}>
+						<Trans i18nKey="landing.aboutUs">
+							<H2>Qui sommes-nous ?</H2>
+							<Body>
+								Nous sommes une petite{' '}
+								<Link href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
+									équipe
+								</Link>{' '}
+								autonome et pluridisciplinaire au sein de l’
+								<Link href="https://www.urssaf.fr">Urssaf</Link>. Nous avons à
+								cœur d’être au près de vos besoins afin d’améliorer en
+								permanence ce site conformément à l'approche{' '}
+								<Link href="https://beta.gouv.fr/approche/manifeste">
+									beta.gouv.fr
+								</Link>
+								.
+							</Body>
+							<Body>
+								Nous avons développé ce site pour accompagner les créateurs
+								d’entreprise dans le développement de leur activité.
+							</Body>
 
-						<Body>
-							Notre objectif est de lever toutes les incertitudes vis à vis de
-							l’administration afin que vous puissiez vous concentrer sur ce qui
-							compte : votre activité.
-						</Body>
-					</Trans>
-				</section>
+							<Body>
+								Notre objectif est de lever toutes les incertitudes vis à vis de
+								l’administration afin que vous puissiez vous concentrer sur ce
+								qui compte : votre activité.
+							</Body>
+						</Trans>
+					</Grid>
+				</Grid>
+				<Spacing lg />
 			</Container>
 			<Footer />
 		</>

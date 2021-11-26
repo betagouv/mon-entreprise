@@ -53,6 +53,7 @@ export function Card({
 			<div
 				css={`
 					flex: 1;
+					text-align: center;
 				`}
 			>
 				<Body>{children}</Body>

@@ -10,7 +10,7 @@ export const Spacing = styled.div<
 	| { xs: true }
 	| { xxs: true }
 >`
-	margin-top: ${({ theme, ...props }) =>
+	height: ${({ theme, ...props }) =>
 		'xxl' in props
 			? theme.spacings.xxl
 			: 'xl' in props

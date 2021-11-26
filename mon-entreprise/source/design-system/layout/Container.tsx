@@ -44,12 +44,6 @@ type OuterContainerProps = {
 	backgroundColor?: (theme: DefaultTheme) => string
 }
 
-const OuterContainer = styled.div<OuterContainerProps>`
-	width: 100%;
-	background-color: ${({ theme, backgroundColor }) =>
-		backgroundColor ? backgroundColor(theme) : theme.colors};
-`
-
 type ContainerProps = {
 	children: ReactNode
 	backgroundColor?: (theme: DefaultTheme) => string
@@ -64,3 +58,52 @@ export default function Container({
 		</OuterContainer>
 	)
 }
+
+const OuterContainer = styled.div<OuterContainerProps>`
+	background-color: ${({ theme, backgroundColor }) =>
+		backgroundColor ? backgroundColor(theme) : theme.colors};
+	${InnerContainer} & {
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		margin-left: -16px;
+		margin-right: -16px;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		--maxWidth: ${({ theme }) => theme.breakpointsWidth.sm}
+		--margin: calc(100vw - 16px - var(---maxWidth) / 2 )
+		margin-left: var(--margin);
+		margin-right: var(--margin);
+		max-width: var(--maxWidth);
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		--maxWidth: ${({ theme }) => theme.breakpointsWidth.md}
+		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
+		margin-left: var(--margin);
+		margin-right: var(--margin);
+		max-width: var(--maxWidth);
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		--maxWidth: ${({ theme }) => theme.breakpointsWidth.lg}
+		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
+		margin-left: var(--margin);
+		margin-right: var(--margin);
+		max-width: var(--maxWidth);
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
+		--maxWidth: ${({ theme }) => theme.breakpointsWidth.xl}
+		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
+		margin-left: var(--margin);
+		margin-right: var(--margin);
+		max-width: var(--maxWidth);
+	}
+
+	@media print {
+		max-width: 100%;
+		padding: 0;
+	}
+}
+`

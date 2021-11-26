@@ -6,19 +6,15 @@ import { FooterContainer } from 'DesignSystem/footer'
 import { FooterColumn } from 'DesignSystem/footer/column'
 import { Container } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { hrefLangLink } from '../../../sitePaths'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
-import { SocialLinks } from './Social'
 import { useShowFeedback } from './useShowFeedback'
-
-const StyledFooter = styled.footer`
-	margin-top: 2rem;
-`
 
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
@@ -46,99 +42,104 @@ export default function Footer() {
 					/>
 				))}
 			</Helmet>
-			<StyledFooter>
-				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+			<div
+				css={`
+					flex: 1;
+				`}
+			/>
+			<footer>
+				<Container
+					backgroundColor={(theme) => theme.colors.bases.tertiary[100]}
+				>
 					{showFeedback && <PageFeedback />}
 					{language === 'en' && (
-						<p className="ui__ notice" css="text-align: center">
+						<Body>
 							This website is provided by the{' '}
 							<Link href="https://www.urssaf.fr">Urssaf</Link>, the French
 							social security contributions collector.
-						</p>
+						</Body>
 					)}
 				</Container>
 
-				<Container backgroundColor={(theme) => theme.colors.bases.primary[200]}>
-					<SocialLinks />
-				</Container>
-
-				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
-					<FooterContainer>
-						<FooterColumn>
-							{language === 'fr' && (
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
+					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+						<FooterContainer>
+							<FooterColumn>
+								{language === 'fr' && (
+									<ul>
+										<li>
+											<Link to={sitePaths.nouveautés}>
+												Nouveautés <Emoji emoji="✨" />
+											</Link>
+										</li>
+										<li>
+											<Link to={sitePaths.stats}>
+												Stats <Emoji emoji="📊" />
+											</Link>
+										</li>
+										<li>
+											<Link to={sitePaths.budget}>
+												Budget <Emoji emoji="💶" />
+											</Link>
+										</li>
+									</ul>
+								)}
+							</FooterColumn>
+							<FooterColumn>
 								<ul>
 									<li>
-										<Link to={sitePaths.nouveautés}>
-											Nouveautés <Emoji emoji="✨" />
+										<Link to={sitePaths.integration.index}>
+											<Trans>Intégrer nos simulateurs</Trans>
 										</Link>
 									</li>
-									<li>
-										<Link to={sitePaths.stats}>
-											Stats <Emoji emoji="📊" />
-										</Link>
-									</li>
-									<li>
-										<Link to={sitePaths.budget}>
-											Budget <Emoji emoji="💶" />
-										</Link>
-									</li>
+									{language === 'fr' && (
+										<li>
+											<InscriptionBetaTesteur />
+										</li>
+									)}
+									{hrefLink.map(({ hrefLang, href }) => (
+										<li key={hrefLang}>
+											<Link href={href} openInSameWindow>
+												{hrefLang === 'fr' ? (
+													<>
+														Passer en français <Emoji emoji="🇫🇷" />
+													</>
+												) : hrefLang === 'en' ? (
+													<>
+														Switch to English <Emoji emoji="🇬🇧" />
+													</>
+												) : (
+													hrefLang
+												)}
+											</Link>
+										</li>
+									))}
 								</ul>
-							)}
-						</FooterColumn>
-						<FooterColumn>
-							<ul>
-								<li>
-									<Link to={sitePaths.integration.index}>
-										<Trans>Intégrer nos simulateurs</Trans>
-									</Link>
-								</li>
-								{language === 'fr' && (
-									<li>
-										<InscriptionBetaTesteur />
-									</li>
-								)}
-								{hrefLink.map(({ hrefLang, href }) => (
-									<li key={hrefLang}>
-										<Link href={href} openInSameWindow>
-											{hrefLang === 'fr' ? (
-												<>
-													Passer en français <Emoji emoji="🇫🇷" />
-												</>
-											) : hrefLang === 'en' ? (
-												<>
-													Switch to English <Emoji emoji="🇬🇧" />
-												</>
-											) : (
-												hrefLang
-											)}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</FooterColumn>
+							</FooterColumn>
 
-						<FooterColumn>
-							<ul>
-								<li>
-									<LegalNotice />
-								</li>
-								<li>
-									<Privacy />
-								</li>
-								{language === 'fr' && (
+							<FooterColumn>
+								<ul>
 									<li>
-										<Link to={sitePaths.accessibilité}>
-											<Trans i18nKey="footer.accessibilité">
-												Accessibilité : non conforme
-											</Trans>
-										</Link>
+										<LegalNotice />
 									</li>
-								)}
-							</ul>
-						</FooterColumn>
-					</FooterContainer>
+									<li>
+										<Privacy />
+									</li>
+									{language === 'fr' && (
+										<li>
+											<Link to={sitePaths.accessibilité}>
+												<Trans i18nKey="footer.accessibilité">
+													Accessibilité : non conforme
+												</Trans>
+											</Link>
+										</li>
+									)}
+								</ul>
+							</FooterColumn>
+						</FooterContainer>
+					</ThemeProvider>
 				</Container>
-			</StyledFooter>
+			</footer>
 		</>
 	)
 }

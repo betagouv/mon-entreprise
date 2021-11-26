@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const Illustration = styled.img<{ titre: ReactNode }>`
 	height: 100%;
 	width: 100%;
-
+	vertical-align: bottom;
 	padding-top: ${({ theme }) => theme.spacings.xl};
 	/* transform-origin: center right;
 	transform: scale(1.25); */

@@ -1,26 +1,27 @@
 import SearchButton from 'Components/SearchButton'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
-import logoEnSvg from 'Images/logo-mycompany.svg'
-import logoSvg from 'Images/logo.svg'
+import { Link } from 'DesignSystem/typography/link'
 import urssafSvg from 'Images/Urssaf.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
-	const { language } = useTranslation().i18n
+	const {
+		i18n: { language },
+		t,
+	} = useTranslation()
 	return (
 		<Container>
 			<StyledHeader>
-				<Link to={sitePaths.index}>
-					<img
-						alt="logo mon-entreprise.fr"
-						src={language === 'fr' ? logoSvg : logoEnSvg}
-					/>
+				<Link
+					to={sitePaths.index}
+					className="landing-header__institutional-logo"
+				>
+					<img alt="logo urssaf" src={urssafSvg} />
 				</Link>
 
 				<div
@@ -29,14 +30,6 @@ export default function Header() {
 					`}
 				/>
 				{language === 'fr' && <SearchButton />}
-
-				<a
-					href="https://www.urssaf.fr"
-					target="_blank"
-					className="landing-header__institutional-logo"
-				>
-					<img alt="logo urssaf" src={urssafSvg} />
-				</a>
 			</StyledHeader>
 
 			<NewsBanner />
@@ -55,9 +48,6 @@ const StyledHeader = styled.div`
 	img {
 		height: 100%;
 		padding: ${({ theme }) => theme.spacings.xs} 0;
-	}
-	img[alt='logo urssaf'] {
-		padding: ${({ theme }) => theme.spacings.sm} 0;
 	}
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `

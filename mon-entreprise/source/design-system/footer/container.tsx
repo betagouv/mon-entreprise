@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 const StyledGrid = styled(Grid)`
-	padding-bottom: 2rem;
+	padding: 2rem 0;
 `
 
 type FooterContainerProps = {

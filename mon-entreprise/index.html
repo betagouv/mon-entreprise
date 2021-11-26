@@ -235,8 +235,8 @@
 			try {
 				let rawColor = new URLSearchParams(
 					document.location.search.substring(1)
-				).get('couleur');
-				let iframeColor = rawColor && (JSON.parse(decodeURIComponent(rawColor)));
+				).get('couleur')
+				let iframeColor = rawColor && JSON.parse(decodeURIComponent(rawColor))
 
 				if (iframeColor) {
 					;[
@@ -244,7 +244,10 @@
 						...document.querySelectorAll('.js-color-element'),
 					].forEach((element) => {
 						element.style.setProperty('--COLOR_HUE', iframeColor[0])
-						element.style.setProperty('--COLOR_SATURATION', iframeColor[1] + '%')
+						element.style.setProperty(
+							'--COLOR_SATURATION',
+							iframeColor[1] + '%'
+						)
 					})
 				}
 			} catch (e) {
