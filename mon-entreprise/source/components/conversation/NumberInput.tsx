@@ -26,10 +26,10 @@ export default function NumberInput({
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
 		!missing && value != null && typeof value === 'number' ? value : undefined
 	)
-	const language = useTranslation().i18n.language
+	const { i18n, t } = useTranslation()
 	displayedUnit =
 		displayedUnit ??
-		(unit && getSerializedUnit(currentValue ?? 0, unit, language))
+		(unit && getSerializedUnit(currentValue ?? 0, unit, i18n.language, t))
 	const engine = useContext(EngineContext)
 	useEffect(() => {
 		if (value !== currentValue) {
@@ -90,7 +90,12 @@ export default function NumberInput({
 }
 
 // TODO : put this inside publicodes
-function getSerializedUnit(value: number, unit: Unit, locale: string): string {
+function getSerializedUnit(
+	value: number,
+	unit: Unit,
+	locale: string,
+	t: (s?: string) => string | undefined
+): string {
 	// removing euro, which is a currency not a unit
 	unit = {
 		...unit,
@@ -103,7 +108,7 @@ function getSerializedUnit(value: number, unit: Unit, locale: string): string {
 
 	const formatUnit = getFormatUnit(unit)
 	if (!formatUnit) {
-		return serializeUnit(unit) ?? ''
+		return t(serializeUnit(unit)) ?? ''
 	}
 	return (
 		Intl.NumberFormat(locale, {

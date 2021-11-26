@@ -69,6 +69,7 @@ export default function NumberField(props: NumberFieldProps) {
 		if (!ref.current) {
 			return
 		}
+		ref.current.focus()
 		const length = ref.current.value.length * 2
 		ref.current.setSelectionRange(length * 2, length * 2)
 	}, [])
@@ -222,9 +223,9 @@ function useSimpleNumberFieldState(
 		() => new NumberParser(props.locale, props.formatOptions),
 		[props.locale, props.formatOptions]
 	)
-	const [rawInputValue, setInputValue] = useState('')
+	const [rawInputValue, setInputValue] = useState<string | undefined>()
 	const numberingSystem = useMemo(
-		() => numberParser.getNumberingSystem(rawInputValue),
+		() => numberParser.getNumberingSystem(rawInputValue ?? ''),
 		[numberParser, rawInputValue]
 	)
 	const formatter = useMemo(
@@ -246,7 +247,13 @@ function useSimpleNumberFieldState(
 		)
 		.map((part) => part.value)
 		.join('')
-	const inputValue = rawInputValue === '' ? defaultInputValue : rawInputValue
+
+	const inputValue =
+		rawInputValue === undefined && numberValue
+			? formatter.format(numberValue)
+			: rawInputValue === '' || (!rawInputValue && props.placeholder == null)
+			? defaultInputValue
+			: rawInputValue ?? ''
 
 	const updateInputValue = useCallback(
 		(value: number | undefined) => {
@@ -267,15 +274,18 @@ function useSimpleNumberFieldState(
 
 	// Update internal state props value changes
 	useEffect(() => {
+		if (props.value === numberValue) {
+			return
+		}
 		updateInputValue(props.value)
 		setNumberValue(props.value)
-	}, [props.value, updateInputValue])
+	}, [props.value, updateInputValue, numberValue])
 
 	// Update internal state when setInputValue is called
 	const handleInputValueChange = useCallback(
 		(inputValue) => {
 			// Allow empty inputValue
-			if (!inputValue) {
+			if (!inputValue || defaultInputValue === inputValue) {
 				updateInputValue(undefined)
 				updateNumberValue(undefined)
 				return
@@ -295,8 +305,12 @@ function useSimpleNumberFieldState(
 			}
 			updateNumberValue(parsedValue)
 
-			// Handle case for partially formatted input while typing decimal numbers
-			if (inputValue.match(/[\d][,.]([^\d]*$)|([\d]*[0]+$)/)) {
+			if (
+				// Handle case for partially formatted input while typing decimal numbers
+				inputValue.match(/[\d][,.]([\d]*[0]+)?[^\d]*$/) ||
+				// Handle case for 000015
+				inputValue.match(/^[^\d]*0([0]+|[\d\s,.]+)[^\d]*$/)
+			) {
 				setInputValue(inputValue)
 				return
 			}
@@ -309,6 +323,7 @@ function useSimpleNumberFieldState(
 			numberValue,
 			updateInputValue,
 			updateNumberValue,
+			defaultInputValue,
 		]
 	)
 
@@ -333,7 +348,9 @@ function useSimpleNumberFieldState(
 		canIncrement: true,
 		canDecrement: true,
 		validate: () => true,
-		commit: () => {},
+		commit: () => {
+			rawInputValue && updateInputValue(numberValue)
+		},
 		incrementToMax: () => {},
 		decrementToMin: () => {},
 		setInputValue: handleInputValueChange,

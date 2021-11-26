@@ -35,7 +35,12 @@
 	width: 35em;
 }
 
-@media not print and (max-width: 600px) {
+@media (max-width: 600px) {
+	.distribution-chart__legend {
+		padding: 0;
+		margin-bottom: -1.25rem;
+		transform: scale(0.8);
+	}
 	.distribution-chart__item {
 		flex-direction: column;
 		align-items: stretch;
