@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import Emoji from 'Components/utils/Emoji'
 import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
@@ -22,30 +23,37 @@ const WarningSection = styled.section`
 export default function Warning({ localStorageKey, children }: WarningProps) {
 	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
-		<WarningSection>
-			<Intro className={folded ? 'print-hidden' : ''}>
-				<Emoji emoji="🚩 " />
-				<Trans i18nKey="simulateurs.warning.titre">
-					Avant de commencer...
-				</Trans>{' '}
-				{folded && (
-					<Link onPress={() => fold(false)}>
-						<Trans i18nKey="simulateurs.warning.plus">
-							Lire les précisions
-						</Trans>
-					</Link>
-				)}
-			</Intro>
-			{!folded && (
-				<div>
-					{children}
-					<div className="ui__ answer-group print-hidden">
-						<Button size="XS" light color="tertiary" onPress={() => fold(true)}>
-							<Trans>J'ai compris</Trans>
-						</Button>
+		<Grid item lg={10}>
+			<WarningSection>
+				<Intro className={folded ? 'print-hidden' : ''}>
+					<Emoji emoji="🚩 " />
+					<Trans i18nKey="simulateurs.warning.titre">
+						Avant de commencer...
+					</Trans>{' '}
+					{folded && (
+						<Link onPress={() => fold(false)}>
+							<Trans i18nKey="simulateurs.warning.plus">
+								Lire les précisions
+							</Trans>
+						</Link>
+					)}
+				</Intro>
+				{!folded && (
+					<div>
+						{children}
+						<div className="ui__ answer-group print-hidden">
+							<Button
+								size="XS"
+								light
+								color="tertiary"
+								onPress={() => fold(true)}
+							>
+								<Trans>J'ai compris</Trans>
+							</Button>
+						</div>
 					</div>
-				</div>
-			)}
-		</WarningSection>
+				)}
+			</WarningSection>
+		</Grid>
 	)
 }

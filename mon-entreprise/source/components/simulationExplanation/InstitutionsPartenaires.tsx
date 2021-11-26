@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import Value, {
 	Condition,
 	WhenApplicable,
@@ -243,7 +244,7 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 	)
 }
 
-const InstitutionsTable = styled.div`
+const InstitutionsTable = styled(Grid).attrs({ item: true, xl: 10 })`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 	padding: ${({ theme }) => theme.spacings.xs}

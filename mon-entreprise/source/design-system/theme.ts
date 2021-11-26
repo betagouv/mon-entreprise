@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material'
 import { DefaultTheme } from 'styled-components'
 
-export const theme: DefaultTheme = createTheme(createTheme(), {
+export const defaultTheme = {
 	colors: {
 		bases: {
 			primary: {
@@ -159,9 +159,33 @@ export const theme: DefaultTheme = createTheme(createTheme(), {
 	},
 
 	breakpointsWidth: {
-		xl: '1200px',
-		lg: '992px',
-		md: '768px',
 		sm: '576px',
+		md: '768px',
+		lg: '992px',
+		xl: '1200px',
 	},
+}
+
+// We use the Grid from material-ui, we need to uniformise
+// breakpoints and spacing with the Urssaf design system
+type SpacingKey = keyof typeof defaultTheme.breakpointsWidth
+const breakpoints = Object.fromEntries(
+	Object.entries(defaultTheme.breakpointsWidth).map(([key, value]) => [
+		key,
+		Number.parseInt(value),
+	])
+) as Record<SpacingKey, number>
+
+export const theme: DefaultTheme = createTheme({
+	breakpoints: {
+		values: {
+			xs: 0,
+			...breakpoints,
+		},
+	},
+	spacing: Object.values(defaultTheme.spacings),
+
+	...defaultTheme,
 })
+
+console.log(theme)

@@ -36,7 +36,7 @@ export default function Simulation({
 			<ExportRecover />
 			<Spacing xxl />
 			<Grid container spacing={3}>
-				<Grid item sm={12} md={10}>
+				<Grid item lg={10}>
 					{children}
 					{!firstStepCompleted && <PreviousSimulationBanner />}
 
@@ -53,8 +53,7 @@ export default function Simulation({
 				</Grid>
 				<Grid
 					item
-					sm={12}
-					md={2}
+					lg={2}
 					css={`
 						display: flex;
 						flex-direction: column;

@@ -44,6 +44,7 @@ export default function PageHeader({
 					className="hide-mobile"
 					md={3}
 					lg={4}
+					alignSelf="flex-end"
 					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
 				>
 					<Illustration

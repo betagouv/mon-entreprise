@@ -64,8 +64,8 @@ export default function Landing() {
 					</Intro>
 				</PageHeader>
 
-				<Grid container spacing={3} alignItems="stretch">
-					<Grid item md={4} sm={6}>
+				<Grid container spacing={4} alignItems="stretch">
+					<Grid item lg={4} sm={6}>
 						<Card
 							icon={<Emoji emoji="💡" />}
 							title={t('landing.choice.create.title', 'Créer une entreprise')}
@@ -82,7 +82,7 @@ export default function Landing() {
 							</Trans>
 						</Card>
 					</Grid>
-					<Grid item md={4} sm={6}>
+					<Grid item lg={4} sm={6}>
 						<Card
 							icon={<Emoji emoji="💶" />}
 							title={t('landing.choice.manage.title', 'Gérer mon activité')}
@@ -95,7 +95,7 @@ export default function Landing() {
 							</Trans>
 						</Card>
 					</Grid>
-					<Grid item md={4} sm={6}>
+					<Grid item lg={4} sm={6}>
 						<Card
 							icon={<Emoji emoji="🧮" />}
 							title={t(
