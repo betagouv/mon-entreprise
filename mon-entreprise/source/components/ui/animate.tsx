@@ -1,5 +1,5 @@
 import { DisableAnimationContext } from 'Components/utils/DisableAnimationContext'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { Children, useContext, useEffect, useState } from 'react'
 import {
 	animated,
 	config as configPresets,
@@ -78,7 +78,7 @@ export function FromTop({
 				to={{ opacity: 1, y: 0 }}
 				items={children}
 			>
-				{(item) =>
+				{(item, i) =>
 					({ y, ...style }) =>
 						(
 							<animated.div
@@ -86,7 +86,8 @@ export function FromTop({
 									transform: interpolate([y], (y) =>
 										y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
 									),
-									zIndex: 0,
+									zIndex: Children.count(children) - i, // Hack for popover and stuffs
+									position: 'relative',
 									...style,
 									...inheritedStyle,
 								}}

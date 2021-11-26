@@ -12,11 +12,13 @@ interface PopoverProps {
 
 const Wrapper = styled.div`
 	position: absolute;
-	top: calc(100% + 0.5rem);
-	z-index: 9000;
-	border-radius: 0.3rem;
-	width: 100%;
-	box-shadow: 0 4px 8px #eee;
+	top: calc(100% + ${({ theme }) => theme.spacings.sm});
+	left: -1px;
+	z-index: 1000;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border: 1px solid ${({ theme }) => theme.colors.extended.grey[200]};
+	width: calc(100% + 2px);
+	box-shadow: ${({ theme }) => theme.elevations[2]};
 	background: white;
 `
 
