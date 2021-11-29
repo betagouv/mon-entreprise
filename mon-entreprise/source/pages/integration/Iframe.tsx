@@ -4,6 +4,7 @@ import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Article } from 'DesignSystem/card'
+import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
@@ -62,137 +63,86 @@ function IntegrationCustomizer() {
 
 	const [color, setColor] = useState<string | undefined>()
 	return (
-		<section>
+		<>
 			<H2>
 				<Trans>Personnalisez l'intégration</Trans>
 			</H2>
-			<div
-				className="ui__ full-width"
-				css={`
-					background-color: var(--lightestColor);
-				`}
-			>
-				<div
-					css={`
-						display: flex;
-						padding: 20px 5%;
-						max-width: 1400px;
-						margin: auto;
 
-						.ui__.left-side {
-							width: 30%;
-							padding-right: 1rem;
-
-							select {
-								padding: 7px;
-							}
-						}
-
-						.ui__.right-side {
-							width: 70%;
-							padding-left: 1rem;
-						}
-
-						@media (max-width: 800px) {
-							flex-direction: column;
-
-							.ui__.left-side,
-							.ui__.right-side {
-								border: none;
-								width: 100%;
-							}
-						}
-					`}
-				>
-					<div className="ui__ left-side">
-						<H3>
-							<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
-							<Emoji emoji="🚩" />
-						</H3>
-						<select
-							onChange={(event) => setCurrentModule(event.target.value)}
-							value={currentModule}
-						>
-							{integrableModuleNames.map((name) => (
-								<option key={name}>{name}</option>
-							))}
-						</select>
-
-						<H3>
-							<Trans i18nKey="pages.développeurs.couleur">
-								Quelle couleur ?{' '}
-							</Trans>
-							<Emoji emoji="🎨" />
-						</H3>
-						<Suspense fallback={<div>Chargement...</div>}>
-							<LazyColorPicker color={color} onChange={setColor} />
-						</Suspense>
-						<H3>
-							<Trans i18nKey="pages.développeurs.code.titre">
-								Code d'intégration
-							</Trans>
-							<Emoji emoji="🛠" />
-						</H3>
-						<Body>
-							<Trans i18nKey="pages.développeurs.code.description">
-								Voici le code à copier-coller sur votre site&nbsp;:
-							</Trans>
-						</Body>
-						<IntegrationCode color={color} module={currentModule} />
-					</div>
-					<div
-						className="ui__ right-side"
-						css={`
-							overflow: hidden;
-
-							/* The .full-width class is implemented using the calc() function
-							and rely on the width of the page, which doesn't work in this case
-							because the width of the preview "page" is smaller than the width
-							of the actual screen. */
-							.ui__.full-width {
-								margin-left: initial !important;
-								margin-right: initial !important;
-							}
-						`}
+			<Grid container spacing={3}>
+				<Grid item lg={4}>
+					<H3>
+						<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
+						<Emoji emoji="🚩" />
+					</H3>
+					<select
+						onChange={(event) => setCurrentModule(event.target.value)}
+						value={currentModule}
 					>
-						<H3>
-							<Trans>Prévisualisation</Trans>
-						</H3>
-						<div
-							css={`
-								background-color: white;
-								border: 2px solid var(--lighterColor);
-								border-radius: 0.3rem;
-								padding: 1rem;
-							`}
+						{integrableModuleNames.map((name) => (
+							<option key={name}>{name}</option>
+						))}
+					</select>
+
+					<H3>
+						<Trans i18nKey="pages.développeurs.couleur">
+							Quelle couleur ?{' '}
+						</Trans>
+						<Emoji emoji="🎨" />
+					</H3>
+					<Suspense fallback={<div>Chargement...</div>}>
+						<LazyColorPicker color={color} onChange={setColor} />
+					</Suspense>
+					<H3>
+						<Trans i18nKey="pages.développeurs.code.titre">
+							Code d'intégration
+						</Trans>
+						<Emoji emoji="🛠" />
+					</H3>
+					<Body>
+						<Trans i18nKey="pages.développeurs.code.description">
+							Voici le code à copier-coller sur votre site&nbsp;:
+						</Trans>
+					</Body>
+					<IntegrationCode color={color} module={currentModule} />
+				</Grid>
+				<Grid item lg={8}>
+					<H3>
+						<Trans>Prévisualisation</Trans>
+					</H3>
+					<PrevisualisationContainer columns={10}>
+						<MemoryRouter
+							key={currentModule}
+							initialEntries={[`/iframes/${currentModule}`]}
 						>
-							<MemoryRouter
-								key={currentModule}
-								initialEntries={[`/iframes/${currentModule}`]}
+							<ThemeColorsProvider
+								color={color == null ? color : hexToHSL(color)}
 							>
-								<ThemeColorsProvider
-									color={color == null ? color : hexToHSL(color)}
-								>
-									<IsEmbeddedProvider>
-										<Route
-											path={sitePaths.simulateurs.index}
-											component={Simulateurs}
-										/>
-										<Route
-											path={sitePaths.documentation.index}
-											component={Documentation}
-										/>
-										<Iframes />
-									</IsEmbeddedProvider>
-								</ThemeColorsProvider>
-							</MemoryRouter>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+								<IsEmbeddedProvider>
+									<Route
+										path={sitePaths.simulateurs.index}
+										component={Simulateurs}
+									/>
+									<Route
+										path={sitePaths.documentation.index}
+										component={Documentation}
+									/>
+									<Iframes />
+								</IsEmbeddedProvider>
+							</ThemeColorsProvider>
+						</MemoryRouter>
+					</PrevisualisationContainer>
+				</Grid>
+			</Grid>
+		</>
 	)
 }
+const PrevisualisationContainer = styled(Grid)`
+	background-color: white;
+	border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
+	box-shadow: ${({ theme }) => theme.elevations[2]};
+	border-radius: 0.3rem;
+	padding: 1rem;
+`
 
 const Logo = styled.img`
 	max-width: 100%;
@@ -221,6 +171,7 @@ export default function Integration() {
 					</Body>
 				</div>
 				<IntegrationCustomizer />
+				<Spacing lg />
 				<Body>
 					À noter que si votre site utilise une politique de sécurité de contenu
 					via l'en-tête de réponse HTTP <i>Content-Security-Policy</i>, une
@@ -374,19 +325,6 @@ function IntegrationCode({
 				em {
 					font-weight: 300;
 					color: black;
-				}
-
-				:before {
-					content: '';
-					position: absolute;
-					top: 0;
-					right: 0;
-					border-width: 0 16px 16px 0;
-					border-style: solid;
-					border-color: #e8e8e8 white;
-				}
-				#scriptColor {
-					color: #2975d1;
 				}
 			`}
 		>
