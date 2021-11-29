@@ -112,7 +112,7 @@ type SimulationGoalProps = {
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
-	boolean?: boolean
+	isTypeBoolean?: boolean
 
 	alwaysShow?: boolean
 	onUpdateSituation?: (
@@ -129,7 +129,7 @@ export function SimulationGoal({
 	appear = true,
 	alwaysShow = false,
 	editable = true,
-	boolean = false, //TODO : remove when type inference works in publicodes
+	isTypeBoolean = false, //TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -138,7 +138,7 @@ export function SimulationGoal({
 	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		...(!boolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
+		...(!isTypeBoolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
 	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useInitialRender()
@@ -204,7 +204,7 @@ export function SimulationGoal({
 							)}
 							<RuleInput
 								modifiers={
-									!boolean
+									!isTypeBoolean
 										? {
 												unité: currentUnit,
 												arrondi: 'oui',
