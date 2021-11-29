@@ -116,7 +116,7 @@ export default function Gérer() {
 								)}
 
 							{dirigeant !== null && (
-								<Grid item>
+								<Grid item sm={12} md={4}>
 									<RevenuDirigeantCard dirigeant={dirigeant} />
 								</Grid>
 							)}
@@ -223,14 +223,20 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					<Popover
 						title={t('gérer.entreprise.auto', 'Êtes-vous auto-entrepreneur ?')}
 					>
-						<Grid container spacing={1}>
+						<Grid container spacing={2}>
 							<Grid item>
-								<Button onPress={() => handleAnswerAutoEntrepreneur(true)}>
+								<Button
+									size="XS"
+									onPress={() => handleAnswerAutoEntrepreneur(true)}
+								>
 									<Trans>Oui</Trans>
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button onPress={() => handleAnswerAutoEntrepreneur(false)}>
+								<Button
+									size="XS"
+									onPress={() => handleAnswerAutoEntrepreneur(false)}
+								>
 									<Trans>Non</Trans>
 								</Button>
 							</Grid>
