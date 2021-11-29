@@ -19,7 +19,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 [[redirects]]
   from = "https://www.mon-entreprise.urssaf.fr/*"
   to = "https://mon-entreprise.urssaf.fr/:splat"
-  status = 308
+  status = 301
 
 ############
 # Redirects following architectural changes
