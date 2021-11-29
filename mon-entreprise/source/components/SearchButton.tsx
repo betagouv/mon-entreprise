@@ -1,22 +1,12 @@
 import { Button } from 'DesignSystem/buttons'
 import { SROnly } from 'DesignSystem/global-style'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
-import { useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router'
 import styled from 'styled-components'
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
 export default function SearchButton() {
-	const { pathname } = useLocation()
-	const pathnameRef = useRef(pathname)
 	const { t } = useTranslation()
-	useEffect(() => {
-		if (pathname !== pathnameRef.current) {
-			pathnameRef.current = pathname
-			close()
-		}
-	}, [pathname])
 
 	return (
 		<PopoverWithTrigger

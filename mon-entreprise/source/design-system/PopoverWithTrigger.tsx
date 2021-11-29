@@ -2,7 +2,8 @@ import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
 import { Button } from 'DesignSystem/buttons'
-import React, { ReactElement, Ref, useMemo, useRef } from 'react'
+import React, { ReactElement, Ref, useEffect, useMemo, useRef } from 'react'
+import { useLocation } from 'react-router'
 import Popover from './Popover'
 import { Link } from './typography/link'
 
@@ -42,6 +43,15 @@ export default function PopoverWithTrigger({
 			}),
 		[openButtonRef, triggerProps, trigger, state]
 	)
+
+	const { pathname } = useLocation()
+	const pathnameRef = useRef(pathname)
+	useEffect(() => {
+		if (pathname !== pathnameRef.current) {
+			pathnameRef.current = pathname
+			state.close()
+		}
+	}, [pathname, state])
 
 	return (
 		<>
