@@ -1,12 +1,12 @@
-import { Grid } from '@mui/material'
+import {Grid} from '@mui/material'
 import PageHeader from 'Components/PageHeader'
-import { icons } from 'Components/ui/SocialIcon'
+import {icons} from 'Components/ui/SocialIcon'
 import Emoji from 'Components/utils/Emoji'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Card } from 'DesignSystem/card'
-import { Body, Intro } from 'DesignSystem/typography/paragraphs'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import {SitePathsContext} from 'Components/utils/SitePathsContext'
+import {Card} from 'DesignSystem/card'
+import {Body, Intro} from 'DesignSystem/typography/paragraphs'
+import {useContext} from 'react'
+import {Trans, useTranslation} from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import illustration from './illustration.png'
 
@@ -119,6 +119,7 @@ export default function Options() {
 							'pages.développeurs.choice.publicodes.cta',
 							'Découvrir'
 						)}
+						href="https://publi.codes/"
 					>
 						<Trans i18nKey="pages.développeurs.choice.publicodes.body">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
