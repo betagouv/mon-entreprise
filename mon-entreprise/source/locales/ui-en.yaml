@@ -1070,9 +1070,9 @@ pages:
         can choose the simulator to integrate and <2>customize the main color of
         the module</2> to fit the visual theme of your page.</2><3>The
         <1>data-lang="en"</1> attribute allows you to choose English as the
-        simulator language.</3></0><1></1><2>Note that if your site uses a
-        content security policy via the HTTP <1>Content-Security-Policy</1>
-        response header, a benign error may appear in the console.<3></3></2>
+        simulator language.</3></0><1></1><2></2><3>Note that if your site uses
+        a content security policy via the HTTP <1>Content-Security-Policy</1>
+        response header, a benign error may appear in the console. <3></3></3>
     module: What module?
   gérer:
     aide-déclaration-indépendant:
@@ -1585,6 +1585,8 @@ pages:
       title: "Online platform income tax return: interactive guide"
     shortname: Collaborative Economy Guide
 par: per
+par an: per year
+par mois: per month
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
     Lots of financial aids for your enterprise exist, explore them on
@@ -1856,5 +1858,3 @@ une de ces conditions: one of these applies
     régimeGénéralDisponible: General regime available
     titre: What do I have to do to be in good standing?
   retourAccueil: Back to the selection of activities
-par mois: per month
-par an: per year
