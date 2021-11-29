@@ -47,12 +47,7 @@ export default function PageHeader({
 					alignSelf="flex-end"
 					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
 				>
-					<Illustration
-						className="hide-mobile"
-						titre={titre}
-						src={picture}
-						alt={`${titre}`}
-					/>
+					<Illustration className="hide-mobile" titre={titre} src={picture} />
 				</Grid>
 			)}
 		</Grid>

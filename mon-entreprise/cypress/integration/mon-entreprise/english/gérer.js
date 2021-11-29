@@ -56,7 +56,7 @@ describe(`Manage page test (${
 		)
 		cy.contains(fr ? 'Oui' : 'Yes').click()
 		cy.contains(
-			fr ? 'simulateur auto-entrepreneur' : 'simulator for auto-entrepreneur'
+			fr ? 'simulateur auto-entrepreneur' : 'simulator of the URSSAF'
 		).click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/auto-entrepreneur$/)
