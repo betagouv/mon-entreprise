@@ -1,15 +1,16 @@
-import { useButton } from '@react-aria/button'
-import { Button } from 'DesignSystem/buttons'
-import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import {
+	GenericButtonOrLinkProps,
+	StyledButton,
+} from 'DesignSystem/buttons/Button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { H3, HeadingUnderline } from 'DesignSystem/typography/heading'
 import {
 	NewWindowLinkIcon,
+	useButtonOrLink,
 	useExternalLinkProps,
 } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export type GenericCardProps = {
@@ -30,24 +31,14 @@ export function Card({
 	ctaLabel,
 	...ariaButtonProps
 }: CardProps) {
-	const elementType: 'a' | 'div' | typeof RouterLink =
-		'href' in ariaButtonProps
-			? 'a'
-			: 'to' in ariaButtonProps
-			? RouterLink
-			: 'div'
-
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h2')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
+
+	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
+
 	return (
-		<CardContainer
-			{...ariaButtonProps}
-			{...buttonProps}
-			{...linkProps}
-			as={elementType}
-		>
+		<CardContainer {...buttonOrLinkProps}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			<StyledHeader {...titleProps} />
 			<div
@@ -59,10 +50,10 @@ export function Card({
 				<Body>{children}</Body>
 			</div>
 			{ctaLabel && (
-				<StyledButton excludeFromTabOrder size="XS" light>
+				<CardButton size="XS" light color="primary">
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
-				</StyledButton>
+				</CardButton>
 			)}
 		</CardContainer>
 	)
@@ -93,7 +84,7 @@ const StyledHeader = styled(H3)`
 		margin: auto;
 	}
 `
-const StyledButton = styled(Button)`
+const CardButton = styled(StyledButton)`
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `
 

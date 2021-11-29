@@ -21,10 +21,7 @@ import illustration2Svg from './illustration2.svg'
 import './Landing.css'
 
 export default function Landing() {
-	const {
-		t,
-		i18n: { language },
-	} = useTranslation()
+	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
