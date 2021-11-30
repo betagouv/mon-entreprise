@@ -94,9 +94,7 @@ export default function Simulateurs() {
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
-					{language === 'fr' && (
-						<SimulateurCard {...simulators['demande-mobilité']} />
-					)}
+
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
 				</div>
