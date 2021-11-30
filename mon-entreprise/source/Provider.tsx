@@ -137,7 +137,7 @@ export default function Provider({
 							<Container>
 								<img
 									src={logo}
-									alt="logo"
+									alt="logo service mon-entreprise urssaf"
 									style={{
 										maxWidth: '200px',
 										width: '100%',

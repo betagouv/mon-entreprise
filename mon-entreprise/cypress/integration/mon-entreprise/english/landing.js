@@ -3,9 +3,9 @@ describe('Landing test', function () {
 	it('should not crash', function () {
 		cy.visit('/')
 	})
-	it('should display urssaf and mon-entreprise logo', function () {
+	it('should display logo', function () {
 		cy.visit('/')
-		cy.get('img[alt="logo urssaf"]').should('be.visible')
+		cy.get('img[alt="Service mon-entreprise urssaf"]').should('be.visible')
 	})
 	it('should display actionnable items', function () {
 		cy.visit('/')

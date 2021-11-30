@@ -17,9 +17,7 @@ export default function Header() {
 	return (
 		<Container>
 			<StyledHeader>
-				<Link
-					to={sitePaths.index}
-				>
+				<Link to={sitePaths.index}>
 					<img alt="Service mon-entreprise urssaf" src={logoSvg} />
 				</Link>
 
@@ -46,7 +44,7 @@ const StyledHeader = styled.div`
 	}
 	img {
 		height: 100%;
-		padding:  0;
+		padding: 0;
 	}
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `
