@@ -125,7 +125,6 @@ module.exports.default = {
 		'mon-entreprise': './source/entry.fr.tsx',
 		infrance: './source/entry.en.tsx',
 		'simulateur-iframe-integration': './source/iframe-integration-script.js',
-		publicodes: '../publicodes/site/entry.tsx',
 	},
 	output: {
 		globalObject: 'self',
@@ -185,17 +184,5 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		filename: 'mon-entreprise.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
 		logo: 'images/logo.svg',
-	}),
-	new HTMLPlugin({
-		template: 'index.html',
-		inject: false,
-		// publicodes :
-		chunks: ['publicodes'],
-		title: 'publicodes - langage et plateforme de publication de calculs',
-		description:
-			'Un langage de calcul ouvert, lisible en français, contributif pour encoder et publier les sujets de société.',
-		filename: 'publicodes.html',
-		shareImage: 'https://mon-entreprise.fr/images/publicodes.png',
-		logo: 'images/publicodes.png',
 	}),
 ]

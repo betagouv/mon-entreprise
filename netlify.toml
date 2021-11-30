@@ -96,13 +96,6 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 # Redirects for single page app config & prerendering purpose
 
 
-# Publicode
-[[redirects]]
-  from = ":SITE_PUBLICODES/*"
-  to = "/publicodes.html"
-  status = 200
-
-
 # Mon-entreprise.fr
 [[redirects]]
   from = ":SITE_FR/robots.txt"
