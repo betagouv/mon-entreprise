@@ -681,10 +681,10 @@ pages:
     de la loi n° 2005-102 du 11 février 2005.</9><10>À cette fin, elle rédige
     <2>la stratégie et le plan d’action à mettre en œuvre</2>.</10><11>Cette
     déclaration d’accessibilité s’applique à
-    <2>https://mon-entreprise.fr</2>.</11><12>État de
-    conformité</12><13><0>https://mon-entreprise.fr</0> n’est actuellement pas
-    en conformité avec le <4>référentiel général d’amélioration de
-    l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
+    <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
+    conformité</12><13><0>https://mon-entreprise.urssaf.fr</0> n’est
+    actuellement pas en conformité avec le <4>référentiel général d’amélioration
+    de l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
     planifié. Les corrections seront prises en compte suite à
     l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
     en conformité totale, vous pouvez obtenir une version accessible des
@@ -725,7 +725,7 @@ pages:
     bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
       votre site ou service gagnerait à afficher des calculs de salaire, par
       exemple passer du salaire brut au salaire net, bonne nouvelle : tous les
-      calculs de cotisations et impôts qui sont derrière mon-entreprise.fr sont
+      calculs de cotisations et impôts qui sont derrière mon-entreprise sont
       libres et facilement réutilisable grâce à la <2>bibliothèque NPM
       publicodes</2>.</1><2>Comment utiliser cette librairie ?</2><3>Toutes nos
       règles de calculs sont écrites en `publicodes`, un language déclaratif
@@ -797,7 +797,7 @@ pages:
             script clé en main.
           cta: Commencer
           title: Intégrer un simulateur
-      description: En plus du site mon-entreprise.fr, nous mettons à disposition des
+      description: En plus du site mon-entreprise, nous mettons à disposition des
         outils gratuits et libres à intégrer sur votre site web. Vous pouvez
         ainsi inclure les outils créés pour <1>mon-entreprise</1> directement
         dans les parcours habituels de vos utilisateurs.
@@ -1144,7 +1144,8 @@ pages:
     print-info:
       date: Cette simulation a été effectuée le
       recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la
-        création et à la gestion d'entreprise, sur <2>mon-entreprise.fr</2>.
+        création et à la gestion d'entreprise, sur
+        <2>mon-entreprise.urssaf.fr</2>.
       title: Vous souhaitez retrouver cette simulation ?
     profession-libérale:
       meta:

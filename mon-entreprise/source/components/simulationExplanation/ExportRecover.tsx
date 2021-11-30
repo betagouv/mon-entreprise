@@ -10,7 +10,7 @@ export default function ExportRecover() {
 					Retrouvez cette simulation ainsi que d'autres outils d'aide à la
 					création et à la gestion d'entreprise, sur{' '}
 					<a href={useUrl()} target="_blank">
-						mon-entreprise.fr
+						mon-entreprise.urssaf.fr
 					</a>
 					.
 				</Trans>

@@ -42,7 +42,7 @@ export default function Integration() {
 				📯{' '}
 				<strong>
 					<a href="https://beta.gouv.fr/recrutement/2021/05/25/mon-entreprise-fr.recrute.js.html">
-						Mon-entreprise.fr recrute !
+						Mon-entreprise recrute !
 					</a>
 				</strong>{' '}
 				<small>Freelance Typescript / React pour 6 mois minimum</small>

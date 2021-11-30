@@ -146,7 +146,7 @@ export default function Provider({
 								></img>
 								<H1>Une erreur est survenue</H1>
 								<Intro>
-									L'équipe technique de mon-entreprise.fr a été automatiquement
+									L'équipe technique mon-entreprise a été automatiquement
 									prévenue.
 								</Intro>
 								<Body>

@@ -19,7 +19,7 @@ export default function MoreInfosOnUs() {
 
 	return (
 		<>
-			<H2>Plus d'infos sur mon-entreprise.fr</H2>
+			<H2>Plus d'infos sur mon-entreprise</H2>
 			<Grid container spacing={2}>
 				{!pathname.startsWith(sitePaths.nouveautés) && (
 					<Grid item xs={12} sm={6} md={4}>

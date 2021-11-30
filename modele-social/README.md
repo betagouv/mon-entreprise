@@ -1,6 +1,6 @@
 # Modèle social français en publicodes
 
-Ce paquet contient les règles [publicodes](https://publi.codes) utilisées sur https://mon-entreprise.fr
+Ce paquet contient les règles [publicodes](https://publi.codes) utilisées sur https://mon-entreprise.urssaf.fr
 pour le calcul des cotisations sociales, des impôts et des droits sociaux.
 
 ### Installation
@@ -26,4 +26,4 @@ const net = engine
 console.log(formatValue(net))
 ```
 
-👉 **[Voir le tutoriel complet](https://mon-entreprise.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul)**
+👉 **[Voir le tutoriel complet](https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul)**

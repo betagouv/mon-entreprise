@@ -10,7 +10,7 @@ import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
 
 const internalURLs = {
-	'mon-entreprise.fr': 'mon-entreprise',
+	'mon-entreprise.urssaf.fr': 'mon-entreprise',
 	'mycompanyinfrance.fr': 'infrance',
 	'publi.codes': 'publicodes',
 } as const

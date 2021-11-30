@@ -48,7 +48,7 @@ export default function Budget() {
 			<Meta
 				page="budget"
 				title="Budget"
-				description="Le budget de mon-entreprise.fr"
+				description="Le budget de mon-entreprise"
 			/>
 			<ScrollToTop />
 			<H1>

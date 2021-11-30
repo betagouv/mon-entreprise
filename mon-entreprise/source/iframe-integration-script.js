@@ -73,7 +73,7 @@ links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
 	Ce simulateur a été créé par
 	<a href="${simulateurURL}">
-		mon-entreprise.fr
+		mon-entreprise.urssaf.fr
 	</a><br/>
 	Découvrez l'ensemble des simulateurs disponibles <a href="${simulateursURL}">ici</a><br/>
 
@@ -81,7 +81,7 @@ links.innerHTML = `
 			<img
 				style="height: 40px; margin: 10px"
 				src="${process.env.FR_BASE_URL + '/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)}"
-				alt="mon-entreprise.fr : l'assistant officiel du créateur d'entreprise"
+				alt="mon-entreprise.urssaf.fr : l'assistant officiel du créateur d'entreprise"
 			/>
 		</a>
 		<a href="https://www.urssaf.fr">

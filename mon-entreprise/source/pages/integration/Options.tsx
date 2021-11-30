@@ -32,7 +32,7 @@ export default function Options() {
 			>
 				<Intro>
 					<Trans i18nKey="pages.développeurs.home.description">
-						En plus du site mon-entreprise.fr, nous mettons à disposition des
+						En plus du site mon-entreprise, nous mettons à disposition des
 						outils gratuits et libres à intégrer sur votre site web. Vous pouvez
 						ainsi inclure les outils créés pour <strong>mon-entreprise</strong>{' '}
 						directement dans les parcours habituels de vos utilisateurs.

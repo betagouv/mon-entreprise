@@ -266,8 +266,8 @@ function EnSavoirPlusCSP() {
 			</Trans>
 			<blockquote>
 				Failed to execute 'postMessage' on 'DOMWindow': The target origin
-				provided ('https://mon-entreprise.fr') does not match the recipient
-				window's origin
+				provided ('https://mon-entreprise.urssaf.fr') does not match the
+				recipient window's origin
 			</blockquote>
 			<Body>
 				<Trans i18nKey="pages.développeurs.iframe.csp-2">
@@ -275,9 +275,9 @@ function EnSavoirPlusCSP() {
 				</Trans>
 			</Body>
 			<code>
-				script-src 'self' 'unsafe-inline' https://mon-entreprise.fr;
+				script-src 'self' 'unsafe-inline' https://mon-entreprise.urssaf.fr;
 				<br />
-				img-src 'self' https://mon-entreprise.fr;
+				img-src 'self' https://mon-entreprise.urssaf.fr;
 			</code>
 		</PopoverWithTrigger>
 	)
@@ -349,7 +349,7 @@ function IntegrationCode({
 			)}
 			<br />
 			<em>src</em>
-			="https://mon-entreprise.fr/simulateur-iframe-integration.js"{'>'}
+			="https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"{'>'}
 			<span>{'<'}</span>
 			<span>/</span>
 			<em>script</em>

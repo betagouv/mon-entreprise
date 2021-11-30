@@ -67,11 +67,16 @@ export default function Accessibilité() {
 			</Body>
 			<Body>
 				Cette déclaration d’accessibilité s’applique à{' '}
-				<Link href="https://mon-entreprise.fr">https://mon-entreprise.fr</Link>.
+				<Link href="https://mon-entreprise.urssaf.fr">
+					https://mon-entreprise.urssaf.fr
+				</Link>
+				.
 			</Body>
 			<H3>État de conformité</H3>
 			<Body>
-				<Link href="https://mon-entreprise.fr">https://mon-entreprise.fr</Link>{' '}
+				<Link href="https://mon-entreprise.urssaf.fr">
+					https://mon-entreprise.urssaf.fr
+				</Link>{' '}
 				n’est actuellement pas en conformité avec le{' '}
 				<Link
 					href="https://numerique.gouv.fr/publications/rgaa-accessibilite/"
@@ -88,7 +93,7 @@ export default function Accessibilité() {
 				Dans l’attente d’une mise en conformité totale, vous pouvez obtenir une
 				version accessible des documents ou des informations qui y seraient
 				contenues en envoyant un courriel à{' '}
-				<Link href="mailto:accessibilite@acoss.fr?subject=%5Bmon-entreprise.fr%5D%20Accessibilit%C3%A9%20num%C3%A9rique%20%3A%20Droit%20%C3%A0%20la%20compensation&cc=contact@mon-entreprise.beta.gouv.fr">
+				<Link href="mailto:accessibilite@acoss.fr?subject=%5Bmon-entreprise.urssaf.fr%5D%20Accessibilit%C3%A9%20num%C3%A9rique%20%3A%20Droit%20%C3%A0%20la%20compensation&cc=contact@mon-entreprise.beta.gouv.fr">
 					accessibilite@acoss.fr
 				</Link>{' '}
 				en indiquant le nom du document concerné et/ou les informations que vous
@@ -100,7 +105,7 @@ export default function Accessibilité() {
 				Vous pouvez nous aider à améliorer l’accessibilité du site en nous
 				signalant les problèmes éventuels que vous rencontrez. Pour ce faire,
 				envoyez-nous un courriel à{' '}
-				<Link href="mailto:accessibilite@acoss.fr?subject=%5Bmon-entreprise.fr%5D%20Accessibilit%C3%A9%20num%C3%A9rique%20%3A%20Am%C3%A9lioration&cc=contact@mon-entreprise.beta.gouv.fr">
+				<Link href="mailto:accessibilite@acoss.fr?subject=%5Bmon-entreprise.urssaf.fr%5D%20Accessibilit%C3%A9%20num%C3%A9rique%20%3A%20Am%C3%A9lioration&cc=contact@mon-entreprise.beta.gouv.fr">
 					accessibilite@acoss.fr
 				</Link>
 				.
