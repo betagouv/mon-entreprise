@@ -6,6 +6,7 @@ import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import { H1, H2, H3, H4, H5 } from 'DesignSystem/typography/heading'
 import { Link, StyledLink } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
@@ -86,9 +87,12 @@ function BackToSimulation() {
 		return null
 	}
 	return (
-		<Button to={url}>
-			← <Trans i18nKey="back">Retourner à la simulation</Trans>
-		</Button>
+		<>
+			<Spacing lg />
+			<Button to={url}>
+				← <Trans i18nKey="back">Retourner à la simulation</Trans>
+			</Button>
+		</>
 	)
 }
 

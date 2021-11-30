@@ -13,7 +13,7 @@ describe('Navigation', function () {
 
 	it('should go back to home when clicking on logo', () => {
 		cy.visit(encodeURI('/documentation/contrat-salarié'))
-		cy.get('img[alt^="logo urssaf"]').click()
+		cy.get('img[alt="Service mon-entreprise urssaf"]').click()
 		cy.url().should('match', new RegExp(`${Cypress.config().baseUrl}/?`))
 	})
 })

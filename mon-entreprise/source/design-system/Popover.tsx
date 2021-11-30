@@ -172,9 +172,7 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 	display: flex;
 
 	flex-direction: column;
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		flex-direction: column-reverse;
-	}
+
 	animation: ${fromtop} 0.2s;
 
 	${({ theme, offsetTop }) =>
@@ -189,12 +187,7 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 `
 const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		border-top: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-		position: sticky;
-		bottom: 0;
-		background: ${({ theme }) => theme.colors.extended.grey[100]};
-	}
+
 	display: flex;
 	align-items: center;
 	height: ${({ theme }) => theme.spacings.xxl};
