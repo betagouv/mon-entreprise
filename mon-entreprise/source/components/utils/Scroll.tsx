@@ -20,7 +20,12 @@ export function ScrollToTop({
 			;(window as any).parentIFrame.scrollToOffset(0, 0)
 			return
 		}
-		forEachParent(ref.current, (elem) => ((elem as any).scrollTop = 0))
+		forEachParent(ref.current, (elem) => {
+			if (!elem) {
+				return
+			}
+			;(elem as any).scrollTop = 0
+		})
 		try {
 			window.scroll({
 				top: 0,

@@ -1,18 +1,26 @@
-import classnames from 'classnames'
+import { Grid } from '@mui/material'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
+import { Checkbox } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
 import React, { useEffect, useState } from 'react'
-import { Appear } from '../animate'
-import Checkbox from '../Checkbox'
-import './index.css'
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
 type CheckItemProps = {
-	title: React.ReactNode
+	title: string
 	name: string
 	explanations?: React.ReactNode
-	onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (isSelected: boolean) => void
 	defaultChecked?: boolean
 }
+
+const CheckItemHeader = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+`
 
 export function CheckItem({
 	title,
@@ -23,11 +31,11 @@ export function CheckItem({
 }: CheckItemProps) {
 	const [displayExplanations, setDisplayExplanations] = useState(false)
 
-	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.checked) {
+	const handleChecked = (isSelected: boolean) => {
+		if (isSelected) {
 			setDisplayExplanations(false)
 		}
-		onChange?.(e)
+		onChange?.(isSelected)
 	}
 
 	const handleClick = () => {
@@ -35,41 +43,59 @@ export function CheckItem({
 	}
 
 	return (
-		<ScrollToElement onlyIfNotVisible when={displayExplanations}>
-			<div className="ui__ checkItemLabel">
-				{/* TODO ACCESSIBILITY: impossible to tick the checkbox with keyboard ?  */}
+		<ScrollToElement
+			onlyIfNotVisible
+			when={displayExplanations}
+			style={{ width: '100%' }}
+		>
+			<CheckItemHeader>
 				<Checkbox
 					name={name}
-					id={name}
 					onChange={handleChecked}
-					defaultChecked={defaultChecked}
+					defaultSelected={defaultChecked}
+					label={title}
 				/>
 
-				<button
-					className={classnames('ui__ checklist-button', {
-						opened: displayExplanations,
-					})}
-					onClick={handleClick}
-				>
-					{title}
-				</button>
-			</div>
+				{explanations && (
+					<StyledLink onPress={handleClick}>
+						{displayExplanations ? (
+							<Trans i18nKey="checklist.showmore.open">
+								Masquer les détails
+							</Trans>
+						) : (
+							<Trans i18nKey="checklist.showmore.closed">En savoir plus</Trans>
+						)}
+					</StyledLink>
+				)}
+			</CheckItemHeader>
 			{displayExplanations && explanations && (
-				<Appear>
+				<Grid
+					item
+					xs={11}
+					sm={10}
+					md={8}
+					lg={6}
+					css={`
+						margin-left: 2rem;
+					`}
+				>
 					{typeof explanations === 'string' ? (
-						<Markdown
-							className="ui__ checklist-explanation"
-							source={explanations}
-						/>
+						<Markdown source={explanations} />
 					) : (
 						explanations
 					)}
-				</Appear>
+					<Spacing lg />
+				</Grid>
 			)}
 		</ScrollToElement>
 	)
 }
 
+const StyledLink = styled(Link)`
+	margin: ${({ theme }) => theme.spacings.sm} 0;
+	margin-left: ${({ theme }) => theme.spacings.xs};
+	white-space: nowrap;
+`
 export type ChecklistProps = {
 	children: React.ReactNode
 	onItemCheck?: (name: string, isChecked: boolean) => void
@@ -89,8 +115,8 @@ export function Checklist({
 				throw new Error('Invalid child passed to Checklist')
 			}
 			return React.cloneElement(child, {
-				onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
-					onItemCheck?.(child.props.name, evt.target.checked),
+				onChange: (isSelected: boolean) =>
+					onItemCheck?.(child.props.name, isSelected),
 				defaultChecked:
 					child.props.defaultChecked || defaultChecked?.[child.props.name],
 			})
@@ -101,10 +127,19 @@ export function Checklist({
 	}, [])
 
 	return (
-		<ul className="ui__ no-bullet checklist">
+		<StyledList>
 			{checklist.map((checkItem) => (
-				<li key={checkItem.props.name}>{checkItem}</li>
+				<StyledListItem key={checkItem.props.name}>{checkItem}</StyledListItem>
 			))}
-		</ul>
+		</StyledList>
 	)
 }
+
+const StyledList = styled.ul`
+	padding-left: 1rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+const StyledListItem = styled.li`
+	list-style: none;
+`

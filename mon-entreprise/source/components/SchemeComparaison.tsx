@@ -4,20 +4,23 @@ import {
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
-import Conversation from 'Components/conversation/Conversation'
 import Value from 'Components/EngineValue'
+import Simulation from 'Components/Simulation'
 import InfoBulle from 'Components/ui/InfoBulle'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import revenusSVG from 'Images/revenus.svg'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
-import './SchemeComparaison.css'
 import { SimulationGoal, SimulationGoals } from './SimulationGoals'
-import { FromBottom } from './ui/animate'
 import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
@@ -79,21 +82,21 @@ export default function SchemeComparaison({
 
 	return (
 		<>
-			<div
+			<StyledGrid
 				className={classnames('comparaison-grid', {
 					hideAutoEntrepreneur,
 					hideAssimiléSalarié,
 				})}
 			>
-				<h2 className="AS">
+				<H2 className="AS">
 					<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.AS.tagline">
 							Le régime tout compris
 						</Trans>
 					</small>
-				</h2>
-				<h2 className="indep">
+				</H2>
+				<H2 className="indep">
 					<Emoji emoji="👩‍🔧" />{' '}
 					{hideAssimiléSalarié ? (
 						<Trans>Entreprise Individuelle</Trans>
@@ -105,21 +108,21 @@ export default function SchemeComparaison({
 							La protection sociale à la carte
 						</Trans>
 					</small>
-				</h2>
-				<h2 className="auto">
+				</H2>
+				<H2 className="auto">
 					<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
 					<small>
 						<Trans i18nKey="comparaisonRégimes.auto.tagline">
 							Pour commencer sans risques
 						</Trans>
 					</small>
-				</h2>
+				</H2>
 
-				<h3 className="legend">
+				<H3 className="legend">
 					<Trans i18nKey="comparaisonRégimes.status.legend">
 						Statuts juridiques possibles
 					</Trans>
-				</h3>
+				</H3>
 				<div className="AS">
 					<div>
 						<Trans i18nKey="comparaisonRégimes.status.AS">
@@ -147,7 +150,7 @@ export default function SchemeComparaison({
 				</div>
 
 				<Trans i18nKey="comparaisonRégimes.AT">
-					<h3 className="legend">Couverture accidents du travail</h3>
+					<H3 className="legend">Couverture accidents du travail</H3>
 				</Trans>
 				<div className="AS">
 					<Trans>
@@ -158,29 +161,31 @@ export default function SchemeComparaison({
 					<Trans>Non</Trans>
 				</div>
 				<Trans i18nKey="comparaisonRégimes.assuranceMaladie">
-					<h3 className="legend">
+					<H3 className="legend">
 						Assurance maladie{' '}
 						<small>(médicaments, soins, hospitalisations)</small>
-					</h3>
+					</H3>
 					<div className="AS-indep-et-auto">Identique pour tous</div>
 				</Trans>
 				<Trans i18nKey="comparaisonRégimes.mutuelle">
-					<h3 className="legend">
+					<H3 className="legend">
 						Mutuelle santé
 						<small />
-					</h3>
+					</H3>
 					<div className="AS">Obligatoire</div>
 					<div className="indep-et-auto">Fortement conseillée</div>
 				</Trans>
 
 				<Trans i18nKey="comparaisonRégimes.indemnités">
-					<h3 className="legend">Indemnités journalières</h3>
+					<H3 className="legend">
+						Indemnités journalières <small>(en cas d'arrêt maladie)</small>
+					</H3>
 				</Trans>
 				<div className="green AS">++</div>
 				<div className="green indep">++</div>
 				<div className="green auto">+</div>
 				<Trans i18nKey="comparaisonRégimes.retraite">
-					<h3 className="legend">Retraite</h3>
+					<H3 className="legend">Retraite</H3>
 				</Trans>
 				<div className="green AS">+++</div>
 				<div className="green indep">++</div>
@@ -189,7 +194,7 @@ export default function SchemeComparaison({
 				{showMore ? (
 					<>
 						<Trans i18nKey="comparaisonRégimes.ACRE">
-							<h3 className="legend">ACRE</h3>
+							<H3 className="legend">ACRE</H3>
 							<div className="AS-et-indep">
 								1 an <small>(automatique et inconditionnelle)</small>
 							</div>
@@ -199,7 +204,7 @@ export default function SchemeComparaison({
 							</div>
 						</Trans>
 						<Trans i18nKey="comparaisonRégimes.déduction">
-							<h3 className="legend">Déduction des charges</h3>
+							<H3 className="legend">Déduction des charges</H3>
 							<div className="AS-et-indep">
 								Oui <small>(régime fiscal du réel)</small>
 							</div>
@@ -213,7 +218,7 @@ export default function SchemeComparaison({
 						</Trans>
 
 						<Trans i18nKey="comparaisonRégimes.cotisations">
-							<h3 className="legend">Paiement des cotisations</h3>
+							<H3 className="legend">Paiement des cotisations</H3>
 							<div className="AS">Mensuel</div>
 							<div className="indep">
 								Provision mensuelle ou trimestrielle
@@ -224,9 +229,9 @@ export default function SchemeComparaison({
 							<div className="auto">Mensuel ou trimestriel</div>
 						</Trans>
 						<Trans i18nKey="comparaisonRégimes.complémentaireDeductible">
-							<h3 className="legend">
+							<H3 className="legend">
 								Contrats prévoyance et retraite facultatives déductibles
-							</h3>
+							</H3>
 							<div className="AS">
 								Oui <small>(sous certaines conditions)</small>
 							</div>
@@ -238,7 +243,7 @@ export default function SchemeComparaison({
 							<Trans>Non</Trans>
 						</div>
 						<Trans i18nKey="comparaisonRégimes.cotisationMinimale">
-							<h3 className="legend">Paiement de cotisations minimales</h3>
+							<H3 className="legend">Paiement de cotisations minimales</H3>
 						</Trans>
 						<div className="AS">
 							<Trans>Non</Trans>
@@ -250,9 +255,9 @@ export default function SchemeComparaison({
 							<Trans>Non</Trans>
 						</div>
 						<Trans i18nKey="comparaisonRégimes.seuil">
-							<h3 className="legend">
+							<H3 className="legend">
 								Revenu minimum pour l'ouverture des droits aux prestations
-							</h3>
+							</H3>
 							<div className="AS">Oui</div>
 							<div className="indep">
 								Non <small>(cotisations minimales obligatoires)</small>
@@ -261,7 +266,7 @@ export default function SchemeComparaison({
 						</Trans>
 						{!hideAutoEntrepreneur && (
 							<Trans i18nKey="comparaisonRégimes.plafondCA">
-								<h3 className="legend">Plafond de chiffre d'affaires</h3>
+								<H3 className="legend">Plafond de chiffre d'affaires</H3>
 								<div className="AS-et-indep">
 									<Trans>Non</Trans>
 								</div>
@@ -275,9 +280,9 @@ export default function SchemeComparaison({
 							</Trans>
 						)}
 						<Trans i18nKey="comparaisonRégimes.comptabilité">
-							<h3 className="legend">
+							<H3 className="legend">
 								Gestion comptable, sociale, juridique...
-							</h3>
+							</H3>
 							<div className="AS-et-indep">
 								Accompagnement fortement conseillé
 								<small>
@@ -294,89 +299,74 @@ export default function SchemeComparaison({
 				) : (
 					<Trans i18nKey="comparaisonRégimes.comparaisonDétaillée">
 						<div className="all">
-							<button
-								onClick={() => setShowMore(true)}
-								className="ui__ simple small button"
-							>
+							<Button light size="XS" onPress={() => setShowMore(true)}>
 								Afficher plus d'informations
-							</button>
+							</Button>
 						</div>
 					</Trans>
 				)}
-				<div className="all colored">
+				<div className="legend" />
+
+				<div className=" AS-indep-et-auto  ">
 					{!conversationStarted ? (
 						<>
 							<Trans i18nKey="comparaisonRégimes.simulationText">
-								<h3>
+								<H3>
 									Comparer mes revenus, pension de retraite et indemnité maladie
-								</h3>
+								</H3>
 								<img src={revenusSVG} css="height: 8rem" />
-								<button
-									className="ui__ cta plain button"
-									onClick={startConversation}
-								>
+								<Button onPress={startConversation}>
 									Lancer la simulation
-								</button>
+								</Button>
 							</Trans>
 						</>
 					) : (
-						<div
-							className="ui__ container"
-							css={`
-								text-align: left;
-							`}
+						<Simulation
+							customEndMessages={
+								<>
+									<SmallBody>
+										Vous pouvez consulter les différentes estimations dans le
+										tableau ci-dessous
+									</SmallBody>
+
+									<SeeAnswersButton />
+								</>
+							}
 						>
-							<PeriodSwitch />
 							<SimulationGoals
-								className="plain"
-								css={
-									displayResult
-										? `
-									border-bottom: none;
-									border-bottom-left-radius: 0 !important;
-									border-bottom-right-radius: 0 !important;
-								`
-										: ''
+								toggles={<PeriodSwitch />}
+								legend={
+									'Estimations sur votre rémunération brute et vos charges'
 								}
 							>
 								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
 								<SimulationGoal dottedName="entreprise . charges" />
 							</SimulationGoals>
-							{displayResult && (
-								<FromBottom>
-									<div
-										className="ui__ card "
-										css={`
-											padding: 1rem;
-											border-top: none;
-											border-top-left-radius: 0 !important;
-											border-top-right-radius: 0 !important;
-										`}
-									>
-										<Conversation
-											customEndMessages={
-												<>
-													<p className="ui__ notice">
-														Vous pouvez consulter les différentes estimations
-														dans le tableau ci-dessous
-													</p>
-
-													<SeeAnswersButton />
-												</>
-											}
-										/>
-									</div>
-								</FromBottom>
-							)}
-						</div>
+						</Simulation>
 					)}
 				</div>
 				{displayResult && (
 					<>
+						<div className="legend" />
+
+						<H3 className="AS">
+							<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
+						</H3>
+						<H3 className="indep">
+							<Emoji emoji="👩‍🔧" />{' '}
+							{hideAssimiléSalarié ? (
+								<Trans>Entreprise Individuelle</Trans>
+							) : (
+								<Trans>Indépendant</Trans>
+							)}
+						</H3>
+						<H3 className="auto">
+							<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
+						</H3>
 						<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
-							<h3 className="legend">
+							<H3 className="legend">
 								Revenu net de cotisations <small>(avant impôts)</small>
-							</h3>
+							</H3>
 						</Trans>
 						<div className="AS">
 							<Value
@@ -409,12 +399,12 @@ export default function SchemeComparaison({
 							</>
 						</div>
 
-						<h3 className="legend">
+						<H3 className="legend">
 							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
 								<span>Pension de retraite</span>
 								<small>(avant impôts)</small>
 							</Trans>
-						</h3>
+						</H3>
 						<div className="AS">
 							<Value
 								linkToRule={false}
@@ -464,9 +454,9 @@ export default function SchemeComparaison({
 							)}
 						</div>
 						<Trans i18nKey="comparaisonRégimes.trimestreValidés">
-							<h3 className="legend">
+							<H3 className="legend">
 								Nombre de trimestres validés <small>(pour la retraite)</small>
-							</h3>
+							</H3>
 						</Trans>
 						<div className="AS">
 							<Value
@@ -500,9 +490,9 @@ export default function SchemeComparaison({
 							)}
 						</div>
 						<Trans i18nKey="comparaisonRégimes.indemnités">
-							<h3 className="legend">
+							<H3 className="legend">
 								Indemnités journalières <small>(en cas d'arrêt maladie)</small>
-							</h3>
+							</H3>
 						</Trans>
 						<div className="AS">
 							<span>
@@ -551,62 +541,277 @@ export default function SchemeComparaison({
 						</div>
 					</>
 				)}
-			</div>
-			<div className="ui__ container">
+			</StyledGrid>
+
+			<div className="">
 				<br />
-				<h3>
+				<H3>
 					<Trans i18nKey="comparaisonRégimes.titreSelection">
 						Créer mon entreprise en tant que :
 					</Trans>
-				</h3>
-				<div className="ui__ answer-group">
-					{!hideAssimiléSalarié && (
-						<button
-							className="ui__  button"
-							onClick={() => {
-								dispatch(defineDirectorStatus('SALARIED'))
+				</H3>
+				<AnswerGroup>
+					{[
+						!hideAssimiléSalarié && (
+							<Button
+								key="assimiléSalarié"
+								onPress={() => {
+									dispatch(defineDirectorStatus('SALARIED'))
+									!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+								}}
+							>
+								<Trans i18nKey="comparaisonRégimes.choix.AS">
+									Assimilé&nbsp;salarié
+								</Trans>
+							</Button>
+						),
+
+						<Button
+							key="EI"
+							onPress={() => {
+								!hideAssimiléSalarié &&
+									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
 								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 							}}
 						>
-							<Trans i18nKey="comparaisonRégimes.choix.AS">
-								Assimilé&nbsp;salarié
-							</Trans>
-						</button>
-					)}
-					<button
-						className="ui__  button"
-						onClick={() => {
-							!hideAssimiléSalarié &&
-								dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-							!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
-						}}
-					>
-						{hideAssimiléSalarié ? (
-							<Trans i18nKey="comparaisonRégimes.choix.EI">
-								Entreprise individuelle
-							</Trans>
-						) : (
-							<Trans i18nKey="comparaisonRégimes.choix.indep">
-								Indépendant
-							</Trans>
-						)}
-					</button>
-					{!hideAutoEntrepreneur && (
-						<button
-							className="ui__ button"
-							onClick={() => {
-								!hideAssimiléSalarié &&
-									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-								dispatch(isAutoentrepreneur(true))
-							}}
-						>
-							<Trans i18nKey="comparaisonRégimes.choix.auto">
-								Auto-entrepreneur
-							</Trans>
-						</button>
-					)}
-				</div>
+							{hideAssimiléSalarié ? (
+								<Trans i18nKey="comparaisonRégimes.choix.EI">
+									Entreprise individuelle
+								</Trans>
+							) : (
+								<Trans i18nKey="comparaisonRégimes.choix.indep">
+									Indépendant
+								</Trans>
+							)}
+						</Button>,
+
+						!hideAutoEntrepreneur && (
+							<Button
+								key="auto-entrepreneur"
+								onPress={() => {
+									!hideAssimiléSalarié &&
+										dispatch(defineDirectorStatus('SELF_EMPLOYED'))
+									dispatch(isAutoentrepreneur(true))
+								}}
+							>
+								<Trans i18nKey="comparaisonRégimes.choix.auto">
+									Auto-entrepreneur
+								</Trans>
+							</Button>
+						),
+					]}
+				</AnswerGroup>
 			</div>
 		</>
 	)
 }
+
+const StyledGrid = styled.div`
+	display: grid;
+	font-family: ${({ theme }) => theme.fonts.main};
+	justify-items: stretch;
+	justify-content: center;
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+
+&.hideAutoEntrepreneur {
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
+}
+
+&.hideAssimiléSalarié {
+	grid-template-columns:
+		[row-legend] minmax(auto, 100%) [assimilé-salarié] 0
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+}
+& > * {
+	width: 100%;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+	padding: 0.6rem 1.2rem;
+	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+& > h2 {
+	margin: 0;
+	border: none;
+	align-self: stretch;
+}
+
+& > h2 img {
+	height: 1.6rem !important;
+	width: 1.6rem !important;
+}
+& > .legend {
+	align-items: flex-end;
+	grid-column: row-legend;
+	text-align: right;
+}
+
+& > .AS-et-indep {
+	grid-column: assimilé-salarié / auto-entrepreneur;
+}
+& > .AS {
+	grid-column: assimilé-salarié;
+	min-width: 11rem;
+}
+& > .indep {
+	grid-column: indépendant;
+}
+& > .auto {
+	grid-column: auto-entrepreneur;
+	border-right: none;
+	min-width: 14rem;
+}
+& > .all {
+	border-right: none;
+	border-bottom: none;
+	grid-column: row-legend / end;
+}
+& > .all.colored {
+	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+}
+
+& > .indep-et-auto {
+	grid-column: indépendant / end;
+	border-right: none;
+}
+& > .AS-indep-et-auto {
+	grid-column: assimilé-salarié / end;
+	border-right: none;
+}
+
+&.hideAutoEntrepreneur > .auto {
+	display: none;
+}
+&.hideAutoEntrepreneur > .indep-et-auto {
+	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+}
+
+&.hideAssimiléSalarié > .AS {
+	display: none;
+}
+
+& > .green {
+	font-weight: bold;
+	color: limegreen;
+}
+
+& > .red {
+	font-weight: bold;
+	color: red;
+}
+
+& > .no-border {
+	border: none;
+}
+& .button {
+	align-self: stretch;
+}
+
+@media (max-width: 800px) {
+	& > * {
+		padding: 0.6rem;
+	}
+}
+@media (max-width: 600px) {
+	& {
+		display: block;
+		padding: 0 0.6rem;
+	}
+
+	& h2 {
+		flex-direction: column;
+	}
+	& small {
+		margin-left: 0.2rem;
+	}
+
+	& > *::before {
+		flex: 1;
+		text-align: left;
+		flex-shrink: 0;
+		white-space: nowrap;
+		user-select: text;
+		font-weight: normal;
+	}
+	& > :not(.button)::before {
+		color: ${({ theme }) => theme.colors.bases.primary[700]}; !important;
+		opacity: 0.6;
+	}
+	& > .AS::before {
+		content: 'Assimilé-salarié :';
+	}
+	& > .indep::before,
+	&.hideAutoEntrepreneur > .indep-et-auto::before {
+		content: 'Indépendant :';
+	}
+
+	&.hideAssimiléSalarié > .AS-et-indep::before,
+	&.hideAssimiléSalarié > .indep::before {
+		content: 'Entreprise individuelle :';
+	}
+
+	& > .auto::before {
+		content: 'Auto-entrepreneur :';
+	}
+	& > .indep-et-auto::before {
+		content: 'Indépendant / auto-entrepreneur :';
+	}
+	& > .AS-et-indep::before {
+		content: 'Assimilé salarié / indépendant ';
+	}
+	& > h2::before {
+		display: none;
+	}
+	& > h2.AS::after,
+	&:not(.hideAutoEntrepreneur) > h2.indep::after {
+		display: block;
+		font-size: 1rem;
+		margin-top: 1rem;
+		content: 'vs';
+	}
+	& > .legend {
+		justify-content: flex-start;
+		align-items: baseline;
+		text-align: left;
+	}
+	& > * {
+		border: none;
+		flex-direction: row;
+		text-align: right;
+		justify-content: right;
+	}
+	& > :not(.all):not(.button) {
+		padding-left: 0;
+	}
+	& > .all {
+		margin: 0 -0.6rem;
+		text-align: center;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+	& > .no-border > .button {
+		flex: 1;
+	}
+	& > .no-border::before {
+		display: none;
+	}
+}
+@media (min-width: 600px) {
+	& > h3 {
+		margin: 0;
+		font-weight: normal;
+
+		font-size: 1rem;
+	}
+}
+
+`

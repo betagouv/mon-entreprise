@@ -1,58 +1,32 @@
+import { Strong } from 'DesignSystem/typography'
+import { H4 } from 'DesignSystem/typography/heading'
+import { Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import styled from 'styled-components'
 
-export const Indicators = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	flex-wrap: wrap;
-`
 type IndicatorProps = {
 	main?: React.ReactNode
 	subTitle?: React.ReactNode
 	footnote?: React.ReactNode
 	width?: string
 }
-export function Indicator({ main, subTitle, footnote, width }: IndicatorProps) {
+export function Indicator({ main, subTitle, footnote }: IndicatorProps) {
 	return (
-		<div
-			className="ui__ card lighter-bg"
-			css={`
-				text-align: center;
-				padding: 1rem;
-				margin: 1rem 0.5rem;
-				width: ${width || '210px'};
-				font-size: 110%;
-				display: flex;
-				flex-direction: column;
-			`}
-		>
-			<small
-				css={`
-					display: block;
-				`}
-			>
-				{subTitle}
-			</small>
-			<strong
-				css={`
-					display: block;
-				`}
-			>
-				{main}
-			</strong>
+		<StyledIndicator>
+			<H4 as="h2">{subTitle}</H4>
+			<Intro>
+				<Strong>{main}</Strong>
+			</Intro>
 			{footnote && (
-				<span
+				<SmallBody
 					css={`
-						font-size: small;
-						display: block;
-						line-height: 1.6em;
+						margin-top: -1rem;
 					`}
 				>
-					<i>{footnote}</i>
-				</span>
+					{footnote}
+				</SmallBody>
 			)}
-		</div>
+		</StyledIndicator>
 	)
 }
 export function formatDay(date: string | Date) {
@@ -68,3 +42,11 @@ export function formatMonth(date: string | Date) {
 		year: 'numeric',
 	})
 }
+
+const StyledIndicator = styled.div`
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	height: 100%;
+	box-shadow: ${({ theme }) => theme.elevations[2]};
+	padding: ${({ theme }) => theme.spacings.xs}
+		${({ theme }) => theme.spacings.md};
+`

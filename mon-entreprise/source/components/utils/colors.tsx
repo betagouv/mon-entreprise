@@ -1,119 +1,66 @@
-import convert from 'color-convert'
-import React, { createContext, useContext, useEffect, useRef } from 'react'
-
-/*
-	Hex to RGB conversion:
- 	http://www.javascripter.net/faq/hextorgb.htm
-*/
-const cutHex = (h: string) => (h.startsWith('#') ? h.substring(1, 7) : h),
-	hexToR = (h: string) => parseInt(cutHex(h).substring(0, 2), 16),
-	hexToG = (h: string) => parseInt(cutHex(h).substring(2, 4), 16),
-	hexToB = (h: string) => parseInt(cutHex(h).substring(4, 6), 16)
-
-/*
-	Given a background color, should you write on it in black or white ?
-   	Taken from http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#comment61936401_3943023
-*/
-function findContrastedTextColor(color: string, simple: boolean) {
-	const r = hexToR(color),
-		g = hexToG(color),
-		b = hexToB(color)
-
-	if (simple) {
-		// The YIQ formula
-		return r * 0.299 + g * 0.587 + b * 0.114 > 128 ? '#000000' : '#ffffff'
-	} // else complex formula
-	const uicolors = [r / 255, g / 255, b / 255],
-		c = uicolors.map((c) =>
-			c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
-		),
-		L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
-
-	return L > 0.179 ? '#000000' : '#ffffff'
-}
-
-const lightenColor = (hex: string, x: number) => {
-	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
-	return '#' + convert.hsl.hex([h, s, Math.max(2, Math.min(l + x, 98))])
-}
-
-const generateDarkenVariations = (
-	numberOfVariation: number,
-	[h, s, l]: [number, number, number]
-) => {
-	return [...Array(numberOfVariation).keys()].map(
-		(i) => '#' + convert.hsl.hex([h, s, l * 0.8 ** i])
-	)
-}
-
-const deriveAnalogousPalettes = (hex: string) => {
-	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
-	return [
-		generateDarkenVariations(2, [h, s, 50]),
-		generateDarkenVariations(2, [(h + 95) % 360, s, 50]),
-	]
-}
-
-export const generateTheme = (themeColor: string) => {
-	const // Use the default theme color if the host page hasn't made a choice
-		color = themeColor,
-		lightColor = lightenColor(color, 10),
-		darkColor = lightenColor(color, -20),
-		lighterColor = lightenColor(color, 45),
-		lightestColor = lightenColor(color, 100),
-		darkestColor = lightenColor(color, -100),
-		grayColor = '#00000099',
-		textColor = findContrastedTextColor(color, true), // the 'simple' version feels better...
-		inverseTextColor = textColor === '#ffffff' ? '#000' : '#fff',
-		lightenTextColor = (textColor: string) =>
-			textColor === '#ffffff' ? 'rgba(255, 255, 255, .7)' : 'rgba(0, 0, 0, .7)',
-		lighterTextColor = darkColor + 'cc',
-		lighterInverseTextColor = lightenTextColor(inverseTextColor),
-		textColorOnWhite = textColor === '#ffffff' ? color : '#333',
-		palettes = deriveAnalogousPalettes(color)
-
-	return {
-		color,
-		textColor,
-		inverseTextColor,
-		lighterTextColor,
-		lighterInverseTextColor,
-		textColorOnWhite,
-		grayColor,
-		darkColor,
-		lightColor,
-		lighterColor,
-		lightestColor,
-		darkestColor,
-		palettes,
-	}
-}
-
-const defaultColor = '#2975D1'
-
-export type ThemeColors = ReturnType<typeof generateTheme>
-
-export const ThemeColorsContext = createContext<ThemeColors>(
-	generateTheme(defaultColor)
-)
+import React, { useEffect, useMemo, useRef } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { useIsEmbedded } from './embeddedContext'
 
 type ProviderProps = {
-	color?: string
+	color?: [number, number, number]
 	children: React.ReactNode
 }
 
+const HUE_CSS_VARIABLE_NAME = 'COLOR_HUE'
+const SATURATION_CSS_VARIABLE_NAME = 'COLOR_SATURATION'
+const DEFAULT_COLOR_HS = [220, 100]
+const PALETTE = {
+	100: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), var(--${SATURATION_CSS_VARIABLE_NAME}), 97%)`,
+	200: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), var(--${SATURATION_CSS_VARIABLE_NAME}), 93%)`,
+	300: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 8%), 85%)`,
+	400: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 25%), 78%)`,
+	500: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 40%), 64%)`,
+	600: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 40%), 45%)`,
+	700: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 34%), 33%)`,
+	800: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 31%), 23%)`,
+}
+
+const rawIframeColor = new URLSearchParams(
+	document.location.search.substring(1)
+).get('couleur')
+const IFRAME_COLOR: [number, number] = rawIframeColor
+	? JSON.parse(decodeURIComponent(rawIframeColor))
+	: DEFAULT_COLOR_HS
+
+// Note that the iframeColor is first set in the index.html file, but without
+// the full palette generation that happen here. This is to prevent a UI
+// flash, cf. #1786.
+
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
-	const colors = generateTheme(color ?? useContext(ThemeColorsContext).color)
 	const divRef = useRef<HTMLDivElement>(null)
+	const [hue, saturation] = useMemo(
+		() => (color ? color.slice(0, 2) : IFRAME_COLOR),
+		[color]
+	)
 	useEffect(() => {
-		Object.entries(colors).forEach(([key, value]) => {
-			if (typeof value === 'string') {
-				divRef.current?.style.setProperty(`--${key}`, value)
-			}
-		}, colors)
-	}, [colors])
+		divRef.current?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, '' + hue)
+		divRef.current?.style.setProperty(
+			`--${SATURATION_CSS_VARIABLE_NAME}`,
+			`${saturation}%`
+		)
+	}, [hue, saturation])
+	const isEmbedded = useIsEmbedded()
+
+	if (!color && !isEmbedded) {
+		return <>{children}</>
+	}
+
 	return (
-		<ThemeColorsContext.Provider value={colors}>
+		<ThemeProvider
+			theme={(theme) => ({
+				...theme,
+				colors: {
+					...theme.colors,
+					bases: { ...theme.colors.bases, primary: PALETTE },
+				},
+			})}
+		>
 			{/* This div is only used to set the CSS variables */}
 			<div
 				ref={divRef}
@@ -126,6 +73,6 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 			>
 				{children}
 			</div>
-		</ThemeColorsContext.Provider>
+		</ThemeProvider>
 	)
 }

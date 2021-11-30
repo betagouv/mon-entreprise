@@ -1,12 +1,14 @@
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
+import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { useEngine } from 'Components/utils/EngineContext'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -27,6 +29,7 @@ declare global {
 
 export default function ChômagePartiel() {
 	const inIframe = useIsEmbedded()
+	const { t } = useTranslation()
 	useEffect(() => {
 		if (inIframe) {
 			return
@@ -48,20 +51,26 @@ export default function ChômagePartiel() {
 	return (
 		<>
 			<Warning localStorageKey="covid19">
-				<ul>
-					<li>
+				<Ul>
+					<Li>
 						Ce simulateur ne prend pas en compte les rémunérations brut définies
 						sur 39h hebdomadaires.
-					</li>
-				</ul>
+					</Li>
+				</Ul>
 			</Warning>
 			<Simulation
 				results={<ExplanationSection />}
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>
 				}
-				showPeriodSwitch={false}
-			/>
+			>
+				<SimulationGoals legend="Salaire brut avant chômage partiel">
+					<SimulationGoal
+						label={t('Salaire brut mensuel')}
+						dottedName="contrat salarié . rémunération . brut de base"
+					/>
+				</SimulationGoals>
+			</Simulation>
 		</>
 	)
 }
@@ -81,68 +90,61 @@ function ExplanationSection() {
 	return (
 		<FromTop>
 			<div
-				id="targetSelection"
 				className="ui__ light card"
 				css={`
 					overflow: hidden;
 					margin: 1rem 0;
 				`}
 			>
-				<div
-					css={`
-						margin: 0 -1rem;
-					`}
-				>
-					<ComparaisonTable
-						rows={[
-							['', t('Habituellement'), t('Avec chômage partiel')],
-							[
-								{ dottedName: net },
-								{ dottedName: netHabituel },
-								{
-									dottedName: net,
-									additionalText: language === 'fr' && (
-										<span data-test-id="comparaison-net">
-											Soit{' '}
-											<strong>
-												{formatValue(
-													engine.evaluate({
-														valeur: `${net} / ${netHabituel}`,
-														unité: '%',
-														arrondi: 'oui',
-													})
-												)}
-											</strong>{' '}
-											du revenu net
-										</span>
-									),
-								},
-							],
-							[
-								{ dottedName: totalEntreprise },
-								{ dottedName: totalEntrepriseHabituel },
-								{
-									dottedName: totalEntreprise,
-									additionalText: language === 'fr' && (
-										<span data-test-id="comparaison-total">
-											Soit{' '}
-											<strong>
-												{formatValue(
-													engine.evaluate({
-														valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
-														unité: '%',
-														arrondi: 'oui',
-													})
-												)}
-											</strong>{' '}
-											du coût habituel
-										</span>
-									),
-								},
-							],
-						]}
-					/>
-				</div>
+				<ComparaisonTable
+					rows={[
+						['', t('Habituellement'), t('Avec chômage partiel')],
+						[
+							{ dottedName: net },
+							{ dottedName: netHabituel },
+							{
+								dottedName: net,
+								additionalText: language === 'fr' && (
+									<span data-test-id="comparaison-net">
+										Soit{' '}
+										<strong>
+											{formatValue(
+												engine.evaluate({
+													valeur: `${net} / ${netHabituel}`,
+													unité: '%',
+													arrondi: 'oui',
+												})
+											)}
+										</strong>{' '}
+										du revenu net
+									</span>
+								),
+							},
+						],
+						[
+							{ dottedName: totalEntreprise },
+							{ dottedName: totalEntrepriseHabituel },
+							{
+								dottedName: totalEntreprise,
+								additionalText: language === 'fr' && (
+									<span data-test-id="comparaison-total">
+										Soit{' '}
+										<strong>
+											{formatValue(
+												engine.evaluate({
+													valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
+													unité: '%',
+													arrondi: 'oui',
+												})
+											)}
+										</strong>{' '}
+										du coût habituel
+									</span>
+								),
+							},
+						],
+					]}
+				/>
 			</div>
 		</FromTop>
 	)
@@ -261,6 +263,7 @@ function RowLabel({ dottedName }: { dottedName: DottedName }) {
 }
 
 const ResultTable = styled.table`
+	font-family: ${({ theme }) => theme.fonts.main};
 	width: 100%;
 	border-collapse: collapse;
 

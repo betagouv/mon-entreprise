@@ -23,6 +23,7 @@ module.exports = {
 		aggregateTimeout: 600,
 	},
 	mode: 'development',
+	devtool: 'eval-source-map',
 	entry: map((entry) => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
 		...common.plugins,

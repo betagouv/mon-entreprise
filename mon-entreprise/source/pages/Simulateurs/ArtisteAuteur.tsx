@@ -5,9 +5,9 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import { InstitutionsPartenairesArtisteAuteur } from 'Components/simulationExplanation/InstitutionsPartenaires'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
-import 'Components/TargetSelection.css'
 import { EngineContext } from 'Components/utils/EngineContext'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import config from './configs/artiste-auteur.yaml'
@@ -19,9 +19,11 @@ export default function ArtisteAuteur() {
 		<>
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<Simulation explanations={<CotisationsResult />}>
-				<PeriodSwitch />
-
-				<SimulationGoals className="plain">
+				<SimulationGoals
+					legend="Vos revenus d'artiste auteur"
+					publique="artisteAuteur"
+					toggles={<PeriodSwitch />}
+				>
 					<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
@@ -71,9 +73,9 @@ function RepartitionCotisations() {
 	const maximum = Math.max(...cotisations.map((x) => x.value))
 	return (
 		<section>
-			<h2>
+			<H2>
 				<Trans>À quoi servent mes cotisations ?</Trans>
-			</h2>
+			</H2>
 			<div className="distribution-chart__container">
 				{cotisations
 					.filter(({ value }) => Boolean(value))

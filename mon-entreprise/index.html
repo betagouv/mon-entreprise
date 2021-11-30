@@ -29,18 +29,8 @@
 
 		<meta
 			name="google-site-verification"
-			content="y1B_PVRQAlMoLd7La3AlOt_0Ja8Lp-lrkoXGat9-uMA"
+			content="lO4OheVzHWfvwcoUC-1VKN_GTWtA5vEM-uPZqb2PORs"
 		/>
-		<meta
-			name="google-site-verification"
-			content="C03WwnrJP0FLqf83ibMBA7_N-TLQcwsJaAhqKXppxaE"
-		/>
-		<meta
-			name="google-site-verification"
-			content="QciT8g0vom7kg0Qz6aFIS9s_5r7-21ip0Ho6cuEN1KA"
-		/>
-		<!-- vérification pour Bing Webmaster -->
-		<meta name="msvalidate.01" content="65161AFDF93A706CED3F68C7621C00D7" />
 		<meta
 			name="description"
 			content="<%= htmlWebpackPlugin.options.description %>"
@@ -233,17 +223,21 @@
 			// Set the main colors from the provided customization in the URL We do it
 			// before loading the whole JS bundle to avoid a UI flash. cf. #1786
 			try {
-				let iframeColor = new URLSearchParams(
+				let rawColor = new URLSearchParams(
 					document.location.search.substring(1)
 				).get('couleur')
+				let iframeColor = rawColor && JSON.parse(decodeURIComponent(rawColor))
+
 				if (iframeColor) {
 					;[
 						document.documentElement,
 						...document.querySelectorAll('.js-color-element'),
 					].forEach((element) => {
-						element.style.setProperty('--color', iframeColor)
-						element.style.setProperty('--lightColor', iframeColor)
-						element.style.setProperty('--darkColor', iframeColor)
+						element.style.setProperty('--COLOR_HUE', iframeColor[0])
+						element.style.setProperty(
+							'--COLOR_SATURATION',
+							iframeColor[1] + '%'
+						)
 					})
 				}
 			} catch (e) {
@@ -275,7 +269,7 @@
 			>
 				<img
 					src="images/logo.svg"
-					alt="Logo mon-entreprise.fr"
+					alt="Logo service mon-entreprise urssaf"
 					style="width: 200px; margin-bottom: 2rem"
 				/>
 				<h1>Votre navigateur n'est plus supporté.</h1>

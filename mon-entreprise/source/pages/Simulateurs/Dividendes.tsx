@@ -1,17 +1,20 @@
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
+import { updateSituation } from 'Actions/actions'
+import { HiddenOptionContext } from 'Components/conversation/ChoicesInput'
 import { Condition } from 'Components/EngineValue'
-import { SimulationGoals, SimulationGoal } from 'Components/SimulationGoals'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Notifications from 'Components/Notifications'
 import Simulation from 'Components/Simulation'
+import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
-import { useDispatch } from 'react-redux'
-import { useEngine } from 'Components/utils/EngineContext'
-import { updateSituation } from 'Actions/actions'
-import { HiddenOptionContext } from 'Components/conversation/Question'
 import Warning from 'Components/ui/WarningBlock'
+import { useEngine } from 'Components/utils/EngineContext'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
+import { H3 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { ThemeContext } from 'styled-components'
 
 export default function DividendesSimulation() {
 	return (
@@ -20,15 +23,15 @@ export default function DividendesSimulation() {
 				localStorageKey={'app::simulateurs:warning-folded:v1:dividendes'}
 			>
 				<Trans i18nKey="dividendes.warning">
-					<p>
+					<Body>
 						Cette simulation est uniquement donnée à titre indicatif. Elle ne
 						concerne que les sociétés françaises à l’impôt sur les sociétés
 						(IS), et ne concerne pas les travailleurs indépendants non salariés.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Le montant de l'impôt sur les dividendes est calculé en sus de
 						l’impôt sur les autres revenus imposables.
-					</p>
+					</Body>
 				</Trans>
 			</Warning>
 			<Notifications />
@@ -47,9 +50,7 @@ export default function DividendesSimulation() {
 								justify-content: space-between;
 							}
 						`}
-					>
-						<OptionBarèmeSwitch />
-					</div>
+					></div>
 					<DividendesSimulationGoals />
 				</Simulation>
 			</HiddenOptionContext.Provider>
@@ -61,45 +62,29 @@ function OptionBarèmeSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const dottedName = 'impôt . méthode de calcul' as DottedName
-	const currentOptionPFU = engine.evaluate(dottedName + ' . PFU').nodeValue
-	const currentOptionBarème = engine.evaluate(
-		dottedName + ' . barème standard'
-	).nodeValue
-
+	const currentOptionPFU = engine.evaluate(dottedName).nodeValue as string
 	return (
-		<span className="base ui__ small radio toggle">
-			<label>
-				<input
-					name={dottedName}
-					type="radio"
-					onChange={() => dispatch(updateSituation(dottedName, "'PFU'"))}
-					checked={!!currentOptionPFU}
-				/>
-				<span>
-					<Trans>
-						PFU (<i>"flat tax"</i>)
-					</Trans>
-				</span>
-			</label>
-			<label>
-				<input
-					name={dottedName}
-					type="radio"
-					onChange={() =>
-						dispatch(updateSituation(dottedName, "'barème standard'"))
-					}
-					checked={!!currentOptionBarème}
-				/>
-				<span>
-					<Trans>Impôt au barème</Trans>
-				</span>
-			</label>
-		</span>
+		<ToggleGroup
+			defaultValue={currentOptionPFU}
+			onChange={(value) => dispatch(updateSituation(dottedName, `'${value}'`))}
+		>
+			<Radio value="PFU">
+				<Trans>
+					PFU (<i>"flat tax"</i>)
+				</Trans>
+			</Radio>
+			<Radio value="barème standard">
+				<Trans>Impôt au barème</Trans>
+			</Radio>
+		</ToggleGroup>
 	)
 }
 
 const DividendesSimulationGoals = () => (
-	<SimulationGoals className="plain">
+	<SimulationGoals
+		toggles={<OptionBarèmeSwitch />}
+		legend="Les dividendes de l'entreprise"
+	>
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}
@@ -127,7 +112,7 @@ const DividendesSimulationGoals = () => (
 
 const DividendesExplanation = () => {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 
 	return (
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">
@@ -138,15 +123,11 @@ const DividendesExplanation = () => {
 						align-items: baseline;
 					`}
 				>
-					<h2
-						css={`
-							flex: 1;
-						`}
-					>
+					<H3 as="h2">
 						<Trans i18nKey="payslip.repartition">
 							Répartition du total chargé
 						</Trans>
-					</h2>
+					</H3>
 				</div>
 				<StackedBarChart
 					precision={0.1}
@@ -154,19 +135,19 @@ const DividendesExplanation = () => {
 						{
 							dottedName: "bénéficiaire . dividendes . nets d'impôt",
 							title: t('Dividendes nets'),
-							color: palettes[0][0],
+							color: colors.bases.primary[600],
 						},
 						{
 							dottedName:
 								'impôt . dividendes . montant en sus des autres revenus imposables',
 							title: t('Impôt'),
-							color: palettes[1][0],
+							color: colors.bases.secondary[500],
 						},
 						{
 							dottedName:
 								'bénéficiaire . dividendes . cotisations et contributions',
 							title: t('Cotisations'),
-							color: palettes[1][1],
+							color: colors.bases.secondary[300],
 						},
 					]}
 				/>

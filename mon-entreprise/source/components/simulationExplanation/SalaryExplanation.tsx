@@ -2,11 +2,14 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { FromTop } from 'Components/ui/animate'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
 import { useInversionFail } from 'Components/utils/EngineContext'
+import { H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { ThemeContext } from 'styled-components'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
@@ -28,33 +31,36 @@ export default function SalaryExplanation() {
 			<DistributionSection />
 
 			<section ref={payslipRef}>
-				<h2>
+				<H2>
 					<Trans>Fiche de paie</Trans>
-				</h2>
+				</H2>
 				<PaySlip />
-				<p className="ui__ notice">
+				<SmallBody>
 					<Trans i18nKey="payslip.notice">
 						Le simulateur vous aide à comprendre votre bulletin de paie, sans
 						lui être opposable. Pour plus d&apos;informations, rendez vous
 						sur&nbsp;
-						<a href="https://www.service-public.fr/particuliers/vosdroits/F559">
+						<Link href="https://www.service-public.fr/particuliers/vosdroits/F559">
 							service-public.fr
-						</a>
+						</Link>
 						.
 					</Trans>
-				</p>
-				<p className="ui__ notice">
+				</SmallBody>
+				<SmallBody>
 					<Trans i18nKey="payslip.disclaimer">
 						Il ne prend pour l'instant pas en compte les accords et conventions
 						collectives, ni la myriade d'aides aux entreprises. Trouvez votre
 						convention collective{' '}
-						<a href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
+						<Link href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
 							ici
-						</a>
+						</Link>
 						, et explorez les aides sur&nbsp;
-						<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
+						<Link href="https://www.aides-entreprises.fr">
+							aides-entreprises.fr
+						</Link>
+						.
 					</Trans>
-				</p>
+				</SmallBody>
 			</section>
 		</FromTop>
 	)
@@ -62,7 +68,7 @@ export default function SalaryExplanation() {
 
 function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 
 	return (
 		<section>
@@ -72,7 +78,8 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					align-items: baseline;
 				`}
 			>
-				<h2
+				<H3
+					as="h2"
 					css={`
 						flex: 1;
 					`}
@@ -80,29 +87,26 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					<Trans i18nKey="payslip.repartition">
 						Répartition du total chargé
 					</Trans>
-				</h2>
-				<button
-					className="ui__ small simple button print-display-none"
-					onClick={props.onSeePayslip}
-				>
+				</H3>
+				<Link onPress={props.onSeePayslip}>
 					<Emoji emoji="📊" /> <Trans>Voir la fiche de paie</Trans>
-				</button>
+				</Link>
 			</div>
 			<StackedBarChart
 				data={[
 					{
 						dottedName: 'contrat salarié . rémunération . net après impôt',
 						title: t('Revenu disponible'),
-						color: palettes[0][0],
+						color: colors.bases.primary[600],
 					},
 					{
 						dottedName: 'impôt . montant',
 						title: t('impôt'),
-						color: palettes[1][0],
+						color: colors.bases.secondary[500],
 					},
 					{
 						dottedName: 'contrat salarié . cotisations',
-						color: palettes[1][1],
+						color: colors.bases.secondary[300],
 					},
 				]}
 			/>
@@ -116,17 +120,17 @@ export const DistributionSection = ({
 	children?: React.ReactNode
 }) => (
 	<section>
-		<h2>
+		<H2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
-		</h2>
+		</H2>
 		{children}
-		<p className="ui__ notice">
+		<SmallBody>
 			<Trans>
 				Pour en savoir plus, rendez-vous sur le site{' '}
-				<a href="https://www.aquoiserventlescotisations.urssaf.fr/">
+				<Link href="https://www.aquoiserventlescotisations.urssaf.fr/">
 					aquoiserventlescotisations.urssaf.fr
-				</a>
+				</Link>
 			</Trans>
-		</p>
+		</SmallBody>
 	</section>
 )

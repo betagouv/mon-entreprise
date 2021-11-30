@@ -28,12 +28,7 @@ const useIFrameOffset = () => {
 	return offsetTop
 }
 
-export default function Overlay({
-	onClose,
-	children,
-	className,
-	...otherProps
-}: OverlayProps) {
+export default function Overlay({ onClose, children }: OverlayProps) {
 	useEffect(() => {
 		const body = document.getElementsByTagName('body')[0]
 		body.classList.add('no-scroll')
@@ -55,11 +50,7 @@ export default function Overlay({
 						clickOutsideDeactivates: !!onClose,
 					}}
 				>
-					<div
-						aria-modal="true"
-						className={'ui__ card  ' + className ?? ''}
-						{...otherProps}
-					>
+					<div aria-modal="true">
 						{children}
 						{onClose && (
 							<button
@@ -113,10 +104,13 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 		padding: 0 1rem;
 		text-decoration: none;
 	}
-	.ui__.card[aria-modal='true'] {
+	div[aria-modal='true'] {
 		padding-bottom: 4rem;
 		display: flex;
 		flex-direction: column;
+		background: white;
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+		padding: 2rem !important;
 	}
 	@media (max-width: 600px) {
 		.overlayContent {
@@ -153,7 +147,7 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 			max-width: 40em;
 			min-height: 6em;
 		}
-		.ui__.card[aria-modal='true'] {
+		div[aria-modal='true'] {
 			padding-bottom: 2rem;
 			margin-bottom: 2rem;
 		}

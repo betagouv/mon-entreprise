@@ -1,9 +1,15 @@
 import Value from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { H4, H5 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
-import { ASTNode, formatValue, ParsedRules, reduceAST } from 'publicodes'
-import { RuleNode } from 'publicodes/dist/types/rule'
+import {
+	ASTNode,
+	formatValue,
+	ParsedRules,
+	reduceAST,
+	RuleNode,
+} from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ExplicableRule } from './conversation/Explicable'
@@ -113,25 +119,25 @@ export default function PaySlip() {
 			<SalaireBrutSection />
 			{/* Section cotisations */}
 			<div className="payslip__cotisationsSection">
-				<h4>
+				<H4>
 					<Trans>Cotisations sociales</Trans>
-				</h4>
-				<h4>
+				</H4>
+				<H4>
 					<Trans>Part employeur</Trans>
-				</h4>
-				<h4>
+				</H4>
+				<H4>
 					<Trans>Part salarié</Trans>
-				</h4>
+				</H4>
 				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 					const section = parsedRules[sectionDottedName]
 					return (
 						<Fragment key={section.dottedName}>
-							<h5 className="payslip__cotisationTitle">
+							<H5 className="payslip__cotisationTitle">
 								{section.title}{' '}
-								<em className="ui__ print-display-none">
+								<em className="print-hidden">
 									<ExplicableRule dottedName={section.dottedName} />
 								</em>
-							</h5>
+							</H5>
 							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
 							))}
@@ -220,10 +226,7 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	}
 	return (
 		<>
-			<RuleLink
-				dottedName={dottedName}
-				className="ui__ lighter-bg print-background-force"
-			/>
+			<RuleLink dottedName={dottedName} />
 			<span className="ui__ lighter-bg print-background-force">
 				{partPatronale?.nodeValue
 					? formatValue(partPatronale, { displayedUnit: '€', language })

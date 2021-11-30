@@ -1,15 +1,16 @@
 import { InputProps } from 'Components/conversation/RuleInput'
+import { DateField } from 'DesignSystem/field'
 import { useCallback, useMemo } from 'react'
-import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({
 	suggestions,
 	onChange,
 	missing,
-	id,
+	title,
 	onSubmit,
 	required,
+	autoFocus,
 	value,
 }: InputProps) {
 	const dateValue = useMemo(() => {
@@ -19,11 +20,11 @@ export default function DateInput({
 	}, [value])
 	// const [currentValue, setCurrentValue] = useState(dateValue)
 	const handleDateChange = useCallback(
-		(evt) => {
-			if (!evt.target.value) {
+		(value) => {
+			if (!value) {
 				return onChange(undefined)
 			}
-			const [year, month, day] = evt.target.value.split('-')
+			const [year, month, day] = value.split('-')
 			if (+year < 1700) {
 				return
 			}
@@ -49,21 +50,14 @@ export default function DateInput({
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
 				)}
-				<DateStyledInput
-					className="ui__ input"
-					id={id}
-					type="date"
-					defaultValue={missing ? undefined : dateValue}
-					required={required}
+				<DateField
+					label={title}
+					value={missing ? undefined : dateValue}
+					autoFocus={autoFocus}
+					isRequired={required}
 					onChange={handleDateChange}
 				/>
 			</div>
 		</div>
 	)
 }
-
-const DateStyledInput = styled.input`
-	font-family: 'Roboto', sans-serif;
-	text-transform: uppercase;
-	height: inherit;
-`

@@ -1,4 +1,5 @@
 import { updateUnit } from 'Actions/actions'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
@@ -22,25 +23,21 @@ export default function PeriodSwitch() {
 	]
 	return (
 		<div id="PeriodSwitch">
-			<span className="base ui__ small radio toggle">
+			<ToggleGroup
+				defaultValue={currentUnit}
+				onChange={(unit: string) => dispatch(updateUnit(unit))}
+			>
 				{periods.map(({ label, unit }) => (
-					<label
+					<span
 						key={unit}
-						className={currentUnit !== unit ? 'ui__ print-display-none' : ''}
+						className={currentUnit !== unit ? 'print-hidden' : ''}
 					>
-						<input
-							name="defaultUnit"
-							type="radio"
-							value={unit}
-							onChange={() => dispatch(updateUnit(unit))}
-							checked={currentUnit === unit}
-						/>
-						<span>
+						<Radio value={unit}>
 							<Trans>{label}</Trans>
-						</span>
-					</label>
+						</Radio>
+					</span>
 				))}
-			</span>
+			</ToggleGroup>
 		</div>
 	)
 }

@@ -1,7 +1,10 @@
+import { Link } from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>
@@ -15,30 +18,17 @@ export default function InputSuggestions({
 	onFirstClick,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
-	const { t, i18n } = useTranslation()
-
+	const { t } = useTranslation()
+	if (!suggestions || !Object.keys(suggestions).length) {
+		return null
+	}
 	return (
-		<div
-			className="ui__ notice"
-			css={`
-				display: flex;
-				align-items: baseline;
-				justify-content: flex-end;
-				margin-bottom: 0.4rem;
-			`}
-		>
+		<StyledInputSuggestion>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
-					<button
-						className="ui__ link-button"
+					<Link
 						key={text}
-						css={`
-							margin: 0 0.4rem !important;
-							:first-child {
-								margin-left: 0rem !important;
-							}
-						`}
-						onClick={() => {
+						onPress={() => {
 							onFirstClick(value)
 							if (suggestion !== value) setSuggestion(value)
 							else onSecondClick && onSecondClick(value)
@@ -46,9 +36,17 @@ export default function InputSuggestions({
 						title={t('cliquez pour insérer cette suggestion')}
 					>
 						{text}
-					</button>
+					</Link>
 				)
 			})}
-		</div>
+		</StyledInputSuggestion>
 	)
 }
+
+const StyledInputSuggestion = styled(SmallBody)`
+	display: flex;
+	> * {
+		white-space: nowrap;
+	}
+	gap: ${({ theme }) => theme.spacings.sm};
+`

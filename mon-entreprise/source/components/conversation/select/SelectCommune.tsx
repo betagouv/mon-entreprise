@@ -1,5 +1,6 @@
-import { FromTop } from 'Components/ui/animate'
-import React, { useCallback, useMemo, useState } from 'react'
+import { TextField } from 'DesignSystem/field'
+import { Body } from 'DesignSystem/typography/paragraphs'
+import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '../../../utils'
@@ -76,7 +77,13 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, value, id, missing }: InputProps) {
+export default function Select({
+	onChange,
+	value,
+	id,
+	missing,
+	autoFocus,
+}: InputProps) {
 	const [name, setName] = useState(
 		missing ? '' : formatCommune(value as Commune)
 	)
@@ -140,21 +147,21 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	}, [searchResults, focusedElem, noResult, handleSubmit])
 
 	const handleChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
+		(value: string) => {
 			setFocusedElem(0)
-			setName(e.target.value)
-			if (e.target.value.length < 2) {
+			setName(value)
+			if (value.length < 2) {
 				setSearchResults(null)
 				return
 			}
 			setLoadingState(true)
-			debouncedHandleSearch(e.target.value)
+			debouncedHandleSearch(value)
 		},
 		[debouncedHandleSearch]
 	)
 
 	const handleKeyDown = useCallback(
-		(e: React.KeyboardEvent) => {
+		(e: KeyboardEvent) => {
 			switch (e.key) {
 				case 'ArrowDown':
 				case 'ArrowUp':
@@ -182,92 +189,90 @@ export default function Select({ onChange, value, id, missing }: InputProps) {
 	)
 
 	return (
-		<div>
-			<input
-				role="combobox"
-				type="search"
+		<Container>
+			<TextField
+				/* role="combobox" // FIXME: Need to use a proper combobox component here */
+				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 				id={id}
+				autoFocus={autoFocus}
 				aria-autocomplete="list"
 				onBlur={submitFocusedElem}
 				aria-readonly="true"
-				css={noResult ? 'border-color: firebrick !important' : ''}
-				className="ui__"
 				onKeyDown={handleKeyDown}
 				aria-controls="liste-commune"
-				placeholder={t('Commune ou code postal')}
+				label={t('Commune ou code postal')}
 				value={name}
 				onChange={handleChange}
 			/>
-			{noResult && (
-				<p
-					className="ui__ notice"
-					css={`
-						color: firebrick !important;
-						margin-top: -0.4rem;
-					`}
-				>
-					<Trans>Cette commune n'existe pas</Trans>
-				</p>
-			)}
 
 			{!!searchResults && (
-				<FromTop>
-					<ul
-						role="listbox"
-						aria-expanded="true"
-						id="liste-commune"
-						css={`
-							padding: 0;
-						`}
-					>
-						{searchResults.map((result, i) => {
-							const nom = formatCommune(result)
-							return (
-								<Option
-									onMouseDown={
-										// Prevent input blur and focus elem selection
-										(e) => e.preventDefault()
-									}
-									onClick={() => handleSubmit(result)}
-									role="option"
-									focused={i === focusedElem}
-									data-role="commune-option"
-									key={nom}
-									onFocus={() => setFocusedElem(i)}
-								>
-									{nom}
-								</Option>
-							)
-						})}
-					</ul>
-				</FromTop>
+				<OptionList role="listbox" aria-expanded="true" id="liste-commune">
+					{searchResults.map((result, i) => {
+						const nom = formatCommune(result)
+						return (
+							<Option
+								as="li"
+								onMouseDown={
+									// Prevent input blur and focus elem selection
+									(e: React.MouseEvent) => e.preventDefault()
+								}
+								onClick={() => handleSubmit(result)}
+								role="option"
+								focused={i === focusedElem}
+								data-role="commune-option"
+								key={nom}
+								onFocus={() => setFocusedElem(i)}
+							>
+								{nom}
+							</Option>
+						)
+					})}
+				</OptionList>
 			)}
-		</div>
+		</Container>
 	)
 }
+const FocusedOption = css`
+	background-color: ${({ theme }) =>
+		theme.colors.bases.primary[100]} !important;
+	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
+`
 
-const Option = styled.li<{ focused: boolean }>`
+const Container = styled.div`
+	position: relative;
+`
+
+const OptionList = styled.ul`
+	position: absolute;
+	top: 100%;
+	padding: 0;
+	z-index: 900;
+	background: ${({ theme }) => theme.colors.extended.grey[100]};
+	border-radius: 0.3rem;
+	box-shadow: 0 4px 8px #eee;
+`
+
+const Option = styled(Body)<{
+	focused: boolean
+}>`
 	text-align: left;
 	display: block;
 	color: inherit;
-	background-color: var(--lightestColor) !important;
+	background-color: ${({ theme }) =>
+		theme.colors.extended.grey[100]} !important;
 	width: 100%;
+
 	border-radius: 0.3rem;
+	border: 2px solid transparent;
 	:hover,
 	:focus {
-		background-color: var(--lighterColor) !important;
+		${FocusedOption}
 	}
-	background: white;
 	transition: background-color 0.2s;
 	width: 25rem;
 	max-width: 100%;
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${(props) =>
-		props.focused &&
-		css`
-			background-color: var(--lighterColor) !important;
-			border: 1px solid var(--color) !important;
-		`}
+	${(props) => props.focused && FocusedOption}
 `

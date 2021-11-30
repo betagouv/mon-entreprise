@@ -1,22 +1,18 @@
-import Input from 'Components/conversation/Input'
-import Question, { Choice } from 'Components/conversation/Question'
+import NumberInput from 'Components/conversation/NumberInput'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
-import PercentageField from 'Components/PercentageField'
-import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
-	formatValue,
+	EvaluatedNode,
+	Evaluation,
 	PublicodesExpression,
 	reduceAST,
+	RuleNode,
 } from 'publicodes'
-import { EvaluatedNode, Evaluation } from 'publicodes/dist/types/AST/types'
-import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -28,6 +24,7 @@ type Props<Name extends string = DottedName> = Omit<
 > & {
 	required?: boolean
 	autoFocus?: boolean
+	small?: boolean
 	dottedName: Name
 	onChange: (
 		value: PublicodesExpression | undefined,
@@ -41,9 +38,10 @@ type Props<Name extends string = DottedName> = Omit<
 	// implement this behavior currently
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
-	useSwitch?: boolean
-	isTarget?: boolean
 	onSubmit?: (source: string) => void
+
+	formatOptions?: Intl.NumberFormatOptions
+	displayedUnit?: string
 	modifiers?: Record<string, string>
 }
 
@@ -53,6 +51,7 @@ export type InputProps<Name extends string = string> = Omit<
 > &
 	Pick<RuleNode, 'title' | 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
+		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		missing: boolean
 		onChange: (value: PublicodesExpression | undefined) => void
@@ -70,8 +69,6 @@ export const binaryQuestion = [
 export default function RuleInput({
 	dottedName,
 	onChange,
-	useSwitch = false,
-	isTarget = false,
 	showSuggestions = true,
 	onSubmit = () => null,
 	showDefaultDateValue = false,
@@ -81,7 +78,6 @@ export default function RuleInput({
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
-	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
 	const commonProps: InputProps<DottedName> = {
 		dottedName,
@@ -90,6 +86,8 @@ export default function RuleInput({
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,
+		onSubmit,
+		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
@@ -97,11 +95,9 @@ export default function RuleInput({
 	}
 	if (getVariant(engine.getRule(dottedName))) {
 		return (
-			<Question
+			<MultipleAnswerInput
 				{...commonProps}
-				dottedName={dottedName}
-				onSubmit={onSubmit}
-				choices={buildVariantTree(engine, dottedName)}
+				choice={buildVariantTree(engine, dottedName)}
 			/>
 		)
 	}
@@ -113,18 +109,10 @@ export default function RuleInput({
 		throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
-		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
+		return <SelectAtmp {...commonProps} />
 
 	if (rule.rawNode.type === 'date') {
-		return (
-			<DateInput
-				{...commonProps}
-				value={commonProps.value}
-				onChange={commonProps.onChange}
-				onSubmit={onSubmit}
-				suggestions={commonProps.suggestions}
-			/>
-		)
+		return <DateInput {...commonProps} />
 	}
 
 	if (
@@ -132,54 +120,9 @@ export default function RuleInput({
 		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
-		return useSwitch ? (
-			<ToggleSwitch
-				defaultChecked={value === true}
-				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-					commonProps.onChange(evt.target.checked ? 'oui' : 'non')
-				}
-			/>
-		) : (
-			<Question
-				{...commonProps}
-				dottedName={dottedName}
-				choices={[
-					{ value: 'oui', label: 'Oui' },
-					{ value: 'non', label: 'Non' },
-				]}
-				onSubmit={onSubmit}
-			/>
-		)
+		return <OuiNonInput {...commonProps} />
 	}
 
-	if (evaluation.unit?.numerators.includes('€') && isTarget) {
-		const unité = formatValue(
-			{ nodeValue: value ?? 0, unit: evaluation.unit },
-			{ language }
-		)
-			.replace(/[\d,.]/g, '')
-			.trim()
-
-		return (
-			<>
-				<CurrencyInput
-					className="targetInput"
-					language={language}
-					debounce={750}
-					name={dottedName}
-					{...commonProps}
-					onSubmit={() => {}}
-					onChange={(evt) =>
-						commonProps.onChange({ valeur: evt.target.value, unité })
-					}
-					value={value as number}
-				/>
-			</>
-		)
-	}
-	if (evaluation.unit?.numerators.includes('%') && isTarget) {
-		return <PercentageField {...commonProps} debounce={600} />
-	}
 	if (rule.rawNode.type === 'texte') {
 		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
@@ -190,9 +133,8 @@ export default function RuleInput({
 	}
 
 	return (
-		<Input
+		<NumberInput
 			{...commonProps}
-			onSubmit={onSubmit}
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>

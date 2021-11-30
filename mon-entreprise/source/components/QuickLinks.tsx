@@ -1,4 +1,7 @@
 import { goToQuestion } from 'Actions/actions'
+import { Spacing } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
@@ -8,6 +11,7 @@ import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from 'Selectors/simulationSelectors'
+import styled, { css } from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
@@ -20,7 +24,7 @@ export default function QuickLinks() {
 	const dispatch = useDispatch()
 
 	if (!quickLinks) {
-		return null
+		return <Spacing sm />
 	}
 	const links = pipe(
 		reject((dottedName: DottedName) => contains(dottedName, quickLinksToHide)),
@@ -29,25 +33,33 @@ export default function QuickLinks() {
 	)(quickLinks)
 
 	if (links.length < 1) {
-		return null
+		return <Spacing lg />
 	}
 
 	return (
-		<small>
-			Questions :
+		<StyledLinks>
+			<span>Aller à la question : </span>
 			{links.map(([label, dottedName]) => (
-				<button
+				<Link
 					key={dottedName}
-					className={`ui__ link-button ${
-						dottedName === currentQuestion ? 'active' : ''
-					}`}
-					css="margin: 0 0.4rem !important"
-					onClick={() => dispatch(goToQuestion(dottedName))}
+					css={
+						dottedName === currentQuestion
+							? css`
+									text-decoration: underline;
+							  `
+							: ''
+					}
+					onPress={() => dispatch(goToQuestion(dottedName))}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
-				</button>
-			))}{' '}
-			{/* <button className="ui__ link-button">Voir la liste</button> */}
-		</small>
+				</Link>
+			))}
+		</StyledLinks>
 	)
 }
+
+const StyledLinks = styled(SmallBody)`
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: ${({ theme }) => theme.spacings.sm};
+`

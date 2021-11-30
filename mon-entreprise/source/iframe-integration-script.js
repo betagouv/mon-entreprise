@@ -2,13 +2,17 @@ import { iframeResizer } from 'iframe-resizer'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoFrSvg from 'Images/logo.svg'
 import urssafSvg from 'Images/Urssaf.svg'
+import { hexToHSL } from './hexToHSL'
 
 let script =
 		document.getElementById('script-monentreprise') ||
 		document.getElementById('script-simulateur-embauche'),
 	moduleName = script.dataset.module || 'simulateur-embauche',
 	couleur =
-		script.dataset.couleur && encodeURIComponent(script.dataset.couleur),
+		script.dataset.couleur &&
+		encodeURIComponent(
+			JSON.stringify(hexToHSL(script.dataset.couleur.toUpperCase()))
+		),
 	lang = script.dataset.lang || 'fr',
 	fr = lang === 'fr',
 	baseUrl =

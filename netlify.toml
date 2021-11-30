@@ -9,11 +9,17 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "https://twemoji.maxcdn.com/:splat"
   status = 200
 
-## Temporary redirect requests to the upcoming new domain into the preview deployment
+## Temporary redirect requests the old domain to a old deployment while the two versions co-exists
 [[redirects]]
-  from = "https://mon-entreprise.urssaf.fr/*"
-  to = "https://1788--mon-entreprise.netlify.app/:splat"
+  from = "https://mon-entreprise.fr/*"
+  to = "https://1832--mon-entreprise.netlify.app/:splat"
   status = 200
+
+[[redirects]]
+  from = "https://mycompanyinfrance.fr/*"
+  to = "https://1832-en--mon-entreprise.netlify.app/:splat"
+  status = 200
+
 
 
 [[redirects]]
@@ -106,13 +112,6 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 ############
 # Redirects for single page app config & prerendering purpose
-
-
-# Publicode
-[[redirects]]
-  from = ":SITE_PUBLICODES/*"
-  to = "/publicodes.html"
-  status = 200
 
 
 # Mon-entreprise.fr

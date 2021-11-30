@@ -1,8 +1,15 @@
+import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import { DisableAnimationOnPrintProvider } from 'Components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
+import { GlobalStyle } from 'DesignSystem/global-style'
+import { Container } from 'DesignSystem/layout'
+import DesignSystemThemeProvider from 'DesignSystem/root'
+import { H1 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import 'iframe-resizer'
@@ -118,68 +125,79 @@ export default function Provider({
 	display: none !important;
 }`
 	document.body.appendChild(css)
-	// Note that the iframeColor is first set in the index.html file, but without
-	// the full palette generation that happen here. This is to prevent a UI
-	// flash, cf. #1786.
-	const iframeCouleur = new URLSearchParams(
-		document.location.search.substring(1)
-	).get('couleur')
 
 	return (
-		<ErrorBoundary
-			showDialog
-			fallback={
-				<>
-					<div className="ui__ container">
-						<img
-							src={logo}
-							alt="logo"
-							style={{ maxWidth: '200px', width: '100%', marginTop: '1rem' }}
-						></img>
-						<h1>Une erreur est survenue</h1>
-						<p>
-							L'équipe technique de mon-entreprise.fr a été automatiquement
-							prévenue. Vous pouvez également nous contacter directement à
-							l'adresse{' '}
-							<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-								contact@mon-entreprise.beta.gouv.fr
-							</a>{' '}
-							si vous souhaitez partager une remarque.
-						</p>
-						<p>Veuillez nous excuser pour la gêne occasionnée.</p>
-					</div>
-				</>
-			}
-		>
-			<ReduxProvider store={store}>
-				<ThemeColorsProvider
-					color={iframeCouleur ? decodeURIComponent(iframeCouleur) : undefined}
+		<>
+			<DesignSystemThemeProvider>
+				<GlobalStyle />
+				<ErrorBoundary
+					showDialog
+					fallback={
+						<>
+							<Container>
+								<img
+									src={logo}
+									alt="logo service mon-entreprise urssaf"
+									style={{
+										maxWidth: '200px',
+										width: '100%',
+										marginTop: '1rem',
+									}}
+								></img>
+								<H1>Une erreur est survenue</H1>
+								<Intro>
+									L'équipe technique de mon-entreprise.fr a été automatiquement
+									prévenue.
+								</Intro>
+								<Body>
+									Vous pouvez également nous contacter directement à l'adresse{' '}
+									<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
+										contact@mon-entreprise.beta.gouv.fr
+									</Link>{' '}
+									si vous souhaitez partager une remarque. Veuillez nous excuser
+									pour la gêne occasionnée.
+								</Body>
+							</Container>
+						</>
+					}
 				>
-					<TrackingContext.Provider
-						value={
-							new ATTracker({
-								language: i18next.language as 'fr' | 'en',
-							})
-						}
+					<OverlayProvider
+						css={`
+							flex: 1;
+							display: flex;
+							flex-direction: column;
+						`}
 					>
-						<DisableAnimationOnPrintProvider>
+						<ReduxProvider store={store}>
 							<IsEmbeddedProvider>
-								<SiteNameContext.Provider value={basename}>
-									<SitePathProvider value={sitePaths}>
-										<I18nextProvider i18n={i18next}>
-											<HelmetProvider>
-												<Router history={history}>
-													<>{children}</>
-												</Router>
-											</HelmetProvider>
-										</I18nextProvider>
-									</SitePathProvider>
-								</SiteNameContext.Provider>
+								<ThemeColorsProvider>
+									<TrackingContext.Provider
+										value={
+											new ATTracker({
+												language: i18next.language as 'fr' | 'en',
+											})
+										}
+									>
+										<DisableAnimationOnPrintProvider>
+											<SiteNameContext.Provider value={basename}>
+												<SitePathProvider value={sitePaths}>
+													<I18nextProvider i18n={i18next}>
+														<HelmetProvider>
+															<Router history={history}>
+																<>{children}</>
+															</Router>
+														</HelmetProvider>
+													</I18nextProvider>
+												</SitePathProvider>
+											</SiteNameContext.Provider>
+										</DisableAnimationOnPrintProvider>
+									</TrackingContext.Provider>
+								</ThemeColorsProvider>
 							</IsEmbeddedProvider>
-						</DisableAnimationOnPrintProvider>
-					</TrackingContext.Provider>
-				</ThemeColorsProvider>
-			</ReduxProvider>
-		</ErrorBoundary>
+						</ReduxProvider>
+					</OverlayProvider>
+				</ErrorBoundary>
+			</DesignSystemThemeProvider>
+		</>
 	)
 }

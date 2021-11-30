@@ -1,11 +1,15 @@
+import { Grid } from '@mui/material'
 import { goToQuestion, stepAction, updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import Notifications from 'Components/Notifications'
 import QuickLinks from 'Components/QuickLinks'
-import { FadeIn } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
+import { H3 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -15,9 +19,9 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { TrackPage } from '../../ATInternetTracking'
-import Aide from './Aide'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
+import SeeAnswersButton from './SeeAnswersButton'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -35,25 +39,13 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-	const setDefault = () => dispatch(stepAction(currentQuestion))
+	const goToNextQuestion = () => dispatch(stepAction(currentQuestion))
 
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 
-	const submit = (source: string) => {
-		dispatch(stepAction(currentQuestion, source))
-	}
-
 	const onChange = (value: PublicodesExpression | undefined) => {
 		dispatch(updateSituation(currentQuestion, value))
-	}
-
-	const handleKeyDown = ({ key }: React.KeyboardEvent) => {
-		if (key === 'Escape') {
-			setDefault()
-		} else if (key === 'Enter') {
-			submit('enter')
-		}
 	}
 
 	return currentQuestion ? (
@@ -61,70 +53,74 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			{Object.keys(situation).length !== 0 && (
 				<TrackPage name="simulation commencée" />
 			)}
-			<Aide />
-			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
-				<FadeIn>
-					<div className="step">
-						<h3>
-							{engine.getRule(currentQuestion).rawNode.question}
-							&nbsp;
-							<ExplicableRule dottedName={currentQuestion} />
-						</h3>
-
-						<fieldset>
-							<RuleInput
-								dottedName={currentQuestion}
-								onChange={onChange}
-								key={currentQuestion}
-								onSubmit={submit}
-							/>
-						</fieldset>
-					</div>
-				</FadeIn>
-
-				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 && (
-						<>
-							<button
-								onClick={goToPrevious}
-								className="ui__ simple small push-left button"
-							>
-								← <Trans>Précédent</Trans>
-							</button>
-						</>
-					)}
-					{currentQuestionIsAnswered ? (
-						<button
-							className="ui__ plain small button"
-							onClick={() => submit('accept')}
-						>
-							<span className="text">
-								<Trans>Suivant</Trans> →
-							</span>
-						</button>
-					) : (
-						<button
-							onClick={setDefault}
-							className="ui__ simple small push-right button"
-						>
-							<Trans>Passer</Trans> →
-						</button>
-					)}
+			<form
+				onSubmit={(e) => {
+					e.preventDefault()
+					goToNextQuestion()
+				}}
+			>
+				<div
+					css={`
+						display: inline-flex;
+						align-items: baseline;
+					`}
+				>
+					<H3>
+						{engine.getRule(currentQuestion).rawNode.question}
+						<ExplicableRule light dottedName={currentQuestion} />
+					</H3>
 				</div>
+				<fieldset>
+					<RuleInput
+						dottedName={currentQuestion}
+						onChange={onChange}
+						autoFocus
+						key={currentQuestion}
+						onSubmit={goToNextQuestion}
+					/>
+				</fieldset>
+				<Spacing md />
+				<button aria-hidden className="sr-only" type="submit" tabIndex={-1} />
+				<Grid container spacing={2}>
+					{previousAnswers.length > 0 && (
+						<Grid item xs={6} sm="auto">
+							<Button light onPress={goToPrevious} size="XS">
+								← <Trans>Précédent</Trans>
+							</Button>
+						</Grid>
+					)}
+					<Grid item xs={6} sm="auto">
+						<Button
+							size="XS"
+							onPress={goToNextQuestion}
+							light={!currentQuestionIsAnswered}
+						>
+							{currentQuestionIsAnswered ? (
+								<Trans>Suivant</Trans>
+							) : (
+								<Trans>Passer</Trans>
+							)}{' '}
+							→
+						</Button>
+					</Grid>
+					<Grid container item xs={12} sm justifyContent="flex-end">
+						<SeeAnswersButton />
+					</Grid>
+				</Grid>
 				<Notifications />
-			</div>
+			</form>
 			<QuickLinks />
 		</>
 	) : (
 		<div style={{ textAlign: 'center' }}>
 			<TrackPage name="simulation terminée" />
-			<h3>
+			<H3>
 				<Emoji emoji="🌟" />{' '}
 				<Trans i18nKey="simulation-end.title">
 					Vous avez complété cette simulation
 				</Trans>
-			</h3>
-			<p>
+			</H3>
+			<Body>
 				{customEndMessages ? (
 					customEndMessages
 				) : (
@@ -132,7 +128,9 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						Vous avez maintenant accès à l'estimation la plus précise possible.
 					</Trans>
 				)}
-			</p>
+			</Body>
+			<SeeAnswersButton />
+			<Spacing lg />
 		</div>
 	)
 }

@@ -1,5 +1,7 @@
-const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
-const chargeInputSelector = 'input.currencyInput__input[name$="charges"]'
+const inputSelector =
+	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]:not([aria-labelledby="entreprise . charges-label"])'
+const chargeInputSelector =
+	'input[aria-labelledby="entreprise . charges-label"]'
 const fr = Cypress.env('language') === 'fr'
 
 export const runSimulateurTest = (simulateur) => {
@@ -20,12 +22,12 @@ export const runSimulateurTest = (simulateur) => {
 				cy.wrap($testedInput)
 					.type('{selectall}60111')
 					.and(($i) =>
-						expect($i.val().replace(/[\s,.]/g, '')).to.match(/[1-9][\d]{3,6}$/)
+						expect($i.val().replace(/[\s,.€]/g, '')).to.match(/[1-9][\d]{3,6}$/)
 					)
 				cy.get(inputSelector).each(($input) => {
 					if ($testedInput.get(0) === $input.get(0)) return
 					cy.wrap($input).and(($i) => {
-						const val = $i.val().replace(/[\s,.]/g, '')
+						const val = $i.val().replace(/[\s,.€]/g, '')
 						expect(val).not.to.be.eq('60111')
 						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})
@@ -47,7 +49,7 @@ export const runSimulateurTest = (simulateur) => {
 				.invoke('val')
 				.should('match', /1[\s]000/)
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).first().invoke('val').should('eq', '500')
+				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
 			}
 			cy.contains('Annuel').click()
 		})
@@ -62,7 +64,10 @@ export const runSimulateurTest = (simulateur) => {
 
 		it('should allow to go back to the simulation', function () {
 			cy.contains('← ').click()
-			cy.get(inputSelector).first().invoke('val').should('eq', '2 000')
+			cy.get(inputSelector)
+				.first()
+				.invoke('val')
+				.should('match', /2[\s,]000/)
 		})
 	})
 }

@@ -68,7 +68,7 @@
 }
 
 /* IE */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media not print and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	.payslip__cotisationsSection > h4:nth-child(1),
 	.payslip__cotisationsSection > a,
 	div.payslip__total {

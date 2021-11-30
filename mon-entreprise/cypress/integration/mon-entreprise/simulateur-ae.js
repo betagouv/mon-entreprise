@@ -1,5 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
-const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
+const inputSelector =
+	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
 
 describe('Simulateur auto-entrepreneur', () => {
 	if (!fr) {
@@ -20,7 +21,7 @@ describe('Simulateur auto-entrepreneur', () => {
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).should(($i) => {
-				const val = +$i.val().replace(/[\s,.]/g, '')
+				const val = +$i.val().replace(/[\s,.€]/g, '')
 				expect(val).not.to.be.below(4000)
 			})
 		})

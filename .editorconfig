@@ -23,3 +23,6 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = false
 
+[package.json]
+# it is painful to write scripts with a fixed max_line_length
+max_line_length=0

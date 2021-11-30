@@ -84,7 +84,6 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 		<div id="documentationRuleRoot">
 			{useSubEngine && (
 				<div
-					className="ui__ card notice light-bg"
 					style={{
 						display: 'flex',
 						alignItems: 'baseline',
@@ -115,17 +114,17 @@ export function Rule({ dottedName, language, subEngineId }: RuleProps) {
 			{(rule.nodeValue || rule.unit) && (
 				<>
 					<p
-						className="ui__ lead card light-bg"
 						style={{
-							display: 'inline-block',
-							padding: '1rem',
+							fontSize: '1.25rem',
+							lineHeight: '2rem',
 						}}
 					>
-						{formatValue(simplifyNodeUnit(rule), { language })}
-						<br />
-
+						Valeur : {formatValue(simplifyNodeUnit(rule), { language })}
 						{rule.nodeValue == null && rule.unit && (
-							<small>Unité : {serializeUnit(rule.unit)}</small>
+							<>
+								<br />
+								Unité : {serializeUnit(rule.unit)}
+							</>
 						)}
 					</p>
 				</>

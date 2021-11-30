@@ -1,6 +1,9 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
+import { StyledLegend } from 'Components/charts/PagesCharts'
+import { Strong } from 'DesignSystem/typography'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import {
 	Area,
 	Bar,
@@ -14,6 +17,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
+import { ThemeContext } from 'styled-components'
 
 type Period = 'mois' | 'jours'
 
@@ -64,7 +68,7 @@ export default function VisitsChart({
 	startIndex,
 	endIndex,
 }: VisitsChartProps) {
-	const { darkColor, lightColor, lighterColor } = useContext(ThemeColorsContext)
+	const { colors } = useContext(ThemeContext)
 	if (!data.length) {
 		return null
 	}
@@ -80,7 +84,11 @@ export default function VisitsChart({
 
 	function getColor(i: number): string {
 		if (!colored) {
-			return [lighterColor, lightColor, darkColor][i % 3]
+			return [
+				colors.bases.primary[200],
+				colors.bases.primary[400],
+				colors.bases.primary[600],
+			][i % 3]
 		}
 		return Palette[i % Palette.length]
 	}
@@ -204,19 +212,19 @@ const CustomTooltip = ({
 
 	const data = payload[0].payload
 	return (
-		<p className="ui__ card">
-			<small>
+		<StyledLegend>
+			<Body>
 				{period === 'jours' ? formatDayLong(data.date) : formatMonth(data.date)}
-			</small>
-			<br />
-			{dataKeys.map((key: string) => (
-				<Fragment key={key}>
-					<strong>{formatValue(data[key])}</strong>{' '}
-					{dataKeys.length > 1 && formatLegend(key)}
-					<br />
-				</Fragment>
-			))}
-		</p>
+			</Body>
+			<Ul small>
+				{dataKeys.map((key: string) => (
+					<Li key={key}>
+						<Strong>{formatValue(data[key])}</Strong>{' '}
+						{dataKeys.length > 1 && formatLegend(key)}
+					</Li>
+				))}
+			</Ul>
+		</StyledLegend>
 	)
 }
 

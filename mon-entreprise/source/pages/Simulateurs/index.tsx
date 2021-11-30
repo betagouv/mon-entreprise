@@ -2,9 +2,10 @@ import { useIsEmbedded } from 'Components/utils/embeddedContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { Link, Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import Home from './Home'
 import useSimulatorsData from './metadata'
 import SimulateurPage from './Page'
@@ -40,34 +41,24 @@ export default function Simulateurs() {
 	return (
 		<>
 			<ScrollToTop key={pathname} />
-			{pathname !== sitePaths.simulateurs.index && (
-				<div css="transform: translateY(2rem);">
-					{lastState?.fromGérer && (
-						<Link
-							to={sitePaths.gérer.index}
-							className="ui__ simple small push-left button"
-						>
-							← <Trans>Retour à mon activité</Trans>
-						</Link>
-					)}
-					{lastState?.fromCréer && (
-						<Link
-							to={sitePaths.créer.index}
-							className="ui__ simple small push-left button"
-						>
-							← <Trans>Retour à la création</Trans>
-						</Link>
-					)}
-					{!isEmbedded && (!lastState || lastState?.fromSimulateurs) && (
-						<Link
-							to={sitePaths.simulateurs.index}
-							className="ui__ simple small push-left button print-display-none"
-						>
+
+			{pathname !== sitePaths.simulateurs.index &&
+				(lastState?.fromGérer ? (
+					<Link to={sitePaths.gérer.index}>
+						← <Trans>Retour à mon activité</Trans>
+					</Link>
+				) : lastState?.fromCréer ? (
+					<Link to={sitePaths.créer.index}>
+						← <Trans>Retour à la création</Trans>
+					</Link>
+				) : !isEmbedded ? (
+					(!lastState || lastState?.fromSimulateurs) && (
+						<Link to={sitePaths.simulateurs.index}>
 							← <Trans>Voir les autres simulateurs</Trans>
 						</Link>
-					)}
-				</div>
-			)}
+					)
+				) : null)}
+
 			<Switch>
 				<Route exact path={sitePaths.simulateurs.index} component={Home} />
 				{simulatorRoutes}

@@ -1,7 +1,11 @@
+import { Strong } from 'DesignSystem/typography'
+import { H1, H2, H3, H4, H5, H6 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useEffect } from 'react'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
 
@@ -15,7 +19,10 @@ export function LinkRenderer({
 	href,
 	children,
 	...otherProps
-}: Omit<React.ComponentProps<'a'>, 'ref'>) {
+}: {
+	href?: string
+	children: React.ReactNode
+}) {
 	const siteName = useContext(SiteNameContext)
 
 	if (href && !href.startsWith('http')) {
@@ -51,9 +58,9 @@ export function LinkRenderer({
 	}
 
 	return (
-		<a target="_blank" href={href} {...otherProps}>
+		<Link target="_blank" href={href} {...otherProps}>
 			{children}
-		</a>
+		</Link>
 	)
 }
 const TextRenderer = ({ children }: { children: string }) => (
@@ -104,8 +111,13 @@ export const Markdown = ({
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
+			paragraph: Body,
 			text: TextRenderer,
 			code: CodeBlock,
+			list: Ul,
+			strong: Strong,
+			listItem: Li,
+			heading: Heading,
 			...renderers,
 		}}
 		{...otherProps}
@@ -206,7 +218,21 @@ type HeadingProps = {
 } & React.ComponentProps<'h1'>
 
 function Heading({ level, children, ...otherProps }: HeadingProps) {
-	return React.createElement(`h${level}`, otherProps, children)
+	return React.createElement(
+		level === 1
+			? H1
+			: level === 2
+			? H2
+			: level === 3
+			? H3
+			: level === 4
+			? H4
+			: level === 5
+			? H5
+			: H6,
+		otherProps,
+		children
+	)
 }
 
 // https://stackoverflow.com/a/41164587/1652064

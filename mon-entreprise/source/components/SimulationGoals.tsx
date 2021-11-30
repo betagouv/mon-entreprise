@@ -1,8 +1,9 @@
+import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
-import classnames from 'classnames'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
-import {
+import React, {
 	createContext,
 	useCallback,
 	useContext,
@@ -16,6 +17,7 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
+import styled, { css, ThemeProvider } from 'styled-components'
 import RuleInput, { InputProps } from './conversation/RuleInput'
 import RuleLink from './RuleLink'
 import { Appear } from './ui/animate'
@@ -24,47 +26,94 @@ import { useEngine } from './utils/EngineContext'
 
 type SimulationGoalsProps = {
 	className?: string
+	legend: string
+	publique?:
+		| 'employeur'
+		| 'particulier'
+		| 'artisteAuteur'
+		| 'independant'
+		| 'marin'
 	children: React.ReactNode
+	toggles?: React.ReactNode
 }
 
 const InitialRenderContext = createContext(true)
 
 export function SimulationGoals({
-	className = '',
+	publique,
+	legend,
+	toggles,
 	children,
 }: SimulationGoalsProps) {
 	const [initialRender, setInitialRender] = useState(true)
 	useEffect(() => {
 		setInitialRender(false)
 	}, [])
+	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
-			<section
-				className={`ui__ card ${className}`}
-				style={{ marginTop: '0.6rem' }}
+			{toggles && <ToggleSection>{toggles}</ToggleSection>}
+			<StyledSimulationGoals
+				isFirstStepCompleted={isFirstStepCompleted}
+				publique={publique}
+				role="group"
+				aria-labelledby="simulator-legend"
 			>
-				<div id="targetSelection">
-					<ul className="targets">{children}</ul>
-				</div>
-			</section>
+				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+					<div className="sr-only" id="simulator-legend">
+						{legend}
+					</div>
+					{children}
+				</ThemeProvider>
+			</StyledSimulationGoals>
 		</InitialRenderContext.Provider>
 	)
 }
 
+const ToggleSection = styled.div`
+	padding-bottom: ${({ theme }) => theme.spacings.sm};
+`
+
+const StyledSimulationGoals = styled.div<
+	Pick<SimulationGoalsProps, 'publique'> & { isFirstStepCompleted: boolean }
+>`
+	z-index: 1;
+	position: relative;
+	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	${({ isFirstStepCompleted }) =>
+		isFirstStepCompleted &&
+		css`
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		`}
+	transition: border-radius 0.15s;
+	background: ${({ theme, publique }) => {
+		const colorPalette = publique
+			? theme.colors.publics[publique]
+			: theme.colors.bases.primary
+		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
+	}};
+`
+
 function useInitialRender() {
 	const initialRender = useContext(InitialRenderContext)
+	// We use meme to prevent renders after the first one. That's why we disable
+	// the rule on the next line
+	// eslint-disable-next-line
 	const unChangedInitialRender = useMemo(() => initialRender, [])
 	return unChangedInitialRender
 }
 
 type SimulationGoalProps = {
 	dottedName: DottedName
-	labelWithQuestion?: boolean
+	label?: React.ReactNode
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
-	boolean?: boolean
+	isTypeBoolean?: boolean
+
 	alwaysShow?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
@@ -74,13 +123,13 @@ type SimulationGoalProps = {
 
 export function SimulationGoal({
 	dottedName,
-	labelWithQuestion = false,
+	label,
 	small = false,
 	onUpdateSituation,
 	appear = true,
 	alwaysShow = false,
 	editable = true,
-	boolean = false, //TODO : remove when type inference works in publicodes
+	isTypeBoolean = false, //TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -89,12 +138,11 @@ export function SimulationGoal({
 	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		...(!boolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
+		...(!isTypeBoolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
 	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
-	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const onChange = useCallback(
 		(x) => {
 			dispatch(updateSituation(dottedName, x))
@@ -111,8 +159,6 @@ export function SimulationGoal({
 	) {
 		return null
 	}
-	const displayAsInput =
-		!isFirstStepCompleted || isFocused || dottedName in situation
 	if (
 		small &&
 		!editable &&
@@ -121,63 +167,87 @@ export function SimulationGoal({
 		return null
 	}
 	return (
-		<li className={small ? 'small-target' : ''}>
-			<Appear unless={!appear || initialRender}>
-				<div className="main">
-					<div className="header">
-						<label htmlFor={dottedName}>
-							<span className="optionTitle">
-								{(labelWithQuestion && rule.rawNode.question) || (
-									<RuleLink dottedName={dottedName} />
-								)}
-							</span>
-							{!small && <p className="ui__ notice">{rule.rawNode.résumé}</p>}
-						</label>
-					</div>
-					{small && <span className="guide-lecture" />}
-					<div className="targetInputOrValue">
-						{editable ? (
+		<Appear unless={!appear || initialRender}>
+			<StyledGoal>
+				<Grid
+					container
+					alignItems="baseline"
+					spacing={2}
+					justifyContent="space-between"
+				>
+					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
+						<StyledGoalHeader>
+							<RuleLink dottedName={dottedName}>{label}</RuleLink>
+
+							<SmallBody
+								css={`
+									margin-bottom: 0;
+								`}
+								className={small ? 'sr-only' : ''}
+								id={`${dottedName}-description`}
+							>
+								{rule.rawNode.résumé}
+							</SmallBody>
+						</StyledGoalHeader>
+					</Grid>
+					<Grid
+						item
+						md
+						sx={{ display: { sm: 'none', xs: 'none', md: 'block' } }}
+					>
+						<StyledGuideLecture small={small} />
+					</Grid>
+					{editable ? (
+						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
+							{!isFocused && !small && (
+								<AnimatedTargetValue value={evaluation.nodeValue as number} />
+							)}
 							<RuleInput
-								className={classnames(
-									displayAsInput ? 'targetInput' : 'editableTarget',
-									{ focused: isFocused }
-								)}
-								isTarget
 								modifiers={
-									!boolean
+									!isTypeBoolean
 										? {
 												unité: currentUnit,
 												arrondi: 'oui',
 										  }
 										: undefined
 								}
+								aria-labelledby={`${dottedName}-label`}
+								aria-describedby={`${dottedName}-description`}
+								displayedUnit=""
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
 								onChange={onChange}
-								useSwitch
+								small={small}
+								formatOptions={{
+									maximumFractionDigits: 0,
+								}}
 							/>
-						) : (
-							<RuleLink
-								dottedName={dottedName}
-								css={`
-										padding-right: 0.6rem
-										&:not(:hover) {
-											text-decoration: none;
-										}
-									`}
-							>
+						</Grid>
+					) : (
+						<Grid item>
+							<RuleLink dottedName={dottedName} excludeFromTabOrder>
 								{formatValue(evaluation, { displayedUnit: '€' })}
 							</RuleLink>
-						)}
-						{!isFocused && !small && (
-							<span style={{ position: 'relative', top: '-1rem' }}>
-								<AnimatedTargetValue value={evaluation.nodeValue as number} />
-							</span>
-						)}
-					</div>
-				</div>
-			</Appear>
-		</li>
+						</Grid>
+					)}
+				</Grid>
+			</StyledGoal>
+		</Appear>
 	)
 }
+const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
+	small: boolean
+}>`
+	border-bottom: 1px dashed ${({ theme }) => theme.colors.extended.grey[100]};
+	align-self: baseline;
+	opacity: 50%;
+	flex: 1;
+`
+const StyledGoalHeader = styled.div``
+
+const StyledGoal = styled.div`
+	position: relative;
+	z-index: 1;
+	padding: ${({ theme }) => theme.spacings.sm} 0;
+`

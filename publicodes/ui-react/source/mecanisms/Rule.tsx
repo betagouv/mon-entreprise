@@ -10,10 +10,10 @@ export default function RuleMecanism({
 }) {
 	return (
 		<Styled>
-			<span className="ui__ small label">
-				{capitalise0(virtualRule ? rawNode.nom : title)}
-			</span>
-			<Explanation node={explanation.valeur} />
+			<small>{capitalise0(virtualRule ? rawNode.nom : title)}</small>
+			<StyledExplanation>
+				<Explanation node={explanation.valeur} />
+			</StyledExplanation>
 		</Styled>
 	)
 }
@@ -21,14 +21,27 @@ export default function RuleMecanism({
 const Styled = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
-	padding-top: 0rem;
+
+	border-top-left-radius: 3px;
 	margin: 1rem 0;
-	border: 1px solid var(--darkColor);
-	border-radius: 3px;
-	> .label {
-		margin: 0 -1rem;
-		margin-bottom: 1rem;
-		border-radius: 0rem;
+	> small {
+		align-self: flex-start;
+		padding: 0.125rem 0.5rem;
+		border: 1px solid #18457b;
+		border-bottom: none;
+		position: relative;
+		color: #18457b;
+		border-top-right-radius: 3px;
+		border-top-left-radius: 3px;
+		background-color: white;
 	}
+`
+
+// const StyledTitle = styled.small`
+
+// `
+
+const StyledExplanation = styled.div`
+	border: 1px solid #18457b;
+	padding: 1rem;
 `

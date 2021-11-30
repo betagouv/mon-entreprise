@@ -17,7 +17,6 @@
 
 .distribution-chart__bar {
 	border-radius: 0.4em;
-	background-color: var(--color);
 
 	min-height: 1.5rem;
 }
@@ -33,10 +32,15 @@
 }
 
 .distribution-chart__counterparts {
-	width: 28em;
+	width: 35em;
 }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
+	.distribution-chart__legend {
+		padding: 0;
+		margin-bottom: -1.25rem;
+		transform: scale(0.8);
+	}
 	.distribution-chart__item {
 		flex-direction: column;
 		align-items: stretch;
@@ -66,11 +70,6 @@
 
 	.distribution-chart__branche-name {
 		font-size: inherit !important;
-	}
-}
-@media print {
-	.distribution-chart__bar {
-		box-shadow: inset 0 0 0 1000px var(--color);
 	}
 }
 
@@ -114,7 +113,7 @@
 }
 
 /* IE11 Special */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media not print and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	.distribution-chart__total > * {
 		margin: 8px;
 	}

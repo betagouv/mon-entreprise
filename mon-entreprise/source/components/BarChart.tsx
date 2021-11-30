@@ -1,8 +1,11 @@
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { Spacing } from 'DesignSystem/layout'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
+import styled, { ThemeContext } from 'styled-components'
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import Emoji from './utils/Emoji'
 
@@ -21,7 +24,11 @@ function ChartItemBar({
 }: ChartItemBarProps) {
 	const language = useTranslation().i18n.language
 	const disableAnimation = useContext(DisableAnimationContext)
-
+	const {
+		colors: {
+			bases: { primary },
+		},
+	} = useContext(ThemeContext)
 	const style = useSpring({
 		config: config.slow,
 		delay: 100,
@@ -34,31 +41,33 @@ function ChartItemBar({
 		<div className="distribution-chart__bar-container ">
 			{disableAnimation ? (
 				<div
-					className="distribution-chart__bar ui__ print-background-force"
+					className="distribution-chart__bar print-background-force"
+					css={{ backgroundColor: primary[600] }}
 					style={{ flex: percentage }}
 				/>
 			) : (
 				<animated.div
-					className="distribution-chart__bar ui__ print-background-force"
+					className="distribution-chart__bar print-background-force"
+					css={{ backgroundColor: primary[600] }}
 					style={style}
 				/>
 			)}
-			<div
-				css={`
-					font-weight: bold;
-					margin-left: 1rem;
-					color: var(--textColorOnWhite);
-				`}
-			>
+			<Value>
 				{formatValue(numberToPlot, {
 					displayedUnit: unit,
 					precision: 0,
 					language,
 				})}
-			</div>
+			</Value>
 		</div>
 	)
 }
+
+const Value = styled.div`
+	font-weight: bold;
+	margin-left: 1rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+`
 
 function BranchIcon({ icon }: { icon: string }) {
 	return (
@@ -137,11 +146,18 @@ function InnerBarChartBranch({
 		<div className="distribution-chart__item">
 			{icon && <BranchIcon icon={icon} />}
 			<div className="distribution-chart__item-content">
-				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">{title}</span>
-					<br />
-					{description && <small>{description}</small>}
-				</p>
+				<div className="distribution-chart__counterparts">
+					<Body
+						as="h3"
+						css={`
+							margin-bottom: 0;
+						`}
+					>
+						{title}
+					</Body>
+					{description && <SmallBody>{description}</SmallBody>}
+				</div>
+				<Spacing md />
 				<ChartItemBar
 					display={display}
 					numberToPlot={value}

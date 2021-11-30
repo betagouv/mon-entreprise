@@ -9,19 +9,20 @@ import IndépendantExplanation from 'Components/simulationExplanation/Indépenda
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export function IndépendantPLSimulation() {
 	return (
 		<>
 			<SimulateurWarning simulateur="profession-libérale" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<PeriodSwitch />
-				<IndépendantSimulationGoals />
+				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
 			</Simulation>
 		</>
 	)
@@ -32,8 +33,7 @@ export function EntrepriseIndividuelle() {
 		<>
 			<SimulateurWarning simulateur="entreprise-individuelle" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<PeriodSwitch />
-				<IndépendantSimulationGoals />
+				<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
 			</Simulation>
 		</>
 	)
@@ -45,24 +45,15 @@ export default function IndépendantSimulation() {
 		<>
 			<SimulateurWarning simulateur="indépendant" />
 			<Simulation explanations={<IndépendantExplanation />}>
-				<div
-					css={`
-						display: flex;
-						flex-wrap: wrap-reverse;
-						> * {
-							margin-top: 0.6rem;
-						}
-						justify-content: center;
-
-						@media (min-width: 590px) {
-							justify-content: space-between;
-						}
-					`}
-				>
-					<ImpositionSwitch />
-					<PeriodSwitch />
-				</div>
-				<IndépendantSimulationGoals />
+				<IndépendantSimulationGoals
+					legend="Vos revenus d'indépendant"
+					toggles={
+						<StyledToggleContainer>
+							<ImpositionSwitch />
+							<PeriodSwitch />
+						</StyledToggleContainer>
+					}
+				/>
 				<Banner icon={'✍️'}>
 					<Trans i18nKey="aide-déclaration-indépendant.banner">
 						Découvrez notre outil d'
@@ -75,9 +66,25 @@ export default function IndépendantSimulation() {
 		</>
 	)
 }
-function IndépendantSimulationGoals() {
+const StyledToggleContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap-reverse;
+	gap: ${({ theme }) => theme.spacings.md};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		justify-content: center;
+	}
+`
+
+function IndépendantSimulationGoals({
+	toggles = <PeriodSwitch />,
+	legend,
+}: {
+	toggles?: React.ReactNode
+	legend: string
+}) {
 	return (
-		<SimulationGoals className="plain">
+		<SimulationGoals toggles={toggles} legend={legend}>
 			<Condition expression="entreprise . imposition = 'IR'">
 				<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 					<SimulationGoal
@@ -132,34 +139,26 @@ function ImpositionSwitch() {
 	const currentImposition = engine.evaluate('entreprise . imposition').nodeValue
 
 	return (
-		<span className="base ui__ small radio toggle">
+		<ToggleGroup
+			defaultValue={currentImposition as string}
+			onChange={(imposition) =>
+				dispatch(updateSituation('entreprise . imposition', `'${imposition}'`))
+			}
+		>
 			{(['IR', 'IS'] as const).map((imposition) => (
-				<label
+				<span
 					key={imposition}
-					className={
-						currentImposition !== imposition ? 'ui__ print-display-none' : ''
-					}
+					className={currentImposition !== imposition ? 'print-hidden' : ''}
 				>
-					<input
-						name="entreprise . imposition"
-						type="radio"
-						value={imposition}
-						onChange={() =>
-							dispatch(
-								updateSituation('entreprise . imposition', `'${imposition}'`)
-							)
-						}
-						checked={currentImposition === imposition}
-					/>
-					<span>
+					<Radio value={imposition}>
 						{
 							engine.getRule(
 								`entreprise . imposition . ${imposition}` as DottedName
 							).title
 						}
-					</span>
-				</label>
+					</Radio>
+				</span>
 			))}
-		</span>
+		</ToggleGroup>
 	)
 }

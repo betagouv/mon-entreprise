@@ -1380,9 +1380,6 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   question: Quel est le salaire en équivalent temps plein ?
   unité: €/mois
   formule: brut de base / temps de travail . quotité de travail
-  suggestions:
-    salaire médian: 2300 €/mois
-    SMIC: SMIC temps plein
 
 contrat salarié . rémunération . taux horaire:
   unité: €/heure

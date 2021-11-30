@@ -1,15 +1,15 @@
 import RuleLink from 'Components/RuleLink'
-import SimulateurWarning from 'Components/SimulateurWarning'
-import Simulation from 'Components/Simulation'
-import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
-import AideDéclarationIndépendant from '../Gérer/AideDéclarationIndépendant'
-import FormulaireMobilitéIndépendant from '../Gérer/DemandeMobilite'
+import AideDéclarationIndépendant from '../Gerer/AideDéclarationIndépendant'
+import FormulaireMobilitéIndépendant from '../Gerer/DemandeMobilite'
 import AidesEmbauche from './AidesEmbauche'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
@@ -22,6 +22,7 @@ import indépendantConfig from './configs/indépendant.yaml'
 import professionLibéraleConfig from './configs/profession-libérale.yaml'
 import salariéConfig from './configs/salarié.yaml'
 import DividendesSimulation from './Dividendes'
+import ÉconomieCollaborative from './EconomieCollaborative'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
@@ -38,8 +39,8 @@ import IndépendantSimulation, {
 import getData from './metadata-src.js'
 import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
+import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
-import ÉconomieCollaborative from './ÉconomieCollaborative'
 
 const simulateurs = [
 	'salarié',
@@ -123,22 +124,22 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs.salarié,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.salarié.seo">
-					<h2>Comment calculer le salaire net ?</h2>
-					<p>
+					<H2>Comment calculer le salaire net ?</H2>
+					<Body>
 						Lors de l'entretien d'embauche l'employeur propose en général une
 						rémunération exprimée en « brut ». Le montant annoncé inclut ainsi
 						les cotisations salariales, qui servent à financer la protection
 						sociale du salarié et qui sont retranchées du salaire « net » perçu
 						par le salarié.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Vous pouvez utiliser notre simulateur pour convertir le{' '}
 						<strong>salaire brut en net</strong> : il vous suffit pour cela
 						saisir la rémunération annoncée dans la case salaire brut. La
 						simulation peut-être affinée en répondant aux différentes questions
 						(CDD, statut cadre, heures supplémentaires, temps partiel,
 						titre-restaurants, etc.).
-					</p>
+					</Body>
 					<img
 						src={
 							language === 'fr'
@@ -153,7 +154,7 @@ export function getSimulatorsData({
 							width: 100%;
 						`}
 					/>
-					<p>
+					<Body>
 						Par ailleurs depuis 2019, l'
 						<RuleLink dottedName="impôt">impôt sur le revenu</RuleLink> est
 						prélevé à la source. Pour ce faire, la direction générale des
@@ -165,32 +166,32 @@ export function getSimulatorsData({
 							taux neutre
 						</RuleLink>
 						.
-					</p>
-					<h2>Comment calculer le coût d'embauche ?</h2>
-					<p>
+					</Body>
+					<H2>Comment calculer le coût d'embauche ?</H2>
+					<Body>
 						Si vous cherchez à embaucher, vous pouvez calculer le coût total de
 						la rémunération de votre salarié, ainsi que les montants de
 						cotisations patronales et salariales correspondant. Cela vous permet
 						de définir le niveau de rémunération en connaissant le montant
 						global de charge que cela représente pour votre entreprise.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						En plus du salaire, notre simulateur prend en compte le calcul des
 						avantages en nature (téléphone, véhicule de fonction, etc.), ainsi
 						que la mutuelle santé obligatoire.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Il existe des{' '}
 						<RuleLink dottedName="contrat salarié . aides employeur">
 							aides différées
 						</RuleLink>{' '}
 						à l'embauche qui ne sont pas toutes prises en compte par notre
 						simulateur, vous pouvez les retrouver sur{' '}
-						<a href="http://www.aides-entreprises.fr" target="_blank">
+						<Link href="http://www.aides-entreprises.fr">
 							le portail officiel
-						</a>
+						</Link>
 						.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['chômage-partiel', 'aides-embauche'],
@@ -206,32 +207,32 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs['entreprise-individuelle'],
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
-					<h2>
+					<H2>
 						Comment calculer le revenu net d'un dirigeant d'entreprise
 						individuelle (EI) ?
-					</h2>
-					<p>
+					</H2>
+					<Body>
 						Un dirigeant d'entreprise individuelle doit payer des cotisations et
 						contributions sociales à l'administration. Ces cotisations servent
 						au financement de la sécurité sociale, et ouvrent des droits
 						notamment pour la retraite et pour l'assurance maladie. Elles
 						permettent également de financer la formation professionnelle.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						<Emoji emoji="👉" />{' '}
 						<RuleLink dottedName="dirigeant . indépendant . cotisations et contributions">
 							Voir le détail du calcul des cotisations
 						</RuleLink>
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Il ne faut pas oublier de retrancher toutes les dépenses effectuées
 						dans le cadre de l'activité professionnelle (équipements, matières
 						premières, local, transport). Ces dernières sont déductibles du
 						résultat de l'entreprise, cela veut dire que vous ne payerez pas
 						d'impôt ou de cotisations sur leur montant (sauf si vous avez opté
 						pour l'option micro-fiscal).
-					</p>
-					<p>
+					</Body>
+					<Body>
 						La formule de calcul complète est donc :
 						<blockquote>
 							<strong>
@@ -239,12 +240,12 @@ export function getSimulatorsData({
 								Cotisations sociales
 							</strong>
 						</blockquote>
-					</p>
-					<h2>
+					</Body>
+					<H2>
 						Comment calculer les cotisations sociales d'une entreprise
 						individuelle ?
-					</h2>
-					<p>
+					</H2>
+					<Body>
 						Le dirigeant d'une entreprise individuelle paye des cotisations
 						sociales, proportionnelle au{' '}
 						<RuleLink dottedName="entreprise . résultat fiscal">
@@ -253,20 +254,20 @@ export function getSimulatorsData({
 						de l'entreprise. Leur montant varie également en fonction du type
 						d'activité (profession libérale, artisan, commerçants, etc), où des
 						éventuelles exonérations accordées (ACRE, ZFU, RSA, etc.).
-					</p>
-					<p>
+					</Body>
+					<Body>
 						{' '}
 						Comme le résultat d'une entreprise n'est connu qu'à la fin de
 						l'exercice comptable, le dirigeant paye des cotisations
 						provisionnelles qui seront ensuite régularisée une fois le revenu
 						réel déclaré, l'année suivante.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Ce simulateur permet de calculer le montant exact des cotisations
 						sociale en partant d'un chiffre d'affaires ou d'un revenu net
 						souhaité. Vous pourrez préciser votre situation en répondant aux
 						questions s'affichant en dessous de la simulation.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['comparaison-statuts'],
@@ -290,26 +291,19 @@ export function getSimulatorsData({
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.sasu,
-			component: function SasuSimulation() {
-				return (
-					<>
-						<SimulateurWarning simulateur="sasu" />
-						<Simulation explanations={<SalaryExplanation />} />
-					</>
-				)
-			},
+			component: SASUSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-					<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
-					<p>
+					<H2>Comment calculer le salaire d'un dirigeant de SASU ? </H2>
+					<Body>
 						Comme pour un salarié classique, le{' '}
 						<strong>dirigeant de sasu</strong> paye des cotisations sociales sur
 						la rémunération qu'il se verse. Les cotisations sont calculées de la
 						même manière que pour le salarié : elles sont décomposées en partie
 						employeur et partie salarié et sont exprimées comme un pourcentage
 						du salaire brut.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Le dirigeant assimilé-salarié ne paye pas de{' '}
 						<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie
 						pas de la{' '}
@@ -321,22 +315,22 @@ export function getSimulatorsData({
 							heures supplémentaires
 						</RuleLink>{' '}
 						ou les primes.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Il peut en revanche prétendre à la{' '}
 						<RuleLink dottedName="dirigeant . assimilé salarié . réduction ACRE">
 							réduction ACRE
 						</RuleLink>{' '}
 						en debut d'activité, sous certaines conditions.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Vous pouvez utiliser notre simulateur pour calculer la{' '}
 						<strong>rémunération nette</strong> à partir d'un montant superbrut
 						alloué à la rémunération du dirigeant. Il vous suffit pour cela
 						saisir le montant total alloué dans la case "total chargé". La
 						simulation peut ensuite être affinée en répondant aux différentes
 						questions.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['is', 'comparaison-statuts'],
@@ -390,30 +384,30 @@ export function getSimulatorsData({
 			),
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
-					<h2>Comment calculer le revenu net d'un auto-entrepreneur ?</h2>
-					<p>
+					<H2>Comment calculer le revenu net d'un auto-entrepreneur ?</H2>
+					<Body>
 						Un auto-entrepreneur doit payer des cotisations et contributions
 						sociales à l'administration. Ces cotisations servent au financement
 						de la sécurité sociale, et ouvrent des droits notamment pour la
 						retraite et pour l'assurance maladie. Elles permettent également de
 						financer la formation professionnelle. Leur montant varie en
 						fonction du type d'activité.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						<Emoji emoji="👉" />{' '}
 						<RuleLink dottedName="dirigeant . auto-entrepreneur . cotisations et contributions">
 							Voir le détail du calcul des cotisations
 						</RuleLink>
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Il ne faut pas oublier de retrancher toutes les dépenses effectuées
 						dans le cadre de l'activité professionnelle (équipements, matières
 						premières, local, transport). Bien qu'elles ne soient pas utilisées
 						pour le calcul des cotisations et de l'impôt, elles doivent être
 						prises en compte pour vérifier si l'activité est viable
 						économiquement.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						La formule de calcul complète est donc :
 						<blockquote>
 							<strong>
@@ -421,36 +415,36 @@ export function getSimulatorsData({
 								Dépenses professionnelles
 							</strong>
 						</blockquote>
-					</p>
-					<h2>
+					</Body>
+					<H2>
 						Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?
-					</h2>
-					<p>
+					</H2>
+					<Body>
 						Si vous avez opté pour le versement libératoire lors de la création
 						de votre auto-entreprise, l'impôt sur le revenu est payé en même
 						temps que les cotisations sociales.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						<Emoji emoji="👉" />{' '}
 						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . versement libératoire . montant">
 							Voir comment est calculé le montant du versement libératoire
 						</RuleLink>
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Sinon, vous serez imposé selon le barème standard de l'impôt sur le
 						revenu. Le revenu imposable est alors calculé comme un pourcentage
 						du chiffre d'affaires. C'est qu'on appel l'abattement forfaitaire.
 						Ce pourcentage varie en fonction du type d'activité excercé. On dit
 						qu'il est forfaitaire car il ne prends pas en compte les dépenses
 						réelles effectuées dans le cadre de l'activité.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						<Emoji emoji="👉" />{' '}
 						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . revenu imposable">
 							Voir le détail du calcul du revenu abattu pour un
 							auto-entrepreneur
 						</RuleLink>
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['indépendant', 'comparaison-statuts'],
@@ -484,29 +478,29 @@ export function getSimulatorsData({
 			},
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
-					<h2>Comment calculer l'indemnité d'activité partielle ?</h2>
-					<p>
+					<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
+					<Body>
 						L'indemnité d'activité partielle de base est fixée par la loi à{' '}
 						<strong>70% du brut</strong>. Elle est proratisée en fonction du
 						nombre d'heures chômées. Pour un salarié à 2300 € brut mensuel, qui
 						travaille à 50% de son temps usuel, cela donne{' '}
 						<strong>2300 € × 50% × 70% = 805 €</strong>
-					</p>
-					<p>
+					</Body>
+					<Body>
 						A cette indemnité de base s'ajoute l'indemnité complémentaire pour
 						les salaires proches du SMIC. Ce complément intervient lorsque le
 						cumul de la rémunération et de l'indemnité de base est en dessous
 						d'un SMIC net. Ces indemnités sont prises en charge par l'employeur,
 						qui sera ensuite remboursé en parti ou en totalité par l'État.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						👉{' '}
 						<RuleLink dottedName="contrat salarié . activité partielle . indemnités">
 							Voir le détail du calcul de l'indemnité
 						</RuleLink>
-					</p>
-					<h2>Comment calculer la part remboursée par l'État ?</h2>
-					<p>
+					</Body>
+					<H2>Comment calculer la part remboursée par l'État ?</H2>
+					<Body>
 						L'État prend en charge une partie de l'indemnité partielle pour les
 						salaires allant jusqu'à <strong>4,5 SMIC</strong>, avec un minimum à
 						8,03€ par heures chômée. Concrètement, cela abouti à une prise en
@@ -515,15 +509,15 @@ export function getSimulatorsData({
 						<strong>93%</strong> pour les salaires compris{' '}
 						<strong>entre 2000 € et 7000 €</strong> (salaire correspondant à la
 						limite de 4,5 SMIC).
-					</p>
-					<p>
+					</Body>
+					<Body>
 						👉{' '}
 						<RuleLink dottedName="contrat salarié . activité partielle . indemnisation entreprise">
 							Voir le détail du calcul du remboursement de l'indemnité
 						</RuleLink>
-					</p>
-					<h2>Comment déclarer une activité partielle ?</h2>
-					<p>
+					</Body>
+					<H2>Comment déclarer une activité partielle ?</H2>
+					<Body>
 						Face à la crise du coronavirus, les modalités de passage en activité
 						partielle ont été allégées. L'employeur est autorisé a placer ses
 						salariés en activité partielle avant que la demande officielle ne
@@ -531,19 +525,19 @@ export function getSimulatorsData({
 						<strong>30 jours</strong> pour se mettre en règle. Les indemnités
 						seront versées avec un effet rétro-actif débutant à la mise en place
 						du chômage partiel.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						👉{' '}
 						<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001">
 							Effectuer la demande de chômage partiel
 						</a>
-					</p>
-					<h2>
+					</Body>
+					<H2>
 						{' '}
 						Quelles sont les cotisations sociales à payer pour l'indemnité
 						d'activité partielle ?
-					</h2>
-					<p>
+					</H2>
+					<Body>
 						L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
 						contribution maladie dans certains cas. Pour en savoir plus, voir la
 						page explicative sur{' '}
@@ -551,7 +545,7 @@ export function getSimulatorsData({
 							le site de l'Urssaf
 						</a>
 						.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['salarié', 'aides-embauche'],
@@ -597,7 +591,6 @@ export function getSimulatorsData({
 				...pureSimulatorsData['demande-mobilité'].meta,
 			},
 			path: sitePaths.gérer.formulaireMobilité,
-			private: true,
 		},
 		pharmacien: {
 			...pureSimulatorsData['pharmacien'],
@@ -701,30 +694,29 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs['aides-embauche'],
 			// Cette description est surchargé car elle contient ici du JSX
 			description: (
-				<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
-					<p>
-						<a
-							href="https://www.gouvernement.fr/france-relance"
-							title="Aller sur le site France Relance"
-							target="_blank"
-						>
-							<img
-								src={logoFranceRelance}
-								alt="Logo France Relance"
-								style={{
-									width: '120px',
-									marginBottom: '1rem',
-									marginLeft: '1rem',
-									float: 'right',
-								}}
-							/>
-						</a>
+				<Body>
+					<Link
+						href="https://www.gouvernement.fr/france-relance"
+						title="Aller sur le site France Relance"
+					>
+						<img
+							src={logoFranceRelance}
+							alt="Logo France Relance"
+							style={{
+								width: '120px',
+								marginBottom: '1rem',
+								marginLeft: '1rem',
+								float: 'right',
+							}}
+						/>
+					</Link>
+					<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
 						Les employeurs peuvent bénéficier d'une aide financière pour
 						l'embauche de certains publics prioritaires. Découvrez les
 						dispositifs existants et estimez le montant de l'aide en répondant
 						aux questions.
-					</p>
-				</Trans>
+					</Trans>
+				</Body>
 			),
 			component: AidesEmbauche,
 			nextSteps: ['salarié'],
@@ -739,13 +731,13 @@ export function getSimulatorsData({
 			component: ISSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.is.seo">
-					<h2>Comment est calculé l’impôt sur les sociétés ?</h2>
-					<p>
+					<H2>Comment est calculé l’impôt sur les sociétés ?</H2>
+					<Body>
 						L’impôt sur les sociétés s’applique aux bénéfices réalisés par les
 						sociétés de capitaux (SA, SAS, SASU, SARL, etc.) et sur option
 						facultative pour certaines autres sociétés (EIRL, EURL, SNC, etc.).
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Il est calculé sur la base des bénéfices réalisés en France au cours
 						de l’exercice comptable. La durée d’un exercice est normalement d’un
 						an mais il peut être plus court ou plus long (notamment en début
@@ -753,21 +745,21 @@ export function getSimulatorsData({
 						barème de l’impôt est pro-ratisé en fonction de la durée de
 						l’exercice, ce qui est pris en compte dans le simulateur en
 						modifiant les dates de début et de fin de l’exercice.
-					</p>
-					<h2>Taux réduit et régimes spécifiques</h2>
-					<p>
+					</Body>
+					<H2>Taux réduit et régimes spécifiques</H2>
+					<Body>
 						Les PME réalisant moins de 7,63 millions d’euros de chiffre
 						d’affaires et dont le capital est détenu à 75% par des personnes
 						physiques bénéficient d’un taux réduit d’impôt sur les sociétés. Ce
 						taux est pris en compte sur le simulateur et il n’est pour l’instant
 						pas possible de simuler l’inéligibilité aux taux réduits.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Enfin il existe des régimes d’impositions spécifiques avec des taux
 						dédiés pour certains types de plus-values (cession de titres,
 						cession de brevets). Ces régimes ne sont pas intégrés dans le
 						simulateur.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['salarié', 'dividendes', 'comparaison-statuts'],
@@ -794,28 +786,28 @@ export function getSimulatorsData({
 			config: dividendesConfig,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
-					<h2>Les dividendes et distributions</h2>
-					<p>
+					<H2>Les dividendes et distributions</H2>
+					<Body>
 						À la fin de l'exercice d'une société, le résultat de l'exercice
 						précédent peut être conservé en réserve (pour de futurs
 						investissements) ou bien être versé en dividendes. Du point de vue
 						des bénéficiaires, ce sont des revenus de capitaux mobiliers, soumis
 						à cotisations et à une imposition spécifiques.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Ne sont pris en compte dans ce simulateur que les cas de figure du
 						bénéficiaire personne physique et des dividendes décidés par la
 						société.
-					</p>
-					<h2>Comment sont calculés les prélèvements sur les dividendes ?</h2>
-					<p>
+					</Body>
+					<H2>Comment sont calculés les prélèvements sur les dividendes ?</H2>
+					<Body>
 						Les dividendes peuvent être soumis au prélèvement forfaitaire unique
 						de 30% incluant imposition et contributions sociales (aussi appelé
 						<i> flat tax</i>). Par option, le barème de l'impôt peut être
 						choisi. Ce simulateur peut être utilisé pour comparer les deux
 						régimes.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Un acompte du montant de l'impôt (12,8%) est prélevé au moment du
 						versement des dividendes, sauf si le bénéficiaire remplit{' '}
 						<a
@@ -826,17 +818,17 @@ export function getSimulatorsData({
 							certains critères
 						</a>
 						.
-					</p>
-					<h2>Cas particulier du dirigeant non salarié</h2>
-					<p>
+					</Body>
+					<H2>Cas particulier du dirigeant non salarié</H2>
+					<Body>
 						Pour le travailleur indépendant non salarié, la part des dividendes
 						dépassant 10% du capital social sera soumise aux cotisations et
 						contributions suivant les mêmes modalités que sa rémunération de
 						dirigeant.
-					</p>
-					<p>
+					</Body>
+					<Body>
 						Ce cas de figure n'est pas encore pris en compte par ce simulateur.
-					</p>
+					</Body>
 				</Trans>
 			),
 			nextSteps: ['salarié', 'is', 'comparaison-statuts'],

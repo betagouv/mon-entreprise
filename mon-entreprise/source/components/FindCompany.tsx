@@ -1,7 +1,9 @@
 import { useSetEntreprise } from 'Actions/companyStatusActions'
 import CompanyDetails from 'Components/CompanyDetails'
+import { TextField } from 'DesignSystem/field'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useMemo, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
 
@@ -9,7 +11,7 @@ export default function Search() {
 	const [searchResults, setSearchResults] =
 		useState<Array<Etablissement> | null>()
 	const [isLoading, setLoadingState] = useState(false)
-
+	const { t } = useTranslation()
 	const handleSearch = useCallback(
 		function (value) {
 			searchDenominationOrSiren(value).then((results) => {
@@ -27,50 +29,29 @@ export default function Search() {
 
 	return (
 		<>
-			<h1>
-				<Trans i18nKey="trouver.titre">Retrouver mon entreprise</Trans>
-			</h1>
-			<p>
+			<Body>
 				<Trans i18nKey="trouver.description">
 					Grâce à la base SIREN, les données publiques sur votre entreprise
 					seront automatiquement disponibles pour la suite du parcours sur le
 					site.
 				</Trans>
-			</p>
-			<label className="ui__ notice">
-				<Trans>Nom de l'entreprise ou SIREN </Trans>:{' '}
-			</label>
-			<br />
-			<input
+			</Body>
+			<TextField
+				label={t("Nom de l'entreprise ou SIREN")}
 				type="search"
-				css={`
-					padding: 0.4rem;
-					margin: 0.2rem 0;
-					width: 100%;
-					border: 1px solid var(--lighterTextColor);
-					border-radius: 0.3rem;
-					color: inherit;
-					font-size: inherit;
-					transition: border-color 0.1s;
-					position: relative;
-
-					:focus {
-						border-color: var(--color);
-					}
-				`}
-				onChange={(e) => {
-					if (e.target.value.length < 2) {
+				onChange={(value) => {
+					if (value.length < 2) {
 						setSearchResults(undefined)
 						return
 					}
 					setLoadingState(true)
-					debouncedHandleSearch(e.target.value)
+					debouncedHandleSearch(value)
 				}}
 			/>
 			{!isLoading && searchResults === null && (
-				<p>
+				<Body>
 					<Trans>Aucun résultat</Trans>
-				</p>
+				</Body>
 			)}
 
 			{searchResults &&

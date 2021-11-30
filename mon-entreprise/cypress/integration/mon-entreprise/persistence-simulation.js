@@ -1,6 +1,5 @@
+const inputSelector = 'div[aria-labelledby="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
-const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
-
 describe('Persistence (simulateur salarié)', () => {
 	if (!fr) {
 		return
@@ -11,6 +10,8 @@ describe('Persistence (simulateur salarié)', () => {
 	})
 
 	it('should persist the current simulation (persistSimulation)', function () {
+		console.log(inputSelector)
+
 		cy.get(inputSelector).first().type('{selectall}42')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()

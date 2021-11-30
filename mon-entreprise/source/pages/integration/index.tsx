@@ -1,10 +1,10 @@
 import Emoji from 'Components/utils/Emoji'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Link, Route, Switch, useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import Iframe from './Iframe'
 import Library from './Library'
@@ -19,14 +19,12 @@ export default function Integration() {
 			<ScrollToTop />
 
 			{pathname !== sitePaths.integration.index && (
-				<BackNavigationForDevs className="ui__ dark-bg">
-					<Link
-						className="ui__ simple small push-left button"
-						to={sitePaths.integration.index}
-					>
-						← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
-					</Link>
-				</BackNavigationForDevs>
+				<Link
+					className="ui__ simple small push-left button"
+					to={sitePaths.integration.index}
+				>
+					← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
+				</Link>
 			)}
 			{/* TODO: Nous pourrions automatiser la publication de cette bannière
 			de recrutement lorsqu'une annonce est postée sur beta.gouv.fr
@@ -57,10 +55,3 @@ export default function Integration() {
 		</>
 	)
 }
-
-const BackNavigationForDevs = styled.div`
-	transform: translateY(1rem);
-	padding: 0.25rem 1rem;
-	width: max-content;
-	border-radius: 0.25rem;
-`

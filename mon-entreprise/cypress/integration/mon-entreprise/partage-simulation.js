@@ -2,7 +2,7 @@ const fr = Cypress.env('language') === 'fr'
 
 describe('Partage (simulateur salarié)', () => {
 	const brutInputSelector =
-		'input.currencyInput__input[name="contrat salarié . rémunération . brut de base"]'
+		'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
 		'contrat salarié': "'CDD'",
@@ -16,19 +16,22 @@ describe('Partage (simulateur salarié)', () => {
 	}
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
-		cy.get(brutInputSelector).first().invoke('val').should('eq', '1 539')
+		cy.get(brutInputSelector)
+			.first()
+			.invoke('val')
+			.should('match', /1[\s]539[\s]€/)
 
 		cy.contains('Voir mes paramètres').click()
-		cy.get('span.answerContent').first().contains('CDD')
+		cy.contains('CDD')
 	})
 	it('should set URL from input value', function () {
 		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')
 		cy.contains('De quel type de contrat').should('be.visible')
-		cy.get('.step').contains('CDD').should('be.visible').click()
+		cy.get('label').contains('CDD').should('be.visible').click()
 		cy.get('button').contains('Suivant').should('be.visible')
 		cy.contains('Générer un lien').click()
-		cy.get('.shareableLink')
+		cy.get('input[aria-label="URL de votre simulation"]')
 			.invoke('val')
 			.should('eq', Cypress.config().baseUrl + urlWithState)
 	})

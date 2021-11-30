@@ -1,10 +1,10 @@
-import { MarkdownWithAnchorLinks } from '../components/markdown'
-import { ScrollToTop } from '../components/Scroll'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import api from '../../docs/api.md'
 import principes from '../../docs/principes-de-base.md'
 import start from '../../docs/se-lancer.md'
 import { Navigation } from '../components/Header'
+import { MarkdownWithAnchorLinks } from '../components/markdown'
+import { ScrollToTop } from '../components/Scroll'
 import Mécanismes from './Mécanismes'
 
 const items = [

@@ -1,4 +1,6 @@
-import { lazy, useState, useRef, useEffect, Suspense, useMemo } from 'react'
+import { Button } from 'DesignSystem/buttons'
+import { H2 } from 'DesignSystem/typography/heading'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import useSimulatorsData from '../Simulateurs/metadata'
 const LazyColorPicker = lazy(() => import('./ColorPicker'))
 
@@ -29,24 +31,21 @@ export default function IntegrationTest() {
 	}, [version])
 	return (
 		<>
-			<h2>Quel module ?</h2>
+			<H2>Quel module ?</H2>
 			<select onChange={(event) => setCurrentModule(event.target.value)}>
 				{integrableModuleNames.map((name) => (
 					<option key={name}>{name}</option>
 				))}
 			</select>
 
-			<h2>Quelle couleur ?</h2>
+			<H2>Quelle couleur ?</H2>
 			<Suspense fallback={<div>Chargement...</div>}>
 				<LazyColorPicker color={color} onChange={setColor} />
 			</Suspense>
 
-			<button
-				className="ui__ button plain"
-				onClick={() => setVersion(version + 1)}
-			>
+			<Button onPress={() => setVersion(version + 1)}>
 				{!version ? 'Visualiser le module' : 'Valider les changements'}
-			</button>
+			</Button>
 
 			<div
 				style={{ border: '2px dashed blue' }}

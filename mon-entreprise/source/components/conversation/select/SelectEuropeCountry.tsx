@@ -1,6 +1,7 @@
+import { Item, Select } from 'DesignSystem/field/Select'
 import { InputProps } from '../RuleInput'
 
-const STATES = [
+const states = [
 	'Allemagne',
 	'Autriche',
 	'Belgique',
@@ -33,29 +34,34 @@ const STATES = [
 	'Suède',
 	'Suisse',
 	'Autre',
-] as const
+]
+
+const statesWithID = states.map((name, id) => ({
+	name,
+	id,
+}))
 
 export default function SelectEuropeCountry({
 	value,
 	onChange,
 	id,
 }: InputProps) {
+	const valueId = value
+		? statesWithID.find((s) => s.name === value)?.id
+		: undefined
 	return (
-		<div>
-			<select
-				name="country"
-				id={id}
-				className="ui__"
-				defaultValue={value ? (value as string).slice(1, -1) : ''}
-				onChange={(e) => onChange(`'${e.target.value}'`)}
-			>
-				<option disabled hidden></option>
-				{STATES.map((state) => (
-					<option key={state} value={state}>
-						{state}
-					</option>
-				))}
-			</select>
-		</div>
+		<Select
+			name="country"
+			items={statesWithID}
+			id={id}
+			defaultSelectedKey={valueId}
+			onSelectionChange={(k) => {
+				const state = statesWithID.find((s) => s.id === k)
+				state && onChange(`'${state.name}'`)
+			}}
+			label="Pays"
+		>
+			{(state) => <Item textValue={state.name}>{state.name}</Item>}
+		</Select>
 	)
 }

@@ -1,65 +1,50 @@
+import SearchButton from 'Components/SearchButton'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import logoEnSvg from 'Images/logo-mycompany.svg'
+import { Container } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
 import logoSvg from 'Images/logo.svg'
-import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/Urssaf.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
-import SearchButton from 'Components/SearchButton'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
-	const { language } = useTranslation().i18n
+	const {
+		i18n: { language },
+		t,
+	} = useTranslation()
 	return (
-		<>
-			<div
-				className="ui__ container"
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-				}}
-			>
-				<Link style={{ height: '4rem' }} to={sitePaths.index}>
-					<img
-						alt="logo mon-entreprise.fr"
-						style={{
-							padding: '0.4rem 0',
-							height: '100%',
-						}}
-						src={language === 'fr' ? logoSvg : logoEnSvg}
-					/>
+		<Container>
+			<StyledHeader>
+				<Link to={sitePaths.index}>
+					<img alt="Service mon-entreprise urssaf" src={logoSvg} />
 				</Link>
-				<div style={{ flex: 1 }} />
-				<a
-					href="https://beta.gouv.fr"
-					target="_blank"
-					style={{
-						height: '4rem',
-						padding: '0.8rem',
-					}}
-				>
-					<img
-						alt="logo marianne"
-						style={{ height: '100%' }}
-						src={marianneSvg}
-					/>
-				</a>
-				<a
-					href="https://www.urssaf.fr"
-					target="_blank"
-					style={{
-						height: '4rem',
-						padding: '0.8rem',
-					}}
-					className="landing-header__institutional-logo"
-				>
-					<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
-				</a>
+
+				<div
+					css={`
+						flex: 1;
+					`}
+				/>
 				{language === 'fr' && <SearchButton />}
-			</div>
+			</StyledHeader>
+
 			<NewsBanner />
-		</>
+		</Container>
 	)
 }
+
+const StyledHeader = styled.div`
+	height: ${({ theme }) => theme.spacings.xxxl};
+	display: flex;
+	align-items: center;
+	gap: ${({ theme }) => theme.spacings.xs};
+	a {
+		height: 100%;
+	}
+	img {
+		height: 100%;
+		padding: 0;
+	}
+	margin: ${({ theme }) => theme.spacings.sm} 0;
+`

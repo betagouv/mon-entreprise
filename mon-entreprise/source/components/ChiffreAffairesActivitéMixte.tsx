@@ -1,10 +1,13 @@
 import { batchUpdateSituation } from 'Actions/actions'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
+import { Checkbox } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { Explicable } from './conversation/Explicable'
+import styled from 'styled-components'
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './SimulationGoals'
 import { useEngine } from './utils/EngineContext'
@@ -26,6 +29,7 @@ export default function ChiffreAffairesActivitéMixte({
 }) {
 	const adjustProportions = useAdjustProportions(dottedName)
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const clearChiffreAffaireMixte = useCallback(() => {
 		dispatch(
 			batchUpdateSituation(
@@ -38,29 +42,27 @@ export default function ChiffreAffairesActivitéMixte({
 	}, [dispatch])
 
 	return (
-		<>
+		<fieldset aria-label={t("Chiffre d'affaires")}>
 			<SimulationGoal
 				appear={false}
+				alwaysShow
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>
 			<ActivitéMixte />
 
 			<Condition expression="entreprise . activité . mixte">
-				<li className="small-target">
-					<ul>
-						{Object.values(proportions).map((chiffreAffaires) => (
-							<SimulationGoal
-								alwaysShow
-								key={chiffreAffaires}
-								onUpdateSituation={adjustProportions}
-								dottedName={chiffreAffaires}
-							/>
-						))}
-					</ul>
-				</li>
+				{Object.values(proportions).map((chiffreAffaires) => (
+					<SimulationGoal
+						alwaysShow
+						small
+						key={chiffreAffaires}
+						onUpdateSituation={adjustProportions}
+						dottedName={chiffreAffaires}
+					/>
+				))}
 			</Condition>
-		</>
+		</fieldset>
 	)
 }
 export function useAdjustProportions(CADottedName: DottedName): () => void {
@@ -121,30 +123,22 @@ function ActivitéMixte() {
 		[dispatch, situation]
 	)
 	return (
-		<li
-			className="small-target"
-			css={`
-				margin-top: -1rem;
-			`}
-		>
-			<label
-				css={`
-					display: flex;
-					align-items: center;
-					justify-content: flex-end;
-				`}
-			>
-				<input
-					type="checkbox"
-					key={'' + defaultChecked}
-					defaultChecked={defaultChecked}
-					onChange={(evt) => onMixteChecked(evt.target.checked)}
-				/>
-				&nbsp; Activité mixte
-				<Explicable>
-					<Markdown source={`## ${rule.title}\n ${rule.rawNode.description}`} />
-				</Explicable>
-			</label>
-		</li>
+		<StyledActivitéMixteContainer>
+			<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
+				Activité mixte
+			</Checkbox>
+			<ButtonHelp type="aide" title={rule.title} light>
+				<Markdown source={rule.rawNode.description} />
+			</ButtonHelp>
+		</StyledActivitéMixteContainer>
 	)
 }
+
+const StyledActivitéMixteContainer = styled.div`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		text-align: right;
+		margin-top: -1.5rem;
+		position: relative;
+		z-index: 2;
+	}
+`

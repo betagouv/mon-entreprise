@@ -48,7 +48,7 @@ export const serializeUnit = (
 			: n && !d
 			? printUnits(numerators, count, formatUnit)
 			: !n && d
-			? `/${printUnits(denominators, 1, formatUnit)}`
+			? `par ${printUnits(denominators, 1, formatUnit)}`
 			: `${printUnits(numerators, plural, formatUnit)} / ${printUnits(
 					denominators,
 					1,

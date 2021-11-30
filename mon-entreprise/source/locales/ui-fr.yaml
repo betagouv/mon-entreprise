@@ -1,3 +1,4 @@
+.cta: Lancer le simulateur
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
@@ -7,6 +8,7 @@
       <3>aquoiserventlescotisations.urssaf.fr</3>
 <0>Oui</0>: <0>Oui</0>
 Assimilé salarié: Assimilé salarié
+Aucun: Aucun
 Aucun résultat: Aucun résultat
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
@@ -25,7 +27,7 @@ Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
 Explorez notre documentation: Explorez notre documentation
 ExportSimulation:
-  Banner: <0>Imprimer ou sauvegarder en PDF</0>
+  Banner: Imprimer ou sauvegarder en PDF
 Fiche de paie: Fiche de paie
 Gestion des données personnelles: Gestion des données personnelles
 Gérant majoritaire: Gérant majoritaire
@@ -38,6 +40,7 @@ International: International
 Intégrer nos simulateurs: Intégrer nos simulateurs
 J'ai compris: J'ai compris
 Jusqu’au: Jusqu’au
+Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
 Mes réponses: Mes réponses
 Modifier: Modifier
@@ -100,12 +103,12 @@ aide-déclaration-indépendant:
     destination des <2>travailleurs indépendants</2>. Il vous permet de
     connaître le montant des charges sociales déductibles.</0><1>Vous restez
     entièrement responsable d'éventuelles omissions ou inexactitudes dans votre
-    déclaration.</1></0><1><0>Cet outil vous concerne si vous êtes dans le cas
-    suivant :</0><1><0>vous cotisez au régime général des travailleurs
-    indépendants</0></1><2>Il ne vous concerne pas si vous êtes dans un des cas
-    suivants :</2><3><0>vous exercez une activité libérale relevant d’un régime
-    de retraite des professions libérales en comptabilité
-    d'engagement</0><1>votre entreprise est domiciliée dans les
+    déclaration.</1></0><1><0><0>Cet outil vous concerne si vous êtes dans le
+    cas suivant :</0></0><1><0>Vous cotisez au régime général des travailleurs
+    indépendants</0></1><2><0>Il ne vous concerne pas si vous êtes dans un des
+    cas suivants :</0></2><3><0>Vous exercez une activité libérale relevant d’un
+    régime de retraite des professions libérales en comptabilité
+    d'engagement</0><1>Votre entreprise est domiciliée dans les
     DOM</1></3></1><2></2><3>Imposition</3><4>Ces quelques questions permettent
     de déterminer le type de déclaration à remplir, ainsi que les modalités de
     calcul des cotisations sociales.</4>
@@ -114,7 +117,8 @@ aide-déclaration-indépendant:
       pré-remplir le formulaire"
     titre: <0>Entreprise et activité</0>
   results:
-    title: Vos déclarations fiscales
+    title: Montants à reporter dans votre déclaration de revenus
+    title-short: Vos déclarations fiscales
 après:
   ape:
     description: Le code APE correspond au <1>secteur d'activité</1> de votre
@@ -173,7 +177,14 @@ autoentrepreneur:
       que vous souhaitez démarrer rapidement.
     titre: Auto-entrepreneur
   titre: Entreprise individuelle ou auto-entrepreneur
-back: Reprendre la simulation
+back: Retourner à la simulation
+cards:
+  simulator-resource:
+    cta: Accéder au simulateur
+checklist:
+  showmore:
+    closed: En savoir plus
+    open: Masquer les détails
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
     et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
@@ -247,14 +258,21 @@ créer:
   description: Avant d'entamer les démarches administratives pour créer votre
     entreprise, vous devez choisir un statut juridique adapté à votre activité
   ressources:
-    autoEntrepreneur: <0>Démarche auto-entrepreneur</0><1>Vous souhaitez devenir
-      auto-entrepreneur ? Découvrez les étapes pour bien démarrer votre
-      activité</1>
-    comparaison: <0>Comparateur de régimes</0><1>Indépendant, assimilé-salarié ou
-      auto-entrepreneur ? Calculez les différences en terme de revenus,
-      cotisations, retraite, etc</1>
-    listeStatuts: <0>Liste des statuts juridiques</0><1>Vous savez déjà quel statut
-      choisir ? Accédez directement à la liste des démarches associées</1>
+    autoEntrepreneur:
+      body: Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien
+        démarrer votre activité
+      cta: Consulter les démarches
+      title: Démarche auto-entrepreneur
+    comparaison:
+      body: Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
+        différences en terme de revenus, cotisations, retraite, etc
+      cta: Comparer
+      title: Comparateur de régimes
+    listeStatuts:
+      body: Vous savez déjà quel statut choisir ? Accédez directement à la liste des
+        démarches associées
+      cta: Voir la liste
+      title: Liste des statuts juridiques
   titre: Créer une entreprise
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides
@@ -312,18 +330,27 @@ en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 entreprise:
   ressources:
-    après: <0>Après la création</0><1>SIREN, SIRET, code APE, KBis. Un petit
-      glossaire des termes que vous pourrez (éventuellement) rencontrer après la
-      création.</1>
+    après:
+      body: SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous
+        pourrez (éventuellement) rencontrer après la création.
+      cta: Voir le glossaire
+      title: Après la création
     simu:
-      assimilé: <0>Simulateur de rémunération pour dirigeant de SASU</0><1>Simuler le
-        montant de vos cotisations sociales pour bien préparer votre business
-        plan.</1>
-      autoEntrepreneur: <0>Simulateur de revenus auto-entrepreneur</0><1>Simuler le
-        montant de vos cotisations sociales et de votre impôt et estimez votre
-        futur revenu net.</1>
-      indépendant: <0>Simulateur de cotisations indépendant</0><1>Simuler le montant
-        de vos cotisations sociales pour bien préparer votre business plan.</1>
+      assimilé:
+        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
+          business plan.
+        cta: Simuler la rémunération
+        title: Simulateur de rémunération pour dirigeant de SASU
+      autoEntrepreneur:
+        body: Simuler le montant de vos cotisations sociales et de votre impôt et
+          estimez votre futur revenu net.
+        cta: Simuler les revenus
+        title: Simulateur de revenus auto-entrepreneur
+      indépendant:
+        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
+          business plan.
+        cta: Simuler les cotisations
+        title: Simulateur de cotisations indépendant
   retour: ← Choisir un autre statut
   tâches:
     adresse:
@@ -385,8 +412,8 @@ entreprise:
       titre: Choisir la forme juridique
     formulaire:
       description: <0>Vous pouvez faire votre inscription en ligne à tout moment,
-        l'enregistrer et y revenir comme vous le souhaitez.</0><1><0>Faire la
-        démarche en ligne</0></1>
+        l'enregistrer et y revenir comme vous le souhaitez.</0><1></1><2>Faire
+        la démarche en ligne</2>
       titre: Créer mon entreprise en ligne
     journal:
       description: "<0>Vous devez publier la création de votre entreprise dans un
@@ -408,7 +435,7 @@ entreprise:
         vérifier que le nom est disponible, c'est-à-dire qu'il ne porte pas
         atteinte à un nom déjà protégé par une marque, une raison sociale, un
         nom commercial, un nom de domaine Internet, etc. Vous pouvez vérifier
-        dans la base de données <1>INPI</1>.</1>
+        dans la base de données <2>INPI</2>.</1>
       titre: Trouver un nom d'entreprise
     objetSocial:
       description: L'<1>objet social</1> est l'activité principale de l'entreprise.
@@ -473,6 +500,13 @@ formeJuridique:
     responsabilité limitée", avec à un régime forfaitaire pour le calcul des
     impôts et le paiement des cotisations de sécurité sociale.
   titre: Choix du statut juridique
+gerer:
+  choix:
+    embauche:
+      body: Calculez le montant total que votre entreprise devra dépenser pour
+        rémunérer votre prochain employé
+      cta: Lancer le simulateur
+      title: Estimer le montant d’une embauche
 gérant minoritaire:
   description: "<0>Certaines règles spéciales s'appliquent selon le nombre
     d'actions détenues.</0><1><0><0>Gérant majoritaire</0> : Vous êtes
@@ -488,74 +522,106 @@ gérant minoritaire:
   titre: Gérant majoritaire ou minoritaire
 gérer:
   choix:
-    chomage-partiel: <0>Activité partielle</0><1>Calculez le reste à payer après
-      remboursement de l'État lorsque vous activez le dispositif pour un
-      employé.</1>
-    déclaration: <0>Remplir ma déclaration de revenus</0><1>Calculez facilement les
-      montants des charges sociales à reporter dans votre déclaration de revenu
-      au titre de 2020</1>
+    chomage-partiel:
+      body: Calculez le reste à payer après remboursement de l'État lorsque vous
+        activez le dispositif pour un employé.
+      cta: Voir le simulateur
+      title: Activité partielle
+    déclaration:
+      body: Calculez facilement les montants des charges sociales à reporter dans
+        votre déclaration de revenu au titre de 2020
+      cta: Remplir ma déclaration
+      title: Déclaration de revenus (indépendants)
     embauche: <0>Estimer le montant d’une embauche</0><1>Calculez le montant total
       que votre entreprise devra dépenser pour rémunérer votre prochain
       employé</1>
-    is: <0>Estimer le montant de l’impôt sur les sociétés</0><1>Calculez le montant
-      de l'impôt sur les sociétés à partir de votre bénéfice.</1>
-    revenus: <0>Calculer mon revenu net de cotisations</0><1>Estimez précisément le
-      montant de vos cotisations grâce au simulateur {{régime}} de l'Urssaf</1>
+    is:
+      body: Calculez le montant de l'impôt sur les sociétés à partir de votre
+        bénéfice.
+      cta: Lancer le simulateur
+      title: Estimer le montant de l’impôt sur les sociétés
+    revenus:
+      body: Estimez précisément le montant de vos cotisations grâce au simulateur
+        {{régime}} de l'Urssaf
+      cta: Calculer mon revenu net
+      title: Revenus en tant que dirigeant
   cta: Renseigner mon entreprise
   description: Vous souhaitez vous verser un revenu ou embaucher ? <1></1>Vous
     aurez à payer des cotisations et des impôts. <3></3>Anticipez leurs montants
     grâce aux simulateurs adaptés à votre situation.
   entreprise:
-    auto: "Êtes-vous auto-entrepreneur ? "
+    auto: Êtes-vous auto-entrepreneur ?
     changer: Changer l'entreprise sélectionnée
-    dirigeant: <0>Êtes-vous dirigeant majoritaire ?</0><1>Si vous êtes
-      administrateur majoritaire ou si vous faites partie d'un conseil
-      d'administration majoritaire, vous n'aurez pas le même régime de sécurité
-      sociale que si vous êtes minoritaire.</1>
+    dirigeant:
+      description: Si vous êtes administrateur majoritaire ou si vous faites partie
+        d'un conseil d'administration majoritaire, vous n'aurez pas le même
+        régime de sécurité sociale que si vous êtes minoritaire.
+      titre: Êtes-vous dirigeant majoritaire ?
     majoritaire: Dirigeant majoritaire
     minoritaire: Dirigeant minoritaire
   ressources:
-    autoEntrepreneur: <0>Accéder au site officiel auto-entrepreneur</0><1>Vous
-      pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
-      cotisations, et plus largement trouver toutes les informations relatives
-      au statut d'auto-entrepreneur</1>
-    embaucher: <0>Découvrir les démarches d’embauche </0><1>La liste des choses à
-      faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau
-      salarié</1>
-    kbis: <0>Récupérer un extrait de Kbis</0><1>Le Kbis est un document permettant
-      de justifier de l'enregistrement de l'entreprise au <2>RCS</2> et de
-      prouver son existence légale. Ce document peut être récupéré gratuitement
-      pour votre entreprise via le site MonIdeNum.</1>
-    kbis-autoentrepreneur: <0>Récupérer un extrait de Kbis?</0><1>Les
-      auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer et
-      présenter un extrait K. Voir le site du service-public pour plus
-      d'informations.</1>
-    sécuritéSociale: <0>Comprendre la sécurité sociale </0><1>A quoi servent les
-      cotisations sociales ? Le point sur le système de protection sociale dont
-      bénéficient tous les travailleurs en France</1>
+    autoEntrepreneur:
+      body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
+        cotisations, et plus largement trouver toutes les informations relatives
+        au statut d'auto-entrepreneur
+      cta: Visiter le site
+      title: Site officiel des auto-entrepreneurs
+    embaucher:
+      body: La liste des choses à faire pour être sûr de ne rien oublier lors de
+        l’embauche d’un nouveau salarié
+      cta: Voir la liste des démarches
+      title: "Découvrir les démarches d’embauche "
+    export:
+      body: Le formulaire pour effectuer une demande de mobilité internationale
+        (détachement ou pluriactivité)
+      cta: Remplir le formulaire
+      title: Exporter son activité en Europe
+    kbis:
+      body: Le Kbis est un document permettant de justifier de l'enregistrement de
+        l'entreprise au <2>RCS</2> et de prouver son existence légale. Ce
+        document peut être récupéré gratuitement pour votre entreprise via le
+        site MonIdeNum.
+      cta: Aller sur monIdeNum.fr
+      title: Récupérer un extrait de Kbis
+    kbis-autoentrepreneur:
+      body: Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer
+        et présenter un extrait K. Voir le site du service-public pour plus
+        d'informations.
+      cta: Visiter le site
+      title: Récupérer un extrait de Kbis?
+    sécuritéSociale:
+      body: A quoi servent les cotisations sociales ? Le point sur le système de
+        protection sociale dont bénéficient tous les travailleurs en France.
+      cta: Lire le guide
+      title: Comprendre la sécurité sociale
   titre: Gérer mon activité
 impotSociété:
   exerciceDates: Exercice du <2></2> au <6></6>
   warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
     réduits de l’impôt sur les sociétés."
 inférieurs à: inférieurs à
+jours: jours
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
     autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
     conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
-    site pour <2>accompagner les créateurs d’entreprise</2> dans le
-    développement de leur activité.</2><3>Notre objectif est de <2>lever toutes
-    les incertitudes vis à vis de l’administration</2> afin que vous puissiez
-    vous concentrer sur ce qui compte : votre activité.</3>"
+    site pour accompagner les créateurs d’entreprise dans le développement de
+    leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
+    à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
+    compte : votre activité.</3>"
   choice:
-    create: <0>Créer une entreprise</0><1>Un accompagnement au choix du statut
-      juridique et la liste complète des démarches de création</1>
-    manage: <0>Gérer mon activité</0><1>Des outils personnalisés pour anticiper le
-      montant des cotisations sociales à payer et mieux gérer votre
-      trésorerie.</1>
-    simulators: <0>Accéder aux simulateurs</0><1>La liste exhaustive de tous les
-      simulateurs disponibles sur le site.</1>
+    create:
+      body: Un accompagnement au choix du statut juridique et la liste complète des
+        démarches de création
+      title: Créer une entreprise
+    manage:
+      body: Des outils personnalisés pour anticiper le montant des cotisations
+        sociales à payer et mieux gérer votre trésorerie.
+      title: Gérer mon activité
+    simulators:
+      body: La liste exhaustive de tous les simulateurs disponibles sur le site.
+      title: Accéder aux simulateurs
   subtitle: Les ressources nécessaires pour développer votre activité, du statut
     juridique à l'embauche.
   title: L'assistant officiel de l'entrepreneur
@@ -577,9 +643,13 @@ listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 mensuel: mensuel
+mois: mois
 nextSteps:
-  integration-iframe: <0><0></0> Intégrer le module web</0><1>Ajouter ce
-    simulateur sur votre site internet en un clic via un script clé en main.</1>
+  integration-iframe:
+    body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic
+      via un script clé en main.
+    cta: Voir la documentation
+    title: Intégrer le module web
 noresults: Aucun résultat ne correspond à cette recherche
 page:
   documentation:
@@ -592,7 +662,7 @@ page:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
-  accessibilité: <0></0><1>Accessibilité</1><2></2><3>Cette page n'est pas une
+  accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
@@ -613,8 +683,8 @@ pages:
     déclaration d’accessibilité s’applique à
     <2>https://mon-entreprise.fr</2>.</11><12>État de
     conformité</12><13><0>https://mon-entreprise.fr</0> n’est actuellement pas
-    en conformité avec le <3>référentiel général d’amélioration de
-    l’accessibilité (RGAA)</3>. L’audit de conformité sera prochainement
+    en conformité avec le <4>référentiel général d’amélioration de
+    l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
     planifié. Les corrections seront prises en compte suite à
     l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
     en conformité totale, vous pouvez obtenir une version accessible des
@@ -640,12 +710,17 @@ pages:
     29/01/2021</22>
   common:
     ressources-auto-entrepreneur:
-      FAQ: <0><0>❓ Questions fréquentes</0><1>Une liste exhaustive et maintenue à jour
-        de toutes les questions fréquentes (et moins fréquentes) que l'on est
-        amené à poser en tant qu'auto-entrepreneur</1></0>
-      impôt: <0><0>📑 Comment déclarer son revenu aux impôts ?</0><1>Les informations
-        officielles de l'administration fiscale concernant les
-        auto-entrepreneurs et le régime de la micro-entreprise.</1></0>
+      FAQ:
+        body: Une liste exhaustive et maintenue à jour de toutes les questions
+          fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+          qu'auto-entrepreneur
+        cta: Voir les réponses
+        title: Questions fréquentes
+      impôt:
+        body: Les informations officielles de l'administration fiscale concernant les
+          auto-entrepreneurs et le régime de la micro-entreprise.
+        cta: Consulter l'aide
+        title: Comment déclarer son revenu aux impôts ?
   dévelopeurs:
     bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
       votre site ou service gagnerait à afficher des calculs de salaire, par
@@ -697,40 +772,51 @@ pages:
       salaires.</23><24><0></0></24>"
   développeurs:
     choice:
-      github: <0>Contribuer sur GitHub</0><1>Tous nos outils sont ouverts et
-        développés publiquement sur GitHub.</1>
-      library: <0>Libraire de calcul</0><1>L'intégralité du moteur de calcul
-        socio-fiscal développé par l'Urssaf, mis à disposition librement sous
-        forme de bibliothèque NPM.</1>
-      publicodes: <0>Publicodes</0><1>Nos outils sont propulsés par Publicodes, un
-        nouveau langage pour encoder des algorithmes “explicables”.</1>
+      github:
+        body: Tous nos outils sont ouverts et développés publiquement sur GitHub.
+        cta: Commencer
+        title: Contribuer sur GitHub
+      library:
+        body: L'intégralité du moteur de calcul socio-fiscal développé par l'Urssaf, mis
+          à disposition librement sous forme de bibliothèque NPM.
+        cta: Commencer
+        title: Libraire de calcul
+      publicodes:
+        body: Nos outils sont propulsés par Publicodes, un nouveau langage pour encoder
+          des algorithmes “explicables”.
+        cta: Découvrir
+        title: Publicodes
     code:
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
     couleur: "Quelle couleur ? "
     home:
       choice:
-        iframe: <0>Intégrer un simulateur</0><1>Intégrer l'un de nos simulateurs en un
-          clic dans votre site Web, via un script clé en main.</1>
-      description: En plus du site mon-entreprise.fr, nous développons des outils
-        gratuits et libres à intégrer directement chez vous, dans les parcours
-        habituels de vos utilisateurs.
+        iframe:
+          body: Intégrer l'un de nos simulateurs en un clic dans votre site Web, via un
+            script clé en main.
+          cta: Commencer
+          title: Intégrer un simulateur
+      description: En plus du site mon-entreprise.fr, nous mettons à disposition des
+        outils gratuits et libres à intégrer sur votre site web. Vous pouvez
+        ainsi inclure les outils créés pour <1>mon-entreprise</1> directement
+        dans les parcours habituels de vos utilisateurs.
     iframe:
-      csp-1: <0>Intégration iframe et politique de sécurité de contenu</0><1>L'erreur
-        ci-dessous qui s'affiche dans la console est liée à la communication
-        entre la page parente et l'iframe pour le redimensionnement automatique
-        au contenu affiché.</1>
+      csp-1: <0>L'erreur ci-dessous qui s'affiche dans la console est liée à la
+        communication entre la page parente et l'iframe pour le
+        redimensionnement automatique au contenu affiché.</0>
       csp-2: "Vous pouvez la corriger avec la politique suivante :"
+      csp-title: Intégration iframe et politique de sécurité de contenu
       intro: <0><0>Intégrez le module Web</0><1>Nos simulateurs sont intégrables de
         manière transparente en ajoutant une simple ligne de code à votre page
         Web.</1><2>Vous pouvez choisir le simulateur à intégrer et
         <2>personnaliser la couleur principale du module</2> pour le fondre dans
         le thème visuel de votre page.</2><3>L'attribut <1>data-lang="en"</1>
         vous permet quant à lui de choisir l'anglais comme langue du
-        simulateur.</3></0><1></1><2>À noter que si votre site utilise une
-        politique de sécurité de contenu via l'en-tête de réponse HTTP
+        simulateur.</3></0><1></1><2></2><3>À noter que si votre site utilise
+        une politique de sécurité de contenu via l'en-tête de réponse HTTP
         <1>Content-Security-Policy</1>, une erreur bénigne peut apparaître dans
-        la console. <3></3></2>
+        la console. <3></3></3>
     module: Quel module ?
   gérer:
     aide-déclaration-indépendant:
@@ -772,10 +858,9 @@ pages:
         action: Simuler une embauche
         montant: Montant de l’aide
         première année: " la première année"
-      introduction: <0><0><0></0></0>Les employeurs peuvent bénéficier d'une aide
-        financière pour l'embauche de certains publics prioritaires. Découvrez
-        les dispositifs existants et estimez le montant de l'aide en répondant
-        aux questions.</0>
+      introduction: Les employeurs peuvent bénéficier d'une aide financière pour
+        l'embauche de certains publics prioritaires. Découvrez les dispositifs
+        existants et estimez le montant de l'aide en répondant aux questions.
       message fin: Vous pouvez maintenant simuler le coût d’embauche précis en
         sélectionnant une aide éligible.
       meta:
@@ -846,7 +931,7 @@ pages:
       shortname: Auto-entrepreneur
       title: Simulateur de revenus auto-entrepreneur
     auxiliaire:
-      shortname: Auxiliaire méd.
+      shortname: Auxiliaire médical
       title: Simulateur de revenus pour auxiliaire médical en libéral
       tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
         orthophonistes et orthoptistes
@@ -974,7 +1059,7 @@ pages:
         chiffre d'affaires ou d'un revenu net souhaité. Vous pourrez préciser
         votre situation en répondant aux questions s'affichant en dessous de la
         simulation.</8>
-      shortname: EI
+      shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
       meta:
@@ -1000,6 +1085,8 @@ pages:
         ogTitle: "Rémunération du dirigeant d'EURL : un simulateur pour connaître votre
           salaire net"
         titre: "EURL : simulateur de revenus pour dirigeant"
+      shortname: EURL
+      title: Simulateur d'EURL
     expert-comptable:
       shortname: Expert-Comptable
       title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
@@ -1011,11 +1098,10 @@ pages:
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
       retraite-droits-acquis: "<0>Retraite : droits acquis sur l'année
-        2021</0><1><0>Retraite de base : <2><0><0></0> trimestres
-        acquis</0></2></0><1>Retraite complémentaire : <2><0>Ce simulateur ne
-        gère pas les droits acquis de retraite complémentaire pour les
-        professions libérales</0></2><3><0><0><0></0> points
-        acquis</0></0></3></1></1>"
+        2021</0><1><0>Retraite de base : <2><0></0> trimestres
+        acquis</2></0><1>Retraite complémentaire : <2><0>Ce simulateur ne gère
+        pas les droits acquis de retraite complémentaire pour les professions
+        libérales</0></2><3><0><0></0> points acquis</0></3></1></1>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
     is:
@@ -1142,8 +1228,8 @@ pages:
         alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
         le montant total alloué dans la case \"total chargé\". La simulation
         peut ensuite être affinée en répondant aux différentes questions.</4>"
-      shortname: EURL
-      title: Simulateur d'EURL
+      shortname: SASU
+      title: Simulateur de SASU
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en
@@ -1165,14 +1251,16 @@ previousSimulationBanner:
   retrieveButton: Retrouver ma simulation
 privacyContent:
   ok: Vos préférences ont bien été enregistrées
-  texte: <0></0><1>Données personnelles</1><2>Nous recueillons des statistiques
-    anonymes sur l'utilisation du site, que nous utilisons dans le seul but
-    d'améliorer le service, conformément aux <2>recommandations de la CNIL</2>
-    et au règlement RGPD. Ce sont les seules données qui quittent votre
-    navigateur.</2><3>Vous pouvez vous soustraire de cette mesure d'utilisation
-    du site ci-dessous :</3><4><0><0></0> Je souhaite ne pas envoyer de données
-    anonymes sur mon utilisation du site à des fins de mesures
-    d'audience</0></4>
+  texte: <0></0><1>Nous recueillons des statistiques anonymes sur l'utilisation du
+    site, que nous utilisons dans le seul but d'améliorer le service,
+    conformément aux <2>recommandations de la CNIL</2> et au règlement RGPD. Ce
+    sont les seules données qui quittent votre navigateur.</1><2>Vous pouvez
+    vous soustraire de cette mesure d'utilisation du site ci-dessous
+    :</2><3><0>Je souhaite ne pas envoyer de données anonymes sur mon
+    utilisation du site à des fins de mesures d'audience</0></3>
+  title: Données personnelles
+recherche-globale:
+  placeholder: "Mot-clé ou acronyme (ex : CSG)"
 responsabilité:
   bouton1: Société
   bouton2: Entreprise individuelle
@@ -1188,8 +1276,11 @@ responsabilité:
     démarches de création sont un peu plus lourdes, puisqu'elles incluent
     notamment la rédaction de statuts et le dépôt d'un capital."
   titre: Entreprise individuelle ou société ?
+select:
+  value:
+    default: Choisissez une option
 shareSimulation:
-  banner: <0>Générer un lien de partage</0>
+  banner: Générer un lien de partage
   button:
     copied: Copié
     copy: Copier le lien
@@ -1230,7 +1321,7 @@ simulateurs:
 
     Nous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).
   précision:
-    défaut: Améliorez votre simulation en répondant aux questions
+    défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
     année-courante: Le montant calculé correspond aux cotisations de l’année 2021
       (pour un revenu 2021).
@@ -1327,7 +1418,7 @@ trouver:
     voirObligations: Voir mes obligations
   exonération:
     exception-notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
-    notice: Si un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
+    notice: Si l'un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
     question: Êtes-vous dans un des cas suivants ?
   obligations:
     aucune: <0>Rien à faire</0><1>Vous n'avez pas besoin de déclarer vos revenus

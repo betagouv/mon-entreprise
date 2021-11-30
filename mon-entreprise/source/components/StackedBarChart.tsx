@@ -15,9 +15,11 @@ const BarStack = styled.div`
 	display: flex;
 	border-radius: 0.4em;
 	overflow: hidden;
+	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const BarItem = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	height: 26px;
 	border-right: 2px solid white;
 	transition: width 0.3s ease-out;
@@ -28,6 +30,7 @@ const BarItem = styled.div`
 `
 
 const BarStackLegend = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	display: flex;
 	margin-top: 10px;
 	flex-direction: column;
@@ -40,6 +43,7 @@ const BarStackLegend = styled.div`
 `
 
 const BarStackLegendItem = styled.div`
+	font-family: ${({ theme }) => theme.fonts.main};
 	color: #555;
 	strong {
 		display: inline-block;
@@ -145,7 +149,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 	}))
 	return (
 		<>
-			<BarStack className="ui__ print-background-force">
+			<BarStack className="print-background-force">
 				{dataWithPercentage
 					// <BarItem /> has a border so we don't want to display empty bars
 					// (even with width 0).
@@ -160,7 +164,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 						/>
 					))}
 			</BarStack>
-			<BarStackLegend className="ui__ print-background-force">
+			<BarStackLegend className="print-background-force">
 				{dataWithPercentage.map(({ key, percentage, color, legend }) => (
 					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />

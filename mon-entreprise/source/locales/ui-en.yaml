@@ -1,3 +1,4 @@
+.cta: Launch the simulator
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
@@ -19,6 +20,7 @@ Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
+Aucun: No
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
@@ -72,7 +74,7 @@ Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
 ExportSimulation:
-  Banner: <0>Print or save as PDF</0>
+  Banner: Print or save as PDF
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
@@ -97,6 +99,7 @@ J'ai compris: understood
 Janvier 2019: January 2019
 Jusqu’au: Until
 La somme de: This rule is the sum of
+Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
 Mensuel: Monthly
 Mes réponses: My answers
@@ -212,21 +215,22 @@ aide-déclaration-indépendant:
   description: <0><0>This tool is an aid for the declaration of income for
     <2>self-employed workers</2>. It allows you to know the amount of deductible
     social charges.</0><1>You remain entirely responsible for any omissions or
-    inaccuracies in your declaration.</1></0><1><0>This tool concerns you if you
-    are in the following situation:</0><1><0>you contribute to the general
-    scheme for self-employed workers</0></1><2>It does not concern you if you
-    are in one of the following cases:</2><3><0>you carry out a liberal activity
-    covered by a pension scheme for the liberal professions in accrual
-    accounting</0><1>your company is domiciled in the
-    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions help determine
-    the type of declaration to be completed, as well as the methods of
-    calculating social security contributions.</4>
+    inaccuracies in your declaration.</1></0><1><0><0>This tool concerns you if
+    you are in the following case:</0></0><1><0>You contribute to the general
+    scheme for independent workers</0></1><2><0>It does not concern you if you
+    are in one of the following cases:</0></2><3><0>You carry out a liberal
+    activity covered by a pension scheme for the liberal professions in accrual
+    accounting</0><1>Your company is domiciled in the
+    DOM</1></3></1><2></2><3>Taxation</3><4>These few questions allow you to
+    determine the type of declaration to be completed, as well as the methods of
+    calculating social contributions.</4>
   entreprise:
     description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
   results:
     ongoing: Calculation in progress...
-    title: Your tax returns
+    title: Amounts to report on your tax return
+    title-short: Your tax returns
 an: year
 année: year
 applicable si: applicable if
@@ -304,11 +308,18 @@ autoentrepreneur:
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
     titre: Auto-entrepreneur
   titre: Auto-entrepeneur
-back: Resume simulation
+back: Return to the simulation
 barème: scale
 calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on
+cards:
+  simulator-resource:
+    cta: Go to the simulator
+checklist:
+  showmore:
+    closed: Read more
+    open: Hide details
 cible: target
 clickexample: Click on a situation to see the result
 cliquez pour insérer cette suggestion: click to insert this suggestion
@@ -448,17 +459,24 @@ créer:
   description: Before starting the administrative procedures to create your
     company, you must choose a legal status adapted to your activity
   ressources:
-    autoEntrepreneur: <0>Become auto-entrepreneur</0> <1>Go to the simplified
-      creation process for starting a business</1>
-    comparaison: >
-      <0> SASU, EURL or auto-entrepreneur?</0>
-
-      <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
-    listeStatuts: |
-      <0>List of legal statuses</0>
-      <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
+    autoEntrepreneur:
+      body: Do you want to become an auto-entrepreneur? Discover the steps to start
+        your business
+      cta: Consult the procedures
+      title: Auto-entrepreneur procedure
+    comparaison:
+      body: Self-employed, assimilated employee or auto-entrepreneur? Calculate the
+        differences in terms of income, contributions, pension, etc.
+      cta: Compare
+      title: Plan Comparator
+    listeStatuts:
+      body: Do you already know which status to choose? Go directly to the list of
+        related procedures
+      cta: See the list
+      title: List of legal statuses
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
+d'aides: aids
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
@@ -508,7 +526,7 @@ embauche:
         Hiring procedure in France
     pension:
       description: Find your pension institute (Fr)
-      titre: Contact your assigned compulsory complementary pension institution
+      titre: Contact the compulsory supplementary pension institution assigned to you
     registre:
       titre: Keep an updated staff register
     titre: Hiring process checklist
@@ -526,23 +544,27 @@ entreprise:
         French administration.`
       titre: Create an {{status}}
   ressources:
-    après: >
-      <0>After registration</0>
-
-      <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may (possibly) encounter after creation.</1>
+    après:
+      body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
+        (possibly) encounter after the creation.
+      cta: See the glossary
+      title: After the creation
     simu:
-      assimilé: >
-        <0>Assimilé-salarié: contribution simulator </0>
-
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
-      autoEntrepreneur: >
-        <0>Auto-entrepreneur: income simulator</0>
-
-        <1>Simulate the amount of your social security contributions and taxes and estimate your future net income.</1>
-      indépendant: >
-        <0>Independent: contribution simulator </0>
-
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
+      assimilé:
+        body: Simulate the amount of your social contributions to prepare your business
+          plan.
+        cta: Simulate compensation
+        title: Remuneration simulator for SASU managers
+      autoEntrepreneur:
+        body: Simulate the amount of your social security contributions and taxes and
+          estimate your future net income.
+        cta: Simulate income
+        title: Auto-entrepreneur income simulator
+      indépendant:
+        body: Simulate the amount of your social contributions to prepare your business
+          plan.
+        cta: Simulate contributions
+        title: Self-employed contribution simulator
   retour: Choose another status
   tâches:
     adresse:
@@ -608,9 +630,8 @@ entreprise:
     formeJuridique:
       titre: Choose the legal status
     formulaire:
-      description: <0>You can start your online registration process anytime, save it
-        and come back to it as you wish.</0><1><0>Start registration
-        process</0></1>
+      description: <0>You can register online at any time, save it and return to it as
+        you wish.</0><1></1><2>Doing it online</2>
       titre: Register my company online
     journal:
       description: >
@@ -650,11 +671,11 @@ entreprise:
       titre: Publish a notice of creation in a newspaper
     nom:
       description: <0><0>The corporate name</0> is the name of your company in the
-        eyes of the law, written on all your administrative documents. It can be
+        eyes of the law, written on all your administrative documents. It may be
         different from your business name.</0><1>It is advisable to check that
         the name is available, i.e. that it does not infringe on a name already
-        protected by a trademark, a company name, a trade name, an internet
-        domain name, etc. You can check in the <1>INPI database</1>.</1>
+        protected by a trademark, a company name, a trade name, an Internet
+        domain name, etc. You can check in the <2>INPI</2> database.</1>
       titre: Find a corporate name
     objetSocial:
       description: The <1>corporate purpose</1> of the company ("objet social") is the
@@ -723,6 +744,13 @@ formeJuridique:
     liability, subject to a flat-rate scheme for the calculation of taxes and
     the payment of social security contributions.
   titre: Choice of legal status
+gerer:
+  choix:
+    embauche:
+      body: Calculate the total amount your company will have to spend to pay your
+        next employee
+      cta: Launch the simulator
+      title: Estimate the amount of a hiring
 gérant minoritaire:
   description: >
     <0>Some special rules apply depending on the amount of shares owned by the
@@ -738,53 +766,76 @@ gérant minoritaire:
   titre: Chairman or managing director
 gérer:
   choix:
-    chomage-partiel: <0>Partial activity</0><1>Calculate the remaining amount to be
-      paid after government reimbursement when you activate the device for an
-      employee.</1>
-    déclaration: <0>Completing my tax return</0><1>Easily calculate the amounts to
-      carry forward on your 2019 tax return</1>
+    chomage-partiel:
+      body: Calculate the remaining amount to be paid after reimbursement from the
+        state when you activate the device for an employee.
+      cta: See the simulator
+      title: Partial activity
+    déclaration:
+      body: Easily calculate the amount of payroll taxes to be reported on your 2020
+        tax return
+      cta: Completing my return
+      title: Income tax return (self-employed)
     embauche: >
       <0>Estimate the amount spent for hiring</0>
 
       <1>Calculate how much your company will have to spend to pay your next employee</1>
-    is: <0>Estimate the amount of corporate income tax</0><1>Calculate the amount of
-      corporation tax based on your gross profit.</1>
-    revenus: >
-      <0>Calculate my net income</0>
-
-      <1>Estimate precisely the amount of your contributions thanks to the Urssaf simulator for {{régime}}</1>
+    is:
+      body: Calculate the amount of corporate tax from your profit.
+      cta: Launch the simulator
+      title: Estimating the amount of corporate tax
+    revenus:
+      body: Estimate the exact amount of your contributions thanks to the {{regime}}
+        simulator of the Urssaf
+      cta: Calculate my net income
+      title: Income as a business owner
     titre: What do you want to do?
   cta: Find my company
   description: Do you want to earn an income or hire? You will have to pay
     contributions and taxes. Anticipate their amounts thanks to simulators
     adapted to your situation.
   entreprise:
-    auto: Are you auto-entrepreneur?
+    auto: Are you an auto-entrepreneur?
     changer: Change the selected company
-    dirigeant: >
-      <0>Are you the majority director?</0>
-
-      <1>If you are a majority director or a member of a majority board of directors, you will not have the same social security system as if you are a minority.</1>
+    dirigeant:
+      description: If you are a majority director or a member of a majority board, you
+        will not have the same social security coverage as a minority director.
+      titre: Are you a majority shareholder?
     majoritaire: Majority director
     minoritaire: Minority director
   ressources:
-    autoEntrepreneur: <0>Access the official auto-entrepreneur website</0> <1>You
-      will be able to make your turnover declaration, pay your contributions,
-      and more widely find all the information relating to the status of
-      auto-entrepreneur</1>
-    embaucher: >
-      <0>Discover the hiring process</0>
-
-      <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
-    kbis: <0>How do I get a Kbis?</0><1>The Kbis is a record that proves the
-      existence of a commercial company. You can get the Kbis for your company
-      using monidenum.fr</1>
-    kbis-autoentrepreneur: <0>How do I get a Kbis?</0><1>Auto-entrepreneurs do not
-      have a Kbis. They can however retrieve and present a K extract. See the
-      service-public website for more information.</1>
-    sécuritéSociale: <0>Understanding social security</0> <1>What are social
-      security contributions used for? Update on the social protection system
-      enjoyed by all workers in France</1>
+    autoEntrepreneur:
+      body: You will be able to declare your turnover, pay your contributions, and
+        more generally find all the information relating to the status of
+        auto-entrepreneur
+      cta: Visit the site
+      title: Official website of auto-entrepreneurs
+    embaucher:
+      body: The list of things to do to make sure you don't forget anything when
+        hiring a new employee
+      cta: See the list of steps
+      title: "Discover the hiring process "
+    export:
+      body: The form to apply for international mobility (secondment or multi-job)
+      cta: Fill in the form
+      title: Exporting your business to Europe
+    kbis:
+      body: The Kbis is a document to justify the registration of the company at the
+        <2>RCS</2> and to prove its legal existence. This document can be
+        retrieved free of charge for your company via the MonIdeNum website.
+      cta: Go to monIdeNum.fr
+      title: Get a Kbis extract
+    kbis-autoentrepreneur:
+      body: Self-employed entrepreneurs do not have a Kbis. However, they can obtain
+        and present a K extract. See the service-public website for more
+        information.
+      cta: Visit the site
+      title: How to get a Kbis extract?
+    sécuritéSociale:
+      body: What are social security contributions for? An update on the social
+        protection system from which all workers in France benefit.
+      cta: Read the guide
+      title: Understanding Social Security
   titre: Manage my business
 heure: hour
 heures: hours
@@ -799,22 +850,27 @@ indemnité: benefit
 indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
+jours: days
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
-    <2>team</2> within the <5>Urssaf</5>. We are committed to being close to
-    your needs in order to constantly improve this site in accordance with the
-    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to <2>assist
-    entrepreneurs</2> in the development of their business.</2><3>Our objective
-    is to <2>remove all administrative uncertainties</2> so that you can focus
-    on what really matters: your business.</3>"
+    <2>team</2> within the<5>Urssaf</5>. We are committed to being close to your
+    needs in order to constantly improve this site in accordance with the
+    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to assist
+    entrepreneurs in the development of their business.</2><3>Our objective is
+    to remove all uncertainties with regard to the administration so that you
+    can concentrate on what matters: your business.</3>"
   choice:
-    create: <0>Create a company</0><1>Assistance in choosing the status and the
-      complete list of creation steps</1>
-    manage: <0>Manage my business</0><1>Personalised tools to anticipate the amount
-      of social security contributions to be paid and better manage your cash
-      flow.</1>
-    simulators: <0>Access the simulators</0><1>The exhaustive list of all the
-      simulators available on the site.</1>
+    create:
+      body: Assistance in choosing a legal status and a complete list of the steps
+        involved in setting up a business
+      title: Create a company
+    manage:
+      body: Personalized tools to anticipate the amount of social contributions to be
+        paid and better manage your cash flow.
+      title: Manage my business
+    simulators:
+      body: The exhaustive list of all the simulators available on the site.
+      title: Browse the simulators
   covid19: "Covid-19: Calculating the impact of short-time work"
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
@@ -847,8 +903,11 @@ mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
 nextSteps:
-  integration-iframe: <0><0></0> Integrate the web module</0><1>Add this simulator
-    to your website in one click with a simple script.</1>
+  integration-iframe:
+    body: Discover how to add this simulator on your website in one click via a
+      turnkey script.
+    cta: See the documentation
+    title: Integrate the web module
 non: no
 non applicable si: not applicable if
 non déductible: not deductible
@@ -865,7 +924,7 @@ page:
         of devices considered</1><2><0>Easily and freely integrates</0> on any
         website. <3>Learn more about</3> it.</2></1>
 pages:
-  accessibilité: <0></0><1>Accessibility</1><2></2><3>This page is not a help
+  accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
     define the general level of accessibility found on the site in accordance
     with the regulations. This page is mandatory to be compliant with the RGAA
@@ -884,7 +943,7 @@ pages:
     plan to be</2> implemented.</10><11>This declaration of accessibility
     applies to <2>https://mon-entreprise.fr</2>.</11><12>Compliance
     status</12><13><0>https://mon-entreprise.fr</0> is not currently compliant
-    with the <3>General Accessibility Improvement Framework (GA</3>F). The
+    with the <4>General Accessibility Improvement Framework (GA</4>F). The
     compliance audit will be scheduled soon. Corrections will be taken into
     account following the audit.</13><14>Right to compensation</14><15>While
     waiting for full compliance, you can obtain an accessible version of the
@@ -907,12 +966,16 @@ pages:
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
   common:
     ressources-auto-entrepreneur:
-      FAQ: <0><0>Frequently Asked Questions</0><1>An exhaustive and up-to-date list of
-        all the frequently (and less frequently) asked questions that you may
-        have as an auto-entrepreneur (in french).</1></0>
-      impôt: <0><0>How to declare your income?</0><1>Official information from the tax
-        authorities concerning auto-entrepreneurs and the micro-enterprise
-        scheme (in french).</1></0>
+      FAQ:
+        body: An exhaustive and updated list of all the frequent (and less frequent)
+          questions that one is led to ask as an auto-entrepreneur
+        cta: See the answers
+        title: Frequently asked questions
+      impôt:
+        body: The official information of the tax authorities concerning
+          auto-entrepreneurs and the micro-enterprise regime.
+        cta: See the help
+        title: How to declare your income to the tax authorities?
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
@@ -961,13 +1024,21 @@ pages:
       social contributions of low earners.</23><24><0></0></24>"
   développeurs:
     choice:
-      github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
-        developed on GitHub.</1>
-      library: <0>Using the calculation engine</0><1>The entire socio-fiscal
-        calculation engine developed by Urssaf, freely available in the form of
-        an NPM library.</1>
-      publicodes: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
-        language for encoding "explainable" algorithms.</1>
+      github:
+        body: The entire socio-fiscal calculation engine developed by the Urssaf, freely
+          available as an NPM library.
+        cta: Start
+        title: Calculation library
+      library:
+        body: The entire socio-fiscal calculation engine developed by the Urssaf, freely
+          available as an NPM library.
+        cta: Start
+        title: Calculation library
+      publicodes:
+        body: Our tools are powered by Publicodes, a new language for encoding
+          "explainable" algorithms.
+        cta: Discover
+        title: Publicodes
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
@@ -975,29 +1046,33 @@ pages:
     couleur: "What color? "
     home:
       choice:
-        iframe: <0>Integrating a simulator</0><1>Integrate one of our simulators in one
-          click into your website, via a turnkey script.</1>
+        iframe:
+          body: Integrate one of our simulators in one click into your website, via a
+            turnkey script.
+          cta: Start
+          title: Integrate a simulator
         library: <0>Using the calculation engine</0><1>The entire socio-fiscal
           calculation engine developed by Urssaf, freely available in the form
           of an NPM library.</1>
-      description: In addition to the site mon-entreprise.fr, we develop free and open
-        source tools to be integrated seemlessly in the usual journey of your
-        users.
+      description: In addition to the mon-entreprise.fr website, we provide free and
+        open-source tools to integrate into your website. You can thus include
+        the tools created for <1>my-company</1> directly in the usual paths of
+        your users.
       titre: Integrate social security law at the heart of your tools
     iframe:
-      csp-1: <0>Iframe integration and content security policy</0><1>The error below
-        that is displayed in the console is related to the communication between
-        the parent page and the iframe for automatic resizing to the displayed
-        content.</1>
+      csp-1: <0>The error below that appears in the console is related to the
+        communication between the parent page and the iframe for automatic
+        resizing to the displayed content.</0>
       csp-2: "You can correct it with the following policy:"
+      csp-title: Iframe integration and content security policy
       intro: <0><0>Integrate the web module</0><1>Our simulators can be integrated
         seamlessly by adding a simple line of code to your web page.</1><2>You
         can choose the simulator to integrate and <2>customize the main color of
         the module</2> to fit the visual theme of your page.</2><3>The
         <1>data-lang="en"</1> attribute allows you to choose English as the
-        simulator language.</3></0><1></1><2>Note that if your site uses a
-        content security policy via the HTTP <1>Content-Security-Policy</1>
-        response header, a benign error may appear in the console.<3></3></2>
+        simulator language.</3></0><1></1><2></2><3>Note that if your site uses
+        a content security policy via the HTTP <1>Content-Security-Policy</1>
+        response header, a benign error may appear in the console. <3></3></3>
     module: What module?
   gérer:
     aide-déclaration-indépendant:
@@ -1073,10 +1148,9 @@ pages:
         action: Estimate Hiring costs
         montant: Amount of aid
         première année: the first year
-      introduction: <0><0><0></0></0>Employers can receive financial assistance to
-        hire certain priority groups. Find out about existing schemes and
-        estimate the amount of incentives by answering a short number of
-        questions.</0>
+      introduction: Employers can benefit from financial aid for hiring certain
+        priority groups. Find out about the existing schemes and estimate the
+        amount of aid by answering the questions.
       message fin: You can now simulate the exact cost of hiring by selecting an
         eligible grant.
       meta:
@@ -1141,7 +1215,7 @@ pages:
       title: Self-entrepreneur Income Simulator
       titre: Auto-entrepreneur income simulator
     auxiliaire:
-      shortname: Medical Axiliary
+      shortname: Medical Auxiliary
       title: Income simulator for a private medical assistant
       tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
         orthoptists
@@ -1316,7 +1390,7 @@ pages:
         calculate the exact amount of social security contributions based on a
         desired turnover or net income. You can specify your situation by
         answering the questions displayed below the simulation.</8>
-      shortname: EI
+      shortname: Individual company
       title: Simulator for sole proprietorship (EI)
     eirl:
       meta:
@@ -1340,6 +1414,8 @@ pages:
           remuneration.
         ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
         titre: "EURL : income simulator for managers"
+      shortname: EURL
+      title: EURL Simulator
     expert-comptable:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
@@ -1350,10 +1426,10 @@ pages:
           turnover and vice versa
         title: "Self-employed: income simulator"
       retraite-droits-acquis: "<0>Retirement: rights acquired in 2021</0><1><0>Basic
-        pension : <2><0><0></0> vested quarters</0></2></0><1>Supplementary
-        pension : <2><0>This simulator does not manage the acquired rights of
-        supplementary pension for the liberal
-        professions</0></2><3><0><0><0></0> points acquired</0></0></3></1></1>"
+        pension: <2><0></0> acquired quarters</2></0><1>Supplementary pension:
+        <2><0>This simulator does not manage the acquired rights of
+        supplementary pension for the liberal professions</0></2><3><0><0></0>
+        points acquired</0></3></1></1>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:
@@ -1499,8 +1575,8 @@ pages:
         remuneration. To do this, simply enter the total amount allocated in the
         \"total charged\" box. The simulation can then be refined by answering
         the various questions.</4>"
-      shortname: EURL
-      title: EURL Simulator
+      shortname: SASU
+      title: SASU Simulator
       titre: Revenue simulator for SAS(U) executive
   économie-collaborative:
     meta:
@@ -1509,6 +1585,8 @@ pages:
       title: "Online platform income tax return: interactive guide"
     shortname: Collaborative Economy Guide
 par: per
+par an: per year
+par mois: per month
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
     Lots of financial aids for your enterprise exist, explore them on
@@ -1525,13 +1603,13 @@ previousSimulationBanner:
   retrieveButton: Retrieve my last simulation
 privacyContent:
   ok: Your preferences have been saved
-  texte: <0></0><1>Personal data</1><2>We collect anonymous statistics on the use
-    of the site, which we use for the sole purpose of improving the service, in
-    accordance with the <2>recommendations of the CNIL</2> and the RGPD
-    regulation. This is the only data that leaves your browser.</2><3>You can
-    opt out of this site usage measure below:</3><4><0><0></0> I do not wish to
-    send anonymous data on my use of the site for audience measurement
-    purposes</0></4>
+  texte: <0></0><1>We collect anonymous statistics on the use of the site, which
+    we use for the sole purpose of improving the service, in accordance with the
+    <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only
+    data that leaves your browser.</1><2>You can opt out of this site usage
+    measure below:</2><3><0>I do not wish to send anonymous data on my use of
+    the site for audience measurement purposes</0></3>
+  title: Personal data
 quicklinks:
   Avantages: Benefits
   CDD: Fixed-term
@@ -1546,6 +1624,8 @@ quicklinks:
   JEI: Innovating company (JEI)
   Temps partiel: Part time
   Type d'activité: Activity type
+recherche-globale:
+  placeholder: Keyword or acronym (e.g. CSG)
 replier: show less
 responsabilité:
   bouton1: Limited liability company
@@ -1570,6 +1650,9 @@ responsabilité:
   titre: Limited liability company or sole proprietorship
 salaire: salary
 salarié: employee
+select:
+  value:
+    default: Choose an option
 selectionRégime:
   comparer:
     cta: Compare social schemes
@@ -1596,7 +1679,7 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 shareSimulation:
-  banner: <0>Generate a share link</0>
+  banner: Generate a share link
   button:
     copied: Copied
     copy: Copy the link
@@ -1629,7 +1712,7 @@ simulateurs:
 
     We invite you to try again by slightly modifying the amount entered (a few euros more for example).
   précision:
-    défaut: "Refine your simulation by answering the questions:"
+    défaut: "Improve your simulation by answering the questions :"
   warning:
     année-courante: The amount of the contributions is calculated for an income over
       the year 2020.

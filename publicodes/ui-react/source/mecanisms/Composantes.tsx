@@ -21,7 +21,6 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 						<div
 							style={{
 								textAlign: 'center',
-								width: '100%',
 								fontSize: '2.6rem',
 								margin: '0.4em 0 0.2em',
 							}}

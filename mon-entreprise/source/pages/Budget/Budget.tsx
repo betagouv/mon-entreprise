@@ -1,11 +1,13 @@
+import { Grid } from '@mui/material'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { Item, Select } from 'DesignSystem/field/Select'
+import { H1, H2 } from 'DesignSystem/typography/heading'
 import { formatValue } from 'publicodes'
 import { sum, uniq } from 'ramda'
 import { useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -49,24 +51,27 @@ export default function Budget() {
 				description="Le budget de mon-entreprise.fr"
 			/>
 			<ScrollToTop />
-			<h1>
+			<H1>
 				Budget <Emoji emoji="💶" />
-			</h1>
+			</H1>
 			<Markdown source={intro} />
-			<label>
-				<Emoji emoji="📅" /> Année{' '}
-				<select
-					value={selectedYear}
-					onChange={(event) =>
-						setSelectedYear(event.target.value as typeof years[number])
-					}
+			<H2>Budget consommé</H2>
+			<Grid item xs={6} sm={4}>
+				<Select
+					label={'Année'}
+					defaultSelectedKey={selectedYear}
+					onSelectionChange={(year) => {
+						setSelectedYear(year as typeof years[number])
+					}}
 				>
 					{years.map((year) => (
-						<option key={year}>{year}</option>
+						<Item key={year} textValue={year}>
+							{year}
+						</Item>
 					))}
-				</select>
-			</label>
-			<h2>Budget consommé</h2>
+				</Select>
+			</Grid>
+
 			<Markdown source={ressources[selectedYear]} />
 			{selectedYear !== '2019' && (
 				<>

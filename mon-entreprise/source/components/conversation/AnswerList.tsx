@@ -1,18 +1,31 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
-import Overlay from 'Components/Overlay'
+import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { Button } from 'DesignSystem/buttons'
+import { H2 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import './AnswerList.css'
-import Emoji from 'Components/utils/Emoji'
 
 type AnswerListProps = {
 	onClose: () => void
 }
+
+const Header = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`
+
+const Title = styled(H2)`
+	flex-grow: 1;
+`
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
@@ -26,40 +39,50 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	)
 
 	return (
-		<Overlay onClose={onClose} className="answer-list">
+		<div className="answer-list">
 			{!!answeredQuestions.length && (
 				<>
-					<h2>
-						<Emoji emoji="📋 " />
-						<Trans>Mes réponses</Trans>
-						<small css="margin-left: 2em; img {font-size: .8em}">
-							<Emoji emoji="🗑" />{' '}
-							<button
-								className="ui__ simple small button"
-								onClick={() => {
-									dispatch(resetSimulation())
-									onClose()
-								}}
-							>
-								<Trans>Tout effacer</Trans>
-							</button>
-						</small>
-					</h2>
+					<Header>
+						<Title>
+							<Emoji emoji="📋 " />
+							<Trans>Mes réponses</Trans>
+						</Title>
+						<Button
+							size="XS"
+							light
+							onPress={() => {
+								dispatch(resetSimulation())
+								onClose()
+							}}
+						>
+							<Emoji emoji="🗑" /> <Trans>Tout effacer</Trans>
+						</Button>
+					</Header>
 					<StepsTable {...{ rules: answeredQuestions, onClose }} />
 				</>
 			)}
 			{!!nextSteps.length && (
 				<>
-					<h2>
+					<H2>
 						<Emoji emoji="🔮 " />
 						<Trans>Prochaines questions</Trans>
-					</h2>
+					</H2>
 					<StepsTable {...{ rules: nextSteps, onClose }} />
 				</>
 			)}
-		</Overlay>
+		</div>
 	)
 }
+
+const TBody = styled.tbody`
+	font-family: ${({ theme }) => theme.fonts.main};
+	& > tr > td {
+		padding: 0.5rem 0.75rem;
+	}
+	& > tr:nth-child(2n) {
+		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+	}
+`
 
 function StepsTable({
 	rules,
@@ -72,50 +95,25 @@ function StepsTable({
 	const language = useTranslation().i18n.language
 	return (
 		<table>
-			<tbody>
+			<TBody>
 				{rules.map((rule) => (
-					<tr
-						key={rule.dottedName}
-						css={`
-							background: var(--lightestColor);
-						`}
-					>
+					<tr key={rule.dottedName}>
 						<td>
-							<button
-								className="ui__ link-button"
-								onClick={() => {
+							<Link
+								onPress={() => {
 									dispatch(goToQuestion(rule.dottedName))
 									onClose()
 								}}
 							>
 								{rule.title}
-							</button>
+							</Link>
 						</td>
 						<td>
-							<span
-								css={`
-									display: inline-block;
-									padding: 0.2rem;
-									color: inherit;
-									font-size: inherit;
-									width: 100%;
-									text-align: start;
-									font-weight: 600;
-									> span {
-										border-bottom-color: var(--textColorOnWhite);
-										padding: 0.05em 0em;
-										display: inline-block;
-									}
-								`}
-							>
-								<span className="answerContent">
-									{formatValue(rule, { language })}
-								</span>
-							</span>{' '}
+							<span className="">{formatValue(rule, { language })}</span>
 						</td>
 					</tr>
 				))}
-			</tbody>
+			</TBody>
 		</table>
 	)
 }

@@ -1,4 +1,8 @@
+import { StyledLegend } from 'Components/charts/PagesCharts'
 import Emoji from 'Components/utils/Emoji'
+import { Strong } from 'DesignSystem/typography'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { add, mapObjIndexed } from 'ramda'
 import {
 	Bar,
@@ -83,30 +87,30 @@ const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
 	}
 	const data = payload[0].payload
 	return (
-		<div className="ui__ card">
-			<small>
+		<StyledLegend>
+			<Body>
 				Sur{' '}
-				<strong style={data.total < 10 ? { color: 'red' } : {}}>
+				<Strong style={data.total < 10 ? { color: 'red' } : {}}>
 					{data.total} avis
-				</strong>{' '}
+				</Strong>{' '}
 				en {formatMonth(data.date)} :
-			</small>
-			<ul>
-				<li>
-					<strong>
+			</Body>
+			<Ul small>
+				<Li>
+					<Strong>
 						{Math.round((data['très bien'] ?? 0) + (data['bien'] ?? 0))}%
-					</strong>{' '}
+					</Strong>{' '}
 					satisfaits{' '}
 					<small>
 						({Math.round(data['très bien'] ?? 0)}% <Emoji emoji="😀" /> /{' '}
 						{Math.round(data['bien'] ?? 0)}% <Emoji emoji="🙂" />)
 					</small>
-				</li>
-				<li>
-					<strong>{Math.round(data['mauvais'] ?? 0)}%</strong> négatifs
+				</Li>
+				<Li>
+					<Strong>{Math.round(data['mauvais'] ?? 0)}%</Strong> négatifs
 					<Emoji emoji="🙁" />
-				</li>
-			</ul>
-		</div>
+				</Li>
+			</Ul>
+		</StyledLegend>
 	)
 }

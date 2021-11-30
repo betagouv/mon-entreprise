@@ -61,7 +61,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				),
 			},
 			pathId: 'simulateurs.entreprise-individuelle',
-			shortName: t('pages.simulateurs.ei.shortname', 'EI'),
+			shortName: t('pages.simulateurs.ei.shortname', 'Entreprise Individuelle'),
 			title: t(
 				'pages.simulateurs.ei.title',
 				'Simulateur pour entreprise individuelle (EI)'
@@ -156,8 +156,8 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				),
 			},
 			pathId: 'simulateurs.eurl',
-			shortName: t('pages.simulateurs.sasu.shortname', 'EURL'),
-			title: t('pages.simulateurs.sasu.title', "Simulateur d'EURL"),
+			shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
+			title: t('pages.simulateurs.eurl.title', "Simulateur d'EURL"),
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {
@@ -441,7 +441,10 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			icône: '🩹',
 			iframePath: 'auxiliaire-medical',
 			pathId: 'simulateurs.profession-libérale.auxiliaire',
-			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire méd.'),
+			shortName: t(
+				'pages.simulateurs.auxiliaire.shortname',
+				'Auxiliaire médical'
+			),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
