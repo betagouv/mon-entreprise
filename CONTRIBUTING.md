@@ -100,6 +100,12 @@ $ yarn lint
 $ yarn test:type
 ```
 
+Pour avoir les erreurs de type en direct dans la console, utilisez le paramètre `--watch` :
+
+```sh
+$ yarn test:type --watch
+```
+
 #### Tests unitaires
 
 ```sh
@@ -196,7 +202,7 @@ Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
 contenant les règles elles-mêmes (dans le dossier `modele-social`) mais cela
 peut s'avérer assez abrupt.
 
-Essayez plutôt de jeter un oeil [aux tests](https://github.com/betagouv/publicodes/tree/master/core/test/m%C3%A9canismes)
+Essayez plutôt de jeter un œil [aux tests](https://github.com/betagouv/publicodes/tree/master/core/test/m%C3%A9canismes)
 dans un premier temps, et pourquoi pas à [à l'implémentation des mécanismes](https://github.com/betagouv/publicodes/tree/master/core/source/mecanisms).
 
 ### Traduction des normes (lois) en règles Publicodes
@@ -208,36 +214,3 @@ Checklist:
 -   [ ] [Lire les normes][wiki normes] et noter leurs référence dans les règles Publicodes.
 
 [wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
-
-### Modifier publicodes
-
-Publicodes dispose désormais de son propre dépôt GitHub https://github.com/betagouv/publicodes
-
-Néanmoins pour certaines nouvelles fonctionnalités de mon-entreprise nous concervons le besoin de
-modifier publicodes avec le moins de frictions possible. Pour tester une évolution du moteur il
-serait en effet trop lourd d'avoir à ouvrir d'abord une PR côté publicodes, la merger, publier une
-nouvelle version du paquet, puis ré-intégrer cette nouvelle version sur mon-entreprise.
-
-C'est pourquoi nous intégrons le code source du publicode dans le sous-répertoire `publicodes/`. La
-commande `git subtree` nous permet de synchroniser les changements effectués dans l'un ou l'autre
-des dépôts.
-
-La première chose à faire est d'ajouter une nouvelle `remote` pour `betagouv/publicodes`, ici nous l'appelons simplement `publicodes` :
-
-```sh
-git remote add publicodes git@github.com:betagouv/publicodes.git
-```
-
-Ensuite il est possible de remonter les changements effectués dans le sous-repertoire `publicodes/` vers la branche master de la remote `publicodes`.
-
-```sh
-$ git subtree push --prefix=publicodes publicodes master
-```
-
-Dans l'autre sens il est possible de rapatrier les changements avec la commande
-
-```sh
-$ git subtree pull --prefix=publicodes publicodes master --squash
-```
-
-Les dépendances peuvent avoir changé côté publicodes, mieux vaut donc enchaîner avec un `yarn install` pour être à jour.

@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import rules from 'modele-social'
-import { cyclicDependencies } from '../../publicodes/core/source/AST/graph'
+import { utils } from 'publicodes'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
-		const [cyclesDependencies, dotGraphs] = cyclicDependencies(rules)
+		const [cyclesDependencies, dotGraphs] = utils.cyclicDependencies(rules)
 
 		const dotGraphsToLog = dotGraphs
 			.map(
