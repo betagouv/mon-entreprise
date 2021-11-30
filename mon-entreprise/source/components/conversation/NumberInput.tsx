@@ -60,8 +60,10 @@ export default function NumberInput({
 				displayedUnit={displayedUnit}
 				onChange={(valeur) => {
 					setCurrentValue(valeur)
-					if (valeur != null) {
+					if (valeur != null && unité) {
 						debouncedOnChange({ valeur, unité })
+					} else {
+						debouncedOnChange(valeur)
 					}
 				}}
 				formatOptions={formatOptions}
