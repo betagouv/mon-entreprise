@@ -980,7 +980,7 @@ pages:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
-      contribution calculations behind my-company are free and easily reusable
+      contribution calculations behind mycompanyinfrance are free and easily reusable
       thanks to the <2>NPM publicodes library</2>.</1><2>How to use this
       library?</2><3>All our calculation rules are written in `publicodes`, a
       declarative language developed by beta.gouv.fr and the Urssaf to encode
@@ -1054,9 +1054,9 @@ pages:
         library: <0>Using the calculation engine</0><1>The entire socio-fiscal
           calculation engine developed by Urssaf, freely available in the form
           of an NPM library.</1>
-      description: In addition to the my-company site, we provide free and open source
+      description: In addition to the mycompanyinfrance site, we provide free and open source
         tools to integrate on your website. You can thus include the tools
-        created for <1>my-company</1> directly in the usual paths of your users.
+        created for <1>mycompanyinfrance</1> directly in the usual paths of your users.
       titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
