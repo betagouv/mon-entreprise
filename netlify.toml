@@ -13,11 +13,13 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 [[redirects]]
   from = "https://mon-entreprise.fr/*"
   to = "https://1832--mon-entreprise.netlify.app/:splat"
+  force = true
   status = 200
 
 [[redirects]]
   from = "https://mycompanyinfrance.fr/*"
   to = "https://1832-en--mon-entreprise.netlify.app/:splat"
+  force = true
   status = 200
 
 
