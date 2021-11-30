@@ -2,7 +2,7 @@ import SearchButton from 'Components/SearchButton'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
-import urssafSvg from 'Images/Urssaf.svg'
+import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -19,9 +19,8 @@ export default function Header() {
 			<StyledHeader>
 				<Link
 					to={sitePaths.index}
-					className="landing-header__institutional-logo"
 				>
-					<img alt="logo urssaf" src={urssafSvg} />
+					<img alt="Service mon-entreprise urssaf" src={logoSvg} />
 				</Link>
 
 				<div
@@ -47,7 +46,7 @@ const StyledHeader = styled.div`
 	}
 	img {
 		height: 100%;
-		padding: ${({ theme }) => theme.spacings.xs} 0;
+		padding:  0;
 	}
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `
