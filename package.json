@@ -90,7 +90,6 @@
 		"serve": "^11.1.0",
 		"sinon": "^9.2.2",
 		"sinon-chai": "^3.0.0",
-		"stmux": "^1.8.1",
 		"style-loader": "^0.23.1",
 		"terser-webpack-plugin": "^3.0.2",
 		"toml-loader": "^1.0.0",
@@ -117,17 +116,13 @@
 		"prepare": "if [ -z \"$NETLIFY\" ]; then yarn workspaces run prepare; fi",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
-		"test:type": "yarn workspaces run tsc -- --skipLibCheck",
+		"test:type": "yarn workspaces run tsc -- --skipLibCheck --noEmit",
 		"test:regressions": "yarn workspace modele-social build && jest --silent",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
-		"start": "stmux -e ERROR -t mon-entreprise-build -M -- [ -s 3/4 [ [ 'yarn workspace publicodes build:watch' : 'yarn workspace publicodes-react build --watch' ] ..  [ 'yarn workspace mon-entreprise start' ] ] : [ 'yarn workspace mon-entreprise run tsc -- -w --noEmit --skipLibCheck' ] ]",
-		"moso:up": "yarn workspace modele-social run up && yarn workspace mon-entreprise upgrade modele-social",
-		"publicodes:up": "yarn workspace publicodes-react upgrade publicodes && yarn workspace mon-entreprise upgrade publicodes publicodes-react"
+		"start": "yarn workspace mon-entreprise start",
+		"moso:up": "yarn workspace modele-social run up && yarn workspace mon-entreprise upgrade modele-social"
 	},
 	"workspaces": [
-		"publicodes/core",
-		"publicodes/ui-react",
-		"publicodes/site",
 		"modele-social",
 		"mon-entreprise"
 	],

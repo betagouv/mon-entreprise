@@ -1,6 +1,6 @@
 import { AssertionError } from 'chai'
 import Engine, { parsePublicodes } from 'publicodes'
-import { disambiguateRuleReference } from '../../publicodes/core/source/ruleUtils'
+import utils from 'publicodes'
 import rules from 'modele-social'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
@@ -13,8 +13,11 @@ let runExamples = (examples, rule) =>
 		const situation = Object.entries(ex.situation).reduce(
 			(acc, [name, value]) => ({
 				...acc,
-				[disambiguateRuleReference(engine.parsedRules, rule.dottedName, name)]:
-					value,
+				[utils.disambiguateRuleReference(
+					engine.parsedRules,
+					rule.dottedName,
+					name
+				)]: value,
 			}),
 			{}
 		)
