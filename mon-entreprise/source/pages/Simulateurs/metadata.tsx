@@ -597,7 +597,6 @@ export function getSimulatorsData({
 				...pureSimulatorsData['demande-mobilité'].meta,
 			},
 			path: sitePaths.gérer.formulaireMobilité,
-			private: true,
 		},
 		pharmacien: {
 			...pureSimulatorsData['pharmacien'],

@@ -36,8 +36,8 @@ jobs:
   build:
     needs: deploy-context
     env:
-      FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
-      EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+      FR_BASE_URL: https://mon-entreprise.fr
+      EN_BASE_URL: https://mycompanyinfrance.fr
       PUBLICODES_BASE_URL: ${{ needs.deploy-context.outputs.publicodes_url }}
     runs-on: ubuntu-18.04
     steps:
@@ -62,8 +62,9 @@ jobs:
           ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
           ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
       - name: Replace site placeholders in netlify.toml redirection file
-        run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
-          sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
+        run:
+          sed -i "s|:SITE_FR|https://1832--mon-entreprise.netlify.app|g" netlify.toml;
+          sed -i "s|:SITE_EN|https://1832-en--mon-entreprise.netlify.app|g" netlify.toml;
           sed -i "s|:SITE_PUBLICODES|$PUBLICODES_BASE_URL|g" netlify.toml
       - name: Update Algolia index
         run: yarn workspace mon-entreprise algolia:update
