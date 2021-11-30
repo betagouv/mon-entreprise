@@ -4522,10 +4522,6 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   question.fr: Quel est le salaire en équivalent temps plein ?
   résumé.en: Salary if hired on a full-time basis
   résumé.fr: Le salaire si l'embauche se faisait à temps plein
-  suggestions.SMIC.en: '[automatic] SMIC'
-  suggestions.SMIC.fr: SMIC
-  suggestions.salaire médian.en: '[automatic] median earnings'
-  suggestions.salaire médian.fr: salaire médian
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
 contrat salarié . rémunération . contrôle salaire élevé:

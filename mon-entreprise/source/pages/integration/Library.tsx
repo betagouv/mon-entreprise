@@ -15,8 +15,8 @@ export default function Library() {
 					Si vous pensez que votre site ou service gagnerait à afficher des
 					calculs de salaire, par exemple passer du salaire brut au salaire net,
 					bonne nouvelle : tous les calculs de cotisations et impôts qui sont
-					derrière mon-entreprise.fr sont libres et facilement réutilisable
-					grâce à la{' '}
+					derrière mon-entreprise sont libres et facilement réutilisable grâce à
+					la{' '}
 					<Link href="https://www.npmjs.com/package/publicodes">
 						bibliothèque NPM publicodes
 					</Link>
@@ -93,19 +93,19 @@ export default function Library() {
 					<Body>
 						{' '}
 						Un{' '}
-						<Link href="https://mon-entreprise.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
+						<Link href="https://mon-entreprise.urssaf.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
 							cadre
 						</Link>{' '}
 						gagnant{' '}
-						<Link href="https://mon-entreprise.fr/documentation/contrat-salarié/rémunération/brut-de-base">
+						<Link href="https://mon-entreprise.urssaf.fr/documentation/contrat-salarié/rémunération/brut-de-base">
 							3 400€ bruts
 						</Link>{' '}
 						, qui bénéficie de{' '}
-						<Link href="https://mon-entreprise.fr/documentation/contrat-salari%C3%A9/frais-professionnels/titres%E2%80%91restaurant">
+						<Link href="https://mon-entreprise.urssaf.fr/documentation/contrat-salari%C3%A9/frais-professionnels/titres%E2%80%91restaurant">
 							titres-restaurant
 						</Link>{' '}
 						et qui travaille dans une entreprise de{' '}
-						<Link href="https://mon-entreprise.fr/documentation/entreprise/effectif">
+						<Link href="https://mon-entreprise.urssaf.fr/documentation/entreprise/effectif">
 							22 salariés
 						</Link>
 						.
@@ -133,7 +133,7 @@ export default function Library() {
 				</Body>
 				<Body>
 					Alors que dans le simulateur{' '}
-					<Link href="https://mon-entreprise.fr/simulateurs/salarié">
+					<Link href="https://mon-entreprise.urssaf.fr/simulateurs/salarié">
 						salarié
 					</Link>
 					, il suffit de renseigner la commune et le taux correspondant est

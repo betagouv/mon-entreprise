@@ -30,7 +30,7 @@ jobs:
           working-directory: mon-entreprise
           record: true
           tag: external-integration
-          config: integrationFolder=cypress/integration/external,baseUrl=https://mon-entreprise.fr
+          config: integrationFolder=cypress/integration/external,baseUrl=https://mon-entreprise.urssaf.fr
 
       - name: e2e tests with external API calls
         uses: cypress-io/github-action@v2
@@ -43,5 +43,5 @@ jobs:
             cypress/integration/mon-entreprise/demande-mobilité.js
           record: true
           tag: external-mon-entreprise-e2e
-          config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.fr
+          config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.urssaf.fr
           env: language=fr,record_http= # prevent stubbing

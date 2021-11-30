@@ -1,4 +1,4 @@
-**Mon-Entreprise.fr** est un service public numérique, c’est pourquoi nous
+**Mon-Entreprise** est un service public numérique, c’est pourquoi nous
 sommes transparents sur les ressources allouées et la manière dont elles sont
 employées.
 

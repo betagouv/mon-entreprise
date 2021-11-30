@@ -97,18 +97,18 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 # Embauche redirection settings
 [[redirects]]
   from = "https://mon-entreprise.fr/simulation"
-  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  to = "https://mon-entreprise.urssaf.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
   status = 301
 
 ## Old iframe adress
 [[redirects]]
   from = "https://mon-entreprise.fr/modules/v2/dist/simulateur.js"
-  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  to = "https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"
   status = 301
 
 [[redirects]]
   from = "https://mon-entreprise.fr/dist/simulateur.js"
-  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  to = "https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"
   status = 301
 
 

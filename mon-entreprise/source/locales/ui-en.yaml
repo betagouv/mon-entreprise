@@ -941,10 +941,10 @@ pages:
     websites accessible in accordance with article 47 of law n° 2005-102 of 11
     February 2005.</9><10>To this end, it is drafting <2>the strategy and action
     plan to be</2> implemented.</10><11>This declaration of accessibility
-    applies to <2>https://mon-entreprise.fr</2>.</11><12>Compliance
-    status</12><13><0>https://mon-entreprise.fr</0> is not currently compliant
-    with the <4>General Accessibility Improvement Framework (GA</4>F). The
-    compliance audit will be scheduled soon. Corrections will be taken into
+    applies to <2>https://mon-entreprise.urssaf.fr</2>.</11><12>Compliance
+    status</12><13><0>https://mon-entreprise.urssaf.fr</0> is not currently
+    compliant with the <4>General Accessibility Improvement Framework (GA</4>F).
+    The compliance audit will be scheduled soon. Corrections will be taken into
     account following the audit.</13><14>Right to compensation</14><15>While
     waiting for full compliance, you can obtain an accessible version of the
     documents or information contained therein by sending an e-mail to
@@ -979,11 +979,11 @@ pages:
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
-      example to switch from gross salary to net salary, good news: all the tax
-      and contribution calculations behind mon-entreprise.fr are free and easily
-      reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
-      this library?</2><3>All our calculation rules are written in `publicodes`,
-      a declarative language developed by beta.gouv.fr and the Urssaf to encode
+      example switching from gross to net salary, good news: all the tax and
+      contribution calculations behind my-company are free and easily reusable
+      thanks to the <2>NPM publicodes library</2>.</1><2>How to use this
+      library?</2><3>All our calculation rules are written in `publicodes`, a
+      declarative language developed by beta.gouv.fr and the Urssaf to encode
       algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
       perform your own calculations, you must install the publicodes
       interpreter, download the rules used on my-company, call the evaluation
@@ -1054,10 +1054,9 @@ pages:
         library: <0>Using the calculation engine</0><1>The entire socio-fiscal
           calculation engine developed by Urssaf, freely available in the form
           of an NPM library.</1>
-      description: In addition to the mon-entreprise.fr website, we provide free and
-        open-source tools to integrate into your website. You can thus include
-        the tools created for <1>my-company</1> directly in the usual paths of
-        your users.
+      description: In addition to the my-company site, we provide free and open source
+        tools to integrate on your website. You can thus include the tools
+        created for <1>my-company</1> directly in the usual paths of your users.
       titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
@@ -1471,7 +1470,7 @@ pages:
     print-info:
       date: This simulation was performed on
       recover: You can find this simulation and other tools to help you create and
-        manage your business on <2>mon-entreprise.fr</2>.
+        manage your business on <2>mon-entreprise.urssaf.fr</2>.
       title: Would you like to recover this simulation?
     profession-libérale:
       meta:
