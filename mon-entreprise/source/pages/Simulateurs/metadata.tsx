@@ -582,6 +582,7 @@ export function getSimulatorsData({
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],
 			component: FormulaireMobilitéIndépendant,
+			private: true,
 			tracking: {
 				chapter1: 'gerer',
 				chapter2: 'demande_mobilite',
@@ -590,7 +591,6 @@ export function getSimulatorsData({
 				...pureSimulatorsData['demande-mobilité'].meta,
 			},
 			path: sitePaths.gérer.formulaireMobilité,
-			private: true,
 		},
 		pharmacien: {
 			...pureSimulatorsData['pharmacien'],

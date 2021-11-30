@@ -9,6 +9,18 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "https://twemoji.maxcdn.com/:splat"
   status = 200
 
+## Temporary redirect requests to the upcoming new domain into the preview deployment
+[[redirects]]
+  from = "https://mon-entreprise.urssaf.fr/*"
+  to = "https://1788--mon-entreprise.netlify.app/:splat"
+  status = 200
+
+
+[[redirects]]
+  from = "https://www.mon-entreprise.urssaf.fr/*"
+  to = "https://mon-entreprise.urssaf.fr/:splat"
+  status = 301
+
 ############
 # Redirects following architectural changes
 

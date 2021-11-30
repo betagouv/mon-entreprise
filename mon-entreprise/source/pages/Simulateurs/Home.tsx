@@ -97,9 +97,7 @@ export default function Simulateurs() {
 				<Grid container spacing={3}>
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
-					{language === 'fr' && (
-						<SimulateurCard {...simulators['demande-mobilité']} />
-					)}
+
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
 				</Grid>
