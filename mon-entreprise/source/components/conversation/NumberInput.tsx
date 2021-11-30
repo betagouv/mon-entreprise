@@ -108,7 +108,7 @@ function getSerializedUnit(
 
 	const formatUnit = getFormatUnit(unit)
 	if (!formatUnit) {
-		return t(serializeUnit(unit)) ?? ''
+		return t(serializeUnit(unit)?.replace('/', 'par')) ?? ''
 	}
 	return (
 		Intl.NumberFormat(locale, {
