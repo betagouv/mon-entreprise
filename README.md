@@ -3,7 +3,7 @@ Ce dépôt contient :
 -   Le code source du site [mon-entreprise](https://mon-entreprise.urssaf.fr)
 -   Les [règles publicodes](https://github.com/betagouv/mon-entreprise/tree/master/modele-social) pour le calcul des cotisations sociales, des impôts et des droits sociaux.
 
-## <a href="https://mon-entreprise.urssaf.fr"><img src="https://mon-entreprise.urssaf.fr/images/logo.svg" alt="mon-entreprise.urssaf.fr" width="200"/></a>
+## [mon-entreprise](https://mon-entreprise.urssaf.fr)</a>
 
 [![Statut déploiement](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/deploy.yaml?query=branch%3Amaster++)&nbsp;
 [![Statut test](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/betagouv/mon-entreprise/actions/workflows/test.yaml?query=branch%3Amaster++)
