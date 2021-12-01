@@ -238,7 +238,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        site: ['fr', 'en']
+        # site: ['fr', 'en']
+        site: ['fr']
         browser: [chrome] # Firefox is very slow…
         viewport: [default, small]
         container: [1, 2, 3, 4]
@@ -247,23 +248,19 @@ jobs:
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-          - site: fr
-            integrationFolder: mon-entreprise
-            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
-            language: fr
-          - site: en
-            integrationFolder: mon-entreprise/english
-            baseUrl: ${{ needs.deploy-context.outputs.en_url }}
-            language: en
-        exclude:
-          - site: en
-            container: 2
-          - site: en
-            container: 3
-          - site: en
-            container: 4
-          - site: en
-            viewport: small
+        #   - site: en
+        #     integrationFolder: mon-entreprise/english
+        #     baseUrl: ${{ needs.deploy-context.outputs.en_url }}
+        #     language: en
+        # exclude:
+        #   - site: en
+        #     container: 2
+        #   - site: en
+        #     container: 3
+        #   - site: en
+        #     container: 4
+        #   - site: en
+        #     viewport: small
 
     steps:
       - name: Checkout
