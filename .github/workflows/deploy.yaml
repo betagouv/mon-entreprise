@@ -56,7 +56,7 @@ jobs:
       - name: Build app
         run: yarn workspace mon-entreprise build
         env:
-          AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
+          AT_INTERNET_SITE_ID: 617190
           NODE_ENV: production
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
