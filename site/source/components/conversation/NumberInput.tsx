@@ -110,7 +110,13 @@ function getSerializedUnit(
 
 	const formatUnit = getFormatUnit(unit)
 	if (!formatUnit) {
-		return t(serializeUnit(unit)?.replace('/', 'par')) ?? ''
+		return (
+			t(
+				serializeUnit(unit)
+					?.replace(/\/([^\s])/, '/ $1')
+					.replace('/', 'par')
+			) ?? ''
+		)
 	}
 	return (
 		Intl.NumberFormat(locale, {
