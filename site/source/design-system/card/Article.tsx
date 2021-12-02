@@ -34,7 +34,10 @@ export function Article({
 			: 'div'
 
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
+	const { buttonProps } = useButton(
+		{ elementType, ...ariaButtonProps },
+		ref
+	) as any
 	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 

@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 
 const LABEL_HEIGHT = '1rem'
 
-type TextFieldProps = AriaTextFieldOptions & {
+type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
 }

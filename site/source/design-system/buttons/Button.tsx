@@ -1,23 +1,13 @@
-import { AriaButtonProps } from '@react-types/button'
 import { FocusStyle } from 'DesignSystem/global-style'
-import { useButtonOrLink } from 'DesignSystem/typography/link'
-import { ComponentPropsWithRef, forwardRef } from 'react'
-import { NavLink, NavLinkProps } from 'react-router-dom'
+import {
+	GenericButtonOrLinkProps,
+	useButtonOrLink,
+} from 'DesignSystem/typography/link'
+import { forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
 type Size = 'XL' | 'MD' | 'XS'
 type Color = 'primary' | 'secondary' | 'tertiary'
-
-export type GenericButtonOrLinkProps =
-	| ({
-			href: string
-			title?: string
-			openInSameWindow?: true
-	  } & AriaButtonProps<'a'>)
-	| (AriaButtonProps<typeof NavLink> &
-			ComponentPropsWithRef<typeof NavLink> &
-			NavLinkProps)
-	| AriaButtonProps<'button'>
 
 type ButtonProps = GenericButtonOrLinkProps & {
 	color?: Color

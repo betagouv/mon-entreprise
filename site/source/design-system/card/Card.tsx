@@ -1,10 +1,8 @@
-import {
-	GenericButtonOrLinkProps,
-	StyledButton,
-} from 'DesignSystem/buttons/Button'
+import { StyledButton } from 'DesignSystem/buttons/Button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { H3, HeadingUnderline } from 'DesignSystem/typography/heading'
 import {
+	GenericButtonOrLinkProps,
 	NewWindowLinkIcon,
 	useButtonOrLink,
 	useExternalLinkProps,
