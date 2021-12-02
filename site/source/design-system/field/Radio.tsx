@@ -1,6 +1,6 @@
-import { RadioAriaProps, useRadio, useRadioGroup } from '@react-aria/radio'
+import { useRadio, useRadioGroup } from '@react-aria/radio'
 import { RadioGroupState, useRadioGroupState } from '@react-stately/radio'
-import { RadioGroupProps } from '@react-types/radio'
+import { AriaRadioProps, RadioGroupProps } from '@react-types/radio'
 import { FocusStyle } from 'DesignSystem/global-style'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { createContext, useContext, useRef } from 'react'
@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components'
 
 const RadioContext = createContext<RadioGroupState | null>(null)
 
-export function Radio(props: RadioAriaProps) {
+export function Radio(props: AriaRadioProps) {
 	const { children } = props
 	const state = useContext(RadioContext)
 	if (!state) {

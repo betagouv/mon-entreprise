@@ -58,22 +58,24 @@ export default function MonEntrepriseRulePage() {
 				<StyledDocumentation>
 					<Route
 						path={documentationPath + '/:name+'}
-						render={({ match }) => (
-							<RulePage
-								language={i18n.language as 'fr' | 'en'}
-								rulePath={match.params.name}
-								engine={engine}
-								documentationPath={documentationPath}
-								renderers={{
-									Head: Helmet,
-									Link: Link as React.ComponentType<{
-										to: string
-										children: React.ReactNode
-									}>,
-									References,
-								}}
-							/>
-						)}
+						render={({ match }) =>
+							match.params.name && (
+								<RulePage
+									language={i18n.language as 'fr' | 'en'}
+									rulePath={match.params.name}
+									engine={engine}
+									documentationPath={documentationPath}
+									renderers={{
+										Head: Helmet,
+										Link: Link as React.ComponentType<{
+											to: string
+											children: React.ReactNode
+										}>,
+										References,
+									}}
+								/>
+							)
+						}
 					/>
 				</StyledDocumentation>
 			</Grid>

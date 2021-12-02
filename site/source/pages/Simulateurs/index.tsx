@@ -20,7 +20,7 @@ export default function Simulateurs() {
 	}>('navigation::simulateurs::locationState::v2')
 	useEffect(() => {
 		if (state) {
-			setLastState(state)
+			setLastState(state as any)
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()

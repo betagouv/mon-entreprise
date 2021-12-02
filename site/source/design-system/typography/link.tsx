@@ -1,7 +1,12 @@
 import { useButton } from '@react-aria/button'
-import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import { AriaButtonProps } from '@react-types/button'
 import { FocusStyle } from 'DesignSystem/global-style'
-import React, { ForwardedRef, useCallback, useRef } from 'react'
+import React, {
+	ComponentPropsWithRef,
+	ForwardedRef,
+	useCallback,
+	useRef,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -76,6 +81,15 @@ export function useExternalLinkProps({
 		),
 	}
 }
+
+export type GenericButtonOrLinkProps =
+	| ({
+			href: string
+			title?: string
+			openInSameWindow?: true
+	  } & AriaButtonProps<'a'>)
+	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
+	| AriaButtonProps<'button'>
 
 export function useButtonOrLink(
 	props: GenericButtonOrLinkProps,

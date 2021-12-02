@@ -1,7 +1,7 @@
 import { AriaTextFieldOptions } from '@react-aria/textfield'
 import TextField from './TextField'
 
-export default function DateField(props: AriaTextFieldOptions) {
+export default function DateField(props: AriaTextFieldOptions<'input'>) {
 	return (
 		<TextField
 			{...props}

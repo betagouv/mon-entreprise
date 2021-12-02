@@ -1,7 +1,7 @@
 import { hideNotification } from 'Actions/actions'
 import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
 import { Button } from 'DesignSystem/buttons'
-import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
+import { GenericButtonOrLinkProps } from 'DesignSystem/typography/link'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
