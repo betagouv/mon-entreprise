@@ -31,7 +31,7 @@ Nous utilisons :
 ### Démarrage
 
 Si possible, assurez-vous d'avoir toutes les clés d'API nécessaires dans votre fichier
-`mon-entreprise/.env` (un template est disponible dans `mon-entreprise/.env.template`).
+`site/.env` (un template est disponible dans `site/.env.template`).
 **NB : ne vous inquiétez pas, ceci n'est pas nécessaire pour effectuer une première contribution à
 la base de code !** Cependant, vous en aurez besoin pour la commande `yarn prepare` et pour les
 commandes de traduction automatique français -> anglais. Si vous êtes confronté à ce type de besoin,
@@ -41,7 +41,7 @@ Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramè
 
 ```
 # Clone this repo on your computer
-git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entreprise
+git clone --depth 100 git@github.com:betagouv/mon-entreprise.git
 
 # Mettre à jour votre config git locale
 git config blame.ignoreRevsFile .git-blame-ignore-revs
@@ -52,7 +52,7 @@ yarn install
 # Download some data
 yarn prepare
 
-# Watch changes in publicodes and run the server for mon-entreprise
+# Run the dev server for mon-entreprise
 yarn start
 ```
 
@@ -129,9 +129,8 @@ Pré-requis:
 -   le serveur doit être lancé via `yarn start`
 
 ```sh
-$ yarn workspace mon-entreprise test:dev-e2e:mon-entreprise
-$ yarn workspace mon-entreprise test:dev-e2e:mycompanyinfrance
-$ yarn workspace mon-entreprise test:dev-e2e:publicodes
+$ yarn workspace site test:dev-e2e:mon-entreprise
+$ yarn workspace site test:dev-e2e:mycompanyinfrance
 ```
 
 ### Traduction 👽
@@ -183,7 +182,7 @@ Pour tester les règles, il est recommandé de:
 -   faire tourner un simulateur et vérifier à la main l'adéquation des règles avec les normes
     traduites ;
 -   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
-    `mon-entreprise/test/regressions`).
+    `site/test/regressions`).
 
 En local, le moteur de recherche n'est pas mis à jour automatiquement et la liste des règles
 est exposée ici: http://localhost:8080/mon-entreprise/documentation/dev

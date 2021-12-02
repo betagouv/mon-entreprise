@@ -29,7 +29,7 @@ jobs:
           ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
           ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
       - name: Remove temporary algolia index
-        run: yarn workspace mon-entreprise algolia:clean
+        run: yarn workspace site algolia:clean
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}

@@ -21,7 +21,7 @@ jobs:
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
+      - run: node site/scripts/get-cypress-packages.js | xargs npm i
 
       - name: Test external integration
         uses: cypress-io/github-action@v2
