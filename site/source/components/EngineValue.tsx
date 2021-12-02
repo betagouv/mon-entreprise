@@ -33,7 +33,8 @@ export default function Value<Names extends string>({
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
-	const e = engine ?? useEngine()
+	const defaultEngine = useEngine()
+	const e = engine ?? defaultEngine
 	const isRule =
 		typeof expression === 'string' && expression in e.getParsedRules()
 	const evaluation = e.evaluate({

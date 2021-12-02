@@ -1,85 +1,86 @@
 module.exports = {
   root: true,
-  parser: "babel-eslint",
+  parser: 'babel-eslint',
   parserOptions: {
-    "ecmaFeatures": {
-      "jsx": true
+    'ecmaFeatures': {
+      'jsx': true
     }
   },
   env: {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
+    'browser': true,
+    'commonjs': true,
+    'es6': true,
   },
   globals: {
-    "process": false
+    'process': false
   },
   plugins: [
-    "react",
-    "react-hooks",
-    "mocha"
+    'react',
+    'react-hooks',
+    'mocha'
   ],
   rules: {
-    "quotes": [
+    'quotes': [
       1,
-      "single",
+      'single',
       {
-        "avoidEscape": true
+        'avoidEscape': true
       }
     ],
-    "no-console": 1,
-    "no-restricted-globals": [
+    'no-console': 1,
+    'no-restricted-globals': [
       2,
-      "length"
+      'length'
     ],
-    "no-global-assign": 0,
-    "no-unsafe-negation": 0,
-    "react/prop-types": 0,
-    "react/jsx-no-target-blank": 0,
-    "react/no-unescaped-entities": 0,
-    "react/display-name": 1,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "mocha/no-skipped-tests": "warn",
-    "mocha/no-exclusive-tests": "error",
+    'no-global-assign': 0,
+    'no-unsafe-negation': 0,
+    'react/prop-types': 0,
+    'react/jsx-no-target-blank': 0,
+    'react/no-unescaped-entities': 0,
+    'react/display-name': 1,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'mocha/no-skipped-tests': 'warn',
+    'mocha/no-exclusive-tests': 'error',
 		'no-restricted-syntax': [
       'error',
       {
-        message: "Utilisez le composant <Emoji /> plutôt que la function emoji directement importée de react-easy-emoji",
+        message: 'Utilisez le composant <Emoji /> plutôt que la function emoji directement importée de react-easy-emoji',
         selector:
           "CallExpression[callee.name='emoji']"
       }
     ]
   },
   settings: {
-    "react": {
-      "version": "detect"
+    'react': {
+      'version': 'detect'
     }
   },
   overrides: [
     {
-      files: [ "**/*.{ts,tsx}" ],
-      parser: "@typescript-eslint/parser",
+      files: [ '**/*.{ts,tsx}' ],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
-        "ecmaFeatures": {
-          "jsx": true
+        'ecmaFeatures': {
+          'jsx': true
         },
-        "tsconfigRootDir": __dirname,
-        "project": [ "./site/tsconfig.json" ]
+        // eslint-disable-next-line no-undef
+        'tsconfigRootDir': __dirname,
+        'project': [ './site/tsconfig.json' ]
       },
-      plugins: [ "@typescript-eslint" ],
+      plugins: [ '@typescript-eslint' ],
       rules: {
-        "@typescript-eslint/no-empty-interface": 0,
-        "@typescript-eslint/no-empty-function": 0,
-        "@typescript-eslint/no-use-before-define": 0,
-        "@typescript-eslint/member-delimiter-style": [2, {
+        '@typescript-eslint/no-empty-interface': 0,
+        '@typescript-eslint/no-empty-function': 0,
+        '@typescript-eslint/no-use-before-define': 0,
+        '@typescript-eslint/member-delimiter-style': [2, {
           multiline: {
-            delimiter: "none"
+            delimiter: 'none'
           }
         }],
-        "@typescript-eslint/explicit-function-return-type": 0,
+        '@typescript-eslint/explicit-function-return-type': 0,
         '@typescript-eslint/prefer-string-starts-ends-with': 1,
         '@typescript-eslint/no-unnecessary-type-assertion': 1,  // has false positives (Object.values result) v 2.29.0
         '@typescript-eslint/no-inferrable-types': 1,  // causes problems with unknown values v 2.29.0 typescript v 3.8.3
@@ -99,22 +100,22 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
       },
       extends: [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
       ]
     },
     {
-      files: ["**/*.test.js"],
+      files: ['**/*.test.js'],
       env: {
         mocha: true
       }
     }
   ],
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint"
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint'
   ]
 }
