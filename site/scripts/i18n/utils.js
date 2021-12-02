@@ -8,9 +8,9 @@ require('../../../modele-social/build')
 let rules = require('../../../modele-social')
 let { parse } = require('yaml')
 
-let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
-let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
-let UiOriginalTranslationPath = path.resolve('source/locales/ui-fr.yaml')
+let rulesTranslationPath = path.resolve('site/source/locales/rules-en.yaml')
+let UiTranslationPath = path.resolve('site/source/locales/ui-en.yaml')
+let UiOriginalTranslationPath = path.resolve('site/source/locales/ui-fr.yaml')
 
 let attributesToTranslate = [
 	'titre',
@@ -94,7 +94,7 @@ function getRulesMissingTranslations() {
 
 const getUiMissingTranslations = () => {
 	const staticKeys = require(path.resolve(
-		'source/locales/static-analysis-fr.json'
+		'site/source/locales/static-analysis-fr.json'
 	))
 	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 	const originalKeys = parse(

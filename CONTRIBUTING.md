@@ -137,7 +137,7 @@ $ yarn workspace site test:dev-e2e:mycompanyinfrance
 
 Le site est disponible en français, et en anglais sur https://mycompanyinfrance.com
 
-Les traductions se trouvent dans le répertoire `source/locales`.
+Les traductions se trouvent dans le répertoire `site/source/locales`.
 
 La librairie utilisée pour la traduction de l'UI est
 [react-i18next](https://react.i18next.com/).
@@ -150,8 +150,7 @@ Le circle-ci fait une analyse statique du code pour repérer les chaînes non
 traduites, dans le moteur et l'UI :
 
 ```sh
-$ yarn run i18n:rules:check
-$ yarn run i18n:ui:check
+$ yarn run i18n:check
 ```
 
 Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
@@ -159,6 +158,9 @@ Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
 ```sh
 $ yarn run i18n:rules:translate
 $ yarn run i18n:ui:translate
+
+# ou bien pour les deux commandes d'un coup
+$ yarn run i18n:translate
 ```
 
 N'oubliez pas de vérifier sur le diff que rien n'est choquant.
