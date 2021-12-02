@@ -964,6 +964,11 @@ pages:
     letter by post (free of charge, do not put a stamp on it)
     to:<1></1>Défenseur des droits<3></3>Free reply 71120<5></5>75342 Paris
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
+  choix-statut:
+    meta:
+      description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
+        you best with this wizard"
+      title: Help in choosing the legal status
   common:
     ressources-auto-entrepreneur:
       FAQ:
@@ -1583,7 +1588,7 @@ pages:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
         in your declarations
       title: "Online platform income tax return: interactive guide"
-    shortname: Collaborative Economy Guide
+    shortname: Legal status assistant
 par: per
 par an: per year
 par mois: per month

@@ -8,6 +8,7 @@ import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
+import Créer from '../Creer/Home'
 import AideDéclarationIndépendant from '../Gerer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gerer/DemandeMobilite'
 import AidesEmbauche from './AidesEmbauche'
@@ -58,6 +59,7 @@ const simulateurs = [
 	'demande-mobilité',
 	'profession-libérale',
 	'médecin',
+	'choix-statut',
 	'pharmacien',
 	'chirurgien-dentiste',
 	'sage-femme',
@@ -72,10 +74,10 @@ const simulateurs = [
 
 export type SimulatorId = typeof simulateurs[number]
 
-export type SimulatorData = Record<
+export type PureSimulatorData = Record<
 	SimulatorId,
 	{
-		meta?: {
+		meta: {
 			title: string
 			description: string
 			ogTitle?: string
@@ -100,24 +102,35 @@ export type SimulatorData = Record<
 		config?: SimulationConfig
 		seoExplanations?: React.ReactNode
 		nextSteps?: Array<SimulatorId>
-		private?: true
-		component: () => JSX.Element
+		private?: boolean
 	}
 >
+export type SimulatorData = PureSimulatorData &
+	Record<
+		SimulatorId,
+		{
+			path?: string
+			description?: React.ReactNode
+			config?: SimulationConfig
+			seoExplanations?: React.ReactNode
+			nextSteps?: Array<SimulatorId>
+			component: () => JSX.Element
+		}
+	>
 
 export function getSimulatorsData({
 	t = (_: unknown, text: string) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
 } = {}): SimulatorData {
-	const pureSimulatorsData = getData({ t })
+	const pureSimulatorsData: PureSimulatorData = getData({ t }) as any
 	return {
 		salarié: {
 			...pureSimulatorsData['salarié'],
 			config: salariéConfig,
 			component: SalariéSimulation,
 			meta: {
-				...pureSimulatorsData['salarié'].meta,
+				...pureSimulatorsData['salarié']?.meta,
 				ogImage:
 					language === 'fr' ? salaireBrutNetPreviewFR : salaireBrutNetPreviewEN,
 			},
@@ -194,13 +207,12 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['chômage-partiel', 'aides-embauche'],
 		},
 		'entreprise-individuelle': {
 			...pureSimulatorsData['entreprise-individuelle'],
 			config: entrepriseIndividuelleConfig,
 			meta: {
-				...pureSimulatorsData['entreprise-individuelle'].meta,
+				...pureSimulatorsData['entreprise-individuelle']?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
 			component: EntrepriseIndividuelle,
@@ -270,13 +282,12 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['comparaison-statuts'],
 		},
 		eirl: {
 			...pureSimulatorsData['eirl'],
 			config: indépendantConfig,
 			meta: {
-				...pureSimulatorsData['eirl'].meta,
+				...pureSimulatorsData['eirl']?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
 			component: IndépendantSimulation,
@@ -287,7 +298,7 @@ export function getSimulatorsData({
 			...pureSimulatorsData['sasu'],
 			config: sasuConfig,
 			meta: {
-				...pureSimulatorsData['sasu'].meta,
+				...pureSimulatorsData['sasu']?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.sasu,
@@ -333,55 +344,28 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		eurl: {
 			...pureSimulatorsData['eurl'],
 			config: eurlConfig,
 			meta: {
-				...pureSimulatorsData['eurl'].meta,
+				...pureSimulatorsData['eurl']?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.eurl,
 			component: IndépendantSimulation,
-			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		'auto-entrepreneur': {
 			...pureSimulatorsData['auto-entrepreneur'],
 			tracking: 'auto_entrepreneur',
 			config: autoEntrepreneurConfig,
-			icône: '🚶‍♂️',
-			iframePath: 'simulateur-autoentrepreneur',
 			meta: {
-				...pureSimulatorsData['auto-entrepreneur'].meta,
-				description: t(
-					'pages.simulateurs.auto-entrepreneur.meta.description',
-					"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
-				),
-				ogDescription: t(
-					'pages.simulateurs.auto-entrepreneur.meta.ogDescription',
-					"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
-				),
+				...pureSimulatorsData['auto-entrepreneur']?.meta,
 				ogImage: AutoEntrepreneurPreview,
-				ogTitle: t(
-					'pages.simulateurs.auto-entrepreneur.meta.ogTitle',
-					'Auto-entrepreneur : calculez rapidement votre revenu net à partir du CA et vice-versa'
-				),
-				title: t(
-					'pages.simulateurs.auto-entrepreneur.meta.titre',
-					'Auto-entrepreneurs : simulateur de revenus'
-				),
 			},
 			component: AutoEntrepreneur,
 			path: sitePaths.simulateurs['auto-entrepreneur'],
-			shortName: t(
-				'pages.simulateurs.auto-entrepreneur.shortname',
-				'Auto-entrepreneur'
-			),
-			title: t(
-				'pages.simulateurs.auto-entrepreneur.title',
-				'Simulateur de revenus auto-entrepreneur'
-			),
+
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
 					<H2>Comment calculer le revenu net d'un auto-entrepreneur ?</H2>
@@ -447,23 +431,15 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['indépendant', 'comparaison-statuts'],
 		},
 		indépendant: {
 			...pureSimulatorsData['indépendant'],
 			config: indépendantConfig,
 			path: sitePaths.simulateurs.indépendant,
-			meta: {
-				...pureSimulatorsData['indépendant'].meta,
-			},
 			component: IndépendantSimulation,
-			nextSteps: ['comparaison-statuts', 'is'],
 		},
 		'artiste-auteur': {
 			...pureSimulatorsData['artiste-auteur'],
-			meta: {
-				...pureSimulatorsData['artiste-auteur'].meta,
-			},
 			path: sitePaths.simulateurs['artiste-auteur'],
 			component: ArtisteAuteur,
 		},
@@ -473,7 +449,7 @@ export function getSimulatorsData({
 			config: chômageParielConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
 			meta: {
-				...pureSimulatorsData['chômage-partiel'].meta,
+				...pureSimulatorsData['chômage-partiel']?.meta,
 				ogImage: ChômagePartielPreview,
 			},
 			seoExplanations: (
@@ -554,143 +530,83 @@ export function getSimulatorsData({
 			...pureSimulatorsData['comparaison-statuts'],
 			component: SchemeComparaisonPage,
 			path: sitePaths.simulateurs.comparaison,
-			meta: {
-				...pureSimulatorsData['comparaison-statuts'].meta,
-			},
 		},
 		'économie-collaborative': {
 			...pureSimulatorsData['économie-collaborative'],
 			component: ÉconomieCollaborative,
-			meta: {
-				...pureSimulatorsData['économie-collaborative'].meta,
-			},
 			path: sitePaths.simulateurs.économieCollaborative.index,
-			nextSteps: ['auto-entrepreneur'],
+		},
+		'choix-statut': {
+			...pureSimulatorsData['choix-statut'],
+			component: Créer,
+			path: sitePaths.créer.guideStatut.index,
 		},
 		'aide-déclaration-indépendant': {
 			...pureSimulatorsData['aide-déclaration-indépendant'],
 			component: AideDéclarationIndépendant,
-			tracking: {
-				chapter1: 'gerer',
-				chapter2: 'aide_declaration_independant',
-			},
-			meta: {
-				...pureSimulatorsData['aide-déclaration-indépendant'].meta,
-			},
 			path: sitePaths.gérer.déclarationIndépendant,
 		},
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],
 			component: FormulaireMobilitéIndépendant,
-			private: true,
-			tracking: {
-				chapter1: 'gerer',
-				chapter2: 'demande_mobilite',
-			},
-			meta: {
-				...pureSimulatorsData['demande-mobilité'].meta,
-			},
 			path: sitePaths.gérer.formulaireMobilité,
 		},
 		pharmacien: {
 			...pureSimulatorsData['pharmacien'],
 			config: pharmacienConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'pharmacien',
-			},
 			path: sitePaths.simulateurs['profession-libérale'].pharmacien,
 			component: IndépendantPLSimulation,
 		},
 		médecin: {
 			...pureSimulatorsData['médecin'],
 			config: médecinConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'medecin',
-			},
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
 			component: IndépendantPLSimulation,
 		},
 		'chirurgien-dentiste': {
 			...pureSimulatorsData['chirurgien-dentiste'],
 			config: dentisteConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'chirurgien_dentiste',
-			},
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 			component: IndépendantPLSimulation,
 		},
 		'sage-femme': {
 			...pureSimulatorsData['sage-femme'],
 			config: sageFemmeConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'sage_femme',
-			},
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 			component: IndépendantPLSimulation,
 		},
 		'auxiliaire-médical': {
 			...pureSimulatorsData['auxiliaire-médical'],
 			config: auxiliaireConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'auxiliaire_medical',
-			},
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 			component: IndépendantPLSimulation,
 		},
 		avocat: {
 			...pureSimulatorsData['avocat'],
 			config: avocatConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'avocat',
-			},
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
 			component: IndépendantPLSimulation,
 		},
 		'expert-comptable': {
 			...pureSimulatorsData['expert-comptable'],
 			config: expertComptableConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-				chapter3: 'expert_comptable',
-			},
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
 			component: IndépendantPLSimulation,
 		},
 		'profession-libérale': {
 			...pureSimulatorsData['profession-libérale'],
 			config: professionLibéraleConfig,
-			tracking: {
-				chapter2: 'profession_liberale',
-			},
-			meta: {
-				...pureSimulatorsData['profession-libérale'].meta,
-			},
 			path: sitePaths.simulateurs['profession-libérale'].index,
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
 			...pureSimulatorsData['pamc'],
-			private: true,
-			tracking: {},
 			path: sitePaths.simulateurs.pamc,
 			config: professionLibéraleConfig,
-			meta: {
-				...pureSimulatorsData['pamc'].meta,
-			},
 			component: PAMCHome,
 		},
 		'aides-embauche': {
 			...pureSimulatorsData['aides-embauche'],
-			tracking: 'aides_embauche',
-			meta: {
-				...pureSimulatorsData['aides-embauche'].meta,
-			},
 			path: sitePaths.simulateurs['aides-embauche'],
 			// Cette description est surchargé car elle contient ici du JSX
 			description: (
@@ -719,15 +635,10 @@ export function getSimulatorsData({
 				</Body>
 			),
 			component: AidesEmbauche,
-			nextSteps: ['salarié'],
 		},
 		is: {
 			...pureSimulatorsData['is'],
-			tracking: 'impot-societe',
 			path: sitePaths.simulateurs.is,
-			meta: {
-				...pureSimulatorsData['is'].meta,
-			},
 			component: ISSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.is.seo">
@@ -762,26 +673,10 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['salarié', 'dividendes', 'comparaison-statuts'],
 		},
 		dividendes: {
-			icône: '🎩',
-			tracking: 'dividendes',
+			...pureSimulatorsData['dividendes'],
 			path: sitePaths.simulateurs.dividendes,
-			iframePath: 'dividendes',
-			meta: {
-				title: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
-				description: t(
-					'pages.simulateurs.dividendes.meta.description',
-					"Calculez le montant de l'impôt et des cotisations sur les dividendes versés par votre entreprise."
-				),
-				color: '#E71D66',
-			},
-			shortName: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
-			title: t(
-				'pages.simulateurs.dividendes.title',
-				'Simulateur de versement de dividendes'
-			),
 			component: DividendesSimulation,
 			config: dividendesConfig,
 			seoExplanations: (
@@ -831,7 +726,6 @@ export function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['salarié', 'is', 'comparaison-statuts'],
 		},
 	}
 }

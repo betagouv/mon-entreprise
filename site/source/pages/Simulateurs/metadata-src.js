@@ -317,7 +317,30 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			iframePath: 'economie-collaborative',
 			shortName: t(
 				'pages.économie-collaborative.shortname',
-				'Guide économie collaborative'
+				'Assistant économie collaborative'
+			),
+		},
+		'choix-statut': {
+			tracking: {
+				chapter1: 'creer',
+				chapter2: 'guide',
+			},
+			meta: {
+				title: t(
+					'pages.choix-statut.meta.title',
+					'Aide au choix du statut juridique'
+				),
+				description: t(
+					'pages.choix-statut.meta.description',
+					'SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui vous convient le mieux grâce à cet assistant'
+				),
+			},
+			icône: '📚',
+			pathId: 'créer.guideStatut.index',
+			iframePath: '*',
+			shortName: t(
+				'pages.économie-collaborative.shortname',
+				'Assistant statut juridique'
 			),
 		},
 		'aide-déclaration-indépendant': {
@@ -580,6 +603,26 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			),
 
 			nextSteps: ['salarié', 'comparaison-statuts'],
+		},
+		dividendes: {
+			icône: '🎩',
+			tracking: 'dividendes',
+			iframePath: 'dividendes',
+			meta: {
+				title: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
+				description: t(
+					'pages.simulateurs.dividendes.meta.description',
+					"Calculez le montant de l'impôt et des cotisations sur les dividendes versés par votre entreprise."
+				),
+				color: '#E71D66',
+			},
+			shortName: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
+			title: t(
+				'pages.simulateurs.dividendes.title',
+				'Simulateur de versement de dividendes'
+			),
+
+			nextSteps: ['salarié', 'is', 'comparaison-statuts'],
 		},
 	}
 }
