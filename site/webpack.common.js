@@ -183,6 +183,6 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 			'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 		filename: 'mon-entreprise.html',
 		shareImage: 'https://mon-entreprise.urssaf.fr/images/logo-share.png',
-		logo: 'images/logo.svg',
+		logo: 'images/logo-monentreprise.svg',
 	}),
 ]

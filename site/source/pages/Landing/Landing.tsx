@@ -10,7 +10,7 @@ import { Container, Spacing } from 'DesignSystem/layout'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
-import logoSvg from 'Images/logo.svg'
+import logoShare from 'Images/logo-share.png'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ export default function Landing() {
 				page="landing"
 				title="Mon-entreprise"
 				description="L'assistant officiel de l'entrepreneur"
-				ogImage={logoSvg}
+				ogImage={logoShare}
 			/>
 			<Header />
 			<Container>

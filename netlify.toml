@@ -143,6 +143,11 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   status = 200
 
 [[redirects]]
+  from = ":SITE_FR/simulateurs"
+  to = "/prerender/mon-entreprise/simulateurs/index.html"
+  status = 200
+
+[[redirects]]
   from = ":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
   to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
   status = 200
