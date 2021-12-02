@@ -119,12 +119,12 @@
 		"test:type": "yarn workspaces run tsc -- --skipLibCheck --noEmit",
 		"test:regressions": "yarn workspace modele-social build && jest --silent",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
-		"start": "yarn workspace mon-entreprise start",
-		"moso:up": "yarn workspace modele-social run up && yarn workspace mon-entreprise upgrade modele-social"
+		"start": "yarn workspace site start",
+		"moso:up": "yarn workspace modele-social run up && yarn workspace site upgrade modele-social"
 	},
 	"workspaces": [
 		"modele-social",
-		"mon-entreprise"
+		"site"
 	],
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"

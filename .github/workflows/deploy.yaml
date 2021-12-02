@@ -51,7 +51,7 @@ jobs:
           ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
           ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
       - name: Build app
-        run: yarn workspace mon-entreprise build
+        run: yarn workspace site build
         env:
           AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
           NODE_ENV: production
@@ -62,7 +62,7 @@ jobs:
         run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
           sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
       - name: Update Algolia index
-        run: yarn workspace mon-entreprise algolia:update
+        run: yarn workspace site algolia:update
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
@@ -72,7 +72,7 @@ jobs:
         with:
           name: static-site
           path: |
-            mon-entreprise/dist/**
+            site/dist/**
             netlify.toml
           if-no-files-found: error
 
@@ -91,7 +91,7 @@ jobs:
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './mon-entreprise/dist'
+          publish-dir: './site/dist'
           netlify-config-path: ./netlify.toml
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -120,7 +120,7 @@ jobs:
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './mon-entreprise/dist'
+          publish-dir: './site/dist'
           netlify-config-path: ./netlify.toml
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -208,7 +208,7 @@ jobs:
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
+      - run: node site/scripts/get-cypress-packages.js | xargs npm i
 
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
@@ -274,7 +274,7 @@ jobs:
             node_modules
           key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
+      - run: node site/scripts/get-cypress-packages.js | xargs npm i
 
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
