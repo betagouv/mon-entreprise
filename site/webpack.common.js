@@ -4,7 +4,6 @@ const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const { EnvironmentPlugin } = require('webpack')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports.styleLoader = (styleLoader) => ({
 	test: /\.css$/,
@@ -130,7 +129,6 @@ module.exports.default = {
 		globalObject: 'self',
 	},
 	plugins: [
-		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
 			EN_BASE_URL: 'http://localhost:8080/infrance',
 			FR_BASE_URL: 'http://localhost:8080/mon-entreprise',

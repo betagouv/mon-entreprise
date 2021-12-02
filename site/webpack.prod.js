@@ -91,6 +91,7 @@ module.exports = {
 				outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
 				routes: [
 					'/',
+					'/simulateurs',
 					'/simulateurs/salaire-brut-net',
 					'/simulateurs/auto-entrepreneur',
 					'/simulateurs/artiste-auteur',

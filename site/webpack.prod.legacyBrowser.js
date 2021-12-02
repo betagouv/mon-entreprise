@@ -1,5 +1,4 @@
 const { map } = require('ramda')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 const prod = require('./webpack.prod')
 const { commonLoaders, styleLoader } = require('./webpack.common')
@@ -16,7 +15,6 @@ module.exports = {
 		rules: [...commonLoaders({ legacy: true }), styleLoader('style-loader')],
 	},
 	plugins: [
-		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
 			GITHUB_REF: '',
 			GITHUB_HEAD_REF: '',
