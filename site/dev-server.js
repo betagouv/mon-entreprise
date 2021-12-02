@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 	res.send(`<ul style="font-size: 200%;"><li><a href="/mon-entreprise">mon-entreprise [fr]</a></li>
 	<li><a href="/infrance">mycompanyinfrance [en]</a></li>
 	<li><a href="/mon-entreprise/dev/integration-test">intégration du simulateur sur site tiers [iframe fr]</a></li>
-	<li><a href="/publicodes">publicodes</a></li></ul>`)
+	</ul>`)
 })
 
 app.use(
