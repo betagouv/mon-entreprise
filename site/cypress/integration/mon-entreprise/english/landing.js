@@ -5,7 +5,7 @@ describe('Landing test', function () {
 	})
 	it('should display logo', function () {
 		cy.visit('/')
-		cy.get('img[alt="Service mon-entreprise urssaf"]').should('be.visible')
+		cy.get('[data-test-id="logo img"]').should('be.visible')
 	})
 	it('should display actionnable items', function () {
 		cy.visit('/')

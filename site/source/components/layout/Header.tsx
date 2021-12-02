@@ -52,7 +52,7 @@ const StyledHeader = styled.div`
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `
 
-const Logo = styled.img`
+const Logo = styled.img.attrs({ 'data-test-id': 'logo img' })`
 	height: 70%;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
