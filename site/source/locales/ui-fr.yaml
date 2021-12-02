@@ -708,6 +708,11 @@ pages:
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
     71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
     29/01/2021</22>
+  choix-statut:
+    meta:
+      description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
+        vous convient le mieux grâce à cet assistant"
+      title: Aide au choix du statut juridique
   common:
     ressources-auto-entrepreneur:
       FAQ:
@@ -1236,7 +1241,7 @@ pages:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en
         règle dans vos déclarations
       title: "Déclaration des revenus des plateforme en ligne : guide intéractif"
-    shortname: Guide économie collaborative
+    shortname: Assistant statut juridique
 payslip:
   disclaimer: Il ne prend pour l'instant pas en compte les accords et conventions
     collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention

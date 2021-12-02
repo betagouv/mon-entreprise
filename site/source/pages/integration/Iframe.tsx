@@ -4,27 +4,21 @@ import { IsEmbeddedProvider } from 'Components/utils/embeddedContext'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Article } from 'DesignSystem/card'
+import { Item, Select } from 'DesignSystem/field/Select'
 import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import urssafLogo from 'Images/Urssaf.svg'
-import {
-	lazy,
-	Suspense,
-	useContext,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react'
+import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
+import Créer from '../Creer'
 import Documentation from '../Documentation'
 import Iframes from '../Iframes'
 import Simulateurs from '../Simulateurs'
@@ -39,22 +33,18 @@ const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
 function IntegrationCustomizer() {
 	const { search } = useLocation()
-	const simulators = useSimulatorsData()
+	const simulators = Object.fromEntries(
+		Object.entries(useSimulatorsData()).filter(
+			([, s]) => s.iframePath && !s.private
+		)
+	)
 	const sitePaths = useContext(SitePathsContext)
 	const history = useHistory()
-	const integrableModuleNames = useMemo(
-		() =>
-			Object.values(simulators)
-				.filter((s) => s.iframePath && !s.private)
-				.map((s) => s.iframePath),
-		[simulators]
-	)
+
 	const defaultModuleFromUrl =
 		new URLSearchParams(search ?? '').get('module') ?? ''
 	const [currentModule, setCurrentModule] = useState(
-		integrableModuleNames.includes(defaultModuleFromUrl)
-			? defaultModuleFromUrl
-			: integrableModuleNames[0]
+		simulators['defaultModuleFromUrl'] ? defaultModuleFromUrl : 'salarié'
 	)
 
 	useEffect(() => {
@@ -72,16 +62,24 @@ function IntegrationCustomizer() {
 				<Grid item lg={4}>
 					<H3>
 						<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
-						<Emoji emoji="🚩" />
 					</H3>
-					<select
-						onChange={(event) => setCurrentModule(event.target.value)}
-						value={currentModule}
+					<Select
+						label="Assistant ou simulateur"
+						onSelectionChange={setCurrentModule as any}
+						selectedKey={currentModule}
 					>
-						{integrableModuleNames.map((name) => (
-							<option key={name}>{name}</option>
+						{Object.entries(simulators).map(([module, s]) => (
+							<Item key={module} textValue={s.shortName ?? s.title}>
+								{s.icône && (
+									<>
+										<Emoji emoji={s.icône} />
+										&nbsp;
+									</>
+								)}
+								{s.shortName ?? s.title}
+							</Item>
 						))}
-					</select>
+					</Select>
 
 					<H3>
 						<Trans i18nKey="pages.développeurs.couleur">
@@ -103,7 +101,10 @@ function IntegrationCustomizer() {
 							Voici le code à copier-coller sur votre site&nbsp;:
 						</Trans>
 					</Body>
-					<IntegrationCode color={color} module={currentModule} />
+					<IntegrationCode
+						color={color}
+						module={simulators[currentModule].iframePath}
+					/>
 				</Grid>
 				<Grid item lg={8}>
 					<H3>
@@ -112,7 +113,9 @@ function IntegrationCustomizer() {
 					<PrevisualisationContainer columns={10}>
 						<MemoryRouter
 							key={currentModule}
-							initialEntries={[`/iframes/${currentModule}`]}
+							initialEntries={[
+								`/iframes/${simulators[currentModule].iframePath}`,
+							]}
 						>
 							<ThemeColorsProvider
 								color={color == null ? color : hexToHSL(color)}
@@ -122,6 +125,7 @@ function IntegrationCustomizer() {
 										path={sitePaths.simulateurs.index}
 										component={Simulateurs}
 									/>
+									<Route path={sitePaths.créer.index} component={Créer} />
 									<Route
 										path={sitePaths.documentation.index}
 										component={Documentation}
