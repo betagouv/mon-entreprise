@@ -4,6 +4,7 @@ import { H3 } from 'DesignSystem/typography/heading'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
 
 type Company = {
@@ -35,16 +36,20 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 
 	if (company === null) {
 		return (
-			<p className="ui__ notice">
+			<SmallBody>
 				{siren}
 				<Trans>est un SIREN non diffusable</Trans>
-			</p>
+			</SmallBody>
 		)
 	}
 
 	return (
-		<>
-			<H3>
+		<CompanyContainer>
+			<H3
+				css={`
+					margin-top: 0;
+				`}
+			>
 				{denomination || company ? (
 					<>
 						{denomination ||
@@ -82,6 +87,10 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 					<Skeleton width={100} />
 				)}
 			</SmallBody>
-		</>
+		</CompanyContainer>
 	)
 }
+
+const CompanyContainer = styled.div`
+	text-align: left;
+`

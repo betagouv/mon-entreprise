@@ -1,10 +1,7 @@
 import { Grid } from '@mui/material'
-import CompanyDetails from 'Components/CompanyDetails'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import PageHeader from 'Components/PageHeader'
-import { Appear } from 'Components/ui/animate'
-import CardSelection from 'Components/ui/CardSelection'
 import Emoji from 'Components/utils/Emoji'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -21,9 +18,9 @@ import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData from '../Simulateurs/metadata'
+import { ContinueWithCompany } from './ContinueWithCompany'
 import illustrationSvg from './illustration.svg'
 import illustration2Svg from './illustration2.svg'
-import './Landing.css'
 import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
@@ -65,52 +62,49 @@ export default function Landing() {
 				</PageHeader>
 			</Container>
 
-			<Container>
-				{company && (
-					<Appear>
-						<h2 className="ui__ h h4">
-							<Trans i18nKey="landing.choice.continue">
-								Continuer avec l'entreprise
-							</Trans>
-						</h2>
-						<CardSelection to={sitePaths.gérer.index}>
-							<CompanyDetails {...company} />
-						</CardSelection>
-						<br />
-					</Appear>
-				)}
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[200]}>
+				{company && <ContinueWithCompany company={company} />}
 				<SearchOrCreate />
+				<Spacing xl />
 			</Container>
 			<Container>
 				<Trans i18nKey="landing.outils">
-					<h2>Les outils à votre disposition</h2>
-					<p>
+					<H2>Les outils à votre disposition</H2>
+					<Body>
 						Nous mettons à votre disposition des assistants et simulateurs pour
 						vous aider à la gestion de votre entreprise, anticiper les
 						prélèvements et planifier votre trésorerie en conséquence.
-					</p>
+					</Body>
 				</Trans>
-				<div className="ui__ box-container">
+
+				<Grid
+					container
+					spacing={4}
+					alignItems="stretch"
+					justifyContent="center"
+				>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
-				</div>
-				<div
-					css={`
-						text-align: center;
-						margin-top: 1rem;
-					`}
-				>
-					<Link
-						to={sitePaths.simulateurs.index}
-						className="ui__  simple small button"
-					>
-						<Trans i18nKey="landing.outils_cta">
-							<Emoji emoji={'🧮'} /> Découvrir tous les simulateurs et
-							assistants
-						</Trans>
-					</Link>
-				</div>
+
+					<Grid item xs={12} md={4}>
+						<Card
+							icon={<Emoji emoji="🧮" />}
+							title={t(
+								'landing.choice.simulators.title',
+								'Découvrir tous les simulateurs et assistants'
+							)}
+							ctaLabel={t('Découvrir')}
+							to={sitePaths.simulateurs.index}
+						>
+							<Trans i18nKey="landing.choice.simulators.body">
+								La liste exhaustive de tous les simulateurs disponibles sur le
+								site.
+							</Trans>
+						</Card>
+					</Grid>
+				</Grid>
+				<Spacing xl />
 			</Container>
 
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[500]}>
@@ -146,22 +140,7 @@ export default function Landing() {
 							</Trans>
 						</Card>
 					</Grid>
-					<Grid item lg={4} sm={6}>
-						<Card
-							icon={<Emoji emoji="🧮" />}
-							title={t(
-								'landing.choice.simulators.title',
-								'Accéder aux simulateurs'
-							)}
-							ctaLabel={t('Découvrir')}
-							to={sitePaths.simulateurs.index}
-						>
-							<Trans i18nKey="landing.choice.simulators.body">
-								La liste exhaustive de tous les simulateurs disponibles sur le
-								site.
-							</Trans>
-						</Card>
-					</Grid>
+					<Grid item lg={4} sm={6}></Grid>
 				</Grid>
 				<Spacing xl />
 			</Container>
