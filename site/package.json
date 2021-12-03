@@ -86,7 +86,6 @@
 		"@sentry/tracing": "^6.3.5",
 		"@types/react-instantsearch-dom": "^6.10.1",
 		"algoliasearch": "^4.10.2",
-		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",

@@ -3,7 +3,6 @@ import {
 	isAutoentrepreneur,
 	useDispatchAndGoToNextQuestion,
 } from 'Actions/companyStatusActions'
-import classnames from 'classnames'
 import Value from 'Components/EngineValue'
 import Simulation from 'Components/Simulation'
 import InfoBulle from 'Components/ui/InfoBulle'
@@ -16,7 +15,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
@@ -83,10 +82,8 @@ export default function SchemeComparaison({
 	return (
 		<>
 			<StyledGrid
-				className={classnames('comparaison-grid', {
-					hideAutoEntrepreneur,
-					hideAssimiléSalarié,
-				})}
+				hideAutoEntrepreneur={hideAutoEntrepreneur}
+				hideAssimiléSalarié={hideAssimiléSalarié}
 			>
 				<H2 className="AS">
 					<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
@@ -606,26 +603,31 @@ export default function SchemeComparaison({
 	)
 }
 
+type StyledGridProps = {
+	hideAssimiléSalarié?: boolean
+	hideAutoEntrepreneur?: boolean
+}
+
 const StyledGrid = styled.div`
 	display: grid;
 	font-family: ${({ theme }) => theme.fonts.main};
 	justify-items: stretch;
 	justify-content: center;
-	grid-template-columns:
-		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
-		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
 
-&.hideAutoEntrepreneur {
-	grid-template-columns:
-		[row-legend] minmax(auto, 100%) [assimilé-salarié] minmax(20%, 20rem)
-		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
-}
+	${(props: StyledGridProps) =>
+		css`
+			grid-template-columns:
+				[row-legend] minmax(auto, 100%)
+				[assimilé-salarié] ${props.hideAssimiléSalarié
+					? '0'
+					: 'minmax(20%, 20rem)'}
+				[indépendant] minmax(20%, 20rem)
+				[auto-entrepreneur] ${props.hideAssimiléSalarié
+					? '0'
+					: 'minmax( 20%, 20rem)'}
+				[end];
+		`}
 
-&.hideAssimiléSalarié {
-	grid-template-columns:
-		[row-legend] minmax(auto, 100%) [assimilé-salarié] 0
-		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
-}
 & > * {
 	width: 100%;
 	border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
