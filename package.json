@@ -20,7 +20,6 @@
 		"@babel/preset-typescript": "^7.9.0",
 		"@jest/globals": "^27.0.6",
 		"@types/cheerio": "^0.22.18",
-		"@types/classnames": "^2.2.9",
 		"@types/color-convert": "^1.9.0",
 		"@types/iframe-resizer": "^3.5.7",
 		"@types/js-yaml": "^3.12.2",
