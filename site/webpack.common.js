@@ -93,10 +93,6 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			use: ['toml-loader'],
 		},
 		{
-			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader'],
-		},
-		{
 			test: /\.md$/,
 			use: ['raw-loader'],
 		},
