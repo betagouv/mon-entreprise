@@ -160,9 +160,6 @@ module.exports = {
 
 	// A map from regular expressions to paths to transformers
 	transform: {
-		// It's not possible to have 2 piped transformers like in webpack
-		// ie ['jest-transform-nearley', 'babel-jest'], so we removed ES6 module from nearley output.
-		'\\.ne$': require.resolve('jest-transform-nearley'),
 		'\\.yaml$': 'site/test/regressions/yaml-transformer.js',
 		'\\.(js|tsx?)$': require.resolve('babel-jest'),
 	},
