@@ -37,7 +37,7 @@ export function KbisCard({ dirigeant }: KbisCardProps) {
 		<Article
 			title={t('gérer.ressources.kbis.title', 'Récupérer un extrait de Kbis')}
 			ctaLabel={t('gérer.ressources.kbis.cta', 'Aller sur monIdeNum.fr')}
-			href="ttps://www.monidenum.fr"
+			href="https://www.monidenum.fr"
 		>
 			<Trans i18nKey="gérer.ressources.kbis.body">
 				Le Kbis est un document permettant de justifier de l'enregistrement de
