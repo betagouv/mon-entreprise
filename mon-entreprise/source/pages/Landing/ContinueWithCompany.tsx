@@ -1,7 +1,7 @@
 import CompanyDetails from 'Components/CompanyDetails'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card'
-import { H4 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Company } from 'reducers/inFranceAppReducer'
@@ -15,12 +15,12 @@ export const ContinueWithCompany = ({ company }: ContinueWithCompanyProps) => {
 
 	return (
 		<>
-			<H4>
+			<H3>
 				<Trans i18nKey="landing.choice.continue">
 					Continuer avec l'entreprise
 				</Trans>
-			</H4>
-			<Card compact to={sitePaths.gérer.index}>
+			</H3>
+			<Card compact to={sitePaths.gérer.index} id="currently-selected-company">
 				<CompanyDetails {...company} />
 			</Card>
 		</>

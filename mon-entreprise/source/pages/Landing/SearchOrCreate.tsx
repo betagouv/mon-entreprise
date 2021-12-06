@@ -6,7 +6,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { GenericButtonOrLinkProps } from 'DesignSystem/buttons/Button'
 import { Spacing } from 'DesignSystem/layout'
-import { H4 } from 'DesignSystem/typography/heading'
+import { H3 } from 'DesignSystem/typography/heading'
 import { useCallback, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -39,7 +39,7 @@ export default function SearchOrCreate() {
 					position: relative;
 				`}
 			>
-				<H4>
+				<H3>
 					<Trans>Rechercher une entreprise</Trans>{' '}
 					<span>
 						ou{' '}
@@ -60,7 +60,7 @@ export default function SearchOrCreate() {
 							<Emoji emoji="💡" />
 						</CreateCompanyButton>
 					</span>
-				</H4>
+				</H3>
 				<Spacing xs />
 				<CompanySearchField onSubmit={handleCompanySubmit} />
 			</div>
