@@ -98,8 +98,6 @@ function Results({
 	results: Array<Etablissement>
 	onSubmit: (établissement: Etablissement) => void
 }) {
-	const { t } = useTranslation()
-
 	return !results.length ? (
 		<FromTop>
 			<MessageContainer>
@@ -111,19 +109,17 @@ function Results({
 			</MessageContainer>
 		</FromTop>
 	) : (
-		<>
-			<FromTop>
-				<Grid container spacing={2}>
-					{results.map((etablissement) => (
-						<Grid key={etablissement.siren} item xs={12} lg={6}>
-							<Card onClick={() => onSubmit(etablissement)} compact>
-								<CompanyDetails {...etablissement} />
-							</Card>
-						</Grid>
-					))}
-				</Grid>
-			</FromTop>
-		</>
+		<FromTop>
+			<Grid container spacing={2}>
+				{results.map((etablissement) => (
+					<Grid key={etablissement.siren} item xs={12} lg={6}>
+						<Card onPress={() => onSubmit(etablissement)} compact>
+							<CompanyDetails {...etablissement} />
+						</Card>
+					</Grid>
+				))}
+			</Grid>
+		</FromTop>
 	)
 }
 

@@ -876,7 +876,7 @@ landing:
       title: Manage my business
     simulators:
       body: The exhaustive list of all the simulators available on the site.
-      title: Browse the simulators
+      title: Discover all the simulators and assistants
   choices:
     continue: Continue with the company
   covid19: "Covid-19: Calculating the impact of short-time work"

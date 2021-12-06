@@ -26,7 +26,6 @@ export default function SearchOrCreate() {
 			css={`
 				display: flex;
 				flex-wrap: wrap;
-				gap: 0.6rem;
 				align-items: end;
 				padding-bottom: 1rem;
 				justify-content: end;

@@ -40,7 +40,7 @@ export function Card({
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
 
 	return (
-		<CardContainer compact={compact} {...buttonOrLinkProps}>
+		<CardContainer compact={compact} {...buttonOrLinkProps} tabIndex={0}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title && <StyledHeader {...titleProps} />}
 			<div
@@ -111,8 +111,8 @@ export const CardContainer = styled.div<{ compact?: boolean }>`
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
 	}
-	&:focus-visible,
-	&:focus {
+	&:focus,
+	&:focus-visible {
 		${FocusStyle}
 	}
 	padding: ${({ theme, compact = false }) =>

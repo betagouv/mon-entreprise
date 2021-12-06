@@ -2,10 +2,9 @@ import { Grid } from '@mui/material'
 import Footer from 'Components/layout/Footer/Footer'
 import Header from 'Components/layout/Header'
 import PageHeader from 'Components/PageHeader'
-import Emoji from 'Components/utils/Emoji'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Card } from 'DesignSystem/card/Card'
+import { Button } from 'DesignSystem/buttons'
 import { Container, Spacing } from 'DesignSystem/layout'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
@@ -87,63 +86,30 @@ export default function Landing() {
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators['profession-libérale']} />
 
-					<Grid item xs={12} md={4}>
-						<Card
-							icon={<Emoji emoji="🧮" />}
-							title={t(
-								'landing.choice.simulators.title',
-								'Découvrir tous les simulateurs et assistants'
-							)}
-							ctaLabel={t('Découvrir')}
+					<Grid
+						item
+						xs={12}
+						css={`
+							display: flex;
+						`}
+					>
+						<Button
+							size="XL"
 							to={sitePaths.simulateurs.index}
+							css={`
+								white-space: no-wrap;
+								margin: auto;
+							`}
 						>
-							<Trans i18nKey="landing.choice.simulators.body">
-								La liste exhaustive de tous les simulateurs disponibles sur le
-								site.
+							<Trans i18nKey="landing.choice.simulators.title">
+								Découvrir tous les simulateurs et assistants
 							</Trans>
-						</Card>
+						</Button>
 					</Grid>
 				</Grid>
 				<Spacing xl />
 			</Container>
 
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[500]}>
-				<Spacing xl />
-				<Grid container spacing={4} alignItems="stretch">
-					<Grid item lg={4} sm={6}>
-						<Card
-							icon={<Emoji emoji="💡" />}
-							title={t('landing.choice.create.title', 'Créer une entreprise')}
-							ctaLabel={statutChoisi ? t('Continuer') : t('Commencer')}
-							to={
-								statutChoisi
-									? sitePaths.créer[statutChoisi]
-									: sitePaths.créer.index
-							}
-						>
-							<Trans i18nKey="landing.choice.create.body">
-								Un accompagnement au choix du statut juridique et la liste
-								complète des démarches de création
-							</Trans>
-						</Card>
-					</Grid>
-					<Grid item lg={4} sm={6}>
-						<Card
-							icon={<Emoji emoji="💶" />}
-							title={t('landing.choice.manage.title', 'Gérer mon activité')}
-							ctaLabel={t('Commencer')}
-							to={sitePaths.gérer.index}
-						>
-							<Trans i18nKey="landing.choice.manage.body">
-								Des outils personnalisés pour anticiper le montant des
-								cotisations sociales à payer et mieux gérer votre trésorerie.
-							</Trans>
-						</Card>
-					</Grid>
-					<Grid item lg={4} sm={6}></Grid>
-				</Grid>
-				<Spacing xl />
-			</Container>
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<Spacing lg />
 				<Grid container alignItems="flex-end">
