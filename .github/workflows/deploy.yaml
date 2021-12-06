@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches: [master, demo, next]
+    branches: [master, demo, next, old-version-master]
 
   # We display the release notes in the "news" section of mon-entreprise.fr so
   # we want to re-deploy the site when a new release is published or edited on
@@ -134,8 +134,8 @@ jobs:
           github-deployment-environment: master
           deploy-message: Deploy production branch
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN_OLD }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_OLD }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
 
   post-comment:
