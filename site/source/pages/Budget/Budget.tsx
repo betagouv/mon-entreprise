@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
-import prose from './budget.md'
+import prose from './budget.md?raw'
 import budget from './budget.yaml'
 
 // Splitting the markdown file to insert React components in-between is a bit

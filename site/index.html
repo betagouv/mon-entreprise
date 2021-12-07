@@ -31,36 +31,12 @@
 			name="google-site-verification"
 			content="lO4OheVzHWfvwcoUC-1VKN_GTWtA5vEM-uPZqb2PORs"
 		/>
-		<meta
-			name="description"
-			content="<%= htmlWebpackPlugin.options.description %>"
-			data-react-helmet="true"
-		/>
 		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			data-react-helmet="true"
-			content="<%= htmlWebpackPlugin.options.title %>"
-		/>
-		<meta
-			property="og:description"
-			data-react-helmet="true"
-			content="<%= htmlWebpackPlugin.options.description %>"
-		/>
 
-		<meta
-			property="og:image"
-			data-react-helmet="true"
-			content="<%= htmlWebpackPlugin.options.shareImage %>"
-		/>
 		<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
 
 		<link rel="manifest" href="/manifest.webmanifest" />
-		<title><%= htmlWebpackPlugin.options.title %></title>
 
-		<% for (var css in htmlWebpackPlugin.files.css) { %>
-		<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
-		<% } %>
 		<style>
 			html[data-useragent*='MSIE'] #outdated-browser,
 			html[data-useragent*='Safari'][data-useragent*='Version/8']
@@ -177,45 +153,6 @@
 	</head>
 
 	<body>
-		<div id="loading">
-			<img
-				src="<%= htmlWebpackPlugin.options.logo %>"
-				alt="Un service de l'État français"
-				style="
-					width: 300px;
-					margin: auto;
-					margin-bottom: 0.6rem;
-					display: block;
-				"
-			/>
-			<div id="lds-ellipsis">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
-
-		<!-- USER AGENT DATA ATTRIBUTE  -->
-		<script>
-			var b = document.documentElement
-			b.setAttribute('data-useragent', navigator.userAgent)
-		</script>
-		<script>
-			// Hack to force styled components to render styles during prerender
-			if (window.__PRERENDER_INJECTED) {
-				window.onload = () => {
-					var el = document.createElement('style')
-					document.head.appendChild(el)
-					var styles = document.querySelectorAll('style[data-styled]')
-					for (style of styles.values()) {
-						for (rule of style.sheet.rules) {
-							el.appendChild(document.createTextNode(rule.cssText))
-						}
-					}
-				}
-			}
-		</script>
 		<!-- APP  -->
 		<div id="js"></div>
 
@@ -303,13 +240,6 @@
 			src="/polyfill.io/v3/polyfill.min.js?features=ResizeObserver%2CIntl.~locale.en%2CIntl.~locale.fr"
 		></script>
 
-		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-		<script
-			type="module"
-			src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
-		></script>
-		<% } %> <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-		<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
-		<% } %>
+		<script type="module" src="/source/entry.fr.tsx"></script>
 	</body>
 </html>
