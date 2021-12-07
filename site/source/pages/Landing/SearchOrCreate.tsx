@@ -1,10 +1,10 @@
+import { Grid } from '@mui/material'
 import { useSetEntreprise } from 'Actions/companyStatusActions'
 import { Etablissement } from 'api/sirene'
 import { CompanySearchField } from 'Components/CompanySearchField'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
-import { Spacing } from 'DesignSystem/layout'
 import { H3 } from 'DesignSystem/typography/heading'
 import { GenericButtonOrLinkProps } from 'DesignSystem/typography/link'
 import { useCallback, useContext } from 'react'
@@ -22,23 +22,8 @@ export default function SearchOrCreate() {
 	const handleCompanySubmit = useHandleCompanySubmit()
 
 	return (
-		<div
-			css={`
-				display: flex;
-				flex-wrap: wrap;
-				align-items: end;
-				padding-bottom: 1rem;
-				justify-content: end;
-			`}
-		>
-			<div
-				css={`
-					min-width: min(20rem, 100%);
-					flex: 1.2;
-					z-index: 1;
-					position: relative;
-				`}
-			>
+		<Grid container spacing={2}>
+			<Grid item xs={12}>
 				<H3>
 					<Trans>Rechercher une entreprise</Trans>{' '}
 					<span>
@@ -61,15 +46,20 @@ export default function SearchOrCreate() {
 						</CreateCompanyButton>
 					</span>
 				</H3>
-				<Spacing xs />
+			</Grid>
+			<Grid item xs={12}>
 				<CompanySearchField onSubmit={handleCompanySubmit} />
-			</div>
-		</div>
+			</Grid>
+		</Grid>
 	)
 }
 
 const CreateCompanyButton = styled(Button)<GenericButtonOrLinkProps>`
 	margin-left: 0.25rem;
+	white-space: nowrap;
+	margin-top: 0.5rem;
+	display: inline-block;
+	width: auto;
 `
 
 function useHandleCompanySubmit() {

@@ -51,8 +51,8 @@ export function CompanySearchField(props: {
 	const [searchPending, results] = useSearchCompany(state.value)
 
 	return (
-		<>
-			<div css={'display: flex, flex-direction: column, width: 100%'}>
+		<Grid container>
+			<Grid item xs={12} lg={7}>
 				<SearchField
 					id="company-search-input"
 					state={state}
@@ -60,11 +60,13 @@ export function CompanySearchField(props: {
 					onClear={onClear}
 					{...searchFieldProps}
 				/>
+			</Grid>
+			<Grid item xs={12}>
 				{state.value && !searchPending && (
 					<Results results={results} onSubmit={props.onSubmit ?? (() => {})} />
 				)}
-			</div>
-		</>
+			</Grid>
+		</Grid>
 	)
 }
 
