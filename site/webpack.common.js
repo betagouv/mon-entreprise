@@ -114,6 +114,8 @@ module.exports.default = {
 			Images: path.resolve('source/static/images/'),
 			DesignSystem: path.resolve('source/design-system'),
 			Data: path.resolve('source/data'),
+			Hooks: path.resolve('source/hooks'),
+			API: path.resolve('source/api'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
 	},

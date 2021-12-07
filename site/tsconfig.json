@@ -19,7 +19,9 @@
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"],
 			"DesignSystem/*": ["design-system/*"],
-			"Data/*": ["data/*"]
+			"Data/*": ["data/*"],
+			"Hooks/*": ["hooks/*"],
+			"API/*": ["api/*"]
 		},
 		"typeRoots": ["./types/", "./node_modules/@types"],
 		"noEmit": true,
