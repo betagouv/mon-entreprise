@@ -1,4 +1,5 @@
-const { getUiMissingTranslations } = require('./utils')
+import { getUiMissingTranslations } from './utils.js'
+
 const missingTranslationKeys = Object.keys(getUiMissingTranslations())
 if (missingTranslationKeys.length) {
 	throw new Error(`Il manque des traductions UI pour les clés suivantes : ${[

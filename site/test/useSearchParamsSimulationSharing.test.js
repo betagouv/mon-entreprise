@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-var sinon = require('sinon')
+import sinon from 'sinon'
 import Engine, { parsePublicodes } from 'publicodes'
 import rules from 'modele-social'
 import {

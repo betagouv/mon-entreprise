@@ -1,9 +1,9 @@
 // Inspired from yaml-jest https://github.com/danwang/yaml-jest
-var crypto = require('crypto')
-var yaml = require('js-yaml')
+import { createHash } from 'crypto'
+import yaml from 'js-yaml'
+
 const getCacheKey = (fileData, filePath, options) => {
-	return crypto
-		.createHash('md5')
+	return createHash('md5')
 		.update(fileData)
 		.update(options.configString)
 		.digest('hex')
@@ -17,4 +17,4 @@ const transformer = {
 	getCacheKey,
 	process,
 }
-module.exports = transformer
+export default transformer

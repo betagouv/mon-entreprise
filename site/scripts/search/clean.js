@@ -1,6 +1,7 @@
-require('dotenv').config()
+import dotenv from 'dotenv'
+import algoliasearch from 'algoliasearch'
 
-const algoliasearch = require('algoliasearch')
+dotenv.config()
 
 const {
 	ALGOLIA_APP_ID,
