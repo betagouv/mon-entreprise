@@ -19,9 +19,9 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json', 'package.json') }}
 
-      - run: node mon-entreprise/scripts/get-cypress-packages.js | xargs npm i
+      - run: node site/scripts/get-cypress-packages.js | xargs npm i --legacy-peer-deps
 
       - name: Test external integration
         uses: cypress-io/github-action@v2

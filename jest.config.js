@@ -71,7 +71,7 @@ module.exports = {
 
 	// A map from regular expressions to module names that allow to stub out resources with a single module
 	moduleNameMapper: {
-		'\\.css$': 'mon-entreprise/test/regressions/styleMock.js',
+		'\\.css$': 'site/test/regressions/styleMock.js',
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -160,10 +160,7 @@ module.exports = {
 
 	// A map from regular expressions to paths to transformers
 	transform: {
-		// It's not possible to have 2 piped transformers like in webpack
-		// ie ['jest-transform-nearley', 'babel-jest'], so we removed ES6 module from nearley output.
-		'\\.ne$': require.resolve('jest-transform-nearley'),
-		'\\.yaml$': 'mon-entreprise/test/regressions/yaml-transformer.js',
+		'\\.yaml$': 'site/test/regressions/yaml-transformer.js',
 		'\\.(js|tsx?)$': require.resolve('babel-jest'),
 	},
 
