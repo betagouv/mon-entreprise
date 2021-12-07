@@ -61,13 +61,13 @@ jobs:
       - name: Replace site placeholders in netlify.toml redirection file
         run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
           sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
-      - name: Update Algolia index
-        run: yarn workspace site algolia:update
-        env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
-          ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
+      # - name: Update Algolia index
+      #   run: yarn workspace site algolia:update
+      #   env:
+      #     ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+      #     ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+      #     ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
+      #     ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
       - uses: actions/upload-artifact@v2
         with:
           name: static-site

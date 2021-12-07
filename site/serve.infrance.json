@@ -1,4 +1,0 @@
-{
-	"rewrites": [{ "source": "**", "destination": "infrance.html" }],
-	"public": "dist"
-}

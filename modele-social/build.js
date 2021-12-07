@@ -47,7 +47,7 @@ function readRules() {
 function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(rules)
-	const jsString = `module.exports = ${JSON.stringify(rules, null, 2)}`
+	const jsString = `export default ${JSON.stringify(rules, null, 2)}`
 	fs.writeFileSync(path.resolve(outDir, 'index.js'), jsString)
 	fs.writeFileSync(
 		path.resolve(outDir, 'names.ts'),

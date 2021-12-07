@@ -3,7 +3,7 @@
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-module.exports = ({ t = (_, text) => text } = {}) => {
+export default ({ t = (_, text) => text } = {}) => {
 	return {
 		salarié: {
 			tracking: 'salarie',
