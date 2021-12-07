@@ -4,13 +4,13 @@ import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { Card } from 'DesignSystem/card'
 import { SearchField } from 'DesignSystem/field'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
-import { ReactNode, useEffect, useState } from 'react'
+import useSearchCompany from 'Hooks/useSearchCompany'
+import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import CompanyDetails from './CompanyDetails'
 import { FromTop } from './ui/animate'
-import { useDebounce } from './utils'
 
 export function CompanySearchField(
 	props: Omit<AriaSearchFieldProps, 'onSubmit'> & {
@@ -71,30 +71,6 @@ export function CompanySearchField(
 			</Grid>
 		</Grid>
 	)
-}
-
-function useSearchCompany(value: string): [boolean, Array<Etablissement>] {
-	const [result, setResult] = useState<Array<Etablissement>>([])
-	const [searchPending, setSearchPending] = useState(!!value)
-	useEffect(() => {
-		setSearchPending(!!value)
-		if (!value) {
-			setResult([])
-		}
-	}, [value, setResult, setSearchPending])
-
-	const debouncedValue = useDebounce(value, 300)
-	useEffect(() => {
-		if (!debouncedValue) {
-			return
-		}
-		searchDenominationOrSiren(debouncedValue).then((établissements) => {
-			setResult(établissements || [])
-			setSearchPending(false)
-		})
-	}, [debouncedValue, setResult, setSearchPending])
-
-	return [searchPending && result.length <= 0, result.slice(0, 6)]
 }
 
 function Results({
