@@ -26,13 +26,13 @@ describe('Landing page', function () {
 		cy.get(searchResultsPath).children().should('have.length', 6)
 		cy.get(searchResultsPath).children().first().click()
 
-		cy.url().should('include', '/mon-entreprise/g%C3%A9rer')
+		cy.url().should('include', '/g%C3%A9rer')
 
 		cy.go('back')
 
 		cy.get(currentCompanyPath).should('exist')
 		cy.get(currentCompanyPath).click()
 
-		cy.url().should('include', '/mon-entreprise/g%C3%A9rer')
+		cy.url().should('include', '/g%C3%A9rer')
 	})
 })
