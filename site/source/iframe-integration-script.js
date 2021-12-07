@@ -29,7 +29,7 @@ const iframe = document.createElement('iframe')
 const iframeAttributes = {
 	id: 'simulateurEmbauche',
 	src,
-	style: 'border: none; width: 100%; display: block; height: 500px',
+	style: 'border: none; width: 100%; display: block; height: 700px',
 	allow: 'clipboard-write',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
