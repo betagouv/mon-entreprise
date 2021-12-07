@@ -2,6 +2,7 @@ import { ScrollToElement } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
+import styled from 'styled-components'
 
 declare global {
 	const $: any
@@ -15,6 +16,7 @@ export default function FeedbackForm() {
 	const page = pathname.split('/').slice(-1)[0]
 	const isSimulateur = pathname.includes('simulateurs')
 	const lang = useTranslation().i18n.language
+
 	useEffect(() => {
 		const script = document.createElement('script')
 		script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
@@ -66,7 +68,26 @@ export default function FeedbackForm() {
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			<div id="feedback-form"></div>
+			<StyledFeedback id="feedback-form"></StyledFeedback>
 		</ScrollToElement>
 	)
 }
+
+const StyledFeedback = styled.div`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+	text-align: left;
+
+	textarea,
+	input {
+		width: 100%;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		padding: ${({ theme }) => theme.spacings.sm};
+		margin-top: ${({ theme }) => theme.spacings.xs};
+		border-radius: ${({ theme }) => theme.box.borderRadius};
+		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	}
+`

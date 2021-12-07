@@ -50,8 +50,8 @@ export default function Landing() {
 				>
 					<Intro>
 						<Trans i18nKey="landing.subtitle">
-							Les ressources nécessaires pour développer votre activité, du
-							statut juridique à l'embauche.
+							Grâce à nos simulateurs et assistants, faites les bons choix pour
+							créer et développer votre entreprise
 						</Trans>
 					</Intro>
 				</PageHeader>
