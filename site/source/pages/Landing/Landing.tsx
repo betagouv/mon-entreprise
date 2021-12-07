@@ -56,8 +56,7 @@ export default function Landing() {
 					</Intro>
 				</PageHeader>
 			</Container>
-
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[200]}>
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
 				{company && <ContinueWithCompany company={company} />}
 				<SearchOrCreate />
 				<Spacing xl />
@@ -105,7 +104,6 @@ export default function Landing() {
 				</Grid>
 				<Spacing xl />
 			</Container>
-
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<Spacing lg />
 				<Grid container alignItems="flex-end">
@@ -127,6 +125,7 @@ export default function Landing() {
 					<Grid item md={10}>
 						<Trans i18nKey="landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
+
 							<Body>
 								Nous sommes une petite{' '}
 								<Link href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
@@ -141,6 +140,7 @@ export default function Landing() {
 								</Link>
 								.
 							</Body>
+
 							<Body>
 								Nous avons développé ce site pour accompagner les créateurs
 								d’entreprise dans le développement de leur activité.

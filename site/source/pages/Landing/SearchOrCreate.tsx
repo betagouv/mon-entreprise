@@ -24,28 +24,25 @@ export default function SearchOrCreate() {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
-				<H3>
+				<Title>
 					<Trans>Rechercher une entreprise</Trans>{' '}
 					<span>
 						ou{' '}
 						<CreateCompanyButton
 							size="XS"
-							light
 							to={
 								statutChoisi
 									? sitePaths.créer[statutChoisi]
 									: sitePaths.créer.index
 							}
 						>
-							<span>
-								<Trans i18nKey="landing.choice.create.title">
-									Créer une entreprise
-								</Trans>
-							</span>{' '}
+							<Trans i18nKey="landing.choice.create.title">
+								Créer une entreprise
+							</Trans>{' '}
 							<Emoji emoji="💡" />
 						</CreateCompanyButton>
 					</span>
-				</H3>
+				</Title>
 			</Grid>
 			<Grid item xs={12}>
 				<CompanySearchField onSubmit={handleCompanySubmit} />
@@ -75,3 +72,7 @@ function useHandleCompanySubmit() {
 	)
 	return handleCompanySubmit
 }
+
+const Title = styled(H3)`
+	color: ${({ theme }) => theme.colors.bases.primary[100]};
+`
