@@ -12,10 +12,7 @@
 	"engines": {
 		"node": ">=12.16.1"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"build": "yarn run build:prod && yarn run build:legacy",
@@ -85,13 +82,16 @@
 		"react-router-dom": "^5.1.1",
 		"react-router-hash-link": "^1.2.2",
 		"react-signature-pad-wrapper": "^1.2.11",
-		"react-spring": "=8.0.27",
+		"react-spring": "^9.3.1",
+		"react-syntax-highlighter": "^10.1.1",
+		"react-use-measure": "^2.0.4",
+		"react-useportal": "^1.0.13",
 		"recharts": "^1.8.5",
 		"reduce-reducers": "^1.0.4",
 		"redux": "^4.0.4",
 		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
-		"styled-components": "^5.1.0",
+		"styled-components": "^5.3.1",
 		"swr": "^0.1.16",
 		"whatwg-fetch": "^3.0.0",
 		"yaml": "^1.9.2"

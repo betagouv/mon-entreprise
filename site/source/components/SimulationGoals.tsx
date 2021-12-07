@@ -3,14 +3,7 @@ import { updateSituation } from 'Actions/actions'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
-import React, {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	firstStepCompletedSelector,
@@ -23,6 +16,7 @@ import RuleLink from './RuleLink'
 import { Appear } from './ui/animate'
 import AnimatedTargetValue from './ui/AnimatedTargetValue'
 import { useEngine } from './utils/EngineContext'
+import { useInitialRender, WatchInitialRender } from './utils/useInitialRender'
 
 type SimulationGoalsProps = {
 	className?: string
@@ -37,22 +31,16 @@ type SimulationGoalsProps = {
 	toggles?: React.ReactNode
 }
 
-const InitialRenderContext = createContext(true)
-
 export function SimulationGoals({
 	publique,
 	legend,
 	toggles,
 	children,
 }: SimulationGoalsProps) {
-	const [initialRender, setInitialRender] = useState(true)
-	useEffect(() => {
-		setInitialRender(false)
-	}, [])
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 
 	return (
-		<InitialRenderContext.Provider value={initialRender}>
+		<WatchInitialRender>
 			{toggles && <ToggleSection>{toggles}</ToggleSection>}
 			<StyledSimulationGoals
 				isFirstStepCompleted={isFirstStepCompleted}
@@ -67,7 +55,7 @@ export function SimulationGoals({
 					{children}
 				</ThemeProvider>
 			</StyledSimulationGoals>
-		</InitialRenderContext.Provider>
+		</WatchInitialRender>
 	)
 }
 
@@ -96,15 +84,6 @@ const StyledSimulationGoals = styled.div<
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};
 `
-
-function useInitialRender() {
-	const initialRender = useContext(InitialRenderContext)
-	// We use meme to prevent renders after the first one. That's why we disable
-	// the rule on the next line
-	// eslint-disable-next-line
-	const unChangedInitialRender = useMemo(() => initialRender, [])
-	return unChangedInitialRender
-}
 
 type SimulationGoalProps = {
 	dottedName: DottedName

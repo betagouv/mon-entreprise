@@ -30,7 +30,7 @@ export default function PageHeader({
 				lg={picture ? 8 : 12}
 				css={`
 					display: flex;
-					flex-direction: column;
+					flex-direction: column !important;
 					align-items: flex-start;
 				`}
 			>

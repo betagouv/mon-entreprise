@@ -12,7 +12,7 @@ import React, { ReactHTML, useRef } from 'react'
 import styled from 'styled-components'
 
 export type GenericCardProps = {
-	title: React.ReactNode
+	title?: React.ReactNode
 	children?: React.ReactNode
 	icon?: React.ReactNode
 } & GenericButtonOrLinkProps
@@ -20,6 +20,7 @@ export type GenericCardProps = {
 type CardProps = GenericCardProps & {
 	ctaLabel?: React.ReactNode
 	children: React.ReactNode
+	compact?: boolean
 }
 
 export function Card({
@@ -27,6 +28,7 @@ export function Card({
 	icon,
 	children,
 	ctaLabel,
+	compact = false,
 	...ariaButtonProps
 }: CardProps) {
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -36,13 +38,14 @@ export function Card({
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
 
 	return (
-		<CardContainer {...buttonOrLinkProps}>
+		<CardContainer compact={compact} {...buttonOrLinkProps} tabIndex={0}>
 			{icon && <IconContainer>{icon}</IconContainer>}
-			<StyledHeader {...titleProps} />
+			{title && <StyledHeader {...titleProps} />}
 			<div
 				css={`
 					flex: 1;
 					text-align: center;
+					width: 100%;
 				`}
 			>
 				<Body>{children}</Body>
@@ -92,7 +95,7 @@ const IconContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.md};
 `
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<{ compact?: boolean }>`
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -106,9 +109,11 @@ export const CardContainer = styled.div`
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
 	}
+	&:focus,
 	&:focus-visible {
 		${FocusStyle}
 	}
-	padding: ${({ theme }) => theme.spacings.lg};
+	padding: ${({ theme, compact = false }) =>
+		compact ? theme.spacings.sm : theme.spacings.lg};
 	transition: box-shadow 0.15s;
 `
