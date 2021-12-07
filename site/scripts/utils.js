@@ -1,13 +1,14 @@
-const path = require('path')
-const fs = require('fs')
-const dataDir = path.resolve(__dirname, '../source/data/')
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import { join } from 'path'
 
-exports.createDataDir = () => {
-	if (!fs.existsSync(dataDir)) {
-		fs.mkdirSync(dataDir)
+const dataDir = new URL('../source/data/', import.meta.url).pathname
+
+export function createDataDir() {
+	if (!existsSync(dataDir)) {
+		mkdirSync(dataDir)
 	}
 }
 
-exports.writeInDataDir = (filename, data) => {
-	fs.writeFileSync(path.join(dataDir, filename), JSON.stringify(data, null, 2))
+export function writeInDataDir(filename, data) {
+	writeFileSync(join(dataDir, filename), JSON.stringify(data, null, 2))
 }

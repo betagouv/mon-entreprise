@@ -1,18 +1,16 @@
-var { stringify, parse } = require('yaml')
-var R = require('ramda')
-var fs = require('fs')
-
-const {
-	getUiMissingTranslations,
-	UiTranslationPath,
-	UiOriginalTranslationPath,
+import { readFileSync, writeFileSync } from 'fs'
+import { assocPath } from 'ramda'
+import { parse, stringify } from 'yaml'
+import {
 	fetchTranslation,
-} = require('./utils')
-
+	getUiMissingTranslations,
+	UiOriginalTranslationPath,
+	UiTranslationPath,
+} from './utils'
 ;(async function () {
 	const missingTranslations = getUiMissingTranslations()
-	let originalKeys = parse(fs.readFileSync(UiOriginalTranslationPath, 'utf-8'))
-	let translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
+	let originalKeys = parse(readFileSync(UiOriginalTranslationPath, 'utf-8'))
+	let translatedKeys = parse(readFileSync(UiTranslationPath, 'utf-8'))
 	await Promise.all(
 		Object.entries(missingTranslations)
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
@@ -20,18 +18,18 @@ const {
 				try {
 					const translation = await fetchTranslation(originalTranslation)
 					const path = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-					translatedKeys = R.assocPath(path, translation, translatedKeys)
-					originalKeys = R.assocPath(path, originalTranslation, originalKeys)
+					translatedKeys = assocPath(path, translation, translatedKeys)
+					originalKeys = assocPath(path, originalTranslation, originalKeys)
 				} catch (e) {
 					console.log(e)
 				}
 			})
 	)
-	fs.writeFileSync(
+	writeFileSync(
 		UiTranslationPath,
 		stringify(translatedKeys, { sortMapEntries: true })
 	)
-	fs.writeFileSync(
+	writeFileSync(
 		UiOriginalTranslationPath,
 		stringify(originalKeys, { sortMapEntries: true })
 	)

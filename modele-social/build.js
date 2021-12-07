@@ -1,11 +1,11 @@
 /* eslint-env node */
+import fs from 'fs'
+import path from 'path'
+import yaml from 'js-yaml'
 
-const fs = require('fs')
-const path = require('path')
-const yaml = require('js-yaml')
-
-const publicodesDir = path.resolve(__dirname, './règles')
-const outDir = path.resolve(__dirname, './dist')
+// utf8 url
+const publicodesDir = decodeURI(new URL('./règles', import.meta.url).pathname)
+const outDir = new URL('./dist', import.meta.url).pathname
 
 if (!fs.existsSync(outDir)) {
 	fs.mkdirSync(outDir)
@@ -56,4 +56,6 @@ function writeJSFile() {
 }
 
 writeJSFile()
-exports.watchDottedNames = () => fs.watch(publicodesDir, writeJSFile)
+export function watchDottedNames() {
+	return fs.watch(publicodesDir, writeJSFile)
+}

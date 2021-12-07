@@ -2,12 +2,12 @@
 // their reach, we also publish a banner on our website automatically by using
 // the beta.gouv.fr API.
 
-require('isomorphic-fetch')
-const xml2js = require('xml2js')
-const util = require('util')
-const { createDataDir, writeInDataDir } = require('./utils.js')
+import 'isomorphic-fetch'
+import { parseString } from 'xml2js'
+import { promisify } from 'util'
+import { createDataDir, writeInDataDir } from './utils.js'
 
-const parseXML = util.promisify(xml2js.parseString)
+const parseXML = promisify(parseString)
 
 main()
 

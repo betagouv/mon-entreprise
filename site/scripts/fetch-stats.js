@@ -1,10 +1,22 @@
-require('dotenv').config()
-require('isomorphic-fetch')
+import dotenv from 'dotenv'
+import 'isomorphic-fetch'
+import fs from 'fs'
+import path from 'path'
+import { filter, flatten, map, partition, pipe } from 'ramda'
+import { compose } from 'redux'
+import { createDataDir, writeInDataDir } from './utils.js'
 
-const { map, filter, flatten, partition, pipe } = require('ramda')
-const { compose } = require('redux')
-const { createDataDir, writeInDataDir } = require('./utils.js')
-const matomoSiteVisitsHistory = require('./matomoVisitHistory.json')
+dotenv.config()
+
+const matomoSiteVisitsHistory = JSON.parse(
+	fs.readFileSync(
+		path.join(
+			import.meta.url.replace('file:', ''),
+			'../matomoVisitHistory.json'
+		)
+	)
+)
+
 const fetchApi = async function (query) {
 	const response = await fetch('https://api.atinternet.io/v3/data/getData', {
 		method: 'POST',

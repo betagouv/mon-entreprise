@@ -7,9 +7,11 @@
 //
 // If you want to fetch unpublished "draft" release, you should check the
 // "public repo" authorization when generating the access token.
-require('dotenv').config()
-require('isomorphic-fetch')
-var { createDataDir, writeInDataDir } = require('./utils.js')
+import dotenv from 'dotenv'
+import 'isomorphic-fetch'
+import { createDataDir, writeInDataDir } from './utils.js'
+
+dotenv.config()
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/

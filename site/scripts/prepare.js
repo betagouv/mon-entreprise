@@ -1,3 +1,3 @@
-require('./fetch-releases.js')
-require('./fetch-stats.js')
-require('./fetch-job-offers.js')
+import './fetch-releases.js'
+import './fetch-stats.js'
+import './fetch-job-offers.js'

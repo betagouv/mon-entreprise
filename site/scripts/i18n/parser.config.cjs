@@ -1,6 +1,14 @@
 // i18next-parser.config.js
 
-const { UiStaticAnalysisPath } = require('./utils')
+// TODO: Use the ESM import from ./utils once the following bug is fixed:
+// https://github.com/i18next/i18next-parser/issues/497
+//
+// import { UiStaticAnalysisPath } from './utils'
+const path = require('path')
+const UiStaticAnalysisPath = path.resolve(
+	__dirname,
+	'../../source/locales/static-analysis-fr.json'
+)
 
 module.exports = {
 	contextSeparator: '_',

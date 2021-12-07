@@ -1,30 +1,18 @@
-require('dotenv').config()
-require('isomorphic-fetch')
-var fs = require('fs')
-var path = require('path')
-let R = require('ramda')
-var querystring = require('querystring')
-require('../../../modele-social/build')
-let rules = require('../../../modele-social')
-let { parse } = require('yaml')
+import dotenv from 'dotenv'
+import { readFileSync } from 'fs'
+import 'isomorphic-fetch'
+import { stringify } from 'querystring'
+import { equals, mergeAll, path as _path, pick, toPairs } from 'ramda'
+import yaml from 'yaml'
+import rules from '../../../modele-social/dist/index.js'
 
-let rulesTranslationPath = path.resolve(
-	__dirname,
-	'../../source/locales/rules-en.yaml'
-)
-let UiTranslationPath = path.resolve(
-	__dirname,
-	'../../source/locales/ui-en.yaml'
-)
-let UiOriginalTranslationPath = path.resolve(
-	__dirname,
-	'../../source/locales/ui-fr.yaml'
-)
+dotenv.config()
 
-let UiStaticAnalysisPath = path.resolve(
-	__dirname,
-	'../../source/locales/static-analysis-fr.json'
-)
+const localesPath = new URL('../../source/locales/', import.meta.url).pathname
+export let UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
+export let rulesTranslationPath = localesPath + 'rules-en.yaml'
+export let UiTranslationPath = localesPath + 'ui-en.yaml'
+export let UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
 
 let attributesToTranslate = [
 	'titre',
@@ -35,9 +23,9 @@ let attributesToTranslate = [
 	'note',
 ]
 
-function getRulesMissingTranslations() {
-	let currentExternalization = parse(
-		fs.readFileSync(rulesTranslationPath, 'utf-8')
+export function getRulesMissingTranslations() {
+	let currentExternalization = yaml.parse(
+		readFileSync(rulesTranslationPath, 'utf-8')
 	)
 
 	let missingTranslations = []
@@ -49,11 +37,11 @@ function getRulesMissingTranslations() {
 				: rule,
 		])
 		.map(([dottedName, rule]) => ({
-			[dottedName]: R.mergeAll(
-				R.toPairs(rule)
+			[dottedName]: mergeAll(
+				toPairs(rule)
 					.filter(([, v]) => !!v)
 					.map(([k, v]) => {
-						let attrToTranslate = attributesToTranslate.find(R.equals(k))
+						let attrToTranslate = attributesToTranslate.find(equals(k))
 						if (!attrToTranslate) return {}
 						let enTrad = attrToTranslate + '.en',
 							frTrad = attrToTranslate + '.fr'
@@ -102,15 +90,15 @@ function getRulesMissingTranslations() {
 					})
 			),
 		}))
-	resolved = R.mergeAll(resolved)
+	resolved = mergeAll(resolved)
 	return [missingTranslations, resolved]
 }
 
-const getUiMissingTranslations = () => {
-	const staticKeys = require(UiStaticAnalysisPath)
-	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
-	const originalKeys = parse(
-		fs.readFileSync(UiOriginalTranslationPath, 'utf-8')
+export const getUiMissingTranslations = () => {
+	const staticKeys = JSON.parse(readFileSync(UiStaticAnalysisPath, 'utf-8'))
+	const translatedKeys = yaml.parse(readFileSync(UiTranslationPath, 'utf-8'))
+	const originalKeys = yaml.parse(
+		readFileSync(UiOriginalTranslationPath, 'utf-8')
 	)
 
 	const missingTranslations = Object.entries(staticKeys)
@@ -120,19 +108,19 @@ const getUiMissingTranslations = () => {
 			}
 			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
 
-			const isNewKey = !R.path(keys, translatedKeys)
-			const isInvalidatedKey = R.path(keys, originalKeys) !== valueInSource
+			const isNewKey = !_path(keys, translatedKeys)
+			const isInvalidatedKey = _path(keys, originalKeys) !== valueInSource
 
 			return isNewKey || isInvalidatedKey
 		}, staticKeys)
 		.map(([key]) => key)
 
-	return R.pick(missingTranslations, staticKeys)
+	return pick(missingTranslations, staticKeys)
 }
 
-const fetchTranslation = async (text) => {
+export const fetchTranslation = async (text) => {
 	const response = await fetch(
-		`https://api.deepl.com/v2/translate?${querystring.stringify({
+		`https://api.deepl.com/v2/translate?${stringify({
 			text,
 			auth_key: process.env.DEEPL_API_SECRET,
 			tag_handling: 'xml',
@@ -148,13 +136,4 @@ const fetchTranslation = async (text) => {
 		console.warn(`❌ Deepl translation failed for:\n\t${text}\n`)
 		return ''
 	}
-}
-module.exports = {
-	fetchTranslation,
-	getRulesMissingTranslations,
-	getUiMissingTranslations,
-	UiStaticAnalysisPath,
-	rulesTranslationPath,
-	UiTranslationPath,
-	UiOriginalTranslationPath,
 }
