@@ -1,5 +1,9 @@
 import Emoji from 'Components/utils/Emoji'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
+import Popover from 'DesignSystem/Popover'
+import { Strong } from 'DesignSystem/typography'
+import { Link } from 'DesignSystem/typography/link'
 import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -7,6 +11,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import safeLocalStorage from '../../storage/safeLocalStorage'
+import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
 import './Feedback.css'
 import Form from './FeedbackForm'
 
@@ -132,22 +137,39 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 				</button>
 			)}
 			{state.showThanks && (
-				<Body>
-					<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
-				</Body>
+				<>
+					<Body>
+						<Strong>
+							<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
+						</Strong>
+					</Body>
+					<Body>
+						<Trans i18nKey="feedback.beta-testeur">
+							Pour continuer à donner votre avis et accéder aux nouveautés en
+							avant-première,{' '}
+							<Link href={INSCRIPTION_LINK}>
+								inscrivez-vous sur la liste des beta-testeur
+							</Link>
+						</Trans>
+					</Body>
+				</>
 			)}
 			{state.showForm ? (
-				<Form />
-			) : (
-				<div
-					css={`
-						padding-top: 1rem;
-					`}
+				<Popover
+					isOpen
+					title="Votre avis nous interesse"
+					isDismissable
+					onClose={() => setState({ showThanks: true, showForm: false })}
 				>
+					<Form />
+				</Popover>
+			) : (
+				<>
+					<Spacing md />
 					<Button onPress={openSuggestionForm} color="tertiary" size="XS" light>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</Button>
-				</div>
+				</>
 			)}
 		</Container>
 	)
