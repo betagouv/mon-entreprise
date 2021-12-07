@@ -1,7 +1,6 @@
 import { iframeResizer } from 'iframe-resizer'
 import logoFrSvg from 'Images/logo-monentreprise.svg'
 import logoEnSvg from 'Images/logo-mycompany.svg'
-import urssafSvg from 'Images/Urssaf.svg'
 import { hexToHSL } from './hexToHSL'
 
 let script =
@@ -30,7 +29,7 @@ const iframe = document.createElement('iframe')
 const iframeAttributes = {
 	id: 'simulateurEmbauche',
 	src,
-	style: 'border: none; width: 100%; display: block; height: 500px',
+	style: 'border: none; width: 100%; display: block; height: 700px',
 	allow: 'clipboard-write',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
@@ -84,13 +83,7 @@ links.innerHTML = `
 				alt="mon-entreprise.urssaf.fr : l'assistant officiel du créateur d'entreprise"
 			/>
 		</a>
-		<a href="https://www.urssaf.fr">
-			<img
-				style="height: 40px; margin: 10px"
-				src="${process.env.FR_BASE_URL + '/' + urssafSvg}"
-				alt="un service fourni par l'Urssaf"
-			/>
-		</a>
+
 	</div>
 `
 
