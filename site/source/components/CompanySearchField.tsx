@@ -54,7 +54,7 @@ export function CompanySearchField(props: {
 		<Grid container>
 			<Grid item xs={12} lg={7}>
 				<SearchField
-					id="company-search-input"
+					data-testid="company-search-input"
 					state={state}
 					isSearchStalled={searchPending}
 					onClear={onClear}
@@ -113,7 +113,7 @@ function Results({
 		</FromTop>
 	) : (
 		<FromTop>
-			<Grid container spacing={2} id="company-search-results">
+			<Grid container spacing={2} data-testid="company-search-results">
 				{results.map((etablissement) => (
 					<Grid key={etablissement.siren} item xs={12} lg={6}>
 						<Card onPress={() => onSubmit(etablissement)} compact>

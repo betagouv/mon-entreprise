@@ -1,6 +1,6 @@
-const searchInputPath = '#company-search-input'
-const searchResultsPath = '#company-search-results'
-const currentCompanyPath = '#currently-selected-company'
+const searchInputPath = '[data-testid=company-search-input]'
+const searchResultsPath = '[data-testid=company-search-results]'
+const currentCompanyPath = '[data-testid=currently-selected-company]'
 
 describe('Landing page', function () {
 	it('should not crash', function () {
