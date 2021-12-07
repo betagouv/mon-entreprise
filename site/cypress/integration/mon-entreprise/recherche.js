@@ -11,7 +11,7 @@ describe('Recherche globales', () => {
 	it('should display the search results when the magnifying glass is clicked', () => {
 		cy.visit('/')
 
-		cy.get('#search-display-button').click()
+		cy.contains('Rechercher').click()
 
 		cy.wait(30)
 		cy.focused().should('have.attr', 'type', 'search')

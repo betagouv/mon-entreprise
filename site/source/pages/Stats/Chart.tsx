@@ -3,7 +3,7 @@ import { Strong } from 'DesignSystem/typography'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import {
 	Area,
 	Bar,
@@ -85,9 +85,9 @@ export default function VisitsChart({
 	function getColor(i: number): string {
 		if (!colored) {
 			return [
-				colors.bases.primary[200],
-				colors.bases.primary[400],
-				colors.bases.primary[600],
+				colors.bases.primary[300],
+				colors.bases.primary[500],
+				colors.bases.primary[700],
 			][i % 3]
 		}
 		return Palette[i % Palette.length]

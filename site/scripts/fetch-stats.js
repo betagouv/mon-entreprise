@@ -31,7 +31,7 @@ const buildSimulateursQuery = (period, granularity) => ({
 		'm_visits',
 	],
 	space: {
-		s: [617190],
+		s: [617190, 617189],
 	},
 	period: {
 		p1: [period],
@@ -65,7 +65,7 @@ const buildSatisfactionQuery = () => ({
 		'm_events',
 	],
 	space: {
-		s: [617190],
+		s: [617190, 617189],
 	},
 	period: {
 		p1: [last36Months],
@@ -102,7 +102,7 @@ const buildSatisfactionQuery = () => ({
 const buildSiteQuery = (period, granularity) => ({
 	columns: ['m_visits'],
 	space: {
-		s: [617190],
+		s: [617190, 617189],
 	},
 	period: {
 		p1: [period],
