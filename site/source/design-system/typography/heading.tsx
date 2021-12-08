@@ -4,7 +4,10 @@ const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]};
 `
 export const HeadingUnderline = css`
 	::after {

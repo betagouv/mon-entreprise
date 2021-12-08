@@ -97,7 +97,8 @@ html {
 	transition: none !important;
 	box-sizing: border-box;
 	font-size: 16px;
-
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 *,
@@ -108,6 +109,7 @@ html {
 
 body {
 	margin: 0;
+
 }
 
 #js {

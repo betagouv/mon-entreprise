@@ -9,7 +9,7 @@ import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
-import { Spacing } from 'DesignSystem/layout'
+import { Container, Spacing } from 'DesignSystem/layout'
 import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
@@ -21,16 +21,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
+import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import AideOrganismeLocal from './AideOrganismeLocal'
-import businessPlan from './businessPlan.svg'
 import { AutoEntrepreneurCard } from './cards/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './cards/DemarcheEmbauche'
 import { KbisCard } from './cards/KBISCard'
 import { MobiliteCard } from './cards/MobiliteCard'
 import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
+import forms from './forms.svg'
+import growth from './growth.svg'
 
 export type DirigeantOrNull = keyof SimulatorData | null
 
@@ -85,88 +87,107 @@ export default function Gérer() {
 			<ScrollToTop />
 			<FromBottom>
 				<PageHeader
-					picture={businessPlan}
+					picture={growth}
 					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
 				>
 					<Intro>
 						<Trans i18nKey="gérer.description">
-							Vous souhaitez vous verser un revenu ou embaucher ? <br />
-							Vous aurez à payer des cotisations et des impôts. <br />
-							Anticipez leurs montants grâce aux simulateurs adaptés à votre
-							situation.
+							Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+							payer des cotisations et des impôts. Anticipez leurs montants
+							grâce aux simulateurs adaptés à votre situation.
 						</Trans>
 					</Intro>
 					<CompanySection company={company} />
+					<Spacing xl />
 				</PageHeader>
-				<Spacing xl />
-				<>
-					<Grid container spacing={3}>
-						{dirigeantSimulateur !== null && (
-							<SimulateurCard {...simulateurs[dirigeantSimulateur]} />
-						)}
 
-						{company?.statutJuridique &&
-							['EIRL', 'EI', 'EURL', 'SARL'].includes(
-								company.statutJuridique
-							) &&
-							!company.isAutoEntrepreneur && (
+				{dirigeantSimulateur && (
+					<Container
+						backgroundColor={(theme) => theme.colors.bases.primary[600]}
+						darkMode
+					>
+						<FormsImage src={forms} alt="" />
+						<Spacing xs />
+
+						<H2>Entreprise et revenus</H2>
+						<Grid container spacing={3} position="relative">
+							{dirigeantSimulateur !== null && (
 								<SimulateurCard
-									{...simulateurs['aide-déclaration-indépendant']}
+									fromGérer
+									{...simulateurs[dirigeantSimulateur]}
 								/>
 							)}
-					</Grid>
-					{dirigeantSimulateur !== 'auto-entrepreneur' && (
-						<>
-							<H2>
-								<Trans>Vos salariés</Trans>
-							</H2>
-							<Grid container spacing={3}>
-								<SimulateurCard {...simulateurs['salarié']} />
-								<SimulateurCard {...simulateurs['chômage-partiel']} />
+
+							{company?.statutJuridique &&
+								['EIRL', 'EI', 'EURL', 'SARL'].includes(
+									company.statutJuridique
+								) &&
+								!company.isAutoEntrepreneur && (
+									<SimulateurCard
+										fromGérer
+										{...simulateurs['aide-déclaration-indépendant']}
+									/>
+								)}
+							{company?.statutJuridique &&
+								['SARL', 'SASU', 'SAS'].includes(company.statutJuridique) && (
+									<Grid item xs={12} md={6} lg={4} alignSelf="flex-end">
+										<Grid container spacing={3} columns={2}>
+											<SimulateurCard fromGérer {...simulateurs['is']} small />
+											<SimulateurCard
+												fromGérer
+												{...simulateurs['dividendes']}
+												small
+											/>
+										</Grid>
+									</Grid>
+								)}
+						</Grid>
+						<Spacing xl />
+					</Container>
+				)}
+				{dirigeantSimulateur !== 'auto-entrepreneur' && (
+					<>
+						<H2>
+							<Trans>Salariés et embauche</Trans>
+						</H2>
+						<Grid container spacing={3}>
+							<SimulateurCard fromGérer {...simulateurs['salarié']} />
+							<SimulateurCard fromGérer {...simulateurs['chômage-partiel']} />
+						</Grid>
+					</>
+				)}
+
+				<AideOrganismeLocal />
+
+				<H2>
+					<Trans>Ressources utiles</Trans>
+				</H2>
+				<Grid container spacing={3}>
+					{dirigeantSimulateur === 'indépendant' &&
+						i18n.language === 'fr' &&
+						process.env.HEAD !== 'master' && (
+							<Grid item sm={12} md={4}>
+								<MobiliteCard />
 							</Grid>
-						</>
+						)}
+					{!company?.isAutoEntrepreneur && (
+						<Grid item sm={12} md={4}>
+							<DemarcheEmbaucheCard />
+						</Grid>
 					)}
-					{company?.statutJuridique &&
-						['SARL', 'SASU', 'SAS'].includes(company.statutJuridique) && (
-							<Grid container spacing={3}>
-								<>
-									<SimulateurCard {...simulateurs['is']} />
-									<SimulateurCard {...simulateurs['dividendes']} />
-								</>
-							</Grid>
-						)}
-					<AideOrganismeLocal />
-
-					<H2>
-						<Trans>Ressources utiles</Trans>
-					</H2>
-					<Grid container spacing={3}>
-						{dirigeantSimulateur === 'indépendant' &&
-							i18n.language === 'fr' &&
-							process.env.HEAD !== 'master' && (
-								<Grid item sm={12} md={4}>
-									<MobiliteCard />
-								</Grid>
-							)}
-						{!company?.isAutoEntrepreneur && (
-							<Grid item sm={12} md={4}>
-								<DemarcheEmbaucheCard />
-							</Grid>
-						)}
-						{company?.isAutoEntrepreneur && (
-							<Grid item sm={12} md={4}>
-								<AutoEntrepreneurCard />
-							</Grid>
-						)}
+					{company?.isAutoEntrepreneur && (
 						<Grid item sm={12} md={4}>
-							<SecuriteSocialeCard />
+							<AutoEntrepreneurCard />
 						</Grid>
-
-						<Grid item sm={12} md={4}>
-							<KbisCard dirigeant={dirigeantSimulateur} />
-						</Grid>
+					)}
+					<Grid item sm={12} md={4}>
+						<SecuriteSocialeCard />
 					</Grid>
-				</>
+
+					<Grid item sm={12} md={4}>
+						<KbisCard dirigeant={dirigeantSimulateur} />
+					</Grid>
+				</Grid>
 			</FromBottom>
 		</>
 	)
@@ -286,3 +307,30 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 		</>
 	)
 }
+
+const FormsImage = styled.img`
+	position: absolute;
+	height: 25rem;
+	transform: rotate(180deg);
+	top: -1px;
+	z-index: 0;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: none;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		right: 5rem;
+		height: 12rem;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		right: 8.5rem;
+		height: 20rem;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
+		right: 10rem;
+		height: 25rem;
+	}
+`
