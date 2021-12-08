@@ -48,8 +48,11 @@ type StyledButtonProps = {
 
 export const StyledButton = styled.button<StyledButtonProps>`
 	width: fit-content;
+	display: inline-block;
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
+	font-weight: 500;
+
 	padding: ${({ size }) => {
 		if (size === 'XL') return '1.25rem 2rem'
 		if (size === 'MD') return '0.875rem 2rem'
@@ -63,7 +66,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	transition: all 0.15s;
 	font-size: 1rem;
 	line-height: 1.5rem;
-
+	border: 2px solid transparent;
 	${({ isDisabled }) =>
 		isDisabled &&
 		css`
@@ -80,10 +83,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	${({ theme, color }) =>
 		!theme.darkMode &&
 		css`
-			border: 2px solid
-				${theme.colors.bases[color][
-					color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
-				]};
+			border-color: ${theme.colors.bases[color][
+				color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
+			]};
 
 			background-color: ${theme.colors.bases[color][
 				color === 'primary' ? 700 : 300
@@ -105,8 +107,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		${({ theme }) =>
 			theme.darkMode &&
 			css`
+				color: ${theme.colors.bases.primary[700]};
 				background-color: ${theme.colors.extended.grey[100]};
-				color: transparent;
 			`}
 
 		/* White color and light mode (dark background mode) */
@@ -115,7 +117,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			light &&
 			css`
 				background-color: transparent;
-				border-color: 2px solid ${theme.colors.extended.grey[100]};
+				border-color: ${theme.colors.extended.grey[100]};
 				color: ${theme.colors.extended.grey[100]};
 			`}
 	}

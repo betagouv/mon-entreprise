@@ -55,7 +55,7 @@ export function CompanySearchField(
 
 	return (
 		<Grid container>
-			<Grid item xs={12} lg={7}>
+			<Grid item xs={12}>
 				<SearchField
 					data-testid="company-search-input"
 					state={state}
@@ -118,7 +118,7 @@ function Results({
 		<FromTop>
 			<Grid container spacing={2} data-testid="company-search-results">
 				{results.map((etablissement) => (
-					<Grid key={etablissement.siren} item xs={12} lg={6}>
+					<Grid key={etablissement.siren} item xs={12} xl={6}>
 						<Card onPress={() => onSubmit(etablissement)} compact>
 							<CompanyDetails {...etablissement} />
 						</Card>
@@ -132,7 +132,7 @@ function Results({
 const MessageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	background: ${({ theme }) => theme.colors.bases.primary[100]};
+	background: ${({ theme }) => theme.colors.bases.primary[500]};
 	margin-top: 0.4rem;
 	padding: 0.6rem 1rem 0;
 	border-radius: 0.3rem;

@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import CompanyDetails from 'Components/CompanyDetails'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Card } from 'DesignSystem/card'
@@ -20,13 +21,17 @@ export const ContinueWithCompany = ({ company }: ContinueWithCompanyProps) => {
 					Continuer avec l'entreprise
 				</Trans>
 			</H3>
-			<Card
-				compact
-				to={sitePaths.gérer.index}
-				data-testid="currently-selected-company"
-			>
-				<CompanyDetails {...company} />
-			</Card>
+			<Grid container>
+				<Grid item xs={12} md={8} lg={6}>
+					<Card
+						compact
+						to={sitePaths.gérer.index}
+						data-testid="currently-selected-company"
+					>
+						<CompanyDetails {...company} />
+					</Card>
+				</Grid>
+			</Grid>
 		</>
 	)
 }

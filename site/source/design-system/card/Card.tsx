@@ -9,7 +9,7 @@ import {
 } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
 
 export type GenericCardProps = {
 	title?: React.ReactNode
@@ -38,26 +38,28 @@ export function Card({
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
 
 	return (
-		<CardContainer compact={compact} {...buttonOrLinkProps} tabIndex={0}>
-			{icon && <IconContainer>{icon}</IconContainer>}
-			{title && <StyledHeader {...titleProps} />}
-			<div
-				css={`
-					flex: 1;
-					text-align: center;
-					width: 100%;
-				`}
-			>
-				<Body>{children}</Body>
-			</div>
-			{ctaLabel && (
-				// The button is not selectable with keyboard navigation because the whole card already is
-				<CardButton tabIndex={-1} size="XS" light color="primary">
-					{ctaLabel}
-					{linkProps.external && <NewWindowLinkIcon />}
-				</CardButton>
-			)}
-		</CardContainer>
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+			<CardContainer compact={compact} {...buttonOrLinkProps} tabIndex={0}>
+				{icon && <IconContainer>{icon}</IconContainer>}
+				{title && <StyledHeader {...titleProps} />}
+				<div
+					css={`
+						flex: 1;
+						text-align: center;
+						width: 100%;
+					`}
+				>
+					<Body>{children}</Body>
+				</div>
+				{ctaLabel && (
+					// The button is not selectable with keyboard navigation because the whole card already is
+					<CardButton tabIndex={-1} size="XS" light color="primary">
+						{ctaLabel}
+						{linkProps.external && <NewWindowLinkIcon />}
+					</CardButton>
+				)}
+			</CardContainer>
+		</ThemeProvider>
 	)
 }
 
@@ -113,7 +115,13 @@ export const CardContainer = styled.div<{ compact?: boolean }>`
 	&:focus-visible {
 		${FocusStyle}
 	}
-	padding: ${({ theme, compact = false }) =>
-		compact ? theme.spacings.sm : theme.spacings.lg};
+	padding: ${({ theme: { spacings }, compact = false }) =>
+		compact
+			? css`
+					${spacings.sm} ${spacings.md}
+			  `
+			: css`
+					${spacings.md} ${spacings.lg}
+			  `};
 	transition: box-shadow 0.15s;
 `

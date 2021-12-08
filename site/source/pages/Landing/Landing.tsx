@@ -56,7 +56,10 @@ export default function Landing() {
 					</Intro>
 				</PageHeader>
 			</Container>
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+			<Container
+				darkMode
+				backgroundColor={(theme) => theme.colors.bases.primary[600]}
+			>
 				{company && <ContinueWithCompany company={company} />}
 				<SearchOrCreate />
 				<Spacing xl />
