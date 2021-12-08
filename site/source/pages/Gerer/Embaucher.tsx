@@ -5,6 +5,8 @@ import {
 import { FromBottom } from 'Components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
 import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -195,32 +197,30 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 			</Checklist>
 			<Trans i18nKey="embauche.chaque mois">
 				<H2>Tous les mois</H2>
-				<ul>
-					<li>
+				<Ul>
+					<Li>
 						Utiliser un logiciel de paie pour calculer les cotisations sociales
 						et les transmettre via la déclaration sociale nominative (DSN).
 						<br />
 						Certaines offres de service de l’Urssaf comme le{' '}
-						<a href="https://www.letese.urssaf.fr" target="_blank">
+						<Link href="https://www.letese.urssaf.fr" target="_blank">
 							titre emploi service entreprise (Tese)
-						</a>{' '}
+						</Link>{' '}
 						ou le{' '}
-						<a href="https://www.cesu.urssaf.fr" target="_blank">
+						<Link href="https://www.cesu.urssaf.fr" target="_blank">
 							chèque emploi associatif (CEA)
-						</a>{' '}
+						</Link>{' '}
 						gèrent automatiquement la transmission de la DSN pour vous.
-					</li>
-					<li>Remettre la fiche de paie à votre employé</li>
-				</ul>
+					</Li>
+					<Li>Remettre la fiche de paie à votre employé</Li>
+				</Ul>
 			</Trans>
 
 			<H3 as="h2">
 				<Trans>Ressources utiles</Trans>
 			</H3>
 
-			<div className="ui__ box-container">
-				<SimulatorRessourceCard simulatorId="salarié" />
-			</div>
+			<SimulatorRessourceCard simulatorId="salarié" />
 		</FromBottom>
 	)
 }
