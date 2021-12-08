@@ -1,48 +1,40 @@
 import { Grid } from '@mui/material'
 import {
-	resetEntreprise,
 	specifyIfAutoEntrepreneur,
 	specifyIfDirigeantMajoritaire,
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
-import FindCompany from 'Components/FindCompany'
 import PageHeader from 'Components/PageHeader'
 import { FromBottom } from 'Components/ui/animate'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePaths } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { Spacing } from 'DesignSystem/layout'
 import Popover from 'DesignSystem/Popover'
 import { H2 } from 'DesignSystem/typography/heading'
-import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
-import { useEffect, useRef, useState } from 'react'
+import { Link } from 'DesignSystem/typography/link'
+import { Body, Intro } from 'DesignSystem/typography/paragraphs'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
+import { SimulateurCard } from '../Simulateurs/Home'
+import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
-import { ActivitePartielleCard } from './cards/ActivitePartielle'
 import { AutoEntrepreneurCard } from './cards/AutoEntrepeneurCard'
-import { DeclarationIndedependantsCard } from './cards/DeclarationIndependantsCard'
 import { DemarcheEmbaucheCard } from './cards/DemarcheEmbauche'
-import { ImpotSocieteCard } from './cards/ImpotSociete'
 import { KbisCard } from './cards/KBISCard'
 import { MobiliteCard } from './cards/MobiliteCard'
-import { MontantEmbaucheCard } from './cards/MontantEmbauche'
-import { RevenuDirigeantCard } from './cards/RevenuDirigeantCard'
 import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 
-export type Dirigeant = Exclude<
-	keyof SitePaths['simulateurs'],
-	'index' | 'profession-libérale' | 'économieCollaborative'
->
+export type DirigeantOrNull = keyof SimulatorData | null
 
-export type DirigeantOrNull = Dirigeant | null
-
-const infereDirigeantFromCompanyDetails = (
+const infereDirigeantSimulateurFromCompanyDetails = (
 	company: Company | null
 ): DirigeantOrNull => {
 	if (!company) {
@@ -76,8 +68,13 @@ export default function Gérer() {
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
-	const dirigeant = infereDirigeantFromCompanyDetails(company)
-
+	const dirigeantSimulateur =
+		infereDirigeantSimulateurFromCompanyDetails(company)
+	const simulateurs = useSimulatorsData()
+	const sitePaths = useContext(SitePathsContext)
+	if (!company) {
+		return <Redirect to={sitePaths.index} />
+	}
 	return (
 		<>
 			<Helmet>
@@ -91,58 +88,60 @@ export default function Gérer() {
 					picture={businessPlan}
 					titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
 				>
-					{!company && (
-						<Intro>
-							<Trans i18nKey="gérer.description">
-								Vous souhaitez vous verser un revenu ou embaucher ? <br />
-								Vous aurez à payer des cotisations et des impôts. <br />
-								Anticipez leurs montants grâce aux simulateurs adaptés à votre
-								situation.
-							</Trans>
-						</Intro>
-					)}
+					<Intro>
+						<Trans i18nKey="gérer.description">
+							Vous souhaitez vous verser un revenu ou embaucher ? <br />
+							Vous aurez à payer des cotisations et des impôts. <br />
+							Anticipez leurs montants grâce aux simulateurs adaptés à votre
+							situation.
+						</Trans>
+					</Intro>
 					<CompanySection company={company} />
 				</PageHeader>
 				<Spacing xl />
 				<>
-					<section>
-						<Grid container spacing={3}>
-							{(company?.statutJuridique === 'EI' ||
-								company?.statutJuridique === 'SARL') &&
-								!company.isAutoEntrepreneur && (
-									<Grid item sm={12} md={4}>
-										<DeclarationIndedependantsCard />
-									</Grid>
-								)}
+					<Grid container spacing={3}>
+						{dirigeantSimulateur !== null && (
+							<SimulateurCard {...simulateurs[dirigeantSimulateur]} />
+						)}
 
-							{dirigeant !== null && (
-								<Grid item sm={12} md={4}>
-									<RevenuDirigeantCard dirigeant={dirigeant} />
-								</Grid>
+						{company?.statutJuridique &&
+							['EIRL', 'EI', 'EURL', 'SARL'].includes(
+								company.statutJuridique
+							) &&
+							!company.isAutoEntrepreneur && (
+								<SimulateurCard
+									{...simulateurs['aide-déclaration-indépendant']}
+								/>
 							)}
-
-							{dirigeant !== 'auto-entrepreneur' && (
+					</Grid>
+					{dirigeantSimulateur !== 'auto-entrepreneur' && (
+						<>
+							<H2>
+								<Trans>Vos salariés</Trans>
+							</H2>
+							<Grid container spacing={3}>
+								<SimulateurCard {...simulateurs['salarié']} />
+								<SimulateurCard {...simulateurs['chômage-partiel']} />
+							</Grid>
+						</>
+					)}
+					{company?.statutJuridique &&
+						['SARL', 'SASU', 'SAS'].includes(company.statutJuridique) && (
+							<Grid container spacing={3}>
 								<>
-									<Grid item sm={12} md={4}>
-										<ActivitePartielleCard />
-									</Grid>
-									<Grid item sm={12} md={4}>
-										<MontantEmbaucheCard />
-									</Grid>
-									<Grid item sm={12} md={4}>
-										<ImpotSocieteCard />
-									</Grid>
+									<SimulateurCard {...simulateurs['is']} />
+									<SimulateurCard {...simulateurs['dividendes']} />
 								</>
-							)}
-						</Grid>
-					</section>
+							</Grid>
+						)}
 					<AideOrganismeLocal />
 
 					<H2>
 						<Trans>Ressources utiles</Trans>
 					</H2>
 					<Grid container spacing={3}>
-						{dirigeant === 'indépendant' &&
+						{dirigeantSimulateur === 'indépendant' &&
 							i18n.language === 'fr' &&
 							process.env.HEAD !== 'master' && (
 								<Grid item sm={12} md={4}>
@@ -164,7 +163,7 @@ export default function Gérer() {
 						</Grid>
 
 						<Grid item sm={12} md={4}>
-							<KbisCard dirigeant={dirigeant} />
+							<KbisCard dirigeant={dirigeantSimulateur} />
 						</Grid>
 					</Grid>
 				</>
@@ -178,18 +177,15 @@ type CompanySectionProps = {
 }
 
 export const CompanySection = ({ company }: CompanySectionProps) => {
-	const [searchModal, showSearchModal] = useState(false)
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
 	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] =
 		useState(false)
-
+	const sitePaths = useContext(SitePathsContext)
 	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {
 		if (companyRef.current !== company) {
 			companyRef.current = company
-			if (searchModal && company) {
-				showSearchModal(false)
-			}
+
 			if (
 				company?.statutJuridique === 'EI' &&
 				company?.isAutoEntrepreneur == null
@@ -203,7 +199,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 				showDirigeantMajoritaireModal(true)
 			}
 		}
-	}, [company, searchModal])
+	}, [company])
 
 	const dispatch = useDispatch()
 	const handleAnswerAutoEntrepreneur = (isAutoEntrepreneur: boolean) => {
@@ -215,6 +211,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 		showDirigeantMajoritaireModal(false)
 	}
 	const { t } = useTranslation()
+
 	return (
 		<>
 			{autoEntrepreneurModal && (
@@ -275,59 +272,16 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					</Popover>{' '}
 				</>
 			)}
-			{searchModal && (
-				<>
-					<ScrollToTop />
-					<Popover
-						onClose={() => showSearchModal(false)}
-						isDismissable
-						title={t('trouver.titre', 'Retrouver mon entreprise')}
-					>
-						<FindCompany />
-					</Popover>
-				</>
-			)}
-			{company ? (
+
+			{company && (
 				<>
 					<CompanyDetails siren={company.siren} />
-
-					{company.statutJuridique !== 'NON_IMPLÉMENTÉ' && (
-						<SmallBody>
-							{company.isAutoEntrepreneur
-								? 'Auto-entrepreneur'
-								: company.statutJuridique}
-
-							{company.isDirigeantMajoritaire != null && (
-								<span css="margin-left: 1rem;" className="ui__ label">
-									{company.isDirigeantMajoritaire ? (
-										<Trans i18nKey="gérer.entreprise.majoritaire">
-											Dirigeant majoritaire
-										</Trans>
-									) : (
-										<Trans i18nKey="gérer.entreprise.minoritaire">
-											Dirigeant minoritaire
-										</Trans>
-									)}
-								</span>
-							)}
-						</SmallBody>
-					)}
-					<Button
-						light
-						onPress={() => {
-							dispatch(resetEntreprise())
-							showSearchModal(true)
-						}}
-					>
+					<Link to={sitePaths.index}>
 						<Trans i18nKey="gérer.entreprise.changer">
 							Changer l'entreprise sélectionnée
 						</Trans>
-					</Button>
+					</Link>
 				</>
-			) : (
-				<Button size="XL" onPress={() => showSearchModal(true)}>
-					<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
-				</Button>
 			)}
 		</>
 	)
