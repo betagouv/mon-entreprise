@@ -110,6 +110,7 @@ export const CardContainer = styled.div<{ compact?: boolean }>`
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
+		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
 	}
 	&:focus,
 	&:focus-visible {
@@ -123,5 +124,5 @@ export const CardContainer = styled.div<{ compact?: boolean }>`
 			: css`
 					${spacings.md} ${spacings.lg}
 			  `};
-	transition: box-shadow 0.15s;
+	transition: box-shadow 0.15s, background-color 0.15s;
 `
