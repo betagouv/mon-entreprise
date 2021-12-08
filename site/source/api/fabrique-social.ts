@@ -52,11 +52,13 @@ type FabriqueSocialSearchPayload = {
 const makeSearchUrl = (query: string) =>
 	`https://search-recherche-entreprises.fabrique.social.gouv.fr/api/v1/search?query=${query}&open=false&convention=false&employer=false&ranked=false&limit=10`
 
-async function searchFullText(text: string): Promise<Array<{
+export type Entreprise = {
 	siren: string
 	address?: string
 	denomination?: string
-}> | null> {
+}
+
+async function searchFullText(text: string): Promise<Array<Entreprise> | null> {
 	const response = await fetch(makeSearchUrl(text))
 
 	if (!response.ok) {

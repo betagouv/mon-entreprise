@@ -1,16 +1,16 @@
-import { Etablissement, searchDenominationOrSiren } from 'API/fabrique-social'
+import { Entreprise, searchDenominationOrSiren } from 'API/fabrique-social'
 import { useEffect, useState } from 'react'
 import { useDebounce } from './useDebounce'
 
 export default function useSearchCompany(
 	value: string
-): [boolean, Array<Etablissement>] {
-	const [result, setResult] = useState<Array<Etablissement>>([])
-	const [searchPending, setSearchPending] = useState(!!value)
+): [boolean, Array<Entreprise>] {
+	const [result, setResult] = useState<Array<Entreprise>>([])
+	const [searchPending, setSearchPending] = useState(Boolean(value))
 	const debouncedValue = useDebounce(value, 300)
 
 	useEffect(() => {
-		setSearchPending(!!value)
+		setSearchPending(Boolean(value))
 
 		if (!value) {
 			setResult([])
