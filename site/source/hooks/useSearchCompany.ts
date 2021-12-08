@@ -1,4 +1,4 @@
-import { Etablissement, searchDenominationOrSiren } from 'API/sirene'
+import { Etablissement, searchDenominationOrSiren } from 'API/fabrique-social'
 import { useEffect, useState } from 'react'
 import { useDebounce } from './useDebounce'
 
