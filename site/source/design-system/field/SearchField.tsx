@@ -8,7 +8,7 @@ import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { Loader } from 'DesignSystem/icons/Loader'
 import { SearchIcon } from 'DesignSystem/icons/SearchIcon'
 import { InputHTMLAttributes, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
 	StyledContainer,
 	StyledDescription,
@@ -36,6 +36,13 @@ const IconContainer = styled.div<{ hasLabel?: boolean }>`
 			${({ hasLabel = false }) => (hasLabel ? '1rem' : '0rem')} + 0.5rem
 		)
 		0 0.5rem;
+	${({ theme: { darkMode } }) =>
+		darkMode &&
+		css`
+			& * {
+				fill: white !important;
+			}
+		`}
 `
 
 export default function SearchField(
@@ -102,4 +109,9 @@ const StyledClearButton = styled.button`
 	line-height: 2rem;
 	height: ${({ theme }) => theme.spacings.xxxl};
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.sm}`};
+	${({ theme: { darkMode } }) =>
+		darkMode &&
+		css`
+			color: white !important;
+		`}
 `

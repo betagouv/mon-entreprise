@@ -143,7 +143,11 @@ export const StyledInputContainer = styled.div<{
 	}
 
 	:focus-within + ${StyledDescription} {
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		${({ theme }) =>
+			!theme.darkMode &&
+			css`
+				color: ${theme.colors.bases.primary[800]};
+			`}
 	}
 
 	${({ hasLabel }) =>
