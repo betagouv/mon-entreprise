@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import { useSearchFieldState } from '@react-stately/searchfield'
+import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { Card } from 'DesignSystem/card'
 import { SearchField } from 'DesignSystem/field'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
@@ -11,12 +12,14 @@ import CompanyDetails from './CompanyDetails'
 import { FromTop } from './ui/animate'
 import { useDebounce } from './utils'
 
-export function CompanySearchField(props: {
-	label?: ReactNode
-	onValue?: () => void
-	onClear?: () => void
-	onSubmit?: (établissement: Etablissement) => void
-}) {
+export function CompanySearchField(
+	props: Omit<AriaSearchFieldProps, 'onSubmit'> & {
+		label?: ReactNode
+		onValue?: () => void
+		onClear?: () => void
+		onSubmit?: (établissement: Etablissement) => void
+	}
+) {
 	const { t } = useTranslation()
 
 	const searchFieldProps = {

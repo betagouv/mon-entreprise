@@ -46,7 +46,7 @@ export default function SearchOrCreate() {
 				</H3>
 			</Grid>
 			<Grid item xs={12}>
-				<CompanySearchField onSubmit={handleCompanySubmit} />
+				<CompanySearchField autoFocus onSubmit={handleCompanySubmit} />
 			</Grid>
 		</Grid>
 	)
@@ -66,8 +66,9 @@ function useHandleCompanySubmit() {
 	const setEntreprise = useSetEntreprise()
 	const handleCompanySubmit = useCallback(
 		(établissement: Etablissement) => {
-			setEntreprise(établissement.siren)
-			history.push(sitePaths.gérer.index)
+			setEntreprise(établissement.siren).then(() => {
+				history.push(sitePaths.gérer.index)
+			})
 		},
 		[history, setEntreprise, sitePaths]
 	)
