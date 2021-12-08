@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import styled, { DefaultTheme } from 'styled-components'
+import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
 
 const InnerContainer = styled.div`
 	margin-right: auto;
@@ -8,6 +8,7 @@ const InnerContainer = styled.div`
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		padding-left: 16px;
 		padding-right: 16px;
+		max-width: 100vw;
 	}
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
@@ -46,64 +47,42 @@ type OuterContainerProps = {
 
 type ContainerProps = {
 	children: ReactNode
+	darkMode?: boolean
 	backgroundColor?: (theme: DefaultTheme) => string
 }
 export default function Container({
 	backgroundColor,
+	darkMode = false,
 	children,
 }: ContainerProps) {
 	return (
-		<OuterContainer backgroundColor={backgroundColor}>
-			<InnerContainer>{children}</InnerContainer>
-		</OuterContainer>
+		<ThemeProvider
+			theme={(theme) => ({ ...theme, darkMode: darkMode || theme.darkMode })}
+		>
+			<OuterOuterContainer>
+				<OuterContainer backgroundColor={backgroundColor}>
+					<InnerContainer>{children}</InnerContainer>
+				</OuterContainer>
+			</OuterOuterContainer>
+		</ThemeProvider>
 	)
 }
 
 const OuterContainer = styled.div<OuterContainerProps>`
+	min-width: 100vw;
+	flex: 1;
 	background-color: ${({ theme, backgroundColor }) =>
 		backgroundColor ? backgroundColor(theme) : theme.colors};
 	${InnerContainer} & {
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		margin-left: -16px;
-		margin-right: -16px;
+		@media print {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
+`
 
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		--maxWidth: ${({ theme }) => theme.breakpointsWidth.sm}
-		--margin: calc(100vw - 16px - var(---maxWidth) / 2 )
-		margin-left: var(--margin);
-		margin-right: var(--margin);
-		max-width: var(--maxWidth);
-	}
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		--maxWidth: ${({ theme }) => theme.breakpointsWidth.md}
-		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
-		margin-left: var(--margin);
-		margin-right: var(--margin);
-		max-width: var(--maxWidth);
-	}
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		--maxWidth: ${({ theme }) => theme.breakpointsWidth.lg}
-		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
-		margin-left: var(--margin);
-		margin-right: var(--margin);
-		max-width: var(--maxWidth);
-	}
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
-		--maxWidth: ${({ theme }) => theme.breakpointsWidth.xl}
-		--margin: calc(100vw - 24px - var(---maxWidth) / 2 )
-		margin-left: var(--margin);
-		margin-right: var(--margin);
-		max-width: var(--maxWidth);
-	}
-
-	@media print {
-		max-width: 100%;
-		padding: 0;
-	}
-}
+const OuterOuterContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 `

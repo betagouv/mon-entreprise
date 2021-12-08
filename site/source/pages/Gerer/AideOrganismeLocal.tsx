@@ -45,7 +45,7 @@ export default function AideOrganismeLocal() {
 					sur vos échéances et les mesures d’accompagnement.
 				</Body>
 				<Button
-					size="xs"
+					size="XS"
 					href="https://webikeo.fr/webinar/covid-19-auto-entrepreneurs-le-point-sur-vos-echeances-et-les-mesures-d-accompagnement"
 				>
 					En savoir plus

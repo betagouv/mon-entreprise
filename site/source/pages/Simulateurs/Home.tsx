@@ -14,6 +14,7 @@ import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import { ThemeProvider } from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
@@ -133,44 +134,54 @@ export function SimulateurCard({
 	path,
 	tooltip,
 	iframePath,
+	fromGérer = false,
 	icône,
 }: Pick<
 	SimulatorData[keyof SimulatorData],
 	'shortName' | 'meta' | 'path' | 'tooltip' | 'iframePath' | 'icône'
 > & {
 	small?: boolean
+	fromGérer?: boolean
 }) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
 
-	return small ? (
-		<Grid item xs={12} sm={6} md={4}>
-			<SmallCard
-				icon={<Emoji emoji={icône} />}
-				to={{
-					state: { fromSimulateurs: true },
-					pathname: (isIframe && iframePath) || path,
-				}}
-				title={
-					<h4>
-						{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
-					</h4>
-				}
-			/>
-		</Grid>
-	) : (
-		<Grid item xs={12} md={4}>
-			<Card
-				title={shortName}
-				icon={<Emoji emoji={icône} />}
-				ctaLabel={t('.cta', 'Lancer le simulateur')}
-				to={{
-					state: { fromSimulateurs: true },
-					pathname: (isIframe && iframePath) || path,
-				}}
-			>
-				{meta?.description}
-			</Card>
-		</Grid>
+	return (
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+			{small ? (
+				<Grid item xs={12} sm={6} md={6} lg={4}>
+					<SmallCard
+						icon={<Emoji emoji={icône} />}
+						to={{
+							state: fromGérer
+								? { fromGérer: true }
+								: { fromSimulateurs: true },
+							pathname: (isIframe && iframePath) || path,
+						}}
+						title={
+							<h4>
+								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+							</h4>
+						}
+					/>
+				</Grid>
+			) : (
+				<Grid item xs={12} sm={6} md={6} lg={4}>
+					<Card
+						title={shortName}
+						icon={<Emoji emoji={icône} />}
+						ctaLabel={t('.cta', 'Lancer le simulateur')}
+						to={{
+							state: fromGérer
+								? { fromGérer: true }
+								: { fromSimulateurs: true },
+							pathname: (isIframe && iframePath) || path,
+						}}
+					>
+						{meta?.description}
+					</Card>
+				</Grid>
+			)}
+		</ThemeProvider>
 	)
 }
