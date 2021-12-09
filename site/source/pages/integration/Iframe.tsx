@@ -50,7 +50,7 @@ function IntegrationCustomizer() {
 	useEffect(() => {
 		history.replace({ search: `?module=${currentModule}` })
 	}, [currentModule])
-
+	console.log(currentModule, simulators[currentModule])
 	const [color, setColor] = useState<string | undefined>()
 	return (
 		<>

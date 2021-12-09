@@ -337,7 +337,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			},
 			icône: '📚',
 			pathId: 'créer.guideStatut.index',
-			iframePath: '*',
+			iframePath: 'choix-statut-juridique',
 			shortName: t(
 				'pages.économie-collaborative.shortname',
 				'Assistant statut juridique'
