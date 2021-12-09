@@ -837,34 +837,40 @@ pluriactivité . activité substantielle en France . question:
   question:
     variations:
       - si: situation = 'PAM'
-        alors: "'Aujourd'hui, pensez-vous qu'au moins 25% de votre activité sur les 12 prochains mois sera réalisée en France ?'"
-      - sinon: "'Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre salarié sur les 12 prochains mois sera réalisée en France ?'"
+        alors: "'**Aujourd'hui, pensez-vous qu'au moins 25% de votre activité sur les 12 prochains mois sera réalisée en France ?**'"
+      - sinon: "'**Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre salarié sur les 12 prochains mois sera réalisée en France ?**'"
   description: |
     Si vous éprouvez une difficulté à faire cette estimation sur les 12 prochains mois, basez-vous sur la situation des 12 derniers mois, afin de faire une projection.
 
     Si toutefois cette estimation venait à changer, merci de nous le signaler via la messagerie de votre compte.
 pluriactivité . activité substantielle en France . critère salarié:
-  question: Quel critère avez-vous utilisé pour faire cette estimation ?
-  applicable si: situation = 'salarié'
-  description: |
+  question: |
+    **Quel critère avez-vous utilisé pour faire cette estimation ?**
+
     2 critères sont à votre disposition pour estimer l’activité de votre salarié:
     - le temps de travail
     - la rémunération
+
     Choisissez celui qui reflète au mieux votre estimation sur les 12 prochains mois.
+  applicable si: situation = 'salarié'
   une possibilité:
     choix obligatoire: oui
     possibilités: ['Le temps de travail', 'La rémunération']
+
 pluriactivité . activité substantielle en France . critère salarié . Le temps de travail:
 pluriactivité . activité substantielle en France . critère salarié . La rémunération:
 pluriactivité . activité substantielle en France . critère PAM:
-  question: Quel critère avez-vous utilisé pour faire cette estimation ?
-  applicable si: situation = 'PAM'
-  description: |
+  question: |
+    **Quel critère avez-vous utilisé pour faire cette estimation ?**
+
     3 critères sont à votre disposition pour estimer l’activité :
     - le chiffre d'affaires
     - le temps de travail
     - les prestations délivrées
+
     Choisissez celui qui reflète au mieux votre estimation sur les 12 prochains mois.
+  applicable si: situation = 'PAM'
+
   une possibilité:
     choix obligatoire: oui
     possibilités:
