@@ -61,7 +61,15 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
-
+	::placeholder {
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
+				opacity: 0.6;
+			`}
+		color: ${({ theme }) =>
+			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
+	}
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
