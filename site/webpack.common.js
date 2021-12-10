@@ -129,16 +129,14 @@ module.exports.default = {
 	},
 	plugins: [
 		new EnvironmentPlugin({
+			COMPANY_SEARCH_HOST:
+				'https://search-recherche-entreprises.fabrique.social.gouv.fr',
 			EN_BASE_URL: 'http://localhost:8080/infrance',
 			FR_BASE_URL: 'http://localhost:8080/mon-entreprise',
 			AT_INTERNET_SITE_ID: '',
-		}),
-		new EnvironmentPlugin({
 			ALGOLIA_APP_ID: '',
 			ALGOLIA_SEARCH_KEY: '',
 			ALGOLIA_INDEX_PREFIX: '',
-		}),
-		new EnvironmentPlugin({
 			GITHUB_REF: '',
 			GITHUB_HEAD_REF: '',
 			GITHUB_SHA: '',
