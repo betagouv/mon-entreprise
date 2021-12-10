@@ -1,11 +1,11 @@
+import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 
 export type ActionExistingCompany = ReturnType<
 	| typeof specifyIfAutoEntrepreneur
 	| typeof specifyIfDirigeantMajoritaire
 	| typeof resetEntreprise
-	| typeof setSiren
-	| typeof setCompanyDetails
+	| typeof setCompany
 	| typeof addCommuneDetails
 >
 
@@ -28,26 +28,15 @@ export const resetEntreprise = () =>
 		type: 'EXISTING_COMPANY::RESET',
 	} as const)
 
-export const setSiren = (siren: string) =>
-	({
-		type: 'EXISTING_COMPANY::SET_SIREN',
-		siren,
-	} as const)
-
-export const setCompanyDetails = (
-	catégorieJuridique: string,
-	dateDeCréation: string,
-	codeNAF: string
-) =>
-	({
-		type: 'EXISTING_COMPANY::SET_DETAILS',
-		catégorieJuridique,
-		dateDeCréation,
-		codeNAF,
-	} as const)
-
 export const addCommuneDetails = (details: ApiCommuneJson) =>
 	({
 		type: 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS',
 		details,
 	} as const)
+
+export const setCompany = (entreprise: FabriqueSocialEntreprise) => {
+	return {
+		type: 'EXISTING_COMPANY::SET_COMPANY',
+		entreprise,
+	} as const
+}

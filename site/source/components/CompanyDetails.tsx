@@ -1,11 +1,10 @@
-import Skeleton from 'Components/ui/Skeleton'
+import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { Strong } from 'DesignSystem/typography'
 import { H3 } from 'DesignSystem/typography/heading'
 import { SmallBody } from 'DesignSystem/typography/paragraphs'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Etablissement, fetchCompanyDetails } from '../api/sirene'
 
 type Company = {
 	activite_principale: string
@@ -19,8 +18,21 @@ type Company = {
 	}
 }
 
-export default function CompanyDetails({ siren, denomination }: Etablissement) {
+export default function CompanyDetails({
+	entreprise,
+}: {
+	entreprise: FabriqueSocialEntreprise
+}) {
 	const { i18n } = useTranslation()
+
+	const {
+		siren,
+		highlightLabel,
+		dateCreationUniteLegale,
+		firstMatchingEtablissement,
+		allMatchingEtablissements,
+	} = entreprise
+
 	const DateFormatter = useMemo(
 		() =>
 			new Intl.DateTimeFormat(i18n.language, {
@@ -30,19 +42,16 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 			}),
 		[i18n.language]
 	)
-	const [company, setCompany] = useState<Company>()
-	useEffect(() => {
-		fetchCompanyDetails(siren).then(setCompany)
-	}, [siren])
 
-	if (company === null) {
-		return (
-			<SmallBody>
-				{siren}
-				<Trans>est un SIREN non diffusible</Trans>
-			</SmallBody>
-		)
-	}
+	// if (company === null) {
+	// 	return (
+	// 		<SmallBody>
+	// 			{siren}
+	// 			<Trans>est un SIREN non diffusible</Trans>
+	// 		</SmallBody>
+	// 	)
+	// }
+	const siege = allMatchingEtablissements.find((e) => e.is_siege)
 
 	return (
 		<CompanyContainer>
@@ -51,47 +60,66 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 					margin-top: 0;
 				`}
 			>
-				{denomination || company ? (
-					<>
-						{denomination ||
-							(company &&
-								(company.denomination ||
-									company.prenom_usuel + ' ' + company.nom))}{' '}
-						<small>({siren})</small>
-					</>
-				) : (
-					<Skeleton width={400} />
-				)}
+				<>
+					<div>{highlightLabel ? highlightLabelToJSX(highlightLabel) : ''}</div>
+					<small>({siren})</small>
+				</>
+				){' '}
 			</H3>
 
-			<SmallBody>
-				<Trans>Crée le</Trans>{' '}
-				<Strong>
-					{company ? (
-						DateFormatter.format(new Date(company.date_creation))
-					) : (
-						<Skeleton width={80} />
-					)}
-				</Strong>
-				,&nbsp;
-				{company ? (
-					company.etablissement_siege ? (
-						<>
-							<Trans>domiciliée à</Trans>{' '}
-							<strong>{company.etablissement_siege.libelle_commune}</strong> (
-							{company.etablissement_siege.code_postal})
-						</>
-					) : (
-						<Trans>domiciliation inconnue</Trans>
-					)
-				) : (
-					<Skeleton width={100} />
+			<InfoContainer as="div">
+				{dateCreationUniteLegale && (
+					<div>
+						<Trans>Crée le</Trans>{' '}
+						<Strong>
+							{DateFormatter.format(new Date(dateCreationUniteLegale))}
+						</Strong>
+					</div>
 				)}
-			</SmallBody>
+				<div>
+					<Trans>Domiciliation :</Trans> {firstMatchingEtablissement.address}
+				</div>
+				{siege &&
+					allMatchingEtablissements.length > 1 &&
+					siege.address !== firstMatchingEtablissement.address && (
+						<div>
+							<Trans>Siège :</Trans> {siege.address}
+						</div>
+					)}
+			</InfoContainer>
 		</CompanyContainer>
 	)
 }
 
+function highlightLabelToJSX(highlightLabel: string) {
+	const highlightRE = /(.*?)<b><u>(\w+)<\/u><\/b>/gm
+	let parsedLength = 0
+	const result = []
+	let matches
+	while ((matches = highlightRE.exec(highlightLabel)) !== null) {
+		parsedLength += matches[0].length
+		result.push(
+			<>
+				{matches[1]}
+				<Highlight>{matches[2]}</Highlight>
+			</>
+		)
+	}
+	result.push(highlightLabel.slice(parsedLength))
+	return result
+}
+
+const Highlight = styled.strong`
+	text-decoration: underline;
+`
+
 const CompanyContainer = styled.div`
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 	text-align: left;
+`
+
+const InfoContainer = styled(SmallBody)`
+	display: flex;
+	flex-direction: column;
 `

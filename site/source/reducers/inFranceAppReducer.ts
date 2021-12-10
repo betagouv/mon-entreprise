@@ -1,4 +1,5 @@
 import { Action } from 'Actions/actions'
+import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { omit } from 'ramda'
 import { combineReducers } from 'redux'
@@ -124,11 +125,8 @@ const infereLegalStatusFromCategorieJuridique = (
 	return 'NON_IMPLÉMENTÉ'
 }
 
-export type Company = {
-	siren: string
-	catégorieJuridique?: string
+export type Company = FabriqueSocialEntreprise & {
 	statutJuridique?: StatutJuridique
-	dateDeCréation?: string
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
 	localisation?: ApiCommuneJson
@@ -145,19 +143,13 @@ function existingCompany(
 	if (action.type === 'EXISTING_COMPANY::RESET') {
 		return null
 	}
-	if (action.type === 'EXISTING_COMPANY::SET_SIREN') {
-		return { siren: action.siren }
-	}
-	if (state && action.type === 'EXISTING_COMPANY::SET_DETAILS') {
+	if (action.type === 'EXISTING_COMPANY::SET_COMPANY') {
 		const statutJuridique = infereLegalStatusFromCategorieJuridique(
-			action.catégorieJuridique
+			action.entreprise.categorieJuridiqueUniteLegale
 		)
 		return {
-			...state,
-			siren: state.siren,
+			...action.entreprise,
 			statutJuridique,
-			dateDeCréation: action.dateDeCréation,
-			codeNAF: action.codeNAF,
 		}
 	}
 	if (state && action.type === 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR') {

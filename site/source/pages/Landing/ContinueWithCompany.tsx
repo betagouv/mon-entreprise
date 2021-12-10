@@ -28,7 +28,7 @@ export const ContinueWithCompany = ({ company }: ContinueWithCompanyProps) => {
 						to={sitePaths.gérer.index}
 						data-testid="currently-selected-company"
 					>
-						<CompanyDetails {...company} />
+						<CompanyDetails entreprise={company} />
 					</Card>
 				</Grid>
 			</Grid>

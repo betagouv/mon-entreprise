@@ -34,8 +34,8 @@ export function getCompanySituation(company: Company | null): Situation {
 		...(company?.localisation && {
 			'établissement . localisation': { objet: company.localisation },
 		}),
-		...(company?.dateDeCréation && {
-			'entreprise . date de création': company.dateDeCréation.replace(
+		...(company?.dateCreationUniteLegale && {
+			'entreprise . date de création': company.dateCreationUniteLegale.replace(
 				/(.*)-(.*)-(.*)/,
 				'$3/$2/$1'
 			),
