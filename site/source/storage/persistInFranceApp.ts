@@ -1,11 +1,11 @@
-import { Action } from 'Actions/actions'
-import { RootState } from 'Reducers/rootReducer'
-import { Store } from 'redux'
-import { debounce } from '../utils'
+import {Action} from 'Actions/actions'
+import {InFranceAppState} from 'Reducers/inFranceAppReducer'
+import {RootState} from 'Reducers/rootReducer'
+import {Store} from 'redux'
+import {debounce} from '../utils'
 import safeLocalStorage from './safeLocalStorage'
-import { InFranceAppState } from '../reducers/inFranceAppReducer'
 
-const VERSION = 6
+const VERSION = 7
 
 const LOCAL_STORAGE_KEY = 'mon-entreprise::persisted-infranceapp::v' + VERSION
 

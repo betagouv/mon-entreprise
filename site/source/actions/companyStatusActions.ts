@@ -1,15 +1,11 @@
-import { fetchCompanyDetails } from '../api/sirene'
+import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
 import { Action } from './actions'
-import {
-	addCommuneDetails,
-	setCompanyDetails,
-	setSiren,
-} from './existingCompanyActions'
+import { addCommuneDetails, setCompany } from './existingCompanyActions'
 
 export type CompanyStatusAction = ReturnType<
 	| typeof isSoleProprietorship
@@ -84,22 +80,14 @@ const fetchCommuneDetails = async function (codeCommune: string) {
 
 export const useSetEntreprise = () => {
 	const dispatch = useDispatch()
-	return async (siren: string) => {
-		const companyDetails = await fetchCompanyDetails(siren)
-		if (companyDetails === null) {
+	return async (entreprise: FabriqueSocialEntreprise) => {
+		if (entreprise === null) {
 			return
 		}
-		dispatch(setSiren(siren))
-		dispatch(
-			setCompanyDetails(
-				companyDetails.categorie_juridique,
-				companyDetails.date_creation,
-				companyDetails.activite_principale
-			)
-		)
-		if (companyDetails.etablissement_siege) {
+		dispatch(setCompany(entreprise))
+		if (entreprise.firstMatchingEtablissement.is_siege) {
 			const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
-				companyDetails.etablissement_siege.code_commune
+				entreprise.firstMatchingEtablissement.codeCommuneEtablissement
 			)
 			dispatch(addCommuneDetails(communeDetails))
 		}

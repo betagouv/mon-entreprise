@@ -10,6 +10,8 @@ export async function searchDenominationOrSiren(value: string) {
 export type FabriqueSocialEntreprise = {
 	activitePrincipale: string
 	caractereEmployeurUniteLegale?: 'N' | 'O'
+	categorieJuridiqueUniteLegale: string
+	dateCreationUniteLegale: string
 	conventions: Array<{
 		idcc: number
 		shortTitle: string
@@ -29,11 +31,14 @@ export type FabriqueSocialEntreprise = {
 		address?: string
 		siret: string
 		etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
+		codeCommuneEtablissement: string
+		is_siege: boolean
 	}
-	allMatchingEtablissements: {
+	allMatchingEtablissements: Array<{
 		address?: string
 		siret: string
-	}
+		is_siege: boolean
+	}>
 }
 
 type FabriqueSocialSearchPayload = {
@@ -58,12 +63,5 @@ async function searchFullText(
 	}
 
 	const json: FabriqueSocialSearchPayload = await response.json()
-
-	return json.entreprises.map(
-		({ siren, simpleLabel, firstMatchingEtablissement: { address } }) => ({
-			denomination: simpleLabel,
-			address,
-			siren,
-		})
-	)
+	return json.entreprises
 }
