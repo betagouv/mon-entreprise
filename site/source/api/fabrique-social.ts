@@ -1,22 +1,13 @@
-const isSIREN = (input: string) => /^[\s]*([\d][\s]*){9}$/.exec(input)
-const isSIRET = (input: string) => /^[\s]*([\d][\s]*){14}$/.exec(input)
-
 export { fetchCompanyDetails } from './sirene'
 
 export async function searchDenominationOrSiren(value: string) {
-	if (isSIRET(value)) {
-		value = value.replace(/[\s]/g, '').slice(0, 9)
-	}
-	if (isSIREN(value)) {
-		return [{ siren: value }]
-	}
 	return searchFullText(value)
 }
 
 /*
  * Fields are documented in https://www.sirene.fr/static-resources/doc/Description%20fichier%20StockUniteLegaleHistorique.pdf?version=1.33.1
  */
-type FabriqueSocialEntreprise = {
+export type FabriqueSocialEntreprise = {
 	activitePrincipale: string
 	caractereEmployeurUniteLegale?: 'N' | 'O'
 	conventions: Array<{
@@ -49,17 +40,18 @@ type FabriqueSocialSearchPayload = {
 	entreprises: Array<FabriqueSocialEntreprise>
 }
 
-const makeSearchUrl = (query: string) =>
-	`https://search-recherche-entreprises.fabrique.social.gouv.fr/api/v1/search?query=${query}&open=false&convention=false&employer=false&ranked=false&limit=10`
+const COMPANY_SEARCH_HOST =
+	process.env.COMPANY_SEARCH_HOST ||
+	'https://search-recherche-entreprises.fabrique.social.gouv.fr'
 
-export type Entreprise = {
-	siren: string
-	address?: string
-	denomination?: string
-}
+const makeSearchUrl = (query: string, limit: number) =>
+	`${COMPANY_SEARCH_HOST}/api/v1/search?query=${query}&open=false&convention=false&employer=false&ranked=false&limit=${limit}`
 
-async function searchFullText(text: string): Promise<Array<Entreprise> | null> {
-	const response = await fetch(makeSearchUrl(text))
+async function searchFullText(
+	text: string,
+	limit = 10
+): Promise<Array<FabriqueSocialEntreprise> | null> {
+	const response = await fetch(makeSearchUrl(text, limit))
 
 	if (!response.ok) {
 		return null
