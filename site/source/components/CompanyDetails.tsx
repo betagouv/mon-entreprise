@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
 
 type Company = {
+	activite_principale: string
 	denomination: string
 	prenom_usuel: string
 	nom: string
@@ -38,7 +39,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 		return (
 			<SmallBody>
 				{siren}
-				<Trans>est un SIREN non diffusable</Trans>
+				<Trans>est un SIREN non diffusible</Trans>
 			</SmallBody>
 		)
 	}

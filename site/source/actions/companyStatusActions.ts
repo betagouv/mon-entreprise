@@ -93,7 +93,8 @@ export const useSetEntreprise = () => {
 		dispatch(
 			setCompanyDetails(
 				companyDetails.categorie_juridique,
-				companyDetails.date_creation
+				companyDetails.date_creation,
+				companyDetails.activite_principale
 			)
 		)
 		if (companyDetails.etablissement_siege) {

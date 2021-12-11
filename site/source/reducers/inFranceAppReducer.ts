@@ -132,6 +132,7 @@ export type Company = {
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
 	localisation?: ApiCommuneJson
+	codeNAF?: string
 }
 
 function existingCompany(
@@ -156,6 +157,7 @@ function existingCompany(
 			siren: state.siren,
 			statutJuridique,
 			dateDeCréation: action.dateDeCréation,
+			codeNAF: action.codeNAF,
 		}
 	}
 	if (state && action.type === 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR') {

@@ -36,12 +36,14 @@ export const setSiren = (siren: string) =>
 
 export const setCompanyDetails = (
 	catégorieJuridique: string,
-	dateDeCréation: string
+	dateDeCréation: string,
+	codeNAF: string
 ) =>
 	({
 		type: 'EXISTING_COMPANY::SET_DETAILS',
 		catégorieJuridique,
 		dateDeCréation,
+		codeNAF,
 	} as const)
 
 export const addCommuneDetails = (details: ApiCommuneJson) =>
