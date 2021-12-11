@@ -65,6 +65,28 @@ const infereDirigeantSimulateurFromCompanyDetails = (
 	return null
 }
 
+// Profession Libérale
+const inferPLSimulateurFromCompanyDetails = (
+	company: Company | null
+): DirigeantOrNull => {
+	if (!company || !company.codeNAF) {
+		return null
+	}
+	const nafToSimulator = {
+		'69.10Z': 'avocat',
+		'69.20Z': 'expert-comptable',
+		'86.21Z': 'médecin',
+		'86.22A': 'médecin',
+		'86.22B': 'médecin',
+		'86.22C': 'médecin',
+		'86.23Z': 'chirurgien-dentiste',
+		'47.73Z': 'pharmacien',
+		'86.90D': 'pamc',
+		'71.11Z': 'profession-libérale', // archi
+	} as Record<string, keyof SimulatorData>
+	return nafToSimulator[company.codeNAF] || null
+}
+
 export default function Gérer() {
 	const { t, i18n } = useTranslation()
 	const company = useSelector(
@@ -72,6 +94,7 @@ export default function Gérer() {
 	)
 	const dirigeantSimulateur =
 		infereDirigeantSimulateurFromCompanyDetails(company)
+	const plSimulateur = inferPLSimulateurFromCompanyDetails(company)
 	const simulateurs = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	if (!company) {
@@ -101,7 +124,7 @@ export default function Gérer() {
 					<Spacing xl />
 				</PageHeader>
 
-				{dirigeantSimulateur && (
+				{(dirigeantSimulateur || plSimulateur) && (
 					<Container
 						backgroundColor={(theme) => theme.colors.bases.primary[600]}
 						darkMode
@@ -111,6 +134,9 @@ export default function Gérer() {
 
 						<H2>Entreprise et revenus</H2>
 						<Grid container spacing={3} position="relative">
+							{plSimulateur && (
+								<SimulateurCard fromGérer {...simulateurs[plSimulateur]} />
+							)}
 							{dirigeantSimulateur !== null && (
 								<SimulateurCard
 									fromGérer
