@@ -4,7 +4,7 @@ import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useState } from 'react'
 import styled from 'styled-components'
-import stats from '../../data/stats.json'
+import stats from 'Data/stats.json'
 
 export default function DemandeUtilisateurs() {
 	return (
