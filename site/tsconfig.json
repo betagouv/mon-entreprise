@@ -18,7 +18,8 @@
 			"Reducers/*": ["reducers/*"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"],
-			"DesignSystem/*": ["design-system/*"]
+			"DesignSystem/*": ["design-system/*"],
+			"Data/*": ["data/*"]
 		},
 		"typeRoots": ["./types/", "./node_modules/@types"],
 		"noEmit": true,

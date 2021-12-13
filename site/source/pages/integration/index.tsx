@@ -9,10 +9,19 @@ import { TrackChapter } from '../../ATInternetTracking'
 import Iframe from './Iframe'
 import Library from './Library'
 import Options from './Options'
+import jobOffers from 'Data/job-offers.json'
+import { Banner, InnerBanner } from 'DesignSystem/banner'
+
+type JobOffer = {
+	title: string
+	link: string
+	content: string
+}
 
 export default function Integration() {
 	const sitePaths = useContext(SitePathsContext)
 	const { pathname } = useLocation()
+	const openJobOffer = (jobOffers as Array<JobOffer>)[0]
 	return (
 		<>
 			<TrackChapter chapter1="integration" />
@@ -26,27 +35,19 @@ export default function Integration() {
 					← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 				</Link>
 			)}
-			{/* TODO: Nous pourrions automatiser la publication de cette bannière
-			de recrutement lorsqu'une annonce est postée sur beta.gouv.fr
-			https://github.com/betagouv/beta.gouv.fr/issues/6343 */}
-			{/* <div
-				className="ui__ card plain"
-				css={`
-					margin: 1rem 0;
-					transform: translateY(1rem);
-
-					text-align: center;
-					padding: 0.4rem;
-				`}
-			>
-				📯{' '}
-				<strong>
-					<a href="https://beta.gouv.fr/recrutement/2021/05/25/mon-entreprise-fr.recrute.js.html">
-						Mon-entreprise recrute !
-					</a>
-				</strong>{' '}
-				<small>Freelance Typescript / React pour 6 mois minimum</small>
-			</div> */}
+			{openJobOffer && (
+				<Banner>
+					<InnerBanner>
+						<span>
+							<Emoji emoji="📯" />{' '}
+							<strong>
+								<a href={openJobOffer.link}>Mon-entreprise recrute !</a>
+							</strong>{' '}
+							<small>{openJobOffer.title}</small>
+						</span>
+					</InnerBanner>
+				</Banner>
+			)}
 			<Switch>
 				<Route exact path={sitePaths.integration.index} component={Options} />
 				<Route path={sitePaths.integration.iframe} component={Iframe} />

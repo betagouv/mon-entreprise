@@ -12,7 +12,10 @@
 	"engines": {
 		"node": ">=12.16.1"
 	},
-	"browserslist": ["> 1% in FR", "not ie < 11"],
+	"browserslist": [
+		"> 1% in FR",
+		"not ie < 11"
+	],
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"build": "yarn run build:prod && yarn run build:legacy",
@@ -40,6 +43,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",
+		"@icons/material": "^0.4.1",
 		"@internationalized/number": "^3.0.3",
 		"@mui/material": "^5.0.4",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
@@ -188,6 +192,7 @@
 		"webpack-hot-middleware": "^2.24.2",
 		"workbox-webpack-plugin": "^6.0.2",
 		"worker-loader": "^2.0.0",
+		"xml2js": "^0.4.23",
 		"yaml-loader": "^0.5.0"
 	},
 	"optionalDependencies": {
