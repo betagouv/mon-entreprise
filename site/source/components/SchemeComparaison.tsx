@@ -619,15 +619,14 @@ const StyledGrid = styled.div`
 			grid-template-columns:
 				[row-legend] minmax(auto, 100%)
 				[assimilé-salarié] ${props.hideAssimiléSalarié
-					? '0'
+					? '0px'
 					: 'minmax(20%, 20rem)'}
 				[indépendant] minmax(20%, 20rem)
-				[auto-entrepreneur] ${props.hideAssimiléSalarié
-					? '0'
-					: 'minmax( 20%, 20rem)'}
+				[auto-entrepreneur] ${props.hideAutoEntrepreneur
+					? '0px'
+					: 'minmax(20%, 20rem)'}
 				[end];
 		`}
-
 & > * {
 	width: 100%;
 	border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
@@ -661,6 +660,11 @@ const StyledGrid = styled.div`
 	grid-column: assimilé-salarié / auto-entrepreneur;
 }
 & > .AS {
+	${(props) =>
+		props.hideAssimiléSalarié &&
+		css`
+			display: none;
+		`}
 	grid-column: assimilé-salarié;
 	min-width: 11rem;
 }
@@ -669,6 +673,11 @@ const StyledGrid = styled.div`
 }
 & > .auto {
 	grid-column: auto-entrepreneur;
+	${(props) =>
+		props.hideAutoEntrepreneur &&
+		css`
+			display: none;
+		`}
 	border-right: none;
 	min-width: 14rem;
 }
