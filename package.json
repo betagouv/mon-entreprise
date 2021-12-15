@@ -30,10 +30,10 @@
 		"moso:up": "yarn workspace modele-social run up && yarn workspace site upgrade modele-social",
 		"i18n:check": "yarn run i18n:rules:check && yarn run i18n:ui:check",
 		"i18n:translate": "yarn run i18n:rules:translate && yarn run i18n:ui:translate",
-		"i18n:rules:check": "node site/scripts/i18n/check-missing-rule-translation.js",
-		"i18n:rules:translate": "node site/scripts/i18n/translate-rules.js",
-		"i18n:ui:check": "yarn run i18next -c site/scripts/i18n/parser.config.js && node site/scripts/i18n/check-missing-UI-translation",
-		"i18n:ui:translate": "rm -rf site/source/locales/static-analysis-fr.json && yarn run i18next -c site/scripts/i18n/parser.config.js && node site/scripts/i18n/translate-ui.js"
+		"i18n:rules:check": "cd site && node scripts/i18n/check-missing-rule-translation.js",
+		"i18n:rules:translate": "cd site && node scripts/i18n/translate-rules.js",
+		"i18n:ui:check": " cd site && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
+		"i18n:ui:translate": "cd site && rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js"
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
