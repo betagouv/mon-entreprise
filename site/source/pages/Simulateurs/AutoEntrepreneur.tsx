@@ -6,7 +6,7 @@ import Simulation from 'Components/Simulation'
 import { InstitutionsPartenairesAutoEntrepreneur } from 'Components/simulationExplanation/InstitutionsPartenaires'
 import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import StackedBarChart from 'Components/StackedBarChart'
-import { H3 } from 'DesignSystem/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeContext } from 'styled-components'
@@ -14,8 +14,8 @@ import { ThemeContext } from 'styled-components'
 export default function AutoEntrepreneur() {
 	return (
 		<>
-			<SimulateurWarning simulateur="auto-entrepreneur" />
 			<Simulation explanations={<Explanation />}>
+				<SimulateurWarning simulateur="auto-entrepreneur" />
 				<SimulationGoals
 					toggles={<PeriodSwitch />}
 					legend="Vos revenus d'auto-entrepreneur"
@@ -46,9 +46,9 @@ function Explanation() {
 
 	return (
 		<section>
-			<H3 as="h2">
+			<H2>
 				<Trans>Répartition du chiffre d'affaires</Trans>
-			</H3>
+			</H2>
 			<StackedBarChart
 				data={[
 					{

@@ -1,7 +1,9 @@
 import Value from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { Strong } from 'DesignSystem/typography'
 import { H4, H5 } from 'DesignSystem/typography/heading'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,
@@ -135,7 +137,7 @@ export default function PaySlip() {
 							<H5 className="payslip__cotisationTitle">
 								{section.title}{' '}
 								<em className="print-hidden">
-									<ExplicableRule dottedName={section.dottedName} />
+									<ExplicableRule light dottedName={section.dottedName} />
 								</em>
 							</H5>
 							{cotisations.map((cotisation) => (
@@ -145,13 +147,13 @@ export default function PaySlip() {
 					)
 				})}
 				{/* Réductions */}
-				<div>
-					<RuleLink
-						dottedName={
-							'contrat salarié . cotisations . réductions de cotisations'
-						}
-					/>
-				</div>
+
+				<RuleLink
+					dottedName={
+						'contrat salarié . cotisations . réductions de cotisations'
+					}
+				/>
+
 				<Value
 					expression="- contrat salarié . cotisations . patronales . réductions de cotisations"
 					unit="€/mois"
@@ -163,14 +165,19 @@ export default function PaySlip() {
 					displayedUnit="€"
 				/>
 				{/* Total cotisation */}
-				<p className="payslip__total">
-					<Trans>Total des retenues</Trans>
-				</p>
-				<Value
-					expression="contrat salarié . cotisations . patronales"
-					displayedUnit="€"
-					className="payslip__total"
-				/>
+				<Body className="payslip__total">
+					<Strong>
+						<Trans>Total des retenues</Trans>
+					</Strong>
+				</Body>
+				<div>
+					<Value
+						expression="contrat salarié . cotisations . patronales"
+						displayedUnit="€"
+						className="payslip__total"
+					/>
+				</div>
+
 				<Value
 					expression="contrat salarié . cotisations . salariales"
 					displayedUnit="€"
@@ -227,12 +234,12 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	return (
 		<>
 			<RuleLink dottedName={dottedName} />
-			<span className="ui__ lighter-bg print-background-force">
+			<span>
 				{partPatronale?.nodeValue
 					? formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
-			<span className="ui__ lighter-bg print-background-force">
+			<span>
 				{partSalariale?.nodeValue
 					? formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
