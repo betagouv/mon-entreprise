@@ -55,7 +55,11 @@ export function MultipleAnswerInput({
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 	return (
 		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
-			<RadioChoice autoFocus={defaultValue} choice={choice} />
+			<RadioChoice
+				autoFocus={defaultValue}
+				choice={choice}
+				rootDottedName={props.dottedName}
+			/>
 		</RadioGroup>
 	)
 }
@@ -63,17 +67,19 @@ export function MultipleAnswerInput({
 function RadioChoice({
 	choice,
 	autoFocus,
+	rootDottedName,
 }: {
 	choice: Choice
 	autoFocus?: string
+	rootDottedName: DottedName
 }) {
 	const relativeDottedName = (radioDottedName: string) =>
-		radioDottedName.split(choice.dottedName + ' . ')[1]
+		radioDottedName.split(rootDottedName + ' . ')[1]
 	const hiddenOptions = useContext(HiddenOptionContext)
 
 	return (
 		<>
-			{choice.children.map((node, i) => (
+			{choice.children.map((node) => (
 				<Fragment key={node.dottedName}>
 					{' '}
 					{hiddenOptions.includes(
@@ -89,7 +95,7 @@ function RadioChoice({
 							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
-								<RadioChoice choice={node} />
+								<RadioChoice choice={node} rootDottedName={rootDottedName} />
 							</StyledSubRadioGroup>
 						</div>
 					) : (
