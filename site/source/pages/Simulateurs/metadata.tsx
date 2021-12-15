@@ -89,7 +89,7 @@ export type PureSimulatorData = Record<
 			| {
 					chapter2?: string
 					chapter3?: string
-					chapter1?: 'gerer' | 'creer'
+					chapter1?: string
 			  }
 			| string
 		icône?: string
@@ -101,8 +101,8 @@ export type PureSimulatorData = Record<
 		description?: React.ReactNode
 		config?: SimulationConfig
 		seoExplanations?: React.ReactNode
-		nextSteps?: Array<SimulatorId>
 		private?: boolean
+		pathId: string
 	}
 >
 export type SimulatorData = PureSimulatorData &
@@ -123,14 +123,14 @@ export function getSimulatorsData({
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
 } = {}): SimulatorData {
-	const pureSimulatorsData: PureSimulatorData = getData({ t }) as any
+	const pureSimulatorsData: PureSimulatorData = getData({ t })
 	return {
 		salarié: {
 			...pureSimulatorsData['salarié'],
 			config: salariéConfig,
 			component: SalariéSimulation,
 			meta: {
-				...pureSimulatorsData['salarié']?.meta,
+				...pureSimulatorsData['salarié'].meta,
 				ogImage:
 					language === 'fr' ? salaireBrutNetPreviewFR : salaireBrutNetPreviewEN,
 			},
