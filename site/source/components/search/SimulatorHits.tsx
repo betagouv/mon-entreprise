@@ -56,14 +56,17 @@ export const SimulatorHits = connectHits(({ hits }: SimulatorHitsProps) => {
 				</H3>
 			)}
 			<Grid container spacing={2}>
-				{hits.map((hit) => (
-					<Grid item key={hit.objectID} xs={12} lg={6}>
-						<SimulateurCardHit
-							hit={hit}
-							path={path(hit.pathId.split('.'), sitePaths)}
-						/>
-					</Grid>
-				))}
+				{hits.map(
+					(hit) =>
+						hit.pathId && (
+							<Grid item key={hit.objectID} xs={12} lg={6}>
+								<SimulateurCardHit
+									hit={hit}
+									path={path(hit.pathId.split('.'), sitePaths)}
+								/>
+							</Grid>
+						)
+				)}
 			</Grid>
 		</>
 	)
