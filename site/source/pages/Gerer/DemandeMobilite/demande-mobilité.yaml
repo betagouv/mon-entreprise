@@ -21,6 +21,7 @@ situation . AC:
   titre: Indépendant artisan ou commerçant
 situation . auto-entrepreneur:
 situation . salarié:
+  titre: salarié (CEA et TESE)
 
 situation . notification:
   type: groupe
@@ -122,8 +123,8 @@ données assuré:
           nom: commune de naissance
         - &commune
           type: groupe
-          nom: commune
           titre: ''
+          nom: commune
           somme:
             - nom: étranger
               question: La commune est-elle située à l'étranger ?
@@ -146,6 +147,7 @@ données assuré:
 
     - nom: adresse
       titre: Adresse de résidence actuelle
+      applicable si: commune de naissance
       type: groupe
       somme:
         - *commune
@@ -715,10 +717,12 @@ pluriactivité:
   non applicable si: situation . notification
   applicable si:
     une de ces conditions:
-      - demande . PAM . détachement possible = non
+      - toutes ces conditions:
+        - demande . PAM
+        - demande . PAM . détachement possible = non
       - demande . salarié = 'pluriactivité'
   formule: oui
-  titre: Demande d'activité transfrontalière simultanée
+  titre: Demande de pluriactivité
   type: groupe
 
 pluriactivité . nombre:
@@ -764,14 +768,19 @@ pluriactivité . pays n°1: &pluriactivité
           ]
     - nom: statut . salarié
       titre: salarié
+      valeur: statut = 'salarié'
     - nom: statut . travailleur indépendant
       titre: travailleur indépendant
+      valeur: statut = 'travailleur indépendant'
     - nom: statut . fonctionnaire
       titre: fonctionnaire
+      valeur: statut = 'fonctionnaire'
     - nom: statut . agent contractuel
       titre: agent contractuel
+      valeur: statut = 'agent contractuel'
     - nom: statut . autre
       titre: autre
+      valeur: statut = 'autre'
     - nom: profession exercée
       titre: profession exercée
       type: texte
@@ -779,24 +788,7 @@ pluriactivité . pays n°1: &pluriactivité
     - nom: entreprise
       titre: Coordonnée du lieu d'exercice
       <<: *entreprise-étranger
-    - nom: activité salariée
-      applicable si: statut = 'salarié'
-      somme:
-        - <<:
-            - &période
-              titre: Dates du contrat
-              type: groupe
-              somme:
-                - nom: date de fin connue
-                  question: Connaissez-vous la date de fin ?
-                - nom: début
-                  titre: date de début
-                  type: date
-                - nom: fin
-                  applicable si: date de fin connue
-                  titre: date de fin
-                  type: date
-            - nom: dates du contrat
+
 
 pluriactivité . pays n°2:
   applicable si: nombre >= 2
@@ -811,6 +803,7 @@ pluriactivité . pays n°4:
   <<: *pluriactivité
 
 pluriactivité . période:
+  applicable si: nombre
   titre: Quelles sont les dates de début et de fin de cette activité dans un ou plusieurs pays ?
   description: |
     **La période souhaitée pour la demande ne peut excéder 12 mois.**
@@ -827,9 +820,20 @@ pluriactivité . période:
     Votre demande sera automatiquement saisie pour une durée de 12 mois.
     Si la mission/contrat venait à dépasser 12 mois, vous devrez renouveler votre demande tous les ans.
 
-  <<: *période
+  type: groupe
+  somme:
+    - nom: date de fin connue
+      question: Connaissez-vous la date de fin ?
+    - nom: début
+      titre: date de début
+      type: date
+    - nom: fin
+      applicable si: date de fin connue
+      titre: date de fin
+      type: date
 
 pluriactivité . activité substantielle en France:
+  applicable si: nombre
   titre: Activité en France
   type: groupe
   valeur: oui
@@ -884,7 +888,10 @@ pluriactivité . activité substantielle en France . critère PAM . Le temps de 
 pluriactivité . activité substantielle en France . critère PAM . Les prestations délivrées:
 
 pluriactivité . salarié:
-  applicable si: situation = 'salarié'
+  applicable si:
+    toutes ces conditions:
+      - situation = 'salarié'
+      - nombre
 pluriactivité . salarié . employeurs multiples:
   question: Votre salarié a-t-il plusieurs autres employeurs ?
 
@@ -912,7 +919,10 @@ pluriactivité . salarié . siège social:
     Pour en savoir plus : [site du CLEISS](https://www.cleiss.fr/)
 
 pluriactivité . pays centre d'intérêt:
-  applicable si: situation = 'PAM'
+  applicable si:
+    toutes ces conditions:
+      - situation = 'PAM'
+      - nombre
   non applicable si: activité substantielle en France . question
   type: groupe
   formule: oui
@@ -951,6 +961,7 @@ pluriactivité . pays centre d'intérêt . pays . autre:
   type: texte
 
 pluriactivité . télétravail:
+  applicable si: nombre
   question:
     variations:
       - si: situation = 'PAM'
@@ -965,6 +976,7 @@ pluriactivité . télétravail . fréquence:
   unité: jour/semaine
 
 pluriactivité . chômage étranger:
+  applicable si: nombre
   question:
     variations:
       - si: situation = 'PAM'
@@ -980,8 +992,8 @@ commentaires additionnels:
   formule: oui
   applicable si:
     une de ces conditions:
-      - détachement
-      - pluriactivité
+      - détachement . pays
+      - pluriactivité . nombre
 
 commentaires additionnels . commentaires:
   question: Souhaitez-vous partager d'autres informations pour l'instruction de votre dossier (adresses supplémentaires, commentaires, etc) ?
