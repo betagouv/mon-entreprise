@@ -5,7 +5,7 @@ import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSi
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { H1 } from 'DesignSystem/typography/heading'
 import { Intro } from 'DesignSystem/typography/paragraphs'
-import { useContext } from 'react'
+import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
@@ -55,7 +55,7 @@ export default function PageData({
 				? ('simulateurs' as const)
 				: tracking.chapter1,
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
-	}
+	} as ComponentPropsWithoutRef<typeof TrackChapter>
 	return (
 		<>
 			<TrackChapter {...trackInfo} />
