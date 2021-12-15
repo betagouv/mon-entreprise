@@ -608,6 +608,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			icône: '🎩',
 			tracking: 'dividendes',
 			iframePath: 'dividendes',
+			pathId: 'simulateurs.dividendes',
 			meta: {
 				title: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
 				description: t(
