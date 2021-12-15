@@ -54,10 +54,7 @@ export const SalaireNetSection = () => {
 				negative
 				rule="contrat salarié . frais professionnels . titres-restaurant . montant"
 			/>
-			<Line
-				rule="contrat salarié . rémunération . net"
-				className="payslip__total"
-			/>
+			<Line rule="contrat salarié . rémunération . net" />
 			<Condition expression="impôt . montant > 0">
 				<Line
 					negative
@@ -65,10 +62,7 @@ export const SalaireNetSection = () => {
 					title={t('impôt sur le revenu')}
 					unit="€/mois"
 				/>
-				<Line
-					className="payslip__total"
-					rule="contrat salarié . rémunération . net après impôt"
-				/>
+				<Line rule="contrat salarié . rémunération . net après impôt" />
 			</Condition>
 		</div>
 	)

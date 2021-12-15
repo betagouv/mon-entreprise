@@ -7,8 +7,8 @@ import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 export function SASUSimulation() {
 	return (
 		<>
-			<SimulateurWarning simulateur="sasu" />
 			<Simulation explanations={<SalaryExplanation />}>
+				<SimulateurWarning simulateur="sasu" />
 				<SimulationGoals
 					toggles={<PeriodSwitch />}
 					legend="Vos revenus de dirigeant de SASU"

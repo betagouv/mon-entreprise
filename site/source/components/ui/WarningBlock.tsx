@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material'
 import Emoji from 'Components/utils/Emoji'
 import { usePersistingState } from 'Components/utils/persistState'
 import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
 import { Intro } from 'DesignSystem/typography/paragraphs'
 import { ReactNode } from 'react'
@@ -23,7 +23,7 @@ const WarningSection = styled.section`
 export default function Warning({ localStorageKey, children }: WarningProps) {
 	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
-		<Grid item lg={10}>
+		<>
 			<WarningSection>
 				<Intro className={folded ? 'print-hidden' : ''}>
 					<Emoji emoji="🚩 " />
@@ -54,6 +54,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 					</div>
 				)}
 			</WarningSection>
-		</Grid>
+			<Spacing lg />
+		</>
 	)
 }

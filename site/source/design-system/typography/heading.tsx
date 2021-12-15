@@ -48,7 +48,7 @@ export const H3 = styled.h3`
 			${theme.spacings.xl} 0 ${theme.spacings.md}
 		`};
 	font-size: 1.25rem;
-	line-height: 1.5rem;
+	line-height: 1.75rem;
 `
 
 export const H4 = styled.h4`

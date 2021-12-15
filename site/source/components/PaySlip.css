@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template-columns: auto 8.2em;
 	overflow: visible;
-	grid-gap: 0.3em 0em;
+	grid-gap: 3px 0em;
 }
 .payslip__salaryTitle {
 	grid-column-end: span 2;
@@ -12,18 +12,21 @@
 	overflow: visible;
 
 	grid-template-columns: auto auto auto;
-	grid-gap: 0.3em 0em;
+	grid-gap: 3px 0em;
 }
-
+.payslip__container {
+	line-height: 1.5rem;
+}
 .payslip__container h4 {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
+	color: rgba(0, 0, 0, 0.85);
 	color-adjust: exact !important;
 	margin: 0;
-	margin-top: 1.5em;
-	padding-bottom: 0.5em;
-	padding-left: 0.5em;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.5rem;
 	align-self: flex-end;
-	margin-bottom: 0.5em;
 }
 .payslip__container h4:first-child {
 	padding-left: 0;
@@ -37,12 +40,12 @@
 
 .payslip__container h5 {
 	margin: 0;
-}
-.payslip__container h5 {
-	margin: 0;
+	color: rgba(0, 0, 0, 0.85);
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
 }
 .payslip__container h5:not(:first-of-type) {
-	margin-top: 0.6em;
+	margin-top: 1.5rem;
 }
 .payslip__container *::first-letter {
 	text-transform: capitalize;
@@ -58,7 +61,29 @@
 .payslip__cotisationsSection h4:not(:first-child) {
 	text-align: right;
 }
+.payslip__cotisationsSection a:nth-of-type(2n),
+.payslip__salarySection a:nth-of-type(2n) {
+	background-color: rgba(255, 255, 255, 0.6);
+	margin-left: -0.25rem;
+	padding-left: 0.25rem;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.payslip__cotisationsSection a:nth-of-type(2n) + *,
+.payslip__salarySection a:nth-of-type(2n) + * {
+	background-color: rgba(255, 255, 255, 0.6);
+}
+.payslip__cotisationsSection a:nth-of-type(2n) + * + * {
+	background-color: rgba(255, 255, 255, 0.6);
+	margin-right: -0.25rem;
 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	padding-right: 0.25rem;
+}
+.payslip__total + * + * {
+	background-color: transparent !important;
+}
 .payslip__cotisationTitle {
 	grid-column-end: span 3;
 }

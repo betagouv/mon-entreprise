@@ -21,7 +21,6 @@ export default function ResultatsParFormulaire() {
 		.map((dottedName) => engine.getRule(dottedName))
 	return (
 		<section
-			className="ui__ full-width lighter-bg"
 			css={`
 				margin-top: 2rem;
 			`}

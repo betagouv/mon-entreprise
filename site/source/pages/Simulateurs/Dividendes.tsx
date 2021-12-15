@@ -8,7 +8,7 @@ import StackedBarChart from 'Components/StackedBarChart'
 import Warning from 'Components/ui/WarningBlock'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
-import { H3 } from 'DesignSystem/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
@@ -123,11 +123,11 @@ const DividendesExplanation = () => {
 						align-items: baseline;
 					`}
 				>
-					<H3 as="h2">
+					<H2>
 						<Trans i18nKey="payslip.repartition">
 							Répartition du total chargé
 						</Trans>
-					</H3>
+					</H2>
 				</div>
 				<StackedBarChart
 					precision={0.1}

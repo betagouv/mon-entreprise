@@ -58,7 +58,6 @@ export default function Simulateurs() {
 						</Link>
 					)
 				) : null)}
-
 			<Switch>
 				<Route exact path={sitePaths.simulateurs.index} component={Home} />
 				{simulatorRoutes}

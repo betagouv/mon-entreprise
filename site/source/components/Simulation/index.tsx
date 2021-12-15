@@ -34,9 +34,8 @@ export default function Simulation({
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<ExportRecover />
-			<Spacing xxl />
-			<Grid container spacing={3}>
-				<Grid item lg={10}>
+			<Grid container spacing={2} justifyContent="center">
+				<Grid item xl={9} lg={10}>
 					{children}
 					{!firstStepCompleted && <PreviousSimulationBanner />}
 
@@ -47,46 +46,26 @@ export default function Simulation({
 							<Spacing sm />
 							<ShareOrSaveSimulationBanner />
 							<Spacing lg />
-							{explanations}
 						</FromTop>
 					)}
 				</Grid>
-				<Grid
-					item
-					lg={2}
-					css={`
-						display: flex;
-						flex-direction: column;
-					`}
-				>
-					{firstStepCompleted && (
-						<>
-							<div
-								css={`
-									flex: 1;
-								`}
-							/>
-							<div
-								css={`
-									position: sticky;
-									bottom: 0px;
-								`}
-								className=" print-hidden"
-							>
-								<FadeIn>
-									<PageFeedback
-										customMessage={
-											<Trans i18nKey="feedback.simulator">
-												Êtes-vous satisfait de ce simulateur&nbsp;?
-											</Trans>
-										}
-									/>
-								</FadeIn>
-							</div>
-						</>
-					)}
-				</Grid>
 			</Grid>
+			{firstStepCompleted && (
+				<>
+					<div className="print-hidden">
+						<FadeIn>
+							<PageFeedback
+								customMessage={
+									<Trans i18nKey="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur&nbsp;?
+									</Trans>
+								}
+							/>
+						</FadeIn>
+					</div>
+					{explanations}
+				</>
+			)}
 		</>
 	)
 }

@@ -17,8 +17,8 @@ export default function ArtisteAuteur() {
 
 	return (
 		<>
-			<SimulateurWarning simulateur="artiste-auteur" />
 			<Simulation explanations={<CotisationsResult />}>
+				<SimulateurWarning simulateur="artiste-auteur" />
 				<SimulationGoals
 					legend="Vos revenus d'artiste auteur"
 					publique="artisteAuteur"

@@ -20,8 +20,8 @@ import styled from 'styled-components'
 export function IndépendantPLSimulation() {
 	return (
 		<>
-			<SimulateurWarning simulateur="profession-libérale" />
 			<Simulation explanations={<IndépendantExplanation />}>
+				<SimulateurWarning simulateur="profession-libérale" />
 				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
 			</Simulation>
 		</>
@@ -31,8 +31,8 @@ export function IndépendantPLSimulation() {
 export function EntrepriseIndividuelle() {
 	return (
 		<>
-			<SimulateurWarning simulateur="entreprise-individuelle" />
 			<Simulation explanations={<IndépendantExplanation />}>
+				<SimulateurWarning simulateur="entreprise-individuelle" />
 				<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
 			</Simulation>
 		</>
@@ -43,8 +43,8 @@ export default function IndépendantSimulation() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
-			<SimulateurWarning simulateur="indépendant" />
 			<Simulation explanations={<IndépendantExplanation />}>
+				<SimulateurWarning simulateur="indépendant" />
 				<IndépendantSimulationGoals
 					legend="Vos revenus d'indépendant"
 					toggles={
