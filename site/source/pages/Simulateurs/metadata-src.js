@@ -398,6 +398,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				chapter2: 'profession_liberale',
 				chapter3: 'pharmacien',
 			},
+			meta: {
+				title: t(
+					'pages.simulateurs.médecin.meta.title',
+					'Pharmacien : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.médecin.meta.description',
+					'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour pharmacien en libéral'
+				),
+			},
 			icône: '⚕️',
 			iframePath: 'pharmacien',
 			pathId: 'simulateurs.profession-libérale.pharmacien',
@@ -412,6 +422,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				chapter2: 'profession_liberale',
 				chapter3: 'medecin',
 			},
+			meta: {
+				title: t(
+					'pages.simulateurs.médecin.meta.title',
+					'Médecin : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.médecin.meta.description',
+					'Calcul du revenu net après déduction des cotisations à partir du total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire pris en compte'
+				),
+			},
 			icône: '🩺',
 			iframePath: 'médecin',
 			pathId: 'simulateurs.profession-libérale.médecin',
@@ -423,6 +443,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 		},
 		'chirurgien-dentiste': {
 			icône: '🦷',
+			meta: {
+				title: t(
+					'pages.simulateurs.chirurgien-dentiste.meta.title',
+					'Chirurgien-dentiste : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.chirurgien-dentiste.meta.description',
+					'Calcul du revenu net après cotisations à partir du total des recettes.'
+				),
+			},
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'chirurgien_dentiste',
@@ -443,6 +473,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 			tracking: {
 				chapter2: 'profession_liberale',
 				chapter3: 'sage_femme',
+			},
+			meta: {
+				title: t(
+					'pages.simulateurs.sage-femme.meta.title',
+					'Sage-femme : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.sage-femme.meta.description',
+					'Calcul du revenu net après cotisations à partir du total des recettes.'
+				),
 			},
 			iframePath: 'sage-femme',
 			pathId: 'simulateurs.profession-libérale.sage-femme',
@@ -472,6 +512,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
 			),
+			meta: {
+				title: t(
+					'pages.simulateurs.auxiliaire-medical.meta.title',
+					'Auxiliaire médical : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.auxiliaire-medical.meta.description',
+					'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
+				),
+			},
 		},
 		avocat: {
 			tracking: {
@@ -486,6 +536,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				'pages.simulateurs.avocat.title',
 				'Simulateur de revenus pour avocat en libéral'
 			),
+			meta: {
+				title: t(
+					'pages.simulateurs.auxiliaire-medical.meta.title',
+					'Avocat : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.auxiliaire-medical.meta.description',
+					'Calcul du revenu net après cotisations à partir du total des recettes.'
+				),
+			},
 		},
 		'expert-comptable': {
 			tracking: {
@@ -503,6 +563,16 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				'pages.simulateurs.expert-comptable.title',
 				'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
 			),
+			meta: {
+				title: t(
+					'pages.simulateurs.auxiliaire-medical.meta.title',
+					'Expert-comptable : simulateur de revenus'
+				),
+				description: t(
+					'pages.simulateurs.auxiliaire-medical.meta.description',
+					'Calcul du revenu net après cotisations à partir du total des recettes.'
+				),
+			},
 		},
 		'profession-libérale': {
 			tracking: {

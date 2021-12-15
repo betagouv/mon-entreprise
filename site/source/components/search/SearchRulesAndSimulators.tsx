@@ -5,10 +5,10 @@ import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
 import { SimulatorHits } from './SimulatorHits'
-
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY || ''
 const ALGOLIA_INDEX_PREFIX = process.env.ALGOLIA_INDEX_PREFIX || ''
+console.log(ALGOLIA_APP_ID)
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
