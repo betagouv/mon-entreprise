@@ -1239,6 +1239,11 @@ pages:
       title: Income simulator for a private medical assistant
       tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
         orthoptists
+    auxiliaire-medical:
+      meta:
+        description: Calculation of the net income after contributions from the total
+          income.
+        title: "Chartered accountant: income simulator"
     avocat:
       shortname: Lawyer
       title: Income simulator for private lawyers
@@ -1246,6 +1251,10 @@ pages:
       intégrer module web: <0>Integrate the web module</0><1>Add this simulator to
         your website in one click</1>
     chirurgien-dentiste:
+      meta:
+        description: Calculation of the net income after contributions from the total
+          income.
+        title: "Dental surgeon : income simulator"
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
     chômage-partiel:
@@ -1476,6 +1485,10 @@ pages:
         simulator.</5>
       title: Corporate Tax Simulator
     médecin:
+      meta:
+        description: Calculation of net income after deduction of contributions from
+          total revenue. Sector 1, sector 2, and excess fees taken into account
+        title: "Doctor: income simulator"
       shortname: Doctor
       title: Income simulator for private practitioners
     pamc:
@@ -1501,6 +1514,10 @@ pages:
       shortname: Liberal profession
       title: Professional Income Simulator
     sage-femme:
+      meta:
+        description: Calculation of the net income after contributions from the total
+          income.
+        title: "Midwife : income simulator"
       shortname: Midwife
       title: Income simulator for private midwives
     salarié:

@@ -958,10 +958,17 @@ pages:
       title: Simulateur de revenus pour auxiliaire médical en libéral
       tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
         orthophonistes et orthoptistes
+    auxiliaire-medical:
+      meta:
+        description: Calcul du revenu net après cotisations à partir du total des recettes.
+        title: "Expert-comptable : simulateur de revenus"
     avocat:
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     chirurgien-dentiste:
+      meta:
+        description: Calcul du revenu net après cotisations à partir du total des recettes.
+        title: "Chirurgien-dentiste : simulateur de revenus"
       shortname: Chirurgien-dentiste
       title: Simulateur de revenus pour chirurgien-dentiste en libéral
     chômage-partiel:
@@ -1152,6 +1159,11 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     médecin:
+      meta:
+        description: Calcul du revenu net après déduction des cotisations à partir du
+          total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
+          pris en compte
+        title: "Médecin : simulateur de revenus"
       shortname: Médecin
       title: Simulateur de revenus pour médecin en libéral
     pamc:
@@ -1178,6 +1190,9 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
     sage-femme:
+      meta:
+        description: Calcul du revenu net après cotisations à partir du total des recettes.
+        title: "Sage-femme : simulateur de revenus"
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
