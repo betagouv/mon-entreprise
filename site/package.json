@@ -1,12 +1,12 @@
 {
 	"name": "site",
 	"license": "MIT",
-	"version": "1.2.8",
-	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build cool forms that asks the question needed to compute an objective.",
+	"version": "2.0.0",
+	"description": "Code source du site mon-entreprise",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "mon-entreprise"
+		"directory": "site"
 	},
 	"private": true,
 	"engines": {
@@ -29,14 +29,12 @@
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.{js,ts}\"",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --require mock-local-storage --require test/helpers/browser.js",
 		"test:bundlesize": "bundlesize",
-		"test:dev-e2e:publicodes": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance,integrationFolder=cypress/integration/mon-entreprise/english --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
 		"start": "node dev-server.js",
-		"serve:dev": "concurrently -k \"yarn run serve:dev:mon-entreprise\" \"yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes\"",
+		"serve:dev": "concurrently -k \"yarn run serve:dev:mon-entreprise\" \"yarn run serve:dev:mycompanyinfrance\"",
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
-		"serve:dev:publicodes": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
 		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
 		"algolia:update": "node scripts/search/update-data.js",
 		"algolia:clean": "node scripts/search/clean.js"
