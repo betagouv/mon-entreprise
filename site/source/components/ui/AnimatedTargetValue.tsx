@@ -18,21 +18,25 @@ export default function AnimatedTargetValue({
 	value,
 }: AnimatedTargetValueProps) {
 	const previousValue = useRef<number>()
+	const previousDifference = useRef<number>()
 	const { language } = useTranslation().i18n
 
 	const unit = useSelector(targetUnitSelector)
 	const previousUnit = useRef(unit)
 
-	const difference =
+	let difference =
 		value == null ||
 		previousValue.current == null ||
 		// We don't want to show the animated if the difference comes from a change in the unit
 		previousUnit.current !== unit
-			? null
+			? undefined
 			: value - previousValue.current
 
 	if (previousValue.current !== value) {
 		previousValue.current = value
+		previousDifference.current = difference
+	} else {
+		difference = previousDifference.current
 	}
 	if (previousUnit.current !== unit) {
 		previousUnit.current = unit
@@ -42,19 +46,17 @@ export default function AnimatedTargetValue({
 		return null
 	}
 	return (
-		<>
-			<div
-				key={difference}
-				css={`
-					position: relative;
-					text-align: right;
-				`}
-			>
-				<StyledEvaporate>
-					{formatDifference(difference ?? 0, language)}
-				</StyledEvaporate>
-			</div>
-		</>
+		<div
+			key={difference}
+			css={`
+				position: relative;
+				text-align: right;
+			`}
+		>
+			<StyledEvaporate>
+				{formatDifference(difference ?? 0, language)}
+			</StyledEvaporate>
+		</div>
 	)
 }
 
