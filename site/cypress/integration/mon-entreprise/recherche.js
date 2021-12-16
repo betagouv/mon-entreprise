@@ -1,8 +1,5 @@
 const fr = Cypress.env('language') === 'fr'
 
-const simulateursPath = '.ais-Hits-list'
-const reglesPath = '.ais-InfiniteHits-list'
-
 describe('Recherche globales', () => {
 	if (!fr || Cypress.config().baseUrl != 'https://mon-entreprise.urssaf.fr') {
 		return
@@ -17,13 +14,19 @@ describe('Recherche globales', () => {
 		cy.focused().should('have.attr', 'type', 'search')
 
 		cy.wait(100)
-		cy.get(simulateursPath).children().should('have.length', 6)
-		cy.get(reglesPath).children().should('have.length', 20)
+		cy.contains('Simulateurs')
+			.next()
+			.find('[role="button"]')
+			.should('have.length', 6)
+		cy.contains('Règles de calculs').next().find('li').should('have.length', 20)
 
 		cy.focused().type('avocat')
 
 		cy.wait(100)
-		cy.get(simulateursPath).children().should('have.length', 1)
-		cy.get(reglesPath).children().should('have.length', 2)
+		cy.contains('Simulateurs')
+			.next()
+			.find('[role="button"]')
+			.should('have.length', 1)
+		cy.contains('Règles de calculs').next().find('li').should('have.length', 2)
 	})
 })
