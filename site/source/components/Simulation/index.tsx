@@ -35,7 +35,7 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<ExportRecover />
 			<Grid container spacing={2} justifyContent="center">
-				<Grid item xl={9} lg={10}>
+				<Grid item xl={9} lg={10} md={11} sm={12}>
 					{children}
 					{!firstStepCompleted && <PreviousSimulationBanner />}
 
