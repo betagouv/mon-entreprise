@@ -41,7 +41,6 @@ for (var key in iframeAttributes) {
 iframeResizer(
 	{
 		interval: 0,
-		scrolling: 'auto',
 		heightCalculationMethod: 'lowestElement',
 	},
 	iframe

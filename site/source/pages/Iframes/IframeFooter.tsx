@@ -1,17 +1,17 @@
 import Privacy from 'Components/layout/Footer/Privacy'
+import { Spacing } from 'DesignSystem/layout'
 
 export default function IframeFooter() {
 	return (
 		<>
 			<div
-				className="ui__ container notice"
 				style={{
 					textAlign: 'center',
-					paddingTop: '3rem',
-					paddingBottom: '1rem',
 				}}
 			>
+				<Spacing xl />
 				<Privacy />
+				<Spacing lg />
 			</div>
 		</>
 	)
