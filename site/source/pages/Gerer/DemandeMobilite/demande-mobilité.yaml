@@ -383,6 +383,7 @@ détachement . pays hors UE:
       - pays = 'Uruguay'
 
 détachement . pays hors UE . convention bilatérale:
+  valeur: oui
   non applicable si: pays = 'Autre'
   titre: ''
   type: groupe
@@ -421,6 +422,7 @@ détachement . pays hors UE . autre:
   applicable si: pays = 'Autre'
   titre: ''
   type: groupe
+  valeur: oui
   description: >-
     ### Ce pays n’a pas d’accord de protection sociale avec la France.
 
@@ -597,14 +599,19 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
         choix obligatoire: oui
         possibilités: [célibataire, marié, veuf, divorcé, séparé]
     - nom: statut marital . célibataire
+      valeur: statut marital = 'célibataire'
       titre: célibataire
     - nom: statut marital . marié
+      valeur: statut marital = 'marié'
       titre: marié
     - nom: statut marital . divorcé
+      valeur: statut marital = 'divorcé'
       titre: divorcé
     - nom: statut marital . séparé
+      valeur: statut marital = 'séparé'
       titre: séparé
     - nom: statut marital . veuf
+      valeur: statut marital = 'veuf'
       titre: veuf
 
     - nom: ayants droits
@@ -657,32 +664,46 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
                 nièce,
               ]
         - nom: lien de parenté . mère
+          valeur: lien de parenté = 'mère'
           titre: mère
         - nom: lien de parenté . père
+          valeur: lien de parenté = 'père'
           titre: père
         - nom: lien de parenté . conjoint
+          valeur: lien de parenté = 'conjoint'
           titre: conjoint
         - nom: lien de parenté . enfant
+          valeur: lien de parenté = 'enfant'
           titre: enfant
         - nom: lien de parenté . soeur
+          valeur: lien de parenté = 'soeur'
           titre: soeur
         - nom: lien de parenté . frère
+          valeur: lien de parenté = 'frère'
           titre: frère
         - nom: lien de parenté . grand-père
+          valeur: lien de parenté = 'grand'
           titre: grand-père
         - nom: lien de parenté . grand-mère
+          valeur: lien de parenté = 'grand'
           titre: grand-mère
         - nom: lien de parenté . tante
+          valeur: lien de parenté = 'tante'
           titre: tante
         - nom: lien de parenté . oncle
+          valeur: lien de parenté = 'oncle'
           titre: oncle
         - nom: lien de parenté . cousin
+          valeur: lien de parenté = 'cousin'
           titre: cousin
         - nom: lien de parenté . cousine
+          valeur: lien de parenté = 'cousine'
           titre: cousine
         - nom: lien de parenté . neveu
+          valeur: lien de parenté = 'neveu'
           titre: neveu
         - nom: lien de parenté . nièce
+          valeur: lien de parenté = 'nièce'
           titre: nièce
     - <<: *ayant-droit
       nom: ayant droit n°2
@@ -718,8 +739,8 @@ pluriactivité:
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
-        - demande . PAM
-        - demande . PAM . détachement possible = non
+          - demande . PAM
+          - demande . PAM . détachement possible = non
       - demande . salarié = 'pluriactivité'
   formule: oui
   titre: Demande de pluriactivité
@@ -788,7 +809,6 @@ pluriactivité . pays n°1: &pluriactivité
     - nom: entreprise
       titre: Coordonnée du lieu d'exercice
       <<: *entreprise-étranger
-
 
 pluriactivité . pays n°2:
   applicable si: nombre >= 2
@@ -874,7 +894,6 @@ pluriactivité . activité substantielle en France . critère PAM:
 
     Choisissez celui qui reflète au mieux votre estimation sur les 12 prochains mois.
   applicable si: situation = 'PAM'
-
   une possibilité:
     choix obligatoire: oui
     possibilités:

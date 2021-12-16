@@ -105,7 +105,6 @@ function FormulairePublicodes() {
 
 	engine.setSituation(situation)
 	const fields = useFields(engine)
-
 	const missingValues = fields.filter(
 		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
 	)
