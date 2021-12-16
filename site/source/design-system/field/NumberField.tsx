@@ -153,19 +153,20 @@ function useKeepCursorPositionOnUpdate(
 	const [selection, setSelection] = useState<null | number>(null)
 	const [value, setValue] = useState<string | undefined>()
 	const [rerenderSwitch, toggle] = useState(false)
+	const { onChange: inputOnChange, onKeyDown: inputOnKeyDown } = inputProps
 	const onChange = useCallback(
 		(e) => {
 			const input = e.target
 			setValue(input.value)
 			setSelection(Math.max(0, input.selectionStart, input.selectionEnd))
 			toggle(!rerenderSwitch)
-			inputProps.onChange?.(e)
+			inputOnChange?.(e)
 		},
-		[rerenderSwitch, toggle, setValue, setSelection]
+		[inputOnChange, rerenderSwitch]
 	)
 	const onKeyDown = useCallback(
 		(e) => {
-			inputProps.onKeyDown?.(e)
+			inputOnKeyDown?.(e)
 			const input = e.target
 			if (
 				!(
@@ -182,7 +183,7 @@ function useKeepCursorPositionOnUpdate(
 			)
 			toggle(!rerenderSwitch)
 		},
-		[setSelection, rerenderSwitch, toggle]
+		[inputOnKeyDown, rerenderSwitch]
 	)
 	useEffect(() => {
 		const input = inputRef.current
