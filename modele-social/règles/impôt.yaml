@@ -58,12 +58,12 @@ impôt . méthode de calcul . taux neutre:
 
 impôt . méthode de calcul . taux personnalisé:
   titre: avec un taux personnalisé
-  description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscal pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
+  description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscale pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
   formule: impôt . méthode de calcul = 'taux personnalisé'
 
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition.
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscale se base pour calculer votre taux d'imposition.
   formule: impôt . méthode de calcul = 'barème standard'
 
 impôt . méthode de calcul . PFU:

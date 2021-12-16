@@ -8673,10 +8673,10 @@ impôt . méthode de calcul . PFU:
   titre.en: '[automatic] with one-time deduction'
   titre.fr: avec prélèvement forfaitaire unique
 impôt . méthode de calcul . barème standard:
-  description.en: '[automatic] The "official" tax calculation, the one the tax
-    authorities use to calculate your tax rate.'
+  description.en: '[automatic] The "official" tax calculation, the one on which
+    the tax authorities base their calculation of your tax rate.'
   description.fr: Le calcul "officiel" de l'impôt, celui sur lequel
-    l'administration fiscal se base pour calculer votre taux d'imposition.
+    l'administration fiscale se base pour calculer votre taux d'imposition.
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . prélèvement à la source:
@@ -8700,7 +8700,7 @@ impôt . méthode de calcul . taux personnalisé:
     [personal tax space](https://impots.gouv.fr).
   description.fr:
     Vous pouvez utiliser directement le taux personnalisé communiqué
-    par l'administration fiscal pour calculer votre impôt. Pour le connaître,
+    par l'administration fiscale pour calculer votre impôt. Pour le connaître,
     vous pouvez-vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
   titre.en: '[automatic] with a personalized rate'
