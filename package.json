@@ -24,7 +24,6 @@
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
 		"test:type": "yarn workspaces run tsc --skipLibCheck --noEmit",
-		"test:type:watch": "yarn workspaces run tsc --skipLibCheck --noEmit --watch",
 		"test:regressions": "yarn workspace modele-social build && jest --silent --config ./site/jest.config.cjs",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
 		"start": "yarn workspace site start",

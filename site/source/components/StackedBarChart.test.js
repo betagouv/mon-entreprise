@@ -1,9 +1,4 @@
-/*
-We should rely on a solid way of testing react component instead of mocking the DOM ourself (which does'nt work in this case)
-I suggest switching from mocha to something like Jest which can be run with a jsdom environment directly
-
-
-import { expect } from 'chai'
+import { expect, describe, it } from 'vitest'
 import { roundedPercentages } from './StackedBarChart'
 
 describe('roundedPercentages', () => {
@@ -35,5 +30,3 @@ describe('roundedPercentages', () => {
 		])
 	})
 })
-
-*/
