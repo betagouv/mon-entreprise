@@ -35,7 +35,7 @@ import safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
 
 const ATTracker = createTracker(
-	process.env.AT_INTERNET_SITE_ID,
+	import.meta.env.VITE_AT_INTERNET_SITE_ID,
 	safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
 		navigator.doNotTrack === '1'
 )
@@ -45,11 +45,11 @@ declare global {
 		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
 	}
 }
-if (process.env.REDUX_TRACE) {
+if (import.meta.env.VITE_REDUX_TRACE) {
 	console.log('going to trace')
 }
 const composeEnhancers =
-	(process.env.REDUX_TRACE
+	(import.meta.env.VITE_REDUX_TRACE
 		? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
 		  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 				trace: true,
@@ -58,7 +58,7 @@ const composeEnhancers =
 		: window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
 if (
-	process.env.NODE_ENV === 'production' &&
+	import.meta.env.MODE === 'production' &&
 	'serviceWorker' in navigator &&
 	!inIframe()
 ) {
@@ -117,7 +117,7 @@ export default function Provider({
 	const history = useMemo(
 		() =>
 			createBrowserHistory({
-				basename: process.env.NODE_ENV === 'production' ? '' : basename,
+				basename: import.meta.env.MODE === 'production' ? '' : basename,
 			}),
 		[]
 	)

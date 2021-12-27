@@ -198,10 +198,10 @@ export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 	)
 
 const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
-	(path) => process.env.EN_BASE_URL + path
+	(path) => import.meta.env.VITE_EN_BASE_URL + path
 )
 const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
-	(path) => process.env.FR_BASE_URL + path
+	(path) => import.meta.env.VITE_FR_BASE_URL + path
 )
 
 export const hrefLangLink = {

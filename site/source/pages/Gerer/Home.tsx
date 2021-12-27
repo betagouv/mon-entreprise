@@ -201,7 +201,7 @@ export default function Gérer() {
 				<Grid container spacing={3}>
 					{dirigeantSimulateur === 'indépendant' &&
 						i18n.language === 'fr' &&
-						process.env.HEAD !== 'master' && (
+						import.meta.env.VITE_GIT_HEAD !== 'master' && (
 							<Grid item sm={12} md={4}>
 								<MobiliteCard />
 							</Grid>

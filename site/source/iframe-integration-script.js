@@ -15,7 +15,7 @@ let script =
 	fr = lang === 'fr',
 	baseUrl =
 		script.dataset.iframeUrl ||
-		(fr ? process.env.FR_BASE_URL : process.env.EN_BASE_URL) +
+		(fr ? import.meta.env.VITE_FR_BASE_URL : import.meta.env.VITE_EN_BASE_URL) +
 			'/iframes/' +
 			moduleName,
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
@@ -53,7 +53,7 @@ const moduleToSitePath = {
 	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
 }
 const simulateurLink =
-	process.env.FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
+	import.meta.env.VITE_FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
 
 const url = new URL(simulateurLink, window.location.origin)
 const params = new URLSearchParams(url.search)
@@ -65,10 +65,10 @@ const simulateurURL = url.toString()
 
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
-	Retrouvez ce simulateur et bien d'autres sur 
+	Retrouvez ce simulateur et bien d'autres sur
 	<a href="${simulateurURL}">
 		mon-entreprise.urssaf.fr
-	</a><br/>
+	</a>
 	</div>
 `
 
