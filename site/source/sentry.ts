@@ -1,16 +1,19 @@
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 
-let branch: string | undefined =
-	process.env.GITHUB_REF?.split('/')?.slice(-1)?.[0]
+let branch: string | undefined = import.meta.env.VITE_GITHUB_REF?.split(
+	'/'
+)?.slice(-1)?.[0]
 
 if (branch === 'merge') {
-	branch = process.env.GITHUB_HEAD_REF
+	branch = import.meta.env.VITE_GITHUB_HEAD_REF
 }
 
-const release = branch && `${branch}-` + process.env.GITHUB_SHA?.substring(0, 7)
+const release =
+	branch && `${branch}-` + import.meta.env.VITE_GITHUB_SHA?.substring(0, 7)
 
 if (branch && branch !== 'master') {
+	// eslint-disable-next-line no-console
 	console.info(
 		`ℹ Vous êtes sur la branche : %c${branch}`,
 		'font-weight: bold; text-decoration: underline;'
@@ -20,7 +23,7 @@ if (branch && branch !== 'master') {
 // We use this variable to hide some features in production while keeping them
 // in feature-branches. In case we do A/B testing with several branches served
 // in production, we should add the public faced branch names in the test below.
-// This is different from the process.env.NODE_ENV in that a feature branch may
+// This is different from the import.meta.env.MODE in that a feature branch may
 // be build in production mode (with the NODE_ENV) but we may still want to show
 // or hide some features.
 export const productionMode = ['master', 'next'].includes(branch ?? '')

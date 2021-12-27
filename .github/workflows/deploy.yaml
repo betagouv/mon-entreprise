@@ -36,6 +36,8 @@ jobs:
     env:
       FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+      VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
+      VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -53,11 +55,15 @@ jobs:
       - name: Build app
         run: yarn workspace site build
         env:
-          AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
-          NODE_ENV: production
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
-          ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
+          VITE_AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
+          VITE_NODE_ENV: production
+          VITE_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          VITE_ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
+          VITE_ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
+      - name: Build app SSR
+        run: |
+          yarn workspace site build:ssr
+          yarn workspace site build:prerender
       - name: Replace site placeholders in netlify.toml redirection file
         run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
           sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;

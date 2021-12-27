@@ -12,13 +12,15 @@ export default function Emoji({ emoji }: PropType) {
 	const language = useTranslation().i18n.language
 
 	const siteUrl =
-		language === 'fr' ? process.env.FR_BASE_URL : process.env.EN_BASE_URL
+		language === 'fr'
+			? import.meta.env.VITE_FR_BASE_URL
+			: import.meta.env.VITE_EN_BASE_URL
 	if (!emoji) {
 		return null
 	}
 	return emojiFn(
 		emoji,
-		process.env.NODE_ENV === 'production'
+		import.meta.env.MODE === 'production'
 			? {
 					baseUrl: siteUrl + '/twemoji/2/',
 					ext: '.png',

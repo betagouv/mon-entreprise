@@ -74,7 +74,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
 			this.site[INDICATOR.SITE.LANGAGE] = `[${options.language}]`
-			if (process.env.NODE_ENV === 'production' && doNotTrack) {
+			if (import.meta.env.MODE === 'production' && doNotTrack) {
 				this.privacy.setVisitorOptout()
 			} else {
 				this.privacy.setVisitorMode('cnil', 'exempt')

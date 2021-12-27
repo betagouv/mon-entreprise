@@ -8,11 +8,9 @@ dotenv.config()
 
 const rules = parsePublicodes(rawRules)
 
-const {
-	ALGOLIA_APP_ID,
-	ALGOLIA_ADMIN_KEY,
-	ALGOLIA_INDEX_PREFIX = '',
-} = process.env
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID
+const ALGOLIA_ADMIN_KEY = process.env.ALGOLIA_ADMIN_KEY
+const ALGOLIA_INDEX_PREFIX = process.env.ALGOLIA_INDEX_PREFIX || ''
 
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 

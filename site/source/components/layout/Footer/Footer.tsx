@@ -21,7 +21,7 @@ export default function Footer() {
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
 
-	const currentEnv = process.env.NODE_ENV
+	const currentEnv = import.meta.env.MODE
 	const { location } = window
 	const encodedUri =
 		(currentEnv === 'production' || currentEnv === 'development'
