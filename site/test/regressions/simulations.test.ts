@@ -7,8 +7,8 @@
 
 /* eslint-disable no-undef */
 
-import { expect, it } from '@jest/globals'
-import rules, { DottedName } from '../../../modele-social'
+import { expect, it } from 'vitest'
+import rules, { DottedName } from 'modele-social'
 import { engineFactory } from '../../source/components/utils/EngineContext'
 import aideDéclarationConfig from '../../source/pages/Gerer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'
