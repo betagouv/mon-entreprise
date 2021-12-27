@@ -1,4 +1,3 @@
-import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import yaml from '@rollup/plugin-yaml'
 import react from '@vitejs/plugin-react'
 import path from 'path'
@@ -7,7 +6,9 @@ import { defineConfig } from 'vite'
 import { injectHtml } from 'vite-plugin-html'
 import { watchDottedNames } from '../modele-social/build.js'
 
-watchDottedNames()
+if (process.env.WATCH_MODELE_SOCIAL) {
+	watchDottedNames()
+}
 
 /**
  * @type {import('vite').Config}
@@ -28,6 +29,7 @@ export default defineConfig({
 		},
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
+	publicDir: 'source/static',
 	plugins: [
 		react({
 			babel: {
@@ -36,7 +38,6 @@ export default defineConfig({
 		}),
 		yaml(),
 		toml,
-		viteCommonjs(),
 		injectHtml(),
 	],
 	build: {},
