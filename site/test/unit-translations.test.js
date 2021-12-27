@@ -1,4 +1,4 @@
-import { expect } from 'chai'
+import { it, expect } from 'vitest'
 import { parsePublicodes } from 'publicodes'
 import { uniq } from 'ramda'
 import rawRules from 'modele-social'

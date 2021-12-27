@@ -15,7 +15,7 @@ module.exports = {
 	globals: {
 		process: false,
 	},
-	plugins: ['react', 'react-hooks', 'mocha'],
+	plugins: ['react', 'react-hooks'],
 	rules: {
 		quotes: [
 			1,
@@ -36,8 +36,6 @@ module.exports = {
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/jsx-uses-react': 'off',
 		'react/react-in-jsx-scope': 'off',
-		'mocha/no-skipped-tests': 'warn',
-		'mocha/no-exclusive-tests': 'error',
 		'no-restricted-syntax': [
 			'error',
 			{

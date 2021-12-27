@@ -1,9 +1,7 @@
-import { expect } from 'chai'
-import { describe, it, beforeEach, afterEach } from 'mocha'
 import { createMemoryHistory } from 'history'
 import { DottedName } from 'modele-social'
 import { createStore } from 'redux'
-import * as sinon from 'sinon'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
 	loadPreviousSimulation,
 	setSimulationConfig,
@@ -38,21 +36,16 @@ const initialSimulation: Simulation = {
 }
 
 describe('[persistence] When simulation persistence is setup', () => {
-	const sandbox = sinon.createSandbox()
-	let spiedSafeLocalStorage: any
 	let store: any
+	const setItemSpy = vi.spyOn(safeLocalStorage, 'setItem')
 
 	beforeEach(() => {
-		spiedSafeLocalStorage = sandbox.spy(safeLocalStorage as any)
 		store = createStore(reducers, {
 			simulation: initialSimulation,
 			activeTargetInput: 'sometargetinput',
 		} as any)
 
 		setupSimulationPersistence(store, 0)
-	})
-	afterEach(() => {
-		sandbox.restore()
 	})
 
 	describe('when the state is changed with some data that is persistable', () => {
@@ -61,16 +54,14 @@ describe('[persistence] When simulation persistence is setup', () => {
 			await delay(0)
 		})
 		it('saves state in localStorage with all fields', () => {
-			expect(spiedSafeLocalStorage.setItem.calledOnce).to.be.true
-			expect(spiedSafeLocalStorage.setItem.getCall(0).args[1]).to.eq(
+			expect(setItemSpy).toHaveBeenCalled()
+			expect(setItemSpy.mock.calls[0]![1]).to.equal(
 				'{"situation":{"dotted name":"42"},"activeTargetInput":"sometargetinput","foldedSteps":["somestep"]}'
 			)
 		})
 		it('saves state in localStorage with a key dependent on the simulation url', () => {
-			expect(spiedSafeLocalStorage.setItem.calledOnce).to.be.true
-			expect(spiedSafeLocalStorage.setItem.getCall(0).args[0]).to.contain(
-				'someurl'
-			)
+			expect(setItemSpy).toHaveBeenCalled()
+			expect(setItemSpy.mock.calls[0]![0]).to.contain('someurl')
 		})
 	})
 })
@@ -79,13 +70,13 @@ describe('[persistence] When simulation config is set', () => {
 	const serializedPreviousSimulation =
 		'{"situation":{"dotted name . other":"42"},"activeTargetInput":"someothertargetinput","foldedSteps":["someotherstep"]}'
 
-	const sandbox = sinon.createSandbox()
 	let store: any
 
+	vi.spyOn(safeLocalStorage, 'getItem').mockReturnValue(
+		serializedPreviousSimulation
+	)
+
 	beforeEach(() => {
-		sandbox
-			.stub(safeLocalStorage, 'getItem')
-			.callsFake(() => serializedPreviousSimulation)
 		store = createStore(reducers)
 		const history = createMemoryHistory()
 		history.replace('/someotherurl')
@@ -93,9 +84,6 @@ describe('[persistence] When simulation config is set', () => {
 		store.dispatch(
 			setSimulationConfig(simulationConfig, history.location.pathname)
 		)
-	})
-	afterEach(() => {
-		sandbox.restore()
 	})
 	describe('when previous simulation is loaded in state', () => {
 		beforeEach(() => {

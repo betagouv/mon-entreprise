@@ -1,5 +1,4 @@
-import { expect } from 'chai'
-import sinon from 'sinon'
+import { describe, beforeEach, it, expect, vi } from 'vitest'
 import Engine, { parsePublicodes } from 'publicodes'
 import rules from 'modele-social'
 import {
@@ -103,7 +102,7 @@ rule without:
 	let setSearchParams
 
 	beforeEach(() => {
-		setSearchParams = sinon.spy(() => {})
+		setSearchParams = vi.fn()
 	})
 	it('removes searchParams that are in situation', () => {
 		const searchParams = new URLSearchParams('panta=123&rule without=333')
@@ -117,7 +116,7 @@ rule without:
 			dottedNameParamName,
 			Object.keys(newSituation)
 		)
-		expect(setSearchParams.calledWith('')).to.be.true
+		expect(setSearchParams).toHaveBeenCalledWith('', { replace: true })
 	})
 	it("doesn't remove other search params", () => {
 		const searchParams = new URLSearchParams(
@@ -133,6 +132,8 @@ rule without:
 			dottedNameParamName,
 			Object.keys(newSituation)
 		)
-		expect(setSearchParams.calledWith('utm_campaign=marketing')).to.be.true
+		expect(setSearchParams).toHaveBeenCalledWith('utm_campaign=marketing', {
+			replace: true,
+		})
 	})
 })
