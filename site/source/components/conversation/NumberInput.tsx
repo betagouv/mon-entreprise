@@ -81,9 +81,7 @@ export default function NumberInput({
 					if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
 						setCurrentValue(evaluatedNode.nodeValue as number)
 					}
-					setImmediate(() => {
-						onChange(node)
-					})
+					onChange(node)
 				}}
 				onSecondClick={() => onSubmit?.('suggestion')}
 			/>
