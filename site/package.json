@@ -19,17 +19,18 @@
 	],
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
+		"start": "vite dev",
 		"build": "vite build",
+		"serve:dev": "concurrently -k \"yarn run serve:dev:mon-entreprise\" \"yarn run serve:dev:infrance\"",
+		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
+		"serve:dev:infrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
 		"typecheck:watch": "tsc --skipLibCheck --noEmit --watch",
 		"test": "vitest",
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance,integrationFolder=cypress/integration/mon-entreprise/english --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
-		"start": "WATCH_MODELE_SOCIAL=1 vite",
-		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
 		"algolia:update": "node scripts/search/update-data.js",
-		"algolia:clean": "node scripts/search/clean.js",
-		"preview": "vite preview"
+		"algolia:clean": "node scripts/search/clean.js"
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
@@ -68,7 +69,7 @@
 		"ramda": "^0.27.0",
 		"react": "^17.0.0",
 		"react-color": "^2.14.0",
-		"react-dom": "npm:@hot-loader/react-dom",
+		"react-dom": "^17.0.0",
 		"react-easy-emoji": "^1.2.0",
 		"react-helmet-async": "^1.1.2",
 		"react-i18next": "^11.0.0",
@@ -93,15 +94,6 @@
 		"yaml": "^1.9.2"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.9.0",
-		"@babel/plugin-proposal-class-properties": "^7.8.3",
-		"@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
-		"@babel/plugin-proposal-object-rest-spread": "^7.9.5",
-		"@babel/plugin-proposal-optional-chaining": "^7.9.0",
-		"@babel/plugin-syntax-dynamic-import": "^7.8.3",
-		"@babel/preset-env": "^7.9.5",
-		"@babel/preset-react": "^7.9.4",
-		"@babel/preset-typescript": "^7.9.0",
 		"@react-types/numberfield": "^3.1.0",
 		"@react-types/searchfield": "^3.1.2",
 		"@rollup/plugin-yaml": "^3.1.0",
@@ -137,9 +129,9 @@
 		"prettier": "^2.3.2",
 		"rimraf": "^3.0.2",
 		"rollup-plugin-toml": "^1.0.0",
+		"serve": "^13.0.2",
 		"typescript": "^4.3.2",
 		"vite": "^2.7.7",
-		"vite-plugin-html": "2.1.1",
 		"vitest": "^0.0.116",
 		"xml2js": "^0.4.23"
 	}

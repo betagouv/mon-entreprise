@@ -4,6 +4,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import Worker from './SelectTauxRisque.worker.js?worker'
 const worker = new Worker()
 
+console.log(worker)
+
 function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = (option) => {

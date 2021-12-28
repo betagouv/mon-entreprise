@@ -65,8 +65,8 @@ jobs:
           yarn workspace site build:ssr
           yarn workspace site build:prerender
       - name: Replace site placeholders in netlify.toml redirection file
-        run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" netlify.toml;
-          sed -i "s|:SITE_EN|$EN_BASE_URL|g" netlify.toml;
+        run: sed -i "s|:SITE_FR|$FR_BASE_URL|g" site/netlify.toml;
+          sed -i "s|:SITE_EN|$EN_BASE_URL|g" site/netlify.toml;
       - name: Update Algolia index
         run: yarn workspace site algolia:update
         env:
@@ -79,7 +79,7 @@ jobs:
           name: static-site
           path: |
             site/dist/**
-            netlify.toml
+            site/netlify.toml
           if-no-files-found: error
 
   deploy-preview:
@@ -97,7 +97,7 @@ jobs:
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './site/dist'
+          publish-dir: '.'
           netlify-config-path: ./netlify.toml
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -126,7 +126,7 @@ jobs:
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './site/dist'
+          publish-dir: '.'
           netlify-config-path: ./netlify.toml
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}

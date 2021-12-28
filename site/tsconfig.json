@@ -10,11 +10,12 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
+		"isolatedModules": true,
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],
 			"Components/*": ["components/*"],
-			"Images/*": ["static/images/*"],
+			"Images/*": ["images/*"],
 			"Reducers/*": ["reducers/*"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"],
@@ -23,9 +24,10 @@
 			"Hooks/*": ["hooks/*"],
 			"API/*": ["api/*"]
 		},
+		"types": ["vite/client"],
 		"typeRoots": ["./types/", "./node_modules/@types"],
 		"noEmit": true,
 		"strict": true
 	},
-	"include": ["source", "test/**/*.ts", "dev-server.js"]
+	"include": ["source", "test/**/*.ts", "vite.config.ts"]
 }
