@@ -110,6 +110,7 @@
 		"@types/styled-components": "^5.1.9",
 		"@typescript-eslint/eslint-plugin": "^4.0.1",
 		"@typescript-eslint/parser": "^4.0.1",
+		"@vitejs/plugin-legacy": "^1.6.4",
 		"@vitejs/plugin-react": "^1.1.0",
 		"babel-plugin-styled-components": "^1.10.7",
 		"concurrently": "^6.0.2",
