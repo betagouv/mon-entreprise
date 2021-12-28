@@ -235,4 +235,4 @@ const formatLegend = (key: string) =>
 		? 'simulation commencée'
 		: key === 'simulation_terminee'
 		? 'simulation terminée'
-		: key.replaceAll('_', ' ')
+		: key.replace(/_/g, ' ')

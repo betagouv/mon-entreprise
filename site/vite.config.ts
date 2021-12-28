@@ -1,8 +1,9 @@
 import yaml from '@rollup/plugin-yaml'
+import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
+import { promises as fs } from 'fs'
 import path from 'path'
 import toml from 'rollup-plugin-toml'
-import { promises as fs } from 'fs'
 import { defineConfig, Plugin } from 'vite'
 import { watchDottedNames } from '../modele-social/build.js'
 
@@ -53,6 +54,9 @@ export default defineConfig({
 						'https://mon-entreprise.urssaf.fr/images/logo-mycompany-share.png',
 				},
 			},
+		}),
+		legacy({
+			targets: ['defaults', 'not IE 11'],
 		}),
 	],
 })
