@@ -30,7 +30,7 @@ import {
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-import logo from './static/images/logo-monentreprise.svg'
+import logo from 'Images/logo-monentreprise.svg'
 import safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
 

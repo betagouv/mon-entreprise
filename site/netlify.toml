@@ -96,70 +96,70 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "/sitemap.fr.txt"
   status = 200
 
-[[redirects]]
-  from = ":SITE_FR"
-  to = "/prerender/mon-entreprise/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR"
+#   to = "/prerender/mon-entreprise/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/cr%C3%A9er"
-  to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/cr%C3%A9er"
+#   to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/g%C3%A9rer"
-  to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/g%C3%A9rer"
+#   to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs"
-  to = "/prerender/mon-entreprise/simulateurs/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs"
+#   to = "/prerender/mon-entreprise/simulateurs/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
-  to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
+#   to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/salaire-brut-net"
-  to = "/prerender/mon-entreprise/simulateurs/salaire-brut-net/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/salaire-brut-net"
+#   to = "/prerender/mon-entreprise/simulateurs/salaire-brut-net/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/auto-entrepreneur"
-  to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/auto-entrepreneur"
+#   to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/ind%C3%A9pendant"
-  to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/ind%C3%A9pendant"
+#   to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/dirigeant-sasu"
-  to = "/prerender/mon-entreprise/simulateurs/dirigeant-sasu/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/dirigeant-sasu"
+#   to = "/prerender/mon-entreprise/simulateurs/dirigeant-sasu/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/simulateurs/artiste-auteur"
-  to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/simulateurs/artiste-auteur"
+#   to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/iframes/simulateur-embauche"
-  to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/iframes/simulateur-embauche"
+#   to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/iframes/simulateur-chomage-partiel"
-  to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/iframes/simulateur-chomage-partiel"
+#   to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_FR/iframes/pamc"
-  to = "/prerender/mon-entreprise/iframes/pamc/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_FR/iframes/pamc"
+#   to = "/prerender/mon-entreprise/iframes/pamc/index.html"
+#   status = 200
 
 [[redirects]]
   from = ":SITE_FR/*"
@@ -180,20 +180,20 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "/sitemap.en.txt"
   status = 200
 
-[[redirects]]
-  from = ":SITE_EN"
-  to = "/prerender/infrance/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_EN"
+#   to = "/prerender/infrance/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_EN/calculators/salary"
-  to = "/prerender/infrance/calculators/salary/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_EN/calculators/salary"
+#   to = "/prerender/infrance/calculators/salary/index.html"
+#   status = 200
 
-[[redirects]]
-  from = ":SITE_EN/iframes/simulateur-embauche"
-  to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
-  status = 200
+# [[redirects]]
+#   from = ":SITE_EN/iframes/simulateur-embauche"
+#   to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
+#   status = 200
 
 [[redirects]]
   from = ":SITE_EN/*"

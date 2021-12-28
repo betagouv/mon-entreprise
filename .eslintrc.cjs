@@ -83,6 +83,7 @@ module.exports = {
 				// TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
 				'@typescript-eslint/explicit-module-boundary-types': 'off',
 				'@typescript-eslint/no-floating-promises': 'off',
+				'@typescript-eslint/no-misused-promises': 'off',
 				'@typescript-eslint/no-extra-semi': 'off',
 				'@typescript-eslint/no-unsafe-assignment': 'off',
 				'@typescript-eslint/no-unsafe-call': 'off',

@@ -31,9 +31,26 @@
 			name="google-site-verification"
 			content="lO4OheVzHWfvwcoUC-1VKN_GTWtA5vEM-uPZqb2PORs"
 		/>
-		<meta property="og:type" content="website" />
 
 		<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
+		<meta
+			name="description"
+			content="{{ description }}"
+			data-react-helmet="true"
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:title" data-react-helmet="true" content="{{ title }}" />
+		<meta
+			property="og:description"
+			data-react-helmet="true"
+			content="{{ description }}"
+		/>
+
+		<meta
+			property="og:image"
+			data-react-helmet="true"
+			content="{{ shareImage }}"
+		/>
 
 		<link rel="manifest" href="/manifest.webmanifest" />
 
@@ -155,6 +172,7 @@
 	<body>
 		<!-- APP  -->
 		<div id="js"></div>
+		<script type="module" src="{{ entry }}"></script>
 
 		<script>
 			// Set the main colors from the provided customization in the URL We do it
