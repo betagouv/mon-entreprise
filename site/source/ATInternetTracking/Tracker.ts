@@ -61,15 +61,14 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 	if (Number.isNaN(site)) {
 		throw new Error('expect string siteId to be of number form')
 	}
-	const BaseTracker: ATTrackerClass = siteId ? ATInternet.Tracker.Tag : Log
+	const BaseTracker: ATTrackerClass = siteId ? ATInternet?.Tracker.Tag : Log
 	class Tag extends BaseTracker {
 		site: CustomSiteIndicator = {
 			[INDICATOR.SITE.LANGAGE]: '[fr]',
-			[INDICATOR.SITE.EMBARQUÉ]: document.location.pathname.includes(
-				'/iframes/'
-			)
-				? '1'
-				: '0',
+			[INDICATOR.SITE.EMBARQUÉ]:
+				!import.meta.env.SSR && document.location.pathname.includes('/iframes/')
+					? '1'
+					: '0',
 		}
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })

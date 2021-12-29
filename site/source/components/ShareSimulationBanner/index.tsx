@@ -21,7 +21,9 @@ export function useUrl() {
 
 	const { path = '' } = currentSimulatorData ?? {}
 	const siteUrl =
-		language === 'fr' ? process.env.FR_BASE_URL : process.env.EN_BASE_URL
+		language === 'fr'
+			? import.meta.env.VITE_FR_BASE_URL
+			: import.meta.env.VITE_EN_BASE_URL
 
 	searchParams.set('utm_source', 'sharing')
 	return siteUrl + path + '?' + searchParams.toString()

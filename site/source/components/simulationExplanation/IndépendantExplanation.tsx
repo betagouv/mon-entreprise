@@ -164,6 +164,7 @@ function DroitsRetraite() {
 	const { t } = useTranslation()
 	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
 	if (
+		!import.meta.env.SSR ||
 		document.referrer?.includes('secu-independants.fr') ||
 		document.referrer?.includes('simulateur-rsi.urssaf.fr')
 	) {

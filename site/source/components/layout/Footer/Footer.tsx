@@ -22,12 +22,12 @@ export default function Footer() {
 	const language = useTranslation().i18n.language as 'fr' | 'en'
 
 	const currentEnv = import.meta.env.MODE
-	const { location } = window
 	const encodedUri =
+		typeof window !== 'undefined' &&
 		(currentEnv === 'production' || currentEnv === 'development'
-			? `${location.protocol}//${location.host}`
-			: '') + window.location.pathname
-	const uri = decodeURIComponent(encodedUri).replace(/\/$/, '')
+			? `${window.location.protocol}//${window.location.host}`
+			: '' + window.location.pathname)
+	const uri = decodeURIComponent(encodedUri || '').replace(/\/$/, '')
 	const hrefLink = hrefLangLink[language][uri] || []
 
 	return (

@@ -6,12 +6,13 @@ import App from './App'
 import i18next from './locales/i18n'
 import './sentry'
 
-i18next.changeLanguage('fr')
-
-const AppFr = () => (
+export const AppFr = () => (
 	<I18nProvider locale="fr-FR">
 		<App basename="mon-entreprise" rules={rules} />
 	</I18nProvider>
 )
 
-render(<AppFr />, document.querySelector('#js'))
+if (!import.meta.env.SSR) {
+	i18next.changeLanguage('fr')
+	render(<AppFr />, document.querySelector('#js'))
+}

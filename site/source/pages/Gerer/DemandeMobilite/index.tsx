@@ -29,7 +29,9 @@ import { hash } from '../../../utils'
 import formulaire from './demande-mobilité.yaml'
 import picture from './undraw_Traveling_re_weve.svg'
 
-const LazyEndBlock = lazy(() => import('./EndBlock'))
+const LazyEndBlock = import.meta.env.SSR
+	? () => null
+	: lazy(() => import('./EndBlock'))
 
 export default function PageMobilité() {
 	const engine = new Engine(formulaire)
@@ -173,10 +175,13 @@ function FormulairePublicodes() {
 			</Grid>
 			<Spacing xl />
 			<WhenNotApplicable dottedName={'situation . notification' as DottedName}>
-				<Suspense fallback={null}>
-					<LazyEndBlock fields={fields} missingValues={missingValues} />
-				</Suspense>
+				{!import.meta.env.SSR && (
+					<Suspense fallback={null}>
+						<LazyEndBlock fields={fields} missingValues={missingValues} />
+					</Suspense>
+				)}
 			</WhenNotApplicable>
+
 			{!!Object.keys(situation).length && (
 				<div
 					css={`

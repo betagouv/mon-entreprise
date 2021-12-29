@@ -9,10 +9,7 @@ import translateRules from './locales/translateRules'
 import translations from './locales/ui-en.yaml'
 import './sentry'
 
-i18next.addResourceBundle('en', 'translation', translations)
-i18next.changeLanguage('en')
-
-const AppEn = () => (
+export const AppEn = () => (
 	<I18nProvider locale="en-GB">
 		<App
 			basename="infrance"
@@ -21,4 +18,9 @@ const AppEn = () => (
 	</I18nProvider>
 )
 
-render(<AppEn />, document.querySelector('#js'))
+i18next.addResourceBundle('en', 'translation', translations)
+
+if (!import.meta.env.SSR) {
+	i18next.changeLanguage('en')
+	render(<AppEn />, document.querySelector('#js'))
+}

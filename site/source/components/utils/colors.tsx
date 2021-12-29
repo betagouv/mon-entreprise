@@ -22,7 +22,7 @@ const PALETTE = {
 }
 
 const rawIframeColor = new URLSearchParams(
-	document.location.search.substring(1)
+	import.meta.env.SSR ? '' : document.location.search.substring(1)
 ).get('couleur')
 const IFRAME_COLOR: [number, number] = rawIframeColor
 	? JSON.parse(decodeURIComponent(rawIframeColor))
