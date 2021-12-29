@@ -147,7 +147,7 @@ const formatSimulationDataToAlgolia = (simulations) =>
 				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
 			})
 			.wait()
-		console.log('Updloading: simulateurs')
+		console.log('Uploading: simulateurs')
 		await simulateursIndex
 			.saveObjects(formatSimulationDataToAlgolia(getSimulationData()))
 			.wait()

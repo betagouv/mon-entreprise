@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{lang}}">
 	<head>
 		<meta charset="utf-8" />
 		<base href="/" />
@@ -77,101 +77,13 @@
 			html[data-useragent*='Trident'] #js {
 				display: none !important;
 			}
-
-			/* Prevent FOUC effect */
-			#js {
-				opacity: 0;
-			}
-
-			/* CSS Loader */
-
-			#loading {
-				animation: appear 0.6s;
-				transform: translateY(35vh);
-				width: 100%;
-			}
-			#lds-ellipsis {
-				margin: auto;
-				position: relative;
-				width: 64px;
-				animation: appear 1.5s;
-				height: 64px;
-			}
-			#lds-ellipsis div {
-				position: absolute;
-				top: 27px;
-				width: 11px;
-				height: 11px;
-				border-radius: 50%;
-				background: rgb(41, 117, 209);
-				animation-timing-function: cubic-bezier(0, 1, 1, 0);
-			}
-
-			#lds-ellipsis div:nth-child(1) {
-				left: 6px;
-				animation: lds-ellipsis1 0.6s infinite;
-			}
-
-			#lds-ellipsis div:nth-child(2) {
-				left: 6px;
-				animation: lds-ellipsis2 0.6s infinite;
-			}
-
-			#lds-ellipsis div:nth-child(3) {
-				left: 26px;
-				animation: lds-ellipsis2 0.6s infinite;
-			}
-
-			#lds-ellipsis div:nth-child(4) {
-				left: 45px;
-				animation: lds-ellipsis3 0.6s infinite;
-			}
-
-			@keyframes appear {
-				from {
-					opacity: 0;
-				}
-				80% {
-					opacity: 0;
-				}
-				100% {
-					opacity: 1;
-				}
-			}
-
-			@keyframes lds-ellipsis1 {
-				0% {
-					transform: scale(0);
-				}
-				100% {
-					transform: scale(1);
-				}
-			}
-
-			@keyframes lds-ellipsis3 {
-				0% {
-					transform: scale(1);
-				}
-				100% {
-					transform: scale(0);
-				}
-			}
-
-			@keyframes lds-ellipsis2 {
-				0% {
-					transform: translate(0, 0);
-				}
-				100% {
-					transform: translate(19px, 0);
-				}
-			}
 		</style>
 		<meta name="theme-color" content="#2975d1" />
+		<!--app-style-->
 	</head>
 
 	<body>
-		<!-- APP  -->
-		<div id="js"></div>
+		<div id="js"><!--app-html--></div>
 		<script type="module" src="{{ entry }}"></script>
 
 		<script>

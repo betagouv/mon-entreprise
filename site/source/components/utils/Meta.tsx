@@ -46,7 +46,10 @@ export default function Meta({
 					content={
 						meta.ogImage.startsWith('http')
 							? meta.ogImage
-							: window.location.host + pathname + '/' + meta.ogImage
+							: (typeof window !== 'undefined' ? window.location.host : '') +
+							  pathname +
+							  '/' +
+							  meta.ogImage
 					}
 				/>
 			)}

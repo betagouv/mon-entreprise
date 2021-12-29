@@ -1,4 +1,4 @@
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+// import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
 import { Appear } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -11,27 +11,26 @@ import { useTranslation } from 'react-i18next'
 const localStorageKey = 'last-viewed-release'
 
 export const hideNewsBanner = () => {
-	writeStorage(localStorageKey, lastRelease.name)
+	// writeStorage(localStorageKey, lastRelease.name)
 }
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
-	const [lastViewedRelease] = useLocalStorage(localStorageKey)
+	// const [lastViewedRelease] = useLocalStorage(localStorageKey)
 	const sitePaths = useContext(SitePathsContext)
 	const { i18n, t } = useTranslation()
 
 	// We only want to show the banner to returning visitors, so we initiate the
 	// local storage value with the last release.
 	useEffect(() => {
-		writeStorage(
-			localStorageKey,
-			lastViewedRelease === undefined ? lastRelease.name : lastViewedRelease
-		)
+		// writeStorage(
+		// 	localStorageKey,
+		// 	lastViewedRelease === undefined ? lastRelease.name : lastViewedRelease
+		// )
 	}, [])
 
-	const showBanner =
-		lastViewedRelease !== lastRelease.name && i18n.language === 'fr'
+	const showBanner = false
 
 	if (!showBanner) {
 		return null

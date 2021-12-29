@@ -3,8 +3,8 @@ import { H1, H2, H3, H4, H5, H6 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import React, { useContext, useEffect } from 'react'
 import MarkdownToJsx from 'markdown-to-jsx'
+import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
@@ -151,7 +151,7 @@ export function useScrollToHash() {
 			}
 			element.scrollIntoView()
 		}
-	}, [window.location.hash])
+	}, [window?.location.hash])
 }
 
 export function HeadingWithAnchorLink({

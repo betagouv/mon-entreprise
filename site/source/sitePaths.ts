@@ -206,10 +206,18 @@ const basePathEn = import.meta.env.PROD
 	: '/infrance'
 
 const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
-	(path) => 'http://' + window.location.host + basePathEn + path
+	(path) =>
+		'http://' +
+		(typeof window === 'undefined' ? '' : window.location.host) +
+		basePathEn +
+		path
 )
 const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
-	(path) => 'http://' + window.location.host + basePathFr + path
+	(path) =>
+		'http://' +
+		(typeof window === 'undefined' ? '' : window.location.host) +
+		basePathFr +
+		path
 )
 
 export const hrefLangLink = {
