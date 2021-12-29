@@ -8,7 +8,7 @@ situation . PAM:
   titre: Praticien et auxiliaire médical
   applicable si: situation = 'PAM'
   description: >-
-    Choisissez cette option si vous exercez en libéral une des profession suivante :
+    Choisissez cette option si vous exercez en libéral une des professions suivantes :
     - Auxiliaire médical (infirmier, masseur-kinésithérapeute,
     orthophoniste, orthoptiste ou pédicure-podologue)
     - Médecin
@@ -83,13 +83,26 @@ notification signature:
     Nous vous invitons à utiliser un écran tactile pour le compléter (téléphone, tablette, etc.). Sinon, vous devrez l’imprimer, le signer et le scanner avant envoi par mail.
 
 
-    *En cas de difficultés pour remplir ce formulaire, contactez un conseiller par email mobilite-internationale@urssaf.fr ou par téléphone au +33(0) 806 804 213 de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).*
+    *En cas de difficultés pour remplir ce formulaire, contactez un conseiller par email mobilite-internationale@urssaf.fr ou par téléphone au +33(0) 806 804 213 du lundi au vendredi de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).*
 
 infos personnelles:
   applicable si: situation = 'PAM'
   titre: Vos informations personnelles
   type: groupe
   valeur: oui
+
+
+salarié CEA ou TESE:
+  applicable si: situation = 'salarié'
+  question: Etes ou adhérent au TESE ou CEA ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - TESE
+      - CEA
+salarié CEA ou TESE . TESE:
+salarié CEA ou TESE . CEA:
+
 
 infos salarié:
   applicable si: situation = 'salarié'
