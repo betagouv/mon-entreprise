@@ -80,7 +80,7 @@ export default function ResultatsParFormulaire() {
 
 										{r.rawNode.description && (
 											<div className="ui__ notice">
-												<Markdown source={r.rawNode.description} />
+												<Markdown>{r.rawNode.description}</Markdown>
 											</div>
 										)}
 										<p className="ui__ lead" css="margin-bottom: 1rem;">
@@ -137,7 +137,7 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 												{node.rawNode.résumé}
 												{node.rawNode.description && (
 													<ButtonHelp title={node.title} type="info">
-														<Markdown source={node.rawNode.description} />
+														<Markdown>{node.rawNode.description}</Markdown>
 													</ButtonHelp>
 												)}
 											</small>

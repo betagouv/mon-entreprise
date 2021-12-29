@@ -107,12 +107,10 @@ export default function Nouveautés() {
 						</Sidebar>
 					</Grid>
 					<Grid item xs={12} lg={9}>
-						<SimulationGoals>
-							<MarkdownWithAnchorLinks
-								source={data[selectedRelease].description}
-								escapeHtml={false}
-								renderers={{ text: TextRenderer }}
-							/>
+						<MainBlock>
+							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
+								{data[selectedRelease].description}
+							</MarkdownWithAnchorLinks>
 
 							<NavigationButtons>
 								{selectedRelease + 1 < data.length ? (
@@ -128,7 +126,7 @@ export default function Nouveautés() {
 									</Link>
 								)}
 							</NavigationButtons>
-						</SimulationGoals>
+						</MainBlock>
 					</Grid>
 				</Grid>
 				<MoreInfosOnUs />
@@ -182,9 +180,7 @@ const Sidebar = styled.ul`
 	}
 `
 
-const SmallScreenSelect = styled.select``
-
-const SimulationGoals = styled.div`
+const MainBlock = styled.div`
 	flex: 1;
 
 	> h1:first-child,

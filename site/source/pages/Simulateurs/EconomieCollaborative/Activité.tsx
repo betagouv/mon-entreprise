@@ -69,7 +69,7 @@ export default function Activité({
 				<H1>
 					<Emoji emoji={activité.icônes} /> {activité.titre}
 				</H1>
-				<Markdown source={activité.explication} />
+				<Markdown>{activité.explication}</Markdown>
 				{activité.plateformes && (
 					<SmallBody>
 						<Emoji emoji={'📱 '} />

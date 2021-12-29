@@ -14,7 +14,7 @@ export default function CotisationsRégularisation() {
 		<FromBottom>
 			<div>
 				<H3 as="h2">{rule.title}</H3>
-				<Markdown source={rule.rawNode.description} />
+				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
 
 				{rule.rawNode.références && (
 					<>

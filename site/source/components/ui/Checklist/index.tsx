@@ -80,7 +80,7 @@ export function CheckItem({
 					`}
 				>
 					{typeof explanations === 'string' ? (
-						<Markdown source={explanations} />
+						<Markdown>{explanations}</Markdown>
 					) : (
 						explanations
 					)}

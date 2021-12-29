@@ -23,7 +23,7 @@ export default function CotisationsForfaitaires() {
 					<Value expression="dirigeant . indépendant . cotisations et contributions . début activité" />
 				</Intro>
 
-				<Markdown source={rule.rawNode.description} />
+				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
 				{rule.rawNode.références && (
 					<>
 						<Spacing lg />

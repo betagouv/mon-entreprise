@@ -74,7 +74,7 @@ export default function ResultatsSimples() {
 						</H3>
 
 						{r.rawNode.description && (
-							<Markdown source={r.rawNode.description} />
+							<Markdown>{r.rawNode.description}</Markdown>
 						)}
 					</FromTop>
 				)
@@ -113,7 +113,7 @@ export default function ResultatsSimples() {
 								</Intro>
 
 								{r.rawNode.description && (
-									<Markdown source={r.rawNode.description} />
+									<Markdown>{r.rawNode.description}</Markdown>
 								)}
 								<Intro>
 									<RuleLink dottedName={r.dottedName}>

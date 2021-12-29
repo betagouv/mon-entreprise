@@ -121,7 +121,7 @@ function FormulairePublicodes() {
 								{type === 'groupe' ? (
 									<Grid item xs={12}>
 										{title && <HeaderComponent>{title}</HeaderComponent>}
-										{description && <Markdown source={description} />}
+										{description && <Markdown>{description}</Markdown>}
 									</Grid>
 								) : type === 'notification' ? (
 									<WhenApplicable dottedName={dottedName as DottedName}>
@@ -148,13 +148,11 @@ function FormulairePublicodes() {
 												`}
 											>
 												{' '}
-												<Markdown
-													source={
-														typeof question !== 'string'
-															? (engine.evaluate(question) as any).nodeValue
-															: question
-													}
-												/>
+												<Markdown>
+													{typeof question !== 'string'
+														? (engine.evaluate(question) as any).nodeValue
+														: question}
+												</Markdown>
 											</div>
 										)}
 
@@ -164,7 +162,7 @@ function FormulairePublicodes() {
 											onChange={(value) => onChange(dottedName, value)}
 										/>
 										{question && type === undefined && description && (
-											<Markdown source={description} />
+											<Markdown>{description}</Markdown>
 										)}
 									</Grid>
 								)}
