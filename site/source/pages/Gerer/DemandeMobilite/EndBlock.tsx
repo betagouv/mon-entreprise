@@ -6,11 +6,12 @@ import { Button } from 'DesignSystem/buttons'
 import { Checkbox, TextField } from 'DesignSystem/field'
 import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
+import { Strong } from 'DesignSystem/typography'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
-import { RuleNode } from 'publicodes'
+import { RuleNode, utils } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { ThemeContext } from 'styled-components'
@@ -54,9 +55,15 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 					)}
 				>
 					<Ul>
-						{missingValues.map(({ title, dottedName }) => (
-							<Li key={dottedName}>{title}</Li>
-						))}
+						{missingValues.map(
+							({ title, dottedName, rawNode }) =>
+								rawNode.type !== 'groupe' && (
+									<Li key={dottedName}>
+										<Strong>{title}</Strong>{' '}
+										<small>({utils.ruleParents(dottedName)[0]})</small>
+									</Li>
+								)
+						)}
 					</Ul>
 				</PopoverWithTrigger>
 			</>

@@ -23,7 +23,6 @@ import useSimulatorsData, { SimulatorData } from './metadata'
 export default function Simulateurs() {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-	const language = useTranslation().i18n.language
 	const simulators = useSimulatorsData()
 	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
@@ -98,9 +97,9 @@ export default function Simulateurs() {
 				<Grid container spacing={3}>
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
-
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
+					<SimulateurCard {...simulators['demande-mobilité']} />
 				</Grid>
 			</section>
 			<section>

@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const algoliasearch = require('algoliasearch')
 const rawRules = require('modele-social')
-const rules = require('publicodes').parsePublicodes(rawRules)
 
 const getSimulationData = require('../../source/pages/Simulateurs/metadata-src')
 
@@ -97,7 +96,12 @@ const formatSimulationDataToAlgolia = (simulations) =>
 				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
 			})
 			.wait()
+
 		console.log('Uploading: rules')
+
+		const rules = await import('publicodes').then(({ parsePublicodes }) =>
+			parsePublicodes(rawRules)
+		)
 		await rulesIndex.saveObjects(formatRulesToAlgolia(rules)).wait()
 
 		console.log('Clearing: simulateurs')

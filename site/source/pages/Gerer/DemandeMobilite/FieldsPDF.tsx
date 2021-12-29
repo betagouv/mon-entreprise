@@ -24,7 +24,9 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 						) : (
 							<>
 								<Text style={styles.name}>
-									{question ?? title}{' '}
+									{question && typeof question === 'object'
+										? (engine.evaluate(question) as any).nodeValue
+										: question ?? title}{' '}
 									{note && <Text style={styles.fieldNumber}>({note})</Text>}
 								</Text>
 

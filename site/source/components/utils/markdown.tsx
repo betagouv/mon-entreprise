@@ -118,6 +118,7 @@ export const Markdown = ({
 			strong: Strong,
 			listItem: Li,
 			heading: Heading,
+			emphasis: ({ children }) => <small>{children}</small>,
 			...renderers,
 		}}
 		{...otherProps}

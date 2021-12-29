@@ -69,7 +69,6 @@ export const H5 = styled.h5`
 			${theme.spacings.md} 0 ${theme.spacings.xs}
 		`};
 	line-height: 1.5rem;
-	text-transform: capitalize;
 `
 
 export const H6 = styled.h6`
