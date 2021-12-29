@@ -54,7 +54,7 @@ export default function Budget() {
 			<H1>
 				Budget <Emoji emoji="💶" />
 			</H1>
-			<Markdown source={intro} />
+			<Markdown>{intro}</Markdown>
 			<H2>Budget consommé</H2>
 			<Grid item xs={6} sm={4}>
 				<Select
@@ -72,7 +72,7 @@ export default function Budget() {
 				</Select>
 			</Grid>
 
-			<Markdown source={ressources[selectedYear]} />
+			<Markdown>{ressources[selectedYear]}</Markdown>
 			{selectedYear !== '2019' && (
 				<>
 					<div
@@ -194,7 +194,7 @@ export default function Budget() {
 							</tfoot>
 						</RessourcesAllocationTable>
 					</div>
-					<Markdown source={ressourcesDescription} />
+					<Markdown>{ressourcesDescription}</Markdown>
 				</>
 			)}
 			<MoreInfosOnUs />

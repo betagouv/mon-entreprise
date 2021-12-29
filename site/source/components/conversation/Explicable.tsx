@@ -28,7 +28,7 @@ export function ExplicableRule({
 			title={rule.title}
 			light={light}
 		>
-			<Markdown source={rule.rawNode.description} />
+			<Markdown>{rule.rawNode.description}</Markdown>
 		</ButtonHelp>
 	)
 }

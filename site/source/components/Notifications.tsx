@@ -67,7 +67,7 @@ export default function Notifications() {
 				<Notification className="notification" key={dottedName}>
 					<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
 					<NotificationContent className="notificationText">
-						<Markdown source={résumé ?? description} />{' '}
+						<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
 						{résumé && (
 							<RuleLink dottedName={dottedName as DottedName}>
 								<Trans>En savoir plus</Trans>

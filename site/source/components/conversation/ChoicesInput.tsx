@@ -111,7 +111,7 @@ function RadioChoice({
 							</Radio>{' '}
 							{node.rawNode.description && (
 								<ButtonHelp type="info" light title={node.title}>
-									<Markdown source={node.rawNode.description} />
+									<Markdown>{node.rawNode.description ?? ''}</Markdown>
 								</ButtonHelp>
 							)}
 						</span>

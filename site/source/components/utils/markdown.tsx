@@ -4,7 +4,7 @@ import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { useContext, useEffect } from 'react'
-import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
+import MarkdownToJsx from 'markdown-to-jsx'
 import { useLocation } from 'react-router-dom'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
@@ -12,7 +12,6 @@ import Emoji from './Emoji'
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',
 	'mycompanyinfrance.urssaf.fr': 'infrance',
-	'publi.codes': 'publicodes',
 } as const
 
 export function LinkRenderer({
@@ -24,14 +23,6 @@ export function LinkRenderer({
 	children: React.ReactNode
 }) {
 	const siteName = useContext(SiteNameContext)
-
-	if (href && !href.startsWith('http')) {
-		return (
-			<Link to={href} {...otherProps}>
-				{children}
-			</Link>
-		)
-	}
 
 	if (href && !href.startsWith('http')) {
 		return (
@@ -67,8 +58,7 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<Emoji emoji={children} />
 )
 
-type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
+type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
 }
 
@@ -100,29 +90,34 @@ const CodeBlock = ({
 )
 
 export const Markdown = ({
-	source,
-	className = '',
-	renderers = {},
+	children,
+	components = {},
 	...otherProps
 }: MarkdownProps) => (
-	<ReactMarkdown
-		transformLinkUri={(src) => src}
-		source={source}
-		className={`markdown ${className}`}
-		renderers={{
-			link: LinkRenderer,
-			paragraph: Body,
-			text: TextRenderer,
-			code: CodeBlock,
-			list: Ul,
-			strong: Strong,
-			listItem: Li,
-			heading: Heading,
-			emphasis: ({ children }) => <small>{children}</small>,
-			...renderers,
-		}}
+	<MarkdownToJsx
 		{...otherProps}
-	/>
+		options={{
+			...otherProps.options,
+			overrides: {
+				h1: H1,
+				h2: H2,
+				h3: H3,
+				h4: H4,
+				h5: H5,
+				h6: H6,
+				p: Body,
+				strong: Strong,
+				a: LinkRenderer,
+				ul: Ul,
+				li: Li,
+				code: CodeBlock,
+				span: TextRenderer,
+				...components,
+			},
+		}}
+	>
+		{children}
+	</MarkdownToJsx>
 )
 
 export const MarkdownWithAnchorLinks = ({
