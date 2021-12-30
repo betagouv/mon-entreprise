@@ -171,6 +171,15 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
     tests.
 -   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet avec gestion des DNS.
 
+### Prévisualisation
+
+Il est possible de simuler localement le comportement de l'application après le build complet, y compris le pré-rendu statique et les redirection Netlify, avec les commandes suivantes :
+
+```yaml
+yarn preview:mon-entreprise
+yarn preview:infrance
+```
+
 ### Analyse des bundles
 
 La commande `yarn run build:analyse-bundle` gènere une visualisation interactive du
