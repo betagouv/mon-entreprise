@@ -81,7 +81,8 @@ const inferPLSimulateurFromCompanyDetails = (
 		'86.22C': 'médecin',
 		'86.23Z': 'chirurgien-dentiste',
 		'47.73Z': 'pharmacien',
-		'86.90D': 'pamc',
+		'86.90D': 'auxiliaire-médical',
+		'86.90E': 'auxiliaire-médical',
 		'71.11Z': 'profession-libérale', // archi
 	} as Record<string, keyof SimulatorData>
 	return nafToSimulator[company.codeNAF] || null
@@ -95,6 +96,7 @@ export default function Gérer() {
 	const dirigeantSimulateur =
 		infereDirigeantSimulateurFromCompanyDetails(company)
 	const plSimulateur = inferPLSimulateurFromCompanyDetails(company)
+	const isPL = plSimulateur !== null
 	const simulateurs = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	if (!company) {
@@ -120,7 +122,7 @@ export default function Gérer() {
 							grâce aux simulateurs adaptés à votre situation.
 						</Trans>
 					</Intro>
-					<CompanySection company={company} />
+					<CompanySection company={company} isPL={isPL} />
 					<Spacing xl />
 				</PageHeader>
 
@@ -137,12 +139,15 @@ export default function Gérer() {
 							{plSimulateur && (
 								<SimulateurCard fromGérer {...simulateurs[plSimulateur]} />
 							)}
-							{dirigeantSimulateur !== null && (
-								<SimulateurCard
-									fromGérer
-									{...simulateurs[dirigeantSimulateur]}
-								/>
-							)}
+							{dirigeantSimulateur !== null &&
+								!(
+									isPL && dirigeantSimulateur === 'entreprise-individuelle'
+								) && (
+									<SimulateurCard
+										fromGérer
+										{...simulateurs[dirigeantSimulateur]}
+									/>
+								)}
 
 							{company?.statutJuridique &&
 								['EIRL', 'EI', 'EURL', 'SARL'].includes(
@@ -221,9 +226,10 @@ export default function Gérer() {
 
 type CompanySectionProps = {
 	company: Company | null
+	isPL?: boolean
 }
 
-export const CompanySection = ({ company }: CompanySectionProps) => {
+export const CompanySection = ({ company, isPL }: CompanySectionProps) => {
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
 	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] =
 		useState(false)
@@ -235,7 +241,8 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 
 			if (
 				company?.statutJuridique === 'EI' &&
-				company?.isAutoEntrepreneur == null
+				company?.isAutoEntrepreneur == null &&
+				!isPL
 			) {
 				showAutoEntrepreneurModal(true)
 			}
@@ -246,7 +253,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 				showDirigeantMajoritaireModal(true)
 			}
 		}
-	}, [company])
+	}, [company, isPL])
 
 	const dispatch = useDispatch()
 	const handleAnswerAutoEntrepreneur = (isAutoEntrepreneur: boolean) => {
