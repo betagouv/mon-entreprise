@@ -27,7 +27,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          working-directory: mon-entreprise
+          working-directory: site
           record: true
           tag: external-integration
           config: integrationFolder=cypress/integration/external,baseUrl=https://mon-entreprise.urssaf.fr
@@ -36,7 +36,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           install: false
-          working-directory: mon-entreprise
+          working-directory: site
           # List here all the specs that are making external API calls:
           spec: |
             cypress/integration/mon-entreprise/english/gérer.js
