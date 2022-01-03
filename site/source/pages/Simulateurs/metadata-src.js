@@ -382,7 +382,7 @@ module.exports = ({ t = (_, text) => text } = {}) => {
 				),
 				description: t(
 					'pages.gérer.demande-mobilité.meta.description',
-					"Formulaire interactif à compléter pour les indépendants souhaitant exercer leur activité dans d'autres pays d'Europe"
+					"Formulaire interactif à compléter en cas d'exercice d'une activité professionnelle à l'étranger"
 				),
 			},
 			pathId: 'gérer.formulaireMobilité',

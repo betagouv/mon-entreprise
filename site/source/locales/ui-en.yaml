@@ -1104,8 +1104,7 @@ pages:
       title: Help with your 2019 income tax return
     demande-mobilité:
       meta:
-        description: Interactive form to be completed for self-employed persons wishing
-          to carry out their activity in other European countries
+        description: Interactive form to be filled in if you work abroad
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
   simulateurs:

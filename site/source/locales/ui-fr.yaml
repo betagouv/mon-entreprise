@@ -851,8 +851,8 @@ pages:
       title: Aide à la déclaration de revenus au titre de l'année 2020
     demande-mobilité:
       meta:
-        description: Formulaire interactif à compléter pour les indépendants souhaitant
-          exercer leur activité dans d'autres pays d'Europe
+        description: Formulaire interactif à compléter en cas d'exercice d'une activité
+          professionnelle à l'étranger
         title: "Travailleur indépendant : demande de mobilité en Europe"
       shortname: Demande de mobilité internationale
   simulateurs:
