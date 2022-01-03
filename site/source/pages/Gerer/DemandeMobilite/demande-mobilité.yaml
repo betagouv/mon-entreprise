@@ -93,7 +93,7 @@ infos personnelles:
 
 salarié CEA ou TESE:
   applicable si: situation = 'salarié'
-  question: Etes ou adhérent au TESE ou CEA ?
+  question: Êtes-vous adhérent au TESE ou au CEA ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
