@@ -119,7 +119,14 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
     plafond:
       produit:
         assiette: nombre
-        facteur: 5.55 €/titres-restaurant
+        facteur:
+          nom: max
+          valeur:
+            variations:
+            - si: année = 2022
+              alors: 5.69 €/titres-restaurant
+            - si: année = 2021
+              alors: 5.55 €/titres-restaurant
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
@@ -139,12 +146,14 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   description: >-
     Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
     revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
-    dépasser 11,08€ par titre en 2021.
+    dépasser 11,38€ par titre en 2021.
   par défaut: 8 €/titre-restaurant
   suggestions:
     faible: 6 €/titre-restaurant
     moyenne: 8 €/titre-restaurant
-    max exonéré: 11.10 €/titre-restaurant
+    max exonéré:
+      valeur: part déductible . max / taux participation employeur
+      unité: € / titre-restaurant
 
 contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
   description: >-
