@@ -1115,19 +1115,25 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
-  formule:
-    barème:
-      assiette: assiette des cotisations
-      tranches:
-        - taux: 7%
-          plafond:
-            nom: plafond
-            acronyme: PRCI
-            titre: plafond retraite complémentaire des indépendants
-            valeur: 38493 €/an
-        - taux: 8%
-          plafond: 4 * plafond sécurité sociale temps plein
-    arrondi: oui
+  barème:
+    assiette: assiette des cotisations
+    tranches:
+      - taux: 7%
+        plafond:
+          nom: plafond
+          acronyme: PRCI
+          titre: plafond retraite complémentaire des indépendants
+          valeur:
+            variations:
+              - si: année = 2022
+                alors: 38916 €/an
+              - si: année = 2021
+                alors: 38493 €/an
+      - taux: 8%
+        plafond: 4 * plafond sécurité sociale temps plein
+  arrondi: oui
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/artisans-commercants-et-professi/bases-de-calcul-et-taux-des-coti.html
 
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   formule:
