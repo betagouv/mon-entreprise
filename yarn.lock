@@ -11438,20 +11438,34 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publicodes-react@^1.0.0-beta.20:
-  version "1.0.0-beta.20"
-  resolved "https://registry.npmjs.org/publicodes-react/-/publicodes-react-1.0.0-beta.20.tgz"
-  integrity sha512-VOdC8q2SejfKwMASbIwSz4Qma8ocWocIN9qM/oDbPpWqQzfDYL+iMdCFlGTM0mR4j/PuCW0gAdLZ1IMnUdK8GA==
+publicodes-react@^1.0.0-beta.23:
+  version "1.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.25.tgz#8fe4dc18d582ef7904714da56a23d81fa62af493"
+  integrity sha512-DgLY1qv+7se9pvnluR4Bsy+QNfkcru+9cCvWCyakZmzLB5G0LfEhmqHnmR8aC9QRd6ojvBRvEgMeXB8xKqbV3g==
   dependencies:
     focus-trap-react "^8.8.2"
     react-markdown "^4.3.1"
     styled-components "^5.1.0"
     yaml "^1.9.2"
 
-publicodes@^1.0.0-beta.17, publicodes@^1.0.0-beta.20:
+publicodes@^1.0.0-beta.17:
   version "1.0.0-beta.20"
   resolved "https://registry.npmjs.org/publicodes/-/publicodes-1.0.0-beta.20.tgz"
   integrity sha512-VVDtfMts7V6G1v8dhp3RdjkuN5C5jOmCqSVtSfSvedoJLx4/pof9Ao6wkhxYlIejYvO8E6uY4KljdiBPpzUDaw==
+  dependencies:
+    "@babel/core" "^7.14.6"
+    "@babel/preset-env" "^7.14.5"
+    "@types/webpack-env" "^1.16.0"
+    moo "^0.5.1"
+    nearley "^2.19.2"
+    node-loader "^2.0.0"
+    webpack "^5.39.1"
+    yaml "^1.9.2"
+
+publicodes@^1.0.0-beta.23:
+  version "1.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.25.tgz#b57739187d9f8b663c11d7ea66cc8295058a672b"
+  integrity sha512-aitS+kE9CTHrGT6z4xH1ZFlD1lrJyLHO2C3dUXsBGgM3GsC4Xt9yMTs36lGWVzBh2uVk1wxfok3BeYLyA4fDTQ==
   dependencies:
     "@babel/core" "^7.14.6"
     "@babel/preset-env" "^7.14.5"
