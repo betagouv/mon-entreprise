@@ -35,7 +35,8 @@ describe(`Formulaire demande mobilité (${
 	})
 
 	it('should allow to complete and download', () => {
-		cy.contains('Salarié').click()
+		cy.contains('Salarié').click().wait(500)
+		cy.focused().tab().type('{downarrow}')
 
 		// "coordonnées" section
 		cy.contains('Nom').click({ force: true })
