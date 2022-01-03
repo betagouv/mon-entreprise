@@ -27,7 +27,7 @@ Si vous souhaitez contribuer à l'un des deux projets, rendez-vous sur [CONTRIBU
 
 ## 🇬🇧 English users
 
-This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [mon-entreprise.urssaf.fr](https://mon-entreprise.urssaf.fr)
+This repository powers [mycompanyinfrance.urssaf.fr](https://mycompanyinfrance.urssaf.fr) and [mon-entreprise.urssaf.fr](https://mon-entreprise.urssaf.fr)
 
 Most of the documentation (including issues and commit message) is written in french, please raise an [issue](https://github.com/betagouv/mon-entreprise/issues/new) if you are interested and do not speak French.
 

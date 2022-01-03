@@ -11,7 +11,7 @@ import Emoji from './Emoji'
 
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',
-	'mycompanyinfrance.fr': 'infrance',
+	'mycompanyinfrance.urssaf.fr': 'infrance',
 	'publi.codes': 'publicodes',
 } as const
 

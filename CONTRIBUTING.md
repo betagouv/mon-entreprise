@@ -135,7 +135,7 @@ $ yarn workspace site test:dev-e2e:mycompanyinfrance
 
 ### Traduction 👽
 
-Le site est disponible en français, et en anglais sur https://mycompanyinfrance.com
+Le site est disponible en français, et en anglais sur https://mycompanyinfrance.urssaf.fr
 
 Les traductions se trouvent dans le répertoire `site/source/locales`.
 
