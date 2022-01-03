@@ -366,8 +366,12 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
         valeur: assiette des cotisations
         plafond: 3 * plafond sécurité sociale temps plein
         plancher: 40% * plafond sécurité sociale temps plein
-      # TODO: Le taux est exceptionnellement de 0,15% en 2021 et passera à 0,30% à partir de 2022
-      taux: 0.15%
+      taux:
+        variations:
+          - si: année = 2022
+            alors: 0.3%
+          - si: année = 2021
+            alors: 0.15%
     arrondi: oui
   références:
     Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
