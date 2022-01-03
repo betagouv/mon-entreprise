@@ -77,8 +77,11 @@ artiste-auteur . cotisations . option surcotisation:
   question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
   description: |
     Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
-    de vos droits sociaux. Vous pouvez choisir de surcotiser pour augmenter vos
-    droits.
+    de vos droits sociaux. Vous pouvez choisir de surcotiser sur l'année entière
+    pour augmenter vos droits.
+
+    Dans ce cas, vos cotisations vieillesse seront calculées sur la base de 900 Smic
+    horaire dans l’année.
   par défaut: non
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
