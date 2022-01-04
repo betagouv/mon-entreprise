@@ -127,7 +127,7 @@ exports[`calculate simulations-auto-entrepreneur: activité mixte 3`] = `"[20000
 
 exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5742,62,5000,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[57415,618,50000,248,49752]"`;
+exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[57415,618,50000,237,49763]"`;
 
 exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,25000,706,24294]"`;
 
@@ -143,9 +143,9 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 5`] = `"[1
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 6`] = `"[22966,247,20000,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 7`] = `"[57415,618,50000,248,49752]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 7`] = `"[57415,618,50000,237,49763]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[80381,865,70000,1312,68688]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[80381,865,70000,1301,68699]"`;
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 9`] = `
 "[114830,1236,100000,3912,96088]
@@ -217,9 +217,9 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . 
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73019,23019,50000,51980,9516,40484,0,73019,1408]"`;
 
-exports[`calculate simulations-indépendant: activité 1`] = `"[29086,9086,20000,20787,909,19091,0,29086,3559]"`;
+exports[`calculate simulations-indépendant: activité 1`] = `"[29086,9086,20000,20787,898,19102,0,29086,3559]"`;
 
-exports[`calculate simulations-indépendant: activité 2`] = `"[29102,9102,20000,20787,909,19091,0,29102,3575]"`;
+exports[`calculate simulations-indépendant: activité 2`] = `"[29102,9102,20000,20787,898,19102,0,29102,3575]"`;
 
 exports[`calculate simulations-indépendant: conjoint collaborateur 1`] = `"[77175,27175,50000,52092,9550,40450,0,77175,7308]"`;
 
@@ -236,11 +236,11 @@ exports[`calculate simulations-indépendant: conjoint collaborateur 6`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,444,16375,0,30000,3559]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 1`] = `"[30000,13181,16819,17881,433,16386,0,30000,3559]"`;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14381,15619,17881,444,15175,0,30000,3559]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 2`] = `"[30000,14381,15619,17881,433,15186,0,30000,3559]"`;
 
-exports[`calculate simulations-indépendant: cotisations facultatives 3`] = `"[30000,10381,19619,20431,852,18767,0,30000,3559]"`;
+exports[`calculate simulations-indépendant: cotisations facultatives 3`] = `"[30000,10381,19619,20431,841,18778,0,30000,3559]"`;
 
 exports[`calculate simulations-indépendant: cotisations facultatives 4`] = `"[20000,6732,13268,13809,0,13268,0,20000,3559]"`;
 
@@ -332,9 +332,9 @@ exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7795,22205,1265,20940]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7795,22205,1254,20951]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8120,21880,1213,20667]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8120,21880,1202,20678]"`;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61954,238046,90094,147952]"`;
 
@@ -348,7 +348,7 @@ exports[`calculate simulations-professions-libérales: avocat 2`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,4994,15006,71,14935]"`;
+exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,4994,15006,60,14946]"`;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 2`] = `
 "[50000,0,14710,35290,4915,30375]
@@ -373,7 +373,7 @@ exports[`calculate simulations-professions-libérales: médecin 6`] = `"[50000,0
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,12451,37549,5593,31956]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
-"[20000,0,5178,14822,42,14780]
+"[20000,0,5178,14822,31,14791]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -383,17 +383,17 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
-"[20000,0,5178,14822,42,14780]
+"[20000,0,5178,14822,31,14791]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
-"[20000,0,5255,14745,29,14716]
+"[20000,0,5255,14745,18,14727]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[20000,0,5332,14668,17,14651]
+"[20000,0,5332,14668,6,14662]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -626,7 +626,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: JEI 1`] = `"[3434,0,3000,0,0,2353,2168]"`;
 
 exports[`calculate simulations-salarié: JEI 2`] = `
-"[26574,0,20000,0,0,15969,10357]
+"[26574,0,20000,0,0,15969,10359]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -832,7 +832,7 @@ exports[`calculate simulations-salarié: heures supplémentaires et complémenta
 Notifications affichées : contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents"
 `;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4070,0,3000,0,0,2353,2335]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4070,0,3000,0,0,2353,2336]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 2`] = `"[4070,0,3000,0,0,2353,2353]"`;
 
@@ -1015,7 +1015,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 14`] = `
-"[28342,0,20000,0,0,15969,10357]
+"[28342,0,20000,0,0,15969,10359]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
