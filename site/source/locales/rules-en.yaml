@@ -8544,13 +8544,7 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   titre.en: '[automatic] gross tax'
   titre.fr: impôt brut
-impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
-  titre.en: '[automatic] uncapped'
-  titre.fr: sans plafonnement
-impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement . sans parts rattachées:
-  titre.en: '[automatic] without attached units'
-  titre.fr: sans parts rattachées
-impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description.en: >
     [automatic] Here is the famous income tax scale. It is a marginal scale with
     5 brackets.
@@ -8567,9 +8561,15 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
 
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
-  titre.en: '[automatic] gross tax per unit'
-  titre.fr: impôt brut par part
-impôt . foyer fiscal . impôt sur le revenu . impôt brut par part . sans parts rattachées:
+  titre.en: '[automatic] per share'
+  titre.fr: par part
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
+  titre.en: '[automatic] without attached units'
+  titre.fr: sans parts rattachées
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
+  titre.en: '[automatic] uncapped'
+  titre.fr: sans plafonnement
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement . sans parts rattachées:
   titre.en: '[automatic] without attached units'
   titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
