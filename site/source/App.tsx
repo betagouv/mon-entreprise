@@ -15,6 +15,7 @@ import { StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import rules from 'modele-social'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import {
 	configSituationSelector,
@@ -46,13 +47,25 @@ import { setupSimulationPersistence } from './storage/persistSimulation'
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rules: Rules
+	rulesPreTransform?: (rules: Rules) => Rules
 }
 
-export default function Root({ basename, rules }: RootProps) {
+export default function Root({
+	basename,
+	rulesPreTransform = (r) => r,
+}: RootProps) {
 	const { language } = useTranslation().i18n
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
-	const engine = useMemo(() => engineFactory(rules), [rules])
+	const engine = useMemo(
+		() => engineFactory(rulesPreTransform(rules)),
+
+		// We need to keep [rules] in the dependency list for hot reload of the rules
+		// in dev mode, even if ESLint think it is unnecessary since `rules` isn't
+		// defined in the component scope.
+		//
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[rules]
+	)
 	return (
 		<StrictMode>
 			<Provider
