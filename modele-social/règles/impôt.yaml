@@ -381,13 +381,22 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
         alors: dirigeant . rémunération . imposable
   abattement:
     valeur: 10% * assiette
-    # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
-    # HISTORIQUE 2020: 12627€
-    # 12627€ × (1 + 0,2%)
-    plafond: 12652 €/an
-    # HISTORIQUE 2020: 441€
-    # 441€ × (1 + 0,2%)
-    plancher: 442 €/an
+    plafond:
+      variations:
+        - si: année = 2022
+          alors: 12829 €/an
+        - si: année = 2021
+          alors: 12652 €/an
+        - si: année = 2020
+          alors: 12627 €/an
+    plancher:
+      variations:
+        - si: année = 2022
+          alors: 448 €/an
+        - si: année = 2021
+          alors: 442 €/an
+        - si: année = 2020
+          alors: 441 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
@@ -438,14 +447,27 @@ impôt . foyer fiscal . impôt sur le revenu:
 
 impôt . foyer fiscal . impôt sur le revenu . décote:
   description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
-  formule:
-    variations:
-      - si: foyer fiscal . situation de famille = 'couple'
-        # HISTORIQUE-2020: 1286
-        alors: 1289 €/an - 45.25% * impôt brut
-        # HISTORIQUE-2020: 777
-      - sinon: 779€/an - 45.25% * impôt brut
-    plancher: 0 €/an
+  variations:
+    - si: foyer fiscal . situation de famille = 'couple'
+      alors:
+        variations:
+          - si: année = 2022
+            alors: 1307 €/an
+          - si: année = 2021
+            alors: 1289 €/an
+          - si: année = 2020
+            alors: 1286 €/an
+    - sinon:
+        variations:
+          - si: année = 2022
+            alors: 790 €/an
+          - si: année = 2021
+            alors: 779 €/an
+          - si: année = 2020
+            alors: 777 €/an
+  abattement: 45.25% * impôt brut
+  références:
+    Fiche economie.gouv.fr: https://www.economie.gouv.fr/particuliers/decote-impot-revenu
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an
