@@ -1,5 +1,4 @@
 import { I18nProvider } from '@react-aria/i18n'
-import rules from 'modele-social'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import App from './App'
@@ -13,7 +12,9 @@ export const AppEn = () => (
 	<I18nProvider locale="en-GB">
 		<App
 			basename="infrance"
-			rules={translateRules('en', ruleTranslations, rules)}
+			rulesPreTransform={(rules) =>
+				translateRules('en', ruleTranslations, rules)
+			}
 		/>
 	</I18nProvider>
 )

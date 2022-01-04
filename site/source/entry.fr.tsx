@@ -1,5 +1,4 @@
 import { I18nProvider } from '@react-aria/i18n'
-import rules from 'modele-social'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import App from './App'
@@ -8,7 +7,7 @@ import './sentry'
 
 export const AppFr = () => (
 	<I18nProvider locale="fr-FR">
-		<App basename="mon-entreprise" rules={rules} />
+		<App basename="mon-entreprise" />
 	</I18nProvider>
 )
 
