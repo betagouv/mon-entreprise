@@ -5,7 +5,7 @@ entreprise:
 
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
-  par défaut: 01/01/2020
+  par défaut: 01/01/2021
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.
@@ -16,9 +16,9 @@ entreprise . date de création:
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
   suggestions:
+    Début 2022: 01/01/2022
     Début 2021: 01/01/2021
-    Début 2020: 01/01/2020
-    Fin 2017: 31/12/2017
+    Il y a 10 ans: 01/01/2012
   type: date
 
 entreprise . date de création . contrôle date future:

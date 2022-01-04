@@ -62,7 +62,7 @@ SMIC horaire:
       - sinon:
           variations:
             - si: année = 2022
-              alors: 10.48 €/heure
+              alors: 10.57 €/heure
             - si: année = 2021
               alors: 10.48 €/heure
   note: |
