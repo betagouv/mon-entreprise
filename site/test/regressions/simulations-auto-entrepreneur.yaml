@@ -34,6 +34,9 @@ ACRE:
   - dirigeant . auto-entrepreneur . net de cotisations: 40000 €/an
     entreprise . date de création: 01/06/2019
     entreprise . ACRE: oui
+  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
+    entreprise . date de création: 01/01/2022
+    entreprise . ACRE: oui
 
 activité mixte:
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an

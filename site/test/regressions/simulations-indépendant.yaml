@@ -33,6 +33,7 @@ activité:
 
 acre:
   - dirigeant . rémunération . nette: 50000 €/an
+    entreprise . date de création: 01/01/2022
     entreprise . ACRE: oui
 
 impôt sur le revenu:
