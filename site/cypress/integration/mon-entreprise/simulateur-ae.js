@@ -12,7 +12,7 @@ describe('Simulateur auto-entrepreneur', () => {
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
-		cy.contains('Début 2021').click()
+		cy.contains('Début 2022').click()
 		cy.contains('ACRE')
 	})
 	it('should not have negative value', () => {

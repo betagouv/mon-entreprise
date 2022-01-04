@@ -508,12 +508,17 @@ contrat salarié . activité partielle . indemnisation entreprise:
     plancher:
       # Historique:
       # - avant le 01/10/2021 : 8.11€
-      8.30 €/heure * heures chômées
+      variations:
+        - si: année = 2022
+          alors: 8.37 €/heure * heures chômées
+        - si: année = 2021
+          alors: 8.30 €/heure * heures chômées
     plafond:
       recalcul:
         avec:
           rémunération . brut de base: 4.5 * SMIC
-
+  références:
+    Décret mise à jour 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044614377
 contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation
   description: >-
