@@ -46,7 +46,7 @@ async function searchFullText(
 	text: string
 ): Promise<Array<Etablissement> | null> {
 	const response = await fetch(
-		`https://entreprise.data.gouv.fr/api/sirene/v1/full_text/${text}?per_page=15`
+		`https://entreprise.data.gouv.fr/api/sirene/v1/full_text/${text}?per_page=5`
 	)
 	if (!response.ok) {
 		return null

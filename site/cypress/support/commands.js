@@ -58,7 +58,9 @@ Cypress.Commands.add(
 					filepaths.forEach((filepath) => {
 						const shortPath = filepath.slice(FIXTURES_FOLDER.length + 1)
 						const filename = filepath.slice(specFixturesFolder.length + 1)
-						cy.intercept(urlOfFilepath(filename), { fixture: shortPath })
+						cy.intercept(encodeURI(urlOfFilepath(filename)), {
+							fixture: shortPath,
+						})
 					})
 				})
 		}
