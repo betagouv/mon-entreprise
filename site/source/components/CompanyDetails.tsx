@@ -1,7 +1,7 @@
 import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { Strong } from 'DesignSystem/typography'
 import { H3 } from 'DesignSystem/typography/heading'
-import { SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -52,7 +52,7 @@ export default function CompanyDetails({
 	// 	)
 	// }
 	const siege = allMatchingEtablissements.find((e) => e.is_siege)
-
+	console.log(allMatchingEtablissements)
 	return (
 		<CompanyContainer>
 			<H3
@@ -61,13 +61,12 @@ export default function CompanyDetails({
 				`}
 			>
 				<>
-					<div>{highlightLabel ? highlightLabelToJSX(highlightLabel) : ''}</div>
+					{highlightLabel ? highlightLabelToJSX(highlightLabel) : ''}{' '}
 					<small>({siren})</small>
-				</>
-				){' '}
+				</>{' '}
 			</H3>
 
-			<InfoContainer as="div">
+			<InfoContainer>
 				{dateCreationUniteLegale && (
 					<div>
 						<Trans>Crée le</Trans>{' '}
@@ -76,9 +75,7 @@ export default function CompanyDetails({
 						</Strong>
 					</div>
 				)}
-				<div>
-					<Trans>Domiciliation :</Trans> {firstMatchingEtablissement.address}
-				</div>
+				<div>{firstMatchingEtablissement.address}</div>
 				{siege &&
 					allMatchingEtablissements.length > 1 &&
 					siege.address !== firstMatchingEtablissement.address && (
@@ -119,7 +116,7 @@ const CompanyContainer = styled.div`
 	text-align: left;
 `
 
-const InfoContainer = styled(SmallBody)`
+const InfoContainer = styled(Body)`
 	display: flex;
 	flex-direction: column;
 `
