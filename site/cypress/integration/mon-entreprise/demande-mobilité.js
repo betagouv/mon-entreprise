@@ -51,7 +51,12 @@ describe(`Formulaire demande mobilité (${
 			.tab()
 			.type('1991-07-25')
 		cy.contains('Non').click().wait(250)
-		cy.focused().tab().type('Pouts', { force: true }).wait(500).type('{enter}')
+		cy.focused()
+			.tab()
+			.type('Pouts', { force: true })
+			.wait(500)
+			.type('{enter}')
+			.wait(500)
 
 		cy.tab().type('{downarrow}').wait(500)
 		cy.focused()
@@ -125,7 +130,7 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().type('Docker').tab().type('Docker')
 
 		cy.contains('Divorcé').click().wait(250)
-		cy.focused().tab().tab().type('{downarrow}{downarrow}').wait(500)
+		cy.focused().tab().tab().type('{downarrow}{downarrow}').wait(1000)
 		cy.focused().tab().type(1)
 		cy.contains('Ayant droit n°1')
 		cy.focused()
