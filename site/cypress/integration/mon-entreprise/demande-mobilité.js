@@ -97,7 +97,6 @@ describe(`Formulaire demande mobilité (${
 		cy.contains('Agent contractuel').click().wait(250)
 		cy.focused()
 			.tab()
-			.tab()
 			.type('Haldithet Docks')
 			.tab()
 			.type('64E45 12-654')
