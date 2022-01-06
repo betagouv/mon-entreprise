@@ -130,7 +130,7 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().type('Docker').tab().type('Docker')
 
 		cy.contains('Divorcé').click().wait(250)
-		cy.focused().tab().tab().type('{downarrow}{downarrow}').wait(1000)
+		cy.focused().tab().type('{downarrow}{downarrow}').wait(1000)
 		cy.focused().tab().type(1)
 		cy.contains('Ayant droit n°1')
 		cy.focused()
