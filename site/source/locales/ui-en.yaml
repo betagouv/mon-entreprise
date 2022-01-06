@@ -1638,12 +1638,16 @@ previousSimulationBanner:
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation
 privacyContent:
+  localStorageTexte: <0>In addition, the information entered during the
+    simulations is automatically saved in your browser (local storage) so that
+    you can easily retrieve it the next time you visit the site. If you do not
+    wish this to be the case, we advise you to use <2>private browsing</2>.</0>
   ok: Your preferences have been saved
   texte: <0></0><1>We collect anonymous statistics on the use of the site, which
     we use for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only
     data that leaves your browser.</1><2>You can opt out of this site usage
-    measure below:</2><3><0>I do not wish to send anonymous data on my use of
+    measure below:</2><3><0>I do not want to send anonymous data about my use of
     the site for audience measurement purposes</0></3>
   title: Personal data
 quicklinks:

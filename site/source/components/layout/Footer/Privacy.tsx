@@ -1,7 +1,7 @@
 import { Checkbox } from 'DesignSystem/field'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
 import { Link } from 'DesignSystem/typography/link'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
@@ -12,8 +12,8 @@ export default function Privacy({ label }: { label?: string }) {
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
 	const handleChange = useCallback(
-		(evt) => {
-			if (evt.target.checked) {
+		(checked) => {
+			if (checked) {
 				tracker.privacy.setVisitorOptout()
 				safeLocalStorage.setItem('tracking:do_not_track', '1')
 			} else {
@@ -56,18 +56,31 @@ export default function Privacy({ label }: { label?: string }) {
 						onChange={handleChange}
 						defaultSelected={tracker.privacy.getVisitorMode().name === 'optout'}
 					>
-						Je souhaite ne pas envoyer de données anonymes sur mon utilisation
-						du site à des fins de mesures d'audience
+						Je ne veux pas envoyer de données anonymes sur mon utilisation du
+						site à des fins de mesures d'audience
 					</Checkbox>
 				</Body>
 			</Trans>
 			{valueChanged && (
-				<small className="ui__  label ">
+				<SmallBody>
 					<Trans i18nKey="privacyContent.ok">
 						Vos préférences ont bien été enregistrées
 					</Trans>
-				</small>
+				</SmallBody>
 			)}
+			<Trans i18nKey="privacyContent.localStorageTexte">
+				<Body>
+					Par ailleurs, les informations renseignées lors des simulations sont
+					automatiquement sauvegardées dans votre navigateur (local storage)
+					afin que vous puissiez facilement les retrouver lors d'une prochaine
+					visite sur le site. Si vous ne souhaitez pas que ce soit le cas, nous
+					vous conseillons d'utiliser la{' '}
+					<Link href="https://www.cnil.fr/fr/la-navigation-privee-pour-limiter-les-risques-de-piratage-de-vos-comptes-en-ligne">
+						navigation privée
+					</Link>
+					.
+				</Body>
+			</Trans>
 		</PopoverWithTrigger>
 	)
 }

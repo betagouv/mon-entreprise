@@ -1289,14 +1289,19 @@ previousSimulationBanner:
   info: "Votre précédente simulation a été sauvegardée :"
   retrieveButton: Retrouver ma simulation
 privacyContent:
+  localStorageTexte: <0>Par ailleurs, les informations renseignées lors des
+    simulations sont automatiquement sauvegardées dans votre navigateur (local
+    storage) afin que vous puissiez facilement les retrouver lors d'une
+    prochaine visite sur le site. Si vous ne souhaitez pas que ce soit le cas,
+    nous vous conseillons d'utiliser la <2>navigation privée</2>.</0>
   ok: Vos préférences ont bien été enregistrées
   texte: <0></0><1>Nous recueillons des statistiques anonymes sur l'utilisation du
     site, que nous utilisons dans le seul but d'améliorer le service,
     conformément aux <2>recommandations de la CNIL</2> et au règlement RGPD. Ce
     sont les seules données qui quittent votre navigateur.</1><2>Vous pouvez
     vous soustraire de cette mesure d'utilisation du site ci-dessous
-    :</2><3><0>Je souhaite ne pas envoyer de données anonymes sur mon
-    utilisation du site à des fins de mesures d'audience</0></3>
+    :</2><3><0>Je ne veux pas envoyer de données anonymes sur mon utilisation du
+    site à des fins de mesures d'audience</0></3>
   title: Données personnelles
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (ex : CSG)"
