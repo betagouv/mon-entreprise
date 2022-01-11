@@ -252,6 +252,7 @@ dirigeant . indépendant . PL . CIPAV:
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   titre: retraite complémentaire (CIPAV)
+  unité: €/an
   grille:
     assiette: assiette des cotisations
     tranches:
