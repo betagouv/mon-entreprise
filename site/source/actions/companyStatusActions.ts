@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { useNextQuestionUrl } from 'Selectors/companyStatusSelectors'
+import { LegalStatusRequirements } from 'Types/companyTypes'
 import { Action } from './actions'
 import { addCommuneDetails, setCompany } from './existingCompanyActions'
 
@@ -65,7 +66,9 @@ export const directorIsInAMinority = (minorityDirector?: boolean) =>
 		minorityDirector,
 	} as const)
 
-export const resetCompanyStatusChoice = (answersToReset?: string[]) =>
+export const resetCompanyStatusChoice = (
+	answersToReset?: (keyof LegalStatusRequirements)[]
+) =>
 	({
 		type: 'RESET_COMPANY_STATUS_CHOICE',
 		answersToReset,

@@ -7,8 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Company } from 'Reducers/inFranceAppReducer'
 import styled from 'styled-components'
 
-
-export default function CompanyDetails({
+export default function ({
 	entreprise,
 }: {
 	entreprise: FabriqueSocialEntreprise | Company
@@ -42,7 +41,6 @@ export default function CompanyDetails({
 	// 	)
 	// }
 	const siege = allMatchingEtablissements.find((e) => e.is_siege)
-	console.log(allMatchingEtablissements)
 	return (
 		<CompanyContainer>
 			<H3
@@ -51,7 +49,9 @@ export default function CompanyDetails({
 				`}
 			>
 				<>
-					{'highlightLabel' in entreprise ? highlightLabelToJSX(entreprise.highlightLabel) : label}{' '}
+					{'highlightLabel' in entreprise
+						? highlightLabelToJSX(entreprise.highlightLabel)
+						: label}{' '}
 					<small>({siren})</small>
 				</>{' '}
 			</H3>

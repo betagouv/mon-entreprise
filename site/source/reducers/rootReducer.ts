@@ -2,7 +2,8 @@ import { Action } from 'Actions/actions'
 import { getCompanySituation } from 'Components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
-import { defaultTo, omit, without } from 'ramda'
+import { defaultTo, without } from 'ramda'
+import { omit } from '../utils'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
@@ -123,7 +124,7 @@ function simulation(
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
 			if (value === undefined) {
-				return { ...state, situation: omit([dottedName], situation) }
+				return { ...state, situation: omit(situation, dottedName) }
 			}
 			if (objectifs.includes(dottedName)) {
 				const objectifsToReset = without([dottedName], objectifs)

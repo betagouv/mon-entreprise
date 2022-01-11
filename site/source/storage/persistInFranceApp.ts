@@ -1,8 +1,8 @@
-import {Action} from 'Actions/actions'
-import {InFranceAppState} from 'Reducers/inFranceAppReducer'
-import {RootState} from 'Reducers/rootReducer'
-import {Store} from 'redux'
-import {debounce} from '../utils'
+import { Action } from 'Actions/actions'
+import { InFranceAppState } from 'Reducers/inFranceAppReducer'
+import { RootState } from 'Reducers/rootReducer'
+import { Store } from 'redux'
+import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 
 const VERSION = 7

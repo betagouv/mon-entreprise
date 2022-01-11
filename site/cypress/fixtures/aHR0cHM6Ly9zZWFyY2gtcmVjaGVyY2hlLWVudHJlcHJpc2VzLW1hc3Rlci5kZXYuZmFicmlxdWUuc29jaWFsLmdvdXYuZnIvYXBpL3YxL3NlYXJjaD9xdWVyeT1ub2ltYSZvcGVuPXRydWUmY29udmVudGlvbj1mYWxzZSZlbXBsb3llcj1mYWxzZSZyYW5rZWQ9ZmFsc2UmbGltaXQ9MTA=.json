@@ -1,0 +1,296 @@
+{
+  "entreprises": [
+    {
+      "activitePrincipale": "Conseil informatique",
+      "categorieJuridiqueUniteLegale": "5710",
+      "dateCreationUniteLegale": "2016-11-24",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NOIMA</u></b>",
+      "label": "NOIMA",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "3 RUE DE LA COSSONNERIE 75001 PARIS",
+        "codeCommuneEtablissement": "75101",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "82397296300016",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "3 RUE DE LA COSSONNERIE 75001 PARIS",
+          "siret": "82397296300016",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "NOIMA",
+      "siren": "823972963"
+    },
+    {
+      "activitePrincipale": "Services des traiteurs",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2019-07-16",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> OURLIS <b><u>NEIMA</u></b> SUSHI",
+      "label": "NAIMA OURLIS NEIMA SUSHI",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "41 RUE DE LA HULOTTE 95490 VAURÉAL",
+        "codeCommuneEtablissement": "95637",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "85203842100016",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "41 RUE DE LA HULOTTE 95490 VAURÉAL",
+          "siret": "85203842100016",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "OURLIS",
+      "siren": "852038421"
+    },
+    {
+      "activitePrincipale": "Autres activités pour la santé humaine",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-05-20",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> NAOUAR",
+      "label": "NAIMA NAOUAR",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "169 AVENUE DES CAILLOLS 13012 MARSEILLE",
+        "codeCommuneEtablissement": "13212",
+        "idccs": [],
+        "siret": "90743244700015",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "169 AVENUE DES CAILLOLS 13012 MARSEILLE",
+          "siret": "90743244700015",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "NAOUAR",
+      "siren": "907432447"
+    },
+    {
+      "activitePrincipale": "Nettoyage courant des bâtiments",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-15",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> EL YANDOUZI KADDOURI CLEAN SERVICES",
+      "label": "NAIMA EL YANDOUZI KADDOURI CLEAN SERVICES",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "78 RUE DU PLATEAU 01360 BÉLIGNEUX",
+        "codeCommuneEtablissement": "01032",
+        "idccs": [],
+        "siret": "90757209300017",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "78 RUE DU PLATEAU 01360 BÉLIGNEUX",
+          "siret": "90757209300017",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "EL YANDOUZI",
+      "siren": "907572093"
+    },
+    {
+      "activitePrincipale": "Activités de centres d'appels",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-25",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> HASSINE",
+      "label": "NAIMA HASSINE",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "76 RUE NEUVE 59278 ESCAUTPONT",
+        "codeCommuneEtablissement": "59207",
+        "idccs": [],
+        "siret": "90764729100018",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "76 RUE NEUVE 59278 ESCAUTPONT",
+          "siret": "90764729100018",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "HASSINE",
+      "siren": "907647291"
+    },
+    {
+      "activitePrincipale": "Intermédiaires du commerce en produits divers",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-22",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> HADJ BOUSSAAD BELKACEM",
+      "label": "NAIMA HADJ BOUSSAAD BELKACEM",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "9 RUE DU BOIS SAINT PIERRE 78690 LES ESSARTS-LE-ROI",
+        "codeCommuneEtablissement": "78220",
+        "idccs": [],
+        "siret": "90780285400014",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "9 RUE DU BOIS SAINT PIERRE 78690 LES ESSARTS-LE-ROI",
+          "siret": "90780285400014",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "HADJ BOUSSAAD",
+      "siren": "907802854"
+    },
+    {
+      "activitePrincipale": "Location et exploitation de biens immobiliers propres ou loués",
+      "categorieJuridiqueUniteLegale": "5710",
+      "dateCreationUniteLegale": "2021-09-21",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NORMA</u></b> SEPTIEME SAS",
+      "label": "NORMA SEPTIEME SAS",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "1 LOTISSEMENT TERRASSE PORTE DES VOSGES 57400 SARREBOURG",
+        "codeCommuneEtablissement": "57630",
+        "idccs": [],
+        "siret": "90782107800017",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "1 LOTISSEMENT TERRASSE PORTE DES VOSGES 57400 SARREBOURG",
+          "siret": "90782107800017",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "NORMA SEPTIEME SAS",
+      "siren": "907821078"
+    },
+    {
+      "activitePrincipale": "Activités des sièges sociaux",
+      "categorieJuridiqueUniteLegale": "5499",
+      "dateCreationUniteLegale": "2021-12-06",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "LA <b><u>NORMA</u></b> FIME",
+      "label": "LA NORMA FIME",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "9 ALLEE DES CHANTERELLES 26250 LIVRON-SUR-DRÔME",
+        "codeCommuneEtablissement": "26165",
+        "idccs": [],
+        "siret": "90802516600012",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "9 ALLEE DES CHANTERELLES 26250 LIVRON-SUR-DRÔME",
+          "siret": "90802516600012",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "LA NORMA FIME",
+      "siren": "908025166"
+    },
+    {
+      "activitePrincipale": "Fabrication d'articles de bijouterie fantaisie et articles similaires",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-13",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NORMA</u></b> HANNOU SHERAZADE TRESORS",
+      "label": "NORMA HANNOU SHERAZADE TRESORS",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "9 RUE LUCIEN LAINÉ 60000 BEAUVAIS",
+        "codeCommuneEtablissement": "60057",
+        "idccs": [],
+        "siret": "90859515000016",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "9 RUE LUCIEN LAINÉ 60000 BEAUVAIS",
+          "siret": "90859515000016",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "HANNOU",
+      "siren": "908595150"
+    },
+    {
+      "activitePrincipale": "Enseignements divers",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2022-01-07",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>NAIMA</u></b> MAYOUF GARA",
+      "label": "NAIMA MAYOUF GARA",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "324 ROUTE D’ENGHIEN 95100 ARGENTEUIL",
+        "codeCommuneEtablissement": "95018",
+        "idccs": [],
+        "siret": "90859272800012",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "324 ROUTE D’ENGHIEN 95100 ARGENTEUIL",
+          "siret": "90859272800012",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MAYOUF",
+      "siren": "908592728"
+    }
+  ]
+}

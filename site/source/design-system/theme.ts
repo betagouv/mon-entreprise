@@ -187,5 +187,3 @@ export const theme: DefaultTheme = createTheme({
 
 	...defaultTheme,
 })
-
-console.log(theme)
