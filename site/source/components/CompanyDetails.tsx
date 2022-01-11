@@ -4,30 +4,20 @@ import { H3 } from 'DesignSystem/typography/heading'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Company } from 'Reducers/inFranceAppReducer'
 import styled from 'styled-components'
 
-type Company = {
-	activite_principale: string
-	denomination: string
-	prenom_usuel: string
-	nom: string
-	date_creation: string
-	etablissement_siege: {
-		libelle_commune: string
-		code_postal: string
-	}
-}
 
 export default function CompanyDetails({
 	entreprise,
 }: {
-	entreprise: FabriqueSocialEntreprise
+	entreprise: FabriqueSocialEntreprise | Company
 }) {
 	const { i18n } = useTranslation()
 
 	const {
 		siren,
-		highlightLabel,
+		label,
 		dateCreationUniteLegale,
 		firstMatchingEtablissement,
 		allMatchingEtablissements,
@@ -61,7 +51,7 @@ export default function CompanyDetails({
 				`}
 			>
 				<>
-					{highlightLabel ? highlightLabelToJSX(highlightLabel) : ''}{' '}
+					{'highlightLabel' in entreprise ? highlightLabelToJSX(entreprise.highlightLabel) : label}{' '}
 					<small>({siren})</small>
 				</>{' '}
 			</H3>

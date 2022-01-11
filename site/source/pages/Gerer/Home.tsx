@@ -329,7 +329,7 @@ export const CompanySection = ({ company, isPL }: CompanySectionProps) => {
 
 			{company && (
 				<>
-					<CompanyDetails siren={company.siren} />
+					<CompanyDetails entreprise={company} />
 					<Link to={sitePaths.index}>
 						<Trans i18nKey="gérer.entreprise.changer">
 							Changer l'entreprise sélectionnée

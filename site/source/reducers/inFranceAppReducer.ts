@@ -1,7 +1,7 @@
 import { Action } from 'Actions/actions'
 import { FabriqueSocialEntreprise } from 'API/fabrique-social'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
-import { omit } from 'ramda'
+import { omit } from '../utils'
 import { combineReducers } from 'redux'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from 'Types/companyTypes'
@@ -125,7 +125,7 @@ const infereLegalStatusFromCategorieJuridique = (
 	return 'NON_IMPLÉMENTÉ'
 }
 
-export type Company = FabriqueSocialEntreprise & {
+export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'> & {
 	statutJuridique?: StatutJuridique
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
@@ -147,8 +147,8 @@ function existingCompany(
 		const statutJuridique = infereLegalStatusFromCategorieJuridique(
 			action.entreprise.categorieJuridiqueUniteLegale
 		)
-		return {
-			...action.entreprise,
+		return  {
+			...omit('highlightLabel', action.entreprise),
 			statutJuridique,
 		}
 	}
