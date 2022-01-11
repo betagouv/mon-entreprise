@@ -5876,15 +5876,9 @@ dirigeant . indépendant . PL . CARPIMKO:
 dirigeant . indépendant . PL . CARPIMKO . ASV:
   titre.en: '[automatic] Old-age benefit (CARPIMKO)'
   titre.fr: Avantage social vieillesse (CARPIMKO)
-dirigeant . indépendant . PL . CARPIMKO . ASV . forfaitaire:
-  titre.en: '[automatic] lump sum'
-  titre.fr: forfaitaire
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
   titre.en: '[automatic] CPAM contribution to the old-age benefit'
   titre.fr: Participation CPAM à l'avantage social vieillesse
-dirigeant . indépendant . PL . CARPIMKO . ASV . proportionnelle:
-  titre.en: '[automatic] proportional'
-  titre.fr: proportionnelle
 dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
   titre.en: '[automatic] disability and death (CARPIMKO)'
   titre.fr: invalidité et décès (CARPIMKO)
@@ -6095,12 +6089,6 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
 dirigeant . indépendant . PL . CNBF . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire:
-  titre.en: '[automatic] flat-rate contribution'
-  titre.fr: cotisation forfaitaire
-dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle:
-  titre.en: '[automatic] proportional contribution'
-  titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . PAMC:
   titre.en: '[automatic] PAMC'
   titre.fr: PAMC

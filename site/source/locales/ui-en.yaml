@@ -1754,8 +1754,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions :"
   warning:
-    année-courante: The amount of the contributions is calculated for an income over
-      the year 2020.
+    année-courante: The amount calculated is the contributions for the year 2022
+      (for 2022 income).
     artiste-auteur:
       "1": This estimate is provided for information purposes. It is based on the
         applicable regulatory elements and the elements that you have entered,

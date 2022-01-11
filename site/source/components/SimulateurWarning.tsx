@@ -83,8 +83,8 @@ export default function SimulateurWarning({
 				{['indépendant', 'profession-libérale'].includes(simulateur) && (
 					<Li>
 						<Trans i18nKey="simulateurs.warning.année-courante">
-							Le montant calculé correspond aux cotisations de l’année 2021
-							(pour un revenu 2021).
+							Le montant calculé correspond aux cotisations de l’année 2022
+							(pour un revenu 2022).
 						</Trans>
 					</Li>
 				)}
