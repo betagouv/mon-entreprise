@@ -3,10 +3,10 @@ situation:
     ## Quelle type d'activité est concernée ?
   une possibilité:
     choix obligatoire: oui
-    possibilités: [PAM, PL, AC, auto-entrepreneur, salarié]
+    possibilités: [PAM, PL, AC, auto-entrepreneur, salarié, artiste-auteur]
 situation . PAM:
   titre: Praticien et auxiliaire médical
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   description: >-
     Choisissez cette option si vous exercez en libéral une des professions suivantes :
     - Auxiliaire médical (infirmier, masseur-kinésithérapeute,
@@ -14,6 +14,12 @@ situation . PAM:
     - Médecin
     - Chirurgien-dentiste
     - Sage-femme
+
+situation . artiste-auteur:
+situation . TNS:
+  une de ces conditions:
+    - situation = 'PAM'
+    - situation = 'artiste-auteur'
 
 situation . PL:
   titre: Indépendant profession libérale
@@ -65,7 +71,7 @@ PAM:
   titre: ''
   type: groupe
   valeur: oui
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   description: >-
     Vous exercez une activité non salariée ou salariée dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à [mobilite-internationale@urssaf.fr].
 
@@ -86,7 +92,7 @@ notification signature:
     *En cas de difficultés pour remplir ce formulaire, contactez un conseiller par email mobilite-internationale@urssaf.fr ou par téléphone au +33(0) 806 804 213 du lundi au vendredi de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).*
 
 infos personnelles:
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   titre: Vos informations personnelles
   type: groupe
   valeur: oui
@@ -167,7 +173,7 @@ données assuré:
           titre: Adresse
 
 activité indépendante:
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   type: groupe
   formule: oui
   titre: Votre activité en France
@@ -195,14 +201,14 @@ entreprise france . commune:
   note: 4.4.3 / 4.4.4
 
 entreprise france . organisme urssaf:
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   type: texte
   titre: Organisme Urssaf
   description: >
     Nom de l'organisme Urssaf dont vous relevez en France
 
 entreprise france . nature de l'activité:
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   titre: Votre activité en France
   type: texte
   description: >-
@@ -232,7 +238,7 @@ demande:
 
 demande . PAM:
   valeur: oui
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
 
 demande . PAM . pays unique:
   question: >
@@ -603,7 +609,7 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
     - nom: statut marital
       question:
         variations:
-          - si: situation = 'PAM'
+          - si: situation . TNS
             alors: "'Quel est votre statut marital ?'"
           - sinon: "'Quel est le statut marital du salarié ?'"
       une possibilité:
@@ -628,7 +634,7 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
     - nom: ayants droits
       question:
         variations:
-          - si: situation = 'PAM'
+          - si: situation . TNS
             alors: "'Serez-vous accompagnés d'ayants droits ?'"
           - sinon: "'Le salarié sera-t'il accompagné d'ayants droits ?'"
       description: Indiquez si des membres de la famille (y compris éloignée) partiront à l’étranger pour la durée de la mission.
@@ -761,7 +767,7 @@ pluriactivité . nombre:
   titre: Nombre de pays
   question:
     variations:
-      - si: situation = 'PAM'
+      - si: situation . TNS
         alors: "'Dans combien de pays, autre que la France, allez-vous travailler de façon alternée ou simultanée ?'"
       - sinon: "'Dans combien de pays, autre que la France, votre salarié va-t-il travailler de façon alternée ou simultanée ?'"
   type: nombre
@@ -785,7 +791,7 @@ pluriactivité . pays n°1: &pluriactivité
     - nom: statut
       question:
         variations:
-          - si: situation = 'PAM'
+          - si: situation . TNS
             alors: "'####  Quel sera votre statut dans ce pays ?'"
           - sinon: "'####  Quel sera le statut de votre salarié dans ce pays ?'"
       une possibilité:
@@ -871,7 +877,7 @@ pluriactivité . activité substantielle en France:
 pluriactivité . activité substantielle en France . question:
   question:
     variations:
-      - si: situation = 'PAM'
+      - si: situation . TNS
         alors: "'**Aujourd'hui, pensez-vous qu'au moins 25% de votre activité sur les 12 prochains mois sera réalisée en France ?**'"
       - sinon: "'**Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre salarié sur les 12 prochains mois sera réalisée en France ?**'"
   description: |
@@ -904,7 +910,7 @@ pluriactivité . activité substantielle en France . critère PAM:
     - les prestations délivrées
 
     Choisissez celui qui reflète au mieux votre estimation sur les 12 prochains mois.
-  applicable si: situation = 'PAM'
+  applicable si: situation . TNS
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -951,7 +957,7 @@ pluriactivité . salarié . siège social:
 pluriactivité . pays centre d'intérêt:
   applicable si:
     toutes ces conditions:
-      - situation = 'PAM'
+      - situation . TNS
       - nombre
   non applicable si: activité substantielle en France . question
   type: groupe
@@ -994,7 +1000,7 @@ pluriactivité . télétravail:
   applicable si: nombre
   question:
     variations:
-      - si: situation = 'PAM'
+      - si: situation . TNS
         alors: "'####  Allez-vous télétravailler durant votre mission ?'"
       - sinon: "'####  Votre salarié va-t-il télétravailler durant sa mission ?'"
 pluriactivité . télétravail . pays:
@@ -1009,7 +1015,7 @@ pluriactivité . chômage étranger:
   applicable si: nombre
   question:
     variations:
-      - si: situation = 'PAM'
+      - si: situation . TNS
         alors: "'#### Bénéficiez-vous d’une prestation chômage dans un autre pays ?'"
       - sinon: "'#### Votre salarié bénéficie-t-il d’une prestation chômage dans un autre pays ?'"
 
