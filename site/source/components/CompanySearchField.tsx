@@ -19,6 +19,7 @@ export function CompanySearchField(props: {
 	onValue?: () => void
 	onClear?: () => void
 	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
+	autoFocus?: boolean
 }) {
 	const { t } = useTranslation()
 

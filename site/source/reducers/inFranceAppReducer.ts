@@ -23,7 +23,9 @@ function companyLegalStatus(
 		case 'SPECIFY_DIRECTORS_SHARE':
 			return { ...state, minorityDirector: action.minorityDirector }
 		case 'RESET_COMPANY_STATUS_CHOICE':
-			return action.answersToReset ? omit(action.answersToReset, state) : {}
+			return action.answersToReset
+				? action.answersToReset.reduce(omit, state)
+				: {}
 	}
 	return state
 }
@@ -130,7 +132,6 @@ export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'> & {
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
 	localisation?: ApiCommuneJson
-	codeNAF?: string
 }
 
 function existingCompany(
@@ -147,8 +148,8 @@ function existingCompany(
 		const statutJuridique = infereLegalStatusFromCategorieJuridique(
 			action.entreprise.categorieJuridiqueUniteLegale
 		)
-		return  {
-			...omit('highlightLabel', action.entreprise),
+		return {
+			...omit(action.entreprise, 'highlightLabel'),
 			statutJuridique,
 		}
 	}

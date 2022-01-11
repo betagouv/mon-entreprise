@@ -1,0 +1,321 @@
+{
+  "entreprises": [
+    {
+      "activitePrincipale": "Commerce de détail de quincaillerie, peintures et verres en magasin spécialisé",
+      "categorieJuridiqueUniteLegale": "5710",
+      "dateCreationUniteLegale": "2019-06-18",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [
+        {
+          "idcc": 1383,
+          "etat": "VIGUEUR_ETEN",
+          "id": "KALICONT000005635591",
+          "mtime": 1555615456,
+          "texte_de_base": "KALITEXT000018000548",
+          "title": "Convention collective nationale des employés et agents de maîtrise des commerces de quincaillerie, fournitures industrielles, fers, métaux et équipement de la maison. Etendue par arrêté du 29 avril 1986 JORF 1er juin 1986.",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635591",
+          "shortTitle": "Quincaillerie : commerces de quincaillerie, fournitures industrielles, fers-métaux et équipements de la maison"
+        }
+      ],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "TY <b><u>MENNOZ</u></b> BRICO VAL",
+      "label": "TY MENNOZ BRICO VAL",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "IMMEUBLE L'EAU VIVE 73150 VAL D'ISERE",
+        "codeCommuneEtablissement": "73304",
+        "idccs": [
+          "1383"
+        ],
+        "categorieEntreprise": "PME",
+        "siret": "85183524900026",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "IMMEUBLE L'EAU VIVE 73150 VAL D'ISERE",
+          "siret": "85183524900026",
+          "idccs": [
+            "1383"
+          ],
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "TY MENNOZ",
+      "siren": "851835249"
+    },
+    {
+      "activitePrincipale": "Location et location-bail d'autres biens personnels et domestiques",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2018-06-05",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "MAXIME BOUQUET <b><u>MENOZ</u></b>",
+      "label": "MAXIME BOUQUET MENOZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "12 RUE DES ORMEAUX 35510 CESSON-SÉVIGNÉ",
+        "codeCommuneEtablissement": "35051",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "84028487100018",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "12 RUE DES ORMEAUX 35510 CESSON-SÉVIGNÉ",
+          "siret": "84028487100018",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "BOUQUET",
+      "siren": "840284871"
+    },
+    {
+      "activitePrincipale": "Activités des organisations associatives n.c.a.",
+      "categorieJuridiqueUniteLegale": "9220",
+      "dateCreationUniteLegale": "2017-12-05",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>MENOZ</u></b> COMPAGNIE YADO",
+      "label": "MENOZ COMPAGNIE YADO",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "39 RUE AUGUSTE BRIZEUX 56100 LORIENT",
+        "codeCommuneEtablissement": "56121",
+        "idccs": [],
+        "siret": "83798530800019",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "39 RUE AUGUSTE BRIZEUX 56100 LORIENT",
+          "siret": "83798530800019",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MENOZ COMPAGNIE YADO",
+      "siren": "837985308"
+    },
+    {
+      "activitePrincipale": "Programmation informatique",
+      "categorieJuridiqueUniteLegale": "5710",
+      "dateCreationUniteLegale": "2018-01-02",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>MENOZ</u></b>",
+      "label": "MENOZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "55 RUE DES PYRÉNÉES 75020 PARIS",
+        "codeCommuneEtablissement": "75120",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "83436429100015",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "55 RUE DES PYRÉNÉES 75020 PARIS",
+          "siret": "83436429100015",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MENOZ",
+      "siren": "834364291"
+    },
+    {
+      "activitePrincipale": "Récupération de déchets triés",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "1970-01-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "FERNAND <b><u>MUNOZ</u></b>",
+      "label": "FERNAND MUNOZ",
+      "matching": 2,
+      "firstMatchingEtablissement": {
+        "address": "8 RUE PASTEUR 69740 GENAS",
+        "codeCommuneEtablissement": "69277",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "97041672300017",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": false
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "8 RUE PASTEUR 69740 GENAS",
+          "siret": "97041672300017",
+          "is_siege": false
+        },
+        {
+          "address": "19 RUE DE L’INDUSTRIE 69740 GENAS",
+          "siret": "97041672300033",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUNOZ",
+      "siren": "970416723"
+    },
+    {
+      "activitePrincipale": "Commerce de voitures et de véhicules automobiles légers",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "1900-01-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "RENE <b><u>MUNOZ</u></b>",
+      "label": "RENE MUNOZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "20 ROUTE DE SAINT PRIVAT 30340 SAINT-PRIVAT-DES-VIEUX",
+        "codeCommuneEtablissement": "30294",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "97042380200044",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "20 ROUTE DE SAINT PRIVAT 30340 SAINT-PRIVAT-DES-VIEUX",
+          "siret": "97042380200044",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUNOZ",
+      "siren": "970423802"
+    },
+    {
+      "activitePrincipale": "Commerce de détail alimentaire sur éventaires et marchés",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "1900-01-01",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "DARYO <b><u>MUNOZ</u></b>",
+      "label": "DARYO MUNOZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "41 HAMEAU DES ACACIAS 14590 MOYAUX",
+        "codeCommuneEtablissement": "14460",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "95064477300034",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "41 HAMEAU DES ACACIAS 14590 MOYAUX",
+          "siret": "95064477300034",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUNOZ",
+      "siren": "950644773"
+    },
+    {
+      "activitePrincipale": "Activités des sociétés holding",
+      "categorieJuridiqueUniteLegale": "6599",
+      "dateCreationUniteLegale": "2021-11-20",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "AR <b><u>MENEZ</u></b>",
+      "label": "AR MENEZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "LIEU-DIT ILBRAT 29460 DIRINON",
+        "codeCommuneEtablissement": "29045",
+        "idccs": [],
+        "siret": "90750463300013",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "LIEU-DIT ILBRAT 29460 DIRINON",
+          "siret": "90750463300013",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "AR MENEZ",
+      "siren": "907504633"
+    },
+    {
+      "activitePrincipale": "Activités photographiques",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-12-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "MEGANE <b><u>MUNOZ</u></b>-MURIEL EDEONA",
+      "label": "MEGANE MUNOZ-MURIEL EDEONA",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "5 ALLÉE DE L’AUBIER 85430 AUBIGNY-LES CLOUZEAUX",
+        "codeCommuneEtablissement": "85008",
+        "idccs": [],
+        "siret": "90763707800011",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "5 ALLÉE DE L’AUBIER 85430 AUBIGNY-LES CLOUZEAUX",
+          "siret": "90763707800011",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUNOZ-MURIEL",
+      "siren": "907637078"
+    },
+    {
+      "activitePrincipale": "Activités juridiques",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-16",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "MELISSA <b><u>MUNOZ</u></b>",
+      "label": "MELISSA MUNOZ",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "103 BOULEVARD MALESHERBES 75008 PARIS",
+        "codeCommuneEtablissement": "75108",
+        "idccs": [],
+        "siret": "90766551700013",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "103 BOULEVARD MALESHERBES 75008 PARIS",
+          "siret": "90766551700013",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUNOZ",
+      "siren": "907665517"
+    }
+  ]
+}

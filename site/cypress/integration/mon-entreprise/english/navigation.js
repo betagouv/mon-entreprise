@@ -29,7 +29,10 @@ describe(`Navigation to income simulator using company name (${
 })`, function () {
 	let pendingRequests = new Set()
 	let responses = {}
-	const hostnamesToRecord = ['entreprise.data.gouv.fr', 'geo.api.gouv.fr']
+	const hostnamesToRecord = [
+		'search-recherche-entreprises.fabrique.social.gouv.fr',
+		'geo.api.gouv.fr',
+	]
 	beforeEach(() => {
 		cy.clearLocalStorage() // Try to avoid flaky tests
 
@@ -61,13 +64,12 @@ describe(`Navigation to income simulator using company name (${
 			expect(loc.pathname).to.match(/sasu$/)
 		})
 	})
-	it.skip('should allow auto entrepreneur to access the corresponding income simulator', function () {
-		// TODO : SKIPING WHILE SEARCH IS DOWN BECAUSE FIXTURES WERE NOT SAVED
+	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
 		cy.contains(
 			fr ? 'Rechercher une entreprise ' : 'Search for a company '
 		).click()
 		cy.get('input').first().type('johan girod')
-		cy.contains('MONSIEUR').click()
+		cy.contains('834825614').click()
 		// ask if auto-entrepreneur
 		cy.contains(
 			fr ? 'Êtes-vous auto-entrepreneur ?' : 'Are you an auto-entrepreneur?'

@@ -1,0 +1,408 @@
+{
+  "entreprises": [
+    {
+      "activitePrincipale": "Programmation informatique",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2018-02-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 3,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>JOHAN</u></b> <b><u>GIROD</u></b>",
+      "label": "JOHAN GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "7 PLACE DU FOIRAIL 81640 MONESTIÉS",
+        "codeCommuneEtablissement": "81170",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "83482561400037",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "7 PLACE DU FOIRAIL 81640 MONESTIÉS",
+          "siret": "83482561400037",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "834825614"
+    },
+    {
+      "activitePrincipale": "Services d'aménagement paysager",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2006-12-01",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [
+        {
+          "idcc": 7018,
+          "etat": "VIGUEUR_ETEN",
+          "id": "KALICONT000005635325",
+          "mtime": 1562614614,
+          "texte_de_base": "KALITEXT000020377916",
+          "title": "Convention collective nationale des entreprises du paysage du 10 octobre 2008",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635325",
+          "shortTitle": "Entreprises du paysage"
+        }
+      ],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "<b><u>JOHAN</u></b> <b><u>GIROD</u></b> PAYSAGISTE DU CAROUX",
+      "label": "JOHAN GIROD PAYSAGISTE DU CAROUX",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "ROUTE DE SAINT PONS 34390 MONS",
+        "codeCommuneEtablissement": "34160",
+        "idccs": [
+          "7018"
+        ],
+        "categorieEntreprise": "PME",
+        "siret": "49309658000029",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "ROUTE DE SAINT PONS 34390 MONS",
+          "siret": "49309658000029",
+          "idccs": [
+            "7018"
+          ],
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "493096580"
+    },
+    {
+      "activitePrincipale": "Transports routiers de fret",
+      "categorieJuridiqueUniteLegale": "5499",
+      "dateCreationUniteLegale": "1966-01-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "TRANSPORTS <b><u>GIROD</u></b> PH",
+      "label": "TRANSPORTS GIROD PH",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "187 ZAC DU CROULOUP 69380 CHASSELAY",
+        "codeCommuneEtablissement": "69049",
+        "idccs": [],
+        "categorieEntreprise": "PME",
+        "siret": "96650628900034",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "187 ZAC DU CROULOUP 69380 CHASSELAY",
+          "siret": "96650628900034",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "TRANSPORTS GIROD PH",
+      "siren": "966506289"
+    },
+    {
+      "activitePrincipale": "Construction de routes et autoroutes",
+      "categorieJuridiqueUniteLegale": "5710",
+      "dateCreationUniteLegale": "1959-01-01",
+      "caractereEmployeurUniteLegale": "O",
+      "conventions": [
+        {
+          "idcc": 1702,
+          "etat": "VIGUEUR_ETEN",
+          "id": "KALICONT000005635467",
+          "mtime": 1561580346,
+          "texte_de_base": "KALITEXT000005658951",
+          "title": "Convention collective nationale des ouvriers des travaux publics du 15 décembre 1992",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635467",
+          "shortTitle": "Travaux publics (Tome II : Ouvriers)"
+        },
+        {
+          "idcc": 2614,
+          "etat": "VIGUEUR_ETEN",
+          "id": "KALICONT000018926209",
+          "mtime": 1561580346,
+          "texte_de_base": "KALITEXT000018926214",
+          "title": "Convention collective nationale des employés, techniciens et agents de maîtrise des travaux publics du 12 juillet 2006",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000018926209",
+          "shortTitle": "Travaux publics (Tome III : ETAM)"
+        },
+        {
+          "idcc": 2409
+        },
+        {
+          "idcc": 3212,
+          "etat": "VIGUEUR_NON_ETEN",
+          "id": "KALICONT000032437525",
+          "mtime": 1561580346,
+          "texte_de_base": "KALITEXT000032426775",
+          "title": "Convention collective nationale des cadres des travaux publics du 20 novembre 2015",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000032437525",
+          "shortTitle": "Cadres des travaux publics"
+        }
+      ],
+      "etablissements": 13,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "SIGNAUX <b><u>GIROD</u></b> EST",
+      "label": "SIGNAUX GIROD EST",
+      "matching": 6,
+      "firstMatchingEtablissement": {
+        "address": "ZONE D'ACTIVITE DU CHENE 25170 CHAMPAGNEY",
+        "codeCommuneEtablissement": "25115",
+        "idccs": [
+          "2614",
+          "1702"
+        ],
+        "categorieEntreprise": "ETI",
+        "siret": "95950234500132",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": false
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "ZONE D'ACTIVITE DU CHENE 25170 CHAMPAGNEY",
+          "siret": "95950234500132",
+          "idccs": [
+            "1702",
+            "2614"
+          ],
+          "is_siege": false
+        },
+        {
+          "address": "60 ROUTE D’AUXERRE 89380 APPOIGNY",
+          "siret": "95950234500124",
+          "idccs": [
+            "2614"
+          ],
+          "is_siege": false
+        },
+        {
+          "address": "RUE DES FRÈRES LUMIÈRE 63100 CLERMONT-FERRAND",
+          "siret": "95950234500082",
+          "idccs": [
+            "1702",
+            "2614"
+          ],
+          "is_siege": false
+        },
+        {
+          "address": "12 CHEMIN DES MURIERS 69740 GENAS",
+          "siret": "95950234500108",
+          "idccs": [
+            "1702",
+            "2409",
+            "2614",
+            "3212"
+          ],
+          "is_siege": false
+        },
+        {
+          "address": "CHEMIN DES BERTHILLIERS 71850 CHARNAY-LÈS-MÂCON",
+          "siret": "95950234500090",
+          "idccs": [
+            "1702",
+            "2614",
+            "3212"
+          ],
+          "is_siege": true
+        },
+        {
+          "address": "4 RUE DES CHASSEURS 74950 SCIONZIER",
+          "siret": "95950234500140",
+          "idccs": [
+            "1702",
+            "2614",
+            "3212"
+          ],
+          "is_siege": false
+        }
+      ],
+      "simpleLabel": "SIGNAUX GIROD EST",
+      "siren": "959502345"
+    },
+    {
+      "activitePrincipale": "Location et exploitation de biens immobiliers propres ou loués",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2019-10-06",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "CHARLOTTE <b><u>GIROD</u></b>",
+      "label": "CHARLOTTE GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "27 PLACE DE L’EGLISE 71960 DAVAYÉ",
+        "codeCommuneEtablissement": "71169",
+        "idccs": [],
+        "siret": "90862098200011",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "27 PLACE DE L’EGLISE 71960 DAVAYÉ",
+          "siret": "90862098200011",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "908620982"
+    },
+    {
+      "activitePrincipale": "Traduction et interprétation",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-12-02",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "CHRISTIAN <b><u>GIROD</u></b>",
+      "label": "CHRISTIAN GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "1 AVENUE DES JADES 44300 NANTES",
+        "codeCommuneEtablissement": "44109",
+        "idccs": [],
+        "siret": "90788974500010",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "1 AVENUE DES JADES 44300 NANTES",
+          "siret": "90788974500010",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "907889745"
+    },
+    {
+      "activitePrincipale": "Enseignements divers",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-11-15",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "CAPUCINE <b><u>GIROD</u></b>",
+      "label": "CAPUCINE GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "10 RUE ERNEST TISSOT 92210 SAINT-CLOUD",
+        "codeCommuneEtablissement": "92064",
+        "idccs": [],
+        "siret": "90793627200018",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "10 RUE ERNEST TISSOT 92210 SAINT-CLOUD",
+          "siret": "90793627200018",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "907936272"
+    },
+    {
+      "activitePrincipale": "Autres activités pour la santé humaine",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-12-18",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "NICOLAS <b><u>GIROD</u></b>",
+      "label": "NICOLAS GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "47 RUE DE REUILLY 75012 PARIS",
+        "codeCommuneEtablissement": "75112",
+        "idccs": [],
+        "siret": "90827953200018",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "47 RUE DE REUILLY 75012 PARIS",
+          "siret": "90827953200018",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "908279532"
+    },
+    {
+      "activitePrincipale": "Autres commerces de détail hors magasin, éventaires ou marchés",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2021-09-13",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "PATRICIA MUTHER <b><u>GIROD</u></b>",
+      "label": "PATRICIA MUTHER GIROD",
+      "matching": 1,
+      "firstMatchingEtablissement": {
+        "address": "123 RUE DES BATTERIES 83600 FRÉJUS",
+        "codeCommuneEtablissement": "83061",
+        "idccs": [],
+        "siret": "90854766400015",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": true
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "123 RUE DES BATTERIES 83600 FRÉJUS",
+          "siret": "90854766400015",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "MUTHER",
+      "siren": "908547664"
+    },
+    {
+      "activitePrincipale": "Location et exploitation de biens immobiliers propres ou loués",
+      "categorieJuridiqueUniteLegale": "1000",
+      "dateCreationUniteLegale": "2020-07-01",
+      "caractereEmployeurUniteLegale": "N",
+      "conventions": [],
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "highlightLabel": "FRANCOIS <b><u>GIROD</u></b>",
+      "label": "FRANCOIS GIROD",
+      "matching": 2,
+      "firstMatchingEtablissement": {
+        "address": "RUE DU PUY LAS RODAS 87000 LIMOGES",
+        "codeCommuneEtablissement": "87085",
+        "idccs": [],
+        "siret": "90180592900022",
+        "etatAdministratifEtablissement": "A",
+        "is_siege": false
+      },
+      "allMatchingEtablissements": [
+        {
+          "address": "RUE DU PUY LAS RODAS 87000 LIMOGES",
+          "siret": "90180592900022",
+          "is_siege": false
+        },
+        {
+          "address": "AVENUE THOMAS WILSON 17300 ROCHEFORT",
+          "siret": "90180592900014",
+          "is_siege": true
+        }
+      ],
+      "simpleLabel": "GIROD",
+      "siren": "901805929"
+    }
+  ]
+}

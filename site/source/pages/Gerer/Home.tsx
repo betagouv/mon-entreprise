@@ -45,6 +45,13 @@ const infereDirigeantSimulateurFromCompanyDetails = (
 	if (company.isAutoEntrepreneur) {
 		return 'auto-entrepreneur'
 	}
+	if (
+		company.statutJuridique &&
+		['EIRL', 'EURL', 'EI'].includes(company.statutJuridique) &&
+		inferPLSimulateurFromCompanyDetails(company)
+	) {
+		return inferPLSimulateurFromCompanyDetails(company)
+	}
 	if (company.statutJuridique === 'EI') {
 		return 'entreprise-individuelle'
 	}
@@ -54,7 +61,7 @@ const infereDirigeantSimulateurFromCompanyDetails = (
 	) {
 		return company.statutJuridique.toLowerCase() as 'eirl' | 'sasu' | 'eurl'
 	}
-	if (company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire) {
+	if (company.statutJuridique === 'SARL') {
 		return 'indépendant'
 	}
 
@@ -69,23 +76,29 @@ const infereDirigeantSimulateurFromCompanyDetails = (
 const inferPLSimulateurFromCompanyDetails = (
 	company: Company | null
 ): DirigeantOrNull => {
-	if (!company || !company.codeNAF) {
+	if (!company) {
 		return null
 	}
-	const nafToSimulator = {
-		'69.10Z': 'avocat',
-		'69.20Z': 'expert-comptable',
-		'86.21Z': 'médecin',
-		'86.22A': 'médecin',
-		'86.22B': 'médecin',
-		'86.22C': 'médecin',
-		'86.23Z': 'chirurgien-dentiste',
-		'47.73Z': 'pharmacien',
-		'86.90D': 'auxiliaire-médical',
-		'86.90E': 'auxiliaire-médical',
-		'71.11Z': 'profession-libérale', // archi
+	const activiteToSimulator = {
+		'Activités comptables': 'expert-comptable',
+		'Activité des médecins généralistes': 'médecin',
+		'Activités de radiodiagnostic et de radiothérapie': 'médecin',
+		'Activités chirurgicales': 'médecin',
+		'Activité des médecins spécialistes': 'médecin',
+		'Activités hospitalières': 'pamc',
+		'Pratique dentaire': 'chirurgien-dentiste',
+		'Commerce de détail de produits pharmaceutiques en magasin spécialisé':
+			'pharmacien',
+		'Activités des infirmiers et des sages-femmes': 'pamc',
+		"Activités des professionnels de la rééducation, de l'appareillage et des pédicures-podologues":
+			'auxiliaire-médical',
+		"Laboratoires d'analyses médicales": 'pharmacien',
+		'Arts du spectacle vivant': 'artiste-auteur',
+		'Création artistique relevant des arts plastiques': 'artiste-auteur',
+		'Autre création artistique': 'artiste-auteur',
+		'Activités photographiques': 'artiste-auteur',
 	} as Record<string, keyof SimulatorData>
-	return nafToSimulator[company.codeNAF] || null
+	return activiteToSimulator[company.activitePrincipale] || null
 }
 
 export default function Gérer() {
@@ -95,8 +108,6 @@ export default function Gérer() {
 	)
 	const dirigeantSimulateur =
 		infereDirigeantSimulateurFromCompanyDetails(company)
-	const plSimulateur = inferPLSimulateurFromCompanyDetails(company)
-	const isPL = plSimulateur !== null
 	const simulateurs = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	if (!company) {
@@ -122,11 +133,11 @@ export default function Gérer() {
 							grâce aux simulateurs adaptés à votre situation.
 						</Trans>
 					</Intro>
-					<CompanySection company={company} isPL={isPL} />
+					<CompanySection company={company} />
 					<Spacing xl />
 				</PageHeader>
 
-				{(dirigeantSimulateur || plSimulateur) && (
+				{dirigeantSimulateur && (
 					<Container
 						backgroundColor={(theme) => theme.colors.bases.primary[600]}
 						darkMode
@@ -136,18 +147,12 @@ export default function Gérer() {
 
 						<H2>Entreprise et revenus</H2>
 						<Grid container spacing={3} position="relative">
-							{plSimulateur && (
-								<SimulateurCard fromGérer {...simulateurs[plSimulateur]} />
+							{dirigeantSimulateur !== null && (
+								<SimulateurCard
+									fromGérer
+									{...simulateurs[dirigeantSimulateur]}
+								/>
 							)}
-							{dirigeantSimulateur !== null &&
-								!(
-									isPL && dirigeantSimulateur === 'entreprise-individuelle'
-								) && (
-									<SimulateurCard
-										fromGérer
-										{...simulateurs[dirigeantSimulateur]}
-									/>
-								)}
 
 							{company?.statutJuridique &&
 								['EIRL', 'EI', 'EURL', 'SARL'].includes(
@@ -226,44 +231,32 @@ export default function Gérer() {
 
 type CompanySectionProps = {
 	company: Company | null
-	isPL?: boolean
 }
 
-export const CompanySection = ({ company, isPL }: CompanySectionProps) => {
+export const CompanySection = ({ company }: CompanySectionProps) => {
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
-	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] =
-		useState(false)
+
 	const sitePaths = useContext(SitePathsContext)
 	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {
 		if (companyRef.current !== company) {
 			companyRef.current = company
-
 			if (
 				company?.statutJuridique === 'EI' &&
 				company?.isAutoEntrepreneur == null &&
-				!isPL
+				!inferPLSimulateurFromCompanyDetails(company)
 			) {
 				showAutoEntrepreneurModal(true)
 			}
-			if (
-				company?.statutJuridique === 'SARL' &&
-				company?.isDirigeantMajoritaire == null
-			) {
-				showDirigeantMajoritaireModal(true)
-			}
 		}
-	}, [company, isPL])
+	}, [company])
 
 	const dispatch = useDispatch()
 	const handleAnswerAutoEntrepreneur = (isAutoEntrepreneur: boolean) => {
 		dispatch(specifyIfAutoEntrepreneur(isAutoEntrepreneur))
 		showAutoEntrepreneurModal(false)
 	}
-	const handleAnswerDirigeantMajoritaire = (DirigeantMajoritaire: boolean) => {
-		dispatch(specifyIfDirigeantMajoritaire(DirigeantMajoritaire))
-		showDirigeantMajoritaireModal(false)
-	}
+
 	const { t } = useTranslation()
 
 	return (
@@ -293,37 +286,6 @@ export const CompanySection = ({ company, isPL }: CompanySectionProps) => {
 							</Grid>
 						</Grid>
 					</Popover>
-				</>
-			)}
-			{DirigeantMajoritaireModal && (
-				<>
-					<ScrollToTop />
-					<Popover
-						title={t(
-							'gérer.entreprise.dirigeant.titre',
-							'Êtes-vous dirigeant majoritaire ?'
-						)}
-					>
-						<Body>
-							<Trans i18nKey="gérer.entreprise.dirigeant.description">
-								Si vous êtes administrateur majoritaire ou si vous faites partie
-								d'un conseil d'administration majoritaire, vous n'aurez pas le
-								même régime de sécurité sociale que si vous êtes minoritaire.
-							</Trans>
-						</Body>
-						<Grid container spacing={1}>
-							<Grid item>
-								<Button onPress={() => handleAnswerDirigeantMajoritaire(true)}>
-									<Trans>Oui</Trans>
-								</Button>
-							</Grid>
-							<Grid item>
-								<Button onPress={() => handleAnswerDirigeantMajoritaire(false)}>
-									<Trans>Non</Trans>
-								</Button>
-							</Grid>
-						</Grid>
-					</Popover>{' '}
 				</>
 			)}
 

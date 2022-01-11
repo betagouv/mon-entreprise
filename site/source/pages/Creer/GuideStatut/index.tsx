@@ -22,8 +22,11 @@ const useResetFollowingAnswers = () => {
 	const dispatch = useDispatch()
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
-	const answeredQuestion = useSelector((state: RootState) =>
-		Object.keys(state.inFranceApp.companyLegalStatus)
+	const answeredQuestion = useSelector(
+		(state: RootState) =>
+			Object.keys(
+				state.inFranceApp.companyLegalStatus
+			) as (keyof typeof state.inFranceApp.companyLegalStatus)[]
 	)
 	useEffect(() => {
 		const companyStatusCurrentQuestionName = (toPairs(
