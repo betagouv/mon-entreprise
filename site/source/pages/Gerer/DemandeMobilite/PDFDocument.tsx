@@ -1,20 +1,11 @@
-import  PDFElement from '@react-pdf/renderer'
+import PDFElement from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/Urssaf.png'
 import { RuleNode } from 'publicodes'
 import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'
 import robotoUrl from './Roboto-Regular.ttf'
 
-const {
-	Document,
-	Font,
-	Image,
-	Link,
-	Page,
-	StyleSheet,
-	Text,
-	View,
-} = PDFElement;
+const { Document, Font, Image, Link, Page, StyleSheet, Text, View } = PDFElement
 
 export type PDFDocumentProps = {
 	fields: Array<RuleNode>

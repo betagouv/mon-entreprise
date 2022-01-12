@@ -138,7 +138,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 		},
 
 		resolveId(id) {
-			const pathname = id.split('/').at(-1)
+			const pathname = id.split('/').slice(-1)[0]
 			if (pathname?.startsWith('virtual:')) {
 				return pathname.replace('virtual:', '')
 			}

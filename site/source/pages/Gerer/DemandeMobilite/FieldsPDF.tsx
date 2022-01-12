@@ -2,7 +2,7 @@ import PDFElement from '@react-pdf/renderer'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { formatValue, RuleNode } from 'publicodes'
 import { useContext } from 'react'
-const { StyleSheet, Text, View } = PDFElement;
+const { StyleSheet, Text, View } = PDFElement
 type FieldsPDFProps = {
 	fields: Array<RuleNode>
 }

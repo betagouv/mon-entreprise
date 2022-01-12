@@ -3,11 +3,13 @@ import { Strong } from 'DesignSystem/typography'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
+import { ComponentProps } from 'react'
 import { useContext } from 'react'
 import {
 	Area,
 	Bar,
 	Brush,
+	BrushProps,
 	CartesianGrid,
 	ComposedChart,
 	Legend,
@@ -32,12 +34,9 @@ type VisitsChartProps = {
 	grid?: boolean
 	colored?: boolean
 	layout?: 'horizontal' | 'vertical'
-	onDateChange?: ({
-		startIndex,
-		endIndex,
-	}: {
-		startIndex: number
-		endIndex: number
+	onDateChange?: (startEndIndex: {
+		startIndex?: number
+		endIndex?: number
 	}) => void
 	startIndex?: number
 	endIndex?: number
@@ -111,7 +110,7 @@ export default function VisitsChart({
 							startIndex={startIndex}
 							endIndex={endIndex}
 							dataKey="date"
-							onChange={onDateChange}
+							onChange={onDateChange as BrushProps['onChange']} // https://github.com/recharts/recharts/issues/2480
 							tickFormatter={period === 'jours' ? formatDay : formatMonth}
 						/>
 					)}
