@@ -66,7 +66,7 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 				<XAxis dataKey="date" type="category" tickFormatter={formatMonth} />
 
 				<YAxis
-					tickFormatter={formatValue}
+					tickFormatter={(x) => formatValue(x)}
 					domain={['0', 'auto']}
 					type="number"
 				/>
@@ -94,7 +94,10 @@ function formatMonth(date: string | Date) {
 	})
 }
 
-const CustomTooltip = ({ active, payload }: TooltipProps) => {
+const CustomTooltip = ({
+	active,
+	payload,
+}: TooltipProps<string | number, string>) => {
 	if (!active || !payload) {
 		return null
 	}
@@ -111,7 +114,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps) => {
 							<Strong>
 								{typeof value === 'number' ? formatValue(value) : value}
 							</Strong>{' '}
-							{formatLegend(name)}
+							{name && formatLegend(name)}
 						</ColoredLi>
 					))
 					.reverse()}

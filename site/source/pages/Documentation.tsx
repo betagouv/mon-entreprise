@@ -69,7 +69,6 @@ export default function MonEntrepriseRulePage() {
 										Head: Helmet,
 										Link: Link as React.ComponentType<{
 											to: string
-											children: React.ReactNode
 										}>,
 										References,
 									}}
