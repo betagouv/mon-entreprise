@@ -12,65 +12,70 @@ import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeContext } from 'styled-components'
+import { DynamicNavList } from 'Components/DynamicNavList'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
-
+	const ref = useRef<HTMLDivElement>(null)
+	
 	if (useInversionFail()) {
 		return null
 	}
-
+	
 	return (
 		<FromTop>
-			<RevenueRepartitionSection
-				onSeePayslip={() =>
-					payslipRef.current?.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start',
-					})
-				}
-			/>
-			<Spacing lg />
+			<DynamicNavList contentElement={ref} />
+			<div ref={ref}>
+				<RevenueRepartitionSection
+					onSeePayslip={() =>
+						payslipRef.current?.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start',
+						})
+					}
+				/>
+				<Spacing lg />
 
-			<DistributionSection />
+				<DistributionSection />
 
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
-				<div ref={payslipRef} />
-				<Grid container justifyContent="center">
-					<Grid item xl={9} lg={10}>
-						<H2>
-							<Trans>Fiche de paie</Trans>
-						</H2>
-						<PaySlip />
-						<SmallBody>
-							<Trans i18nKey="payslip.notice">
-								Le simulateur vous aide à comprendre votre bulletin de paie,
-								sans lui être opposable. Pour plus d&apos;informations, rendez
-								vous sur&nbsp;
-								<Link href="https://www.service-public.fr/particuliers/vosdroits/F559">
-									service-public.fr
-								</Link>
-								.
-							</Trans>
-						</SmallBody>
-						<SmallBody>
-							<Trans i18nKey="payslip.disclaimer">
-								Il ne prend pour l'instant pas en compte les accords et
-								conventions collectives, ni la myriade d'aides aux entreprises.
-								Trouvez votre convention collective{' '}
-								<Link href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
-									ici
-								</Link>
-								, et explorez les aides sur&nbsp;
-								<Link href="https://www.aides-entreprises.fr">
-									aides-entreprises.fr
-								</Link>
-								.
-							</Trans>
-						</SmallBody>
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+					<div ref={payslipRef} />
+					<Grid container justifyContent="center">
+						<Grid item xl={9} lg={10}>
+							<H2 id="test">
+								<Trans>Fiche de paie</Trans>
+							</H2>
+							<PaySlip />
+							<SmallBody>
+								<Trans i18nKey="payslip.notice">
+									Le simulateur vous aide à comprendre votre bulletin de paie,
+									sans lui être opposable. Pour plus d&apos;informations, rendez
+									vous sur&nbsp;
+									<Link href="https://www.service-public.fr/particuliers/vosdroits/F559">
+										service-public.fr
+									</Link>
+									.
+								</Trans>
+							</SmallBody>
+							<SmallBody>
+								<Trans i18nKey="payslip.disclaimer">
+									Il ne prend pour l'instant pas en compte les accords et
+									conventions collectives, ni la myriade d'aides aux entreprises.
+									Trouvez votre convention collective{' '}
+									<Link href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
+										ici
+									</Link>
+									, et explorez les aides sur&nbsp;
+									<Link href="https://www.aides-entreprises.fr">
+										aides-entreprises.fr
+									</Link>
+									.
+								</Trans>
+							</SmallBody>
+						</Grid>
 					</Grid>
-				</Grid>
-			</Container>
+				</Container>
+			</div>
 		</FromTop>
 	)
 }
