@@ -1,4 +1,11 @@
-import ReactPDF, {
+import  PDFElement from '@react-pdf/renderer'
+import urssafPng from 'Images/destinataires/Urssaf.png'
+import { RuleNode } from 'publicodes'
+import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
+import montserratUrl from './Montserrat-SemiBold.ttf'
+import robotoUrl from './Roboto-Regular.ttf'
+
+const {
 	Document,
 	Font,
 	Image,
@@ -7,16 +14,11 @@ import ReactPDF, {
 	StyleSheet,
 	Text,
 	View,
-} from '@react-pdf/renderer'
-import urssafPng from 'Images/destinataires/Urssaf.png'
-import { RuleNode } from 'publicodes'
-import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
-import montserratUrl from './Montserrat-SemiBold.ttf'
-import robotoUrl from './Roboto-Regular.ttf'
+} = PDFElement;
 
 export type PDFDocumentProps = {
 	fields: Array<RuleNode>
-	signatureURL?: ReactPDF.SourceObject | false
+	signatureURL?: string | false
 	place?: string
 }
 
