@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react'
 import { promises as fs } from 'fs'
 import path from 'path'
 import toml from 'rollup-plugin-toml'
+// import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig, Plugin } from 'vite'
 import { watchDottedNames } from '../modele-social/build.js'
-
+import shimReactPdf from 'vite-plugin-shim-react-pdf'
 export default defineConfig({
 	resolve: {
 		alias: {
@@ -32,6 +33,7 @@ export default defineConfig({
 		}),
 		yaml(),
 		toml,
+		shimReactPdf(),
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
 			templatePath: './source/template.html',
