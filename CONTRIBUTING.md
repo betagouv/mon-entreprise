@@ -56,8 +56,8 @@ yarn prepare
 yarn start
 ```
 
-L'application est exécutée sur http://localhost:8080/mon-entreprise pour la version française et
-http://localhost:8080/infrance pour la version anglaise.
+L'application est exécutée sur http://localhost:3000/mon-entreprise pour la version française et
+http://localhost:3000/infrance pour la version anglaise.
 
 Pour activer le traçage Redux:
 
@@ -180,11 +180,11 @@ yarn preview:mon-entreprise
 yarn preview:infrance
 ```
 
-### Analyse des bundles
+### Worker en développement
 
-La commande `yarn run build:analyse-bundle` gènere une visualisation interactive du
-contenu packagé, cf.
-[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+Nous utilisons [vite](https://vitejs.dev/) pour le serveur de développement et comme bundler. Aucun bundling n'est fait en développement, ce qui accélère considérablement le temps de rechargement de l'app à chaque modification. Pour cela, la syntaxe ESModule est utilisée partout, y compris dans les worker. Malheureusement, tous les navigateurs ne [supportent pas encore cette fonctionalité](https://caniuse.com/mdn-api_worker_worker_ecmascript_modules) (notamment [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1247687)).
+
+Par conséquent, les worker ne fonctionne pas en développement sous firefox. Ce n'est pas critique mais il faut le savoir.
 
 ### Tests
 
