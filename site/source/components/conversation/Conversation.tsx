@@ -129,7 +129,18 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					</Trans>
 				)}
 			</Body>
-			<SeeAnswersButton />
+			<Grid container spacing={2}>
+				{previousAnswers.length > 0 && (
+					<Grid item xs={6} sm="auto">
+						<Button light onPress={goToPrevious} size="XS">
+							← <Trans>Précédent</Trans>
+						</Button>
+					</Grid>
+				)}
+				<Grid container item xs={6} sm justifyContent="flex-end">
+					<SeeAnswersButton />
+				</Grid>
+			</Grid>
 			<Spacing lg />
 		</div>
 	)
