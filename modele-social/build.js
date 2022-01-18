@@ -34,7 +34,11 @@ function readRules() {
 function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(rules)
-	const jsString = `module.exports = ${JSON.stringify(rules, null, 2)}`
+	const jsString = `const rules = ${JSON.stringify(
+		rules,
+		null,
+		2
+	)}; if (typeof exports === 'object' && typeof module === 'object') {module.exports = rules;} else {this['modeleSocial'] = rules; }`
 	fs.writeFileSync(path.resolve(outDir, 'index.js'), jsString)
 	fs.writeFileSync(
 		path.resolve(outDir, 'names.ts'),
