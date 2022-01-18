@@ -7,9 +7,13 @@ import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
+import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
+import {
+	answeredQuestionsSelector,
+	situationSelector,
+} from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import './AnswerList.css'
 
@@ -30,9 +34,18 @@ const Title = styled(H2)`
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const answeredQuestions = (
-		Object.keys(useSelector(situationSelector)) as Array<DottedName>
-	).map((dottedName) => engine.evaluate(engine.getRule(dottedName)))
+	const situation = useSelector(situationSelector)
+	const passedQuestions = useSelector(answeredQuestionsSelector)
+	const answeredAndPassedQuestions = useMemo(
+		() =>
+			(Object.keys(situation) as DottedName[])
+				.filter(
+					(answered) => !passedQuestions.some((passed) => answered === passed)
+				)
+				.concat(passedQuestions)
+				.map((dottedName) => engine.evaluate(engine.getRule(dottedName))),
+		[engine, passedQuestions, situation]
+	)
 
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
@@ -40,7 +53,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 
 	return (
 		<div className="answer-list">
-			{!!answeredQuestions.length && (
+			{!!answeredAndPassedQuestions.length && (
 				<>
 					<Header>
 						<Title>
@@ -58,7 +71,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 							<Emoji emoji="🗑" /> <Trans>Tout effacer</Trans>
 						</Button>
 					</Header>
-					<StepsTable {...{ rules: answeredQuestions, onClose }} />
+					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
 				</>
 			)}
 			{!!nextSteps.length && (
