@@ -58,9 +58,9 @@ export function SmallCard({
 
 const Container = styled.div`
 	display: flex;
-	max-height: 120px;
 	flex-direction: row;
 	text-decoration: none;
+	word-break: break-word;
 	cursor: pointer;
 	align-items: center;
 	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
