@@ -130,7 +130,6 @@ const DividendesExplanation = () => {
 					</H2>
 				</div>
 				<StackedBarChart
-					precision={0.1}
 					data={[
 						{
 							dottedName: "bénéficiaire . dividendes . nets d'impôt",

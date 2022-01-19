@@ -186,7 +186,7 @@ type StackedRulesChartProps = {
 
 export default function StackedRulesChart({
 	data,
-	precision = 1,
+	precision = 0.1,
 }: StackedRulesChartProps) {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
