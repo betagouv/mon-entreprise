@@ -207,6 +207,7 @@ const RessourcesAllocationTable = styled.table`
 	text-align: left;
 	td {
 		padding: 6px;
+		font-family: ${({ theme }) => theme.fonts.main};
 	}
 
 	td:not(:first-child) {
@@ -216,7 +217,7 @@ const RessourcesAllocationTable = styled.table`
 
 	tbody tr:nth-child(odd),
 	tfoot tr:nth-child(odd) {
-		background: var(--lighterColor);
+		background: ${({ theme }) => theme.colors.bases.primary[200]};
 	}
 
 	thead,
@@ -225,6 +226,6 @@ const RessourcesAllocationTable = styled.table`
 	}
 
 	tfoot tr:last-child {
-		color: var(--lighterTextColor);
+		color: ${({ theme }) => theme.colors.bases.primary[500]};
 	}
 `
