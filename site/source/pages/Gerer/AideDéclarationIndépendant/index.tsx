@@ -234,7 +234,7 @@ function ImpositionSection() {
 	return (
 		<>
 			<SimpleField dottedName="entreprise . imposition" />
-			{situation['entreprise . imposition'] != null && (
+			{typeof situation['entreprise . imposition'] === 'string' && (
 				<>
 					{/* <WhenApplicable dottedName="aide déclaration revenu indépendant 2020 . comptabilité"> */}
 					<SimpleField dottedName="aide déclaration revenu indépendant 2020 . comptabilité" />
