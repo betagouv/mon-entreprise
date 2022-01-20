@@ -10,6 +10,7 @@ import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
+import { engine } from 'Components/utils/EngineContext'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -55,7 +56,9 @@ export type SimulationConfig = Partial<{
 	color: string
 }>
 
-export type Situation = Partial<Record<DottedName, any>>
+export type Situation = Partial<
+	Record<DottedName, string | number | Record<string, unknown>>
+>
 export type Simulation = {
 	config: SimulationConfig
 	url: string
@@ -65,6 +68,22 @@ export type Simulation = {
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
+}
+
+const filterBadValueInSituation = (situation: Situation): Situation => {
+	const situationErrors = engine.checkSituation(situation)
+
+	const filteredSituation = Object.entries(situationErrors).reduce(
+		(obj, [key, value]) => {
+			// eslint-disable-next-line no-console
+			console.error({ key, ...value })
+
+			return omit(obj, key as Names)
+		},
+		situation
+	)
+
+	return filteredSituation
 }
 
 function simulation(
@@ -134,9 +153,22 @@ function simulation(
 							!objectifsToReset.some((o) => dottedName.startsWith(o))
 					)
 				)
-				return { ...state, situation: { ...newSituation, [dottedName]: value } }
+
+				return {
+					...state,
+					situation: filterBadValueInSituation({
+						...newSituation,
+						[dottedName]: value,
+					}),
+				}
 			}
-			return { ...state, situation: { ...situation, [dottedName]: value } }
+			return {
+				...state,
+				situation: filterBadValueInSituation({
+					...situation,
+					[dottedName]: value,
+				}),
+			}
 		}
 		case 'STEP_ACTION': {
 			const { name, step } = action

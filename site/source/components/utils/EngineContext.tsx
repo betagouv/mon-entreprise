@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine, { Rule } from 'publicodes'
 import React, { createContext, useContext } from 'react'
 import i18n from '../../locales/i18n'
+import { Situation } from 'Reducers/rootReducer'
 
 export type Rules = Record<DottedName, Rule>
 
@@ -17,11 +18,15 @@ const engineOptions = {
 		return i18n?.t(`units:${unit}`, { count })
 	},
 }
+
+export let engine = new Engine()
+
 export function engineFactory(rules: Rules) {
-	return new Engine(rules, engineOptions)
+	engine = new Engine(rules, engineOptions)
+	return engine
 }
 
-export const EngineContext = createContext<Engine>(new Engine())
+export const EngineContext = createContext<Engine>(engine)
 export const EngineProvider = EngineContext.Provider
 
 export function useEngine(): Engine<DottedName> {
@@ -30,9 +35,7 @@ export function useEngine(): Engine<DottedName> {
 
 type SituationProviderProps = {
 	children: React.ReactNode
-	situation: Partial<
-		Record<DottedName, string | number | Record<string, unknown>>
-	>
+	situation: Situation
 }
 export function SituationProvider({
 	children,
