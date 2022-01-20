@@ -202,28 +202,22 @@ protection sociale . retraite . complémentaire salarié . points acquis:
 
 protection sociale . retraite . complémentaire indépendants:
   acronyme: RCI
-  non applicable si:
-    toutes ces conditions:
-      - entreprise . activité = 'libérale'
-      - dirigeant . indépendant . PL . régime général = non
-  formule: total points acquis  * valeur du point
+  non applicable si: dirigeant . indépendant . PL . CNAVPL
+  produit:
+    assiette: points acquis * mois cotisés
+    facteur:
+      nom: valeur du point
+      valeur: 1.191 €/point/an
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
-
-protection sociale . retraite . complémentaire indépendants . valeur du point:
-  formule: 1.191 €/point/an
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
-
-protection sociale . retraite . complémentaire indépendants . total points acquis:
-  formule: points acquis * mois cotisés
+    barèmes: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
 protection sociale . retraite . complémentaire indépendants . points acquis:
   unité: points/an
-  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / prix d'achat du point
+  non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
+  arrondi: oui
+  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / 17.765 €/point
 
-protection sociale . retraite . complémentaire indépendants . prix d'achat du point:
-  formule: 17.765 €/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
 

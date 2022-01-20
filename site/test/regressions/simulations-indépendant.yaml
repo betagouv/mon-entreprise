@@ -102,3 +102,7 @@ imposition à l'IS:
   - entreprise . chiffre d'affaires: 100000 €/an
     entreprise . imposition: "'IS'"
     impôt . méthode de calcul: "'barème standard'"
+
+exonération pension invalidité:
+  - dirigeant . rémunération . totale: 45000 €/an
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui

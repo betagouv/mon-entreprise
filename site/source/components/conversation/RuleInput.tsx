@@ -117,7 +117,7 @@ export default function RuleInput({
 
 	if (
 		evaluation.unit == null &&
-		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
+		['booléen', 'notification', undefined].includes(rule.rawNode.type) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
 		return <OuiNonInput {...commonProps} />
