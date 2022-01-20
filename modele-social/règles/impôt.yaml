@@ -609,19 +609,18 @@ impôt . dividendes:
   applicable si: bénéficiaire . dividendes . bruts > 0
   titre: Imposition des dividendes
 
-impôt . montant si autres revenus imposables uniquement:
+impôt . montant sans dividendes:
   recalcul:
     règle: impôt . foyer fiscal . impôt à payer
     avec:
       bénéficiaire . dividendes . bruts: 0 €/an
-      impôt . foyer fiscal . revenu imposable: foyer fiscal . revenu imposable . autres revenus imposables
-  titre: Montant de l'impôt dans le cas où aucun dividende ne serait touché
+  titre: Montant de l'impôt si aucun dividende n'était touché
 
 impôt . dividendes . montant en sus des autres revenus imposables:
   variations:
     - si: méthode de calcul . PFU
       alors: PFU
-    - sinon: impôt . foyer fiscal . impôt à payer - montant si autres revenus imposables uniquement
+    - sinon: impôt . foyer fiscal . impôt à payer - montant sans dividendes
   titre: Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
     revenus imposables
 

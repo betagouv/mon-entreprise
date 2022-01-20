@@ -8658,9 +8658,9 @@ impôt . foyer fiscal . taux effectif:
 impôt . montant:
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
-impôt . montant si autres revenus imposables uniquement:
-  titre.en: '[automatic] Amount of tax if no dividend is received'
-  titre.fr: Montant de l'impôt dans le cas où aucun dividende ne serait touché
+impôt . montant sans dividendes:
+  titre.en: '[automatic] '
+  titre.fr: Montant de l'impôt si aucun dividende n'était touché
 impôt . méthode de calcul:
   description.en: >
     We have implemented three ways to calculate income tax:
