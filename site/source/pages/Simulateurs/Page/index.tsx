@@ -9,23 +9,25 @@ import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
-import { SimulatorData } from '../metadata'
+import { CurrentSimulatorDataProvider, SimulatorData } from '../metadata'
 import { NextSteps } from './NextSteps'
 
-export default function PageData({
-	meta,
-	title,
-	config,
-	tracking,
-	tooltip,
-	description,
-	iframePath,
-	private: privateIframe,
-	component: Component,
-	seoExplanations,
-	nextSteps,
-	path,
-}: SimulatorData[keyof SimulatorData]) {
+export default function PageData(props: SimulatorData[keyof SimulatorData]) {
+	const {
+		meta,
+		config,
+		tracking,
+		tooltip,
+		description,
+		iframePath,
+		private: privateIframe,
+		component: Component,
+		seoExplanations,
+		nextSteps,
+		path,
+	} = props
+	let { title } = props
+
 	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
 	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
@@ -57,7 +59,7 @@ export default function PageData({
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
 	return (
-		<>
+		<CurrentSimulatorDataProvider value={props}>
 			<TrackChapter {...trackInfo} />
 			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
 			{title && !inIframe && (
@@ -79,6 +81,6 @@ export default function PageData({
 					/>
 				</>
 			)}
-		</>
+		</CurrentSimulatorDataProvider>
 	)
 }

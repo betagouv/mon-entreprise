@@ -1,13 +1,10 @@
 import { Grid } from '@mui/material'
 import Emoji from 'Components/utils/Emoji'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Button } from 'DesignSystem/buttons'
 import { Spacing } from 'DesignSystem/layout'
 import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
-import useSimulatorsData, {
-	SimulatorId,
-} from '../../pages/Simulateurs/metadata'
-import { useContext, useMemo } from 'react'
+import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -15,36 +12,25 @@ import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
+import { useMemo } from 'react'
 
 export function useUrl() {
 	const situation = useSelector(situationSelector)
 	const searchParams = useParamsFromSituation(situation)
-	const sitePaths = useContext(SitePathsContext)
-	const simulatorData = useSimulatorsData()
+	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 
-	type KeyofSimulator = keyof typeof sitePaths.simulateurs
+	const pathname = useMemo((): string => {
+		const { iframePath, path = '' } = currentSimulatorData ?? {}
+		const locPathname = window.location.pathname
+		const iframe = '/iframes/' + iframePath
 
-	const simulatorPath = useMemo(() => {
-		const iframePath = window.location.pathname.split(/[/?]/).slice(-1)[0]
-		const simulatorKey = (
-			Object.keys(sitePaths.simulateurs) as KeyofSimulator[]
-		).find(
-			(key) =>
-				key in simulatorData &&
-				simulatorData[key as SimulatorId]?.iframePath === iframePath
-		)
-
-		return simulatorKey ? sitePaths.simulateurs[simulatorKey] : ''
-	}, [simulatorData, sitePaths.simulateurs])
+		return iframePath && locPathname.includes(iframe)
+			? locPathname.replace(iframe, '') + path
+			: locPathname
+	}, [currentSimulatorData])
 
 	searchParams.set('utm_source', 'sharing')
-	return [
-		window.location.origin,
-		window.location.pathname.replace(/\/iframes\/.+/, ''),
-		simulatorPath,
-		'?',
-		searchParams.toString(),
-	].join('')
+	return window.location.origin + pathname + '?' + searchParams.toString()
 }
 
 const ButtonLabel = styled.span`
