@@ -1,9 +1,8 @@
+import { Logo } from 'Components/Logo'
 import SearchButton from 'Components/SearchButton'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
-import logoSvgFR from 'Images/logo-monentreprise.svg'
-import logoSvgEN from 'Images/logo-mycompany.svg'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -18,14 +17,10 @@ export default function Header() {
 		<Container>
 			<StyledHeader>
 				<Link to={sitePaths.index}>
-					{/* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */}
-					{language === 'fr' ? (
-						<Logo alt="Logo Mon-entreprise, site Urssaf" src={logoSvgFR} />
-					) : (
-						<Logo alt="Logo Mycompanyinfrance by Urssaf" src={logoSvgEN} />
-					)}
+					<StyledLogo>
+						<Logo />
+					</StyledLogo>
 				</Link>
-
 				<div
 					css={`
 						flex: 1;
@@ -52,10 +47,10 @@ const StyledHeader = styled.div`
 	margin: ${({ theme }) => theme.spacings.sm} 0;
 `
 
-const Logo = styled.img.attrs({ 'data-test-id': 'logo img' })`
-	height: 70%;
+const StyledLogo = styled.div`
+	height: 3rem;
 
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		height: 80%;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		height: 2.5rem;
 	}
 `

@@ -6,84 +6,16 @@ import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	firstStepCompletedSelector,
 	situationSelector,
 	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
-import styled, { css, ThemeProvider } from 'styled-components'
-import RuleInput, { InputProps } from './conversation/RuleInput'
-import RuleLink from './RuleLink'
-import { Appear } from './ui/animate'
-import AnimatedTargetValue from './ui/AnimatedTargetValue'
-import { useEngine } from './utils/EngineContext'
-import { useInitialRender, WatchInitialRender } from './utils/useInitialRender'
-
-type SimulationGoalsProps = {
-	className?: string
-	legend: string
-	publique?:
-		| 'employeur'
-		| 'particulier'
-		| 'artisteAuteur'
-		| 'independant'
-		| 'marin'
-	children: React.ReactNode
-	toggles?: React.ReactNode
-}
-
-export function SimulationGoals({
-	publique,
-	legend,
-	toggles,
-	children,
-}: SimulationGoalsProps) {
-	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
-
-	return (
-		<WatchInitialRender>
-			{toggles && <ToggleSection>{toggles}</ToggleSection>}
-			<StyledSimulationGoals
-				isFirstStepCompleted={isFirstStepCompleted}
-				publique={publique}
-				role="group"
-				aria-labelledby="simulator-legend"
-			>
-				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-					<div className="sr-only" id="simulator-legend">
-						{legend}
-					</div>
-					{children}
-				</ThemeProvider>
-			</StyledSimulationGoals>
-		</WatchInitialRender>
-	)
-}
-
-const ToggleSection = styled.div`
-	padding-bottom: ${({ theme }) => theme.spacings.sm};
-`
-
-const StyledSimulationGoals = styled.div<
-	Pick<SimulationGoalsProps, 'publique'> & { isFirstStepCompleted: boolean }
->`
-	z-index: 1;
-	position: relative;
-	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	${({ isFirstStepCompleted }) =>
-		isFirstStepCompleted &&
-		css`
-			border-bottom-right-radius: 0;
-			border-bottom-left-radius: 0;
-		`}
-	transition: border-radius 0.15s;
-	background: ${({ theme, publique }) => {
-		const colorPalette = publique
-			? theme.colors.publics[publique]
-			: theme.colors.bases.primary
-		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
-	}};
-`
+import styled from 'styled-components'
+import RuleInput, { InputProps } from '../conversation/RuleInput'
+import RuleLink from '../RuleLink'
+import { Appear } from '../ui/animate'
+import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+import { useEngine } from '../utils/EngineContext'
+import { useInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -229,4 +161,8 @@ const StyledGoal = styled.div`
 	position: relative;
 	z-index: 1;
 	padding: ${({ theme }) => theme.spacings.sm} 0;
+`
+
+const LogoContainer = styled.div`
+	height: 3rem;
 `

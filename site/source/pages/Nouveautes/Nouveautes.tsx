@@ -107,7 +107,7 @@ export default function Nouveautés() {
 						</Sidebar>
 					</Grid>
 					<Grid item xs={12} lg={9}>
-						<MainBlock>
+						<SimulationGoals>
 							<MarkdownWithAnchorLinks
 								source={data[selectedRelease].description}
 								escapeHtml={false}
@@ -128,7 +128,7 @@ export default function Nouveautés() {
 									</Link>
 								)}
 							</NavigationButtons>
-						</MainBlock>
+						</SimulationGoals>
 					</Grid>
 				</Grid>
 				<MoreInfosOnUs />
@@ -184,7 +184,7 @@ const Sidebar = styled.ul`
 
 const SmallScreenSelect = styled.select``
 
-const MainBlock = styled.div`
+const SimulationGoals = styled.div`
 	flex: 1;
 
 	> h1:first-child,

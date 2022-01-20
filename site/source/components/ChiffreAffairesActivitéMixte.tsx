@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { Condition } from './EngineValue'
-import { SimulationGoal } from './SimulationGoals'
+import { SimulationGoal } from './Simulation'
 import { useEngine } from './utils/EngineContext'
 import { Markdown } from './utils/markdown'
 
