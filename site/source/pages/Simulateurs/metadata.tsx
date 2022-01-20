@@ -4,7 +4,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import React, { useContext, useMemo } from 'react'
+import React, { createContext, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
@@ -739,6 +739,12 @@ export default function useSimulatorsData(): SimulatorData {
 		[t, sitePaths, i18n.language]
 	)
 }
+
+export const CurrentSimulatorDataContext = createContext<
+	SimulatorData[keyof SimulatorData] | null
+>(null)
+
+export const CurrentSimulatorDataProvider = CurrentSimulatorDataContext.Provider
 
 professionLibéraleConfig as SimulationConfig
 
