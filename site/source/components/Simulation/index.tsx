@@ -14,6 +14,8 @@ import { FadeIn, FromTop } from './../ui/animate'
 import { Questions } from './Questions'
 
 export { Questions } from './Questions'
+export { SimulationGoal } from './SimulationGoal'
+export { SimulationGoals } from './SimulationGoals'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -29,7 +31,6 @@ export default function Simulation({
 	customEndMessages,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
-
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}

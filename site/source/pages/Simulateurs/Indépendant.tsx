@@ -6,7 +6,7 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import IndépendantExplanation from 'Components/simulationExplanation/IndépendantExplanation'
-import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
+import { SimulationGoal, SimulationGoals } from 'Components/Simulation'
 import { useEngine } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
@@ -48,10 +48,11 @@ export default function IndépendantSimulation() {
 				<IndépendantSimulationGoals
 					legend="Vos revenus d'indépendant"
 					toggles={
-						<StyledToggleContainer>
+						<>
 							<ImpositionSwitch />
+
 							<PeriodSwitch />
-						</StyledToggleContainer>
+						</>
 					}
 				/>
 				<Banner icon={'✍️'}>
@@ -66,15 +67,6 @@ export default function IndépendantSimulation() {
 		</>
 	)
 }
-const StyledToggleContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap-reverse;
-	gap: ${({ theme }) => theme.spacings.md};
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		justify-content: center;
-	}
-`
 
 function IndépendantSimulationGoals({
 	toggles = <PeriodSwitch />,
