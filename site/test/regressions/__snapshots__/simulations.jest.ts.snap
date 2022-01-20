@@ -161,9 +161,9 @@ exports[`calculate simulations-dividendes: barème couple 2 enfants 1`] = `"[200
 
 exports[`calculate simulations-dividendes: barème couple 2 enfants 2`] = `"[20000000,11149363,3440000,5410637,11184000,11184000,48]"`;
 
-exports[`calculate simulations-dividendes: barème couple 2 enfants 3`] = `"[200,432560,34,40,112,112,36]"`;
+exports[`calculate simulations-dividendes: barème couple 2 enfants 3`] = `"[200,112,34,40,112,112,36]"`;
 
-exports[`calculate simulations-dividendes: barème couple 2 enfants 4`] = `"[20000,39970,3440,613,11184,11184,5]"`;
+exports[`calculate simulations-dividendes: barème couple 2 enfants 4`] = `"[20000,13204,3440,613,11184,11184,5]"`;
 
 exports[`calculate simulations-dividendes: barème défauts 1`] = `"[200,166,34,0,112,112,0]"`;
 
