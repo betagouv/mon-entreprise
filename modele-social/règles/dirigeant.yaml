@@ -1272,15 +1272,32 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   applicable si: entreprise . date de création < 01/2016
   rend non applicable: invalidité et décès
 
-dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
+dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
+  acronyme: PI
   question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
-  description: Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
+  description: |-
+    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime des travailleurs non-salariés 
+    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire**.
+
+    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs, 
+    il vous est attribué des **"points gratuits"**.
+
+    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés 
+    pendant la période d'activité indépendante** avant versement de la pension. 
+
+    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de : 
+
+    > `588 / (6 * 12 + 11) = 7,08`
+  type: notification
+  niveau: info
   par défaut: non
   rend non applicable:
     - exonérations . ZFU
-    - maladie
-    - indemnités journalières maladie
     - retraite complémentaire
+  référence:
+    Notice RSI (PDF): https://www.secu-independants.fr/fileadmin/mediatheque/Espace_telechargement/Protection_sociale/Depliant_assur_invalidite.pdf#page=8
+    Article D635-2 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
+    Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   titre: taux exonération ZFU

@@ -7117,19 +7117,55 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   titre.en: ZFU exemption rate
   titre.fr: taux exonération ZFU
-dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
-  description.en:
-    Persons receiving an invalidity pension from a non-agricultural
-    self-employed workers' scheme enjoy full exemption from sickness and
-    supplementary pension contributions.
-  description.fr: Les personnes titulaires d’une pension d’invalidité versée par
-    un régime des travailleurs non-salariés non agricoles bénéficient d’une
-    exonération totale des cotisations maladie et retraite complémentaire.
-  question.en: '[automatic] Do you receive a disability pension as a self-employed person?'
+dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
+  description.en: >-
+    [automatic] If you are the holder of a **disability pension** paid by a
+    non-agricultural non-salaried worker scheme, you are entitled to a **total
+    exemption from supplementary pension contributions**. 
+
+    non-agricultural non-salaried workers, you are entitled to a **total exemption from supplementary pension contributions**.
+
+
+    So that you can **continue to accumulate complementary pension points** like other workers, 
+
+    you are allocated **"free points "**.
+
+
+    In the general case, the number of points received corresponds to the **average monthly points contributed 
+
+    during the period of self-employment** before the pension is paid. 
+
+
+    &gt; For example, if you have contributed for 6 years and 11 months for a total of 588 points, the number of free points received each month will be : 
+
+
+    &gt; `588 / (6 * 12 + 11) = 7,08`
+  description.fr: >-
+    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime
+    des travailleurs non-salariés 
+
+    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire**.
+
+
+    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs, 
+
+    il vous est attribué des **"points gratuits"**.
+
+
+    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés 
+
+    pendant la période d'activité indépendante** avant versement de la pension. 
+
+
+    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de : 
+
+
+    > `588 / (6 * 12 + 11) = 7,08`
+  question.en: '[automatic] Are you a self-employed disability pensioner?'
   question.fr: Êtes-vous titulaire d’une pension d’invalidité à titre de
     travailleur indépendant ?
-  titre.en: disability
-  titre.fr: invalidité
+  titre.en: '[automatic] disability pension'
+  titre.fr: pension invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   description.en:
     '[automatic] This scheme was discontinued in 2015, but is still
@@ -9103,15 +9139,6 @@ protection sociale . retraite . complémentaire indépendants:
 protection sociale . retraite . complémentaire indépendants . points acquis:
   titre.en: acquired points
   titre.fr: points acquis
-protection sociale . retraite . complémentaire indépendants . prix d'achat du point:
-  titre.en: buying cost of the point
-  titre.fr: prix d'achat du point
-protection sociale . retraite . complémentaire indépendants . total points acquis:
-  titre.en: '[automatic] total points earned'
-  titre.fr: total points acquis
-protection sociale . retraite . complémentaire indépendants . valeur du point:
-  titre.en: value of the point
-  titre.fr: valeur du point
 protection sociale . retraite . complémentaire salarié:
   titre.en: supplementary pension for employees
   titre.fr: complémentaire salarié

@@ -8,8 +8,10 @@ import Value, {
 import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import { useEngine } from 'Components/utils/EngineContext'
+import { Strong } from 'DesignSystem/typography'
 import { H3 } from 'DesignSystem/typography/heading'
 import { Li, Ul } from 'DesignSystem/typography/list'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
@@ -168,7 +170,7 @@ function DroitsRetraite() {
 	}
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
-			<H3 as="h2">Retraite : droits acquis sur l'année 2021</H3>
+			<H3 as="h2">Retraite : droits acquis sur l'année</H3>
 			<Ul>
 				<Li>
 					Retraite de base :{' '}
@@ -182,13 +184,7 @@ function DroitsRetraite() {
 				</Li>
 				<Li>
 					Retraite complémentaire :{' '}
-					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-						<em>
-							Ce simulateur ne gère pas les droits acquis de retraite
-							complémentaire pour les professions libérales
-						</em>
-					</WhenApplicable>
-					<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
+					<WhenApplicable dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 						<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 							<Value
 								expression="protection sociale . retraite . complémentaire indépendants . points acquis"
@@ -196,6 +192,24 @@ function DroitsRetraite() {
 							/>{' '}
 							points acquis
 						</RuleLink>
+					</WhenApplicable>
+					<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+						<Strong>non connue</Strong>
+						<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité">
+							<SmallBody>
+								Le nombre de "points gratuits" reçus pendant votre pension
+								d'invalidité dépend de vos revenus antérieurs.{' '}
+								<RuleLink dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité">
+									En savoir plus.
+								</RuleLink>
+							</SmallBody>
+						</WhenApplicable>
+						<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
+							<SmallBody>
+								Ce simulateur ne gère pas les droits acquis de retraite
+								complémentaire pour les professions libérales
+							</SmallBody>
+						</WhenApplicable>
 					</WhenNotApplicable>
 				</Li>
 			</Ul>
