@@ -1056,8 +1056,9 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       - taux: 6.5%
   arrondi: oui
   références:
-    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+    Articles D621-1 à D621-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000028171649/#LEGISCTA000036475251
     taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
+    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
   note: |
     On retrouve dans le décret ci-dessous la phrase suivante :
 
@@ -1277,7 +1278,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
     Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime des travailleurs non-salariés 
-    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire**.
+    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et 
+    des cotisations maladie**.
 
     Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs, 
     il vous est attribué des **"points gratuits"**.
@@ -1294,9 +1296,12 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   rend non applicable:
     - exonérations . ZFU
     - retraite complémentaire
+    - maladie
+    - indemnités journalières maladie
   référence:
     Notice RSI (PDF): https://www.secu-independants.fr/fileadmin/mediatheque/Espace_telechargement/Protection_sociale/Depliant_assur_invalidite.pdf#page=8
     Article D635-2 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
+    Article D621-4 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656758
     Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:

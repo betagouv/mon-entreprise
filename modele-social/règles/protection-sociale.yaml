@@ -104,7 +104,11 @@ protection sociale . retraite . trimestres validés . barème trimestres génér
   formule:
     grille:
       unité: trimestres validés/an
-      assiette: revenu moyen
+      assiette:
+        variations:
+          - si: dirigeant . indépendant
+            alors: dirigeant . indépendant . assiette des cotisations
+          - sinon: contrat salarié . rémunération . brut
       multiplicateur: SMIC horaire
       tranches:
         - montant: 0
@@ -119,6 +123,7 @@ protection sociale . retraite . trimestres validés . barème trimestres génér
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+
 protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
   applicable si: dirigeant . auto-entrepreneur
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
