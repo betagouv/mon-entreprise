@@ -39,7 +39,10 @@ export function Article({
 		ref
 	) as any
 	const titleProps = getTitleProps(title, 'h3')
-	const linkProps = useExternalLinkProps(ariaButtonProps)
+	const linkProps = useExternalLinkProps({
+		...(typeof title === 'string' ? { title } : {}),
+		...ariaButtonProps,
+	})
 
 	return (
 		<StyledArticle
