@@ -1,6 +1,8 @@
 import algoliasearch from 'algoliasearch/lite'
 import { Spacing } from 'DesignSystem/layout'
+import { useEffect } from 'react'
 import { Configure, Index } from 'react-instantsearch-dom'
+import { useHistory } from 'react-router'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
@@ -11,7 +13,19 @@ const ALGOLIA_INDEX_PREFIX = process.env.ALGOLIA_INDEX_PREFIX || ''
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
-export default function SearchRulesAndSimulators() {
+interface Props {
+	closePopover: () => void
+}
+
+export default function SearchRulesAndSimulators({ closePopover }: Props) {
+	const history = useHistory()
+
+	useEffect(() => {
+		const unlisten = history.listen(closePopover)
+
+		return unlisten
+	}, [closePopover, history])
+
 	return (
 		<SearchRoot
 			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}

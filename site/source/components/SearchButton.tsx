@@ -32,7 +32,9 @@ export default function SearchButton() {
 				</StyledButton>
 			)}
 		>
-			<SearchRulesAndSimulators />
+			{(closePopover) => (
+				<SearchRulesAndSimulators closePopover={closePopover} />
+			)}
 		</PopoverWithTrigger>
 	)
 }
