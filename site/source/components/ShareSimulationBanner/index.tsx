@@ -12,25 +12,19 @@ import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
-import { useMemo } from 'react'
 
 export function useUrl() {
+	const language = useTranslation().i18n.language
 	const situation = useSelector(situationSelector)
 	const searchParams = useParamsFromSituation(situation)
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 
-	const pathname = useMemo((): string => {
-		const { iframePath, path = '' } = currentSimulatorData ?? {}
-		const locPathname = window.location.pathname
-		const iframe = '/iframes/' + iframePath
-
-		return iframePath && locPathname.includes(iframe)
-			? locPathname.replace(iframe, '') + path
-			: locPathname
-	}, [currentSimulatorData])
+	const { path = '' } = currentSimulatorData ?? {}
+	const siteUrl =
+		language === 'fr' ? process.env.FR_BASE_URL : process.env.EN_BASE_URL
 
 	searchParams.set('utm_source', 'sharing')
-	return window.location.origin + pathname + '?' + searchParams.toString()
+	return siteUrl + path + '?' + searchParams.toString()
 }
 
 const ButtonLabel = styled.span`
