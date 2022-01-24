@@ -190,7 +190,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
-							to="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
+							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
 							ctaLabel="Voir l'intégration"
 						>
 							<Logo src={urssafLogo} alt="urssaf.fr" />
@@ -199,7 +199,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="CCI de France"
-							to="http://les-aides.fr/embauche"
+							href="http://les-aides.fr/embauche"
 							ctaLabel="Voir l'intégration"
 						>
 							<Logo src={cciLogo} alt="Les-aides.fr" />
@@ -208,7 +208,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="APEC"
-							to="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche"
+							href="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche"
 							ctaLabel="Voir le simulateur"
 						>
 							<Logo src={apecLogo} alt="Agence pour l'emploi des cadres" />
@@ -217,7 +217,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Code du travail numérique"
-							to="https://code.travail.gouv.fr/outils/simulateur-embauche"
+							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
 							ctaLabel="Voir le simulateur"
 						>
 							<Logo src={minTraLogo} alt="Ministère du travail" />
@@ -226,7 +226,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Pôle Emploi"
-							to="https://entreprise.pole-emploi.fr/cout-salarie/"
+							href="https://entreprise.pole-emploi.fr/cout-salarie/"
 							ctaLabel="Voir le simulateur"
 						>
 							<Logo src={poleEmploiLogo} alt="Pôle Emploi" />
@@ -235,7 +235,7 @@ export default function Integration() {
 					<Grid item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
-							to="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
+							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
 							ctaLabel="Contactez-nous"
 						>
 							Vous avez un projet ou une idée à nous partager?
