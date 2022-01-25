@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const yaml = require('yaml')
+const yaml = require('js-yaml')
 
 const publicodesDir = path.resolve(__dirname, './règles')
 const outDir = path.resolve(__dirname, './dist')
@@ -11,22 +11,29 @@ if (!fs.existsSync(outDir)) {
 	fs.mkdirSync(outDir)
 }
 
-function concatenateFilesInDir(dirPath = publicodesDir) {
+function recursiveFindYamlFile(dirPath = publicodesDir) {
 	return fs
 		.readdirSync(dirPath)
-		.map((filename) => {
+		.flatMap((filename) => {
 			const fullpath = path.join(dirPath, filename)
 			if (fs.statSync(fullpath).isDirectory()) {
-				return concatenateFilesInDir(fullpath)
+				return recursiveFindYamlFile(fullpath)
 			} else {
-				return filename.endsWith('.yaml') ? fs.readFileSync(fullpath) : ''
+				return filename.endsWith('.yaml') ? fullpath : false
 			}
-		})
-		.reduce((acc, cur) => acc + '\n' + cur, '')
+		}).filter(Boolean)
 }
 
 function readRules() {
-	return yaml.parse(concatenateFilesInDir())
+	return recursiveFindYamlFile().reduce((rules, filePath) => {
+		const newRules = yaml.load(fs.readFileSync(filePath, 'utf-8'), {filename: filePath})
+		const duplicatedRule = Object.keys(newRules).find(ruleName => ruleName in rules)
+		if (duplicatedRule) {
+			throw new Error(`La règle ${duplicatedRule} a été redéfinie dans dans le fichier ${filePath}, alors qu'elle avait déjà été définie auparavant dans un autre fichier`)
+		}
+		return Object.assign(rules, newRules)
+	}, {})
+	
 }
 
 // Note: we can't put the output file in the fs.watched directory
