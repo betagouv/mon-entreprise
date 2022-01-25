@@ -53,13 +53,19 @@ protection sociale . retraite . plr:
   valeur: "'Non implémenté'"
 
 protection sociale . retraite . base:
+  # TODO : vérifier les modalités de calcul pour les salariés et les autoentrepreneurs. Il est possible que ce soit le même mécanisme que pour les indépendants.
   titre: pension de retraite de base
-  formule:
-    produit:
-      taux: taux de la pension
-      plafond: plafond sécurité sociale temps plein
-      assiette: revenu moyen
-  note: Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
+  produit:
+    taux: taux de la pension
+    plafond: plafond sécurité sociale temps plein
+    assiette:
+      variations:
+        - si: dirigeant . indépendant
+          alors: trimestres . indépendant . revenu cotisé
+        - sinon: revenu moyen
+  note: |-
+    Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
+
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
 
@@ -67,64 +73,69 @@ protection sociale . retraite . base . taux de la pension:
   description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
   formule:
     variations:
-      - si: trimestres validés = 0
+      - si: trimestres = 0
         alors: 0%
       - sinon: 50%
   note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
-protection sociale . retraite . trimestres validés:
+protection sociale . retraite . base . trimestres:
   unité: trimestres validés/an
-  formule:
-    somme:
-      - trimestres salarié
-      - trimestres indépendant
-      - trimestres auto-entrepreneur
-    plafond: 4
+  somme:
+    - salarié
+    - indépendant
+    - auto-entrepreneur
+  plafond: 4
 
-protection sociale . retraite . trimestres validés . trimestres salarié:
+protection sociale . retraite . base . trimestres . salarié:
   unité: trimestres validés/an
-  applicable si: contrat salarié
-  formule: barème trimestres générique
-
-protection sociale . retraite . trimestres validés . trimestres indépendant:
-  unité: trimestres validés/an
-  applicable si: dirigeant . indépendant
-  formule:
-    variations:
-      - si: situation personnelle . RSA
-        alors: barème trimestres générique
-      - sinon:
-          valeur: barème trimestres générique
-          plancher: 3
-
-protection sociale . retraite . trimestres validés . barème trimestres générique:
-  unité: trimestres validés/an
-  formule:
-    grille:
-      unité: trimestres validés/an
-      assiette:
-        variations:
-          - si: dirigeant . indépendant
-            alors: dirigeant . indépendant . assiette des cotisations
-          - sinon: contrat salarié . rémunération . brut
-      multiplicateur: SMIC horaire
-      tranches:
-        - montant: 0
-          plafond: 150 heures/an
-        - montant: 1
-          plafond: 300 heures/an
-        - montant: 2
-          plafond: 450 heures/an
-        - montant: 3
-          plafond: 600 heures/an
-        - montant: 4
+  grille: &bareme_trimestre
+    assiette: contrat salarié . rémunération . brut
+    multiplicateur: SMIC horaire
+    tranches:
+      - montant: 0
+        plafond: 150 heures/an
+      - montant: 1
+        plafond: 300 heures/an
+      - montant: 2
+        plafond: 450 heures/an
+      - montant: 3
+        plafond: 600 heures/an
+      - montant: 4
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
-protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
+protection sociale . retraite . base . trimestres . indépendant:
+  unité: trimestres validés/an
+  grille:
+    <<: *bareme_trimestre
+    assiette:
+      nom: revenu cotisé
+      valeur: dirigeant . indépendant . cotisations et contributions . retraite de base / dirigeant . indépendant . cotisations et contributions . retraite de base . taux
+  références:
+    Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+    Article R634-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038787378
+    Article R551-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/
+  note: |-
+    Rappel : la validation de trimestres s’effectue, pour les travailleurs indépendants à partir du **revenu cotisé**
+
+    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
+
+    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
+
+    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.    
+
+    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
+
+    Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
+
+    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
+
+    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
+
+protection sociale . retraite . base . trimestres . auto-entrepreneur:
   applicable si: dirigeant . auto-entrepreneur
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   unité: trimestres validés/an

@@ -161,6 +161,7 @@ function DistributionBranch({
 }
 
 function DroitsRetraite() {
+	const { t } = useTranslation()
 	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
 	if (
 		document.referrer?.includes('secu-independants.fr') ||
@@ -174,12 +175,11 @@ function DroitsRetraite() {
 			<Ul>
 				<Li>
 					Retraite de base :{' '}
-					<RuleLink dottedName="protection sociale . retraite . trimestres validés . trimestres indépendant">
+					<RuleLink dottedName="protection sociale . retraite . base . trimestres . indépendant">
 						<Value
-							expression="protection sociale . retraite . trimestres validés . trimestres indépendant"
-							displayedUnit=""
-						/>{' '}
-						trimestres acquis
+							expression="protection sociale . retraite . base . trimestres . indépendant"
+							displayedUnit={t('trimestres acquis')}
+						/>
 					</RuleLink>
 				</Li>
 				<Li>

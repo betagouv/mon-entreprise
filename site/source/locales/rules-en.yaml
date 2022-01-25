@@ -7120,10 +7120,12 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
   description.en: >-
     [automatic] If you are the holder of a **disability pension** paid by a
-    non-agricultural non-salaried worker scheme, you are entitled to a **total
-    exemption from supplementary pension contributions**. 
+    non-agricultural non-salaried worker scheme, you benefit from a **total
+    exemption from supplementary pension and 
 
-    non-agricultural non-salaried workers, you are entitled to a **total exemption from supplementary pension contributions**.
+    non-agricultural non-salaried workers, you are entitled to a **total exemption from supplementary pension contributions and 
+
+    health insurance contributions**.
 
 
     So that you can **continue to accumulate complementary pension points** like other workers, 
@@ -7131,7 +7133,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     you are allocated **"free points "**.
 
 
-    In the general case, the number of points received corresponds to the **average monthly points contributed 
+    In the general case, the number of points received corresponds to the **average monthly points contributed during the period of 
 
     during the period of self-employment** before the pension is paid. 
 
@@ -7144,7 +7146,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime
     des travailleurs non-salariés 
 
-    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire**.
+    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et 
+
+    des cotisations maladie**.
 
 
     Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs, 
@@ -9133,6 +9137,74 @@ protection sociale . retraite . base . taux de la pension:
     (ou avant si tous les trimestres sont validés).
   titre.en: rate of the pension
   titre.fr: taux de la pension
+protection sociale . retraite . base . trimestres:
+  titre.en: '[automatic] quarters'
+  titre.fr: trimestres
+protection sociale . retraite . base . trimestres . auto-entrepreneur:
+  description.en:
+    '[automatic] The minimum turnover thresholds for the validation
+    of quarters for retirement as an auto-entrepreneur. Below the minimum
+    amount, you will only have access to the solidarity allowance.'
+  description.fr:
+    Les seuils de chiffre d'affaires minimum pour la validation des
+    trimestres pour la retraite en auto-entrepreneur. En-dessous du montant
+    minimum, vous n'aurez accès qu'à l'allocation de solidarité.
+  titre.en: '[automatic] auto-entrepreneur'
+  titre.fr: auto-entrepreneur
+protection sociale . retraite . base . trimestres . indépendant:
+  note.en: >-
+    [automatic] Reminder: for self-employed workers, the validation of quarters
+    is based on the **contributed income**.
+
+
+    The last paragraph of article R351-9 of the Social Security Code, as made applicable to self-employed workers by articles D634-1 and R634-1 of the same code, with adaptations, provides that for the period after December 31, 2013, as many quarters are to be retained as the annual income corresponding to the deductions made by the insured person represents times the amount of the minimum growth wage in force on January 1 of the year in question, calculated on the basis of 150 hours, with a maximum of four quarters per calendar year.
+
+
+    By deductions made by the insured, the text refers (in the case of a self-employed person who is not necessarily up to date with his or her contributions) to the basic old-age pension scheme contributions actually paid by him or her (and not to the contributions called for).
+
+
+    The annual income corresponding to the deductions made by the insured (so-called "contributed income") is the income reconstituted from the basic old-age pension scheme contributions ("RVB") actually paid by the insured.    
+
+
+    The contributed income is therefore the basic old-age pension contribution actually paid for the year N divided by the basic old-age pension contribution rate for that year N.
+
+
+    Final RVB contribution actually paid for a year N (+ deductions or exemptions generating rights) / RVB contribution rate for this year N (for the part generating rights applicable to the capped income).
+
+
+    This income (known as "contributed income" for a year N) is used to validate quarters for a year N.
+
+
+    It is compared to the threshold of 150 smic/hour to determine the number of quarters to be validated (contributed income of year N /150 smic h).
+  note.fr: >-
+    Rappel : la validation de trimestres s’effectue, pour les travailleurs
+    indépendants à partir du **revenu cotisé**
+
+
+    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
+
+
+    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
+
+
+    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.    
+
+
+    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
+
+
+    Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
+
+
+    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
+
+
+    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
+  titre.en: '[automatic] independent'
+  titre.fr: indépendant
+protection sociale . retraite . base . trimestres . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
 protection sociale . retraite . complémentaire indépendants:
   titre.en: supplementary pension for self-employed
   titre.fr: complémentaire indépendants
@@ -9164,28 +9236,6 @@ protection sociale . retraite . plr:
     professions libérales réglementées.
   titre.en: '[automatic] Retirement from regulated professions'
   titre.fr: Retraite profession libérale réglementée
-protection sociale . retraite . trimestres validés:
-  titre.en: '[automatic] validated quarters'
-  titre.fr: trimestres validés
-protection sociale . retraite . trimestres validés . barème trimestres générique:
-  titre.en: generic quarters scale
-  titre.fr: barème trimestres générique
-protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
-  description.en: Minimum turnover thresholds for the validation of quarters for
-    retirement as a self-employed entrepreneur. Below the minimum amount, you
-    will only have access to the solidarity allowance.
-  description.fr:
-    Les seuils de chiffre d'affaires minimum pour la validation des
-    trimestres pour la retraite en auto-entrepreneur. En-dessous du montant
-    minimum, vous n'aurez accès qu'à l'allocation de solidarité.
-  titre.en: auto-entrepreneur quarters
-  titre.fr: trimestres auto-entrepreneur
-protection sociale . retraite . trimestres validés . trimestres indépendant:
-  titre.en: self-employed quarters
-  titre.fr: trimestres indépendant
-protection sociale . retraite . trimestres validés . trimestres salarié:
-  titre.en: employee quarters
-  titre.fr: trimestres salarié
 protection sociale . revenu moyen:
   description.en: The income used to calculate the amount of retirement pensions
     and daily social security allowances during a work stoppage.
