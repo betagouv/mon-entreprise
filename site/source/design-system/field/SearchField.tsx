@@ -25,6 +25,7 @@ const SearchInput = styled(StyledInput)`
 	&::-webkit-search-results-decoration {
 		-webkit-appearance: none;
 	}
+	-webkit-appearance: textfield;
 `
 
 const SearchInputContainer = styled(StyledInputContainer)`
