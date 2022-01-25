@@ -4,7 +4,7 @@ import { Checkbox } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
@@ -124,9 +124,11 @@ function ActivitéMixte() {
 	)
 	return (
 		<StyledActivitéMixteContainer>
-			<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
-				Activité mixte
-			</Checkbox>
+			<Trans>
+				<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
+					Activité mixte
+				</Checkbox>
+			</Trans>
 			<ButtonHelp type="aide" title={rule.title} light>
 				<Markdown source={rule.rawNode.description} />
 			</ButtonHelp>

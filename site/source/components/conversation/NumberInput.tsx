@@ -109,6 +109,8 @@ function getSerializedUnit(
 	}
 
 	const formatUnit = getFormatUnit(unit)
+	console.log(unit, locale, formatUnit)
+
 	if (!formatUnit) {
 		return (
 			t(

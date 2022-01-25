@@ -167,14 +167,13 @@ dirigeant . auto-entrepreneur:
 dirigeant . auto-entrepreneur . net de cotisations:
   titre: Revenu net de cotisations
   arrondi: oui
-
   unité: €/an
   remplace: rémunération . nette
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu après déductions des cotisations, avant le paiement de l'impôt sur le revenu.
-  formule: entreprise . chiffre d'affaires - cotisations et contributions
+  valeur: entreprise . chiffre d'affaires - cotisations et contributions
 
 dirigeant . auto-entrepreneur . cotisations et contributions:
   unité: €/mois
