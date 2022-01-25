@@ -9,6 +9,7 @@ import {
 } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled from 'styled-components'
+import { ResizeObserver } from '@juggle/resize-observer'
 
 type Props = {
 	children: React.ReactNode
@@ -114,7 +115,7 @@ export function Appear({
 	delay = 0,
 	style,
 }: Props & { unless?: boolean }) {
-	const [ref, { height }] = useMeasure()
+	const [ref, { height }] = useMeasure({ polyfill: ResizeObserver })
 	const animatedStyle = useSpring({
 		delay,
 		config,

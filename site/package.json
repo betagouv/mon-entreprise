@@ -39,10 +39,14 @@
 		"algolia:update": "node scripts/search/update-data.js",
 		"algolia:clean": "node scripts/search/clean.js"
 	},
+	"resolutions": {
+		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",
 		"@icons/material": "^0.4.1",
 		"@internationalized/number": "^3.0.3",
+		"@juggle/resize-observer": "^3.3.1",
 		"@mui/material": "^5.0.4",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
 		"@react-aria/button": "^3.3.4",
