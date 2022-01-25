@@ -26,7 +26,7 @@ export default function Iframes() {
 			Our own link are handled in-app by the router, and aren't affected by this directive.
 			*/}
 			<base target="_parent" />
-			<div className="ui__ container">
+			<div data-iframe-height>
 				<Switch>
 					{Object.values(simulators)
 						.filter(({ iframePath }) => !!iframePath)

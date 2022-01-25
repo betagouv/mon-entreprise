@@ -167,13 +167,7 @@ export default function Provider({
 					</>
 				}
 			>
-				<OverlayProvider
-					css={`
-						flex: 1;
-						display: flex;
-						flex-direction: column;
-					`}
-				>
+				<OverlayProvider>
 					<ReduxProvider store={store}>
 						<IsEmbeddedProvider>
 							<ThemeColorsProvider>

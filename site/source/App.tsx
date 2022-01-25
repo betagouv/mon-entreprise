@@ -20,6 +20,7 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import styled, { css } from 'styled-components'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
@@ -108,7 +109,7 @@ const App = () => {
 	const sitePaths = useContext(SitePathsContext)
 	const isEmbedded = useIsEmbedded()
 	return (
-		<>
+		<StyledLayout isEmbeded={isEmbedded}>
 			{!isEmbedded && <Header />}
 			<Helmet
 				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
@@ -144,6 +145,18 @@ const App = () => {
 				<Spacing xxl />
 			</Container>
 			{!isEmbedded && <Footer />}
-		</>
+		</StyledLayout>
 	)
 }
+
+const StyledLayout = styled.div.attrs({ 'data-iframe-height': true })<{
+	isEmbeded: boolean
+}>`
+	${({ isEmbeded }) =>
+		!isEmbeded &&
+		css`
+			flex-direction: column;
+			display: flex;
+			height: 100%;
+		`}
+`

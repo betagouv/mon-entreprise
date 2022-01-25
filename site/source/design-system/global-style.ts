@@ -101,6 +101,10 @@ html {
 	overflow-x: hidden;
 }
 
+html, body, #js, #js > * {
+	height: 100%;
+}
+
 *,
 *:before,
 *:after {
@@ -112,11 +116,6 @@ body {
 
 }
 
-#js {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-}
 
 /* Reset fieldset style */
 fieldset {

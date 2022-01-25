@@ -86,6 +86,7 @@ export default function Popover(
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
+									data-iframe-height
 									{...overlayProps}
 									offsetTop={offsetTop}
 									ref={ref}
@@ -170,9 +171,8 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[4]};
 	display: flex;
-
+	margin-bottom: 1rem;
 	flex-direction: column;
-
 	animation: ${fromtop} 0.2s;
 
 	${({ theme, offsetTop }) =>

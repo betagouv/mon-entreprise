@@ -102,15 +102,23 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 
 const ToggleSection = styled.div`
 	padding: ${({ theme }) => theme.spacings.sm} 0;
+
 	display: flex;
 	justify-content: right;
+	text-align: right;
+
 	flex-wrap: wrap-reverse;
-	gap: ${({ theme }) => theme.spacings.md};
-	> *:first-child {
+	align-items: flex-start;
+	white-space: nowrap;
+	gap: ${({ theme }) => theme.spacings.sm};
+
+	> *:last-child {
 		flex: 1;
 	}
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		white-space: normal;
 		justify-content: center;
+		text-align: center;
 	}
 `
 

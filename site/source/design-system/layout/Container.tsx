@@ -69,8 +69,8 @@ export default function Container({
 }
 
 const OuterContainer = styled.div<OuterContainerProps>`
-	min-width: 100vw;
 	flex: 1;
+	min-width: 100vw;
 	background-color: ${({ theme, backgroundColor }) =>
 		backgroundColor ? backgroundColor(theme) : theme.colors};
 	${InnerContainer} & {

@@ -40,7 +40,7 @@ for (var key in iframeAttributes) {
 iframeResizer(
 	{
 		interval: 0,
-		heightCalculationMethod: 'lowestElement',
+		heightCalculationMethod: 'taggedElement',
 	},
 	iframe
 )
