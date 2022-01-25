@@ -16,8 +16,8 @@
 		"dist/index.js"
 	],
 	"devDependencies": {
-		"publicodes": "^1.0.0-beta.23",
-		"yaml": "^1.10.0"
+		"js-yaml": "^4.1.0",
+		"publicodes": "^1.0.0-beta.23"
 	},
 	"peerDependencies": {
 		"publicodes": "^1.0.0-beta.23"
