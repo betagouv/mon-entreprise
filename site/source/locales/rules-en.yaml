@@ -7670,26 +7670,20 @@ entreprise . activité . libérale réglementée:
 entreprise . activité . mixte:
   description.en: >
     [automatic] It is possible to have several activities with different types
-    of income for the same
-
-    for the same company.
+    of income for the same company.
 
 
-    For example, a plumbing company that charges for the purchase and installation of a faucet
-
-    faucet has a part of its turnover in sale of material (the faucet)
-
-    and a part in service provision (the installation).
+    For example, a plumbing company that charges for the purchase and installation of a faucet has a part of its turnover in sale of material (the faucet) and a part in service provision (the installation).
 
 
     There are three categories with different standard expense allowance rates:
 
 
-    - [Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% allowance)
+    - [Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% deduction)
 
-    - Commercial or artisanal services (BIC)](/documentation/company/turnover/service-BIC) (50% deduction)
+    - [Commercial or artisanal services (BIC)](/documentation/company/turnover/service-BIC) (50% deduction)
 
-    - Other services and liberal activities (BNC)](/documentation/company/turnover/service-BNC) (34% deduction)
+    - [Other services and liberal activities (BNC)](/documentation/company/turnover/service-BNC) (34% deduction)
 
 
     If your company has activities corresponding to several categories of income, answer yes to this

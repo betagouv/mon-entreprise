@@ -73,7 +73,10 @@ export default function translateRules<Names extends string>(
 	rules: Record<Names, Rule>
 ): Record<Names, Rule> {
 	const translatedRules = mapObjIndexed(
-		(rule: Rule, name: string) => translateRule(lang, translations, name, rule),
+		(rule: Rule, name: string) =>
+			rule && typeof rule === 'object'
+				? translateRule(lang, translations, name, rule)
+				: rule,
 		rules
 	)
 
