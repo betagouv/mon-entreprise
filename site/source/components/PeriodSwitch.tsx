@@ -3,7 +3,6 @@ import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
-import './PeriodSwitch.css'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
@@ -22,7 +21,7 @@ export default function PeriodSwitch() {
 		},
 	]
 	return (
-		<div id="PeriodSwitch">
+		<div>
 			<ToggleGroup
 				defaultValue={currentUnit}
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
