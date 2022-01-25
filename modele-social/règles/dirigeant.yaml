@@ -1105,10 +1105,11 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
     assiette:
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
-    multiplicateur: plafond sécurité sociale temps plein
     tranches:
-      - taux: 17.75%
-        plafond: 1
+      - taux:
+          nom: taux
+          valeur: 17.75%
+        plafond: plafond sécurité sociale temps plein
       - taux: 0.6%
   arrondi: oui
   références:
