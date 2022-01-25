@@ -14,6 +14,10 @@ import styled from 'styled-components'
 import CompanyDetails from './CompanyDetails'
 import { FromTop } from './ui/animate'
 
+const StyledCard = styled(Card)`
+	flex-direction: row; // for Safari <= 13
+`
+
 export function CompanySearchField(props: {
 	label?: ReactNode
 	onValue?: () => void
@@ -98,9 +102,9 @@ function Results({
 			<Grid container spacing={2} data-testid="company-search-results">
 				{results.map((etablissement) => (
 					<Grid key={etablissement.siren} item xs={12} xl={6}>
-						<Card onPress={() => onSubmit(etablissement)} compact>
+						<StyledCard onPress={() => onSubmit(etablissement)} compact>
 							<CompanyDetails entreprise={etablissement} />
-						</Card>
+						</StyledCard>
 					</Grid>
 				))}
 			</Grid>
