@@ -1,3 +1,4 @@
 .eslintrc.js
 dist
 site/source/locales/*.yaml
+site/source/ATInternetTracking/smarttag.js
