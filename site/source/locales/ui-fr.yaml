@@ -1313,6 +1313,20 @@ recherche-globale:
 responsabilité:
   bouton1: Société
   bouton2: Entreprise individuelle
+  description: "
+
+    \t\t\t\t\t\tResponsabilité limitée ? entreprise individuelle ? Chaque
+    option a
+
+    \t\t\t\t\t\tdes implications juridiques et conduit à un statut différent
+    pour la
+
+    \t\t\t\t\t\tcréation de votre entreprise en France. Ce guide vous aide à
+    choisir
+
+    \t\t\t\t\t\tentre les différentes forme de responsabilité.
+
+    \t\t\t\t\t"
   entreprise-individuelle: "<0>Entreprise individuelle : </0>Une activité
     économique exercée par une seule personne physique, en son nom propre. Moins
     de formalités, mais plus de risques en cas de faillite, car votre patrimoine

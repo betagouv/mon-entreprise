@@ -1,12 +1,10 @@
-import dotenv from 'dotenv'
+import 'dotenv/config.js'
 import 'isomorphic-fetch'
 import fs from 'fs'
 import path from 'path'
 import { filter, flatten, map, partition, pipe } from 'ramda'
 import { compose } from 'redux'
 import { createDataDir, writeInDataDir } from './utils.js'
-
-dotenv.config()
 
 const matomoSiteVisitsHistory = JSON.parse(
 	fs.readFileSync(

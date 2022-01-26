@@ -1,7 +1,5 @@
-import dotenv from 'dotenv'
+import 'dotenv/config.js'
 import algoliasearch from 'algoliasearch'
-
-dotenv.config()
 
 const {
 	ALGOLIA_APP_ID,

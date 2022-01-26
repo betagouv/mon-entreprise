@@ -1,13 +1,14 @@
 import yaml from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
-import { promises as fs } from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import toml from 'rollup-plugin-toml'
-// import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig, Plugin } from 'vite'
 import { watchDottedNames } from '../modele-social/build.js'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
+import { createProxyMiddleware } from 'http-proxy-middleware'
+
 export default defineConfig({
 	resolve: {
 		alias: {
@@ -62,6 +63,7 @@ export default defineConfig({
 		legacy({
 			targets: ['defaults', 'not IE 11'],
 		}),
+		monEntrepriseDevServer(),
 	],
 })
 
@@ -90,12 +92,6 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 		enforce: 'pre',
 
 		configureServer(vite) {
-			// Small hack: This call shouldn't be here, but it's the easiest way to
-			// start the watcher with the development server. We could use native
-			// ViteJS watch API, but it would require changing more code and maybe the
-			// whole "modele-social" package build process.
-			watchDottedNames()
-
 			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			vite.middlewares.use(async (req, res, next) => {
 				const url = req.originalUrl
@@ -151,6 +147,25 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			) {
 				return await fillTemplate(id.replace(/\.html$/, ''))
 			}
+		},
+	}
+}
+
+function monEntrepriseDevServer(): Plugin {
+	return {
+		name: 'mon-entreprise',
+		configureServer(vite) {
+			// We could use native ViteJS watch API, but it would require changing
+			// more code and maybe the whole "modele-social" package build process.
+			watchDottedNames()
+
+			vite.middlewares.use(
+				createProxyMiddleware('/polyfill.io', {
+					target: 'https://polyfill.io',
+					changeOrigin: true,
+					pathRewrite: { '^/polyfill.io': '' },
+				}) as any
+			)
 		},
 	}
 }

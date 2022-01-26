@@ -14,14 +14,7 @@ import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import 'iframe-resizer'
 import logo from 'Images/logo-monentreprise.svg'
-import {
-	createContext,
-	default as React,
-	default as React,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
