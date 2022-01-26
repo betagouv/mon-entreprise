@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import SearchRules from 'Components/search/SearchRules'
 import { FromBottom } from 'Components/ui/animate'
 import { useEngine } from 'Components/utils/EngineContext'
+import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -70,6 +71,7 @@ export default function MonEntrepriseRulePage() {
 										Link: Link as React.ComponentType<{
 											to: string
 										}>,
+										Text: Markdown as any,
 										References,
 									}}
 								/>

@@ -1,16 +1,18 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { assocPath } from 'ramda'
-import { parse, stringify } from 'yaml'
+import yaml from 'yaml'
 import {
 	fetchTranslation,
 	getUiMissingTranslations,
 	UiOriginalTranslationPath,
 	UiTranslationPath,
-} from './utils'
+} from './utils.js'
 ;(async function () {
 	const missingTranslations = getUiMissingTranslations()
-	let originalKeys = parse(readFileSync(UiOriginalTranslationPath, 'utf-8'))
-	let translatedKeys = parse(readFileSync(UiTranslationPath, 'utf-8'))
+	let originalKeys = yaml.parse(
+		readFileSync(UiOriginalTranslationPath, 'utf-8')
+	)
+	let translatedKeys = yaml.parse(readFileSync(UiTranslationPath, 'utf-8'))
 	await Promise.all(
 		Object.entries(missingTranslations)
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
@@ -27,10 +29,10 @@ import {
 	)
 	writeFileSync(
 		UiTranslationPath,
-		stringify(translatedKeys, { sortMapEntries: true })
+		yaml.stringify(translatedKeys, { sortMapEntries: true })
 	)
 	writeFileSync(
 		UiOriginalTranslationPath,
-		stringify(originalKeys, { sortMapEntries: true })
+		yaml.stringify(originalKeys, { sortMapEntries: true })
 	)
 })()

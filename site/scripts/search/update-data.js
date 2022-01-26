@@ -1,10 +1,8 @@
 import algoliasearch from 'algoliasearch'
-import dotenv from 'dotenv'
+import 'dotenv/config.js'
 import rawRules from 'modele-social'
 import { parsePublicodes } from 'publicodes'
 import getSimulationData from '../../source/pages/Simulateurs/metadata-src.js'
-
-dotenv.config()
 
 const rules = parsePublicodes(rawRules)
 

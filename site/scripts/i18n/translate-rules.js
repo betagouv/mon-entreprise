@@ -1,17 +1,17 @@
 import { writeFileSync } from 'fs'
-import { format, resolveConfig } from 'prettier'
-import { stringify } from 'yaml'
+import prettier from 'prettier'
+import yaml from 'yaml'
 import {
 	fetchTranslation,
 	getRulesMissingTranslations,
 	rulesTranslationPath,
-} from './utils'
+} from './utils.js'
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
 
 writeFileSync(
 	rulesTranslationPath,
-	stringify(resolved, { sortMapEntries: true })
+	yaml.stringify(resolved, { sortMapEntries: true })
 )
 ;(async function main() {
 	await Promise.all(
@@ -25,9 +25,9 @@ writeFileSync(
 		})
 	)
 
-	resolveConfig(rulesTranslationPath).then((options) => {
-		const formattedYaml = format(
-			stringify(resolved, { sortMapEntries: true }),
+	prettier.resolveConfig(rulesTranslationPath).then((options) => {
+		const formattedYaml = prettier.format(
+			yaml.stringify(resolved, { sortMapEntries: true }),
 			{
 				...options,
 				parser: 'yaml',

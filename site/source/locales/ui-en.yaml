@@ -1675,9 +1675,17 @@ replier: show less
 responsabilité:
   bouton1: Limited liability company
   bouton2: Sole proprietorship
-  description: Sole proprietorship or limited liability? Each option has legal
-    implications, and leads to a different status for creating your company in
-    France
+  description: "
+
+    \t\t\t\t\t\tLimited liability? Sole proprietorship? Each option has
+
+    \t\t\t\t\t\tlegal implications and leads to a different status for the
+
+    \t\t\t\t\t\tyour business in France. This guide helps you choose
+
+    \t\t\t\t\t\tbetween the different forms of liability.
+
+    \t\t\t\t\t"
   entreprise-individuelle: >
     <0>Sole proprietorship:</0>
 

@@ -197,27 +197,21 @@ export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 		sitePaths
 	)
 
-// TODO: HACKY, find a better way to expose this information
-const basePathFr = import.meta.env.PROD
-	? import.meta.env.VITE_FR_BASE_URL
-	: '/mon-entreprise'
-const basePathEn = import.meta.env.PROD
-	? import.meta.env.VITE_EN_BASE_URL
-	: '/infrance'
+const basePathFr =
+	import.meta.env.DEV && typeof window !== 'undefined'
+		? `http://${window.location.host}/mon-entreprise`
+		: import.meta.env.VITE_FR_BASE_URL ?? ''
+
+const basePathEn =
+	import.meta.env.DEV && typeof window !== 'undefined'
+		? `http://${window.location.host}/infrance`
+		: import.meta.env.VITE_EN_BASE_URL ?? ''
 
 const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
-	(path) =>
-		'http://' +
-		(typeof window === 'undefined' ? '' : window.location.host) +
-		basePathEn +
-		path
+	(path) => basePathEn + path
 )
 const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
-	(path) =>
-		'http://' +
-		(typeof window === 'undefined' ? '' : window.location.host) +
-		basePathFr +
-		path
+	(path) => basePathFr + path
 )
 
 export const hrefLangLink = {
