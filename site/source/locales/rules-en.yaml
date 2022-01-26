@@ -9211,7 +9211,16 @@ protection sociale . retraite . complémentaire indépendants:
 protection sociale . retraite . complémentaire indépendants . points acquis:
   titre.en: acquired points
   titre.fr: points acquis
+protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
+  titre.en: '[automatic] acquisition value'
+  titre.fr: valeur d'acquisition
 protection sociale . retraite . complémentaire salarié:
+  note.en:
+    '[automatic] The revaluation of the point value takes place on November
+    1, not January 1.'
+  note.fr:
+    La revalorisation de la valeur du point a lieu au 1er novembre, et non
+    au 1er janvier.
   titre.en: supplementary pension for employees
   titre.fr: complémentaire salarié
 protection sociale . retraite . complémentaire salarié . points acquis:
@@ -9223,9 +9232,9 @@ protection sociale . retraite . complémentaire salarié . points acquis:
     d'année en année, cette valeure est donc une grossière approximation
   titre.en: acquired points
   titre.fr: points acquis
-protection sociale . retraite . complémentaire salarié . valeur du point:
-  titre.en: value of the point
-  titre.fr: valeur du point
+protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
+  titre.en: '[automatic] acquisition value'
+  titre.fr: valeur d'acquisition
 protection sociale . retraite . mois cotisés:
   titre.en: contributed months
   titre.fr: mois cotisés

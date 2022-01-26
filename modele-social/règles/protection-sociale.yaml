@@ -198,12 +198,20 @@ protection sociale . retraite . mois cotisés:
   notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
 
 protection sociale . retraite . complémentaire salarié:
-  formule: points acquis * valeur du point
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
-
-protection sociale . retraite . complémentaire salarié . valeur du point:
-  formule: 1.2714 €/point/an
+  produit:
+    assiette: points acquis * mois cotisés
+    facteur:
+      nom: valeur du point
+      variations:
+        - si: année = 2022
+          alors: 1.2841 €/an/point
+        - si: année = 2021
+          alors: 1.2714 €/an/point
+        - si: année = 2020
+          alors: 1.2714 €/an/point
+        - si: année = 2019
+          alors: 1.2588 €/an/point
+  note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -212,9 +220,22 @@ protection sociale . retraite . complémentaire salarié . points acquis:
   unité: points/mois
   note: |
     On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
-  formule: mois cotisés * contrat salarié . retraite complémentaire / 17.3982 €/point
+  valeur: contrat salarié . retraite complémentaire / valeur d'acquisition
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+
+protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
+  variations:
+    - si: année = 2022
+      alors: 17.4316 €/point
+    - si: année = 2021
+      alors: 17.3982 €/point
+    - si: année = 2020
+      alors: 17.3982 €/point
+    - si: année = 2019
+      alors: 17.0571 €/point
+  références:
+    barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Historique_valeur_du_point_salaire_de_reference.pdf
 
 protection sociale . retraite . complémentaire indépendants:
   acronyme: RCI
@@ -223,19 +244,40 @@ protection sociale . retraite . complémentaire indépendants:
     assiette: points acquis * mois cotisés
     facteur:
       nom: valeur du point
-      valeur: 1.191 €/point/an
+      variations:
+        - si: année = 2022
+          alors: 1.221 €/an/point
+        - si: année = 2021
+          alors: 1.208 €/an/point
+        - si: année = 2020
+          alors: 1.203 €/an/point
+        - si: année = 2019
+          alors: 1.191 €/an/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
-    barèmes: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
+    cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+    barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
 
 protection sociale . retraite . complémentaire indépendants . points acquis:
   unité: points/an
   non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
   arrondi: oui
-  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / 17.765 €/point
-
+  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
   références:
-    secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
+    cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+
+protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
+  variations:
+    - si: année = 2022
+      alors: 17.956 €/point
+    - si: année = 2021
+      alors: 17.765 €/point
+    - si: année = 2020
+      alors: 17.691 €/point
+    - si: année = 2019
+      alors: 17.515 €/point
+  références:
+    barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
 
 protection sociale . santé:
   icônes: 🏥

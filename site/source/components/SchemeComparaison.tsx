@@ -462,7 +462,7 @@ export default function SchemeComparaison({
 								engine={assimiléEngine}
 								precision={0}
 								displayedUnit="trimestre"
-								expression="protection sociale . retraite . trimestres validés"
+								expression="protection sociale . retraite . base . trimestres"
 							/>
 						</div>
 						<div className="indep">
@@ -470,7 +470,7 @@ export default function SchemeComparaison({
 								linkToRule={false}
 								engine={indépendantEngine}
 								precision={0}
-								expression="protection sociale . retraite . trimestres validés"
+								expression="protection sociale . retraite . base . trimestres"
 								displayedUnit="trimestre"
 							/>
 						</div>
@@ -482,7 +482,7 @@ export default function SchemeComparaison({
 									linkToRule={false}
 									engine={autoEntrepreneurEngine}
 									precision={0}
-									expression="protection sociale . retraite . trimestres validés"
+									expression="protection sociale . retraite . base . trimestres"
 									displayedUnit="trimestres"
 								/>
 							)}
