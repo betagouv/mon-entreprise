@@ -102,7 +102,7 @@ html {
 }
 
 html, body, #js, #js > * {
-	height: 100%;
+	min-height: 100%;
 }
 
 *,
