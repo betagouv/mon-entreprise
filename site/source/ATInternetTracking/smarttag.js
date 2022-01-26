@@ -1,23 +1,8 @@
+// We wrap the whole file into a condition, but it might be preferable to use a
+// conditionnal import to exclude this whole file from the SSR bundle
+// https://github.com/vitejs/vite/discussions/6377
 if (!import.meta.env.SSR) {
-	setATInternet.call(window)
-
-	// Vérifier si on a besoin de tous ces plugins
-	pluginCampaign.call(window)
-	pluginStorage.call(window)
-	pluginUtils.call(window)
-	pluginTechClicks.call(window)
-	pluginClicks.call(window)
-	pluginContextVariables.call(window)
-	pluginPage.call(window)
-	pluginClientSideUserId.call(window)
-	pluginPrivacy.call(window)
-
-	if (typeof window.ATInternet.onTrackerLoad === 'function') {
-		window.ATInternet.onTrackerLoad()
-	}
-}
-
-function setATInternet() {
+;(function () {
 	var dfltPluginCfg = {}
 	var dfltGlobalCfg = {
 		site: 617189,
@@ -1577,9 +1562,8 @@ function setATInternet() {
 		}
 	}
 	ATInternet.Tracker.callbackProtos = {}
-}
-
-function pluginCampaign() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {
 		lifetime: 30,
 		lastPersistence: true,
@@ -2096,9 +2080,8 @@ function pluginCampaign() {
 		})()
 	}
 	ATInternet.Tracker.addPlugin('Campaigns')
-}
-
-function pluginStorage() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {}
 	var dfltGlobalCfg = { storageMode: 'cookie' }
 	ATInternet.Tracker.Plugins.Storage = function (a) {
@@ -2329,9 +2312,8 @@ function pluginStorage() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('Storage')
-}
-
-function pluginUtils() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {}
 	var dfltGlobalCfg = {}
 	ATInternet.Tracker.Plugins.Utils = function (a) {
@@ -2535,9 +2517,8 @@ function pluginUtils() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('Utils')
-}
-
-function pluginTechClicks() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {
 		clicksAutoManagementEnabled: true,
 		clicksAutoManagementTimeout: 500,
@@ -2727,9 +2708,8 @@ function pluginTechClicks() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('TechClicks')
-}
-
-function pluginClicks() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = { requestMethod: 'POST' }
 	var dfltGlobalCfg = {}
 	ATInternet.Tracker.Plugins.Clicks = function (a) {
@@ -2850,9 +2830,8 @@ function pluginClicks() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('Clicks')
-}
-
-function pluginContextVariables() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = { domainAttribution: true }
 	var dfltGlobalCfg = { redirectionLifetime: 30 }
 	ATInternet.Tracker.Plugins.ContextVariables = function (a) {
@@ -2951,10 +2930,7 @@ function pluginContextVariables() {
 						{ permanent: !0, hitType: ['all'] }
 					)
 				n = ATInternet.Utils.uuid().num(13)
-				a.setParam('idp', n, {
-					permanent: !0,
-					hitType: ['page', 'clickzone'],
-				})
+				a.setParam('idp', n, { permanent: !0, hitType: ['page', 'clickzone'] })
 				window.navigator &&
 					a.setParam('jv', window.navigator.javaEnabled() ? '1' : '0', {
 						hitType: ['page'],
@@ -2970,9 +2946,8 @@ function pluginContextVariables() {
 		})
 	}
 	ATInternet.Tracker.addPlugin('ContextVariables')
-}
-
-function pluginPage() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {}
 	var dfltGlobalCfg = {}
 	ATInternet.Tracker.Plugins.Page = function (a) {
@@ -3189,9 +3164,8 @@ function pluginPage() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('Page')
-}
-
-function pluginClientSideUserId() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {
 		clientSideMode: 'always',
 		userIdCookieDuration: 397,
@@ -3370,9 +3344,8 @@ function pluginClientSideUserId() {
 		}
 	}
 	ATInternet.Tracker.addPlugin('ClientSideUserId')
-}
-
-function pluginPrivacy() {
+}.call(window))
+;(function () {
 	var dfltPluginCfg = {
 		authorityStorageName: 'atauthority',
 		authorities: {
@@ -3744,4 +3717,8 @@ function pluginPrivacy() {
 		})()
 	}
 	ATInternet.Tracker.addPlugin('Privacy')
+}.call(window))
+if (typeof window.ATInternet.onTrackerLoad === 'function') {
+	window.ATInternet.onTrackerLoad()
+}
 }
