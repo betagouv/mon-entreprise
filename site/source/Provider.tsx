@@ -13,7 +13,7 @@ import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import 'iframe-resizer'
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -89,6 +89,23 @@ export type ProviderProps = {
 	reduxMiddlewares?: Array<Middleware>
 }
 
+const HideLoader = () => {
+	const [CSS, setCSS] = useState<string>()
+	// Remove loader when page is load
+	useEffect(() => {
+		setCSS(`
+		#js {
+			animation: appear 0.5s;
+			opacity: 1;
+		}
+		#loading {
+			display: none !important;
+		}`)
+	}, [])
+
+	return <style>{CSS}</style>
+}
+
 export default function Provider({
 	basename,
 	reduxMiddlewares = [],
@@ -113,28 +130,16 @@ export default function Provider({
 	}, [])
 	onStoreCreated?.(store)
 
-	// Remove loader
-	const css = document.createElement('style')
-	css.type = 'text/css'
-	css.innerHTML = `
-#js {
-	animation: appear 0.5s;
-	opacity: 1;
-}
-#loading {
-	display: none !important;
-}`
-	document.body.appendChild(css)
-
 	return (
-		<>
-			<DesignSystemThemeProvider>
-				<GlobalStyle />
-				<ErrorBoundary
-					showDialog
-					fallback={
-						<>
-							<Container>
+		<DesignSystemThemeProvider>
+			<HideLoader />
+			<GlobalStyle />
+			<ErrorBoundary
+				showDialog
+				fallback={
+					<>
+						<Container>
+							<Link to={sitePaths.index}>
 								<img
 									src={logo}
 									alt="logo service mon-entreprise urssaf"
@@ -144,60 +149,60 @@ export default function Provider({
 										marginTop: '1rem',
 									}}
 								></img>
-								<H1>Une erreur est survenue</H1>
-								<Intro>
-									L'équipe technique mon-entreprise a été automatiquement
-									prévenue.
-								</Intro>
-								<Body>
-									Vous pouvez également nous contacter directement à l'adresse{' '}
-									<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
-										contact@mon-entreprise.beta.gouv.fr
-									</Link>{' '}
-									si vous souhaitez partager une remarque. Veuillez nous excuser
-									pour la gêne occasionnée.
-								</Body>
-							</Container>
-						</>
-					}
+							</Link>
+							<H1>Une erreur est survenue</H1>
+							<Intro>
+								L'équipe technique mon-entreprise a été automatiquement
+								prévenue.
+							</Intro>
+							<Body>
+								Vous pouvez également nous contacter directement à l'adresse{' '}
+								<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
+									contact@mon-entreprise.beta.gouv.fr
+								</Link>{' '}
+								si vous souhaitez partager une remarque. Veuillez nous excuser
+								pour la gêne occasionnée.
+							</Body>
+						</Container>
+					</>
+				}
+			>
+				<OverlayProvider
+					css={`
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+					`}
 				>
-					<OverlayProvider
-						css={`
-							flex: 1;
-							display: flex;
-							flex-direction: column;
-						`}
-					>
-						<ReduxProvider store={store}>
-							<IsEmbeddedProvider>
-								<ThemeColorsProvider>
-									<TrackingContext.Provider
-										value={
-											new ATTracker({
-												language: i18next.language as 'fr' | 'en',
-											})
-										}
-									>
-										<DisableAnimationOnPrintProvider>
-											<SiteNameContext.Provider value={basename}>
-												<SitePathProvider value={sitePaths}>
-													<I18nextProvider i18n={i18next}>
-														<HelmetProvider>
-															<Router history={history}>
-																<>{children}</>
-															</Router>
-														</HelmetProvider>
-													</I18nextProvider>
-												</SitePathProvider>
-											</SiteNameContext.Provider>
-										</DisableAnimationOnPrintProvider>
-									</TrackingContext.Provider>
-								</ThemeColorsProvider>
-							</IsEmbeddedProvider>
-						</ReduxProvider>
-					</OverlayProvider>
-				</ErrorBoundary>
-			</DesignSystemThemeProvider>
-		</>
+					<ReduxProvider store={store}>
+						<IsEmbeddedProvider>
+							<ThemeColorsProvider>
+								<TrackingContext.Provider
+									value={
+										new ATTracker({
+											language: i18next.language as 'fr' | 'en',
+										})
+									}
+								>
+									<DisableAnimationOnPrintProvider>
+										<SiteNameContext.Provider value={basename}>
+											<SitePathProvider value={sitePaths}>
+												<I18nextProvider i18n={i18next}>
+													<HelmetProvider>
+														<Router history={history}>
+															<>{children}</>
+														</Router>
+													</HelmetProvider>
+												</I18nextProvider>
+											</SitePathProvider>
+										</SiteNameContext.Provider>
+									</DisableAnimationOnPrintProvider>
+								</TrackingContext.Provider>
+							</ThemeColorsProvider>
+						</IsEmbeddedProvider>
+					</ReduxProvider>
+				</OverlayProvider>
+			</ErrorBoundary>
+		</DesignSystemThemeProvider>
 	)
 }
