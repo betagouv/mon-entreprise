@@ -1,6 +1,7 @@
 const express = require('express')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const app = express()
 const config = require('./webpack.dev.js')
@@ -21,6 +22,14 @@ app.get('/', function (req, res) {
 	<li><a href="/mon-entreprise/dev/integration-test">intégration du simulateur sur site tiers [iframe fr]</a></li>
 	</ul>`)
 })
+
+app.use(
+	createProxyMiddleware('/polyfill.io', {
+		target: 'https://polyfill.io',
+		changeOrigin: true,
+		pathRewrite: { '^/polyfill.io': '' },
+	})
+)
 
 app.use(
 	history({
