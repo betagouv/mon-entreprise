@@ -55,11 +55,11 @@ export default function MonEntrepriseRulePage() {
 			<ScrollToTop key={pathname} />
 			<Grid item md={10}>
 				<BackToSimulation />
-				<StyledDocumentation>
-					<Route
-						path={documentationPath + '/:name+'}
-						render={({ match }) =>
-							match.params.name && (
+				<Route
+					path={documentationPath + '/:name+'}
+					render={({ match }) =>
+						match.params.name && (
+							<StyledDocumentation>
 								<RulePage
 									language={i18n.language as 'fr' | 'en'}
 									rulePath={match.params.name}
@@ -74,10 +74,10 @@ export default function MonEntrepriseRulePage() {
 										References,
 									}}
 								/>
-							)
-						}
-					/>
-				</StyledDocumentation>
+							</StyledDocumentation>
+						)
+					}
+				/>
 			</Grid>
 		</FromBottom>
 	)
@@ -223,6 +223,9 @@ function componentCSS(rules: any, props: any) {
 				return x
 			}
 			const result = x(props)
+			if ((result ?? false) === false) {
+				return ''
+			}
 			if (typeof result === 'string') {
 				return result
 			}
