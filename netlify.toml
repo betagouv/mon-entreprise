@@ -9,6 +9,11 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "https://twemoji.maxcdn.com/:splat"
   status = 200
 
+## polyfill.io proxy for client privacy #1893
+[[redirects]]
+  from = "/polyfill.io/*"
+  to = "https://polyfill.io/:splat"
+  status = 200
 
 ############
 # Redirects following architectural changes
