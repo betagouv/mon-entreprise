@@ -122,23 +122,31 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const objectifs = useSelector(objectifsSelector)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
-	const questionsConfig = useSelector(configSelector).questions ?? {}
+	const questionsConfig = useSelector(configSelector).questions
 	const situation = useSelector(situationSelector)
 	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
 		(node) => engine.evaluate(node).missingVariables ?? {}
 	)
 	const nextQuestions = useMemo(() => {
-		return getNextQuestions(
+		const next = getNextQuestions(
 			missingVariables,
-			questionsConfig,
+			questionsConfig ?? {},
 			answeredQuestions,
 			situation
 		)
-	}, [missingVariables, questionsConfig, answeredQuestions, situation])
-	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
-		return [currentQuestion, ...nextQuestions]
-	}
+		if (currentQuestion && currentQuestion !== next[0]) {
+			return [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
+		}
+		return next
+	}, [
+		missingVariables,
+		questionsConfig,
+		answeredQuestions,
+		situation,
+		currentQuestion,
+	])
+
 	return nextQuestions
 }
 
