@@ -8,15 +8,15 @@ import { SimulatorData } from 'pages/Simulateurs/metadata'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { Hit } from 'react-instantsearch-core'
 import { connectHits } from 'react-instantsearch-dom'
 import { Highlight } from './Hightlight'
 
-type AlgoliaSimulatorHit = {
-	objectID: string
+type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
 	pathId: string
-}
+}>
 
 type SimulatorHitsProps = {
 	hits: Array<AlgoliaSimulatorHit>
@@ -46,7 +46,10 @@ const SimulateurCardHit = ({
 	)
 }
 
-export const SimulatorHits = connectHits(({ hits }: SimulatorHitsProps) => {
+export const SimulatorHits = connectHits<
+	{ hits: AlgoliaSimulatorHit[] },
+	AlgoliaSimulatorHit
+>(({ hits }: SimulatorHitsProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
