@@ -2,6 +2,7 @@ Ce dépôt contient :
 
 -   Le code source du site [mon-entreprise](https://mon-entreprise.urssaf.fr)
 -   Les [règles publicodes](https://github.com/betagouv/mon-entreprise/tree/master/modele-social) pour le calcul des cotisations sociales, des impôts et des droits sociaux.
+-   Les [règles publicodes](https://github.com/betagouv/mon-entreprise/tree/master/exoneration-covid) pour le calcul du montant des exonérations de cotisations liées au covid
 
 ## [mon-entreprise](https://mon-entreprise.urssaf.fr)</a>
 

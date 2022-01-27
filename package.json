@@ -10,6 +10,7 @@
 	},
 	"workspaces": [
 		"modele-social",
+		"exoneration-covid",
 		"site"
 	],
 	"type": "module",
@@ -26,7 +27,7 @@
 		"test:type": "yarn workspaces run tsc --skipLibCheck --noEmit",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
 		"start": "yarn workspace site start",
-		"moso:up": "yarn workspace modele-social run up && yarn workspace site upgrade modele-social",
+		"moso:up": "yarn workspace modele-social run up && yarn workspace exoneration-covid run up && yarn workspace site upgrade modele-social",
 		"i18n:check": "yarn workspace site i18n:check",
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
