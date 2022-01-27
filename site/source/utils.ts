@@ -76,3 +76,7 @@ export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
 	delete returnObject[key]
 	return returnObject
 }
+
+export function isIterable<T>(obj: unknown): obj is Iterable<T> {
+	return Symbol.iterator in Object(obj)
+}

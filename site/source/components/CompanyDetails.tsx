@@ -7,7 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Company } from 'Reducers/inFranceAppReducer'
 import styled from 'styled-components'
 
-export default function ({
+export default function CompanyDetails({
 	entreprise,
 }: {
 	entreprise: FabriqueSocialEntreprise | Company

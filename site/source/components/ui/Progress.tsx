@@ -1,11 +1,12 @@
 import { useProgressBar } from '@react-aria/progress'
 import styled from 'styled-components'
+
 type ProgressProps = {
 	progress: number
 }
 
 export default function Progress({ progress }: ProgressProps) {
-	const props = {
+	const propsBar = {
 		showValueLabel: false,
 		label: 'Précision de votre simulation',
 		minValue: 0,
@@ -13,11 +14,12 @@ export default function Progress({ progress }: ProgressProps) {
 		value: progress,
 	}
 
-	const { progressBarProps, labelProps } = useProgressBar(props)
+	const { progressBarProps, labelProps } = useProgressBar(propsBar)
+
 	return (
 		<>
 			<span {...labelProps} className="sr-only">
-				{props.label}
+				{propsBar.label}
 			</span>
 			<ProgressContainer {...progressBarProps}>
 				<ProgressBar style={{ width: `${progress * 100}%` }} />

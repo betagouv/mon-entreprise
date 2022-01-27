@@ -3,9 +3,10 @@ import { H1, H2, H3, H4, H5, H6 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import MarkdownToJsx from 'markdown-to-jsx'
+import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { isIterable } from 'utils'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
 
@@ -60,6 +61,8 @@ const TextRenderer = ({ children }: { children: string }) => (
 
 type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
+	components?: MarkdownToJSX.Overrides
+	renderers?: Record<string, unknown>
 }
 
 const CodeBlock = ({
@@ -134,16 +137,24 @@ export const MarkdownWithAnchorLinks = ({
 	/>
 )
 
-const flatMapChildren = (children: React.ReactNode): Array<string> => {
+const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 	return React.Children.toArray(children).flatMap((child) =>
-		typeof child !== 'object' || !('props' in child)
+		typeof child === 'string' || typeof child === 'number'
 			? child
-			: child.props?.value ?? flatMapChildren(child.props?.children)
+			: isIterable(child)
+			? flatMapChildren(Array.from(child))
+			: typeof child == 'object' && 'props' in child
+			? // eslint-disable-next-line
+			  (child.props?.value as string) ?? flatMapChildren(child.props?.children)
+			: ''
 	)
 }
+
 export function useScrollToHash() {
+	const location = useLocation()
+
 	useEffect(() => {
-		const { hash } = window.location
+		const { hash } = location
 		if (hash) {
 			const id = hash.replace('#', '')
 			const element = document.getElementById(id)
@@ -152,7 +163,7 @@ export function useScrollToHash() {
 			}
 			element.scrollIntoView()
 		}
-	}, [window?.location.hash])
+	}, [location])
 }
 
 export function HeadingWithAnchorLink({

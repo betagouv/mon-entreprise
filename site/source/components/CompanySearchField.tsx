@@ -51,9 +51,9 @@ export function CompanySearchField(props: {
 
 	const state = useSearchFieldState(searchFieldProps)
 
-	const { onValue = () => {}, onClear = () => {} } = props
+	const { onValue, onClear } = props
 	useEffect(
-		() => (!state.value ? onClear() : onValue()),
+		() => (!state.value ? onClear?.() : onValue?.()),
 		[state.value, onValue, onClear]
 	)
 
@@ -72,7 +72,7 @@ export function CompanySearchField(props: {
 			</Grid>
 			<Grid item xs={12}>
 				{state.value && !searchPending && (
-					<Results results={results} onSubmit={props.onSubmit ?? (() => {})} />
+					<Results results={results} onSubmit={props.onSubmit} />
 				)}
 			</Grid>
 		</Grid>
@@ -84,7 +84,7 @@ function Results({
 	onSubmit,
 }: {
 	results: Array<FabriqueSocialEntreprise>
-	onSubmit: (établissement: FabriqueSocialEntreprise) => void
+	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
 }) {
 	return !results.length ? (
 		<FromTop>
@@ -101,7 +101,7 @@ function Results({
 			<Grid container spacing={2} data-testid="company-search-results">
 				{results.map((etablissement) => (
 					<Grid key={etablissement.siren} item xs={12} xl={6}>
-						<StyledCard onPress={() => onSubmit(etablissement)} compact>
+						<StyledCard onPress={() => onSubmit?.(etablissement)} compact>
 							<CompanyDetails entreprise={etablissement} />
 						</StyledCard>
 					</Grid>

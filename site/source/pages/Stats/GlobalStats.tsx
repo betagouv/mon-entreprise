@@ -5,17 +5,13 @@ import { Link } from 'DesignSystem/typography/link'
 import { useTranslation } from 'react-i18next'
 import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
-import { Indicator } from './utils'
+import { Indicator, IndicatorProps } from './utils'
 
 const add = (a: number, b: number) => a + b
 const lastCompare = (startDate: Date, dateStr: string) =>
 	startDate < new Date(dateStr)
 
-export const BigIndicator: typeof Indicator = ({
-	main,
-	subTitle,
-	footnote,
-}) => (
+export const BigIndicator = ({ main, subTitle, footnote }: IndicatorProps) => (
 	<Grid item xs={6} md={4} lg={3}>
 		<Indicator main={main} subTitle={subTitle} footnote={footnote} />
 	</Grid>
