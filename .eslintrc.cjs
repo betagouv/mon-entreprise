@@ -1,5 +1,6 @@
 module.exports = {
 	root: true,
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 'latest',
@@ -15,27 +16,11 @@ module.exports = {
 	globals: {
 		process: false,
 	},
-	plugins: ['react', 'react-hooks'],
+	extends: ['eslint:recommended', 'prettier'],
 	rules: {
-		quotes: [
-			1,
-			'single',
-			{
-				avoidEscape: true,
-			},
-		],
-		'no-console': 1,
-		'no-restricted-globals': [2, 'length'],
-		'no-global-assign': 0,
-		'no-unsafe-negation': 0,
-		'react/prop-types': 0,
-		'react/jsx-no-target-blank': 0,
-		'react/no-unescaped-entities': 0,
-		'react/display-name': 1,
-		'react-hooks/rules-of-hooks': 'error',
-		'react-hooks/exhaustive-deps': 'warn',
-		'react/jsx-uses-react': 'off',
-		'react/react-in-jsx-scope': 'off',
+		quotes: ['warn', 'single', { avoidEscape: true }],
+		'no-console': 'warn',
+		'no-restricted-globals': ['error', 'length'],
 		'no-restricted-syntax': [
 			'error',
 			{
@@ -52,66 +37,65 @@ module.exports = {
 	},
 	overrides: [
 		{
+			files: ['**/*.{js,jsx}'],
+			env: { node: true },
+		},
+		{
 			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
-				ecmaFeatures: {
-					jsx: true,
-				},
+				ecmaFeatures: { jsx: true },
 				// eslint-disable-next-line no-undef
 				tsconfigRootDir: __dirname,
 				project: ['./site/tsconfig.json'],
 			},
-			plugins: ['@typescript-eslint'],
-			rules: {
-				'@typescript-eslint/no-empty-interface': 0,
-				'@typescript-eslint/no-empty-function': 0,
-				'@typescript-eslint/no-use-before-define': 0,
-				'@typescript-eslint/member-delimiter-style': [
-					2,
-					{
-						multiline: {
-							delimiter: 'none',
-						},
-					},
-				],
-				'@typescript-eslint/explicit-function-return-type': 0,
-				'@typescript-eslint/prefer-string-starts-ends-with': 1,
-				'@typescript-eslint/no-unnecessary-type-assertion': 1, // has false positives (Object.values result) v 2.29.0
-				'@typescript-eslint/no-inferrable-types': 1, // causes problems with unknown values v 2.29.0 typescript v 3.8.3
-				'@typescript-eslint/no-var-requires': 'off',
-				// TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
-				'@typescript-eslint/explicit-module-boundary-types': 'off',
-				'@typescript-eslint/no-floating-promises': 'off',
-				'@typescript-eslint/no-misused-promises': 'off',
-				'@typescript-eslint/no-extra-semi': 'off',
-				'@typescript-eslint/no-unsafe-assignment': 'off',
-				'@typescript-eslint/no-unsafe-call': 'off',
-				'@typescript-eslint/no-unsafe-member-access': 'off',
-				'@typescript-eslint/no-unsafe-return': 'off',
-				'@typescript-eslint/restrict-plus-operands': 'off',
-				'@typescript-eslint/restrict-template-expressions': 'off',
-				'@typescript-eslint/naming-convention': 'off',
-				'@typescript-eslint/prefer-regexp-exec': 'off',
-				'@typescript-eslint/no-explicit-any': 'off',
-			},
 			extends: [
+				'eslint:recommended',
 				'plugin:@typescript-eslint/recommended',
 				'plugin:@typescript-eslint/recommended-requiring-type-checking',
+				'plugin:react/recommended',
+				'plugin:react/jsx-runtime',
+				'plugin:react-hooks/recommended',
+				'prettier',
 			],
-		},
-		{
-			files: ['**/*.test.js'],
-			env: {
-				mocha: true,
+			plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+			rules: {
+				'ban-ts-comment': 'off',
+				'react/no-unescaped-entities': 'off',
+				'@typescript-eslint/no-unsafe-call': 'warn',
+				'@typescript-eslint/no-unsafe-argument': 'warn',
+				'@typescript-eslint/no-unsafe-member-access': 'warn',
+				'@typescript-eslint/restrict-template-expressions': 'warn',
+				'@typescript-eslint/no-unsafe-return': 'warn',
+				'@typescript-eslint/no-unsafe-assignment': 'warn',
+				'@typescript-eslint/no-empty-function': 'warn',
+				'@typescript-eslint/restrict-plus-operands': 'warn',
+				'@typescript-eslint/no-floating-promises': 'warn',
+				'@typescript-eslint/ban-ts-comment': 'warn',
+				'react-hooks/rules-of-hooks': 'error',
+				'react-hooks/exhaustive-deps': 'warn',
+				'@typescript-eslint/member-delimiter-style': [
+					'error',
+					{ multiline: { delimiter: 'none' } },
+				],
 			},
 		},
-	],
-	extends: [
-		'eslint:recommended',
-		'plugin:react/recommended',
-		'prettier',
-		'prettier/react',
-		'prettier/@typescript-eslint',
+		{
+			files: ['**/*.test.{js,ts}', 'site/cypress/integration/**/*.js'],
+			env: {
+				mocha: true,
+				jest: true,
+			},
+			extends: ['eslint:recommended', 'plugin:mocha/recommended', 'prettier'],
+			plugins: ['mocha'],
+			rules: {
+				'mocha/no-skipped-tests': 'warn',
+				'mocha/no-exclusive-tests': 'error',
+				'mocha/no-mocha-arrows': 'warn',
+				'mocha/no-setup-in-describe': 'warn',
+				'mocha/max-top-level-suites': 'warn',
+				'mocha/no-global-tests': 'warn',
+			},
+		},
 	],
 }
