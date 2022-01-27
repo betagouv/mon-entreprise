@@ -42,8 +42,9 @@ export default function InstitutionsPartenaires() {
 					<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
 						<InstitutionLine>
 							<InstitutionLogo
-								target="_blank"
 								href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
+								target="_blank"
+								rel="noreferrer"
 							>
 								<img src={assuranceMaladieSrc} title="Logo CPAM" />
 							</InstitutionLogo>
@@ -93,8 +94,9 @@ export function CotisationsUrssaf({
 	return (
 		<InstitutionLine>
 			<InstitutionLogo
-				target="_blank"
 				href="https://www.urssaf.fr/portail/home.html"
+				target="_blank"
+				rel="noreferrer"
 			>
 				<img src={urssafSrc} title="logo Urssaf" />
 			</InstitutionLogo>
@@ -116,7 +118,11 @@ export function ImpôtsDGFIP() {
 	return (
 		<Condition expression="impôt . montant > 0">
 			<InstitutionLine>
-				<InstitutionLogo target="_blank" href="https://www.impots.gouv.fr">
+				<InstitutionLogo
+					href="https://www.impots.gouv.fr"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<img src={dgfipSrc} title="logo DGFiP" />
 				</InstitutionLogo>
 				<Body>
@@ -161,8 +167,9 @@ function CaisseRetraite() {
 					<Condition expression={dottedName} key={caisse}>
 						<InstitutionLine>
 							<InstitutionLogo
-								target="_blank"
 								href={références && Object.values(références)[0]}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<img src={logosSrc[caisse]} title={`logo ${caisse}`} />
 							</InstitutionLogo>
@@ -210,7 +217,11 @@ export function InstitutionsPartenairesArtisteAuteur() {
 				/>
 				<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
 					<InstitutionLine>
-						<InstitutionLogo target="_blank" href="http://www.ircec.fr/">
+						<InstitutionLogo
+							href="http://www.ircec.fr/"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<img src={logosSrc['IRCEC']} title="logo IRCEC" />
 						</InstitutionLogo>
 						<Body>{descriptionIRCEC}</Body>

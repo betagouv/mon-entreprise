@@ -707,6 +707,7 @@ export function getSimulatorsData({
 						versement des dividendes, sauf si le bénéficiaire remplit{' '}
 						<a
 							target="_blank"
+							rel="noreferrer"
 							title="Aller sur le site Service Public sur les dividendes"
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963"
 						>

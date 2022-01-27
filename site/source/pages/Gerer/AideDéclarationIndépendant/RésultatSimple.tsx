@@ -29,6 +29,7 @@ export default function ResultatsSimples() {
 				<Link
 					href="https://www.impots.gouv.fr/portail/www2/minisite/declaration/independants.html?11"
 					target="_blank"
+					rel="noreferrer"
 				>
 					En savoir plus
 				</Link>

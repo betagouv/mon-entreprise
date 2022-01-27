@@ -46,7 +46,7 @@ export default function LegalNotice() {
 					<br />
 					San Francisco, CA 94107 <br />
 					Site web :&nbsp;
-					<a href="https://www.netlify.com" target="_blank">
+					<a href="https://www.netlify.com" target="_blank" rel="noreferrer">
 						https://www.netlify.com
 					</a>
 				</Trans>
@@ -56,7 +56,11 @@ export default function LegalNotice() {
 			</H2>
 			<Body>
 				<Trans i18nKey="legalNotice.contact.content">
-					<a target="_blank" href="mailto:contact@mon-entreprise.beta.gouv.fr">
+					<a
+						href="mailto:contact@mon-entreprise.beta.gouv.fr"
+						target="_blank"
+						rel="noreferrer"
+					>
 						contact@mon-entreprise.beta.gouv.fr
 					</a>
 				</Trans>

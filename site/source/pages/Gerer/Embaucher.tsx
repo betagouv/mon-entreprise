@@ -69,6 +69,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 								target="_blank"
+								rel="noreferrer"
 							>
 								{' '}
 								<Trans>Plus d'informations</Trans>
@@ -87,7 +88,11 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							<Trans i18nKey="embauche.tâches.dpae.description">
 								Ceci peut être fait par le biais du formulaire appelé DPAE, doit
 								être complété dans les 8 jours avant toute embauche, et peut{' '}
-								<a href="https://www.due.urssaf.fr" target="_blank">
+								<a
+									href="https://www.due.urssaf.fr"
+									target="_blank"
+									rel="noreferrer"
+								>
 									être effectué en ligne
 								</a>
 								.
@@ -106,13 +111,18 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							<Trans i18nKey="embauche.tâches.logiciel de paie.description">
 								Les fiches de paie et les déclarations peuvent être traitées en
 								ligne gratuitement par le{' '}
-								<a href="http://www.letese.urssaf.fr" target="_blank">
+								<a
+									href="http://www.letese.urssaf.fr"
+									target="_blank"
+									rel="noreferrer"
+								>
 									Tese
 								</a>
 								. Vous pouvez aussi utiliser un{' '}
 								<a
 									href="http://www.dsn-info.fr/convention-charte.htm"
 									target="_blank"
+									rel="noreferrer"
 								>
 									logiciel de paie privé.
 								</a>
@@ -132,6 +142,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
 								className="ui__ button"
 								target="_blank"
+								rel="noreferrer"
 							>
 								<Trans>Plus d'informations</Trans>
 							</a>
@@ -150,6 +161,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep"
 								className="ui__ button"
 								target="_blank"
+								rel="noreferrer"
 							>
 								<Trans i18nKey="embauche.tâches.pension.description">
 									Trouver mon institution de prévoyance
@@ -203,11 +215,19 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						et les transmettre via la déclaration sociale nominative (DSN).
 						<br />
 						Certaines offres de service de l’Urssaf comme le{' '}
-						<Link href="https://www.letese.urssaf.fr" target="_blank">
+						<Link
+							href="https://www.letese.urssaf.fr"
+							target="_blank"
+							rel="noreferrer"
+						>
 							titre emploi service entreprise (Tese)
 						</Link>{' '}
 						ou le{' '}
-						<Link href="https://www.cesu.urssaf.fr" target="_blank">
+						<Link
+							href="https://www.cesu.urssaf.fr"
+							target="_blank"
+							rel="noreferrer"
+						>
 							chèque emploi associatif (CEA)
 						</Link>{' '}
 						gèrent automatiquement la transmission de la DSN pour vous.

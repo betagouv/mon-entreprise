@@ -173,7 +173,7 @@ export function References({ references }: ReferencesProps) {
 								/>
 							)}
 						</span>
-						<a href={link} target="_blank">
+						<a href={link} target="_blank" rel="noreferrer">
 							{capitalise0(name)}
 						</a>
 						<span className="ui__ label">{domain}</span>

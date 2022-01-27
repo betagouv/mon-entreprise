@@ -9,7 +9,7 @@ export default function ExportRecover() {
 				<Trans i18nKey="pages.simulateurs.print-info.recover">
 					Retrouvez cette simulation ainsi que d'autres outils d'aide à la
 					création et à la gestion d'entreprise, sur{' '}
-					<a href={useUrl()} target="_blank">
+					<a href={useUrl()} target="_blank" rel="noreferrer">
 						mon-entreprise.urssaf.fr
 					</a>
 					.

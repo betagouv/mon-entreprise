@@ -49,7 +49,7 @@ export function LinkRenderer({
 	}
 
 	return (
-		<Link target="_blank" href={href} {...otherProps}>
+		<Link target="_blank" rel="noreferrer" href={href} {...otherProps}>
 			{children}
 		</Link>
 	)
@@ -81,6 +81,7 @@ const CodeBlock = ({
 			<a
 				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}
 				target="_blank"
+				rel="noreferrer"
 				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
 			>
 				<Emoji emoji="⚡" /> Lancer le calcul

@@ -59,6 +59,7 @@ export default function Accessibilité() {
 				<Link
 					href="https://www.acoss.fr/files/RGAA/accessibilite_numerique-schema_pluriannuel_2020_2022-Acoss.pdf"
 					target="_blank"
+					rel="noreferrer"
 					title="La stratégie et le plan d’action à mettre en œuvre - Nouvelle fenêtre"
 				>
 					la stratégie et le plan d’action à mettre en œuvre
@@ -81,6 +82,7 @@ export default function Accessibilité() {
 				<Link
 					href="https://numerique.gouv.fr/publications/rgaa-accessibilite/"
 					target="_blank"
+					rel="noreferrer"
 					title="Référentiel général d’amélioration de l’accessibilité (RGAA) - Nouvelle fenêtre"
 				>
 					référentiel général d’amélioration de l’accessibilité (RGAA)
@@ -123,6 +125,7 @@ export default function Accessibilité() {
 					<Link
 						href="https://formulaire.defenseurdesdroits.fr/"
 						target="_blank"
+						rel="noreferrer"
 						title="https://formulaire.defenseurdesdroits.fr/ - Nouvelle fenêtre"
 					>
 						https://formulaire.defenseurdesdroits.fr/
@@ -134,6 +137,7 @@ export default function Accessibilité() {
 					<Link
 						href="https://www.defenseurdesdroits.fr/saisir/delegues"
 						target="_blank"
+						rel="noreferrer"
 						title="https://www.defenseurdesdroits.fr/saisir/delegues - Nouvelle fenêtre"
 					>
 						https://www.defenseurdesdroits.fr/saisir/delegues
