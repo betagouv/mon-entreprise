@@ -1,0 +1,286 @@
+secteur:
+  question: De quel secteur relève votre activité principale ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités: [S1, S1bis, S2]
+
+secteur . S1:
+  valeur: secteur = 'S1'
+  titre: Secteur dit S1
+  Description: Activités du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+
+secteur . S1bis:
+  valeur: secteur = 'S1bis'
+  titre: Secteur dit S1bis
+  Description: Activités dépendantes du secteur 1
+
+secteur . S2:
+  valeur: secteur = 'S2'
+  titre: Secteur dit S2
+  Description: Autres activités ayant fait l'objet d'une interdiction (par exemple, commerces)
+
+secteur . S1 ou S1bis:
+  une de ces conditions:
+    - S1
+    - S1bis
+
+lieu d'exercice:
+  question: Où exercez-vous votre activité ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - métropole
+      - outre-mer
+
+lieu d'exercice . métropole:
+  titre: En métropole
+lieu d'exercice . outre-mer:
+  titre: En outre-mer
+
+début d'activité:
+  titre: Période de début d’activité
+  question: À quelle période avez-vous débuté votre activité ?
+  formulaire:
+    type: select
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - avant 2021
+      - janvier 2021
+      - février 2021
+      - mars 2021
+      - avril 2021
+      - mai 2021
+      - juin 2021
+      - juillet 2021
+      - août 2021
+      - septembre 2021
+      - octobre 2021
+      - novembre 2021
+      - décembre 2021
+
+début d'activité . avant 2021:
+début d'activité . janvier 2021:
+début d'activité . février 2021:
+début d'activité . mars 2021:
+début d'activité . avril 2021:
+début d'activité . mai 2021:
+début d'activité . juin 2021:
+début d'activité . juillet 2021:
+début d'activité . août 2021:
+début d'activité . septembre 2021:
+début d'activité . octobre 2021:
+début d'activité . novembre 2021:
+début d'activité . décembre 2021:
+
+début d'activité . date:
+  # Converti les possibilités en date (dans le futur on aimerait avoir des select basé sur des types sommes, et un type pour exprimer un 'mois' d'une date)
+  variations:
+    - si: début d'activité = 'avant 2021'
+      alors: 12/2020
+    - si: début d'activité = 'janvier 2021'
+      alors: 01/2021
+    - si: début d'activité = 'février 2021'
+      alors: 02/2021
+    - si: début d'activité = 'mars 2021'
+      alors: 03/2021
+    - si: début d'activité = 'avril 2021'
+      alors: 04/2021
+    - si: début d'activité = 'mai 2021'
+      alors: 05/2021
+    - si: début d'activité = 'juin 2021'
+      alors: 06/2021
+    - si: début d'activité = 'juillet 2021'
+      alors: 07/2021
+    - si: début d'activité = 'août 2021'
+      alors: 08/2021
+    - si: début d'activité = 'septembre 2021'
+      alors: 09/2021
+    - si: début d'activité = 'octobre 2021'
+      alors: 10/2021
+    - si: début d'activité = 'novembre 2021'
+      alors: 11/2021
+    - si: début d'activité = 'décembre 2021'
+      alors: 12/2021
+
+LFSS600:
+  applicable si: secteur . S1 ou S1bis
+  valeur: oui
+
+LFSS600 . mois éligibles:
+  unité: mois
+  description: Nombre de mois éligible à l'exonération LFSS à 600 €
+  somme:
+    - par défaut: non
+      valeur:
+        nom: janvier 2021
+        applicable si: début d'activité . date >= 01/2021
+        non applicable si: début d'activité . date >= 02/2021
+    - par défaut: non
+      valeur:
+        nom: février 2021
+        non applicable si: début d'activité . date >= 03/2021
+        applicable si: début d'activité . date >= 01/2021
+    - par défaut: non
+      valeur:
+        nom: mars 2021
+        non applicable si: début d'activité . date >= 04/2021
+        applicable si: début d'activité . date >= 01/2021
+    - par défaut: non
+      valeur:
+        nom: avril 2021
+        non applicable si: début d'activité . date >= 05/2021
+    - par défaut: non
+      valeur:
+        nom: mai 2021
+        non applicable si: début d'activité . date >= 06/2021
+    - par défaut: non
+      valeur:
+        nom: juin 2021
+        non applicable si: début d'activité . date >= 07/2021
+    - par défaut: non
+      valeur:
+        nom: juillet 2021
+        non applicable si: début d'activité . date >= 08/2021
+    - par défaut: non
+      valeur:
+        nom: août 2021
+        applicable si: lieu d'exercice = 'outre-mer'
+        non applicable si: début d'activité . date >= 09/2021
+    - par défaut: non
+      valeur:
+        nom: septembre 2021
+        applicable si: lieu d'exercice = 'outre-mer'
+        non applicable si: début d'activité . date >= 10/2021
+    - par défaut: non
+      valeur:
+        nom: octobre 2021
+        applicable si: lieu d'exercice = 'outre-mer'
+        non applicable si: début d'activité . date >= 11/2021
+    - par défaut: non
+      valeur:
+        nom: novembre 2021
+        applicable si: lieu d'exercice = 'outre-mer'
+        non applicable si: début d'activité . date >= 12/2021
+    - par défaut: non
+      valeur:
+        nom: décembre 2021
+    - par défaut: non
+      valeur:
+        nom: janvier 2022
+    - par défaut: non
+      valeur:
+        nom: février 2022
+
+LFSS600 . montant:
+  produit:
+    assiette: 600 €/mois
+    facteur: mois éligibles
+
+LFSS300:
+  applicable si: secteur . S1 ou S1bis
+  valeur: oui
+
+LFSS300 . mois éligibles:
+  unité: mois
+  description: Nombre de mois éligible à l'exonération LFSS à 300€
+  somme:
+    - par défaut: non
+      valeur:
+        nom: décembre 2021
+        non applicable si: LFSS600 . mois éligibles . décembre 2021
+    - par défaut: non
+      valeur:
+        non applicable si: LFSS600 . mois éligibles . janvier 2022
+        nom: janvier 2022
+    - par défaut: non
+      valeur:
+        non applicable si: LFSS600 . mois éligibles . février 2022
+        nom: février 2022
+
+LFSS300 . montant:
+  produit:
+    assiette: 300 €/mois
+    facteur: mois éligibles
+
+LFR1:
+  valeur: oui
+  applicable si:
+    toutes ces conditions:
+      - secteur . S1 ou S1bis
+      - début d'activité . date < 06/2021
+
+LFR1 . mois éligibles:
+  unité: mois
+  non applicable si:
+    toutes ces conditions:
+      - début d'activité . date >= 01/2021
+      - LFSS600 . mois éligibles . mars 2021 = non
+      - LFSS600 . mois éligibles . avril 2021 = non
+      - LFSS600 . mois éligibles . mai 2021 = non
+  description: Nombre de mois éligible à l'exonération LFR1
+  somme:
+    - par défaut: non
+      valeur:
+        nom: juin 2021
+        non applicable si: LFSS600 . mois éligibles . juin 2021
+    - par défaut: non
+      valeur:
+        nom: juillet 2021
+        non applicable si: LFSS600 . mois éligibles . juillet 2021
+    - par défaut: non
+      valeur:
+        nom: août 2021
+        non applicable si: LFSS600 . mois éligibles . août 2021
+
+LFR1 . montant:
+  produit:
+    assiette: mois éligibles
+    facteur: 600 €/mois
+
+exonération S2:
+  applicable si:
+    toutes ces conditions:
+      - secteur . S2
+      - début d'activité . date <= mois éligibles . dernier mois
+
+exonération S2 . mois éligibles:
+  unité: mois
+  arrondi: oui
+  question:
+    texte: Précisez le nombre de mois entre {{ premier mois }} et {{ dernier mois }} durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité
+  plafond:
+    nom: plafond
+    somme:
+      - durée:
+          depuis: premier mois
+          jusqu'à: dernier mois
+        arrondi: oui
+        unité: mois
+      - 1 mois
+exonération S2 . mois éligibles . premier mois:
+  variations:
+    - si: début d'activité . date < 01/2021
+      alors: 04/2021
+    - sinon:
+        valeur: début d'activité . date
+        plancher: 02/2021
+        plafond: dernier mois
+
+exonération S2 . mois éligibles . dernier mois:
+  variations:
+    - si: lieu d'exercice = 'outre-mer'
+      alors: 09/2021
+    - sinon: 07/2021
+
+exonération S2 . montant:
+  produit:
+    assiette: mois éligibles
+    facteur: 600 €/mois
+
+montant total:
+  somme:
+    - LFR1 . montant
+    - LFSS600 . montant
+    - LFSS300 . montant
+    - exonération S2 . montant

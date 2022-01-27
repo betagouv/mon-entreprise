@@ -1,16 +1,15 @@
 {
-	"name": "modele-social",
-	"version": "0.6.0",
-	"description": "Les règles publicodes du système social français",
+	"name": "exoneration-covid",
+	"version": "0.1.0",
+	"description": "Les règles publicodes pour le calcul de l'exonération de cotisations covid (année 2021)",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "modele-social"
+		"directory": "exoneration-covid"
 	},
 	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
-	"homepage": "https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",
 	"license": "MIT",
 	"files": [
 		"dist/index.js"
