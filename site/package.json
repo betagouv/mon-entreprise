@@ -20,9 +20,10 @@
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"start": "vite dev",
-		"build": "vite build",
+		"build": "vite build && yarn build:iframe-script",
 		"build:ssr": "vite build --ssr ./source/entry-server.tsx --outDir ./dist/server --emptyOutDir && echo '{\"module\": \"commonjs\"}' > dist/package.json",
 		"build:prerender": "node prerender.cjs",
+		"build:iframe-script": "vite build --config vite-iframe-script.config.ts",
 		"preview:mon-entreprise": "sed 's|:SITE_FR||g' netlify.toml > dist/netlify.toml && cd dist && npx netlify dev",
 		"preview:infrance": "sed 's|:SITE_EN||g' netlify.toml > dist/netlify.toml && cd dist && npx netlify dev",
 		"typecheck:watch": "tsc --skipLibCheck --noEmit --watch",
@@ -133,7 +134,7 @@
 		"typescript": "^4.3.2",
 		"vite": "^2.7.13",
 		"vite-plugin-shim-react-pdf": "^1.0.4",
-		"vitest": "^0.2.3",
+		"vitest": "^0.2.5",
 		"xml2js": "^0.4.23"
 	}
 }
