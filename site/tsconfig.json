@@ -29,5 +29,10 @@
 		"noEmit": true,
 		"strict": true
 	},
-	"include": ["source", "test/**/*.ts", "vite.config.ts"]
+	"include": [
+		"source",
+		"test/**/*.ts",
+		"vite.config.ts",
+		"vite-iframe-script.config.ts"
+	]
 }

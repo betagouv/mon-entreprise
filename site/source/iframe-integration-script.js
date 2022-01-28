@@ -54,8 +54,7 @@ const moduleToSitePath = {
 }
 const simulateurLink =
 	import.meta.env.VITE_FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
-
-const url = new URL(simulateurLink, window.location.origin)
+const url = new URL(simulateurLink)
 const params = new URLSearchParams(url.search)
 params.append('utm_source', 'iframe')
 params.append('utm_medium', 'iframe')
