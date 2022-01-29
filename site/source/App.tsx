@@ -110,6 +110,7 @@ const Router = () => {
 						<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
 					)}
 				/>
+				{redirects}
 				<Route path="/iframes" component={Iframes} />
 				<Route component={App} />
 			</Switch>
@@ -131,7 +132,6 @@ const App = () => {
 			<Container>
 				{/* Passing location down to prevent update blocking */}
 				<Switch>
-					{redirects}
 					<Route path={sitePaths.créer.index} component={Créer} />
 					<Route path={sitePaths.gérer.index} component={Gérer} />
 					<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
