@@ -120,7 +120,7 @@ function IntegrationCustomizer() {
 							<ThemeColorsProvider
 								color={color == null ? color : hexToHSL(color)}
 							>
-								<IsEmbeddedProvider>
+								<IsEmbeddedProvider isEmbeded>
 									<Route
 										path={sitePaths.simulateurs.index}
 										component={Simulateurs}

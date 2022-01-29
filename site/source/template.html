@@ -93,11 +93,10 @@
 					document.location.search.substring(1)
 				).get('couleur')
 				let iframeColor = rawColor && JSON.parse(decodeURIComponent(rawColor))
-
 				if (iframeColor) {
 					;[
 						document.documentElement,
-						...document.querySelectorAll('.js-color-element'),
+						...document.querySelectorAll('[data-js-color-element]'),
 					].forEach((element) => {
 						element.style.setProperty('--COLOR_HUE', iframeColor[0])
 						element.style.setProperty(

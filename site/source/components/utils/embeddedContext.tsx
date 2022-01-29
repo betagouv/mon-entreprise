@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import React, { createContext, ReactNode, useContext, useState } from 'react'
 
 /*
 	Instead of relying on a contextual Provider that activates the
@@ -18,8 +18,14 @@ const IsEmbeddedContext = createContext<[boolean, (b: boolean) => void]>([
 	},
 ])
 
-export function IsEmbeddedProvider({ children }: { children: ReactNode }) {
-	const state = useState(false)
+export function IsEmbeddedProvider({
+	children,
+	isEmbeded = false,
+}: {
+	children: ReactNode
+	isEmbeded?: boolean
+}) {
+	const state = useState(isEmbeded)
 	return (
 		<IsEmbeddedContext.Provider value={state}>
 			{children}
@@ -27,14 +33,13 @@ export function IsEmbeddedProvider({ children }: { children: ReactNode }) {
 	)
 }
 
-/*
-This hook activates the embedded style for the whole application, indefinitely.
-*/
-export function useSetEmbedded() {
-	const setEmbedded = useContext(IsEmbeddedContext)[1]
-	setEmbedded(true)
-}
-
 export function useIsEmbedded() {
 	return useContext(IsEmbeddedContext)[0]
+}
+
+export function IsEmbeded({ children }: { children: React.ReactNode }) {
+	const setEmbedded = useContext(IsEmbeddedContext)[1]
+	setEmbedded(true)
+
+	return <IsEmbeddedProvider isEmbeded>{children}</IsEmbeddedProvider>
 }
