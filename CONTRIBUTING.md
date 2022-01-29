@@ -91,31 +91,37 @@ A mettre sans retenue dans les messages de commit :
 #### Vérification syntaxique :
 
 ```sh
-$ yarn lint
+yarn lint
+```
+
+Pour corriger les erreurs automatiquement :
+
+```sh
+yarn lint:fix
 ```
 
 #### Vérification du typage :
 
 ```sh
-$ yarn test:type
+yarn test:type
 ```
 
 Pour avoir les erreurs de type en direct dans la console, utilisez le paramètre `--watch` :
 
 ```sh
-$ yarn test:type --watch
+yarn test:type --watch
 ```
 
 #### Tests unitaires
 
 ```sh
-$ yarn test
+yarn test
 ```
 
 #### Tests de non-regression (snapshots)
 
 ```sh
-$ yarn test:regressions
+yarn test:regressions
 ```
 
 Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
@@ -129,8 +135,8 @@ Pré-requis:
 -   le serveur doit être lancé via `yarn start`
 
 ```sh
-$ yarn workspace site test:dev-e2e:mon-entreprise
-$ yarn workspace site test:dev-e2e:mycompanyinfrance
+yarn workspace site test:dev-e2e:mon-entreprise
+yarn workspace site test:dev-e2e:mycompanyinfrance
 ```
 
 ### Traduction 👽
@@ -150,17 +156,17 @@ Le circle-ci fait une analyse statique du code pour repérer les chaînes non
 traduites, dans le moteur et l'UI :
 
 ```sh
-$ yarn run i18n:check
+yarn run i18n:check
 ```
 
 Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
 
 ```sh
-$ yarn run i18n:rules:translate
-$ yarn run i18n:ui:translate
+yarn run i18n:rules:translate
+yarn run i18n:ui:translate
 
 # ou bien pour les deux commandes d'un coup
-$ yarn run i18n:translate
+yarn run i18n:translate
 ```
 
 N'oubliez pas de vérifier sur le diff que rien n'est choquant.
@@ -173,9 +179,13 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### Prévisualisation
 
-Il est possible de simuler localement le comportement de l'application après le build complet, y compris le pré-rendu statique et les redirection Netlify, avec les commandes suivantes :
+Il est possible de simuler localement le comportement de l'application après le build complet, y compris le pré-rendu statique et les redirection Netlify, avec les commandes suivantes (à éxécuter dans le répertoire `site`):
 
-```yaml
+```sh
+yarn run build:preview
+```
+
+```sh
 yarn preview:mon-entreprise
 yarn preview:infrance
 ```
