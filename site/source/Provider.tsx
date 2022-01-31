@@ -142,11 +142,9 @@ export default function Provider({
 									<SiteNameContext.Provider value={basename}>
 										<SitePathProvider value={sitePaths}>
 											<I18nextProvider i18n={i18next}>
-												<HelmetProvider>
-													<BrowserRouterProvider basename={basename}>
-														<>{children}</>
-													</BrowserRouterProvider>
-												</HelmetProvider>
+												<BrowserRouterProvider basename={basename}>
+													<>{children}</>
+												</BrowserRouterProvider>
 											</I18nextProvider>
 										</SitePathProvider>
 									</SiteNameContext.Provider>
@@ -187,16 +185,18 @@ function BrowserRouterProvider({
 	)
 
 	return (
-		<TrackingContext.Provider
-			value={
-				new ATTracker({
-					language: i18next.language as 'fr' | 'en',
-				})
-			}
-		>
-			<Router history={history}>
-				<>{children}</>
-			</Router>
-		</TrackingContext.Provider>
+		<HelmetProvider>
+			<TrackingContext.Provider
+				value={
+					new ATTracker({
+						language: i18next.language as 'fr' | 'en',
+					})
+				}
+			>
+				<Router history={history}>
+					<>{children}</>
+				</Router>
+			</TrackingContext.Provider>
+		</HelmetProvider>
 	)
 }
