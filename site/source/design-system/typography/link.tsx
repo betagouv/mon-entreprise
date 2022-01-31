@@ -85,11 +85,10 @@ export function useExternalLinkProps({
 }
 
 export type GenericButtonOrLinkProps = (
-	| (AriaButtonProps<'a'> & { href: string })
+	| AriaButtonProps<'a'>
 	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
 	| AriaButtonProps<'button'>
 ) & {
-	title?: string
 	openInSameWindow?: true
 	className?: string
 	style?: CSSProperties
