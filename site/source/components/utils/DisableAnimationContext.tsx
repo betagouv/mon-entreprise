@@ -7,7 +7,7 @@ const useIsPrintContext = () => {
 	const [isPrintContext, setPrintContext] = useState(false)
 	useEffect(() => {
 		const matchListener = (matchMedia: MediaQueryListEvent) => {
-			flushSync(() => setPrintContext(matchMedia.matches))
+			setPrintContext(matchMedia.matches)
 		}
 		const matchMediaPrint = window.matchMedia('print')
 

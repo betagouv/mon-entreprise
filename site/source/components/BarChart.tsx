@@ -105,20 +105,26 @@ export default function BarChartBranch({
 		from: {
 			opacity: 0,
 		},
-		immediate: disableAnimation,
 		opacity: display ? 1 : 0,
 	})
-	return (
+
+	const innerBarChartBranch = (
+		<InnerBarChartBranch
+			value={value}
+			display={display}
+			maximum={maximum}
+			title={title}
+			unit={unit}
+			icon={icon}
+			description={description}
+		/>
+	)
+
+	return disableAnimation ? (
+		innerBarChartBranch
+	) : (
 		<animated.div ref={intersectionRef} style={style}>
-			<InnerBarChartBranch
-				value={value}
-				display={display}
-				maximum={maximum}
-				title={title}
-				unit={unit}
-				icon={icon}
-				description={description}
-			/>
+			{innerBarChartBranch}
 		</animated.div>
 	)
 }
