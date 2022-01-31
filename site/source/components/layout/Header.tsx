@@ -1,5 +1,6 @@
 import { Logo } from 'Components/Logo'
 import SearchButton from 'Components/SearchButton'
+import BrowserOnly from 'Components/utils/BrowserOnly'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container } from 'DesignSystem/layout'
 import { Link } from 'DesignSystem/typography/link'
@@ -28,8 +29,9 @@ export default function Header() {
 				/>
 				{language === 'fr' && <SearchButton />}
 			</StyledHeader>
-
-			{!import.meta.env.SSR && <NewsBanner />}
+			<BrowserOnly>
+				<NewsBanner />
+			</BrowserOnly>
 		</Container>
 	)
 }

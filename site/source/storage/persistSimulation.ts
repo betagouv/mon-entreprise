@@ -3,7 +3,7 @@ import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
 import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { debounce } from '../utils'
-import safeLocalStorage from './safeLocalStorage'
+import * as safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 
 const VERSION = 5

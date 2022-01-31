@@ -9,7 +9,6 @@ import { Container, Spacing } from 'DesignSystem/layout'
 import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
-import logoShare from 'Images/logo-share.png'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -36,7 +35,7 @@ export default function Landing() {
 				page="landing"
 				title="Mon-entreprise"
 				description="L'assistant officiel des entrepreneurs"
-				ogImage={logoShare}
+				ogImage="/logo-share.png"
 			/>
 			<Header />
 			<Container>

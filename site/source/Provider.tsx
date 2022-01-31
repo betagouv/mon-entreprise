@@ -31,7 +31,7 @@ import {
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-import safeLocalStorage from './storage/safeLocalStorage'
+import * as safeLocalStorage from './storage/safeLocalStorage'
 import { inIframe } from './utils'
 
 if (

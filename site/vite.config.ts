@@ -46,7 +46,7 @@ export default defineConfig({
 						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
 					description:
 						'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-					shareImage: 'https://mon-entreprise.urssaf.fr/images/logo-share.png',
+					shareImage: 'https://mon-entreprise.urssaf.fr/logo-share.png',
 				},
 				infrance: {
 					lang: 'en',
@@ -56,7 +56,7 @@ export default defineConfig({
 					description:
 						'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 					shareImage:
-						'https://mon-entreprise.urssaf.fr/images/logo-mycompany-share.png',
+						'https://mon-entreprise.urssaf.fr/logo-mycompany-share.png',
 				},
 			},
 		}),

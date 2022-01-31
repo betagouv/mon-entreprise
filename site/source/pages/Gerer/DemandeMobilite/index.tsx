@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import RuleInput from 'Components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
+import BrowserOnly from 'Components/utils/BrowserOnly'
 import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -175,11 +176,11 @@ function FormulairePublicodes() {
 			</Grid>
 			<Spacing xl />
 			<WhenNotApplicable dottedName={'situation . notification' as DottedName}>
-				{!import.meta.env.SSR && (
+				<BrowserOnly>
 					<Suspense fallback={null}>
 						<LazyEndBlock fields={fields} missingValues={missingValues} />
 					</Suspense>
-				)}
+				</BrowserOnly>
 			</WhenNotApplicable>
 
 			{!!Object.keys(situation).length && (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import safeLocalStorage from '../../storage/safeLocalStorage'
+import * as safeLocalStorage from '../../storage/safeLocalStorage'
 
 export const getInitialState = (key: string) => {
 	const value = safeLocalStorage.getItem(key)

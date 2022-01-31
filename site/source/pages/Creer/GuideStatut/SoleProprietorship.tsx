@@ -28,12 +28,7 @@ export default function SoleProprietorship() {
 					name="description"
 					content={t(
 						'responsabilité.description',
-						`
-						Responsabilité limitée ? entreprise individuelle ? Chaque option a
-						des implications juridiques et conduit à un statut différent pour la
-						création de votre entreprise en France. Ce guide vous aide à choisir
-						entre les différentes forme de responsabilité.
-					`
+						'Responsabilité limitée ? entreprise individuelle ? Chaque option a des implications juridiques et conduit à un statut différent pour la création de votre entreprise en France. Ce guide vous aide à choisir entre les différentes forme de responsabilité.'
 					)}
 				/>
 			</Helmet>
