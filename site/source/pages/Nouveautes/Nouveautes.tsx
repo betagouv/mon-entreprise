@@ -11,13 +11,11 @@ import { Container } from 'DesignSystem/layout'
 import { H1 } from 'DesignSystem/typography/heading'
 import { GenericButtonOrLinkProps, Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
-import useSWR from 'swr'
 import { TrackPage } from '../../ATInternetTracking'
 
-const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
 type ReleasesData = Array<{
@@ -27,9 +25,13 @@ type ReleasesData = Array<{
 
 export default function Nouveautés() {
 	// The release.json file may be big, we don't want to include it in the main
-	// bundle, that's why we only fetch it on this page. Alternatively we could
-	// use import("data/release.json") and configure code splitting with Webpack.
-	const { data } = useSWR<ReleasesData>('/data/releases.json', fetcher)
+	// bundle, that's why we only fetch it on this page.
+	const [data, setData] = useState<ReleasesData>([])
+	useEffect(() => {
+		import('Data/releases.json').then(({ default: data }) => {
+			setData(data)
+		})
+	}, [])
 	const history = useHistory()
 	const sitePaths = useContext(SitePathsContext)
 	const slug = useRouteMatch<{ slug: string }>(`${sitePaths.nouveautés}/:slug`)
@@ -41,7 +43,7 @@ export default function Nouveautés() {
 		[data]
 	)
 
-	if (!data) {
+	if (data.length === 0) {
 		return null
 	}
 
@@ -55,7 +57,6 @@ export default function Nouveautés() {
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
-
 	return (
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />

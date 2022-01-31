@@ -23,10 +23,10 @@ Nous utilisons :
 -   [React](https://reactjs.org) pour la gestion de l'interface utilisateur
 -   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
 -   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
--   [Webpack](https://webpack.js.org) pour le “bundling”
+-   [ViteJS](https://vitejs.dev) pour le “bundling” et le serveur de développement
 -   [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
 -   [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
--   [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
+-   [Vitest](https://vitest.dev) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
 ### Démarrage
 
@@ -121,10 +121,10 @@ yarn test
 #### Tests de non-regression (snapshots)
 
 ```sh
-yarn test:regressions
+yarn test regressions
 ```
 
-Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
+Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--update`, son raccourci `-u`.
 
 #### Tests d'integrations
 

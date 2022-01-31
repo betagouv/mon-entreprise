@@ -45,6 +45,8 @@ const templates = Object.fromEntries(
 	)
 })()
 
+const htmlBodyStart = '<!--app-html:start-->'
+const htmlBodyEnd = '<!--app-html:end-->'
 const headTagsStart = '<!--app-helmet-tags:start-->'
 const headTagsEnd = '<!--app-helmet-tags:end-->'
 
@@ -53,7 +55,7 @@ async function prerenderUrl(url, site) {
 	// TODO: Add CI test to enforce meta tags on SSR pages
 	const { html, styleTags, helmet } = await render(url, lang)
 	const page = templates[site]
-		.replace('<!--app-html-->', html)
+		.replace(new RegExp(htmlBodyStart + '[\\s\\S]+' + htmlBodyEnd, 'm'), html)
 		.replace('<!--app-style-->', styleTags)
 		.replace(
 			new RegExp(headTagsStart + '[\\s\\S]+' + headTagsEnd, 'm'),

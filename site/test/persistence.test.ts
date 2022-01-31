@@ -12,7 +12,7 @@ import reducers, {
 	SimulationConfig,
 } from '../source/reducers/rootReducer'
 import { setupSimulationPersistence } from '../source/storage/persistSimulation'
-import safeLocalStorage from '../source/storage/safeLocalStorage'
+import * as safeLocalStorage from '../source/storage/safeLocalStorage'
 
 function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))

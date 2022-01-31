@@ -5,7 +5,7 @@ import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
-import safeLocalStorage from '../../../storage/safeLocalStorage'
+import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 
 export default function Privacy({ label }: { label?: string }) {
 	const tracker = useContext(TrackingContext)

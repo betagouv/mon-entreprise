@@ -20,6 +20,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import BrowserOnly from 'Components/utils/BrowserOnly'
 
 const ButtonContainer = styled.div`
 	margin: 2rem 1rem;
@@ -47,19 +48,21 @@ export default function SalariéSimulation() {
 				}
 			>
 				<SalariéSimulationGoals />
-				{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
-				 * le simulateur dirigeant de SASU sur son site. */}
-				{!import.meta.env.SSR &&
-					!document.referrer?.includes('code.travail.gouv.fr') && (
-						<Banner icon={'👨‍✈️'}>
-							<Trans>
-								Vous êtes dirigeant d'une SAS(U) ?{' '}
-								<Link to={sitePaths.simulateurs.sasu}>
-									Accéder au simulateur de revenu dédié
-								</Link>
-							</Trans>
-						</Banner>
-					)}
+				<BrowserOnly>
+					{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
+					 * le simulateur dirigeant de SASU sur son site. */}
+					{!import.meta.env.SSR &&
+						!document.referrer?.includes('code.travail.gouv.fr') && (
+							<Banner icon={'👨‍✈️'}>
+								<Trans>
+									Vous êtes dirigeant d'une SAS(U) ?{' '}
+									<Link to={sitePaths.simulateurs.sasu}>
+										Accéder au simulateur de revenu dédié
+									</Link>
+								</Trans>
+							</Banner>
+						)}
+				</BrowserOnly>
 			</Simulation>
 		</>
 	)

@@ -34,8 +34,6 @@ jobs:
   build:
     needs: deploy-context
     env:
-      FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
-      EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
       VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-18.04
@@ -65,8 +63,8 @@ jobs:
           yarn workspace site build:prerender
       - name: Replace site placeholders in netlify.toml redirection file
         run: |
-          sed -i "s|:SITE_FR|$FR_BASE_URL|g" site/netlify.toml;
-          sed -i "s|:SITE_EN|$EN_BASE_URL|g" site/netlify.toml;
+          sed -i "s|:SITE_FR|$VITE_FR_BASE_URL|g" site/netlify.toml;
+          sed -i "s|:SITE_EN|$VITE_EN_BASE_URL|g" site/netlify.toml;
       - name: Update Algolia index
         run: yarn workspace site algolia:update
         env:
