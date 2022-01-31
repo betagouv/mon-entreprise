@@ -70,6 +70,10 @@ const StyledSimulationGoals = styled.div<
 			: theme.colors.bases.primary
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};
+
+	@media print {
+		background: initial;
+	}
 `
 
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {

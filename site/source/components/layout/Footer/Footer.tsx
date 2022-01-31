@@ -63,7 +63,7 @@ export default function Footer() {
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
 					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-						<FooterContainer>
+						<FooterContainer className="print-hidden">
 							<FooterColumn>
 								{language === 'fr' && (
 									<ul>

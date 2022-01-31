@@ -28,6 +28,10 @@ export const H1 = styled.h1<{ noUnderline?: boolean }>`
 		`};
 	line-height: 2.375rem;
 	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
+
+	@media print {
+		margin: ${({ theme }) => theme.spacings.xl} 0;
+	}
 `
 
 export const H2 = styled.h2<{ noUnderline?: boolean }>`

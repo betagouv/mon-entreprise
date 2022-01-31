@@ -12,7 +12,7 @@ export default function SearchButton() {
 		<PopoverWithTrigger
 			title={t('Que cherchez-vous ?')}
 			trigger={(buttonProps) => (
-				<StyledButton light {...buttonProps}>
+				<StyledButton className="print-hidden" light {...buttonProps}>
 					<StyledIcon
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"

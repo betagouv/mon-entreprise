@@ -24,6 +24,7 @@ export const Button = forwardRef<
 		size = 'MD',
 		light = false,
 		color = 'primary' as const,
+		className,
 		...ariaButtonProps
 	},
 	forwardedRef
@@ -32,6 +33,7 @@ export const Button = forwardRef<
 	return (
 		<StyledButton
 			{...buttonOrLinkProps}
+			className={className}
 			size={size}
 			light={light}
 			color={color}

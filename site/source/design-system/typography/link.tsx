@@ -141,6 +141,7 @@ export function useButtonOrLink(
 export const NewWindowLinkIcon = () => {
 	return (
 		<StyledSvg
+			className="print-hidden"
 			viewBox="0 0 24 24"
 			aria-hidden
 			fill="none"
