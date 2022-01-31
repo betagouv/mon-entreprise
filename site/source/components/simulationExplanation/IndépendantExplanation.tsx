@@ -63,7 +63,7 @@ export default function IndépendantExplanation() {
 				</section>
 			</Condition>
 			<InstitutionsPartenaires />
-			<DroitsRetraite />
+			{/* <DroitsRetraite /> */}
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>
