@@ -14,15 +14,15 @@ export function render(url: string, lang: 'fr' | 'en') {
 	i18next.changeLanguage(lang)
 
 	const html = ReactDOMServer.renderToString(
-		<SSRProvider>
-			<HelmetProvider context={helmetContext}>
+		<HelmetProvider context={helmetContext}>
+			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
 						<App />
 					</StaticRouter>
 				</StyleSheetManager>
-			</HelmetProvider>
-		</SSRProvider>
+			</SSRProvider>
+		</HelmetProvider>
 	)
 
 	const styleTags = sheet.getStyleTags()

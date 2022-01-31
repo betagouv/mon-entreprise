@@ -45,14 +45,20 @@ const templates = Object.fromEntries(
 	)
 })()
 
+const headTagsStart = '<!--app-helmet-tags:start-->'
+const headTagsEnd = '<!--app-helmet-tags:end-->'
+
 async function prerenderUrl(url, site) {
 	const lang = site === 'mon-entreprise' ? 'fr' : 'en'
-	// TODO: replace helmet meta tags
+	// TODO: Add CI test to enforce meta tags on SSR pages
 	const { html, styleTags, helmet } = await render(url, lang)
 	const page = templates[site]
 		.replace('<!--app-html-->', html)
 		.replace('<!--app-style-->', styleTags)
-		.replace(/<title>.*<\/title>/, `<title>${helmet.title.toString()}</title>`)
+		.replace(
+			new RegExp(headTagsStart + '[\\s\\S]+' + headTagsEnd, 'm'),
+			helmet.title.toString() + helmet.meta.toString()
+		)
 
 	const dir = path.join(__dirname, 'dist/prerender', site, url)
 	await fs.mkdir(dir, { recursive: true })
