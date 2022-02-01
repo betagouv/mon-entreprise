@@ -1,4 +1,0 @@
-{
-	"rewrites": [{ "source": "**", "destination": "mon-entreprise.html" }],
-	"public": "dist"
-}
