@@ -14,7 +14,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   from = "/polyfill.io/*"
   to = "https://polyfill.io/:splat"
   status = 200
-  headers = {Cache-Control = "private"}
+  headers = {Cache-Control = "no-cache"}
 
 ############
 # Redirects following architectural changes
