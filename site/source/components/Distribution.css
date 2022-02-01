@@ -17,13 +17,15 @@
 
 .distribution-chart__bar {
 	border-radius: 0.4em;
-
 	min-height: 1.5rem;
 }
 
 @media print {
 	.distribution-chart__bar {
 		min-height: 1rem;
+	}
+	.distribution-chart__item {
+		margin: 0.5em 0;
 	}
 }
 
@@ -35,41 +37,43 @@
 	width: 35em;
 }
 
-@media (max-width: 600px) {
-	.distribution-chart__legend {
-		padding: 0;
-		margin-bottom: -1.25rem;
-		transform: scale(0.8);
-	}
-	.distribution-chart__item {
-		flex-direction: column;
-		align-items: stretch;
-	}
-	.distribution-chart__legend {
-		align-items: center !important;
-		justify-content: flex-start !important;
-		position: initial !important;
-		flex-direction: column !important;
-		padding-right: 0 !important;
-		width: auto !important;
-		height: initial !important;
-	}
-	.distribution-chart__counterparts {
-		display: flex;
-		flex-direction: column;
-		margin: auto;
-		width: auto;
-		margin-bottom: 1rem;
-		text-align: center;
-		align-items: center;
-	}
-	.distribution-chart__bar {
-		/* Enable printing of background color */
-		min-height: 1.5em !important;
-	}
+@media not print {
+	@media (max-width: 600px) {
+		.distribution-chart__legend {
+			padding: 0;
+			margin-bottom: -1.25rem;
+			transform: scale(0.8);
+		}
+		.distribution-chart__item {
+			flex-direction: column;
+			align-items: stretch;
+		}
+		.distribution-chart__legend {
+			align-items: center !important;
+			justify-content: flex-start !important;
+			position: initial !important;
+			flex-direction: column !important;
+			padding-right: 0 !important;
+			width: auto !important;
+			height: initial !important;
+		}
+		.distribution-chart__counterparts {
+			display: flex;
+			flex-direction: column;
+			margin: auto;
+			width: auto;
+			margin-bottom: 1rem;
+			text-align: center;
+			align-items: center;
+		}
+		.distribution-chart__bar {
+			/* Enable printing of background color */
+			min-height: 1.5em !important;
+		}
 
-	.distribution-chart__branche-name {
-		font-size: inherit !important;
+		.distribution-chart__branche-name {
+			font-size: inherit !important;
+		}
 	}
 }
 

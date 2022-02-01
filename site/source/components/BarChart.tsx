@@ -163,7 +163,7 @@ function InnerBarChartBranch({
 					</Body>
 					{description && <SmallBody>{description}</SmallBody>}
 				</div>
-				<Spacing md />
+				<Spacing md className="print-hidden" />
 				<ChartItemBar
 					display={display}
 					numberToPlot={value}
