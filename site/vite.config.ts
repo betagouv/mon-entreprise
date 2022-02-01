@@ -7,7 +7,6 @@ import toml from 'rollup-plugin-toml'
 import { defineConfig, Plugin } from 'vite'
 import { watchDottedNames } from '../modele-social/build.js'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
-import { createProxyMiddleware } from 'http-proxy-middleware'
 
 export default defineConfig({
 	resolve: {
@@ -158,14 +157,6 @@ function monEntrepriseDevServer(): Plugin {
 			// We could use native ViteJS watch API, but it would require changing
 			// more code and maybe the whole "modele-social" package build process.
 			watchDottedNames()
-
-			vite.middlewares.use(
-				createProxyMiddleware('/polyfill.io', {
-					target: 'https://polyfill.io',
-					changeOrigin: true,
-					pathRewrite: { '^/polyfill.io': '' },
-				}) as any
-			)
 		},
 	}
 }
