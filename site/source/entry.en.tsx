@@ -1,6 +1,5 @@
 import { I18nProvider } from '@react-aria/i18n'
 import { render } from 'react-dom'
-import 'regenerator-runtime/runtime'
 import App from './App'
 import i18next from './locales/i18n'
 import ruleTranslations from './locales/rules-en.yaml'
