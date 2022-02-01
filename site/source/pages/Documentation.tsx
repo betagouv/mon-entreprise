@@ -132,18 +132,18 @@ function DocumentationRulesList() {
 }
 
 const referencesImages = {
-	'service-public.fr': '/images/références/marianne.png',
-	'legifrance.gouv.fr': '/images/références/marianne.png',
-	'urssaf.fr': '/images/références/Urssaf.svg',
-	'secu-independants.fr': '/images/références/Urssaf.svg',
-	'gouv.fr': '/images/références/marianne.png',
-	'agirc-arrco.fr': '/images/références/agirc-arrco.png',
-	'pole-emploi.fr': '/images/références/pole-emploi.png',
+	'service-public.fr': '/références-images/marianne.png',
+	'legifrance.gouv.fr': '/références-images/marianne.png',
+	'urssaf.fr': '/références-images/Urssaf.svg',
+	'secu-independants.fr': '/références-images/Urssaf.svg',
+	'gouv.fr': '/références-images/marianne.png',
+	'agirc-arrco.fr': '/références-images/agirc-arrco.png',
+	'pole-emploi.fr': '/références-images/pole-emploi.png',
 	'ladocumentationfrançaise.fr':
-		'/images/références/ladocumentationfrançaise.png',
-	'senat.fr': '/images/références/senat.png',
-	'ameli.fr': '/images/références/ameli.png',
-	'bpifrance-creation.fr': '/images/références/bpi-création.png',
+		'/références-images/ladocumentationfrançaise.png',
+	'senat.fr': '/références-images/senat.png',
+	'ameli.fr': '/références-images/ameli.png',
+	'bpifrance-creation.fr': '/références-images/bpi-création.png',
 }
 
 type ReferencesProps = React.ComponentProps<
