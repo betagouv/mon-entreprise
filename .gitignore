@@ -13,3 +13,12 @@ dist/
 
 # Webstorm (and other Jetbrains IDE)
 .idea/
+
+# Yarn 2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

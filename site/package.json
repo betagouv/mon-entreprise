@@ -35,9 +35,6 @@
 		"algolia:update": "node scripts/search/update-data.js",
 		"algolia:clean": "node scripts/search/clean.js"
 	},
-	"resolutions": {
-		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-	},
 	"dependencies": {
 		"@emotion/react": "^11.7.1",
 		"@emotion/styled": "^11.6.0",
