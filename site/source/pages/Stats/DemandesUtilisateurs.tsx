@@ -12,7 +12,13 @@ export default function DemandeUtilisateurs() {
 			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
 			<Body>
 				Demandes formulées en utilisant le bouton "faire une suggestion" présent
-				sur toutes les pages
+				sur toutes les pages.{' '}
+				<Link
+					href="https://github.com/betagouv/mon-entreprise/blob/master/CONTRIBUTING.md#retours-utilisateurs"
+					target="_blank"
+				>
+					Comment ça marche ?
+				</Link>
 			</Body>
 
 			<H3>En attente d'implémentation</H3>
