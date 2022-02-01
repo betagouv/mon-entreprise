@@ -1,5 +1,5 @@
-require('isomorphic-fetch')
-const { writeInDataDir } = require('./utils')
+import 'isomorphic-fetch'
+import { writeInDataDir } from './utils.js'
 
 const CSV_URL =
 	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20220103.csv'
