@@ -26,7 +26,7 @@ export default function SearchOrCreate() {
 				<H3 as="h2">
 					<Trans>Rechercher une entreprise</Trans>{' '}
 				</H3>
-				<CompanySearchField autoFocus onSubmit={handleCompanySubmit} />
+				<CompanySearchField onSubmit={handleCompanySubmit} />
 			</Grid>
 			<Grid item lg md={12}>
 				<ButtonContainer>
