@@ -66,13 +66,7 @@
 				display: none !important;
 			}
 
-			/* Prevent FOUC effect */
-			#js {
-				opacity: 0;
-			}
-
 			/* CSS Loader */
-
 			#loading {
 				animation: appear 0.6s;
 				transform: translateY(35vh);
@@ -163,7 +157,7 @@
 			<!--app-html:start-->
 			<div id="loading">
 				<img
-					src=""
+					src="{{ shareImage }}"
 					alt="Un service de l'État français"
 					style="
 						width: 300px;

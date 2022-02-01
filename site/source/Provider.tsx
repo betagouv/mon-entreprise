@@ -67,23 +67,6 @@ export type ProviderProps = {
 	reduxMiddlewares?: Array<Middleware>
 }
 
-const HideLoader = () => {
-	const [CSS, setCSS] = useState<string>()
-	// Remove loader when page is load
-	useEffect(() => {
-		setCSS(`
-		#js {
-			animation: appear 0.5s;
-			opacity: 1;
-		}
-		#loading {
-			display: none !important;
-		}`)
-	}, [])
-
-	return <style>{CSS}</style>
-}
-
 export default function Provider({
 	basename,
 	reduxMiddlewares = [],
@@ -102,7 +85,6 @@ export default function Provider({
 
 	return (
 		<DesignSystemThemeProvider>
-			<HideLoader />
 			<GlobalStyle />
 			<ErrorBoundary
 				showDialog
