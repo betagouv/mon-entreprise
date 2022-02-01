@@ -18,10 +18,10 @@
 	"type": "module",
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
-		"publicodes": "^1.0.0-beta.29"
+		"publicodes": "^1.0.0-beta.30"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.0-beta.29"
+		"publicodes": "^1.0.0-beta.30"
 	},
 	"scripts": {
 		"build": "node build.js",

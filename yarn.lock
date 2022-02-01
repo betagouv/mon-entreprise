@@ -5071,19 +5071,19 @@ psl@^1.1.28:
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
   integrity sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==
 
-publicodes-react@^1.0.0-beta.29:
-  version "1.0.0-beta.29"
-  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.29.tgz#d6ffd26d9a7b17a2d41a64eaaa284518bc18b431"
-  integrity sha512-Mi5eBdXqAfSGb9O/nB9ezMWE0zWNXS8PGtM9qQnC5eqjbI/59AgY3wmRqZkS8tY369LbJlqu5jqZmkSCMNrURA==
+publicodes-react@^1.0.0-beta.30:
+  version "1.0.0-beta.30"
+  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.30.tgz#ff1b815c69da4f5f6616f425535f109aae169005"
+  integrity sha512-8WtZLUVx7NPTSpD2ikmpUwkA9rLZ4oMNANijN9lUqka8rjIQUStYQely4whk4QwAlkUeTgtzoATAws5Qe46CDg==
   dependencies:
     focus-trap-react "^8.8.2"
     styled-components "^5.1.0"
     yaml "^1.9.2"
 
-publicodes@^1.0.0-beta.29:
-  version "1.0.0-beta.29"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.29.tgz#4f3ef017ee9f02ccb794fba3e32757e56d372cc3"
-  integrity sha512-5voh02ar3gZM4J0kUgDkMxFEX2yCdjRUaZ3M0IfAnKZU/axFTS3HdvANsSo8qrGiXFZovtGS75SD+FJoAldRBQ==
+publicodes@^1.0.0-beta.30:
+  version "1.0.0-beta.30"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.30.tgz#c17bbce9aa247bfacacf15cb7ac4066cdc16128c"
+  integrity sha512-mqKtEdx8zRzWoaAqxsWAJdmVBO1zgMo8k6bKI1fgfuyawrCcqlKlSuk+M8Bi76wlIh9TpzDKxlU0w7FMy7dcUg==
   dependencies:
     moo "^0.5.1"
     nearley "^2.19.2"

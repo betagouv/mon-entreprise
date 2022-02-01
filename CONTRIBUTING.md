@@ -235,7 +235,7 @@ Checklist:
 
 [wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
 
-## Retour utilisateurs
+## Retours utilisateurs
 
 Nous gérons les retours utilisateurs avec plusieurs outils :
 
