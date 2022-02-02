@@ -6,7 +6,7 @@ import { Body } from 'DesignSystem/typography/paragraphs'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { isIterable } from 'utils'
+import { isIterable } from '../../utils'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
 
