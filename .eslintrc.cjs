@@ -61,11 +61,11 @@ module.exports = {
 			rules: {
 				'ban-ts-comment': 'off',
 				'react/no-unescaped-entities': 'off',
+				'react/jsx-no-target-blank': 'off',
 				'@typescript-eslint/ban-ts-comment': 'off',
 
 				'react-hooks/rules-of-hooks': 'error',
 				'react-hooks/exhaustive-deps': 'warn',
-				'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
 
 				'@typescript-eslint/no-unsafe-call': 'warn',
 				'@typescript-eslint/no-unsafe-argument': 'warn',
