@@ -161,8 +161,8 @@ const StyledGoal = styled.div`
 	position: relative;
 	z-index: 1;
 	padding: ${({ theme }) => theme.spacings.sm} 0;
-`
 
-const LogoContainer = styled.div`
-	height: 3rem;
+	@media print {
+		padding: 0;
+	}
 `

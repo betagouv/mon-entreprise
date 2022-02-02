@@ -10,12 +10,14 @@ type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>
 	onFirstClick: (val: ASTNode) => void
 	onSecondClick?: (val: ASTNode) => void
+	className?: string
 }
 
 export default function InputSuggestions({
 	suggestions = {},
 	onSecondClick = (x) => x,
 	onFirstClick,
+	className,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t } = useTranslation()
@@ -23,7 +25,7 @@ export default function InputSuggestions({
 		return null
 	}
 	return (
-		<StyledInputSuggestion>
+		<StyledInputSuggestion className={className}>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<Link

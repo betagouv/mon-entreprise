@@ -75,6 +75,7 @@ export default function NumberInput({
 				value={currentValue}
 			/>
 			<InputSuggestions
+				className="print-hidden"
 				suggestions={suggestions}
 				onFirstClick={(node: ASTNode) => {
 					const evaluatedNode = engine.evaluate(node)

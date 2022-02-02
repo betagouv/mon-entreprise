@@ -160,6 +160,12 @@ button:enabled {
 	.print-no-break-inside {
 		break-inside: avoid;
 	}
+	.print-simulation {
+		max-width: initial;
+    flex-basis: initial;
+    flex-grow: 1;
+    margin: 0 1rem;
+	}
 
 	body {
 		margin: 00mm;

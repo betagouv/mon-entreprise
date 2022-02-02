@@ -73,6 +73,7 @@ const StyledSimulationGoals = styled.div<
 
 	@media print {
 		background: initial;
+		padding: 0;
 	}
 `
 

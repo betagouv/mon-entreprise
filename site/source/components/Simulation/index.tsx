@@ -38,25 +38,27 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<ExportRecover />
 			<Grid container spacing={2} justifyContent="center">
-				<Grid item xl={9} lg={10} md={11} sm={12}>
+				<Grid className="print-simulation" item xl={9} lg={10} md={11} sm={12}>
 					{children}
 
-					{!firstStepCompleted && (
-						<>
-							<PreviousSimulationBanner />
-							{afterQuestionsSlot}
-						</>
-					)}
+					<div className="print-hidden">
+						{!firstStepCompleted && (
+							<>
+								<PreviousSimulationBanner />
+								{afterQuestionsSlot}
+							</>
+						)}
 
-					{firstStepCompleted && (
-						<FromTop>
-							{results}
-							<Questions customEndMessages={customEndMessages} />
-							{afterQuestionsSlot || <Spacing sm />}
-							<ShareOrSaveSimulationBanner />
-							<Spacing lg />
-						</FromTop>
-					)}
+						{firstStepCompleted && (
+							<FromTop>
+								{results}
+								<Questions customEndMessages={customEndMessages} />
+								{afterQuestionsSlot || <Spacing sm />}
+								<ShareOrSaveSimulationBanner />
+								<Spacing lg />
+							</FromTop>
+						)}
+					</div>
 				</Grid>
 			</Grid>
 			{firstStepCompleted && (
