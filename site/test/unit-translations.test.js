@@ -1,4 +1,4 @@
-import { it, expect } from 'vitest'
+import { it, expect, describe } from 'vitest'
 import { parsePublicodes } from 'publicodes'
 import { uniq } from 'ramda'
 import rawRules from 'modele-social'

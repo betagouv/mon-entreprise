@@ -18,7 +18,6 @@ module.exports = {
 	},
 	extends: ['eslint:recommended', 'prettier'],
 	rules: {
-		quotes: ['warn', 'single', { avoidEscape: true }],
 		'no-console': 'warn',
 		'no-restricted-globals': ['error', 'length'],
 		'no-restricted-syntax': [
@@ -62,6 +61,12 @@ module.exports = {
 			rules: {
 				'ban-ts-comment': 'off',
 				'react/no-unescaped-entities': 'off',
+				'@typescript-eslint/ban-ts-comment': 'off',
+
+				'react-hooks/rules-of-hooks': 'error',
+				'react-hooks/exhaustive-deps': 'warn',
+				'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
+
 				'@typescript-eslint/no-unsafe-call': 'warn',
 				'@typescript-eslint/no-unsafe-argument': 'warn',
 				'@typescript-eslint/no-unsafe-member-access': 'warn',
@@ -71,9 +76,6 @@ module.exports = {
 				'@typescript-eslint/no-empty-function': 'warn',
 				'@typescript-eslint/restrict-plus-operands': 'warn',
 				'@typescript-eslint/no-floating-promises': 'warn',
-				'@typescript-eslint/ban-ts-comment': 'warn',
-				'react-hooks/rules-of-hooks': 'error',
-				'react-hooks/exhaustive-deps': 'warn',
 				'@typescript-eslint/member-delimiter-style': [
 					'error',
 					{ multiline: { delimiter: 'none' } },
@@ -81,20 +83,27 @@ module.exports = {
 			},
 		},
 		{
-			files: ['**/*.test.{js,ts}', 'site/cypress/integration/**/*.js'],
+			files: ['**/*.test.{js,ts}', 'site/cypress/**/*.js'],
 			env: {
 				mocha: true,
-				jest: true,
 			},
-			extends: ['eslint:recommended', 'plugin:mocha/recommended', 'prettier'],
-			plugins: ['mocha'],
+			extends: [
+				'eslint:recommended',
+				'plugin:cypress/recommended',
+				'plugin:mocha/recommended',
+				'prettier',
+			],
+			plugins: ['cypress', 'mocha'],
 			rules: {
-				'mocha/no-skipped-tests': 'warn',
+				'cypress/no-unnecessary-waiting': 'warn',
+
 				'mocha/no-exclusive-tests': 'error',
+				'mocha/no-skipped-tests': 'warn',
 				'mocha/no-mocha-arrows': 'warn',
 				'mocha/no-setup-in-describe': 'warn',
 				'mocha/max-top-level-suites': 'warn',
 				'mocha/no-global-tests': 'warn',
+				'mocha/no-exports': 'warn',
 			},
 		},
 	],
