@@ -90,7 +90,7 @@ export default function Provider({
 				showDialog
 				fallback={
 					<Container>
-						<Link to={sitePaths.index}>
+						<Link href={sitePaths.index}>
 							<img
 								src={logo}
 								alt="logo service mon-entreprise urssaf"
