@@ -15,14 +15,19 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { SelectSimulationYear } from 'Components/SelectSimulationYear'
 
 export function IndépendantPLSimulation() {
 	return (
 		<>
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation
+				explanations={<IndépendantExplanation />}
+				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+			>
 				<SimulateurWarning simulateur="profession-libérale" />
 				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
+
+				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)
@@ -31,9 +36,14 @@ export function IndépendantPLSimulation() {
 export function EntrepriseIndividuelle() {
 	return (
 		<>
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation
+				explanations={<IndépendantExplanation />}
+				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+			>
 				<SimulateurWarning simulateur="entreprise-individuelle" />
 				<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
+
+				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)
@@ -41,9 +51,13 @@ export function EntrepriseIndividuelle() {
 
 export default function IndépendantSimulation() {
 	const sitePaths = useContext(SitePathsContext)
+
 	return (
 		<>
-			<Simulation explanations={<IndépendantExplanation />}>
+			<Simulation
+				explanations={<IndépendantExplanation />}
+				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+			>
 				<SimulateurWarning simulateur="indépendant" />
 				<IndépendantSimulationGoals
 					legend="Vos revenus d'indépendant"
@@ -63,6 +77,8 @@ export default function IndépendantSimulation() {
 						</Link>
 					</Trans>
 				</Banner>
+
+				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)

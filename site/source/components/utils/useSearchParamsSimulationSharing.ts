@@ -8,6 +8,7 @@ import { configSelector } from 'Selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
 import { updateSituation, setActiveTarget } from 'Actions/actions'
+import { Names } from 'modele-social/dist/names'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -148,7 +149,7 @@ export function getSituationFromSearchParams(
 	searchParams: URLSearchParams,
 	dottedNameParamName: [DottedName, ParamName][]
 ) {
-	const situation = {} as Situation
+	const situation: { [key in Names]?: string } = {}
 
 	const paramNameDottedName = dottedNameParamName.reduce(
 		(dottedNameBySearchParamName, [dottedName, paramName]) => ({

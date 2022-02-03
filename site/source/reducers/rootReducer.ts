@@ -10,6 +10,7 @@ import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
+import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -55,7 +56,19 @@ export type SimulationConfig = Partial<{
 	color: string
 }>
 
-export type Situation = Partial<Record<DottedName, any>>
+type Overwrite<T, U> = { [P in keyof Omit<T, keyof U>]: T[P] } & U
+
+export type Situation = Partial<
+	Overwrite<
+		Record<DottedName, string | number | { valeur: number; unité: string }>,
+		{
+			'établissement . localisation': { objet: ApiCommuneJson }
+			'entreprise . imposition': string
+			année: number
+		}
+	>
+>
+
 export type Simulation = {
 	config: SimulationConfig
 	url: string
