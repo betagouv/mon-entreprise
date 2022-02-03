@@ -126,6 +126,10 @@ export const fetchTranslation = async (text) => {
 			target_lang: 'EN',
 		})}`
 	)
+	if (response.status !== 200) {
+		console.error(`❌ Deepl return status ${response.status} for:\n\t${text}\n`)
+		return ''
+	}
 	try {
 		const { translations } = await response.json()
 		console.log(`✅ Deepl translation succeeded for:\n\t${text}\n`)

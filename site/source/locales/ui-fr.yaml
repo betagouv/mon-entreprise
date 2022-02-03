@@ -1274,6 +1274,9 @@ pages:
         peut ensuite être affinée en répondant aux différentes questions.</4>"
       shortname: SASU
       title: Simulateur de SASU
+    select-year:
+      click-to-change-year: Cliquez pour changer d'année
+      info: "Cette simulation concerne l'année {{actualYear}}. Accéder au simulateur "
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en

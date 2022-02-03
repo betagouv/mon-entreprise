@@ -1619,6 +1619,9 @@ pages:
       shortname: SASU
       title: SASU Simulator
       titre: Revenue simulator for SAS(U) executive
+    select-year:
+      click-to-change-year: Click to change year
+      info: "This simulation is for the year {{actualYear}}. Go to the simulator "
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
