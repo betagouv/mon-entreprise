@@ -90,6 +90,9 @@ const StyledHeader = styled(H3)`
 `
 const CardButton = styled(StyledButton)`
 	margin: ${({ theme }) => theme.spacings.sm} 0;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		width: initial;
+	}
 `
 
 const IconContainer = styled.div`
