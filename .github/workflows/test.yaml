@@ -50,4 +50,4 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
       - run: yarn install --frozen-lockfile
-      - run: yarn run i18n:check
+      - run: yarn workspace site run i18n:check

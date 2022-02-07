@@ -26,13 +26,7 @@
 		"test:type": "yarn workspaces run tsc --skipLibCheck --noEmit",
 		"clean": "yarn workspaces run clean && rimraf node_modules",
 		"start": "yarn workspace site start",
-		"moso:up": "yarn workspace modele-social run up && yarn workspace site upgrade modele-social",
-		"i18n:check": "yarn run i18n:rules:check && yarn run i18n:ui:check",
-		"i18n:translate": "yarn run i18n:rules:translate && yarn run i18n:ui:translate",
-		"i18n:rules:check": "node site/scripts/i18n/check-missing-rule-translation.js",
-		"i18n:rules:translate": "node site/scripts/i18n/translate-rules.js",
-		"i18n:ui:check": "yarn workspace site run i18next -c scripts/i18n/parser.config.cjs && node site/scripts/i18n/check-missing-UI-translation",
-		"i18n:ui:translate": "rm -rf site/source/locales/static-analysis-fr.json && yarn workspace site run i18next -c scripts/i18n/parser.config.cjs && node site/scripts/i18n/translate-ui.js"
+		"moso:up": "yarn workspace modele-social run up && yarn workspace site upgrade modele-social"
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"

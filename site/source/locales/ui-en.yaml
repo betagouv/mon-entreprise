@@ -435,7 +435,7 @@ comparaisonRégimes:
     <1/>
     <2>Start simulation</2>
   status:
-    AS: SAS, SASU or SARL with minority director
+    AS: SAS, SASU or SARL with a minority or equal manager
     auto: Auto-entreprise
     indep:
       "1": EI, EIRL, EURL or SARL with majority director
