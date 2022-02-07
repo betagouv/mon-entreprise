@@ -33,7 +33,14 @@
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance,integrationFolder=cypress/integration/mon-entreprise/english --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
 		"algolia:update": "node scripts/search/update-data.js",
-		"algolia:clean": "node scripts/search/clean.js"
+		"algolia:clean": "node scripts/search/clean.js",
+		"i18n:check": "yarn run i18n:rules:check && yarn run i18n:ui:check",
+		"i18n:translate": "yarn run i18n:rules:translate && yarn run i18n:ui:translate",
+		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
+		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
+		"i18n:ui:check": "i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/check-missing-UI-translation",
+		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/translate-ui.js"
+
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"

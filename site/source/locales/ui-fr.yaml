@@ -253,7 +253,7 @@ comparaisonRégimes:
   simulationText: <0>Comparer mes revenus, pension de retraite et indemnité
     maladie</0><1></1><2>Lancer la simulation</2>
   status:
-    AS: SAS, SASU ou SARL avec gérant minoritaire
+    AS: SAS, SASU ou SARL avec gérant minoritaire ou égalitaire
     auto: Auto-entreprise
     indep:
       "1": EI, EIRL, EURL ou SARL avec gérant majoritaire

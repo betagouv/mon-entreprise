@@ -124,7 +124,7 @@ export default function SchemeComparaison({
 				<div className="AS">
 					<div>
 						<Trans i18nKey="comparaisonRégimes.status.AS">
-							SAS, SASU ou SARL avec gérant minoritaire
+							SAS, SASU ou SARL avec gérant minoritaire ou égalitaire
 						</Trans>
 					</div>
 				</div>
@@ -825,5 +825,4 @@ const StyledGrid = styled.div`
 		font-size: 1rem;
 	}
 }
-
 `
