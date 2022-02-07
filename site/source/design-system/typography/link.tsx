@@ -72,6 +72,7 @@ export function useExternalLinkProps({
 	return {
 		title: (title ? `${title} - ` : '') + t('Nouvelle fenêtre'),
 		target: '_blank',
+		rel: 'noreferrer',
 		external: true,
 		children: children && (
 			<>

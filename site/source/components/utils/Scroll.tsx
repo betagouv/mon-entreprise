@@ -42,6 +42,7 @@ type ScrollToElementProps = React.ComponentProps<'div'> & {
 	onlyIfNotVisible?: boolean
 	when?: boolean
 	behavior?: ScrollBehavior
+	style?: React.CSSProperties
 }
 
 export function ScrollToElement({

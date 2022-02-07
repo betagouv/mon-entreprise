@@ -14,8 +14,8 @@
 	],
 	"type": "module",
 	"scripts": {
-		"lint:eslintrc": "eslint --print-config .eslintrc.cjs | eslint-config-prettier-check",
-		"lint:eslint": "export NODE_OPTIONS='--max-old-space-size=4096'; eslint . --ext .js,.jsx,.ts,.tsx",
+		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
+		"lint:eslint": "export NODE_OPTIONS='--max-old-space-size=4096'; eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
 		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",

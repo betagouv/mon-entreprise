@@ -86,7 +86,11 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 					alignItems="flex-end"
 					justifyContent="center"
 				>
-					<LogoContainer href={process.env.FR_BASE_URL} target="_blank">
+					<LogoContainer
+						href={process.env.FR_BASE_URL}
+						target="_blank"
+						rel="noreferrer"
+					>
 						<Logo />
 					</LogoContainer>
 				</Grid>

@@ -4,11 +4,10 @@ import { Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import React from 'react'
 import styled from 'styled-components'
 
-type IndicatorProps = {
+export type IndicatorProps = {
 	main?: React.ReactNode
 	subTitle?: React.ReactNode
 	footnote?: React.ReactNode
-	width?: string
 }
 export function Indicator({ main, subTitle, footnote }: IndicatorProps) {
 	return (

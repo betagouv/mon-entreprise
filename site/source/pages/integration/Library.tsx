@@ -43,6 +43,7 @@ export default function Library() {
 					<Link
 						href="https://publi.codes/documentation/se-lancer"
 						target="_blank"
+						rel="noreferrer"
 					>
 						documentation dédiée
 					</Link>
@@ -78,7 +79,7 @@ export default function Library() {
 				</Body>
 				<Body>
 					Toutes ces variables sont listées et expliquées sur la{' '}
-					<Link target="_blank" href="/documentation">
+					<Link target="_blank" rel="noreferrer" href="/documentation">
 						documentation en ligne
 					</Link>
 					. Cette documentation est auto-générée depuis les fichiers de règles
