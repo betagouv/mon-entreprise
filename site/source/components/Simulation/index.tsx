@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid, styled } from '@mui/material'
 import { ConversationProps } from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback'
 import ShareOrSaveSimulationBanner from 'Components/ShareSimulationBanner'
@@ -25,6 +25,15 @@ type SimulationProps = {
 	customEndMessages?: ConversationProps['customEndMessages']
 }
 
+const StyledGrid = styled(Grid)`
+	@media print {
+		max-width: initial;
+		flex-basis: initial;
+		flex-grow: 1;
+		margin: 0 1rem;
+	}
+`
+
 export default function Simulation({
 	explanations,
 	results,
@@ -38,7 +47,7 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<ExportRecover />
 			<Grid container spacing={2} justifyContent="center">
-				<Grid className="print-simulation" item xl={9} lg={10} md={11} sm={12}>
+				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					{children}
 
 					<div className="print-hidden">
@@ -59,7 +68,7 @@ export default function Simulation({
 							</FromTop>
 						)}
 					</div>
-				</Grid>
+				</StyledGrid>
 			</Grid>
 			{firstStepCompleted && (
 				<>
