@@ -14,7 +14,7 @@ import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import logo from 'Images/logo-monentreprise.svg'
 import { useIframeResizer } from 'Hooks/useIframeResizer'
-import React, { createContext, ReactNode, useMemo } from 'react'
+import { createContext, ReactNode, useMemo } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -65,7 +65,7 @@ const composeEnhancers = composeWithDevTools(
 
 export type ProviderProps = {
 	basename: SiteName
-	children: React.ReactNode
+	children: ReactNode
 	sitePaths?: SitePaths
 	initialStore?: PreloadedState<RootState>
 	onStoreCreated?: (store: Store) => void
@@ -79,7 +79,7 @@ export default function Provider({
 	onStoreCreated,
 	children,
 	sitePaths = {} as SitePaths,
-}: ProviderProps): ReactNode {
+}: ProviderProps): JSX.Element {
 	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
 
 	// Hack: useMemo is used to persist the store across hot reloads.
@@ -151,7 +151,7 @@ function BrowserRouterProvider({
 	children,
 	basename,
 }: {
-	children: React.ReactNode
+	children: ReactNode
 	basename: string
 }) {
 	// The server rouer is only provided in the entry-server file

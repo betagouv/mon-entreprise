@@ -83,7 +83,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 		const template = await fs.readFile(options.templatePath, 'utf-8')
 		const filledTemplate = template
 			.toString()
-			.replace(/\{\{(.+)\}\}/g, (_match, p1) => siteData[p1.trim()])
+			.replace(/\{\{(.+)\}\}/g, (_match, p1) => siteData[(p1 as string).trim()])
 		return filledTemplate
 	}
 	return {
@@ -159,7 +159,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 function monEntrepriseDevServer(): Plugin {
 	return {
 		name: 'mon-entreprise',
-		configureServer(vite) {
+		configureServer() {
 			// We could use native ViteJS watch API, but it would require changing
 			// more code and maybe the whole "modele-social" package build process.
 			watchDottedNames()
