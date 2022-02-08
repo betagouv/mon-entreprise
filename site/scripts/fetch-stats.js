@@ -297,7 +297,10 @@ async function main() {
 			visitesJours: [],
 			visitesMois: [],
 			satisfaction: [],
-			retoursUtilisateurs: [],
+			retoursUtilisateurs: {
+				open: [],
+				closed: [],
+			},
 			nbAnswersLast30days: 0,
 		})
 	}
