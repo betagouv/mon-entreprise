@@ -6,7 +6,7 @@ const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
 const writeFixtures = Cypress.env('record_http') !== undefined
 
 describe('General navigation', function () {
-	it('should enable switching site language', () => {
+	it('should enable switching site language', function () {
 		cy.visit(
 			fr ? encodeURI('/créer/auto-entrepreneur') : '/create/auto-entrepreneur'
 		)
@@ -17,7 +17,7 @@ describe('General navigation', function () {
 		)
 	})
 
-	it('should go back to home when clicking on logo', () => {
+	it('should go back to home when clicking on logo', function () {
 		cy.visit(encodeURI('/documentation/contrat-salarié'))
 		cy.get('[data-test-id="logo img"]').click()
 		cy.url().should('match', new RegExp(`${Cypress.config().baseUrl}/?`))
@@ -33,7 +33,7 @@ describe(`Navigation to income simulator using company name (${
 		'search-recherche-entreprises.fabrique.social.gouv.fr',
 		'geo.api.gouv.fr',
 	]
-	beforeEach(() => {
+	beforeEach(function () {
 		cy.clearLocalStorage() // Try to avoid flaky tests
 
 		pendingRequests = new Set()
@@ -46,7 +46,7 @@ describe(`Navigation to income simulator using company name (${
 		)
 		cy.visit('/')
 	})
-	afterEach(() => {
+	afterEach(function () {
 		cy.writeInterceptResponses(
 			pendingRequests,
 			responses,

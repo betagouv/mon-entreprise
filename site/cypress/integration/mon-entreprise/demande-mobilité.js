@@ -15,7 +15,7 @@ describe(`Formulaire demande mobilité (${
 	let responses = {}
 	const hostnamesToRecord = ['geo.api.gouv.fr']
 
-	beforeEach(() => {
+	beforeEach(function () {
 		pendingRequests = new Set()
 		responses = {}
 		cy.setInterceptResponses(
@@ -26,7 +26,7 @@ describe(`Formulaire demande mobilité (${
 		)
 		cy.visit(encodeURI('/gérer/demande-mobilité'))
 	})
-	afterEach(() => {
+	afterEach(function () {
 		cy.writeInterceptResponses(
 			pendingRequests,
 			responses,
@@ -34,7 +34,7 @@ describe(`Formulaire demande mobilité (${
 		)
 	})
 
-	it('should allow to complete and download', () => {
+	it('should allow to complete and download', function () {
 		cy.contains('Salarié').click().wait(500)
 		cy.focused().tab().type('{downarrow}')
 

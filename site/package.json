@@ -40,7 +40,6 @@
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/translate-ui.js"
-
 	},
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
@@ -72,7 +71,6 @@
 		"@sentry/tracing": "^6.3.5",
 		"algoliasearch": "^4.10.2",
 		"fuse.js": "^6.4.6",
-		"iframe-resizer": "^4.1.1",
 		"markdown-to-jsx": "^7.1.5",
 		"modele-social": "^0.5.0",
 		"publicodes": "^1.0.0-beta.30",
@@ -112,6 +110,7 @@
 		"@types/react-router": "^5.1.2",
 		"@types/react-router-dom": "^5.3.2",
 		"@types/recharts": "^1.8.16",
+		"@types/serve-static": "^1.13.10",
 		"@types/styled-components": "^5.1.9",
 		"@typescript-eslint/eslint-plugin": "^5.10.2",
 		"@typescript-eslint/parser": "^5.10.2",
@@ -133,6 +132,7 @@
 		"prettier": "^2.5.1",
 		"rimraf": "^3.0.2",
 		"rollup-plugin-toml": "^1.0.0",
+		"serve-static": "^1.14.2",
 		"typescript": "^4.3.2",
 		"vite": "^2.7.13",
 		"vite-plugin-shim-react-pdf": "^1.0.4",

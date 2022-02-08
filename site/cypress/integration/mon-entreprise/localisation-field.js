@@ -1,10 +1,12 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Champs localisation (simulateur salarié)', () => {
+describe('Champs localisation (simulateur salarié)', function () {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit(encodeURI('/simulateurs/salarié')))
+	before(function () {
+		return cy.visit(encodeURI('/simulateurs/salarié'))
+	})
 
 	it('should not crash when selecting localisation', function () {
 		cy.contains('SMIC').click()

@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react'
+import React, {
+	createContext,
+	ReactNode,
+	useContext,
+	useEffect,
+	useState,
+} from 'react'
 
 /*
 	Instead of relying on a contextual Provider that activates the
