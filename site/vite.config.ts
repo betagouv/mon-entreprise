@@ -7,6 +7,7 @@ import toml from 'rollup-plugin-toml'
 import { defineConfig, Plugin } from 'vite'
 import { watchDottedNames } from '../modele-social/build.js'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
+import serveStatic from 'serve-static'
 
 export default defineConfig({
 	resolve: {
@@ -85,12 +86,17 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			.replace(/\{\{(.+)\}\}/g, (_match, p1) => siteData[p1.trim()])
 		return filledTemplate
 	}
-
 	return {
 		name: 'multiple-spa',
 		enforce: 'pre',
 
 		configureServer(vite) {
+			vite.middlewares.use(
+				'/simulateur-iframe-integration.js',
+				serveStatic(new URL('./dist', import.meta.url).pathname, {
+					index: 'simulateur-iframe-integration.js',
+				})
+			)
 			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			vite.middlewares.use(async (req, res, next) => {
 				const url = req.originalUrl

@@ -1,6 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Partage (simulateur salarié)', () => {
+describe('Partage (simulateur salarié)', function () {
 	const brutInputSelector =
 		'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'

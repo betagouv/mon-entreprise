@@ -2,20 +2,22 @@ const fr = Cypress.env('language') === 'fr'
 const inputSelector =
 	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
 
-describe('Simulateur auto-entrepreneur', () => {
+describe('Simulateur auto-entrepreneur', function () {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit('/simulateurs/auto-entrepreneur'))
+	before(function () {
+		return cy.visit('/simulateurs/auto-entrepreneur')
+	})
 
-	it('should allow to enter the date of creation', () => {
+	it('should allow to enter the date of creation', function () {
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.contains('Début 2022').click()
 		cy.contains('ACRE')
 	})
-	it('should not have negative value', () => {
+	it('should not have negative value', function () {
 		cy.contains('Mensuel').click()
 		cy.wait(100)
 		cy.get(inputSelector).first().type('{selectall}5000')

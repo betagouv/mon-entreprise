@@ -87,7 +87,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 					justifyContent="center"
 				>
 					<LogoContainer
-						href={process.env.FR_BASE_URL}
+						href={import.meta.env.VITE_FR_BASE_URL}
 						target="_blank"
 						rel="noreferrer"
 					>

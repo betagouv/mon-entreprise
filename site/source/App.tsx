@@ -10,7 +10,6 @@ import {
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Container, Spacing } from 'DesignSystem/layout'
-import 'iframe-resizer'
 import { StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'

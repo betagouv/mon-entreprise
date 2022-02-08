@@ -1,6 +1,6 @@
 describe('Status guide', function () {
 	const fr = Cypress.env('language') === 'fr'
-	beforeEach(() => {
+	beforeEach(function () {
 		cy.visit(fr ? encodeURI('/créer') : '/create')
 		cy.contains(fr ? 'Trouver le bon statut' : 'Find the right status').click()
 	})

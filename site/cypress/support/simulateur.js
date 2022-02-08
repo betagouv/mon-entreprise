@@ -5,17 +5,17 @@ const chargeInputSelector =
 const fr = Cypress.env('language') === 'fr'
 
 export const runSimulateurTest = (simulateur) => {
-	describe(`Simulateur ${simulateur}`, () => {
-		before(() =>
-			cy.visit(
+	describe(`Simulateur ${simulateur}`, function () {
+		before(function () {
+			return cy.visit(
 				encodeURI(`/${fr ? 'simulateurs' : 'calculators'}/${simulateur}`)
 			)
-		)
+		})
 		it('should not crash', function () {
 			cy.get(inputSelector)
 		})
 
-		it('should display a result when entering a value in any of the currency input', () => {
+		it('should display a result when entering a value in any of the currency input', function () {
 			cy.contains(fr ? 'Annuel' : 'Yearly').click()
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type(1000)

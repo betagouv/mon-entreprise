@@ -12,9 +12,9 @@ import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
 import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
-import 'iframe-resizer'
 import logo from 'Images/logo-monentreprise.svg'
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import { useIframeResizer } from 'Hooks/useIframeResizer'
+import React, { createContext, useMemo } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -28,6 +28,7 @@ import {
 	PreloadedState,
 	Store,
 } from 'redux'
+
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
@@ -82,6 +83,8 @@ export default function Provider({
 		return createStore(reducers, initialStore, storeEnhancer)
 	}, [])
 	onStoreCreated?.(store)
+
+	useIframeResizer()
 
 	return (
 		<DesignSystemThemeProvider>

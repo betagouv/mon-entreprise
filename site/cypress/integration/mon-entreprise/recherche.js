@@ -1,11 +1,11 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Recherche globales', () => {
+describe('Recherche globales', function () {
 	if (!fr || Cypress.config().baseUrl != 'https://mon-entreprise.urssaf.fr') {
 		return
 	}
 
-	it('should display the search results when the magnifying glass is clicked', () => {
+	it('should display the search results when the magnifying glass is clicked', function () {
 		cy.visit('/')
 
 		cy.contains('Rechercher').click()

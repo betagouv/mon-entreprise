@@ -1,5 +1,3 @@
-import { iframeResizer } from 'iframe-resizer'
-
 import { hexToHSL } from './hexToHSL'
 
 let script =
@@ -37,13 +35,6 @@ const iframeAttributes = {
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
-iframeResizer(
-	{
-		interval: 0,
-		heightCalculationMethod: 'taggedElement',
-	},
-	iframe
-)
 
 const links = document.createElement('div')
 const moduleToSitePath = {
@@ -54,8 +45,11 @@ const moduleToSitePath = {
 }
 const simulateurLink =
 	import.meta.env.VITE_FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
+
 const url = new URL(simulateurLink)
+
 const params = new URLSearchParams(url.search)
+
 params.append('utm_source', 'iframe')
 params.append('utm_medium', 'iframe')
 params.append('utm_campaign', 'newtext')
@@ -73,3 +67,9 @@ links.innerHTML = `
 
 script.parentNode.insertBefore(iframe, script)
 script.parentNode.insertBefore(links, script)
+
+window.addEventListener('message', function (evt) {
+	if (evt.data.kind === 'resize-height') {
+		iframe.style.height = evt.data.value + 'px'
+	}
+})

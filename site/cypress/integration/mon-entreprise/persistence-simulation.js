@@ -1,11 +1,13 @@
 const inputSelector = 'div[aria-labelledby="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
-describe('Persistence (simulateur salarié)', () => {
+describe('Persistence (simulateur salarié)', function () {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit(encodeURI('/simulateurs/salarié')))
-	beforeEach(() => {
+	before(function () {
+		return cy.visit(encodeURI('/simulateurs/salarié'))
+	})
+	beforeEach(function () {
 		cy.clearLocalStorage()
 	})
 
