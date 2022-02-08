@@ -99,6 +99,7 @@
 	"devDependencies": {
 		"@react-types/numberfield": "^3.1.0",
 		"@react-types/searchfield": "^3.1.2",
+		"@redux-devtools/extension": "^3.2.1",
 		"@rollup/plugin-yaml": "^3.1.0",
 		"@types/iframe-resizer": "^3.5.7",
 		"@types/ramda": "^0.26.43",

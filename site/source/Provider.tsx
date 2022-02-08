@@ -14,15 +14,15 @@ import { createBrowserHistory } from 'history'
 import i18next from 'i18next'
 import logo from 'Images/logo-monentreprise.svg'
 import { useIframeResizer } from 'Hooks/useIframeResizer'
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, ReactNode, useMemo } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
+import { composeWithDevTools } from '@redux-devtools/extension/src/developmentOnly'
 import {
 	applyMiddleware,
-	compose,
 	createStore,
 	Middleware,
 	PreloadedState,
@@ -59,6 +59,10 @@ type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
+const composeEnhancers = composeWithDevTools(
+	import.meta.env.VITE_REDUX_TRACE ? { trace: true, traceLimit: 25 } : {}
+)
+
 export type ProviderProps = {
 	basename: SiteName
 	children: React.ReactNode
@@ -75,8 +79,8 @@ export default function Provider({
 	onStoreCreated,
 	children,
 	sitePaths = {} as SitePaths,
-}: ProviderProps) {
-	const storeEnhancer = compose(applyMiddleware(...reduxMiddlewares))
+}: ProviderProps): ReactNode {
+	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
 
 	// Hack: useMemo is used to persist the store across hot reloads.
 	const store = useMemo(() => {

@@ -1476,6 +1476,13 @@
   dependencies:
     "@react-types/shared" "^3.9.0"
 
+"@redux-devtools/extension@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@redux-devtools/extension/-/extension-3.2.1.tgz#8f1074477823752a43ff83ba5b7c7e836fb5ab40"
+  integrity sha512-be3BUZaRZmpj8VLnbkDsAnYI1B5HRb6QrfCsokK9k/85a4mPtmxYzgc2jWQ1J55kt0U5mcVO8kojHRuqbfsTsA==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+
 "@rollup/plugin-yaml@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-yaml/-/plugin-yaml-3.1.0.tgz#03a13039ba366fc8d39a1ab94a7debacdd776c2f"
