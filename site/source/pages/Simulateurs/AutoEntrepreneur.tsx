@@ -10,11 +10,15 @@ import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeContext } from 'styled-components'
+import { SelectSimulationYear } from 'Components/SelectSimulationYear'
 
 export default function AutoEntrepreneur() {
 	return (
 		<>
-			<Simulation explanations={<Explanation />}>
+			<Simulation
+				explanations={<Explanation />}
+				afterQuestionsSlot={<SelectSimulationYear />}
+			>
 				<SimulateurWarning simulateur="auto-entrepreneur" />
 				<SimulationGoals
 					toggles={<PeriodSwitch />}

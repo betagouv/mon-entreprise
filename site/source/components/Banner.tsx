@@ -20,6 +20,7 @@ const Container = styled.div`
 	align-items: center;
 `
 const Content = styled(Body)`
+	margin: 0.5rem;
 	margin-left: 1rem;
 `
 

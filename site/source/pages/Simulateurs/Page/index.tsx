@@ -7,7 +7,9 @@ import { H1 } from 'DesignSystem/typography/heading'
 import { Intro } from 'DesignSystem/typography/paragraphs'
 import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import { TrackChapter } from '../../../ATInternetTracking'
 import { CurrentSimulatorDataProvider, SimulatorData } from '../metadata'
 import { NextSteps } from './NextSteps'
@@ -27,6 +29,9 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 		path,
 	} = props
 	let { title } = props
+
+	const { année } = useSelector(situationSelector)
+	const year = année != null && année != 2022 ? ' - ' + année : ''
 
 	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
@@ -58,13 +63,17 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 				: tracking.chapter1,
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
+
 	return (
 		<CurrentSimulatorDataProvider value={props}>
 			<TrackChapter {...trackInfo} />
 			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
 			{title && !inIframe && (
 				<>
-					<H1>{title}</H1>
+					<H1>
+						{title}
+						{year}
+					</H1>
 					{tooltip && <Intro>{tooltip}</Intro>}
 				</>
 			)}

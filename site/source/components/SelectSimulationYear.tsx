@@ -6,14 +6,13 @@ import { Link as DesignSystemLink } from 'DesignSystem/typography/link'
 import { EngineContext } from 'Components/utils/EngineContext'
 import Banner from 'Components/Banner'
 import { updateSituation } from 'Actions/actions'
+import styled from 'styled-components'
 
-interface SelectSimulationYearProps {
-	hideAfterFirstStep?: boolean
-}
+const Bold = styled.span<{ bold: boolean }>`
+	${({ bold }) => (bold ? 'font-weight: bold;' : '')}
+`
 
-export const SelectSimulationYear = ({
-	hideAfterFirstStep = true,
-}: SelectSimulationYearProps) => {
+export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
@@ -28,17 +27,16 @@ export const SelectSimulationYear = ({
 			: new Date().getFullYear())
 
 	return (
-		<Banner hideAfterFirstStep={hideAfterFirstStep} icon={'📅'}>
+		<Banner hideAfterFirstStep={false} icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">
-				Cette simulation concerne l'année {{ actualYear }}. Accéder au
-				simulateur{' '}
+				Cette simulation concerne l'année{' '}
+				<Bold bold={actualYear !== 2022}>{{ actualYear }}</Bold>.{' '}
 			</Trans>
 			<>
 				{choices
 					.filter((year) => year !== actualYear)
-					.map((year, i) => (
+					.map((year) => (
 						<span key={year}>
-							{i !== 0 && ', '}
 							<DesignSystemLink
 								onPress={() => dispatch(updateSituation('année', year))}
 								title={t(
@@ -46,7 +44,15 @@ export const SelectSimulationYear = ({
 									"Cliquez pour changer d'année"
 								)}
 							>
-								{year + ''}
+								{actualYear === 2022 ? (
+									<Trans i18nKey="pages.simulateurs.select-year.access">
+										Accéder au simulateur {{ year }}
+									</Trans>
+								) : (
+									<Trans i18nKey="pages.simulateurs.select-year.back">
+										Retourner au simulateur {{ year }}
+									</Trans>
+								)}
 							</DesignSystemLink>
 						</span>
 					))}

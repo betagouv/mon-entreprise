@@ -41,14 +41,18 @@ export default function Simulation({
 				<Grid item xl={9} lg={10} md={11} sm={12}>
 					{children}
 
-					{!firstStepCompleted && <PreviousSimulationBanner />}
+					{!firstStepCompleted && (
+						<>
+							<PreviousSimulationBanner />
+							{afterQuestionsSlot}
+						</>
+					)}
 
 					{firstStepCompleted && (
 						<FromTop>
 							{results}
 							<Questions customEndMessages={customEndMessages} />
-							<Spacing sm />
-							{afterQuestionsSlot}
+							{afterQuestionsSlot || <Spacing sm />}
 							<ShareOrSaveSimulationBanner />
 							<Spacing lg />
 						</FromTop>

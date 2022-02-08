@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import Banner from 'Components/Banner'
 import ChiffreAffairesActivitéMixte from 'Components/ChiffreAffairesActivitéMixte'
 import { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
@@ -8,13 +7,9 @@ import Simulation from 'Components/Simulation'
 import IndépendantExplanation from 'Components/simulationExplanation/IndépendantExplanation'
 import { SimulationGoal, SimulationGoals } from 'Components/Simulation'
 import { useEngine } from 'Components/utils/EngineContext'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
-import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { SelectSimulationYear } from 'Components/SelectSimulationYear'
 
 export function IndépendantPLSimulation() {
@@ -22,12 +17,10 @@ export function IndépendantPLSimulation() {
 		<>
 			<Simulation
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+				afterQuestionsSlot={<SelectSimulationYear />}
 			>
 				<SimulateurWarning simulateur="profession-libérale" />
 				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
-
-				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)
@@ -38,25 +31,21 @@ export function EntrepriseIndividuelle() {
 		<>
 			<Simulation
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+				afterQuestionsSlot={<SelectSimulationYear />}
 			>
 				<SimulateurWarning simulateur="entreprise-individuelle" />
 				<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
-
-				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)
 }
 
 export default function IndépendantSimulation() {
-	const sitePaths = useContext(SitePathsContext)
-
 	return (
 		<>
 			<Simulation
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear hideAfterFirstStep={false} />}
+				afterQuestionsSlot={<SelectSimulationYear />}
 			>
 				<SimulateurWarning simulateur="indépendant" />
 				<IndépendantSimulationGoals
@@ -69,16 +58,6 @@ export default function IndépendantSimulation() {
 						</>
 					}
 				/>
-				<Banner icon={'✍️'}>
-					<Trans i18nKey="aide-déclaration-indépendant.banner">
-						Découvrez notre outil d'
-						<Link to={sitePaths.gérer.déclarationIndépendant}>
-							aide à la déclaration des revenus
-						</Link>
-					</Trans>
-				</Banner>
-
-				<SelectSimulationYear />
 			</Simulation>
 		</>
 	)
