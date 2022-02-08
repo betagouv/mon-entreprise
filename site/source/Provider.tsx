@@ -20,7 +20,9 @@ import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
-import { composeWithDevTools } from '@redux-devtools/extension/src/developmentOnly'
+// @ts-ignore
+// TODO: change this import when @redux-devtools/extension will be updated (after v3.2.1), use composeWithDevToolsDevelopmentOnly instead.
+import { composeWithDevTools } from '@redux-devtools/extension/lib/cjs/developmentOnly'
 import {
 	applyMiddleware,
 	createStore,
