@@ -1,9 +1,10 @@
 import Warning from 'Components/ui/WarningBlock'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
+import { Evaluation } from 'publicodes'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
+import { EngineContext } from './utils/EngineContext'
 import { SitePaths } from './utils/SitePathsContext'
 
 type SimulateurWarningProps = {
@@ -13,7 +14,8 @@ type SimulateurWarningProps = {
 export default function SimulateurWarning({
 	simulateur,
 }: SimulateurWarningProps) {
-	const { année } = useSelector(situationSelector)
+	const year = useContext(EngineContext).evaluate('année')
+		.nodeValue as Evaluation<number>
 
 	return (
 		<Warning
@@ -84,15 +86,14 @@ export default function SimulateurWarning({
 						</Li>
 					</>
 				)}
-				{['indépendant', 'profession-libérale'].includes(simulateur) &&
-					(année == null || année == 2022) && (
-						<Li>
-							<Trans i18nKey="simulateurs.warning.année-courante">
-								Le montant calculé correspond aux cotisations de l’année 2022
-								(pour un revenu 2022).
-							</Trans>
-						</Li>
-					)}
+				{['indépendant', 'profession-libérale'].includes(simulateur) && (
+					<Li>
+						<Trans i18nKey="simulateurs.warning.année-courante">
+							Le montant calculé correspond aux cotisations de l’année{' '}
+							{{ year }} (pour un revenu {{ year }}).
+						</Trans>
+					</Li>
+				)}
 				{['profession-libérale'].includes(simulateur) && (
 					<Li>
 						<Trans i18nKey="simulateurs.warning.cotisations-ordinales">

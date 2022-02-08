@@ -1,15 +1,15 @@
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
+import { EngineContext } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { H1 } from 'DesignSystem/typography/heading'
 import { Intro } from 'DesignSystem/typography/paragraphs'
+import { Evaluation } from 'publicodes'
 import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { situationSelector } from 'Selectors/simulationSelectors'
 import { TrackChapter } from '../../../ATInternetTracking'
 import { CurrentSimulatorDataProvider, SimulatorData } from '../metadata'
 import { NextSteps } from './NextSteps'
@@ -30,7 +30,8 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 	} = props
 	let { title } = props
 
-	const { année } = useSelector(situationSelector)
+	const année = useContext(EngineContext).evaluate('année')
+		.nodeValue as Evaluation<number>
 	const year = année != null && année != 2022 ? ' - ' + année : ''
 
 	const inIframe = useIsEmbedded()

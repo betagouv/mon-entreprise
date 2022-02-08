@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
+import { useDispatch } from 'react-redux'
 import { Link as DesignSystemLink } from 'DesignSystem/typography/link'
 import { EngineContext } from 'Components/utils/EngineContext'
 import Banner from 'Components/Banner'
 import { updateSituation } from 'Actions/actions'
 import styled from 'styled-components'
+import { Evaluation } from 'publicodes'
 
 const Bold = styled.span<{ bold: boolean }>`
 	${({ bold }) => (bold ? 'font-weight: bold;' : '')}
@@ -14,17 +14,12 @@ const Bold = styled.span<{ bold: boolean }>`
 
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
-	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
-	const { année } = useSelector(situationSelector)
-	const { valeur } = engine.getRule('année').explanation
+	const year = useContext(EngineContext).evaluate('année')
 	const choices = [2021, 2022]
 
 	const actualYear =
-		année ||
-		(valeur.nodeKind === 'constant' && valeur.type === 'number'
-			? (valeur.nodeValue as number)
-			: new Date().getFullYear())
+		(year.nodeValue as Evaluation<number>) || new Date().getFullYear()
 
 	return (
 		<Banner hideAfterFirstStep={false} icon={'📅'}>

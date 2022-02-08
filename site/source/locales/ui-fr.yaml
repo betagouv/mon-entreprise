@@ -1381,8 +1381,8 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    année-courante: Le montant calculé correspond aux cotisations de l’année 2022
-      (pour un revenu 2022).
+    année-courante: Le montant calculé correspond aux cotisations de l’année
+      {{year}} (pour un revenu {{year}}).
     artiste-auteur:
       "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
         des éléments réglementaires applicables et des éléments que vous avez
