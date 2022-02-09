@@ -93,27 +93,23 @@ export default function ShareOrSaveSimulationBanner() {
 					</PopoverWithTrigger>
 				</Grid>
 
-				<Grid item xs={12} sm="auto">
-					<Button
-						light
-						size="XS"
-						onPress={() => {
-							window.print()
-						}}
-					>
-						<Emoji
-							css={`
-								margin-right: 1rem;
-							`}
-							emoji="🖨"
-						/>
-						<ButtonLabel>
-							<Trans i18nKey="ExportSimulation.Banner">
-								Imprimer ou sauvegarder en PDF
-							</Trans>
-						</ButtonLabel>
-					</Button>
-				</Grid>
+				{typeof window.print === 'function' && (
+					<Grid item xs={12} sm="auto">
+						<Button light size="XS" onPress={() => window.print()}>
+							<Emoji
+								css={`
+									margin-right: 1rem;
+								`}
+								emoji="🖨"
+							/>
+							<ButtonLabel>
+								<Trans i18nKey="ExportSimulation.Banner">
+									Imprimer ou sauvegarder en PDF
+								</Trans>
+							</ButtonLabel>
+						</Button>
+					</Grid>
+				)}
 			</Grid>
 		</>
 	)

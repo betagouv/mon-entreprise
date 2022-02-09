@@ -73,10 +73,14 @@ const OuterContainer = styled.div<OuterContainerProps>`
 	min-width: 100vw;
 	background-color: ${({ theme, backgroundColor }) =>
 		backgroundColor ? backgroundColor(theme) : theme.colors};
+	@media print {
+		min-width: initial;
+	}
 	${InnerContainer} & {
 		@media print {
 			margin-left: 0;
 			margin-right: 0;
+			padding: 0.5em;
 		}
 	}
 `
@@ -85,4 +89,7 @@ const OuterOuterContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	@media print {
+		break-inside: avoid;
+	}
 `

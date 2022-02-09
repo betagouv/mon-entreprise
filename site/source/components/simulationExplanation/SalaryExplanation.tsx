@@ -127,7 +127,7 @@ export const DistributionSection = ({
 }: {
 	children?: React.ReactNode
 }) => (
-	<section>
+	<section className="print-no-break-inside">
 		<H2>
 			<Trans>À quoi servent mes cotisations ?</Trans>
 		</H2>

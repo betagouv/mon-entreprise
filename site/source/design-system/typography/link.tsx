@@ -3,6 +3,7 @@ import { AriaButtonProps } from '@react-types/button'
 import { FocusStyle } from 'DesignSystem/global-style'
 import React, {
 	ComponentPropsWithRef,
+	CSSProperties,
 	ForwardedRef,
 	useCallback,
 	useRef,
@@ -83,14 +84,15 @@ export function useExternalLinkProps({
 	}
 }
 
-export type GenericButtonOrLinkProps =
-	| ({
-			href: string
-			title?: string
-			openInSameWindow?: true
-	  } & AriaButtonProps<'a'>)
+export type GenericButtonOrLinkProps = (
+	| AriaButtonProps<'a'>
 	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
 	| AriaButtonProps<'button'>
+) & {
+	openInSameWindow?: true
+	className?: string
+	style?: CSSProperties
+}
 
 export function useButtonOrLink(
 	props: GenericButtonOrLinkProps,
@@ -133,14 +135,15 @@ export function useButtonOrLink(
 		...buttonProps,
 		...useExternalLinkProps(props),
 		as: elementType,
-		ref: ref as any,
-	} as any
+		ref,
+	}
 	return buttonOrLinkProps
 }
 
 export const NewWindowLinkIcon = () => {
 	return (
 		<StyledSvg
+			className="print-hidden"
 			viewBox="0 0 24 24"
 			aria-hidden
 			fill="none"

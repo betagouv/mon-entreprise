@@ -157,6 +157,9 @@ button:enabled {
 	.print-background-force {
 		color-adjust: exact !important;
 	}
+	.print-no-break-inside {
+		break-inside: avoid;
+	}
 
 	body {
 		margin: 00mm;

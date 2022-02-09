@@ -53,7 +53,7 @@ export default function Simulateurs() {
 					</Link>
 				) : !isEmbedded ? (
 					(!lastState || lastState?.fromSimulateurs) && (
-						<Link to={sitePaths.simulateurs.index}>
+						<Link className="print-hidden" to={sitePaths.simulateurs.index}>
 							← <Trans>Voir les autres simulateurs</Trans>
 						</Link>
 					)

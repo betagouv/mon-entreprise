@@ -38,7 +38,7 @@ function ChartItemBar({
 		flex: display ? percentage : 0,
 	})
 	return (
-		<div className="distribution-chart__bar-container ">
+		<div className="distribution-chart__bar-container">
 			{disableAnimation ? (
 				<div
 					className="distribution-chart__bar print-background-force"
@@ -105,20 +105,26 @@ export default function BarChartBranch({
 		from: {
 			opacity: 0,
 		},
-		immediate: disableAnimation,
 		opacity: display ? 1 : 0,
 	})
-	return (
+
+	const innerBarChartBranch = (
+		<InnerBarChartBranch
+			value={value}
+			display={display}
+			maximum={maximum}
+			title={title}
+			unit={unit}
+			icon={icon}
+			description={description}
+		/>
+	)
+
+	return disableAnimation ? (
+		innerBarChartBranch
+	) : (
 		<animated.div ref={intersectionRef} style={style}>
-			<InnerBarChartBranch
-				value={value}
-				display={display}
-				maximum={maximum}
-				title={title}
-				unit={unit}
-				icon={icon}
-				description={description}
-			/>
+			{innerBarChartBranch}
 		</animated.div>
 	)
 }
@@ -157,7 +163,7 @@ function InnerBarChartBranch({
 					</Body>
 					{description && <SmallBody>{description}</SmallBody>}
 				</div>
-				<Spacing md />
+				<Spacing md className="print-hidden" />
 				<ChartItemBar
 					display={display}
 					numberToPlot={value}
