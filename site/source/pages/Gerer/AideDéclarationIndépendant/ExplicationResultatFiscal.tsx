@@ -1,27 +1,29 @@
 import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 
 export function ExplicationsResultatFiscal() {
 	return (
 		<ButtonHelp title="Quelles exonérations inclure ?" type="aide">
-			<p>
+			<Body>
 				Pour calculer le montant du résultat fiscal avant déduction des
 				exonérations et des charges sociales à indiquer dans ce simulateur, vous
 				pouvez utiliser votre liasse fiscale, en reprenant les montants indiqués
 				dans les lignes fiscales du tableau ci-dessous, en fonction de votre
 				situation (imposition au réel normal ou au réel simplifié).
-			</p>
-			<p>L’opération à effectuer est la suivante :</p>
-			<ul>
-				<li>
+			</Body>
+			<Body>L’opération à effectuer est la suivante :</Body>
+			<Ul>
+				<Li>
 					Déterminez le résultat fiscal dans votre liasse, sans déduire le
 					montant de vos cotisations et contributions sociales aux régimes
 					obligatoires de sécurité sociale. Prenez le résultat fiscal
 					correspondant <strong>(1)</strong>
-				</li>
-				<li>
+				</Li>
+				<Li>
 					Ajoutez les exonérations <strong>(2)</strong>
-				</li>
-			</ul>
+				</Li>
+			</Ul>
 			<table
 				css={`
 					font-size: 0.85em;

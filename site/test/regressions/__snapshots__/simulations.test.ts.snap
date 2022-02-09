@@ -1,14 +1,14 @@
 // Vitest Snapshot v1
 
-exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[11369,50000,33996,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[9020,50000,36345,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[3263,15000,10282,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[913,15000,12630,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[1369,5000,3083,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[300,5000,4152,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[606,10000,8392,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[1487,10000,7511,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[2204,10000,6794,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[606,10000,8392,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048,0,1,1,0]"`;
 
@@ -16,21 +16,13 @@ exports[`calculate aide-déclaration-indépendant > RSA 1`] = `"[82,500,279,0,1,
 
 exports[`calculate aide-déclaration-indépendant > RSA 2`] = `"[1021,5000,3431,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 1`] = `"[9021,50000,37539,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 2`] = `"[0,5000,4881,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 3`] = `"[33,15000,14803,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 4`] = `"[7546,35000,24814,0,1,1,0]"`;
-
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 1`] = `"[14093,50000,31238,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 2`] = `"[13578,50000,31753,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 3`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14098,50000,31253,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14097,50000,31254,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 5`] = `"[11461,50000,33870,0,1,1,0]"`;
 
@@ -73,12 +65,12 @@ exports[`calculate aide-déclaration-indépendant > échelle de revenus 5`] = `"
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 6`] = `"[2204,10000,6794,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 7`] = `
-"[20929,100000,69895,0,1,1,0]
+"[20928,100000,69895,0,1,1,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 8`] = `
-"[106448,1000000,802634,0,1,1,0]
+"[106447,1000000,802635,0,1,1,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 

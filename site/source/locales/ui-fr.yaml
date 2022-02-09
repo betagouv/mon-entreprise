@@ -122,8 +122,6 @@ aide-déclaration-indépendant:
     de déterminer le type de déclaration à remplir, ainsi que les modalités de
     calcul des cotisations sociales.</4>
   entreprise:
-    description: "<0>Facultatif : </0>Vous pouvez renseigner votre entreprise pour
-      pré-remplir le formulaire"
     titre: <0>Entreprise et activité</0>
   results:
     title: Montants à reporter dans votre déclaration de revenus
@@ -850,7 +848,7 @@ pages:
           dans votre déclaration de revenu 2020.
         title: "Déclaration de revenus indépendant : calcul du montant des cotisations"
       shortname: Aide à la déclaration de revenu
-      title: Aide à la déclaration de revenus au titre de l'année 2020
+      title: Assistant à la déclaration de revenus pour indépendant
     demande-mobilité:
       meta:
         description: Formulaire interactif à compléter en cas d'exercice d'une activité

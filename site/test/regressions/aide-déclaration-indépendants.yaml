@@ -9,25 +9,25 @@
   - dirigeant . rémunération . totale: 1000000 €/an
 
 nature de l'activité:
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
+  - déclaration indépendants . nature de l'activité: "'artisanale'"
     dirigeant . rémunération . totale: 50000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
+  - déclaration indépendants . nature de l'activité: "'artisanale'"
     dirigeant . rémunération . totale: 5000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
+  - déclaration indépendants . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 50000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
+  - déclaration indépendants . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 5000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'libérale'"
+  - déclaration indépendants . nature de l'activité: "'libérale'"
     dirigeant . rémunération . totale: 50000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'libérale'"
+  - déclaration indépendants . nature de l'activité: "'libérale'"
     dirigeant . rémunération . totale: 5000 €/an
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'libérale'"
+  - déclaration indépendants . nature de l'activité: "'libérale'"
     entreprise . date de création: 06/04/2020
     dirigeant . rémunération . totale: 50000 €/an
     dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire: oui
 
 débit de tabac:
-  - aide déclaration revenu indépendant 2020 . nature de l'activité: "'commerciale'"
+  - déclaration indépendants . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 50000 €/an
     entreprise . activité . débit de tabac: oui
     dirigeant . indépendant . cotisations et contributions . déduction tabac: 30000 €/an
@@ -48,7 +48,7 @@ conjoint collaborateur:
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
     dirigeant . rémunération . totale: 50000 €/an
   - dirigeant . indépendant . conjoint collaborateur: oui
-    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
+    déclaration indépendants . nature de l'activité: "'artisanale'"
     dirigeant . rémunération . totale: 50000 €/an
   - dirigeant . indépendant . conjoint collaborateur: oui
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
@@ -62,16 +62,16 @@ IJSS (indemnité sécurité sociale):
     dirigeant . rémunération . totale: 50000 €/an
 
 ACRE:
-  - aide déclaration revenu indépendant 2020 . ACRE: oui
+  - déclaration indépendants . ACRE: oui
     dirigeant . rémunération . totale: 50000 €/an
-  - aide déclaration revenu indépendant 2020 . ACRE: oui
+  - déclaration indépendants . ACRE: oui
     dirigeant . rémunération . totale: 15000 €/an
-  - aide déclaration revenu indépendant 2020 . ACRE: oui
+  - déclaration indépendants . ACRE: oui
     dirigeant . rémunération . totale: 5000 €/an
-  - aide déclaration revenu indépendant 2020 . ACRE: oui
+  - déclaration indépendants . ACRE: oui
     entreprise . date de création: 01/07/2020
     dirigeant . rémunération . totale: 10000 €/an
-  - aide déclaration revenu indépendant 2020 . ACRE: oui
+  - déclaration indépendants . ACRE: oui
     entreprise . date de création: 01/07/2021
     dirigeant . rémunération . totale: 10000 €/an
 
@@ -81,30 +81,29 @@ international:
   - dirigeant . indépendant . revenus étrangers: oui
     dirigeant . indépendant . revenus étrangers . montant: 30000€/an
     dirigeant . rémunération . totale: 50000 €/an
-
-aide covid 2020:
-  - dirigeant . rémunération . totale: 50000 €/an
-    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
-    aide déclaration revenu indépendant 2020 . réduction covid: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
-    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide automne 2020: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . nombre de mois éligibles: 4
-  - dirigeant . rémunération . totale: 5000 €/an
-    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
-    aide déclaration revenu indépendant 2020 . réduction covid: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
-    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
-  - dirigeant . rémunération . totale: 15000 €/an
-    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
-    aide déclaration revenu indépendant 2020 . réduction covid: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
-    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
-    aide déclaration revenu indépendant 2020 . ACRE: oui
-    entreprise . date de création: 01/07/2020
-  - dirigeant . rémunération . totale: 35000 €/an
-    aide déclaration revenu indépendant 2020 . nature de l'activité: "'artisanale'"
-    aide déclaration revenu indépendant 2020 . réduction covid: oui
-    aide déclaration revenu indépendant 2020 . réduction covid . secteur d'activité: "'S1'"
-    aide déclaration revenu indépendant 2020 . réduction covid . éligible aide printemps 2020: oui
-    dirigeant . indépendant . conjoint collaborateur: oui
+# aide covid 2020:
+#   - dirigeant . rémunération . totale: 50000 €/an
+#     déclaration indépendants . nature de l'activité: "'artisanale'"
+#     déclaration indépendants . réduction covid: oui
+#     déclaration indépendants . réduction covid . secteur d'activité: "'S1'"
+#     déclaration indépendants . réduction covid . éligible aide printemps 2020: oui
+#     déclaration indépendants . réduction covid . éligible aide automne 2020: oui
+#     déclaration indépendants . réduction covid . nombre de mois éligibles: 4
+#   - dirigeant . rémunération . totale: 5000 €/an
+#     déclaration indépendants . nature de l'activité: "'artisanale'"
+#     déclaration indépendants . réduction covid: oui
+#     déclaration indépendants . réduction covid . secteur d'activité: "'S1'"
+#     déclaration indépendants . réduction covid . éligible aide printemps 2020: oui
+#   - dirigeant . rémunération . totale: 15000 €/an
+#     déclaration indépendants . nature de l'activité: "'artisanale'"
+#     déclaration indépendants . réduction covid: oui
+#     déclaration indépendants . réduction covid . secteur d'activité: "'S1'"
+#     déclaration indépendants . réduction covid . éligible aide printemps 2020: oui
+#     déclaration indépendants . ACRE: oui
+#     entreprise . date de création: 01/07/2020
+#   - dirigeant . rémunération . totale: 35000 €/an
+#     déclaration indépendants . nature de l'activité: "'artisanale'"
+#     déclaration indépendants . réduction covid: oui
+#     déclaration indépendants . réduction covid . secteur d'activité: "'S1'"
+#     déclaration indépendants . réduction covid . éligible aide printemps 2020: oui
+#     dirigeant . indépendant . conjoint collaborateur: oui

@@ -15,7 +15,7 @@ export default function ResultatsParFormulaire() {
 	const informations = (Object.keys(engine.getParsedRules()) as DottedName[])
 		.filter((s) =>
 			s.startsWith(
-				'aide déclaration revenu indépendant 2020 . informations résultat par formulaire . '
+				'déclaration indépendants . informations résultat par formulaire . '
 			)
 		)
 		.map((dottedName) => engine.getRule(dottedName))
@@ -48,16 +48,16 @@ export default function ResultatsParFormulaire() {
 				<p>En cas de doute, référez-vous à votre expert comptable.</p>
 				{(
 					[
-						'aide déclaration revenu indépendant 2020 . formulaire 2035',
-						'aide déclaration revenu indépendant 2020 . formulaire 2033',
-						'aide déclaration revenu indépendant 2020 . formulaire 2050',
-						'aide déclaration revenu indépendant 2020 . formulaire 2042',
-						'aide déclaration revenu indépendant 2020 . formulaire 2042 PRO C',
+						'déclaration indépendants . formulaire 2035',
+						'déclaration indépendants . formulaire 2033',
+						'déclaration indépendants . formulaire 2050',
+						'déclaration indépendants . formulaire 2042',
+						'déclaration indépendants . formulaire 2042 PRO C',
 					] as const
 				).map((dottedName) => (
 					<DeclarationForm key={dottedName} dottedName={dottedName} />
 				))}
-				<Condition expression="aide déclaration revenu indépendant 2020 . informations résultat par formulaire">
+				<Condition expression="déclaration indépendants . informations résultat par formulaire">
 					<H3>
 						<Emoji emoji="ℹ️" /> Pour votre information{' '}
 					</H3>
