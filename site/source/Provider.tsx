@@ -20,9 +20,7 @@ import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
-// @ts-ignore
-// TODO: change this import when @redux-devtools/extension will be updated (after v3.2.1), use composeWithDevToolsDevelopmentOnly instead.
-import { composeWithDevTools } from '@redux-devtools/extension/lib/cjs/developmentOnly'
+import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import {
 	applyMiddleware,
 	createStore,
@@ -61,7 +59,7 @@ type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
-const composeEnhancers = composeWithDevTools(
+const composeEnhancers = composeWithDevToolsDevelopmentOnly(
 	import.meta.env.VITE_REDUX_TRACE ? { trace: true, traceLimit: 25 } : {}
 )
 
