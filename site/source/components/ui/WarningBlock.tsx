@@ -7,6 +7,7 @@ import { Intro } from 'DesignSystem/typography/paragraphs'
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+import { FromTop } from './animate'
 
 type WarningProps = {
 	localStorageKey: string
@@ -39,7 +40,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 					)}
 				</Intro>
 				{!folded && (
-					<div>
+					<FromTop>
 						{children}
 						<div className="ui__ answer-group print-hidden">
 							<Button
@@ -51,7 +52,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 								<Trans>J'ai compris</Trans>
 							</Button>
 						</div>
-					</div>
+					</FromTop>
 				)}
 			</WarningSection>
 			<Spacing lg />
