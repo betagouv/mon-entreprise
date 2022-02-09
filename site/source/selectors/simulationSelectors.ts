@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
@@ -16,9 +16,7 @@ export const objectifsSelector = (state: RootState) => {
 	return objectifs
 }
 
-const emptySituation: Partial<
-	Record<DottedName, string | number | Record<string, unknown>>
-> = {}
+const emptySituation: Situation = {}
 
 export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation

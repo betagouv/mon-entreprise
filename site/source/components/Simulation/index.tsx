@@ -21,6 +21,7 @@ type SimulationProps = {
 	explanations?: React.ReactNode
 	results?: React.ReactNode
 	children?: React.ReactNode
+	afterQuestionsSlot?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 }
 
@@ -28,6 +29,7 @@ export default function Simulation({
 	explanations,
 	results,
 	children,
+	afterQuestionsSlot,
 	customEndMessages,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
@@ -38,13 +40,19 @@ export default function Simulation({
 			<Grid container spacing={2} justifyContent="center">
 				<Grid item xl={9} lg={10} md={11} sm={12}>
 					{children}
-					{!firstStepCompleted && <PreviousSimulationBanner />}
+
+					{!firstStepCompleted && (
+						<>
+							<PreviousSimulationBanner />
+							{afterQuestionsSlot}
+						</>
+					)}
 
 					{firstStepCompleted && (
 						<FromTop>
 							{results}
 							<Questions customEndMessages={customEndMessages} />
-							<Spacing sm />
+							{afterQuestionsSlot || <Spacing sm />}
 							<ShareOrSaveSimulationBanner />
 							<Spacing lg />
 						</FromTop>

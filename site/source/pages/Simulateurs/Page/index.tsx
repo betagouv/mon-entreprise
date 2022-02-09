@@ -1,10 +1,12 @@
 import { useIsEmbedded } from 'Components/utils/embeddedContext'
+import { EngineContext } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { H1 } from 'DesignSystem/typography/heading'
 import { Intro } from 'DesignSystem/typography/paragraphs'
+import { Evaluation } from 'publicodes'
 import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -27,6 +29,10 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 		path,
 	} = props
 	let { title } = props
+
+	const année = useContext(EngineContext).evaluate('année')
+		.nodeValue as Evaluation<number>
+	const year = année != null && année != 2022 ? ' - ' + année : ''
 
 	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
@@ -58,13 +64,17 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 				: tracking.chapter1,
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
+
 	return (
 		<CurrentSimulatorDataProvider value={props}>
 			<TrackChapter {...trackInfo} />
 			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
 			{title && !inIframe && (
 				<>
-					<H1>{title}</H1>
+					<H1>
+						{title}
+						{year}
+					</H1>
 					{tooltip && <Intro>{tooltip}</Intro>}
 				</>
 			)}

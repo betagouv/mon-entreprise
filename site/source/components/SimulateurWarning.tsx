@@ -1,7 +1,10 @@
 import Warning from 'Components/ui/WarningBlock'
 import { Link } from 'DesignSystem/typography/link'
 import { Li, Ul } from 'DesignSystem/typography/list'
+import { Evaluation } from 'publicodes'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { EngineContext } from './utils/EngineContext'
 import { SitePaths } from './utils/SitePathsContext'
 
 type SimulateurWarningProps = {
@@ -11,6 +14,9 @@ type SimulateurWarningProps = {
 export default function SimulateurWarning({
 	simulateur,
 }: SimulateurWarningProps) {
+	const year = useContext(EngineContext).evaluate('année')
+		.nodeValue as Evaluation<number>
+
 	return (
 		<Warning
 			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
@@ -83,8 +89,8 @@ export default function SimulateurWarning({
 				{['indépendant', 'profession-libérale'].includes(simulateur) && (
 					<Li>
 						<Trans i18nKey="simulateurs.warning.année-courante">
-							Le montant calculé correspond aux cotisations de l’année 2022
-							(pour un revenu 2022).
+							Le montant calculé correspond aux cotisations de l’année{' '}
+							{{ year }} (pour un revenu {{ year }}).
 						</Trans>
 					</Li>
 				)}

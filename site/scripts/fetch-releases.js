@@ -32,18 +32,18 @@ const query = `query {
 const fakeData = [
 	{
 		name: 'Fake release',
-		descriptionHTML: `You are seing this fake release because you
+		description: `You are seing this fake release because you
 	didn't configure your GitHub access token and we weren't
 	able to fetch the real releases from GitHub.<br /><br />
 	See the script <pre>fetch-releases.js</pre> for more informations.`,
 	},
 	{
 		name: 'Release 2',
-		descriptionHTML: 'blah blah blah',
+		description: 'blah blah blah',
 	},
 	{
 		name: 'Release 3',
-		descriptionHTML: 'blah blah blah',
+		description: 'blah blah blah',
 	},
 ]
 

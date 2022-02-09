@@ -1619,6 +1619,11 @@ pages:
       shortname: SASU
       title: SASU Simulator
       titre: Revenue simulator for SAS(U) executive
+    select-year:
+      access: Access the {{year}} simulator
+      back: Return to the {{year}} simulator
+      click-to-change-year: Click to change year
+      info: "This simulation is for the year <2>{{actualYear}}</2>. "
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
@@ -1760,8 +1765,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions :"
   warning:
-    année-courante: The amount calculated is the contributions for the year 2022
-      (for 2022 income).
+    année-courante: The amount calculated is the contributions for the year {{year}}
+      (for {{year}} income).
     artiste-auteur:
       "1": This estimate is provided for information purposes. It is based on the
         applicable regulatory elements and the elements that you have entered,

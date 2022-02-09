@@ -1274,6 +1274,11 @@ pages:
         peut ensuite être affinée en répondant aux différentes questions.</4>"
       shortname: SASU
       title: Simulateur de SASU
+    select-year:
+      access: Accéder au simulateur {{year}}
+      back: Retourner au simulateur {{year}}
+      click-to-change-year: Cliquez pour changer d'année
+      info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
   économie-collaborative:
     meta:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en
@@ -1376,8 +1381,8 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    année-courante: Le montant calculé correspond aux cotisations de l’année 2022
-      (pour un revenu 2022).
+    année-courante: Le montant calculé correspond aux cotisations de l’année
+      {{year}} (pour un revenu {{year}}).
     artiste-auteur:
       "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
         des éléments réglementaires applicables et des éléments que vous avez
