@@ -14,7 +14,7 @@ import { Li, Ul } from 'DesignSystem/typography/list'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useContext, useMemo } from 'react'
+import { ComponentType, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -69,10 +69,10 @@ export default function MonEntrepriseRulePage() {
 									documentationPath={documentationPath}
 									renderers={{
 										Head: Helmet,
-										Link: Link as React.ComponentType<{
+										Link: Link as ComponentType<{
 											to: string
 										}>,
-										Text: Markdown as any,
+										Text: Markdown,
 										References,
 									}}
 								/>
@@ -147,9 +147,13 @@ const referencesImages = {
 	'bpifrance-creation.fr': '/références-images/bpi-création.png',
 }
 
-type ReferencesProps = React.ComponentProps<
-	NonNullable<React.ComponentProps<typeof RulePage>['renderers']['References']>
->
+type ReferencesProps = {
+	references: React.ComponentProps<
+		NonNullable<
+			React.ComponentProps<typeof RulePage>['renderers']['References']
+		>
+	>['references']
+}
 
 export function References({ references }: ReferencesProps) {
 	const cleanDomain = (link: string) =>
@@ -217,10 +221,28 @@ const StyledReferences = styled.ul`
 	}
 `
 
+type OverrideComponentType = {
+	componentStyle: {
+		rules: Array<
+			| ((
+					props: Record<string, unknown>
+			  ) =>
+					| string
+					| false
+					| null
+					| undefined
+					| OverrideComponentType['componentStyle']['rules'])
+			| string
+		>
+	}
+}
+
 // HACKKKKY THING. DO NOT DO THIS AT HOME
-function componentCSS(rules: any, props: any) {
+function componentCSS(Compo: unknown, props: Record<never, never>): string {
+	const rules = (Compo as OverrideComponentType).componentStyle.rules
+
 	return rules
-		.map((x: any) => {
+		.map((x) => {
 			if (typeof x !== 'function') {
 				return x
 			}
@@ -234,39 +256,40 @@ function componentCSS(rules: any, props: any) {
 			if (Array.isArray(result)) {
 				return componentCSS(result, props)
 			}
-			console.error('Should not happen', result)
+			// eslint-disable-next-line no-console
+			console.error('Should not happen', result, typeof result)
 		})
 		.join('')
 }
 
 const StyledDocumentation = styled.div`
 	h1 {
-		${(props) => componentCSS((H1.componentStyle as any).rules, props)}
+		${(props) => componentCSS(H1, props)}
 		margin-top: 1rem;
 	}
 	h2 {
-		${(props) => componentCSS((H2.componentStyle as any).rules, props)}
+		${(props) => componentCSS(H2, props)}
 	}
 	h3 {
-		${(props) => componentCSS((H3.componentStyle as any).rules, props)}
+		${(props) => componentCSS(H3, props)}
 	}
 	h4 {
-		${(props) => componentCSS((H4.componentStyle as any).rules, props)}
+		${(props) => componentCSS(H4, props)}
 	}
 	h5 {
-		${(props) => componentCSS((H5.componentStyle as any).rules, props)}
+		${(props) => componentCSS(H5, props)}
 	}
 	p {
-		${(props) => componentCSS((Body.componentStyle as any).rules, props)}
+		${(props) => componentCSS(Body, props)}
 	}
 	Ul {
-		${(props) => componentCSS((Ul.componentStyle as any).rules, props)}
+		${(props) => componentCSS(Ul, props)}
 	}
 	Li {
-		${(props) => componentCSS((Li.componentStyle as any).rules, props)}
+		${(props) => componentCSS(Li, props)}
 	}
 	a {
-		${(props) => componentCSS((StyledLink.componentStyle as any).rules, props)}
+		${(props) => componentCSS(StyledLink, props)}
 	}
 	button {
 		font-size: 1rem;

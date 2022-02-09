@@ -5,7 +5,7 @@ import { mergeProps } from '@react-aria/utils'
 import { useSelectState } from '@react-stately/select'
 import type { AriaSelectProps } from '@react-types/select'
 import { CarretDown } from 'DesignSystem/icons/carret-down'
-import * as React from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { ListBox } from './ListBox'
@@ -175,16 +175,17 @@ export function Select<T extends Record<string, unknown>>(
 	// Create state based on the incoming props
 	const state = useSelectState(props)
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (props.value && props.value !== state.selectedKey) {
 			state.setSelectedKey(props.value)
 		}
 		// On ne veut pas d'update bidirectionnel, c'est pourquoi state n'est pas dans
 		// les dépendances
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.value])
 
 	// Get props for child elements from useSelect
-	const ref = React.useRef(null)
+	const ref = useRef<HTMLButtonElement>(null)
 	const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
 		props,
 		state,
