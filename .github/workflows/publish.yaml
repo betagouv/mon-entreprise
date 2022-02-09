@@ -1,0 +1,26 @@
+name: Publish
+on:
+  workflow_run:
+    workflows: ['Tests']
+    types: [completed]
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-20.04
+    strategy:
+      # On a seulement 1 paquet donc pas besoin de matrix ici, mais c'est en
+      # prévision du paquet covid à venir.
+      matrix:
+        package: ['modele-social']
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace ${{ matrix.package }} run build
+        env:
+          NODE_ENV: production
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_PUBLISH_SECRET }}
+          dry-run: ${{ github.ref != 'refs/heads/master' }}
+          package: ./${{ matrix.package }}/package.json
