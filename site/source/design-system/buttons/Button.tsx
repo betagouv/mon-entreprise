@@ -3,7 +3,7 @@ import {
 	GenericButtonOrLinkProps,
 	useButtonOrLink,
 } from 'DesignSystem/typography/link'
-import { forwardRef } from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
 type Size = 'XL' | 'MD' | 'XS'
@@ -16,18 +16,15 @@ type ButtonProps = GenericButtonOrLinkProps & {
 	light?: boolean
 }
 
-export const Button = forwardRef<
-	HTMLAnchorElement | HTMLButtonElement,
-	ButtonProps
->(function Button(
+export const Button = forwardRef(function Button(
 	{
 		size = 'MD',
 		light = false,
 		color = 'primary' as const,
 		className,
 		...ariaButtonProps
-	},
-	forwardedRef
+	}: ButtonProps,
+	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
 ) {
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 	return (
