@@ -102,6 +102,7 @@ export const Markdown = ({
 		{...otherProps}
 		options={{
 			...otherProps.options,
+			forceBlock: true,
 			overrides: {
 				h1: H1,
 				h2: H2,
