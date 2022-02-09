@@ -162,6 +162,7 @@ yarn run i18n:check
 Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
 
 ```sh
+cd site
 yarn run i18n:rules:translate
 yarn run i18n:ui:translate
 

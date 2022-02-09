@@ -251,6 +251,14 @@ async function fetchUserFeedbackIssues() {
 			query,
 		}),
 	})
+
+	if (response.status != 200) {
+		console.error(
+			`❌ Github response status: ${response.status}\n` +
+				'\tCheck your GITHUB_API_SECRET key in site/.env\n'
+		)
+	}
+
 	const data = await response.json()
 	const issues = Object.entries(data.data.repository)
 		.filter(([, value]) => !!value)
