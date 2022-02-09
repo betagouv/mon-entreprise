@@ -44,7 +44,7 @@ function IntegrationCustomizer() {
 	const defaultModuleFromUrl =
 		new URLSearchParams(search ?? '').get('module') ?? ''
 	const [currentModule, setCurrentModule] = useState(
-		simulators['defaultModuleFromUrl'] ? defaultModuleFromUrl : 'salarié'
+		simulators[defaultModuleFromUrl] ? defaultModuleFromUrl : 'salarié'
 	)
 
 	useEffect(() => {
