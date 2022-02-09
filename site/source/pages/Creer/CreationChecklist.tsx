@@ -563,12 +563,6 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						<FAQAutoEntrepreneurArticle />
 					</Grid>
 				)}
-
-				{isAutoentrepreneur && (
-					<Grid item xs={12} sm={6} lg={4}>
-						<ImpotAEArticle />
-					</Grid>
-				)}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<Grid item xs={12} sm={6} lg={4}>
 						<Article
@@ -632,32 +626,6 @@ export const FAQAutoEntrepreneurArticle = () => {
 				Une liste exhaustive et maintenue à jour de toutes les questions
 				fréquentes (et moins fréquentes) que l'on est amené à poser en tant
 				qu'auto-entrepreneur
-			</Trans>
-		</Article>
-	)
-}
-
-export const ImpotAEArticle = () => {
-	const { t } = useTranslation()
-	return (
-		<Article
-			title={
-				<h3>
-					<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.title">
-						Comment déclarer son revenu aux impôts ?
-					</Trans>{' '}
-					<Emoji emoji="📑" />
-				</h3>
-			}
-			href="https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur"
-			ctaLabel={t(
-				'pages.common.ressources-auto-entrepreneur.impôt.cta',
-				"Consulter l'aide"
-			)}
-		>
-			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt.body">
-				Les informations officielles de l'administration fiscale concernant les
-				auto-entrepreneurs et le régime de la micro-entreprise.
 			</Trans>
 		</Article>
 	)
