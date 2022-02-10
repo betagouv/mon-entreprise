@@ -5,10 +5,7 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
 	"eslint.enable": true,
-	"cSpell.words": [
-		"mycompanyinfrance",
-		"smarttag"
-	],
+	"cSpell.words": ["mycompanyinfrance", "smarttag"],
 	"search.exclude": {
 		"**/dist": true
 	}

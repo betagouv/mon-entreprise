@@ -6,13 +6,13 @@ import unitsTranslations from '../source/locales/units.yaml'
 
 describe('Tests units', function () {
 	it('use unit that exists in publicodes', function () {
-		const rules = parsePublicodes(rawRules)
+		const { parsedRules } = parsePublicodes(rawRules)
 		const units = uniq(
-			Object.keys(rules).reduce(
+			Object.keys(parsedRules).reduce(
 				(prev, name) => [
 					...prev,
-					...(rules[name].unit?.numerators ?? []),
-					...(rules[name].unit?.denumerators ?? []),
+					...(parsedRules[name].unit?.numerators ?? []),
+					...(parsedRules[name].unit?.denumerators ?? []),
 				],
 				[]
 			)

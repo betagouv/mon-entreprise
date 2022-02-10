@@ -10604,9 +10604,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.31
+    publicodes: ^1.0.0-beta.32
   peerDependencies:
-    publicodes: ^1.0.0-beta.31
+    publicodes: ^1.0.0-beta.32
   languageName: unknown
   linkType: soft
 
@@ -14344,9 +14344,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.30
+    publicodes: ^1.0.0-beta.32
   peerDependencies:
-    publicodes: ^1.0.0-beta.30
+    publicodes: ^1.0.0-beta.32
   languageName: unknown
   linkType: soft
 
@@ -15820,28 +15820,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.31":
-  version: 1.0.0-beta.31
-  resolution: "publicodes-react@npm:1.0.0-beta.31"
+"publicodes-react@npm:^1.0.0-beta.32":
+  version: 1.0.0-beta.32
+  resolution: "publicodes-react@npm:1.0.0-beta.32"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
-    publicodes: 1.0.0-beta.31
+    publicodes: 1.0.0-beta.32
     react: ^17.0.2
-  checksum: a010704677d416983b464859b160b264d68acff3d2654c1eb5d0ee0e1388d741c38fc13324f4c3234da86daf3ded5744a616aa138fa50eb28858f56a4ff2700f
+  checksum: 2cdf91420982e909869cf9ddc1754943d4e5e8bef7545e4d5afdfc202eb1bbdcb33197bb4ad2978f6cfd02aad3229ec53061ff06680c9f2917638fde79b98b28
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.30, publicodes@npm:^1.0.0-beta.31":
-  version: 1.0.0-beta.31
-  resolution: "publicodes@npm:1.0.0-beta.31"
+"publicodes@npm:^1.0.0-beta.32":
+  version: 1.0.0-beta.32
+  resolution: "publicodes@npm:1.0.0-beta.32"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 9bf074037e97339f05a84f9557f7d6b8c51b9af28c7526e06c3c3675f32349c2ef36dfbbab14610e0638c1e6e9d42ea335502df6cf455d1af543559caedec8ac
+  checksum: 674a5f1ee9f755cf8f9fd2312523ee70f3963b1c8cb9e0249919ad48269f3dbe831d4fe3e1c13400216bd21b34d2bbd5f71e571b3adc210ebdb1c2dc18ee72d6
   languageName: node
   linkType: hard
 
@@ -17645,8 +17645,8 @@ __metadata:
     markdown-to-jsx: ^7.1.5
     modele-social: ^0.6.0
     prettier: ^2.5.1
-    publicodes: ^1.0.0-beta.31
-    publicodes-react: ^1.0.0-beta.31
+    publicodes: ^1.0.0-beta.32
+    publicodes-react: ^1.0.0-beta.32
     ramda: ^0.27.0
     react: ^17.0.0
     react-color: ^2.14.0

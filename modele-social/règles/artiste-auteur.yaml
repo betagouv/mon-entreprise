@@ -1,9 +1,8 @@
 artiste-auteur:
   description: Le régime des artistes-auteurs
   icônes: 👩‍🎨
-  formule: oui
 
-artiste-auteur . revenus: oui
+artiste-auteur . revenus:
 artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
   par défaut: 0 €/an

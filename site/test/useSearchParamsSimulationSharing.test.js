@@ -9,7 +9,7 @@ import {
 } from '../source/components/utils/useSearchParamsSimulationSharing'
 
 describe('identifiant court', () => {
-	const questions = Object.entries(parsePublicodes(rules))
+	const questions = Object.entries(parsePublicodes(rules).parsedRules)
 		.filter(([, ruleNode]) => ruleNode.rawNode['identifiant court'])
 		.map(([dottedName, ruleNode]) => [
 			dottedName,
@@ -90,7 +90,7 @@ rule without:
 })
 
 describe('useSearchParamsSimulationSharing hook', () => {
-	const parsedRules = parsePublicodes(`
+	const { parsedRules } = parsePublicodes(`
 rule with:
 	identifiant court: panta
 	formule: 0

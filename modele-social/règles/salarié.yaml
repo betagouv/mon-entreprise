@@ -63,7 +63,7 @@ contrat salarié . frais professionnels:
     frais de panier, titres-restaurant, forfait mobilités durables...).
   formule:
     somme:
-      - titres-restaurant . montant . employeur
+      - titres-restaurant . part employeur
       - abonnement transports publics . prise en charge
       - transports personnels . montant
 
@@ -95,27 +95,26 @@ contrat salarié . frais professionnels . titres-restaurant:
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-  question: Le salarié reçoit-il des titres-restaurant ?
-  par défaut: non
-
-contrat salarié . frais professionnels . titres-restaurant . montant:
-  titre: Titres-restaurant
+  applicable si:
+    nom: éligible
+    question: Le salarié reçoit-il des titres-restaurant ?
+    par défaut: non
   formule:
     produit:
       assiette: montant unitaire
       facteur: nombre
       composantes:
         - attributs:
-            nom: employeur
+            nom: part employeur
           taux: taux participation employeur
         - attributs:
-            nom: salarié
+            nom: part salarié
           taux: 100% - taux participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre: Titres-restaurant (déductible)
   formule:
-    valeur: montant . employeur
+    valeur: part employeur
     plafond:
       produit:
         assiette: nombre
@@ -179,7 +178,6 @@ contrat salarié . frais professionnels . titres-restaurant . contrôle taux emp
 
 contrat salarié . frais professionnels . abonnement transports publics:
   icônes: 🚍
-  valeur: oui
 
 contrat salarié . frais professionnels . abonnement transports publics . montant:
   titre: Abonnement aux transports publics
@@ -221,7 +219,6 @@ contrat salarié . frais professionnels . abonnement transports publics . prise 
   valeur: taux de prise en charge * montant
 
 contrat salarié . frais professionnels . transports personnels:
-  valeur: oui
   non applicable si: déduction forfaitaire spécifique
   références:
     circ. DGT-DSS 2009-1 du 28 janvier 2009: https://www.legifrance.gouv.fr/download/file/pdf/cir_2423/CIRC
@@ -252,7 +249,6 @@ contrat salarié . frais professionnels . transports personnels . proportion dé
     Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
 
 contrat salarié . frais professionnels . transports personnels . carburant faible émission:
-  valeur: oui
 
 contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant:
   titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène
@@ -286,7 +282,6 @@ contrat salarié . frais professionnels . transports personnels . carburant faib
         abattement: abonnement transports publics . prise en charge
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables:
-  valeur: oui
 
 contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant:
   titre: Prise en charge des frais de transports forfait mobilités durables
@@ -333,7 +328,6 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
         - carburant faible émission . part déductible
 
 contrat salarié . activité partielle:
-  question: Le salarié est-il en chômage partiel ?
   description: >-
     À la suite de la crise du Coronavirus, le gouvernement a mis en place un
     dispositif de chômage partiel étendu dans lequel l'État prend en charge
@@ -1220,7 +1214,7 @@ contrat salarié . professionnalisation:
     indéterminée (CDI), la période de professionnalisation proprement-dite
     devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
     prolongée jusqu'à 36 mois.
-  formule: contrat salarié = 'professionnalisation'
+  applicable si: contrat salarié = 'professionnalisation'
   rend non applicable: rémunération . contrôle smic
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
@@ -1910,7 +1904,7 @@ contrat salarié . rémunération . net:
     somme:
       - net avec revenus de remplacement
       - (- avantages en nature . montant)
-      - (- frais professionnels . titres-restaurant . montant)
+      - (- frais professionnels . titres-restaurant)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
@@ -2209,9 +2203,6 @@ contrat salarié . aides employeur . emploi franc:
                 - sinon: 5000 €/an
       facteur: temps de travail . quotité de travail effective
     arrondi: oui
-  rend non applicable:
-    # Dispositifs moins généreux et non cumulables
-    - aide à l'embauche des travailleurs handicapés
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
@@ -2498,7 +2489,7 @@ contrat salarié . réduction générale:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-  non applicable si: cotisations . assiette forfaitaire . montant
+  non applicable si: cotisations . assiette forfaitaire . montant > 0
   formule:
     produit:
       assiette: cotisations . assiette
@@ -2569,7 +2560,7 @@ contrat salarié . réduction générale . imputation retraite complémentaire:
   formule: réduction générale - imputation sécurité sociale
 
 contrat salarié . réduction générale . plafond avec application de la DFS:
-  applicable si: déduction forfaitaire spécifique > 0
+  applicable si: déduction forfaitaire spécifique
   unité: €/mois
   formule:
     produit:
@@ -3096,15 +3087,16 @@ contrat salarié . FNAL:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
   formule:
     produit:
-      assiette: cotisations . assiette
+      assiette:
+        valeur: cotisations . assiette
+        plafond:
+          applicable si: éligible taux réduit
+          valeur: plafond sécurité sociale
       taux [ref]:
         variations:
           - si: éligible taux réduit
             alors: 0.1%
           - sinon: 0.5%
-      plafond:
-        applicable si: éligible taux réduit
-        valeur: plafond sécurité sociale
 
   exemples:
     - nom: SMIC
@@ -3556,7 +3548,6 @@ contrat salarié . maladie . taux domiciliation fiscale étranger:
   formule: 5.50%
 
 contrat salarié . lodeom:
-  valeur: oui
   description: |
     Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer.
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.

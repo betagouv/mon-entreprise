@@ -92,6 +92,20 @@ export default defineConfig(({ command }) => ({
 			targets: ['defaults', 'not IE 11'],
 		}),
 	],
+	server: {
+		// Keep watching changes in the publicodes package to support live reload
+		// when we iterate on publicodes logic.
+		// https://vitejs.dev/config/#server-watch
+		watch: {
+			ignored: [
+				'!**/node_modules/publicodes/**',
+				'!**/node_modules/publicodes-react/**',
+			],
+		},
+	},
+	optimizeDeps: {
+		exclude: ['publicodes-react', 'publicodes'],
+	},
 }))
 
 type MultipleSPAOptions = {
@@ -118,6 +132,8 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 		enforce: 'pre',
 
 		configureServer(vite) {
+			// TODO: this middleware is specific to the "mon-entreprise" app and
+			// shouldn't be in the "multipleSPA" plugin
 			vite.middlewares.use(
 				'/simulateur-iframe-integration.js',
 				serveStatic(new URL('./dist', import.meta.url).pathname, {

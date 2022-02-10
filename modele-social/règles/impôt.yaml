@@ -1,5 +1,4 @@
 impôt:
-  valeur: oui
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre: impôt sur le revenu
@@ -36,7 +35,7 @@ impôt . méthode de calcul:
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
-  non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
+  non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire > 0
   par défaut:
     nom: par défaut
     valeur: "'barème standard'"
@@ -270,7 +269,6 @@ impôt . taux personnalisé:
 # in the "impôt" namespace to have a better questions ordering
 impôt . foyer fiscal:
   icônes: 👨‍👩‍👧‍👦
-  formule: oui
 
 impôt . foyer fiscal . situation de famille:
   question: Quelle est votre situation familiale ?
@@ -353,7 +351,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
 impôt . foyer fiscal . taux effectif:
   unité: '%'
   variations:
-    - si: impôt à payer = 0
+    - si: revenu imposable = 0
       alors: 0%
     - sinon: impôt à payer / revenu imposable
 
@@ -379,6 +377,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
         alors: contrat salarié . rémunération . net imposable
       - si: entreprise . imposition = 'IS'
         alors: dirigeant . rémunération . imposable
+      - sinon: 0 €/an
   abattement:
     valeur: 10% * assiette
     plafond:

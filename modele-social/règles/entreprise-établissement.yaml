@@ -1,5 +1,4 @@
 entreprise:
-  valeur: oui
   description: |
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
@@ -200,7 +199,7 @@ entreprise . chiffre d'affaires . franchise de TVA . seuil service:
 
 entreprise . chiffre d'affaires . franchise de TVA . dépassement:
   type: notification
-  formule:
+  valeur:
     une de ces conditions:
       - chiffre d'affaires > seuil vente + seuil service
       - vente restauration hébergement > seuil vente
@@ -866,7 +865,6 @@ entreprise . activité . débit de tabac:
   par défaut: non
 
 établissement:
-  formule: oui
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
 

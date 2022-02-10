@@ -73,7 +73,7 @@ export function SimulationGoal({
 	if (
 		small &&
 		!editable &&
-		(evaluation.nodeValue === false || evaluation.nodeValue === null)
+		(evaluation.nodeValue === null || evaluation.nodeValue === undefined)
 	) {
 		return null
 	}
