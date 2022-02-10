@@ -117,6 +117,8 @@ exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `"[2000
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `"[20000,297,16438,0,16438]"`;
 
+exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `"[0,714,0,0,0]"`;
+
 exports[`calculate simulations-auto-entrepreneur > aides 1`] = `"[5742,62,5000,0,5000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > aides 2`] = `"[57415,618,50000,237,49763]"`;
@@ -433,6 +435,8 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > a
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > activités 5`] = `"[917,10998,0,10679,4,20]"`;
 
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > activités 6`] = `"[917,10998,0,10679,4,20]"`;
+
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > avec charges 1`] = `"[442,5299,0,5275,4,10]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > avec charges 2`] = `"[917,10998,0,10679,4,20]"`;
@@ -491,9 +495,11 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > ac
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 3`] = `"[0,17336,17336,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 4`] = `"[0,17417,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 4`] = `"[0,15540,15540,5000,4,14]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 5`] = `"[0,15580,15580,5000,4,14]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 5`] = `"[0,17417,17417,2900,3,8]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 6`] = `"[0,15580,15580,5000,4,14]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > avec charges 1`] = `"[0,10450,10450,1740,3,0]"`;
 
@@ -547,9 +553,11 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant) > activit
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 3`] = `"[0,13758,0,10089,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,13768,0,10095,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,13758,0,10089,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 5`] = `"[0,13768,0,10095,4,21]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 6`] = `"[0,13768,0,10095,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 1`] = `"[0,6794,0,5002,4,21]"`;
 
