@@ -239,7 +239,10 @@ type OverrideComponentType = {
 
 // HACKKKKY THING. DO NOT DO THIS AT HOME
 function componentCSS(Compo: unknown, props: Record<never, never>): string {
-	const rules = (Compo as OverrideComponentType).componentStyle.rules
+	const rules =
+		'componentStyle' in (Compo as OverrideComponentType)
+			? (Compo as OverrideComponentType).componentStyle.rules
+			: (Compo as string[])
 
 	return rules
 		.map((x) => {
