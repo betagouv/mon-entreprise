@@ -47,3 +47,8 @@ activité mixte:
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
     entreprise . activité: "'artisanale'"
+  - entreprise . chiffre d'affaires . service BIC: 20000 €/an
+    entreprise . chiffre d'affaires . service BNC: 10000 €/an
+    entreprise . chiffre d'affaires . vente restauration hébergement: 15000 €/an
+    entreprise . activité . mixte: oui
+    entreprise . activité: "'commerciale'"
