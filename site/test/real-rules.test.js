@@ -5,7 +5,7 @@ import rules from 'modele-social'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
-let parsedRules = parsePublicodes(rules)
+let { parsedRules } = parsePublicodes(rules)
 const engine = new Engine(rules)
 let runExamples = (examples, rule) =>
 	examples.map((ex) => {
@@ -39,7 +39,7 @@ let runExamples = (examples, rule) =>
 describe('Tests des règles de notre base de règles', () =>
 	Object.values(parsedRules)
 		.filter((rule) => rule.rawNode.exemples)
-		.map((rule) => {
+		.forEach((rule) => {
 			describe(rule.dottedName, () => {
 				let examples = runExamples(rule.rawNode.exemples, rule)
 				examples.map((example) =>

@@ -6,7 +6,7 @@ import getSimulationData, {
 	MetadataSrc,
 } from '../../source/pages/Simulateurs/metadata-src.js'
 
-const rules = parsePublicodes(rawRules)
+const { parsedRules } = parsePublicodes(rawRules)
 
 // @ts-ignore Needed by ts-node/esm
 const env = process.env
@@ -100,7 +100,7 @@ try {
 
 	console.log('Uploading: rules')
 
-	await rulesIndex.saveObjects(formatRulesToAlgolia(rules)).wait()
+	await rulesIndex.saveObjects(formatRulesToAlgolia(parsedRules)).wait()
 
 	console.log('Clearing: simulateurs')
 	await simulateursIndex.clearObjects().wait()

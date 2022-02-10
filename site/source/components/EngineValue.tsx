@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	formatValue,
+	isNotApplicable,
 	isNotYetDefined,
 	PublicodesExpression,
 	UNSAFE_isNotApplicable,
@@ -68,7 +69,11 @@ export function Condition({
 }: ConditionProps) {
 	const engine = useEngine()
 	const value = engine.evaluate(expression).nodeValue
-	const boolValue = isNotYetDefined(value) ? defaultIfNotYetDefined : value
+	const boolValue = isNotYetDefined(value)
+		? defaultIfNotYetDefined
+		: isNotApplicable(value)
+		? false
+		: value
 
 	if (Boolean(boolValue) !== boolValue) {
 		console.error(
