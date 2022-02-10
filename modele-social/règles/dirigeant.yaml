@@ -291,7 +291,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
         assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
-            - si: entreprise . activité . libérale réglementée
+            - si:
+                une de ces conditions:
+                  - entreprise . activité . libérale réglementée
+                  - toutes ces conditions:
+                      - année >= 2022
+                      - entreprise . activité = 'libérale'
               alors: 0.2%
             - sinon: 0.1%
 

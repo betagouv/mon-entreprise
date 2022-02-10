@@ -3905,17 +3905,17 @@ contrat salarié . vieillesse:
   titre.en: Basic pension contribution
   titre.fr: vieillesse
 dirigeant:
-  question.en: What is the director's social regime?
+  question.en: '[automatic] What is the social regime of the manager?'
   question.fr: Quel est le régime social du dirigeant ?
-  titre.en: director
+  titre.en: '[automatic] manager'
   titre.fr: dirigeant
 dirigeant . assimilé salarié:
   description.en: >
-    Some company managers (this is particularly the case for SASUs) are
-    considered by the social security system as equivalent to employees. They
-    are then in the general social security system, with some constraints
-    however. For example, they do not contribute to unemployment insurance, and
-    therefore are not entitled to it.
+    [automatic] Some company directors (this is notably the case for SASU) are
+    considered by the social security system as being assimilated to employees.
+    They are then covered by the general social security system, but with some
+    constraints. For example, they do not contribute to the unemployment scheme,
+    and are therefore not entitled to it.
   description.fr: >
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont
     considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
@@ -3924,7 +3924,7 @@ dirigeant . assimilé salarié:
     droit.
   note.en: '[automatic] We do not manage the case of SAS(U) with IR for the moment'
   note.fr: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
-  titre.en: Assimilated salaried
+  titre.en: '[automatic] assimilated employee'
   titre.fr: assimilé salarié
 dirigeant . assimilé salarié . réduction ACRE:
   titre.en: '[automatic] ACRE reduction'
@@ -3944,46 +3944,43 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
   titre.fr: notification taux annuel
 dirigeant . auto-entrepreneur:
   description.en: >
-    Self-enterprise is a simplified sole proprietorship. At the beginning
-     known as an "auto-entrepreneur", the "microentrepreneur" is a self-employed worker plan created to
-     simplify administrative management, in particular by replacing all the
-     social contributions by a single monthly levy.
+    [automatic] The auto-entrepreneur is a simplified individual business.
+    Originally known as "auto-entrepreneur", the "micro-entrepreneur" regime is
+    a self-employed worker regime created to simplify administrative management,
+    notably by replacing all social contributions with a single monthly
+    deduction.
   description.fr: >
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine
     connu sous l'appellation « auto-entrepreneur », le régime de «
     micro-entrepreneur » est un régime de travailleur indépendant créé pour
     simplifier la gestion administrative, notamment en remplaçant toutes les
     cotisations sociales par un prélèvement unique mensuel.
-  titre.en: auto-entrepreneur
+  titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question.en: '[automatic] What is your turnover?'
   question.fr: Quel est votre chiffre d'affaires ?
   résumé.en: '[automatic] Total revenue (excluding tax)'
   résumé.fr: Montant total des recettes (hors taxe)
-  titre.en: '[automatic] revenues'
+  titre.en: '[automatic] revenue'
   titre.fr: chiffre d'affaires
 dirigeant . auto-entrepreneur . cotisations et contributions:
-  titre.en: Contributions
+  titre.en: '[automatic] contributions and fees'
   titre.fr: cotisations et contributions
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   note.en: |
     [automatic] We have not included the following exceptions:
-
-    - Craftsmen in double registration CCI-CMA
-    - Rates for Alsace and Moselle
+    - Craftsmen with dual CCI-CMA registration
   note.fr: |
     Nous n'avons pas intégré les exceptions suivantes :
-
     - Artisans en double immatriculation CCI-CMA
-    - Les taux de l'Alsace et de la Moselle
-  titre.en: Taxes for room charges
+  titre.en: '[automatic] Taxes for room expenses'
   titre.fr: Taxes pour frais de chambre
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
-  titre.en: Chamber of Trades taxes
+  titre.en: '[automatic] tax for chamber of commerce fees'
   titre.fr: taxe pour frais de chambre de commerce
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
-  titre.en: Chamber of Crafts taxes
+  titre.en: '[automatic] tax for chamber of trade fees'
   titre.fr: taxe pour frais de chambre des métiers
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
   titre.en: '[automatic] Alsace rate'
@@ -3993,40 +3990,39 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   titre.fr: taux Moselle
 dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
   description.en: >
-    [automatic] In addition to social security charges, self-employed
-    entrepreneurs are liable for a
+    [automatic] In addition to the social security charges, auto-entrepreneurs
+    are liable for a
 
-    contribution to vocational training enabling them to benefit from the
+    contribution to the professional training allowing them to benefit from the right to professional
 
-    the right to vocational training (provided that you have declared a figure
+    right to professional training (provided that they have declared a positive turnover during the last 12 months).
 
-    of positive business over the last 12 months).
+    during the last 12 months).
   description.fr: |
     En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
     contribution à la formation professionnelle leur permettant de bénéficier du
     droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
     d’affaires positif au cours des 12 derniers mois).
   note.en: |
-    [automatic] The rates implemented are those levied by Urssaf.
+    [automatic] The rates implemented are those levied by the Urssaf.
   note.fr: |
     Les taux implémentés sont ceux prélevés par l'Urssaf.
-  titre.en: Contribution to vocational trainingyay
+  titre.en: '[automatic] Contribution to professional training'
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
-    [automatic] Social security contributions give the auto-entrepreneur access
-    to an
+    [automatic] The social contributions give the auto-entrepreneur access to a
 
-    minimum social protection: a pension, health care, social security, health care
+    social protection: a pension, health care, family allowances, etc.
 
     family allowances, etc.
 
 
-    Self-employment is a simplified plan: rather than a pay slip
+    The auto-entreprise is a simplified system: rather than a complex pay slip, all
 
-    complex, all the contributions are grouped in a *package* with the
+    rather than a complex pay slip, all contributions are grouped in a *lump sum* whose
 
-    rate depends on the activity category.
+    rate depends on the category of activity.
   description.fr: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une
     protection sociale minimale : une retraite, des soins de santé, des
@@ -4035,16 +4031,16 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
     complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
     taux dépend de la catégorie d'activité.
-  titre.en: contributions
+  titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   description.en: >
-    [automatic] This rate corresponds to the contribution reduction that applies
-    to
+    [automatic] This rate corresponds to the reduction in contributions that
+    applies to
 
-    the auto-entrepreneur benefiting from Acre. A rate of 75% means that
+    the self-employed person benefiting from the Acre. A rate of 75% means that
 
-    the auto-entrepreneur has to pay 75% of the original amount of the
+    the auto-entrepreneur must pay 75% of the original amount of the
 
     contributions.
   description.fr: |
@@ -4052,22 +4048,21 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
     l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
     cotisations.
-  titre.en: |
-    "ACRE" rate
+  titre.en: '[automatic] ACRE auto-entrepreneur rate'
   titre.fr: taux ACRE auto-entrepreneur
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
-  titre.en: '[automatic] service delivery rate with ACRE'
+  titre.en: '[automatic] service rate with ACRE'
   titre.fr: taux prestation de service avec ACRE
 dirigeant . auto-entrepreneur . impôt:
-  titre.en: tax
+  titre.en: '[automatic] tax'
   titre.fr: impôt
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
   description.en: >
     [automatic] The micro-entrepreneur is exempted from making a professional
-    profit declaration under the BNC or BIC.
+    declaration of profits as BNC or BIC.
 
 
-    It is sufficient to enter the annual amount of gross sales (BIC) or revenue (BNC) in the supplementary income tax return (No. 2042-C Pro).
+    They only need to declare the annual gross turnover (BIC) or revenue (BNC) on the supplementary income tax return (n°2042-C Pro).
   description.fr: >
     Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle
     de bénéfices au titre des BNC ou BIC.
@@ -4078,41 +4073,44 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre.fr: revenu imposable auto-entrepreneur
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
-    With the option for the discharge payment, the income tax is paid at the
-    same time as your contributions (per month or per quarter) with the
-    application of a specific rate according to your activity. To benefit from
-    it, your reference tax income must not exceed €27,086 in 2018
+    [automatic] With the option for the payment in full discharge, income tax is
+    paid at the same time as your contributions (per month or per quarter) with
+    the application of a specific rate according to your activity. To benefit
+    from this option, your reference tax income must not exceed €27,086 in 2018
   description.fr: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité. Pour en
     bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
     2018
-  question.en: Do you benefit from the discharge payment of income tax?
+  question.en: '[automatic] Do you benefit from the payment in full of income tax?'
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
-  titre.en: discharge payment
+  titre.en: '[automatic] payment in full discharge'
   titre.fr: versement libératoire
 dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seuil:
   description.en: >
-    [automatic] The payment in full discharge is not available if the tax income
-    of
+    [automatic] The payment in full discharge is not available if your
+    household's taxable income
 
-    your household reference is higher than 27 519 € per share in 2018
+    of your household is higher than €27,519 per unit in 2018
   description.fr: |
     Le versement libératoire n'est pas disponible si le revenu fiscal de
     référence de votre ménage est supérieur à 27 519 € par part en 2018
   titre.en: '[automatic] threshold control'
   titre.fr: contrôle seuil
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
-  description.en: |
-    [automatic] If you have opted for the final instalment, the income tax is
+  description.en: >
+    [automatic] If you have opted for the payment in full discharge, the income
+    tax is
+
     paid at the same time as your contributions (per month or per quarter) with
+
     application of a specific rate according to your activity
   description.fr: |
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
     payé en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité
-  titre.en: discharge payment for auto-entrepreneur
+  titre.en: '[automatic] payment in full discharge auto-entrepreneur'
   titre.fr: versement libératoire auto-entrepreneur
 dirigeant . auto-entrepreneur . net après impôt:
   description.en: >-
@@ -4120,7 +4118,7 @@ dirigeant . auto-entrepreneur . net après impôt:
     income tax and social contributions.
 
 
-    Note:** To properly assess the profitability of the business, do not forget to subtract from this amount the expenses incurred in the course of the activity. This may include, for example:
+    **To properly evaluate the profitability of the business, do not forget to deduct from this amount the expenses incurred in the course of the activity. This can include for example :
 
     - The purchase of raw materials
 
@@ -4147,51 +4145,52 @@ dirigeant . auto-entrepreneur . net après impôt:
     - La location d'un local
 
     - etc...
-  question.en: What is the desired net after-tax income?
+  question.en: '[automatic] What is the desired net after-tax income?'
   question.fr: Quel est le revenu net après impôt souhaité ?
-  résumé.en: Before deducting expenses related to the activity
+  résumé.en: '[automatic] Before deduction of expenses related to the activity'
   résumé.fr: Avant déduction des dépenses liées à l'activité
-  titre.en: net income after tax
+  titre.en: '[automatic] net income after tax'
   titre.fr: revenu net après impôt
 dirigeant . auto-entrepreneur . net de cotisations:
-  description.en: '[automatic] This is the income after deductions for
-    contributions, before payment of income tax.'
+  description.en:
+    '[automatic] This is income after deductions for contributions,
+    before payment of income tax.'
   description.fr: Il s'agit du revenu après déductions des cotisations, avant le
     paiement de l'impôt sur le revenu.
-  question.en: What pre-tax income do you want to receive?
+  question.en: '[automatic] How much pre-tax income do you want to receive?'
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
-  résumé.en: Before taxes
+  résumé.en: '[automatic] Before tax'
   résumé.fr: Avant impôt
-  titre.en: Net contribution income
+  titre.en: '[automatic] Net contribution income'
   titre.fr: Revenu net de cotisations
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   description.en: >
     [automatic] The ACRE rate used is the one corresponding to the current
     month. The
 
-    simulator does not yet take into account the overlap of 2 periods
+    simulator does not yet take into account the overlapping of 2 periods of
 
-    of an acre in a single year.
+    of acre on the same year.
   description.fr: |
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
     simulateur ne prends pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
-  titre.en: '[automatic] notification calculation ACRE annual calculation'
+  titre.en: '[automatic] notification annual ACRE calculation'
   titre.fr: notification calcul ACRE annuel
 dirigeant . indépendant:
-  titre.en: indépendant
+  titre.en: '[automatic] independent'
   titre.fr: indépendant
 dirigeant . indépendant . IJSS:
   description.en: >-
-    [automatic] In case of illness, maternity or accident, including after a
-    work stoppage or a stoppage for childcare related to the Covid-19 epidemic,
-    the general Social Security scheme provides "cash" benefits.
+    [automatic] In case of illness, maternity, or accident, including following
+    a work stoppage or a stoppage for childcare related to the Covid-19
+    epidemic, the general Social Security scheme provides "cash" benefits.
 
-    These are the Social Security daily allowances (IJSS).
+    These are the Social Security daily benefits (IJSS).
 
     Benefits supplementing Social Security daily allowances paid under a provident contract do not constitute replacement income.
 
-    Note: Disability benefits paid by disability and death schemes are not concerned
+    Note: Disability benefits paid by the disability and death insurance schemes are not concerned
   description.fr: >-
     En cas de maladie, maternité, ou accident, y compris suite à un arrêt de
     travail ou un arrêt pour garde d’enfant en lien avec l’épidémie du Covid-19,
@@ -4203,8 +4202,9 @@ dirigeant . indépendant . IJSS:
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
 
     Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
-  question.en: '[automatic] Have you received daily allowances for sickness,
-    maternity or paternity as a result of your self-employed activity?'
+  question.en:
+    '[automatic] Did you receive daily sickness, maternity or paternity
+    benefits for your self-employed activity?'
   question.fr: Avez-vous perçu des indemnités journalières de maladie, maternité
     ou paternité au titre de votre activité indépendante ?
   titre.en: '[automatic] social security daily allowances'
@@ -4218,7 +4218,7 @@ dirigeant . indépendant . IJSS . imposable:
 
     This income will be deducted from your contribution base, so that you are not subject to CSG-CRDS twice:
 
-    &gt; Replacement income is: the lump-sum maternal rest allowance, the lump-sum daily allowance for interruption of activity, the replacement allowance for maternity, paternity or adoption and the daily sickness allowance.
+    &gt; Replacement incomes are: the lump-sum maternal rest allowance, the lump-sum daily allowance for interruption of activity, the replacement allowance for maternity, paternity or adoption and the daily sickness allowance.
   description.fr: >-
     Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
     les revenus de remplacement perçus **sauf les indemnités journalières en
@@ -4228,28 +4228,28 @@ dirigeant . indépendant . IJSS . imposable:
     Ces revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS :
 
     > Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie.
-  question.en: '[automatic] What is the gross amount of taxable daily allowances received?'
+  question.en: '[automatic] What is the gross amount of taxable per diem benefits received?'
   question.fr: Quel est le montant brut des indemnités journalières imposables perçues?
-  résumé.en: '[automatic] Only if you do not fall under the micro-fiscal regime.'
+  résumé.en: '[automatic] Only if you are not under the micro-tax system'
   résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
-  titre.en: '[automatic] taxable per diems'
+  titre.en: '[automatic] taxable daily allowances'
   titre.fr: indemnités journalières imposable
 dirigeant . indépendant . IJSS . total:
   description.en: >-
     [automatic] Indicate only the gross amount of your replacement income,
-    taxable and non-taxable, as shown on the statement of benefits provided by
+    taxable and non-taxable, which appears on the benefit statement provided by
     your health insurance fund.
 
-    &gt; Replacement income is: the flat-rate maternal rest allowance, the flat-rate daily allowance for interruption of activity, the replacement allowance for maternity, paternity or adoption and the daily sickness allowance.
+    &gt; The replacement incomes are: the lump-sum maternal rest allowance, the lump-sum daily indemnity for interruption of activity, the replacement indemnity for maternity, paternity or adoption and the daily sickness indemnity.
   description.fr: >-
     Indiquez uniquement le montant brut de vos revenus de remplacement,
     imposables et non imposables qui figure sur le relevé de prestations fourni
     pas votre caisse d'assurance maladie.
 
     > Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l'indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie.
-  question.en: '[automatic] What is the total gross amount of all your per diems?'
+  question.en: '[automatic] What is the total gross amount of all your daily benefits?'
   question.fr: Quel est le montant total brut de toutes vos indemnités journalières ?
-  titre.en: '[automatic] sick pay'
+  titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
 dirigeant . indépendant . PL:
   titre.en: '[automatic] Liberal profession'
@@ -5445,10 +5445,11 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   titre.en: '[automatic] supplementary pension (PLNR rate)'
   titre.fr: retraite complémentaire (taux PLNR)
 dirigeant . indépendant . assiette des cotisations:
-  description.en: '[automatic] This is the basis for social security
-    contributions, which is necessarily a positive number.'
+  description.en:
+    '[automatic] This is the base for social security contributions,
+    which is necessarily a positive number'
   description.fr: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
-  titre.en: '[automatic] contribution base'
+  titre.en: '[automatic] basis of assessment'
   titre.fr: assiette des cotisations
 dirigeant . indépendant . assiette minimale:
   description.en: >
@@ -5456,7 +5457,7 @@ dirigeant . indépendant . assiette minimale:
     calculation bases, certain contributions will be increased to a minimum
     amount.
 
-    The contributions for daily allowances, basic pension, disability and death and for training are no longer calculated according to the entrepreneur's income but according to a "base" (the amount withheld that serves as the basis for calculating a tax or a fee).
+    The contributions for daily allowances, basic pension, disability-death and training are no longer calculated according to the income of the entrepreneur, but according to a "base" (amount withheld that serves as a basis for the calculation of a tax or a fee).
 
 
     The minimum contributions do not apply if you are receiving the RSA or the activity bonus.
@@ -5472,7 +5473,7 @@ dirigeant . indépendant . assiette minimale:
   titre.fr: assiette minimale
 dirigeant . indépendant . assiette minimale . maladie:
   description.en: >
-    [automatic] If the entrepreneur's income is in deficit or below the
+    [automatic] If the business owner's income is less than or equal to the
     calculation bases, certain contributions will be increased to a minimum
     amount.
   description.fr: >
@@ -5481,26 +5482,28 @@ dirigeant . indépendant . assiette minimale . maladie:
   titre.en: '[automatic] minimum health insurance base'
   titre.fr: assiette minimale maladie
 dirigeant . indépendant . assiette minimale . retraite:
-  description.en: '[automatic] The minimum basic pension contribution allows you
-    to validate 3 quarters of pension, regardless of your income.'
+  description.en:
+    '[automatic] The minimum basic pension contribution allows for 3
+    quarters of pension credit, regardless of income.'
   description.fr: La cotisation minimale de retraite de base permet de valider 3
     trimestres de retraite, quel que soit le revenu.
   titre.en: '[automatic] minimum pension base'
   titre.fr: assiette minimale retraite
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
-    [automatic] Allows the manager's spouse to be covered by social protection
-    in return for the payment of additional social contributions.
+    [automatic] Allows the manager's spouse to be covered by the social
+    protection system in exchange for the payment of additional social
+    contributions.
 
-    To benefit from this, the manager's spouse or PACS partner must
+    In order to benefit from it, the manager's spouse or PACS partner must
 
-    - carry out a regular and usual professional activity in the company
+    - have a regular and usual professional activity in the company
 
-    - be listed in the RCS for traders or in the RM for craftsmen
+    - be mentioned in the RCS for traders or in the RM for craftsmen
 
     - not be remunerated
 
-    - not be a partner in the company.
+    - not be a partner of the company.
   description.fr: >
     Permet au conjoint du dirigeant d'être couvert par la protection sociale
     moyennant le paiement de cotisations sociales supplémentaires.
@@ -5514,20 +5517,20 @@ dirigeant . indépendant . conjoint collaborateur:
     - ne pas être rémunéré
 
     - ne pas être associé de la société.
-  question.en: Do you have a collaborating spouse?
+  question.en: '[automatic] Do you have a collaborating spouse?'
   question.fr: Avez-vous un conjoint collaborateur ?
-  titre.en: collaborating spouse
+  titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 dirigeant . indépendant . conjoint collaborateur . assiette:
   description.en: >
-    The collaborating spouse has three choices of base for the calculation of
-    these contributions:
+    [automatic] The collaborating spouse has three choices of base for the
+    calculation of these contributions:
 
     - 1/3 of the Social Security Ceiling
 
-    - Chief's income option with sharing ( ½ or 1/3)
+    - Option on the income of the head with sharing (½ or 1/3)
 
-    - Undivided Chief Income Option ( ½ or 1/3)
+    - Option on the income of the head without sharing (½ or 1/3)
   description.fr: >
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul
     de ces cotisations :
@@ -5537,14 +5540,14 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
     - Option sur le revenu du chef avec partage ( ½ ou 1/3)
 
     - Option sur le revenu du chef sans partage ( ½ ou 1/3)
-  question.en: On what basis does the spouse contribute?
+  question.en: '[automatic] On what basis does the spouse contribute?'
   question.fr: Sur quelle base le conjoint cotise-t'il ?
-  titre.en: base
+  titre.en: '[automatic] plate'
   titre.fr: assiette
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
   description.en: >
     [automatic] The collaborating spouse will pay contributions equivalent to a
-    flat-rate professional income
+    lump sum professional income
 
     fixed at 1/3 of the social security ceiling,
 
@@ -5556,113 +5559,120 @@ dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
     professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale,
     à l’exception de la cotisation indemnités journalières qui est calculée sur
     une assiette équivalente à 40% du PASS.
-  titre.en: '[automatic] flat-rate base'
+  titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
-  question.en: What proportion of income does the spouse contribute?
+  question.en: '[automatic] What proportion of income does the spouse contribute?'
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
-  titre.en: percentage
+  titre.en: '[automatic] percentage'
   titre.fr: pourcentage
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié:
-  titre.en: 1/2
+  titre.en: '[automatic] 1/2'
   titre.fr: 1/2
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers:
-  titre.en: 1/3
+  titre.en: '[automatic] 1/3'
   titre.fr: 1/3
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
   description.en: >
-    chacun sur une part du revenu professionnel.
+    [automatic] The collaborating spouse and the manager will each pay social
+    contributions on a share of the professional income.
 
-    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
+    **This option reduces the amount of contributions to be paid by the manager, but it also reduces his social counterparts (retirement pension, death benefit, etc.)**.
   description.fr: >
     Le conjoint collaborateur et le gérant paieront des cotisations sociales
     chacun sur une part du revenu professionnel.
 
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
-  titre.en: split income
+  titre.en: '[automatic] split income'
   titre.fr: revenu avec partage
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description.en: '[automatic] The collaborating spouse will pay social security
-    contributions calculated on the basis of a percentage of the contribution
-    base of the company manager (one third or one half).'
+  description.en: "[automatic] The collaborating spouse will pay social security
+    contributions calculated on a percentage basis of the company manager's
+    contribution base (one third or one half)."
   description.fr: Le conjoint collaborateur paiera des cotisations sociales
     calculées sur une base d'un pourcentage du assiette des cotisations du
     gérant de l'entreprise (un tiers ou la moitié).
-  titre.en: undivided income
+  titre.en: '[automatic] undivided income'
   titre.fr: revenu sans partage
 dirigeant . indépendant . conjoint collaborateur . cotisations:
-  titre.en: Joint employee contributions
+  titre.en: '[automatic] Contributions to the collaborating spouse'
   titre.fr: Cotisations conjoint collaborateur
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
-  titre.en: collaborating spouse
+  titre.en: '[automatic] base collaborating spouse'
   titre.fr: assiette conjoint collaborateur
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
-  titre.en: retirement base
+  titre.en: '[automatic] pension base'
   titre.fr: assiette retraite
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
-  titre.en: sick pay
+  titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
-  titre.en: disability and death
+  titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
-  titre.en: disability and death base
+  titre.en: '[automatic] disability and death base'
   titre.fr: assiette invalidité et décès
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
-  titre.en: retirement supplement
+  titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
-  titre.en: supplementary pension base
+  titre.en: '[automatic] supplementary pension base'
   titre.fr: assiette retraite complémentaire
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
-  titre.en: basic retirement
+  titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions:
-  description.en: '[automatic] '
+  description.en: >
+    [automatic] This is the total amount due by the self-employed person for
+    compulsory contributions and
+
+    contributions as well as for his optional contributions such as Madelin contracts.
+
+    such as Madelin contracts.
   description.fr: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
     telles que les contrats Madelin.
   note.en: |
-    [automatic] Unlike contributions, contributions are not reintroduced
-    for the calculation of the CSG/CRDS. They also do not benefit from the
+    [automatic] Unlike the contributions, the contributions are not reintroduced
+    for the calculation of the CSG/CRDS. Nor do they benefit from the
     ACRE reduction.
   note.fr: |
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
     réduction ACRE.
-  titre.en: '[automatic] social contributions'
+  titre.en: '[automatic] social security contributions'
   titre.fr: cotisations et contributions sociales
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
-  titre.en: CSG and CRDS
+  titre.en: '[automatic] CSG and CRDS'
   titre.fr: CSG et CRDS
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   note.en:
-    '[automatic] Only the taxable portion of the IJSS is deducted from the
-    MSA base, since the non-taxable portion has already been deducted from the
-    net tax income provided.'
+    '[automatic] Only the taxable part of the IJSS is deducted from the CSG
+    base, since the non-taxable part has already been deducted from the net
+    taxable income provided'
   note.fr: Seule la partie imposable des IJSS est retranchée de l'assiette de la
     CSG, puisque la partie non imposable a déjà été retranchée du revenu net
     fiscal fourni
-  titre.en: basis
+  titre.en: '[automatic] plate'
   titre.fr: assiette
 dirigeant . indépendant . cotisations et contributions . PCV:
   description.en: >
     [automatic] Certain professional categories benefit from
 
-    supplementary old-age benefits (PCV), previously known as "benefits".
+    supplementary old-age benefits (PCV), previously known as "old-age social benefits" (ASV).
 
-    social old age" (ASV). This concerns general practitioners, the
+    (ASV). This concerns general practitioners, dental surgeons
 
-    dental surgeons, midwives, paramedics and medical assistants, and
+    surgeons, midwives, medical auxiliaries and laboratory directors.
 
-    laboratory directors. This scheme results from
+    laboratory directors. This scheme results from the partial coverage by the
 
-    partial by the Health Insurance of their insurance contributions
+    by the Health Insurance of their old-age insurance contributions
 
-    old age, provided that they have exercised their activity within the framework of the
+    provided that they have carried out their activity within the framework of an agreement.
 
-    conventional.
+    conventional framework.
   description.fr: |
     Certaines catégories professionnelles bénéficient de
     prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
@@ -5681,7 +5691,7 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
     the year).
 
 
-    Useful for calculating lump-sum contributions at the beginning of the activity or the amount of the ACRE
+    Useful for calculating the lump sum contributions at the beginning of the activity or the amount of the ACRE
   description.fr: >
     Le plafond de la sécurité sociale, proratisé par la durée d'activité pendant
     l'année (dans le cas d'activité crée ou cessée en cours d'année).
@@ -5691,23 +5701,24 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre.en: '[automatic] prorated social security ceiling'
   titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
-  titre.en: '[automatic] child benefit'
+  titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
   description.en: |
-    [automatic] Some special plans may add additional contributions
-    (e.g. CURPS for the CPAMs)
+    [automatic] Some special schemes may add additional contributions
+    (e.g. CURPS for the CPAM)
   description.fr: |
     Certains régimes spéciaux peuvent ajouter des contributions additionnelles
     (par exemple, la CURPS pour les CPAM)
   titre.en: '[automatic] special contributions'
   titre.fr: contributions spéciales
 dirigeant . indépendant . cotisations et contributions . cotisations:
-  titre.en: social contributions
+  titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . indépendant . cotisations et contributions . début activité:
   description.en: >
-    [automatic] When you start your activity, your **professional income
+    [automatic] When you start your activity, your **professional income is not
+    known
 
     income is not known**, the contributions for the first two years are calculated on a
 
@@ -5715,11 +5726,11 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    These contributions will be adjusted and regularised according to your actual income for the year of exercise.
+    These contributions will be adjusted and regularized according to your real income of the year of exercise.
 
-    the year of the exercise. If your income is higher than the flat rate taken into account for the calculation
+    the year of the exercise. If your income is higher than the flat rate used to calculate your provisional
 
-    for the calculation of the provisional contributions, you will be liable to pay an **additional
+    for the calculation of the provisional contributions, you will have to pay an **additional
 
     of contributions**.
 
@@ -5727,9 +5738,9 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     This simulator calculates the so-called definitive contributions on the basis of your actual income from
 
-    activity. It therefore enables you to anticipate the amount of this adjustment and to
+    activity. It therefore allows you to anticipate the amount of this adjustment and to
 
-    plan your cash flow** accordingly.
+    **plan your cash flow** accordingly.
   description.fr: >
     Lorsque vous commencez votre activité, vos **revenus professionnels
 
@@ -5754,9 +5765,9 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     activité. Il vous permet donc de pouvoir anticiper le montant de cette régularisation et de
 
     **planifier votre trésorerie** en conséquence.
-  note.en: '[automatic] The flat-rate base is 19% of the annual Social Security
+  note.en: '[automatic] The lump-sum base is 19% of the annual Social Security
     ceiling** for the first and second year of activity (with the exception of
-    the health contribution and daily allowances for which the flat-rate base is
+    the health contribution and daily allowances for which the lump-sum base is
     equal to 40% of the annual Social Security ceiling).'
   note.fr: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité
     sociale** au titre de la première et de la deuxième année d’activité (à
@@ -5766,17 +5777,17 @@ dirigeant . indépendant . cotisations et contributions . début activité:
   titre.en: '[automatic] Flat-rate contributions at the beginning of the activity'
   titre.fr: Cotisations forfaitaires de début d'activité
 dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
-  titre.en: '[automatic] '
+  titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
-    [automatic] If you are also engaged in a commercial activity as a
-    tobacconist, you can opt to have your pension insurance contribution
-    calculated solely on the income from your commercial activity (since tobacco
-    discounts are also subject to a special pension levy). However, we would
-    like to draw your attention to the fact that by contributing on a lower
-    basis, excluding tobacco debit income, your pension rights for the
-    merchant's pension insurance will be reduced.
+    [automatic] If you work as a tobacconist in addition to your commercial
+    activity, you can opt to calculate your old-age pension contribution on the
+    basis of your commercial activity alone (in fact, discounts for tobacconists
+    are subject to a special old-age pension deduction). However, we would like
+    to draw your attention to the fact that by contributing on a lower basis,
+    excluding the income from the tobacconist's shop, your pension rights for
+    the old-age insurance for shopkeepers will be reduced.
   description.fr: >
     Si vous exercez une activité de débit de tabac simultanément à une activité
     commerciale, vous avez la possibilité d’opter pour le calcul de votre
@@ -5786,26 +5797,26 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
     votre attention sur le fait qu’en cotisant sur une base moins importante,
     excluant les revenus de débit de tabac, vos droits à retraite pour
     l’assurance vieillesse des commerçants en seront diminués.
-  question.en: '[automatic] How much income from the sale of tobacco do you wish
-    to exempt from paying pension contributions?'
+  question.en: '[automatic] How much income from tobacco sales do you want to
+    exempt from old age pension contributions?'
   question.fr:
     Quel est le montant des revenus issus de la vente de tabac que vous
     souhaitez exonérer de cotisation vieillesse ?
   titre.en: '[automatic] tobacco deduction'
   titre.fr: déduction tabac
 dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits:
-  titre.en: '[automatic] contribution base (with tobacco deduction)'
+  titre.en: '[automatic] Contribution base (with tobacco deduction)'
   titre.fr: assiette des cotisations (avec déduction tabac)
 dirigeant . indépendant . cotisations et contributions . exonérations:
-  titre.en: exemptions
+  titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
-  titre.en: ACRE
+  titre.en: '[automatic] ACRE'
   titre.fr: ACRE
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
   description.en: >
-    [automatic] As the calculation of the self-employed contributions is carried
-    out over the whole year
+    [automatic] As the calculation of the independent contributions is done on
+    the whole year,
 
     the exemption is prorated according to the actual duration of the ACRE in the current year.
 
@@ -5828,16 +5839,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 
 
     `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
-  titre.en: prorated over the year
+  titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
-  titre.en: rates
+  titre.en: '[automatic] rate'
   titre.fr: taux
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
-  titre.en: ZFU
+  titre.en: '[automatic] ZFU'
   titre.fr: ZFU
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
-  titre.en: ZFU exemption rate
+  titre.en: '[automatic] ZFU exemption rate'
   titre.fr: taux exonération ZFU
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
   description.en: >-
@@ -5895,49 +5906,49 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   description.en:
     '[automatic] This scheme was discontinued in 2015, but is still
-    active for those who benefited from it before its repeal.'
+    active for those who benefited from it prior to its repeal.'
   description.fr:
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour
     les personnes qui en bénéficiait avant son abbrogation.
-  question.en: Are you benefiting from the age exemption system?
+  question.en: '[automatic] Do you benefit from the "age" exemption'
   question.fr: Bénéficiez-vous du dispositif d'exonération "âge"
-  titre.en: age
+  titre.en: '[automatic] age'
   titre.fr: âge
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   note.en: '[automatic] The rate is not increased for artisans with a
-    collaborating spouse.'
+    collaborating spouse'
   note.fr: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
-  titre.en: professional training
+  titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   description.en: >
-    [automatic] Contributions for daily allowances for self-employed persons. If
-    the
+    [automatic] Contributions for daily allowances for the self-employed. If the
+    state of health of
 
     health of craftsmen, traders, industrialists and collaborating spouses
 
-    requires a work stoppage, a portion of their former income will be returned to them.
+    need to stop working, a part of their former income will be paid to them.
 
-    paid up.
+    paid.
   description.fr: |
     Cotisations pour les indemnités journalières des indépendants. Si l'état de
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
-  titre.en: '[automatic] sick pay'
+  titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . cotisations et contributions . maladie:
   note.en: >
-    [automatic] The decree below contains the following sentence:
+    [automatic] The following sentence is found in the decree below:
 
 
-    &gt; I.- By derogation from the first paragraph, the contribution rate shall be set at 6.5% where earned income exceeds five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
+    &gt; I.-As an exception to the first paragraph, the contribution rate is set at 6.5% when the activity income is greater than five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
 
 
-    The word "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that an opposite interpretation is to be preferred: only the portion above this threshold is subject to this rate, and it is this implementation that we have chosen.
+    The term "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that the opposite interpretation is to be preferred: only the part above this threshold is subject to this rate, and it is this implementation that we have chosen.
   note.fr: >
     On retrouve dans le décret ci-dessous la phrase suivante :
 
@@ -5953,41 +5964,40 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux progres
   titre.fr: taux progressif
 dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire:
   description.en: >
-    [automatic] Additional reduction of the sickness rate for income below 40%
-    of the social security ceiling
+    [automatic] Additional reduction of the health rate for income below 40% of
+    the social security ceiling
   description.fr: >
     La réduction supplémentaire du taux maladie pour les revenu inférieurs à 40%
     du plafond de la sécurité sociale
-  titre.en: '[automatic] further reduction'
+  titre.en: '[automatic] additional discount'
   titre.fr: réduction supplémentaire
 dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
-  description.en:
-    '[automatic] In return for the CSG exemption, contributors have
-    a higher sickness rate. In contrast to other insured tradesmen/artisans,
-    they do not benefit from the reduction of the health contribution rate
-    according to their declared income.'
+  description.en: '[automatic] In return for the CSG exemption, the contributors
+    have a higher health insurance rate. Unlike the other insured
+    traders/artisans, they do not benefit from the reduction of the health
+    contribution rate according to the declared income.'
   description.fr: En contrepartie de l'exonération de CSG, les cotisants ont un
     taux maladie plus elevé. Contrairement aux autres assurés
     commerçants/artisans ils ne bénéficient pas de la réduction du taux de la
     cotisation maladie en fonction du revenu déclaré.
-  titre.en: '[automatic] Illness (tax domicile abroad)'
+  titre.en: '[automatic] Sickness (tax domicile abroad)'
   titre.fr: Maladie (domiciliation fiscale à l'étranger)
 dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-tax-deductible contributions'
   titre.fr: Cotisations et contributions non déductibles fiscalement
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
-  titre.en: '[automatic] retirement supplement'
+  titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions . régularisation:
   description.en: >
-    [automatic] Contributions are calculated provisionally
+    [automatic] Contributions are calculated on a provisional basis
 
-    on the basis of the last income declared
+    on the basis of the last declared income
 
-    (or the lump sum, if no income has yet been declared).
+    (or the lump sum, if no income is declared yet).
 
     Once the year is over and the professional income is known
 
@@ -5995,9 +6005,9 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
 
 
-    This simulator calculates the contributions **after adjustment**.
+    This simulator calculates the contributions **after regularization**.
 
-    It therefore enables you to anticipate the amount of this regularisation and to plan your cash flow
+    It therefore allows you to anticipate the amount of this regularization and to plan your
 
     your cash flow accordingly.
 
@@ -6007,9 +6017,9 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
     you have the possibility to communicate to URSSAF a
 
-    forecast amount for the current year, which will be taken as the basis for the calculation** (be careful, however, you will be required to make an accurate estimate).
+    **forecasted amount for the current year, which will be used as a basis for calculation** (be careful, however, you will be required to make an accurate estimate).
 
-    (be careful, however, you will be required to make an accurate estimate).
+    (be careful however, you will be required to make an accurate estimate).
   description.fr: >
     Les cotisations et contributions sont calculées à titre provisionnel
 
@@ -6038,14 +6048,14 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
     **montant prévisionnel pour l'année en cours, qui sera pris comme base de calcul**
 
     (attention cependant, vous serez tenus de faire une estimation précise).
-  titre.en: '[automatic] How the adjustment of provisional contributions works'
+  titre.en: '[automatic] How does the adjustment of provisional contributions work?'
   titre.fr: Comment fonctionne la régularisation des cotisations provisionnelles
 dirigeant . indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to subscribe to private
     contracts for complementary health care or a retirement savings plan.
 
-    Payments to these contracts are designated as "optional contributions" by the tax authorities.
+    The payments to these contracts are designated as "optional contributions" by the tax authorities.
 
 
     They are tax deductible (up to a limit), but not deductible for the basis of social contributions.
@@ -6057,7 +6067,7 @@ dirigeant . indépendant . cotisations facultatives:
 
 
     Ils sont déductible d'impôts (dans la limite d'un plafond), mais non déductible pour l'assiette des cotisations et contributions sociales.
-  question.en: '[automatic] Have you subscribed to any private provident and/or
+  question.en: '[automatic] Have you subscribed to private provident and/or
     supplementary pension contracts (Madelin contracts, retirement savings
     plans)?'
   question.fr:
@@ -6069,10 +6079,10 @@ dirigeant . indépendant . cotisations facultatives . PER:
   description.en: '[automatic] The individual PER is open to everyone. You can
     subscribe to it with a financial institution or an insurance company. This
     new plan is the successor to the PERP and Madelin contracts, which will no
-    longer be offered from 1 October 2020. Your savings accumulated on the Perp
-    and Madelin can be transferred to the individual PER at your request. This
-    contract entitles you to tax benefits and your rights are transferable to
-    the other PERs. There are cases of early release.'
+    longer be offered as of October 1, 2020. Your savings accumulated on the
+    PERP and Madelin can be transferred to the individual PER at your request.
+    This contract entitles you to tax benefits and your rights are transferable
+    to other PERs. There are cases of early release.'
   description.fr: Le PER individuel est ouvert à tous. Vous pouvez le souscrire
     auprès d'un établissement financier ou d'un organisme d'assurance. Ce
     nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus
@@ -6084,14 +6094,14 @@ dirigeant . indépendant . cotisations facultatives . PER:
     savings plan, as of October 1, 2019)?'
   question.fr: Quel est le montant des cotisations que vous versez dans le cadre
     d'un PER (nouveau plan épargne retraite, depuis le 1er octobre 2019) ?
-  titre.en: '[automatic] Retirement savings plan'
+  titre.en: '[automatic] Retirement Savings Plan'
   titre.fr: Plan d'épargne retraite
 dirigeant . indépendant . cotisations facultatives . contrats madelin:
   titre.en: '[automatic] Sum of contributions to Madelin contracts'
   titre.fr: Somme des cotisations à contrats Madelin
 dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
   description.en: >
-    [automatic] If you contribute to a supplementary insurance contract (health,
+    [automatic] If you contribute to a complementary provident fund (health,
     loss of employment)
 
     under the Madelin law, you can deduct these contributions from the taxable profits
@@ -6108,7 +6118,7 @@ dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoy
     insurance policies (health, sudden loss of employment)?'
   question.fr: Quel est le montant que vous versez pour vos contrats Madelin de
     prévoyance complémentaire (santé, perte d'emploi subie) ?
-  titre.en: '[automatic] Subscribing to a Madelin supplementary insurance contract'
+  titre.en: '[automatic] Subscription to a Madelin complementary provident contract'
   titre.fr: Souscription à un contrat de prévoyance complémentaire Madelin
 dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
   description.en: |
@@ -6133,43 +6143,41 @@ dirigeant . indépendant . cotisations facultatives . non déductibles:
   titre.fr: Part des cotisations facultatives non déductible fiscalement
 dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
   note.en: >
-    [automatic] Normally it is the tax result that should be used for the basis
-    of the ceiling, but we use the professional income to avoid a cycle.
+    [automatic] Normally the tax result should be used for the basis of the
+    ceiling, but we use the professional income to avoid a cycle.
   note.fr: >
     Normalement c'est le résultat fiscal qui devrait être utilisé pour
     l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
     un cycle.
-  titre.en: '[automatic] planning ceiling'
+  titre.en: '[automatic] ceiling for foresight'
   titre.fr: plafond prévoyance
 dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire:
   note.en: >
-    [automatic] Normally it is the tax result that should be used for the basis
-    of the ceiling, but we use the professional income to avoid a cycle.
+    [automatic] Normally the tax result should be used for the basis of the
+    ceiling, but we use the professional income to avoid a cycle.
   note.fr: >
     Normalement c'est le résultat fiscal qui devrait être utilisé pour
     l'assiette du plafond, mais on utilise le revenu professionnel pour éviter
     un cycle.
-  titre.en: '[automatic] supplementary pension ceiling'
+  titre.en: '[automatic] complementary pension ceiling'
   titre.fr: plafond retraite complémentaire
 dirigeant . indépendant . cotisations facultatives . total:
   titre.en: '[automatic] Total optional contributions'
   titre.fr: Total des cotisations facultatives
 dirigeant . indépendant . revenu professionnel:
-  description.en:
-    "[automatic] remuneration of the manager under the self-employed
-    persons' scheme"
+  description.en: '[automatic] remuneration of the manager in the self-employed regime'
   description.fr: rémunération du dirigeant au régime des indépendant
-  titre.en: professional income
+  titre.en: '[automatic] professional income'
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
     [automatic] Foreign income is income declared by self-employed persons for
-    income received from the exercise of a self-employed activity in another EU
-    or EEA country or in Switzerland abroad.
+    income received for the exercise of a self-employed activity in another EU,
+    EEA or Swiss state abroad.
 
-    This income is only subject to contributions and is included in the social security base. However, this income is specifically identified in order to deduct it from the CSG/CRDS base.
+    This income is only subject to contributions and is integrated into the social security base. However, this income is specifically identified in order to deduct it from the CSG/CRDS base.
 
-    To find out whether this income is subject to income tax, please refer to the explanatory note on the website [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+    To find out if this income is subject to income tax, please refer to the explanatory note on the website [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
   description.fr: >
     Les revenus étrangers sont des revenus déclarés par les travailleurs
     indépendants pour des revenus perçus au titre de l’exercice d’une activité
@@ -6178,16 +6186,14 @@ dirigeant . indépendant . revenus étrangers:
     Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS.
 
     Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
-  question.en:
-    '[automatic] Have you received any income abroad in connection with
-    your business?'
+  question.en: '[automatic] Did you receive income abroad in the course of your activity?'
   question.fr: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ?
-  titre.en: foreign income
+  titre.en: '[automatic] foreign income'
   titre.fr: revenus étrangers
 dirigeant . indépendant . revenus étrangers . montant:
-  question.en: How much are they?
+  question.en: '[automatic] How much are they?'
   question.fr: Quel est leur montant ?
-  titre.en: foreign income
+  titre.en: '[automatic] income received abroad'
   titre.fr: revenus perçu à l'étranger
 dirigeant . rémunération:
   titre.en: '[automatic] compensation'
@@ -6213,7 +6219,7 @@ dirigeant . rémunération . nette après impôt:
     social security contributions.'
   description.fr: Le revenu net après déduction de l'impôt sur le revenu et des
     cotisations sociales.
-  question.en: '[automatic] What is the desired net income after tax?'
+  question.en: '[automatic] What is the desired net after-tax income?'
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: '[automatic] What you get from this activity'
   résumé.fr: Ce que vous rapporte cette activité
@@ -6222,7 +6228,7 @@ dirigeant . rémunération . nette après impôt:
 dirigeant . rémunération . totale:
   description.en: >
     [automatic] This is what the company spends in total for the remuneration of
-    the manager. This "super gross" remuneration includes all social security
+    the executive. This "super gross" remuneration includes all social security
     contributions to be paid. It can also be considered as the monetary value of
     the executive's work.
   description.fr: >
@@ -6232,7 +6238,7 @@ dirigeant . rémunération . totale:
     dirigeant.
   question.en: '[automatic] What is the total amount you expect to earn in compensation?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  résumé.en: '[automatic] Including contributions'
+  résumé.en: '[automatic] Including dues and contributions'
   résumé.fr: Incluant les cotisations et contributions
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
