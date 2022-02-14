@@ -333,12 +333,7 @@ function IntegrationCode({
 			`}
 		>
 			<span>{'<'}</span>
-			<em>
-				script
-				<br />
-				id
-			</em>
-			="script-simulateur-embauche"
+			<em>script</em>
 			<br />
 			<em>data-module</em>="
 			<span>{module}</span>"

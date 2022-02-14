@@ -1,8 +1,6 @@
 import { hexToHSL } from './hexToHSL'
 
-let script =
-		document.getElementById('script-monentreprise') ||
-		document.getElementById('script-simulateur-embauche'),
+let script = document.currentScript,
 	moduleName = script.dataset.module || 'simulateur-embauche',
 	couleur =
 		script.dataset.couleur &&
@@ -65,8 +63,8 @@ links.innerHTML = `
 	</div>
 `
 
-script.parentNode.insertBefore(iframe, script)
-script.parentNode.insertBefore(links, script)
+script.before(iframe)
+script.before(links)
 
 window.addEventListener('message', function (evt) {
 	if (evt.data.kind === 'resize-height') {
