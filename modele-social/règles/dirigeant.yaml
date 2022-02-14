@@ -189,9 +189,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   unité: €/mois
   note: |
     Nous n'avons pas intégré les exceptions suivantes :
-
     - Artisans en double immatriculation CCI-CMA
-    - Les taux de l'Alsace et de la Moselle
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
   somme:
@@ -200,14 +198,21 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
-  unité: €/mois
   applicable si: entreprise . activité = 'commerciale'
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . service BNC
+      - assiette: entreprise . chiffre d'affaires . service BIC
         taux: 0.044%
+        attributs:
+          unité: €/mois
+          arrondi: oui
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux: 0.015%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   unité: €/mois
@@ -215,14 +220,21 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   applicable si: entreprise . activité = 'artisanale'
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . service BNC
+      - assiette: entreprise . chiffre d'affaires . service BIC
         taux:
           nom: taux service
           valeur: 0.48%
+        attributs:
+          unité: €/mois
+          arrondi: oui
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux:
           nom: taux vente
           valeur: 0.22%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
@@ -279,7 +291,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
         assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
-            - si: entreprise . activité . libérale réglementée
+            - si:
+                une de ces conditions:
+                  - entreprise . activité . libérale réglementée
+                  - toutes ces conditions:
+                      - année >= 2022
+                      - entreprise . activité = 'libérale'
               alors: 0.2%
             - sinon: 0.1%
 

@@ -1,11 +1,12 @@
 import { Grid } from '@mui/material'
 import { updateSituation } from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
-import { Condition } from 'Components/EngineValue'
+import { Condition, WhenAlreadyDefined } from 'Components/EngineValue'
 import PageHeader from 'Components/PageHeader'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { FromTop } from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
+import Emoji from 'Components/utils/Emoji'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
 import { Strong } from 'DesignSystem/typography'
 import { H2, H3 } from 'DesignSystem/typography/heading'
@@ -14,11 +15,9 @@ import { Body, Intro, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useCallback } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { TrackPage } from '../../../ATInternetTracking'
-import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 import { ExplicationsResultatFiscal } from './ExplicationResultatFiscal'
 import { SimpleField, SubSection } from './Fields'
@@ -41,9 +40,6 @@ const FEATURE_FLAG_RESULTATS_COMPLETS =
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
 
-	const company = useSelector(
-		(state: RootState) => state.inFranceApp.existingCompany
-	)
 	const situation = useSelector(situationSelector)
 	return (
 		<>
@@ -102,37 +98,26 @@ export default function AideDéclarationIndépendant() {
 			<FromTop>
 				<Grid container>
 					<Grid item xs={12} sm={10} md={9} lg={8}>
-						<Condition expression="aide déclaration revenu indépendant 2020 . comptabilité . engagement">
+						<Condition expression="déclaration indépendants . comptabilité . engagement">
 							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
 								<H2>Entreprise et activité</H2>
 							</Trans>
-							<>
-								{!company && (
-									<SmallBody>
-										<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
-											<strong>Facultatif : </strong>Vous pouvez renseigner votre
-											entreprise pour pré-remplir le formulaire
-										</Trans>
-									</SmallBody>
-								)}
-								<CompanySection company={company} />
-							</>
 							<SimpleField
 								dottedName="entreprise . date de création"
 								showSuggestions={false}
 							/>
-							<Condition expression="entreprise . date de création > 31/12/2020">
+							<Condition expression="entreprise . date de création > 31/12/2021">
 								<SmallBody
 									css={`
 										color: #ff2d96;
 									`}
 								>
 									Cette aide à la déclaration concerne uniquement les
-									entreprises déjà en activité en 2020
+									entreprises déjà en activité en 2021
 								</SmallBody>
 							</Condition>
 
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+							<SubSection dottedName="déclaration indépendants . nature de l'activité" />
 							{/* PLNR */}
 							<SimpleField dottedName="entreprise . activité . débit de tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
@@ -150,12 +135,17 @@ export default function AideDéclarationIndépendant() {
 							<H2>
 								<Trans>Exonérations</Trans>
 							</H2>
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . ACRE" />
+							<Body>
+								<Emoji emoji="🏗️" /> Les calculs de l'exonération COVID 2021
+								sont en cours d'implémentation
+							</Body>
+							<SimpleField dottedName="déclaration indépendants . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
 								hideTitle
 								dottedName="entreprise . effectif . seuil"
 							/>
+
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle
@@ -173,12 +163,11 @@ export default function AideDéclarationIndépendant() {
 									hideTitle
 								/>
 							</Condition>
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . réduction covid" />
 						</Condition>
 
-						<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées">
-							<SubSection dottedName="aide déclaration revenu indépendant 2020 . cotisations payées" />
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . nature de l'activité" />
+						<Condition expression="déclaration indépendants . cotisations payées">
+							<SubSection dottedName="déclaration indépendants . cotisations payées" />
+							<SimpleField dottedName="déclaration indépendants . nature de l'activité" />
 							<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
 							<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
 							{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
@@ -191,21 +180,21 @@ export default function AideDéclarationIndépendant() {
 							</Condition>
 						</Condition>
 
-						<Condition expression="aide déclaration revenu indépendant 2020 . cotisations payées version simple">
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . cotisations sociales" />
-							<SimpleField dottedName="aide déclaration revenu indépendant 2020 . cotisations payées version simple . CSG déductible et CFP" />
+						<Condition expression="déclaration indépendants . cotisations payées version simple">
+							<SimpleField dottedName="déclaration indépendants . cotisations payées version simple . cotisations sociales" />
+							<SimpleField dottedName="déclaration indépendants . cotisations payées version simple . CSG déductible et CFP" />
 						</Condition>
 					</Grid>
 				</Grid>
 			</FromTop>
 			{FEATURE_FLAG_RESULTATS_COMPLETS ? (
 				<>
-					<SubSection dottedName="aide déclaration revenu indépendant 2020 . régime d'imposition" />
+					<SubSection dottedName="déclaration indépendants . régime d'imposition" />
 					<Condition
 						expression={{
 							'une de ces conditions': [
-								"aide déclaration revenu indépendant 2020 . régime d'imposition . réel",
-								"aide déclaration revenu indépendant 2020 . régime d'imposition . déclaration contrôlée",
+								"déclaration indépendants . régime d'imposition . réel",
+								"déclaration indépendants . régime d'imposition . déclaration contrôlée",
 								'entreprise . imposition . IR . micro-fiscal',
 							],
 						}}
@@ -215,7 +204,9 @@ export default function AideDéclarationIndépendant() {
 					</Condition>
 				</>
 			) : (
-				<ResultatsSimples />
+				<WhenAlreadyDefined dottedName="déclaration indépendants . résultat simple . cotisations obligatoires">
+					<ResultatsSimples />
+				</WhenAlreadyDefined>
 			)}
 		</>
 	)
@@ -236,14 +227,14 @@ function ImpositionSection() {
 			<SimpleField dottedName="entreprise . imposition" />
 			{situation['entreprise . imposition'] != null && (
 				<>
-					{/* <WhenApplicable dottedName="aide déclaration revenu indépendant 2020 . comptabilité"> */}
-					<SimpleField dottedName="aide déclaration revenu indépendant 2020 . comptabilité" />
+					{/* <WhenApplicable dottedName="déclaration indépendants . comptabilité"> */}
+					<SimpleField dottedName="déclaration indépendants . comptabilité" />
 					{/* </WhenApplicable> */}
 					<Condition
 						expression={
 							FEATURE_FLAG_RESULTATS_COMPLETS
 								? 'oui'
-								: 'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non'
+								: 'déclaration indépendants . cotisations payées version simple = non'
 						}
 					>
 						<FromTop key={situation['entreprise . imposition']}>
@@ -251,7 +242,7 @@ function ImpositionSection() {
 								<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
 								<Condition expression="entreprise . imposition . IR . micro-fiscal">
 									<H2>
-										Quel est votre chiffre d'affaires hors taxes en 2020 ?
+										Quel est votre chiffre d'affaires hors taxes en 2021 ?
 									</H2>
 									<SmallBody>
 										Indiquez le montant hors taxes de votre chiffre d’affaires
@@ -265,7 +256,7 @@ function ImpositionSection() {
 								</Condition>
 								<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 									<H2>
-										Quel est votre résultat fiscal en 2020 ?<br />
+										Quel est votre résultat fiscal en 2021 ?<br />
 										<small>
 											Charges sociales et exonérations fiscales non incluses{' '}
 											<ExplicationsResultatFiscal />
@@ -287,7 +278,7 @@ function ImpositionSection() {
 							</Condition>
 							<Condition expression="entreprise . imposition . IS">
 								<H2>
-									Quel est le montant net de votre rémunération en 2020 ?
+									Quel est le montant net de votre rémunération en 2021 ?
 									<br />
 									<small>Sans tenir compte des charges sociales</small>
 								</H2>

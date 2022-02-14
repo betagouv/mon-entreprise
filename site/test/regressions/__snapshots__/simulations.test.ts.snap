@@ -1,14 +1,14 @@
 // Vitest Snapshot v1
 
-exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[11369,50000,33996,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[9020,50000,36345,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[3263,15000,10282,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[913,15000,12630,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[1369,5000,3083,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[300,5000,4152,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[606,10000,8392,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[1487,10000,7511,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[2204,10000,6794,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[606,10000,8392,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048,0,1,1,0]"`;
 
@@ -16,21 +16,13 @@ exports[`calculate aide-déclaration-indépendant > RSA 1`] = `"[82,500,279,0,1,
 
 exports[`calculate aide-déclaration-indépendant > RSA 2`] = `"[1021,5000,3431,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 1`] = `"[9021,50000,37539,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 2`] = `"[0,5000,4881,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 3`] = `"[33,15000,14803,0,1,1,0]"`;
-
-exports[`calculate aide-déclaration-indépendant > aide covid 2020 4`] = `"[7546,35000,24814,0,1,1,0]"`;
-
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 1`] = `"[14093,50000,31238,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 2`] = `"[13578,50000,31753,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 3`] = `"[11461,50000,33870,0,1,1,0]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14098,50000,31253,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14097,50000,31254,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 5`] = `"[11461,50000,33870,0,1,1,0]"`;
 
@@ -73,12 +65,12 @@ exports[`calculate aide-déclaration-indépendant > échelle de revenus 5`] = `"
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 6`] = `"[2204,10000,6794,0,1,1,0]"`;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 7`] = `
-"[20929,100000,69895,0,1,1,0]
+"[20928,100000,69895,0,1,1,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 8`] = `
-"[106448,1000000,802634,0,1,1,0]
+"[106447,1000000,802635,0,1,1,0]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
@@ -100,36 +92,38 @@ exports[`calculate simulations-artiste-auteur > salarié 2`] = `"[1603]"`;
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `"[12410]"`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `"[22966,247,20000,0,20000]"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `"[22962,247,20000,0,20000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
-"[22633,219,20000,0,20000]
+"[22630,219,20000,0,20000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `"[34449,371,30000,0,30000]"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `"[34443,370,30000,0,30000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
-"[45267,439,40000,0,40000]
+"[45273,439,40000,0,40000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
-"[21394,116,20000,0,20000]
+"[21390,116,20000,0,20000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `"[20000,292,16499,0,16499]"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `"[20000,292,16500,0,16500]"`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `"[20000,317,16193,0,16193]"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `"[20000,318,16180,0,16180]"`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `"[20000,297,16438,0,16438]"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `"[20000,301,16388,0,16388]"`;
 
-exports[`calculate simulations-auto-entrepreneur > aides 1`] = `"[5742,62,5000,0,5000]"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `"[0,715,0,0,0]"`;
 
-exports[`calculate simulations-auto-entrepreneur > aides 2`] = `"[57415,618,50000,237,49763]"`;
+exports[`calculate simulations-auto-entrepreneur > aides 1`] = `"[5741,62,5000,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `"[32092,591,25000,706,24294]"`;
+exports[`calculate simulations-auto-entrepreneur > aides 2`] = `"[57419,618,50000,237,49763]"`;
+
+exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `"[32134,594,25000,707,24293]"`;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `"[574,6,500,0,500]"`;
 
@@ -137,23 +131,23 @@ exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `"[
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `"[2296,25,2000,0,2000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `"[5742,62,5000,0,5000]"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `"[5741,62,5000,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `"[11483,124,10000,0,10000]"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `"[11481,123,10000,0,10000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `"[22966,247,20000,0,20000]"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `"[22962,247,20000,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `"[57415,618,50000,237,49763]"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `"[57419,618,50000,237,49763]"`;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `"[80381,865,70000,1301,68699]"`;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
-"[114830,1236,100000,3912,96088]
+"[114824,1235,100000,3912,96088]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
-"[1148303,12359,1000000,131653,868347]
+"[1148298,12358,1000000,131652,868348]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
@@ -441,6 +435,8 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > a
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > activités 5`] = `"[917,10998,0,10679,4,20]"`;
 
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > activités 6`] = `"[917,10998,0,10679,4,20]"`;
+
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > avec charges 1`] = `"[442,5299,0,5275,4,10]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > avec charges 2`] = `"[917,10998,0,10679,4,20]"`;
@@ -462,50 +458,52 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > �
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > échelle de rémunération 8`] = `"[4758,57101,0,52069,4,47]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > ACRE 1`] = `
-"[0,9349,9349,1450,2,0]
+"[0,9350,9350,1450,2,0]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > ACRE 2`] = `
-"[0,18697,18697,2900,3,8]
+"[0,18700,18700,2900,3,8]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > ACRE 3`] = `
-"[0,28046,28046,4350,4,12]
+"[0,28050,28050,4350,4,12]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 1`] = `"[0,34834,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 1`] = `"[0,34828,34828,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 2`] = `"[0,34834,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 2`] = `"[0,34828,34828,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 3`] = `"[0,34834,34834,5800,4,16]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 3`] = `"[0,34828,34828,5800,4,16]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 4`] = `"[0,18288,18288,3045,4,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 4`] = `"[0,18291,18291,3045,4,8]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 5`] = `
-"[0,274318,274318,20568,4,56]
+"[0,274317,274317,20568,4,56]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IR . micro-fiscal . alerte seuil dépassés"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 6`] = `"[0,17852,17852,2973,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 6`] = `"[0,17856,17856,2973,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 7`] = `"[0,17417,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 7`] = `"[0,17420,17420,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 1`] = `"[0,15580,15580,6600,4,18]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 1`] = `"[0,15560,15560,6600,4,18]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 2`] = `"[0,15520,15520,6600,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 3`] = `"[0,17336,17336,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 3`] = `"[0,17332,17332,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 4`] = `"[0,17417,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 4`] = `"[0,15444,15444,5000,4,14]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 5`] = `"[0,15580,15580,5000,4,14]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 5`] = `"[0,17420,17420,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > avec charges 1`] = `"[0,10450,10450,1740,3,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 6`] = `"[0,15568,15568,5000,4,14]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > avec charges 2`] = `"[0,30480,30480,5075,4,14]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > avec charges 1`] = `"[0,10452,10452,1740,3,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > avec charges 2`] = `"[0,30485,30485,5075,4,14]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 1`] = `"[0,87,87,0,0,0]"`;
 
@@ -513,16 +511,16 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > é
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 3`] = `"[0,1742,1742,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 4`] = `"[0,4354,4354,725,1,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 4`] = `"[0,4355,4355,725,1,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 5`] = `"[0,8709,8709,1450,2,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 5`] = `"[0,8710,8710,1450,2,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 6`] = `"[0,17417,17417,2900,3,8]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 6`] = `"[0,17420,17420,2900,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 7`] = `"[0,43543,43543,7250,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 7`] = `"[0,43538,43538,7250,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > échelle de rémunération 8`] = `
-"[0,87085,87085,14500,4,40]
+"[0,87088,87088,14500,4,40]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
@@ -555,9 +553,11 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant) > activit
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 3`] = `"[0,13758,0,10089,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,13768,0,10095,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,13758,0,10089,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 5`] = `"[0,13768,0,10095,4,21]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 6`] = `"[0,13768,0,10095,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 1`] = `"[0,6794,0,5002,4,21]"`;
 

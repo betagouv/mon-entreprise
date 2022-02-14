@@ -364,9 +364,10 @@ export default ({ t = (_, text) => text } = {}) => {
 				'pages.gérer.aide-déclaration-indépendant.shortname',
 				'Aide à la déclaration de revenu'
 			),
+			iframePath: 'aide-déclaration-indépendant',
 			title: t(
 				'pages.gérer.aide-déclaration-indépendant.title',
-				"Aide à la déclaration de revenus au titre de l'année 2020"
+				'Assistant à la déclaration de revenus pour indépendant'
 			),
 		},
 		'demande-mobilité': {

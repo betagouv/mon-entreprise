@@ -5,9 +5,11 @@ import { FromTop } from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { Article } from 'DesignSystem/card'
 import { H2, H3 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body, Intro } from 'DesignSystem/typography/paragraphs'
+import { utils } from 'publicodes'
 import { Trans } from 'react-i18next'
 
 export default function ResultatsSimples() {
@@ -40,8 +42,8 @@ export default function ResultatsSimples() {
 			</Body>
 			{(
 				[
-					'aide déclaration revenu indépendant 2020 . résultat simple . cotisations obligatoires',
-					'aide déclaration revenu indépendant 2020 . résultat simple . total charges sociales déductible',
+					'déclaration indépendants . résultat simple . cotisations obligatoires',
+					'déclaration indépendants . résultat simple . total charges sociales déductible',
 				] as const
 			).map((dottedName) => {
 				const r = engine.getRule(dottedName)
@@ -55,7 +57,7 @@ export default function ResultatsSimples() {
 							<Condition
 								expression={{
 									'toutes ces conditions': [
-										'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non',
+										'déclaration indépendants . cotisations payées version simple = non',
 										'entreprise . imposition . IR . micro-fiscal = non',
 									],
 								}}
@@ -63,7 +65,8 @@ export default function ResultatsSimples() {
 								&nbsp;
 								<small>{r.rawNode.résumé}</small>
 							</Condition>{' '}
-							:{' '}
+						</H3>
+						<Intro>
 							<RuleLink dottedName={r.dottedName}>
 								<Value
 									expression={r.dottedName}
@@ -72,7 +75,7 @@ export default function ResultatsSimples() {
 									precision={0}
 								/>
 							</RuleLink>
-						</H3>
+						</Intro>
 
 						{r.rawNode.description && (
 							<Markdown>{r.rawNode.description}</Markdown>
@@ -83,7 +86,7 @@ export default function ResultatsSimples() {
 			<Condition
 				expression={{
 					'toutes ces conditions': [
-						'aide déclaration revenu indépendant 2020 . cotisations payées version simple = non',
+						'déclaration indépendants . cotisations payées version simple = non',
 						'entreprise . imposition . IR . micro-fiscal = non',
 					],
 				}}
@@ -94,11 +97,11 @@ export default function ResultatsSimples() {
 				<Grid container spacing={2}>
 					{(
 						[
-							'aide déclaration revenu indépendant 2020 . réduction covid . total',
-							'aide déclaration revenu indépendant 2020 . résultat simple . revenu net fiscal',
-							'aide déclaration revenu indépendant 2020 . résultat simple . CSG déductible',
-							'aide déclaration revenu indépendant 2020 . résultat simple . CFP',
-							'aide déclaration revenu indépendant 2020 . résultat simple . assiette sociale',
+							'déclaration indépendants . réduction covid . total',
+							'déclaration indépendants . résultat simple . revenu net fiscal',
+							'déclaration indépendants . résultat simple . CSG déductible',
+							'déclaration indépendants . résultat simple . CFP',
+							'déclaration indépendants . résultat simple . assiette sociale',
 						] as const
 					).map((dottedName) => {
 						const r = engine.getRule(dottedName)
@@ -106,26 +109,31 @@ export default function ResultatsSimples() {
 							return null
 						}
 						return (
-							<Grid item key={dottedName} xs={12} sm={6} md={4} lg={3}>
-								<Intro>
-									<RuleLink dottedName={r.dottedName} />
-									&nbsp;
-									<small>{r.rawNode.résumé}</small>
-								</Intro>
-
-								{r.rawNode.description && (
-									<Markdown>{r.rawNode.description}</Markdown>
-								)}
-								<Intro>
-									<RuleLink dottedName={r.dottedName}>
-										<Value
-											expression={r.dottedName}
-											displayedUnit="€"
-											unit="€/an"
-											precision={0}
-										/>
-									</RuleLink>
-								</Intro>
+							<Grid item key={dottedName} xs={12} sm={6} lg={4}>
+								<Article
+									to={`/documentation/${utils.encodeRuleName(dottedName)}`}
+									ctaLabel={
+										<Intro>
+											<Value
+												expression={r.dottedName}
+												displayedUnit="€"
+												unit="€/an"
+												precision={0}
+											/>
+										</Intro>
+									}
+									title={
+										<>
+											<RuleLink dottedName={r.dottedName} />
+											&nbsp;
+											<small>{r.rawNode.résumé}</small>
+										</>
+									}
+								>
+									{r.rawNode.description && (
+										<Markdown>{r.rawNode.description}</Markdown>
+									)}
+								</Article>
 							</Grid>
 						)
 					})}
