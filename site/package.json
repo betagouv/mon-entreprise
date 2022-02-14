@@ -44,6 +44,7 @@
 		"build:storybook": "build-storybook"
 	},
 	"resolutions": {
+		"prettier": "^2.5.1",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
 	},
 	"dependencies": {

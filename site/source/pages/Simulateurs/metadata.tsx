@@ -737,8 +737,9 @@ export default function useSimulatorsData(): SimulatorData {
 	)
 }
 
-export const CurrentSimulatorDataContext =
-	createContext<SimulatorData[keyof SimulatorData] | null>(null)
+export const CurrentSimulatorDataContext = createContext<
+	SimulatorData[keyof SimulatorData] | null
+>(null)
 
 export const CurrentSimulatorDataProvider = CurrentSimulatorDataContext.Provider
 

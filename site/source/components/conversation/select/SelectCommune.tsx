@@ -86,8 +86,9 @@ export default function Select({
 	const [name, setName] = useState(
 		missing ? '' : formatCommune(value as Commune)
 	)
-	const [searchResults, setSearchResults] =
-		useState<null | Array<Commune>>(null)
+	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
+		null
+	)
 	const { t } = useTranslation()
 	const [isLoading, setLoadingState] = useState(false)
 

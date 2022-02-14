@@ -1,4 +1,4 @@
-import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import {
 	add,
 	any,
@@ -140,24 +140,23 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 	).filter(isCompatibleStatusWith(legalStatusRequirements) as any)
 
 	const unansweredQuestions = difference(QUESTION_LIST, questionAnswered)
-	const shannonEntropyByQuestion = unansweredQuestions.map((question): [
-		typeof question,
-		number
-	] => {
-		const answerPopulation = Object.values(possibleStatusList).map(
-			(status: any) => status[question]
-		)
-		const frequencyOfAnswers = Object.values(
-			countBy(
-				(x) => x,
-				answerPopulation.filter((x) => x !== undefined)
+	const shannonEntropyByQuestion = unansweredQuestions.map(
+		(question): [typeof question, number] => {
+			const answerPopulation = Object.values(possibleStatusList).map(
+				(status: any) => status[question]
 			)
-		).map((numOccurrence) => numOccurrence / answerPopulation.length)
-		const shannonEntropy = -frequencyOfAnswers
-			.map((p) => p * Math.log2(p))
-			.reduce(add, 0)
-		return [question, shannonEntropy]
-	})
+			const frequencyOfAnswers = Object.values(
+				countBy(
+					(x) => x,
+					answerPopulation.filter((x) => x !== undefined)
+				)
+			).map((numOccurrence) => numOccurrence / answerPopulation.length)
+			const shannonEntropy = -frequencyOfAnswers
+				.map((p) => p * Math.log2(p))
+				.reduce(add, 0)
+			return [question, shannonEntropy]
+		}
+	)
 
 	const sortedPossibleNextQuestions = sortBy(
 		([, entropy]) => -entropy,
