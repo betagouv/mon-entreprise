@@ -103,142 +103,253 @@ début d'activité . date:
     - si: début d'activité = 'décembre 2021'
       alors: 12/2021
 
-LFSS600:
+mois:
   applicable si: secteur . S1 ou S1bis
   valeur: oui
 
-LFSS600 . mois éligibles:
-  unité: mois
-  description: Nombre de mois éligible à l'exonération LFSS à 600 €
-  somme:
-    - par défaut: non
-      valeur:
-        nom: janvier 2021
-        applicable si: début d'activité . date >= 01/2021
-        non applicable si: début d'activité . date >= 02/2021
-    - par défaut: non
-      valeur:
-        nom: février 2021
-        non applicable si: début d'activité . date >= 03/2021
-        applicable si: début d'activité . date >= 01/2021
-    - par défaut: non
-      valeur:
-        nom: mars 2021
-        non applicable si: début d'activité . date >= 04/2021
-        applicable si: début d'activité . date >= 01/2021
-    - par défaut: non
-      valeur:
-        nom: avril 2021
-        non applicable si: début d'activité . date >= 05/2021
-    - par défaut: non
-      valeur:
-        nom: mai 2021
-        non applicable si: début d'activité . date >= 06/2021
-    - par défaut: non
-      valeur:
-        nom: juin 2021
-        non applicable si: début d'activité . date >= 07/2021
-    - par défaut: non
-      valeur:
-        nom: juillet 2021
-        non applicable si: début d'activité . date >= 08/2021
-    - par défaut: non
-      valeur:
-        nom: août 2021
-        applicable si: lieu d'exercice = 'outre-mer'
-        non applicable si: début d'activité . date >= 09/2021
-    - par défaut: non
-      valeur:
-        nom: septembre 2021
-        applicable si: lieu d'exercice = 'outre-mer'
-        non applicable si: début d'activité . date >= 10/2021
-    - par défaut: non
-      valeur:
-        nom: octobre 2021
-        applicable si: lieu d'exercice = 'outre-mer'
-        non applicable si: début d'activité . date >= 11/2021
-    - par défaut: non
-      valeur:
-        nom: novembre 2021
-        applicable si: lieu d'exercice = 'outre-mer'
-        non applicable si: début d'activité . date >= 12/2021
-    - par défaut: non
-      valeur:
-        nom: décembre 2021
-    - par défaut: non
-      valeur:
-        nom: janvier 2022
-    - par défaut: non
-      valeur:
-        nom: février 2022
+mois . janvier 2021:
+  applicable si: début d'activité . date >= 01/2021
+  non applicable si: début d'activité . date >= 02/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
 
-LFSS600 . montant:
+mois . janvier 2021 . LFSS 600:
+  valeur: janvier 2021 = 'LFSS 600'
+
+mois . février 2021:
+  non applicable si: début d'activité . date >= 03/2021
+  applicable si: début d'activité . date >= 01/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . février 2021 . LFSS 600:
+  valeur: février 2021 = 'LFSS 600'
+
+mois . mars 2021:
+  non applicable si: début d'activité . date >= 04/2021
+  applicable si: début d'activité . date >= 01/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . mars 2021 . LFSS 600:
+  valeur: mars 2021 = 'LFSS 600'
+
+mois . avril 2021:
+  non applicable si: début d'activité . date >= 05/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . avril 2021 . LFSS 600:
+  valeur: avril 2021 = 'LFSS 600'
+
+mois . mai 2021:
+  non applicable si: début d'activité . date >= 06/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . mai 2021 . LFSS 600:
+  valeur: mai 2021 = 'LFSS 600'
+
+mois . juin 2021:
+  non applicable si: début d'activité . date >= 07/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . juin 2021 . LFSS 600:
+  valeur: juin 2021 = 'LFSS 600'
+mois . juin 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: juin 2021 = 'LFR1'
+
+mois . juillet 2021:
+  non applicable si: début d'activité . date >= 08/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . juillet 2021 . LFSS 600:
+  valeur: juillet 2021 = 'LFSS 600'
+
+mois . juillet 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: juillet 2021 = 'LFR1'
+
+mois . août 2021:
+  non applicable si: début d'activité . date >= 09/2021
+  applicable si:
+    une de ces conditions:
+      - LFR1 applicable
+      - lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . août 2021 . LFSS 600:
+  valeur: août 2021 = 'LFSS 600'
+  applicable si: lieu d'exercice = 'outre-mer'
+
+mois . août 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: août 2021 = 'LFR1'
+
+mois . septembre 2021:
+  non applicable si: début d'activité . date >= 10/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . septembre 2021 . LFSS 600:
+  valeur: septembre 2021 = 'LFSS 600'
+
+mois . octobre 2021:
+  non applicable si: début d'activité . date >= 11/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . octobre 2021 . LFSS 600:
+  valeur: octobre 2021 = 'LFSS 600'
+
+mois . novembre 2021:
+  non applicable si: début d'activité . date >= 12/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . novembre 2021 . LFSS 600:
+  valeur: novembre 2021 = 'LFSS 600'
+
+mois . décembre 2021:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . décembre 2021 . LFSS 600:
+  valeur: décembre 2021 = 'LFSS 600'
+mois . décembre 2021 . LFSS 300:
+  valeur: décembre 2021 = 'LFSS 300'
+
+mois . janvier 2022:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . janvier 2022 . LFSS 600:
+  valeur: janvier 2022 = 'LFSS 600'
+mois . janvier 2022 . LFSS 300:
+  valeur: janvier 2022 = 'LFSS 300'
+
+mois . février 2022:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . février 2022 . LFSS 600:
+  valeur: février 2022 = 'LFSS 600'
+mois . février 2022 . LFSS 300:
+  valeur: février 2022 = 'LFSS 300'
+
+LFSS 600:
+  applicable si: secteur . S1 ou S1bis
   produit:
     assiette: 600 €/mois
-    facteur: mois éligibles
+    facteur:
+      nom: mois éligibles
+      unité: mois
+      description: Nombre de mois éligible à l'exonération LFSS à 600 €
+      somme:
+        - valeur: mois . janvier 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . février 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . mars 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . avril 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . mai 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . juin 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . juillet 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . août 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . septembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . octobre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . novembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . décembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . janvier 2022 . LFSS 600
+          par défaut: non
+        - valeur: mois . février 2022 . LFSS 600
+          par défaut: non
 
-LFSS300:
+LFSS 300:
   applicable si: secteur . S1 ou S1bis
-  valeur: oui
-
-LFSS300 . mois éligibles:
-  unité: mois
-  description: Nombre de mois éligible à l'exonération LFSS à 300€
-  somme:
-    - par défaut: non
-      valeur:
-        nom: décembre 2021
-        non applicable si: LFSS600 . mois éligibles . décembre 2021
-    - par défaut: non
-      valeur:
-        non applicable si: LFSS600 . mois éligibles . janvier 2022
-        nom: janvier 2022
-    - par défaut: non
-      valeur:
-        non applicable si: LFSS600 . mois éligibles . février 2022
-        nom: février 2022
-
-LFSS300 . montant:
   produit:
     assiette: 300 €/mois
-    facteur: mois éligibles
+    facteur:
+      nom: mois éligibles
+      description: Nombre de mois éligible à l'exonération LFSS à 300€
+      unité: mois
+      somme:
+        - valeur: mois . décembre 2021 . LFSS 300
+          par défaut: non
+        - valeur: mois . janvier 2022 . LFSS 300
+          par défaut: non
+        - valeur: mois . février 2022 . LFSS 300
+          par défaut: non
 
-LFR1:
+LFR1 applicable:
   valeur: oui
   applicable si:
     toutes ces conditions:
       - secteur . S1 ou S1bis
       - début d'activité . date < 06/2021
-
-LFR1 . mois éligibles:
-  unité: mois
   non applicable si:
     toutes ces conditions:
       - début d'activité . date >= 01/2021
-      - LFSS600 . mois éligibles . mars 2021 = non
-      - LFSS600 . mois éligibles . avril 2021 = non
-      - LFSS600 . mois éligibles . mai 2021 = non
-  description: Nombre de mois éligible à l'exonération LFR1
-  somme:
-    - par défaut: non
-      valeur:
-        nom: juin 2021
-        non applicable si: LFSS600 . mois éligibles . juin 2021
-    - par défaut: non
-      valeur:
-        nom: juillet 2021
-        non applicable si: LFSS600 . mois éligibles . juillet 2021
-    - par défaut: non
-      valeur:
-        nom: août 2021
-        non applicable si: LFSS600 . mois éligibles . août 2021
+      - mois . mars 2021 . LFSS 600 = non
+      - mois . avril 2021 . LFSS 600 = non
+      - mois . mai 2021 . LFSS 600 = non
 
-LFR1 . montant:
+LFR1:
   produit:
-    assiette: mois éligibles
-    facteur: 600 €/mois
+    assiette: 600 €/mois
+    facteur:
+      unité: mois
+      description: Nombre de mois éligible à l'exonération LFR1
+      nom: mois éligibles
+      somme:
+        - valeur: mois . juin 2021 . LFR1
+          par défaut: non
+        - valeur: mois . juillet 2021 . LFR1
+          par défaut: non
+        - valeur: mois . août 2021 . LFR1
+          par défaut: non
 
 exonération S2:
+  produit:
+    assiette: 600 €/mois
+    facteur: mois éligibles
   applicable si:
     toutes ces conditions:
       - secteur . S2
@@ -273,14 +384,9 @@ exonération S2 . mois éligibles . dernier mois:
       alors: 09/2021
     - sinon: 07/2021
 
-exonération S2 . montant:
-  produit:
-    assiette: mois éligibles
-    facteur: 600 €/mois
-
 montant total:
   somme:
-    - LFR1 . montant
-    - LFSS600 . montant
-    - LFSS300 . montant
-    - exonération S2 . montant
+    - LFSS 600
+    - LFR1
+    - LFSS 300
+    - exonération S2

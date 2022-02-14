@@ -56,6 +56,7 @@ export default function MonEntrepriseRulePage() {
 			<ScrollToTop key={pathname} />
 			<Grid item md={10}>
 				<BackToSimulation />
+				<Spacing xl />
 				<Route
 					path={documentationPath + '/:name+'}
 					render={({ match }) =>
@@ -241,6 +242,7 @@ function componentCSS(rules: any, props: any) {
 const StyledDocumentation = styled.div`
 	h1 {
 		${(props) => componentCSS((H1.componentStyle as any).rules, props)}
+		margin-top: 1rem;
 	}
 	h2 {
 		${(props) => componentCSS((H2.componentStyle as any).rules, props)}
