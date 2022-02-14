@@ -3,7 +3,10 @@ const reactPlugin = require('@vitejs/plugin-react')
 const path = require('path')
 
 module.exports = {
-	stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
+	stories: [
+		'../source/**/*.stories.mdx',
+		'../source/**/*.stories.@(js|jsx|ts|tsx)',
+	],
 	addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
 	framework: '@storybook/react',
 	core: {
