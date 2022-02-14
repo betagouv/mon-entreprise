@@ -5,7 +5,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import toml from 'rollup-plugin-toml'
 import { defineConfig, Plugin } from 'vite'
-import { watchDottedNames } from '../modele-social/build.js'
+import { watchDottedNames } from '../scripts/build-rules'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import serveStatic from 'serve-static'
 
