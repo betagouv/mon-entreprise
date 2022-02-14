@@ -43,7 +43,7 @@ function readRules() {
 
 // Note: we can't put the output file in the fs.watched directory
 
-function writeJSFile() {
+export default function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(rules)
 	const jsString = `export default ${JSON.stringify(rules, null, 2)}`
@@ -55,6 +55,3 @@ function writeJSFile() {
 }
 
 writeJSFile()
-export function watchDottedNames() {
-	return fs.watch(publicodesDir, writeJSFile)
-}
