@@ -40,7 +40,7 @@ export function FromBottom({
 		<>
 			{trail.map((style, i) => (
 				<AnimatedDiv
-					// @ts-expect-error:  bug when using babel-plugin-styled-components and react-spring
+					// bug when using babel-plugin-styled-components and react-spring
 					key={i}
 					style={{
 						...inheritedStyle,

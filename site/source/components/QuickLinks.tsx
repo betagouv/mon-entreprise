@@ -42,13 +42,9 @@ export default function QuickLinks() {
 			{links.map(([label, dottedName]) => (
 				<Link
 					key={dottedName}
-					css={
-						dottedName === currentQuestion
-							? css`
-									text-decoration: underline;
-							  `
-							: ''
-					}
+					css={{
+						textDecoration: dottedName === currentQuestion ? 'underline' : '',
+					}}
 					onPress={() => dispatch(goToQuestion(dottedName))}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
