@@ -244,15 +244,13 @@ export function getSimulatorsData({
 						d'impôt ou de cotisations sur leur montant (sauf si vous avez opté
 						pour l'option micro-fiscal).
 					</Body>
-					<Body>
-						La formule de calcul complète est donc :
-						<blockquote>
-							<strong>
-								Revenu net = Chiffres d'affaires − Dépenses professionnelles -
-								Cotisations sociales
-							</strong>
-						</blockquote>
-					</Body>
+					<Body>La formule de calcul complète est donc :</Body>
+					<blockquote>
+						<strong>
+							Revenu net = Chiffres d'affaires − Dépenses professionnelles -
+							Cotisations sociales
+						</strong>
+					</blockquote>
 					<H2>
 						Comment calculer les cotisations sociales d'une entreprise
 						individuelle ?
@@ -391,15 +389,13 @@ export function getSimulatorsData({
 						prises en compte pour vérifier si l'activité est viable
 						économiquement.
 					</Body>
-					<Body>
-						La formule de calcul complète est donc :
-						<blockquote>
-							<strong>
-								Revenu net = Chiffres d'affaires − Cotisations sociales −
-								Dépenses professionnelles
-							</strong>
-						</blockquote>
-					</Body>
+					<Body>La formule de calcul complète est donc :</Body>
+					<blockquote>
+						<strong>
+							Revenu net = Chiffres d'affaires − Cotisations sociales − Dépenses
+							professionnelles
+						</strong>
+					</blockquote>
 					<H2>
 						Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?
 					</H2>

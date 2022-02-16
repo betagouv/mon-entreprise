@@ -71,7 +71,7 @@ const Value = styled.span`
 	margin-top: 1rem;
 `
 
-const StyledIcon = styled(CarretDown)<{ isOpen: boolean }>`
+const StyledIcon = styled(CarretDown)`
 	margin: 0 4px;
 `
 export const Wrapper = styled.div<{
@@ -218,7 +218,7 @@ export function Select<T extends Record<string, unknown>>(
 						? state.selectedItem.rendered
 						: t('select.value.default', 'Choisissez une option')}
 				</Value>
-				<StyledIcon isOpen={state.isOpen} />
+				<StyledIcon />
 			</Button>
 			{state.isOpen && (
 				<Popover isOpen={state.isOpen} onClose={() => state.close()}>
