@@ -168,22 +168,25 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	return (
 		<>
 			<ResultTable className="ui__ mobile-version">
-				<tr>
-					<th></th>
-					<th>
-						<select
-							onChange={(evt) =>
-								setCurrentColumnIndex(Number(evt.target.value))
-							}
-						>
-							{columns.map((name, i) => (
-								<option value={i} selected={i === currentColumnIndex} key={i}>
-									{name}
-								</option>
-							))}
-						</select>
-					</th>
-				</tr>
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							<select
+								onChange={(evt) =>
+									setCurrentColumnIndex(Number(evt.target.value))
+								}
+								value={currentColumnIndex}
+							>
+								{columns.map((name, i) => (
+									<option value={i} key={i}>
+										{name}
+									</option>
+								))}
+							</select>
+						</th>
+					</tr>
+				</thead>
 				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
@@ -198,34 +201,36 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				</tbody>
 			</ResultTable>
 			<ResultTable>
-				<tr>
-					{head.map((label, i) => (
-						<th key={i}>{label}</th>
-					))}
-				</tr>
-				{body.map(([label, ...line], i) => (
-					<tr key={i}>
-						<td>
-							<RowLabel {...label} />
-						</td>
-						{line.map((cell, j) => (
-							<td key={j}>
-								{' '}
-								<ValueWithLink {...cell} />
-								{cell.additionalText && (
-									<p
-										className="ui__ notice"
-										css={`
-											text-align: right;
-										`}
-									>
-										{cell.additionalText}
-									</p>
-								)}
-							</td>
+				<tbody>
+					<tr>
+						{head.map((label, i) => (
+							<th key={i}>{label}</th>
 						))}
 					</tr>
-				))}
+					{body.map(([label, ...line], i) => (
+						<tr key={i}>
+							<td>
+								<RowLabel {...label} />
+							</td>
+							{line.map((cell, j) => (
+								<td key={j}>
+									{' '}
+									<ValueWithLink {...cell} />
+									{cell.additionalText && (
+										<p
+											className="ui__ notice"
+											css={`
+												text-align: right;
+											`}
+										>
+											{cell.additionalText}
+										</p>
+									)}
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
 			</ResultTable>
 		</>
 	)

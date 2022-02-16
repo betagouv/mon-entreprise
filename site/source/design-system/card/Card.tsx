@@ -39,7 +39,7 @@ export function Card({
 
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
-			<CardContainer compact={compact} {...buttonOrLinkProps} tabIndex={0}>
+			<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
 				{icon && <IconContainer>{icon}</IconContainer>}
 				{title && <StyledHeader {...titleProps} />}
 				<div
@@ -53,7 +53,7 @@ export function Card({
 				</div>
 				{ctaLabel && (
 					// The button is not selectable with keyboard navigation because the whole card already is
-					<CardButton tabIndex={-1} size="XS" light color="primary">
+					<CardButton tabIndex={-1} size="XS" $light color="primary">
 						{ctaLabel}
 						{linkProps.external && <NewWindowLinkIcon />}
 					</CardButton>
@@ -100,7 +100,7 @@ const IconContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.md};
 `
 
-export const CardContainer = styled.div<{ compact?: boolean }>`
+export const CardContainer = styled.div<{ $compact?: boolean }>`
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -119,8 +119,8 @@ export const CardContainer = styled.div<{ compact?: boolean }>`
 	&:focus-visible {
 		${FocusStyle}
 	}
-	padding: ${({ theme: { spacings }, compact = false }) =>
-		compact
+	padding: ${({ theme: { spacings }, $compact = false }) =>
+		$compact
 			? css`
 					${spacings.sm} ${spacings.md}
 			  `
