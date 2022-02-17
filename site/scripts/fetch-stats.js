@@ -273,7 +273,30 @@ async function fetchUserFeedbackIssues() {
 }
 async function main() {
 	createDataDir()
+	// In case we cannot fetch the release (the API is down or the Authorization
+	// token isn't valid) we fallback to some fake data -- it would be better to
+	// have a static ressource accessible without authentification.
+	writeInDataDir('stats.json', {
+		visitesJours: [],
+		visitesMois: [],
+		satisfaction: [],
+		retoursUtilisateurs: {
+			open: [],
+			closed: [],
+		},
+		nbAnswersLast30days: 0,
+	})
 	try {
+		if (
+			!process.env.ATINTERNET_API_ACCESS_KEY ||
+			!process.env.ATINTERNET_API_SECRET_KEY ||
+			!process.env.ZAMMAD_API_SECRET_KEY
+		) {
+			console.log(
+				"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
+			)
+			return
+		}
 		const visitesJours = await fetchDailyVisits()
 		const visitesMois = await fetchMonthlyVisits()
 		const satisfaction = uniformiseData(
@@ -296,23 +319,7 @@ async function main() {
 			nbAnswersLast30days,
 		})
 	} catch (e) {
-		console.error(e)
-
-		// In case we cannot fetch the release (the API is down or the Authorization
-		// token isn't valid) we fallback to some fake data -- it would be better to
-		// have a static ressource accessible without authentification.
-		writeInDataDir('stats.json', {
-			visitesJours: [],
-			visitesMois: [],
-			satisfaction: [],
-			retoursUtilisateurs: {
-				open: [],
-				closed: [],
-			},
-			nbAnswersLast30days: 0,
-		})
+		console.log(e)
 	}
 }
-main().catch((e) => {
-	throw new Error(e)
-})
+main()
