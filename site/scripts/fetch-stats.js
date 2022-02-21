@@ -278,7 +278,9 @@ async function main() {
 	// have a static ressource accessible without authentification.
 	writeInDataDir('stats.json', {
 		visitesJours: [],
-		visitesMois: [],
+		visitesMois: {
+			pages: []
+		},
 		satisfaction: [],
 		retoursUtilisateurs: {
 			open: [],
