@@ -4,16 +4,12 @@ import fs from 'fs'
 import path from 'path'
 import { filter, flatten, map, partition, pipe } from 'ramda'
 import { compose } from 'redux'
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url'
 import { createDataDir, writeInDataDir } from './utils.js'
 
 const matomoSiteVisitsHistory = JSON.parse(
 	fs.readFileSync(
-		path.join(
-			fileURLToPath(import.meta.url),
-			'..',
-			'matomoVisitHistory.json'
-		)
+		path.join(fileURLToPath(import.meta.url), '..', 'matomoVisitHistory.json')
 	)
 )
 
@@ -281,7 +277,7 @@ async function main() {
 	writeInDataDir('stats.json', {
 		visitesJours: [],
 		visitesMois: {
-			pages: []
+			pages: [],
 		},
 		satisfaction: [],
 		retoursUtilisateurs: {
