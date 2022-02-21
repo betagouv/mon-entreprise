@@ -17,6 +17,21 @@ module.exports = {
 		// See https://github.com/eirslett/storybook-builder-vite/issues/201
 		storyStoreV7: true,
 	},
+
+	typescript: (config) => ({
+		...config,
+		reactDocgenTypescriptOptions: {
+			...config.reactDocgenTypescriptOptions,
+			propFilter: (prop) => {
+				// Remove from controls aria-xxx props and props from react types
+				return (
+					!/aria-/.test(prop.name) &&
+					!/node_modules\/@types\/react/.test(prop.parent?.fileName)
+				)
+			},
+		},
+	}),
+
 	async viteFinal(config, { configType }) {
 		const { config: userConfig } = await loadConfigFromFile(
 			path.resolve(__dirname, '../vite.config.ts')

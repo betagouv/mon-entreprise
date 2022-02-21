@@ -62,7 +62,9 @@ const StyledSwitch = styled.span<StyledProps>`
 			: ''}
 `
 
-export type SwitchProps = Parameters<typeof useCheckbox>[0]
+type AriaCheckboxProps = Parameters<typeof useCheckbox>[0]
+
+export type SwitchProps = AriaCheckboxProps
 
 export const Switch = (props: SwitchProps) => {
 	const { t } = useTranslation()
