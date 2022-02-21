@@ -28,4 +28,7 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'assimilé salarié'"
-  contrat salarié . activité partielle: non #TODO : en attendant que la transitivité du remplacement soit implémentée
+
+  #TODO : en attendant que la transitivité du remplacement soit implémentée (https://github.com/betagouv/publicodes/issues/55)
+  contrat salarié . activité partielle: non
+  contrat salarié . déduction forfaitaire spécifique: non
