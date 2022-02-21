@@ -5,7 +5,6 @@ import fs from 'fs/promises'
 import path from 'path'
 import toml from 'rollup-plugin-toml'
 import { defineConfig, Plugin } from 'vite'
-import { watchDottedNames } from '../modele-social/build.js'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import serveStatic from 'serve-static'
 
@@ -162,7 +161,7 @@ function monEntrepriseDevServer(): Plugin {
 		configureServer() {
 			// We could use native ViteJS watch API, but it would require changing
 			// more code and maybe the whole "modele-social" package build process.
-			watchDottedNames()
+			// watchDottedNames()
 		},
 	}
 }

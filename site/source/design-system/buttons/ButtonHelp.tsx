@@ -20,7 +20,7 @@ export default function ButtonHelp({
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<StyledButton light={light ?? false} {...buttonProps}>
+				<StyledButton $light={light} {...buttonProps}>
 					<CircleIcon
 						aria-hidden="true"
 						width="24"
@@ -61,7 +61,7 @@ const CircleIcon = styled.svg`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
 `
 
-const StyledButton = styled(Button)<{ light: boolean }>`
+const StyledButton = styled(Button)<{ $light?: boolean }>`
 	--padding: 2px;
 	&& {
 		height: calc(${({ theme }) => theme.spacings.md} + 2 * var(--padding));
@@ -80,8 +80,8 @@ const StyledButton = styled(Button)<{ light: boolean }>`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.bases.primary[600]} !important;
 		border: 1px solid ${({ theme }) => theme.colors.bases.primary[600]};
-		background-color: ${({ theme, light }) =>
-			light
+		background-color: ${({ theme, $light }) =>
+			$light
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[100]};
 		border-radius: calc(
@@ -89,8 +89,7 @@ const StyledButton = styled(Button)<{ light: boolean }>`
 		);
 
 		:hover {
-			background-color: ${({ theme, light }) =>
-				theme.colors.bases.primary[200]};
+			background-color: ${({ theme }) => theme.colors.bases.primary[200]};
 		}
 	}
 `

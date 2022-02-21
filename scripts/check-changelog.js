@@ -1,13 +1,9 @@
 // Ensure that current package version is referenced in the Changelog.md
 import { readFileSync } from 'fs'
 
-const packageVersion = JSON.parse(
-	readFileSync(new URL('./package.json', import.meta.url).pathname)
-).version
+const packageVersion = JSON.parse(readFileSync('./package.json')).version
 
-const changelog = readFileSync(
-	new URL('./CHANGELOG.md', import.meta.url).pathname
-)
+const changelog = readFileSync('./CHANGELOG.md')
 
 if (!changelog.includes(`## ${packageVersion}\n`)) {
 	throw Error(

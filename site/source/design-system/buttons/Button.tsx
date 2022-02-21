@@ -32,7 +32,7 @@ export const Button = forwardRef(function Button(
 			{...buttonOrLinkProps}
 			className={className}
 			size={size}
-			light={light}
+			$light={light}
 			color={color}
 		/>
 	)
@@ -41,7 +41,7 @@ export const Button = forwardRef(function Button(
 type StyledButtonProps = {
 	color: Color
 	size: Size
-	light: boolean
+	$light: boolean
 	isDisabled?: boolean
 }
 
@@ -93,8 +93,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		`}
 
 	/* Primary, secondary & tertiary light colors */
-	${({ light, color, theme }) =>
-		light &&
+	${({ $light, color, theme }) =>
+		$light &&
 		!theme.darkMode &&
 		css`
 			color: ${theme.colors.bases[color][color === 'primary' ? 700 : 700]};
@@ -111,9 +111,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			`}
 
 		/* White color and light mode (dark background mode) */
-		${({ light, theme }) =>
+		${({ $light, theme }) =>
 			theme.darkMode &&
-			light &&
+			$light &&
 			css`
 				background-color: transparent;
 				border-color: ${theme.colors.extended.grey[100]};
@@ -122,11 +122,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	}
 	/* HOVER STYLE */
 	:hover {
-		${({ theme, color, isDisabled, light }) =>
+		${({ theme, color, isDisabled, $light }) =>
 			isDisabled || theme.darkMode
 				? ''
 				: /* Primary, secondary & tertiary light colors */
-				light
+				$light
 				? css`
 						background-color: ${theme.colors.bases[color][
 							color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
@@ -143,11 +143,11 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	/* Dark mode */
 	@media not print {
 		:hover {
-			${({ light, theme, isDisabled }) =>
+			${({ $light, theme, isDisabled }) =>
 				isDisabled || !theme.darkMode
 					? ''
 					: /* White color and light mode (dark background mode) */
-					light
+					$light
 					? css`
 							color: rgba(255, 255, 255, 25%);
 							opacity: 1;

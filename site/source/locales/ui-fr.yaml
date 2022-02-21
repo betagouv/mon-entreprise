@@ -937,20 +937,20 @@ pages:
         soient pas utilisées pour le calcul des cotisations et de l'impôt, elles
         doivent être prises en compte pour vérifier si l'activité est viable
         économiquement.</3><4>La formule de calcul complète est donc
-        :<1><0>Revenu net = Chiffres d'affaires − Cotisations sociales −
-        Dépenses professionnelles</0></1></4><5>Comment calculer l'impôt sur le
-        revenu pour un auto-entrepreneur ?</5><6>Si vous avez opté pour le
+        :</4><5><0>Revenu net = Chiffres d'affaires − Cotisations sociales −
+        Dépenses professionnelles</0></5><6>Comment calculer l'impôt sur le
+        revenu pour un auto-entrepreneur ?</6><7>Si vous avez opté pour le
         versement libératoire lors de la création de votre auto-entreprise,
         l'impôt sur le revenu est payé en même temps que les cotisations
-        sociales.</6><7><0></0> <2>Voir comment est calculé le montant du
-        versement libératoire</2></7><8>Sinon, vous serez imposé selon le barème
+        sociales.</7><8><0></0> <2>Voir comment est calculé le montant du
+        versement libératoire</2></8><9>Sinon, vous serez imposé selon le barème
         standard de l'impôt sur le revenu. Le revenu imposable est alors calculé
         comme un pourcentage du chiffre d'affaires. C'est qu'on appel
         l'abattement forfaitaire. Ce pourcentage varie en fonction du type
         d'activité excercé. On dit qu'il est forfaitaire car il ne prends pas en
         compte les dépenses réelles effectuées dans le cadre de
-        l'activité.</8><9><0></0> <2>Voir le détail du calcul du revenu abattu
-        pour un auto-entrepreneur</2></9>
+        l'activité.</9><10><0></0> <2>Voir le détail du calcul du revenu abattu
+        pour un auto-entrepreneur</2></10>
       shortname: Auto-entrepreneur
       title: Simulateur de revenus auto-entrepreneur
     auxiliaire:
@@ -1074,21 +1074,21 @@ pages:
         déductibles du résultat de l'entreprise, cela veut dire que vous ne
         payerez pas d'impôt ou de cotisations sur leur montant (sauf si vous
         avez opté pour l'option micro-fiscal).</3><4>La formule de calcul
-        complète est donc :<1><0>Revenu net = Chiffres d'affaires − Dépenses
-        professionnelles - Cotisations sociales</0></1></4><5>Comment calculer
-        les cotisations sociales d'une entreprise individuelle ?</5><6>Le
-        dirigeant d'une entreprise individuelle paye des cotisations sociales,
+        complète est donc :</4><5><0>Revenu net = Chiffres d'affaires − Dépenses
+        professionnelles - Cotisations sociales</0></5><6>Comment calculer les
+        cotisations sociales d'une entreprise individuelle ?</6><7>Le dirigeant
+        d'une entreprise individuelle paye des cotisations sociales,
         proportionnelle au <2>résultat fiscal</2> de l'entreprise. Leur montant
         varie également en fonction du type d'activité (profession libérale,
         artisan, commerçants, etc), où des éventuelles exonérations accordées
-        (ACRE, ZFU, RSA, etc.).</6><7> Comme le résultat d'une entreprise n'est
+        (ACRE, ZFU, RSA, etc.).</7><8> Comme le résultat d'une entreprise n'est
         connu qu'à la fin de l'exercice comptable, le dirigeant paye des
         cotisations provisionnelles qui seront ensuite régularisée une fois le
-        revenu réel déclaré, l'année suivante.</7><8>Ce simulateur permet de
+        revenu réel déclaré, l'année suivante.</8><9>Ce simulateur permet de
         calculer le montant exact des cotisations sociale en partant d'un
         chiffre d'affaires ou d'un revenu net souhaité. Vous pourrez préciser
         votre situation en répondant aux questions s'affichant en dessous de la
-        simulation.</8>
+        simulation.</9>
       shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
