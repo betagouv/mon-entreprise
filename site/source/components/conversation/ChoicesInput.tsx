@@ -5,6 +5,7 @@ import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
 import { Radio, RadioGroup } from 'DesignSystem/field'
 import { Spacing } from 'DesignSystem/layout'
 import { H4 } from 'DesignSystem/typography/heading'
+import { Switch } from 'DesignSystem/switch'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
 import {
@@ -144,18 +145,15 @@ const StyledSubRadioGroup = styled.div`
 `
 
 export function OuiNonInput(props: InputProps<DottedName>) {
-	// seront stockées ainsi dans le state :
-	// [parent object path]: dotted fieldName relative to parent
-	const { handleChange, defaultValue, currentSelection } = useSelection(props)
+	const defaultValue = (serializeEvaluation({
+		nodeValue: props.value,
+	} as EvaluatedNode) || 'non') as 'oui' | 'non'
+
 	return (
-		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
-			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
-				<Trans>Oui</Trans>
-			</Radio>
-			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
-				<Trans>Non</Trans>
-			</Radio>
-		</RadioGroup>
+		<Switch
+			defaultSelected={defaultValue === 'oui'}
+			onChange={(sel) => props.onChange(sel ? 'oui' : 'non')}
+		/>
 	)
 }
 
