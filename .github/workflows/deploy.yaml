@@ -31,7 +31,7 @@ jobs:
         run:
           echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
-          echo "::set-output name=storybook::${{ steps.deploy-env.outputs.name == 'master' && 'https://storybook.mon-entreprise.urssaf.fr' || format('https://storybook.{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
+          echo "::set-output name=storybook::${{ steps.deploy-env.outputs.name == 'master' && 'https://storybook-mon-entreprise.urssaf.fr' || format('https://{0}-storybook--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
 
   build:
     needs: deploy-context
@@ -135,7 +135,7 @@ jobs:
           enable-commit-status: true
           enable-commit-comment: false
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
-          alias: storybook.${{ needs.deploy-context.outputs.env-name }}
+          alias: ${{ needs.deploy-context.outputs.env-name }}-storybook
           deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} Storybook
 
           # Disabled because we create our own customized comment
