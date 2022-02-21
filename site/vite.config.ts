@@ -21,6 +21,7 @@ export default defineConfig({
 			Data: path.resolve('source/data'),
 			Hooks: path.resolve('source/hooks'),
 			API: path.resolve('source/api'),
+			'~': path.resolve('source'),
 		},
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},

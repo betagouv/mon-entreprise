@@ -6,12 +6,9 @@ export function capitalise0(name?: string) {
 	return name && name[0].toUpperCase() + name.slice(1)
 }
 
-export const debounce = <F extends (...args: any[]) => void>(
-	waitFor: number,
-	fn: F
-) => {
+export const debounce = <T>(waitFor: number, fn: (...args: T[]) => void) => {
 	let timeoutId: ReturnType<typeof setTimeout>
-	return (...args: any[]) => {
+	return (...args: T[]) => {
 		clearTimeout(timeoutId)
 		timeoutId = setTimeout(() => fn(...args), waitFor)
 	}

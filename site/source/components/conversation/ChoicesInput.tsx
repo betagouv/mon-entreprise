@@ -19,6 +19,7 @@ import {
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { InputProps } from './RuleInput'
+import { debounce } from '~/utils'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -144,15 +145,15 @@ const StyledSubRadioGroup = styled.div`
 	margin-top: calc(${({ theme }) => theme.spacings.md} * -1);
 `
 
-export function OuiNonInput(props: InputProps<DottedName>) {
+export function OuiNonInput({ value, onChange }: InputProps<DottedName>) {
 	const defaultValue = (serializeEvaluation({
-		nodeValue: props.value,
+		nodeValue: value,
 	} as EvaluatedNode) || 'non') as 'oui' | 'non'
 
 	return (
 		<Switch
 			defaultSelected={defaultValue === 'oui'}
-			onChange={(sel) => props.onChange(sel ? 'oui' : 'non')}
+			onChange={(sel) => debounce(300, onChange)(sel ? 'oui' : 'non')}
 		/>
 	)
 }

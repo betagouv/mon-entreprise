@@ -22,7 +22,8 @@
 			"DesignSystem/*": ["design-system/*"],
 			"Data/*": ["data/*"],
 			"Hooks/*": ["hooks/*"],
-			"API/*": ["api/*"]
+			"API/*": ["api/*"],
+			"~/*": ["*"]
 		},
 		"types": ["vite/client"],
 		"typeRoots": ["./types/", "./node_modules/@types"],
