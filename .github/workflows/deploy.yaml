@@ -23,6 +23,7 @@ jobs:
       env-name: ${{ steps.deploy-env.outputs.name }}
       fr_url: ${{ steps.base-urls.outputs.fr }}
       en_url: ${{ steps.base-urls.outputs.en }}
+      storybook_url: ${{ steps.base-urls.outputs.storybook }}
     steps:
       - id: deploy-env
         run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
@@ -30,6 +31,7 @@ jobs:
         run:
           echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
+          echo "::set-output name=storybook::${{ steps.deploy-env.outputs.name == 'master' && 'https://storybook.mon-entreprise.urssaf.fr' || format('https://storybook.{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
 
   build:
     needs: deploy-context
@@ -79,6 +81,15 @@ jobs:
             site/dist/**
             site/netlify.toml
           if-no-files-found: error
+      - name: Build Storybook
+        run: yarn workspace site build:storybook
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-storybook
+          path: |
+            site/storybook-static/**
+            site/netlify.toml
+          if-no-files-found: error
 
   deploy-preview:
     needs: [build, deploy-context]
@@ -104,6 +115,28 @@ jobs:
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
           alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
           deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
+
+          # Disabled because we create our own customized comment
+          enable-pull-request-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-storybook
+      - id: deploy-netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          netlify-config-path: ./netlify.toml
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-status: true
+          enable-commit-comment: false
+          github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
+          alias: storybook.${{ needs.deploy-context.outputs.env-name }}
+          deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} Storybook
 
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
@@ -160,6 +193,7 @@ jobs:
 
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
+            - storybook : ${{ needs.deploy-context.outputs.storybook_url }}
 
   e2e-test-preview:
     env:
