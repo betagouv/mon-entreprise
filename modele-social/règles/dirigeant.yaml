@@ -91,7 +91,6 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . activité partielle
-    - contrat salarié . déduction forfaitaire spécifique
     - contrat salarié . rémunération . primes
     - contrat salarié . rémunération . primes . fin d'année
     - contrat salarié . rémunération . primes . activité
@@ -1295,17 +1294,17 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   acronyme: PI
   question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
-    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime des travailleurs non-salariés 
-    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et 
+    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime des travailleurs non-salariés
+    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et
     des cotisations maladie**.
 
-    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs, 
+    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs,
     il vous est attribué des **"points gratuits"**.
 
-    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés 
-    pendant la période d'activité indépendante** avant versement de la pension. 
+    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés
+    pendant la période d'activité indépendante** avant versement de la pension.
 
-    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de : 
+    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de :
 
     > `588 / (6 * 12 + 11) = 7,08`
   type: notification
