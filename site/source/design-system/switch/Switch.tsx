@@ -15,7 +15,8 @@ interface StyledProps {
 }
 
 const StyledCheckbox = styled.label<StyledProps>`
-	display: block;
+	display: flex;
+	justify-content: center;
 	position: relative;
 	padding: 0.6rem 1rem;
 	border-radius: inherit;
@@ -37,7 +38,7 @@ const StyledSwitch = styled.span<StyledProps>`
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: 0.2rem 1rem;
 	border-radius: 2.5rem;
-	width: 60px;
+	width: 90px;
 
 	&:focus-within {
 		${FocusStyle}

@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import DesignSystemThemeProvider from 'DesignSystem/root'
 import { Switch } from 'DesignSystem/switch'
+import { GlobalStyle } from 'DesignSystem/index'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -15,6 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Switch> = (args) => (
 	<DesignSystemThemeProvider>
+		<GlobalStyle />
 		<Switch {...args} />
 	</DesignSystemThemeProvider>
 )
