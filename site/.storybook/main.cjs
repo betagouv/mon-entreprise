@@ -34,7 +34,12 @@ module.exports = {
 					(plugin) =>
 						!(Array.isArray(plugin) && plugin[0].name === 'vite:react-babel')
 				),
-				...userConfig.plugins,
+				reactPlugin({
+					babel: { plugins: ['babel-plugin-styled-components'] },
+					// Copied from https://github.com/eirslett/storybook-builder-vite/blob/917d8868943ec5f58c9c2c6900e196637f0d05e3/packages/storybook-builder-vite/vite-config.ts#L95
+					// Do not treat story files as HMR boundaries, storybook itself needs to handle them.
+					exclude: [/\.stories\.([tj])sx?$/, /node_modules/],
+				}),
 			],
 		})
 

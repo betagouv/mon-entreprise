@@ -11,7 +11,7 @@ import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from 'Selectors/simulationSelectors'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
@@ -40,15 +40,13 @@ export default function QuickLinks() {
 		<StyledLinks>
 			<span>Aller à la question : </span>
 			{links.map(([label, dottedName]) => (
-				<Link
+				<StyledLink
 					key={dottedName}
-					css={{
-						textDecoration: dottedName === currentQuestion ? 'underline' : '',
-					}}
+					underline={dottedName === currentQuestion}
 					onPress={() => dispatch(goToQuestion(dottedName))}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
-				</Link>
+				</StyledLink>
 			))}
 		</StyledLinks>
 	)
@@ -58,4 +56,8 @@ const StyledLinks = styled(SmallBody)`
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: ${({ theme }) => theme.spacings.sm};
+`
+
+const StyledLink = styled(Link)<{ underline: boolean }>`
+	text-decoration: ${({ underline }) => (underline ? 'underline' : '')};
 `
