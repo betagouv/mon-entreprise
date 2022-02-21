@@ -9,7 +9,6 @@ export default function PeriodSwitch() {
 
 	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
-
 	const periods = [
 		{
 			label: t('Mensuel'),
@@ -23,7 +22,7 @@ export default function PeriodSwitch() {
 	return (
 		<div>
 			<ToggleGroup
-				defaultValue={currentUnit}
+				value={currentUnit}
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
 			>
 				{periods.map(({ label, unit }) => (
