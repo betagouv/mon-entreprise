@@ -19,7 +19,7 @@ describe('Landing page', function () {
 		let pendingRequests = new Set()
 		let responses = {}
 		const hostnamesToRecord = [
-			'search-recherche-entreprises.fabrique.social.gouv.fr',
+			'api.recherche-entreprises.fabrique.social.gouv.fr',
 			'geo.api.gouv.fr',
 		]
 		cy.clearLocalStorage() // Try to avoid flaky tests
