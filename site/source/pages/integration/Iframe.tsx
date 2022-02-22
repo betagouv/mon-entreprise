@@ -43,15 +43,17 @@ function IntegrationCustomizer() {
 
 	const defaultModuleFromUrl =
 		new URLSearchParams(search ?? '').get('module') ?? ''
+
 	const [currentModule, setCurrentModule] = useState(
-		simulators['defaultModuleFromUrl'] ? defaultModuleFromUrl : 'salarié'
+		simulators[defaultModuleFromUrl] ? defaultModuleFromUrl : 'salarié'
 	)
 
 	useEffect(() => {
 		history.replace({ search: `?module=${currentModule}` })
-	}, [currentModule])
-	console.log(currentModule, simulators[currentModule])
+	}, [currentModule, history])
+
 	const [color, setColor] = useState<string | undefined>()
+
 	return (
 		<>
 			<H2>
@@ -65,7 +67,7 @@ function IntegrationCustomizer() {
 					</H3>
 					<Select
 						label="Assistant ou simulateur"
-						onSelectionChange={setCurrentModule as any}
+						onSelectionChange={(val) => setCurrentModule(String(val))}
 						selectedKey={currentModule}
 					>
 						{Object.entries(simulators).map(([module, s]) => (
@@ -114,7 +116,7 @@ function IntegrationCustomizer() {
 						<MemoryRouter
 							key={currentModule}
 							initialEntries={[
-								`/iframes/${simulators[currentModule].iframePath}`,
+								`/iframes/${simulators[currentModule].iframePath ?? ''}`,
 							]}
 						>
 							<ThemeColorsProvider
@@ -140,6 +142,7 @@ function IntegrationCustomizer() {
 		</>
 	)
 }
+
 const PrevisualisationContainer = styled(Grid)`
 	background-color: white;
 	border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
