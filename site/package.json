@@ -65,6 +65,7 @@
 		"@react-aria/searchfield": "^3.2.0",
 		"@react-aria/select": "^3.5.0",
 		"@react-aria/ssr": "^3.1.0",
+		"@react-aria/switch": "^3.1.5",
 		"@react-aria/textfield": "^3.4.0",
 		"@react-pdf/renderer": "^2.0.21",
 		"@react-stately/radio": "^3.3.2",
