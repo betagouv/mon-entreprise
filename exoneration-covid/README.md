@@ -20,10 +20,10 @@ engine.setSituation({
     "début d'activité": "'mai 2021'",
     secteur: "'S1'",
 
-    'mois . avril 2021': 'LFSS 600',
+    'mois . avril 2021': "'LFSS 600'",
     'mois . mai 2021': 'non',
-    'mois . juin 2021': 'LFSS 600',
-    'mois . décembre 2021': 'LFSS 300',
+    'mois . juin 2021': "'LFSS 600'",
+    'mois . décembre 2021': "'LFSS 300'",
 })
 
 console.log(formatValue(engine.evaluate('montant total')))
