@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
+import { RootState, SimulationConfig, Situation } from '~/reducers/rootReducer'
 import { useHistory } from 'react-router'
-import { useSearchParams } from 'Components/utils/useSearchParams'
-import { useEngine } from 'Components/utils/EngineContext'
-import { configSelector } from 'Selectors/simulationSelectors'
+import { useSearchParams } from '~/components/utils/useSearchParams'
+import { useEngine } from '~/components/utils/EngineContext'
+import { configSelector } from '~/selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
-import { updateSituation, setActiveTarget } from 'Actions/actions'
-import { Names } from 'modele-social/dist/names'
+import { updateSituation, setActiveTarget } from '~/actions/actions'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -149,7 +148,7 @@ export function getSituationFromSearchParams(
 	searchParams: URLSearchParams,
 	dottedNameParamName: [DottedName, ParamName][]
 ) {
-	const situation: { [key in Names]?: string } = {}
+	const situation: { [key in DottedName]?: string } = {}
 
 	const paramNameDottedName = dottedNameParamName.reduce(
 		(dottedNameBySearchParamName, [dottedName, paramName]) => ({

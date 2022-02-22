@@ -10,19 +10,7 @@ import serveStatic from 'serve-static'
 
 export default defineConfig({
 	resolve: {
-		alias: {
-			Actions: path.resolve('source/actions/'),
-			Components: path.resolve('source/components/'),
-			Selectors: path.resolve('source/selectors/'),
-			Reducers: path.resolve('source/reducers/'),
-			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/'),
-			DesignSystem: path.resolve('source/design-system'),
-			Data: path.resolve('source/data'),
-			Hooks: path.resolve('source/hooks'),
-			API: path.resolve('source/api'),
-			'~': path.resolve('source'),
-		},
+		alias: { '~': path.resolve('./source') },
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
 	publicDir: 'source/public',

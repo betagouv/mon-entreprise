@@ -1,8 +1,8 @@
-import { FocusStyle } from 'DesignSystem/global-style'
+import { FocusStyle } from '~/design-system/global-style'
 import {
 	GenericButtonOrLinkProps,
 	useButtonOrLink,
-} from 'DesignSystem/typography/link'
+} from '~/design-system/typography/link'
 import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 

@@ -1,7 +1,7 @@
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
-} from 'API/fabrique-social'
+} from '~/api/fabrique-social'
 import { useEffect, useState } from 'react'
 import { useDebounce } from './useDebounce'
 

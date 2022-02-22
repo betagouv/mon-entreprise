@@ -1,5 +1,5 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { H1 } from 'DesignSystem/typography/heading'
+import { SitePathsContext } from '~/components/utils/SitePathsContext'
+import { H1 } from '~/design-system/typography/heading'
 import { useContext } from 'react'
 import { generateSiteMap } from '../../sitePaths'
 

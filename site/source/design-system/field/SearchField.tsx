@@ -5,8 +5,8 @@ import {
 	useSearchFieldState,
 } from '@react-stately/searchfield'
 import { AriaSearchFieldProps } from '@react-types/searchfield'
-import { Loader } from 'DesignSystem/icons/Loader'
-import { SearchIcon } from 'DesignSystem/icons/SearchIcon'
+import { Loader } from '~/design-system/icons/Loader'
+import { SearchIcon } from '~/design-system/icons/SearchIcon'
 import { InputHTMLAttributes, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {

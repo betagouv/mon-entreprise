@@ -1,14 +1,14 @@
 import { useButton } from '@react-aria/button'
-import { FocusStyle } from 'DesignSystem/global-style'
-import { Chevron } from 'DesignSystem/icons'
-import { H4 } from 'DesignSystem/typography/heading'
+import { FocusStyle } from '~/design-system/global-style'
+import { Chevron } from '~/design-system/icons'
+import { H4 } from '~/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
 	StyledLink,
 	StyledLinkHover,
 	useExternalLinkProps,
-} from 'DesignSystem/typography/link'
-import { Body } from 'DesignSystem/typography/paragraphs'
+} from '~/design-system/typography/link'
+import { Body } from '~/design-system/typography/paragraphs'
 import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'

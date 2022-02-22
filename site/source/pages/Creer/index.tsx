@@ -1,5 +1,5 @@
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { ScrollToTop } from '~/components/utils/Scroll'
+import { SitePathsContext } from '~/components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'

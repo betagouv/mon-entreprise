@@ -1,5 +1,5 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Button } from 'DesignSystem/buttons'
+import { SitePathsContext } from '~/components/utils/SitePathsContext'
+import { Button } from '~/design-system/buttons'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { activitéVue } from './actions'

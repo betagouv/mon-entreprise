@@ -1,5 +1,5 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Article } from 'DesignSystem/card'
+import { SitePathsContext } from '~/components/utils/SitePathsContext'
+import { Article } from '~/design-system/card'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 

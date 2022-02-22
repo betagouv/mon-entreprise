@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
-import { updateSituation } from 'Actions/actions'
-import { SmallBody } from 'DesignSystem/typography/paragraphs'
+import { updateSituation } from '~/actions/actions'
+import { SmallBody } from '~/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
 import React, { useCallback, useState } from 'react'
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	situationSelector,
 	targetUnitSelector,
-} from 'Selectors/simulationSelectors'
+} from '~/selectors/simulationSelectors'
 import styled from 'styled-components'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
 import RuleLink from '../RuleLink'

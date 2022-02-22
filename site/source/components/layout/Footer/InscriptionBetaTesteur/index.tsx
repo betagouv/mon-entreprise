@@ -1,8 +1,8 @@
-import { Button } from 'DesignSystem/buttons'
-import { Spacing } from 'DesignSystem/layout'
-import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
-import { Link } from 'DesignSystem/typography/link'
-import { Body, Intro } from 'DesignSystem/typography/paragraphs'
+import { Button } from '~/design-system/buttons'
+import { Spacing } from '~/design-system/layout'
+import PopoverWithTrigger from '~/design-system/PopoverWithTrigger'
+import { Link } from '~/design-system/typography/link'
+import { Body, Intro } from '~/design-system/typography/paragraphs'
 import FeedbackSvg from './feedback.svg'
 
 export const INSCRIPTION_LINK =

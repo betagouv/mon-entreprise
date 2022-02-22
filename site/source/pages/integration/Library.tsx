@@ -1,8 +1,8 @@
-import Emoji from 'Components/utils/Emoji'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { H1, H2, H3 } from 'DesignSystem/typography/heading'
-import { Link } from 'DesignSystem/typography/link'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import Emoji from '~/components/utils/Emoji'
+import { ScrollToTop } from '~/components/utils/Scroll'
+import { H1, H2, H3 } from '~/design-system/typography/heading'
+import { Link } from '~/design-system/typography/link'
+import { Body } from '~/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
 export default function Library() {

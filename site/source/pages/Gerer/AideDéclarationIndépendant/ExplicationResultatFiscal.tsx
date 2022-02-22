@@ -1,6 +1,6 @@
-import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
-import { Li, Ul } from 'DesignSystem/typography/list'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import ButtonHelp from '~/design-system/buttons/ButtonHelp'
+import { Li, Ul } from '~/design-system/typography/list'
+import { Body } from '~/design-system/typography/paragraphs'
 
 export function ExplicationsResultatFiscal() {
 	return (

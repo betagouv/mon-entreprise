@@ -1,16 +1,15 @@
-import { Action } from 'Actions/actions'
-import { getCompanySituation } from 'Components/utils/useSimulationConfig'
+import { Action } from '~/actions/actions'
+import { getCompanySituation } from '~/components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
-import { Names } from 'modele-social/dist/names'
 import { defaultTo, without } from 'ramda'
 import { omit } from '../utils'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
+import { PreviousSimulation } from '~/selectors/previousSimulationSelectors'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
-import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
+import { ApiCommuneJson } from '~/components/conversation/select/SelectCommune'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -93,7 +92,7 @@ function simulation(
 			situation: initialSituation ?? {},
 			initialSituation: initialSituation ?? {},
 			targetUnit: config['unité par défaut'] || '€/mois',
-			foldedSteps: Object.keys(initialSituation ?? {}) as Array<Names>,
+			foldedSteps: Object.keys(initialSituation ?? {}) as Array<DottedName>,
 			unfoldedStep: null,
 		}
 	}
@@ -118,7 +117,7 @@ function simulation(
 			}
 		case 'BATCH_UPDATE_SITUATION': {
 			return (
-				Object.entries(action.situation as any) as Array<[Names, unknown]>
+				Object.entries(action.situation as any) as Array<[DottedName, unknown]>
 			).reduce<Simulation | null>(
 				(newState, [fieldName, value]) =>
 					simulation(newState, {

@@ -1,5 +1,5 @@
 import { map, reduce, toPairs, zipObj } from 'ramda'
-import { LegalStatus } from 'Selectors/companyStatusSelectors'
+import { LegalStatus } from '~/selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'EI',

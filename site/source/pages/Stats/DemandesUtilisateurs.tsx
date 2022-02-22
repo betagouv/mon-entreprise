@@ -1,10 +1,10 @@
-import { H2, H3 } from 'DesignSystem/typography/heading'
-import { Link } from 'DesignSystem/typography/link'
-import { Li, Ul } from 'DesignSystem/typography/list'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { H2, H3 } from '~/design-system/typography/heading'
+import { Link } from '~/design-system/typography/link'
+import { Li, Ul } from '~/design-system/typography/list'
+import { Body } from '~/design-system/typography/paragraphs'
 import { useState } from 'react'
 import styled from 'styled-components'
-import stats from 'Data/stats.json'
+import stats from '~/data/stats.json'
 
 export default function DemandeUtilisateurs() {
 	return (

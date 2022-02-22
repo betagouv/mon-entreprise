@@ -1,4 +1,4 @@
-import { SearchField } from 'DesignSystem/field'
+import { SearchField } from '~/design-system/field'
 import { useTranslation } from 'react-i18next'
 import { connectSearchBox } from 'react-instantsearch-dom'
 

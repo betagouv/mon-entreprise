@@ -1,5 +1,5 @@
-import { Link } from 'DesignSystem/typography/link'
-import { SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Link } from '~/design-system/typography/link'
+import { SmallBody } from '~/design-system/typography/paragraphs'
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
 import { useState } from 'react'

@@ -1,7 +1,7 @@
 import {
 	useSafeLocaleStorage,
 	getInitialState,
-} from 'Components/utils/persistState'
+} from '~/components/utils/persistState'
 import { Reducer } from 'react'
 import { createContext, useCallback, useReducer, ReactNode } from 'react'
 

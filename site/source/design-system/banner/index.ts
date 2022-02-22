@@ -1,5 +1,5 @@
-import { Button } from 'DesignSystem/buttons'
-import { GenericButtonOrLinkProps } from 'DesignSystem/typography/link'
+import { Button } from '~/design-system/buttons'
+import { GenericButtonOrLinkProps } from '~/design-system/typography/link'
 import styled from 'styled-components'
 
 export const Banner = styled.div`
