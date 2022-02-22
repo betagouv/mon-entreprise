@@ -1,6 +1,3 @@
 node_modules
 dist
 storybook-static
-
-# TODO fix weird error in ./exoneration-covid/index.d.ts : Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.
-exoneration-covid/index.d.ts
