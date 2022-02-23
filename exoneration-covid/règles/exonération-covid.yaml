@@ -369,6 +369,7 @@ exonération S2 . mois éligibles:
         arrondi: oui
         unité: mois
       - 1 mois
+
 exonération S2 . mois éligibles . premier mois:
   variations:
     - si: début d'activité . date < 01/2021
@@ -390,3 +391,53 @@ montant total:
     - LFR1
     - LFSS 300
     - exonération S2
+
+code:
+  texte: '{{ secteur }};{{ LFSS }};{{ LFR1 }}'
+
+  # Applicabilité ajoutée pour éviter un code mal formatté en cas de variable non définie
+  # Cf https://github.com/betagouv/publicodes/issues/172
+  applicable si:
+    toutes ces conditions:
+      - secteur
+      - LFSS
+      - LFR1
+
+code . secteur:
+  variations:
+    - si: secteur . S1bis
+      alors: "'S1B'"
+    - sinon: secteur
+
+code . LFSS:
+  variations:
+    - si: secteur . S2
+      alors:
+        texte: O;{{ mois S2 }}
+    - si: LFSS 300 + LFSS 600 = 0€
+      alors: "'N'"
+    - si: LFSS 300 = 0€
+      alors:
+        texte: O;{{ mois 600 }}
+    - sinon: # LFSS 300 et 600
+        texte: O;{{ mois 600 }};{{ mois 300}}
+
+code . LFSS . mois S2:
+  valeur: exonération S2 . mois éligibles
+  unité: ''
+code . LFSS . mois 300:
+  valeur: LFSS 300 . mois éligibles
+  unité: ''
+code . LFSS . mois 600:
+  valeur: LFSS 600 . mois éligibles
+  unité: ''
+
+code . LFR1:
+  variations:
+    - si: LFR1 = 0€
+      alors: "'N'"
+    - sinon:
+        texte: O;{{ mois }}
+code . LFR1 . mois:
+  valeur: LFR1 . mois éligibles
+  unité: ''
