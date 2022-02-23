@@ -18,7 +18,7 @@ const engine = new Engine(rules)
 engine.setSituation({
     "lieu d'exercice": "'métropole'",
     "début d'activité": "'mai 2021'",
-    secteur: "'S1B'",
+    secteur: "'S1bis'",
 
     'mois . mai 2021': "'LFSS 600'",
     'mois . juin 2021': "'LFR1'",
