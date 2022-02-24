@@ -38,9 +38,10 @@ export const ActiviteCard = ({
 	const { language } = useTranslation().i18n
 	const toggle = useCallback(
 		// debounce to avoid double onClick call when clicking on checkbox
-		debounce(1, () => {
-			selected === undefined ? null : dispatch(toggleActivité(title))
-		}),
+		() =>
+			debounce(1, () => {
+				selected === undefined ? null : dispatch?.(toggleActivité(title))
+			})(),
 		[dispatch, selected]
 	)
 	const { titre, explication, plateformes, icônes } = getTranslatedActivité(

@@ -8,13 +8,13 @@ import { TrackChapter } from '../../../ATInternetTracking'
 import useSimulatorsData from '../metadata'
 import Activité from './Activité'
 import ActivitésSelection from './ActivitésSelection'
-import reducer from './reducer'
 import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
 	const sitePaths = useContext(SitePathsContext)
-	const iframePath = useSimulatorsData()['économie-collaborative'].iframePath
+	const iframePath =
+		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()
 		? '/iframes/' + iframePath
 		: sitePaths.simulateurs.économieCollaborative.index
@@ -29,10 +29,7 @@ export default function ÉconomieCollaborative() {
 					</Trans>
 				</Link>
 			</div>
-			<StoreProvider
-				reducer={reducer}
-				localStorageKey="app::économie-collaborative:v1"
-			>
+			<StoreProvider localStorageKey="app::économie-collaborative:v1">
 				<Switch>
 					<Route exact path={indexPath} component={ActivitésSelection} />
 					<Route

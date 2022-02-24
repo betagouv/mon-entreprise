@@ -14,7 +14,10 @@ export default function Exonération({
 }: any) {
 	const { state, dispatch } = useContext(StoreContext)
 	if (!exceptionsExonération && !exonération) return null
-	const defaultChecked = state[activité].critèresExonération
+	const defaultChecked = state?.[activité].critèresExonération.reduce(
+		(acc, el, i) => ({ ...acc, [i]: el }),
+		{} as { [key: string]: boolean }
+	)
 	return (
 		<>
 			<H2>
@@ -23,9 +26,9 @@ export default function Exonération({
 				</Trans>
 			</H2>
 			<Checklist
-				onItemCheck={(index, checked) =>
-					dispatch(changeCritèreExonération(activité, index, checked))
-				}
+				onItemCheck={(index, checked) => {
+					dispatch?.(changeCritèreExonération(activité, index, checked))
+				}}
 				defaultChecked={defaultChecked}
 			>
 				{(exceptionsExonération || exonération).map(

@@ -98,7 +98,7 @@ export const ActivitéSelection = ({
 		<>
 			<Grid container spacing={2}>
 				{activités.map((title) => {
-					const selected = state[title].effectuée
+					const selected = state?.[title].effectuée
 					const answered = activitéRépondue.includes(title)
 					return (
 						<Grid key={title} item xs={6} sm={4} md={3}>

@@ -77,3 +77,19 @@ export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
 export function isIterable<T>(obj: unknown): obj is Iterable<T> {
 	return Symbol.iterator in Object(obj)
 }
+
+/**
+ * Check if a key exists in the object and return its value or undefined,
+ * usefull for type check
+ * @param obj any object
+ * @param key key to get value from object
+ * @returns value or undefined
+ */
+export const getValueFrom = <
+	T extends Record<string | number | symbol, unknown>,
+	K extends string | number | symbol
+>(
+	obj: T,
+	key: K
+): Extract<T, { [k in K]?: unknown }>[K] | undefined =>
+	key in obj ? obj[key] : undefined

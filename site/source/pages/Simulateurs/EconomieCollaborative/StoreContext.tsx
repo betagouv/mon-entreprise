@@ -2,28 +2,39 @@ import {
 	useSafeLocaleStorage,
 	getInitialState,
 } from '~/components/utils/persistState'
-import { Reducer } from 'react'
-import { createContext, useCallback, useReducer, ReactNode } from 'react'
+import {
+	Dispatch,
+	ReducerAction,
+	ReducerState,
+	createContext,
+	useCallback,
+	useReducer,
+	ReactNode,
+} from 'react'
+import reducer, { State } from './reducer'
 
-const StoreContext = createContext<{
-	state: any
-	dispatch: any
-}>({ state: null, dispatch: null })
+interface Context {
+	state: ReducerState<typeof reducer> | null
+	dispatch: Dispatch<ReducerAction<typeof reducer>> | null
+}
 
-type StoreProviderProps = {
+const StoreContext = createContext<Context>({
+	state: null,
+	dispatch: null,
+})
+
+interface StoreProviderProps {
 	children: ReactNode
-	reducer: Reducer<any, any>
 	localStorageKey: string
 }
 
-const StoreProvider = ({
-	children,
-	reducer,
-	localStorageKey,
-}: StoreProviderProps) => {
+const StoreProvider = ({ children, localStorageKey }: StoreProviderProps) => {
 	const computeInitialState = useCallback(
-		() => reducer(getInitialState(localStorageKey), { type: '@@INIT_STATE' }),
-		[reducer]
+		() =>
+			reducer(getInitialState<State>(localStorageKey) ?? {}, {
+				type: '@@INIT_STATE',
+			}),
+		[localStorageKey]
 	)
 	const [state, dispatch] = useReducer(reducer, undefined, computeInitialState)
 	useSafeLocaleStorage(localStorageKey, state)

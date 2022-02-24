@@ -22,7 +22,8 @@ const WarningSection = styled.section`
 `
 
 export default function Warning({ localStorageKey, children }: WarningProps) {
-	const [folded, fold] = usePersistingState(localStorageKey, false)
+	const [folded, fold] = usePersistingState<boolean>(localStorageKey, false)
+
 	return (
 		<>
 			<WarningSection>

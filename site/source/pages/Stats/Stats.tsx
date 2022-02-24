@@ -17,7 +17,7 @@ import statsJson from '~/data/stats.json'
 import { debounce } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
-import Chart from './Chart'
+import Chart, { Data, isDataStacked } from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
@@ -34,10 +34,6 @@ const chapters2: Chapter2[] = [
 	'PAM',
 ]
 
-type Data =
-	| Array<{ date: string; nombre: number }>
-	| Array<{ date: string; nombre: Record<string, number> }>
-
 type Pageish = Page | PageSatisfaction
 
 const isPAM = (name: string | undefined) =>
@@ -49,10 +45,7 @@ const isPAM = (name: string | undefined) =>
 		'sage_femme',
 	].includes(name)
 
-const filterByChapter2 = (
-	pages: Pageish[],
-	chapter2: Chapter2 | ''
-): Array<{ date: string; nombre: Record<string, number> }> => {
+const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
 	return toPairs(
 		groupBy(
 			(p) => ('date' in p ? p.date : p.month),
@@ -92,15 +85,17 @@ function groupByDate(data: Pageish[]) {
 	}))
 }
 
-const computeTotals = (data: Data): number | Record<string, number> => {
-	if (typeof data[0].nombre === 'number') {
-		return (data as Data & { nombre: number }[])
-			.map((d) => d.nombre)
-			.reduce(add, 0)
-	}
-	return (data as Data & { nombre: Record<string, number> }[])
-		.map((d) => d.nombre)
-		.reduce(mergeWith(add), {})
+const computeTotals = (
+	data: Data<number> | Data<Record<string, number>>
+): number | Record<string, number> => {
+	return isDataStacked(data)
+		? data.map((d) => d.nombre).reduce(mergeWith(add), {})
+		: data.map((d) => d.nombre).reduce(add, 0)
+}
+
+interface BrushStartEndIndex {
+	startIndex?: number
+	endIndex?: number
 }
 
 const StatsDetail = () => {
@@ -159,14 +154,15 @@ const StatsDetail = () => {
 	useEffect(() => {
 		setSlicedVisits(visites)
 	}, [visites])
+
 	const handleDateChange = useCallback(
-		debounce(
-			1000,
-			({ startIndex, endIndex }: { startIndex: number; endIndex: number }) => {
-				setDateIndex([startIndex, endIndex])
-				setSlicedVisits(visites.slice(startIndex, endIndex + 1))
-			}
-		),
+		() =>
+			debounce(1000, ({ startIndex, endIndex }: BrushStartEndIndex) => {
+				if (startIndex && endIndex) {
+					setDateIndex([startIndex, endIndex])
+					setSlicedVisits(visites.slice(startIndex, endIndex + 1))
+				}
+			})(),
 		[setDateIndex, visites]
 	)
 

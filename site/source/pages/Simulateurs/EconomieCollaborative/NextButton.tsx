@@ -22,7 +22,7 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 		<p css="text-align: center">
 			<Button
 				isDisabled={disabled}
-				onPress={() => dispatch(activitéVue(activité))}
+				onPress={() => dispatch?.(activitéVue(activité))}
 				to={nextTo}
 				css={`
 					margin: auto;

@@ -17,7 +17,7 @@ export default function Simulateurs() {
 		fromGérer?: boolean
 		fromCréer?: boolean
 		fromSimulateurs?: boolean
-	}>('navigation::simulateurs::locationState::v2')
+	}>('navigation::simulateurs::locationState::v2', {})
 	useEffect(() => {
 		if (state) {
 			setLastState(state as any)
