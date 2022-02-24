@@ -13,7 +13,7 @@ describe('Simulateur salarié', function () {
 			cy.get('button').contains('SMIC').click()
 			cy.contains('Voir mes paramètres').click()
 			cy.get('div[role="dialog"]').contains('Temps partiel').click()
-			cy.contains('Oui').click()
+			cy.contains('Non').click()
 			cy.wait(100)
 		})
 
