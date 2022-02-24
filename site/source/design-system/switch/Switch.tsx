@@ -77,11 +77,17 @@ export const Switch = (props: SwitchProps) => {
 
 	return (
 		<StyledSwitch
+			tabIndex={0}
 			checked={isSelected}
 			disabled={isDisabled}
 			onClick={() => !isDisabled && state.toggle()}
 		>
-			<HiddenCheckbox {...inputProps} aria-hidden="true" ref={ref} />
+			<HiddenCheckbox
+				{...inputProps}
+				tabIndex={-1}
+				aria-hidden="true"
+				ref={ref}
+			/>
 			<StyledCheckbox checked={isSelected} disabled={isDisabled}>
 				{isSelected ? t('Oui') : t('Non')}
 			</StyledCheckbox>
