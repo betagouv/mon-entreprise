@@ -30,7 +30,7 @@ describe(`Navigation to income simulator using company name (${
 	let pendingRequests = new Set()
 	let responses = {}
 	const hostnamesToRecord = [
-		'search-recherche-entreprises.fabrique.social.gouv.fr',
+		'api.recherche-entreprises.fabrique.social.gouv.fr',
 		'geo.api.gouv.fr',
 	]
 	beforeEach(function () {

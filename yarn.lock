@@ -8205,20 +8205,6 @@ flush-write-stream@^1.0.0, flush-write-stream@^1.0.2:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-focus-trap-react@^8.8.2:
-  version "8.9.1"
-  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.9.1.tgz#5f2b3bce6a7c4de6485fd6f4c5e8c0cbaa6e9ad3"
-  integrity sha512-QGVw4ch1ZfT2IcCL1ehBgrwnFuPA0nP7hXcrZzC8SThbktt/jiXCWQSKhA2WL0nVbxTiZ7YpIu/foTekp+dcqA==
-  dependencies:
-    focus-trap "^6.7.2"
-
-focus-trap@^6.7.2:
-  version "6.7.2"
-  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.7.2.tgz#02e63b12f4d4b3d00bfac4309cfd223e9b4ed44e"
-  integrity sha512-mRVv9QPCXITaDreu+pNXiPk1Rpn0WQtGvGrDo3Z/s2kdwtzFw/WOPfbLkdxWWvcahoInm9eRztuQOr1RNyQGrw==
-  dependencies:
-    tabbable "^5.2.1"
-
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -11706,19 +11692,26 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publicodes-react@^1.0.0-beta.30:
-  version "1.0.0-beta.30"
-  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.30.tgz#ff1b815c69da4f5f6616f425535f109aae169005"
-  integrity sha512-8WtZLUVx7NPTSpD2ikmpUwkA9rLZ4oMNANijN9lUqka8rjIQUStYQely4whk4QwAlkUeTgtzoATAws5Qe46CDg==
+publicodes-react@^1.0.0-beta.31:
+  version "1.0.0-beta.31"
+  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.31.tgz#96929254097ffa9fa837c517776a8c223fb3e09f"
+  integrity sha512-k/3dHxGupQTjI3B5w0+dVOxOs1nfJTGdXWCzKiZaRv3M+Fd/bgLz8zKOWgqiAQMKdeItz36FUPKelWvxL5dOwA==
   dependencies:
-    focus-trap-react "^8.8.2"
     styled-components "^5.1.0"
-    yaml "^1.9.2"
 
 publicodes@^1.0.0-beta.30:
   version "1.0.0-beta.30"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.30.tgz#c17bbce9aa247bfacacf15cb7ac4066cdc16128c"
   integrity sha512-mqKtEdx8zRzWoaAqxsWAJdmVBO1zgMo8k6bKI1fgfuyawrCcqlKlSuk+M8Bi76wlIh9TpzDKxlU0w7FMy7dcUg==
+  dependencies:
+    moo "^0.5.1"
+    nearley "^2.19.2"
+    yaml "^1.9.2"
+
+publicodes@^1.0.0-beta.31:
+  version "1.0.0-beta.31"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.31.tgz#580e7c466fc21ccd27428ea13a3874eff9551db6"
+  integrity sha512-Bhy/BKy4eP3u/ms0K2x0uH9CYDpjiA/utgagr65A9PpL7lToiMACRrLXJLkwh+xHXy9f/32OD92FZoTB026TCA==
   dependencies:
     moo "^0.5.1"
     nearley "^2.19.2"
@@ -13476,11 +13469,6 @@ systemjs@^6.11.0:
   version "6.12.1"
   resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.12.1.tgz#47cdd23a6ec9f1b01cf5b5f70562c8550da229d3"
   integrity sha512-hqTN6kW+pN6/qro6G9OZ7ceDQOcYno020zBQKpZQLsJhYTDMCMNfXi/Y8duF5iW+4WWZr42ry0MMkcRGpbwG2A==
-
-tabbable@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.2.1.tgz#e3fda7367ddbb172dcda9f871c0fdb36d1c4cd9c"
-  integrity sha512-40pEZ2mhjaZzK0BnI+QGNjJO8UYx9pP5v7BGe17SORTO0OEuuaAwQTkAp8whcZvqon44wKFOikD+Al11K3JICQ==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"

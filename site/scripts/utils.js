@@ -1,7 +1,14 @@
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { join } from 'path'
+import { fileURLToPath } from 'url'
 
-const dataDir = new URL('../source/data/', import.meta.url).pathname
+const dataDir = join(
+	fileURLToPath(import.meta.url),
+	'..',
+	'..',
+	'source',
+	'data'
+)
 
 export function createDataDir() {
 	if (!existsSync(dataDir)) {

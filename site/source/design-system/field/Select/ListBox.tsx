@@ -1,13 +1,18 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import type { AriaListBoxOptions } from '@react-aria/listbox'
-import { useListBox, useOption } from '@react-aria/listbox'
+import { useListBox, useOption, AriaListBoxOptions } from '@react-aria/listbox'
 import type { ListState } from '@react-stately/list'
 import type { Node } from '@react-types/shared'
-import * as React from 'react'
+import {
+	RefObject,
+	useRef,
+	HTMLAttributes,
+	createContext,
+	ReactNode,
+	useContext,
+} from 'react'
 import styled, { css } from 'styled-components'
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
-	listBoxRef?: React.RefObject<HTMLUListElement>
+	listBoxRef?: RefObject<HTMLUListElement>
 	state: ListState<unknown>
 }
 
@@ -67,7 +72,7 @@ const ItemContent = styled.div`
 `
 
 export function ListBox(props: ListBoxProps) {
-	const ref = React.useRef<HTMLUListElement>(null)
+	const ref = useRef<HTMLUListElement>(null)
 	const { listBoxRef = ref, state } = props
 	const { listBoxProps } = useListBox(props, state, listBoxRef)
 
@@ -81,17 +86,17 @@ export function ListBox(props: ListBoxProps) {
 }
 
 interface OptionContextValue {
-	labelProps: React.HTMLAttributes<HTMLElement>
-	descriptionProps: React.HTMLAttributes<HTMLElement>
+	labelProps: HTMLAttributes<HTMLElement>
+	descriptionProps: HTMLAttributes<HTMLElement>
 }
 
-const OptionContext = React.createContext<OptionContextValue>({
+const OptionContext = createContext<OptionContextValue>({
 	labelProps: {},
 	descriptionProps: {},
 })
 
 function Option({ item, state }: OptionProps) {
-	const ref = React.useRef<HTMLLIElement>(null)
+	const ref = useRef<HTMLLIElement>(null)
 	const { optionProps, labelProps, descriptionProps, isSelected, isFocused } =
 		useOption(
 			{
@@ -123,8 +128,8 @@ function Option({ item, state }: OptionProps) {
 // described by the description, which makes for better announcements
 // for screen reader users.
 
-export function Label({ children }: { children: React.ReactNode }) {
-	const { labelProps } = React.useContext(OptionContext)
+export function Label({ children }: { children: ReactNode }) {
+	const { labelProps } = useContext(OptionContext)
 	return <div {...labelProps}>{children}</div>
 }
 
@@ -133,7 +138,7 @@ const StyledDescription = styled.div`
 	font-size: 12px;
 `
 
-export function Description({ children }: { children: React.ReactNode }) {
-	const { descriptionProps } = React.useContext(OptionContext)
+export function Description({ children }: { children: ReactNode }) {
+	const { descriptionProps } = useContext(OptionContext)
 	return <StyledDescription {...descriptionProps}>{children}</StyledDescription>
 }

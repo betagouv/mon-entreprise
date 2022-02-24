@@ -1,4 +1,4 @@
-# Modèle social français en publicodes
+# Covid : exonération de cotisation sociale pour les indépendants
 
 Ce paquet contient les règles [publicodes](https://publi.codes) utilisées sur https://mon-entreprise.urssaf.fr pour le calcul de l'exonération covid 2021.
 
@@ -18,15 +18,19 @@ const engine = new Engine(rules)
 engine.setSituation({
     "lieu d'exercice": "'métropole'",
     "début d'activité": "'mai 2021'",
-    secteur: "'S1'",
+    secteur: "'S1bis'",
 
-    'mois . avril 2021': 'LFSS 600',
-    'mois . mai 2021': 'non',
-    'mois . juin 2021': 'LFSS 600',
-    'mois . décembre 2021': 'LFSS 300',
+    'mois . mai 2021': "'LFSS 600'",
+    'mois . juin 2021': "'LFR1'",
+    'mois . juillet 2021': "'LFSS 600'",
+    'mois . août 2021': 'non',
+    'mois . décembre 2021': "'LFSS 300'",
+    'mois . janvier 2022': "'LFSS 600'",
+    'mois . février 2022': "'LFSS 300'",
 })
 
-console.log(formatValue(engine.evaluate('montant total')))
+console.log(formatValue(engine.evaluate('montant total'))) // "3000 €"
+console.log(engine.evaluate('code').nodeValue) // "S1B;O;3;1;O;1"
 ```
 
 👉 **[Voir l'exemple complet](https://codesandbox.io/s/covidform-rxweh?file=/src/index.js)**
