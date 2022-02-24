@@ -172,7 +172,7 @@ jobs:
         timeout-minutes: 1
 
   deploy-prod:
-    needs: [build, deploy-context]
+    needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
@@ -180,6 +180,13 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-storybook
+      - name: Move Storybook to dist/dev
+        run: |
+          mkdir -p dist/dev
+          mv storybook-static dist/dev
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -191,31 +198,6 @@ jobs:
           enable-commit-comment: false
           github-deployment-environment: master
           deploy-message: Deploy production branch
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
-
-  deploy-storybook-prod:
-    needs: [build-storybook, deploy-context]
-    runs-on: ubuntu-18.04
-    if: needs.deploy-context.outputs.env-name == 'master'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: static-storybook
-      - id: deploy-netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './storybook-static'
-          netlify-config-path: ./netlify.toml
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-commit-status: true
-          enable-commit-comment: false
-          github-deployment-environment: master
-          deploy-message: Deploy Storybook production branch
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
