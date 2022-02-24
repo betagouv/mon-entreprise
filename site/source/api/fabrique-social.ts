@@ -47,7 +47,7 @@ type FabriqueSocialSearchPayload = {
 
 const COMPANY_SEARCH_HOST =
 	import.meta.env.VITE_COMPANY_SEARCH_HOST ||
-	'https://search-recherche-entreprises.fabrique.social.gouv.fr'
+	'https://api.recherche-entreprises.fabrique.social.gouv.fr'
 
 const makeSearchUrl = (query: string, limit: number) =>
 	`${COMPANY_SEARCH_HOST}/api/v1/search?query=${query}&open=true&convention=false&employer=false&ranked=false&limit=${limit}`

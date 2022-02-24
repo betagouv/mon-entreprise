@@ -32,7 +32,7 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 
 	const année = useContext(EngineContext).evaluate('année')
 		.nodeValue as Evaluation<number>
-	const year = année != null && année != 2022 ? ' - ' + année : ''
+	const year = typeof année === 'number' && année != 2022 ? ` - ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
@@ -68,7 +68,7 @@ export default function PageData(props: SimulatorData[keyof SimulatorData]) {
 	return (
 		<CurrentSimulatorDataProvider value={props}>
 			<TrackChapter {...trackInfo} />
-			{meta && <Meta page={`simulateur.${title}`} {...meta} />}
+			{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
 			{title && !inIframe && (
 				<>
 					<H1>

@@ -1,11 +1,11 @@
 import { FocusScope } from '@react-aria/focus'
 import { DismissButton, useOverlay } from '@react-aria/overlays'
-import * as React from 'react'
+import { RefObject, ReactNode, useRef } from 'react'
 import styled from 'styled-components'
 
 interface PopoverProps {
-	popoverRef?: React.RefObject<HTMLDivElement>
-	children: React.ReactNode
+	popoverRef?: RefObject<HTMLDivElement>
+	children: ReactNode
 	isOpen?: boolean
 	onClose?: () => void
 }
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `
 
 export function Popover(props: PopoverProps) {
-	const ref = React.useRef<HTMLDivElement>(null)
+	const ref = useRef<HTMLDivElement>(null)
 	const { popoverRef = ref, isOpen, onClose, children } = props
 
 	// Handle events that should cause the popup to close,

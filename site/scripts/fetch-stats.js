@@ -4,14 +4,12 @@ import fs from 'fs'
 import path from 'path'
 import { filter, flatten, map, partition, pipe } from 'ramda'
 import { compose } from 'redux'
+import { fileURLToPath } from 'url'
 import { createDataDir, writeInDataDir } from './utils.js'
 
 const matomoSiteVisitsHistory = JSON.parse(
 	fs.readFileSync(
-		path.join(
-			import.meta.url.replace('file:', ''),
-			'../matomoVisitHistory.json'
-		)
+		path.join(fileURLToPath(import.meta.url), '..', 'matomoVisitHistory.json')
 	)
 )
 
@@ -278,7 +276,9 @@ async function main() {
 	// have a static ressource accessible without authentification.
 	writeInDataDir('stats.json', {
 		visitesJours: [],
-		visitesMois: [],
+		visitesMois: {
+			pages: [],
+		},
 		satisfaction: [],
 		retoursUtilisateurs: {
 			open: [],
