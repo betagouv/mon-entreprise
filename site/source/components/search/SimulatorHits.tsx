@@ -5,6 +5,7 @@ import { SmallCard } from 'DesignSystem/card'
 import InfoBulle from 'DesignSystem/InfoBulle'
 import { H3 } from 'DesignSystem/typography/heading'
 import { SimulatorData } from 'pages/Simulateurs/metadata'
+import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
@@ -15,7 +16,7 @@ import { Highlight } from './Hightlight'
 type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
-	pathId: string
+	pathId: MetadataSrc[keyof MetadataSrc]['pathId']
 }>
 
 type SimulatorHitsProps = {

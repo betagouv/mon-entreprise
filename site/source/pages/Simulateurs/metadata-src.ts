@@ -1,10 +1,12 @@
+import { TFunction } from 'react-i18next'
+
 /**
  * Contient l'intégralité des données concernant les différents simulateurs
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-export default ({ t = (_, text) => text } = {}) => {
-	return {
+const metadataSrc = (t: TFunction<'translation', string>) => {
+	const data = {
 		salarié: {
 			tracking: 'salarie',
 			icône: '🤝',
@@ -359,7 +361,7 @@ export default ({ t = (_, text) => text } = {}) => {
 					'Déclaration de revenus indépendant : calcul du montant des cotisations'
 				),
 			},
-			pathId: 'simulateurs.déclarationIndépendant',
+			pathId: 'gérer.déclarationIndépendant',
 			shortName: t(
 				'pages.gérer.aide-déclaration-indépendant.shortname',
 				'Aide à la déclaration de revenu'
@@ -638,7 +640,7 @@ export default ({ t = (_, text) => text } = {}) => {
 				),
 				color: '#11965f',
 			},
-			pathId: 'simulateurs.aide-embauche',
+			pathId: 'simulateurs.aides-embauche',
 			iframePath: 'aides-embauche',
 			shortName: t(
 				'pages.simulateurs.aides-embauche.meta.title',
@@ -696,5 +698,42 @@ export default ({ t = (_, text) => text } = {}) => {
 
 			nextSteps: ['salarié', 'is', 'comparaison-statuts'],
 		},
-	}
+	} as const
+
+	return data as DeepWritable<typeof data>
 }
+
+export type MetadataSrc = ReturnType<typeof metadataSrc>
+export default metadataSrc
+
+// Type taken from ts-essentials library
+export type Primitive =
+	| string
+	| number
+	| boolean
+	| bigint
+	| symbol
+	| undefined
+	| null
+export type Builtin = Primitive | Date | Error | RegExp
+
+// Type taken from ts-essentials library
+export type DeepWritable<T> = T extends Builtin
+	? T
+	: T extends Map<infer K, infer V>
+	? Map<DeepWritable<K>, DeepWritable<V>>
+	: T extends ReadonlyMap<infer K, infer V>
+	? Map<DeepWritable<K>, DeepWritable<V>>
+	: T extends WeakMap<infer K, infer V>
+	? WeakMap<DeepWritable<K>, DeepWritable<V>>
+	: T extends Set<infer U>
+	? Set<DeepWritable<U>>
+	: T extends ReadonlySet<infer U>
+	? Set<DeepWritable<U>>
+	: T extends WeakSet<infer U>
+	? WeakSet<DeepWritable<U>>
+	: T extends Promise<infer U>
+	? Promise<DeepWritable<U>>
+	: T extends unknown
+	? { -readonly [K in keyof T]: DeepWritable<T[K]> }
+	: T

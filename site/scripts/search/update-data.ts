@@ -1,24 +1,31 @@
 import algoliasearch from 'algoliasearch'
 import 'dotenv/config.js'
 import rawRules from 'modele-social'
-import { parsePublicodes } from 'publicodes'
-import getSimulationData from '../../source/pages/Simulateurs/metadata-src.js'
+import { ParsedRules, parsePublicodes } from 'publicodes'
+import getSimulationData, {
+	MetadataSrc,
+} from '../../source/pages/Simulateurs/metadata-src.js'
 
 const rules = parsePublicodes(rawRules)
 
-const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID
-const ALGOLIA_ADMIN_KEY = process.env.ALGOLIA_ADMIN_KEY
-const ALGOLIA_INDEX_PREFIX = process.env.ALGOLIA_INDEX_PREFIX || ''
+// @ts-ignore Needed by ts-node/esm
+const env = process.env
+
+const ALGOLIA_APP_ID = env.ALGOLIA_APP_ID || ''
+const ALGOLIA_ADMIN_KEY = env.ALGOLIA_ADMIN_KEY || ''
+const ALGOLIA_INDEX_PREFIX = env.ALGOLIA_INDEX_PREFIX || ''
 
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 
 const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
 const simulateursIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}simulateurs`)
 
-const formatRulesToAlgolia = (rules) =>
+const falsy = <T>(value: T | false): value is T => Boolean(value)
+
+const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 	Object.entries(rules)
 		.map(([n, rule]) => {
-			if (!rule) return
+			if (!rule) return false
 			const path = n.split(' . ')
 			const {
 				title,
@@ -39,14 +46,17 @@ const formatRulesToAlgolia = (rules) =>
 				description: description || résumé,
 			}
 		})
-		.filter(Boolean)
+		.filter(falsy)
 
-const formatSimulationDataToAlgolia = (simulations) =>
+const formatSimulationDataToAlgolia = (simulations: MetadataSrc) =>
 	Object.entries(simulations).map(([id, simulation]) => ({
 		...simulation,
 		objectID: id,
-		title: simulation.title || simulation.shortName || simulation.meta.title,
-		tooltip: simulation.tooltip || '',
+		title:
+			('title' in simulation && simulation.title) ||
+			simulation.shortName ||
+			simulation.meta.title,
+		tooltip: ('tooltip' in simulation && simulation.tooltip) || '',
 		description: simulation.meta?.description,
 	}))
 
@@ -65,15 +75,8 @@ const formatSimulationDataToAlgolia = (simulations) =>
 				hitsPerPage: 20,
 				maxValuesPerFacet: 100,
 				attributesToIndex: ['unordered(ruleName)', 'unordered(namespace)'],
-				numericAttributesToIndex: null,
-				attributesToRetrieve: null,
-				unretrievableAttributes: null,
-				optionalWords: null,
-				attributesForFaceting: null,
-				attributesToSnippet: null,
 				attributesToHighlight: ['ruleName', 'namespace'],
 				paginationLimitedTo: 1000,
-				attributeForDistinct: null,
 				exactOnSingleWordQuery: 'attribute',
 				ranking: [
 					'typo',
@@ -115,15 +118,8 @@ const formatSimulationDataToAlgolia = (simulations) =>
 					'unordered(tooltip)',
 					'unordered(description)',
 				],
-				numericAttributesToIndex: null,
-				attributesToRetrieve: null,
-				unretrievableAttributes: null,
-				optionalWords: null,
-				attributesForFaceting: null,
-				attributesToSnippet: null,
 				attributesToHighlight: ['title'],
 				paginationLimitedTo: 1000,
-				attributeForDistinct: null,
 				exactOnSingleWordQuery: 'attribute',
 				ranking: [
 					'typo',
@@ -135,7 +131,6 @@ const formatSimulationDataToAlgolia = (simulations) =>
 					'exact',
 					'custom',
 				],
-				customRanking: null,
 				separatorsToIndex: '',
 				removeWordsIfNoResults: 'none',
 				queryType: 'prefixLast',
@@ -147,7 +142,9 @@ const formatSimulationDataToAlgolia = (simulations) =>
 			.wait()
 		console.log('Uploading: simulateurs')
 		await simulateursIndex
-			.saveObjects(formatSimulationDataToAlgolia(getSimulationData()))
+			.saveObjects(
+				formatSimulationDataToAlgolia(getSimulationData((_, text) => text))
+			)
 			.wait()
 
 		console.log('Algolia update DONE')

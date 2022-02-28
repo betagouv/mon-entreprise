@@ -5,9 +5,9 @@ import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { createContext, useContext, useMemo } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { TFunction, Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
-import { constructLocalizedSitePath } from '../../sitePaths'
+import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
 import AideDéclarationIndépendant from '../Gerer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gerer/DemandeMobilite'
@@ -118,12 +118,19 @@ export type SimulatorData = PureSimulatorData &
 		}
 	>
 
+interface simulatorsDataParams {
+	t?: TFunction<'translation', string>
+	sitePaths?: SitePathsType
+	language?: string
+}
+
 export function getSimulatorsData({
-	t = (_: unknown, text: string) => text,
+	t = (_, text) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
-} = {}): SimulatorData {
-	const pureSimulatorsData: PureSimulatorData = getData({ t })
+}: simulatorsDataParams = {}): SimulatorData {
+	const pureSimulatorsData = getData(t)
+
 	return {
 		salarié: {
 			...pureSimulatorsData['salarié'],
