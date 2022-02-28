@@ -155,17 +155,28 @@ const rawSitePathsEn = {
 	},
 } as const
 
+/**
+ * Le but des types suivants est d'obtenir un typage statique des chaînes de caractères
+ * comme "simulateurs.auto-entrepreneur" utilisés comme identifiants des routes (via les pathId dans metadat-src.ts).
+ * Cela permet de ne pas avoir de faute dans les clés comme 'aide-embauche' au lieu de 'aides-embauche'
+ */
+
+// Transfrom string type like PathToType<'simulateurs.auto-entrepreneur', number>
+// into { simulateurs : { auto-entrepreneur: number }}
 type PathToType<T extends string, W> = T extends `${infer U}.${infer V}`
 	? { [key in U]: V extends string ? PathToType<V, W> : never }
 	: { [key in T]: W }
 
+// Transform type A | B into A & B
 type UnionToIntersection<T> = (
 	T extends unknown ? (x: T) => void : never
 ) extends (x: infer R) => void
 	? R
 	: never
 
+// Union of pathId
 type PathIds = MetadataSrc[keyof MetadataSrc]['pathId']
+
 type RequiredPath = Required<UnionToIntersection<PathToType<PathIds, string>>>
 
 // If there is a type error here, check rawSitePathsFr object matches the metadata-src.ts pathId
