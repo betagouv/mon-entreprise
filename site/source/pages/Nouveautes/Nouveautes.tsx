@@ -1,16 +1,16 @@
 import { Grid } from '@mui/material'
-import { determinant, hideNewsBanner } from '~/components/layout/NewsBanner'
-import MoreInfosOnUs from '~/components/MoreInfosOnUs'
-import Emoji from '~/components/utils/Emoji'
-import { MarkdownWithAnchorLinks } from '~/components/utils/markdown'
-import Meta from '~/components/utils/Meta'
-import { ScrollToTop } from '~/components/utils/Scroll'
-import { SitePathsContext } from '~/components/utils/SitePathsContext'
-import { Item, Select } from '~/design-system/field/Select'
-import { Container } from '~/design-system/layout'
-import { H1 } from '~/design-system/typography/heading'
-import { GenericButtonOrLinkProps, Link } from '~/design-system/typography/link'
-import { Body } from '~/design-system/typography/paragraphs'
+import { determinant, hideNewsBanner } from '@/components/layout/NewsBanner'
+import MoreInfosOnUs from '@/components/MoreInfosOnUs'
+import Emoji from '@/components/utils/Emoji'
+import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Item, Select } from '@/design-system/field/Select'
+import { Container } from '@/design-system/layout'
+import { H1 } from '@/design-system/typography/heading'
+import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
@@ -28,7 +28,7 @@ export default function Nouveautés() {
 	// bundle, that's why we only fetch it on this page.
 	const [data, setData] = useState<ReleasesData>([])
 	useEffect(() => {
-		import('~/data/releases.json').then(({ default: data }) => {
+		import('@/data/releases.json').then(({ default: data }) => {
 			setData(data)
 		})
 	}, [])

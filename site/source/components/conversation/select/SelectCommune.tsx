@@ -1,9 +1,9 @@
-import { TextField } from '~/design-system/field'
-import { Body } from '~/design-system/typography/paragraphs'
+import { TextField } from '@/design-system/field'
+import { Body } from '@/design-system/typography/paragraphs'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import { debounce } from '~/utils'
+import { debounce } from '@/utils'
 import { InputProps } from '../RuleInput'
 
 export type ApiCommuneJson = {
@@ -47,7 +47,7 @@ async function tauxVersementTransport(
 		codeCommune = '132' + commune.codePostal.slice(-2)
 	}
 	// 2. On récupère le versement transport associé
-	const json = (await import('~/data/versement-mobilité.json')).default
+	const json = (await import('@/data/versement-mobilité.json')).default
 
 	return json[codeCommune as keyof typeof json] ?? 0
 }

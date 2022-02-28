@@ -1,6 +1,6 @@
-import Emoji from '~/components/utils/Emoji'
-import { SitePathsContext } from '~/components/utils/SitePathsContext'
-import { Card } from '~/design-system/card'
+import Emoji from '@/components/utils/Emoji'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Card } from '@/design-system/card'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 

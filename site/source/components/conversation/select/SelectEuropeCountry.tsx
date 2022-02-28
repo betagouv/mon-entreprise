@@ -1,4 +1,4 @@
-import { Item, Select } from '~/design-system/field/Select'
+import { Item, Select } from '@/design-system/field/Select'
 import { InputProps } from '../RuleInput'
 
 const states = [

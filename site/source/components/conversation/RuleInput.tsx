@@ -1,7 +1,7 @@
-import NumberInput from '~/components/conversation/NumberInput'
-import SelectCommune from '~/components/conversation/select/SelectCommune'
-import SelectAtmp from '~/components/conversation/select/SelectTauxRisque'
-import { EngineContext } from '~/components/utils/EngineContext'
+import NumberInput from '@/components/conversation/NumberInput'
+import SelectCommune from '@/components/conversation/select/SelectCommune'
+import SelectAtmp from '@/components/conversation/select/SelectTauxRisque'
+import { EngineContext } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,

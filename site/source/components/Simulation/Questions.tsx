@@ -1,8 +1,8 @@
 import Conversation, {
 	ConversationProps,
-} from '~/components/conversation/Conversation'
-import Progress from '~/components/ui/Progress'
-import { Body } from '~/design-system/typography/paragraphs'
+} from '@/components/conversation/Conversation'
+import Progress from '@/components/ui/Progress'
+import { Body } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { useSimulationProgress } from './../utils/useNextQuestion'

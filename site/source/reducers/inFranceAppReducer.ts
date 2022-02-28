@@ -1,10 +1,10 @@
-import { Action } from '~/actions/actions'
-import { FabriqueSocialEntreprise } from '~/api/fabrique-social'
-import { ApiCommuneJson } from '~/components/conversation/select/SelectCommune'
+import { Action } from '@/actions/actions'
+import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
 import { omit } from '../utils'
 import { combineReducers } from 'redux'
-import { LegalStatus } from '~/selectors/companyStatusSelectors'
-import { LegalStatusRequirements } from '~/types/companyTypes'
+import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatusRequirements } from '@/types/companyTypes'
 
 function companyLegalStatus(
 	state: LegalStatusRequirements = {},

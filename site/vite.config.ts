@@ -16,7 +16,7 @@ const buildYamlToDts = [
 
 export default defineConfig(({ command }) => ({
 	resolve: {
-		alias: { '~': path.resolve('./source') },
+		alias: { '@': path.resolve('./source') },
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
 	publicDir: 'source/public',

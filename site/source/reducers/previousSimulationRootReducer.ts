@@ -1,5 +1,5 @@
-import { Simulation } from '~/reducers/rootReducer'
-import { Action } from '~/actions/actions'
+import { Simulation } from '@/reducers/rootReducer'
+import { Action } from '@/actions/actions'
 import { RootState } from './rootReducer'
 import { retrievePersistedSimulation } from '../storage/persistSimulation'
 

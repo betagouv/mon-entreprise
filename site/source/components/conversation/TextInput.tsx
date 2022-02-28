@@ -1,4 +1,4 @@
-import { TextField } from '~/design-system/field'
+import { TextField } from '@/design-system/field'
 import { Evaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'

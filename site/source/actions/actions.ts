@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { SimulationConfig, Situation } from '~/reducers/rootReducer'
+import { SimulationConfig, Situation } from '@/reducers/rootReducer'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'
 import { ActionExistingCompany } from './existingCompanyActions'

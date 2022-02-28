@@ -1,13 +1,13 @@
-import { StyledButton } from '~/design-system/buttons/Button'
-import { FocusStyle } from '~/design-system/global-style'
-import { H3, HeadingUnderline } from '~/design-system/typography/heading'
+import { StyledButton } from '@/design-system/buttons/Button'
+import { FocusStyle } from '@/design-system/global-style'
+import { H3, HeadingUnderline } from '@/design-system/typography/heading'
 import {
 	GenericButtonOrLinkProps,
 	NewWindowLinkIcon,
 	useButtonOrLink,
 	useExternalLinkProps,
-} from '~/design-system/typography/link'
-import { Body } from '~/design-system/typography/paragraphs'
+} from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import React, { ReactHTML, useRef } from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
 

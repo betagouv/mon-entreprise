@@ -1,7 +1,7 @@
-import { SitePathsContext } from '~/components/utils/SitePathsContext'
-import { Button } from '~/design-system/buttons'
-import { H2, H3 } from '~/design-system/typography/heading'
-import { Body } from '~/design-system/typography/paragraphs'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Button } from '@/design-system/buttons'
+import { H2, H3 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import { filter } from 'ramda'
 import { Fragment, useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import {
 	LegalStatus,
 	possibleStatusSelector,
-} from '~/selectors/companyStatusSelectors'
+} from '@/selectors/companyStatusSelectors'
 import { TrackPage } from '../../../ATInternetTracking'
 import StatutDescription from '../StatutDescription'
 

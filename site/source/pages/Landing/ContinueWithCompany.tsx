@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material'
-import CompanyDetails from '~/components/CompanyDetails'
-import { SitePathsContext } from '~/components/utils/SitePathsContext'
-import { Card } from '~/design-system/card'
-import { H3 } from '~/design-system/typography/heading'
+import CompanyDetails from '@/components/CompanyDetails'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Card } from '@/design-system/card'
+import { H3 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Company } from '~/reducers/inFranceAppReducer'
+import { Company } from '@/reducers/inFranceAppReducer'
 
 type ContinueWithCompanyProps = {
 	company: Company

@@ -1,4 +1,4 @@
-import { DisableAnimationContext } from '~/components/utils/DisableAnimationContext'
+import { DisableAnimationContext } from '@/components/utils/DisableAnimationContext'
 import React, { useContext } from 'react'
 import {
 	animated,

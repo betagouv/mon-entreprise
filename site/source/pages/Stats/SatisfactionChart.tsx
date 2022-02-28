@@ -1,8 +1,8 @@
-import { StyledLegend } from '~/components/charts/PagesCharts'
-import Emoji from '~/components/utils/Emoji'
-import { Strong } from '~/design-system/typography'
-import { Li, Ul } from '~/design-system/typography/list'
-import { Body } from '~/design-system/typography/paragraphs'
+import { StyledLegend } from '@/components/charts/PagesCharts'
+import Emoji from '@/components/utils/Emoji'
+import { Strong } from '@/design-system/typography'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 import { add, mapObjIndexed } from 'ramda'
 import {
 	Bar,

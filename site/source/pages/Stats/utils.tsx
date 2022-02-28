@@ -1,6 +1,6 @@
-import { Strong } from '~/design-system/typography'
-import { H4 } from '~/design-system/typography/heading'
-import { Intro, SmallBody } from '~/design-system/typography/paragraphs'
+import { Strong } from '@/design-system/typography'
+import { H4 } from '@/design-system/typography/heading'
+import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import React from 'react'
 import styled from 'styled-components'
 

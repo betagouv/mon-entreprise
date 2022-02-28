@@ -1,16 +1,16 @@
-import { goToQuestion } from '~/actions/actions'
-import { Spacing } from '~/design-system/layout'
-import { Link } from '~/design-system/typography/link'
-import { SmallBody } from '~/design-system/typography/paragraphs'
+import { goToQuestion } from '@/actions/actions'
+import { Spacing } from '@/design-system/layout'
+import { Link } from '@/design-system/typography/link'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '~/reducers/rootReducer'
+import { RootState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
-} from '~/selectors/simulationSelectors'
+} from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 

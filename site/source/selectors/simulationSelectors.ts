@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { RootState, SimulationConfig, Situation } from '~/reducers/rootReducer'
+import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}

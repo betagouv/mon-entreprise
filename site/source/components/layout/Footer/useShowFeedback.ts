@@ -1,7 +1,7 @@
-import { SitePathsContext } from '~/components/utils/SitePathsContext'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import useSimulatorsData from '~/pages/Simulateurs/metadata'
+import useSimulatorsData from '@/pages/Simulateurs/metadata'
 
 export const useShowFeedback = () => {
 	const currentPath = useLocation().pathname

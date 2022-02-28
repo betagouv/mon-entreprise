@@ -1,9 +1,9 @@
-import Value from '~/components/EngineValue'
-import RuleLink from '~/components/RuleLink'
-import { EngineContext, useEngine } from '~/components/utils/EngineContext'
-import { Strong } from '~/design-system/typography'
-import { H4, H5 } from '~/design-system/typography/heading'
-import { Body } from '~/design-system/typography/paragraphs'
+import Value from '@/components/EngineValue'
+import RuleLink from '@/components/RuleLink'
+import { EngineContext, useEngine } from '@/components/utils/EngineContext'
+import { Strong } from '@/design-system/typography'
+import { H4, H5 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,

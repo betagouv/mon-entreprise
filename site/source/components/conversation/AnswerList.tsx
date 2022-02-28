@@ -1,10 +1,10 @@
-import { goToQuestion, resetSimulation } from '~/actions/actions'
-import Emoji from '~/components/utils/Emoji'
-import { useEngine } from '~/components/utils/EngineContext'
-import { useNextQuestions } from '~/components/utils/useNextQuestion'
-import { Button } from '~/design-system/buttons'
-import { H2 } from '~/design-system/typography/heading'
-import { Link } from '~/design-system/typography/link'
+import { goToQuestion, resetSimulation } from '@/actions/actions'
+import Emoji from '@/components/utils/Emoji'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { Button } from '@/design-system/buttons'
+import { H2 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
 import { useMemo } from 'react'
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
-} from '~/selectors/simulationSelectors'
+} from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 import './AnswerList.css'
 

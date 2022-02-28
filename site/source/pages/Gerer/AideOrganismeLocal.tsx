@@ -1,10 +1,10 @@
-import { FromTop } from '~/components/ui/animate'
-import { Button } from '~/design-system/buttons'
-import { H2 } from '~/design-system/typography/heading'
-import { Body } from '~/design-system/typography/paragraphs'
+import { FromTop } from '@/components/ui/animate'
+import { Button } from '@/design-system/buttons'
+import { H2 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from '~/reducers/rootReducer'
+import { RootState } from '@/reducers/rootReducer'
 import aideOrganismeSvg from './aideOrganisme.svg'
 
 const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {

@@ -1,7 +1,7 @@
 import {
 	useSafeLocaleStorage,
 	getInitialState,
-} from '~/components/utils/persistState'
+} from '@/components/utils/persistState'
 import {
 	Dispatch,
 	ReducerAction,

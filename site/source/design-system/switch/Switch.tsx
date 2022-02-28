@@ -1,4 +1,4 @@
-import { FocusStyle, SROnly } from '~/design-system/global-style'
+import { FocusStyle, SROnly } from '@/design-system/global-style'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'

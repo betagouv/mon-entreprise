@@ -1,6 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
-import { FocusStyle } from '~/design-system/global-style'
+import { FocusStyle } from '@/design-system/global-style'
 import React, {
 	ComponentPropsWithRef,
 	CSSProperties,

@@ -1,5 +1,5 @@
-import Emoji from '~/components/utils/Emoji'
-import { Article } from '~/design-system/card'
+import Emoji from '@/components/utils/Emoji'
+import { Article } from '@/design-system/card'
 
 type GuideURSSAFCardProps = {
 	guideUrssaf: {

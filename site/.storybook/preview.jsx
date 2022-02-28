@@ -1,6 +1,6 @@
 import React from 'react'
-import DesignSystemThemeProvider from '~/design-system/root'
-import { GlobalStyle } from '~/design-system/index'
+import DesignSystemThemeProvider from '@/design-system/root'
+import { GlobalStyle } from '@/design-system/index'
 
 export const decorators = [
 	(Story) => (

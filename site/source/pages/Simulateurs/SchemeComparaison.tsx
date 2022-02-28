@@ -1,5 +1,5 @@
-import SchemeComparaison from '~/components/SchemeComparaison'
-import { Intro } from '~/design-system/typography/paragraphs'
+import SchemeComparaison from '@/components/SchemeComparaison'
+import { Intro } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
 export default function SchemeComparaisonPage() {

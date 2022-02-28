@@ -1,5 +1,5 @@
-import { useUrl } from '~/components/ShareSimulationBanner'
-import { SmallBody } from '~/design-system/typography/paragraphs'
+import { useUrl } from '@/components/ShareSimulationBanner'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
 export default function ExportRecover() {

@@ -1,5 +1,5 @@
-import { ThemeColorsProvider } from '~/components/utils/colors'
-import { IsEmbeded } from '~/components/utils/embeddedContext'
+import { ThemeColorsProvider } from '@/components/utils/colors'
+import { IsEmbeded } from '@/components/utils/embeddedContext'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Route, Switch } from 'react-router-dom'

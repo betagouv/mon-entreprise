@@ -1,4 +1,4 @@
-import TextField from '~/design-system/field/TextField'
+import TextField from '@/design-system/field/TextField'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from './SelectTauxRisque.worker.js?worker'

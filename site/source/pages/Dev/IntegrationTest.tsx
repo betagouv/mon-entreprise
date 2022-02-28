@@ -1,5 +1,5 @@
-import { Button } from '~/design-system/buttons'
-import { H2 } from '~/design-system/typography/heading'
+import { Button } from '@/design-system/buttons'
+import { H2 } from '@/design-system/typography/heading'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import useSimulatorsData from '../Simulateurs/metadata'
 const LazyColorPicker = lazy(() => import('./ColorPicker'))

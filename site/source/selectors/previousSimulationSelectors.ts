@@ -1,4 +1,4 @@
-import { RootState, Simulation } from '~/reducers/rootReducer'
+import { RootState, Simulation } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 
 export type PreviousSimulation = {

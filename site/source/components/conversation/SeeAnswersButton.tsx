@@ -1,5 +1,5 @@
-import { Button } from '~/design-system/buttons'
-import PopoverWithTrigger from '~/design-system/PopoverWithTrigger'
+import { Button } from '@/design-system/buttons'
+import PopoverWithTrigger from '@/design-system/PopoverWithTrigger'
 import { Trans } from 'react-i18next'
 import Answers from './AnswerList'
 import './conversation.css'

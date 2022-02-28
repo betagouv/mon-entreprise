@@ -1,6 +1,6 @@
-import { EngineContext } from '~/components/utils/EngineContext'
-import { Markdown } from '~/components/utils/markdown'
-import ButtonHelp from '~/design-system/buttons/ButtonHelp'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
+import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 

@@ -1,7 +1,7 @@
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
-import { Button } from '~/design-system/buttons'
+import { Button } from '@/design-system/buttons'
 import React, { ReactElement, Ref, useEffect, useMemo, useRef } from 'react'
 import { useLocation } from 'react-router'
 import Popover from './Popover'

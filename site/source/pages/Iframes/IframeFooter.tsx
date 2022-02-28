@@ -1,5 +1,5 @@
-import Privacy from '~/components/layout/Footer/Privacy'
-import { Spacing } from '~/design-system/layout'
+import Privacy from '@/components/layout/Footer/Privacy'
+import { Spacing } from '@/design-system/layout'
 
 export default function IframeFooter() {
 	return (

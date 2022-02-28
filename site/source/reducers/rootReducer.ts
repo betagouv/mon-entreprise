@@ -1,15 +1,15 @@
-import { Action } from '~/actions/actions'
-import { getCompanySituation } from '~/components/utils/useSimulationConfig'
+import { Action } from '@/actions/actions'
+import { getCompanySituation } from '@/components/utils/useSimulationConfig'
 import { DottedName } from 'modele-social'
 import { defaultTo, without } from 'ramda'
 import { omit } from '../utils'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { PreviousSimulation } from '~/selectors/previousSimulationSelectors'
+import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
-import { ApiCommuneJson } from '~/components/conversation/select/SelectCommune'
+import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
 
 function explainedVariable(
 	state: DottedName | null = null,
