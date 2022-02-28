@@ -60,95 +60,93 @@ const formatSimulationDataToAlgolia = (simulations: MetadataSrc) =>
 		description: simulation.meta?.description,
 	}))
 
-;(async function () {
-	try {
-		console.log('Algolia update START')
+try {
+	console.log('Algolia update START')
 
-		console.log('Clearing: rules')
-		await rulesIndex.clearObjects().wait()
-		console.log('Configure index: rules')
-		await rulesIndex
-			.setSettings({
-				// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
-				minWordSizefor1Typo: 4,
-				minWordSizefor2Typos: 8,
-				hitsPerPage: 20,
-				maxValuesPerFacet: 100,
-				attributesToIndex: ['unordered(ruleName)', 'unordered(namespace)'],
-				attributesToHighlight: ['ruleName', 'namespace'],
-				paginationLimitedTo: 1000,
-				exactOnSingleWordQuery: 'attribute',
-				ranking: [
-					'typo',
-					'geo',
-					'words',
-					'filters',
-					'proximity',
-					'attribute',
-					'exact',
-					'custom',
-				],
-				customRanking: ['asc(pathDepth)'],
-				separatorsToIndex: '',
-				removeWordsIfNoResults: 'none',
-				queryType: 'prefixLast',
-				highlightPreTag: '<em>',
-				highlightPostTag: '</em>',
-				snippetEllipsisText: '',
-				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
-			})
-			.wait()
+	console.log('Clearing: rules')
+	await rulesIndex.clearObjects().wait()
+	console.log('Configure index: rules')
+	await rulesIndex
+		.setSettings({
+			// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
+			minWordSizefor1Typo: 4,
+			minWordSizefor2Typos: 8,
+			hitsPerPage: 20,
+			maxValuesPerFacet: 100,
+			attributesToIndex: ['unordered(ruleName)', 'unordered(namespace)'],
+			attributesToHighlight: ['ruleName', 'namespace'],
+			paginationLimitedTo: 1000,
+			exactOnSingleWordQuery: 'attribute',
+			ranking: [
+				'typo',
+				'geo',
+				'words',
+				'filters',
+				'proximity',
+				'attribute',
+				'exact',
+				'custom',
+			],
+			customRanking: ['asc(pathDepth)'],
+			separatorsToIndex: '',
+			removeWordsIfNoResults: 'none',
+			queryType: 'prefixLast',
+			highlightPreTag: '<em>',
+			highlightPostTag: '</em>',
+			snippetEllipsisText: '',
+			alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
+		})
+		.wait()
 
-		console.log('Uploading: rules')
+	console.log('Uploading: rules')
 
-		await rulesIndex.saveObjects(formatRulesToAlgolia(rules)).wait()
+	await rulesIndex.saveObjects(formatRulesToAlgolia(rules)).wait()
 
-		console.log('Clearing: simulateurs')
-		await simulateursIndex.clearObjects().wait()
-		console.log('Configure index: simulateurs')
-		await simulateursIndex
-			.setSettings({
-				// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
-				minWordSizefor1Typo: 4,
-				minWordSizefor2Typos: 8,
-				hitsPerPage: 20,
-				maxValuesPerFacet: 100,
-				attributesToIndex: [
-					'unordered(title)',
-					'unordered(tooltip)',
-					'unordered(description)',
-				],
-				attributesToHighlight: ['title'],
-				paginationLimitedTo: 1000,
-				exactOnSingleWordQuery: 'attribute',
-				ranking: [
-					'typo',
-					'geo',
-					'words',
-					'filters',
-					'proximity',
-					'attribute',
-					'exact',
-					'custom',
-				],
-				separatorsToIndex: '',
-				removeWordsIfNoResults: 'none',
-				queryType: 'prefixLast',
-				highlightPreTag: '<em>',
-				highlightPostTag: '</em>',
-				snippetEllipsisText: '',
-				alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
-			})
-			.wait()
-		console.log('Uploading: simulateurs')
-		await simulateursIndex
-			.saveObjects(
-				formatSimulationDataToAlgolia(getSimulationData((_, text) => text))
-			)
-			.wait()
+	console.log('Clearing: simulateurs')
+	await simulateursIndex.clearObjects().wait()
+	console.log('Configure index: simulateurs')
+	await simulateursIndex
+		.setSettings({
+			// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
+			minWordSizefor1Typo: 4,
+			minWordSizefor2Typos: 8,
+			hitsPerPage: 20,
+			maxValuesPerFacet: 100,
+			attributesToIndex: [
+				'unordered(title)',
+				'unordered(tooltip)',
+				'unordered(description)',
+			],
+			attributesToHighlight: ['title'],
+			paginationLimitedTo: 1000,
+			exactOnSingleWordQuery: 'attribute',
+			ranking: [
+				'typo',
+				'geo',
+				'words',
+				'filters',
+				'proximity',
+				'attribute',
+				'exact',
+				'custom',
+			],
+			separatorsToIndex: '',
+			removeWordsIfNoResults: 'none',
+			queryType: 'prefixLast',
+			highlightPreTag: '<em>',
+			highlightPostTag: '</em>',
+			snippetEllipsisText: '',
+			alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
+		})
+		.wait()
+	console.log('Uploading: simulateurs')
+	await simulateursIndex
+		.saveObjects(
+			formatSimulationDataToAlgolia(getSimulationData((_, text) => text))
+		)
+		.wait()
 
-		console.log('Algolia update DONE')
-	} catch (e) {
-		console.log(JSON.stringify(e, null, 2))
-	}
-})()
+	console.log('Algolia update DONE')
+} catch (e) {
+	console.log(JSON.stringify(e, null, 2))
+}
