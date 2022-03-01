@@ -1,6 +1,5 @@
 import { batchUpdateSituation } from '@/actions/actions'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
-import { Checkbox } from '@/design-system/field'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
@@ -12,6 +11,8 @@ import { Condition } from './EngineValue'
 import { SimulationGoal } from './Simulation'
 import { useEngine } from './utils/EngineContext'
 import { Markdown } from './utils/markdown'
+import { Switch } from '@/design-system/switch'
+import { Body } from '@/design-system/typography/paragraphs'
 
 const proportions = {
 	'entreprise . activité . mixte . proportions . service BIC':
@@ -102,6 +103,11 @@ export function useAdjustProportions(CADottedName: DottedName): () => void {
 	}, [engine, dispatch])
 }
 
+const LabelBody = styled(Body)`
+	margin: ${({ theme }) => theme.spacings.xs} 0px;
+	margin-right: ${({ theme }) => theme.spacings.xxs};
+`
+
 function ActivitéMixte() {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
@@ -122,13 +128,17 @@ function ActivitéMixte() {
 		},
 		[dispatch, situation]
 	)
+
 	return (
 		<StyledActivitéMixteContainer>
 			<Trans>
-				<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
-					Activité mixte
-				</Checkbox>
+				<LabelBody>Activité mixte</LabelBody>
 			</Trans>
+			<Switch
+				size="XS"
+				defaultSelected={defaultChecked}
+				onChange={onMixteChecked}
+			></Switch>
 			<ButtonHelp type="aide" title={rule.title} light>
 				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
 			</ButtonHelp>
@@ -142,5 +152,8 @@ const StyledActivitéMixteContainer = styled.div`
 		margin-top: -1.5rem;
 		position: relative;
 		z-index: 2;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 	}
 `
