@@ -2,10 +2,9 @@ import { useDebounce } from '@/components/utils'
 import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
-import { Radio, RadioGroup } from '@/design-system/field'
+import { Radio, RadioGroup, ToggleGroup } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
-import { Switch } from '@/design-system/switch'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
 import {
@@ -19,7 +18,6 @@ import {
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { InputProps } from './RuleInput'
-import { debounce } from '@/utils'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -145,16 +143,23 @@ const StyledSubRadioGroup = styled.div`
 	margin-top: calc(${({ theme }) => theme.spacings.md} * -1);
 `
 
-export function OuiNonInput({ value, onChange }: InputProps<DottedName>) {
-	const defaultValue = (serializeEvaluation({
-		nodeValue: value,
-	} as EvaluatedNode) || 'non') as 'oui' | 'non'
+export function OuiNonInput(props: InputProps<DottedName>) {
+	// seront stockées ainsi dans le state :
+	// [parent object path]: dotted fieldName relative to parent
+	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 
 	return (
-		<Switch
-			defaultSelected={defaultValue === 'oui'}
-			onChange={(sel) => debounce(300, onChange)(sel ? 'oui' : 'non')}
-		/>
+		<ToggleGroup
+			onChange={handleChange}
+			value={(defaultValue || currentSelection) ?? undefined}
+		>
+			<Radio value="oui">
+				<Trans>Oui</Trans>
+			</Radio>
+			<Radio value="non">
+				<Trans>Non</Trans>
+			</Radio>
+		</ToggleGroup>
 	)
 }
 
