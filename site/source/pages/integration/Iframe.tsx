@@ -22,7 +22,7 @@ import Créer from '../Creer'
 import Documentation from '../Documentation'
 import Iframes from '../Iframes'
 import Simulateurs from '../Simulateurs'
-import useSimulatorsData from '../Simulateurs/metadata'
+import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import './iframe.css'
 import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
@@ -31,13 +31,22 @@ import poleEmploiLogo from './images/pole-emploi.png'
 
 const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
+const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
+	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
+
+const getFromSimu = <S extends SimulatorData, T extends string>(
+	obj: S,
+	key: T
+) =>
+	key in obj &&
+	obj[key as keyof SimulatorData] &&
+	checkIframe(obj[key as keyof SimulatorData])
+		? obj[key as keyof SimulatorData]
+		: undefined
+
 function IntegrationCustomizer() {
 	const { search } = useLocation()
-	const simulators = Object.fromEntries(
-		Object.entries(useSimulatorsData()).filter(
-			([, s]) => s.iframePath && !s.private
-		)
-	)
+	const simulatorsData = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	const history = useHistory()
 
@@ -45,7 +54,9 @@ function IntegrationCustomizer() {
 		new URLSearchParams(search ?? '').get('module') ?? ''
 
 	const [currentModule, setCurrentModule] = useState(
-		simulators[defaultModuleFromUrl] ? defaultModuleFromUrl : 'salarié'
+		getFromSimu(simulatorsData, defaultModuleFromUrl)
+			? defaultModuleFromUrl
+			: 'salarié'
 	)
 
 	useEffect(() => {
@@ -53,6 +64,14 @@ function IntegrationCustomizer() {
 	}, [currentModule, history])
 
 	const [color, setColor] = useState<string | undefined>()
+
+	const currentSimulator = getFromSimu(simulatorsData, currentModule)
+
+	const currentIframePath =
+		(currentSimulator &&
+			'iframePath' in currentSimulator &&
+			currentSimulator.iframePath) ||
+		''
 
 	return (
 		<>
@@ -70,17 +89,25 @@ function IntegrationCustomizer() {
 						onSelectionChange={(val) => setCurrentModule(String(val))}
 						selectedKey={currentModule}
 					>
-						{Object.entries(simulators).map(([module, s]) => (
-							<Item key={module} textValue={s.shortName ?? s.title}>
-								{s.icône && (
-									<>
-										<Emoji emoji={s.icône} />
-										&nbsp;
-									</>
-								)}
-								{s.shortName ?? s.title}
-							</Item>
-						))}
+						{Object.entries(simulatorsData)
+							.map(
+								([module, s]) =>
+									getFromSimu(simulatorsData, module) && (
+										<Item
+											key={module}
+											textValue={s.shortName ?? ('title' in s ? s.title : '')}
+										>
+											{s.icône && (
+												<>
+													<Emoji emoji={s.icône} />
+													&nbsp;
+												</>
+											)}
+											{s.shortName ?? ('title' in s ? s.title : '')}
+										</Item>
+									)
+							)
+							.filter(((el) => Boolean(el)) as <T>(x: T | undefined) => x is T)}
 					</Select>
 
 					<H3>
@@ -103,10 +130,7 @@ function IntegrationCustomizer() {
 							Voici le code à copier-coller sur votre site&nbsp;:
 						</Trans>
 					</Body>
-					<IntegrationCode
-						color={color}
-						module={simulators[currentModule].iframePath}
-					/>
+					<IntegrationCode color={color} module={currentIframePath} />
 				</Grid>
 				<Grid item lg={8}>
 					<H3>
@@ -115,9 +139,7 @@ function IntegrationCustomizer() {
 					<PrevisualisationContainer columns={10}>
 						<MemoryRouter
 							key={currentModule}
-							initialEntries={[
-								`/iframes/${simulators[currentModule].iframePath ?? ''}`,
-							]}
+							initialEntries={[`/iframes/${currentIframePath}`]}
 						>
 							<ThemeColorsProvider
 								color={color == null ? color : hexToHSL(color)}

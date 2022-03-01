@@ -700,40 +700,8 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		},
 	} as const
 
-	return data as DeepWritable<typeof data>
+	return data
 }
 
 export type MetadataSrc = ReturnType<typeof metadataSrc>
 export default metadataSrc
-
-// Type taken from ts-essentials library
-export type Primitive =
-	| string
-	| number
-	| boolean
-	| bigint
-	| symbol
-	| undefined
-	| null
-export type Builtin = Primitive | Date | Error | RegExp
-
-// Type taken from ts-essentials library
-export type DeepWritable<T> = T extends Builtin
-	? T
-	: T extends Map<infer K, infer V>
-	? Map<DeepWritable<K>, DeepWritable<V>>
-	: T extends ReadonlyMap<infer K, infer V>
-	? Map<DeepWritable<K>, DeepWritable<V>>
-	: T extends WeakMap<infer K, infer V>
-	? WeakMap<DeepWritable<K>, DeepWritable<V>>
-	: T extends Set<infer U>
-	? Set<DeepWritable<U>>
-	: T extends ReadonlySet<infer U>
-	? Set<DeepWritable<U>>
-	: T extends WeakSet<infer U>
-	? WeakSet<DeepWritable<U>>
-	: T extends Promise<infer U>
-	? Promise<DeepWritable<U>>
-	: T extends unknown
-	? { -readonly [K in keyof T]: DeepWritable<T[K]> }
-	: T

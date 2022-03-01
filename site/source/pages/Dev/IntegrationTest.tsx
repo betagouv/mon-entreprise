@@ -9,11 +9,13 @@ export default function IntegrationTest() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.map((s) => s.iframePath)
-				.filter(Boolean),
+				.map((s) => 'iframePath' in s && s.iframePath)
+				.filter(((el) => Boolean(el)) as <T>(x: T | false) => x is T),
 		[simulators]
 	)
-	const [currentModule, setCurrentModule] = useState(integrableModuleNames[0])
+	const [currentModule, setCurrentModule] = useState<string>(
+		integrableModuleNames[0]
+	)
 	const [color, setColor] = useState('#005aa1')
 	const [version, setVersion] = useState(0)
 	const domNode = useRef<HTMLDivElement>(null)
