@@ -13,7 +13,7 @@ export const useShowFeedback = () => {
 			simulators['comparaison-statuts'],
 			simulators['demande-mobilité'],
 		]
-			.map((s) => s.path)
+			.map((s) => s.path as string)
 			.includes(currentPath)
 	) {
 		return true
