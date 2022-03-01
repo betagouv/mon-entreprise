@@ -1,50 +1,56 @@
 import { FocusStyle, SROnly } from '@/design-system/global-style'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { useToggleState } from '@react-stately/toggle'
 import { useSwitch } from '@react-aria/switch'
 
-const HiddenCheckbox = styled.input`
+const HiddenInput = styled.input`
 	${SROnly}
 `
+
+type Size = 'XL' | 'MD' | 'XS'
+
+const sizeDico = {
+	XS: '2rem',
+	MD: '3rem',
+	XL: '4rem',
+} as { [K in Size]: string }
 
 interface StyledProps {
 	checked: boolean
 	disabled: boolean
+	size: Size
 }
 
-const StyledCheckbox = styled.label<StyledProps>`
-	display: flex;
-	justify-content: center;
+const StyledSpan = styled.span<StyledProps>`
 	position: relative;
-	padding: 0.6rem 1rem;
+	left: ${({ checked }) =>
+		checked ? 'calc(100% - 2 * (var(--switch-size) / 4))' : '0'};
+	transition: left 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	padding: calc(var(--switch-size) / 4);
 	border-radius: inherit;
 	box-shadow: 0px 3px 1px 0px #0000000f, 0px 3px 8px 0px #00000026;
 	background-color: #ffffff;
-	text-align: center;
-	transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-	transform: translateX(${({ checked }) => (checked ? '0.8rem' : '-0.8rem')});
 `
 
-const StyledSwitch = styled.span<StyledProps>`
-	display: inline-block;
-	position: relative;
+const StyledLabel = styled.label<StyledProps>`
+	--switch-size: ${({ size }) => sizeDico[size]};
+	display: inline-flex;
 	transition: all 0.15s ease-in-out;
 	background-color: ${({ theme, checked }) =>
 		checked
 			? theme.colors.bases.primary[700]
 			: theme.colors.extended.grey[500]};
 	font-family: ${({ theme }) => theme.fonts.main};
-	padding: 0.2rem 1rem;
-	border-radius: 2.5rem;
-	width: 90px;
+	padding: 0.2rem;
+	border-radius: var(--switch-size);
+	width: calc(1.1 * var(--switch-size));
 
 	&:focus-within {
 		${FocusStyle}
 	}
 
-	&:hover ${StyledCheckbox} {
+	&:hover ${StyledSpan} {
 		box-shadow: 0 0 0 0.5rem
 			${({ disabled, checked, theme }) =>
 				disabled
@@ -62,35 +68,30 @@ const StyledSwitch = styled.span<StyledProps>`
 			: ''}
 `
 
-type AriaCheckboxProps = Parameters<typeof useSwitch>[0]
+type AriaSwitchProps = Parameters<typeof useSwitch>[0]
 
-export type SwitchProps = AriaCheckboxProps
+export type SwitchProps = AriaSwitchProps & {
+	size?: Size
+}
 
 export const Switch = (props: SwitchProps) => {
-	const { t } = useTranslation()
-	const state = useToggleState(props)
+	const { size = 'MD', ...ariaProps } = props
+	const state = useToggleState(ariaProps)
 	const ref = useRef<HTMLInputElement>(null)
-	const { inputProps } = useSwitch(props, state, ref)
+	const { inputProps } = useSwitch(ariaProps, state, ref)
 
-	const { isDisabled = false } = props
+	const { isDisabled = false } = ariaProps
 	const { isSelected } = state
 
 	return (
-		<StyledSwitch
-			tabIndex={0}
-			checked={isSelected}
-			disabled={isDisabled}
-			onClick={() => !isDisabled && state.toggle()}
-		>
-			<HiddenCheckbox
-				{...inputProps}
-				tabIndex={-1}
+		<StyledLabel size={size} checked={isSelected} disabled={isDisabled}>
+			<HiddenInput {...inputProps} type="checkbox" tabIndex={0} ref={ref} />
+			<StyledSpan
+				size={size}
 				aria-hidden="true"
-				ref={ref}
-			/>
-			<StyledCheckbox checked={isSelected} disabled={isDisabled}>
-				{isSelected ? t('Oui') : t('Non')}
-			</StyledCheckbox>
-		</StyledSwitch>
+				checked={isSelected}
+				disabled={isDisabled}
+			></StyledSpan>
+		</StyledLabel>
 	)
 }
