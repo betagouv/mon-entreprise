@@ -149,14 +149,11 @@ export function OuiNonInput(props: InputProps<DottedName>) {
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 
 	return (
-		<ToggleGroup
-			onChange={handleChange}
-			value={(defaultValue || currentSelection) ?? undefined}
-		>
-			<Radio value="oui">
+		<ToggleGroup onChange={handleChange} value={currentSelection ?? undefined}>
+			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
 				<Trans>Oui</Trans>
 			</Radio>
-			<Radio value="non">
+			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
 				<Trans>Non</Trans>
 			</Radio>
 		</ToggleGroup>
