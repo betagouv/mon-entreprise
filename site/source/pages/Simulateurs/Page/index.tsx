@@ -1,3 +1,4 @@
+import { PlacesDesEntreprises } from '@/components/PlaceDesEntreprises'
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import { EngineContext } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
@@ -107,6 +108,8 @@ export default function PageData(props: PageDataProps) {
 						iframePath={privateIframe ? undefined : iframePath}
 						nextSteps={nextSteps}
 					/>
+
+					<PlacesDesEntreprises />
 				</>
 			)}
 		</CurrentSimulatorDataProvider>

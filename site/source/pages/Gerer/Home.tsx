@@ -1,8 +1,5 @@
 import { Grid } from '@mui/material'
-import {
-	specifyIfAutoEntrepreneur,
-	specifyIfDirigeantMajoritaire,
-} from '@/actions/existingCompanyActions'
+import { specifyIfAutoEntrepreneur } from '@/actions/existingCompanyActions'
 import CompanyDetails from '@/components/CompanyDetails'
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
@@ -13,7 +10,7 @@ import { Container, Spacing } from '@/design-system/layout'
 import Popover from '@/design-system/Popover'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Intro } from '@/design-system/typography/paragraphs'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -33,6 +30,7 @@ import { MobiliteCard } from './cards/MobiliteCard'
 import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 import forms from './forms.svg'
 import growth from './growth.svg'
+import { PlacesDesEntreprises } from '@/components/PlaceDesEntreprises'
 
 export type DirigeantOrNull = keyof SimulatorData | null
 
@@ -222,6 +220,8 @@ export default function Gérer() {
 						<KbisCard dirigeant={dirigeantSimulateur} />
 					</Grid>
 				</Grid>
+
+				<PlacesDesEntreprises />
 			</FromBottom>
 		</>
 	)
