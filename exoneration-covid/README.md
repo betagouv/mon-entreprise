@@ -29,8 +29,8 @@ engine.setSituation({
     'mois . février 2022': "'LFSS 300'",
 })
 
-console.log(formatValue(engine.evaluate('montant total'))) // "3000 €"
-console.log(engine.evaluate('code').nodeValue) // "S1B;O;3;1;O;1"
+console.log(formatValue(engine.evaluate('montant total'))) // "2 650 €"
+console.log(engine.evaluate('code').nodeValue) // "S1B;O;3;2;O;1"
 ```
 
 👉 **[Voir l'exemple complet](https://codesandbox.io/s/covidform-rxweh?file=/src/index.js)**
