@@ -11,10 +11,28 @@ import { ComponentPropsWithoutRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
-import { CurrentSimulatorDataProvider, SimulatorData } from '../metadata'
+import { CurrentSimulatorDataProvider, ExtractFromSimuData } from '../metadata'
 import { NextSteps } from './NextSteps'
 
-export default function PageData(props: SimulatorData[keyof SimulatorData]) {
+export interface PageDataProps {
+	meta: ExtractFromSimuData<'meta'>
+	config?: ExtractFromSimuData<'config'>
+	tracking: ExtractFromSimuData<'tracking'>
+	tooltip?: ExtractFromSimuData<'tooltip'>
+	description?: ExtractFromSimuData<'description'>
+	iframePath?: ExtractFromSimuData<'iframePath'>
+	seoExplanations?: ExtractFromSimuData<'seoExplanations'>
+	nextSteps?: ExtractFromSimuData<'nextSteps'>
+	path: ExtractFromSimuData<'path'>
+	title?: ExtractFromSimuData<'title'>
+	private?: ExtractFromSimuData<'private'>
+	component: ExtractFromSimuData<'component'>
+	icône: ExtractFromSimuData<'icône'>
+	pathId: ExtractFromSimuData<'pathId'>
+	shortName: ExtractFromSimuData<'shortName'>
+}
+
+export default function PageData(props: PageDataProps) {
 	const {
 		meta,
 		config,

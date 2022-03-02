@@ -5,9 +5,9 @@ import { H2 } from 'DesignSystem/typography/heading'
 import { Link } from 'DesignSystem/typography/link'
 import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { createContext, useContext, useMemo } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { TFunction, Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
-import { constructLocalizedSitePath } from '../../sitePaths'
+import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
 import AideDéclarationIndépendant from '../Gerer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gerer/DemandeMobilite'
@@ -43,91 +43,23 @@ import SalariéSimulation from './Salarié'
 import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
 
-const simulateurs = [
-	'salarié',
-	'auto-entrepreneur',
-	'indépendant',
-	'eirl',
-	'eurl',
-	'sasu',
-	'chômage-partiel',
-	'artiste-auteur',
-	'comparaison-statuts',
-	'entreprise-individuelle',
-	'économie-collaborative',
-	'aide-déclaration-indépendant',
-	'demande-mobilité',
-	'profession-libérale',
-	'médecin',
-	'choix-statut',
-	'pharmacien',
-	'chirurgien-dentiste',
-	'sage-femme',
-	'auxiliaire-médical',
-	'avocat',
-	'expert-comptable',
-	'pamc',
-	'is',
-	'aides-embauche',
-	'dividendes',
-] as const
+interface SimulatorsDataParams {
+	t?: TFunction<'translation', string>
+	sitePaths?: SitePathsType
+	language?: string
+}
 
-export type SimulatorId = typeof simulateurs[number]
-
-export type PureSimulatorData = Record<
-	SimulatorId,
-	{
-		meta: {
-			title: string
-			description: string
-			ogTitle?: string
-			ogDescription?: string
-			ogImage?: string
-			color?: string
-		}
-		tracking:
-			| {
-					chapter2?: string
-					chapter3?: string
-					chapter1?: string
-			  }
-			| string
-		icône?: string
-		shortName: string
-		path?: string
-		tooltip?: string
-		iframePath?: string
-		title?: string
-		description?: React.ReactNode
-		config?: SimulationConfig
-		seoExplanations?: React.ReactNode
-		private?: boolean
-		pathId: string
-	}
->
-export type SimulatorData = PureSimulatorData &
-	Record<
-		SimulatorId,
-		{
-			path?: string
-			description?: React.ReactNode
-			config?: SimulationConfig
-			seoExplanations?: React.ReactNode
-			nextSteps?: Array<SimulatorId>
-			component: () => JSX.Element
-		}
-	>
-
-export function getSimulatorsData({
-	t = (_: unknown, text: string) => text,
+function getSimulatorsData({
+	t = (_, text) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr',
-} = {}): SimulatorData {
-	const pureSimulatorsData: PureSimulatorData = getData({ t })
+}: SimulatorsDataParams = {}) {
+	const pureSimulatorsData = getData(t)
+
 	return {
 		salarié: {
 			...pureSimulatorsData['salarié'],
-			config: salariéConfig,
+			config: salariéConfig as SimulationConfig,
 			component: SalariéSimulation,
 			meta: {
 				...pureSimulatorsData['salarié'].meta,
@@ -210,7 +142,7 @@ export function getSimulatorsData({
 		},
 		'entreprise-individuelle': {
 			...pureSimulatorsData['entreprise-individuelle'],
-			config: entrepriseIndividuelleConfig,
+			config: entrepriseIndividuelleConfig as SimulationConfig,
 			meta: {
 				...pureSimulatorsData['entreprise-individuelle']?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -283,7 +215,7 @@ export function getSimulatorsData({
 		},
 		eirl: {
 			...pureSimulatorsData['eirl'],
-			config: indépendantConfig,
+			config: indépendantConfig as SimulationConfig,
 			meta: {
 				...pureSimulatorsData['eirl']?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -294,7 +226,7 @@ export function getSimulatorsData({
 		},
 		sasu: {
 			...pureSimulatorsData['sasu'],
-			config: sasuConfig,
+			config: sasuConfig as SimulationConfig,
 			meta: {
 				...pureSimulatorsData['sasu']?.meta,
 				ogImage: RémunérationSASUPreview,
@@ -345,7 +277,7 @@ export function getSimulatorsData({
 		},
 		eurl: {
 			...pureSimulatorsData['eurl'],
-			config: eurlConfig,
+			config: eurlConfig as SimulationConfig,
 			meta: {
 				...pureSimulatorsData['eurl']?.meta,
 				ogImage: RémunérationSASUPreview,
@@ -356,7 +288,7 @@ export function getSimulatorsData({
 		'auto-entrepreneur': {
 			...pureSimulatorsData['auto-entrepreneur'],
 			tracking: 'auto_entrepreneur',
-			config: autoEntrepreneurConfig,
+			config: autoEntrepreneurConfig as SimulationConfig,
 			meta: {
 				...pureSimulatorsData['auto-entrepreneur']?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -430,7 +362,7 @@ export function getSimulatorsData({
 		},
 		indépendant: {
 			...pureSimulatorsData['indépendant'],
-			config: indépendantConfig,
+			config: indépendantConfig as SimulationConfig,
 			path: sitePaths.simulateurs.indépendant,
 			component: IndépendantSimulation,
 		},
@@ -442,7 +374,7 @@ export function getSimulatorsData({
 		'chômage-partiel': {
 			...pureSimulatorsData['chômage-partiel'],
 			component: ChômagePartielComponent,
-			config: chômageParielConfig,
+			config: chômageParielConfig as SimulationConfig,
 			path: sitePaths.simulateurs['chômage-partiel'],
 			meta: {
 				...pureSimulatorsData['chômage-partiel']?.meta,
@@ -591,14 +523,14 @@ export function getSimulatorsData({
 		},
 		'profession-libérale': {
 			...pureSimulatorsData['profession-libérale'],
-			config: professionLibéraleConfig,
+			config: professionLibéraleConfig as SimulationConfig,
 			path: sitePaths.simulateurs['profession-libérale'].index,
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
 			...pureSimulatorsData['pamc'],
 			path: sitePaths.simulateurs.pamc,
-			config: professionLibéraleConfig,
+			config: professionLibéraleConfig as SimulationConfig,
 			component: PAMCHome,
 		},
 		'aides-embauche': {
@@ -674,7 +606,7 @@ export function getSimulatorsData({
 			...pureSimulatorsData['dividendes'],
 			path: sitePaths.simulateurs.dividendes,
 			component: DividendesSimulation,
-			config: dividendesConfig,
+			config: dividendesConfig as SimulationConfig,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
 					<H2>Les dividendes et distributions</H2>
@@ -724,8 +656,24 @@ export function getSimulatorsData({
 				</Trans>
 			),
 		},
-	}
+	} as const
 }
+
+export type SimulatorData = ReturnType<typeof getSimulatorsData>
+
+/**
+ * Extract type if U extends T
+ * Else return an object with value undefined
+ */
+type ExtractOrUndefined<T, U> = T extends U ? T : Record<keyof U, undefined>
+
+/**
+ * Extract type from a key of SimulatorData
+ */
+export type ExtractFromSimuData<T extends string> = ExtractOrUndefined<
+	SimulatorData[keyof SimulatorData],
+	Record<T, unknown>
+>[T]
 
 export default function useSimulatorsData(): SimulatorData {
 	const { t, i18n } = useTranslation()
@@ -737,18 +685,19 @@ export default function useSimulatorsData(): SimulatorData {
 	)
 }
 
-export const CurrentSimulatorDataContext = createContext<
-	SimulatorData[keyof SimulatorData] | null
->(null)
+type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
+
+export const CurrentSimulatorDataContext = createContext<Overwrite<
+	SimulatorData[keyof SimulatorData],
+	{ path: ExtractFromSimuData<'path'> }
+> | null>(null)
 
 export const CurrentSimulatorDataProvider = CurrentSimulatorDataContext.Provider
 
-professionLibéraleConfig as SimulationConfig
-
 const configFromPLMetier = (metier: string): SimulationConfig => ({
-	...professionLibéraleConfig,
+	...(professionLibéraleConfig as SimulationConfig),
 	situation: {
-		...professionLibéraleConfig.situation,
+		...(professionLibéraleConfig as SimulationConfig).situation,
 		'entreprise . activité . libérale réglementée': 'oui',
 		'dirigeant . indépendant . PL . métier': `'${metier}'`,
 	},
@@ -762,16 +711,16 @@ const sageFemmeConfig = configFromPLMetier('santé . sage-femme')
 const avocatConfig = configFromPLMetier('avocat')
 const expertComptableConfig = configFromPLMetier('expert-comptable')
 const eurlConfig = {
-	...indépendantConfig,
+	...(indépendantConfig as SimulationConfig),
 	situation: {
-		...indépendantConfig.situation,
+		...(indépendantConfig as SimulationConfig).situation,
 		'entreprise . imposition': "'IS'",
 	},
 }
 const entrepriseIndividuelleConfig = {
-	...indépendantConfig,
+	...(indépendantConfig as SimulationConfig),
 	situation: {
-		...indépendantConfig.situation,
+		...(indépendantConfig as SimulationConfig).situation,
 		'entreprise . imposition': "'IR'",
 	},
 }
