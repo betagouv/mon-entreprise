@@ -333,7 +333,7 @@ LFR1 applicable:
 
 LFR1:
   produit:
-    assiette: 600 €/mois
+    assiette: 250 €/mois
     facteur:
       unité: mois
       description: Nombre de mois éligible à l'exonération LFR1
