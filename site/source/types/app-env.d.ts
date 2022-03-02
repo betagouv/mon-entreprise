@@ -7,7 +7,6 @@ interface ImportMetaEnv {
 	VITE_GITHUB_REF: string
 	VITE_GITHUB_HEAD_REF: string
 	VITE_GITHUB_SHA: string
-	VITE_GIT_HEAD: string
 
 	VITE_AT_INTERNET_SITE_ID: string
 
