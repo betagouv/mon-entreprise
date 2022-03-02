@@ -109,6 +109,8 @@ export default function PageData(props: PageDataProps) {
 						nextSteps={nextSteps}
 					/>
 
+					<Spacing lg />
+
 					<PlacesDesEntreprises />
 				</>
 			)}

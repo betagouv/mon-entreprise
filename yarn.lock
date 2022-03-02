@@ -5398,13 +5398,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/iframe-resizer@npm:^3.5.7":
-  version: 3.5.9
-  resolution: "@types/iframe-resizer@npm:3.5.9"
-  checksum: aa60f72832f72f788ea3029fe4cbfb572bb481b5a1bb9b50d13287cdef347d8e00e07916aa2c3765f7e39d4ec8701f64ddd9d27fe93ba7571a0b3bf06f1ecca4
-  languageName: node
-  linkType: hard
-
 "@types/is-function@npm:^1.0.0":
   version: 1.0.1
   resolution: "@types/is-function@npm:1.0.1"
@@ -12235,6 +12228,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iframe-resizer@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "iframe-resizer@npm:4.3.2"
+  checksum: 762d934f4fbe7e4b76c0f4574c2a47ef0e3fc6c82564f512ec41e62b62501052d271fb8ca5d268535509c0088132493c0ac78312af0fe3f11bf65cd964dd11a0
+  languageName: node
+  linkType: hard
+
 "ignore@npm:^4.0.3, ignore@npm:^4.0.6":
   version: 4.0.6
   resolution: "ignore@npm:4.0.6"
@@ -17618,7 +17618,6 @@ __metadata:
     "@storybook/addon-links": ^6.5.0-alpha.40
     "@storybook/react": ^6.5.0-alpha.40
     "@storybook/testing-library": ^0.0.9
-    "@types/iframe-resizer": ^3.5.7
     "@types/ramda": ^0.26.43
     "@types/react": ^17.0.0
     "@types/react-color": ^3.0.1
@@ -17648,6 +17647,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
     fuse.js: ^6.4.6
     i18next-parser: ^6.0.0
+    iframe-resizer: ^4.3.2
     isomorphic-fetch: ^2.2.1
     markdown-to-jsx: ^7.1.5
     modele-social: ^0.6.0

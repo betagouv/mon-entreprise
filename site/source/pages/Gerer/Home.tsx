@@ -221,6 +221,8 @@ export default function Gérer() {
 					</Grid>
 				</Grid>
 
+				<Spacing lg />
+
 				<PlacesDesEntreprises />
 			</FromBottom>
 		</>
