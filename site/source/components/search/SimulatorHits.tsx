@@ -4,7 +4,8 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { SmallCard } from '@/design-system/card'
 import InfoBulle from '@/design-system/InfoBulle'
 import { H3 } from '@/design-system/typography/heading'
-import { SimulatorData } from 'pages/Simulateurs/metadata'
+import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
+import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
 import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
@@ -15,7 +16,7 @@ import { Highlight } from './Hightlight'
 type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
-	pathId: string
+	pathId: MetadataSrc[keyof MetadataSrc]['pathId']
 }>
 
 type SimulatorHitsProps = {
@@ -26,7 +27,9 @@ const SimulateurCardHit = ({
 	hit,
 	path,
 	tooltip,
-}: Pick<SimulatorData[keyof SimulatorData], 'path' | 'tooltip'> & {
+}: {
+	path: ExtractFromSimuData<'path'>
+	tooltip?: ExtractFromSimuData<'tooltip'>
 	hit: AlgoliaSimulatorHit
 }) => {
 	return (
@@ -65,7 +68,12 @@ export const SimulatorHits = connectHits<
 							<Grid item key={hit.objectID} xs={12} lg={6}>
 								<SimulateurCardHit
 									hit={hit}
-									path={path(hit.pathId.split('.'), sitePaths)}
+									path={
+										path(
+											hit.pathId.split('.'),
+											sitePaths
+										) as ExtractFromSimuData<'path'>
+									}
 								/>
 							</Grid>
 						)

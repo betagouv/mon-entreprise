@@ -9,12 +9,12 @@ import { FAQAutoEntrepreneurArticle } from '../../../pages/Creer/CreationCheckli
 import { GuideURSSAFCard } from '../cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '../cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '../cards/SimulatorRessourceCard'
-import { SimulatorData } from '../metadata'
+import { ExtractFromSimuData } from '../metadata'
 
-type NextStepsProps = Pick<
-	SimulatorData[keyof SimulatorData],
-	'iframePath' | 'nextSteps'
->
+interface NextStepsProps {
+	iframePath: ExtractFromSimuData<'iframePath'>
+	nextSteps: ExtractFromSimuData<'nextSteps'>
+}
 
 export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const sitePaths = useContext(SitePathsContext)

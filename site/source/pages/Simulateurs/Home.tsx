@@ -18,7 +18,7 @@ import { ThemeProvider } from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
-import useSimulatorsData, { SimulatorData } from './metadata'
+import useSimulatorsData, { ExtractFromSimuData } from './metadata'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -135,10 +135,13 @@ export function SimulateurCard({
 	iframePath,
 	fromGérer = false,
 	icône,
-}: Pick<
-	SimulatorData[keyof SimulatorData],
-	'shortName' | 'meta' | 'path' | 'tooltip' | 'iframePath' | 'icône'
-> & {
+}: {
+	shortName: ExtractFromSimuData<'shortName'>
+	meta: ExtractFromSimuData<'meta'>
+	path: ExtractFromSimuData<'path'>
+	tooltip?: ExtractFromSimuData<'tooltip'>
+	iframePath?: ExtractFromSimuData<'iframePath'>
+	icône: ExtractFromSimuData<'icône'>
 	small?: boolean
 	fromGérer?: boolean
 }) {

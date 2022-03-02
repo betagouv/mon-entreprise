@@ -289,7 +289,7 @@ export default function Stats() {
 }
 
 function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
-	if (s.iframePath === 'pamc') {
+	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
 	}
 	if (!s.tracking) {

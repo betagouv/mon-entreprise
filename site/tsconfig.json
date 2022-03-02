@@ -21,6 +21,7 @@
 	},
 	"include": [
 		"source",
+		"scripts",
 		"test/**/*.ts",
 		"vite.config.ts",
 		"vite-iframe-script.config.ts"

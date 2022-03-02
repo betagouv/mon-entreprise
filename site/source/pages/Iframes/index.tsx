@@ -30,21 +30,25 @@ export default function Iframes() {
 				<ThemeColorsProvider>
 					<Switch>
 						{Object.values(simulators)
-							.filter(({ iframePath }) => !!iframePath)
-							.map((s) => (
-								<Route
-									key={s.iframePath}
-									path={`/iframes/${s.iframePath}`}
-									render={() => (
-										<>
-											<Helmet>
-												<link rel="canonical" href={s.path} />
-											</Helmet>
-											<SimulateurPage {...s} />
-										</>
-									)}
-								/>
-							))}
+							.filter((el) => !!('iframePath' in el && el.iframePath))
+							.map(
+								(s) =>
+									'iframePath' in s &&
+									s.iframePath && (
+										<Route
+											key={s.iframePath}
+											path={`/iframes/${s.iframePath}`}
+											render={() => (
+												<>
+													<Helmet>
+														<link rel="canonical" href={s.path} />
+													</Helmet>
+													<SimulateurPage {...s} />
+												</>
+											)}
+										/>
+									)
+							)}
 					</Switch>
 					<IframeFooter />
 				</ThemeColorsProvider>

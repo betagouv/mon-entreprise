@@ -1,3 +1,4 @@
+import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { map, reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 
@@ -14,15 +15,13 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 ]
 
 type LocalizedPath = string
-type PathFactory = (...args: Array<any>) => LocalizedPath
-
 type SitePathObject<T> = {
 	index: LocalizedPath
 } & {
-	[key in keyof T]: string | PathFactory | SitePathObject<T[key]>
+	[key in keyof T]: string | SitePathObject<T[key]>
 }
 
-const sitePathsFr = {
+const rawSitePathsFr = {
 	index: '',
 	créer: {
 		index: '/créer',
@@ -92,10 +91,10 @@ const sitePathsFr = {
 	},
 } as const
 
-const sitePathsEn = {
-	...sitePathsFr,
+const rawSitePathsEn = {
+	...rawSitePathsFr,
 	créer: {
-		...sitePathsFr.créer,
+		...rawSitePathsFr.créer,
 		index: '/create',
 		après: '/after-registration',
 		guideStatut: {
@@ -150,11 +149,41 @@ const sitePathsEn = {
 	accessibilité: '/accessibility',
 
 	integration: {
-		...sitePathsFr.integration,
+		...rawSitePathsFr.integration,
 		index: '/integration',
 		library: '/library',
 	},
 } as const
+
+/**
+ * Le but des types suivants est d'obtenir un typage statique des chaînes de caractères
+ * comme "simulateurs.auto-entrepreneur" utilisés comme identifiants des routes (via les pathId dans metadat-src.ts).
+ * Cela permet de ne pas avoir de faute dans les clés comme 'aide-embauche' au lieu de 'aides-embauche'
+ */
+
+// Transfrom string type like PathToType<'simulateurs.auto-entrepreneur', number>
+// into { simulateurs : { auto-entrepreneur: number }}
+type PathToType<T extends string, W> = T extends `${infer U}.${infer V}`
+	? { [key in U]: V extends string ? PathToType<V, W> : never }
+	: { [key in T]: W }
+
+// Transform type A | B into A & B
+type UnionToIntersection<T> = (
+	T extends unknown ? (x: T) => void : never
+) extends (x: infer R) => void
+	? R
+	: never
+
+// Union of pathId
+type PathIds = MetadataSrc[keyof MetadataSrc]['pathId']
+
+type RequiredPath = Required<UnionToIntersection<PathToType<PathIds, string>>>
+
+// If there is a type error here, check rawSitePathsFr object matches the metadata-src.ts pathId
+const checkedSitePathsFr: RequiredPath & typeof rawSitePathsFr = rawSitePathsFr
+
+// If there is a type error here, check rawSitePathsEn object matches the metadata-src.ts pathId
+const checkedSitePathsEn: RequiredPath & typeof rawSitePathsEn = rawSitePathsEn
 
 function constructSitePaths<T extends SitePathObject<T>>(
 	root: string,
@@ -162,18 +191,16 @@ function constructSitePaths<T extends SitePathObject<T>>(
 ): T {
 	return {
 		index: root + index,
-		...map((value: LocalizedPath | PathFactory | SitePathObject<string>) =>
+		...map((value: LocalizedPath | SitePathObject<string>) =>
 			typeof value === 'string'
 				? root + index + value
-				: typeof value === 'function'
-				? (...args: Array<unknown>) => root + index + String(value(...args))
 				: constructSitePaths(root + index, value as any)
 		)(sitePaths as any),
 	} as any
 }
 
 export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
-	const sitePaths = language === 'fr' ? sitePathsFr : sitePathsEn
+	const sitePaths = language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
 	return constructSitePaths('', sitePaths)
 }
 

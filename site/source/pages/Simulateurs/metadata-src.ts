@@ -1,10 +1,12 @@
+import { TFunction } from 'react-i18next'
+
 /**
  * Contient l'intégralité des données concernant les différents simulateurs
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-export default ({ t = (_, text) => text } = {}) => {
-	return {
+const metadataSrc = (t: TFunction<'translation', string>) => {
+	const data = {
 		salarié: {
 			tracking: 'salarie',
 			icône: '🤝',
@@ -359,7 +361,7 @@ export default ({ t = (_, text) => text } = {}) => {
 					'Déclaration de revenus indépendant : calcul du montant des cotisations'
 				),
 			},
-			pathId: 'simulateurs.déclarationIndépendant',
+			pathId: 'gérer.déclarationIndépendant',
 			shortName: t(
 				'pages.gérer.aide-déclaration-indépendant.shortname',
 				'Aide à la déclaration de revenu'
@@ -638,7 +640,7 @@ export default ({ t = (_, text) => text } = {}) => {
 				),
 				color: '#11965f',
 			},
-			pathId: 'simulateurs.aide-embauche',
+			pathId: 'simulateurs.aides-embauche',
 			iframePath: 'aides-embauche',
 			shortName: t(
 				'pages.simulateurs.aides-embauche.meta.title',
@@ -696,5 +698,10 @@ export default ({ t = (_, text) => text } = {}) => {
 
 			nextSteps: ['salarié', 'is', 'comparaison-statuts'],
 		},
-	}
+	} as const
+
+	return data
 }
+
+export type MetadataSrc = ReturnType<typeof metadataSrc>
+export default metadataSrc

@@ -32,7 +32,7 @@
 		"test:dev-e2e:mon-entreprise": "cypress open --browser chromium",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance,integrationFolder=cypress/integration/mon-entreprise/english --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
-		"algolia:update": "node scripts/search/update-data.js",
+		"algolia:update": "node --loader ts-node/esm scripts/search/update-data.ts",
 		"algolia:clean": "node scripts/search/clean.js",
 		"i18n:check": "yarn i18n:rules:check && yarn i18n:ui:check",
 		"i18n:translate": "yarn i18n:rules:translate && yarn i18n:ui:translate",
@@ -98,6 +98,7 @@
 		"reduce-reducers": "^1.0.4",
 		"redux": "^4.0.4",
 		"styled-components": "^5.3.1",
+		"ts-node": "^10.5.0",
 		"whatwg-fetch": "^3.0.0",
 		"yaml": "^1.9.2"
 	},
