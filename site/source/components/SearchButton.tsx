@@ -31,6 +31,7 @@ export default function SearchButton() {
 					</StyledLabel>
 				</StyledButton>
 			)}
+			small
 		>
 			{(closePopover) => (
 				<SearchRulesAndSimulators closePopover={closePopover} />

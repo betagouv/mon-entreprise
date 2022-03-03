@@ -88,6 +88,7 @@ export default function ShareOrSaveSimulationBanner() {
 								</ButtonLabel>
 							</Button>
 						)}
+						small
 					>
 						<ShareSimulationPopup url={url} />
 					</PopoverWithTrigger>

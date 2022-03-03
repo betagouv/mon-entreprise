@@ -12,6 +12,7 @@ export default function SeeAnswersButton() {
 					<Trans>Voir mes paramètres</Trans>
 				</Button>
 			)}
+			small
 		>
 			{(close) => <Answers onClose={close} />}
 		</PopoverWithTrigger>

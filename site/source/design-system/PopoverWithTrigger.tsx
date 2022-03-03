@@ -17,12 +17,14 @@ type PopoverWithTriggerProps = {
 	) => ReactElement<typeof Button> | ReactElement<typeof Link>
 	children: React.ReactNode | ((close: () => void) => React.ReactNode)
 	title?: string
+	small?: boolean
 }
 
 export default function PopoverWithTrigger({
 	children,
 	title,
 	trigger,
+	small,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
 	const openButtonRef = useRef<HTMLButtonElement>(null)
@@ -63,6 +65,7 @@ export default function PopoverWithTrigger({
 					onClose={() => state.close()}
 					isDismissable
 					role="dialog"
+					small={small}
 				>
 					{typeof children === 'function'
 						? children(() => state.close())

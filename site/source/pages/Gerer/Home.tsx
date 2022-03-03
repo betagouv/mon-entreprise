@@ -266,6 +266,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 					<ScrollToTop />
 					<Popover
 						title={t('gérer.entreprise.auto', 'Êtes-vous auto-entrepreneur ?')}
+						small
 					>
 						<Grid container spacing={2}>
 							<Grid item>

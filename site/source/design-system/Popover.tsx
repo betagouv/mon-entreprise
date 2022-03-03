@@ -45,7 +45,7 @@ export default function Popover(
 			small?: boolean
 		}
 ) {
-	const { title, children } = props
+	const { title, children, small } = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
@@ -82,7 +82,7 @@ export default function Popover(
 				<Underlay {...underlayProps}>
 					<Container>
 						<Grid container justifyContent="center">
-							<Grid item sm={10} md={8}>
+							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12}>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
