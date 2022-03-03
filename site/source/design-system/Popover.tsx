@@ -153,20 +153,12 @@ const Underlay = styled.div`
 	z-index: 10;
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
+	display: flex;
+	align-items: flex-end;
 `
 
 const PopoverContainer = styled.div<{ offsetTop: number | null }>`
-	${({ offsetTop }) =>
-		offsetTop !== null
-			? css`
-					top: calc(${offsetTop}px + 2rem);
-			  `
-			: css`
-					top: 10vh;
-			  `}
-
-	position: relative;
-	max-height: calc(90vh - 1px);
+	max-height: 90vh;
 
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[4]};
@@ -179,8 +171,6 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 		!offsetTop &&
 		css`
 			@media (max-width: ${theme.breakpointsWidth.sm}) {
-				top: calc(100vh - 100% - 1px);
-				max-height: calc(100vh - 1px);
 				margin: 0 -16px;
 			}
 		`}
@@ -216,6 +206,5 @@ const CloseButton = styled.button`
 
 const PopoverContent = styled.div`
 	overflow: auto;
-	padding: 0 ${({ theme }) => theme.spacings.xxl}
-		${({ theme }) => theme.spacings.md};
+	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
 `
