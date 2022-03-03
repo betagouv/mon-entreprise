@@ -1,5 +1,5 @@
 import PDFElement from '@react-pdf/renderer'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { EngineContext } from 'Components/utils/EngineContext'
 import { formatValue, RuleNode } from 'publicodes'
 import { useContext } from 'react'
 const { StyleSheet, Text, View } = PDFElement

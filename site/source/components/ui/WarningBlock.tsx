@@ -1,9 +1,9 @@
-import Emoji from '@/components/utils/Emoji'
-import { usePersistingState } from '@/components/utils/persistState'
-import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Intro } from '@/design-system/typography/paragraphs'
+import Emoji from 'Components/utils/Emoji'
+import { usePersistingState } from 'Components/utils/persistState'
+import { Button } from 'DesignSystem/buttons'
+import { Spacing } from 'DesignSystem/layout'
+import { Link } from 'DesignSystem/typography/link'
+import { Intro } from 'DesignSystem/typography/paragraphs'
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
@@ -22,8 +22,7 @@ const WarningSection = styled.section`
 `
 
 export default function Warning({ localStorageKey, children }: WarningProps) {
-	const [folded, fold] = usePersistingState<boolean>(localStorageKey, false)
-
+	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
 		<>
 			<WarningSection>

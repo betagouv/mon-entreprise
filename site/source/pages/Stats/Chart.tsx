@@ -1,8 +1,9 @@
-import { StyledLegend } from '@/components/charts/PagesCharts'
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { StyledLegend } from 'Components/charts/PagesCharts'
+import { Strong } from 'DesignSystem/typography'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
+import { ComponentProps } from 'react'
 import { useContext } from 'react'
 import {
 	Area,
@@ -22,29 +23,25 @@ import { ThemeContext } from 'styled-components'
 
 type Period = 'mois' | 'jours'
 
-export type Data<T = number | Record<string, number>> = {
-	date: string
-	nombre: T
-}[]
+type Data =
+	| Array<{ date: string; nombre: number }>
+	| Array<{ date: string; nombre: Record<string, number> }>
 
-export type DataStacked = Data<Record<string, number>>
-
-export const isDataStacked = (data: Data): data is DataStacked =>
-	typeof data[0].nombre !== 'number'
-
-export interface VisitsChartProps {
+type VisitsChartProps = {
 	period: Period
 	sync?: boolean
 	stack?: boolean
 	grid?: boolean
 	colored?: boolean
 	layout?: 'horizontal' | 'vertical'
-	onDateChange: BrushProps['onChange']
+	onDateChange?: (startEndIndex: {
+		startIndex?: number
+		endIndex?: number
+	}) => void
 	startIndex?: number
 	endIndex?: number
 	data: Data
 }
-
 const Palette = [
 	'#1ea0f5',
 	'#697ad5',
@@ -74,16 +71,15 @@ export default function VisitsChart({
 	if (!data.length) {
 		return null
 	}
+	const isStacked = typeof data[0].nombre !== 'number'
 	const isBarChart = data.length <= 3
-	const dataKeys = isDataStacked(data)
-		? Object.keys(data[0].nombre)
-		: ['nombre']
-	const flattenData = isDataStacked(data)
-		? data.map((d) => ({ ...d, ...d.nombre }))
-		: data
+	const dataKeys = isStacked ? Object.keys(data[0].nombre) : ['nombre']
+	const flattenData = (data as any).map((d: any) =>
+		isStacked ? { ...d, ...d.nombre } : d
+	)
 
-	const AxeA = layout === 'horizontal' ? XAxis : YAxis
-	const AxeB = layout === 'horizontal' ? YAxis : XAxis
+	const AxeA: any = layout === 'horizontal' ? XAxis : YAxis
+	const AxeB: any = layout === 'horizontal' ? YAxis : XAxis
 
 	function getColor(i: number): string {
 		if (!colored) {
@@ -114,7 +110,7 @@ export default function VisitsChart({
 							startIndex={startIndex}
 							endIndex={endIndex}
 							dataKey="date"
-							onChange={onDateChange}
+							onChange={onDateChange as BrushProps['onChange']} // https://github.com/recharts/recharts/issues/2480
 							tickFormatter={period === 'jours' ? formatDay : formatMonth}
 						/>
 					)}
@@ -128,7 +124,7 @@ export default function VisitsChart({
 
 					<AxeB
 						dataKey={dataKeys[0]}
-						tickFormatter={(val: number) => formatValue(val) as string}
+						tickFormatter={formatValue}
 						type="number"
 					/>
 
@@ -147,7 +143,7 @@ export default function VisitsChart({
 								stackId={stack ? 1 : undefined}
 								fill={getColor(i)}
 							/>
-						) : isDataStacked(data) ? (
+						) : isStacked ? (
 							<Area
 								key={k}
 								dataKey={k}

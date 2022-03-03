@@ -1,4 +1,4 @@
-import { Link } from '@/design-system/typography/link'
+import { Link } from 'DesignSystem/typography/link'
 import { DottedName } from 'modele-social'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { useContext } from 'react'

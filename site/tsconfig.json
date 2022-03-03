@@ -12,7 +12,17 @@
 		"allowJs": true,
 		"isolatedModules": true,
 		"paths": {
-			"@/*": ["*"]
+			"Actions/*": ["actions/*"],
+			"Components": ["components"],
+			"Components/*": ["components/*"],
+			"Images/*": ["images/*"],
+			"Reducers/*": ["reducers/*"],
+			"Selectors/*": ["selectors/*"],
+			"Types/*": ["types/*"],
+			"DesignSystem/*": ["design-system/*"],
+			"Data/*": ["data/*"],
+			"Hooks/*": ["hooks/*"],
+			"API/*": ["api/*"]
 		},
 		"types": ["vite/client"],
 		"typeRoots": ["./types/", "./node_modules/@types"],

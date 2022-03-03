@@ -1,11 +1,11 @@
-import { FromBottom } from '@/components/ui/animate'
-import Emoji from '@/components/utils/Emoji'
-import { Markdown } from '@/components/utils/markdown'
-import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Radio, RadioGroup } from '@/design-system/field'
-import { H1, H2, H3 } from '@/design-system/typography/heading'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { FromBottom } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
+import { Markdown } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Radio, RadioGroup } from 'DesignSystem/field'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -18,31 +18,26 @@ import Exonérations from './Exonérations'
 import NextButton from './NextButton'
 import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
-import { getValueFrom } from '@/utils'
 
 export type Activity = {
 	titre: string
 	explication: string
 }
 
-interface Props {
-	match: { params: { title: string } }
-}
-
 export default function Activité({
 	match: {
 		params: { title },
 	},
-}: Props) {
+}: any) {
 	const { language } = useTranslation().i18n
 	const sitePaths = useContext(SitePathsContext)
 	const { state, dispatch } = useContext(StoreContext)
 	const activité = getTranslatedActivité(title, language)
-	if (state && !(title in state)) {
+	if (!(title in state)) {
 		return <Redirect to={sitePaths.simulateurs.économieCollaborative.index} />
 	}
 
-	if (getValueFrom(activité, 'activités')) {
+	if (activité.activités) {
 		return (
 			<FromBottom>
 				<TrackPage name={activité.titre} />
@@ -57,18 +52,15 @@ export default function Activité({
 				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
 						currentActivité={title}
-						activités={(getValueFrom(activité, 'activités') ?? []).map(
-							({ titre }: Activity) => titre
-						)}
+						activités={activité.activités.map(({ titre }: Activity) => titre)}
 					/>
 				</section>
 			</FromBottom>
 		)
 	}
 
-	const seuilRevenus = state?.[title].seuilRevenus ?? undefined
+	const seuilRevenus = state[title].seuilRevenus
 	const estExonérée = estExonéréeSelector(title)(state)
-
 	return (
 		<section key={title}>
 			<ScrollToTop />
@@ -86,11 +78,11 @@ export default function Activité({
 				)}
 				<Exonérations
 					activité={title}
-					exceptionsExonération={getValueFrom(activité, 'exonérée sauf si')}
-					exonération={getValueFrom(activité, 'exonérée si')}
+					exceptionsExonération={activité['exonérée sauf si']}
+					exonération={activité['exonérée si']}
 				/>
 
-				{estExonérée ? null : getValueFrom(activité, 'seuil pro') === 0 ? (
+				{estExonérée ? null : activité['seuil pro'] === 0 ? (
 					<Trans i18nKey="économieCollaborative.activité.pro">
 						<H2>Il s'agit d'une activité professionnelle</H2>
 						<Body>
@@ -98,8 +90,7 @@ export default function Activité({
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
 						</Body>
 					</Trans>
-				) : getValueFrom(activité, 'seuil déclaration') === 0 &&
-				  !getValueFrom(activité, 'seuil pro') ? (
+				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
 					<Trans i18nKey="économieCollaborative.activité.impôt">
 						<H2>Vous devez déclarez vos revenus aux impôts</H2>
 						<Body>Les revenus de cette activité sont imposables.</Body>
@@ -112,7 +103,7 @@ export default function Activité({
 						</Trans>
 						<RadioGroup
 							onChange={(value) => {
-								dispatch?.(
+								dispatch(
 									selectSeuilRevenus(
 										title,
 										value as Parameters<typeof selectSeuilRevenus>[1]
@@ -121,29 +112,30 @@ export default function Activité({
 							}}
 							defaultValue={seuilRevenus}
 						>
-							{getValueFrom(activité, 'seuil déclaration') !== 0 && (
-								<Radio value="AUCUN">
-									<Trans>inférieurs à</Trans>{' '}
-									{formatValue(getValueFrom(activité, 'seuil déclaration'), {
-										precision: 0,
-										language,
-										displayedUnit: '€',
-									})}
-								</Radio>
-							)}
+							{activité['seuil déclaration'] &&
+								activité['seuil déclaration'] !== 0 && (
+									<Radio value="AUCUN">
+										<Trans>inférieurs à</Trans>{' '}
+										{formatValue(activité['seuil déclaration'], {
+											precision: 0,
+											language,
+											displayedUnit: '€',
+										})}
+									</Radio>
+								)}
 							<Radio value="IMPOSITION">
 								<Trans>inférieurs à</Trans>{' '}
-								{formatValue(getValueFrom(activité, 'seuil pro'), {
+								{formatValue(activité['seuil pro'], {
 									precision: 0,
 									language,
 									displayedUnit: '€',
 								})}
 							</Radio>
-							{getValueFrom(activité, 'seuil régime général') && (
+							{activité['seuil régime général'] && (
 								<Radio value="RÉGIME_GÉNÉRAL_DISPONIBLE">
 									{' '}
 									<Trans>supérieurs à</Trans>{' '}
-									{formatValue(getValueFrom(activité, 'seuil pro'), {
+									{formatValue(activité['seuil pro'], {
 										precision: 0,
 										language,
 										displayedUnit: '€',
@@ -155,8 +147,7 @@ export default function Activité({
 								{' '}
 								<Trans>supérieurs à</Trans>{' '}
 								{formatValue(
-									getValueFrom(activité, 'seuil régime général') ||
-										getValueFrom(activité, 'seuil pro'),
+									activité['seuil régime général'] || activité['seuil pro'],
 									{
 										precision: 0,
 										language,

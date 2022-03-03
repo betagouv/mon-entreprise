@@ -1,4 +1,4 @@
-import { Article } from '@/design-system/card'
+import { Article } from 'DesignSystem/card'
 import { Trans, useTranslation } from 'react-i18next'
 import { DirigeantOrNull } from '../Home'
 

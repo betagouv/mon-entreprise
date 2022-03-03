@@ -1,10 +1,10 @@
-import { useDebounce } from '@/components/utils'
-import Emoji from '@/components/utils/Emoji'
-import { Markdown } from '@/components/utils/markdown'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
-import { Radio, RadioGroup, ToggleGroup } from '@/design-system/field'
-import { Spacing } from '@/design-system/layout'
-import { H4 } from '@/design-system/typography/heading'
+import { useDebounce } from 'Components/utils'
+import Emoji from 'Components/utils/Emoji'
+import { Markdown } from 'Components/utils/markdown'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
+import { Radio, RadioGroup } from 'DesignSystem/field'
+import { Spacing } from 'DesignSystem/layout'
+import { H4 } from 'DesignSystem/typography/heading'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
 import {
@@ -147,16 +147,15 @@ export function OuiNonInput(props: InputProps<DottedName>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
-
 	return (
-		<ToggleGroup onChange={handleChange} value={currentSelection ?? undefined}>
+		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
 			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
 				<Trans>Oui</Trans>
 			</Radio>
 			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
 				<Trans>Non</Trans>
 			</Radio>
-		</ToggleGroup>
+		</RadioGroup>
 	)
 }
 

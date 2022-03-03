@@ -1,6 +1,6 @@
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Strong } from 'DesignSystem/typography'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import {
 	Bar,

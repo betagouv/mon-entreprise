@@ -1,11 +1,11 @@
 import { useButton } from '@react-aria/button'
-import { FocusStyle } from '@/design-system/global-style'
-import { H6 } from '@/design-system/typography/heading'
+import { FocusStyle } from 'DesignSystem/global-style'
+import { H6 } from 'DesignSystem/typography/heading'
 import {
 	NewWindowLinkIcon,
 	useExternalLinkProps,
-} from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+} from 'DesignSystem/typography/link'
+import { SmallBody } from 'DesignSystem/typography/paragraphs'
 import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'

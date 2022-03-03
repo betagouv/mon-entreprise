@@ -1,5 +1,5 @@
 import { Trans } from 'react-i18next'
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatus } from 'Selectors/companyStatusSelectors'
 type Props = {
 	statut: LegalStatus
 }

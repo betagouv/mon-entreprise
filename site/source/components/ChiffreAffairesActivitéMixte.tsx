@@ -1,17 +1,17 @@
-import { batchUpdateSituation } from '@/actions/actions'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import { batchUpdateSituation } from 'Actions/actions'
+import ButtonHelp from 'DesignSystem/buttons/ButtonHelp'
+import { Checkbox } from 'DesignSystem/field'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './Simulation'
 import { useEngine } from './utils/EngineContext'
 import { Markdown } from './utils/markdown'
-import { Switch } from '@/design-system/switch'
 
 const proportions = {
 	'entreprise . activité . mixte . proportions . service BIC':
@@ -122,18 +122,12 @@ function ActivitéMixte() {
 		},
 		[dispatch, situation]
 	)
-
 	return (
 		<StyledActivitéMixteContainer>
 			<Trans>
-				<Switch
-					size="XS"
-					defaultSelected={defaultChecked}
-					onChange={onMixteChecked}
-					light
-				>
+				<Checkbox defaultSelected={defaultChecked} onChange={onMixteChecked}>
 					Activité mixte
-				</Switch>
+				</Checkbox>
 			</Trans>
 			<ButtonHelp type="aide" title={rule.title} light>
 				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
@@ -143,16 +137,10 @@ function ActivitéMixte() {
 }
 
 const StyledActivitéMixteContainer = styled.div`
-	display: flex;
-	align-items: center;
-
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		text-align: right;
 		margin-top: -1.5rem;
 		position: relative;
 		z-index: 2;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
 	}
 `

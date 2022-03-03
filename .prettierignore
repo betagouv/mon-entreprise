@@ -1,5 +1,3 @@
 dist
-storybook-static
 site/source/locales/*.yaml
 site/source/ATInternetTracking/smarttag.js
-*.yaml.d.ts

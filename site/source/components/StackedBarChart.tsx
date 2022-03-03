@@ -1,12 +1,12 @@
-import RuleLink from '@/components/RuleLink'
-import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
-import { DottedName } from 'modele-social'
+import RuleLink from 'Components/RuleLink'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { Names } from 'modele-social/dist/names'
 import { EvaluatedNode } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import { useEngine } from './utils/EngineContext'
@@ -180,7 +180,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 }
 
 type StackedRulesChartProps = {
-	data: Array<{ color?: string; dottedName: DottedName; title?: string }>
+	data: Array<{ color?: string; dottedName: Names; title?: string }>
 	precision?: Precision
 }
 

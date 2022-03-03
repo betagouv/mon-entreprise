@@ -1,12 +1,12 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Link } from '@/design-system/typography/link'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { isNil } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
+import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
-import { LegalStatusRequirements } from '@/types/companyTypes'
+import { LegalStatusRequirements } from 'Types/companyTypes'
 
 const requirementToText = (
 	key: keyof LegalStatusRequirements,

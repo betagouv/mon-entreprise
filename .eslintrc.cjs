@@ -46,11 +46,7 @@ module.exports = {
 				ecmaFeatures: { jsx: true },
 				// eslint-disable-next-line no-undef
 				tsconfigRootDir: __dirname,
-				project: [
-					'./site/tsconfig.json',
-					'./modele-social/tsconfig.json',
-					'./exoneration-covid/tsconfig.json',
-				],
+				project: ['./site/tsconfig.json'],
 			},
 			extends: [
 				'eslint:recommended',

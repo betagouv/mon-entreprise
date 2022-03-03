@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch/lite'
-import { Spacing } from '@/design-system/layout'
+import { Spacing } from 'DesignSystem/layout'
 import { useEffect } from 'react'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { useHistory } from 'react-router'

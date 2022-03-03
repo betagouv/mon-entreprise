@@ -1,5 +1,5 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Button } from '@/design-system/buttons'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Button } from 'DesignSystem/buttons'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { activitéVue } from './actions'
@@ -22,7 +22,7 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 		<p css="text-align: center">
 			<Button
 				isDisabled={disabled}
-				onPress={() => dispatch?.(activitéVue(activité))}
+				onPress={() => dispatch(activitéVue(activité))}
 				to={nextTo}
 				css={`
 					margin: auto;

@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { H1 } from '@/design-system/typography/heading'
+import { H1 } from 'DesignSystem/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 

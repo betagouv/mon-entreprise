@@ -1,17 +1,17 @@
 import {
 	checkHiringItem,
 	initializeHiringChecklist,
-} from '@/actions/hiringChecklistAction'
-import { FromBottom } from '@/components/ui/animate'
-import { CheckItem, Checklist, ChecklistProps } from '@/components/ui/Checklist'
-import { H1, H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+} from 'Actions/hiringChecklistAction'
+import { FromBottom } from 'Components/ui/animate'
+import { CheckItem, Checklist, ChecklistProps } from 'Components/ui/Checklist'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
+import { Link } from 'DesignSystem/typography/link'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
+import { RootState } from 'Reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulatorRessourceCard } from '../Simulateurs/cards/SimulatorRessourceCard'
 

@@ -2,7 +2,7 @@ import { formatValue } from 'publicodes'
 import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled, { keyframes } from 'styled-components'
 
 type AnimatedTargetValueProps = {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { nextQuestionSelector } from '@/selectors/companyStatusSelectors'
+import { nextQuestionSelector } from 'Selectors/companyStatusSelectors'
 const state = (companyLegalStatus) => ({
 	inFranceApp: {
 		companyLegalStatus,

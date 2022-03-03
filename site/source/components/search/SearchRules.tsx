@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch/lite'
-import { H2 } from '@/design-system/typography/heading'
+import { H2 } from 'DesignSystem/typography/heading'
 import { Trans } from 'react-i18next'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'

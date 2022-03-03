@@ -1,6 +1,6 @@
-import { CheckItem, Checklist } from '@/components/ui/Checklist'
-import { H2 } from '@/design-system/typography/heading'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { CheckItem, Checklist } from 'Components/ui/Checklist'
+import { H2 } from 'DesignSystem/typography/heading'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { changeCritèreExonération } from './actions'
@@ -14,10 +14,7 @@ export default function Exonération({
 }: any) {
 	const { state, dispatch } = useContext(StoreContext)
 	if (!exceptionsExonération && !exonération) return null
-	const defaultChecked = state?.[activité].critèresExonération.reduce(
-		(acc, el, i) => ({ ...acc, [i]: el }),
-		{} as { [key: string]: boolean }
-	)
+	const defaultChecked = state[activité].critèresExonération
 	return (
 		<>
 			<H2>
@@ -26,9 +23,9 @@ export default function Exonération({
 				</Trans>
 			</H2>
 			<Checklist
-				onItemCheck={(index, checked) => {
-					dispatch?.(changeCritèreExonération(activité, index, checked))
-				}}
+				onItemCheck={(index, checked) =>
+					dispatch(changeCritèreExonération(activité, index, checked))
+				}
 				defaultChecked={defaultChecked}
 			>
 				{(exceptionsExonération || exonération).map(

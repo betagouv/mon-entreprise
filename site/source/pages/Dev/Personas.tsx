@@ -1,4 +1,4 @@
-import { H1, H2, H3 } from '@/design-system/typography/heading'
+import { H1, H2, H3 } from 'DesignSystem/typography/heading'
 
 export default function Personas() {
 	return (

@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
-import { SmallCard } from '@/design-system/card'
-import { H2 } from '@/design-system/typography/heading'
+import { SmallCard } from 'DesignSystem/card'
+import { H2 } from 'DesignSystem/typography/heading'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'

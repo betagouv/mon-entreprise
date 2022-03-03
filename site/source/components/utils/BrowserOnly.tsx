@@ -1,4 +1,4 @@
-import { Appear } from '@/components/ui/animate'
+import { Appear } from 'Components/ui/animate'
 import React from 'react'
 
 // We add a animation for all coponents displayed on the client only but not on

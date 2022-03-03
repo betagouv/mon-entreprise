@@ -23,7 +23,6 @@ jobs:
       env-name: ${{ steps.deploy-env.outputs.name }}
       fr_url: ${{ steps.base-urls.outputs.fr }}
       en_url: ${{ steps.base-urls.outputs.en }}
-      storybook_url: ${{ steps.base-urls.outputs.storybook }}
     steps:
       - id: deploy-env
         run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
@@ -31,7 +30,6 @@ jobs:
         run:
           echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
-          echo "::set-output name=storybook::${{ steps.deploy-env.outputs.name == 'master' && 'https://storybook.mon-entreprise.urssaf.fr' || format('https://{0}-storybook--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
 
   build:
     needs: deploy-context
@@ -85,35 +83,6 @@ jobs:
             site/netlify.toml
           if-no-files-found: error
 
-  build-storybook:
-    needs: deploy-context
-    env:
-      VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
-      VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --frozen-lockfile
-        env:
-          # Secrets of all kinds for fetching stats & releases
-          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
-          ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
-          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
-          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
-      - name: Build Storybook
-        run: yarn workspace site build:storybook
-      - uses: actions/upload-artifact@v2
-        with:
-          name: static-storybook
-          path: |
-            site/storybook-static/**
-            site/netlify.toml
-          if-no-files-found: error
-
   deploy-preview:
     needs: [build, deploy-context]
     runs-on: ubuntu-18.04
@@ -146,36 +115,8 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
 
-  deploy-storybook-preview:
-    needs: [build-storybook, deploy-context]
-    runs-on: ubuntu-18.04
-    if: needs.deploy-context.outputs.env-name != 'master'
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: static-storybook
-      - id: deploy-storybook-to-netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './storybook-static'
-          netlify-config-path: ./netlify.toml
-          production-deploy: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-commit-status: true
-          enable-commit-comment: false
-          github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
-          alias: ${{ needs.deploy-context.outputs.env-name }}-storybook
-          deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} Storybook
-
-          # Disabled because we create our own customized comment
-          enable-pull-request-comment: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
-
   deploy-prod:
-    needs: [build, build-storybook, deploy-context]
+    needs: [build, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
@@ -183,13 +124,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
-      - uses: actions/download-artifact@v2
-        with:
-          name: static-storybook
-      - name: Move Storybook to dist/dev
-        run: |
-          mkdir -p dist/dev
-          mv storybook-static dist/dev
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -229,7 +163,6 @@ jobs:
 
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
-            - storybook : ${{ needs.deploy-context.outputs.storybook_url }}
 
   e2e-test-preview:
     env:

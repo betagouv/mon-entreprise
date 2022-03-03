@@ -1,8 +1,8 @@
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
-import { usePersistingState } from '@/components/utils/persistState'
-import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Link } from '@/design-system/typography/link'
+import { useIsEmbedded } from 'Components/utils/embeddedContext'
+import { usePersistingState } from 'Components/utils/persistState'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Link } from 'DesignSystem/typography/link'
 import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch, useLocation } from 'react-router-dom'
@@ -17,7 +17,7 @@ export default function Simulateurs() {
 		fromGérer?: boolean
 		fromCréer?: boolean
 		fromSimulateurs?: boolean
-	}>('navigation::simulateurs::locationState::v2', {})
+	}>('navigation::simulateurs::locationState::v2')
 	useEffect(() => {
 		if (state) {
 			setLastState(state as any)

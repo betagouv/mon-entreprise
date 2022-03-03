@@ -1,5 +1,5 @@
-import { InputProps } from '@/components/conversation/RuleInput'
-import { DateField } from '@/design-system/field'
+import { InputProps } from 'Components/conversation/RuleInput'
+import { DateField } from 'DesignSystem/field'
 import { useCallback, useMemo } from 'react'
 import InputSuggestions from './InputSuggestions'
 

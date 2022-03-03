@@ -1,4 +1,4 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { SitePaths, SitePathsContext } from 'Components/utils/SitePathsContext'
 import {
 	add,
 	any,
@@ -14,7 +14,7 @@ import {
 } from 'ramda'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
+import { RootState } from 'Reducers/rootReducer'
 import { LegalStatusRequirements, State } from '../types/companyTypes'
 
 const LEGAL_STATUS_DETAILS = {

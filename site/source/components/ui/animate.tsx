@@ -1,4 +1,4 @@
-import { DisableAnimationContext } from '@/components/utils/DisableAnimationContext'
+import { DisableAnimationContext } from 'Components/utils/DisableAnimationContext'
 import React, { useContext } from 'react'
 import {
 	animated,
@@ -40,6 +40,7 @@ export function FromBottom({
 		<>
 			{trail.map((style, i) => (
 				<AnimatedDiv
+					// @ts-expect-error:  bug when using babel-plugin-styled-components and react-spring
 					key={i}
 					style={{
 						...inheritedStyle,

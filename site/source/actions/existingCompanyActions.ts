@@ -1,5 +1,5 @@
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
+import { FabriqueSocialEntreprise } from 'API/fabrique-social'
+import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 
 export type ActionExistingCompany = ReturnType<
 	| typeof specifyIfAutoEntrepreneur

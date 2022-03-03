@@ -1,6 +1,6 @@
 import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { map, reduce, toPairs, zipObj } from 'ramda'
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'EI',

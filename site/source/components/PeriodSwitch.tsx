@@ -1,8 +1,8 @@
-import { updateUnit } from '@/actions/actions'
-import { Radio, ToggleGroup } from '@/design-system/field'
+import { updateUnit } from 'Actions/actions'
+import { Radio, ToggleGroup } from 'DesignSystem/field'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()

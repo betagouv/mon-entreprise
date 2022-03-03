@@ -1,8 +1,8 @@
 import { useRadio, useRadioGroup } from '@react-aria/radio'
 import { RadioGroupState, useRadioGroupState } from '@react-stately/radio'
 import { AriaRadioProps, RadioGroupProps } from '@react-types/radio'
-import { FocusStyle } from '@/design-system/global-style'
-import { Body } from '@/design-system/typography/paragraphs'
+import { FocusStyle } from 'DesignSystem/global-style'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import React, { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
 

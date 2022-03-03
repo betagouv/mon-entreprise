@@ -1,25 +1,26 @@
-import Banner from '@/components/Banner'
-import Value, { Condition } from '@/components/EngineValue'
-import PeriodSwitch from '@/components/PeriodSwitch'
-import RuleLink from '@/components/RuleLink'
-import Simulation from '@/components/Simulation'
-import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
-import { FromTop } from '@/components/ui/animate'
-import Emoji from '@/components/utils/Emoji'
-import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Button } from '@/design-system/buttons'
-import { Link } from '@/design-system/typography/link'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import Banner from 'Components/Banner'
+import Value, { Condition } from 'Components/EngineValue'
+import PeriodSwitch from 'Components/PeriodSwitch'
+import RuleLink from 'Components/RuleLink'
+import Simulation from 'Components/Simulation'
+import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
+import { SimulationGoal, SimulationGoals } from 'Components/Simulation'
+import { FromTop } from 'Components/ui/animate'
+import Emoji from 'Components/utils/Emoji'
+import { useEngine } from 'Components/utils/EngineContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { Button } from 'DesignSystem/buttons'
+import { Link } from 'DesignSystem/typography/link'
+import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
 import { DottedName } from 'modele-social'
+import { Names } from 'modele-social/dist/names'
 import { reduceAST } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import BrowserOnly from '@/components/utils/BrowserOnly'
+import BrowserOnly from 'Components/utils/BrowserOnly'
 
 const ButtonContainer = styled.div`
 	margin: 2rem 1rem;
@@ -113,7 +114,7 @@ function TitreRestaurant() {
 
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const dottedName = 'contrat salarié . aides employeur' as DottedName
+	const dottedName = 'contrat salarié . aides employeur' as Names
 	const engine = useEngine()
 	const aides = engine.getRule(dottedName)
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous

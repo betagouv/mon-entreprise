@@ -1,12 +1,12 @@
 import {
 	directorIsInAMinority,
 	useDispatchAndGoToNextQuestion,
-} from '@/actions/companyStatusActions'
-import AnswerGroup from '@/design-system/answer-group'
-import { Button } from '@/design-system/buttons'
-import { H2 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+} from 'Actions/companyStatusActions'
+import AnswerGroup from 'DesignSystem/answer-group'
+import { Button } from 'DesignSystem/buttons'
+import { H2 } from 'DesignSystem/typography/heading'
+import { Li, Ul } from 'DesignSystem/typography/list'
+import { Body } from 'DesignSystem/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
