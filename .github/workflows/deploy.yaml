@@ -111,7 +111,6 @@ jobs:
           name: static-storybook
           path: |
             site/storybook-static/**
-            site/netlify.toml
           if-no-files-found: error
 
   deploy-preview:
@@ -140,7 +139,7 @@ jobs:
           ls -la
           ls -la dist
           ls -la dist/dev
-          ls -la dist/dev/static-storybook
+          ls -la dist/dev/storybook-static
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
