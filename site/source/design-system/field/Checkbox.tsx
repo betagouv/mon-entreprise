@@ -1,8 +1,8 @@
 import { useCheckbox } from '@react-aria/checkbox'
 import { useToggleState } from '@react-stately/toggle'
 import { AriaCheckboxProps } from '@react-types/checkbox'
-import { FocusStyle } from 'DesignSystem/global-style'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { FocusStyle } from '@/design-system/global-style'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useRef } from 'react'
 import styled from 'styled-components'
 

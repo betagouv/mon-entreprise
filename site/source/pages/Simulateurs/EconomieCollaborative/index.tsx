@@ -1,6 +1,6 @@
-import { useIsEmbedded } from 'Components/utils/embeddedContext'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Link } from 'DesignSystem/typography/link'
+import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Link } from '@/design-system/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
@@ -8,13 +8,13 @@ import { TrackChapter } from '../../../ATInternetTracking'
 import useSimulatorsData from '../metadata'
 import Activité from './Activité'
 import ActivitésSelection from './ActivitésSelection'
-import reducer from './reducer'
 import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
 	const sitePaths = useContext(SitePathsContext)
-	const iframePath = useSimulatorsData()['économie-collaborative'].iframePath
+	const iframePath =
+		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()
 		? '/iframes/' + iframePath
 		: sitePaths.simulateurs.économieCollaborative.index
@@ -29,10 +29,7 @@ export default function ÉconomieCollaborative() {
 					</Trans>
 				</Link>
 			</div>
-			<StoreProvider
-				reducer={reducer}
-				localStorageKey="app::économie-collaborative:v1"
-			>
+			<StoreProvider localStorageKey="app::économie-collaborative:v1">
 				<Switch>
 					<Route exact path={indexPath} component={ActivitésSelection} />
 					<Route

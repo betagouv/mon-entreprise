@@ -1,10 +1,10 @@
-import { setSimulationConfig } from 'Actions/actions'
+import { setSimulationConfig } from '@/actions/actions'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { Company } from 'Reducers/inFranceAppReducer'
-import { RootState, SimulationConfig, Situation } from 'Reducers/rootReducer'
-import { configSelector } from 'Selectors/simulationSelectors'
+import { Company } from '@/reducers/inFranceAppReducer'
+import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { configSelector } from '@/selectors/simulationSelectors'
 
 export default function useSimulationConfig(
 	config: SimulationConfig | undefined,

@@ -1,5 +1,5 @@
 import { pipe } from 'ramda'
-import { currentSimulationSelector } from 'Selectors/previousSimulationSelectors'
+import { currentSimulationSelector } from '@/selectors/previousSimulationSelectors'
 
 export const serialize = pipe(currentSimulationSelector, JSON.stringify)
 

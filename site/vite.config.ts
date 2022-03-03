@@ -7,31 +7,60 @@ import toml from 'rollup-plugin-toml'
 import { defineConfig, Plugin } from 'vite'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import serveStatic from 'serve-static'
+import { Project } from 'ts-morph'
 
-export default defineConfig({
+const buildYamlToDts = [
+	'Simulateurs/EconomieCollaborative/activités.yaml',
+	'Simulateurs/EconomieCollaborative/activités.en.yaml',
+]
+
+export default defineConfig(({ command }) => ({
 	resolve: {
-		alias: {
-			Actions: path.resolve('source/actions/'),
-			Components: path.resolve('source/components/'),
-			Selectors: path.resolve('source/selectors/'),
-			Reducers: path.resolve('source/reducers/'),
-			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/'),
-			DesignSystem: path.resolve('source/design-system'),
-			Data: path.resolve('source/data'),
-			Hooks: path.resolve('source/hooks'),
-			API: path.resolve('source/api'),
-		},
+		alias: { '@': path.resolve('./source') },
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
 	publicDir: 'source/public',
 	plugins: [
 		react({
-			babel: {
-				plugins: ['babel-plugin-styled-components'],
+			babel: { plugins: ['babel-plugin-styled-components'] },
+		}),
+		yaml({
+			/**
+			 * Build yaml to d.ts when vite build
+			 */
+			transform: (data, filePath): undefined => {
+				if (
+					command === 'serve' ||
+					!buildYamlToDts.some((p) => filePath.includes(p))
+				) {
+					return
+				}
+
+				const relativePath = filePath.replace(__dirname + '/', '')
+				console.log('Transform:', relativePath)
+
+				const source = JSON.stringify(data)
+				const defaultExportedJson = `const _default = ${source} as const\nexport default _default`
+
+				const project = new Project({
+					compilerOptions: {
+						declaration: true,
+						emitDeclarationOnly: true,
+					},
+				})
+
+				project.createSourceFile(filePath + '.ts', defaultExportedJson, {
+					overwrite: true,
+				})
+
+				project
+					.emit()
+					.then(() => console.log('  Done!  :', relativePath + '.d.ts'))
+					.catch((err) => console.error(err))
+
+				return
 			},
 		}),
-		yaml(),
 		toml,
 		shimReactPdf(),
 		multipleSPA({
@@ -64,7 +93,7 @@ export default defineConfig({
 		}),
 		monEntrepriseDevServer(),
 	],
-})
+}))
 
 type MultipleSPAOptions = {
 	defaultSite: string
