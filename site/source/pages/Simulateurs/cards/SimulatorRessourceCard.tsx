@@ -1,5 +1,5 @@
-import Emoji from 'Components/utils/Emoji'
-import { Article } from 'DesignSystem/card'
+import Emoji from '@/components/utils/Emoji'
+import { Article } from '@/design-system/card'
 import { Trans } from 'react-i18next'
 import useSimulatorsData, { SimulatorData } from '../metadata'
 

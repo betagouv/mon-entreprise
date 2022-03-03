@@ -1,5 +1,5 @@
-import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
+import { getValueFrom } from '@/utils'
 import { Action } from './actions'
 import {
 	flatActivités,
@@ -7,14 +7,17 @@ import {
 	getMinimumDéclaration,
 	getSousActivités,
 } from './activitésData'
+import { reduceReducers } from './customReduceReducers'
 
-const activitéReducer = (reducerActivité: any) =>
+type Bool = boolean
+
+const activitéReducer = (reducerActivité: string) =>
 	combineReducers({
-		effectuée: (state = false, { type, activité }: Action): boolean =>
+		effectuée: (state: Bool = false, { type, activité }: Action) =>
 			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
 				? !state
 				: !!state,
-		vue: (state = false, { type, activité }: Action): boolean => {
+		vue: (state: Bool = false, { type, activité }: Action) => {
 			if (type === 'ACTIVITÉ_VUE' && reducerActivité === activité) {
 				return true
 			}
@@ -47,31 +50,32 @@ const activitéReducer = (reducerActivité: any) =>
 				action.type === 'CHANGE_CRITÈRE_EXONÉRATION' &&
 				reducerActivité === action.activité
 			) {
-				state[action.index as any] = action.estRespecté
+				state[parseInt(action.index)] = action.estRespecté
 				return [...state]
 			}
 			return state
 		},
 	})
+
 function getDefaultCritères(reducerActivité: string) {
-	const exonération = getActivité(reducerActivité)['exonérée si']
-	const exceptionExonération = getActivité(reducerActivité)['exonérée sauf si']
-	return new Array((exonération ?? exceptionExonération ?? []).length).fill(
-		false
-	)
+	const activité = getActivité(reducerActivité)
+	const exonération = getValueFrom(activité, 'exonérée si')
+	const exceptionExonération = getValueFrom(activité, 'exonérée sauf si')
+
+	return (exonération ?? exceptionExonération ?? []).map<false>(() => false)
 }
 
 type ActivityTitle = string
-type State = Record<
+export type State = Record<
 	ActivityTitle,
 	ReturnType<ReturnType<typeof activitéReducer>>
 >
 
-const reducer = reduceReducers(
-	(state: State, { type, activité }: Action) => {
+const reducer = reduceReducers<State, Action>(
+	(state, { type, activité }) => {
 		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
 			return getSousActivités(activité).reduce(
-				(newState: State, sousActivité: any) => ({
+				(newState, sousActivité) => ({
 					...newState,
 					[sousActivité]: {
 						...state[sousActivité],
@@ -92,7 +96,7 @@ const reducer = reduceReducers(
 			}),
 			{}
 		)
-	) as any
+	)
 )
 
 export default reducer

@@ -1,4 +1,4 @@
-import PopoverWithTrigger from 'DesignSystem/PopoverWithTrigger'
+import PopoverWithTrigger from '@/design-system/PopoverWithTrigger'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'

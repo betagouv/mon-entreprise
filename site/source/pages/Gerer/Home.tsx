@@ -2,25 +2,25 @@ import { Grid } from '@mui/material'
 import {
 	specifyIfAutoEntrepreneur,
 	specifyIfDirigeantMajoritaire,
-} from 'Actions/existingCompanyActions'
-import CompanyDetails from 'Components/CompanyDetails'
-import PageHeader from 'Components/PageHeader'
-import { FromBottom } from 'Components/ui/animate'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Button } from 'DesignSystem/buttons'
-import { Container, Spacing } from 'DesignSystem/layout'
-import Popover from 'DesignSystem/Popover'
-import { H2 } from 'DesignSystem/typography/heading'
-import { Link } from 'DesignSystem/typography/link'
-import { Body, Intro } from 'DesignSystem/typography/paragraphs'
+} from '@/actions/existingCompanyActions'
+import CompanyDetails from '@/components/CompanyDetails'
+import PageHeader from '@/components/PageHeader'
+import { FromBottom } from '@/components/ui/animate'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Button } from '@/design-system/buttons'
+import { Container, Spacing } from '@/design-system/layout'
+import Popover from '@/design-system/Popover'
+import { H2 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
-import { Company } from 'Reducers/inFranceAppReducer'
-import { RootState } from 'Reducers/rootReducer'
+import { Company } from '@/reducers/inFranceAppReducer'
+import { RootState } from '@/reducers/rootReducer'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
@@ -199,13 +199,11 @@ export default function Gérer() {
 					<Trans>Ressources utiles</Trans>
 				</H2>
 				<Grid container spacing={3}>
-					{dirigeantSimulateur === 'indépendant' &&
-						i18n.language === 'fr' &&
-						import.meta.env.VITE_GIT_HEAD !== 'master' && (
-							<Grid item sm={12} md={4}>
-								<MobiliteCard />
-							</Grid>
-						)}
+					{dirigeantSimulateur === 'indépendant' && i18n.language === 'fr' && (
+						<Grid item sm={12} md={4}>
+							<MobiliteCard />
+						</Grid>
+					)}
 					{!company?.isAutoEntrepreneur && (
 						<Grid item sm={12} md={4}>
 							<DemarcheEmbaucheCard />

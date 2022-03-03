@@ -1,17 +1,17 @@
-import { goToQuestion } from 'Actions/actions'
-import { Spacing } from 'DesignSystem/layout'
-import { Link } from 'DesignSystem/typography/link'
-import { SmallBody } from 'DesignSystem/typography/paragraphs'
+import { goToQuestion } from '@/actions/actions'
+import { Spacing } from '@/design-system/layout'
+import { Link } from '@/design-system/typography/link'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
+import { RootState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
-} from 'Selectors/simulationSelectors'
-import styled, { css } from 'styled-components'
+} from '@/selectors/simulationSelectors'
+import styled from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
@@ -40,19 +40,13 @@ export default function QuickLinks() {
 		<StyledLinks>
 			<span>Aller à la question : </span>
 			{links.map(([label, dottedName]) => (
-				<Link
+				<StyledLink
 					key={dottedName}
-					css={
-						dottedName === currentQuestion
-							? css`
-									text-decoration: underline;
-							  `
-							: ''
-					}
+					underline={dottedName === currentQuestion}
 					onPress={() => dispatch(goToQuestion(dottedName))}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
-				</Link>
+				</StyledLink>
 			))}
 		</StyledLinks>
 	)
@@ -62,4 +56,8 @@ const StyledLinks = styled(SmallBody)`
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: ${({ theme }) => theme.spacings.sm};
+`
+
+const StyledLink = styled(Link)<{ underline: boolean }>`
+	text-decoration: ${({ underline }) => (underline ? 'underline' : '')};
 `

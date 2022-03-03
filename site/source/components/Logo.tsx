@@ -1,5 +1,5 @@
-import logoSvgFR from 'Images/logo-monentreprise.svg'
-import logoSvgEN from 'Images/logo-mycompany.svg'
+import logoSvgFR from '@/images/logo-monentreprise.svg'
+import logoSvgEN from '@/images/logo-mycompany.svg'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 

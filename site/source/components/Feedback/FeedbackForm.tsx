@@ -1,4 +1,4 @@
-import { ScrollToElement } from 'Components/utils/Scroll'
+import { ScrollToElement } from '@/components/utils/Scroll'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'

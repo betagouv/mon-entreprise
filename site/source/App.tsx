@@ -1,26 +1,26 @@
-import Footer from 'Components/layout/Footer/Footer'
-import Header from 'Components/layout/Header'
-import Route404 from 'Components/Route404'
-import { useIsEmbedded } from 'Components/utils/embeddedContext'
+import rules from 'modele-social'
+import { StrictMode, useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+import Footer from '@/components/layout/Footer/Footer'
+import Header from '@/components/layout/Header'
+import Route404 from '@/components/Route404'
+import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import {
 	engineFactory,
 	EngineProvider,
 	Rules,
 	SituationProvider,
-} from 'Components/utils/EngineContext'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Container, Spacing } from 'DesignSystem/layout'
-import { StrictMode, useContext, useMemo } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import rules from 'modele-social'
-import { Redirect, Route, Switch } from 'react-router-dom'
+} from '@/components/utils/EngineContext'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Container, Spacing } from '@/design-system/layout'
 import {
 	configSituationSelector,
 	situationSelector,
-} from 'Selectors/simulationSelectors'
-import styled, { css } from 'styled-components'
+} from '@/selectors/simulationSelectors'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
