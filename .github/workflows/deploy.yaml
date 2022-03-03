@@ -135,6 +135,12 @@ jobs:
         with:
           name: static-storybook
           path: dist/dev
+      - name: List files
+        run: |
+          ls -la
+          ls -la dist
+          ls -la dist/dev
+          ls -la dist/dev/static-storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
