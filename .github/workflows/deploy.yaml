@@ -83,8 +83,36 @@ jobs:
             site/netlify.toml
           if-no-files-found: error
 
+  build-storybook:
+    needs: deploy-context
+    env:
+      VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
+      VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+      - run: yarn install --frozen-lockfile
+        env:
+          # Secrets of all kinds for fetching stats & releases
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
+          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
+          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
+      - name: Build Storybook
+        run: yarn workspace site build:storybook
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-storybook
+          path: |
+            site/storybook-static/**
+          if-no-files-found: error
+
   deploy-preview:
-    needs: [build, deploy-context]
+    needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
@@ -95,6 +123,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-storybook
+          path: dist/dev/storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -116,7 +148,7 @@ jobs:
         timeout-minutes: 1
 
   deploy-prod:
-    needs: [build, deploy-context]
+    needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
@@ -124,6 +156,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-storybook
+          path: dist/dev/storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -163,6 +199,7 @@ jobs:
 
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
+            - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ or ${{ needs.deploy-context.outputs.en_url }}/dev/storybook/
 
   e2e-test-preview:
     env:

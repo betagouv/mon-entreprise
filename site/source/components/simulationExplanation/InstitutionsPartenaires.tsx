@@ -3,21 +3,21 @@ import Value, {
 	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
-} from 'Components/EngineValue'
-import RuleLink from 'Components/RuleLink'
-import { FromBottom } from 'Components/ui/animate'
-import Emoji from 'Components/utils/Emoji'
-import { useEngine } from 'Components/utils/EngineContext'
-import { H2, H3 } from 'DesignSystem/typography/heading'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
-import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
-import dgfipSrc from 'Images/logo-dgfip.svg'
-import * as logosSrc from 'Images/logos-caisses-retraite'
-import urssafSrc from 'Images/Urssaf.svg'
+} from '@/components/EngineValue'
+import RuleLink from '@/components/RuleLink'
+import { FromBottom } from '@/components/ui/animate'
+import Emoji from '@/components/utils/Emoji'
+import { useEngine } from '@/components/utils/EngineContext'
+import { H2, H3 } from '@/design-system/typography/heading'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import assuranceMaladieSrc from '@/images/assurance-maladie.svg'
+import dgfipSrc from '@/images/logo-dgfip.svg'
+import * as logosSrc from '@/images/logos-caisses-retraite'
+import urssafSrc from '@/images/Urssaf.svg'
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 
 export default function InstitutionsPartenaires() {

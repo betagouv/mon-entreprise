@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 
-export const getInitialState = (key: string) => {
+type Storage = Record<string, unknown> | boolean | number | null
+
+export const getInitialState = <T extends Storage>(key: string): T | null => {
 	const value = safeLocalStorage.getItem(key)
 	if (value === 'undefined' || !value) {
-		return
+		return null
 	}
 	try {
-		return JSON.parse(value)
+		return JSON.parse(value) as T
 	} catch (e) {
 		// eslint-disable-next-line no-console
 		console.warn(e)
@@ -15,7 +17,10 @@ export const getInitialState = (key: string) => {
 	}
 }
 
-export const useSafeLocaleStorage = (key: string, state: any) => {
+export const useSafeLocaleStorage = <T extends Storage>(
+	key: string,
+	state: T
+) => {
 	useEffect(() => {
 		if (key) {
 			safeLocalStorage.setItem(key, JSON.stringify(state))
@@ -23,10 +28,13 @@ export const useSafeLocaleStorage = (key: string, state: any) => {
 	}, [key, state])
 }
 
-export const usePersistingState = <S>(key: string, defaultState?: any) => {
-	const persistedState = getInitialState(key)
+export const usePersistingState = <T extends Storage>(
+	key: string,
+	defaultState: T
+) => {
+	const persistedState = getInitialState<T>(key)
 	const initialState = persistedState != null ? persistedState : defaultState
-	const [state, setState] = useState<S>(initialState)
+	const [state, setState] = useState<T>(initialState)
 	useSafeLocaleStorage(key, state)
 	return [state, setState] as const
 }

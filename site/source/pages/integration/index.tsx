@@ -1,7 +1,7 @@
-import Emoji from 'Components/utils/Emoji'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { Link } from 'DesignSystem/typography/link'
+import Emoji from '@/components/utils/Emoji'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Link } from '@/design-system/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch, useLocation } from 'react-router-dom'
@@ -9,8 +9,8 @@ import { TrackChapter } from '../../ATInternetTracking'
 import Iframe from './Iframe'
 import Library from './Library'
 import Options from './Options'
-import jobOffers from 'Data/job-offers.json'
-import { Banner, InnerBanner } from 'DesignSystem/banner'
+import jobOffers from '@/data/job-offers.json'
+import { Banner, InnerBanner } from '@/design-system/banner'
 
 type JobOffer = {
 	title: string

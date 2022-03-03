@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material'
-import { FromBottom } from 'Components/ui/animate'
-import Emoji from 'Components/utils/Emoji'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import { Spacing } from 'DesignSystem/layout'
-import { H1, H2 } from 'DesignSystem/typography/heading'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { FromBottom } from '@/components/ui/animate'
+import Emoji from '@/components/utils/Emoji'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { Spacing } from '@/design-system/layout'
+import { H1, H2 } from '@/design-system/typography/heading'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { intersection } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -98,7 +98,7 @@ export const ActivitéSelection = ({
 		<>
 			<Grid container spacing={2}>
 				{activités.map((title) => {
-					const selected = state[title].effectuée
+					const selected = state?.[title].effectuée
 					const answered = activitéRépondue.includes(title)
 					return (
 						<Grid key={title} item xs={6} sm={4} md={3}>

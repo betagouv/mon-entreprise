@@ -1,11 +1,11 @@
 import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
-} from 'Actions/companyStatusActions'
-import AnswerGroup from 'DesignSystem/answer-group'
-import { Button } from 'DesignSystem/buttons'
-import { H2 } from 'DesignSystem/typography/heading'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+} from '@/actions/companyStatusActions'
+import AnswerGroup from '@/design-system/answer-group'
+import { Button } from '@/design-system/buttons'
+import { H2 } from '@/design-system/typography/heading'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'

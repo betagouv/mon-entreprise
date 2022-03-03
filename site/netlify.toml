@@ -151,6 +151,11 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   status = 200
 
 [[redirects]]
+  from = ":SITE_FR/dev/storybook"
+  to = "/dev/storybook/index.html"
+  status = 200
+
+[[redirects]]
   from = ":SITE_FR/*"
   to = "/mon-entreprise.html"
   status = 200
@@ -182,6 +187,11 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 [[redirects]]
   from = ":SITE_EN/iframes/simulateur-embauche"
   to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/dev/storybook"
+  to = "/dev/storybook/index.html"
   status = 200
 
 [[redirects]]

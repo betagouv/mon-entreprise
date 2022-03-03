@@ -3,11 +3,11 @@ import { useSearchFieldState } from '@react-stately/searchfield'
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
-} from 'API/fabrique-social'
-import { Card } from 'DesignSystem/card'
-import { SearchField } from 'DesignSystem/field'
-import { Body, Intro } from 'DesignSystem/typography/paragraphs'
-import useSearchCompany from 'Hooks/useSearchCompany'
+} from '@/api/fabrique-social'
+import { Card } from '@/design-system/card'
+import { SearchField } from '@/design-system/field'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
+import useSearchCompany from '@/hooks/useSearchCompany'
 import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'

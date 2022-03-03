@@ -1,10 +1,10 @@
-import { FabriqueSocialEntreprise } from 'API/fabrique-social'
-import { Strong } from 'DesignSystem/typography'
-import { H3 } from 'DesignSystem/typography/heading'
-import { Body } from 'DesignSystem/typography/paragraphs'
+import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { Strong } from '@/design-system/typography'
+import { H3 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Company } from 'Reducers/inFranceAppReducer'
+import { Company } from '@/reducers/inFranceAppReducer'
 import styled from 'styled-components'
 
 export default function CompanyDetails({

@@ -1,16 +1,16 @@
-import { Button } from 'DesignSystem/buttons'
-import { FocusStyle } from 'DesignSystem/global-style'
-import { H3 } from 'DesignSystem/typography/heading'
-import { Body, SmallBody } from 'DesignSystem/typography/paragraphs'
+import { Button } from '@/design-system/buttons'
+import { FocusStyle } from '@/design-system/global-style'
+import { H3 } from '@/design-system/typography/heading'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits, connectStats } from 'react-instantsearch-dom'
 import styled from 'styled-components'
-import { Names } from '../../../../../modele-social/dist/names'
+import { DottedName } from 'modele-social'
 import RuleLink from '../../RuleLink'
 import { Highlight } from '../Hightlight'
 
-type Hit = AlgoliaHit<{ objectID: Names; namespace?: string }>
+type Hit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
 
 const StyledRuleLink = styled(RuleLink)`
 	${SmallBody}, ${Body} {

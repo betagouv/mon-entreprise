@@ -1,6 +1,4 @@
 node_modules
 dist
-publicodes/example/
-
-# TODO fix weird error in ./exoneration-covid/index.d.ts : Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.
-exoneration-covid/index.d.ts
+storybook-static
+*.yaml.d.ts
