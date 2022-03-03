@@ -59,6 +59,9 @@ jobs:
           VITE_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           VITE_ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
           VITE_ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
+          VITE_GITHUB_REF: ${{ github.ref }}
+          VITE_GITHUB_HEAD_REF: ${{ github.head_ref }}
+          VITE_GITHUB_SHA: ${{ github.sha }}
       - name: Build app SSR
         run: |
           yarn workspace site build:ssr

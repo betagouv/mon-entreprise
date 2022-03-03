@@ -199,13 +199,11 @@ export default function Gérer() {
 					<Trans>Ressources utiles</Trans>
 				</H2>
 				<Grid container spacing={3}>
-					{dirigeantSimulateur === 'indépendant' &&
-						i18n.language === 'fr' &&
-						import.meta.env.VITE_GIT_HEAD !== 'master' && (
-							<Grid item sm={12} md={4}>
-								<MobiliteCard />
-							</Grid>
-						)}
+					{dirigeantSimulateur === 'indépendant' && i18n.language === 'fr' && (
+						<Grid item sm={12} md={4}>
+							<MobiliteCard />
+						</Grid>
+					)}
 					{!company?.isAutoEntrepreneur && (
 						<Grid item sm={12} md={4}>
 							<DemarcheEmbaucheCard />
