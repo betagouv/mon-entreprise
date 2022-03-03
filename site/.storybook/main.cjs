@@ -60,4 +60,13 @@ module.exports = {
 
 		return conf
 	},
+
+	managerHead: (head, { configType }) => {
+		if (configType === 'PRODUCTION') {
+			return `
+        ${head}
+        <base href="/dev/storybook/">
+      `
+		}
+	},
 }
