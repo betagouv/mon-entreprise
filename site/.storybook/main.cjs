@@ -66,7 +66,6 @@ module.exports = {
 		if (configType === 'PRODUCTION') {
 			return `
 				${head}
-				<script>window.location.pathname == "/dev/storybook" && window.location.pathname = "/dev/storybook/"</script>
 				<base href="/dev/storybook/">
       `
 		}

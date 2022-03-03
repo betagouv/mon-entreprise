@@ -123,21 +123,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-site
-      # - name: Create dist/dev
-      #   run: |
-      #     ls -la
-      #     mkdir -p dist/dev
-      #     ls -la dist
       - uses: actions/download-artifact@v2
         with:
           name: static-storybook
           path: dist/dev/storybook
-      - name: List files
-        run: |
-          ls -la
-          ls -la dist
-          ls -la dist/dev
-          ls -la dist/dev/storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -170,10 +159,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-storybook
-      - name: Move Storybook to dist/dev
-        run: |
-          mkdir -p dist/dev
-          mv storybook-static dist/dev
+          path: dist/dev/storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
