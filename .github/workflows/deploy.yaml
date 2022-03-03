@@ -39,10 +39,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+          node-version: '16'
+          cache: 'yarn'
       - run: yarn install --immutable
         env:
           # Secrets of all kinds for fetching stats & releases
@@ -243,10 +243,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+          node-version: '16'
+          cache: 'yarn'
       - run: yarn install --immutable
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
@@ -303,10 +303,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+          node-version: '16'
+          cache: 'yarn'
       - run: yarn install --immutable
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
