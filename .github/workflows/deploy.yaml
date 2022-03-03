@@ -133,13 +133,13 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-storybook
-          path: dist/dev/storybook-static
+          path: dist/dev/storybook
       - name: List files
         run: |
           ls -la
           ls -la dist
           ls -la dist/dev
-          ls -la dist/dev/storybook-static
+          ls -la dist/dev/storybook
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:

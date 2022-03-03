@@ -152,7 +152,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 [[redirects]]
   from = ":SITE_FR/dev/storybook"
-  to = "/dev/storybook"
+  to = "/dev/storybook/index.html"
   status = 200
 
 [[redirects]]
@@ -191,7 +191,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 [[redirects]]
   from = ":SITE_EN/dev/storybook"
-  to = "/dev/storybook"
+  to = "/dev/storybook/index.html"
   status = 200
 
 [[redirects]]
