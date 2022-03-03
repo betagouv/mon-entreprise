@@ -114,7 +114,7 @@ jobs:
           if-no-files-found: error
 
   deploy-preview:
-    needs: [build, deploy-context]
+    needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
@@ -133,7 +133,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: static-storybook
-          path: dist/dev
+          path: dist/dev/storybook-static
       - name: List files
         run: |
           ls -la
