@@ -13,7 +13,7 @@ jobs:
         package: ['modele-social', 'exoneration-covid']
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn workspace ${{ matrix.package }} run build
         env:
           NODE_ENV: production

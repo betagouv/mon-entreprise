@@ -16,23 +16,28 @@
 	"type": "module",
 	"scripts": {
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
-		"lint:eslint": "export NODE_OPTIONS='--max-old-space-size=4096'; eslint .",
+		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
 		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
-		"prepare": "if [ -z \"$NETLIFY\" ]; then yarn workspaces run prepare; fi",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
-		"test": "yarn workspaces run test",
-		"test:type": "yarn workspaces run tsc --skipLibCheck --noEmit",
-		"clean": "yarn workspaces run clean && rimraf node_modules",
-		"start": "yarn workspace site start",
-		"moso:up": "yarn workspace modele-social run up && yarn workspace exoneration-covid run up && yarn workspace site upgrade modele-social",
+		"test": "yarn workspaces foreach run test",
+		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
+		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
+		"start": "yarn workspaces foreach -pi run start",
+		"moso:up": "yarn workspace modele-social up && yarn workspace exoneration-covid up && yarn workspace site upgrade modele-social",
 		"i18n:check": "yarn workspace site i18n:check",
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
 	"resolutions": {
 		"prettier": "^2.5.1",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+	},
+	"packageManager": "yarn@3.2.0",
+	"devDependencies": {
+		"eslint": "^8.10.0",
+		"prettier": "^2.5.1",
+		"rimraf": "^3.0.2"
 	}
 }

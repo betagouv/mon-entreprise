@@ -41,8 +41,6 @@ function readRules() {
 	}, {})
 }
 
-// Note: we can't put the output file in the fs.watched directory
-
 export default function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(rules)

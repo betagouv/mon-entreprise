@@ -215,7 +215,9 @@ export default function Select({
 									// Prevent input blur and focus elem selection
 									(e: React.MouseEvent) => e.preventDefault()
 								}
-								onClick={() => handleSubmit(result)}
+								onClick={() => {
+									handleSubmit(result)
+								}}
 								role="option"
 								focused={i === focusedElem}
 								data-role="commune-option"
