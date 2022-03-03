@@ -43,6 +43,7 @@ module.exports = {
 
 		const conf = mergeConfig(config, {
 			...userConfig,
+			base: configType === 'PRODUCTION' ? '/dev/storybook/' : userConfig.base,
 			plugins: [
 				// Replace @vitejs/plugin-react from storybook by ours
 				...storybookPlugins.filter(
@@ -64,8 +65,9 @@ module.exports = {
 	managerHead: (head, { configType }) => {
 		if (configType === 'PRODUCTION') {
 			return `
-        ${head}
-        <base href="/dev/storybook/">
+				${head}
+				<script>window.location.pathname == "/dev/storybook" && window.location.pathname = "/dev/storybook/"</script>
+				<base href="/dev/storybook/">
       `
 		}
 	},
