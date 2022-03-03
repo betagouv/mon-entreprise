@@ -21,7 +21,7 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}

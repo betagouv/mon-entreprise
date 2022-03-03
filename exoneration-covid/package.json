@@ -17,6 +17,7 @@
 	"type": "module",
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
+		"onchange": "^7.1.0",
 		"publicodes": "^1.0.0-beta.31"
 	},
 	"peerDependencies": {
@@ -24,8 +25,9 @@
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",
+		"start": "onchange 'règles/**/*.yaml' -- yarn run build",
 		"clean": "rimraf dist node_modules",
-		"prepare": "yarn run build",
+		"postinstall": "yarn run build",
 		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
 		"test": "node ../scripts/check-changelog.js"
 	}

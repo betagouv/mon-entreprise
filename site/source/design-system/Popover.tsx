@@ -63,7 +63,7 @@ export default function Popover(
 	const { dialogProps, titleProps } = useDialog(props, ref)
 
 	// Get props for the close button
-	const closeButtonRef = useRef(null)
+	const closeButtonRef = useRef<HTMLButtonElement>(null)
 	const { buttonProps: closeButtonProps } = useButton(
 		{
 			onPress: props.onClose,

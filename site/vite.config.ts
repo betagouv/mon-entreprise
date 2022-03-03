@@ -91,7 +91,6 @@ export default defineConfig(({ command }) => ({
 		legacy({
 			targets: ['defaults', 'not IE 11'],
 		}),
-		monEntrepriseDevServer(),
 	],
 }))
 
@@ -180,17 +179,6 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			) {
 				return await fillTemplate(id.replace(/\.html$/, ''))
 			}
-		},
-	}
-}
-
-function monEntrepriseDevServer(): Plugin {
-	return {
-		name: 'mon-entreprise',
-		configureServer() {
-			// We could use native ViteJS watch API, but it would require changing
-			// more code and maybe the whole "modele-social" package build process.
-			// watchDottedNames()
 		},
 	}
 }
