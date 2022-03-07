@@ -698,6 +698,32 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 
 			nextSteps: ['salarié', 'is', 'comparaison-statuts'],
 		},
+		'exonération-covid': {
+			icône: '😷',
+			tracking: 'exoneration_covid',
+			iframePath: 'exoneration-covid',
+			pathId: 'simulateurs.exonération-covid',
+			meta: {
+				title: t(
+					'pages.simulateurs.dividendes.meta.title',
+					'Exonération de cotisations covid'
+				),
+				description: t(
+					'pages.simulateurs.dividendes.meta.description',
+					"Indépendants : calculez le montant de l'exonération de cotisations covid sur vos cotisations de 2021."
+				),
+			},
+			shortName: t(
+				'pages.simulateurs.dividendes.meta.title',
+				'Exonération Covid'
+			),
+			title: t(
+				'pages.simulateurs.dividendes.title',
+				"Simulateur d'exonération de cotisations Covid pour indépendant"
+			),
+
+			nextSteps: ['aide-déclaration-indépendant'],
+		},
 	} as const
 
 	return data

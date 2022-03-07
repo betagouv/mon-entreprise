@@ -10603,7 +10603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"exoneration-covid@workspace:exoneration-covid":
+"exoneration-covid@workspace:^, exoneration-covid@workspace:exoneration-covid":
   version: 0.0.0-use.local
   resolution: "exoneration-covid@workspace:exoneration-covid"
   dependencies:
@@ -14382,7 +14382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"modele-social@^0.6.0, modele-social@workspace:modele-social":
+"modele-social@workspace:^, modele-social@workspace:modele-social":
   version: 0.0.0-use.local
   resolution: "modele-social@workspace:modele-social"
   dependencies:
@@ -17690,12 +17690,13 @@ __metadata:
     cypress-plugin-tab: ^1.0.5
     cypress-wait-until: ^1.7.2
     dotenv: =8.1.0
+    exoneration-covid: "workspace:^"
     fuse.js: ^6.4.6
     i18next-parser: ^6.0.0
     iframe-resizer: ^4.3.2
     isomorphic-fetch: ^2.2.1
     markdown-to-jsx: ^7.1.5
-    modele-social: ^0.6.0
+    modele-social: "workspace:^"
     publicodes: ^1.0.0-beta.32
     publicodes-react: ^1.0.0-beta.32
     ramda: ^0.27.0

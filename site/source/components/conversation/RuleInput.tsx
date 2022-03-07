@@ -18,18 +18,15 @@ import ParagrapheInput from './ParagrapheInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
 import TextInput from './TextInput'
 
-type Props<Name extends string = DottedName> = Omit<
+type Props<Names extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
 	'onChange' | 'defaultValue' | 'onSubmit'
 > & {
 	required?: boolean
 	autoFocus?: boolean
 	small?: boolean
-	dottedName: Name
-	onChange: (
-		value: PublicodesExpression | undefined,
-		dottedName: DottedName
-	) => void
+	dottedName: Names
+	onChange: (value: PublicodesExpression | undefined, dottedName: Names) => void
 	// TODO: It would be preferable to replace this "showSuggestions" parameter by
 	// a build-in logic in the engine, by setting the "applicability" of
 	// suggestions.
@@ -66,7 +63,7 @@ export const binaryQuestion = [
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput({
+export default function RuleInput<Names extends string = DottedName>({
 	dottedName,
 	onChange,
 	showSuggestions = true,
@@ -74,12 +71,12 @@ export default function RuleInput({
 	showDefaultDateValue = false,
 	modifiers = {},
 	...props
-}: Props<DottedName>) {
+}: Props<Names>) {
 	const engine = useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
-	const commonProps: InputProps<DottedName> = {
+	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
 		missing: !showDefaultDateValue && !!evaluation.missingVariables[dottedName],
