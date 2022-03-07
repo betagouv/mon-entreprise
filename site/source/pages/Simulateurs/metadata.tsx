@@ -155,12 +155,10 @@ function getSimulatorsData({
 							<Li>trouver des candidats</Li>
 							<Li>recruter un travailleur handicapé</Li>
 						</Ul>
-						{/* <blockquote> */}
 						<Strong>
 							Service public simple et rapide : vous êtes rappelé(e) par LE
 							conseiller qui peut vous aider.
 						</Strong>
-						{/* </blockquote> */}
 					</Body>
 					<Body>
 						Partenaires mobilisés : Apec, Cap emploi, CCI, CMA, Pôle emploi,
