@@ -24,6 +24,7 @@ import professionLibéraleConfig from './configs/profession-libérale.yaml'
 import salariéConfig from './configs/salarié.yaml'
 import DividendesSimulation from './Dividendes'
 import ÉconomieCollaborative from './EconomieCollaborative'
+import ExonérationCovid from './ExonerationCovid'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
@@ -684,6 +685,11 @@ function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
+		},
+		'exonération-covid': {
+			...pureSimulatorsData['exonération-covid'],
+			path: sitePaths.simulateurs['exonération-covid'],
+			component: ExonérationCovid,
 		},
 	} as const
 }

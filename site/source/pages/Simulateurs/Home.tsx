@@ -92,6 +92,14 @@ export default function Simulateurs() {
 					</Grid>
 				</>
 
+				<H3>
+					<Trans>Outils pour les indépendants</Trans>
+				</H3>
+				<Grid container spacing={3}>
+					<SimulateurCard {...simulators['exonération-covid']} />
+					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
+				</Grid>
+
 				<H2>
 					<Trans>Autres outils</Trans>
 				</H2>
@@ -99,7 +107,6 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators['is']} />
 					<SimulateurCard {...simulators['dividendes']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
-					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
 					<SimulateurCard {...simulators['demande-mobilité']} />
 				</Grid>
 			</section>

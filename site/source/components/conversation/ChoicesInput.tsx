@@ -46,10 +46,10 @@ export type Choice = RuleNode & {
 // this undesirable option.
 export const HiddenOptionContext = createContext<Array<DottedName>>([])
 
-export function MultipleAnswerInput({
+export function MultipleAnswerInput<Names extends string = DottedName>({
 	choice,
 	...props
-}: { choice: Choice } & InputProps<DottedName>) {
+}: { choice: Choice } & InputProps<Names>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
@@ -65,14 +65,14 @@ export function MultipleAnswerInput({
 	)
 }
 
-function RadioChoice({
+function RadioChoice<Names extends string = DottedName>({
 	choice,
 	autoFocus,
 	rootDottedName,
 }: {
 	choice: Choice
 	autoFocus?: string
-	rootDottedName: DottedName
+	rootDottedName: Names
 }) {
 	const relativeDottedName = (radioDottedName: string) =>
 		radioDottedName.split(rootDottedName + ' . ')[1]
@@ -144,7 +144,9 @@ const StyledSubRadioGroup = styled.div`
 	margin-top: calc(${({ theme }) => theme.spacings.md} * -1);
 `
 
-export function OuiNonInput(props: InputProps<DottedName>) {
+export function OuiNonInput<Names extends string = DottedName>(
+	props: InputProps<Names>
+) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
@@ -161,7 +163,11 @@ export function OuiNonInput(props: InputProps<DottedName>) {
 	)
 }
 
-function useSelection({ value, onChange, missing }: InputProps<DottedName>) {
+function useSelection<Names extends string = DottedName>({
+	value,
+	onChange,
+	missing,
+}: InputProps<Names>) {
 	const defaultValue = serializeEvaluation({
 		nodeValue: value,
 	} as EvaluatedNode)

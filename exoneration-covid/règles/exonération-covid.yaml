@@ -7,17 +7,17 @@ secteur:
 secteur . S1:
   valeur: secteur = 'S1'
   titre: Secteur dit S1
-  Description: Activités du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+  description: Activités du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
 
 secteur . S1bis:
   valeur: secteur = 'S1bis'
   titre: Secteur dit S1bis
-  Description: Activités dépendantes du secteur 1
+  description: Activités dépendantes du secteur 1
 
 secteur . S2:
   valeur: secteur = 'S2'
   titre: Secteur dit S2
-  Description: Autres activités ayant fait l'objet d'une interdiction (par exemple, commerces)
+  description: Autres activités ayant fait l'objet d'une interdiction (par exemple, commerces)
 
 secteur . S1 ou S1bis:
   une de ces conditions:
