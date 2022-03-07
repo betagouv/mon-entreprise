@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
+import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
 
 export function useUrl() {
 	const language = useTranslation().i18n.language
@@ -97,12 +98,7 @@ export default function ShareOrSaveSimulationBanner() {
 				{typeof window.print === 'function' && (
 					<Grid item xs={12} sm="auto">
 						<Button light size="XS" onPress={() => window.print()}>
-							<Emoji
-								css={`
-									margin-right: 1rem;
-								`}
-								emoji="🖨"
-							/>
+							<Emoji emoji="🖨" />
 							<ButtonLabel>
 								<Trans i18nKey="ExportSimulation.Banner">
 									Imprimer ou sauvegarder en PDF
@@ -111,6 +107,10 @@ export default function ShareOrSaveSimulationBanner() {
 						</Button>
 					</Grid>
 				)}
+
+				<Grid item xs={12} sm="auto">
+					<PlacesDesEntreprisesButton src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+				</Grid>
 			</Grid>
 		</>
 	)

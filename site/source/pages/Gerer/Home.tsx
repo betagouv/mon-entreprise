@@ -30,7 +30,7 @@ import { MobiliteCard } from './cards/MobiliteCard'
 import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 import forms from './forms.svg'
 import growth from './growth.svg'
-import { PlacesDesEntreprises } from '@/components/PlaceDesEntreprises'
+import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 
 export type DirigeantOrNull = keyof SimulatorData | null
 
@@ -223,7 +223,7 @@ export default function Gérer() {
 
 				<Spacing lg />
 
-				<PlacesDesEntreprises />
+				<PlacesDesEntreprisesButton src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/mon-entreprise-urssaf-fr" />
 			</FromBottom>
 		</>
 	)

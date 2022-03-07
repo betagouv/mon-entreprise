@@ -5,6 +5,8 @@ import { iframeResize } from 'iframe-resizer'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Loader } from '@/design-system/icons/Loader'
+import { Body } from '@/design-system/typography/paragraphs'
+import { Trans, useTranslation } from 'react-i18next'
 
 const Iframe = styled.iframe`
 	width: 1px;
@@ -16,7 +18,7 @@ const IframeContainer = styled.div`
 	margin: 0 -3rem;
 `
 
-export const PlacesDesEntreprisesIframe = () => {
+export const PlacesDesEntreprisesIframe = ({ src }: { src: string }) => {
 	useEffect(() => {
 		iframeResize({}, '#pdeIframe')
 	}, [])
@@ -25,7 +27,7 @@ export const PlacesDesEntreprisesIframe = () => {
 		<IframeContainer>
 			<Iframe
 				title="Formulaire de demande entreprise"
-				src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/mon-entreprise-urssaf-fr"
+				src={src}
 				frameBorder="0"
 				id="pdeIframe"
 			/>
@@ -46,30 +48,50 @@ const Container = styled.div`
 	justify-content: center;
 `
 
-export const PlacesDesEntreprises = () => (
-	<Container>
-		<PopoverWithTrigger
-			title="Échanger avec un conseiller :"
-			trigger={(props) => (
-				<Button {...props} light size="XS">
-					<Emoji emoji="📞" /> Échanger avec un conseiller
-				</Button>
-			)}
-		>
-			<Suspense
-				fallback={
-					<Container
-						css={`
-							height: 300px;
-							align-items: center;
-						`}
-					>
-						<Loader />
-					</Container>
-				}
+const ButtonLabel = styled.span`
+	margin-left: 1rem;
+`
+
+export const PlacesDesEntreprisesButton = ({ src }: { src: string }) => {
+	const { t } = useTranslation()
+
+	return (
+		<Container>
+			<PopoverWithTrigger
+				title={t('Échanger avec un conseiller')}
+				trigger={(props) => (
+					<Button {...props} light size="XS">
+						<Emoji emoji="📞" />
+						<ButtonLabel>{t('Échanger avec un conseiller')}</ButtonLabel>
+					</Button>
+				)}
 			>
-				<LazyIframe />
-			</Suspense>
-		</PopoverWithTrigger>
-	</Container>
-)
+				<Suspense
+					fallback={
+						<Container
+							css={`
+								height: 300px;
+								align-items: center;
+							`}
+						>
+							<Loader />
+						</Container>
+					}
+				>
+					<>
+						<Body>
+							<Trans>
+								Décrivez votre projet ou votre problème en donnant quelques
+								éléments de contexte. Nous identifions, parmi l’ensemble des
+								partenaires publics et parapublics, le conseiller compétent pour
+								votre demande. Celui-ci vous contacte par téléphone sous 5 jours
+								et vous accompagne en fonction de votre situation.
+							</Trans>
+						</Body>
+						<LazyIframe src={src} />
+					</>
+				</Suspense>
+			</PopoverWithTrigger>
+		</Container>
+	)
+}

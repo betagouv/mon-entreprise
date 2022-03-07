@@ -42,6 +42,9 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Strong } from '@/design-system/typography'
+import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 
 interface SimulatorsDataParams {
 	t?: TFunction<'translation', string>
@@ -137,6 +140,33 @@ function getSimulatorsData({
 						</Link>
 						.
 					</Body>
+					<H2>Échanger avec un conseiller pour votre projet de recrutement</H2>
+					<Body>
+						Vous souhaitez :
+						<Ul>
+							<Li>
+								être conseillé sur les aides à l'embauche des jeunes, à
+								l'apprentissage
+							</Li>
+							<Li>
+								vous informer sur les emplois francs en quartiers prioritaires,
+								le contrat de professionnalisation, le VTE
+							</Li>
+							<Li>trouver des candidats</Li>
+							<Li>recruter un travailleur handicapé</Li>
+						</Ul>
+						{/* <blockquote> */}
+						<Strong>
+							Service public simple et rapide : vous êtes rappelé(e) par LE
+							conseiller qui peut vous aider.
+						</Strong>
+						{/* </blockquote> */}
+					</Body>
+					<Body>
+						Partenaires mobilisés : Apec, Cap emploi, CCI, CMA, Pôle emploi,
+						missions locales...
+					</Body>
+					<PlacesDesEntreprisesButton src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
 				</Trans>
 			),
 		},
