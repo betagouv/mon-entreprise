@@ -9,6 +9,7 @@ import Engine, {
 	Evaluation,
 	PublicodesExpression,
 	reduceAST,
+	Rule,
 	RuleNode,
 } from 'publicodes'
 import React, { useContext } from 'react'
@@ -59,11 +60,22 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
+interface RuleWithMetadata<T> extends Rule {
+	metadata: T
+}
+
+const isMetadata = <T extends RuleWithMetadata<unknown>>(
+	rule: Rule
+): rule is T => 'metadata' in rule
+
 // This function takes the unknown rule and finds which React component should
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput<Names extends string = DottedName>({
+export default function RuleInput<
+	Names extends string = DottedName,
+	Metadata extends { component?: string } = { component?: string }
+>({
 	dottedName,
 	onChange,
 	showSuggestions = true,
@@ -90,11 +102,25 @@ export default function RuleInput<Names extends string = DottedName>({
 		suggestions: showSuggestions ? rule.suggestions : {},
 		...props,
 	}
+
+	if (
+		isMetadata<RuleWithMetadata<Metadata>>(rule.rawNode) &&
+		rule.rawNode.metadata.component === 'ToggleRadioBlock'
+	) {
+		return (
+			<MultipleAnswerInput
+				{...commonProps}
+				choice={buildVariantTree(engine, dottedName)}
+				type="toggle"
+			/>
+		)
+	}
 	if (getVariant(engine.getRule(dottedName))) {
 		return (
 			<MultipleAnswerInput
 				{...commonProps}
 				choice={buildVariantTree(engine, dottedName)}
+				inline
 			/>
 		)
 	}

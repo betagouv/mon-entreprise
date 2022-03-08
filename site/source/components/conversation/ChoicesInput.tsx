@@ -3,6 +3,7 @@ import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Radio, RadioGroup, ToggleGroup } from '@/design-system/field'
+import { RadioBlock } from '@/design-system/field/Radio/Radio'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
 import { DottedName } from 'modele-social'
@@ -48,20 +49,28 @@ export const HiddenOptionContext = createContext<Array<DottedName>>([])
 
 export function MultipleAnswerInput<Names extends string = DottedName>({
 	choice,
+	type = 'radio',
+	inline,
 	...props
-}: { choice: Choice } & InputProps<Names>) {
+}: {
+	choice: Choice
+	type?: 'radio' | 'toggle'
+	inline?: boolean
+} & InputProps<Names>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
+	const Component = type === 'toggle' ? ToggleGroup : RadioGroup
 
 	return (
-		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
+		<Component onChange={handleChange} value={currentSelection ?? undefined}>
 			<RadioChoice
 				autoFocus={defaultValue}
 				choice={choice}
 				rootDottedName={props.dottedName}
+				inline={inline}
 			/>
-		</RadioGroup>
+		</Component>
 	)
 }
 
@@ -69,10 +78,12 @@ function RadioChoice<Names extends string = DottedName>({
 	choice,
 	autoFocus,
 	rootDottedName,
+	inline,
 }: {
 	choice: Choice
 	autoFocus?: string
 	rootDottedName: Names
+	inline?: boolean
 }) {
 	const relativeDottedName = (radioDottedName: string) =>
 		radioDottedName.split(rootDottedName + ' . ')[1]
@@ -96,10 +107,14 @@ function RadioChoice<Names extends string = DottedName>({
 							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
-								<RadioChoice choice={node} rootDottedName={rootDottedName} />
+								<RadioChoice
+									inline={inline}
+									choice={node}
+									rootDottedName={rootDottedName}
+								/>
 							</StyledSubRadioGroup>
 						</div>
-					) : (
+					) : inline ? (
 						<span>
 							<Radio
 								autoFocus={
@@ -116,6 +131,16 @@ function RadioChoice<Names extends string = DottedName>({
 								</ButtonHelp>
 							)}
 						</span>
+					) : (
+						<RadioBlock
+							autoFocus={
+								autoFocus === `'${relativeDottedName(node.dottedName)}'`
+							}
+							value={`'${relativeDottedName(node.dottedName)}'`}
+							title={node.title}
+							emoji={node.rawNode.icônes}
+							description={node.rawNode.description}
+						/>
 					)}
 				</Fragment>
 			))}

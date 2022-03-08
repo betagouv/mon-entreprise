@@ -5,17 +5,25 @@ import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 import React, { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
+import Emoji from '@/components/utils/Emoji'
+import { Strong } from '@/design-system/typography'
+import { Markdown } from '@/components/utils/markdown'
 
 const RadioContext = createContext<RadioGroupState | null>(null)
 
-export function Radio(props: AriaRadioProps) {
-	const { children } = props
+export function Radio(
+	props: AriaRadioProps & {
+		LabelBodyAs?: Parameters<typeof LabelBody>['0']['as']
+	}
+) {
+	const { LabelBodyAs: bodyType, ...ariaProps } = props
+	const { children } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
 		throw new Error("Radio can't be instanciated outside a RadioContext")
 	}
 	const ref = useRef(null)
-	const { inputProps } = useRadio(props, state, ref)
+	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
 		<label>
@@ -25,7 +33,7 @@ export function Radio(props: AriaRadioProps) {
 					<OutsideCircle />
 					<InsideCircle />
 				</RadioButton>
-				<LabelBody>{children}</LabelBody>
+				<LabelBody as={bodyType}>{children}</LabelBody>
 			</VisibleRadio>
 		</label>
 	)
@@ -99,6 +107,54 @@ const VisibleRadio = styled.div`
 	}
 `
 
+const RadioLabel = styled.p`
+	margin: ${({ theme }) => theme.spacings.sm} 0;
+	font-style: italic;
+`
+
+const RadioWrapper = styled.span`
+	flex: 0 0 100%;
+
+	${VisibleRadio} {
+		width: 100%;
+		border-radius: var(--radius) !important;
+		margin-bottom: ${({ theme }) => theme.spacings.xs} !important;
+	}
+
+	${RadioButton} {
+		align-self: baseline;
+		margin-top: 0.2rem;
+	}
+`
+
+export function RadioBlock({
+	value,
+	title,
+	emoji,
+	description,
+	autoFocus,
+}: RadioGroupProps & {
+	value: string
+	title: string
+	emoji?: string
+	description?: string
+	autoFocus?: boolean
+}) {
+	return (
+		<RadioWrapper>
+			<Radio autoFocus={autoFocus} value={value} LabelBodyAs={'div'}>
+				<Strong>
+					{title} {emoji && <Emoji emoji={emoji} />}
+				</Strong>
+
+				{description && (
+					<Markdown as={RadioLabel}>{description ?? ''}</Markdown>
+				)}
+			</Radio>
+		</RadioWrapper>
+	)
+}
+
 const LabelBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
@@ -149,6 +205,7 @@ export function ToggleGroup(
 const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 	--radius: 0.25rem;
 	display: inline-flex;
+	flex-wrap: wrap;
 
 	${VisibleRadio} {
 		position: relative;

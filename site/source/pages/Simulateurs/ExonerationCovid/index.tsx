@@ -24,6 +24,7 @@ export default function ExonérationCovid() {
 	return (
 		<>
 			<EngineProvider value={covidEngine}>
+				<H3>{covidEngine.getRule('secteur').rawNode.question}</H3>
 				<RuleInput
 					dottedName={'secteur'}
 					onChange={(value) => updateSituation('secteur', value)}
