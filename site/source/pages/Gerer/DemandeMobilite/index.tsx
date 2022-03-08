@@ -12,11 +12,8 @@ import { Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
-import Engine, {
-	PublicodesExpression,
-	UNSAFE_isNotApplicable,
-} from 'publicodes'
-import { equals, isEmpty, omit } from 'ramda'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { isEmpty, omit } from 'ramda'
 import {
 	Fragment,
 	lazy,
@@ -63,18 +60,10 @@ const useFields = (
 		.filter((dottedName) => {
 			const evaluation = engine.evaluate(dottedName)
 			const rule = engine.getRule(dottedName)
-			const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
-			const displayRule =
-				(isNotApplicable === false &&
-					(equals(evaluation.missingVariables, { [dottedName]: 1 }) ||
-						isEmpty(evaluation.missingVariables)) &&
-					(rule.rawNode.question || rule.rawNode.API || rule.rawNode.type)) ||
-				(isNotApplicable === false &&
-					rule.rawNode.type === 'groupe' &&
-					Object.keys(evaluation.missingVariables).every((childDottedName) =>
-						childDottedName.startsWith(dottedName)
-					))
-			return displayRule
+			return (
+				evaluation.nodeValue !== null &&
+				(rule.rawNode.question || rule.rawNode.API || rule.rawNode.type)
+			)
 		})
 		.map((dottedName) => engine.getRule(dottedName))
 }
@@ -108,9 +97,15 @@ function FormulairePublicodes() {
 
 	engine.setSituation(situation)
 	const fields = useFields(engine)
-	const missingValues = fields.filter(
-		({ dottedName }) => !isEmpty(engine.evaluate(dottedName).missingVariables)
-	)
+	const missingValues = Object.keys(
+		fields.reduce(
+			(missingValues, { dottedName }) => ({
+				...missingValues,
+				...engine.evaluate(dottedName).missingVariables,
+			}),
+			{}
+		)
+	).map((dottedName) => engine.getRule(dottedName))
 	return (
 		<>
 			<Grid container spacing={2}>

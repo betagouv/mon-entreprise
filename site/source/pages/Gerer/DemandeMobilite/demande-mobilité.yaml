@@ -1,6 +1,7 @@
 situation:
   question: >-
     ## Quelle type d'activité est concernée ?
+  par défaut: non
   une possibilité:
     choix obligatoire: oui
     possibilités: [PAM, PL, AC, auto-entrepreneur, salarié, artiste-auteur]
@@ -79,6 +80,7 @@ PAM:
     Après étude de votre demande, si les conditions le permettent, vous recevrez un certificat A1 (ou le formulaire spécifique) attestant du maintien à la Sécurité sociale française.
 
 notification signature:
+  applicable si: situation
   non applicable si: situation . notification
   valeur: oui
   titre: ''
@@ -110,12 +112,13 @@ salarié CEA ou TESE . CEA:
 
 infos salarié:
   applicable si: situation = 'salarié'
+  valeur: oui
   titre: Informations concernant le salarié
   type: groupe
-  valeur: oui
 
 données assuré:
   non applicable si: situation . notification
+  applicable si: situation
   type: groupe
   titre: ''
   somme:
@@ -127,7 +130,7 @@ données assuré:
       titre: Prénoms
     - nom: numéro de sécurité sociale
       titre: Numéro de sécurité sociale
-      description: Saisissez les 15 chiffres de votre numéro tel qu'il apparaît sur la carte vitale par exemple.
+      description: Saisissez les 15 chiffres du numéro tel qu'il apparaît sur la carte vitale par exemple.
       type: texte
     - nom: nationalité
       type: texte
@@ -145,6 +148,7 @@ données assuré:
           somme:
             - nom: étranger
               question: La commune est-elle située à l'étranger ?
+              par défaut: non
             - nom: commune
               titre: Commune
               non applicable si: étranger
@@ -186,7 +190,9 @@ entreprise en france:
 
 entreprise france:
   valeur: oui
+  applicable si: situation
   non applicable si: situation . notification
+
 entreprise france . SIRET:
   type: texte
 
@@ -215,10 +221,12 @@ entreprise france . nature de l'activité:
     Saisissez une courte description de votre activité en France (ex: plombier, coach sportif, aménagement intérieur)
 
 contact:
+  applicable si: situation
   non applicable si: situation . notification
   titre: Vos coordonnées de contact
-  valeur: oui
   type: groupe
+  valeur: oui
+
 contact . nom:
   applicable si: situation = 'salarié'
   type: texte
@@ -232,9 +240,10 @@ contact . téléphone:
 
 demande:
   titre: Votre demande
-  valeur: oui
+  applicable si: situation
   non applicable si: situation . notification
   type: groupe
+  valeur: oui
 
 demande . PAM:
   valeur: oui
@@ -263,16 +272,17 @@ demande . PAM . date de fin connue:
   question: Votre activité à l'étranger est-elle limitée dans le temps ?
 
 demande . PAM . détachement possible:
-  formule:
-    toutes ces conditions:
-      - date de fin connue
-      - pays unique
-      - infrastructure sauvegardée
-      - activité semblable
+  par défaut: non
+  toutes ces conditions:
+    - date de fin connue
+    - pays unique
+    - infrastructure sauvegardée
+    - activité semblable
 
 demande . salarié:
   applicable si: situation = 'salarié'
   question: 'Le salarié va exercer son activité professionnelle à l’étranger :'
+  par défaut: non
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -350,7 +360,7 @@ détachement:
       - demande . PAM . détachement possible
       - demande . salarié = 'détachement'
   titre: Demande de détachement
-  formule: oui
+  valeur: oui
   type: groupe
 
 détachement . date de début:
@@ -362,6 +372,7 @@ détachement . date de fin:
   type: date
 
 détachement . pays:
+  par défaut: non
   note: 4.4.2
   API: pays détachement
 
@@ -378,29 +389,26 @@ détachement . nature de l'activité:
     Saisissez une courte description de l'activité effectuée pendant le détachement (ex: plombier, coach sportif, aménagement intérieur)
 
 détachement . pays hors UE:
-  valeur: oui
-  applicable si:
-    une de ces conditions:
-      - pays = 'Autre'
-      - pays = 'Andorre'
-      - pays = 'Argentine'
-      - pays = 'Brésil'
-      - pays = 'Canada'
-      - pays = 'Chili'
-      - pays = 'Corée du sud'
-      - pays = 'États-Unis'
-      - pays = 'Inde'
-      - pays = 'Japon'
-      - pays = 'Maroc'
-      - pays = 'Nouvelle Calédonie'
-      - pays = 'Polynésie'
-      - pays = 'Québec'
-      - pays = 'Saint Pierre et Miquelon'
-      - pays = 'Tunisie'
-      - pays = 'Uruguay'
+  une de ces conditions:
+    - pays = 'Autre'
+    - pays = 'Andorre'
+    - pays = 'Argentine'
+    - pays = 'Brésil'
+    - pays = 'Canada'
+    - pays = 'Chili'
+    - pays = 'Corée du sud'
+    - pays = 'États-Unis'
+    - pays = 'Inde'
+    - pays = 'Japon'
+    - pays = 'Maroc'
+    - pays = 'Nouvelle Calédonie'
+    - pays = 'Polynésie'
+    - pays = 'Québec'
+    - pays = 'Saint Pierre et Miquelon'
+    - pays = 'Tunisie'
+    - pays = 'Uruguay'
 
 détachement . pays hors UE . convention bilatérale:
-  valeur: oui
   non applicable si: pays = 'Autre'
   titre: ''
   type: groupe
@@ -473,11 +481,9 @@ détachement . pays hors UE . autre:
     *CLEISS : Centre des liaisons européennes et internationales de sécurité sociale, c’est un établissement public national, notamment chargé d'informer sur la protection sociale dans un contexte de mobilité internationale.*
 
 détachement . salarié:
-  valeur: oui
-  applicable si:
-    toutes ces conditions:
-      - situation = 'salarié'
-      - pays
+  toutes ces conditions:
+    - situation = 'salarié'
+    - pays
 
 détachement . salarié . statut:
   question: >
@@ -513,7 +519,9 @@ détachement . entreprise: &entreprise-étranger
       description: Le numéro d'identification de l'entreprise dans le pays (l'équivalent du SIREN en France)
     - nom: adresse connue
       non applicable si: pays hors UE
-      question: Connaissez vous l'adresse de l'activité à l'étranger ?
+      question: |
+        #### Connaissez vous l'adresse de l'activité à l'étranger ?
+      par défaut: non
     - nom: adresse demandée
       une de ces conditions:
         - adresse connue
@@ -552,6 +560,7 @@ détachement . salarié . lieu habitation . Domicile habituel en France:
 détachement . salarié . lieu habitation . Dans le pays d'accueil:
 
 détachement . salarié . activité superieur à 25%:
+  par défaut: oui
   question: >
     ####  Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre entreprise est réalisée en France ?
 
@@ -638,10 +647,13 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
             alors: "'Serez-vous accompagnés d'ayants droits ?'"
           - sinon: "'Le salarié sera-t'il accompagné d'ayants droits ?'"
       description: Indiquez si des membres de la famille (y compris éloignée) partiront à l’étranger pour la durée de la mission.
+      par défaut: non
     - nom: nombre ayants droits
       applicable si: ayants droits
       type: nombre
       unité: personnes
+      par défaut: 1
+
       question: Combien d'ayants droits partiront ?
     - &ayant-droit
       nom: ayant droit n°1
@@ -772,6 +784,7 @@ pluriactivité . nombre:
       - sinon: "'Dans combien de pays, autre que la France, votre salarié va-t-il travailler de façon alternée ou simultanée ?'"
   type: nombre
   unité: pays
+  par défaut: 1
   plancher: 1
   plafond: 4
 
@@ -784,6 +797,7 @@ pluriactivité . pays n°1: &pluriactivité
     - nom: pays
       titre: Pays
       API: pays détachement
+      par défaut: non
     - nom: pays . autre
       applicable si: pays = 'Autre'
       titre: Nom du pays
@@ -990,6 +1004,7 @@ pluriactivité . pays centre d'intérêt:
 
 pluriactivité . pays centre d'intérêt . pays:
   API: pays détachement
+  par défaut: non
   titre: Pays "centre d'intêret"
 pluriactivité . pays centre d'intérêt . pays . autre:
   applicable si: pays = 'Autre'
@@ -998,6 +1013,7 @@ pluriactivité . pays centre d'intérêt . pays . autre:
 
 pluriactivité . télétravail:
   applicable si: nombre
+  par défaut: non
   question:
     variations:
       - si: situation . TNS
@@ -1013,6 +1029,7 @@ pluriactivité . télétravail . fréquence:
 
 pluriactivité . chômage étranger:
   applicable si: nombre
+  par défaut: non
   question:
     variations:
       - si: situation . TNS
@@ -1033,6 +1050,7 @@ commentaires additionnels:
 
 commentaires additionnels . commentaires:
   question: Souhaitez-vous partager d'autres informations pour l'instruction de votre dossier (adresses supplémentaires, commentaires, etc) ?
+  par défaut: non
 
 commentaires additionnels . commentaires . texte:
   type: paragraphe
