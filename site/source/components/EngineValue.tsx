@@ -5,7 +5,6 @@ import Engine, {
 	isNotApplicable,
 	isNotYetDefined,
 	PublicodesExpression,
-	UNSAFE_isNotApplicable,
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -94,7 +93,9 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (UNSAFE_isNotApplicable(engine, dottedName)) return null
+	if (engine.evaluate(dottedName).nodeValue == null) {
+		return null
+	}
 	return <>{children}</>
 }
 export function WhenNotApplicable({
@@ -105,7 +106,9 @@ export function WhenNotApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (!UNSAFE_isNotApplicable(engine, dottedName)) return null
+	if (engine.evaluate(dottedName).nodeValue !== null) {
+		return null
+	}
 	return <>{children}</>
 }
 
@@ -118,6 +121,20 @@ export function WhenAlreadyDefined({
 }) {
 	const engine = useEngine()
 	if (isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
+		return null
+	}
+	return <>{children}</>
+}
+
+export function WhenNotAlreadyDefined({
+	dottedName: dottedName,
+	children,
+}: {
+	dottedName: DottedName
+	children: React.ReactNode
+}) {
+	const engine = useEngine()
+	if (!isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
 		return null
 	}
 	return <>{children}</>

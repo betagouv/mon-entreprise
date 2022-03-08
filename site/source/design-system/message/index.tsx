@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
 import baseIcon from './baseIcon.svg'
 import infoIcon from './infoIcon.svg'
 import errorIcon from './errorIcon.svg'
@@ -11,7 +11,7 @@ type MessageProps = {
 	children: React.ReactNode
 	icon?: boolean
 	border?: boolean
-	type: MessageType
+	type?: MessageType
 	light?: boolean
 }
 export function Message({
@@ -25,42 +25,47 @@ export function Message({
 		children = <Body>{children}</Body>
 	}
 	return (
-		<StyledMessage type={type} border={border} light={light}>
-			{icon &&
-				(type === 'success' ? (
-					<StyledIcon
-						src={successIcon}
-						title="succès"
-						alt="icône signalant une alerte sur un succès"
-					/>
-				) : type === 'error' ? (
-					<StyledIcon
-						src={errorIcon}
-						title="error"
-						alt="icône signalant une alerte sur une erreur"
-					/>
-				) : type === 'info' ? (
-					<StyledIcon
-						src={infoIcon}
-						title="info"
-						alt="icône signalant une alerte sur une information"
-					/>
-				) : (
-					<StyledIcon
-						src={baseIcon}
-						title="paragraph"
-						alt="icône signalant un texte informatif"
-					/>
-				))}
-			<div>{children}</div>
-		</StyledMessage>
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+			<StyledMessage type={type} border={border} light={light}>
+				{icon &&
+					(type === 'success' ? (
+						<StyledIcon
+							src={successIcon}
+							title="succès"
+							alt="icône signalant une alerte sur un succès"
+						/>
+					) : type === 'error' ? (
+						<StyledIcon
+							src={errorIcon}
+							title="error"
+							alt="icône signalant une alerte sur une erreur"
+						/>
+					) : type === 'info' ? (
+						<StyledIcon
+							src={infoIcon}
+							title="info"
+							alt="icône signalant une alerte sur une information"
+						/>
+					) : (
+						<StyledIcon
+							src={baseIcon}
+							title="paragraph"
+							alt="icône signalant un texte informatif"
+						/>
+					))}
+				<div>{children}</div>
+			</StyledMessage>
+		</ThemeProvider>
 	)
 }
 
 const StyledMessage = styled.div<
-	Pick<MessageProps, 'border' | 'type' | 'light'>
+	Pick<MessageProps, 'border' | 'light'> & {
+		type: NonNullable<MessageProps['type']>
+	}
 >`
 	display: flex;
+	position: relative;
 	align-items: flex-start;
 	${({ theme, type, border, light }) => {
 		const colorSpace =

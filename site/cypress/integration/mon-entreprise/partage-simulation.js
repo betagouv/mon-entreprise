@@ -21,7 +21,7 @@ describe('Partage (simulateur salarié)', function () {
 			.invoke('val')
 			.should('match', /1[\s]539[\s]€/)
 
-		cy.contains('Voir mes paramètres').click()
+		cy.contains('Voir ma situation').click()
 		cy.contains('CDD')
 	})
 	it('should set URL from input value', function () {

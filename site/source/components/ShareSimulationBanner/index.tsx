@@ -7,7 +7,10 @@ import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
+import {
+	companySituationSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
@@ -16,7 +19,11 @@ import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
 
 export function useUrl() {
 	const language = useTranslation().i18n.language
-	const situation = useSelector(situationSelector)
+	const situation = {
+		...useSelector(situationSelector),
+		...useSelector(companySituationSelector),
+	}
+	delete situation['entreprise . SIREN']
 	const searchParams = useParamsFromSituation(situation)
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 

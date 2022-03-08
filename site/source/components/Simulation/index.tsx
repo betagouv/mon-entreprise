@@ -1,13 +1,20 @@
-import { Grid, styled } from '@mui/material'
 import { ConversationProps } from '@/components/conversation/Conversation'
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+import { PopoverWithTrigger } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
+import { Link } from '@/design-system/typography/link'
+import {
+	companySituationSelector,
+	firstStepCompletedSelector,
+} from '@/selectors/simulationSelectors'
+import { Grid, styled } from '@mui/material'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 import { TrackPage } from '../../ATInternetTracking'
+import Banner from '../Banner'
+import AnswerList from '../conversation/AnswerList'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import ExportRecover from './../simulationExplanation/ExportRecover'
 import { FadeIn, FromTop } from './../ui/animate'
@@ -42,6 +49,9 @@ export default function Simulation({
 	customEndMessages,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const existingCompany = !!useSelector(companySituationSelector)[
+		'entreprise . SIREN'
+	]
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
@@ -53,6 +63,7 @@ export default function Simulation({
 					<div className="print-hidden">
 						{!firstStepCompleted && (
 							<>
+								<Spacing sm />
 								<PreviousSimulationBanner />
 								{afterQuestionsSlot}
 							</>
@@ -62,10 +73,30 @@ export default function Simulation({
 							<FromTop>
 								{results}
 								<Questions customEndMessages={customEndMessages} />
-								{afterQuestionsSlot || <Spacing sm />}
+								<Spacing sm />
+								{afterQuestionsSlot}
+							</FromTop>
+						)}
+						{existingCompany && (
+							<Banner icon="✏">
+								Ce simulateur a été prérempli avec les données de votre
+								entreprise.{' '}
+								<PopoverWithTrigger
+									trigger={(buttonProps) => (
+										<Link {...buttonProps}>
+											<Trans>Voir ma situation</Trans>
+										</Link>
+									)}
+								>
+									{(close) => <AnswerList onClose={close} />}
+								</PopoverWithTrigger>
+							</Banner>
+						)}
+						{firstStepCompleted && (
+							<>
 								<ShareOrSaveSimulationBanner />
 								<Spacing lg />
-							</FromTop>
+							</>
 						)}
 					</div>
 				</StyledGrid>

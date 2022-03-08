@@ -22,8 +22,9 @@ questions:
   liste noire:
     - entreprise . charges
     - entreprise . chiffre d'affaires
+    - entreprise . activité . mixte
 
 unité par défaut: €/an
 situation:
-  entreprise . activité . mixte: non
-  dirigeant: "'auto-entrepreneur'"
+  entreprise . catégorie juridique: "'EI'"
+  entreprise . catégorie juridique . EI . auto-entrepreneur: oui

@@ -129,21 +129,24 @@ export const useNextQuestions = function (): Array<DottedName> {
 		(node) => engine.evaluate(node).missingVariables ?? {}
 	)
 	const nextQuestions = useMemo(() => {
-		const next = getNextQuestions(
+		let next = getNextQuestions(
 			missingVariables,
 			questionsConfig ?? {},
 			answeredQuestions,
 			situation
 		)
 		if (currentQuestion && currentQuestion !== next[0]) {
-			return [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
+			next = [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
 		}
-		return next
+		return next.filter(
+			(question) => engine.evaluate(question).nodeValue !== null
+		)
 	}, [
 		missingVariables,
 		questionsConfig,
 		answeredQuestions,
 		situation,
+		engine,
 		currentQuestion,
 	])
 

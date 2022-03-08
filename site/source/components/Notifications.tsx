@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import RuleLink from './RuleLink'
 import Emoji from './utils/Emoji'
 import { Markdown } from './utils/markdown'
+import { Message } from '@/design-system'
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with
@@ -62,18 +63,23 @@ export default function Notifications() {
 	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
 
 	return (
-		<NotificationsContainer id="notificationsBlock">
+		<div
+			css={`
+				margin-top: 1rem;
+			`}
+		>
 			{messages.map(({ sévérité, dottedName, résumé, description }) => (
-				<Notification className="notification" key={dottedName}>
-					<Emoji emoji={sévérité == 'avertissement' ? '⚠️' : '💁🏻'} />
-					<NotificationContent className="notificationText">
-						<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
-						{résumé && (
-							<RuleLink dottedName={dottedName as DottedName}>
-								<Trans>En savoir plus</Trans>
-							</RuleLink>
-						)}
-					</NotificationContent>
+				<Message
+					icon
+					type={sévérité == 'avertissement' ? 'info' : 'primary'}
+					key={dottedName}
+				>
+					<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
+					{résumé && (
+						<RuleLink dottedName={dottedName as DottedName}>
+							<Trans>En savoir plus</Trans>
+						</RuleLink>
+					)}
 					<HideButton
 						className="hide"
 						aria-label="close"
@@ -81,46 +87,11 @@ export default function Notifications() {
 					>
 						×
 					</HideButton>
-				</Notification>
+				</Message>
 			))}
-		</NotificationsContainer>
+		</div>
 	)
 }
-
-const NotificationsContainer = styled.ul`
-	list-style-type: none;
-	padding: 0;
-`
-
-const Notification = styled.li`
-	display: flex;
-	position: relative;
-	flex-direction: row;
-	align-items: center;
-
-	padding: 0.5rem 1rem;
-	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
-	border: 2px solid;
-	border-color: ${({ theme }) => theme.colors.bases.primary[500]};
-	border-radius: 0.375rem;
-
-	margin-bottom: 1rem;
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-	& img {
-		height: ${({ theme }) => theme.spacings.xl} !important;
-		width: ${({ theme }) => theme.spacings.xl} !important;
-		margin-right: ${({ theme }) => theme.spacings.sm} !important;
-	}
-`
-
-const NotificationContent = styled.div`
-	flex-grow: 1;
-	margin-right: 2rem;
-	margin-left: 0.5rem;
-`
 
 const HideButton = styled(Button)<GenericButtonOrLinkProps>`
 	&& {

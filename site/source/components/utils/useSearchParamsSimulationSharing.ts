@@ -7,7 +7,11 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { configSelector } from '@/selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
-import { updateSituation, setActiveTarget } from '@/actions/actions'
+import {
+	updateSituation,
+	setActiveTarget,
+	batchUpdateSituation,
+} from '@/actions/actions'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -28,12 +32,13 @@ export default function useSearchParamsSimulationSharing() {
 	)
 
 	useEffect(() => {
-		const hasConfig = Object.keys(config).length > 0
-		// TODO: this check is specific to `useSimulationConfig` and
-		// `setSimulationConfig`, so we'd prefer not doing it here. Other ideas
-		// include having the config in a provider rather than in state.
-		const configLoadedInState = simulationUrl === currentUrl
-		if (!hasConfig || !configLoadedInState) return
+		// const hasConfig = Object.keys(config).length > 0
+
+		// // TODO: this check is specific to `useSimulationConfig` and
+		// // `setSimulationConfig`, so we'd prefer not doing it here. Other ideas
+		// // include having the config in a provider rather than in state.
+		// const configLoadedInState = simulationUrl === currentUrl
+		// if (!hasConfig || !configLoadedInState) return
 
 		// On load:
 		if (!urlSituationIsExtracted) {
@@ -43,9 +48,8 @@ export default function useSearchParamsSimulationSharing() {
 				dottedNameParamName
 			)
 
-			Object.entries(newSituation).forEach(([dottedName, value]) => {
-				dispatch(updateSituation(dottedName as DottedName, value))
-			})
+			dispatch(batchUpdateSituation(newSituation as Situation))
+
 			const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
 				objectifs.includes(dottedName)
 			)[0]

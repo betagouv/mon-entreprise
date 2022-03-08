@@ -26,6 +26,6 @@ questions:
     - entreprise . ZFU
 unité par défaut: €/an
 situation:
-  dirigeant: "'indépendant'"
+  dirigeant . régime social: "'indépendant'"
   entreprise . activité: "'libérale'"
   entreprise . imposition: "'IR'"

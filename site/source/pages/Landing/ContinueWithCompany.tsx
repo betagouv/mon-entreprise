@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material'
-import CompanyDetails from '@/components/CompanyDetails'
+import CompanySearchDetails from '@/components/company/SearchDetails'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
 import { H3 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Company } from '@/reducers/inFranceAppReducer'
+import { Company } from '@/reducers/choixStatutJuridiqueReducer'
 
 type ContinueWithCompanyProps = {
 	company: Company
@@ -29,7 +29,7 @@ export const ContinueWithCompany = ({ company }: ContinueWithCompanyProps) => {
 						data-testid="currently-selected-company"
 						bodyAs="div"
 					>
-						<CompanyDetails entreprise={company} />
+						<CompanySearchDetails entreprise={company} />
 					</Card>
 				</Grid>
 			</Grid>

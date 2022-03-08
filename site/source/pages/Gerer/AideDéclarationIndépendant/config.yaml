@@ -8,7 +8,7 @@ objectifs:
   - déclaration indépendants . formulaire 2035
 
 situation:
-  dirigeant: "'indépendant'"
+  dirigeant . régime social: "'indépendant'"
   année: 2021
   déclaration indépendants: oui
   dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements

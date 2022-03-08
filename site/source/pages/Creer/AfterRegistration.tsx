@@ -14,7 +14,7 @@ import siret from './siret.jpg'
 export default function AfterRegistration() {
 	const sitePaths = useContext(SitePathsContext)
 	const statutChoisi = useSelector(
-		(state: RootState) => state.inFranceApp.companyStatusChoice
+		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	)
 	const { t } = useTranslation()
 	const isAutoentrepreneur = statutChoisi?.match('auto-entrepreneur')

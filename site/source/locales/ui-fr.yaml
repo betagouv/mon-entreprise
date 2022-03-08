@@ -6,6 +6,11 @@
   urssaf:
     fr</3>: <0></0> Pour en savoir plus, rendez-vous sur le site
       <3>aquoiserventlescotisations.urssaf.fr</3>
+"<0><0>Il n'existe pas encore de simulateur de revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que nous développions un nouveau simulateur, laissez-nous message en cliquant sur le bouton \"Faire une suggestion\" en bas de cette page.</1></0>":
+  <0><0>Il n'existe pas encore de simulateur de revenu pour votre type
+  d'entreprise sur ce site.</0><1>Si vous souhaitez que nous développions un
+  nouveau simulateur, laissez-nous message en cliquant sur le bouton "Faire une
+  suggestion" en bas de cette page.</1></0>
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Oui</0>: <0>Oui</0>
 Assimilé salarié: Assimilé salarié
@@ -26,15 +31,23 @@ CompanySearchField:
 Continuer: Continuer
 Cotisations sociales: Cotisations sociales
 Crée le: Crée le
+"Crée le :": "Crée le :"
 Créer une: Créer une
 Devenir: Devenir
+"Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
+Données de l'entreprise: Données de l'entreprise
+Données de simulation: Données de simulation
 Découvrir: Découvrir
+<<<<<<< HEAD
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
   Décrivez votre projet ou votre problème en donnant quelques éléments de
   contexte. Nous identifions, parmi l’ensemble des partenaires publics et
   parapublics, le conseiller compétent pour votre demande. Celui-ci vous
   contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
   situation.
+=======
+Effacer toutes mes données: Effacer toutes mes données
+>>>>>>> 4a2520a52 (:sparkles: Revoie les parcours avec entreprise existante)
 En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
@@ -55,6 +68,7 @@ J'ai compris: J'ai compris
 Jusqu’au: Jusqu’au
 Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
+Ma situation: Ma situation
 Mes réponses: Mes réponses
 Modifier: Modifier
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
@@ -80,7 +94,8 @@ Prévisualisation: Prévisualisation
 Que cherchez-vous ?: Que cherchez-vous ?
 Quelques intégrations: Quelques intégrations
 Rechercher: Rechercher
-Rechercher une entreprise: Rechercher une entreprise
+Rechercher votre entreprise: Rechercher votre entreprise
+Recommencer la simulation: Recommencer la simulation
 Ressources utiles: Ressources utiles
 Retour: Retour
 Retour à la création: Retour à la création
@@ -108,7 +123,7 @@ Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Une idée&nbsp;?<1></1>Contactez-n
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
-Voir mes paramètres: Voir mes paramètres
+Voir ma situation: Voir ma situation
 Votre adresse e-mail: Votre adresse e-mail
 Votre forme juridique: Votre forme juridique
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
@@ -162,6 +177,12 @@ après:
       (NIC).
     titre: Le numéro SIRET
   titre: Après la création
+assistant-DRI:
+  description: <0><0>Cet outil vous aidera à remplir votre <2>déclaration de
+    revenu</2> sur impot.gouv.fr. Vous aurez à la fin :</0><1><0>La liste des
+    cases qui vous concernent avec le montant à remplir</0><1>Une estimation des
+    cotisations sociales à payer à l'Urssaf en 2022</1></1></0><1>Mon
+    entreprise</1>
 associés:
   choix1: Seul
   choix2: Plusieurs personnes
@@ -632,7 +653,7 @@ landing:
     create:
       body: Un accompagnement au choix du statut juridique et la liste complète des
         démarches de création
-      title: Créer une entreprise
+      title: Je n'ai pas encore d'entreprise
     manage:
       body: Des outils personnalisés pour anticiper le montant des cotisations
         sociales à payer et mieux gérer votre trésorerie.
@@ -1285,8 +1306,8 @@ pages:
         alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
         le montant total alloué dans la case \"total chargé\". La simulation
         peut ensuite être affinée en répondant aux différentes questions.</4>"
-      shortname: SASU
-      title: Simulateur de SASU
+      shortname: SAS(U)
+      title: Simulateur de SAS(U)
     select-year:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
@@ -1468,7 +1489,7 @@ trouver:
 économieCollaborative:
   WIP: <0>Cet assistant est en cours de développement.</0> N'hésitez pas à nous
     faire part de toute vos remarques, idées, questions en cliquant sur le
-    bouton "Faire une suggestion" ci dessus.
+    bouton "Faire une suggestion" en bas de la page.
   accueil:
     contenu: <0>Vous avez des revenus issus des <2>plateformes en ligne</2> (Airbnb,
       Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans

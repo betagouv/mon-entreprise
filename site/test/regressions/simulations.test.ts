@@ -29,7 +29,9 @@ import employeeSituations from './simulations-salarié.yaml'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
-const engine = engineFactory(rules)
+const engine = engineFactory(rules, {
+	logger: { warn: () => {}, error: (m) => console.error(m), log: () => {} },
+})
 const runSimulations = (
 	situationsSpecs: SituationsSpecs,
 	objectifs: DottedName[],
@@ -108,7 +110,7 @@ it('calculate simulations-rémunération-dirigeant (assimilé salarié)', () => 
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'assimilé salarié'",
+			'dirigeant . régime social': "'assimilé salarié'",
 		}
 	)
 })
@@ -119,7 +121,8 @@ it('calculate simulations-rémunération-dirigeant (auto-entrepreneur)', () => {
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'auto-entrepreneur'",
+			'entreprise . catégorie juridique': "'EI'",
+			'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
 		}
 	)
 })
@@ -130,7 +133,8 @@ it('calculate simulations-rémunération-dirigeant (indépendant)', () => {
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'indépendant'",
+			'dirigeant . régime social': "'indépendant'",
+			'entreprise . imposition': "'IR'",
 		}
 	)
 })

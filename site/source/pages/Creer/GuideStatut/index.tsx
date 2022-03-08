@@ -25,8 +25,8 @@ const useResetFollowingAnswers = () => {
 	const answeredQuestion = useSelector(
 		(state: RootState) =>
 			Object.keys(
-				state.inFranceApp.companyLegalStatus
-			) as (keyof typeof state.inFranceApp.companyLegalStatus)[]
+				state.choixStatutJuridique.companyLegalStatus
+			) as (keyof typeof state.choixStatutJuridique.companyLegalStatus)[]
 	)
 	useEffect(() => {
 		const companyStatusCurrentQuestionName = (toPairs(

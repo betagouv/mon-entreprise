@@ -108,7 +108,6 @@ function ActivitéMixte() {
 	const rule = useEngine().getRule('entreprise . activité . mixte')
 	const defaultChecked =
 		useEngine().evaluate('entreprise . activité . mixte').nodeValue === true
-
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
@@ -124,21 +123,23 @@ function ActivitéMixte() {
 	)
 
 	return (
-		<StyledActivitéMixteContainer>
-			<Trans>
-				<Switch
-					size="XS"
-					defaultSelected={defaultChecked}
-					onChange={onMixteChecked}
-					light
-				>
-					Activité mixte
-				</Switch>
-			</Trans>
-			<ButtonHelp type="aide" title={rule.title} light>
-				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
-			</ButtonHelp>
-		</StyledActivitéMixteContainer>
+		<div key={defaultChecked}>
+			<StyledActivitéMixteContainer>
+				<Trans>
+					<Switch
+						size="XS"
+						defaultSelected={defaultChecked}
+						onChange={onMixteChecked}
+						light
+					>
+						Activité mixte
+					</Switch>
+				</Trans>
+				<ButtonHelp type="aide" title={rule.title} light>
+					<Markdown>{rule.rawNode.description ?? ''}</Markdown>
+				</ButtonHelp>
+			</StyledActivitéMixteContainer>
+		</div>
 	)
 }
 

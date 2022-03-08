@@ -23,7 +23,7 @@ type EmbaucherProps = {
 function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 	const { t } = useTranslation()
 	const hiringChecklist = useSelector(
-		(state: RootState) => state.inFranceApp.hiringChecklist
+		(state: RootState) => state.choixStatutJuridique.hiringChecklist
 	)
 	return (
 		<FromBottom>
@@ -247,7 +247,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 
 export default connect(
 	(state: RootState) => ({
-		hiringChecklist: state.inFranceApp.hiringChecklist,
+		hiringChecklist: state.choixStatutJuridique.hiringChecklist,
 	}),
 	{
 		onChecklistInitialization: initializeHiringChecklist,

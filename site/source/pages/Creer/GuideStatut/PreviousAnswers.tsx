@@ -67,7 +67,7 @@ const PreviousAnswersItem = styled.li`
 export default function PreviousAnswers() {
 	const sitePaths = useContext(SitePathsContext)
 	const legalStatus = useSelector(
-		(state: RootState) => state.inFranceApp.companyLegalStatus
+		(state: RootState) => state.choixStatutJuridique.companyLegalStatus
 	)
 	if (Object.values(legalStatus).length < 1) {
 		return null

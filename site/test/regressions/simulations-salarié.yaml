@@ -86,16 +86,6 @@ atmp:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . ATMP . taux collectif ATMP: 5%
 
-assimilé salarié:
-  - dirigeant: "'assimilé salarié'"
-    contrat salarié . rémunération . brut de base: 5000 €/mois
-  - dirigeant: "'assimilé salarié'"
-    contrat salarié . rémunération . brut de base: 1500 €/mois
-    entreprise . ACRE: oui
-  - dirigeant: "'assimilé salarié'"
-    contrat salarié . rémunération . brut de base: 3000 €/mois
-    entreprise . ACRE: oui
-
 aides:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . statut JEI: oui
@@ -266,7 +256,7 @@ JEI:
   - contrat salarié . rémunération . brut de base: 20000 €/mois
     contrat salarié . statut JEI: oui
   - contrat salarié . rémunération . brut de base: 4000 €/mois
-    dirigeant: "'assimilé salarié'"
+    dirigeant . régime social: "'assimilé salarié'"
     contrat salarié . statut JEI: oui
 
 frais pro - titres restaurant:

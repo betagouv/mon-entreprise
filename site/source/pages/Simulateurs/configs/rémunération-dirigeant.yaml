@@ -17,6 +17,6 @@ questions:
     - entreprise . activité
 unité par défaut: €/an
 situation:
-  dirigeant: "'auto-entrepreneur'"
+  dirigeant . régime social: "'auto-entrepreneur'"
   entreprise . activité . mixte: non
   contrat salarié . ATMP . taux réduit: oui

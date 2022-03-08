@@ -19,6 +19,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
+import { Message } from '@/design-system'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
@@ -30,44 +31,49 @@ export default function InstitutionsPartenaires() {
 						Vos institutions partenaires
 					</Trans>
 				</H3>
-				<InstitutionsTable>
-					<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-						<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
-						<CaisseRetraite />
-					</WhenApplicable>
-					<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-						<CotisationsUrssaf rule="dirigeant . indépendant . cotisations et contributions" />
-					</WhenNotApplicable>
-					<ImpôtsDGFIP />
-					<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
-						<InstitutionLine>
-							<InstitutionLogo
-								href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
-								target="_blank"
-								rel="noreferrer"
-							>
-								<img src={assuranceMaladieSrc} title="Logo CPAM" />
-							</InstitutionLogo>
-							<Body>
-								<Trans i18nKey="simulateurs.explanation.institutions.cpam">
-									En tant que professionnel de santé conventionné, vous
-									bénéficiez d'une prise en charge d'une partie de vos
-									cotisations par l'Assurance Maladie.
-								</Trans>
-							</Body>
-							<Body className="ui__ lead">
-								<Emoji emoji="🎁" />{' '}
-								<RuleLink dottedName="dirigeant . indépendant . PL . PAMC . participation CPAM">
-									<Value
-										unit={unit}
-										displayedUnit="€"
-										expression="- dirigeant . indépendant . PL . PAMC . participation CPAM"
-									/>
-								</RuleLink>
-							</Body>
-						</InstitutionLine>
-					</Condition>
-				</InstitutionsTable>
+				<Grid container>
+					<Grid item lg={12} xl={10}>
+						<Message border={false}>
+							<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
+								<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
+								<CaisseRetraite />
+							</WhenApplicable>
+							<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
+								<CotisationsUrssaf rule="dirigeant . indépendant . cotisations et contributions" />
+							</WhenNotApplicable>
+							<ImpôtsDGFIP />
+							<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
+								<InstitutionLine>
+									<InstitutionLogo
+										href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
+										target="_blank"
+										rel="noreferrer"
+									>
+										<img src={assuranceMaladieSrc} title="Logo CPAM" />
+									</InstitutionLogo>
+									<Body>
+										<Trans i18nKey="simulateurs.explanation.institutions.cpam">
+											En tant que professionnel de santé conventionné, vous
+											bénéficiez d'une prise en charge d'une partie de vos
+											cotisations par l'Assurance Maladie.
+										</Trans>
+									</Body>
+									<Body className="ui__ lead">
+										<Emoji emoji="🎁" />{' '}
+										<RuleLink dottedName="dirigeant . indépendant . PL . PAMC . participation CPAM">
+											<Value
+												unit={unit}
+												displayedUnit="€"
+												expression="- dirigeant . indépendant . PL . PAMC . participation CPAM"
+											/>
+										</RuleLink>
+									</Body>
+								</InstitutionLine>
+							</Condition>
+						</Message>
+					</Grid>
+				</Grid>
+
 				<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
 					<SmallBody>
 						<Trans i18nKey="simulateurs.explanation.institutions.notice acre">
@@ -202,37 +208,41 @@ export function InstitutionsPartenairesArtisteAuteur() {
 	return (
 		<section>
 			<H3>Vos cotisations</H3>
-			<InstitutionsTable>
-				<CotisationsUrssaf
-					rule="artiste-auteur . cotisations"
-					extraNotice={
-						<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
-							<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
-								Pour vos revenus en traitement et salaires, ces cotisations sont
-								« précomptées », c'est à dire payées à la source par le
-								diffuseur.
-							</Trans>
-						</Condition>
-					}
-				/>
-				<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
-					<InstitutionLine>
-						<InstitutionLogo
-							href="http://www.ircec.fr/"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<img src={logosSrc['IRCEC']} title="logo IRCEC" />
-						</InstitutionLogo>
-						<Body>{descriptionIRCEC}</Body>
-						<Value
-							displayedUnit="€"
-							unit={unit}
-							expression="artiste-auteur . cotisations . IRCEC"
+			<Grid container>
+				<Grid item lg={12} xl={10}>
+					<Message border={false}>
+						<CotisationsUrssaf
+							rule="artiste-auteur . cotisations"
+							extraNotice={
+								<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
+									<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
+										Pour vos revenus en traitement et salaires, ces cotisations
+										sont « précomptées », c'est à dire payées à la source par le
+										diffuseur.
+									</Trans>
+								</Condition>
+							}
 						/>
-					</InstitutionLine>
-				</Condition>
-			</InstitutionsTable>
+						<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
+							<InstitutionLine>
+								<InstitutionLogo
+									href="http://www.ircec.fr/"
+									target="_blank"
+									rel="noreferrer"
+								>
+									<img src={logosSrc['IRCEC']} title="logo IRCEC" />
+								</InstitutionLogo>
+								<Body>{descriptionIRCEC}</Body>
+								<Value
+									displayedUnit="€"
+									unit={unit}
+									expression="artiste-auteur . cotisations . IRCEC"
+								/>
+							</InstitutionLine>
+						</Condition>
+					</Message>
+				</Grid>
+			</Grid>
 		</section>
 	)
 }
@@ -246,21 +256,18 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 						Vos institutions partenaires
 					</Trans>
 				</H2>
-				<InstitutionsTable>
-					<CotisationsUrssaf rule="dirigeant . auto-entrepreneur . cotisations et contributions" />
-					<ImpôtsDGFIP />
-				</InstitutionsTable>
+				<Grid container>
+					<Grid item lg={12} xl={10}>
+						<Message border={false}>
+							<CotisationsUrssaf rule="dirigeant . auto-entrepreneur . cotisations et contributions" />
+							<ImpôtsDGFIP />
+						</Message>
+					</Grid>
+				</Grid>
 			</FromBottom>
 		</section>
 	)
 }
-
-const InstitutionsTable = styled(Grid).attrs({ item: true, xl: 10 })`
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	box-shadow: ${({ theme }) => theme.elevations[2]};
-	padding: ${({ theme }) => theme.spacings.xs}
-		${({ theme }) => theme.spacings.md};
-`
 
 const InstitutionLogo = styled.a`
 	img {
@@ -273,12 +280,8 @@ const InstitutionLine = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 1rem;
+	padding: ${({ theme }) => theme.spacings.md};
 	flex-wrap: wrap;
-
-	&:not(:first-child) {
-		border-top: 1px solid var(--lighterColor);
-	}
 
 	> ${InstitutionLogo} {
 		display: block;

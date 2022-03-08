@@ -28,7 +28,7 @@
 		"build": "node ../scripts/build-rules.js",
 		"start": "onchange 'règles/**/*.yaml' -- yarn run build",
 		"clean": "rimraf dist node_modules",
-		"postinstall": "yarn run build",
+		"prepack": "yarn run build",
 		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
 		"test": "node ../scripts/check-changelog.js"
 	}

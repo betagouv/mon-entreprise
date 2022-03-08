@@ -11,8 +11,8 @@ import useSearchCompany from '@/hooks/useSearchCompany'
 import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import CompanyDetails from './CompanyDetails'
-import { FromTop } from './ui/animate'
+import CompanySearchDetails from './SearchDetails'
+import { FromTop } from '../ui/animate'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
@@ -100,9 +100,9 @@ function Results({
 		<FromTop>
 			<Grid container spacing={2} data-testid="company-search-results">
 				{results.map((etablissement) => (
-					<Grid key={etablissement.siren} item xs={12} xl={6}>
+					<Grid key={etablissement.siren} item xs={12}>
 						<StyledCard onPress={() => onSubmit?.(etablissement)} compact>
-							<CompanyDetails entreprise={etablissement} />
+							<CompanySearchDetails entreprise={etablissement} />
 						</StyledCard>
 					</Grid>
 				))}

@@ -1,15 +1,15 @@
 import { Action } from '@/actions/actions'
-import { getCompanySituation } from '@/components/utils/useSimulationConfig'
+import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
+import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { defaultTo, without } from 'ramda'
-import { omit } from '../utils'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { objectifsSelector } from '../selectors/simulationSelectors'
-import inFranceAppReducer from './inFranceAppReducer'
+import { omit } from '../utils'
+import { companySituation } from './companySituationReducer'
+import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
-import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -73,7 +73,6 @@ export type Simulation = {
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation
-	initialSituation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
@@ -84,15 +83,14 @@ function simulation(
 	action: Action
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
-		const { config, url, initialSituation } = action
+		const { config, url } = action
 		return {
 			config,
 			url,
 			hiddenNotifications: [],
-			situation: initialSituation ?? {},
-			initialSituation: initialSituation ?? {},
+			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
-			foldedSteps: Object.keys(initialSituation ?? {}) as Array<DottedName>,
+			foldedSteps: [],
 			unfoldedStep: null,
 		}
 	}
@@ -111,23 +109,11 @@ function simulation(
 			return {
 				...state,
 				hiddenNotifications: [],
-				situation: state.initialSituation,
+				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
 			}
-		case 'BATCH_UPDATE_SITUATION': {
-			return (
-				Object.entries(action.situation as any) as Array<[DottedName, unknown]>
-			).reduce<Simulation | null>(
-				(newState, [fieldName, value]) =>
-					simulation(newState, {
-						type: 'UPDATE_SITUATION',
-						fieldName,
-						value,
-					}),
-				state
-			)
-		}
+
 		case 'UPDATE_SITUATION': {
 			const objectifs = without(
 				['entreprise . charges'],
@@ -175,32 +161,34 @@ function simulation(
 	}
 	return state
 }
-const existingCompanyReducer = (state: RootState, action: Action) => {
-	if (action.type.startsWith('EXISTING_COMPANY::') && state.simulation) {
-		return {
-			...state,
-			simulation: {
-				...state.simulation,
-				situation: {
-					...state.simulation.situation,
-					...getCompanySituation(state.inFranceApp.existingCompany),
-				},
-			},
-		}
+
+function batchUpdateSituationReducer(state: RootState, action: Action) {
+	if (action.type !== 'BATCH_UPDATE_SITUATION') {
+		return state
 	}
-	return state
+	return Object.entries(action.situation).reduce<RootState | null>(
+		(newState, [fieldName, value]) =>
+			mainReducer(newState ?? undefined, {
+				type: 'UPDATE_SITUATION',
+				fieldName,
+				value,
+			}),
+		state
+	)
 }
+
 const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
+	companySituation,
 	previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
-	inFranceApp: inFranceAppReducer,
+	choixStatutJuridique,
 })
 
 export default reduceReducers<RootState>(
-	mainReducer as any,
-	existingCompanyReducer as Reducer<RootState>,
+	mainReducer as Reducer<RootState>,
+	batchUpdateSituationReducer as Reducer<RootState>,
 	previousSimulationRootReducer as Reducer<RootState>
 ) as Reducer<RootState>
 

@@ -55,7 +55,7 @@ export default function SchemeComparaison({
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				dirigeant: "'assimilé salarié'",
+				'dirigeant . régime social': "'assimilé salarié'",
 			}),
 		[situation]
 	)
@@ -63,7 +63,7 @@ export default function SchemeComparaison({
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				dirigeant: "'auto-entrepreneur'",
+				'dirigeant . régime social': "'auto-entrepreneur'",
 			}),
 		[situation]
 	)
@@ -71,7 +71,7 @@ export default function SchemeComparaison({
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				dirigeant: "'indépendant'",
+				'dirigeant . régime social': "'indépendant'",
 			}),
 		[situation]
 	)

@@ -8,7 +8,7 @@ import { RootState } from '@/reducers/rootReducer'
 import aideOrganismeSvg from './aideOrganisme.svg'
 
 const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {
-	const company = state.inFranceApp.existingCompany
+	const company = state.choixStatutJuridique.existingCompany
 	if (!company) {
 		return false
 	}

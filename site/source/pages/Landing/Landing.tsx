@@ -24,9 +24,6 @@ import SearchOrCreate from './SearchOrCreate'
 export default function Landing() {
 	const simulators = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
-	const company = useSelector(
-		(state: RootState) => state.inFranceApp.existingCompany
-	)
 
 	return (
 		<>
@@ -59,7 +56,6 @@ export default function Landing() {
 				darkMode
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				{company && <ContinueWithCompany company={company} />}
 				<SearchOrCreate />
 				<Spacing xl />
 			</Container>

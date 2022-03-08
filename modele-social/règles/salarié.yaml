@@ -1255,6 +1255,7 @@ contrat salarié . stage . avertissement:
   description: >-
     Une convention de stage **n'est pas un contrat de travail**, et ne peut pas être conclue pour réaliser une tâche régulière correspondant à un poste de travail permanent, ou à un accroissement temporaire de l'activité de l'entreprise. [Code de l'éducation - Article L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
 
+
     Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
 
 contrat salarié . stage . contrôle gratification minimale:
@@ -3419,7 +3420,7 @@ contrat salarié . régime des impatriés:
 contrat salarié . régime des impatriés . information:
   type: notification
   formule: oui
-  description: >-
+  description: |-
     Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
     - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
     - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.

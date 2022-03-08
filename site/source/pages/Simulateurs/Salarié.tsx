@@ -1,5 +1,8 @@
 import Banner from '@/components/Banner'
-import Value, { Condition } from '@/components/EngineValue'
+import Value, {
+	Condition,
+	WhenNotAlreadyDefined,
+} from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
 import Simulation from '@/components/Simulation'
@@ -45,23 +48,27 @@ export default function SalariéSimulation() {
 						</ButtonContainer>
 					</Body>
 				}
+				afterQuestionsSlot={
+					<BrowserOnly>
+						{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
+						 * le simulateur dirigeant de SASU sur son site. */}
+						{!import.meta.env.SSR &&
+							!document.referrer?.includes('code.travail.gouv.fr') && (
+								<WhenNotAlreadyDefined dottedName="entreprise . catégorie juridique">
+									<Banner icon={'👨‍✈️'}>
+										<Trans>
+											Vous êtes dirigeant d'une SAS(U) ?{' '}
+											<Link to={sitePaths.simulateurs.sasu}>
+												Accéder au simulateur de revenu dédié
+											</Link>
+										</Trans>
+									</Banner>
+								</WhenNotAlreadyDefined>
+							)}
+					</BrowserOnly>
+				}
 			>
 				<SalariéSimulationGoals />
-				<BrowserOnly>
-					{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
-					 * le simulateur dirigeant de SASU sur son site. */}
-					{!import.meta.env.SSR &&
-						!document.referrer?.includes('code.travail.gouv.fr') && (
-							<Banner icon={'👨‍✈️'}>
-								<Trans>
-									Vous êtes dirigeant d'une SAS(U) ?{' '}
-									<Link to={sitePaths.simulateurs.sasu}>
-										Accéder au simulateur de revenu dédié
-									</Link>
-								</Trans>
-							</Banner>
-						)}
-				</BrowserOnly>
 			</Simulation>
 		</>
 	)
