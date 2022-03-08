@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { baseParagraphStyle } from './paragraphs'
 
 type UlProps = {
-	small?: boolean
+	size?: 'XS' | 'MD' | 'XL'
 }
 
 export const Li = styled.li``
@@ -13,12 +13,18 @@ export const Ul = styled.ul<UlProps>`
 	list-style: none;
 	position: relative;
 	padding-left: ${({ theme }) => theme.spacings.lg};
-	${({ small }) =>
-		small &&
-		css`
-			font-size: 0.875rem;
-			line-height: 1.25rem;
-		`}
+	${({ size = 'MD' }) =>
+		size === 'XS'
+			? css`
+					font-size: 0.875rem;
+					line-height: 1.25rem;
+			  `
+			: size === 'XL' &&
+			  css`
+					font-size: 1.25rem;
+					line-height: 2rem;
+					padding-left: 2rem;
+			  `}
 
 	${Li} {
 		margin-bottom: ${({ theme }) => theme.spacings.xs};

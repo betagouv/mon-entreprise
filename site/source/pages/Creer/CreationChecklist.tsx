@@ -244,7 +244,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									Le compte d'entreprise vous permet de :
 								</Trans>
 							</SmallBody>
-							<Ul small>
+							<Ul size="XS">
 								<Trans i18nKey="entreprise.tâches.banque.description.liste">
 									<Li>
 										Différencier vos opérations privées et professionnelles
@@ -338,7 +338,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								<SmallBody>
 									Cette annonce doit contenir les informations suivantes :{' '}
 								</SmallBody>
-								<Ul small>
+								<Ul size="XS">
 									<Li>Le nom de l'entreprise et éventuellement son acronyme</Li>
 									<Li>La forme juridique</Li>
 									<Li>Le capital de l'entreprise</Li>
