@@ -1,10 +1,3 @@
-import rules from 'modele-social'
-import { StrictMode, useContext, useMemo } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import styled, { css } from 'styled-components'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import Route404 from '@/components/Route404'
@@ -18,9 +11,17 @@ import {
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Container, Spacing } from '@/design-system/layout'
 import {
+	companySituationSelector,
 	configSituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import rules from 'modele-social'
+import { StrictMode, useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
@@ -39,9 +40,13 @@ import Provider, { ProviderProps } from './Provider'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 import {
-	retrievePersistedInFranceApp,
-	setupInFranceAppPersistence,
-} from './storage/persistInFranceApp'
+	retrievePersistedChoixStatutJuridique,
+	setupChoixStatutJuridiquePersistence,
+} from './storage/persistChoixStatutJuridique'
+import {
+	retrievePersistedCompanySituation,
+	setupCompanySituationPersistence,
+} from './storage/persistCompanySituation'
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
 type RootProps = {
@@ -71,11 +76,13 @@ export default function Root({
 				basename={basename}
 				sitePaths={paths}
 				onStoreCreated={(store) => {
-					setupInFranceAppPersistence(store)
+					setupChoixStatutJuridiquePersistence(store)
+					setupCompanySituationPersistence(store)
 					setupSimulationPersistence(store)
 				}}
 				initialStore={{
-					inFranceApp: retrievePersistedInFranceApp(),
+					choixStatutJuridique: retrievePersistedChoixStatutJuridique(),
+					companySituation: retrievePersistedCompanySituation(),
 				}}
 			>
 				<EngineProvider value={engine}>
@@ -87,14 +94,16 @@ export default function Root({
 }
 
 const Router = () => {
-	const userSituation = useSelector(situationSelector)
+	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
+	const companySituation = useSelector(companySituationSelector)
 	const situation = useMemo(
 		() => ({
+			...companySituation,
 			...configSituation,
-			...userSituation,
+			...simulatorSituation,
 		}),
-		[configSituation, userSituation]
+		[configSituation, simulatorSituation, companySituation]
 	)
 	return (
 		<SituationProvider situation={situation}>

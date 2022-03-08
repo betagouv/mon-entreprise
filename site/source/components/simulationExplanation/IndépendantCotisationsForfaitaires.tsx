@@ -2,6 +2,7 @@ import Value from '@/components/EngineValue'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
+import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
@@ -14,7 +15,7 @@ export default function CotisationsForfaitaires() {
 	)
 	return (
 		<FromBottom>
-			<div>
+			<Message>
 				<H3 as="h2">{rule.title}</H3>
 				<Intro>
 					<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
@@ -26,7 +27,7 @@ export default function CotisationsForfaitaires() {
 				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
 				{rule.rawNode.références && (
 					<>
-						<Spacing lg />
+						<Spacing md />
 						<Button
 							href={Object.values(rule.rawNode.références)[0]}
 							size="XS"
@@ -34,9 +35,10 @@ export default function CotisationsForfaitaires() {
 						>
 							<Trans>Voir la fiche Urssaf</Trans>
 						</Button>
+						<Spacing lg />
 					</>
 				)}
-			</div>
+			</Message>
 		</FromBottom>
 	)
 }

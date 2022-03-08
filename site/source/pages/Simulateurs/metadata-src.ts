@@ -128,8 +128,8 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 			},
 			pathId: 'simulateurs.sasu',
-			shortName: t('pages.simulateurs.sasu.shortname', 'SASU'),
-			title: t('pages.simulateurs.sasu.title', 'Simulateur de SASU'),
+			shortName: t('pages.simulateurs.sasu.shortname', 'SAS(U)'),
+			title: t('pages.simulateurs.sasu.title', 'Simulateur de SAS(U)'),
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		eurl: {

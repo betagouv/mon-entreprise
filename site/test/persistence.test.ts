@@ -29,7 +29,7 @@ const initialSimulation: Simulation = {
 	url: '/someurl',
 	hiddenNotifications: [],
 	situation: {},
-	initialSituation: {},
+	companySituation: {},
 	targetUnit: '€/mois',
 	foldedSteps: ['somestep' as DottedName],
 	unfoldedStep: null,

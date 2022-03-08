@@ -2,13 +2,15 @@ import emojiFn from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 type PropType = {
 	emoji: string | undefined
+	alt?: string
+	title?: string
 }
 
 // This custom component has several advantages over the direct use of the
 // `emojiFn` provided by `react-easy-emoji` :
 // - allow to configure the URL to self host twemoji images in production
 // - using a real React component works better with the translation scripts
-export default function Emoji({ emoji }: PropType) {
+export default function Emoji({ emoji, alt, title }: PropType) {
 	const language = useTranslation().i18n.language
 
 	const siteUrl =
@@ -24,7 +26,11 @@ export default function Emoji({ emoji }: PropType) {
 			? {
 					baseUrl: siteUrl + '/twemoji/2/',
 					ext: '.png',
+					props: {
+						alt,
+						title,
+					},
 			  }
-			: undefined
+			: { props: { alt, title }, ext: '.png' }
 	)
 }

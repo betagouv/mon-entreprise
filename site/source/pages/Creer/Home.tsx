@@ -22,7 +22,7 @@ export default function Créer() {
 	const nextQuestionUrl = useNextQuestionUrl()
 	const guideAlreadyStarted = useSelector(
 		(state: RootState) =>
-			!!Object.keys(state.inFranceApp.companyLegalStatus).length
+			!!Object.keys(state.choixStatutJuridique.companyLegalStatus).length
 	)
 	return (
 		<FromBottom>

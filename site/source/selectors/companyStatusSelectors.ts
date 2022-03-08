@@ -126,12 +126,12 @@ const possibleStatus = (
 	)
 
 export const possibleStatusSelector = (state: {
-	inFranceApp: State
+	choixStatutJuridique: State
 }): Record<LegalStatus, boolean> =>
-	possibleStatus(state.inFranceApp.companyLegalStatus)
+	possibleStatus(state.choixStatutJuridique.companyLegalStatus)
 
 export const nextQuestionSelector = (state: RootState): Question | null => {
-	const legalStatusRequirements = state.inFranceApp.companyLegalStatus
+	const legalStatusRequirements = state.choixStatutJuridique.companyLegalStatus
 	const questionAnswered = Object.keys(
 		legalStatusRequirements
 	) as Array<Question>

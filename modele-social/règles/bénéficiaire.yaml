@@ -1,5 +1,5 @@
 bénéficiaire:
-  valeur: non
+  applicable si: entreprise . imposition . IS
   description: |
     Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
     SARL/EURL.

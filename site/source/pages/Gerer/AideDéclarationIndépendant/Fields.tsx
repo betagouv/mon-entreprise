@@ -11,7 +11,7 @@ import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from '@/selectors/simulationSelectors'
-import { Question } from './index'
+import { Question } from './PreviousVersion'
 
 type SubSectionProp = {
 	dottedName: DottedName

@@ -54,8 +54,7 @@ export default function PageData(props: PageDataProps) {
 	const year = typeof année === 'number' && année != 2022 ? ` - ${année}` : ''
 
 	const inIframe = useIsEmbedded()
-	const fromGérer = !!useLocation<{ fromGérer?: boolean }>().state?.fromGérer
-	useSimulationConfig(config, { useExistingCompanyFromSituation: fromGérer })
+	useSimulationConfig(config)
 	useSearchParamsSimulationSharing()
 
 	// TODO : Move this logic elsewhere.

@@ -1,5 +1,6 @@
 situation:
-  dirigeant: "'artiste-auteur'"
+  dirigeant: non
+  contrat salarié: non
 unité par défaut: €/an
 objectifs:
   - artiste-auteur . cotisations

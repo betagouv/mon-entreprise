@@ -1,26 +1,20 @@
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { H4 } from '@/design-system/typography/heading'
 import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Company } from '@/reducers/inFranceAppReducer'
 import styled from 'styled-components'
 
-export default function CompanyDetails({
+export default function CompanySearchDetails({
 	entreprise,
 }: {
-	entreprise: FabriqueSocialEntreprise | Company
+	entreprise: FabriqueSocialEntreprise
 }) {
 	const { i18n } = useTranslation()
 
-	const {
-		siren,
-		label,
-		dateCreationUniteLegale,
-		firstMatchingEtablissement,
-		allMatchingEtablissements,
-	} = entreprise
+	const { siren, label, dateCreationUniteLegale, firstMatchingEtablissement } =
+		entreprise
 
 	const DateFormatter = useMemo(
 		() =>
@@ -40,12 +34,12 @@ export default function CompanyDetails({
 	// 		</SmallBody>
 	// 	)
 	// }
-	const siege = allMatchingEtablissements.find((e) => e.is_siege)
 	return (
 		<CompanyContainer>
-			<H3
+			<H4
+				as="div"
 				css={`
-					margin-top: 0;
+					margin: 0;
 				`}
 			>
 				<>
@@ -53,33 +47,20 @@ export default function CompanyDetails({
 						? highlightLabelToJSX(entreprise.highlightLabel)
 						: label}{' '}
 					<small>({siren})</small>
-				</>{' '}
-			</H3>
-
-			<InfoContainer as="div">
-				{dateCreationUniteLegale && (
-					<div>
-						<Trans>Crée le</Trans>{' '}
-						<Strong>
-							{DateFormatter.format(new Date(dateCreationUniteLegale))}
-						</Strong>
-					</div>
-				)}
-				<div>{firstMatchingEtablissement.address}</div>
-				{siege &&
-					allMatchingEtablissements.length > 1 &&
-					siege.address !== firstMatchingEtablissement.address && (
-						<div>
-							<Trans>Siège :</Trans> {siege.address}
-						</div>
-					)}
-			</InfoContainer>
+				</>
+			</H4>
+			<Spacing sm />
+			<Trans>Crée le :</Trans>{' '}
+			<Strong>{DateFormatter.format(new Date(dateCreationUniteLegale))}</Strong>
+			<br />
+			<Trans>Domiciliée à l'adresse :</Trans>{' '}
+			<Strong>{firstMatchingEtablissement.address}</Strong>
 		</CompanyContainer>
 	)
 }
 
 function highlightLabelToJSX(highlightLabel: string) {
-	const highlightRE = /(.*?)<b><u>(\w+)<\/u><\/b>/gm
+	const highlightRE = /(.*?)<b><u>(.+?)<\/u><\/b>/gm
 	let parsedLength = 0
 	const result = []
 	let matches
@@ -97,16 +78,9 @@ function highlightLabelToJSX(highlightLabel: string) {
 }
 
 const Highlight = styled.strong`
-	text-decoration: underline;
+	background-color: ${({ theme }) => theme.colors.bases.secondary[100]};
 `
 
 const CompanyContainer = styled.div`
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
 	text-align: left;
-`
-
-const InfoContainer = styled(Body)`
-	display: flex;
-	flex-direction: column;
 `

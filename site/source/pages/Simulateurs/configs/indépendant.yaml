@@ -17,6 +17,7 @@ questions:
     - entreprise . imposition
     - entreprise . exercice . début
     - entreprise . exercice . fin
+    - entreprise . catégorie juridique
   liste:
     - entreprise
     - établissement
@@ -30,4 +31,4 @@ questions:
     - entreprise . activité . débit de tabac
 unité par défaut: €/an
 situation:
-  dirigeant: "'indépendant'"
+  dirigeant . régime social: "'indépendant'"

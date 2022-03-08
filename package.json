@@ -32,7 +32,9 @@
 	},
 	"resolutions": {
 		"prettier": "^2.5.1",
-		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+		"publicodes": "portal:/home/johan/Projets/publicodes/packages/core",
+		"publicodes-react": "portal:/home/johan/Projets/publicodes/packages/react-ui"
 	},
 	"packageManager": "yarn@3.2.0",
 	"devDependencies": {

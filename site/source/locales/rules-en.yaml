@@ -2982,21 +2982,23 @@ contrat salarié . régime des impatriés:
   titre.fr: régime des impatriés
 contrat salarié . régime des impatriés . information:
   description.en: >-
-    [automatic] The following conditions must be met in order to benefit from
-    the old-age contribution exemption: - Be able to prove a minimum
-    contribution paid elsewhere for old-age insurance - Not have been
-    affiliated, during the five calendar years preceding that of taking up the
-    post, to a compulsory French old-age insurance scheme, except for ancillary
-    activities of a seasonal nature or for studies.
+    [automatic] In order to benefit from the exemption from old-age
+    contributions, the following conditions must be met:
+
+    - Be able to justify a minimum contribution paid elsewhere for old age insurance
+
+    - Not to have been affiliated, during the five calendar years preceding that of the taking up of duties, to a compulsory French old age insurance scheme, except for accessory activities, of a seasonal nature or for studies.
+
 
     [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&amp;cidTexte=LEGITEXT000006073189&amp;dateTexte=20190626)
   description.fr: >-
     Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir
-    les conditions suivantes : - Pouvoir justifier d'une contribution minimale
-    versée ailleurs pour une assurance vieillesse - Ne pas avoir été affilié, au
-    cours des cinq années civiles précédant celle de la prise de fonctions, à un
-    régime français obligatoire d'assurance vieillesse, sauf pour des activités
-    accessoires, de caractère saisonnier ou pour les études.
+    les conditions suivantes :
+
+    - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
+
+    - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+
 
     [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   titre.en: '[automatic] information'
@@ -3487,18 +3489,20 @@ contrat salarié . stage:
 contrat salarié . stage . avertissement:
   description.en: >-
     [automatic] An internship agreement **is not an employment contract**, and
-    cannot be concluded to carry out a regular task corresponding to a permanent
-    job, or a temporary increase in the company's activity. [Education Code -
-    Article
+    cannot be concluded to perform a regular task corresponding to a permanent
+    job, or to a temporary increase in the company's activity. [Code de
+    l'éducation - Article
     L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&amp;cidTexte=LEGITEXT000006071191)
 
-    Furthermore, a company with less than 20 employees may not take on more than **3 trainees**, and no more than **15% of the workforce** for companies with more than 20 employees.
+
+    In addition, a company with less than 20 employees may not host more than **3 trainees**, and no more than **15% of the workforce** for companies with more than 20 employees.
   description.fr: >-
     Une convention de stage **n'est pas un contrat de travail**, et ne peut pas
     être conclue pour réaliser une tâche régulière correspondant à un poste de
     travail permanent, ou à un accroissement temporaire de l'activité de
     l'entreprise. [Code de l'éducation - Article
     L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
 
     Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
   titre.en: '[automatic] warning'
@@ -3891,8 +3895,6 @@ contrat salarié . vieillesse:
   titre.en: Basic pension contribution
   titre.fr: vieillesse
 dirigeant:
-  question.en: '[automatic] What is the social regime of the manager?'
-  question.fr: Quel est le régime social du dirigeant ?
   titre.en: '[automatic] manager'
   titre.fr: dirigeant
 dirigeant . assimilé salarié:
@@ -4163,6 +4165,11 @@ dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
     d'acre sur une meme année.
   titre.en: '[automatic] notification annual ACRE calculation'
   titre.fr: notification calcul ACRE annuel
+dirigeant . gérant minoritaire:
+  question.en: '[automatic] Are you a minority or equal shareholder of your company?'
+  question.fr: Êtes-vous gérant minoritaire ou égalitaire de votre entreprise ?
+  titre.en: '[automatic] Minority or equal shareholder manager'
+  titre.fr: Gérant minoritaire ou égalitaire
 dirigeant . indépendant:
   titre.en: '[automatic] independent'
   titre.fr: indépendant
@@ -6181,6 +6188,9 @@ dirigeant . indépendant . revenus étrangers . montant:
   question.fr: Quel est leur montant ?
   titre.en: '[automatic] income received abroad'
   titre.fr: revenus perçu à l'étranger
+dirigeant . régime social:
+  titre.en: '[automatic] social regime'
+  titre.fr: régime social
 dirigeant . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
@@ -7171,6 +7181,15 @@ entreprise . ACRE:
 entreprise . ACRE par défaut:
   titre.en: '[automatic] Default ACRE'
   titre.fr: ACRE par défaut
+entreprise . SIREN:
+  description.en: >
+    [automatic] The Siren number is a unique 9 digit number for each company. Ex
+    : 401237780
+  description.fr: >
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise.
+    Ex : 401237780
+  titre.en: '[automatic] SIREN'
+  titre.fr: SIREN
 entreprise . activité:
   description.en: '[automatic] Your type of activity will determine a large part
     of the contribution, contribution and tax calculations.'
@@ -7397,6 +7416,56 @@ entreprise . capital social:
   question.fr: Quele est le capital social de la société ?
   titre.en: '[automatic] Share capital'
   titre.fr: Capital social
+entreprise . catégorie juridique:
+  description.en: |
+    [automatic] Legal categories accessible via the SIRENE API
+  description.fr: |
+    Les catégories juridiques accessibles via l'API SIRENE
+  note.en: '[automatic] We base ourselves here on the legal categories defined by INSEE'
+  note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
+  titre.en: '[automatic] legal category'
+  titre.fr: catégorie juridique
+entreprise . catégorie juridique . EI:
+  titre.en: '[automatic] EI or EIRL'
+  titre.fr: EI ou EIRL
+entreprise . catégorie juridique . EI . auto-entrepreneur:
+  question.en: '[automatic] Are you an auto-entrepreneur?'
+  question.fr: Êtes-vous auto-entrepreneur ?
+  titre.en: '[automatic] auto-entrepreneur'
+  titre.fr: auto-entrepreneur
+entreprise . catégorie juridique . EI . imposition entreprise:
+  titre.en: '[automatic] taxation company'
+  titre.fr: imposition entreprise
+entreprise . catégorie juridique . EI . responsabilité limité:
+  question.en: '[automatic] Is your business an EIRL?'
+  question.fr: Votre entreprise est-elle une EIRL ?
+  titre.en: '[automatic] EIRL'
+  titre.fr: EIRL
+entreprise . catégorie juridique . SARL:
+  titre.en: '[automatic] EURL or SARL'
+  titre.fr: EURL ou SARL
+entreprise . catégorie juridique . SARL . unipersonnelle:
+  question.en: '[automatic] Is your company an EURL?'
+  question.fr: Votre entreprise est-elle une EURL ?
+  titre.en: '[automatic] EURL'
+  titre.fr: EURL
+entreprise . catégorie juridique . SAS:
+  titre.en: '[automatic] SASU or SAS'
+  titre.fr: SASU ou SAS
+entreprise . catégorie juridique . SAS . unipersonnelle:
+  question.en: '[automatic] Is your company a SASU?'
+  question.fr: Votre entreprise est-elle une SASU ?
+  titre.en: '[automatic] SASU'
+  titre.fr: SASU
+entreprise . catégorie juridique . SELARL:
+  titre.en: '[automatic] SELARL'
+  titre.fr: SELARL
+entreprise . catégorie juridique . SELAS:
+  titre.en: '[automatic] SELARL'
+  titre.fr: SELARL
+entreprise . catégorie juridique . autre:
+  titre.en: '[automatic] other'
+  titre.fr: autre
 entreprise . charges:
   description.en: >
     [automatic] 
@@ -8028,6 +8097,9 @@ entreprise . imposition . IS . résultat net:
   résumé.fr: Après déduction des charges et de l'impôt sur les société
   titre.en: '[automatic] net result'
   titre.fr: résultat net
+entreprise . nom:
+  titre.en: '[automatic] name'
+  titre.fr: nom
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
@@ -8991,6 +9063,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
   titre.en: ZFU
   titre.fr: ZFU
+établissement . ZFU . durée d'implantation en fin d'année:
+  titre.en: '[automatic] duration of implementation at the end of the year'
+  titre.fr: durée d'implantation en fin d'année
 établissement . localisation:
   description.en: |-
     When a company has more than one establishment, certain contributions are

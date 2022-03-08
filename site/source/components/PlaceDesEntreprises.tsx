@@ -65,7 +65,7 @@ export const PlacesDesEntreprisesButton = ({
 	siret,
 }: {
 	pathname: string
-	siret?: string
+	siret?: string | null
 }) => {
 	const { t } = useTranslation()
 	const baseURL =

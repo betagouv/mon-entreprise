@@ -14,8 +14,8 @@ const engineOptions = {
 		return key || unit
 	},
 }
-export function engineFactory(rules: Rules) {
-	return new Engine(rules, engineOptions)
+export function engineFactory(rules: Rules, options = {}) {
+	return new Engine(rules, { ...engineOptions, ...options })
 }
 
 export const EngineContext = createContext<Engine>(new Engine())

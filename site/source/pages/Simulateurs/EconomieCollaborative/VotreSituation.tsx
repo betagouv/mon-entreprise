@@ -149,7 +149,8 @@ export default function VotreSituation() {
 				<Trans i18nKey="économieCollaborative.WIP">
 					<Strong>Cet assistant est en cours de développement.</Strong>{' '}
 					N'hésitez pas à nous faire part de toute vos remarques, idées,
-					questions en cliquant sur le bouton "Faire une suggestion" ci dessus.
+					questions en cliquant sur le bouton "Faire une suggestion" en bas de
+					la page.
 				</Trans>
 			</SmallBody>
 		</FromBottom>

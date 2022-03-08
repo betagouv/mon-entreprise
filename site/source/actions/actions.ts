@@ -1,9 +1,9 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { SimulationConfig } from '@/reducers/rootReducer'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'
-import { ActionExistingCompany } from './existingCompanyActions'
+import { CompanyActions } from './companyActions'
 import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
@@ -23,7 +23,7 @@ export type Action =
 	  >
 	| CompanyCreationAction
 	| CompanyStatusAction
-	| ActionExistingCompany
+	| CompanyActions
 	| HiringChecklistAction
 
 export const resetSimulation = () =>
@@ -46,16 +46,11 @@ export const stepAction = (step: DottedName, source?: string) =>
 		source,
 	} as const)
 
-export const setSimulationConfig = (
-	config: SimulationConfig,
-	url: string,
-	initialSituation?: Situation
-) =>
+export const setSimulationConfig = (config: SimulationConfig, url: string) =>
 	({
 		type: 'SET_SIMULATION',
 		url,
 		config,
-		initialSituation,
 	} as const)
 
 export const setActiveTarget = (targetName: DottedName) =>
@@ -72,7 +67,7 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	} as const)
 
 export const batchUpdateSituation = (
-	situation: Parameters<Engine<DottedName>['setSituation']>[0]
+	situation: NonNullable<Parameters<Engine<DottedName>['setSituation']>[0]>
 ) =>
 	({
 		type: 'BATCH_UPDATE_SITUATION',

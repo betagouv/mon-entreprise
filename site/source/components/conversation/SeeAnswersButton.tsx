@@ -9,10 +9,9 @@ export default function SeeAnswersButton() {
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
 				<Button {...buttonProps} light size="XS">
-					<Trans>Voir mes paramètres</Trans>
+					<Trans>Voir ma situation</Trans>
 				</Button>
 			)}
-			small
 		>
 			{(close) => <Answers onClose={close} />}
 		</PopoverWithTrigger>

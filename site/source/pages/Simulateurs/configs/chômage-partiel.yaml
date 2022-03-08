@@ -12,6 +12,7 @@ questions:
     - établissement . localisation
 
 unité par défaut: €/mois
+
 situation:
   dirigeant: non
   contrat salarié . activité partielle: oui

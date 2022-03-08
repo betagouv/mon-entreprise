@@ -33,7 +33,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 	const { t, i18n } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const companyCreationChecklist = useSelector(
-		(state: RootState) => state.inFranceApp.companyCreationChecklist
+		(state: RootState) => state.choixStatutJuridique.companyCreationChecklist
 	)
 	const dispatch = useDispatch()
 

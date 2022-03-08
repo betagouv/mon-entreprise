@@ -1,13 +1,37 @@
-dirigeant:
-  question: Quel est le régime social du dirigeant ?
+dirigeant: oui
+dirigeant . gérant minoritaire:
+  titre: Gérant minoritaire ou égalitaire
+  question: Êtes-vous gérant minoritaire ou égalitaire de votre entreprise ?
+  non applicable si:
+    une de ces conditions:
+      - entreprise . catégorie juridique . EI
+      - entreprise . catégorie juridique . SARL . unipersonnelle
+      - entreprise . catégorie juridique . SAS . unipersonnelle
   par défaut: non
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - auto-entrepreneur
-        - assimilé salarié
-        - indépendant
+
+dirigeant . régime social:
+  non applicable si:
+    une de ces conditions:
+      - entreprise . catégorie juridique . SELARL #TODO NON IMPLEMENTE
+      - entreprise . catégorie juridique . SELAS #TODO NON IMPLEMENTE
+      - entreprise . catégorie juridique . autre
+  par défaut: non
+  variations:
+    - si: entreprise . catégorie juridique . EI . auto-entrepreneur
+      alors: "'auto-entrepreneur'"
+    - si:
+        une de ces conditions:
+          - entreprise . catégorie juridique . SAS
+          - toutes ces conditions:
+              - entreprise . catégorie juridique . SARL
+              - gérant minoritaire
+      alors: "'assimilé salarié'"
+    - si:
+        non applicable si: gérant minoritaire
+        une de ces conditions:
+          - entreprise . catégorie juridique . EI
+          - entreprise . catégorie juridique . SARL
+      alors: "'indépendant'"
 
 dirigeant . rémunération: oui
 dirigeant . rémunération . totale:
@@ -81,14 +105,13 @@ dirigeant . rémunération . nette après impôt:
 dirigeant . assimilé salarié:
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
-  formule: dirigeant = 'assimilé salarié'
+  applicable si: régime social = 'assimilé salarié'
+  valeur: oui
   remplace:
     - règle: contrat salarié
       par: "'CDI'"
     - règle: contrat salarié . statut cadre
       par: oui
-    - règle: entreprise . imposition
-      par: "'IS'"
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . activité partielle
@@ -152,14 +175,9 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
     simulateur ne prends pas encore en compte le calcul de l'ACRE mois par mois.
 
 dirigeant . auto-entrepreneur:
+  applicable si: régime social = 'auto-entrepreneur'
+  valeur: oui
   rend non applicable: contrat salarié
-  remplace:
-    - règle: entreprise . imposition
-      par: "'IR'"
-    - règle: entreprise . imposition . IR . micro-fiscal
-      par: oui
-
-  formule: dirigeant = 'auto-entrepreneur'
   icônes: 🚶
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
@@ -337,40 +355,38 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
   remplace:
     règle: taux vente restauration hébergement
     par: taux ACRE * taux vente restauration hébergement
-
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
     l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
     l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
     cotisations.
   unité: '%'
-  formule:
-    variations:
-      - si: entreprise . date de création < 01/04/2019
-        alors:
-          grille:
-            assiette: entreprise . durée d'activité
-            tranches:
-              - montant: 25%
-                plafond: 1 an
-              - montant: 50%
-                plafond: 2 ans
-              - montant: 90%
-                plafond: 3 ans
-      - si: entreprise . date de création < 01/04/2020
-        alors:
-          grille:
-            assiette: entreprise . durée d'activité
-            tranches:
-              - montant: 25%
-                plafond: 1 an
-              - montant: 75%
-                plafond: 2 ans
-              - montant: 90%
-                plafond: 3 ans
-      - sinon:
-          applicable si: entreprise . durée d'activité < 1 an
-          valeur: 50%
+  variations:
+    - si: entreprise . date de création < 01/04/2019
+      alors:
+        grille:
+          assiette: entreprise . durée d'activité
+          tranches:
+            - montant: 25%
+              plafond: 1 an
+            - montant: 50%
+              plafond: 2 ans
+            - montant: 90%
+              plafond: 3 ans
+    - si: entreprise . date de création < 01/04/2020
+      alors:
+        grille:
+          assiette: entreprise . durée d'activité
+          tranches:
+            - montant: 25%
+              plafond: 1 an
+            - montant: 75%
+              plafond: 2 ans
+            - montant: 90%
+              plafond: 3 ans
+    - si: entreprise . durée d'activité < 1 an
+      alors: 50%
+    - sinon: 0%
 
   références:
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
@@ -496,8 +512,9 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
       - net de cotisations
 
 dirigeant . indépendant:
+  applicable si: régime social = 'indépendant'
+  valeur: oui
   rend non applicable: contrat salarié
-  formule: dirigeant = 'indépendant'
 
 dirigeant . indépendant . revenu professionnel:
   description: rémunération du dirigeant au régime des indépendant
@@ -970,15 +987,15 @@ dirigeant . indépendant . cotisations facultatives . plafond retraite compléme
 dirigeant . indépendant . cotisations et contributions . début activité:
   titre: Cotisations forfaitaires de début d'activité
   description: |
-    Lorsque vous commencez votre activité, vos **revenus professionnels
+    Lorsque vous commencez votre activité, vos **revenus professionnels**
     n’étant pas connus**, les cotisations et contributions des deux premières
     années sont calculées sur une **base forfaitaire**.
 
 
     Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de
     l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
-    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un **complément
-    de cotisations**.
+    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un 
+    **complément de cotisations**.
 
 
     Ce simulateur calcule les cotisations dites définitives sur la base des revenus réels de votre

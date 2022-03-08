@@ -1,0 +1,79 @@
+entreprise . catégorie juridique:
+  description: |
+    Les catégories juridiques accessibles via l'API SIRENE
+  par défaut: non
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - EI
+      - SARL
+      - SAS
+      - autre
+  références:
+    liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
+  note: On se base ici sur les catégories juridiques définies par l'INSEE
+
+entreprise . catégorie juridique . EI:
+  titre: 'EI ou EIRL'
+  valeur: catégorie juridique = 'EI'
+
+entreprise . catégorie juridique . EI . auto-entrepreneur:
+  question: Êtes-vous auto-entrepreneur ?
+  remplace:
+    règle: imposition . IR . micro-fiscal
+    par: oui
+
+  par défaut: oui
+
+entreprise . catégorie juridique . EI . responsabilité limité:
+  non applicable si: auto-entrepreneur # pour simplifier
+  titre: 'EIRL'
+  question: Votre entreprise est-elle une EIRL ?
+  par défaut: non
+
+entreprise . catégorie juridique . EI . imposition entreprise:
+  non applicable si: responsabilité limité
+  remplace: entreprise . imposition
+  valeur: "'IR'"
+
+entreprise . catégorie juridique . SARL:
+  titre: 'EURL ou SARL'
+  valeur: catégorie juridique = 'SARL'
+
+entreprise . catégorie juridique . SARL . unipersonnelle:
+  titre: EURL
+  question: Votre entreprise est-elle une EURL ?
+  par défaut: oui
+
+entreprise . catégorie juridique . SELARL:
+  titre: 'SELARL'
+  valeur: catégorie juridique = 'SELARL'
+  remplace:
+    - règle: entreprise . activité
+      par: "'libérale'"
+    - règle: entreprise . activité . libérale réglementée
+      par: oui
+
+entreprise . catégorie juridique . SELAS:
+  titre: 'SELARL'
+  valeur: catégorie juridique = 'SELAS'
+  remplace:
+    - règle: entreprise . activité
+      par: "'libérale'"
+    - règle: entreprise . activité . libérale réglementée
+      par: oui
+
+entreprise . catégorie juridique . SAS:
+  remplace: #TODO nous ne gérons pas encore les SASU à l'IR
+    règle: entreprise . imposition
+    par: "'IS'"
+  titre: 'SASU ou SAS'
+  valeur: catégorie juridique = 'SAS'
+
+entreprise . catégorie juridique . SAS . unipersonnelle:
+  titre: 'SASU'
+  question: Votre entreprise est-elle une SASU ?
+  par défaut: oui
+
+entreprise . catégorie juridique . autre:
+  valeur: catégorie juridique = 'autre'

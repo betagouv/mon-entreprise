@@ -11,8 +11,7 @@ questions:
 
 unité par défaut: €/an
 situation:
-  dirigeant: "'assimilé salarié'" # [TODO] [dividendes-indep]
-  bénéficiaire: oui
+  dirigeant . régime social: "'assimilé salarié'" # [TODO] [dividendes-indep]
   entreprise . imposition: "'IS'"
   impôt . méthode de calcul: "'PFU'"
   dirigeant . rémunération . imposable: 0 €/an

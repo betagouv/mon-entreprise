@@ -55,7 +55,7 @@ describe(`Navigation to income simulator using company name (${
 	})
 	it('should allow to retrieve company and show link corresponding to the legal status', function () {
 		cy.contains(
-			fr ? 'Rechercher une entreprise ' : 'Search for a company '
+			fr ? 'Rechercher votre entreprise ' : 'Search for a company '
 		).click()
 		cy.get('input').first().type('menoz')
 		cy.contains('834364291').click()
@@ -66,7 +66,7 @@ describe(`Navigation to income simulator using company name (${
 	})
 	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
 		cy.contains(
-			fr ? 'Rechercher une entreprise ' : 'Search for a company '
+			fr ? 'Rechercher votre entreprise ' : 'Search for a company '
 		).click()
 		cy.get('input').first().type('johan girod')
 		cy.contains('834825614').click()

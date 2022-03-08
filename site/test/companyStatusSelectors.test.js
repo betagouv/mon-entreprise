@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { nextQuestionSelector } from '@/selectors/companyStatusSelectors'
 const state = (companyLegalStatus) => ({
-	inFranceApp: {
+	choixStatutJuridique: {
 		companyLegalStatus,
 		existingCompany: null,
 		companyStatusChoice: null,
