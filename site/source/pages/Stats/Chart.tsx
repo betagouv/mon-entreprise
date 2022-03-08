@@ -219,7 +219,7 @@ const CustomTooltip = ({
 			<Body>
 				{period === 'jours' ? formatDayLong(data.date) : formatMonth(data.date)}
 			</Body>
-			<Ul small>
+			<Ul size="XS">
 				{dataKeys.map((key: string) => (
 					<Li key={key}>
 						<Strong>{formatValue(data[key])}</Strong>{' '}

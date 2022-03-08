@@ -95,7 +95,7 @@ const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
 				</Strong>{' '}
 				en {formatMonth(data.date)} :
 			</Body>
-			<Ul small>
+			<Ul size="XS">
 				<Li>
 					<Strong>
 						{Math.round((data['très bien'] ?? 0) + (data['bien'] ?? 0))}%
