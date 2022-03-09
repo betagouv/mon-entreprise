@@ -146,15 +146,16 @@ function getSimulatorsData({
 						Vous souhaitez :
 						<Ul>
 							<Li>
-								être conseillé sur les aides à l'embauche des jeunes, à
-								l'apprentissage
+								Être conseillé(e) sur les aides à l'embauche mobilisables pour
+								votre recrutement
 							</Li>
 							<Li>
-								vous informer sur les emplois francs en quartiers prioritaires,
-								le contrat de professionnalisation, le VTE
+								Vous informer sur l'apprentissage, le contrat de
+								professionnalisation, les emplois francs en quartiers
+								prioritaires, le VTE...
 							</Li>
-							<Li>trouver des candidats</Li>
-							<Li>recruter un travailleur handicapé</Li>
+							<Li>Trouver des candidats</Li>
+							<Li>Recruter une personne en situation de handicap</Li>
 						</Ul>
 						<Strong>
 							Service public simple et rapide : vous êtes rappelé(e) par LE
@@ -162,8 +163,8 @@ function getSimulatorsData({
 						</Strong>
 					</Body>
 					<Body>
-						Partenaires mobilisés : Apec, Cap emploi, CCI, CMA, Pôle emploi,
-						missions locales...
+						Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
+						locales...
 					</Body>
 					<PlacesDesEntreprisesButton
 						src={`https://${
