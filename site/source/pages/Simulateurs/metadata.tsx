@@ -141,7 +141,7 @@ function getSimulatorsData({
 						.
 					</Body>
 					<H2>Échanger avec un conseiller pour votre projet de recrutement</H2>
-					<Body>
+					<Body as="div">
 						Vous souhaitez :
 						<Ul>
 							<Li>

@@ -27,6 +27,7 @@ export const ContinueWithCompany = ({ company }: ContinueWithCompanyProps) => {
 						compact
 						to={sitePaths.gérer.index}
 						data-testid="currently-selected-company"
+						bodyAs="div"
 					>
 						<CompanyDetails entreprise={company} />
 					</Card>
