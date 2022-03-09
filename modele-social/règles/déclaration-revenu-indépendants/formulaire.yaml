@@ -214,8 +214,8 @@ déclaration indépendants . nature de l'activité:
     - règle: entreprise . activité . commerciale
       par: commerciale
   question: Quelle est la nature de votre activité ?
-  par défaut: "'commerciale'"
-  formule:
+  par défaut: "'artisanale'"
+  valeur:
     une possibilité:
       choix obligatoire: oui
       possibilités:

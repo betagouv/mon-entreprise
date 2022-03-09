@@ -1037,8 +1037,6 @@ contrat salarié . activité partielle:
     l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
 
     La déclaration d'activité partielle est simplifiée et l'effet est rétroactif.
-  question.en: '[automatic] Is the employee on short-time work?'
-  question.fr: Le salarié est-il en chômage partiel ?
   titre.en: '[automatic] partial activity'
   titre.fr: activité partielle
 contrat salarié . activité partielle . convention syntec:
@@ -2283,8 +2281,6 @@ contrat salarié . frais professionnels . titres-restaurant:
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-  question.en: '[automatic] Does the employee receive luncheon vouchers?'
-  question.fr: Le salarié reçoit-il des titres-restaurant ?
   titre.en: '[automatic] restaurant vouchers'
   titre.fr: titres-restaurant
 contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
@@ -2299,9 +2295,6 @@ contrat salarié . frais professionnels . titres-restaurant . contrôle taux emp
   description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
   titre.en: '[automatic] control minimum employer rate'
   titre.fr: contrôle taux employeur min
-contrat salarié . frais professionnels . titres-restaurant . montant:
-  titre.en: '[automatic] Restaurant vouchers'
-  titre.fr: Titres-restaurant
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   description.en: '[automatic] There is no maximum or minimum value for meal
     vouchers. However, in order to benefit from the contribution exemption, the
@@ -9005,9 +8998,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
   titre.en: ZFU
   titre.fr: ZFU
-établissement . ZFU . durée d'implantation en fin d'année:
-  titre.en: year-end implementation time
-  titre.fr: durée d'implantation en fin d'année
 établissement . localisation:
   description.en: |-
     When a company has more than one establishment, certain contributions are
