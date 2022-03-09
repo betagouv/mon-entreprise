@@ -66,6 +66,7 @@ Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Non: Non
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
+Outils pour les indépendants: Outils pour les indépendants
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Part employeur: Part employeur
 Part salarié: Part salarié
@@ -1051,9 +1052,9 @@ pages:
         ?"
     dividendes:
       meta:
-        description: Calculez le montant de l'impôt et des cotisations sur les
-          dividendes versés par votre entreprise.
-        title: Dividendes
+        description: "Indépendants : calculez le montant de l'exonération de cotisations
+          covid sur vos cotisations de 2021."
+        title: Exonération Covid
       seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
@@ -1074,7 +1075,7 @@ pages:
         et contributions suivant les mêmes modalités que sa rémunération de
         dirigeant.</7><8>Ce cas de figure n'est pas encore pris en compte par ce
         simulateur.</8>
-      title: Simulateur de versement de dividendes
+      title: Simulateur d'exonération de cotisations Covid pour indépendant
     ei:
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
