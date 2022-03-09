@@ -3,8 +3,7 @@ secteur:
   une possibilité:
     choix obligatoire: oui
     possibilités: [S1, S1bis, S2]
-  metadata:
-    component: ToggleRadioBlock
+  type: radio block
 
 secteur . S1:
   valeur: secteur = 'S1'
