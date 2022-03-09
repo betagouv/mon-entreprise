@@ -23,6 +23,7 @@ export const Button = forwardRef(function Button(
 		light = false,
 		color = 'primary' as const,
 		className,
+		isDisabled,
 		...ariaButtonProps
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
@@ -36,18 +37,19 @@ export const Button = forwardRef(function Button(
 		<StyledButton
 			{...buttonOrLinkProps}
 			className={className}
-			size={size}
+			$size={size}
 			$light={light}
-			color={color}
+			$color={color}
+			$isDisabled={isDisabled}
 		/>
 	)
 })
 
 type StyledButtonProps = {
-	color: Color
-	size: Size
+	$color: Color
+	$size: Size
 	$light: boolean
-	isDisabled?: boolean
+	$isDisabled?: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -57,14 +59,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
 
-	padding: ${({ size }) => {
-		if (size === 'XL') {
+	padding: ${({ $size }) => {
+		if ($size === 'XL') {
 			return '1.25rem 2rem'
 		}
-		if (size === 'MD') {
+		if ($size === 'MD') {
 			return '0.875rem 2rem'
 		}
-		if (size === 'XS') {
+		if ($size === 'XS') {
 			return '0.5rem 2rem'
 		}
 	}};
@@ -77,8 +79,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: 2px solid transparent;
-	${({ isDisabled }) =>
-		isDisabled &&
+	${({ $isDisabled }) =>
+		$isDisabled &&
 		css`
 			opacity: 50%;
 			cursor: not-allowed;
@@ -90,25 +92,25 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		${FocusStyle}
 	}
 	/* Primary, secondary & tertiary colors */
-	${({ theme, color }) =>
+	${({ theme, $color }) =>
 		!theme.darkMode &&
 		css`
-			border-color: ${theme.colors.bases[color][
-				color === 'primary' ? 700 : color === 'secondary' ? 500 : 300
+			border-color: ${theme.colors.bases[$color][
+				$color === 'primary' ? 700 : $color === 'secondary' ? 500 : 300
 			]};
 
-			background-color: ${theme.colors.bases[color][
-				color === 'primary' ? 700 : 300
+			background-color: ${theme.colors.bases[$color][
+				$color === 'primary' ? 700 : 300
 			]};
-			color: ${theme.colors.extended.grey[color === 'primary' ? 100 : 800]};
+			color: ${theme.colors.extended.grey[$color === 'primary' ? 100 : 800]};
 		`}
 
 	/* Primary, secondary & tertiary light colors */
-	${({ $light, color, theme }) =>
+	${({ $light, $color, theme }) =>
 		$light &&
 		!theme.darkMode &&
 		css`
-			color: ${theme.colors.bases[color][color === 'primary' ? 700 : 700]};
+			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
 			background-color: ${theme.colors.extended.grey[100]};
 		`}
 
@@ -133,20 +135,20 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	}
 	/* HOVER STYLE */
 	:hover {
-		${({ theme, color, isDisabled, $light }) =>
-			isDisabled || theme.darkMode
+		${({ theme, $color, $isDisabled, $light }) =>
+			$isDisabled || theme.darkMode
 				? ''
 				: /* Primary, secondary & tertiary light colors */
 				$light
 				? css`
-						background-color: ${theme.colors.bases[color][
-							color === 'primary' ? 200 : color === 'secondary' ? 100 : 100
+						background-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 200 : $color === 'secondary' ? 100 : 100
 						]};
 				  `
 				: /* Primary, secondary & tertiary colors */
 				  css`
-						background-color: ${theme.colors.bases[color][
-							color === 'primary' ? 800 : color === 'secondary' ? 500 : 400
+						background-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 800 : $color === 'secondary' ? 500 : 400
 						]};
 				  `}
 	}
@@ -154,8 +156,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	/* Dark mode */
 	@media not print {
 		:hover {
-			${({ $light, theme, isDisabled }) =>
-				isDisabled || !theme.darkMode
+			${({ $light, theme, $isDisabled }) =>
+				$isDisabled || !theme.darkMode
 					? ''
 					: /* White color and light mode (dark background mode) */
 					$light
