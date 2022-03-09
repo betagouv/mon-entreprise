@@ -33,6 +33,7 @@ lieu d'exercice:
     possibilités:
       - métropole
       - outre-mer
+  type: radio inline
 
 lieu d'exercice . métropole:
   titre: En métropole
@@ -60,6 +61,7 @@ début d'activité:
       - octobre 2021
       - novembre 2021
       - décembre 2021
+  type: select
 
 début d'activité . avant 2021:
 début d'activité . janvier 2021:

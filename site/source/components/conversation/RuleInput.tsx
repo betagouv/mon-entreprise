@@ -13,7 +13,12 @@ import Engine, {
 	RuleNode,
 } from 'publicodes'
 import React, { useContext } from 'react'
-import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
+import {
+	Choice,
+	MultipleAnswerInput,
+	OuiNonInput,
+	SelectAnswerInput,
+} from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
@@ -103,6 +108,14 @@ export default function RuleInput<
 		...props,
 	}
 
+	if (rule.rawNode.type === 'select') {
+		return (
+			<SelectAnswerInput
+				{...commonProps}
+				choice={buildVariantTree(engine, dottedName)}
+			/>
+		)
+	}
 	if (
 		isMetadata<RuleWithMetadata<Metadata>>(rule.rawNode) &&
 		rule.rawNode.metadata.component === 'ToggleRadioBlock'
@@ -112,6 +125,16 @@ export default function RuleInput<
 				{...commonProps}
 				choice={buildVariantTree(engine, dottedName)}
 				type="toggle"
+			/>
+		)
+	}
+	if (rule.rawNode.type === 'radio inline') {
+		return (
+			<MultipleAnswerInput
+				{...commonProps}
+				choice={buildVariantTree(engine, dottedName)}
+				type="toggle"
+				inline
 			/>
 		)
 	}

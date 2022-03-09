@@ -4,6 +4,7 @@ import { Markdown } from '@/components/utils/markdown'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Radio, RadioGroup, ToggleGroup } from '@/design-system/field'
 import { RadioBlock } from '@/design-system/field/Radio/Radio'
+import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
 import { DottedName } from 'modele-social'
@@ -188,7 +189,35 @@ export function OuiNonInput<Names extends string = DottedName>(
 	)
 }
 
-function useSelection<Names extends string = DottedName>({
+const relativeDottedName = (childDottedName: string, rootDottedName: string) =>
+	childDottedName.replace(rootDottedName + ' . ', '')
+
+export const SelectAnswerInput = <Names extends string = DottedName>({
+	choice,
+	...props
+}: { choice: Choice } & InputProps<Names>) => {
+	const { handleChange, defaultValue, currentSelection } = useSelection(props)
+
+	return (
+		<Select
+			label={props.title}
+			onSelectionChange={handleChange}
+			defaultSelectedKey={defaultValue}
+			selectedKey={currentSelection}
+		>
+			{choice.children.map((node) => (
+				<Item
+					key={`'${relativeDottedName(node.dottedName, props.dottedName)}'`}
+					textValue={node.title}
+				>
+					{node.title}
+				</Item>
+			))}
+		</Select>
+	)
+}
+
+export function useSelection<Names extends string = DottedName>({
 	value,
 	onChange,
 	missing,
