@@ -130,6 +130,7 @@ Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
+Outils pour les indépendants: Tools for the self-employed
 PFU (<1>"flat tax"</1>): Flat tax
 Pages associées: Related pages
 Par statut: By status
@@ -1386,9 +1387,9 @@ pages:
         questions.</4>"
     dividendes:
       meta:
-        description: Calculate the amount of tax and contributions on dividends paid by
-          your company.
-        title: Dividends
+        description: "Self-employed: calculate the amount of the covid exemption on your
+          2021 contributions."
+        title: Covid Exemption
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the result of the previous year can be kept in reserve (for future
         investments) or paid out as dividends. From the point of view of the
@@ -1407,7 +1408,7 @@ pages:
         share capital will be subject to contributions and levies in the same
         way as his or her remuneration as a manager.</7><8>This case is not yet
         taken into account by this simulator.</8>
-      title: Dividend Payment Simulator
+      title: Covid contribution exemption simulator for self-employed
     ei:
       meta:
         description: Calculation of income from turnover, after deduction of
