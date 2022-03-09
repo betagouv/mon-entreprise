@@ -25,6 +25,10 @@ export function SubSection({
 	const ruleTitle = engine.getRule(sectionDottedName)?.title
 	const nextSteps = useNextQuestions()
 	const situation = useSelector(situationSelector)
+
+	if (engine.evaluate(sectionDottedName).nodeValue === null) {
+		return null
+	}
 	const title = hideTitle ? null : ruleTitle
 	const subQuestions = [
 		...(Object.keys(situation) as Array<DottedName>),
@@ -62,7 +66,6 @@ export function SimpleField({
 	const engine = useContext(EngineContext)
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
-	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
 		(value, dottedName) => {
@@ -71,11 +74,7 @@ export function SimpleField({
 		[dispatch]
 	)
 
-	if (
-		!(dottedName in situation) &&
-		evaluation.nodeValue === false &&
-		!(dottedName in evaluation.missingVariables)
-	) {
+	if (evaluation.nodeValue === null) {
 		return null
 	}
 	return (

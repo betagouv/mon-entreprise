@@ -1,7 +1,11 @@
 import { Grid } from '@mui/material'
 import { updateSituation } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
-import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
+import {
+	Condition,
+	WhenAlreadyDefined,
+	WhenApplicable,
+} from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import PreviousSimulationBanner from '@/components/PreviousSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
@@ -141,11 +145,9 @@ export default function AideDéclarationIndépendant() {
 							</Body>
 							<SimpleField dottedName="déclaration indépendants . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
-							<SubSection
-								hideTitle
-								dottedName="entreprise . effectif . seuil"
-							/>
-
+							<Condition expression="établissement . ZFU">
+								<SimpleField dottedName="entreprise . effectif . seuil" />
+							</Condition>
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle

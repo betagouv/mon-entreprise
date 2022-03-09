@@ -1324,7 +1324,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre: taux exonération ZFU
   formule:
     taux progressif:
-      assiette: établissement . ZFU . durée d'implantation en fin d'année
+      assiette: entreprise . durée d'activité . en fin d'année
       retourne seulement le taux: oui
       variations:
         - si: entreprise . effectif < 5
