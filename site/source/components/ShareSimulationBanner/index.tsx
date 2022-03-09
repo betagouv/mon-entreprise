@@ -13,6 +13,7 @@ import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
+import { isProduction } from '@/utils'
 
 export function useUrl() {
 	const language = useTranslation().i18n.language
@@ -109,7 +110,13 @@ export default function ShareOrSaveSimulationBanner() {
 				)}
 
 				<Grid item xs={12} sm="auto">
-					<PlacesDesEntreprisesButton src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					<PlacesDesEntreprisesButton
+						src={`https://${
+							isProduction()
+								? 'place-des-entreprises.beta.gouv.fr'
+								: 'reso-staging.osc-fr1.scalingo.io'
+						}/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs`}
+					/>
 				</Grid>
 			</Grid>
 		</>

@@ -45,6 +45,7 @@ import SchemeComparaisonPage from './SchemeComparaison'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Strong } from '@/design-system/typography'
 import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
+import { isProduction } from '@/utils'
 
 interface SimulatorsDataParams {
 	t?: TFunction<'translation', string>
@@ -164,7 +165,13 @@ function getSimulatorsData({
 						Partenaires mobilisés : Apec, Cap emploi, CCI, CMA, Pôle emploi,
 						missions locales...
 					</Body>
-					<PlacesDesEntreprisesButton src="https://place-des-entreprises.beta.gouv.fr/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					<PlacesDesEntreprisesButton
+						src={`https://${
+							isProduction()
+								? 'place-des-entreprises.beta.gouv.fr'
+								: 'reso-staging.osc-fr1.scalingo.io'
+						}/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs`}
+					/>
 				</Trans>
 			),
 		},
