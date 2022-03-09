@@ -56,7 +56,7 @@ export function Card({
 				</div>
 				{ctaLabel && (
 					// The button is not selectable with keyboard navigation because the whole card already is
-					<CardButton tabIndex={-1} size="XS" $light color="primary">
+					<CardButton tabIndex={-1} $size="XS" $light $color="primary">
 						{ctaLabel}
 						{linkProps.external && <NewWindowLinkIcon />}
 					</CardButton>
