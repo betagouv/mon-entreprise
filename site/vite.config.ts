@@ -105,6 +105,8 @@ export default defineConfig(({ command }) => ({
 	},
 	optimizeDeps: {
 		exclude: ['publicodes-react', 'publicodes'],
+		// Optimize cjs deps from publicodes
+		include: ['publicodes > moo', 'publicodes > nearley', 'yaml'],
 	},
 }))
 
