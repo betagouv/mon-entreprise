@@ -31,7 +31,6 @@ import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 import forms from './forms.svg'
 import growth from './growth.svg'
 import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
-import { isProduction } from '@/utils'
 
 export type DirigeantOrNull = keyof SimulatorData | null
 
@@ -225,11 +224,8 @@ export default function Gérer() {
 				<Spacing lg />
 
 				<PlacesDesEntreprisesButton
-					src={`https://${
-						isProduction()
-							? 'place-des-entreprises.beta.gouv.fr'
-							: 'reso-staging.osc-fr1.scalingo.io'
-					}/aide-entreprise/mon-entreprise-urssaf-fr`}
+					pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
+					siret={company.firstMatchingEtablissement.siret}
 				/>
 			</FromBottom>
 		</>

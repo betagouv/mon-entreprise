@@ -7,6 +7,7 @@ import { Button } from '@/design-system/buttons'
 import { Loader } from '@/design-system/icons/Loader'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Trans, useTranslation } from 'react-i18next'
+import { isProduction } from '@/utils'
 
 const Iframe = styled.iframe`
 	width: 1px;
@@ -52,8 +53,24 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
-export const PlacesDesEntreprisesButton = ({ src }: { src: string }) => {
+export const PlacesDesEntreprisesButton = ({
+	pathname,
+	siret,
+}: {
+	pathname: string
+	siret?: string
+}) => {
 	const { t } = useTranslation()
+	const baseURL =
+		'https://' +
+		(isProduction()
+			? 'place-des-entreprises.beta.gouv.fr'
+			: 'reso-staging.osc-fr1.scalingo.io')
+	const url = new URL(baseURL + pathname)
+
+	if (siret) {
+		url.searchParams.set('siret', siret)
+	}
 
 	return (
 		<Container>
@@ -88,7 +105,7 @@ export const PlacesDesEntreprisesButton = ({ src }: { src: string }) => {
 								et vous accompagne en fonction de votre situation.
 							</Trans>
 						</Body>
-						<LazyIframe src={src} />
+						<LazyIframe src={url.href} />
 					</>
 				</Suspense>
 			</PopoverWithTrigger>
