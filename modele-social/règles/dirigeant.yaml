@@ -778,6 +778,7 @@ dirigeant . indépendant . cotisations et contributions:
 
 dirigeant . indépendant . assiette minimale:
   non applicable si: situation personnelle . RSA
+  valeur: oui
   description: |
     Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
     Les cotisations pour les indemnités journalières, retraite de base, invalidité-décès et pour la formation ne sont plus calculées selon le revenu du chef d'entreprise mais selon une "assiette" (montant retenu qui sert de base au calcul d'un impôt ou d'une taxe).

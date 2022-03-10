@@ -65,7 +65,7 @@ contrat salarié . frais professionnels:
     somme:
       - titres-restaurant . part employeur
       - abonnement transports publics . prise en charge
-      - transports personnels . montant
+      - transports personnels
 
 contrat salarié . frais professionnels . part déductible:
   titre: Frais professionnels déductibles
@@ -220,15 +220,11 @@ contrat salarié . frais professionnels . abonnement transports publics . prise 
 
 contrat salarié . frais professionnels . transports personnels:
   non applicable si: déduction forfaitaire spécifique
+  somme:
+    - carburant faible émission . montant
+    - forfait mobilités durables . montant
   références:
     circ. DGT-DSS 2009-1 du 28 janvier 2009: https://www.legifrance.gouv.fr/download/file/pdf/cir_2423/CIRC
-
-contrat salarié . frais professionnels . transports personnels . montant:
-  titre: Transports personnels
-  valeur:
-    somme:
-      - carburant faible émission . montant
-      - forfait mobilités durables . montant
 
 contrat salarié . frais professionnels . transports personnels . part déductible:
   valeur:
@@ -3548,21 +3544,22 @@ contrat salarié . maladie . taux domiciliation fiscale étranger:
   formule: 5.50%
 
 contrat salarié . lodeom:
-  description: |
-    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer.
-    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
-    Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
-
-contrat salarié . lodeom . zone un:
-  titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
-  références:
-    fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
-  formule:
+  valeur: oui
+  applicable si:
+    nom: zone un
+    titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
+    références:
+      fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
     une de ces conditions:
       - établissement . localisation . département = 'Guadeloupe'
       - établissement . localisation . département = 'La Réunion'
       - établissement . localisation . département = 'Martinique'
       - établissement . localisation . département = 'Guyane'
+    # TODO : ajouter la zone 2
+  description: |
+    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer.
+    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
+    Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
 
 # TODO : reformuler comme pour la réduction générale
 contrat salarié . lodeom . réduction outre-mer:
