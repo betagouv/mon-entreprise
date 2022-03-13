@@ -209,17 +209,19 @@ export function InstitutionsPartenairesArtisteAuteur() {
 		<section>
 			<H3>Vos cotisations</H3>
 			<Grid container>
-				<Grid item lg={12} xl={10}>
+				<Grid item lg={12}>
 					<Message border={false}>
 						<CotisationsUrssaf
 							rule="artiste-auteur . cotisations"
 							extraNotice={
 								<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
-									<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
-										Pour vos revenus en traitement et salaires, ces cotisations
-										sont « précomptées », c'est à dire payées à la source par le
-										diffuseur.
-									</Trans>
+									<SmallBody>
+										<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
+											Pour vos revenus en traitement et salaires, ces
+											cotisations sont « précomptées », c'est à dire payées à la
+											source par le diffuseur.
+										</Trans>
+									</SmallBody>
 								</Condition>
 							}
 						/>

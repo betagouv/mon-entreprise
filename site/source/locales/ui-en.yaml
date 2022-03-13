@@ -62,6 +62,7 @@ Covid 19: Covid 19
 Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 "Crée le :": "Created on :"
+Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Created on <2><0></0></2> and domiciled at <6><0></0></6>
 Créer une: Create a
 De: From
 Demande de mobilité: Demand for mobility
@@ -859,9 +860,9 @@ gérer:
       cta: Go to monIdeNum.fr
       title: Get a Kbis extract
     kbis-autoentrepreneur:
-      body: Self-employed entrepreneurs do not have a Kbis. However, they can obtain
-        and present a K extract. See the service-public website for more
-        information.
+      body: Sole proprietorships and auto-entrepreneurs do not have a Kbis. However,
+        they can get and present a K extract. See the service-public website for
+        more information.
       cta: Visit the site
       title: How to get a Kbis extract?
     sécuritéSociale:

@@ -30,7 +30,11 @@ import employeeSituations from './simulations-salarié.yaml'
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
 const engine = engineFactory(rules, {
-	logger: { warn: () => {}, error: (m) => console.error(m), log: () => {} },
+	logger: {
+		warn: () => undefined,
+		error: (m: string) => console.error(m),
+		log: () => undefined,
+	},
 })
 const runSimulations = (
 	situationsSpecs: SituationsSpecs,
@@ -56,7 +60,7 @@ const runSimulations = (
 				.filter(
 					(rule) =>
 						rule.rawNode['type'] === 'notification' &&
-						!!engine.evaluate(rule.dottedName).nodeValue
+						engine.evaluate(rule.dottedName).nodeValue === true
 				)
 				.map((node) => node.dottedName)
 

@@ -208,11 +208,10 @@ entreprise . chiffre d'affaires . franchise de TVA . seuil service:
 
 entreprise . chiffre d'affaires . franchise de TVA . dépassement:
   type: notification
-  formule:
-    une de ces conditions:
-      - chiffre d'affaires > seuil vente + seuil service
-      - vente restauration hébergement > seuil vente
-      - service > seuil service
+  une de ces conditions:
+    - chiffre d'affaires > seuil vente + seuil service
+    - vente restauration hébergement > seuil vente
+    - service > seuil service
   résumé: |
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
   description: |

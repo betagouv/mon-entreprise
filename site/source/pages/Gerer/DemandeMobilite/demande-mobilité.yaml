@@ -411,6 +411,7 @@ détachement . pays hors UE:
 détachement . pays hors UE . convention bilatérale:
   non applicable si: pays = 'Autre'
   titre: ''
+  valeur: oui
   type: groupe
   description: >-
     ### Conditions particulières concernant les accords de protections social bilatéraux
@@ -771,7 +772,7 @@ pluriactivité:
           - demande . PAM
           - demande . PAM . détachement possible = non
       - demande . salarié = 'pluriactivité'
-  formule: oui
+  valeur: oui
   titre: Demande de pluriactivité
   type: groupe
 

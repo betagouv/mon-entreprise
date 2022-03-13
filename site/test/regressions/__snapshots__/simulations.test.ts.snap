@@ -1,79 +1,79 @@
 // Vitest Snapshot v1
 
-exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[9020,50000,36345,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 1`] = `"[9020,50000,36345]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[913,15000,12630,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 2`] = `"[913,15000,12630]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[300,5000,4152,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 3`] = `"[300,5000,4152]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[1487,10000,7511,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 4`] = `"[1487,10000,7511]"`;
 
-exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[606,10000,8392,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > ACRE 5`] = `"[606,10000,8392]"`;
 
-exports[`calculate aide-déclaration-indépendant > IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > IJSS (indemnité sécurité sociale) 1`] = `"[11409,50000,34048]"`;
 
-exports[`calculate aide-déclaration-indépendant > RSA 1`] = `"[82,500,279,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > RSA 1`] = `"[82,500,279]"`;
 
-exports[`calculate aide-déclaration-indépendant > RSA 2`] = `"[1021,5000,3431,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > RSA 2`] = `"[1021,5000,3431]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 1`] = `"[14093,50000,31238,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 1`] = `"[14093,50000,31238]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 2`] = `"[13578,50000,31753,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 2`] = `"[13578,50000,31753]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 3`] = `"[11461,50000,33870,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 3`] = `"[11461,50000,33870]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14097,50000,31254,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 4`] = `"[14097,50000,31254]"`;
 
-exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 5`] = `"[11461,50000,33870,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > conjoint collaborateur 5`] = `"[11461,50000,33870]"`;
 
-exports[`calculate aide-déclaration-indépendant > débit de tabac 1`] = `"[5652,50000,39713,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > débit de tabac 1`] = `"[5652,50000,39713]"`;
 
 exports[`calculate aide-déclaration-indépendant > international 1`] = `
-"[14610,50000,35287,0,1,1,0]
+"[14610,50000,35287]
 Notifications affichées : impôt . domiciliation étranger non implémentée"
 `;
 
-exports[`calculate aide-déclaration-indépendant > international 2`] = `"[11875,50000,36215,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > international 2`] = `"[11875,50000,36215]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 1`] = `"[11365,50000,33986,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 1`] = `"[11365,50000,33986]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 2`] = `"[1368,5000,3069,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 2`] = `"[1368,5000,3069]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 3`] = `"[11369,50000,33996,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 3`] = `"[11369,50000,33996]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 4`] = `"[1369,5000,3083,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 4`] = `"[1369,5000,3083]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 5`] = `"[11369,50000,33996,0,0,1,1]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 5`] = `"[11369,50000,33996]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 6`] = `"[1369,5000,3083,0,0,1,1]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 6`] = `"[1369,5000,3083]"`;
 
-exports[`calculate aide-déclaration-indépendant > nature de l'activité 7`] = `"[9454,50000,35911,0,0,1,1]"`;
+exports[`calculate aide-déclaration-indépendant > nature de l'activité 7`] = `"[9454,50000,35911]"`;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 1`] = `
-"[1042,500,-681,0,1,1,0]
+"[1042,500,-681]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 2`] = `
-"[1042,1000,-226,0,1,1,0]
+"[1042,1000,-226]
 Notifications affichées : entreprise . imposition . IR . information sur le report de déficit"
 `;
 
-exports[`calculate aide-déclaration-indépendant > échelle de revenus 3`] = `"[1067,1500,203,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > échelle de revenus 3`] = `"[1067,1500,203]"`;
 
-exports[`calculate aide-déclaration-indépendant > échelle de revenus 4`] = `"[1110,2000,614,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > échelle de revenus 4`] = `"[1110,2000,614]"`;
 
-exports[`calculate aide-déclaration-indépendant > échelle de revenus 5`] = `"[1369,5000,3083,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > échelle de revenus 5`] = `"[1369,5000,3083]"`;
 
-exports[`calculate aide-déclaration-indépendant > échelle de revenus 6`] = `"[2204,10000,6794,0,1,1,0]"`;
+exports[`calculate aide-déclaration-indépendant > échelle de revenus 6`] = `"[2204,10000,6794]"`;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 7`] = `
-"[20928,100000,69895,0,1,1,0]
+"[20928,100000,69895]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate aide-déclaration-indépendant > échelle de revenus 8`] = `
-"[106447,1000000,802635,0,1,1,0]
+"[106447,1000000,802635]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
@@ -187,30 +187,15 @@ exports[`calculate simulations-impot-société > bénéfices 4`] = `"[3000,0]"`;
 
 exports[`calculate simulations-impot-société > bénéfices 5`] = `"[48628,0]"`;
 
-exports[`calculate simulations-impot-société > bénéfices 6`] = `
-"[525628,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
-`;
+exports[`calculate simulations-impot-société > bénéfices 6`] = `"[525628,0]"`;
 
-exports[`calculate simulations-impot-société > bénéfices 7`] = `
-"[5295628,149646]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
-`;
+exports[`calculate simulations-impot-société > bénéfices 7`] = `"[5295628,149646]"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 1`] = `
-"[260628,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
-`;
+exports[`calculate simulations-impot-société > prorata temporis 1`] = `"[260628,0]"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 2`] = `
-"[277936,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
-`;
+exports[`calculate simulations-impot-société > prorata temporis 2`] = `"[277936,0]"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 3`] = `
-"[272981,0]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
-`;
+exports[`calculate simulations-impot-société > prorata temporis 3`] = `"[272981,0]"`;
 
 exports[`calculate simulations-indépendant > acre 1`] = `"[73019,23019,50000,51980,9516,40484,0,73019,1408]"`;
 
@@ -422,11 +407,16 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > C
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > Contrats Madelin 4`] = `"[917,10998,0,10679,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > Contrats Madelin 5`] = `"[14490,173883,0,151717,4,47]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > Contrats Madelin 5`] = `
+"[14490,173883,0,151717,4,47]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > Contrats Madelin 6`] = `"[917,10998,0,10679,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > Contrats Madelin 7`] = `"[917,10998,0,10679,4,20]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > JEI 1`] = `"[2829,33949,0,32329,4,47]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > activités 1`] = `"[917,10998,0,10679,4,20]"`;
 
@@ -458,7 +448,10 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > �
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > échelle de rémunération 7`] = `"[2341,28096,0,26893,4,47]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > échelle de rémunération 8`] = `"[4758,57101,0,52069,4,47]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié) > échelle de rémunération 8`] = `
+"[4758,57101,0,52069,4,47]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > ACRE 1`] = `
 "[0,9350,9350,1450,2,0]
@@ -491,6 +484,8 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 6`] = `"[0,17856,17856,2973,3,8]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > Contrats Madelin 7`] = `"[0,17420,17420,2900,3,8]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > JEI 1`] = `"[2829,33949,0,32329,4,47]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur) > activités 1`] = `"[0,15560,15560,6600,4,18]"`;
 
@@ -549,6 +544,8 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 6`] = `"[0,13168,0,10095,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 7`] = `"[0,6868,0,10095,4,21]"`;
+
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > JEI 1`] = `"[2829,33949,0,32329,4,47]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 1`] = `"[0,13768,0,10095,4,21]"`;
 
@@ -638,8 +635,6 @@ exports[`calculate simulations-salarié > JEI 2`] = `
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
-exports[`calculate simulations-salarié > JEI 3`] = `"[4511,0,4000,3141,2745]"`;
-
 exports[`calculate simulations-salarié > activité partielle 1`] = `
 "[20,0,1560,1247,1247]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
@@ -709,12 +704,6 @@ exports[`calculate simulations-salarié > apprentissage 2`] = `
 "[1381,0,1500,1454,1454]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
-
-exports[`calculate simulations-salarié > assimilé salarié 1`] = `"[7010,0,5000,3943,3286]"`;
-
-exports[`calculate simulations-salarié > assimilé salarié 2`] = `"[2121,0,1500,1163,1163]"`;
-
-exports[`calculate simulations-salarié > assimilé salarié 3`] = `"[4222,0,3000,2348,2161]"`;
 
 exports[`calculate simulations-salarié > atmp 1`] = `"[2474,0,2000,1561,1527]"`;
 

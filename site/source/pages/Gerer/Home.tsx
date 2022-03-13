@@ -22,7 +22,6 @@ import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
-import AideOrganismeLocal from './AideOrganismeLocal'
 import { AutoEntrepreneurCard } from './cards/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './cards/DemarcheEmbauche'
 import { KbisCard } from './cards/KBISCard'
@@ -193,8 +192,6 @@ export default function Gérer() {
 				</FromTop>
 			)}
 
-			<AideOrganismeLocal />
-
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>
@@ -214,15 +211,11 @@ export default function Gérer() {
 						<AutoEntrepreneurCard />
 					</Grid>
 				</WhenApplicable>
-
 				<Grid item sm={12} md={4}>
 					<SecuriteSocialeCard />
 				</Grid>
-
-				<Spacing lg />
-
 				<Grid item sm={12} md={4}>
-					<KbisCard dirigeant={dirigeantSimulateur} />
+					<KbisCard />
 				</Grid>
 			</Grid>
 

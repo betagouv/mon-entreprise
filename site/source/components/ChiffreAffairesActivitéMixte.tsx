@@ -123,7 +123,7 @@ function ActivitéMixte() {
 	)
 
 	return (
-		<div key={defaultChecked}>
+		<div key={Boolean(defaultChecked).toString()}>
 			<StyledActivitéMixteContainer>
 				<Trans>
 					<Switch

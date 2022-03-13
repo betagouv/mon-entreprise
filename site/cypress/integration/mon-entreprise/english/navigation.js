@@ -59,7 +59,7 @@ describe(`Navigation to income simulator using company name (${
 		).click()
 		cy.get('input').first().type('menoz')
 		cy.contains('834364291').click()
-		cy.contains('SASU').click()
+		cy.contains('SAS(U)').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/sasu$/)
 		})

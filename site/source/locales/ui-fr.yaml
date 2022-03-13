@@ -32,6 +32,7 @@ Continuer: Continuer
 Cotisations sociales: Cotisations sociales
 Crée le: Crée le
 "Crée le :": "Crée le :"
+Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Créee le <2><0></0></2> et domiciliée à <6><0></0></6>
 Créer une: Créer une
 Devenir: Devenir
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
@@ -622,9 +623,9 @@ gérer:
       cta: Aller sur monIdeNum.fr
       title: Récupérer un extrait de Kbis
     kbis-autoentrepreneur:
-      body: Les auto-entrepreneurs n'ont pas de Kbis. Ils peuvent cependant récupérer
-        et présenter un extrait K. Voir le site du service-public pour plus
-        d'informations.
+      body: Les entreprises individuelles et les auto-entrepreneurs n'ont pas de Kbis.
+        Ils peuvent cependant récupérer et présenter un extrait K. Voir le site
+        du service-public pour plus d'informations.
       cta: Visiter le site
       title: Récupérer un extrait de Kbis?
     sécuritéSociale:
