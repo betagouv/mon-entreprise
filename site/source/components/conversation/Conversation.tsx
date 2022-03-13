@@ -24,14 +24,10 @@ import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
 
 export type ConversationProps = {
-	displayNotification: boolean
 	customEndMessages?: React.ReactNode
 }
 
-export default function Conversation({
-	customEndMessages,
-	displayNotification = true,
-}: ConversationProps) {
+export default function Conversation({ customEndMessages }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const currentQuestion = useNextQuestions()[0]
@@ -111,7 +107,7 @@ export default function Conversation({
 						<SeeAnswersButton />
 					</Grid>
 				</Grid>
-				{displayNotification && <Notifications />}
+				<Notifications />
 			</form>
 			<QuickLinks />
 		</>

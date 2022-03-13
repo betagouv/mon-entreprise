@@ -9,11 +9,7 @@ entreprise . imposition:
     possibilités:
       - IR
       - IS
-  par défaut:
-    variations:
-      - si: catégorie juridique . EI
-        alors: "'IR'"
-      - sinon: "'IS'"
+  par défaut: "'IR'"
 
 entreprise . imposition . IR:
   applicable si: imposition = 'IR'

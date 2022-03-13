@@ -15827,28 +15827,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A."
+"publicodes-react@npm:^1.0.0-beta.32":
+  version: 1.0.0-beta.32
+  resolution: "publicodes-react@npm:1.0.0-beta.32"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.32
     react: ^17.0.2
+  checksum: 2cdf91420982e909869cf9ddc1754943d4e5e8bef7545e4d5afdfc202eb1bbdcb33197bb4ad2978f6cfd02aad3229ec53061ff06680c9f2917638fde79b98b28
   languageName: node
-  linkType: soft
+  linkType: hard
 
-"publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A."
+"publicodes@npm:^1.0.0-beta.32":
+  version: 1.0.0-beta.32
+  resolution: "publicodes@npm:1.0.0-beta.32"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
+  checksum: 674a5f1ee9f755cf8f9fd2312523ee70f3963b1c8cb9e0249919ad48269f3dbe831d4fe3e1c13400216bd21b34d2bbd5f71e571b3adc210ebdb1c2dc18ee72d6
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "pump@npm:^2.0.0":
   version: 2.0.1

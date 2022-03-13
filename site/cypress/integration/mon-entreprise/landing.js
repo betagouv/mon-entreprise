@@ -1,6 +1,6 @@
-const searchInputPath = '[data-testid=company-search-input]'
-const searchResultsPath = '[data-testid=company-search-results]'
-const currentCompanyPath = '[data-testid=currently-selected-company]'
+const searchInputPath = '[data-test-id=company-search-input]'
+const searchResultsPath = '[data-test-id=company-search-results]'
+const currentCompanyPath = '[data-test-id=currently-selected-company]'
 
 const FIXTURES_FOLDER = 'cypress/fixtures/landing'
 
@@ -51,7 +51,7 @@ describe('Landing page', function () {
 		cy.go('back')
 
 		cy.get(currentCompanyPath).should('exist')
-		cy.get(currentCompanyPath).click()
+		cy.contains('Continuer avec cette entreprise').click()
 
 		cy.url().should('include', '/g%C3%A9rer')
 
