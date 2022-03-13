@@ -88,7 +88,7 @@ const flash = keyframes`
     background-color: white;
 		opacity: 0.8;
   }
-	
+
 		to {
 			background-color: transparent;
 		}
@@ -143,7 +143,7 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluate(dottedName).nodeValue === null) {
+	if (!engine.evaluateApplicability(dottedName).isApplicable) {
 		return null
 	}
 
@@ -158,7 +158,7 @@ export function WhenNotApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluate(dottedName).nodeValue !== null) {
+	if (engine.evaluateApplicability(dottedName).isApplicable) {
 		return null
 	}
 

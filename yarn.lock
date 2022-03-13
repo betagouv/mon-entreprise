@@ -11289,9 +11289,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.33
   peerDependencies:
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.33
   languageName: unknown
   linkType: soft
 
@@ -15099,9 +15099,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.33
   peerDependencies:
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.33
   languageName: unknown
   linkType: soft
 
@@ -16625,7 +16625,11 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "publicodes-react@npm:1.0.0-beta.33":
+=======
+"publicodes-react@npm:^1.0.0-beta.33":
+>>>>>>> 88886b424 (⬆ MAJ Publicodes pour l'évaluation de l'applicabilité)
   version: 1.0.0-beta.33
   resolution: "publicodes-react@npm:1.0.0-beta.33"
   dependencies:
@@ -16637,7 +16641,11 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "publicodes@npm:=1.0.0-beta.33":
+=======
+"publicodes@npm:^1.0.0-beta.33":
+>>>>>>> 88886b424 (⬆ MAJ Publicodes pour l'évaluation de l'applicabilité)
   version: 1.0.0-beta.33
   resolution: "publicodes@npm:1.0.0-beta.33"
   dependencies:
@@ -16647,6 +16655,7 @@ __metadata:
   peerDependencies:
     "@types/mocha": ^9.0.0
   checksum: 065fd94d2b639c0ae9d5ae52effa2998fa1e9e94c02177e97b467c55ac3f8658310b494eedefd2b0ccc58de3829529709080d8d2aad800cdfb496b7cf62fc8f7
+<<<<<<< HEAD
   languageName: node
   linkType: hard
 
@@ -16660,6 +16669,8 @@ __metadata:
   peerDependencies:
     "@types/mocha": ^9.0.0
   checksum: 8904460eb095f37fc38a5f16756e4315b2f26cf3f0d02300dfe87a63cfa37da45e72b19550fec7d977361c830d9010f5663937b98d3c36c3d8a6a1d6592daacd
+=======
+>>>>>>> 88886b424 (⬆ MAJ Publicodes pour l'évaluation de l'applicabilité)
   languageName: node
   linkType: hard
 
@@ -18511,8 +18522,13 @@ __metadata:
     isomorphic-fetch: ^2.2.1
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
+<<<<<<< HEAD
     publicodes: =1.0.0-beta.33
     publicodes-react: 1.0.0-beta.33
+=======
+    publicodes: ^1.0.0-beta.33
+    publicodes-react: ^1.0.0-beta.33
+>>>>>>> 88886b424 (⬆ MAJ Publicodes pour l'évaluation de l'applicabilité)
     ramda: ^0.27.0
     react: ^17.0.0
     react-color: ^2.14.0
