@@ -4,6 +4,7 @@ import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import Value from '@/components/EngineValue'
+import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
@@ -39,7 +40,7 @@ export default function SearchOrCreate() {
 								Continuer avec cette entreprise
 							</Button>
 							<Button light onPress={() => dispatch(resetCompany())}>
-								Modifier
+								Supprimer ma situation
 							</Button>
 						</AnswerGroup>
 					</>
@@ -59,6 +60,7 @@ export default function SearchOrCreate() {
 									: sitePaths.créer.index
 							}
 						>
+							<Emoji emoji="💡" />{' '}
 							<Trans i18nKey="landing.choice.create.title">
 								Je n'ai pas encore d'entreprise
 							</Trans>

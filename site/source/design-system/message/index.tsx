@@ -53,7 +53,13 @@ export function Message({
 							alt="icône signalant un texte informatif"
 						/>
 					))}
-				<div>{children}</div>
+				<div
+					css={`
+						flex: 1;
+					`}
+				>
+					{children}
+				</div>
 			</StyledMessage>
 		</ThemeProvider>
 	)

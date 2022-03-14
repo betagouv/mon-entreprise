@@ -64,7 +64,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 			{!!answeredAndPassedQuestions.length && (
 				<>
 					<H3>
-						<Trans>Données de simulation</Trans>
+						<Trans>Simulation en cours</Trans>
 					</H3>
 
 					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
@@ -89,7 +89,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 			{companyQuestions.length > 0 && (
 				<>
 					<H3>
-						<Trans>Données de l'entreprise</Trans>
+						<Trans>Mon entreprise</Trans>
 					</H3>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing sm />
@@ -106,7 +106,7 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 								dispatch(resetCompany())
 							}}
 						>
-							<Emoji emoji="🗑" /> <Trans>Effacer toutes mes données</Trans>
+							<Emoji emoji="🗑" /> <Trans>Supprimer toute ma situation</Trans>
 						</Button>
 					</div>
 				</>

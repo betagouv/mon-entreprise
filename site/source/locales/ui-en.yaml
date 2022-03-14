@@ -5,11 +5,6 @@
 "<0></0> Pour en savoir plus, rendez-vous sur le site <3>aquoiserventlescotisations":
   urssaf:
     fr</3>: <0></0> To find out more, go to <3>aquoiserventlescotisations.urssaf.fr</3>
-"<0><0>Il n'existe pas encore de simulateur de revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que nous développions un nouveau simulateur, laissez-nous message en cliquant sur le bouton \"Faire une suggestion\" en bas de cette page.</1></0>":
-  <0><0>There is not yet an income simulator for your type of business on this
-  site.</0><1>If you would like us to develop a new simulator, leave us a
-  message by clicking on the "Make a suggestion" button at the bottom of this
-  page.</1></0>
 <0>Activité mixte</0>: <0>Mixed activity</0>
 "<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
@@ -69,8 +64,6 @@ Demande de mobilité: Demand for mobility
 Destinataire: Levied by
 Devenir: Become
 "Domiciliée à l'adresse :": "Domiciled at the address :"
-Données de l'entreprise: Company data
-Données de simulation: Simulation data
 Déclenchement: Applicability
 Découvrir: Discover
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
@@ -82,7 +75,6 @@ Démarches de création: Creation process checklist
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 Effacer: Reset
-Effacer toutes mes données: Delete all my data
 Embauche: Hiring process
 Employeur: Employer
 En incluant l'indemnité de chômage partiel: Including short-time working allowance
@@ -172,7 +164,8 @@ Quelques exemples de salaires: Some salary exemples
 Quelques intégrations: Some integrations
 Recherche en cours...: Searching...
 Rechercher: Search
-Rechercher votre entreprise: Search for a company
+Rechercher une entreprise: Search for a company
+Rechercher votre entreprise: Search for your company
 Recommencer: Start again
 Recommencer la simulation: Start the simulation again
 Rend non applicable les règles suivantes: Makes the following rules not applicable
@@ -208,11 +201,13 @@ Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
 Simulateurs: Simulations
+Simulation en cours: Simulation in progress
 Simulations personnalisées: Customized simulations
 Sinon: Else
 Situation personnelle: Personal situation
 "Siège :": "Headquarters:"
 Suivant: Next
+Supprimer toute ma situation: Delete my entire situation
 Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
@@ -232,6 +227,7 @@ Voir la répartition des cotisations: View contribution breakdown
 Voir le code source: See the source code
 Voir les autres simulateurs: See the other simulators
 Voir ma situation: See my situation
+Voir mes paramètres: See my situation
 Votre adresse e-mail: Your email address
 Votre entreprise: Your company
 Votre forme juridique: Your legal status

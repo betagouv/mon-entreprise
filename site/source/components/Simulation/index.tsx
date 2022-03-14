@@ -79,7 +79,7 @@ export default function Simulation({
 						)}
 						{existingCompany && (
 							<Banner icon="✏">
-								Ce simulateur a été prérempli avec les données de votre
+								Ce simulateur a été prérempli avec la situation de votre
 								entreprise.{' '}
 								<PopoverWithTrigger
 									trigger={(buttonProps) => (
