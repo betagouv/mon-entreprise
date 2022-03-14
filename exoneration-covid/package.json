@@ -1,6 +1,6 @@
 {
 	"name": "exoneration-covid",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Les règles publicodes pour le calcul de l'exonération de cotisations covid (année 2021)",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",

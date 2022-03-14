@@ -1,3 +1,7 @@
+### 0.3.2
+
+Utilise publicodes vbeta.32 en peer dependancy
+
 ### 0.3.1
 
 Corrige le montant de LFR1 à 250€ par mois au lieu de 600€
