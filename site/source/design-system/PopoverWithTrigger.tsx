@@ -2,7 +2,14 @@ import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
 import { Button } from '@/design-system/buttons'
-import React, { ReactElement, Ref, useEffect, useMemo, useRef } from 'react'
+import React, {
+	ReactElement,
+	Ref,
+	RefObject,
+	useEffect,
+	useMemo,
+	useRef,
+} from 'react'
 import { useLocation } from 'react-router'
 import Popover from './Popover'
 import { Link } from './typography/link'
@@ -18,6 +25,7 @@ type PopoverWithTriggerProps = {
 	children: React.ReactNode | ((close: () => void) => React.ReactNode)
 	title?: string
 	small?: boolean
+	contentRef?: RefObject<HTMLDivElement>
 }
 
 export default function PopoverWithTrigger({
@@ -25,6 +33,7 @@ export default function PopoverWithTrigger({
 	title,
 	trigger,
 	small,
+	contentRef,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
 	const openButtonRef = useRef<HTMLButtonElement>(null)
@@ -66,6 +75,7 @@ export default function PopoverWithTrigger({
 					isDismissable
 					role="dialog"
 					small={small}
+					contentRef={contentRef}
 				>
 					{typeof children === 'function'
 						? children(() => state.close())

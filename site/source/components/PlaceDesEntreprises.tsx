@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, ReactEventHandler, Suspense, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Emoji from './utils/Emoji'
 import { iframeResize } from 'iframe-resizer'
@@ -19,7 +19,13 @@ const IframeContainer = styled.div`
 	margin: 0 -3rem;
 `
 
-export const PlacesDesEntreprisesIframe = ({ src }: { src: string }) => {
+export const PlacesDesEntreprisesIframe = ({
+	src,
+	onLoad,
+}: {
+	src: string
+	onLoad?: ReactEventHandler<HTMLIFrameElement>
+}) => {
 	useEffect(() => {
 		iframeResize({}, '#pdeIframe')
 	}, [])
@@ -31,6 +37,7 @@ export const PlacesDesEntreprisesIframe = ({ src }: { src: string }) => {
 				src={src}
 				frameBorder="0"
 				id="pdeIframe"
+				onLoad={onLoad}
 			/>
 		</IframeContainer>
 	)
@@ -68,6 +75,12 @@ export const PlacesDesEntreprisesButton = ({
 			: 'reso-staging.osc-fr1.scalingo.io')
 	const url = new URL(baseURL + pathname)
 
+	const contentRef = useRef<HTMLDivElement>(null)
+
+	const scrollTo = (x: number, y: number) => {
+		contentRef.current?.scrollTo(x, y)
+	}
+
 	if (siret) {
 		url.searchParams.set('siret', siret)
 	}
@@ -82,7 +95,17 @@ export const PlacesDesEntreprisesButton = ({
 						<ButtonLabel>{t('Échanger avec un conseiller')}</ButtonLabel>
 					</Button>
 				)}
+				contentRef={contentRef}
 			>
+				<Body>
+					<Trans>
+						Décrivez votre projet ou votre problème en donnant quelques éléments
+						de contexte. Nous identifions, parmi l’ensemble des partenaires
+						publics et parapublics, le conseiller compétent pour votre demande.
+						Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne
+						en fonction de votre situation.
+					</Trans>
+				</Body>
 				<Suspense
 					fallback={
 						<Container
@@ -95,18 +118,7 @@ export const PlacesDesEntreprisesButton = ({
 						</Container>
 					}
 				>
-					<>
-						<Body>
-							<Trans>
-								Décrivez votre projet ou votre problème en donnant quelques
-								éléments de contexte. Nous identifions, parmi l’ensemble des
-								partenaires publics et parapublics, le conseiller compétent pour
-								votre demande. Celui-ci vous contacte par téléphone sous 5 jours
-								et vous accompagne en fonction de votre situation.
-							</Trans>
-						</Body>
-						<LazyIframe src={url.href} />
-					</>
+					<LazyIframe src={url.href} onLoad={() => scrollTo(0, 0)} />
 				</Suspense>
 			</PopoverWithTrigger>
 		</Container>

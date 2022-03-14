@@ -11,7 +11,7 @@ import {
 	usePreventScroll,
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes, ThemeProvider } from 'styled-components'
 import { Container } from './layout'
 import { H2 } from './typography/heading'
@@ -44,9 +44,10 @@ export default function Popover(
 			children: React.ReactNode
 			title?: string
 			small?: boolean
+			contentRef?: RefObject<HTMLDivElement>
 		}
 ) {
-	const { title, children, small } = props
+	const { title, children, small, contentRef } = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
@@ -118,7 +119,7 @@ export default function Popover(
 												</CloseButton>
 											</CloseButtonContainer>
 										)}
-										<PopoverContent>
+										<PopoverContent ref={contentRef}>
 											{title && (
 												<H2 as="h1" {...titleProps}>
 													{title}
