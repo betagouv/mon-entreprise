@@ -1,4 +1,4 @@
-import { goToQuestion, resetSimulation } from '@/actions/actions'
+import { resetSimulation, stepAction, updateSituation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -15,12 +15,12 @@ import {
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
-import { useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Value from '../EngineValue'
-import './AnswerList.css'
+import RuleInput from './RuleInput'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -48,9 +48,9 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	)
 	const companyQuestions = useMemo(
 		() =>
-			(Object.keys(companySituation) as DottedName[]).map((dottedName) =>
-				engine.evaluate(engine.getRule(dottedName))
-			),
+			(Object.keys(companySituation) as DottedName[])
+				.map((dottedName) => engine.evaluate(engine.getRule(dottedName)))
+				.sort((a, b) => (a.title < b.title ? -1 : 1)),
 		[engine, companySituation]
 	)
 
@@ -127,12 +127,10 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 
 function StepsTable({
 	rules,
-	onClose,
 }: {
 	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
 	onClose: () => void
 }) {
-	const dispatch = useDispatch()
 	return (
 		<>
 			{rules
@@ -141,26 +139,82 @@ function StepsTable({
 					<StyledAnswerList
 						container
 						alignItems={'baseline'}
+						justifyContent="flex-end"
 						key={rule.dottedName}
+						gap={2}
 					>
-						<Grid item md={8}>
+						<Grid item xs>
 							{rule.title}
 						</Grid>
-						<StyledAnswer item lg={4}>
-							<Link
-								onPress={() => {
-									dispatch(goToQuestion(rule.dottedName))
-									onClose()
-								}}
-								title="Modifier"
-							>
-								<Value expression={rule.dottedName} linkToRule={false} />{' '}
-								<Emoji emoji="✏" alt="Modifier" />
-							</Link>
+						<StyledAnswer item xs="auto">
+							<AnswerElement {...rule} />
 						</StyledAnswer>
 					</StyledAnswerList>
 				))}
 		</>
+	)
+}
+
+function AnswerElement(
+	rule: EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }
+) {
+	const [isEditing, setEditing] = useState(false)
+
+	const dispatch = useDispatch()
+	const ruleInputRef = useRef<HTMLDivElement | null>(null)
+
+	useEffect(() => {
+		const onClickOutside = (click: MouseEvent) => {
+			if (!ruleInputRef.current) {
+				return
+			}
+			if (
+				click.target instanceof HTMLElement &&
+				ruleInputRef.current.contains(click.target)
+			) {
+				return
+			}
+			setEditing(false)
+		}
+		window.addEventListener('click', onClickOutside)
+		return () => window.removeEventListener('click', onClickOutside)
+	}, [])
+	const situation = useSelector(situationSelector)
+	const handleChange = useCallback(
+		(value) => {
+			dispatch(updateSituation(rule.dottedName, value))
+
+			if (!(rule.dottedName in situation)) {
+				dispatch(stepAction(rule.dottedName))
+			}
+		},
+		[dispatch, rule.dottedName, situation]
+	)
+	const handleSubmit = useCallback(() => {
+		setEditing(false)
+	}, [])
+
+	return rule.rawNode.question ? (
+		isEditing ? (
+			<div ref={ruleInputRef}>
+				<form onSubmit={handleSubmit}>
+					<RuleInput
+						dottedName={rule.dottedName}
+						onChange={handleChange}
+						autoFocus
+						onBlur={handleSubmit}
+						onSubmit={handleSubmit}
+					/>
+				</form>
+			</div>
+		) : (
+			<Link onPress={() => setEditing(true)} title="Modifier">
+				<Value expression={rule.dottedName} linkToRule={false} />{' '}
+				<Emoji emoji="✏" alt="Modifier" />
+			</Link>
+		)
+	) : (
+		<Value expression={rule.dottedName} linkToRule={false} />
 	)
 }
 
