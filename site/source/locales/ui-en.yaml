@@ -799,6 +799,10 @@ gérant minoritaire:
     titre: Chairman or managing director in France
   titre: Chairman or managing director
 gérer:
+  avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
+    for your type of business on this site.</0><1>If you would like us to
+    develop a new simulator, leave us a message by clicking on the "Make a
+    suggestion" button at the bottom of this page.</1>
   choix:
     chomage-partiel:
       body: Calculate the remaining amount to be paid after reimbursement from the
