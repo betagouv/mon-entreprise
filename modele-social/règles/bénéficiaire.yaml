@@ -6,7 +6,7 @@ bénéficiaire:
 
     Attention: nous ne prenons en compte ici que le cas de figure de l'associé
       unique (SASU et EURL).
-
+  valeur: non
 # [TODO] [dividendes-indep]
 bénéficiaire . compte courant d'associé:
   par défaut: 0€
