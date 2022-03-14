@@ -10,7 +10,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { Grid } from '@mui/material'
@@ -142,9 +142,16 @@ export default function Gérer() {
 						{dirigeantSimulateur ? (
 							<SimulateurCard fromGérer {...simulateurs[dirigeantSimulateur]} />
 						) : (
-							<Grid item>
-								<Trans>
-									<Message>
+							<Grid
+								item
+								md={12}
+								lg={8}
+								css={`
+									margin-bottom: -1rem;
+								`}
+							>
+								<Message border={false} type="info">
+									<Trans i18nKey="gérer.avertissement-entreprise-non-traitée">
 										<Intro>
 											Il n'existe pas encore de simulateur de revenu pour votre
 											type d'entreprise sur ce site.
@@ -154,8 +161,8 @@ export default function Gérer() {
 											simulateur, laissez-nous message en cliquant sur le bouton
 											"Faire une suggestion" en bas de cette page.
 										</Body>
-									</Message>
-								</Trans>
+									</Trans>
+								</Message>
 							</Grid>
 						)}
 
@@ -246,13 +253,19 @@ export const AskCompanyMissingDetails = () => {
 	}
 	return (
 		<>
-			<Body>
-				Répondez à ces quelques questions rapides pour selectionner les outils
-				et assistants qui vous conviennent le mieux.
+			<CompanyDetails />
+			<Body
+				css={`
+					margin-bottom: -0.5rem;
+				`}
+			>
+				Répondez aux questions suivantes pour découvrir les simulateurs et
+				assistants adaptés à votre situation :
 			</Body>
+
 			{questions.map((question) => (
 				<FromTop key={question.dottedName}>
-					<H3>{question.rawNode.question}</H3>
+					<H4>{question.rawNode.question}</H4>
 					<RuleInput
 						dottedName={question.dottedName}
 						onChange={onQuestionAnswered(question.dottedName)}
@@ -286,6 +299,6 @@ const FormsImage = styled.img`
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.xl}) {
 		right: 10rem;
-		height: 25rem;
+		height: 23rem;
 	}
 `

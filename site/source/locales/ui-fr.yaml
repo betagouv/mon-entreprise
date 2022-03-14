@@ -560,6 +560,10 @@ gérant minoritaire:
     titre: Gérant majoritaire ou minoritaire
   titre: Gérant majoritaire ou minoritaire
 gérer:
+  avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
+    revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que
+    nous développions un nouveau simulateur, laissez-nous message en cliquant
+    sur le bouton "Faire une suggestion" en bas de cette page.</1>
   choix:
     chomage-partiel:
       body: Calculez le reste à payer après remboursement de l'État lorsque vous
