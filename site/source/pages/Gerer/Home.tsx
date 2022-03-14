@@ -1,6 +1,7 @@
 import { DottedName } from '@/../../modele-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
+import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
@@ -14,7 +15,7 @@ import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { Grid } from '@mui/material'
-import Engine from 'publicodes'
+import Engine, { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -229,7 +230,10 @@ export default function Gérer() {
 
 			<PlacesDesEntreprisesButton
 				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
-				siret={engine.evaluate('établissement . SIRET').nodeValue}
+				siret={
+					engine.evaluate('établissement . SIRET')
+						.nodeValue as Evaluation<string>
+				}
 			/>
 		</>
 	)
@@ -248,30 +252,31 @@ export const AskCompanyMissingDetails = () => {
 	useSimulationConfig(companyDetailsConfig)
 
 	const [questions, onQuestionAnswered] = useQuestionList()
-	if (!questions.length) {
-		return <CompanyDetails />
-	}
 	return (
 		<>
 			<CompanyDetails />
-			<Body
-				css={`
-					margin-bottom: -0.5rem;
-				`}
-			>
-				Répondez aux questions suivantes pour découvrir les simulateurs et
-				assistants adaptés à votre situation :
-			</Body>
+			{!!questions.length && (
+				<>
+					<Body
+						css={`
+							margin-bottom: -0.5rem;
+						`}
+					>
+						Répondez aux questions suivantes pour découvrir les simulateurs et
+						assistants adaptés à votre situation :
+					</Body>
 
-			{questions.map((question) => (
-				<FromTop key={question.dottedName}>
-					<H4>{question.rawNode.question}</H4>
-					<RuleInput
-						dottedName={question.dottedName}
-						onChange={onQuestionAnswered(question.dottedName)}
-					/>
-				</FromTop>
-			))}
+					{questions.map((question) => (
+						<FromTop key={question.dottedName}>
+							<H4>{question.rawNode.question}</H4>
+							<RuleInput
+								dottedName={question.dottedName}
+								onChange={onQuestionAnswered(question.dottedName)}
+							/>
+						</FromTop>
+					))}
+				</>
+			)}
 		</>
 	)
 }

@@ -16,7 +16,6 @@ import { TrackingContext } from '../../ATInternetTracking'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
-import { Link } from '@/design-system/typography/link'
 
 export function useUrl() {
 	const language = useTranslation().i18n.language
@@ -38,6 +37,10 @@ export function useUrl() {
 	return siteUrl + path + '?' + searchParams.toString()
 }
 
+const ButtonLabel = styled.span`
+	margin-left: 1rem;
+`
+
 export default function ShareOrSaveSimulationBanner() {
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
@@ -58,19 +61,21 @@ export default function ShareOrSaveSimulationBanner() {
 
 	return (
 		<>
-			<Spacing md />
+			<Spacing lg />
 			<Grid
 				container
 				className=" print-hidden"
-				gap={4}
-				justifyContent="space-evenly"
+				spacing={4}
+				justifyContent="center"
 			>
 				<Grid item xs={12} sm="auto">
 					<PopoverWithTrigger
 						title={t('shareSimulation.modal.title', 'Votre lien de partage')}
 						trigger={(buttonProps) => (
-							<Link
+							<Button
 								{...buttonProps}
+								light
+								size="XS"
 								onPress={(e) => {
 									tracker.click.set({
 										chapter1: 'feature:partage',
@@ -83,11 +88,13 @@ export default function ShareOrSaveSimulationBanner() {
 									buttonProps?.onPress?.(e)
 								}}
 							>
-								<Emoji emoji="🔗" />{' '}
-								<Trans i18nKey="shareSimulation.banner">
-									Générer un lien de partage
-								</Trans>
-							</Link>
+								<Emoji emoji="🔗" />
+								<ButtonLabel>
+									<Trans i18nKey="shareSimulation.banner">
+										Générer un lien de partage
+									</Trans>
+								</ButtonLabel>
+							</Button>
 						)}
 						small
 					>
@@ -97,12 +104,14 @@ export default function ShareOrSaveSimulationBanner() {
 
 				{typeof window.print === 'function' && (
 					<Grid item xs={12} sm="auto">
-						<Link onPress={() => window.print()}>
-							<Emoji emoji="🖨" />{' '}
-							<Trans i18nKey="ExportSimulation.Banner">
-								Imprimer ou sauvegarder en PDF
-							</Trans>
-						</Link>
+						<Button light size="XS" onPress={() => window.print()}>
+							<Emoji emoji="🖨" />
+							<ButtonLabel>
+								<Trans i18nKey="ExportSimulation.Banner">
+									Imprimer ou sauvegarder en PDF
+								</Trans>
+							</ButtonLabel>
+						</Button>
 					</Grid>
 				)}
 

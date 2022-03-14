@@ -8,7 +8,7 @@ export default function SeeAnswersButton() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Button {...buttonProps} size="XS" color="secondary" light>
+				<Button {...buttonProps} size="XS" light>
 					<Trans>Voir ma situation</Trans>
 				</Button>
 			)}

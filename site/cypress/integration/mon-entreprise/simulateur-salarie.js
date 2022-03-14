@@ -19,6 +19,7 @@ describe('Simulateur salarié', function () {
 				.click()
 			cy.contains('Oui').click()
 			cy.wait(100)
+			cy.contains('Fermer').click()
 		})
 
 		it('should permit selecting the smic before part-time contrat', function () {

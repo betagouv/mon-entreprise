@@ -5719,7 +5719,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
 
 
-    These contributions will be adjusted and regularized according to your actual income for the year of
+    These contributions will be adjusted and regularized according to your actual income for the year of exercise.
 
     the year of the exercise. If your income is higher than the flat rate used to calculate your provisional
 
@@ -9057,6 +9057,15 @@ situation personnelle . domiciliation fiscale à l'étranger:
     code SIRET.
   titre.en: establishment
   titre.fr: établissement
+établissement . SIRET:
+  description.en: >
+    [automatic] The employee works in an establishment of the company,
+    identified by a SIRET code.
+  description.fr: >
+    Le salarié travaille dans un établissement de l'entreprise, identifié par un
+    code SIRET.
+  titre.en: '[automatic] SIRET'
+  titre.fr: SIRET
 établissement . ZFU:
   question.en: '[automatic] Does your establishment benefit from the Urban Free
     Zone (ZFU) scheme?'
