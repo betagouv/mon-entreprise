@@ -1,4 +1,5 @@
 import { DottedName } from '@/../../modele-social'
+import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
@@ -241,7 +242,7 @@ export const AskCompanyMissingDetails = () => {
 
 	const [questions, onQuestionAnswered] = useQuestionList()
 	if (!questions.length) {
-		return null
+		return <CompanyDetails />
 	}
 	return (
 		<>
