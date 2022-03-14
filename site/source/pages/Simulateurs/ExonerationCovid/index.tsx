@@ -2,7 +2,7 @@ import exonerationCovid, { DottedNames } from 'exoneration-covid'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { EngineProvider } from '@/components/utils/EngineContext'
 import RuleInput from '@/components/conversation/RuleInput'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import Value from '@/components/EngineValue'
 import { H3 } from '@/design-system/typography/heading'
 import { Trans } from 'react-i18next'
@@ -10,10 +10,14 @@ import { Grid } from '@mui/material'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { useLocation } from 'react-router'
-
-const covidEngine = new Engine(exonerationCovid)
+import { FormulaireS1S1Bis } from './FormulaireS1S1Bis'
 
 export default function ExonérationCovid() {
+	// Use ref to keep state with react fast refresh
+	const { current: exoCovidEngine } = useRef(
+		new Engine<DottedNames>(exonerationCovid)
+	)
+
 	const rootDottedNames = [
 		'secteur',
 		"début d'activité",
@@ -26,11 +30,15 @@ export default function ExonérationCovid() {
 		[key in typeof rootDottedNames[number]]?: string
 	}
 
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [location])
+
 	const [situation, setSituation] = useState<
 		Partial<Record<DottedNames, PublicodesExpression | undefined>>
 	>(() => {
 		const defaultSituation = { ...params }
-		covidEngine.setSituation(defaultSituation)
+		exoCovidEngine.setSituation(defaultSituation)
 
 		return defaultSituation
 	})
@@ -39,27 +47,41 @@ export default function ExonérationCovid() {
 		(name: DottedNames, value: PublicodesExpression | undefined) => {
 			const newSituation = { ...situation, [name]: value }
 			setSituation(newSituation)
-			covidEngine.setSituation(newSituation)
+			exoCovidEngine.setSituation(newSituation)
 		},
-		[situation]
+		[exoCovidEngine, situation]
 	)
+
+	const setStep1Situation = useCallback(() => {
+		const step1Situation = Object.fromEntries(
+			Object.entries(situation).filter(
+				([dotName]) => !dotName.startsWith('mois . ')
+			)
+		)
+		setSituation(step1Situation)
+		exoCovidEngine.setSituation(step1Situation)
+	}, [exoCovidEngine, situation])
 
 	const step2 = rootDottedNames.every((names) => params[names])
 
 	return (
 		<>
-			<EngineProvider value={covidEngine}>
+			<EngineProvider value={exoCovidEngine}>
 				{step2 ? (
-					<>Page 2</>
+					<>
+						<FormulaireS1S1Bis onChange={updateSituation} />
+					</>
 				) : (
 					<>
-						<H3>{covidEngine.getRule('secteur').rawNode.question}</H3>
+						<H3>{exoCovidEngine.getRule('secteur').rawNode.question}</H3>
 						<RuleInput
 							dottedName={'secteur'}
 							onChange={(value) => updateSituation('secteur', value)}
 						/>
 
-						<H3>{covidEngine.getRule("début d'activité").rawNode.question}</H3>
+						<H3>
+							{exoCovidEngine.getRule("début d'activité").rawNode.question}
+						</H3>
 						<Spacing sm />
 
 						<Grid item xs={12} sm={6}>
@@ -69,7 +91,9 @@ export default function ExonérationCovid() {
 							/>
 						</Grid>
 
-						<H3>{covidEngine.getRule("lieu d'exercice").rawNode.question}</H3>
+						<H3>
+							{exoCovidEngine.getRule("lieu d'exercice").rawNode.question}
+						</H3>
 						<RuleInput
 							dottedName="lieu d'exercice"
 							onChange={(value) => updateSituation("lieu d'exercice", value)}
@@ -79,7 +103,7 @@ export default function ExonérationCovid() {
 
 				<Spacing lg />
 
-				<Grid container justifyContent="end">
+				<Grid container justifyContent={step2 ? '' : 'end'}>
 					<Grid item xs={6} sm="auto">
 						{step2 ? (
 							<Button
@@ -88,14 +112,13 @@ export default function ExonérationCovid() {
 									pathname: location.pathname,
 									search: '',
 								}}
+								onClick={setStep1Situation}
 							>
-								{' '}
 								← <Trans>Précédent</Trans>
 							</Button>
 						) : (
 							<Button
 								size="XS"
-								light
 								isDisabled={!rootDottedNames.every((names) => situation[names])}
 								to={() => {
 									rootDottedNames.forEach((key) =>
