@@ -211,7 +211,10 @@ export const FormulaireS1S1Bis = ({
 									node.dottedName &&
 									dotName + ' . ' + node.dottedName in engine.parsedRules &&
 									engine.evaluate(dotName + ' . ' + node.dottedName)
-										.nodeValue !== null
+										.nodeValue !== null &&
+									(node.dottedName + ' applicable' in engine.parsedRules
+										? engine.evaluate(node.dottedName + ' applicable').nodeValue
+										: true)
 							)
 							.flatMap((node) => {
 								if (
