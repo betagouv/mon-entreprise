@@ -1,84 +1,23 @@
+import { EngineContext } from '@/components/utils/EngineContext'
+import { Spacing } from '@/design-system/layout'
+import { H3 } from '@/design-system/typography/heading'
+import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { DottedNames } from 'exoneration-covid'
 import Engine, {
 	ASTNode,
-	EvaluatedNode,
 	Evaluation,
 	formatValue,
 	PublicodesExpression,
 } from 'publicodes'
-import { EngineContext } from '@/components/utils/EngineContext'
-import { useContext, Key } from 'react'
-import { H3 } from '@/design-system/typography/heading'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Grid } from '@mui/material'
-import { Spacing } from '@/design-system/layout'
-import { Item, Select } from '@/design-system/field/Select'
 import styled from 'styled-components'
-import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
+import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
 
-const Json = (props: any) => <pre>{JSON.stringify(props, null, 2)}</pre>
-
-const Th = styled.th`
-	flex: 2;
-	word-break: break-word;
-`
-
-const Td = styled.td`
-	flex: 2;
-	word-break: break-word;
-`
-
-const Tr = styled.tr`
-	display: flex;
-	align-items: center;
-	flex: 1;
-	word-break: break-word;
-	padding: 1rem;
-
-	${Td}:last-child {
-		text-align: right;
-	}
-	${Td}:first-child, ${Td}:last-child {
-		flex: 1;
-	}
-`
-
-const Thead = styled.thead`
-	background: ${({ theme }) => theme.colors.bases.primary[200]};
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
-	border-radius: 0.35rem 0.35rem 0 0;
-
-	${Th}:first-child, ${Th}:last-child {
-		flex: 1;
-	}
-`
-
-const Tbody = styled.tbody`
-	border-radius: 0 0 0.35rem 0.35rem;
-
-	${Tr}:nth-child(odd) {
-		background: ${({ theme }) => theme.colors.extended.grey[200]};
-	}
-`
-
-const Table = styled.table`
-	display: flex;
-	flex-direction: column;
-	text-align: left;
-	border: 1px solid ${({ theme }) => theme.colors.extended.grey[400]};
-	border-radius: 0.35rem;
-	${baseParagraphStyle}
-	font-weight: bold;
-`
-
-const Empty = styled.div`
-	display: inline-block;
-	background: ${({ theme }) => theme.colors.extended.grey[300]};
-	padding: 0.25rem 1rem;
-	border-radius: 0.25rem;
-	font-weight: 500;
-	font-size: 0.9rem;
-`
+const Json = (props: any) => (
+	<pre css={{ overflow: 'auto' }}>{JSON.stringify(props, null, 2)}</pre>
+)
 
 const Recap = styled.div`
 	background: ${({ theme }) => theme.colors.bases.primary[600]};
@@ -117,66 +56,6 @@ const Total = styled.div`
 	margin-bottom: 0.5rem;
 `
 
-type RowProps = {
-	title?: string
-	total?: number
-	items: EvaluatedNode[]
-	onSelectionChange?: (key: Key) => void
-	defaultSelectedKey?: Key
-}
-
-const Row = ({
-	title,
-	total,
-	items,
-	onSelectionChange,
-	defaultSelectedKey,
-}: RowProps) => {
-	const { t } = useTranslation()
-
-	const choices = {
-		'LFSS 600': [
-			t('Interdiction d’accueil du public (600 €)'),
-			t('Baisse d’au moins 50% du chiffre d’affaires (600 €)'),
-			t('Baisse d’au moins 65% du chiffre d’affaires (600 €)'),
-		],
-		'LFSS 300': [t("Baisse entre 30% à 64% du chiffre d'affaires (300 €)")],
-		LFR1: [t('Eligibilité aux mois de mars, avril ou mai 2021 (250 €)')],
-	}
-
-	return (
-		<Tr>
-			<Td>{title}</Td>
-			<Td>
-				{items.length > 0 ? (
-					<Select
-						onSelectionChange={onSelectionChange}
-						selectedKey={defaultSelectedKey}
-						label={t('Situation liée à la crise sanitaire')}
-					>
-						{items
-							.flatMap((node) =>
-								node.nodeKind === 'reference'
-									? choices[node.name as keyof typeof choices].map((text) => (
-											<Item key={node.dottedName} textValue={text}>
-												{text}
-											</Item>
-									  ))
-									: null
-							)
-							.filter(<T,>(x: T | null): x is T => Boolean(x))}
-					</Select>
-				) : (
-					<Empty>
-						<Trans>Mois non concerné</Trans>
-					</Empty>
-				)}
-			</Td>
-			<Td>{total ? total : '–'}</Td>
-		</Tr>
-	)
-}
-
 const getTotalByMonth = (engine: Engine<DottedNames>) => {
 	type ParsedSituation = typeof engine.parsedSituation
 
@@ -212,7 +91,8 @@ const getTotalByMonth = (engine: Engine<DottedNames>) => {
 
 	const ret = Object.fromEntries(
 		Object.entries(onlyMonthSituation).map(([monthDottedName, node]) => {
-			const targetDottedName = 'nodeValue' in node && (node.nodeValue as string)
+			const targetDottedName =
+				'nodeValue' in node && (node.nodeValue as Evaluation<string>)
 
 			const monthEngine = notMonthEngine.shallowCopy().setSituation({
 				...notMonthSituation,
@@ -255,6 +135,22 @@ export const FormulaireS1S1Bis = ({
 
 	const totalByMonth = getTotalByMonth(engine)
 
+	const { t } = useTranslation()
+
+	const choices = {
+		non: [t('Aucun')],
+		'LFSS 600': [
+			t('Interdiction d’accueil du public (600 €)'),
+			t('Baisse d’au moins 50% du chiffre d’affaires (600 €)'),
+		],
+		'LFSS 600 65%': [
+			t('Interdiction d’accueil du public (600 €)'),
+			t('Baisse d’au moins 65% du chiffre d’affaires (600 €)'),
+		],
+		'LFSS 300': [t("Baisse entre 30% à 64% du chiffre d'affaires (300 €)")],
+		LFR1: [t('Eligibilité aux mois de mars, avril ou mai 2021 (250 €)')],
+	}
+
 	if (!engine.evaluate('mois').nodeValue) {
 		return null
 	}
@@ -282,8 +178,8 @@ export const FormulaireS1S1Bis = ({
 					<Tr>
 						<Trans>
 							<Th>Mois</Th>
-							<Th>Situation liée à la crise sanitaire</Th>
-							<Th>Montant de la réduction</Th>
+							<Th alignSelf="center">Situation liée à la crise sanitaire</Th>
+							<Th alignSelf="end">Montant de la réduction</Th>
 						</Trans>
 					</Tr>
 				</Thead>
@@ -308,22 +204,54 @@ export const FormulaireS1S1Bis = ({
 						)
 						emptyMonthIndex = []
 
-						const items = [step1LFSS600, step1LFSS300, step1LFR1].filter(
-							(node) =>
-								node.nodeKind === 'reference' &&
-								node.dottedName &&
-								dotName + ' . ' + node.dottedName in engine.parsedRules &&
-								engine.evaluate(dotName + ' . ' + node.dottedName).nodeValue !==
-									null
-						)
+						const items = [step1LFSS600, step1LFSS300, step1LFR1]
+							.filter(
+								(node) =>
+									node.nodeKind === 'reference' &&
+									node.dottedName &&
+									dotName + ' . ' + node.dottedName in engine.parsedRules &&
+									engine.evaluate(dotName + ' . ' + node.dottedName)
+										.nodeValue !== null
+							)
+							.flatMap((node) => {
+								if (
+									node.nodeKind !== 'reference' ||
+									typeof node.dottedName !== 'string'
+								) {
+									return null
+								}
+
+								const name = (dotName + ' . ' + node.dottedName) as DottedNames
+								const rawNode = engine.getRule(name).rawNode
+								const { percent } = rawNode as { percent?: string }
+								const choice = (node.name +
+									(percent ? ' ' + percent : '')) as keyof typeof choices
+
+								return choices[choice].map((text, i) => ({
+									key: (node.dottedName as string) + `.${i}`,
+									text,
+								}))
+							})
+							.filter(<T,>(x: T | null): x is T => Boolean(x))
+
+						items.unshift({ key: 'non', text: choices['non'][0] })
 
 						const astNode = engine.parsedSituation[dotName]
+						const total = formatValue(totalByMonth[dotName]) as
+							| string
+							| null
+							| undefined
 
 						return [
 							...previousEmptyMonth,
 							<Row
 								title={node.title}
-								total={formatValue(totalByMonth[dotName])}
+								label={t('Situation liée à la crise sanitaire')}
+								total={
+									total && total !== 'non' && total !== 'Pas encore défini'
+										? total
+										: '-'
+								}
 								items={items}
 								defaultSelectedKey={
 									(astNode &&
@@ -332,7 +260,8 @@ export const FormulaireS1S1Bis = ({
 									undefined
 								}
 								onSelectionChange={(key) => {
-									onChange?.(dotName as DottedNames, `'${key}'`)
+									const val = (key as string).replace(/\.\d+$/, '')
+									onChange?.(dotName as DottedNames, `'${val}'`)
 								}}
 								key={dotName}
 							/>,
