@@ -202,6 +202,7 @@ function AnswerElement(
 						dottedName={rule.dottedName}
 						onChange={handleChange}
 						autoFocus
+						showSuggestions={false}
 						onBlur={handleSubmit}
 						onSubmit={handleSubmit}
 					/>
