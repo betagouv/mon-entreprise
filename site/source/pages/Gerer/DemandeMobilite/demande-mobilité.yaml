@@ -949,7 +949,7 @@ pluriactivité . salarié . employeurs multiples:
 pluriactivité . salarié . siège social:
   question: >
     ### Quel est le pays où est situé le siège social / siège d’exploitation de votre entreprise ?
-  API: pays détachement
+  API: pays détachement plus France
   description: |
     **On entend par "siège social ou siège d'exploitation" : **
 

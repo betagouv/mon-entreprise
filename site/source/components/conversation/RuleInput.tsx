@@ -103,8 +103,13 @@ export default function RuleInput({
 	}
 	if (rule.rawNode.API && rule.rawNode.API === 'commune')
 		return <SelectCommune {...commonProps} />
-	if (rule.rawNode.API && rule.rawNode.API === 'pays détachement')
-		return <SelectPaysDétachement {...commonProps} />
+	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement'))
+		return (
+			<SelectPaysDétachement
+				{...commonProps}
+				plusFrance={rule.rawNode.API.endsWith('plus France')}
+			/>
+		)
 	if (rule.rawNode.API)
 		throw new Error("Les seules API implémentées sont 'commune'")
 
