@@ -1,5 +1,5 @@
+import { Commune } from '@/api/commune'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
 
 export type CompanyActions = ReturnType<
 	typeof resetCompany | typeof setCompany | typeof addCommuneDetails
@@ -10,7 +10,7 @@ export const resetCompany = () =>
 		type: 'COMPANY::RESET',
 	} as const)
 
-export const addCommuneDetails = (details: ApiCommuneJson) =>
+export const addCommuneDetails = (details: Commune) =>
 	({
 		type: 'COMPANY::ADD_COMMUNE_DETAILS',
 		details,

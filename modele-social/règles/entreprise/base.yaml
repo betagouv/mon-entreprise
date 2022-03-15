@@ -684,10 +684,10 @@ entreprise . activité . débit de tabac:
 
 établissement . taux du versement transport:
   unité: '%'
-  formule:
-    synchronisation:
-      data: localisation
-      chemin: taux du versement transport
+  par défaut: oui
+  synchronisation:
+    data: localisation
+    chemin: taux du versement transport
 
 établissement . localisation . département:
   formule:

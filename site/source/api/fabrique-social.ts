@@ -32,6 +32,7 @@ export type FabriqueSocialEntreprise = {
 		siret: string
 		etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
 		codeCommuneEtablissement: string
+		codePostalEtablissement: string
 		is_siege: boolean
 	}
 	allMatchingEtablissements: Array<{

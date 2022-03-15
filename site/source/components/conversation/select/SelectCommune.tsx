@@ -5,77 +5,16 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { debounce } from '@/utils'
 import { InputProps } from '../RuleInput'
+import {
+	Commune,
+	fetchCommuneDetails,
+	SearchCommune,
+	searchCommunes,
+} from '@/api/commune'
 
-export type ApiCommuneJson = {
-	_score: number
-	code: string
-	codesPostaux: Array<string>
-	departement: {
-		code: string
-		nom: string
-	}
-	nom: string
-	region: {
-		code: string
-		nom: string
-	}
-}
-
-type Commune = {
-	code: string
-	codePostal: string
-	nom: string
-}
-
-async function tauxVersementTransport(
-	commune: Commune
-): Promise<number | null> {
-	let codeCommune = commune.code
-	// 1. Si c'est une commune à arrondissement, on récupère le bon code correspondant à l'arrondissement.
-	//    Comme il n'y a pas d'API facile pour faire ça, on le fait à la mano
-
-	// 1. a : PARIS
-	if (codeCommune === '75056') {
-		codeCommune = '751' + commune.codePostal.slice(-2)
-	}
-	// 1. b : LYON
-	if (codeCommune === '69123') {
-		codeCommune = '6938' + commune.codePostal.slice(-1)
-	}
-	// 1. c : MARSEILLE
-	if (codeCommune === '13055') {
-		codeCommune = '132' + commune.codePostal.slice(-2)
-	}
-	// 2. On récupère le versement transport associé
-	const json = (await import('@/data/versement-mobilité.json')).default
-
-	return json[codeCommune as keyof typeof json] ?? 0
-}
-function formatCommune(value: Commune) {
+function formatCommune(value: SearchCommune) {
 	return value && `${value.nom} (${value.codePostal})`
 }
-async function searchCommunes(input: string): Promise<Array<Commune> | null> {
-	const number = /[\d]+/.exec(input)?.join('') ?? ''
-	const text = /[^\d]+/.exec(input)?.join(' ') ?? ''
-	const response = await fetch(
-		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,region,codesPostaux${
-			text ? `&nom=${text}` : ''
-		}${/[\d]{5}/.exec(number) ? `&codePostal=${number}` : ''}&boost=population`
-	)
-	if (!response.ok) {
-		return null
-	}
-	const json: Array<ApiCommuneJson> = await response.json()
-	return json
-		.flatMap(({ codesPostaux, ...commune }) =>
-			codesPostaux
-				.sort()
-				.map((codePostal) => ({ ...commune, codePostal }))
-				.filter(({ codePostal }) => codePostal.startsWith(number))
-		)
-		.slice(0, 10)
-}
-
 export default function Select({
 	onChange,
 	value,
@@ -86,15 +25,14 @@ export default function Select({
 	const [name, setName] = useState(
 		missing ? '' : formatCommune(value as Commune)
 	)
-	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
-		null
-	)
+	const [searchResults, setSearchResults] =
+		useState<null | Array<SearchCommune>>(null)
 	const { t } = useTranslation()
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function (value) {
-			searchCommunes(value).then((results) => {
+		function (value: string) {
+			void searchCommunes(value).then((results) => {
 				setLoadingState(false)
 				setSearchResults(results)
 			})
@@ -107,32 +45,29 @@ export default function Select({
 	)
 
 	const handleSubmit = useCallback(
-		async (commune: Commune) => {
+		async (commune: SearchCommune) => {
 			setSearchResults(null)
 			setName(formatCommune(commune))
-			let taux: number | null = null
 			try {
-				taux = await tauxVersementTransport(commune)
+				const communeWithDetails = await fetchCommuneDetails(
+					commune.code,
+					commune.codePostal
+				)
+				if (!communeWithDetails) {
+					return
+				}
+				onChange({
+					objet: communeWithDetails,
+				})
 			} catch (error) {
+				// eslint-disable-next-line no-console
 				console.warn(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
 				)
 			}
-			// await
-			// serialize to not mix our data schema and the API response's
-			onChange({
-				objet: {
-					...commune,
-					...(taux != null
-						? {
-								'taux du versement transport': taux,
-						  }
-						: {}),
-				},
-			})
 		},
-		[setSearchResults, setName]
+		[setSearchResults, setName, onChange]
 	)
 	const noResult =
 		!isLoading && searchResults != null && searchResults?.length === 0
@@ -142,7 +77,7 @@ export default function Select({
 		if (noResult || searchResults == null) {
 			return
 		}
-		handleSubmit(searchResults[focusedElem])
+		void handleSubmit(searchResults[focusedElem])
 	}, [searchResults, focusedElem, noResult, handleSubmit])
 
 	const handleChange = useCallback(
@@ -184,7 +119,7 @@ export default function Select({
 					break
 			}
 		},
-		[searchResults, focusedElem, setSearchResults, submitFocusedElem]
+		[searchResults, focusedElem, setSearchResults, submitFocusedElem, noResult]
 	)
 
 	return (
@@ -216,7 +151,7 @@ export default function Select({
 									(e: React.MouseEvent) => e.preventDefault()
 								}
 								onClick={() => {
-									handleSubmit(result)
+									void handleSubmit(result)
 								}}
 								role="option"
 								focused={i === focusedElem}

@@ -7,6 +7,7 @@ import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from '@/types/companyTypes'
 import { Action } from './actions'
 import { addCommuneDetails, setCompany } from './companyActions'
+import { fetchCommuneDetails } from '@/api/commune'
 
 export type CompanyStatusAction = ReturnType<
 	| typeof isSoleProprietorship
@@ -74,13 +75,6 @@ export const resetCompanyStatusChoice = (
 		answersToReset,
 	} as const)
 
-const fetchCommuneDetails = async function (codeCommune: string) {
-	const response = await fetch(
-		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
-	)
-	return (await response.json()) as ApiCommuneJson
-}
-
 export const useSetEntreprise = () => {
 	const dispatch = useDispatch()
 	return (entreprise: FabriqueSocialEntreprise) => {
@@ -89,7 +83,11 @@ export const useSetEntreprise = () => {
 		}
 		dispatch(setCompany(entreprise))
 		void fetchCommuneDetails(
-			entreprise.firstMatchingEtablissement.codeCommuneEtablissement
-		).then((communeDetails) => dispatch(addCommuneDetails(communeDetails)))
+			entreprise.firstMatchingEtablissement.codeCommuneEtablissement,
+			entreprise.firstMatchingEtablissement.codePostalEtablissement
+		).then(
+			(communeDetails) =>
+				communeDetails && dispatch(addCommuneDetails(communeDetails))
+		)
 	}
 }
