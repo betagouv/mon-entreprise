@@ -1,7 +1,7 @@
 import { Item, Select } from '@/design-system/field/Select'
 import { InputProps } from '../RuleInput'
 
-const states = [
+const STATES = [
 	'Allemagne',
 	'Andorre',
 	'Argentine',
@@ -51,17 +51,18 @@ const states = [
 	'Uruguay',
 	'Autre',
 ]
-
-const statesWithID = states.map((name, id) => ({
-	name,
-	id,
-}))
-
 export default function SelectPaysDétachement({
 	value,
 	onChange,
 	id,
-}: InputProps) {
+	plusFrance = false,
+}: InputProps & { plusFrance: boolean }) {
+	const states = plusFrance ? ['France', ...STATES] : STATES
+	const statesWithID = states.map((name, id) => ({
+		name,
+		id,
+	}))
+
 	const valueId = value
 		? statesWithID.find((s) => s.name === value)?.id
 		: undefined
