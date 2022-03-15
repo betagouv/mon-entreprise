@@ -199,7 +199,7 @@ jobs:
 
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
-            - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ or ${{ needs.deploy-context.outputs.en_url }}/dev/storybook/
+            - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
 
   e2e-test-preview:
     env:

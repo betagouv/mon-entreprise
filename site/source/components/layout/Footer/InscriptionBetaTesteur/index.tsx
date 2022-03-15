@@ -14,6 +14,7 @@ export default function InscriptionBetaTesteur() {
 				<Link {...buttonProps}>Devenir beta-testeur</Link>
 			)}
 			title="Votre avis nous intéresse"
+			small
 		>
 			<img
 				src={FeedbackSvg}

@@ -63,6 +63,11 @@ Destinataire: Levied by
 Devenir: Become
 Déclenchement: Applicability
 Découvrir: Discover
+"Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
+  Describe your project or your problem by giving some background information.
+  We identify, among all the public and parapublic partners, the competent
+  advisor for your request. He or she will contact you by phone within 5 days
+  and will accompany you according to your situation.
 Démarches de création: Creation process checklist
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
@@ -1566,30 +1571,36 @@ pages:
         ogTitle: "Gross, net, net after-tax salary, total cost: the ultimate simulator
           for employees and employers"
         titre: "Gross / net salary: the Urssaf converter"
-      seo: <0>How is the net salary calculated?</0><1>At the job interview, the
-        employer usually proposes a "gross" remuneration. The amount announced
-        thus includes employee contributions, which are used to finance the
-        employee's social protection and which are deducted from the "net"
-        salary received by the employee.</1><2>You can use our simulator to
-        convert the <2>gross salary into net</2> salary. Simply enter the
-        advertised remuneration in the gross salary box. The simulation can be
-        refined by answering the various questions (fixed-term contract,
-        executive status, overtime, part-time, meal vouchers,
-        etc.).</2><3></3><4>Moreover, since 2019,<1> income tax</1> is deducted
-        at source. To do this, the Directorate General of Public Finance (DGFiP)
-        sends the employer the tax rate calculated from the employee's income
-        tax return. If this rate is unknown, for example in the first year of
-        employment, the employer uses the <4>neutral rate</4>.</4><5>How to
-        calculate the cost of hiring?</5><6>If you are looking to hire, you can
-        calculate the total cost of your employee's remuneration, as well as the
-        corresponding employer and employee contribution amounts. This enables
-        you to define the remuneration level by knowing the overall amount of
-        expense this represents for your company.</6><7>In addition to the
-        salary, our simulator takes into account the calculation of benefits in
-        kind (telephone, company car, etc.), as well as the compulsory health
-        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
-        not all taken into account by our simulator, you can find them on <6>the
-        official portal</6>.</8>
+      seo: "<0>How to calculate the net salary?</0><1>During the job interview, the
+        employer generally proposes a \"gross\" salary. This amount includes the
+        employee's social security contributions, which are deducted from the
+        \"net\" salary received by the employee.</1><2>You can use our simulator
+        to convert the <2>gross salary into net salary</2>: simply enter the
+        advertised salary in the gross salary box. The simulation can be refined
+        by answering different questions (fixed-term contract, executive status,
+        overtime, part-time work, meal vouchers, etc.).</2><3></3><4>In
+        addition, since 2019,<1>income tax</1> is deducted at source. To do
+        this, the Directorate General of Public Finance (DGFiP) sends the
+        employer the tax rate calculated from the employee's tax return. If this
+        rate is unknown, for example during a first year of activity, the
+        employer uses the <4>neutral rate</4>.</4><5>How to calculate the cost
+        of hiring?</5><6>If you are looking to hire, you can calculate the total
+        cost of your employee's remuneration, as well as the corresponding
+        employer and employee contributions. This allows you to define the level
+        of remuneration by knowing the overall amount of expense that this
+        represents for your company.</6><7>In addition to the salary, our
+        simulator takes into account the calculation of benefits in kind
+        (telephone, company car, etc.), as well as the mandatory health
+        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> that are
+        not all taken into account by our simulator. You can find them on <6>the
+        official portal</6>.</8><9>Discuss your recruitment project with a
+        consultant</9><10>You want :<1><0>Be advised on the hiring aids
+        available for your recruitment</0><1>Find out about apprenticeships,
+        professionalization contracts, free jobs in priority neighborhoods, the
+        VTE, etc.</1><2>Find candidates</2><3>Recruiting a person with a
+        disability</3></1><2>Simple and fast public service: you are called back
+        by THE advisor who can help you.</2></10><11>Mobilized partners: Pôle
+        emploi, APEC, Cap Emploi, local missions...</11><12></12>"
       shortname: Employee
       title: Employee income simulator
       title-employeur: Hiring Cost Simulator

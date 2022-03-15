@@ -25,6 +25,6 @@ export default function Emoji({ emoji }: PropType) {
 					baseUrl: siteUrl + '/twemoji/2/',
 					ext: '.png',
 			  }
-			: ({} as any)
+			: undefined
 	)
 }

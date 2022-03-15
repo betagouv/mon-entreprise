@@ -56,7 +56,7 @@ export default function CompanyDetails({
 				</>{' '}
 			</H3>
 
-			<InfoContainer>
+			<InfoContainer as="div">
 				{dateCreationUniteLegale && (
 					<div>
 						<Trans>Crée le</Trans>{' '}

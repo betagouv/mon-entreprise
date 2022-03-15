@@ -1,3 +1,4 @@
+import { usePreventClickAfterTouch } from '@/hooks/usePreventClickAfterTouch'
 import { Grid } from '@mui/material'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
@@ -10,7 +11,7 @@ import {
 	usePreventScroll,
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes, ThemeProvider } from 'styled-components'
 import { Container } from './layout'
 import { H2 } from './typography/heading'
@@ -43,9 +44,10 @@ export default function Popover(
 			children: React.ReactNode
 			title?: string
 			small?: boolean
+			contentRef?: RefObject<HTMLDivElement>
 		}
 ) {
-	const { title, children } = props
+	const { title, children, small, contentRef } = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
@@ -70,6 +72,7 @@ export default function Popover(
 		},
 		closeButtonRef
 	)
+	usePreventClickAfterTouch(closeButtonRef)
 
 	const offsetTop = useIFrameOffset()
 	if (offsetTop === undefined) {
@@ -82,7 +85,7 @@ export default function Popover(
 				<Underlay {...underlayProps}>
 					<Container>
 						<Grid container justifyContent="center">
-							<Grid item sm={10} md={8}>
+							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12}>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
@@ -116,7 +119,7 @@ export default function Popover(
 												</CloseButton>
 											</CloseButtonContainer>
 										)}
-										<PopoverContent>
+										<PopoverContent ref={contentRef}>
 											{title && (
 												<H2 as="h1" {...titleProps}>
 													{title}
@@ -153,20 +156,16 @@ const Underlay = styled.div`
 	z-index: 10;
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
+	display: flex;
+	align-items: center;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		align-items: flex-end;
+	}
 `
 
 const PopoverContainer = styled.div<{ offsetTop: number | null }>`
-	${({ offsetTop }) =>
-		offsetTop !== null
-			? css`
-					top: calc(${offsetTop}px + 2rem);
-			  `
-			: css`
-					top: 10vh;
-			  `}
-
-	position: relative;
-	max-height: calc(90vh - 1px);
+	max-height: 90vh;
 
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[4]};
@@ -179,8 +178,6 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 		!offsetTop &&
 		css`
 			@media (max-width: ${theme.breakpointsWidth.sm}) {
-				top: calc(100vh - 100% - 1px);
-				max-height: calc(100vh - 1px);
 				margin: 0 -16px;
 			}
 		`}
@@ -216,6 +213,5 @@ const CloseButton = styled.button`
 
 const PopoverContent = styled.div`
 	overflow: auto;
-	padding: 0 ${({ theme }) => theme.spacings.xxl}
-		${({ theme }) => theme.spacings.md};
+	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
 `

@@ -285,6 +285,7 @@ function EnSavoirPlusCSP() {
 				'pages.développeurs.iframe.csp-title',
 				'Intégration iframe et politique de sécurité de contenu'
 			)}
+			small
 		>
 			<Trans i18nKey="pages.développeurs.iframe.csp-1">
 				<Body>
