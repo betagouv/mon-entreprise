@@ -7,6 +7,20 @@
     fr</3>: <0></0> Pour en savoir plus, rendez-vous sur le site
       <3>aquoiserventlescotisations.urssaf.fr</3>
 <0>Activité mixte</0>: <0>Activité mixte</0>
+<0>Baisse entre 30% à 64% du chiffre d'affaires</0>: <0>Baisse entre 30% à 64% du chiffre d'affaires</0>
+<0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50% (ou 65% à compter de décembre 2021) du chiffre d’affaires</1>:
+  <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour
+  2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50%
+  (ou 65% à compter de décembre 2021) du chiffre d’affaires</1>
+"<0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité aux mois de mars, avril ou mai 2021</1>":
+  <0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité
+  aux mois de mars, avril ou mai 2021</1>
+<0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>:
+  <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la
+  réduction</2>
+<0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>:
+  <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année
+  2021</0>
 <0>Oui</0>: <0>Oui</0>
 Assimilé salarié: Assimilé salarié
 Aucun: Aucun
@@ -61,7 +75,7 @@ Liste des statuts juridiques: Liste des statuts juridiques
 Ma situation: Ma situation
 Mes réponses: Mes réponses
 Modifier: Modifier
-Mon entreprise: Mon entreprise
+Mois non concerné: Mois non concerné
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Non: Non
 Oui: Oui
@@ -84,6 +98,9 @@ Professions libérales: Professions libérales
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Que cherchez-vous ?: Que cherchez-vous ?
+Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
+  Quelle était votre situation liée à la crise sanitaire durant vos mois
+  d’activité ?
 Quelques intégrations: Quelques intégrations
 Rechercher: Rechercher
 Rechercher une entreprise: Rechercher une entreprise
