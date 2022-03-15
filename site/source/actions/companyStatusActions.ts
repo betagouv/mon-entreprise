@@ -1,5 +1,4 @@
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'

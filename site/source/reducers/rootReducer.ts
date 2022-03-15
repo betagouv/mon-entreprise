@@ -1,5 +1,5 @@
 import { Action } from '@/actions/actions'
-import { ApiCommuneJson } from '@/components/conversation/select/SelectCommune'
+import { ApiCommuneJson, Commune } from '@/api/commune'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { defaultTo, without } from 'ramda'
@@ -61,7 +61,7 @@ export type Situation = Partial<
 	Overwrite<
 		Record<DottedName, string | number | { valeur: number; unité: string }>,
 		{
-			'établissement . localisation': { objet: ApiCommuneJson }
+			'établissement . localisation': { objet: Commune }
 			'entreprise . imposition': string
 			année: number
 		}

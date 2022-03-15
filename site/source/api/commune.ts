@@ -36,7 +36,7 @@ export async function searchCommunes(
 	if (!response.ok) {
 		return null
 	}
-	const json: Array<ApiCommuneJson> = await response.json()
+	const json = (await response.json()) as Array<ApiCommuneJson>
 	return json
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
