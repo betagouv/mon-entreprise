@@ -3,7 +3,6 @@ import Engine, { PublicodesExpression } from 'publicodes'
 import { EngineProvider } from '@/components/utils/EngineContext'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useState, useCallback, useRef, useEffect } from 'react'
-import Value from '@/components/EngineValue'
 import { H3 } from '@/design-system/typography/heading'
 import { Trans } from 'react-i18next'
 import { Grid } from '@mui/material'
@@ -138,10 +137,6 @@ export default function ExonérationCovid() {
 				</Grid>
 
 				<Spacing lg />
-
-				<hr />
-
-				<Value expression={'secteur'} />
 			</EngineProvider>
 		</>
 	)

@@ -242,6 +242,7 @@ mois . décembre 2021:
 
 mois . décembre 2021 . LFSS 600:
   valeur: décembre 2021 = 'LFSS 600'
+  percent: 65%
 mois . décembre 2021 . LFSS 300:
   valeur: décembre 2021 = 'LFSS 300'
 
@@ -253,6 +254,7 @@ mois . janvier 2022:
 
 mois . janvier 2022 . LFSS 600:
   valeur: janvier 2022 = 'LFSS 600'
+  percent: 65%
 mois . janvier 2022 . LFSS 300:
   valeur: janvier 2022 = 'LFSS 300'
 
@@ -264,6 +266,7 @@ mois . février 2022:
 
 mois . février 2022 . LFSS 600:
   valeur: février 2022 = 'LFSS 600'
+  percent: 65%
 mois . février 2022 . LFSS 300:
   valeur: février 2022 = 'LFSS 300'
 
