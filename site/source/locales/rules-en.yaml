@@ -2460,6 +2460,9 @@ contrat salarié . frais professionnels . transports personnels . forfait mobili
     mobility (deductible part)'
   titre.fr: Prise en charge des frais de transports forfait mobilités durables
     (part déductible)
+contrat salarié . frais professionnels . transports personnels . montant:
+  titre.en: '[automatic] Personal transportation'
+  titre.fr: Transports personnels
 contrat salarié . frais professionnels . transports personnels . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
@@ -2677,6 +2680,9 @@ contrat salarié . lodeom . secteurs d'activité:
   question.fr: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
   titre.en: '[automatic] business areas'
   titre.fr: secteurs d'activité
+contrat salarié . lodeom . zone un:
+  titre.en: '[automatic] Geographic zone 1 (Guadeloupe, Martinique, Reunion, Guyana)'
+  titre.fr: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
 contrat salarié . lodeom . écart au plafond de l'assiette:
   titre.en: deviation from the base ceiling
   titre.fr: écart au plafond de l'assiette
