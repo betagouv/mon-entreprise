@@ -157,7 +157,11 @@ const Underlay = styled.div`
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		align-items: flex-end;
+	}
 `
 
 const PopoverContainer = styled.div<{ offsetTop: number | null }>`
