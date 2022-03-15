@@ -1,7 +1,7 @@
 [[headers]]
 for = "/*"
 [headers.values]
-Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self' 'unsafe-inline' mon-entreprise.zammad.com; connect-src 'self' *.sentry.io raw.githubusercontent.com *.xiti.com mon-entreprise.zammad.com api.recherche-entreprises.fabrique.social.gouv.fr geo.api.gouv.fr *.algolianet.com; form-action 'self' *.sibforms.com *.sentry.io mon-entreprise.zammad.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.xiti.com stonly.com code.jquery.com mon-entreprise.zammad.com polyfill.io; img-src 'self' data: *.xiti.com user-images.githubusercontent.com; frame-src 'self' https://www.youtube-nocookie.com https://codesandbox.io https://place-des-entreprises.beta.gouv.fr https://reso-staging.osc-fr1.scalingo.io"
+Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self' 'unsafe-inline' mon-entreprise.zammad.com; connect-src 'self' *.sentry.io raw.githubusercontent.com *.xiti.com mon-entreprise.zammad.com api.recherche-entreprises.fabrique.social.gouv.fr geo.api.gouv.fr *.algolianet.com; form-action 'self' *.sibforms.com *.sentry.io mon-entreprise.zammad.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.xiti.com stonly.com code.jquery.com mon-entreprise.zammad.com polyfill.io; img-src 'self' data: *.xiti.com user-images.githubusercontent.com; frame-src 'self' https://www.youtube-nocookie.com https://codesandbox.io"
 
 ## Twemoji proxy for client privacy #1219
 [[redirects]]

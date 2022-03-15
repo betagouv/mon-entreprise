@@ -14,7 +14,6 @@ export default function LegalNotice() {
 				</Link>
 			)}
 			title={t('legalNotice.title', 'Mentions légales')}
-			small
 		>
 			<H2>
 				<Trans i18nKey="legalNotice.editeur.title">Editeur</Trans>

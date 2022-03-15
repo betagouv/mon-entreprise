@@ -32,12 +32,6 @@ Créer une: Créer une
 Devenir: Devenir
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
 Découvrir: Découvrir
-"Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
-  Décrivez votre projet ou votre problème en donnant quelques éléments de
-  contexte. Nous identifions, parmi l’ensemble des partenaires publics et
-  parapublics, le conseiller compétent pour votre demande. Celui-ci vous
-  contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
-  situation.
 En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
@@ -1266,16 +1260,7 @@ pages:
         etc.), ainsi que la mutuelle santé obligatoire.</7><8>Il existe des
         <2>aides différées</2> à l'embauche qui ne sont pas toutes prises en
         compte par notre simulateur, vous pouvez les retrouver sur <6>le portail
-        officiel</6>.</8><9>Échanger avec un conseiller pour votre projet de
-        recrutement</9><10>Vous souhaitez :<1><0>Être conseillé(e) sur les aides
-        à l'embauche mobilisables pour votre recrutement</0><1>Vous informer sur
-        l'apprentissage, le contrat de professionnalisation, les emplois francs
-        en quartiers prioritaires, le VTE...</1><2>Trouver des
-        candidats</2><3>Recruter une personne en situation de
-        handicap</3></1><2>Service public simple et rapide : vous êtes
-        rappelé(e) par LE conseiller qui peut vous
-        aider.</2></10><11>Partenaires mobilisés : Pôle emploi, APEC, Cap
-        Emploi, missions locales...</11><12></12>"
+        officiel</6>.</8>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
       title-employeur: Simulateur de coûts d'embauche

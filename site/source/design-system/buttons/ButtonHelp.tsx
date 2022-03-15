@@ -46,7 +46,6 @@ export default function ButtonHelp({
 				</StyledButton>
 			)}
 			title={title}
-			small
 		>
 			{children}
 		</PopoverWithTrigger>

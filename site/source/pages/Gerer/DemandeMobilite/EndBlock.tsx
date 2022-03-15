@@ -53,7 +53,6 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 							Voir les champs manquants
 						</Button>
 					)}
-					small
 				>
 					<Ul>
 						{missingValues.map(
@@ -128,7 +127,6 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 						Générer la demande
 					</Button>
 				)}
-				small
 			>
 				<Body>
 					Afin d’examiner votre situation au regard des règlements

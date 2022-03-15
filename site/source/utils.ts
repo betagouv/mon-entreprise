@@ -93,39 +93,3 @@ export const getValueFrom = <
 	key: K
 ): Extract<T, { [k in K]?: unknown }>[K] | undefined =>
 	key in obj ? obj[key] : undefined
-
-/**
- * Return git branch name
- * @returns string
- */
-export const getBranch = () => {
-	let branch: string | undefined = import.meta.env.VITE_GITHUB_REF?.split(
-		'/'
-	)?.slice(-1)?.[0]
-
-	if (branch === 'merge') {
-		branch = import.meta.env.VITE_GITHUB_HEAD_REF
-	}
-
-	return branch ?? ''
-}
-
-/**
- * We use this function to hide some features in production while keeping them
- * in feature-branches. In case we do A/B testing with several branches served
- * in production, we should add the public faced branch names in the test below.
- * This is different from the import.meta.env.MODE in that a feature branch may
- * be build in production mode (with the NODE_ENV) but we may still want to show
- * or hide some features.
- * @returns boolean
- */
-export const isProduction = () =>
-	import.meta.env.PROD && ['master', 'next'].includes(getBranch())
-
-/**
- * Is a feature branche
- * @returns boolean
- */
-export const isStaging = () => import.meta.env.PROD && !isProduction()
-
-export const isDevelopment = () => import.meta.env.DEV

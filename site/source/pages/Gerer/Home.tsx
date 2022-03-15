@@ -1,21 +1,19 @@
 import { DottedName } from '@/../../modele-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
-import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
-import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
-import { H2, H3, H4 } from '@/design-system/typography/heading'
+import { H2, H4 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { Grid } from '@mui/material'
-import Engine, { Evaluation } from 'publicodes'
+import Engine from 'publicodes'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -26,7 +24,6 @@ import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import { AutoEntrepreneurCard } from './cards/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './cards/DemarcheEmbauche'
-import { KbisCard } from './cards/KBISCard'
 import { MobiliteCard } from './cards/MobiliteCard'
 import { SecuriteSocialeCard } from './cards/SecuriteSocialeCard'
 import forms from './forms.svg'
@@ -223,18 +220,7 @@ export default function Gérer() {
 				<Grid item sm={12} md={4}>
 					<SecuriteSocialeCard />
 				</Grid>
-				<Grid item sm={12} md={4}>
-					<KbisCard />
-				</Grid>
 			</Grid>
-
-			<PlacesDesEntreprisesButton
-				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
-				siret={
-					engine.evaluate('établissement . SIRET')
-						.nodeValue as Evaluation<string>
-				}
-			/>
 		</>
 	)
 }

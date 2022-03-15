@@ -17,17 +17,4 @@ interface ImportMetaEnv {
 	VITE_COMPANY_SEARCH_HOST?: string
 
 	VITE_REDUX_TRACE?: string
-
-	/**
-	 * @deprecated Use isProduction(), isStaging() or isDevelopment() from utils.ts instead
-	 */
-	MODE: string
-	/**
-	 * @deprecated Use isDevelopment() from utils.ts instead
-	 */
-	DEV: boolean
-	/**
-	 * @deprecated Use isProduction() from utils.ts instead
-	 */
-	PROD: boolean
 }
