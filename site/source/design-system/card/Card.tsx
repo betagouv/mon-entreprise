@@ -8,6 +8,7 @@ import {
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { PropsOf } from '@emotion/react'
 import React, { ReactHTML, useRef } from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
 
@@ -21,6 +22,7 @@ type CardProps = GenericCardProps & {
 	ctaLabel?: React.ReactNode
 	children: React.ReactNode
 	compact?: boolean
+	bodyAs?: PropsOf<typeof Body>['as']
 }
 
 export function Card({
@@ -29,6 +31,7 @@ export function Card({
 	children,
 	ctaLabel,
 	compact = false,
+	bodyAs,
 	...ariaButtonProps
 }: CardProps) {
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -49,7 +52,7 @@ export function Card({
 						width: 100%;
 					`}
 				>
-					<Body>{children}</Body>
+					<Body as={bodyAs}>{children}</Body>
 				</div>
 				{ctaLabel && (
 					// The button is not selectable with keyboard navigation because the whole card already is

@@ -32,10 +32,6 @@
 	flex: 1;
 }
 
-.distribution-chart__counterparts {
-	width: 35em;
-}
-
 @media not print {
 	@media (max-width: 600px) {
 		.distribution-chart__legend {
