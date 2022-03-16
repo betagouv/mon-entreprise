@@ -1,0 +1,15 @@
+{
+  "nom": "Brest",
+  "code": "29019",
+  "codesPostaux": [
+    "29200"
+  ],
+  "departement": {
+    "code": "29",
+    "nom": "Finistère"
+  },
+  "region": {
+    "code": "53",
+    "nom": "Bretagne"
+  }
+}

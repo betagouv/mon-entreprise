@@ -106,7 +106,6 @@ function FormulairePublicodes() {
 			{}
 		)
 	).map((dottedName) => engine.getRule(dottedName))
-	console.log(missingValues)
 	return (
 		<>
 			<Grid container spacing={2}>

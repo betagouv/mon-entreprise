@@ -1,3 +1,12 @@
+DRI:
+  titre.en: '[automatic] DRI'
+  titre.fr: DRI
+DRI . cas exclus:
+  titre.en: '[automatic] excluded cases'
+  titre.fr: cas exclus
+DRI . cas exclus . explications:
+  titre.en: '[automatic] explanations'
+  titre.fr: explications
 SMIC horaire:
   note.en: >
     [automatic] In principle, and unless there is a "boost", the SMIC is
@@ -7445,6 +7454,11 @@ entreprise . catégorie juridique . SARL:
   titre.en: '[automatic] EURL or SARL'
   titre.fr: EURL ou SARL
 entreprise . catégorie juridique . SARL . unipersonnelle:
+  description.en: '[automatic] An EURL is a company with only one partner. This
+    means that you are the sole owner of the company.'
+  description.fr:
+    Une EURL est une entreprise avec un seul associé. Cela signifie
+    que vous êtes le seul et unique propriétaire de l'entreprise.
   question.en: '[automatic] Is your company an EURL?'
   question.fr: Votre entreprise est-elle une EURL ?
   titre.en: '[automatic] EURL'
