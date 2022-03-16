@@ -6,6 +6,5 @@
 	},
 	"integrationFolder": "cypress/integration/mon-entreprise",
 	"pluginsFile": false,
-	"chromeWebSecurity": false,
-	"retries": 1
+	"chromeWebSecurity": false
 }

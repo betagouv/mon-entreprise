@@ -3,11 +3,9 @@
     "nom": "Brest",
     "code": "29019",
     "codesPostaux": [
-      "29200",
-      "29000",
-      "29240"
+      "29200"
     ],
-    "_score": 0.23730179114540384,
+    "_score": 0.23788758886836267,
     "departement": {
       "code": "29",
       "nom": "Finistère"
@@ -23,7 +21,7 @@
     "codesPostaux": [
       "56400"
     ],
-    "_score": 0.11252850942728997,
+    "_score": 0.1125583670955197,
     "departement": {
       "code": "56",
       "nom": "Morbihan"
@@ -39,7 +37,7 @@
     "codesPostaux": [
       "50290"
     ],
-    "_score": 0.10907883814377321,
+    "_score": 0.1091761285192855,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -55,7 +53,7 @@
     "codesPostaux": [
       "56580"
     ],
-    "_score": 0.107968696146141,
+    "_score": 0.1079456479639379,
     "departement": {
       "code": "56",
       "nom": "Morbihan"
@@ -71,7 +69,7 @@
     "codesPostaux": [
       "78980"
     ],
-    "_score": 0.10746744381831277,
+    "_score": 0.10743277184910174,
     "departement": {
       "code": "78",
       "nom": "Yvelines"
@@ -87,7 +85,7 @@
     "codesPostaux": [
       "62610"
     ],
-    "_score": 0.1068881016541492,
+    "_score": 0.1068914026167747,
     "departement": {
       "code": "62",
       "nom": "Pas-de-Calais"
@@ -103,7 +101,7 @@
     "codesPostaux": [
       "29810"
     ],
-    "_score": 0.10645755228624625,
+    "_score": 0.1064386786388638,
     "departement": {
       "code": "29",
       "nom": "Finistère"
@@ -119,7 +117,7 @@
     "codesPostaux": [
       "31530"
     ],
-    "_score": 0.10620850902441999,
+    "_score": 0.10624661392096221,
     "departement": {
       "code": "31",
       "nom": "Haute-Garonne"
@@ -135,7 +133,7 @@
     "codesPostaux": [
       "60440"
     ],
-    "_score": 0.10618212732295536,
+    "_score": 0.1062191761041191,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -151,7 +149,7 @@
     "codesPostaux": [
       "63500"
     ],
-    "_score": 0.10617790625072102,
+    "_score": 0.10619279358792384,
     "departement": {
       "code": "63",
       "nom": "Puy-de-Dôme"
@@ -167,7 +165,7 @@
     "codesPostaux": [
       "26260"
     ],
-    "_score": 0.10611459016720588,
+    "_score": 0.10615796866654606,
     "departement": {
       "code": "26",
       "nom": "Drôme"
@@ -183,7 +181,7 @@
     "codesPostaux": [
       "01110"
     ],
-    "_score": 0.10607765578515536,
+    "_score": 0.10605032800046936,
     "departement": {
       "code": "01",
       "nom": "Ain"
@@ -194,28 +192,12 @@
     }
   },
   {
-    "nom": "Brèves",
-    "code": "58039",
-    "codesPostaux": [
-      "58530"
-    ],
-    "_score": 0.10579589921351298,
-    "departement": {
-      "code": "58",
-      "nom": "Nièvre"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Breny",
     "code": "02121",
     "codesPostaux": [
       "02210"
     ],
-    "_score": 0.10578851233710289,
+    "_score": 0.10578333693657317,
     "departement": {
       "code": "02",
       "nom": "Aisne"
@@ -226,12 +208,28 @@
     }
   },
   {
+    "nom": "Brèves",
+    "code": "58039",
+    "codesPostaux": [
+      "58530"
+    ],
+    "_score": 0.10577911573398192,
+    "departement": {
+      "code": "58",
+      "nom": "Nièvre"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Brémoy",
     "code": "14096",
     "codesPostaux": [
       "14260"
     ],
-    "_score": 0.10576529643981399,
+    "_score": 0.10576856272750382,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -247,7 +245,7 @@
     "codesPostaux": [
       "51320"
     ],
-    "_score": 0.10561333783937765,
+    "_score": 0.1056123782316278,
     "departement": {
       "code": "51",
       "nom": "Marne"
@@ -263,7 +261,7 @@
     "codesPostaux": [
       "25440"
     ],
-    "_score": 0.10559012194208875,
+    "_score": 0.10560076992450187,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -279,7 +277,7 @@
     "codesPostaux": [
       "34650"
     ],
-    "_score": 0.10558167979762008,
+    "_score": 0.10558705101608033,
     "departement": {
       "code": "34",
       "nom": "Hérault"
@@ -295,7 +293,7 @@
     "codesPostaux": [
       "33650"
     ],
-    "_score": 0.10377261741346823,
+    "_score": 0.10400205362437939,
     "departement": {
       "code": "33",
       "nom": "Gironde"
@@ -306,28 +304,12 @@
     }
   },
   {
-    "nom": "Brécé",
-    "code": "35039",
-    "codesPostaux": [
-      "35530"
-    ],
-    "_score": 0.10124157271786598,
-    "departement": {
-      "code": "35",
-      "nom": "Ille-et-Vilaine"
-    },
-    "region": {
-      "code": "53",
-      "nom": "Bretagne"
-    }
-  },
-  {
     "nom": "Brécey",
     "code": "50074",
     "codesPostaux": [
       "50370"
     ],
-    "_score": 0.10122967500875621,
+    "_score": 0.1012712271259709,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -338,12 +320,28 @@
     }
   },
   {
+    "nom": "Brécé",
+    "code": "35039",
+    "codesPostaux": [
+      "35530"
+    ],
+    "_score": 0.10119190680591611,
+    "departement": {
+      "code": "35",
+      "nom": "Ille-et-Vilaine"
+    },
+    "region": {
+      "code": "53",
+      "nom": "Bretagne"
+    }
+  },
+  {
     "nom": "Brecé",
     "code": "53042",
     "codesPostaux": [
       "53120"
     ],
-    "_score": 0.0999546371824951,
+    "_score": 0.09998722944508376,
     "departement": {
       "code": "53",
       "nom": "Mayenne"
@@ -359,7 +357,7 @@
     "codesPostaux": [
       "53150"
     ],
-    "_score": 0.0996780154456935,
+    "_score": 0.09969969328488511,
     "departement": {
       "code": "53",
       "nom": "Mayenne"
@@ -375,7 +373,7 @@
     "codesPostaux": [
       "77720"
     ],
-    "_score": 0.09946286520595893,
+    "_score": 0.09949246894874192,
     "departement": {
       "code": "77",
       "nom": "Seine-et-Marne"
@@ -391,7 +389,7 @@
     "codesPostaux": [
       "26340"
     ],
-    "_score": 0.09918822642067562,
+    "_score": 0.09918609421253023,
     "departement": {
       "code": "26",
       "nom": "Drôme"
@@ -407,7 +405,7 @@
     "codesPostaux": [
       "83840"
     ],
-    "_score": 0.09917831166308418,
+    "_score": 0.09917518766852271,
     "departement": {
       "code": "83",
       "nom": "Var"
@@ -423,7 +421,7 @@
     "codesPostaux": [
       "81600"
     ],
-    "_score": 0.09760671618431305,
+    "_score": 0.09765228335921956,
     "departement": {
       "code": "81",
       "nom": "Tarn"
@@ -439,7 +437,7 @@
     "codesPostaux": [
       "01300"
     ],
-    "_score": 0.09653137825184528,
+    "_score": 0.09651012348994932,
     "departement": {
       "code": "01",
       "nom": "Ain"
@@ -455,7 +453,7 @@
     "codesPostaux": [
       "18220"
     ],
-    "_score": 0.09635295039614744,
+    "_score": 0.09641375076915042,
     "departement": {
       "code": "18",
       "nom": "Cher"
@@ -471,7 +469,7 @@
     "codesPostaux": [
       "02210"
     ],
-    "_score": 0.09574324237587514,
+    "_score": 0.09573055405536807,
     "departement": {
       "code": "02",
       "nom": "Aisne"
@@ -487,7 +485,7 @@
     "codesPostaux": [
       "55600"
     ],
-    "_score": 0.09566118464544725,
+    "_score": 0.09566948619268359,
     "departement": {
       "code": "55",
       "nom": "Meuse"
@@ -503,7 +501,7 @@
     "codesPostaux": [
       "34670"
     ],
-    "_score": 0.09398518444231953,
+    "_score": 0.09422702475212,
     "departement": {
       "code": "34",
       "nom": "Hérault"
@@ -519,7 +517,7 @@
     "codesPostaux": [
       "30500"
     ],
-    "_score": 0.09188810378115088,
+    "_score": 0.09189163995703505,
     "departement": {
       "code": "30",
       "nom": "Gard"
@@ -535,7 +533,7 @@
     "codesPostaux": [
       "32120"
     ],
-    "_score": 0.09136771371721263,
+    "_score": 0.09136485456736967,
     "departement": {
       "code": "32",
       "nom": "Gers"
@@ -551,7 +549,7 @@
     "codesPostaux": [
       "44250"
     ],
-    "_score": 0.08978017006285172,
+    "_score": 0.09018335834312846,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -567,7 +565,7 @@
     "codesPostaux": [
       "85470"
     ],
-    "_score": 0.0895461665508866,
+    "_score": 0.08963048100812065,
     "departement": {
       "code": "85",
       "nom": "Vendée"
@@ -583,7 +581,7 @@
     "codesPostaux": [
       "80300"
     ],
-    "_score": 0.08915248342616752,
+    "_score": 0.08915016932028655,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -599,7 +597,7 @@
     "codesPostaux": [
       "60510"
     ],
-    "_score": 0.08708101579491366,
+    "_score": 0.08699422032738349,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -615,7 +613,7 @@
     "codesPostaux": [
       "35160"
     ],
-    "_score": 0.08659597330760416,
+    "_score": 0.08668729603386723,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -631,7 +629,7 @@
     "codesPostaux": [
       "38590"
     ],
-    "_score": 0.08536580520616922,
+    "_score": 0.08545876255382524,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -647,7 +645,7 @@
     "codesPostaux": [
       "38580"
     ],
-    "_score": 0.08507839445706387,
+    "_score": 0.08506839781758564,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -663,7 +661,7 @@
     "codesPostaux": [
       "22510"
     ],
-    "_score": 0.08498613401782698,
+    "_score": 0.08503559172952214,
     "departement": {
       "code": "22",
       "nom": "Côtes-d'Armor"
@@ -679,7 +677,7 @@
     "codesPostaux": [
       "76110"
     ],
-    "_score": 0.08474110393372063,
+    "_score": 0.08476713751094253,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -690,28 +688,12 @@
     }
   },
   {
-    "nom": "Brevans",
-    "code": "39078",
-    "codesPostaux": [
-      "39100"
-    ],
-    "_score": 0.08417995995271257,
-    "departement": {
-      "code": "39",
-      "nom": "Jura"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Breilly",
     "code": "80137",
     "codesPostaux": [
       "80470"
     ],
-    "_score": 0.08414316362608909,
+    "_score": 0.0842544819471129,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -722,12 +704,28 @@
     }
   },
   {
+    "nom": "Brevans",
+    "code": "39078",
+    "codesPostaux": [
+      "39100"
+    ],
+    "_score": 0.08420095836459235,
+    "departement": {
+      "code": "39",
+      "nom": "Jura"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Brestot",
     "code": "27110",
     "codesPostaux": [
       "27350"
     ],
-    "_score": 0.08410887613991722,
+    "_score": 0.08415496153586376,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -743,7 +741,7 @@
     "codesPostaux": [
       "48000"
     ],
-    "_score": 0.08394496523041263,
+    "_score": 0.0839542481014117,
     "departement": {
       "code": "48",
       "nom": "Lozère"
@@ -759,10 +757,26 @@
     "codesPostaux": [
       "03210"
     ],
-    "_score": 0.0839441289502621,
+    "_score": 0.08395173918348105,
     "departement": {
       "code": "03",
       "nom": "Allier"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
+    "nom": "Sault-Brénaz",
+    "code": "01396",
+    "codesPostaux": [
+      "01150"
+    ],
+    "_score": 0.0838902020157495,
+    "departement": {
+      "code": "01",
+      "nom": "Ain"
     },
     "region": {
       "code": "84",
@@ -775,7 +789,7 @@
     "codesPostaux": [
       "22140"
     ],
-    "_score": 0.08387806281836994,
+    "_score": 0.0838773079515384,
     "departement": {
       "code": "22",
       "nom": "Côtes-d'Armor"
@@ -786,44 +800,12 @@
     }
   },
   {
-    "nom": "Sault-Brénaz",
-    "code": "01396",
-    "codesPostaux": [
-      "01150"
-    ],
-    "_score": 0.08387315958665603,
-    "departement": {
-      "code": "01",
-      "nom": "Ain"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
-    "nom": "Brèches",
-    "code": "37037",
-    "codesPostaux": [
-      "37330"
-    ],
-    "_score": 0.08385715581460661,
-    "departement": {
-      "code": "37",
-      "nom": "Indre-et-Loire"
-    },
-    "region": {
-      "code": "24",
-      "nom": "Centre-Val de Loire"
-    }
-  },
-  {
     "nom": "Bresdon",
     "code": "17062",
     "codesPostaux": [
       "17490"
     ],
-    "_score": 0.08381534180707993,
+    "_score": 0.0838112397793646,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -834,19 +816,19 @@
     }
   },
   {
-    "nom": "Brezons",
-    "code": "15026",
+    "nom": "Brèches",
+    "code": "37037",
     "codesPostaux": [
-      "15230"
+      "37330"
     ],
-    "_score": 0.08378523572166073,
+    "_score": 0.08381040347338772,
     "departement": {
-      "code": "15",
-      "nom": "Cantal"
+      "code": "37",
+      "nom": "Indre-et-Loire"
     },
     "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
+      "code": "24",
+      "nom": "Centre-Val de Loire"
     }
   },
   {
@@ -855,7 +837,7 @@
     "codesPostaux": [
       "68780"
     ],
-    "_score": 0.08377687292015537,
+    "_score": 0.08378447798810433,
     "departement": {
       "code": "68",
       "nom": "Haut-Rhin"
@@ -866,12 +848,28 @@
     }
   },
   {
+    "nom": "Brezons",
+    "code": "15026",
+    "codesPostaux": [
+      "15230"
+    ],
+    "_score": 0.08378364168212744,
+    "departement": {
+      "code": "15",
+      "nom": "Cantal"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
     "nom": "Brettes",
     "code": "16059",
     "codesPostaux": [
       "16240"
     ],
-    "_score": 0.08377520035985431,
+    "_score": 0.08377778754028925,
     "departement": {
       "code": "16",
       "nom": "Charente"
@@ -887,7 +885,7 @@
     "codesPostaux": [
       "61270"
     ],
-    "_score": 0.0837626561575963,
+    "_score": 0.08376942448052042,
     "departement": {
       "code": "61",
       "nom": "Orne"
@@ -903,7 +901,7 @@
     "codesPostaux": [
       "52200"
     ],
-    "_score": 0.0837450942744351,
+    "_score": 0.08373346332351443,
     "departement": {
       "code": "52",
       "nom": "Haute-Marne"
@@ -919,7 +917,7 @@
     "codesPostaux": [
       "45250"
     ],
-    "_score": 0.0836974263058547,
+    "_score": 0.08371171936811544,
     "departement": {
       "code": "45",
       "nom": "Loiret"
@@ -935,7 +933,7 @@
     "codesPostaux": [
       "62127"
     ],
-    "_score": 0.08202700067429135,
+    "_score": 0.08207798352405707,
     "departement": {
       "code": "62",
       "nom": "Pas-de-Calais"
@@ -951,7 +949,7 @@
     "codesPostaux": [
       "21510"
     ],
-    "_score": 0.08161995330213281,
+    "_score": 0.08162546977638262,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -967,7 +965,7 @@
     "codesPostaux": [
       "21530"
     ],
-    "_score": 0.0815377044183774,
+    "_score": 0.08156613710246521,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -983,7 +981,7 @@
     "codesPostaux": [
       "46120"
     ],
-    "_score": 0.08073412238603409,
+    "_score": 0.0807394462729104,
     "departement": {
       "code": "46",
       "nom": "Lot"
@@ -999,7 +997,7 @@
     "codesPostaux": [
       "22870"
     ],
-    "_score": 0.07955417303808411,
+    "_score": 0.07954651558184797,
     "departement": {
       "code": "22",
       "nom": "Côtes-d'Armor"
@@ -1015,7 +1013,7 @@
     "codesPostaux": [
       "03350"
     ],
-    "_score": 0.07900743237780673,
+    "_score": 0.07900417176038756,
     "departement": {
       "code": "03",
       "nom": "Allier"
@@ -1026,28 +1024,12 @@
     }
   },
   {
-    "nom": "Les Bréseux",
-    "code": "25091",
-    "codesPostaux": [
-      "25120"
-    ],
-    "_score": 0.07876652020601166,
-    "departement": {
-      "code": "25",
-      "nom": "Doubs"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Bréau-Mars",
     "code": "30052",
     "codesPostaux": [
       "30120"
     ],
-    "_score": 0.07874489486317578,
+    "_score": 0.07878191735046187,
     "departement": {
       "code": "30",
       "nom": "Gard"
@@ -1058,19 +1040,19 @@
     }
   },
   {
-    "nom": "Breuil",
-    "code": "51086",
+    "nom": "Les Bréseux",
+    "code": "25091",
     "codesPostaux": [
-      "51140"
+      "25120"
     ],
-    "_score": 0.07869966138092345,
+    "_score": 0.07875847961573149,
     "departement": {
-      "code": "51",
-      "nom": "Marne"
+      "code": "25",
+      "nom": "Doubs"
     },
     "region": {
-      "code": "44",
-      "nom": "Grand Est"
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
     }
   },
   {
@@ -1079,7 +1061,7 @@
     "codesPostaux": [
       "80400"
     ],
-    "_score": 0.07846516076552376,
+    "_score": 0.07846343629788412,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -1095,7 +1077,7 @@
     "codesPostaux": [
       "79300"
     ],
-    "_score": 0.07731999336991173,
+    "_score": 0.07754949737300569,
     "departement": {
       "code": "79",
       "nom": "Deux-Sèvres"
@@ -1111,7 +1093,7 @@
     "codesPostaux": [
       "60480"
     ],
-    "_score": 0.07696567195834825,
+    "_score": 0.07695713918247919,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -1127,7 +1109,7 @@
     "codesPostaux": [
       "38320"
     ],
-    "_score": 0.07613257282194233,
+    "_score": 0.07612479303246049,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -1143,7 +1125,7 @@
     "codesPostaux": [
       "57340"
     ],
-    "_score": 0.07569627217319715,
+    "_score": 0.07569755472089769,
     "departement": {
       "code": "57",
       "nom": "Moselle"
@@ -1159,7 +1141,7 @@
     "codesPostaux": [
       "35310"
     ],
-    "_score": 0.07539910656548196,
+    "_score": 0.07569335835122303,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -1175,7 +1157,7 @@
     "codesPostaux": [
       "72250"
     ],
-    "_score": 0.07532604942093843,
+    "_score": 0.07531296076011172,
     "departement": {
       "code": "72",
       "nom": "Sarthe"
@@ -1191,7 +1173,7 @@
     "codesPostaux": [
       "17840"
     ],
-    "_score": 0.07531082518405074,
+    "_score": 0.07530164193098546,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -1202,28 +1184,12 @@
     }
   },
   {
-    "nom": "Bourg-en-Bresse",
-    "code": "01053",
-    "codesPostaux": [
-      "01000"
-    ],
-    "_score": 0.0747524192933346,
-    "departement": {
-      "code": "01",
-      "nom": "Ain"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
     "nom": "Bressols",
     "code": "82025",
     "codesPostaux": [
       "82710"
     ],
-    "_score": 0.07469632066628656,
+    "_score": 0.0746986274689986,
     "departement": {
       "code": "82",
       "nom": "Tarn-et-Garonne"
@@ -1239,7 +1205,7 @@
     "codesPostaux": [
       "91650"
     ],
-    "_score": 0.07423810878142262,
+    "_score": 0.07427189016968327,
     "departement": {
       "code": "91",
       "nom": "Essonne"
@@ -1250,12 +1216,28 @@
     }
   },
   {
+    "nom": "Bourg-en-Bresse",
+    "code": "01053",
+    "codesPostaux": [
+      "01000"
+    ],
+    "_score": 0.07406020607592363,
+    "departement": {
+      "code": "01",
+      "nom": "Ain"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
     "nom": "Le Breuil",
     "code": "71059",
     "codesPostaux": [
       "71670"
     ],
-    "_score": 0.07321903909471293,
+    "_score": 0.07318363990442313,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -1266,28 +1248,12 @@
     }
   },
   {
-    "nom": "Saint-Hilaire-de-Brens",
-    "code": "38392",
-    "codesPostaux": [
-      "38460"
-    ],
-    "_score": 0.07270445021572203,
-    "departement": {
-      "code": "38",
-      "nom": "Isère"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
     "nom": "Neuville-sur-Brenne",
     "code": "37169",
     "codesPostaux": [
       "37110"
     ],
-    "_score": 0.0726989123537512,
+    "_score": 0.07272056171844044,
     "departement": {
       "code": "37",
       "nom": "Indre-et-Loire"
@@ -1298,12 +1264,28 @@
     }
   },
   {
+    "nom": "Saint-Hilaire-de-Brens",
+    "code": "38392",
+    "codesPostaux": [
+      "38460"
+    ],
+    "_score": 0.0726984156163695,
+    "departement": {
+      "code": "38",
+      "nom": "Isère"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
     "nom": "Saint-Bresson",
     "code": "70460",
     "codesPostaux": [
       "70280"
     ],
-    "_score": 0.07266766276828505,
+    "_score": 0.07266250514975287,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -1319,7 +1301,7 @@
     "codesPostaux": [
       "70300"
     ],
-    "_score": 0.07254108578549416,
+    "_score": 0.07250658793662869,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -1335,7 +1317,7 @@
     "codesPostaux": [
       "30440"
     ],
-    "_score": 0.07238983582526526,
+    "_score": 0.07239625201926289,
     "departement": {
       "code": "30",
       "nom": "Gard"
@@ -1351,7 +1333,7 @@
     "codesPostaux": [
       "95640"
     ],
-    "_score": 0.07230409638850864,
+    "_score": 0.07232649924681848,
     "departement": {
       "code": "95",
       "nom": "Val-d'Oise"
@@ -1362,28 +1344,12 @@
     }
   },
   {
-    "nom": "Brévilly",
-    "code": "08083",
-    "codesPostaux": [
-      "08140"
-    ],
-    "_score": 0.07230337605599499,
-    "departement": {
-      "code": "08",
-      "nom": "Ardennes"
-    },
-    "region": {
-      "code": "44",
-      "nom": "Grand Est"
-    }
-  },
-  {
     "nom": "Brebotte",
     "code": "90018",
     "codesPostaux": [
       "90140"
     ],
-    "_score": 0.07230337605599499,
+    "_score": 0.07232073640874455,
     "departement": {
       "code": "90",
       "nom": "Territoire de Belfort"
@@ -1394,12 +1360,28 @@
     }
   },
   {
+    "nom": "Brévilly",
+    "code": "08083",
+    "codesPostaux": [
+      "08140"
+    ],
+    "_score": 0.07228976115409719,
+    "departement": {
+      "code": "08",
+      "nom": "Ardennes"
+    },
+    "region": {
+      "code": "44",
+      "nom": "Grand Est"
+    }
+  },
+  {
     "nom": "Bréziers",
     "code": "05022",
     "codesPostaux": [
       "05190"
     ],
-    "_score": 0.07219172451638176,
+    "_score": 0.07220764071154373,
     "departement": {
       "code": "05",
       "nom": "Hautes-Alpes"
@@ -1415,7 +1397,7 @@
     "codesPostaux": [
       "46320"
     ],
-    "_score": 0.07218308052621816,
+    "_score": 0.07219467432587741,
     "departement": {
       "code": "46",
       "nom": "Lot"
@@ -1431,7 +1413,7 @@
     "codesPostaux": [
       "02220"
     ],
-    "_score": 0.07217443653605454,
+    "_score": 0.07217666545689637,
     "departement": {
       "code": "02",
       "nom": "Aisne"
@@ -1447,7 +1429,7 @@
     "codesPostaux": [
       "58460"
     ],
-    "_score": 0.0721585892207546,
+    "_score": 0.07215073268556371,
     "departement": {
       "code": "58",
       "nom": "Nièvre"
@@ -1463,7 +1445,7 @@
     "codesPostaux": [
       "54540"
     ],
-    "_score": 0.07211176760736841,
+    "_score": 0.07210895210952774,
     "departement": {
       "code": "54",
       "nom": "Meurthe-et-Moselle"
@@ -1479,7 +1461,7 @@
     "codesPostaux": [
       "88250"
     ],
-    "_score": 0.07196661296638518,
+    "_score": 0.07149178463273112,
     "departement": {
       "code": "88",
       "nom": "Vosges"
@@ -1495,7 +1477,7 @@
     "codesPostaux": [
       "50370"
     ],
-    "_score": 0.07134966523245886,
+    "_score": 0.07134285303533507,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -1507,27 +1489,11 @@
   },
   {
     "nom": "Le Breuil",
-    "code": "03042",
-    "codesPostaux": [
-      "03120"
-    ],
-    "_score": 0.07105832433655308,
-    "departement": {
-      "code": "03",
-      "nom": "Allier"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
-    "nom": "Le Breuil",
     "code": "69026",
     "codesPostaux": [
       "69620"
     ],
-    "_score": 0.07105125624771383,
+    "_score": 0.071070221803685,
     "departement": {
       "code": "69",
       "nom": "Rhône"
@@ -1539,18 +1505,18 @@
   },
   {
     "nom": "Le Breuil",
-    "code": "51085",
+    "code": "03042",
     "codesPostaux": [
-      "51210"
+      "03120"
     ],
-    "_score": 0.07095725066615177,
+    "_score": 0.0710574988853528,
     "departement": {
-      "code": "51",
-      "nom": "Marne"
+      "code": "03",
+      "nom": "Allier"
     },
     "region": {
-      "code": "44",
-      "nom": "Grand Est"
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
     }
   },
   {
@@ -1559,7 +1525,7 @@
     "codesPostaux": [
       "60480"
     ],
-    "_score": 0.07094711052805344,
+    "_score": 0.0709535999732938,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -1570,12 +1536,28 @@
     }
   },
   {
+    "nom": "Le Breuil",
+    "code": "51085",
+    "codesPostaux": [
+      "51210"
+    ],
+    "_score": 0.0709500609083253,
+    "departement": {
+      "code": "51",
+      "nom": "Marne"
+    },
+    "region": {
+      "code": "44",
+      "nom": "Grand Est"
+    }
+  },
+  {
     "nom": "Ponteils-et-Brésis",
     "code": "30201",
     "codesPostaux": [
       "30450"
     ],
-    "_score": 0.07081425640470695,
+    "_score": 0.07082821554827641,
     "departement": {
       "code": "30",
       "nom": "Gard"
@@ -1591,7 +1573,7 @@
     "codesPostaux": [
       "21400"
     ],
-    "_score": 0.07059622091945364,
+    "_score": 0.07059887013232936,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -1607,7 +1589,7 @@
     "codesPostaux": [
       "54330"
     ],
-    "_score": 0.06921556454241305,
+    "_score": 0.06921416902471668,
     "departement": {
       "code": "54",
       "nom": "Meurthe-et-Moselle"
@@ -1623,7 +1605,7 @@
     "codesPostaux": [
       "27570"
     ],
-    "_score": 0.0690959440621607,
+    "_score": 0.06909477457830576,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -1639,7 +1621,7 @@
     "codesPostaux": [
       "25240"
     ],
-    "_score": 0.06841952547818272,
+    "_score": 0.06846217440589851,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -1655,7 +1637,7 @@
     "codesPostaux": [
       "36290"
     ],
-    "_score": 0.0684162097876064,
+    "_score": 0.06843221165899534,
     "departement": {
       "code": "36",
       "nom": "Indre"
@@ -1671,7 +1653,7 @@
     "codesPostaux": [
       "70300"
     ],
-    "_score": 0.06818788996437443,
+    "_score": 0.06818974540081357,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -1682,12 +1664,28 @@
     }
   },
   {
+    "nom": "Brebières",
+    "code": "62173",
+    "codesPostaux": [
+      "62117"
+    ],
+    "_score": 0.06799767692894804,
+    "departement": {
+      "code": "62",
+      "nom": "Pas-de-Calais"
+    },
+    "region": {
+      "code": "32",
+      "nom": "Hauts-de-France"
+    }
+  },
+  {
     "nom": "Breteuil",
     "code": "27112",
     "codesPostaux": [
       "27160"
     ],
-    "_score": 0.06805919141753454,
+    "_score": 0.0679542058656311,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -1703,26 +1701,10 @@
     "codesPostaux": [
       "60120"
     ],
-    "_score": 0.06802076381531783,
+    "_score": 0.06788255925393162,
     "departement": {
       "code": "60",
       "nom": "Oise"
-    },
-    "region": {
-      "code": "32",
-      "nom": "Hauts-de-France"
-    }
-  },
-  {
-    "nom": "Brebières",
-    "code": "62173",
-    "codesPostaux": [
-      "62117"
-    ],
-    "_score": 0.06787911082478264,
-    "departement": {
-      "code": "62",
-      "nom": "Pas-de-Calais"
     },
     "region": {
       "code": "32",
@@ -1735,7 +1717,7 @@
     "codesPostaux": [
       "80430"
     ],
-    "_score": 0.06759760222836597,
+    "_score": 0.06759867463720276,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -1751,7 +1733,7 @@
     "codesPostaux": [
       "06540"
     ],
-    "_score": 0.06735883452960159,
+    "_score": 0.06734281279997635,
     "departement": {
       "code": "06",
       "nom": "Alpes-Maritimes"
@@ -1767,7 +1749,7 @@
     "codesPostaux": [
       "35370"
     ],
-    "_score": 0.06689046844885756,
+    "_score": 0.06686705104084198,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -1783,7 +1765,7 @@
     "codesPostaux": [
       "72370"
     ],
-    "_score": 0.06677177841693828,
+    "_score": 0.06677717165017631,
     "departement": {
       "code": "72",
       "nom": "Sarthe"
@@ -1799,7 +1781,7 @@
     "codesPostaux": [
       "36290"
     ],
-    "_score": 0.06673219053733241,
+    "_score": 0.06672768087784213,
     "departement": {
       "code": "36",
       "nom": "Indre"
@@ -1815,7 +1797,7 @@
     "codesPostaux": [
       "08400"
     ],
-    "_score": 0.0662120494558409,
+    "_score": 0.06621841094597324,
     "departement": {
       "code": "08",
       "nom": "Ardennes"
@@ -1831,7 +1813,7 @@
     "codesPostaux": [
       "91650"
     ],
-    "_score": 0.06592290752333009,
+    "_score": 0.06600138546902624,
     "departement": {
       "code": "91",
       "nom": "Essonne"
@@ -1847,7 +1829,7 @@
     "codesPostaux": [
       "28270"
     ],
-    "_score": 0.06588042079792335,
+    "_score": 0.06588504356288324,
     "departement": {
       "code": "28",
       "nom": "Eure-et-Loir"
@@ -1863,7 +1845,7 @@
     "codesPostaux": [
       "16370"
     ],
-    "_score": 0.06544676578209044,
+    "_score": 0.06542898846964092,
     "departement": {
       "code": "16",
       "nom": "Charente"
@@ -1879,7 +1861,7 @@
     "codesPostaux": [
       "80140"
     ],
-    "_score": 0.06539186520114663,
+    "_score": 0.06538883517622801,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -1895,7 +1877,7 @@
     "codesPostaux": [
       "37130"
     ],
-    "_score": 0.06520362255639056,
+    "_score": 0.06519075394518417,
     "departement": {
       "code": "37",
       "nom": "Indre-et-Loire"
@@ -1911,7 +1893,7 @@
     "codesPostaux": [
       "10220"
     ],
-    "_score": 0.06515315385386708,
+    "_score": 0.06514093073869504,
     "departement": {
       "code": "10",
       "nom": "Aube"
@@ -1927,7 +1909,7 @@
     "codesPostaux": [
       "29690"
     ],
-    "_score": 0.06499527739981928,
+    "_score": 0.06498887290070876,
     "departement": {
       "code": "29",
       "nom": "Finistère"
@@ -1943,7 +1925,7 @@
     "codesPostaux": [
       "57320"
     ],
-    "_score": 0.06499268926122832,
+    "_score": 0.06498369646367093,
     "departement": {
       "code": "57",
       "nom": "Moselle"
@@ -1959,7 +1941,7 @@
     "codesPostaux": [
       "50260"
     ],
-    "_score": 0.06497586636038717,
+    "_score": 0.06497010831644662,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -1975,7 +1957,7 @@
     "codesPostaux": [
       "52000"
     ],
-    "_score": 0.06493704428152294,
+    "_score": 0.06495069667755475,
     "departement": {
       "code": "52",
       "nom": "Haute-Marne"
@@ -1991,7 +1973,7 @@
     "codesPostaux": [
       "28210"
     ],
-    "_score": 0.06492022138068179,
+    "_score": 0.06493710853033044,
     "departement": {
       "code": "28",
       "nom": "Eure-et-Loir"
@@ -2007,7 +1989,7 @@
     "codesPostaux": [
       "67220"
     ],
-    "_score": 0.06490081034124968,
+    "_score": 0.06491769689143859,
     "departement": {
       "code": "67",
       "nom": "Bas-Rhin"
@@ -2018,28 +2000,12 @@
     }
   },
   {
-    "nom": "Bresilley",
-    "code": "70092",
-    "codesPostaux": [
-      "70140"
-    ],
-    "_score": 0.06483222466858957,
-    "departement": {
-      "code": "70",
-      "nom": "Haute-Saône"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Brézilhac",
     "code": "11051",
     "codesPostaux": [
       "11270"
     ],
-    "_score": 0.06481540176774842,
+    "_score": 0.06482257986086844,
     "departement": {
       "code": "11",
       "nom": "Aude"
@@ -2050,12 +2016,28 @@
     }
   },
   {
+    "nom": "Bresilley",
+    "code": "70092",
+    "codesPostaux": [
+      "70140"
+    ],
+    "_score": 0.06481999164234953,
+    "departement": {
+      "code": "70",
+      "nom": "Haute-Saône"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Vernou-sur-Brenne",
     "code": "37270",
     "codesPostaux": [
       "37210"
     ],
-    "_score": 0.06416587419730603,
+    "_score": 0.06417388502400974,
     "departement": {
       "code": "37",
       "nom": "Indre-et-Loire"
@@ -2071,7 +2053,7 @@
     "codesPostaux": [
       "21560"
     ],
-    "_score": 0.06411663606270818,
+    "_score": 0.06413418398011654,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -2087,7 +2069,7 @@
     "codesPostaux": [
       "21490"
     ],
-    "_score": 0.06389669881011098,
+    "_score": 0.06389834456369947,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -2103,7 +2085,7 @@
     "codesPostaux": [
       "60400"
     ],
-    "_score": 0.06358261054195695,
+    "_score": 0.06359248056996021,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -2119,7 +2101,7 @@
     "codesPostaux": [
       "27800"
     ],
-    "_score": 0.06341226831588147,
+    "_score": 0.06341390159224909,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -2135,7 +2117,7 @@
     "codesPostaux": [
       "56660"
     ],
-    "_score": 0.06301343553774573,
+    "_score": 0.06306659883761191,
     "departement": {
       "code": "56",
       "nom": "Morbihan"
@@ -2151,7 +2133,7 @@
     "codesPostaux": [
       "57340"
     ],
-    "_score": 0.0629322502940843,
+    "_score": 0.06293371442851242,
     "departement": {
       "code": "57",
       "nom": "Moselle"
@@ -2167,7 +2149,7 @@
     "codesPostaux": [
       "76340"
     ],
-    "_score": 0.06284691395936477,
+    "_score": 0.0628145678637551,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -2183,7 +2165,7 @@
     "codesPostaux": [
       "17920"
     ],
-    "_score": 0.06252280772825461,
+    "_score": 0.06262368252642994,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -2199,7 +2181,7 @@
     "codesPostaux": [
       "49390"
     ],
-    "_score": 0.06209438254783577,
+    "_score": 0.062096314096952994,
     "departement": {
       "code": "49",
       "nom": "Maine-et-Loire"
@@ -2215,7 +2197,7 @@
     "codesPostaux": [
       "46130"
     ],
-    "_score": 0.06162551695451397,
+    "_score": 0.061625448503438006,
     "departement": {
       "code": "46",
       "nom": "Lot"
@@ -2231,7 +2213,7 @@
     "codesPostaux": [
       "10450"
     ],
-    "_score": 0.061252531969483666,
+    "_score": 0.061278255451512095,
     "departement": {
       "code": "10",
       "nom": "Aube"
@@ -2247,7 +2229,7 @@
     "codesPostaux": [
       "25250"
     ],
-    "_score": 0.060835220202574376,
+    "_score": 0.06083999274356861,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -2263,7 +2245,7 @@
     "codesPostaux": [
       "60870"
     ],
-    "_score": 0.06079378290939766,
+    "_score": 0.060777786476205395,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -2274,28 +2256,12 @@
     }
   },
   {
-    "nom": "Breuilpont",
-    "code": "27114",
-    "codesPostaux": [
-      "27640"
-    ],
-    "_score": 0.06030881961730673,
-    "departement": {
-      "code": "27",
-      "nom": "Eure"
-    },
-    "region": {
-      "code": "28",
-      "nom": "Normandie"
-    }
-  },
-  {
     "nom": "Saint-Lager-Bressac",
     "code": "07260",
     "codesPostaux": [
       "07210"
     ],
-    "_score": 0.06030803806412162,
+    "_score": 0.06033098755505954,
     "departement": {
       "code": "07",
       "nom": "Ardèche"
@@ -2306,12 +2272,28 @@
     }
   },
   {
+    "nom": "Breuilpont",
+    "code": "27114",
+    "codesPostaux": [
+      "27640"
+    ],
+    "_score": 0.060304128338861535,
+    "departement": {
+      "code": "27",
+      "nom": "Eure"
+    },
+    "region": {
+      "code": "28",
+      "nom": "Normandie"
+    }
+  },
+  {
     "nom": "Brenthonne",
     "code": "74048",
     "codesPostaux": [
       "74890"
     ],
-    "_score": 0.06018370623728328,
+    "_score": 0.06023263277096059,
     "departement": {
       "code": "74",
       "nom": "Haute-Savoie"
@@ -2327,7 +2309,7 @@
     "codesPostaux": [
       "54190"
     ],
-    "_score": 0.0601370643547926,
+    "_score": 0.06016613858635289,
     "departement": {
       "code": "54",
       "nom": "Meurthe-et-Moselle"
@@ -2343,7 +2325,7 @@
     "codesPostaux": [
       "70280"
     ],
-    "_score": 0.059758320745203534,
+    "_score": 0.05975897463361673,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -2359,7 +2341,7 @@
     "codesPostaux": [
       "55150"
     ],
-    "_score": 0.05968086960518901,
+    "_score": 0.0596797337125265,
     "departement": {
       "code": "55",
       "nom": "Meuse"
@@ -2375,7 +2357,7 @@
     "codesPostaux": [
       "87300"
     ],
-    "_score": 0.05965763426318464,
+    "_score": 0.05965113548536612,
     "departement": {
       "code": "87",
       "nom": "Haute-Vienne"
@@ -2391,7 +2373,7 @@
     "codesPostaux": [
       "25530"
     ],
-    "_score": 0.05962844114117918,
+    "_score": 0.05963564477898758,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -2407,7 +2389,7 @@
     "codesPostaux": [
       "62170"
     ],
-    "_score": 0.05954077802480666,
+    "_score": 0.05952310198606958,
     "departement": {
       "code": "62",
       "nom": "Pas-de-Calais"
@@ -2418,28 +2400,12 @@
     }
   },
   {
-    "nom": "Albepierre-Bredons",
-    "code": "15025",
-    "codesPostaux": [
-      "15300"
-    ],
-    "_score": 0.05927763200719742,
-    "departement": {
-      "code": "15",
-      "nom": "Cantal"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
     "nom": "Saint-Hilaire-de-Brethmas",
     "code": "30259",
     "codesPostaux": [
       "30560"
     ],
-    "_score": 0.05922935607516563,
+    "_score": 0.059360844549030276,
     "departement": {
       "code": "30",
       "nom": "Gard"
@@ -2450,12 +2416,28 @@
     }
   },
   {
+    "nom": "Albepierre-Bredons",
+    "code": "15025",
+    "codesPostaux": [
+      "15300"
+    ],
+    "_score": 0.05927768857069807,
+    "departement": {
+      "code": "15",
+      "nom": "Cantal"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
     "nom": "Saint-Junien-la-Bregère",
     "code": "23205",
     "codesPostaux": [
       "23400"
     ],
-    "_score": 0.05898583488750071,
+    "_score": 0.0589899569247639,
     "departement": {
       "code": "23",
       "nom": "Creuse"
@@ -2471,7 +2453,7 @@
     "codesPostaux": [
       "87260"
     ],
-    "_score": 0.05895145879279713,
+    "_score": 0.05895875777367571,
     "departement": {
       "code": "87",
       "nom": "Haute-Vienne"
@@ -2487,7 +2469,7 @@
     "codesPostaux": [
       "38870"
     ],
-    "_score": 0.058557855170063296,
+    "_score": 0.05856001736021027,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -2503,7 +2485,7 @@
     "codesPostaux": [
       "94450"
     ],
-    "_score": 0.057969484350469155,
+    "_score": 0.05848829107771604,
     "departement": {
       "code": "94",
       "nom": "Val-de-Marne"
@@ -2514,44 +2496,12 @@
     }
   },
   {
-    "nom": "Pierre-de-Bresse",
-    "code": "71351",
-    "codesPostaux": [
-      "71270"
-    ],
-    "_score": 0.057556932534038645,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Saint-Antoine-de-Breuilh",
-    "code": "24370",
-    "codesPostaux": [
-      "24230"
-    ],
-    "_score": 0.057372776048049086,
-    "departement": {
-      "code": "24",
-      "nom": "Dordogne"
-    },
-    "region": {
-      "code": "75",
-      "nom": "Nouvelle-Aquitaine"
-    }
-  },
-  {
     "nom": "Brétigny-sur-Orge",
     "code": "91103",
     "codesPostaux": [
       "91220"
     ],
-    "_score": 0.057170370384952734,
+    "_score": 0.05768815456706814,
     "departement": {
       "code": "91",
       "nom": "Essonne"
@@ -2562,12 +2512,44 @@
     }
   },
   {
+    "nom": "Saint-Antoine-de-Breuilh",
+    "code": "24370",
+    "codesPostaux": [
+      "24230"
+    ],
+    "_score": 0.05735985164253415,
+    "departement": {
+      "code": "24",
+      "nom": "Dordogne"
+    },
+    "region": {
+      "code": "75",
+      "nom": "Nouvelle-Aquitaine"
+    }
+  },
+  {
+    "nom": "Pierre-de-Bresse",
+    "code": "71351",
+    "codesPostaux": [
+      "71270"
+    ],
+    "_score": 0.05710549932017581,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Le Brévedent",
     "code": "14104",
     "codesPostaux": [
       "14130"
     ],
-    "_score": 0.05691851854192081,
+    "_score": 0.05691662716442394,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -2583,7 +2565,7 @@
     "codesPostaux": [
       "03000"
     ],
-    "_score": 0.05659142499235799,
+    "_score": 0.05660815097907743,
     "departement": {
       "code": "03",
       "nom": "Allier"
@@ -2599,7 +2581,7 @@
     "codesPostaux": [
       "78610"
     ],
-    "_score": 0.056523184196672446,
+    "_score": 0.056574425607292,
     "departement": {
       "code": "78",
       "nom": "Yvelines"
@@ -2615,7 +2597,7 @@
     "codesPostaux": [
       "01360"
     ],
-    "_score": 0.056474994400577544,
+    "_score": 0.05650067352532683,
     "departement": {
       "code": "01",
       "nom": "Ain"
@@ -2631,7 +2613,7 @@
     "codesPostaux": [
       "60840"
     ],
-    "_score": 0.0562934252697209,
+    "_score": 0.05632343366173914,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -2647,7 +2629,7 @@
     "codesPostaux": [
       "70400"
     ],
-    "_score": 0.05610101761839628,
+    "_score": 0.056107767989119234,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -2663,7 +2645,7 @@
     "codesPostaux": [
       "80220"
     ],
-    "_score": 0.056075900488096804,
+    "_score": 0.05606704484102299,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -2679,7 +2661,7 @@
     "codesPostaux": [
       "62140"
     ],
-    "_score": 0.05606524827950408,
+    "_score": 0.05606684526148979,
     "departement": {
       "code": "62",
       "nom": "Pas-de-Calais"
@@ -2695,7 +2677,7 @@
     "codesPostaux": [
       "80600"
     ],
-    "_score": 0.05603726015647994,
+    "_score": 0.05603773678443233,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -2706,28 +2688,12 @@
     }
   },
   {
-    "nom": "Saint-Martin-en-Bresse",
-    "code": "71456",
-    "codesPostaux": [
-      "71620"
-    ],
-    "_score": 0.05600430644962424,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Bréchaumont",
     "code": "68050",
     "codesPostaux": [
       "68210"
     ],
-    "_score": 0.055981150796819805,
+    "_score": 0.055978976868679156,
     "departement": {
       "code": "68",
       "nom": "Haut-Rhin"
@@ -2743,7 +2709,7 @@
     "codesPostaux": [
       "57720"
     ],
-    "_score": 0.05593654918879134,
+    "_score": 0.05593102865933783,
     "departement": {
       "code": "57",
       "nom": "Moselle"
@@ -2759,7 +2725,7 @@
     "codesPostaux": [
       "54290"
     ],
-    "_score": 0.05584400085213229,
+    "_score": 0.05584684052433155,
     "departement": {
       "code": "54",
       "nom": "Meurthe-et-Moselle"
@@ -2775,7 +2741,7 @@
     "codesPostaux": [
       "25640"
     ],
-    "_score": 0.05580553196520775,
+    "_score": 0.05580279507621568,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -2791,10 +2757,26 @@
     "codesPostaux": [
       "39120"
     ],
-    "_score": 0.05577375331948747,
+    "_score": 0.05577770589690917,
     "departement": {
       "code": "39",
       "nom": "Jura"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
+    "nom": "Saint-Martin-en-Bresse",
+    "code": "71456",
+    "codesPostaux": [
+      "71620"
+    ],
+    "_score": 0.05557484136585594,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
     },
     "region": {
       "code": "27",
@@ -2807,7 +2789,7 @@
     "codesPostaux": [
       "70160"
     ],
-    "_score": 0.05546870259077746,
+    "_score": 0.055481987744596714,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -2818,28 +2800,12 @@
     }
   },
   {
-    "nom": "Montigny-le-Bretonneux",
-    "code": "78423",
-    "codesPostaux": [
-      "78180"
-    ],
-    "_score": 0.05501136726452012,
-    "departement": {
-      "code": "78",
-      "nom": "Yvelines"
-    },
-    "region": {
-      "code": "11",
-      "nom": "Île-de-France"
-    }
-  },
-  {
     "nom": "Lamotte-Brebière",
     "code": "80461",
     "codesPostaux": [
       "80450"
     ],
-    "_score": 0.054748357412419145,
+    "_score": 0.05474418087983676,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -2850,12 +2816,28 @@
     }
   },
   {
+    "nom": "Montigny-le-Bretonneux",
+    "code": "78423",
+    "codesPostaux": [
+      "78180"
+    ],
+    "_score": 0.05472219962582606,
+    "departement": {
+      "code": "78",
+      "nom": "Yvelines"
+    },
+    "region": {
+      "code": "11",
+      "nom": "Île-de-France"
+    }
+  },
+  {
     "nom": "Bretenière",
     "code": "21106",
     "codesPostaux": [
       "21110"
     ],
-    "_score": 0.05435429728399854,
+    "_score": 0.05437138377162283,
     "departement": {
       "code": "21",
       "nom": "Côte-d'Or"
@@ -2871,7 +2853,7 @@
     "codesPostaux": [
       "70190"
     ],
-    "_score": 0.05373831837310714,
+    "_score": 0.053753316328749655,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"
@@ -2887,7 +2869,7 @@
     "codesPostaux": [
       "61110"
     ],
-    "_score": 0.05354219075652308,
+    "_score": 0.05354489956928158,
     "departement": {
       "code": "61",
       "nom": "Orne"
@@ -2903,7 +2885,7 @@
     "codesPostaux": [
       "76390"
     ],
-    "_score": 0.053341187574868054,
+    "_score": 0.05333454732560853,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -2919,7 +2901,7 @@
     "codesPostaux": [
       "90130"
     ],
-    "_score": 0.05304339670062409,
+    "_score": 0.053050669042568645,
     "departement": {
       "code": "90",
       "nom": "Territoire de Belfort"
@@ -2935,7 +2917,7 @@
     "codesPostaux": [
       "51240"
     ],
-    "_score": 0.05303915288322582,
+    "_score": 0.05304146841894365,
     "departement": {
       "code": "51",
       "nom": "Marne"
@@ -2951,7 +2933,7 @@
     "codesPostaux": [
       "36110"
     ],
-    "_score": 0.052988902596810286,
+    "_score": 0.052976598097460845,
     "departement": {
       "code": "36",
       "nom": "Indre"
@@ -2967,7 +2949,7 @@
     "codesPostaux": [
       "01300"
     ],
-    "_score": 0.05294294279817482,
+    "_score": 0.05293361255771155,
     "departement": {
       "code": "01",
       "nom": "Ain"
@@ -2983,7 +2965,7 @@
     "codesPostaux": [
       "27220"
     ],
-    "_score": 0.052867874467086795,
+    "_score": 0.052871617755978165,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -2999,7 +2981,7 @@
     "codesPostaux": [
       "41160"
     ],
-    "_score": 0.052852045446208,
+    "_score": 0.052856843546908824,
     "departement": {
       "code": "41",
       "nom": "Loir-et-Cher"
@@ -3015,7 +2997,7 @@
     "codesPostaux": [
       "60600"
     ],
-    "_score": 0.05282270576615217,
+    "_score": 0.05284642465613371,
     "departement": {
       "code": "60",
       "nom": "Oise"
@@ -3031,7 +3013,7 @@
     "codesPostaux": [
       "67220"
     ],
-    "_score": 0.05273478281387885,
+    "_score": 0.05272423678866754,
     "departement": {
       "code": "67",
       "nom": "Bas-Rhin"
@@ -3042,28 +3024,12 @@
     }
   },
   {
-    "nom": "Bréville-sur-Mer",
-    "code": "50081",
-    "codesPostaux": [
-      "50290"
-    ],
-    "_score": 0.05243552865282585,
-    "departement": {
-      "code": "50",
-      "nom": "Manche"
-    },
-    "region": {
-      "code": "28",
-      "nom": "Normandie"
-    }
-  },
-  {
     "nom": "Saint-Nom-la-Bretèche",
     "code": "78571",
     "codesPostaux": [
       "78860"
     ],
-    "_score": 0.052387289212608795,
+    "_score": 0.05239431676150032,
     "departement": {
       "code": "78",
       "nom": "Yvelines"
@@ -3074,12 +3040,28 @@
     }
   },
   {
+    "nom": "Bréville-sur-Mer",
+    "code": "50081",
+    "codesPostaux": [
+      "50290"
+    ],
+    "_score": 0.052394084855251426,
+    "departement": {
+      "code": "50",
+      "nom": "Manche"
+    },
+    "region": {
+      "code": "28",
+      "nom": "Normandie"
+    }
+  },
+  {
     "nom": "Breuil-Magné",
     "code": "17065",
     "codesPostaux": [
       "17870"
     ],
-    "_score": 0.052143613407976463,
+    "_score": 0.052205902829138874,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -3095,23 +3077,7 @@
     "codesPostaux": [
       "71370"
     ],
-    "_score": 0.052105533714817846,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Saint-André-en-Bresse",
-    "code": "71386",
-    "codesPostaux": [
-      "71440"
-    ],
-    "_score": 0.05197969016668315,
+    "_score": 0.05170226062195464,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3127,7 +3093,7 @@
     "codesPostaux": [
       "85120"
     ],
-    "_score": 0.05162708607880255,
+    "_score": 0.0515970382854975,
     "departement": {
       "code": "85",
       "nom": "Vendée"
@@ -3138,12 +3104,12 @@
     }
   },
   {
-    "nom": "Saint-Vincent-en-Bresse",
-    "code": "71489",
+    "nom": "Saint-André-en-Bresse",
+    "code": "71386",
     "codesPostaux": [
       "71440"
     ],
-    "_score": 0.051177589575332194,
+    "_score": 0.05158323962631257,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3151,54 +3117,6 @@
     "region": {
       "code": "27",
       "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Dampierre-en-Bresse",
-    "code": "71168",
-    "codesPostaux": [
-      "71310"
-    ],
-    "_score": 0.051059325522983014,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Saint-Christophe-en-Bresse",
-    "code": "71398",
-    "codesPostaux": [
-      "71370"
-    ],
-    "_score": 0.05094855886722091,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Saint-Merd-la-Breuille",
-    "code": "23221",
-    "codesPostaux": [
-      "23100"
-    ],
-    "_score": 0.05083350887240659,
-    "departement": {
-      "code": "23",
-      "nom": "Creuse"
-    },
-    "region": {
-      "code": "75",
-      "nom": "Nouvelle-Aquitaine"
     }
   },
   {
@@ -3207,7 +3125,7 @@
     "codesPostaux": [
       "14130"
     ],
-    "_score": 0.05083341958241943,
+    "_score": 0.05083874075886905,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -3218,12 +3136,44 @@
     }
   },
   {
+    "nom": "Saint-Merd-la-Breuille",
+    "code": "23221",
+    "codesPostaux": [
+      "23100"
+    ],
+    "_score": 0.05083655253200104,
+    "departement": {
+      "code": "23",
+      "nom": "Creuse"
+    },
+    "region": {
+      "code": "75",
+      "nom": "Nouvelle-Aquitaine"
+    }
+  },
+  {
+    "nom": "Saint-Vincent-en-Bresse",
+    "code": "71489",
+    "codesPostaux": [
+      "71440"
+    ],
+    "_score": 0.050781933158271966,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Saint-Ouen-du-Breuil",
     "code": "76628",
     "codesPostaux": [
       "76890"
     ],
-    "_score": 0.050742706661192676,
+    "_score": 0.05074580353437746,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -3234,12 +3184,44 @@
     }
   },
   {
-    "nom": "Saint-Bonnet-en-Bresse",
-    "code": "71396",
+    "nom": "Dampierre-en-Bresse",
+    "code": "71168",
     "codesPostaux": [
       "71310"
     ],
-    "_score": 0.0505044408224393,
+    "_score": 0.050669203938534725,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
+    "nom": "Breuil-sur-Vesle",
+    "code": "51086",
+    "codesPostaux": [
+      "51140"
+    ],
+    "_score": 0.05059780218175694,
+    "departement": {
+      "code": "51",
+      "nom": "Marne"
+    },
+    "region": {
+      "code": "44",
+      "nom": "Grand Est"
+    }
+  },
+  {
+    "nom": "Saint-Christophe-en-Bresse",
+    "code": "71398",
+    "codesPostaux": [
+      "71370"
+    ],
+    "_score": 0.050521698143919595,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3255,7 +3237,7 @@
     "codesPostaux": [
       "25380"
     ],
-    "_score": 0.05048804548417,
+    "_score": 0.050490611689639815,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -3271,7 +3253,7 @@
     "codesPostaux": [
       "88350"
     ],
-    "_score": 0.050380298448651904,
+    "_score": 0.05038084730115638,
     "departement": {
       "code": "88",
       "nom": "Vosges"
@@ -3287,7 +3269,7 @@
     "codesPostaux": [
       "39700"
     ],
-    "_score": 0.05034468231226865,
+    "_score": 0.050345516463700585,
     "departement": {
       "code": "39",
       "nom": "Jura"
@@ -3303,7 +3285,7 @@
     "codesPostaux": [
       "25640"
     ],
-    "_score": 0.05026983340322327,
+    "_score": 0.05027016396450326,
     "departement": {
       "code": "25",
       "nom": "Doubs"
@@ -3319,7 +3301,7 @@
     "codesPostaux": [
       "17470"
     ],
-    "_score": 0.050199601746058975,
+    "_score": 0.050203229288170996,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -3330,60 +3312,12 @@
     }
   },
   {
-    "nom": "Bresse Vallons",
-    "code": "01130",
+    "nom": "Saint-Bonnet-en-Bresse",
+    "code": "71396",
     "codesPostaux": [
-      "01340"
+      "71310"
     ],
-    "_score": 0.049948338990057475,
-    "departement": {
-      "code": "01",
-      "nom": "Ain"
-    },
-    "region": {
-      "code": "84",
-      "nom": "Auvergne-Rhône-Alpes"
-    }
-  },
-  {
-    "nom": "Trosly-Breuil",
-    "code": "60647",
-    "codesPostaux": [
-      "60350"
-    ],
-    "_score": 0.0496738496370577,
-    "departement": {
-      "code": "60",
-      "nom": "Oise"
-    },
-    "region": {
-      "code": "32",
-      "nom": "Hauts-de-France"
-    }
-  },
-  {
-    "nom": "Breuil-Bois-Robert",
-    "code": "78104",
-    "codesPostaux": [
-      "78930"
-    ],
-    "_score": 0.04931399242885165,
-    "departement": {
-      "code": "78",
-      "nom": "Yvelines"
-    },
-    "region": {
-      "code": "11",
-      "nom": "Île-de-France"
-    }
-  },
-  {
-    "nom": "Saint-Didier-en-Bresse",
-    "code": "71405",
-    "codesPostaux": [
-      "71620"
-    ],
-    "_score": 0.04903052688371311,
+    "_score": 0.050118385951232934,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3394,19 +3328,51 @@
     }
   },
   {
-    "nom": "Saint-Pardoux-du-Breuil",
-    "code": "47263",
+    "nom": "Trosly-Breuil",
+    "code": "60647",
     "codesPostaux": [
-      "47200"
+      "60350"
     ],
-    "_score": 0.04896499643344739,
+    "_score": 0.04966079981322255,
     "departement": {
-      "code": "47",
-      "nom": "Lot-et-Garonne"
+      "code": "60",
+      "nom": "Oise"
     },
     "region": {
-      "code": "75",
-      "nom": "Nouvelle-Aquitaine"
+      "code": "32",
+      "nom": "Hauts-de-France"
+    }
+  },
+  {
+    "nom": "Bresse Vallons",
+    "code": "01130",
+    "codesPostaux": [
+      "01340"
+    ],
+    "_score": 0.04959085259519554,
+    "departement": {
+      "code": "01",
+      "nom": "Ain"
+    },
+    "region": {
+      "code": "84",
+      "nom": "Auvergne-Rhône-Alpes"
+    }
+  },
+  {
+    "nom": "Breuil-Bois-Robert",
+    "code": "78104",
+    "codesPostaux": [
+      "78930"
+    ],
+    "_score": 0.04932930842629274,
+    "departement": {
+      "code": "78",
+      "nom": "Yvelines"
+    },
+    "region": {
+      "code": "11",
+      "nom": "Île-de-France"
     }
   },
   {
@@ -3415,7 +3381,7 @@
     "codesPostaux": [
       "14860"
     ],
-    "_score": 0.04891979148020247,
+    "_score": 0.04900317702931695,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -3426,12 +3392,28 @@
     }
   },
   {
-    "nom": "Bresse-sur-Grosne",
-    "code": "71058",
+    "nom": "Saint-Pardoux-du-Breuil",
+    "code": "47263",
     "codesPostaux": [
-      "71460"
+      "47200"
     ],
-    "_score": 0.04837736084621766,
+    "_score": 0.04896501184341545,
+    "departement": {
+      "code": "47",
+      "nom": "Lot-et-Garonne"
+    },
+    "region": {
+      "code": "75",
+      "nom": "Nouvelle-Aquitaine"
+    }
+  },
+  {
+    "nom": "Saint-Didier-en-Bresse",
+    "code": "71405",
+    "codesPostaux": [
+      "71620"
+    ],
+    "_score": 0.04865094910360559,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3447,7 +3429,7 @@
     "codesPostaux": [
       "14330"
     ],
-    "_score": 0.04836845386454155,
+    "_score": 0.048378159663006376,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -3458,12 +3440,28 @@
     }
   },
   {
+    "nom": "Sainte-Croix-en-Bresse",
+    "code": "71401",
+    "codesPostaux": [
+      "71470"
+    ],
+    "_score": 0.04809842856814092,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Bretignolles",
     "code": "79050",
     "codesPostaux": [
       "79140"
     ],
-    "_score": 0.04800090982134428,
+    "_score": 0.04799027530911625,
     "departement": {
       "code": "79",
       "nom": "Deux-Sèvres"
@@ -3474,12 +3472,12 @@
     }
   },
   {
-    "nom": "Beaurepaire-en-Bresse",
-    "code": "71027",
+    "nom": "Bresse-sur-Grosne",
+    "code": "71058",
     "codesPostaux": [
-      "71580"
+      "71460"
     ],
-    "_score": 0.04780869337549036,
+    "_score": 0.04798238276206246,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3495,7 +3493,7 @@
     "codesPostaux": [
       "76700"
     ],
-    "_score": 0.047663044236969286,
+    "_score": 0.04768557696080356,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -3506,28 +3504,12 @@
     }
   },
   {
-    "nom": "La Chaux-en-Bresse",
-    "code": "39132",
-    "codesPostaux": [
-      "39230"
-    ],
-    "_score": 0.0475045483137122,
-    "departement": {
-      "code": "39",
-      "nom": "Jura"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Belmont-Bretenoux",
     "code": "46024",
     "codesPostaux": [
       "46130"
     ],
-    "_score": 0.04749745592284203,
+    "_score": 0.047501825241240116,
     "departement": {
       "code": "46",
       "nom": "Lot"
@@ -3538,12 +3520,12 @@
     }
   },
   {
-    "nom": "Châtenoy-en-Bresse",
-    "code": "71117",
+    "nom": "Beaurepaire-en-Bresse",
+    "code": "71027",
     "codesPostaux": [
-      "71380"
+      "71580"
     ],
-    "_score": 0.04717970743064205,
+    "_score": 0.04744809587273597,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3559,7 +3541,7 @@
     "codesPostaux": [
       "80800"
     ],
-    "_score": 0.047109427080818334,
+    "_score": 0.047167320961117046,
     "departement": {
       "code": "80",
       "nom": "Somme"
@@ -3570,12 +3552,28 @@
     }
   },
   {
+    "nom": "La Chaux-en-Bresse",
+    "code": "39132",
+    "codesPostaux": [
+      "39230"
+    ],
+    "_score": 0.04712256367122812,
+    "departement": {
+      "code": "39",
+      "nom": "Jura"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Le Breuil-sur-Couze",
     "code": "63052",
     "codesPostaux": [
       "63340"
     ],
-    "_score": 0.04706195811139888,
+    "_score": 0.04705786592823914,
     "departement": {
       "code": "63",
       "nom": "Puy-de-Dôme"
@@ -3586,12 +3584,28 @@
     }
   },
   {
+    "nom": "Châtenoy-en-Bresse",
+    "code": "71117",
+    "codesPostaux": [
+      "71380"
+    ],
+    "_score": 0.04678496364376343,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Breistroff-la-Grande",
     "code": "57109",
     "codesPostaux": [
       "57570"
     ],
-    "_score": 0.04661668961248673,
+    "_score": 0.04664909401761615,
     "departement": {
       "code": "57",
       "nom": "Moselle"
@@ -3607,7 +3621,7 @@
     "codesPostaux": [
       "01340"
     ],
-    "_score": 0.0465389399048014,
+    "_score": 0.04620852313067856,
     "departement": {
       "code": "01",
       "nom": "Ain"
@@ -3623,7 +3637,7 @@
     "codesPostaux": [
       "50110"
     ],
-    "_score": 0.04613957136493545,
+    "_score": 0.04611551209506927,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -3639,7 +3653,7 @@
     "codesPostaux": [
       "38870"
     ],
-    "_score": 0.046068592781615375,
+    "_score": 0.04605748027396169,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -3655,39 +3669,7 @@
     "codesPostaux": [
       "71440"
     ],
-    "_score": 0.045670504927317036,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Flacey-en-Bresse",
-    "code": "71198",
-    "codesPostaux": [
-      "71580"
-    ],
-    "_score": 0.04559874094905212,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
-    "nom": "Serrigny-en-Bresse",
-    "code": "71519",
-    "codesPostaux": [
-      "71310"
-    ],
-    "_score": 0.04551153408938842,
+    "_score": 0.0452908936499307,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3703,7 +3685,7 @@
     "codesPostaux": [
       "17700"
     ],
-    "_score": 0.04524343509633703,
+    "_score": 0.045242257912973996,
     "departement": {
       "code": "17",
       "nom": "Charente-Maritime"
@@ -3714,12 +3696,44 @@
     }
   },
   {
+    "nom": "Flacey-en-Bresse",
+    "code": "71198",
+    "codesPostaux": [
+      "71580"
+    ],
+    "_score": 0.04523368258264794,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
+    "nom": "Serrigny-en-Bresse",
+    "code": "71519",
+    "codesPostaux": [
+      "71310"
+    ],
+    "_score": 0.04513322535426956,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
     "nom": "Loc-Brévalaire",
     "code": "29126",
     "codesPostaux": [
       "29260"
     ],
-    "_score": 0.04483447965279953,
+    "_score": 0.04483999169636122,
     "departement": {
       "code": "29",
       "nom": "Finistère"
@@ -3735,7 +3749,7 @@
     "codesPostaux": [
       "71330"
     ],
-    "_score": 0.04474419337754791,
+    "_score": 0.04438573241885225,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3751,7 +3765,7 @@
     "codesPostaux": [
       "71270"
     ],
-    "_score": 0.04465748327152328,
+    "_score": 0.044282982563872246,
     "departement": {
       "code": "71",
       "nom": "Saône-et-Loire"
@@ -3767,7 +3781,7 @@
     "codesPostaux": [
       "52240"
     ],
-    "_score": 0.04412431396148925,
+    "_score": 0.04412956393970899,
     "departement": {
       "code": "52",
       "nom": "Haute-Marne"
@@ -3783,7 +3797,7 @@
     "codesPostaux": [
       "02200"
     ],
-    "_score": 0.043684158479631086,
+    "_score": 0.04367152292751496,
     "departement": {
       "code": "02",
       "nom": "Aisne"
@@ -3799,7 +3813,7 @@
     "codesPostaux": [
       "78660"
     ],
-    "_score": 0.04352959352722569,
+    "_score": 0.04353414156807862,
     "departement": {
       "code": "78",
       "nom": "Yvelines"
@@ -3815,7 +3829,7 @@
     "codesPostaux": [
       "16140"
     ],
-    "_score": 0.04349840056087918,
+    "_score": 0.04349718753252997,
     "departement": {
       "code": "16",
       "nom": "Charente"
@@ -3826,28 +3840,12 @@
     }
   },
   {
-    "nom": "Montpont-en-Bresse",
-    "code": "71318",
-    "codesPostaux": [
-      "71470"
-    ],
-    "_score": 0.04335990221371771,
-    "departement": {
-      "code": "71",
-      "nom": "Saône-et-Loire"
-    },
-    "region": {
-      "code": "27",
-      "nom": "Bourgogne-Franche-Comté"
-    }
-  },
-  {
     "nom": "Breuschwickersheim",
     "code": "67065",
     "codesPostaux": [
       "67112"
     ],
-    "_score": 0.043349079484291175,
+    "_score": 0.0433739647233756,
     "departement": {
       "code": "67",
       "nom": "Bas-Rhin"
@@ -3863,10 +3861,26 @@
     "codesPostaux": [
       "25110"
     ],
-    "_score": 0.04306713952313971,
+    "_score": 0.04307087244033612,
     "departement": {
       "code": "25",
       "nom": "Doubs"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  },
+  {
+    "nom": "Montpont-en-Bresse",
+    "code": "71318",
+    "codesPostaux": [
+      "71470"
+    ],
+    "_score": 0.04300026465571152,
+    "departement": {
+      "code": "71",
+      "nom": "Saône-et-Loire"
     },
     "region": {
       "code": "27",
@@ -3879,7 +3893,7 @@
     "codesPostaux": [
       "27160"
     ],
-    "_score": 0.04277875506795419,
+    "_score": 0.04278675253895941,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -3895,7 +3909,7 @@
     "codesPostaux": [
       "76220"
     ],
-    "_score": 0.04232207586015996,
+    "_score": 0.0423204338263169,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -3911,7 +3925,7 @@
     "codesPostaux": [
       "38870"
     ],
-    "_score": 0.0408048382734321,
+    "_score": 0.04082060527255776,
     "departement": {
       "code": "38",
       "nom": "Isère"
@@ -3922,28 +3936,12 @@
     }
   },
   {
-    "nom": "Voisins-le-Bretonneux",
-    "code": "78688",
-    "codesPostaux": [
-      "78960"
-    ],
-    "_score": 0.04007432753686703,
-    "departement": {
-      "code": "78",
-      "nom": "Yvelines"
-    },
-    "region": {
-      "code": "11",
-      "nom": "Île-de-France"
-    }
-  },
-  {
     "nom": "Bretignolles-sur-Mer",
     "code": "85035",
     "codesPostaux": [
       "85470"
     ],
-    "_score": 0.03981347150537544,
+    "_score": 0.04001369601767447,
     "departement": {
       "code": "85",
       "nom": "Vendée"
@@ -3954,12 +3952,28 @@
     }
   },
   {
+    "nom": "Voisins-le-Bretonneux",
+    "code": "78688",
+    "codesPostaux": [
+      "78960"
+    ],
+    "_score": 0.03993000623072632,
+    "departement": {
+      "code": "78",
+      "nom": "Yvelines"
+    },
+    "region": {
+      "code": "11",
+      "nom": "Île-de-France"
+    }
+  },
+  {
     "nom": "Saint-Laurent-Bretagne",
     "code": "64488",
     "codesPostaux": [
       "64160"
     ],
-    "_score": 0.03927163705593675,
+    "_score": 0.03927648877815503,
     "departement": {
       "code": "64",
       "nom": "Pyrénées-Atlantiques"
@@ -3975,7 +3989,7 @@
     "codesPostaux": [
       "32800"
     ],
-    "_score": 0.03710443608087068,
+    "_score": 0.03709397487165467,
     "departement": {
       "code": "32",
       "nom": "Gers"
@@ -3991,7 +4005,7 @@
     "codesPostaux": [
       "85320"
     ],
-    "_score": 0.03640109800033856,
+    "_score": 0.036398429314661175,
     "departement": {
       "code": "85",
       "nom": "Vendée"
@@ -4007,7 +4021,7 @@
     "codesPostaux": [
       "44130"
     ],
-    "_score": 0.03572656178773471,
+    "_score": 0.035752408696716746,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4023,7 +4037,7 @@
     "codesPostaux": [
       "76560"
     ],
-    "_score": 0.035388829885356694,
+    "_score": 0.03538646089822778,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
@@ -4039,7 +4053,7 @@
     "codesPostaux": [
       "35360"
     ],
-    "_score": 0.034751067329754644,
+    "_score": 0.03486242380433739,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4055,7 +4069,7 @@
     "codesPostaux": [
       "35131"
     ],
-    "_score": 0.03408822457265333,
+    "_score": 0.03427162008493761,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4071,7 +4085,7 @@
     "codesPostaux": [
       "44360"
     ],
-    "_score": 0.0335638049732209,
+    "_score": 0.03364358536681168,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4087,7 +4101,7 @@
     "codesPostaux": [
       "68380"
     ],
-    "_score": 0.03354312030192028,
+    "_score": 0.0335415286481604,
     "departement": {
       "code": "68",
       "nom": "Haut-Rhin"
@@ -4103,7 +4117,7 @@
     "codesPostaux": [
       "44360"
     ],
-    "_score": 0.03350489706021988,
+    "_score": 0.0335379714657439,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4119,7 +4133,7 @@
     "codesPostaux": [
       "35490"
     ],
-    "_score": 0.033378069938672796,
+    "_score": 0.0333838770374377,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4135,7 +4149,7 @@
     "codesPostaux": [
       "35120"
     ],
-    "_score": 0.032774725726422364,
+    "_score": 0.03280163054619762,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4151,7 +4165,7 @@
     "codesPostaux": [
       "35850"
     ],
-    "_score": 0.03270795193314388,
+    "_score": 0.032741670969895824,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4167,7 +4181,7 @@
     "codesPostaux": [
       "40280"
     ],
-    "_score": 0.03266581038700921,
+    "_score": 0.03268762694628664,
     "departement": {
       "code": "40",
       "nom": "Landes"
@@ -4183,7 +4197,7 @@
     "codesPostaux": [
       "35240"
     ],
-    "_score": 0.03263879541319863,
+    "_score": 0.032630628690079204,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4199,7 +4213,7 @@
     "codesPostaux": [
       "35470"
     ],
-    "_score": 0.032091214185171184,
+    "_score": 0.03211235201756004,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4215,7 +4229,7 @@
     "codesPostaux": [
       "44550"
     ],
-    "_score": 0.03204213910216932,
+    "_score": 0.03207225421885388,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4226,28 +4240,12 @@
     }
   },
   {
-    "nom": "La Guerche-de-Bretagne",
-    "code": "35125",
-    "codesPostaux": [
-      "35130"
-    ],
-    "_score": 0.03176787796357325,
-    "departement": {
-      "code": "35",
-      "nom": "Ille-et-Vilaine"
-    },
-    "region": {
-      "code": "53",
-      "nom": "Bretagne"
-    }
-  },
-  {
     "nom": "Bretteville-sur-Odon",
     "code": "14101",
     "codesPostaux": [
       "14760"
     ],
-    "_score": 0.03170061944704387,
+    "_score": 0.0317772563226819,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -4258,12 +4256,28 @@
     }
   },
   {
+    "nom": "La Guerche-de-Bretagne",
+    "code": "35125",
+    "codesPostaux": [
+      "35130"
+    ],
+    "_score": 0.03176368374224514,
+    "departement": {
+      "code": "35",
+      "nom": "Ille-et-Vilaine"
+    },
+    "region": {
+      "code": "53",
+      "nom": "Bretagne"
+    }
+  },
+  {
     "nom": "Sainte-Reine-de-Bretagne",
     "code": "44189",
     "codesPostaux": [
       "44160"
     ],
-    "_score": 0.031320769707085076,
+    "_score": 0.03133440105816264,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4279,7 +4293,7 @@
     "codesPostaux": [
       "53110"
     ],
-    "_score": 0.03100794725134966,
+    "_score": 0.03100204337057796,
     "departement": {
       "code": "53",
       "nom": "Mayenne"
@@ -4295,7 +4309,7 @@
     "codesPostaux": [
       "50430"
     ],
-    "_score": 0.030669483924980506,
+    "_score": 0.030678243861812844,
     "departement": {
       "code": "50",
       "nom": "Manche"
@@ -4311,7 +4325,7 @@
     "codesPostaux": [
       "35320"
     ],
-    "_score": 0.030666718279696536,
+    "_score": 0.03067502445523959,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4322,15 +4336,15 @@
     }
   },
   {
-    "nom": "Varneville-Bretteville",
-    "code": "76721",
+    "nom": "Bretteville-sur-Laize",
+    "code": "14100",
     "codesPostaux": [
-      "76890"
+      "14680"
     ],
-    "_score": 0.03007875025277455,
+    "_score": 0.030093093967244473,
     "departement": {
-      "code": "76",
-      "nom": "Seine-Maritime"
+      "code": "14",
+      "nom": "Calvados"
     },
     "region": {
       "code": "28",
@@ -4338,15 +4352,15 @@
     }
   },
   {
-    "nom": "Bretteville-sur-Laize",
-    "code": "14100",
+    "nom": "Varneville-Bretteville",
+    "code": "76721",
     "codesPostaux": [
-      "14680"
+      "76890"
     ],
-    "_score": 0.030071415718695017,
+    "_score": 0.03008202916741068,
     "departement": {
-      "code": "14",
-      "nom": "Calvados"
+      "code": "76",
+      "nom": "Seine-Maritime"
     },
     "region": {
       "code": "28",
@@ -4359,7 +4373,7 @@
     "codesPostaux": [
       "44520"
     ],
-    "_score": 0.02932878186245817,
+    "_score": 0.029338659631991584,
     "departement": {
       "code": "44",
       "nom": "Loire-Atlantique"
@@ -4375,7 +4389,7 @@
     "codesPostaux": [
       "35320"
     ],
-    "_score": 0.029167667417923378,
+    "_score": 0.029171184000073527,
     "departement": {
       "code": "35",
       "nom": "Ille-et-Vilaine"
@@ -4391,7 +4405,7 @@
     "codesPostaux": [
       "14190"
     ],
-    "_score": 0.02795065492979677,
+    "_score": 0.027951275647187548,
     "departement": {
       "code": "14",
       "nom": "Calvados"
@@ -4407,7 +4421,7 @@
     "codesPostaux": [
       "76110"
     ],
-    "_score": 0.027923231128919927,
+    "_score": 0.027930162245039386,
     "departement": {
       "code": "76",
       "nom": "Seine-Maritime"
