@@ -3,8 +3,7 @@ import {
 	GenericButtonOrLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
-import { usePreventClickAfterTouchOnButton } from '@/hooks/usePreventClickAfterTouch'
-import React, { ForwardedRef, forwardRef, useRef } from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
 type Size = 'XL' | 'MD' | 'XS'
@@ -28,8 +27,6 @@ export const Button = forwardRef(function Button(
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
 ) {
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
-	const buttonRef = useRef<HTMLButtonElement>(null)
-	usePreventClickAfterTouchOnButton(buttonRef)
 
 	return (
 		<StyledButton
@@ -38,7 +35,6 @@ export const Button = forwardRef(function Button(
 			size={size}
 			$light={light}
 			color={color}
-			ref={buttonRef}
 		/>
 	)
 })
