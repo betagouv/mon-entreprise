@@ -3,7 +3,7 @@ import {
 	GenericButtonOrLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
-import { usePreventClickAfterTouch } from '@/hooks/usePreventClickAfterTouch'
+import { usePreventClickAfterTouchOnButton } from '@/hooks/usePreventClickAfterTouch'
 import React, { ForwardedRef, forwardRef, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -29,7 +29,7 @@ export const Button = forwardRef(function Button(
 ) {
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 	const buttonRef = useRef<HTMLButtonElement>(null)
-	usePreventClickAfterTouch(buttonRef)
+	usePreventClickAfterTouchOnButton(buttonRef)
 
 	return (
 		<StyledButton

@@ -1,4 +1,4 @@
-import { usePreventClickAfterTouch } from '@/hooks/usePreventClickAfterTouch'
+import { usePreventClickAfterTouchOnButton } from '@/hooks/usePreventClickAfterTouch'
 import { Grid } from '@mui/material'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
@@ -72,7 +72,7 @@ export default function Popover(
 		},
 		closeButtonRef
 	)
-	usePreventClickAfterTouch(closeButtonRef)
+	usePreventClickAfterTouchOnButton(closeButtonRef)
 
 	const offsetTop = useIFrameOffset()
 	if (offsetTop === undefined) {

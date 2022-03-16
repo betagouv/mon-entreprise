@@ -6,14 +6,19 @@ import { RefObject, useEffect } from 'react'
  * Inspired from this issue https://github.com/adobe/react-spectrum/issues/1513
  * @param buttonRef Ref of the button
  */
-export const usePreventClickAfterTouch = (
+export const usePreventClickAfterTouchOnButton = (
 	buttonRef: RefObject<HTMLButtonElement>
 ) => {
 	useEffect(() => {
 		const button = buttonRef.current
-		const preventDefault = (e: HTMLElementEventMap['touchstart']) =>
-			e.preventDefault()
+		if (button?.nodeName !== 'BUTTON') {
+			return
+		}
 
-		button?.addEventListener('touchstart', preventDefault)
+		const preventDefault = (e: HTMLElementEventMap['touchend']) => {
+			e.preventDefault()
+		}
+
+		button.addEventListener('touchend', preventDefault, { passive: false })
 	}, [buttonRef])
 }
