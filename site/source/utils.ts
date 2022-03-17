@@ -149,13 +149,18 @@ export const getBranch = () => {
  * or hide some features.
  * @returns boolean
  */
-export const isProduction = () =>
-	import.meta.env.PROD && ['master', 'next'].includes(getBranch())
+export const isProduction = () => {
+	return import.meta.env.PROD && ['master', 'next'].includes(getBranch())
+}
 
 /**
  * Is a feature branche
  * @returns boolean
  */
-export const isStaging = () => import.meta.env.PROD && !isProduction()
+export const isStaging = () => {
+	return import.meta.env.PROD && !isProduction()
+}
 
-export const isDevelopment = () => import.meta.env.DEV
+export const isDevelopment = () => {
+	return import.meta.env.DEV
+}
