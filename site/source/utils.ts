@@ -106,7 +106,7 @@ export const getValueFrom = <
  */
 export const wrapperDebounceEvents = <T>(
 	props: T,
-	{ ms = 0, eventsToWrap = ['onPress'] } = {}
+	{ ms = 10, eventsToWrap = ['onPress'] } = {}
 ): T => {
 	if (props && typeof props === 'object') {
 		const castedProps = props as Record<string, unknown>
