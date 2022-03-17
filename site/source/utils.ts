@@ -95,34 +95,41 @@ export const getValueFrom = <
 	key in obj ? obj[key] : undefined
 
 /**
- * Wraps each event function (startind by `on...`) with an asynchronous function
- * that waits x ms before executing the original function
+ * Wraps each event function specified in eventsToWrap (default onPress) with an
+ * asynchronous function that waits x ms before executing the original function
+ * Use this function on button props to avoid ghost click after onPress event
+ * See this issue https://github.com/betagouv/mon-entreprise/issues/1872
+ * Maybe the next version of the react-spectrum will handle that natively (issue https://github.com/adobe/react-spectrum/issues/1513)
  * @param props
  * @param options ms (time of debounce) and eventsToWrap (array of events to wrap with debounce)
  * @returns props
  */
 export const wrapperDebounceEvents = <T>(
 	props: T,
-	{ ms = 0, xxx: eventsToWrap = ['onPress'] } = {}
-): T =>
-	props && typeof props === 'object'
-		? (Object.fromEntries(
-				Object.entries(props).map(([key, val]: [string, unknown]) =>
-					eventsToWrap.includes(key)
-						? [
-								key,
-								val && typeof val === 'function'
-									? async (...params: unknown[]) => {
-											await new Promise((res) =>
-												setTimeout(() => res(val(...params)), ms)
-											)
-									  }
-									: val,
-						  ]
-						: [key, val]
-				)
-		  ) as unknown as T)
-		: props
+	{ ms = 0, eventsToWrap = ['onPress'] } = {}
+): T => {
+	if (props && typeof props === 'object') {
+		const castedProps = props as Record<string, unknown>
+
+		eventsToWrap.forEach((event: string) => {
+			if (event in castedProps) {
+				const original = castedProps[event]
+
+				if (typeof original === 'function') {
+					const debouncedFunction = async (...params: unknown[]) => {
+						await new Promise((res) =>
+							setTimeout(() => res(original(...params)), ms)
+						)
+					}
+
+					castedProps[event] = debouncedFunction
+				}
+			}
+		})
+	}
+
+	return props
+}
 
 /**
  * Return git branch name
