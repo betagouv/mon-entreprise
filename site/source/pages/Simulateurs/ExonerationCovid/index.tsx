@@ -1,15 +1,16 @@
-import exonerationCovid, { DottedNames } from 'exoneration-covid'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { EngineProvider } from '@/components/utils/EngineContext'
 import RuleInput from '@/components/conversation/RuleInput'
-import { useState, useCallback, useRef, useEffect } from 'react'
-import { H3 } from '@/design-system/typography/heading'
-import { Trans } from 'react-i18next'
-import { Grid } from '@mui/material'
+import { EngineProvider } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
+import { H3 } from '@/design-system/typography/heading'
+import { Grid } from '@mui/material'
+import exonerationCovid, { DottedNames } from 'exoneration-covid'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { FormulaireS1S1Bis } from './FormulaireS1S1Bis'
+import { FormulaireS2 } from './FormulaireS2'
 
 export default function ExonérationCovid() {
 	// Use ref to keep state with react fast refresh
@@ -66,9 +67,11 @@ export default function ExonérationCovid() {
 	return (
 		<EngineProvider value={exoCovidEngine}>
 			{step2 ? (
-				<>
+				exoCovidEngine.evaluate('secteur').nodeValue !== 'S2' ? (
 					<FormulaireS1S1Bis onChange={updateSituation} />
-				</>
+				) : (
+					<FormulaireS2 onChange={updateSituation} />
+				)
 			) : (
 				<>
 					<Grid item xs={12}>

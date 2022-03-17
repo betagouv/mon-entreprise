@@ -2,7 +2,6 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
-import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { DottedNames } from 'exoneration-covid'
 import Engine, {
@@ -13,56 +12,8 @@ import Engine, {
 } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
-
-const Recap = styled.div`
-	background: ${({ theme }) => {
-		const colorPalette = theme.colors.bases.primary
-		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
-	}};
-	border-radius: 0.25rem;
-	padding: 1.5rem;
-	${baseParagraphStyle}
-	line-height: 1.5rem;
-	color: white;
-
-	hr {
-		border-color: ${({ theme }) => theme.colors.bases.primary[500]};
-		margin-bottom: 1rem;
-		width: 100%;
-	}
-`
-
-const Bold = styled.div`
-	font-weight: 700;
-	margin-bottom: 0.5rem;
-`
-
-const Italic = styled.div`
-	font-style: italic;
-	margin-bottom: 0.5rem;
-`
-
-const GrandTotal = styled.div`
-	font-size: 1.25rem;
-	line-height: 1.5rem;
-	font-weight: 700;
-`
-
-const Total = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 0.5rem;
-`
-
-const RecapExpert = styled(Ul)`
-	border-radius: 0.25rem;
-	padding: 1.5rem;
-	padding-top: 0;
-	${baseParagraphStyle}
-	line-height: 1.5rem;
-`
 
 const getTotalByMonth = (engine: Engine<DottedNames>) => {
 	type ParsedSituation = typeof engine.parsedSituation
@@ -344,20 +295,18 @@ export const FormulaireS1S1Bis = ({
 
 				<hr />
 
-				<Grid container>
+				<GridTotal container>
 					<Grid item xs>
 						<Trans>
-							<GrandTotal>
-								Montant de l’exonération sociale liée à la crise sanitaire sur
-								l’année 2021
-							</GrandTotal>
+							Montant de l’exonération sociale liée à la crise sanitaire sur
+							l’année 2021
 						</Trans>
 					</Grid>
 
 					<Grid item xs="auto" alignSelf={'end'}>
 						<Total>{formatValue(total)}</Total>
 					</Grid>
-				</Grid>
+				</GridTotal>
 			</Recap>
 
 			<Trans>
