@@ -1,6 +1,7 @@
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { DottedNames } from 'exoneration-covid'
@@ -12,15 +13,14 @@ import Engine, {
 } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
 
-const Json = (props: any) => (
-	<pre css={{ overflow: 'auto' }}>{JSON.stringify(props, null, 2)}</pre>
-)
-
 const Recap = styled.div`
-	background: ${({ theme }) => theme.colors.bases.primary[600]};
+	background: ${({ theme }) => {
+		const colorPalette = theme.colors.bases.primary
+		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
+	}};
 	border-radius: 0.25rem;
 	padding: 1.5rem;
 	${baseParagraphStyle}
@@ -54,6 +54,14 @@ const Total = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 0.5rem;
+`
+
+const RecapExpert = styled(Ul)`
+	border-radius: 0.25rem;
+	padding: 1.5rem;
+	padding-top: 0;
+	${baseParagraphStyle}
+	line-height: 1.5rem;
 `
 
 const getTotalByMonth = (engine: Engine<DottedNames>) => {
@@ -130,7 +138,6 @@ export const FormulaireS1S1Bis = ({
 	const LFSS600 = engine.evaluate('LFSS 600')
 	const LFSS300 = engine.evaluate('LFSS 300')
 	const LFR1 = engine.evaluate('LFR1')
-	const exoS2 = engine.evaluate('exonération S2')
 	const total = engine.evaluate('montant total')
 
 	const totalByMonth = getTotalByMonth(engine)
@@ -160,6 +167,15 @@ export const FormulaireS1S1Bis = ({
 			e.parents.length === 1 &&
 			e.parents[0].nodeKind === 'reference' &&
 			e.parents[0].name === 'mois'
+	)
+
+	const monthsCount = Object.entries(totalByMonth).reduce(
+		(acc, [, node]) => {
+			'dottedName' in node && node.dottedName?.includes('LFSS') && acc.LFSS++
+			'dottedName' in node && node.dottedName?.includes('LFR1') && acc.LFR1++
+			return acc
+		},
+		{ LFSS: 0, LFR1: 0 }
 	)
 
 	let emptyMonthIndex: number[] = []
@@ -344,13 +360,40 @@ export const FormulaireS1S1Bis = ({
 				</Grid>
 			</Recap>
 
-			<Json
-				LFSS600={formatValue(LFSS600)}
-				LFSS300={formatValue(LFSS300)}
-				LFR1={formatValue(LFR1)}
-				exoS2={formatValue(exoS2)}
-				total={formatValue(total)}
-			/>
+			<Trans>
+				<H3>Résumé</H3>
+
+				<RecapExpert>
+					<Li>
+						Secteur d'activité dont relève l'activité principale :{' '}
+						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+					</Li>
+					<Li>
+						Activité exercée en{' '}
+						<Bold as="span">
+							{engine.evaluate("lieu d'exercice").nodeValue}
+						</Bold>
+					</Li>
+					<Li>
+						Début d'activité :{' '}
+						<Bold as="span">
+							{engine.evaluate("début d'activité").nodeValue}
+						</Bold>
+					</Li>
+					<Li>
+						Nombres de mois pour lesquels vous remplissez les conditions
+						d'éligibilité
+						<Ul>
+							<Li>
+								LFSS : <Bold as="span">{monthsCount.LFSS.toString()} mois</Bold>
+							</Li>
+							<Li>
+								LFR1 : <Bold as="span">{monthsCount.LFR1.toString()} mois</Bold>
+							</Li>
+						</Ul>
+					</Li>
+				</RecapExpert>
+			</Trans>
 		</>
 	)
 }

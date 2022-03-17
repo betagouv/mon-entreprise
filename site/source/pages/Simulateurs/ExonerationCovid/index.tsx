@@ -64,80 +64,95 @@ export default function ExonérationCovid() {
 	const step2 = rootDottedNames.every((names) => params[names])
 
 	return (
-		<>
-			<EngineProvider value={exoCovidEngine}>
-				{step2 ? (
-					<>
-						<FormulaireS1S1Bis onChange={updateSituation} />
-					</>
-				) : (
-					<>
+		<EngineProvider value={exoCovidEngine}>
+			{step2 ? (
+				<>
+					<FormulaireS1S1Bis onChange={updateSituation} />
+				</>
+			) : (
+				<>
+					<Grid item xs={12}>
 						<H3>{exoCovidEngine.getRule('secteur').rawNode.question}</H3>
+					</Grid>
+
+					<Grid item xs={8}>
 						<RuleInput
 							dottedName={'secteur'}
 							onChange={(value) => updateSituation('secteur', value)}
 						/>
+					</Grid>
 
+					<Grid item xs={12}>
 						<H3>
 							{exoCovidEngine.getRule("début d'activité").rawNode.question}
 						</H3>
-						<Spacing sm />
+					</Grid>
 
-						<Grid item xs={12} sm={6}>
-							<RuleInput
-								dottedName="début d'activité"
-								onChange={(value) => updateSituation("début d'activité", value)}
-							/>
-						</Grid>
+					<Spacing sm />
 
+					<Grid item xs={12} sm={6}>
+						<RuleInput
+							dottedName="début d'activité"
+							onChange={(value) => updateSituation("début d'activité", value)}
+						/>
+					</Grid>
+
+					<Grid item xs={12}>
 						<H3>
 							{exoCovidEngine.getRule("lieu d'exercice").rawNode.question}
 						</H3>
+					</Grid>
+
+					<Grid item xs={12}>
 						<RuleInput
 							dottedName="lieu d'exercice"
 							onChange={(value) => updateSituation("lieu d'exercice", value)}
 						/>
-					</>
-				)}
-
-				<Spacing lg />
-
-				<Grid container justifyContent={step2 ? '' : 'end'}>
-					<Grid item xs={6} sm="auto">
-						{step2 ? (
-							<Button
-								size="XS"
-								to={{
-									pathname: location.pathname,
-									search: '',
-								}}
-								onClick={setStep1Situation}
-							>
-								← <Trans>Précédent</Trans>
-							</Button>
-						) : (
-							<Button
-								size="XS"
-								isDisabled={!rootDottedNames.every((names) => situation[names])}
-								to={() => {
-									rootDottedNames.forEach((key) =>
-										searchParams.append(key, situation[key]?.toString() ?? '')
-									)
-
-									return {
-										pathname: location.pathname,
-										search: searchParams.toString(),
-									}
-								}}
-							>
-								<Trans>Suivant</Trans> →
-							</Button>
-						)}
 					</Grid>
-				</Grid>
+				</>
+			)}
 
-				<Spacing lg />
-			</EngineProvider>
-		</>
+			<Spacing lg />
+
+			<Grid container>
+				<Grid item xs></Grid>
+			</Grid>
+
+			<Grid container justifyContent={step2 ? '' : 'end'}>
+				<Grid item xs={6} sm="auto">
+					{step2 ? (
+						<Button
+							size="XS"
+							to={{
+								pathname: location.pathname,
+								search: '',
+							}}
+							onClick={setStep1Situation}
+						>
+							← <Trans>Précédent</Trans>
+						</Button>
+					) : (
+						<Button
+							size="XS"
+							isDisabled={!rootDottedNames.every((names) => situation[names])}
+							to={() => {
+								rootDottedNames.forEach((key) =>
+									searchParams.append(key, situation[key]?.toString() ?? '')
+								)
+
+								return {
+									pathname: location.pathname,
+									search: searchParams.toString(),
+								}
+							}}
+						>
+							<Trans>Suivant</Trans> →
+						</Button>
+					)}
+				</Grid>
+			</Grid>
+
+			<Spacing lg />
+		</EngineProvider>
 	)
 }
