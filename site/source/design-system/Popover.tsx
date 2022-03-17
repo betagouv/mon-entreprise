@@ -1,3 +1,4 @@
+import { wrapperDebounceEvents } from '@/utils'
 import { Grid } from '@mui/material'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
@@ -66,9 +67,7 @@ export default function Popover(
 	// Get props for the close button
 	const closeButtonRef = useRef<HTMLButtonElement>(null)
 	const { buttonProps: closeButtonProps } = useButton(
-		{
-			onPress: props.onClose,
-		},
+		wrapperDebounceEvents({ onPress: props.onClose }),
 		closeButtonRef
 	)
 

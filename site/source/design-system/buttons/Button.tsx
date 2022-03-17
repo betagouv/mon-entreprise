@@ -3,6 +3,7 @@ import {
 	GenericButtonOrLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
+import { wrapperDebounceEvents } from '@/utils'
 import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -26,7 +27,10 @@ export const Button = forwardRef(function Button(
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
 ) {
-	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
+	const buttonOrLinkProps = useButtonOrLink(
+		wrapperDebounceEvents(ariaButtonProps),
+		forwardedRef
+	)
 
 	return (
 		<StyledButton

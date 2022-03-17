@@ -95,6 +95,36 @@ export const getValueFrom = <
 	key in obj ? obj[key] : undefined
 
 /**
+ * Wraps each event function (startind by `on...`) with an asynchronous function
+ * that waits x ms before executing the original function
+ * @param props
+ * @param options ms (time of debounce) and eventsToWrap (array of events to wrap with debounce)
+ * @returns props
+ */
+export const wrapperDebounceEvents = <T>(
+	props: T,
+	{ ms = 0, xxx: eventsToWrap = ['onPress'] } = {}
+): T =>
+	props && typeof props === 'object'
+		? (Object.fromEntries(
+				Object.entries(props).map(([key, val]: [string, unknown]) =>
+					eventsToWrap.includes(key)
+						? [
+								key,
+								val && typeof val === 'function'
+									? async (...params: unknown[]) => {
+											await new Promise((res) =>
+												setTimeout(() => res(val(...params)), ms)
+											)
+									  }
+									: val,
+						  ]
+						: [key, val]
+				)
+		  ) as unknown as T)
+		: props
+
+/**
  * Return git branch name
  * @returns string
  */
