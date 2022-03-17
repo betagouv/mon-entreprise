@@ -8,6 +8,10 @@
       <3>aquoiserventlescotisations.urssaf.fr</3>
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Baisse entre 30% à 64% du chiffre d'affaires</0>: <0>Baisse entre 30% à 64% du chiffre d'affaires</0>
+<0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité</1>:
+  <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour
+  2021</0><1>Mesure d’interdiction affectant de manière prépondérante la
+  poursuite de votre activité</1>
 <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50% (ou 65% à compter de décembre 2021) du chiffre d’affaires</1>:
   <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour
   2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50%
@@ -15,6 +19,11 @@
 "<0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité aux mois de mars, avril ou mai 2021</1>":
   <0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité
   aux mois de mars, avril ou mai 2021</1>
+"<0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
+  <0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté
+  par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous
+  avez fait l’objet d’une mesure d’interdiction affectant de manière
+  prépondérante la poursuite de votre activité.</1>
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>:
   <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la
   réduction</2>
@@ -22,6 +31,34 @@
   <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année
   2021</0>
 <0>Oui</0>: <0>Oui</0>
+"<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
+  "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
+    "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2>{formatValue(engine":
+        "evaluate('exonération S2 . mois éligibles'))}</2></3></1>":
+          "<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité
+          principale :
+          <2>{engine.evaluate('secteur').nodeValue}</2></0><1>Activité exercée
+          en <2>{engine.evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début
+          d'activité : <2>{engine.evaluate(\"début
+          d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous
+          remplissez les conditions d'éligibilité :
+          <2>{formatValue(engine.evaluate('exonération S2 . mois
+          éligibles'))}</2></3></1>"
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <1>{monthsCount":
+        LFSS:
+          "toString()} mois</1></0><1>LFR1 : <1>{monthsCount":
+            LFR1:
+              "toString()} mois</1></1></1></3></1>": "<0>Résumé</0><1><0>Secteur d'activité
+                dont relève l'activité principale :
+                <2>{engine.evaluate('secteur').nodeValue}</2></0><1>Activité
+                exercée en <2>{engine.evaluate(\"lieu
+                d'exercice\").nodeValue}</2></1><2>Début d'activité :
+                <2>{engine.evaluate(\"début
+                d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels
+                vous remplissez les conditions d'éligibilité<1><0>LFSS :
+                <1>{monthsCount.LFSS.toString()} mois</1></0><1>LFR1 :
+                <1>{monthsCount.LFR1.toString()} mois</1></1></1></3></1>"
 Assimilé salarié: Assimilé salarié
 Aucun: Aucun
 Aucun résultat: Aucun résultat
@@ -78,6 +115,7 @@ Modifier: Modifier
 Mois non concerné: Mois non concerné
 Mon entreprise: Mon entreprise
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
+Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021
 Non: Non
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
