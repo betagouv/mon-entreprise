@@ -14,10 +14,10 @@ const RadioContext = createContext<RadioGroupState | null>(null)
 export function Radio(
 	props: AriaRadioProps & {
 		LabelBodyAs?: Parameters<typeof LabelBody>['0']['as']
-		radioVisible?: boolean
+		hideRadio?: boolean
 	}
 ) {
-	const { LabelBodyAs: bodyType, radioVisible = true, ...ariaProps } = props
+	const { LabelBodyAs: bodyType, hideRadio, ...ariaProps } = props
 	const { children } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -27,16 +27,16 @@ export function Radio(
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
-		<Label $radioVisible={radioVisible}>
+		<Label $hideRadio={hideRadio}>
 			<InputRadio {...inputProps} className="sr-only" ref={ref} />
 			<VisibleRadio>
-				{radioVisible && (
+				{!hideRadio && (
 					<RadioButton aria-hidden="true">
 						<OutsideCircle />
 						<InsideCircle />
 					</RadioButton>
 				)}
-				<LabelBody as={bodyType} $radioVisible={radioVisible}>
+				<LabelBody as={bodyType} $hideRadio={hideRadio}>
 					{children}
 				</LabelBody>
 			</VisibleRadio>
@@ -44,9 +44,9 @@ export function Radio(
 	)
 }
 
-const Label = styled.label<{ $radioVisible: boolean }>`
-	${({ $radioVisible }) =>
-		!$radioVisible &&
+const Label = styled.label<{ $hideRadio?: boolean }>`
+	${({ $hideRadio }) =>
+		$hideRadio &&
 		css`
 			margin-top: -1px;
 		`}
@@ -168,11 +168,11 @@ export function RadioBlock({
 	)
 }
 
-const LabelBody = styled(Body)<{ $radioVisible: boolean }>`
+const LabelBody = styled(Body)<{ $hideRadio?: boolean }>`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
-	${({ $radioVisible }) =>
-		!$radioVisible &&
+	${({ $hideRadio }) =>
+		$hideRadio &&
 		css`
 			margin: 0 !important;
 		`}

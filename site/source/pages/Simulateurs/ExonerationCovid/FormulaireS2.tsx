@@ -45,7 +45,7 @@ export const FormulaireS2 = ({
 
 	for (let i = 0; i < monthCount; i++) {
 		radioComponents.push(
-			<Radio radioVisible={false} key={i} value={`${i}`}>
+			<Radio hideRadio key={i} value={`${i}`}>
 				{i}
 			</Radio>
 		)
