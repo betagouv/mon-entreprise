@@ -1,52 +1,17 @@
-import { lazy, ReactEventHandler, Suspense, useEffect, useRef } from 'react'
-import styled from 'styled-components'
-import Emoji from './utils/Emoji'
-import { iframeResize } from 'iframe-resizer'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Loader } from '@/design-system/icons/Loader'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
 import { isProduction } from '@/utils'
-
-const Iframe = styled.iframe`
-	width: 1px;
-	min-width: 100%;
-	height: 80vh;
-`
-
-const IframeContainer = styled.div`
-	margin: 0 -3rem;
-`
-
-export const PlacesDesEntreprisesIframe = ({
-	src,
-	onLoad,
-}: {
-	src: string
-	onLoad?: ReactEventHandler<HTMLIFrameElement>
-}) => {
-	useEffect(() => {
-		iframeResize({}, '#pdeIframe')
-	}, [])
-
-	return (
-		<IframeContainer>
-			<Iframe
-				title="Formulaire de demande entreprise"
-				src={src}
-				frameBorder="0"
-				id="pdeIframe"
-				onLoad={onLoad}
-			/>
-		</IframeContainer>
-	)
-}
+import { lazy, Suspense, useRef } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+import Emoji from './utils/Emoji'
 
 const LazyIframe = lazy(async () => {
-	return import('./PlaceDesEntreprises').then(
-		({ PlacesDesEntreprisesIframe }) => ({
-			default: PlacesDesEntreprisesIframe,
+	return import('./PlaceDesEntreprisesIframe').then(
+		({ PlaceDesEntreprisesIframe }) => ({
+			default: PlaceDesEntreprisesIframe,
 		})
 	)
 })
@@ -106,6 +71,7 @@ export const PlacesDesEntreprisesButton = ({
 						en fonction de votre situation.
 					</Trans>
 				</Body>
+
 				<Suspense
 					fallback={
 						<Container
