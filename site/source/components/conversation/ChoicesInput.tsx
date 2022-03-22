@@ -21,6 +21,9 @@ import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { InputProps } from './RuleInput'
 
+const relativeDottedName = (rootDottedName: string, childDottedName: string) =>
+	childDottedName.replace(rootDottedName + ' . ', '')
+
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
 	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants
@@ -51,26 +54,64 @@ export const HiddenOptionContext = createContext<Array<DottedName>>([])
 export function MultipleAnswerInput<Names extends string = DottedName>({
 	choice,
 	type = 'radio',
-	inline,
 	...props
 }: {
 	choice: Choice
-	type?: 'radio' | 'toggle'
-	inline?: boolean
+	type?: 'radio' | 'card' | 'toggle' | 'select'
 } & InputProps<Names>) {
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
-	const Component = type === 'toggle' ? ToggleGroup : RadioGroup
+
+	if (type === 'select') {
+		return (
+			<Select
+				label={props.title}
+				onSelectionChange={handleChange}
+				defaultSelectedKey={defaultValue}
+				selectedKey={currentSelection}
+			>
+				{choice.children.map((node) => (
+					<Item
+						key={`'${relativeDottedName(props.dottedName, node.dottedName)}'`}
+						textValue={node.title}
+					>
+						{node.title}
+					</Item>
+				))}
+			</Select>
+		)
+	}
+
+	const Component = type === 'radio' ? RadioGroup : ToggleGroup
 
 	return (
 		<Component onChange={handleChange} value={currentSelection ?? undefined}>
-			<RadioChoice
-				autoFocus={defaultValue}
-				choice={choice}
-				rootDottedName={props.dottedName}
-				inline={inline}
-			/>
+			{type === 'radio' || type === 'toggle' ? (
+				<RadioChoice
+					autoFocus={defaultValue}
+					choice={choice}
+					rootDottedName={props.dottedName}
+				/>
+			) : (
+				choice.children.map((node) => (
+					<Fragment key={node.dottedName}>
+						<RadioBlock
+							autoFocus={
+								defaultValue ===
+								`'${relativeDottedName(props.dottedName, node.dottedName)}'`
+							}
+							value={`'${relativeDottedName(
+								props.dottedName,
+								node.dottedName
+							)}'`}
+							title={node.title}
+							emoji={node.rawNode.icônes}
+							description={node.rawNode.description}
+						/>
+					</Fragment>
+				))
+			)}
 		</Component>
 	)
 }
@@ -79,15 +120,11 @@ function RadioChoice<Names extends string = DottedName>({
 	choice,
 	autoFocus,
 	rootDottedName,
-	inline,
 }: {
 	choice: Choice
 	autoFocus?: string
 	rootDottedName: Names
-	inline?: boolean
 }) {
-	const relativeDottedName = (radioDottedName: string) =>
-		radioDottedName.split(rootDottedName + ' . ')[1]
 	const hiddenOptions = useContext(HiddenOptionContext)
 
 	return (
@@ -108,20 +145,20 @@ function RadioChoice<Names extends string = DottedName>({
 							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
-								<RadioChoice
-									inline={inline}
-									choice={node}
-									rootDottedName={rootDottedName}
-								/>
+								<RadioChoice choice={node} rootDottedName={rootDottedName} />
 							</StyledSubRadioGroup>
 						</div>
-					) : inline ? (
+					) : (
 						<span>
 							<Radio
 								autoFocus={
-									autoFocus === `'${relativeDottedName(node.dottedName)}'`
+									autoFocus ===
+									`'${relativeDottedName(rootDottedName, node.dottedName)}'`
 								}
-								value={`'${relativeDottedName(node.dottedName)}'`}
+								value={`'${relativeDottedName(
+									rootDottedName,
+									node.dottedName
+								)}'`}
 							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
@@ -132,16 +169,6 @@ function RadioChoice<Names extends string = DottedName>({
 								</ButtonHelp>
 							)}
 						</span>
-					) : (
-						<RadioBlock
-							autoFocus={
-								autoFocus === `'${relativeDottedName(node.dottedName)}'`
-							}
-							value={`'${relativeDottedName(node.dottedName)}'`}
-							title={node.title}
-							emoji={node.rawNode.icônes}
-							description={node.rawNode.description}
-						/>
 					)}
 				</Fragment>
 			))}
@@ -186,34 +213,6 @@ export function OuiNonInput<Names extends string = DottedName>(
 				<Trans>Non</Trans>
 			</Radio>
 		</ToggleGroup>
-	)
-}
-
-const relativeDottedName = (childDottedName: string, rootDottedName: string) =>
-	childDottedName.replace(rootDottedName + ' . ', '')
-
-export const SelectAnswerInput = <Names extends string = DottedName>({
-	choice,
-	...props
-}: { choice: Choice } & InputProps<Names>) => {
-	const { handleChange, defaultValue, currentSelection } = useSelection(props)
-
-	return (
-		<Select
-			label={props.title}
-			onSelectionChange={handleChange}
-			defaultSelectedKey={defaultValue}
-			selectedKey={currentSelection}
-		>
-			{choice.children.map((node) => (
-				<Item
-					key={`'${relativeDottedName(node.dottedName, props.dottedName)}'`}
-					textValue={node.title}
-				>
-					{node.title}
-				</Item>
-			))}
-		</Select>
 	)
 }
 

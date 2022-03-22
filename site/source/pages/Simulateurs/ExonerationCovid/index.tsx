@@ -1,29 +1,44 @@
 import RuleInput from '@/components/conversation/RuleInput'
-import { EngineProvider } from '@/components/utils/EngineContext'
+import {
+	EngineProvider,
+	useEngineKeepState,
+	useEngine,
+} from '@/components/utils/EngineContext'
+import {
+	useCreateSituationState,
+	SituationStateProvider,
+} from '@/components/utils/SituationContext'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Grid } from '@mui/material'
 import exonerationCovid, { DottedNames } from 'exoneration-covid'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { FormulaireS1S1Bis } from './FormulaireS1S1Bis'
 import { FormulaireS2 } from './FormulaireS2'
 
-export default function ExonérationCovid() {
-	// Use ref to keep state with react fast refresh
-	const { current: exoCovidEngine } = useRef(
-		new Engine<DottedNames>(exonerationCovid)
+const exoCovidEngine = new Engine(exonerationCovid)
+
+export default function ExonérationCovidProvider() {
+	const engine = useEngineKeepState(exoCovidEngine)
+
+	return (
+		<EngineProvider value={engine}>
+			<ExonérationCovid />
+		</EngineProvider>
 	)
+}
 
-	const rootDottedNames = [
-		'secteur',
-		"début d'activité",
-		"lieu d'exercice",
-	] as const
+const rootDottedNames = [
+	'secteur',
+	"début d'activité",
+	"lieu d'exercice",
+] as const
 
+const ExonérationCovid = () => {
 	const location = useLocation()
 	const searchParams = new URLSearchParams(location.search)
 	const params = Object.fromEntries(searchParams.entries()) as {
@@ -34,40 +49,32 @@ export default function ExonérationCovid() {
 		window.scrollTo(0, 0)
 	}, [location])
 
-	const [situation, setSituation] = useState<
-		Partial<Record<DottedNames, PublicodesExpression | undefined>>
-	>(() => {
-		const defaultSituation = { ...params }
-		exoCovidEngine.setSituation(defaultSituation)
-
-		return defaultSituation
-	})
+	const engine = useEngine<DottedNames>()
+	const situationState = useCreateSituationState<DottedNames>({ ...params })
+	const { situation, setSituation } = situationState
 
 	const updateSituation = useCallback(
 		(name: DottedNames, value: PublicodesExpression | undefined) => {
-			const newSituation = { ...situation, [name]: value }
-			setSituation(newSituation)
-			exoCovidEngine.setSituation(newSituation)
+			setSituation({ ...situation, [name]: value })
 		},
-		[exoCovidEngine, situation]
+		[setSituation, situation]
 	)
 
 	const setStep1Situation = useCallback(() => {
 		const step1Situation = Object.fromEntries(
-			Object.entries(situation).filter(
-				([dotName]) => !dotName.startsWith('mois . ')
+			Object.entries(situation).filter(([dotName]) =>
+				(rootDottedNames as readonly string[]).includes(dotName)
 			)
 		)
 		setSituation(step1Situation)
-		exoCovidEngine.setSituation(step1Situation)
-	}, [exoCovidEngine, situation])
+	}, [setSituation, situation])
 
 	const step2 = rootDottedNames.every((names) => params[names])
 
 	return (
-		<EngineProvider value={exoCovidEngine}>
+		<SituationStateProvider value={situationState}>
 			{step2 ? (
-				exoCovidEngine.evaluate('secteur').nodeValue !== 'S2' ? (
+				engine.evaluate('secteur').nodeValue !== 'S2' ? (
 					<FormulaireS1S1Bis onChange={updateSituation} />
 				) : (
 					<FormulaireS2 onChange={updateSituation} />
@@ -75,10 +82,10 @@ export default function ExonérationCovid() {
 			) : (
 				<>
 					<Grid item xs={12}>
-						<H3>{exoCovidEngine.getRule('secteur').rawNode.question}</H3>
+						<H3>{engine.getRule('secteur').rawNode.question}</H3>
 					</Grid>
 
-					<Grid item xs={8}>
+					<Grid item xs={12} sm={8}>
 						<RuleInput
 							dottedName={'secteur'}
 							onChange={(value) => updateSituation('secteur', value)}
@@ -86,12 +93,8 @@ export default function ExonérationCovid() {
 					</Grid>
 
 					<Grid item xs={12}>
-						<H3>
-							{exoCovidEngine.getRule("début d'activité").rawNode.question}
-						</H3>
+						<H3>{engine.getRule("début d'activité").rawNode.question}</H3>
 					</Grid>
-
-					<Spacing sm />
 
 					<Grid item xs={12} sm={6}>
 						<RuleInput
@@ -101,9 +104,7 @@ export default function ExonérationCovid() {
 					</Grid>
 
 					<Grid item xs={12}>
-						<H3>
-							{exoCovidEngine.getRule("lieu d'exercice").rawNode.question}
-						</H3>
+						<H3>{engine.getRule("lieu d'exercice").rawNode.question}</H3>
 					</Grid>
 
 					<Grid item xs={12}>
@@ -117,15 +118,11 @@ export default function ExonérationCovid() {
 
 			<Spacing lg />
 
-			<Grid container>
-				<Grid item xs></Grid>
-			</Grid>
-
 			<Grid container justifyContent={step2 ? '' : 'end'}>
 				<Grid item xs={6} sm="auto">
 					{step2 ? (
 						<Button
-							size="XS"
+							size="MD"
 							to={{
 								pathname: location.pathname,
 								search: '',
@@ -136,18 +133,25 @@ export default function ExonérationCovid() {
 						</Button>
 					) : (
 						<Button
-							size="XS"
+							size="MD"
 							isDisabled={!rootDottedNames.every((names) => situation[names])}
-							to={() => {
-								rootDottedNames.forEach((key) =>
-									searchParams.append(key, situation[key]?.toString() ?? '')
-								)
+							{...(rootDottedNames.every((names) => situation[names])
+								? {
+										to: () => {
+											rootDottedNames.forEach((key) =>
+												searchParams.append(
+													key,
+													situation[key]?.toString() ?? ''
+												)
+											)
 
-								return {
-									pathname: location.pathname,
-									search: searchParams.toString(),
-								}
-							}}
+											return {
+												pathname: location.pathname,
+												search: searchParams.toString(),
+											}
+										},
+								  }
+								: null)}
 						>
 							<Trans>Suivant</Trans> →
 						</Button>
@@ -156,6 +160,6 @@ export default function ExonérationCovid() {
 			</Grid>
 
 			<Spacing lg />
-		</EngineProvider>
+		</SituationStateProvider>
 	)
 }
