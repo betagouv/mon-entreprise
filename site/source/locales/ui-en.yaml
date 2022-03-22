@@ -28,6 +28,14 @@
 "<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
     "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2><0></0></2></3></1>":
+        "<0>Summary</0><1><0>Sector of activity of the main activity :
+        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity carried out
+        in <2>{engine.evaluate(\"place of
+        exercise\").nodeValue}</2></1><2>Beginning of activity:
+        <2>{engine.evaluate(\"beginning of
+        activity\").nodeValue}</2></2><3>Number of months for which you meet the
+        eligibility requirements: <2><0></0></2></3></1>"
       "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2>{formatValue(engine":
         "evaluate('exonération S2 . mois éligibles'))}</2></3></1>":
           "<0>Summary</0><1><0>Sector of activity of the main activity :
@@ -52,6 +60,14 @@
                 meet the eligibility requirements<1><0>LFSS :
                 <1>{monthsCount.LFSS.toString()} month</1></0><1>LFR1 :
                 <1>{monthsCount.LFR1.toString()} month</1></1></1></3></1>"
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <2><0></0></2></0><1>LFR1 : <2><0></0></2></1></1></3></1>":
+        "<0>Summary</0><1><0>Sector of activity of the main activity :
+        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity carried out
+        in <2>{engine.evaluate(\"place of exercise\").nodeValue}</2></1><2>Start
+        of activity: <2>{engine.evaluate(\"start of
+        activity\").nodeValue}</2></2><3>Number of months for which you meet the
+        eligibility requirements<1><0>LFSS: <2><0></0></2></0><1>LFR1:
+        <2><0></0></2></1></1></3></1>"
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
 Afficher la description publicodes: Display publicodes description
