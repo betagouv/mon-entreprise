@@ -170,7 +170,7 @@ const App = () => {
 	)
 }
 
-const StyledLayout = styled.div.attrs({ 'data-iframe-height': true })<{
+const StyledLayout = styled.div<{
 	isEmbeded: boolean
 }>`
 	${({ isEmbeded }) =>

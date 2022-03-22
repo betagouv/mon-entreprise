@@ -171,3 +171,20 @@ export const isStaging = () => {
 export const isDevelopment = () => {
 	return import.meta.env.DEV
 }
+
+export async function getIframeOffset(): Promise<number> {
+	return new Promise<number>((resolve, reject) => {
+		const returnOffset = (evt: MessageEvent) => {
+			if (evt.data.kind !== 'offset') {
+				return
+			}
+			window.removeEventListener('message', returnOffset)
+			resolve(evt.data.value)
+		}
+		if (!window.parent.postMessage) {
+			reject('No parent window')
+		}
+		window.parent?.postMessage({ kind: 'get-offset' }, '*')
+		window.addEventListener('message', returnOffset)
+	})
+}

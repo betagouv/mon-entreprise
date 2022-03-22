@@ -70,4 +70,11 @@ window.addEventListener('message', function (evt) {
 	if (evt.data.kind === 'resize-height') {
 		iframe.style.height = evt.data.value + 'px'
 	}
+	if (evt.data.kind === 'get-offset') {
+		const iframePosition = iframe.getBoundingClientRect()
+		iframe.contentWindow?.postMessage(
+			{ kind: 'offset', value: Math.max(iframePosition.top * -1, 0) },
+			'*'
+		)
+	}
 })
