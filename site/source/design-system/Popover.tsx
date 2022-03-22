@@ -1,4 +1,4 @@
-import { wrapperDebounceEvents } from '@/utils'
+import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
 import { Grid } from '@mui/material'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
@@ -18,22 +18,13 @@ import { H2 } from './typography/heading'
 
 const useIFrameOffset = () => {
 	const [offsetTop, setOffset] = useState<number | null | undefined>(
-		'parentIFrame' in window ? undefined : null
+		window.parent !== window ? undefined : null
 	)
 	useEffect(() => {
-		'parentIFrame' in window &&
-			window.parentIFrame.getPageInfo(
-				({
-					scrollTop,
-					offsetTop,
-				}: {
-					scrollTop: number
-					offsetTop: number
-				}) => {
-					setOffset(Math.max(scrollTop - offsetTop, 0))
-					window.parentIFrame.getPageInfo(false)
-				}
-			)
+		if (window.parent === window) {
+			return
+		}
+		void getIframeOffset().then(setOffset)
 	}, [])
 	return offsetTop
 }
@@ -79,16 +70,15 @@ export default function Popover(
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<OverlayContainer>
-				<Underlay {...underlayProps}>
+				<Underlay {...underlayProps} $offsetTop={offsetTop}>
 					<Container>
 						<Grid container justifyContent="center">
 							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12}>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
-									data-iframe-height
 									{...overlayProps}
-									offsetTop={offsetTop}
+									$offsetTop={offsetTop}
 									ref={ref}
 								>
 									<FocusScope contain restoreFocus autoFocus>
@@ -143,7 +133,9 @@ const fromtop = keyframes`
 	from { transform: translateY(-10px)}
 	to { transform: translateY(0px)}
 `
-const Underlay = styled.div`
+const Underlay = styled.div<{
+	$offsetTop: number | null
+}>`
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -154,14 +146,17 @@ const Underlay = styled.div`
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
 	display: flex;
-	align-items: center;
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		align-items: flex-end;
-	}
+	${({ $offsetTop }) =>
+		$offsetTop === null &&
+		css`
+			align-items: center;
+			@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+				align-items: flex-end;
+			}
+		`}
 `
 
-const PopoverContainer = styled.div<{ offsetTop: number | null }>`
+const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 	max-height: 90vh;
 
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
@@ -171,13 +166,20 @@ const PopoverContainer = styled.div<{ offsetTop: number | null }>`
 	flex-direction: column;
 	animation: ${fromtop} 0.2s;
 
-	${({ theme, offsetTop }) =>
-		!offsetTop &&
-		css`
-			@media (max-width: ${theme.breakpointsWidth.sm}) {
-				margin: 0 -16px;
-			}
-		`}
+	${({ theme, $offsetTop }) =>
+		$offsetTop
+			? css`
+					position: relative;
+					top: ${$offsetTop}px;
+					@media (min-width: ${theme.breakpointsWidth.md}) {
+						margin-top: ${theme.spacings.xl};
+					}
+			  `
+			: css`
+					@media (max-width: ${theme.breakpointsWidth.sm}) {
+						margin: 0 -16px;
+					}
+			  `}
 `
 const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};

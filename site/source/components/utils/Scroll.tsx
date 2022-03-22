@@ -16,10 +16,6 @@ export function ScrollToTop({
 	const ref = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		if ('parentIFrame' in window) {
-			;(window as any).parentIFrame.scrollToOffset(0, 0)
-			return
-		}
 		forEachParent(ref.current, (elem) => {
 			if (!elem) {
 				return
