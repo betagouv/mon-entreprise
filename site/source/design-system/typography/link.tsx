@@ -106,7 +106,7 @@ export function useButtonOrLink(
 	const { buttonProps } = useButton({ elementType, ...props }, defaultRef)
 
 	const ref = useCallback(
-		(instance) => {
+		(instance: HTMLAnchorElement | HTMLButtonElement) => {
 			defaultRef.current = instance
 			if (typeof forwardedRef === 'function') {
 				forwardedRef(instance)

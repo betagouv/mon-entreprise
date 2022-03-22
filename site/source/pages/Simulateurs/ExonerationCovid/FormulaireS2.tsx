@@ -1,3 +1,4 @@
+import Value from '@/components/EngineValue'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
@@ -6,11 +7,7 @@ import { Li } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { DottedNames } from 'exoneration-covid'
-import Engine, {
-	Evaluation,
-	formatValue,
-	PublicodesExpression,
-} from 'publicodes'
+import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
@@ -22,34 +19,14 @@ export const FormulaireS2 = ({
 }) => {
 	const engine = useContext(EngineContext) as Engine<DottedNames>
 
-	const exoS2 = engine.evaluate('exonération S2')
-	const total = engine.evaluate('montant total')
-
-	const toDate = (value: string) => {
-		const [day, month, year] = value.split('/')
-		return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-	}
-
-	const firstMonth = engine.evaluate(
-		'exonération S2 . mois éligibles . premier mois'
-	).nodeValue as Evaluation<string>
-	const lastMonth = engine.evaluate(
-		'exonération S2 . mois éligibles . dernier mois'
-	).nodeValue as Evaluation<string>
-
-	const monthCount =
-		lastMonth && firstMonth
-			? toDate(lastMonth).getMonth() - toDate(firstMonth).getMonth() + 2
-			: 0
-	const radioComponents = []
-
-	for (let i = 0; i < monthCount; i++) {
-		radioComponents.push(
-			<Radio hideRadio key={i} value={`${i}`}>
-				{i}
-			</Radio>
-		)
-	}
+	const firstMonth = (
+		(engine.evaluate('exonération S2 . mois éligibles . premier mois')
+			.nodeValue as Evaluation<string>) || ''
+	).slice(3)
+	const lastMonth = (
+		(engine.evaluate('exonération S2 . mois éligibles . dernier mois')
+			.nodeValue as Evaluation<string>) || ''
+	).slice(3)
 
 	return (
 		<>
@@ -73,7 +50,15 @@ export const FormulaireS2 = ({
 					})
 				}}
 			>
-				{radioComponents}
+				{new Array(
+					engine.evaluate('exonération S2 . mois éligibles . plafond').nodeValue
+				)
+					.fill(null)
+					.map((_, i) => (
+						<Radio hideRadio key={i} value={`${i}`}>
+							{i}
+						</Radio>
+					))}
 			</ToggleGroup>
 
 			<Spacing xl />
@@ -95,7 +80,14 @@ export const FormulaireS2 = ({
 					</Grid>
 
 					<Grid item xs="auto" alignSelf={'end'}>
-						<Total>{formatValue(exoS2)}</Total>
+						<Total>
+							<Value
+								engine={engine}
+								expression="exonération S2"
+								linkToRule={false}
+								precision={0}
+							/>
+						</Total>
 					</Grid>
 				</Grid>
 
@@ -110,7 +102,14 @@ export const FormulaireS2 = ({
 					</Grid>
 
 					<Grid item xs="auto" alignSelf={'end'}>
-						<Total>{formatValue(total)}</Total>
+						<Total>
+							<Value
+								engine={engine}
+								expression="montant total"
+								linkToRule={false}
+								precision={0}
+							/>
+						</Total>
 					</Grid>
 				</GridTotal>
 			</Recap>
@@ -139,7 +138,12 @@ export const FormulaireS2 = ({
 						Nombres de mois pour lesquels vous remplissez les conditions
 						d'éligibilité :{' '}
 						<Bold as="span">
-							{formatValue(engine.evaluate('exonération S2 . mois éligibles'))}
+							<Value
+								engine={engine}
+								expression="exonération S2 . mois éligibles"
+								linkToRule={false}
+								precision={0}
+							/>
 						</Bold>
 					</Li>
 				</RecapExpert>

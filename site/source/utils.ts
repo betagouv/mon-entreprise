@@ -1,4 +1,4 @@
-import { formatValue } from 'publicodes'
+import { formatValue, Rule } from 'publicodes'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
@@ -150,6 +150,16 @@ export const getBranch = () => {
 
 	return branch ?? ''
 }
+
+const isMeta = <T>(rule: Rule): rule is Rule & { meta?: T } => 'meta' in rule
+
+/**
+ * Return typed meta property from a rule
+ * @param rule
+ * @returns
+ */
+export const getMeta = <T>(rule: Rule): T | undefined =>
+	isMeta<T>(rule) ? getValueFrom(rule, 'meta') : undefined
 
 /**
  * We use this function to hide some features in production while keeping them

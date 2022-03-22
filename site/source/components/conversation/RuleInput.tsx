@@ -2,6 +2,7 @@ import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import SelectAtmp from '@/components/conversation/select/SelectTauxRisque'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
@@ -9,16 +10,10 @@ import Engine, {
 	Evaluation,
 	PublicodesExpression,
 	reduceAST,
-	Rule,
 	RuleNode,
 } from 'publicodes'
 import React, { useContext } from 'react'
-import {
-	Choice,
-	MultipleAnswerInput,
-	OuiNonInput,
-	SelectAnswerInput,
-} from './ChoicesInput'
+import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
@@ -97,39 +92,20 @@ export default function RuleInput<Names extends string = DottedName>({
 		...props,
 	}
 
-	if (rule.rawNode.type === 'select') {
-		return (
-			<SelectAnswerInput
-				{...commonProps}
-				choice={buildVariantTree(engine, dottedName)}
-			/>
-		)
-	}
-	if (rule.rawNode.type === 'radio block') {
-		return (
-			<MultipleAnswerInput
-				{...commonProps}
-				choice={buildVariantTree(engine, dottedName)}
-				type="toggle"
-			/>
-		)
-	}
-	if (rule.rawNode.type === 'radio inline') {
-		return (
-			<MultipleAnswerInput
-				{...commonProps}
-				choice={buildVariantTree(engine, dottedName)}
-				type="toggle"
-				inline
-			/>
-		)
-	}
+	const meta = getMeta<{ affichage?: string }>(rule.rawNode) ?? {}
+
 	if (getVariant(engine.getRule(dottedName))) {
+		const type =
+			meta.affichage &&
+			['radio', 'card', 'toggle', 'select'].includes(meta.affichage)
+				? (meta.affichage as 'radio' | 'card' | 'toggle' | 'select')
+				: 'radio'
+
 		return (
 			<MultipleAnswerInput
 				{...commonProps}
 				choice={buildVariantTree(engine, dottedName)}
-				inline
+				type={type}
 			/>
 		)
 	}

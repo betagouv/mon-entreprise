@@ -3,7 +3,8 @@ secteur:
   une possibilité:
     choix obligatoire: oui
     possibilités: [S1, S1bis, S2]
-  type: radio block
+  meta:
+    affichage: card
 
 secteur . S1:
   valeur: secteur = 'S1'
@@ -32,7 +33,8 @@ lieu d'exercice:
     possibilités:
       - métropole
       - outre-mer
-  type: radio inline
+  meta:
+    affichage: toggle
 
 lieu d'exercice . métropole:
   titre: En métropole
@@ -60,7 +62,8 @@ début d'activité:
       - octobre 2021
       - novembre 2021
       - décembre 2021
-  type: select
+  meta:
+    affichage: select
 
 début d'activité . avant 2021:
 début d'activité . janvier 2021:
@@ -242,7 +245,8 @@ mois . décembre 2021:
 
 mois . décembre 2021 . LFSS 600:
   valeur: décembre 2021 = 'LFSS 600'
-  percent: 65%
+  meta:
+    baisse d'au moins: 65%
 mois . décembre 2021 . LFSS 300:
   valeur: décembre 2021 = 'LFSS 300'
 
@@ -254,7 +258,8 @@ mois . janvier 2022:
 
 mois . janvier 2022 . LFSS 600:
   valeur: janvier 2022 = 'LFSS 600'
-  percent: 65%
+  meta:
+    baisse d'au moins: 65%
 mois . janvier 2022 . LFSS 300:
   valeur: janvier 2022 = 'LFSS 300'
 
@@ -266,14 +271,18 @@ mois . février 2022:
 
 mois . février 2022 . LFSS 600:
   valeur: février 2022 = 'LFSS 600'
-  percent: 65%
+  meta:
+    baisse d'au moins: 65%
 mois . février 2022 . LFSS 300:
   valeur: février 2022 = 'LFSS 300'
 
 LFSS 600:
   applicable si: secteur . S1 ou S1bis
   produit:
-    assiette: 600 €/mois
+    assiette:
+      nom: assiette
+      valeur: 600
+      unité: €/mois
     facteur:
       nom: mois éligibles
       unité: mois
@@ -308,10 +317,15 @@ LFSS 600:
         - valeur: mois . février 2022 . LFSS 600
           par défaut: non
 
+LFSS 600 . montant mensuel: LFSS 600 . assiette * 1 mois
+
 LFSS 300:
   applicable si: secteur . S1 ou S1bis
   produit:
-    assiette: 300 €/mois
+    assiette:
+      nom: assiette
+      valeur: 300
+      unité: €/mois
     facteur:
       nom: mois éligibles
       description: Nombre de mois éligible à l'exonération LFSS à 300€
@@ -323,6 +337,11 @@ LFSS 300:
           par défaut: non
         - valeur: mois . février 2022 . LFSS 300
           par défaut: non
+
+LFSS 300 . montant mensuel: LFSS 300 . assiette * 1 mois
+
+LFSS: oui
+LFSS . mois éligibles: LFSS 300 . mois éligibles + LFSS 600 . mois éligibles
 
 LFR1 applicable:
   valeur: oui
@@ -339,7 +358,10 @@ LFR1 applicable:
 
 LFR1:
   produit:
-    assiette: 250 €/mois
+    assiette:
+      nom: assiette
+      valeur: 250
+      unité: €/mois
     facteur:
       unité: mois
       description: Nombre de mois éligible à l'exonération LFR1
@@ -352,16 +374,24 @@ LFR1:
         - valeur: mois . août 2021 . LFR1
           par défaut: non
 
+LFR1 . montant mensuel: LFR1 . assiette * 1 mois
+
 exonération S2:
   produit:
-    assiette: 600 €/mois
+    assiette:
+      nom: assiette
+      valeur: 600
+      unité: €/mois
     facteur: mois éligibles
   applicable si:
     toutes ces conditions:
       - secteur . S2
       - début d'activité . date <= mois éligibles . dernier mois
 
+exonération S2 . montant mensuel: exonération S2 . assiette * 1 mois
+
 exonération S2 . mois éligibles:
+  par défaut: 0 mois
   unité: mois
   arrondi: oui
   question:

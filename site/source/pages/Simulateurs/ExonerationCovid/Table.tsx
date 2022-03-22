@@ -1,8 +1,12 @@
 import { Item, Select } from '@/design-system/field/Select'
 import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
-import { Key } from 'react'
-import { Trans } from 'react-i18next'
+import { getMeta } from '@/utils'
+import { Key, useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
+import { DottedNames } from 'exoneration-covid'
+import { EngineContext } from '@/components/utils/EngineContext'
+import Engine, { EvaluatedNode, formatValue } from 'publicodes'
 
 export const Th = styled.th<{ alignSelf?: string }>`
 	flex: 2;
@@ -79,13 +83,10 @@ const Empty = styled.div`
 `
 
 type RowProps = {
+	dottedNames: DottedNames[]
+	actualMonth: string
 	title?: string
-	total?: string
-	label?: string
-	items: {
-		key: string
-		text: string
-	}[]
+	total?: EvaluatedNode<number>
 	onSelectionChange?: (key: Key) => void
 	defaultSelectedKey?: Key
 }
@@ -93,11 +94,62 @@ type RowProps = {
 export const Row = ({
 	title,
 	total,
-	items,
-	label,
-	onSelectionChange,
+	dottedNames,
+	actualMonth,
 	defaultSelectedKey,
+	onSelectionChange,
 }: RowProps) => {
+	const { t } = useTranslation()
+
+	const engine = useContext(EngineContext) as Engine<DottedNames>
+
+	const choices = {
+		non: [t('Aucun')],
+		'LFSS 600': [
+			t('Interdiction d’accueil du public (600 €)'),
+			t('Baisse d’au moins 50% du chiffre d’affaires (600 €)'),
+		],
+		'LFSS 600 65%': [
+			t('Interdiction d’accueil du public (600 €)'),
+			t('Baisse d’au moins 65% du chiffre d’affaires (600 €)'),
+		],
+		'LFSS 300': [t("Baisse entre 30% à 64% du chiffre d'affaires (300 €)")],
+		LFR1: [t('Eligibilité aux mois de mars, avril ou mai 2021 (250 €)')],
+	}
+
+	const items = dottedNames
+		.map((rule) => engine.getRule(rule))
+		.filter(
+			(node) =>
+				node.dottedName &&
+				actualMonth + ' . ' + node.dottedName in engine.getParsedRules() &&
+				engine.evaluate(actualMonth + ' . ' + node.dottedName).nodeValue !==
+					null &&
+				(node.dottedName + ' applicable' in engine.getParsedRules()
+					? engine.evaluate(node.dottedName + ' applicable').nodeValue
+					: true)
+		)
+		.flatMap((node) => {
+			const name = (actualMonth + ' . ' + node.dottedName) as DottedNames
+			const rawNode = engine.getRule(name).rawNode
+
+			type Meta = { "baisse d'au moins"?: string }
+			const percent = getMeta<Meta>(rawNode)?.["baisse d'au moins"]
+
+			const choice = (node.dottedName +
+				(percent ? ' ' + percent : '')) as keyof typeof choices
+
+			return choices[choice].map((text, i) => ({
+				key: (node.dottedName as string) + `.${i}`,
+				text,
+			}))
+		})
+		.filter(<T,>(x: T | null): x is T => Boolean(x))
+
+	if (items.length > 0) {
+		items.unshift({ key: 'non', text: choices['non'][0] })
+	}
+
 	return (
 		<Tr>
 			<Td>{title}</Td>
@@ -106,7 +158,7 @@ export const Row = ({
 					<Select
 						onSelectionChange={onSelectionChange}
 						defaultSelectedKey={defaultSelectedKey}
-						label={label}
+						label={t('Situation liée à la crise sanitaire')}
 					>
 						{items.map(({ key, text }) => (
 							<Item key={key} textValue={text}>
@@ -120,7 +172,12 @@ export const Row = ({
 					</Empty>
 				)}
 			</Td>
-			<Td>{total}</Td>
+			<Td>
+				{(items.length > 0 &&
+					typeof total?.nodeValue === 'number' &&
+					(formatValue(total) as string)) ||
+					'-'}
+			</Td>
 		</Tr>
 	)
 }
