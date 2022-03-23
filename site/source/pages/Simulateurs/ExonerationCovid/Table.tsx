@@ -33,6 +33,15 @@ export const Tr = styled.tr`
 	word-break: break-word;
 	padding: 1rem;
 
+	&:first-child {
+		@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+			border-radius: 0.35rem 0.35rem 0 0;
+		}
+	}
+	&:last-child {
+		border-radius: 0 0 0.35rem 0.35rem;
+	}
+
 	${Td}:last-child {
 		text-align: right;
 	}
@@ -48,16 +57,18 @@ export const Tr = styled.tr`
 export const Thead = styled.thead`
 	background: ${({ theme }) => theme.colors.bases.primary[200]};
 	color: ${({ theme }) => theme.colors.bases.primary[700]};
-	border-radius: 0.35rem 0.35rem 0 0;
 
-	${Th}:first-child, ${Th}:last-child {
+	&:first-child {
+		border-radius: 0.35rem 0.35rem 0 0;
 		flex: 1;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
 	}
 `
 
 export const Tbody = styled.tbody`
-	border-radius: 0 0 0.35rem 0.35rem;
-
 	${Tr}:nth-child(odd) {
 		background: ${({ theme }) => theme.colors.extended.grey[200]};
 	}
