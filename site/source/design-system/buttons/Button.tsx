@@ -26,7 +26,7 @@ export const Button = forwardRef(function Button(
 		isDisabled,
 		...ariaButtonProps
 	}: ButtonProps,
-	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
+	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
 	const buttonOrLinkProps = useButtonOrLink(
 		wrapperDebounceEvents(ariaButtonProps),

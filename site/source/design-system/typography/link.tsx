@@ -97,7 +97,7 @@ export type GenericButtonOrLinkProps = (
 
 export function useButtonOrLink(
 	props: GenericButtonOrLinkProps,
-	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement>
+	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
 	const elementType: 'a' | 'button' | typeof NavLink =
 		'href' in props ? 'a' : 'to' in props ? NavLink : 'button'
@@ -106,7 +106,7 @@ export function useButtonOrLink(
 	const { buttonProps } = useButton({ elementType, ...props }, defaultRef)
 
 	const ref = useCallback(
-		(instance: HTMLAnchorElement | HTMLButtonElement) => {
+		(instance: HTMLAnchorElement | HTMLButtonElement | null) => {
 			defaultRef.current = instance
 			if (typeof forwardedRef === 'function') {
 				forwardedRef(instance)
