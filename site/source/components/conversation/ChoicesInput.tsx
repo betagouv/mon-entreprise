@@ -1,9 +1,14 @@
 import { useDebounce } from '@/components/utils'
 import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'
+import {
+	Radio,
+	RadioCard,
+	RadioCardGroup,
+	RadioGroup,
+	ToggleGroup,
+} from '@/design-system'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
-import { Radio, RadioGroup, ToggleGroup } from '@/design-system/field'
-import { RadioBlock } from '@/design-system/field/Radio/Radio'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
@@ -82,21 +87,15 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 			</Select>
 		)
 	}
-
-	const Component = type === 'radio' ? RadioGroup : ToggleGroup
-
-	return (
-		<Component onChange={handleChange} value={currentSelection ?? undefined}>
-			{type === 'radio' || type === 'toggle' ? (
-				<RadioChoice
-					autoFocus={defaultValue}
-					choice={choice}
-					rootDottedName={props.dottedName}
-				/>
-			) : (
-				choice.children.map((node) => (
+	if (type === 'card') {
+		return (
+			<RadioCardGroup
+				onChange={handleChange}
+				value={currentSelection ?? undefined}
+			>
+				{choice.children.map((node) => (
 					<Fragment key={node.dottedName}>
-						<RadioBlock
+						<RadioCard
 							autoFocus={
 								defaultValue ===
 								`'${relativeDottedName(props.dottedName, node.dottedName)}'`
@@ -105,13 +104,25 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 								props.dottedName,
 								node.dottedName
 							)}'`}
-							title={node.title}
+							label={node.title}
 							emoji={node.rawNode.icônes}
 							description={node.rawNode.description}
 						/>
 					</Fragment>
-				))
-			)}
+				))}
+			</RadioCardGroup>
+		)
+	}
+
+	const Component = type === 'radio' ? RadioGroup : ToggleGroup
+
+	return (
+		<Component onChange={handleChange} value={currentSelection ?? undefined}>
+			<RadioChoice
+				autoFocus={defaultValue}
+				choice={choice}
+				rootDottedName={props.dottedName}
+			/>
 		</Component>
 	)
 }

@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
-import { Radio, ToggleGroup } from './Radio'
+import { Radio, ToggleGroup } from '.'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
