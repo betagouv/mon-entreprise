@@ -9,8 +9,16 @@ import { Grid } from '@mui/material'
 import { DottedNames } from 'exoneration-covid'
 import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
+
+const Info = styled(Body)`
+	background-color: ${({ theme }) => theme.colors.extended.info['100']};
+	padding: 1rem;
+	border: 2px solid ${({ theme }) => theme.colors.extended.info['300']};
+	border-radius: 0.35rem;
+`
 
 export const FormulaireS2 = ({
 	onChange,
@@ -18,101 +26,140 @@ export const FormulaireS2 = ({
 	onChange?: (dottedName: DottedNames, value: PublicodesExpression) => void
 }) => {
 	const engine = useContext(EngineContext) as Engine<DottedNames>
+	const { t } = useTranslation()
 
-	const firstMonth = (
+	const monthNames = [
+		t('janvier'),
+		t('février'),
+		t('mars'),
+		t('avril'),
+		t('mai'),
+		t('juin'),
+		t('juillet'),
+		t('août'),
+		t('septembre'),
+		t('octobre'),
+		t('novembre'),
+		t('décembre'),
+	]
+
+	const exoS2Applicable = engine.evaluate('exonération S2').nodeValue !== null
+
+	const [firstMonth, firstYear] = (
 		(engine.evaluate('exonération S2 . mois éligibles . premier mois')
 			.nodeValue as Evaluation<string>) || ''
-	).slice(3)
-	const lastMonth = (
+	)
+		.slice(3)
+		.split('/')
+		.map((x) => parseInt(x))
+
+	const [lastMonth, lastYear] = (
 		(engine.evaluate('exonération S2 . mois éligibles . dernier mois')
 			.nodeValue as Evaluation<string>) || ''
-	).slice(3)
+	)
+		.slice(3)
+		.split('/')
+		.map((x) => parseInt(x))
 
 	return (
 		<>
-			<Trans>
-				<H3>
-					Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été
-					impacté par la crise sanitaire ?
-				</H3>
-				<Body>
-					Précisez le nombre de mois durant lesquels vous avez fait l’objet
-					d’une mesure d’interdiction affectant de manière prépondérante la
-					poursuite de votre activité.
-				</Body>
-			</Trans>
+			{exoS2Applicable ? (
+				<>
+					<Trans>
+						<H3>
+							Entre {monthNames[firstMonth - 1]} {firstYear.toString()} et{' '}
+							{monthNames[lastMonth - 1]} {lastYear.toString()}, combien de mois
+							avez-vous été impacté par la crise sanitaire ?
+						</H3>
+						<Body>
+							Précisez le nombre de mois durant lesquels vous avez fait l’objet
+							d’une mesure d’interdiction affectant de manière prépondérante la
+							poursuite de votre activité.
+						</Body>
+					</Trans>
 
-			<ToggleGroup
-				onChange={(valeur) => {
-					onChange?.('exonération S2 . mois éligibles', {
-						valeur,
-						unité: 'mois',
-					})
-				}}
-			>
-				{new Array(
-					engine.evaluate('exonération S2 . mois éligibles . plafond').nodeValue
-				)
-					.fill(null)
-					.map((_, i) => (
-						<Radio hideRadio key={i} value={`${i}`}>
-							{i}
-						</Radio>
-					))}
-			</ToggleGroup>
+					<ToggleGroup
+						onChange={(valeur) => {
+							onChange?.('exonération S2 . mois éligibles', {
+								valeur,
+								unité: 'mois',
+							})
+						}}
+					>
+						{new Array(
+							engine.evaluate(
+								'exonération S2 . mois éligibles . plafond'
+							).nodeValue
+						)
+							.fill(null)
+							.map((_, i) => (
+								<Radio hideRadio key={i} value={`${i}`}>
+									{i}
+								</Radio>
+							))}
+					</ToggleGroup>
 
-			<Spacing xl />
+					<Spacing xl />
 
-			<Recap>
-				<Grid container>
-					<Grid item xs>
-						<Trans>
-							<Bold>
-								Dispositif loi de financement de la sécurité sociale (LFSS) pour
-								2021
-							</Bold>
+					<Recap>
+						<Grid container>
+							<Grid item xs>
+								<Trans>
+									<Bold>
+										Dispositif loi de financement de la sécurité sociale (LFSS)
+										pour 2021
+									</Bold>
 
-							<Italic>
-								Mesure d’interdiction affectant de manière prépondérante la
-								poursuite de votre activité
-							</Italic>
-						</Trans>
-					</Grid>
+									<Italic>
+										Mesure d’interdiction affectant de manière prépondérante la
+										poursuite de votre activité
+									</Italic>
+								</Trans>
+							</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
-						<Total>
-							<Value
-								engine={engine}
-								expression="exonération S2"
-								linkToRule={false}
-								precision={0}
-							/>
-						</Total>
-					</Grid>
-				</Grid>
+							<Grid item xs="auto" alignSelf={'end'}>
+								<Total>
+									<Value
+										engine={engine}
+										expression="exonération S2"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Total>
+							</Grid>
+						</Grid>
 
-				<hr />
+						<hr />
 
-				<GridTotal container>
-					<Grid item xs>
-						<Trans>
-							Montant de l’exonération sociale liée à la crise sanitaire sur
-							l’année 2021
-						</Trans>
-					</Grid>
+						<GridTotal container>
+							<Grid item xs>
+								<Trans>
+									Montant de l’exonération sociale liée à la crise sanitaire sur
+									l’année 2021
+								</Trans>
+							</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
-						<Total>
-							<Value
-								engine={engine}
-								expression="montant total"
-								linkToRule={false}
-								precision={0}
-							/>
-						</Total>
-					</Grid>
-				</GridTotal>
-			</Recap>
+							<Grid item xs="auto" alignSelf={'end'}>
+								<Total>
+									<Value
+										engine={engine}
+										expression="montant total"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Total>
+							</Grid>
+						</GridTotal>
+					</Recap>
+				</>
+			) : (
+				<Trans>
+					<Info>
+						Vous n'êtes pas concerné par l'exonération de cotisations Covid pour
+						les indépendants.
+					</Info>
+				</Trans>
+			)}
 
 			<Trans>
 				<H3>Résumé</H3>

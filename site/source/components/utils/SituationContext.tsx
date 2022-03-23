@@ -1,10 +1,10 @@
-import Engine, { PublicodesExpression } from 'publicodes'
+import { PublicodesExpression } from 'publicodes'
 import {
 	createContext,
 	Dispatch,
 	SetStateAction,
-	useCallback,
 	useContext,
+	useRef,
 	useState,
 } from 'react'
 import { useEngine } from './EngineContext'
@@ -18,53 +18,37 @@ type SetSituation<Names extends string> = Dispatch<
 >
 
 export interface SituationState<Names extends string> {
-	engine: Engine<Names>
 	situation: Situation<Names>
 	setSituation: SetSituation<Names>
 }
 
-export const useCreateSituationState = <Names extends string>(
+/**
+ * Create a situation state synchronized with engine
+ * @param defaultSituation
+ * @returns situation state
+ */
+export const useSynchronizedSituationState = <Names extends string>(
 	defaultSituation: Situation<Names> | (() => Situation<Names>) = {}
 ): SituationState<Names> => {
 	const engine = useEngine<Names>()
 
-	const [localSituation, setLocalSituation] = useState<Situation<Names>>(() => {
-		if (typeof defaultSituation === 'function') {
-			const newSituation = defaultSituation()
-			engine.setSituation(newSituation)
+	const [localSituation, setLocalSituation] =
+		useState<Situation<Names>>(defaultSituation)
 
-			return newSituation
-		} else {
-			engine.setSituation(defaultSituation)
+	const prevSituation = useRef<Situation<Names> | null>(null)
 
-			return defaultSituation
-		}
-	})
+	if (prevSituation.current !== localSituation) {
+		prevSituation.current = localSituation
+		engine.setSituation(localSituation)
+	}
 
-	const setSituation = useCallback(
-		(value: SetStateAction<Situation<Names>>) => {
-			if (typeof value === 'function') {
-				return setLocalSituation((val) => {
-					const newSituation = value(val)
-					engine.setSituation(newSituation)
-
-					return newSituation
-				})
-			} else {
-				engine.setSituation(value)
-
-				return setLocalSituation(value)
-			}
-		},
-		[engine]
-	)
-
-	return { engine, situation: localSituation, setSituation }
+	return { situation: localSituation, setSituation: setLocalSituation }
 }
 
 export const SituationStateContext = createContext<
 	Partial<SituationState<string>>
 >({})
+
 export const SituationStateProvider = SituationStateContext.Provider
 
 export const useSituationState = <Names extends string>() =>
