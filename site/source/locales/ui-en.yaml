@@ -22,6 +22,14 @@
   <0>Between {firstMonth} and {lastMonth}, how many months were you impacted by
   the health crisis?</0><1>Specify the number of months that you were subject to
   a ban that significantly affected your business.</1>
+"<0>Entre {monthNames[firstMonth - 1]} {firstYear":
+  "toString()} et {monthNames[lastMonth - 1]} {lastYear":
+    "toString()}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
+      <0>Between {monthNames[firstMonth - 1]} {firstYear.toString()} and
+      {monthNames[lastMonth - 1]} {lastYear.toString()}, how many months were
+      you impacted by the health crisis?</0><1>Specify the number of months that
+      you were subject to a prohibition measure that significantly affected the
+      continuation of your business.</1>
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>: <0>Month</0><1>Health crisis situation</1><2>Amount of reduction</2>
 <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>: <0>Amount of the social exemption related to the health crisis in 2021</0>
 <0>Oui</0>: <0>Yes</0>
@@ -68,6 +76,9 @@
         activity\").nodeValue}</2></2><3>Number of months for which you meet the
         eligibility requirements<1><0>LFSS: <2><0></0></2></0><1>LFR1:
         <2><0></0></2></1></1></3></1>"
+<0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
+  <0>You are not concerned by the exemption of Covid contributions for the
+  self-employed.</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
 Afficher la description publicodes: Display publicodes description

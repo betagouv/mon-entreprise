@@ -24,6 +24,14 @@
   par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous
   avez fait l’objet d’une mesure d’interdiction affectant de manière
   prépondérante la poursuite de votre activité.</1>
+"<0>Entre {monthNames[firstMonth - 1]} {firstYear":
+  "toString()} et {monthNames[lastMonth - 1]} {lastYear":
+    "toString()}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
+      <0>Entre {monthNames[firstMonth - 1]} {firstYear.toString()} et
+      {monthNames[lastMonth - 1]} {lastYear.toString()}, combien de mois
+      avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de
+      mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction
+      affectant de manière prépondérante la poursuite de votre activité.</1>
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>:
   <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la
   réduction</2>
@@ -74,6 +82,9 @@
         d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous
         remplissez les conditions d'éligibilité<1><0>LFSS :
         <2><0></0></2></0><1>LFR1 : <2><0></0></2></1></1></3></1>"
+<0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
+  <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les
+  indépendants.</0>
 Assimilé salarié: Assimilé salarié
 Aucun: Aucun
 Aucun résultat: Aucun résultat
