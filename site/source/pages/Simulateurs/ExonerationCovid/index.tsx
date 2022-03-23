@@ -5,7 +5,7 @@ import {
 	useEngine,
 } from '@/components/utils/EngineContext'
 import {
-	useCreateSituationState,
+	useSynchronizedSituationState,
 	SituationStateProvider,
 } from '@/components/utils/SituationContext'
 import { Button } from '@/design-system/buttons'
@@ -50,7 +50,7 @@ const ExonérationCovid = () => {
 	}, [location])
 
 	const engine = useEngine<DottedNames>()
-	const situationState = useCreateSituationState<DottedNames>({ ...params })
+	const situationState = useSynchronizedSituationState<DottedNames>(params)
 	const { situation, setSituation } = situationState
 
 	const updateSituation = useCallback(
