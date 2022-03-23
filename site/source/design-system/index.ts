@@ -1,5 +1,5 @@
 export * as button from './buttons'
-export * as field from './field'
+export * from './field'
 export { GlobalStyle } from './global-style'
 export * as layout from './layout'
 export { default as Popover } from './Popover'
