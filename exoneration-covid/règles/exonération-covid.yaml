@@ -447,6 +447,41 @@ code . secteur:
       alors: "'S1B'"
     - sinon: secteur
 
+code . lieu d'exercice:
+  variations:
+    - si: lieu d'exercice = 'métropole'
+      alors: "'1'"
+    - sinon: "'2'"
+
+code . début d'activité:
+  variations:
+    - si: début d'activité = 'avant 2021'
+      alors: "'0'"
+    - si: début d'activité = 'janvier 2021'
+      alors: "'1'"
+    - si: début d'activité = 'février 2021'
+      alors: "'2'"
+    - si: début d'activité = 'mars 2021'
+      alors: "'3'"
+    - si: début d'activité = 'avril 2021'
+      alors: "'4'"
+    - si: début d'activité = 'mai 2021'
+      alors: "'5'"
+    - si: début d'activité = 'juin 2021'
+      alors: "'6'"
+    - si: début d'activité = 'juillet 2021'
+      alors: "'7'"
+    - si: début d'activité = 'août 2021'
+      alors: "'8'"
+    - si: début d'activité = 'septembre 2021'
+      alors: "'9'"
+    - si: début d'activité = 'octobre 2021'
+      alors: "'10'"
+    - si: début d'activité = 'novembre 2021'
+      alors: "'11'"
+    - si: début d'activité = 'décembre 2021'
+      alors: "'12'"
+
 code . LFSS:
   variations:
     - si: secteur . S2
