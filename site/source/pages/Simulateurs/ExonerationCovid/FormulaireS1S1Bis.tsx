@@ -23,18 +23,26 @@ const getTotalByMonth = (
 		Object.entries(situation)
 			.filter(([monthDottedName]) => monthDottedName.startsWith('mois . '))
 			.map(([monthDottedName]) => {
-				const { nodeValue } = engine.evaluate(
-					monthDottedName
-				) as EvaluatedNode<string>
-
 				const parsedRules = engine.getParsedRules()
 
-				if (!nodeValue || !(nodeValue + ' . montant mensuel' in parsedRules)) {
+				const exoSelected = (
+					engine.evaluate(monthDottedName) as EvaluatedNode<string>
+				).nodeValue
+
+				const exoApplicable =
+					typeof exoSelected === 'string' &&
+					monthDottedName + ' . ' + exoSelected in parsedRules &&
+					engine.evaluate(monthDottedName + ' . ' + exoSelected).nodeValue
+
+				if (
+					!exoApplicable ||
+					!(exoSelected + ' . montant mensuel' in parsedRules)
+				) {
 					return [monthDottedName, undefined]
 				}
 
 				const value = engine.evaluate(
-					nodeValue + ' . montant mensuel'
+					exoSelected + ' . montant mensuel'
 				) as EvaluatedNode<number>
 
 				return [monthDottedName, value]
