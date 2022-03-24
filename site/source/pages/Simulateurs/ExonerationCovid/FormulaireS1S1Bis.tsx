@@ -9,6 +9,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Grid } from '@mui/material'
 import { ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import { Key, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useExoCovidEngine } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
@@ -53,6 +54,8 @@ interface Props {
 export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 	const engine = useExoCovidEngine()
 	const { situation = {} } = useSituationState<ExoCovidDottedNames>()
+
+	const selectedKey = useRef<{ [key: string]: Key | undefined }>({})
 
 	const totalByMonth = getTotalByMonth(engine, situation) ?? {}
 
@@ -111,7 +114,9 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 								dottedNames={['LFSS 600', 'LFSS 300', 'LFR1']}
 								title={node.title}
 								total={totalByMonth[dotName]}
+								defaultSelectedKey={selectedKey.current[dotName]}
 								onSelectionChange={(key) => {
+									selectedKey.current[dotName] = key
 									const val = (key as string).replace(/\.\d+$/, '')
 									onChange?.(dotName as ExoCovidDottedNames, `'${val}'`)
 								}}
