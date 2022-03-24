@@ -2,7 +2,7 @@ import Value from '@/components/EngineValue'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Li } from '@/design-system/typography/list'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { ExoCovidDottedNames } from 'exoneration-covid'
@@ -162,36 +162,82 @@ export const FormulaireS2 = ({
 			)}
 
 			<Trans>
-				<H3>Résumé</H3>
+				<H3>Résumé pour les tiers-déclarants</H3>
+				<Body>
+					Reportez les éléments entre parenthèses dans la déclaration EDI de
+					votre client
+				</Body>
 
 				<RecapExpert>
 					<Li>
 						Secteur d'activité dont relève l'activité principale :{' '}
-						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
+						<Bold as="span">{engine.evaluate('code . secteur').nodeValue}</Bold>
+						)
 					</Li>
+
 					<Li>
 						Activité exercée en{' '}
 						<Bold as="span">
 							{engine.evaluate("lieu d'exercice").nodeValue}
+						</Bold>{' '}
+						(
+						<Bold as="span">
+							{engine.evaluate("code . lieu d'exercice").nodeValue}
 						</Bold>
+						)
 					</Li>
+
 					<Li>
 						Début d'activité :{' '}
 						<Bold as="span">
 							{engine.evaluate("début d'activité").nodeValue}
+						</Bold>{' '}
+						(
+						<Bold as="span">
+							{engine.evaluate("code . début d'activité").nodeValue}
 						</Bold>
+						)
 					</Li>
+
 					<Li>
 						Nombres de mois pour lesquels vous remplissez les conditions
 						d'éligibilité :{' '}
-						<Bold as="span">
-							<Value
-								engine={engine}
-								expression="exonération S2 . mois éligibles"
-								linkToRule={false}
-								precision={0}
-							/>
-						</Bold>
+						<Ul>
+							<Li>
+								LFSS :{' '}
+								<Bold as="span">
+									<Value
+										engine={engine}
+										expression="exonération S2 . mois éligibles"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{engine.evaluate('code . LFSS').nodeValue}
+								</Bold>
+								)
+							</Li>
+
+							<Li>
+								LFR1 :{' '}
+								<Bold as="span">
+									<Value
+										engine={engine}
+										expression="LFR1 . mois éligibles"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{engine.evaluate('code . LFR1').nodeValue}
+								</Bold>
+								)
+							</Li>
+						</Ul>
 					</Li>
 				</RecapExpert>
 			</Trans>

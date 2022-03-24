@@ -3,6 +3,7 @@ import { Situation } from '@/components/utils/SituationContext'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
@@ -230,25 +231,44 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 			</Recap>
 
 			<Trans>
-				<H3>Résumé</H3>
+				<H3>Résumé pour les tiers-déclarants</H3>
+				<Body>
+					Reportez les éléments entre parenthèses dans la déclaration EDI de
+					votre client
+				</Body>
 
 				<RecapExpert>
 					<Li>
 						Secteur d'activité dont relève l'activité principale :{' '}
-						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
+						<Bold as="span">{engine.evaluate('code . secteur').nodeValue}</Bold>
+						)
 					</Li>
+
 					<Li>
 						Activité exercée en{' '}
 						<Bold as="span">
 							{engine.evaluate("lieu d'exercice").nodeValue}
+						</Bold>{' '}
+						(
+						<Bold as="span">
+							{engine.evaluate("code . lieu d'exercice").nodeValue}
 						</Bold>
+						)
 					</Li>
+
 					<Li>
 						Début d'activité :{' '}
 						<Bold as="span">
 							{engine.evaluate("début d'activité").nodeValue}
+						</Bold>{' '}
+						(
+						<Bold as="span">
+							{engine.evaluate("code . début d'activité").nodeValue}
 						</Bold>
+						)
 					</Li>
+
 					<Li>
 						Nombres de mois pour lesquels vous remplissez les conditions
 						d'éligibilité
@@ -262,8 +282,36 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 										linkToRule={false}
 										precision={0}
 									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{engine.evaluate('code . LFSS').nodeValue}
 								</Bold>
+								)
+								<Ul>
+									<Li>
+										dont LFSS 600{' '}
+										<Bold as="span">
+											<Value
+												engine={engine}
+												expression="LFSS 600 . mois éligibles"
+												linkToRule={false}
+												precision={0}
+											/>
+										</Bold>{' '}
+										et LFSS 300{' '}
+										<Bold as="span">
+											<Value
+												engine={engine}
+												expression="LFSS 300 . mois éligibles"
+												linkToRule={false}
+												precision={0}
+											/>
+										</Bold>
+									</Li>
+								</Ul>
 							</Li>
+
 							<Li>
 								LFR1 :{' '}
 								<Bold as="span">
@@ -273,7 +321,12 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 										linkToRule={false}
 										precision={0}
 									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{engine.evaluate('code . LFR1').nodeValue}
 								</Bold>
+								)
 							</Li>
 						</Ul>
 					</Li>
