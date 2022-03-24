@@ -41,6 +41,7 @@ export const Total = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 0.5rem;
+	padding-left: 1rem;
 `
 
 export const RecapExpert = styled(Ul)`

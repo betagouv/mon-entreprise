@@ -134,8 +134,8 @@ export const FormulaireS2 = ({
 						<GridTotal container>
 							<Grid item xs>
 								<Trans>
-									Montant de l’exonération sociale liée à la crise sanitaire sur
-									l’année 2021
+									Montant de l’exonération sociale liée à la crise sanitaire
+									pour les cotisations de l’année 2021
 								</Trans>
 							</Grid>
 

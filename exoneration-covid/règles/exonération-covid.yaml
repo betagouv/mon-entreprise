@@ -19,7 +19,7 @@ secteur . S1bis:
 secteur . S2:
   valeur: secteur = 'S2'
   titre: Secteur dit S2
-  description: Autres activités ayant fait l'objet d'une interdiction (par exemple, commerces)
+  description: Activités autres que S1 et S1bis ayant fait l'objet d'une interdiction affectant de manière prépondérante la poursuite de leur activité
 
 secteur . S1 ou S1bis:
   une de ces conditions:
