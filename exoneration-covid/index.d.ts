@@ -2,9 +2,9 @@
 // sub-section of them. We might support "code-splitting" the rules in the
 // future.
 import { Rule } from 'publicodes'
-import { Names } from './dist/names'
+import { Names as ExoCovidDottedNames } from './dist/names'
 
-export type DottedNames = Names
-declare let rules: Record<Names, Rule>
+declare let rules: Record<ExoCovidDottedNames, Rule>
 
+export type { ExoCovidDottedNames }
 export default rules

@@ -1,12 +1,12 @@
 import { Item, Select } from '@/design-system/field/Select'
 import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
-import { Key, useContext } from 'react'
+import { ExoCovidDottedNames } from 'exoneration-covid'
+import { EvaluatedNode, formatValue } from 'publicodes'
+import { Key } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import { DottedNames } from 'exoneration-covid'
-import { EngineContext } from '@/components/utils/EngineContext'
-import Engine, { EvaluatedNode, formatValue } from 'publicodes'
+import { useExoCovidEngine } from '.'
 
 export const Th = styled.th<{ alignSelf?: string }>`
 	flex: 2;
@@ -94,7 +94,7 @@ const Empty = styled.div`
 `
 
 type RowProps = {
-	dottedNames: DottedNames[]
+	dottedNames: ExoCovidDottedNames[]
 	actualMonth: string
 	title?: string
 	total?: EvaluatedNode<number>
@@ -112,7 +112,7 @@ export const Row = ({
 }: RowProps) => {
 	const { t } = useTranslation()
 
-	const engine = useContext(EngineContext) as Engine<DottedNames>
+	const engine = useExoCovidEngine()
 
 	const choices = {
 		non: [t('Aucun')],
@@ -141,7 +141,9 @@ export const Row = ({
 					: true)
 		)
 		.flatMap((node) => {
-			const name = (actualMonth + ' . ' + node.dottedName) as DottedNames
+			const name = (actualMonth +
+				' . ' +
+				node.dottedName) as ExoCovidDottedNames
 			const rawNode = engine.getRule(name).rawNode
 
 			type Meta = { "baisse d'au moins"?: string }

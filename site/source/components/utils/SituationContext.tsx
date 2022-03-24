@@ -1,4 +1,4 @@
-import { PublicodesExpression } from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import {
 	createContext,
 	Dispatch,
@@ -7,7 +7,6 @@ import {
 	useRef,
 	useState,
 } from 'react'
-import { useEngine } from './EngineContext'
 
 export type Situation<Names extends string> = Partial<
 	Record<Names, PublicodesExpression | undefined>
@@ -28,10 +27,9 @@ export interface SituationState<Names extends string> {
  * @returns situation state
  */
 export const useSynchronizedSituationState = <Names extends string>(
+	engine: Engine<Names>,
 	defaultSituation: Situation<Names> | (() => Situation<Names>) = {}
 ): SituationState<Names> => {
-	const engine = useEngine<Names>()
-
 	const [localSituation, setLocalSituation] =
 		useState<Situation<Names>>(defaultSituation)
 
