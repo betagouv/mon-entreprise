@@ -1,8 +1,5 @@
 import Value from '@/components/EngineValue'
-import {
-	Situation,
-	useSituationState,
-} from '@/components/utils/SituationContext'
+import { Situation } from '@/components/utils/SituationContext'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -11,7 +8,7 @@ import { ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { Key, useRef } from 'react'
 import { Trans } from 'react-i18next'
-import { useExoCovidEngine } from '.'
+import { useExoCovidEngine, useExoCovidSituationState } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
 
@@ -61,7 +58,7 @@ interface Props {
 
 export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 	const engine = useExoCovidEngine()
-	const { situation = {} } = useSituationState<ExoCovidDottedNames>()
+	const { situation = {} } = useExoCovidSituationState()
 
 	const selectedKey = useRef<{ [key: string]: Key | undefined }>({})
 
