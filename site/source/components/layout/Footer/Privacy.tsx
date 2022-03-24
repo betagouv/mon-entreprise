@@ -11,6 +11,7 @@ export default function Privacy({ label }: { label?: string }) {
 	const tracker = useContext(TrackingContext)
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
+
 	const handleChange = useCallback(
 		(checked) => {
 			if (checked) {
