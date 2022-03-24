@@ -1,5 +1,4 @@
 import Value from '@/components/EngineValue'
-import { EngineContext } from '@/components/utils/EngineContext'
 import {
 	Situation,
 	useSituationState,
@@ -8,16 +7,16 @@ import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Grid } from '@mui/material'
-import { DottedNames } from 'exoneration-covid'
+import { ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { useExoCovidEngine } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
 
 const getTotalByMonth = (
-	engine: Engine<DottedNames>,
-	situation: Situation<DottedNames>
+	engine: Engine<ExoCovidDottedNames>,
+	situation: Situation<ExoCovidDottedNames>
 ) => {
 	const ret = Object.fromEntries(
 		Object.entries(situation)
@@ -45,12 +44,15 @@ const getTotalByMonth = (
 }
 
 interface Props {
-	onChange?: (dottedName: DottedNames, value: PublicodesExpression) => void
+	onChange?: (
+		dottedName: ExoCovidDottedNames,
+		value: PublicodesExpression
+	) => void
 }
 
 export const FormulaireS1S1Bis = ({ onChange }: Props) => {
-	const engine = useContext(EngineContext) as Engine<DottedNames>
-	const { situation = {} } = useSituationState<DottedNames>()
+	const engine = useExoCovidEngine()
+	const { situation = {} } = useSituationState<ExoCovidDottedNames>()
 
 	const totalByMonth = getTotalByMonth(engine, situation) ?? {}
 
@@ -111,7 +113,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 								total={totalByMonth[dotName]}
 								onSelectionChange={(key) => {
 									const val = (key as string).replace(/\.\d+$/, '')
-									onChange?.(dotName as DottedNames, `'${val}'`)
+									onChange?.(dotName as ExoCovidDottedNames, `'${val}'`)
 								}}
 								key={dotName}
 							/>

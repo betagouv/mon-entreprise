@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Rule } from 'publicodes'
-import React, { createContext, useContext, useRef } from 'react'
+import React, { createContext, useContext } from 'react'
 import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>
@@ -23,21 +23,8 @@ export function engineFactory(rules: Rules, options = {}) {
 export const EngineContext = createContext<Engine>(new Engine())
 export const EngineProvider = EngineContext.Provider
 
-export function useEngine<Names extends string = DottedName>() {
-	return useContext(EngineContext) as Engine<Names>
-}
-
-/**
- * Use this hooks to keep state of engine with the react fast refresh
- * @param originalEngine
- * @returns engine
- */
-export const useEngineKeepState = <Names extends string>(
-	originalEngine: Engine<Names>
-) => {
-	const { current: engine } = useRef(originalEngine)
-
-	return engine
+export function useEngine() {
+	return useContext(EngineContext) as Engine<DottedName>
 }
 
 type SituationProviderProps<Names extends string> = {

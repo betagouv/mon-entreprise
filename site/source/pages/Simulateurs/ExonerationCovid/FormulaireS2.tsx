@@ -1,16 +1,15 @@
 import Value from '@/components/EngineValue'
-import { EngineContext } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
-import { DottedNames } from 'exoneration-covid'
-import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
-import { useContext } from 'react'
+import { ExoCovidDottedNames } from 'exoneration-covid'
+import { Evaluation, PublicodesExpression } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { useExoCovidEngine } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 
 const Info = styled(Body)`
@@ -23,9 +22,12 @@ const Info = styled(Body)`
 export const FormulaireS2 = ({
 	onChange,
 }: {
-	onChange?: (dottedName: DottedNames, value: PublicodesExpression) => void
+	onChange?: (
+		dottedName: ExoCovidDottedNames,
+		value: PublicodesExpression
+	) => void
 }) => {
-	const engine = useContext(EngineContext) as Engine<DottedNames>
+	const engine = useExoCovidEngine()
 	const { t } = useTranslation()
 
 	const monthNames = [
