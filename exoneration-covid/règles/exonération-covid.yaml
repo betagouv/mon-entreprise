@@ -410,10 +410,12 @@ exonération S2 . mois éligibles . premier mois:
   variations:
     - si: début d'activité . date < 01/2021
       alors: 04/2021
+    - si: début d'activité . date < 02/2021
+      alors: 02/2021
+    - si: début d'activité . date > dernier mois
+      alors: dernier mois
     - sinon:
         valeur: début d'activité . date
-        plancher: 02/2021
-        plafond: dernier mois
 
 exonération S2 . mois éligibles . dernier mois:
   variations:
