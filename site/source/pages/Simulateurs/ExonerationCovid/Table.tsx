@@ -117,14 +117,16 @@ export const Row = ({
 	const choices = {
 		non: [t('Aucun')],
 		'LFSS 600': [
-			t('Interdiction d’accueil du public (600 €)'),
-			t('Baisse d’au moins 50% du chiffre d’affaires (600 €)'),
+			t("Interdiction d'accueil du public (600 €)"),
+			t("Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €)"),
 		],
 		'LFSS 600 65%': [
-			t('Interdiction d’accueil du public (600 €)'),
-			t('Baisse d’au moins 65% du chiffre d’affaires (600 €)'),
+			t("Interdiction d'accueil du public (600 €)"),
+			t("Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €)"),
 		],
-		'LFSS 300': [t("Baisse entre 30% à 64% du chiffre d'affaires (300 €)")],
+		'LFSS 300': [
+			t("Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €)"),
+		],
 		LFR1: [t('Eligibilité aux mois de mars, avril ou mai 2021 (250 €)')],
 	}
 
