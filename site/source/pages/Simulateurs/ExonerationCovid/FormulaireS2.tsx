@@ -63,15 +63,19 @@ export const FormulaireS2 = ({
 		.split('/')
 		.map((x) => parseInt(x))
 
+	const monthCount =
+		(engine.evaluate('exonération S2 . mois éligibles . plafond')
+			.nodeValue as Evaluation<number>) ?? 0
+
 	return (
 		<>
 			{exoS2Applicable ? (
 				<>
 					<Trans>
 						<H3>
-							Entre {monthNames[firstMonth - 1]} {firstYear.toString()} et{' '}
-							{monthNames[lastMonth - 1]} {lastYear.toString()}, combien de mois
-							avez-vous été impacté par la crise sanitaire ?
+							Entre début {monthNames[firstMonth - 1]} {firstYear.toString()} et
+							fin {monthNames[lastMonth - 1]} {lastYear.toString()}, combien de
+							mois avez-vous été impacté par la crise sanitaire ?
 						</H3>
 						<Body>
 							Précisez le nombre de mois durant lesquels vous avez fait l’objet
@@ -88,17 +92,11 @@ export const FormulaireS2 = ({
 							})
 						}}
 					>
-						{new Array(
-							engine.evaluate(
-								'exonération S2 . mois éligibles . plafond'
-							).nodeValue
-						)
-							.fill(null)
-							.map((_, i) => (
-								<Radio hideRadio key={i} value={`${i}`}>
-									{i}
-								</Radio>
-							))}
+						{new Array(monthCount + 1).fill(null).map((_, i) => (
+							<Radio hideRadio key={i} value={`${i}`}>
+								{i}
+							</Radio>
+						))}
 					</ToggleGroup>
 
 					<Spacing xl />
