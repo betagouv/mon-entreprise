@@ -154,10 +154,29 @@ export const Row = ({
 			const choice = (node.dottedName +
 				(percent ? ' ' + percent : '')) as keyof typeof choices
 
-			return choices[choice].map((text, i) => ({
-				key: (node.dottedName as string) + `.${i}`,
-				text,
-			}))
+			const lieu = engine.evaluate("lieu d'exercice").nodeValue
+
+			return choices[choice]
+				.filter((_, i) => {
+					const hideChoice1 = !(
+						i === 1 &&
+						choice.startsWith('LFSS 600') &&
+						((lieu === 'métropole' &&
+							['mois . juin 2021', 'mois . juillet 2021'].includes(
+								actualMonth
+							)) ||
+							(lieu === 'outre-mer' &&
+								['mois . octobre 2021', 'mois . novembre 2021'].includes(
+									actualMonth
+								)))
+					)
+
+					return hideChoice1
+				})
+				.map((text, i) => ({
+					key: (node.dottedName as string) + `.${i}`,
+					text,
+				}))
 		})
 		.filter(<T,>(x: T | null): x is T => Boolean(x))
 
