@@ -1,28 +1,32 @@
 import { hexToHSL } from './hexToHSL'
 
-const script = document.currentScript;
-const moduleName = script.dataset.module || 'simulateur-embauche';
+const script = document.currentScript
+const moduleName = script.dataset.module || 'simulateur-embauche'
 const couleur =
 	script.dataset.couleur &&
 	encodeURIComponent(
 		JSON.stringify(hexToHSL(script.dataset.couleur.toUpperCase()))
-	);
+	)
 
-const lang = script.dataset.lang || 'fr';
-
+const lang = script.dataset.lang || 'fr'
 
 const src = new URL(
-	(lang === 'fr' ? import.meta.env.VITE_FR_BASE_URL : import.meta.env.VITE_EN_BASE_URL) +
-	'/iframes/' +
-	moduleName)
+	(lang === 'fr'
+		? import.meta.env.VITE_FR_BASE_URL
+		: import.meta.env.VITE_EN_BASE_URL) +
+		'/iframes/' +
+		moduleName
+)
 
 src.searchParams.set('iframe', true)
-src.searchParams.set('integratorUrl', encodeURIComponent(window.location.href.toString()))
+src.searchParams.set(
+	'integratorUrl',
+	encodeURIComponent(window.location.href.toString())
+)
 src.searchParams.set('lang', lang)
 if (couleur) {
 	src.searchParams.set('couleur', couleur)
 }
-
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
