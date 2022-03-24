@@ -1,29 +1,33 @@
 import { hexToHSL } from './hexToHSL'
 
-let script = document.currentScript,
-	moduleName = script.dataset.module || 'simulateur-embauche',
-	couleur =
-		script.dataset.couleur &&
-		encodeURIComponent(
-			JSON.stringify(hexToHSL(script.dataset.couleur.toUpperCase()))
-		),
-	lang = script.dataset.lang || 'fr',
-	fr = lang === 'fr',
-	baseUrl =
-		script.dataset.iframeUrl ||
-		(fr ? import.meta.env.VITE_FR_BASE_URL : import.meta.env.VITE_EN_BASE_URL) +
-			'/iframes/' +
-			moduleName,
-	integratorUrl = encodeURIComponent(window.location.href.toString()),
-	src =
-		baseUrl +
-		(baseUrl.indexOf('?') !== -1 ? '&' : '?') +
-		`couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
+const script = document.currentScript;
+const moduleName = script.dataset.module || 'simulateur-embauche';
+const couleur =
+	script.dataset.couleur &&
+	encodeURIComponent(
+		JSON.stringify(hexToHSL(script.dataset.couleur.toUpperCase()))
+	);
+
+const lang = script.dataset.lang || 'fr';
+
+
+const src = new URL(
+	(lang === 'fr' ? import.meta.env.VITE_FR_BASE_URL : import.meta.env.VITE_EN_BASE_URL) +
+	'/iframes/' +
+	moduleName)
+
+src.searchParams.set('iframe', true)
+src.searchParams.set('integratorUrl', encodeURIComponent(window.location.href.toString()))
+src.searchParams.set('lang', lang)
+if (couleur) {
+	src.searchParams.set('couleur', couleur)
+}
+
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
 	id: 'simulateurEmbauche',
-	src,
+	src: src.toString(),
 	style: 'border: none; width: 100%; display: block; height: 700px',
 	allow: 'clipboard-write',
 	allowfullscreen: true,
@@ -41,8 +45,9 @@ const moduleToSitePath = {
 	'simulateur-independant': '/simulateurs/indépendant',
 	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
 }
+
 const simulateurLink =
-	import.meta.env.VITE_FR_BASE_URL + moduleToSitePath[moduleName] ?? ''
+	import.meta.env.VITE_FR_BASE_URL + (moduleToSitePath[moduleName] ?? '/')
 
 const url = new URL(simulateurLink)
 

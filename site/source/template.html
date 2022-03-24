@@ -185,18 +185,17 @@
 					document.location.search.substring(1)
 				).get('couleur')
 				let iframeColor = rawColor && JSON.parse(decodeURIComponent(rawColor))
-				if (iframeColor) {
-					;[
-						document.documentElement,
-						...document.querySelectorAll('[data-js-color-element]'),
-					].forEach((element) => {
-						element.style.setProperty('--COLOR_HUE', iframeColor[0])
-						element.style.setProperty(
-							'--COLOR_SATURATION',
-							iframeColor[1] + '%'
-						)
-					})
-				}
+				;[
+					document.documentElement,
+					...document.querySelectorAll('[data-js-color-element]'),
+				].forEach((element) => {
+					element.style.setProperty('--COLOR_HUE', iframeColor ? iframeColor[0] : '220deg')
+					element.style.setProperty(
+						'--COLOR_SATURATION',
+						iframeColor ? iframeColor[1] + '%' : '100%'
+					)
+				})
+			
 			} catch (e) {
 				console.error(e)
 			}
