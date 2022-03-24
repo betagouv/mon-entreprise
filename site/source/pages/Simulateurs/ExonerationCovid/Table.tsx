@@ -45,7 +45,7 @@ export const Tr = styled.tr`
 	${Td}:last-child {
 		text-align: right;
 	}
-	${Td}:first-child, ${Td}:last-child {
+	${Td}:first-child, ${Td}:last-child, ${Th}:first-child, ${Th}:last-child {
 		flex: 1;
 	}
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {

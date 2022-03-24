@@ -7,7 +7,8 @@ import { LabelBody, RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
 const Label = styled.span``
 
 const Description = styled.p`
-	margin: ${({ theme }) => theme.spacings.sm} 0;
+	margin: 0;
+	margin-top: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledRadioPoint = styled(RadioPoint)`
@@ -25,6 +26,7 @@ const StyledRadioSkeleton = styled(RadioSkeleton)`
 		flex: 1 100%;
 		border-width: 0px;
 		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+		padding: ${({ theme }) => theme.spacings.sm};
 	}
 `
 

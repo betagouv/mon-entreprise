@@ -90,8 +90,8 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 					<Tr>
 						<Trans>
 							<Th>Mois</Th>
-							<Th alignSelf="center">Situation liée à la crise sanitaire</Th>
-							<Th alignSelf="end">Montant de la réduction</Th>
+							<Th>Situation liée à la crise sanitaire</Th>
+							<Th>Montant de la réduction</Th>
 						</Trans>
 					</Tr>
 				</Thead>
