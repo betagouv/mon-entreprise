@@ -33,7 +33,6 @@ export default function Privacy({ label }: { label?: string }) {
 				</Link>
 			)}
 			title={t('privacyContent.title', 'Données personnelles')}
-			small
 		>
 			<Trans i18nKey="privacyContent.texte">
 				<TrackPage chapter1="informations" name={'donnees_personnelles'} />
