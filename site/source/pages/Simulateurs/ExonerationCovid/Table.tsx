@@ -174,7 +174,7 @@ export const Row = ({
 					return hideChoice1
 				})
 				.map((text, i) => ({
-					key: (node.dottedName as string) + `.${i}`,
+					key: node.dottedName + `.${i}`,
 					text,
 				}))
 		})

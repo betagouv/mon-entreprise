@@ -1,5 +1,6 @@
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
-import exonerationCovid from 'exoneration-covid'
+import { useSituationState } from '@/components/utils/SituationContext'
+import exonerationCovid, { ExoCovidDottedNames } from 'exoneration-covid'
 import Engine from 'publicodes'
 import { useContext, useRef } from 'react'
 import { ExonérationCovid } from './ExonérationCovid'
@@ -7,7 +8,10 @@ import { ExonérationCovid } from './ExonérationCovid'
 const exoCovidEngine = new Engine(exonerationCovid)
 
 export const useExoCovidEngine = () =>
-	useContext(EngineContext) as typeof exoCovidEngine
+	useContext(EngineContext) as Engine<ExoCovidDottedNames>
+
+export const useExoCovidSituationState = () =>
+	useSituationState<ExoCovidDottedNames>()
 
 /**
  * Use this hooks to keep state of engine with the react fast refresh
