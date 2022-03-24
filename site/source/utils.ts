@@ -98,6 +98,17 @@ export const getValueFrom = <
 ): Extract<T, { [k in K]?: unknown }>[K] | undefined =>
 	key in obj ? obj[key] : undefined
 
+const isMeta = <T>(rule: Rule): rule is Rule & { meta?: T } => 'meta' in rule
+
+/**
+ * Return typed meta property from a rule
+ * @param rule
+ * @param defaultValue
+ * @returns
+ */
+export const getMeta = <T>(rule: Rule, defaultValue: T) =>
+	(isMeta<T>(rule) ? getValueFrom(rule, 'meta') : null) ?? defaultValue
+
 /**
  * Wraps each event function specified in eventsToWrap (default onPress) with an
  * asynchronous function that waits x ms before executing the original function
@@ -150,16 +161,6 @@ export const getBranch = () => {
 
 	return branch ?? ''
 }
-
-const isMeta = <T>(rule: Rule): rule is Rule & { meta?: T } => 'meta' in rule
-
-/**
- * Return typed meta property from a rule
- * @param rule
- * @returns
- */
-export const getMeta = <T>(rule: Rule): T | undefined =>
-	isMeta<T>(rule) ? getValueFrom(rule, 'meta') : undefined
 
 /**
  * We use this function to hide some features in production while keeping them

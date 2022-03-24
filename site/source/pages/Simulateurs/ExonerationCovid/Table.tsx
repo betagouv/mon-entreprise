@@ -145,7 +145,7 @@ export const Row = ({
 			const rawNode = engine.getRule(name).rawNode
 
 			type Meta = { "baisse d'au moins"?: string }
-			const percent = getMeta<Meta>(rawNode)?.["baisse d'au moins"]
+			const percent = getMeta<Meta>(rawNode, {})?.["baisse d'au moins"]
 
 			const choice = (node.dottedName +
 				(percent ? ' ' + percent : '')) as keyof typeof choices
