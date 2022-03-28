@@ -25,12 +25,17 @@ export default function useSearchCompany(
 			return
 		}
 
-		searchDenominationOrSiren(debouncedValue).then(
-			(entreprise: Array<FabriqueSocialEntreprise> | null) => {
+		searchDenominationOrSiren(debouncedValue)
+			.then((entreprise: Array<FabriqueSocialEntreprise> | null) => {
 				setResult(entreprise || [])
 				setSearchPending(false)
-			}
-		)
+			})
+			.catch((err) => {
+				setSearchPending(false)
+
+				// eslint-disable-next-line no-console
+				console.error(err)
+			})
 	}, [debouncedValue, setResult, setSearchPending])
 
 	return [searchPending && result.length <= 0, result.slice(0, 6)]

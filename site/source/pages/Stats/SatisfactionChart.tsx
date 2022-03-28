@@ -81,11 +81,23 @@ function formatMonth(date: string | Date) {
 
 type CustomTooltipProps = {
 	active?: boolean
-	payload?: any
+	payload?: [
+		{
+			payload: {
+				total: number
+				'très bien': number
+				bien: number
+				mauvais: number
+				date: string | Date
+			}
+		}
+	]
 }
 
+// this component seems useless to me because
+// it is not used with any props in SatisfactionChart
 const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
-	if (!active) {
+	if (!active || !payload) {
 		return null
 	}
 	const data = payload[0].payload

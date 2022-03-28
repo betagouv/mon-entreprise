@@ -11,7 +11,10 @@ export function render(url: string, lang: 'fr' | 'en') {
 	const sheet = new ServerStyleSheet()
 	const helmetContext = {} as FilledContext
 	const App = lang === 'fr' ? AppFr : AppEn
-	i18next.changeLanguage(lang)
+	i18next.changeLanguage(lang).catch((err) =>
+		// eslint-disable-next-line no-console
+		console.error(err)
+	)
 
 	const html = ReactDOMServer.renderToString(
 		<HelmetProvider context={helmetContext}>

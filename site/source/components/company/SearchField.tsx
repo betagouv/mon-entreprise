@@ -36,12 +36,17 @@ export function CompanySearchField(props: {
 		onSubmit(value: string) {
 			// This should probably click on the first item of the list of values...
 			// Or use the current set of results...
-			searchDenominationOrSiren(value).then((result) => {
-				if (!result || result.length !== 1) {
-					return
-				}
-				props.onSubmit?.(result[0])
-			})
+			searchDenominationOrSiren(value)
+				.then((result) => {
+					if (!result || result.length !== 1) {
+						return
+					}
+					props.onSubmit?.(result[0])
+				})
+				.catch((err) =>
+					// eslint-disable-next-line no-console
+					console.error(err)
+				)
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',

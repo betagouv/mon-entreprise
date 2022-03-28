@@ -11,6 +11,9 @@ export const AppFr = () => (
 )
 
 if (!import.meta.env.SSR) {
-	i18next.changeLanguage('fr')
+	i18next.changeLanguage('fr').catch((err) =>
+		// eslint-disable-next-line no-console
+		console.error(err)
+	)
 	render(<AppFr />, document.querySelector('#js'))
 }

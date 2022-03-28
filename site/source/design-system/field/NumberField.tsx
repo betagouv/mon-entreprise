@@ -286,7 +286,7 @@ function useSimpleNumberFieldState(
 
 	// Update internal state when setInputValue is called
 	const handleInputValueChange = useCallback(
-		(inputValue) => {
+		(inputValue: string) => {
 			// Allow empty inputValue
 			if (!inputValue || defaultInputValue === inputValue) {
 				updateInputValue(undefined)
@@ -357,8 +357,12 @@ function useSimpleNumberFieldState(
 		commit: () => {
 			rawInputValue && updateInputValue(numberValue)
 		},
-		incrementToMax: () => {},
-		decrementToMin: () => {},
+		incrementToMax: () => {
+			return
+		},
+		decrementToMin: () => {
+			return
+		},
 		setInputValue: handleInputValueChange,
 		formatter,
 	}

@@ -7,7 +7,7 @@ import * as safeLocalStorage from './safeLocalStorage'
 
 const VERSION = 7
 
-const LOCAL_STORAGE_KEY = 'mon-entreprise::persisted-infranceapp::v' + VERSION
+const LOCAL_STORAGE_KEY = `mon-entreprise::persisted-infranceapp::v${VERSION}`
 
 export function setupChoixStatutJuridiquePersistence(
 	store: Store<RootState, Action>

@@ -210,7 +210,7 @@ const StatsDetail = () => {
 			<H3>Visites</H3>
 
 			<Chart
-				key={period + visites.length}
+				key={period + visites.length.toString()}
 				period={period}
 				data={visites}
 				onDateChange={handleDateChange}

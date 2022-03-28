@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
@@ -12,7 +12,10 @@ type AnimatedTargetValueProps = {
 const formatDifference = (difference: number, language: string) => {
 	const prefix = difference > 0 ? '+' : ''
 
-	return prefix + formatValue(difference, { displayedUnit: '€', language })
+	return (
+		prefix +
+		(formatValue(difference, { displayedUnit: '€', language }) as string)
+	)
 }
 
 export default function AnimatedTargetValue({

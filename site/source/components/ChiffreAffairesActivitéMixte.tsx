@@ -89,7 +89,7 @@ export function useAdjustProportions(CADottedName: DottedName): () => void {
 				)
 				const newProportion = serializeEvaluation(
 					engine.evaluate({
-						valeur: `${value} / ${nouveauCA}`,
+						valeur: `${value ?? ''} / ${nouveauCA ?? ''}`,
 						unité: '%',
 					})
 				)

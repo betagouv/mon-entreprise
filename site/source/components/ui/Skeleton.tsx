@@ -12,7 +12,7 @@ const skeletonKeyframes = keyframes`
   100% {
     background-position: calc(200px + 100%) 0;
   }
-`
+` as unknown as string // keyframes type are outdated, see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48907
 
 export default function Skeleton({ width, height }: SkeletonProps) {
 	return (

@@ -21,6 +21,9 @@ export const AppEn = () => (
 i18next.addResourceBundle('en', 'translation', translations)
 
 if (!import.meta.env.SSR) {
-	i18next.changeLanguage('en')
+	i18next.changeLanguage('en').catch((err) =>
+		// eslint-disable-next-line no-console
+		console.error(err)
+	)
 	render(<AppEn />, document.querySelector('#js'))
 }

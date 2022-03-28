@@ -28,9 +28,14 @@ export default function Nouveautés() {
 	// bundle, that's why we only fetch it on this page.
 	const [data, setData] = useState<ReleasesData>([])
 	useEffect(() => {
-		import('@/data/releases.json').then(({ default: data }) => {
-			setData(data)
-		})
+		import('@/data/releases.json')
+			.then(({ default: data }) => {
+				setData(data)
+			})
+			.catch((err) =>
+				// eslint-disable-next-line no-console
+				console.error(err)
+			)
 	}, [])
 	const history = useHistory()
 	const sitePaths = useContext(SitePathsContext)
