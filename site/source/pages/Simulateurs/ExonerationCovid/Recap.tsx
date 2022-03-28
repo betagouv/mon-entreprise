@@ -46,8 +46,7 @@ export const Total = styled.div`
 
 export const RecapExpert = styled(Ul)`
 	border-radius: 0.25rem;
-	padding: 1.5rem;
-	padding-top: 0;
+	padding: 0 1.5rem;
 	${baseParagraphStyle}
 	line-height: 1.5rem;
 `

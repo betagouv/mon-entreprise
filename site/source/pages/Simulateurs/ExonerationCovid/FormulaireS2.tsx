@@ -162,50 +162,30 @@ export const FormulaireS2 = ({
 			)}
 
 			<Trans>
-				<H3>Résumé pour les tiers-déclarants</H3>
-				<Body>
-					Reportez les éléments entre parenthèses dans la déclaration EDI de
-					votre client
-				</Body>
+				<Grid container>
+					<Grid item md={6}>
+						<H3>Résumé</H3>
 
-				<RecapExpert>
-					<Li>
-						Secteur d'activité dont relève l'activité principale :{' '}
-						<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
-						<Bold as="span">{engine.evaluate('code . secteur').nodeValue}</Bold>
-						)
-					</Li>
-
-					<Li>
-						Activité exercée en{' '}
-						<Bold as="span">
-							{engine.evaluate("lieu d'exercice").nodeValue}
-						</Bold>{' '}
-						(
-						<Bold as="span">
-							{engine.evaluate("code . lieu d'exercice").nodeValue}
-						</Bold>
-						)
-					</Li>
-
-					<Li>
-						Début d'activité :{' '}
-						<Bold as="span">
-							{engine.evaluate("début d'activité").nodeValue}
-						</Bold>{' '}
-						(
-						<Bold as="span">
-							{engine.evaluate("code . début d'activité").nodeValue}
-						</Bold>
-						)
-					</Li>
-
-					<Li>
-						Nombres de mois pour lesquels vous remplissez les conditions
-						d'éligibilité :{' '}
-						<Ul>
+						<RecapExpert>
 							<Li>
-								LFSS :{' '}
+								Secteur d'activité dont relève l'activité principale :{' '}
+								<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+							</Li>
+							<Li>
+								Activité exercée en{' '}
+								<Bold as="span">
+									{engine.evaluate("lieu d'exercice").nodeValue}
+								</Bold>
+							</Li>
+							<Li>
+								Début d'activité :{' '}
+								<Bold as="span">
+									{engine.evaluate("début d'activité").nodeValue}
+								</Bold>
+							</Li>
+							<Li>
+								Nombres de mois pour lesquels vous remplissez les conditions
+								d'éligibilité :{' '}
 								<Bold as="span">
 									<Value
 										engine={engine}
@@ -213,33 +193,94 @@ export const FormulaireS2 = ({
 										linkToRule={false}
 										precision={0}
 									/>
-								</Bold>{' '}
-								(
+								</Bold>
+							</Li>
+						</RecapExpert>
+					</Grid>
+
+					<Grid item md={6}>
+						<H3>Résumé pour les tiers-déclarants</H3>
+						<Body>
+							Reportez les éléments entre parenthèses dans la déclaration EDI de
+							votre client
+						</Body>
+
+						<RecapExpert>
+							<Li>
+								Secteur d'activité dont relève l'activité principale :{' '}
+								<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
 								<Bold as="span">
-									{engine.evaluate('code . LFSS').nodeValue}
+									{engine.evaluate('code . secteur').nodeValue}
 								</Bold>
 								)
 							</Li>
 
 							<Li>
-								LFR1 :{' '}
+								Activité exercée en{' '}
 								<Bold as="span">
-									<Value
-										engine={engine}
-										expression="LFR1 . mois éligibles"
-										linkToRule={false}
-										precision={0}
-									/>
+									{engine.evaluate("lieu d'exercice").nodeValue}
 								</Bold>{' '}
 								(
 								<Bold as="span">
-									{engine.evaluate('code . LFR1').nodeValue}
+									{engine.evaluate("code . lieu d'exercice").nodeValue}
 								</Bold>
 								)
 							</Li>
-						</Ul>
-					</Li>
-				</RecapExpert>
+
+							<Li>
+								Début d'activité :{' '}
+								<Bold as="span">
+									{engine.evaluate("début d'activité").nodeValue}
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{engine.evaluate("code . début d'activité").nodeValue}
+								</Bold>
+								)
+							</Li>
+
+							<Li>
+								Nombres de mois pour lesquels vous remplissez les conditions
+								d'éligibilité :{' '}
+								<Ul>
+									<Li>
+										LFSS :{' '}
+										<Bold as="span">
+											<Value
+												engine={engine}
+												expression="exonération S2 . mois éligibles"
+												linkToRule={false}
+												precision={0}
+											/>
+										</Bold>{' '}
+										(
+										<Bold as="span">
+											{engine.evaluate('code . LFSS').nodeValue}
+										</Bold>
+										)
+									</Li>
+
+									<Li>
+										LFR1 :{' '}
+										<Bold as="span">
+											<Value
+												engine={engine}
+												expression="LFR1 . mois éligibles"
+												linkToRule={false}
+												precision={0}
+											/>
+										</Bold>{' '}
+										(
+										<Bold as="span">
+											{engine.evaluate('code . LFR1').nodeValue}
+										</Bold>
+										)
+									</Li>
+								</Ul>
+							</Li>
+						</RecapExpert>
+					</Grid>
+				</Grid>
 			</Trans>
 		</>
 	)
