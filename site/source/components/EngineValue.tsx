@@ -77,8 +77,10 @@ export function Condition({
 		: value
 
 	if (Boolean(boolValue) !== boolValue) {
+		// eslint-disable-next-line no-console
 		console.error(
-			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${expression}`
+			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=`,
+			expression
 		)
 	}
 	if (!boolValue) {

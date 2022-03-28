@@ -36,9 +36,9 @@ export function useSearchParams(defaultInit?: URLSearchParamsInit) {
 			navigateOptions?: { replace?: boolean }
 		) => {
 			if (navigateOptions?.replace) {
-				history.replace('?' + createSearchParams(nextInit))
+				history.replace('?' + createSearchParams(nextInit).toString())
 			} else {
-				history.push('?' + createSearchParams(nextInit))
+				history.push('?' + createSearchParams(nextInit).toString())
 			}
 		},
 		[history]

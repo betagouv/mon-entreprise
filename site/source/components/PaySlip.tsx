@@ -33,7 +33,7 @@ type Section = typeof SECTION_ORDER[number]
 
 function getSection(rule: RuleNode): Section {
 	const section = ('protection sociale . ' +
-		rule.rawNode.cotisation?.branche) as Section
+		(rule.rawNode.cotisation?.branche ?? '')) as Section
 	if (SECTION_ORDER.includes(section)) {
 		return section
 	}

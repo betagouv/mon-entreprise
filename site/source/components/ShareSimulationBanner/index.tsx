@@ -84,7 +84,10 @@ export default function ShareOrSaveSimulationBanner() {
 										name: 'démarré',
 									})
 									tracker.dispatch()
-									startSharing()
+									startSharing().catch(
+										// eslint-disable-next-line no-console
+										(err) => console.error(err)
+									)
 
 									buttonProps?.onPress?.(e)
 								}}

@@ -33,7 +33,7 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 								</Text>
 
 								<Text style={styles.value}>
-									{formatValue(engine.evaluate(dottedName)) +
+									{(formatValue(engine.evaluate(dottedName)) as string) +
 										(API === 'commune'
 											? ` (${
 													(

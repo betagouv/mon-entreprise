@@ -56,7 +56,10 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 									name: 'lien copié',
 								})
 								tracker.dispatch()
-								navigator.clipboard.writeText(url)
+								navigator.clipboard.writeText(url).catch((err) =>
+									// eslint-disable-next-line no-console
+									console.error(err)
+								)
 								setLinkCopied(true)
 							}}
 						>

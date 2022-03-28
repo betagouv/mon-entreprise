@@ -23,7 +23,7 @@ export default function DateInput({
 	}, [value])
 	// const [currentValue, setCurrentValue] = useState(dateValue)
 	const handleDateChange = useCallback(
-		(value) => {
+		(value: string) => {
 			if (!value) {
 				return onChange(undefined)
 			}
