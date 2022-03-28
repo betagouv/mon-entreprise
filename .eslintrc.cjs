@@ -74,15 +74,34 @@ module.exports = {
 				'@typescript-eslint/no-unsafe-call': 'warn',
 				'@typescript-eslint/no-unsafe-argument': 'warn',
 				'@typescript-eslint/no-unsafe-member-access': 'warn',
-				'@typescript-eslint/restrict-template-expressions': 'warn',
 				'@typescript-eslint/no-unsafe-return': 'warn',
 				'@typescript-eslint/no-unsafe-assignment': 'warn',
-				'@typescript-eslint/no-empty-function': 'warn',
-				'@typescript-eslint/restrict-plus-operands': 'warn',
-				'@typescript-eslint/no-floating-promises': 'warn',
+
 				'@typescript-eslint/member-delimiter-style': [
 					'error',
 					{ multiline: { delimiter: 'none' } },
+				],
+
+				'prefer-const': 'error',
+				curly: 'error',
+				'padding-line-between-statements': [
+					'error',
+					// Require padding line before return statement
+					{ blankLine: 'always', prev: '*', next: 'return' },
+					//Require padding line after import
+					{ blankLine: 'always', prev: ['import', 'cjs-import'], next: '*' },
+					{
+						blankLine: 'any',
+						prev: ['import', 'cjs-import'],
+						next: ['import', 'cjs-import'],
+					},
+					//Require padding line before export
+					{ blankLine: 'always', prev: '*', next: ['export', 'cjs-export'] },
+					{
+						blankLine: 'any',
+						prev: ['export', 'cjs-export'],
+						next: ['export', 'cjs-export'],
+					},
 				],
 			},
 		},

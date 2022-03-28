@@ -31,13 +31,19 @@
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
 	"resolutions": {
-		"prettier": "^2.5.1",
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
 	},
 	"packageManager": "yarn@3.2.0",
 	"devDependencies": {
-		"eslint": "^8.10.0",
-		"prettier": "^2.5.1",
+		"@typescript-eslint/eslint-plugin": "^5.16.0",
+		"@typescript-eslint/parser": "^5.16.0",
+		"eslint": "^8.12.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-cypress": "^2.12.1",
+		"eslint-plugin-mocha": "^10.0.3",
+		"eslint-plugin-react": "^7.29.4",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"prettier": "^2.6.1",
 		"rimraf": "^3.0.2"
 	}
 }
