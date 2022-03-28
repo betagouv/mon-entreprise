@@ -5,6 +5,83 @@
 "<0></0> Pour en savoir plus, rendez-vous sur le site <3>aquoiserventlescotisations":
   urssaf:
     fr</3>: <0></0> To find out more, go to <3>aquoiserventlescotisations.urssaf.fr</3>
+"<0><0><0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
+  "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
+    "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2><0></0></2></3></1></0><1><0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1><2><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
+        "evaluate('secteur').nodeValue}</2> (<4>{engine":
+          "evaluate('code . secteur').nodeValue}</4>)</0><1>Activité exercée en <2>{engine":
+            "evaluate(\"lieu d'exercice\").nodeValue}</2> (<5>{engine":
+              "evaluate(\"code . lieu d'exercice\").nodeValue}</5>)</1><2>Début d'activité : <2>{engine":
+                "evaluate(\"début d'activité\").nodeValue}</2> (<5>{engine":
+                  "evaluate(\"code . début d'activité\").nodeValue}</5>)</2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2><0>LFSS : <2><0></0></2> (<5>{engine":
+                    "evaluate('code . LFSS').nodeValue}</5>)</0><1>LFR1 : <2><0></0></2> (<5>{engine":
+                      "evaluate('code . LFR1').nodeValue}</5>)</1></2></3></2></1></0>":
+                        "<0><0><0>Summary</0><1><0>Sector of activity of the
+                        main activity :
+                        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Acti\
+                        vity carried out in <2>{engine.evaluate(\"place of
+                        exercise\").nodeValue}</2></1><2>Beginning of activity:
+                        <2>{engine.evaluate(\"beginning of
+                        activity\").nodeValue}</2></2><3>Number of months for
+                        which you meet the eligibility requirements :
+                        <2><0></0></2></3></1></0><1><0>Summary for Third Party
+                        Filers</0><1>Report the items in parentheses on your
+                        client's EDI report</1><2><0>Sector of activity of the
+                        main activity :
+                        <2>{engine.evaluate('sector').nodeValue}</2><4>({engine\
+                        .evaluate('code .
+                        sector').nodeValue}</4>)</0><1>Activity carried out in
+                        <2>{engine.evaluate(\"place of
+                        exercise\").nodeValue}</2><5>({engine.evaluate(\"code .
+                        place of exercise\").nodeValue}</5>)</1><2>Start of
+                        activity : <2>{engine.evaluate(\"start of
+                        activity\").nodeValue}</2><5>({engine.evaluate(\"code .
+                        start of activity\").nodeValue}</5>)</2><3>Number of
+                        months for which you meet the eligibility requirements:
+                        <2><0>LFSS: <2><0></0></2><5>({engine.evaluate('code .
+                        LFSS').nodeValue}</5>)</0><1>LFR1:
+                        <2><0></0></2><5>({engine.evaluate('code .
+                        LFR1').nodeValue}</5>)</1></2></3></2></1></0>"
+      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <2><0></0></2></0><1>LFR1 : <2><0></0></2></1></1></3></1></0><1><0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1><2><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
+        "evaluate('secteur').nodeValue}</2> (<4>{engine":
+          "evaluate('code . secteur').nodeValue}</4>)</0><1>Activité exercée en <2>{engine":
+            "evaluate(\"lieu d'exercice\").nodeValue}</2> (<5>{engine":
+              "evaluate(\"code . lieu d'exercice\").nodeValue}</5>)</1><2>Début d'activité : <2>{engine":
+                "evaluate(\"début d'activité\").nodeValue}</2> (<5>{engine":
+                  "evaluate(\"code . début d'activité\").nodeValue}</5>)</2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <2><0></0></2> (<5>{engine":
+                    "evaluate('code . LFSS').nodeValue}</5>)<7><0>dont LFSS 600 <2><0></0></2> et LFSS 300 <6><0></0></6></0></7></0><1>LFR1 : <2><0></0></2> (<5>{engine":
+                      "evaluate('code . LFR1').nodeValue}</5>)</1></1></3></2></1></0>":
+                        "<0><0><0>Summary</0><1><0>Sector of activity of the
+                        main activity :
+                        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Acti\
+                        vity carried out in <2>{engine.evaluate(\"place of
+                        exercise\").nodeValue}</2></1><2>Start of activity:
+                        <2>{engine.evaluate(\"start of
+                        activity\").nodeValue}</2></2><3>Number of months for
+                        which you meet the eligibility requirements<1><0>LFSS:
+                        <2><0></0></2></0><1>LFR1:
+                        <2><0></0></2></1></1></3></1></0><1><0>Summary for
+                        Third Party Filers</0><1>Report the items in parentheses
+                        on your client's EDI report</1><2><0>Sector of activity
+                        of the main activity :
+                        <2>{engine.evaluate('sector').nodeValue}</2><4>({engine\
+                        .evaluate('code .
+                        sector').nodeValue}</4>)</0><1>Activity carried out in
+                        <2>{engine.evaluate(\"place of
+                        exercise\").nodeValue}</2><5>({engine.evaluate(\"code .
+                        place of exercise\").nodeValue}</5>)</1><2>Beginning of
+                        activity : <2>{engine.evaluate(\"beginning of
+                        activity\").nodeValue}</2><5>({engine.evaluate(\"code .
+                        beginning of activity\").nodeValue}</5>)</2><3>Number of
+                        months for which you meet the eligibility
+                        requirements<1><0>LFSS:
+                        <2><0></0></2><5>({engine.evaluate('code .
+                        LFSS').nodeValue}</5>)<7><0>of which LFSS 600
+                        <2><0></0></2> and LFSS 300
+                        <6><0></0></6></0></7></0><1>LFR1:
+                        <2><0></0></2><5>({engine.evaluate('code .
+                        LFR1').nodeValue}</5>)</1></1></3></2></1></0>"
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Baisse entre 30% et 64% du chiffre d'affaires</0>: <0>30% to 64% drop in sales</0>
 <0>Baisse entre 30% à 64% du chiffre d'affaires</0>: <0>30% to 64% drop in sales</0>
