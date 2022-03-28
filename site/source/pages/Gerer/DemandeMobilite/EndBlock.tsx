@@ -70,6 +70,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 			</>
 		)
 	}
+
 	return (
 		<>
 			<H2>Déclaration sur l'honneur</H2>
@@ -237,5 +238,6 @@ function isOnTouchDevice() {
 	// include the 'heartz' as a way to have a non matching MQ to help terminate the join
 	// https://git.io/vznFH
 	const query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('')
+
 	return mq(query)
 }

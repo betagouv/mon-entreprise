@@ -201,6 +201,7 @@ function constructSitePaths<T extends SitePathObject<T>>(
 
 export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
 	const sitePaths = language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
+
 	return constructSitePaths('', sitePaths)
 }
 
@@ -217,6 +218,7 @@ const deepReduce = (fn: any, initialValue?: any, object?: any): any =>
 	)
 
 type SiteMap = Array<string>
+
 export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 	deepReduce(
 		(paths: Array<string>, path: string) => [...paths, ...[path]],

@@ -12,6 +12,7 @@ import Home from './Home'
 export default function CreateMyCompany() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
+
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />

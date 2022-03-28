@@ -13,6 +13,7 @@ const QuestionsContainer = styled.div`
 		`0 0 ${theme.box.borderRadius} ${theme.box.borderRadius}`};
 	background: ${({ theme }) => {
 		const colorPalette = theme.colors.bases.primary
+
 		return `linear-gradient(60deg, ${colorPalette[200]} 0%, ${colorPalette[100]} 100%);`
 	}};
 `

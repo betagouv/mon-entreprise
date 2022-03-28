@@ -5,6 +5,7 @@ import { connectSearchBox } from 'react-instantsearch-dom'
 export const SearchBox = connectSearchBox(
 	({ currentRefinement, isSearchStalled, refine }) => {
 		const { t } = useTranslation()
+
 		return (
 			<form noValidate action="" role="search">
 				<SearchField

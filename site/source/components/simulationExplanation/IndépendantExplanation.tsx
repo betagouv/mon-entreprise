@@ -170,6 +170,7 @@ function DroitsRetraite() {
 	) {
 		return null
 	}
+
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
 			<H3 as="h2">Retraite : droits acquis sur l'année</H3>

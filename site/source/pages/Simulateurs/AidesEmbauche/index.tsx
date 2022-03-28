@@ -227,6 +227,7 @@ function Results() {
 		const isActive =
 			typeof engine.evaluate(aide.dottedName).nodeValue === 'number'
 		const situation = { ...baseEngine.parsedSituation, ...aide.situation }
+
 		return { ...aide, situation, engine, isActive }
 	})
 	const [aidesActives, aidesInactives] = partition(

@@ -50,6 +50,7 @@ export default function ResultatsSimples() {
 				if (engine.evaluate(dottedName).nodeValue === false) {
 					return null
 				}
+
 				return (
 					<FromTop key={dottedName}>
 						<H3>
@@ -108,6 +109,7 @@ export default function ResultatsSimples() {
 						if (engine.evaluate(dottedName).nodeValue === false) {
 							return null
 						}
+
 						return (
 							<Grid item key={dottedName} xs={12} sm={6} lg={4}>
 								<Article

@@ -51,6 +51,7 @@ export default function Créer() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
 	useResetFollowingAnswers()
+
 	return (
 		<>
 			<Link to={sitePaths.créer.index}>

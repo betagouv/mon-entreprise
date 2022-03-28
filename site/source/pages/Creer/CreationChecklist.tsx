@@ -591,7 +591,9 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0',
 	}
 
-	if (!(statut in links)) return null
+	if (!(statut in links)) {
+		return null
+	}
 
 	return (
 		<Link href={links[statut as keyof typeof links]}>
@@ -605,6 +607,7 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 
 export const FAQAutoEntrepreneurArticle = () => {
 	const { t } = useTranslation()
+
 	return (
 		<Article
 			title={

@@ -31,6 +31,7 @@ export function ScrollToTop({
 			window.scroll(0, 0)
 		}
 	}, [])
+
 	return <div ref={ref} />
 }
 

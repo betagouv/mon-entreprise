@@ -14,6 +14,7 @@ export default function Header() {
 	const {
 		i18n: { language },
 	} = useTranslation()
+
 	return (
 		<Container>
 			<StyledHeader>

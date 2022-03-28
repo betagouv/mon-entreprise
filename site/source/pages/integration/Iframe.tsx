@@ -274,6 +274,7 @@ export default function Integration() {
 
 function EnSavoirPlusCSP() {
 	const { t } = useTranslation()
+
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
@@ -336,6 +337,7 @@ function IntegrationCode({
 			setSecondClick(false)
 		}
 	}
+
 	return (
 		<code
 			ref={codeRef}

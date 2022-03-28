@@ -20,6 +20,7 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 
 	useEffect(() => {
 		const handler = setTimeout(() => setLinkCopied(false), 5000)
+
 		return () => {
 			clearTimeout(handler)
 		}

@@ -101,20 +101,24 @@ export default function RuleInput({
 			/>
 		)
 	}
-	if (rule.rawNode.API && rule.rawNode.API === 'commune')
+	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
 		return <SelectCommune {...commonProps} />
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement'))
+	}
+	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
 		return (
 			<SelectPaysDétachement
 				{...commonProps}
 				plusFrance={rule.rawNode.API.endsWith('plus France')}
 			/>
 		)
-	if (rule.rawNode.API)
+	}
+	if (rule.rawNode.API) {
 		throw new Error("Les seules API implémentées sont 'commune'")
+	}
 
-	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
+	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP') {
 		return <SelectAtmp {...commonProps} />
+	}
 
 	if (rule.rawNode.type === 'date') {
 		return <DateInput {...commonProps} />
@@ -162,11 +166,14 @@ export const buildVariantTree = <Name extends string>(
 	path: Name
 ): Choice => {
 	const node = engine.getRule(path)
-	if (!node) throw new Error(`La règle ${path} est introuvable`)
+	if (!node) {
+		throw new Error(`La règle ${path} est introuvable`)
+	}
 	const variant = getVariant(node)
 	const canGiveUp =
 		variant &&
 		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
+
 	return Object.assign(
 		node,
 		variant

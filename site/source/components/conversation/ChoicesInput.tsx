@@ -53,6 +53,7 @@ export function MultipleAnswerInput({
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
+
 	return (
 		<RadioGroup onChange={handleChange} value={currentSelection ?? undefined}>
 			<RadioChoice

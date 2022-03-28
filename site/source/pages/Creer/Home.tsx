@@ -24,6 +24,7 @@ export default function Créer() {
 		(state: RootState) =>
 			!!Object.keys(state.choixStatutJuridique.companyLegalStatus).length
 	)
+
 	return (
 		<FromBottom>
 			<TrackPage name="accueil" />

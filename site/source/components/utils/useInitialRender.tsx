@@ -14,6 +14,7 @@ export function WatchInitialRender(props: { children: ReactNode }) {
 	useEffect(() => {
 		setInitialRender(false)
 	}, [])
+
 	return (
 		<InitialRenderContext.Provider value={initialRender}>
 			{props.children}

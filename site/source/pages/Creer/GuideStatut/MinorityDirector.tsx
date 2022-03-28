@@ -14,6 +14,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 export default function MinorityDirector() {
 	const { t } = useTranslation()
 	const dispatch = useDispatchAndGoToNextQuestion()
+
 	return (
 		<>
 			<TrackPage name="majoritaire_ou_minoritaire" />

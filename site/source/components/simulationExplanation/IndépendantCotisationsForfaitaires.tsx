@@ -13,6 +13,7 @@ export default function CotisationsForfaitaires() {
 	const rule = useEngine().getRule(
 		'dirigeant . indépendant . cotisations et contributions . début activité'
 	)
+
 	return (
 		<FromBottom>
 			<Message>

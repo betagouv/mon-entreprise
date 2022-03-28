@@ -60,6 +60,7 @@ const useFields = (
 		.filter((dottedName) => {
 			const evaluation = engine.evaluate(dottedName)
 			const rule = engine.getRule(dottedName)
+
 			return (
 				evaluation.nodeValue !== null &&
 				(rule.rawNode.question || rule.rawNode.API || rule.rawNode.type)
@@ -106,6 +107,7 @@ function FormulairePublicodes() {
 			{}
 		)
 	).map((dottedName) => engine.getRule(dottedName))
+
 	return (
 		<>
 			<Grid container spacing={2}>

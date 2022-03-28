@@ -8,6 +8,7 @@ export function capitalise0(name?: string) {
 
 export const debounce = <T>(waitFor: number, fn: (...args: T[]) => void) => {
 	let timeoutId: ReturnType<typeof setTimeout>
+
 	return (...args: T[]) => {
 		clearTimeout(timeoutId)
 		timeoutId = setTimeout(() => fn(...args), waitFor)
@@ -33,6 +34,7 @@ export function softCatch<ArgType, ReturnType>(
 		} catch (e) {
 			// eslint-disable-next-line no-console
 			console.warn(e)
+
 			return null
 		}
 	}
@@ -65,12 +67,14 @@ export function hash(str: string): number {
 		hash = (hash << 5) - hash + chr
 		hash |= 0 // Convert to 32bit integer
 	}
+
 	return hash
 }
 
 export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
 	const returnObject = { ...obj }
 	delete returnObject[key]
+
 	return returnObject
 }
 

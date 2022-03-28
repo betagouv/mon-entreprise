@@ -177,6 +177,7 @@ function AnswerElement(
 			setEditing(false)
 		}
 		window.addEventListener('click', onClickOutside)
+
 		return () => window.removeEventListener('click', onClickOutside)
 	}, [])
 	const situation = useSelector(situationSelector)

@@ -90,6 +90,7 @@ function BackToSimulation() {
 	if (!url) {
 		return null
 	}
+
 	return (
 		<>
 			<Spacing lg />
@@ -120,6 +121,7 @@ function DocumentationLanding() {
 
 function DocumentationRulesList() {
 	const ruleEntries = Object.keys(rules) as DottedName[]
+
 	return (
 		<>
 			<H1>Liste des règles</H1>
@@ -166,6 +168,7 @@ export function References({ references }: ReferencesProps) {
 		<StyledReferences>
 			{Object.entries(references).map(([name, link]) => {
 				const domain = cleanDomain(link)
+
 				return (
 					<li key={name}>
 						<span className="imageWrapper">

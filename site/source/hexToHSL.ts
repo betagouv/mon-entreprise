@@ -28,5 +28,6 @@ export function hexToHSL(hex: string): [number, number, number] {
 		}
 		h /= 6
 	}
+
 	return [h * 360, s * 100, l * 100].map(Math.round) as [number, number, number]
 }

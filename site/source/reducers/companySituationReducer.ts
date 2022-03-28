@@ -49,6 +49,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 		case 'SET_SIMULATION':
 			state['entreprise . SIREN'] ? state : {}
 	}
+
 	return state
 }
 
@@ -96,6 +97,7 @@ const getCatégorieFromCode = (code: string): CatégorieJuridique => {
 	if (code === '5710') {
 		return 'SAS'
 	}
+
 	return 'AUTRE'
 }
 

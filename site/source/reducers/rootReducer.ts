@@ -84,6 +84,7 @@ function simulation(
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
+
 		return {
 			config,
 			url,
@@ -132,18 +133,21 @@ function simulation(
 							!objectifsToReset.some((o) => dottedName.startsWith(o))
 					)
 				)
+
 				return { ...state, situation: { ...newSituation, [dottedName]: value } }
 			}
+
 			return { ...state, situation: { ...situation, [dottedName]: value } }
 		}
 		case 'STEP_ACTION': {
 			const { name, step } = action
-			if (name === 'fold')
+			if (name === 'fold') {
 				return {
 					...state,
 					foldedSteps: [...state.foldedSteps, step],
 					unfoldedStep: null,
 				}
+			}
 			if (name === 'unfold') {
 				return {
 					...state,
@@ -151,6 +155,7 @@ function simulation(
 					unfoldedStep: step,
 				}
 			}
+
 			return state
 		}
 		case 'UPDATE_TARGET_UNIT':
@@ -159,6 +164,7 @@ function simulation(
 				targetUnit: action.targetUnit,
 			}
 	}
+
 	return state
 }
 
@@ -166,6 +172,7 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 	if (action.type !== 'BATCH_UPDATE_SITUATION') {
 		return state
 	}
+
 	return Object.entries(action.situation).reduce<RootState | null>(
 		(newState, [fieldName, value]) =>
 			mainReducer(newState ?? undefined, {

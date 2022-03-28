@@ -2,6 +2,7 @@ import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import useSimulatorsData from '../Simulateurs/metadata'
+
 const LazyColorPicker = lazy(() => import('./ColorPicker'))
 
 export default function IntegrationTest() {
@@ -31,6 +32,7 @@ export default function IntegrationTest() {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [version])
+
 	return (
 		<>
 			<H2>Quel module ?</H2>

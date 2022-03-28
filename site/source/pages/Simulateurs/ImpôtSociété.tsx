@@ -62,6 +62,7 @@ const ExerciceDateContainer = styled.div`
 
 function ExerciceDate() {
 	const dispatch = useDispatch()
+
 	return (
 		<ExerciceDateContainer>
 			<RuleInput

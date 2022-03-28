@@ -37,6 +37,7 @@ function getSection(rule: RuleNode): Section {
 	if (SECTION_ORDER.includes(section)) {
 		return section
 	}
+
 	return 'protection sociale . autres'
 }
 
@@ -75,11 +76,13 @@ export function getCotisationsBySection(
 		)
 		.reduce((acc, cotisation: DottedName) => {
 			const sectionName = getSection(parsedRules[cotisation])
+
 			return {
 				...acc,
 				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation),
 			}
 		}, {} as Record<Section, Set<DottedName>>)
+
 	return Object.entries(cotisations)
 		.map(([section, dottedNames]) => [section, [...dottedNames.values()]])
 		.sort(
@@ -132,6 +135,7 @@ export default function PaySlip() {
 				</H4>
 				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 					const section = parsedRules[sectionDottedName]
+
 					return (
 						<Fragment key={section.dottedName}>
 							<H5 className="payslip__cotisationTitle">
@@ -231,6 +235,7 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
 		return null
 	}
+
 	return (
 		<>
 			<RuleLink dottedName={dottedName} />

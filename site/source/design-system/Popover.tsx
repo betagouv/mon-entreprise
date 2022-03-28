@@ -26,6 +26,7 @@ const useIFrameOffset = () => {
 		}
 		void getIframeOffset().then(setOffset)
 	}, [])
+
 	return offsetTop
 }
 

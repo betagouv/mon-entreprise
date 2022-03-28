@@ -74,6 +74,7 @@ function highlightLabelToJSX(highlightLabel: string) {
 		)
 	}
 	result.push(highlightLabel.slice(parsedLength))
+
 	return result
 }
 

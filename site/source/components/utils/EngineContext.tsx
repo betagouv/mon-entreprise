@@ -11,9 +11,11 @@ const engineOptions = {
 		const key = unitsTranslations
 			.find(([, trans]) => trans === unit)?.[0]
 			.replace(/_plural$/, '')
+
 		return key || unit
 	},
 }
+
 export function engineFactory(rules: Rules, options = {}) {
 	return new Engine(rules, { ...engineOptions, ...options })
 }
@@ -31,12 +33,14 @@ type SituationProviderProps = {
 		Record<DottedName, string | number | Record<string, unknown>>
 	>
 }
+
 export function SituationProvider({
 	children,
 	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
 	engine.setSituation(situation)
+
 	return (
 		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
 	)

@@ -25,6 +25,7 @@ function companyLegalStatus(
 				? action.answersToReset.reduce(omit, state)
 				: {}
 	}
+
 	return state
 }
 
@@ -81,6 +82,7 @@ function companyStatusChoice(state: LegalStatus | null = null, action: Action) {
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
 		return state
 	}
+
 	return action.statusName
 }
 
@@ -90,6 +92,7 @@ const choixStatutJuridiqueReducer = combineReducers({
 	companyCreationChecklist,
 	hiringChecklist,
 })
+
 export default choixStatutJuridiqueReducer
 
 export type ChoixStatutJuridiqueState = ReturnType<

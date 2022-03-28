@@ -30,6 +30,7 @@ const ButtonContainer = styled.div`
 
 export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
+
 	return (
 		<>
 			<Simulation
@@ -99,6 +100,7 @@ function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const dottedName =
 		'contrat salarié . frais professionnels . titres-restaurant'
+
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<StyledInfo>
@@ -142,6 +144,7 @@ function AidesGlimpse() {
 		dottedName,
 		aides
 	)
+
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<StyledInfo>

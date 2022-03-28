@@ -130,6 +130,7 @@ function Option({ item, state }: OptionProps) {
 
 export function Label({ children }: { children: ReactNode }) {
 	const { labelProps } = useContext(OptionContext)
+
 	return <div {...labelProps}>{children}</div>
 }
 
@@ -140,5 +141,6 @@ const StyledDescription = styled.div`
 
 export function Description({ children }: { children: ReactNode }) {
 	const { descriptionProps } = useContext(OptionContext)
+
 	return <StyledDescription {...descriptionProps}>{children}</StyledDescription>
 }

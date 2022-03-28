@@ -1,5 +1,6 @@
 import emojiFn from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
+
 type PropType = {
 	emoji: string | undefined
 	alt?: string
@@ -20,6 +21,7 @@ export default function Emoji({ emoji, alt, title }: PropType) {
 	if (!emoji) {
 		return null
 	}
+
 	return emojiFn(
 		emoji,
 		import.meta.env.MODE === 'production'

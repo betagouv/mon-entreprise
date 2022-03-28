@@ -19,6 +19,7 @@ export default function ResultatsParFormulaire() {
 			)
 		)
 		.map((dottedName) => engine.getRule(dottedName))
+
 	return (
 		<section
 			css={`
@@ -112,6 +113,7 @@ function DeclarationForm({ dottedName }: { dottedName: DottedName }) {
 			),
 		[engine, dottedName]
 	) as DottedName[]
+
 	return (
 		<Condition expression={dottedName} key={dottedName}>
 			<FromTop>

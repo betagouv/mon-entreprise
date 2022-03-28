@@ -58,9 +58,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-weight: 500;
 
 	padding: ${({ size }) => {
-		if (size === 'XL') return '1.25rem 2rem'
-		if (size === 'MD') return '0.875rem 2rem'
-		if (size === 'XS') return '0.5rem 2rem'
+		if (size === 'XL') {
+			return '1.25rem 2rem'
+		}
+		if (size === 'MD') {
+			return '0.875rem 2rem'
+		}
+		if (size === 'XS') {
+			return '0.5rem 2rem'
+		}
 	}};
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		width: 100%;

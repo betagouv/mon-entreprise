@@ -66,6 +66,7 @@ export default function useSearchParamsSimulationSharing() {
 
 			setUrlSituationIsExtracted(true)
 		}
+
 		return
 	}, [
 		currentUrl,
@@ -92,6 +93,7 @@ export const useParamsFromSituation = (situation: Situation) => {
 		() => getRulesParamNames(engine.getParsedRules()),
 		[engine]
 	)
+
 	return getSearchParamsFromSituation(engine, situation, dottedNameParamName)
 }
 
@@ -100,6 +102,7 @@ const objectifsOfConfig = (config: Partial<SimulationConfig>) =>
 		if (typeof objectifOrSection === 'string') {
 			return [objectifOrSection]
 		}
+
 		return objectifOrSection.objectifs
 	})
 
@@ -140,11 +143,13 @@ export function getSearchParamsFromSituation(
 		([dottedName, value]) => {
 			const paramName = dottedNameParamNameMapping[dottedName]
 			const serializedValue = serializeEvaluation(engine.evaluate(value))
-			if (typeof serializedValue !== 'undefined')
+			if (typeof serializedValue !== 'undefined') {
 				searchParams.set(paramName, serializedValue)
+			}
 		}
 	)
 	searchParams.sort()
+
 	return searchParams
 }
 

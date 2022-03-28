@@ -12,6 +12,7 @@ export function IframeIntegrationCard({
 	iframePath,
 }: IframeIntegrationCardProps) {
 	const { t } = useTranslation()
+
 	return (
 		<Article
 			icon={<Emoji emoji="👩‍🔧" />}

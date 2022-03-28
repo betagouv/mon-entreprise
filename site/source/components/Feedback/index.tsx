@@ -34,6 +34,7 @@ const askFeedback = (url: string) => {
 	if (!previousFeedbackDate) {
 		return true
 	}
+
 	return (
 		new Date(previousFeedbackDate) <
 		new Date(new Date().setMonth(new Date().getMonth() - 4))

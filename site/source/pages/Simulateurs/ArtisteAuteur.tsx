@@ -71,6 +71,7 @@ function RepartitionCotisations() {
 		value: engine.evaluate(branch.dottedName).nodeValue as number,
 	}))
 	const maximum = Math.max(...cotisations.map((x) => x.value))
+
 	return (
 		<section>
 			<H2>

@@ -65,6 +65,7 @@ type Precision = 1 | 0.1 | 0.01
 function integerAndDecimalParts(value: number) {
 	const integer = Math.floor(value)
 	const decimal = value - integer
+
 	return { integer, decimal }
 }
 
@@ -104,6 +105,7 @@ export function roundedPercentages(
 	precision: Precision
 ) {
 	const logScale = Math.log10(precision)
+
 	return simpleRoundedPer(values, logScale).map(
 		(int) => int / Math.pow(10, -logScale)
 	)
@@ -128,6 +130,7 @@ export function StackedBarChart({
 	})
 
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+
 	return !useContext(DisableAnimationContext) ? (
 		<animated.div ref={intersectionRef} style={styles}>
 			<InnerStackedBarChart data={data} precision={precision} />
@@ -147,6 +150,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 		...data,
 		percentage: percentages[index],
 	}))
+
 	return (
 		<>
 			<BarStack className="print-background-force">
@@ -190,6 +194,7 @@ export default function StackedRulesChart({
 }: StackedRulesChartProps) {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
+
 	return (
 		<StackedBarChart
 			precision={precision}

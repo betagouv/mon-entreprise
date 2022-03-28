@@ -14,6 +14,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 export default function SoleProprietorship() {
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="societe_ou_entreprise_individuelle" />

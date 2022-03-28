@@ -53,6 +53,7 @@ export const ActiviteCard = ({
 		{ onPress: toggle, elementType: 'div' },
 		ref
 	)
+
 	return (
 		<CardContainer {...(interactive ? buttonProps : {})} ref={ref}>
 			{selected !== undefined && (

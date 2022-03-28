@@ -32,6 +32,7 @@ export function IsEmbeddedProvider({
 	isEmbeded?: boolean
 }) {
 	const state = useState(isEmbeded)
+
 	return (
 		<IsEmbeddedContext.Provider value={state}>
 			{children}

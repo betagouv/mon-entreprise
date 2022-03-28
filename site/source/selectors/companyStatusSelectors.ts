@@ -110,6 +110,7 @@ const isCompatibleStatusWith =
 			)
 		)
 		const isCompatibleStatus = answerCompatibility.every((x) => x !== false)
+
 		return isCompatibleStatus
 	}
 const possibleStatus = (
@@ -154,6 +155,7 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 			const shannonEntropy = -frequencyOfAnswers
 				.map((p) => p * Math.log2(p))
 				.reduce(add, 0)
+
 			return [question, shannonEntropy]
 		}
 	)
@@ -165,6 +167,7 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 	if (sortedPossibleNextQuestions.length === 0) {
 		return null
 	}
+
 	return sortedPossibleNextQuestions[0]
 }
 
@@ -174,5 +177,6 @@ export const useNextQuestionUrl = () => {
 	if (!nextQuestion) {
 		return sitePaths.créer.guideStatut.liste
 	}
+
 	return sitePaths.créer.guideStatut[nextQuestion]
 }

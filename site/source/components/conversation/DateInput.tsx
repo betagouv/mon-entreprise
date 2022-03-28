@@ -14,8 +14,11 @@ export default function DateInput({
 	value,
 }: InputProps) {
 	const dateValue = useMemo(() => {
-		if (!value || typeof value !== 'string') return undefined
+		if (!value || typeof value !== 'string') {
+			return undefined
+		}
 		const [day, month, year] = value.split('/')
+
 		return `${year}-${month}-${day}`
 	}, [value])
 	// const [currentValue, setCurrentValue] = useState(dateValue)
@@ -38,6 +41,7 @@ export default function DateInput({
 		},
 		[onChange]
 	)
+
 	return (
 		<div className="step input">
 			<div>

@@ -51,6 +51,7 @@ const STATES = [
 	'Uruguay',
 	'Autre',
 ]
+
 export default function SelectPaysDétachement({
 	value,
 	onChange,
@@ -66,6 +67,7 @@ export default function SelectPaysDétachement({
 	const valueId = value
 		? statesWithID.find((s) => s.name === value)?.id
 		: undefined
+
 	return (
 		<Select
 			name="country"

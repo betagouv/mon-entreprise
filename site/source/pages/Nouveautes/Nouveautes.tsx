@@ -57,6 +57,7 @@ export default function Nouveautés() {
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
+
 	return (
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />

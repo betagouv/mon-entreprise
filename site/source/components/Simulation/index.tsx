@@ -52,6 +52,7 @@ export default function Simulation({
 	const existingCompany = !!useSelector(companySituationSelector)[
 		'entreprise . SIREN'
 	]
+
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}

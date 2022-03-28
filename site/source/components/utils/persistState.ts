@@ -13,6 +13,7 @@ export const getInitialState = <T extends Storage>(key: string): T | null => {
 	} catch (e) {
 		// eslint-disable-next-line no-console
 		console.warn(e)
+
 		return null
 	}
 }
@@ -36,5 +37,6 @@ export const usePersistingState = <T extends Storage>(
 	const initialState = persistedState != null ? persistedState : defaultState
 	const [state, setState] = useState<T>(initialState)
 	useSafeLocaleStorage(key, state)
+
 	return [state, setState] as const
 }

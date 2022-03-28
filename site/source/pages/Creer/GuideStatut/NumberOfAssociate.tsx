@@ -13,6 +13,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 export default function NumberOfAssociates() {
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="seul_ou_plusieurs" />

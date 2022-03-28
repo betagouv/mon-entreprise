@@ -37,6 +37,7 @@ export async function searchCommunes(
 		return null
 	}
 	const json = (await response.json()) as Array<ApiCommuneJson>
+
 	return json
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
@@ -68,6 +69,7 @@ export async function fetchCommuneDetails(
 	if (taux === null) {
 		return null
 	}
+
 	return {
 		...commune,
 		'taux du versement transport': taux,

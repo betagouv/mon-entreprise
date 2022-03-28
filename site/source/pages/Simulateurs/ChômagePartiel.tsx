@@ -43,11 +43,13 @@ export default function ChômagePartiel() {
 		} else {
 			window.StonlyWidget?.launcherShow()
 		}
+
 		return () => {
 			window.StonlyWidget?.stopURLWatcher()
 			window.StonlyWidget?.launcherHide()
 		}
 	}, [inIframe])
+
 	return (
 		<>
 			<Warning localStorageKey="covid19">
@@ -239,6 +241,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 function ValueWithLink({ dottedName }: { dottedName: DottedName }) {
 	const { language } = useTranslation().i18n
 	const engine = useEngine()
+
 	return (
 		<RuleLink dottedName={dottedName}>
 			{formatValue(engine.evaluate(dottedName), {
@@ -252,6 +255,7 @@ function ValueWithLink({ dottedName }: { dottedName: DottedName }) {
 
 function RowLabel({ dottedName }: { dottedName: DottedName }) {
 	const target = useEngine().getRule(dottedName)
+
 	return (
 		<>
 			{' '}

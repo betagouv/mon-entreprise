@@ -53,6 +53,7 @@ export default function Value<Names extends string>({
 			</RuleLink>
 		)
 	}
+
 	return <span {...props}>{value}</span>
 }
 
@@ -61,6 +62,7 @@ type ConditionProps = {
 	defaultIfNotYetDefined?: boolean
 	children: React.ReactNode
 }
+
 export function Condition({
 	expression,
 	defaultIfNotYetDefined = false,
@@ -82,6 +84,7 @@ export function Condition({
 	if (!boolValue) {
 		return null
 	}
+
 	return <>{children}</>
 }
 
@@ -96,6 +99,7 @@ export function WhenApplicable({
 	if (engine.evaluate(dottedName).nodeValue == null) {
 		return null
 	}
+
 	return <>{children}</>
 }
 export function WhenNotApplicable({
@@ -109,6 +113,7 @@ export function WhenNotApplicable({
 	if (engine.evaluate(dottedName).nodeValue !== null) {
 		return null
 	}
+
 	return <>{children}</>
 }
 
@@ -123,6 +128,7 @@ export function WhenAlreadyDefined({
 	if (isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
 		return null
 	}
+
 	return <>{children}</>
 }
 
@@ -137,5 +143,6 @@ export function WhenNotAlreadyDefined({
 	if (!isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
 		return null
 	}
+
 	return <>{children}</>
 }

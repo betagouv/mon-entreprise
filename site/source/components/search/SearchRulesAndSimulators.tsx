@@ -7,6 +7,7 @@ import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
 import { SimulatorHits } from './SimulatorHits'
+
 const ALGOLIA_APP_ID = import.meta.env.VITE_ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = import.meta.env.VITE_ALGOLIA_SEARCH_KEY || ''
 const ALGOLIA_INDEX_PREFIX = import.meta.env.VITE_ALGOLIA_INDEX_PREFIX || ''

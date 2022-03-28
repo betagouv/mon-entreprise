@@ -16,6 +16,7 @@ export function Radio(props: AriaRadioProps) {
 	}
 	const ref = useRef(null)
 	const { inputProps } = useRadio(props, state, ref)
+
 	return (
 		<label>
 			<InputRadio {...inputProps} className="sr-only" ref={ref} />

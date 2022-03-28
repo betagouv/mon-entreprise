@@ -8,6 +8,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 
 export default function Autoentrepreneur() {
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="auto-entrepreneur_ou_independant" />

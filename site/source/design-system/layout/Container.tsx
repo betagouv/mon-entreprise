@@ -50,6 +50,7 @@ type ContainerProps = {
 	darkMode?: boolean
 	backgroundColor?: (theme: DefaultTheme) => string
 }
+
 export default function Container({
 	backgroundColor,
 	darkMode = false,

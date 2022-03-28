@@ -47,6 +47,7 @@ export const Link = React.forwardRef<
 	GenericButtonOrLinkProps & { children: React.ReactNode }
 >(function Link(ariaButtonProps, forwardedRef) {
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
+
 	return <StyledLink {...buttonOrLinkProps} />
 })
 
@@ -137,6 +138,7 @@ export function useButtonOrLink(
 		as: elementType,
 		ref,
 	}
+
 	return buttonOrLinkProps
 }
 

@@ -57,6 +57,7 @@ export function createSearchParams(
 			? init
 			: Object.keys(init).reduce((memo, key) => {
 					const value = init[key]
+
 					return memo.concat(
 						Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]
 					)

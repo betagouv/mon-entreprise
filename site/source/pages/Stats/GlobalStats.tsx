@@ -62,6 +62,7 @@ const RetoursAsProgress = ({
 		))}
 	</div>
 )
+
 export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 	const { i18n } = useTranslation()
 	const formatNumber = Intl.NumberFormat(i18n.language).format.bind(null)
@@ -119,6 +120,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 		const total = Object.values(currentMonthSatisfaction).reduce(
 			(a, b) => a + b
 		)
+
 		return {
 			total,
 			percentages: Object.fromEntries(

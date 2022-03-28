@@ -74,6 +74,7 @@ const Value = styled.span`
 const StyledIcon = styled(CarretDown)`
 	margin: 0 4px;
 `
+
 export const Wrapper = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
@@ -196,6 +197,7 @@ export function Select<T extends Record<string, unknown>>(
 	const { buttonProps } = useButton(triggerProps, ref)
 
 	const { focusProps, isFocusVisible } = useFocusRing()
+
 	return (
 		<Wrapper isOpen={state.isOpen} hasError={false} hasLabel={false}>
 			<HiddenSelect

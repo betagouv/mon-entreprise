@@ -159,6 +159,7 @@ export default function VotreSituation() {
 
 const ActivitéList = ({ activités }: { activités: string[] }) => {
 	const { state } = useContext(StoreContext)
+
 	return (
 		<Grid container spacing={2}>
 			{activités.map((title) => (

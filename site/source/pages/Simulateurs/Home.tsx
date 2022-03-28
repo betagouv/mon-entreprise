@@ -25,6 +25,7 @@ export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
 	const simulators = useSimulatorsData()
 	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
+
 	return (
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil" />

@@ -38,6 +38,7 @@ export default function Simulateurs() {
 				)),
 		[simulatorsData, sitePaths]
 	)
+
 	return (
 		<>
 			<ScrollToTop key={pathname} />

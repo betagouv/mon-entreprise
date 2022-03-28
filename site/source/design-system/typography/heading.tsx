@@ -9,6 +9,7 @@ const baseHeading = css`
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
 `
+
 export const HeadingUnderline = css`
 	::after {
 		height: 1.25rem;
@@ -86,10 +87,21 @@ export const H6 = styled.h6`
 `
 
 export const fromLevel = (level: number) => {
-	if (level === 1) return H1
-	if (level === 2) return H2
-	if (level === 3) return H3
-	if (level === 4) return H4
-	if (level === 5) return H5
+	if (level === 1) {
+		return H1
+	}
+	if (level === 2) {
+		return H2
+	}
+	if (level === 3) {
+		return H3
+	}
+	if (level === 4) {
+		return H4
+	}
+	if (level === 5) {
+		return H5
+	}
+
 	return H6
 }

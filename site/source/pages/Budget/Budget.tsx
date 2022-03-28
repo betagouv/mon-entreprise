@@ -42,6 +42,7 @@ export default function Budget() {
 	)
 
 	const { language } = useTranslation().i18n
+
 	return (
 		<>
 			<TrackPage chapter1="informations" name="budget" />
@@ -96,6 +97,7 @@ export default function Budget() {
 										<td>{label}</td>
 										{quarters.map((q) => {
 											const value = budget[selectedYear]?.[q]?.[label]
+
 											return (
 												<td key={q}>
 													{value
@@ -130,6 +132,7 @@ export default function Budget() {
 										const value = sum(
 											Object.values(budget[selectedYear]?.[q] ?? {})
 										)
+
 										return (
 											<td key={q}>
 												{value
@@ -161,6 +164,7 @@ export default function Budget() {
 										const value = Math.round(
 											sum(Object.values(budget[selectedYear]?.[q] ?? {})) * 1.2
 										)
+
 										return (
 											<td key={q}>
 												{value

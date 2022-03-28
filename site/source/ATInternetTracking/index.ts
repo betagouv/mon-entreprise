@@ -14,6 +14,7 @@ export function toAtString(string: string): string {
 	string = string.replace(/[\307\347]/g, 'c')
 	string = string.replace(/[\321\361]/g, 'n')
 	string = string.replace(/[^\w]/gi, '_')
+
 	return string
 }
 
@@ -31,6 +32,7 @@ let chapters: {
 	chapter2?: string
 	chapter3?: string
 } = {}
+
 export function TrackChapter(props: {
 	chapter1?: Chapter1
 	chapter2?: string
@@ -38,14 +40,17 @@ export function TrackChapter(props: {
 }) {
 	if (props.chapter1) {
 		chapters = { chapter2: '', chapter3: '', ...props }
+
 		return null
 	}
 	if (props.chapter2) {
 		chapters = { ...chapters, chapter3: '', ...props }
+
 		return null
 	}
 
 	chapters = { ...chapters, ...props }
+
 	return null
 }
 
@@ -73,5 +78,6 @@ export function TrackPage(props: {
 		propsFormatted.chapter2,
 		propsFormatted.chapter3,
 	])
+
 	return null
 }
