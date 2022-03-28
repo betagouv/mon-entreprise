@@ -85,7 +85,8 @@ export default function RuleInput<Names extends string = DottedName>({
 		value,
 		missing:
 			missing ??
-			(!showDefaultDateValue && dottedName in evaluation.missingVariables),
+			(!showDefaultDateValue &&
+				Boolean(evaluation.missingVariables?.includes(dottedName))),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,

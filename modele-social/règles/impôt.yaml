@@ -32,10 +32,10 @@ impôt . méthode de calcul:
     - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
 
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
-  question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire > 0
+  question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   par défaut:
     nom: par défaut
     valeur: "'barème standard'"

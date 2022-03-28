@@ -99,16 +99,13 @@ function FormulairePublicodes() {
 
 	engine.setSituation(situation)
 	const fields = useFields(engine)
-	console.log(fields)
-	const missingValues = Object.keys(
-		fields.reduce(
-			(missingValues, { dottedName }) => ({
-				...missingValues,
-				...engine.evaluate(dottedName).missingVariables,
-			}),
-			{}
-		)
-	).map((dottedName) => engine.getRule(dottedName))
+	const missingValues = [
+		...new Set(
+			fields.flatMap(
+				({ dottedName }) => engine.evaluate(dottedName)?.missingVariables ?? []
+			)
+		),
+	].map((dottedName) => engine.getRule(dottedName))
 
 	return (
 		<>

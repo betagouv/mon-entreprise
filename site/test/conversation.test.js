@@ -66,52 +66,24 @@ describe('conversation', function () {
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function () {
-		const result = Object.keys(
-			new Engine(rules)
-				.setSituation({
-					'contrat salarié': 'oui',
-					'contrat salarié . CDD': 'oui',
-					'contrat salarié . rémunération . brut de base': '2300',
-				})
-				.evaluate('contrat salarié . rémunération . net').missingVariables
-		)
+		const result = new Engine(rules)
+			.setSituation({
+				'contrat salarié': 'oui',
+				'contrat salarié . CDD': 'oui',
+				'contrat salarié . rémunération . brut de base': '2300',
+			})
+			.evaluate('contrat salarié . rémunération . net').missingVariables
 
 		expect(result).to.include('contrat salarié . CDD . motif')
 	})
 })
 
 describe('getNextSteps', function () {
-	it('should give priority to questions that advance most targets', function () {
+	it('should give priority to questions that  are first in the natural order', function () {
 		let missingVariablesByTarget = [
-			{
-				effectif: 34.01,
-				cadre: 30,
-			},
-			{
-				cadre: 10.1,
-			},
-			{
-				effectif: 32.0,
-				cadre: 10,
-			},
-		]
-
-		let result = getNextSteps(missingVariablesByTarget)
-
-		expect(result[0]).to.equal('cadre')
-	})
-
-	it('should give priority to questions by total weight when advancing the same target count', function () {
-		let missingVariablesByTarget = [
-			{
-				effectif: 24.01,
-				cadre: 30,
-			},
-			{
-				effectif: 24.01,
-				cadre: 10.1,
-			},
-			{},
+			['effectif', 'cadre'],
+			['cadre'],
+			['effectif', 'cadre'],
 		]
 
 		let result = getNextSteps(missingVariablesByTarget)

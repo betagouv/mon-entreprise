@@ -1,29 +1,3 @@
-import { DottedName } from 'modele-social'
-import {
-	add,
-	countBy,
-	descend,
-	difference,
-	equals,
-	flatten,
-	head,
-	identity,
-	keys,
-	last,
-	length,
-	map,
-	mergeWith,
-	pair,
-	pipe,
-	reduce,
-	sortBy,
-	sortWith,
-	takeWhile,
-	toPairs,
-	zipWith,
-} from 'ramda'
-import { useContext, useMemo } from 'react'
-import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -32,53 +6,68 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { DottedName } from 'modele-social'
+import { useContext, useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import { EngineContext } from './EngineContext'
 
-type MissingVariables = Partial<Record<DottedName, number>>
+type MissingVariables = Array<DottedName>
 
 export function getNextSteps(
 	missingVariables: Array<MissingVariables>
 ): Array<DottedName> {
-	const byCount = ([, [count]]: [unknown, [number]]) => count
-	const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
-	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
-		mergeWith(add),
-		{},
-		missingVariables
-	)
+	if (missingVariables.length === 0) {
+		return []
+	}
 
-	const innerKeys = flatten(map(keys, missingVariables))
-	const missingByTargetsAdvanced = Object.fromEntries(
-		Object.entries(countBy(identity, innerKeys)).map(
-			// Give higher score to top level questions
-			([name, score]) => [name, score + Math.max(0, 4 - name.split('.').length)]
+	// We want to merge the different lists of missing variables but don't want to
+	// concatenate naively as it will ignore the “natural order determined by
+	// publicodes. There isn't one unique solution to this problem but we choose
+	// to first take all the 1st elements, then all the 2nd, 3rd, etc.
+	// [a, b, c]
+	// [c, d]       =>   [a, c, b, d]
+	// [a]
+	const maxLength = Math.max(...missingVariables.map((arr) => arr.length))
+	const mergedMissings = new Set<DottedName>()
+	for (let i = 0; i < maxLength; i++) {
+		missingVariables.forEach((arr) => {
+			if (arr.length > i) {
+				mergedMissings.add(arr[i])
+			}
+		})
+	}
+	const mergedMissingsList = Array.from(mergedMissings)
+
+	const score = (name: DottedName) => {
+		// We want to boost top-level question, and questions that are required in
+		// multiple goals.
+		const namespaceDepthScore = Math.max(0, 4 - name.split('.').length) / 4
+		const naturalPositionScore =
+			(mergedMissingsList.length - mergedMissingsList.indexOf(name)) /
+			mergedMissingsList.length
+		const frequencyScore =
+			missingVariables.filter((arr) => arr.includes(name)).length / maxLength
+
+		// We can manually ajust the coefficients here
+		return (
+			3 * namespaceDepthScore + 3 * naturalPositionScore + 1 * frequencyScore
 		)
-	)
+	}
 
-	const missingByCompound = mergeWith(
-		pair,
-		missingByTargetsAdvanced,
-		missingByTotalScore
-	)
-	const pairs = toPairs<number>(missingByCompound)
-	const sortedPairs = sortWith(
-		[descend(byCount), descend(byScore) as any],
-		pairs
-	)
-
-	return map(head, sortedPairs) as any
+	return mergedMissingsList.sort((a, b) => score(b) - score(a))
 }
 
 // Max : 1
 // Min -> 0
-const questionDifference = (rule1 = '', rule2 = '') =>
-	1 /
-	(1 +
-		pipe(
-			zipWith(equals),
-			takeWhile(Boolean),
-			length
-		)(rule1.split(' . '), rule2.split(' . ')))
+const questionDifference = (ruleA = '', ruleB = '') => {
+	if (ruleA === ruleB) {
+		return 0
+	}
+	const partsA = ruleA.split(' . ')
+	const partsB = ruleB.split(' . ')
+
+	return 1 / (1 + partsA.findIndex((val, i) => partsB?.[i] !== val))
+}
 
 export function getNextQuestions(
 	missingVariables: Array<MissingVariables>,
@@ -93,17 +82,19 @@ export function getNextQuestions(
 		"à l'affiche": displayed = {},
 	} = questionConfig
 
-	let nextSteps = difference(
-		[...Object.values(displayed), ...getNextSteps(missingVariables)],
-		answeredQuestions
-	)
-	nextSteps = nextSteps.filter(
-		(step) =>
-			(!whitelist.length || whitelist.some((name) => step.startsWith(name))) &&
-			(!blacklist.length || !blacklist.some((name) => step === name))
-	)
+	const nextSteps = [
+		...Object.values(displayed),
+		...getNextSteps(missingVariables),
+	]
+		.filter((name) => !answeredQuestions.includes(name))
+		.filter(
+			(step) =>
+				(!whitelist.length ||
+					whitelist.some((name) => step.startsWith(name))) &&
+				(!blacklist.length || !blacklist.some((name) => step === name))
+		)
 
-	const lastStep = last(answeredQuestions)
+	const lastStep = answeredQuestions[answeredQuestions.length - 1]
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est
 	// "une possibilité", exemple "contrat salarié . cdd"
 	const lastStepWithAnswer =
@@ -114,7 +105,7 @@ export function getNextQuestions(
 					.trim() as DottedName)
 			: lastStep
 
-	return sortBy((question) => {
+	const score = (question: DottedName) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
@@ -122,7 +113,9 @@ export function getNextQuestions(
 		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
 
 		return indexList + indexNotPriority + differenceCoeff
-	}, nextSteps)
+	}
+
+	return nextSteps.sort((a, b) => score(a) - score(b))
 }
 
 export const useNextQuestions = function (): Array<DottedName> {
@@ -133,11 +126,11 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const situation = useSelector(situationSelector)
 	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
-		(objectif) => engine.evaluate(objectif).missingVariables ?? {}
+		(objectif) => engine.evaluate(objectif).missingVariables ?? []
 	)
 	const nextQuestions = useMemo(() => {
 		let next = getNextQuestions(
-			missingVariables,
+			missingVariables as any,
 			questionsConfig ?? {},
 			answeredQuestions,
 			situation
