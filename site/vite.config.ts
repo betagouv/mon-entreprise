@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import yaml from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
@@ -127,8 +129,10 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 		const filledTemplate = template
 			.toString()
 			.replace(/\{\{(.+)\}\}/g, (_match, p1) => siteData[(p1 as string).trim()])
+
 		return filledTemplate
 	}
+
 	return {
 		name: 'multiple-spa',
 		enforce: 'pre',
@@ -188,6 +192,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			if (pathname?.startsWith('virtual:')) {
 				return pathname.replace('virtual:', '')
 			}
+
 			return null
 		},
 
