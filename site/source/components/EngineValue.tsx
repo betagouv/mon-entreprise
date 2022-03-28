@@ -143,7 +143,7 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (!engine.evaluateApplicability(dottedName).isApplicable) {
+	if (!engine.isApplicable(dottedName)) {
 		return null
 	}
 
@@ -158,7 +158,7 @@ export function WhenNotApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluateApplicability(dottedName).isApplicable) {
+	if (engine.isApplicable(dottedName)) {
 		return null
 	}
 
