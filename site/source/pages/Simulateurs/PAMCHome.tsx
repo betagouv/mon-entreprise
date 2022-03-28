@@ -5,6 +5,7 @@ import useSimulatorsData from './metadata'
 
 export default function SalariéSimulation() {
 	const simulators = useSimulatorsData()
+
 	return (
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil_pamc" />

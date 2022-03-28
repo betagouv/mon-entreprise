@@ -24,6 +24,7 @@ export default function InputSuggestions({
 	if (!suggestions || !Object.keys(suggestions).length) {
 		return null
 	}
+
 	return (
 		<StyledInputSuggestion className={className}>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
@@ -32,8 +33,11 @@ export default function InputSuggestions({
 						key={text}
 						onPress={() => {
 							onFirstClick(value)
-							if (suggestion !== value) setSuggestion(value)
-							else onSecondClick && onSecondClick(value)
+							if (suggestion !== value) {
+								setSuggestion(value)
+							} else {
+								onSecondClick && onSecondClick(value)
+							}
 						}}
 						title={t('cliquez pour insérer cette suggestion')}
 					>

@@ -41,6 +41,7 @@ export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
 
 	const situation = useSelector(situationSelector)
+
 	return (
 		<>
 			<Trans i18nKey="aide-déclaration-indépendant.description">
@@ -222,6 +223,7 @@ function ImpositionSection() {
 		},
 		[dispatch]
 	)
+
 	return (
 		<>
 			<SimpleField dottedName="entreprise . imposition" />

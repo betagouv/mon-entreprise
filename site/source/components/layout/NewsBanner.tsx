@@ -37,6 +37,7 @@ export default function NewsBanner() {
 	if (!showBanner) {
 		return null
 	}
+
 	return (
 		<Banner className="print-hidden" onClick={() => setShowBanner(false)}>
 			<InnerBanner>

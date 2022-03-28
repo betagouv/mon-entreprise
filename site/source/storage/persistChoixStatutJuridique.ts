@@ -24,6 +24,7 @@ export function setupChoixStatutJuridiquePersistence(
 
 export function retrievePersistedChoixStatutJuridique(): ChoixStatutJuridiqueState {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
+
 	return serializedState && serializedState !== 'undefined'
 		? JSON.parse(serializedState)
 		: undefined

@@ -7,6 +7,7 @@ import { TrackPage } from '../../../ATInternetTracking'
 
 export default function DefineDirectorStatus() {
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="independant_ou_assimile-salarie" />

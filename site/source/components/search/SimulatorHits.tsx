@@ -54,6 +54,7 @@ export const SimulatorHits = connectHits<
 	AlgoliaSimulatorHit
 >(({ hits }: SimulatorHitsProps) => {
 	const sitePaths = useContext(SitePathsContext)
+
 	return (
 		<>
 			{hits.length > 0 && (

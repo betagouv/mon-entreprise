@@ -27,6 +27,7 @@ const activitéReducer = (reducerActivité: string) =>
 			) {
 				return false
 			}
+
 			return !!state
 		},
 		seuilRevenus: (
@@ -51,8 +52,10 @@ const activitéReducer = (reducerActivité: string) =>
 				reducerActivité === action.activité
 			) {
 				state[parseInt(action.index)] = action.estRespecté
+
 				return [...state]
 			}
+
 			return state
 		},
 	})
@@ -66,6 +69,7 @@ function getDefaultCritères(reducerActivité: string) {
 }
 
 type ActivityTitle = string
+
 export type State = Record<
 	ActivityTitle,
 	ReturnType<ReturnType<typeof activitéReducer>>
@@ -86,6 +90,7 @@ const reducer = reduceReducers<State, Action>(
 				state
 			)
 		}
+
 		return state
 	},
 	combineReducers(

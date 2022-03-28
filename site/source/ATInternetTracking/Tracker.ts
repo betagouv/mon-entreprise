@@ -85,6 +85,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			super.dispatch()
 		}
 	}
+
 	return Tag
 }
 
@@ -116,6 +117,7 @@ export class Log implements ATTracker {
 		},
 		getVisitorMode() {
 			console.debug('ATTracker::privacy.getVisitorMode')
+
 			return { name: 'exempt' }
 		},
 	}

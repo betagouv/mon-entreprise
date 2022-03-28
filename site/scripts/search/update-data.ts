@@ -25,7 +25,9 @@ const falsy = <T>(value: T | false): value is T => Boolean(value)
 const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 	Object.entries(rules)
 		.map(([n, rule]) => {
-			if (!rule) return false
+			if (!rule) {
+				return false
+			}
 			const path = n.split(' . ')
 			const {
 				title,

@@ -25,6 +25,7 @@ export default function ActivitésSelection() {
 		'économieCollaborative.accueil.titre',
 		'Comment déclarer mes revenus des plateformes en ligne ?'
 	)
+
 	return (
 		<>
 			<FromBottom>
@@ -100,6 +101,7 @@ export const ActivitéSelection = ({
 				{activités.map((title) => {
 					const selected = state?.[title].effectuée
 					const answered = activitéRépondue.includes(title)
+
 					return (
 						<Grid key={title} item xs={6} sm={4} md={3}>
 							<ActiviteCard

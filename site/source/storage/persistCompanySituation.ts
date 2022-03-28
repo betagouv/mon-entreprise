@@ -24,6 +24,7 @@ export function setupCompanySituationPersistence(
 
 export function retrievePersistedCompanySituation(): Situation | undefined {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
+
 	return serializedState && serializedState !== 'undefined'
 		? (JSON.parse(serializedState) as Situation)
 		: undefined

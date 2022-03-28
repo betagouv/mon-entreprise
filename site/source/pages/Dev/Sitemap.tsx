@@ -5,6 +5,7 @@ import { generateSiteMap } from '../../sitePaths'
 
 export default function SiteMap() {
 	const sitePaths = useContext(SitePathsContext)
+
 	return (
 		<>
 			<H1>Sitemap</H1>

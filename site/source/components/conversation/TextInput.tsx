@@ -13,6 +13,7 @@ export default function TextInput({
 	autoFocus,
 }: InputProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
+
 	return (
 		<TextField
 			autoFocus={autoFocus}

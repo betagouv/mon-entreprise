@@ -12,7 +12,9 @@ export function SimulatorRessourceCard({
 }: SimulatorRessourceCardProps) {
 	const simulator = useSimulatorsData()[simulatorId]
 
-	if (!simulator.path) return null
+	if (!simulator.path) {
+		return null
+	}
 
 	return (
 		<Article

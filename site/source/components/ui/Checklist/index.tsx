@@ -96,6 +96,7 @@ const StyledLink = styled(Link)`
 	margin-left: ${({ theme }) => theme.spacings.xs};
 	white-space: nowrap;
 `
+
 export type ChecklistProps = {
 	children: React.ReactNode
 	onItemCheck?: (name: string, isChecked: boolean) => void
@@ -114,6 +115,7 @@ export function Checklist({
 			if (!React.isValidElement(child)) {
 				throw new Error('Invalid child passed to Checklist')
 			}
+
 			return React.cloneElement(child, {
 				onChange: (isSelected: boolean) =>
 					onItemCheck?.(child.props.name, isSelected),

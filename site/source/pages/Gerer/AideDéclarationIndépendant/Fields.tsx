@@ -17,6 +17,7 @@ type SubSectionProp = {
 	dottedName: DottedName
 	hideTitle?: boolean
 }
+
 export function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false,
@@ -38,6 +39,7 @@ export function SubSection({
 			dottedName,
 			rawNode: { question },
 		} = engine.getRule(nextStep)
+
 		return !!question && dottedName.startsWith(sectionDottedName)
 	})
 
@@ -56,6 +58,7 @@ type SimpleFieldProps = {
 	question?: RuleNode['rawNode']['question']
 	showSuggestions?: boolean
 }
+
 export function SimpleField({
 	dottedName,
 	question,
@@ -77,6 +80,7 @@ export function SimpleField({
 	if (evaluation.nodeValue === null) {
 		return null
 	}
+
 	return (
 		<div>
 			<FromTop>

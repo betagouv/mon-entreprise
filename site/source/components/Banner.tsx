@@ -34,6 +34,7 @@ export default function Banner({
 	const hiddenState = useSelector(firstStepCompletedSelector)
 
 	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
+
 	return !hidden ? (
 		<FadeIn className={className}>
 			<Container>

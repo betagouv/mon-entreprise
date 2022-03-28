@@ -8,6 +8,7 @@ import Video from './Video'
 
 export default function SocialSecurity() {
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<Helmet>

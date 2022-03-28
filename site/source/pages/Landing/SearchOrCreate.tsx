@@ -27,6 +27,7 @@ export default function SearchOrCreate() {
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
 	const handleCompanySubmit = useHandleCompanySubmit()
 	const dispatch = useDispatch()
+
 	return (
 		<Grid container spacing={3}>
 			<Grid item xl={8} lg={10} md={12}>
@@ -83,5 +84,6 @@ function useHandleCompanySubmit() {
 		},
 		[history, setEntreprise, sitePaths]
 	)
+
 	return handleCompanySubmit
 }

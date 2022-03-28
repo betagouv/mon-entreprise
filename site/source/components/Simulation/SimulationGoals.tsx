@@ -68,6 +68,7 @@ const StyledSimulationGoals = styled.div<
 		const colorPalette = publique
 			? theme.colors.publics[publique]
 			: theme.colors.bases.primary
+
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};
 

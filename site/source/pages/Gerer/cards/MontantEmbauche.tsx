@@ -7,6 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 export function MontantEmbaucheCard() {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
+
 	return (
 		<Card
 			title={t(

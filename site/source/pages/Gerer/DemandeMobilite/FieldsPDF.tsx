@@ -2,6 +2,7 @@ import PDFElement from '@react-pdf/renderer'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { formatValue, RuleNode } from 'publicodes'
 import { useContext } from 'react'
+
 const { StyleSheet, Text, View } = PDFElement
 type FieldsPDFProps = {
 	fields: Array<RuleNode>
@@ -9,6 +10,7 @@ type FieldsPDFProps = {
 
 export default function FieldsPDF({ fields }: FieldsPDFProps) {
 	const engine = useContext(EngineContext)
+
 	return (
 		<>
 			{fields.map(

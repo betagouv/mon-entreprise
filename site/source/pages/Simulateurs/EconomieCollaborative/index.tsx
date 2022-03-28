@@ -18,6 +18,7 @@ export default function ÉconomieCollaborative() {
 	const indexPath = useIsEmbedded()
 		? '/iframes/' + iframePath
 		: sitePaths.simulateurs.économieCollaborative.index
+
 	return (
 		<>
 			<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative" />

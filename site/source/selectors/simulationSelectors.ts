@@ -13,6 +13,7 @@ export const objectifsSelector = (state: RootState) => {
 		.flat()
 
 	const objectifs = [...primaryObjectifs, ...(config['objectifs cachés'] ?? [])]
+
 	return objectifs as Array<DottedName>
 }
 
@@ -29,6 +30,7 @@ export const companySituationSelector = (state: RootState) =>
 
 export const firstStepCompletedSelector = (state: RootState) => {
 	const situation = situationSelector(state)
+
 	return Object.keys(situation).length > 0
 }
 

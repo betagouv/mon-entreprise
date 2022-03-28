@@ -52,6 +52,7 @@ export default function NumberInput({
 		...formatOptions,
 	}
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
+
 	return (
 		<StyledNumberInput>
 			<NumberField
@@ -118,6 +119,7 @@ function getSerializedUnit(
 			) ?? ''
 		)
 	}
+
 	return (
 		Intl.NumberFormat(locale, {
 			unit: formatUnit,
@@ -161,6 +163,7 @@ function getFormatUnit(unit: Unit): Intl.NumberFormatOptions['unit'] | null {
 	if (denominator) {
 		formatUnit += `-per-${UNIT_MAP[denominator as keyof typeof UNIT_MAP]}`
 	}
+
 	return formatUnit
 }
 

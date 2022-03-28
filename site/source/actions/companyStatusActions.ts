@@ -28,6 +28,7 @@ export const useDispatchAndGoToNextQuestion = () => {
 			history.push(nextQuestion)
 		}
 	}, [dispatched])
+
 	return (action: Action) => {
 		dispatch(action)
 		setDispatched(true)
@@ -76,6 +77,7 @@ export const resetCompanyStatusChoice = (
 
 export const useSetEntreprise = () => {
 	const dispatch = useDispatch()
+
 	return (entreprise: FabriqueSocialEntreprise) => {
 		if (entreprise === null) {
 			return

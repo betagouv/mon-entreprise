@@ -37,6 +37,7 @@ function ChartItemBar({
 		},
 		flex: display ? percentage : 0,
 	})
+
 	return (
 		<div className="distribution-chart__bar-container">
 			{disableAnimation ? (

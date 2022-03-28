@@ -41,6 +41,7 @@ export const getMinimumDéclaration = (a: string) => {
 	if (getValueFrom(activité, 'seuil déclaration')) {
 		return 'AUCUN'
 	}
+
 	return null
 }
 export const hasConditions = (a: string) => {

@@ -17,6 +17,7 @@ export default function Gérer() {
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
 	const showLink = !useRouteMatch({ path: sitePaths.gérer.index, exact: true })
+
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />

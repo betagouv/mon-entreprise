@@ -22,6 +22,7 @@ export default function Integration() {
 	const sitePaths = useContext(SitePathsContext)
 	const { pathname } = useLocation()
 	const openJobOffer = (jobOffers as Array<JobOffer>)[0]
+
 	return (
 		<>
 			<TrackChapter chapter1="integration" />

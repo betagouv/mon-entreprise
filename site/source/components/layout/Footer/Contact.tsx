@@ -1,4 +1,5 @@
 import ContactImage from '@/images/contact.png'
+
 const Contact = () => (
 	<div className="centeredMessage">
 		<p>

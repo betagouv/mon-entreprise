@@ -15,6 +15,7 @@ export default function ({
 	useEffect(() => {
 		if (typeof IntersectionObserver === 'undefined') {
 			setWasOnScreen(true) // No effect for old browsers
+
 			return
 		}
 
@@ -38,6 +39,7 @@ export default function ({
 		if (node) {
 			observer.observe(node)
 		}
+
 		return () => {
 			node && unobserve && observer.unobserve(node)
 		}

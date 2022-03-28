@@ -15,6 +15,7 @@ const useIsPrintContext = () => {
 		// `addEventListener` isn't supported by old versions of Safari and throws a
 		// fatal error. See #1790 and https://stackoverflow.com/a/56466334
 		matchMediaPrint.addEventListener?.('change', matchListener)
+
 		return () => {
 			matchMediaPrint.removeEventListener?.('change', matchListener)
 		}
@@ -27,6 +28,7 @@ const useIsPrintContext = () => {
 				setPrintContext(true)
 			})
 		}
+
 		return () => {
 			window.onbeforeprint = null
 		}
@@ -41,6 +43,7 @@ export function DisableAnimationOnPrintProvider({
 	children: React.ReactNode
 }) {
 	const isPrintContext = useIsPrintContext()
+
 	return (
 		<DisableAnimationContext.Provider value={isPrintContext}>
 			{children}

@@ -84,6 +84,7 @@ const infereSimulateurRevenuFromSituation = (
 		if (engine.evaluate('dirigeant . indépendant . PL').nodeValue) {
 			return 'profession-libérale'
 		}
+
 		return 'entreprise-individuelle'
 	}
 	const régimeSocial = engine.evaluate('dirigeant . régime social').nodeValue
@@ -91,6 +92,7 @@ const infereSimulateurRevenuFromSituation = (
 	if (régimeSocial === 'indépendant') {
 		return 'indépendant'
 	}
+
 	// TODO : assimilé-salarié
 	// if (
 	// 	régimeSocial === 'assimilé-salarié'
@@ -109,6 +111,7 @@ export default function Gérer() {
 	if (!engine.evaluate('entreprise . SIREN').nodeValue) {
 		return <Redirect to={sitePaths.index} />
 	}
+
 	return (
 		<>
 			<Helmet>
@@ -248,10 +251,12 @@ const companyDetailsConfig = {
 		'entreprise . imposition',
 	] as DottedName[],
 }
+
 export const AskCompanyMissingDetails = () => {
 	useSimulationConfig(companyDetailsConfig)
 
 	const [questions, onQuestionAnswered] = useQuestionList()
+
 	return (
 		<>
 			<CompanyDetails />

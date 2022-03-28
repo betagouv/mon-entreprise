@@ -23,6 +23,7 @@ import { Message } from '@/design-system'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
+
 	return (
 		<section>
 			<FromBottom>
@@ -97,6 +98,7 @@ export function CotisationsUrssaf({
 	extraNotice,
 }: CotisationsUrssafProps) {
 	const unit = useSelector(targetUnitSelector)
+
 	return (
 		<InstitutionLine>
 			<InstitutionLogo
@@ -121,6 +123,7 @@ export function CotisationsUrssaf({
 
 export function ImpôtsDGFIP() {
 	const unit = useSelector(targetUnitSelector)
+
 	return (
 		<Condition expression="impôt . montant > 0">
 			<InstitutionLine>
@@ -169,6 +172,7 @@ function CaisseRetraite() {
 				const dottedName =
 					`dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = engine.getRule(dottedName).rawNode
+
 				return (
 					<Condition expression={dottedName} key={caisse}>
 						<InstitutionLine>
@@ -205,6 +209,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 	const { description: descriptionIRCEC } = useEngine().getRule(
 		'artiste-auteur . cotisations . IRCEC'
 	).rawNode
+
 	return (
 		<section>
 			<H3>Vos cotisations</H3>

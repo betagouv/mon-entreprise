@@ -1,7 +1,9 @@
 import { Article } from '@/design-system/card'
 import { Trans, useTranslation } from 'react-i18next'
+
 export function AutoEntrepreneurCard() {
 	const { t } = useTranslation()
+
 	return (
 		<Article
 			title={

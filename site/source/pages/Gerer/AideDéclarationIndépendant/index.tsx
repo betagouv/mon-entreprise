@@ -27,6 +27,7 @@ export default function AideDéclarationIndépendant() {
 	const setEntreprise = useSetEntreprise()
 	const sitePaths = useContext(SitePathsContext)
 	const dispatch = useDispatch()
+
 	return (
 		<>
 			<Trans i18nKey="assistant-DRI.description">

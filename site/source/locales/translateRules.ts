@@ -48,6 +48,7 @@ const translateProp =
 		}
 		let propTrans = translation[prop + '.' + lang]
 		propTrans = propTrans?.replace(/^\[automatic\] /, '')
+
 		return propTrans ? assoc(prop, propTrans, rule) : rule
 	}
 
@@ -61,6 +62,7 @@ function translateRule<Names extends string>(
 	if (!ruleTrans) {
 		return rule
 	}
+
 	return attributesToTranslate.reduce(
 		translateProp(lang, ruleTrans),
 		rule ?? {}

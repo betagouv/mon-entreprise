@@ -194,6 +194,7 @@ export function HeadingWithAnchorLink({
 	) : (
 		children
 	)
+
 	return (
 		<Heading
 			id={headingId}

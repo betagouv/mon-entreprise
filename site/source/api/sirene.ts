@@ -14,6 +14,7 @@ export async function fetchCompanyDetails(siren: string) {
 		return null
 	}
 	const json = await response.json()
+
 	return json.unite_legale
 }
 
@@ -24,6 +25,7 @@ export async function searchDenominationOrSiren(value: string) {
 	if (isSIREN(value)) {
 		return [{ siren: value }]
 	}
+
 	return searchFullText(value)
 }
 

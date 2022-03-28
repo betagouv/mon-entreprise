@@ -91,6 +91,7 @@ const InfiniteHits = styled.div`
 
 const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
 	const { t } = useTranslation()
+
 	return (
 		<InfiniteHits>
 			<HitList>

@@ -43,6 +43,7 @@ type PaginationProps = {
 
 function Pagination({ items }: PaginationProps) {
 	const [currentPage, setCurrentPage] = useState(0)
+
 	return (
 		<>
 			<Ul>

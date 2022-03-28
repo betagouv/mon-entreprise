@@ -130,11 +130,13 @@ const StatsDetail = () => {
 		if (!chapter2) {
 			return rawData.site
 		}
+
 		return filterByChapter2(rawData.pages as Pageish[], chapter2)
 	}, [period, chapter2])
 
 	const repartition = useMemo(() => {
 		const rawData = stats.visitesMois
+
 		return groupByDate(rawData.pages as Pageish[])
 	}, [])
 
@@ -298,6 +300,7 @@ function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 	const tracking = s.tracking as { chapter2?: Chapter2 }
 	const chapter2 =
 		typeof tracking === 'string' ? tracking : tracking.chapter2 ?? ''
+
 	return toAtString(chapter2) as typeof chapter2
 }
 function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
@@ -307,6 +310,7 @@ function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
 	if (!simulateur) {
 		return null
 	}
+
 	return <SimulateurCard small {...simulateur} />
 }
 
@@ -318,6 +322,7 @@ function SimulateursChoice(props: {
 	const simulateurs = Object.values(useSimulatorsData())
 		.filter((s) => {
 			const chapter2 = getChapter2(s)
+
 			return (
 				chapter2 &&
 				props.possibleValues.includes(chapter2) &&

@@ -35,6 +35,7 @@ import {
 import { EngineContext } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
+
 export function getNextSteps(
 	missingVariables: Array<MissingVariables>
 ): Array<DottedName> {
@@ -65,6 +66,7 @@ export function getNextSteps(
 		),
 		pairs = toPairs<number>(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
+
 	return map(head, sortedPairs) as any
 }
 
@@ -108,12 +110,14 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
+
 	return sortBy((question) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
 		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
+
 		return indexList + indexNotPriority + differenceCoeff
 	}, nextSteps)
 }
@@ -138,6 +142,7 @@ export const useNextQuestions = function (): Array<DottedName> {
 		if (currentQuestion && currentQuestion !== next[0]) {
 			next = [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
 		}
+
 		return next.filter(
 			(question) => engine.evaluate(question).nodeValue !== null
 		)

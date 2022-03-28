@@ -77,6 +77,7 @@ export function SimulationGoal({
 	) {
 		return null
 	}
+
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal>

@@ -93,8 +93,10 @@ export default function VisitsChart({
 				colors.bases.primary[700],
 			][i % 3]
 		}
+
 		return Palette[i % Palette.length]
 	}
+
 	return (
 		<div
 			css={`
@@ -214,6 +216,7 @@ const CustomTooltip = ({
 	}
 
 	const data = payload[0].payload
+
 	return (
 		<StyledLegend>
 			<Body>

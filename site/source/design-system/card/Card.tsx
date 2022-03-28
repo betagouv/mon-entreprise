@@ -81,6 +81,7 @@ export function getTitleProps(children: React.ReactNode, as: keyof ReactHTML) {
 		as = children.type as keyof ReactHTML
 		children = children.props.children ?? null
 	}
+
 	return { as, children }
 }
 

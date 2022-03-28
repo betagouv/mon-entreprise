@@ -25,6 +25,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 	const hiringChecklist = useSelector(
 		(state: RootState) => state.choixStatutJuridique.hiringChecklist
 	)
+
 	return (
 		<FromBottom>
 			<TrackPage name="embaucher" />

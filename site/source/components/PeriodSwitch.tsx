@@ -19,6 +19,7 @@ export default function PeriodSwitch() {
 			unit: '€/an',
 		},
 	]
+
 	return (
 		<div>
 			<ToggleGroup

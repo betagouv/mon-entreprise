@@ -31,6 +31,7 @@ type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
 	placeholder?: number
 	onChange?: (n?: number) => void
 }
+
 export default function NumberField(props: NumberFieldProps) {
 	const { locale } = useLocale()
 	const step = !props.step
@@ -82,6 +83,7 @@ export default function NumberField(props: NumberFieldProps) {
 		const length = ref.current.value.length * 2
 		ref.current.setSelectionRange(0, length * 2)
 	}, [])
+
 	return (
 		<StyledNumberFieldContainer>
 			<StyledInputContainer
@@ -289,6 +291,7 @@ function useSimpleNumberFieldState(
 			if (!inputValue || defaultInputValue === inputValue) {
 				updateInputValue(undefined)
 				updateNumberValue(undefined)
+
 				return
 			}
 
@@ -302,6 +305,7 @@ function useSimpleNumberFieldState(
 			const parsedValue = numberParser.parse(inputValue)
 			if (isNaN(parsedValue)) {
 				updateInputValue(numberValue)
+
 				return
 			}
 			updateNumberValue(parsedValue)
@@ -313,6 +317,7 @@ function useSimpleNumberFieldState(
 				inputValue.match(/^[^\d]*0([0]+|[\d\s,.]+)[^\d]*$/)
 			) {
 				setInputValue(inputValue)
+
 				return
 			}
 

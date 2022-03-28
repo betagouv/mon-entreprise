@@ -17,8 +17,12 @@ export function setupSimulationPersistence(
 ) {
 	const listener = () => {
 		const state = store.getState()
-		if (!state.simulation?.url) return
-		if (!state.simulation?.foldedSteps.length) return
+		if (!state.simulation?.url) {
+			return
+		}
+		if (!state.simulation?.foldedSteps.length) {
+			return
+		}
 		safeLocalStorage.setItem(
 			localStorageKey(state.simulation.url),
 			serialize(state)
@@ -33,5 +37,6 @@ export function retrievePersistedSimulation(
 	const serializedState = safeLocalStorage.getItem(
 		localStorageKey(simulationUrl)
 	)
+
 	return serializedState ? deserialize(serializedState) : null
 }

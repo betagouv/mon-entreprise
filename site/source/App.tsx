@@ -70,6 +70,7 @@ export default function Root({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[rules]
 	)
+
 	return (
 		<StrictMode>
 			<Provider
@@ -105,6 +106,7 @@ const Router = () => {
 		}),
 		[configSituation, simulatorSituation, companySituation]
 	)
+
 	return (
 		<SituationProvider situation={situation}>
 			<Switch>
@@ -130,6 +132,7 @@ const App = () => {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const isEmbedded = useIsEmbedded()
+
 	return (
 		<StyledLayout isEmbeded={isEmbedded}>
 			{!isEmbedded && <Header />}

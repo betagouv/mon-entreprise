@@ -14,10 +14,14 @@ export function ExplicableRule({
 	const engine = useContext(EngineContext)
 
 	// Rien à expliquer ici, ce n'est pas une règle
-	if (dottedName == null) return null
+	if (dottedName == null) {
+		return null
+	}
 	const rule = engine.getRule(dottedName)
 
-	if (rule.rawNode.description == null) return null
+	if (rule.rawNode.description == null) {
+		return null
+	}
 
 	//TODO montrer les variables de type 'une possibilité'
 

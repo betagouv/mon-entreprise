@@ -30,6 +30,7 @@ export const SalaireBrutSection = () => {
 
 export const SalaireNetSection = () => {
 	const { t } = useTranslation()
+
 	return (
 		<div className="payslip__salarySection">
 			<H4 className="payslip__salaryTitle">
@@ -89,8 +90,9 @@ export function Line({
 		// ⚠️ isNotApplicable is a bad func only here to help with further refactoring:
 		isNotApplicable(evaluatedNode.nodeValue) ||
 		evaluatedNode.nodeValue === 0
-	)
+	) {
 		return null
+	}
 
 	return (
 		<Condition expression={`${rule} > 0`}>

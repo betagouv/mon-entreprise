@@ -10,6 +10,7 @@ export default function CotisationsRégularisation() {
 	const rule = useEngine().getRule(
 		'dirigeant . indépendant . cotisations et contributions . régularisation'
 	)
+
 	return (
 		<FromBottom>
 			<div>

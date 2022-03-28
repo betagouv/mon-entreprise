@@ -24,6 +24,7 @@ export default function Checkbox(
 	const state = useToggleState(props)
 	const ref = useRef<HTMLInputElement | null>(null)
 	const { inputProps } = useCheckbox(props, state, ref)
+
 	return (
 		<CheckboxContainer>
 			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />

@@ -30,6 +30,7 @@ export default function Meta({
 		ogTitle: ogTitle ? t(`${page}.ogTitle`, ogTitle) || ogTitle : title,
 		ogImage: ogImage ? t(`${page}.ogImage`, ogImage) || ogImage : null,
 	}
+
 	return (
 		<Helmet htmlAttributes={{ lang: i18n.language }}>
 			<title>{meta.title}</title>

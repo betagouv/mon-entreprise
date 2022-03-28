@@ -11,5 +11,6 @@ export default function BrowserOnly({
 	if (import.meta.env.SSR) {
 		return null
 	}
+
 	return <Appear>{children}</Appear>
 }

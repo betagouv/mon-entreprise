@@ -64,5 +64,6 @@ async function searchFullText(
 	}
 
 	const json: FabriqueSocialSearchPayload = await response.json()
+
 	return json.entreprises
 }

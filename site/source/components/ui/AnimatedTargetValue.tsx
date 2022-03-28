@@ -11,6 +11,7 @@ type AnimatedTargetValueProps = {
 
 const formatDifference = (difference: number, language: string) => {
 	const prefix = difference > 0 ? '+' : ''
+
 	return prefix + formatValue(difference, { displayedUnit: '€', language })
 }
 
@@ -45,6 +46,7 @@ export default function AnimatedTargetValue({
 	if (!difference || Math.abs(difference) < 1) {
 		return null
 	}
+
 	return (
 		<div
 			className="print-hidden"

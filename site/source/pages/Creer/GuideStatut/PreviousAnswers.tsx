@@ -72,6 +72,7 @@ export default function PreviousAnswers() {
 	if (Object.values(legalStatus).length < 1) {
 		return null
 	}
+
 	return (
 		<PreviousAnswersList>
 			{Object.entries(legalStatus).map(

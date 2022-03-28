@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 export function MobiliteCard() {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
+
 	return (
 		<Article
 			title={t(

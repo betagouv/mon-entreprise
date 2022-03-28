@@ -13,11 +13,14 @@ export default function Exonération({
 	activité,
 }: any) {
 	const { state, dispatch } = useContext(StoreContext)
-	if (!exceptionsExonération && !exonération) return null
+	if (!exceptionsExonération && !exonération) {
+		return null
+	}
 	const defaultChecked = state?.[activité].critèresExonération.reduce(
 		(acc, el, i) => ({ ...acc, [i]: el }),
 		{} as { [key: string]: boolean }
 	)
+
 	return (
 		<>
 			<H2>

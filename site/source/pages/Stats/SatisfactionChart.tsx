@@ -26,6 +26,7 @@ export const SatisfactionStyle: [
 
 function toPercentage(data: Record<string, number>): Record<string, number> {
 	const total = Object.values(data).reduce(add)
+
 	return { ...mapObjIndexed((value) => (100 * value) / total, data), total }
 }
 
@@ -35,6 +36,7 @@ type SatisfactionChartProps = {
 		nombre: Record<string, number>
 	}>
 }
+
 export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	if (!data.length) {
 		return null
@@ -42,6 +44,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	const flattenData = data
 		.map((d) => ({ ...d, ...toPercentage(d.nombre) }))
 		.filter((d) => Object.values(d.nombre).reduce((a, b) => a + b, 0))
+
 	return (
 		<>
 			<ResponsiveContainer width="100%" height={400}>
@@ -86,6 +89,7 @@ const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
 		return null
 	}
 	const data = payload[0].payload
+
 	return (
 		<StyledLegend>
 			<Body>

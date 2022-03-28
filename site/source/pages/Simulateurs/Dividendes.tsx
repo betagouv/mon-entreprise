@@ -63,6 +63,7 @@ function OptionBarèmeSwitch() {
 	const engine = useEngine()
 	const dottedName = 'impôt . méthode de calcul' as DottedName
 	const currentOptionPFU = engine.evaluate(dottedName).nodeValue as string
+
 	return (
 		<ToggleGroup
 			defaultValue={currentOptionPFU}

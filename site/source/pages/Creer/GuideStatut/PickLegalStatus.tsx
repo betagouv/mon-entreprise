@@ -21,6 +21,7 @@ type StatutButtonProps = {
 const StatutButton = ({ statut }: StatutButtonProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
+
 	return (
 		<Button to={sitePaths.créer[statut]} light size="XS">
 			<>
@@ -90,6 +91,7 @@ const StatutTitle = ({ statut, language }: StatutTitleProps) =>
 export default function SetMainStatus() {
 	const { t, i18n } = useTranslation()
 	const possibleStatus = useSelector(possibleStatusSelector)
+
 	return (
 		<>
 			<TrackPage chapter2="statut" name="liste" />

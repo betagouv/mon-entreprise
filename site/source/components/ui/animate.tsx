@@ -36,6 +36,7 @@ export function FromBottom({
 		return <>{children}</>
 	}
 	const childrenArray = React.Children.toArray(children)
+
 	return (
 		<>
 			{trail.map((style, i) => (
@@ -70,6 +71,7 @@ export function FromTop({
 		return <>{children}</>
 	}
 	const childrenArray = React.Children.toArray(children)
+
 	return (
 		<>
 			{trail.map((style, i) => (
@@ -102,6 +104,7 @@ export const FadeIn = ({
 	if (useContext(DisableAnimationContext)) {
 		return <>{children}</>
 	}
+
 	return <animated.div style={style}>{children}</animated.div>
 }
 

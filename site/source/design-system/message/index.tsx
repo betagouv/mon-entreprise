@@ -14,6 +14,7 @@ type MessageProps = {
 	type?: MessageType
 	light?: boolean
 }
+
 export function Message({
 	type = 'primary',
 	icon = false,
@@ -24,6 +25,7 @@ export function Message({
 	if (typeof children !== 'object') {
 		children = <Body>{children}</Body>
 	}
+
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<StyledMessage type={type} border={border} light={light}>
@@ -78,6 +80,7 @@ const StyledMessage = styled.div<
 			type === 'secondary' || type === 'primary'
 				? theme.colors.bases[type]
 				: theme.colors.extended[type]
+
 		return css`
 			padding: ${theme.spacings.xs} ${theme.spacings.lg};
 			background-color: ${light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};

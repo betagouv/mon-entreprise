@@ -15,6 +15,7 @@ import {
 function formatCommune(value: SearchCommune) {
 	return value && `${value.nom} (${value.codePostal})`
 }
+
 export default function Select({
 	onChange,
 	value,
@@ -86,6 +87,7 @@ export default function Select({
 			setName(value)
 			if (value.length < 2) {
 				setSearchResults(null)
+
 				return
 			}
 			setLoadingState(true)
@@ -143,6 +145,7 @@ export default function Select({
 				<OptionList role="listbox" aria-expanded="true" id="liste-commune">
 					{searchResults.map((result, i) => {
 						const nom = formatCommune(result)
+
 						return (
 							<Option
 								as="li"
