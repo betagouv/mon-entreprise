@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components'
 export const Recap = styled.div`
 	background: ${({ theme }) => {
 		const colorPalette = theme.colors.bases.primary
+
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};
 	border-radius: 0.25rem;
