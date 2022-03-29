@@ -74,7 +74,7 @@ export default function Popover(
 				<Underlay {...underlayProps} $offsetTop={offsetTop}>
 					<Container>
 						<Grid container justifyContent="center">
-							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12}>
+							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12} zeroMinWidth>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
@@ -107,7 +107,8 @@ export default function Popover(
 												</CloseButton>
 											</CloseButtonContainer>
 										)}
-										<PopoverContent ref={contentRef}>
+										{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
+										<PopoverContent tabIndex={-1} ref={contentRef}>
 											{title && (
 												<H2 as="h1" {...titleProps}>
 													{title}

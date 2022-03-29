@@ -4174,76 +4174,139 @@ dirigeant . indépendant:
   titre.en: '[automatic] independent'
   titre.fr: indépendant
 dirigeant . indépendant . IJSS:
-  description.en: >-
-    [automatic] In case of illness, maternity, or accident, including following
-    a work stoppage or a stoppage for childcare related to the Covid-19
-    epidemic, the general Social Security scheme provides "cash" benefits.
+  description.en: >
+    [automatic] These are the allowances and daily benefits paid by your primary
+    health insurance fund in case of illness, maternity, paternity or adoption,
+    work stoppage or childcare related to the Covid-19 epidemic.
 
-    These are the Social Security daily benefits (IJSS).
 
-    Benefits supplementing Social Security daily allowances paid under a provident contract do not constitute replacement income.
+    These replacement incomes are specifically requested because they benefit from a reduced CSG-CRDS rate.
 
-    Note: Disability benefits paid by the disability and death insurance schemes are not concerned
-  description.fr: >-
-    En cas de maladie, maternité, ou accident, y compris suite à un arrêt de
-    travail ou un arrêt pour garde d’enfant en lien avec l’épidémie du Covid-19,
-    le régime général de Sécurité sociale assure le versement de prestations «
-    en espèces ».
 
-    Ce sont les indemnités journalières de Sécurité sociale (IJSS).
+    The complementary indemnities paid within the framework of private providence contracts (including Madelin contract) are not concerned.
 
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
 
-    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
-  question.en:
-    '[automatic] Did you receive daily sickness, maternity or paternity
-    benefits for your self-employed activity?'
-  question.fr: Avez-vous perçu des indemnités journalières de maladie, maternité
-    ou paternité au titre de votre activité indépendante ?
-  titre.en: '[automatic] social security daily allowances'
-  titre.fr: indemnités journalières de sécurité sociale
+    Disability benefits paid by the disability-death schemes are not concerned.
+  description.fr: >
+    Il s’agit des allocations et indemnités journalières versées par votre
+    caisse primaire d’assurance maladie en cas de maladie, maternité, paternité
+    ou adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de
+    Covid-19.
+
+
+    Ces revenus de remplacement sont demandés spécifiquement car ils bénéficient d’un taux réduit de CSG-CRDS.
+
+
+    Les indemnités complémentaires versées dans le cadre de contrats de prévoyance privés (y compris contrat Madelin) ne sont pas concernées.
+
+
+    Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
+  question.en: '[automatic] Did you receive daily allowances or social security
+    benefits for your independent activity (illness, maternity, paternity,
+    adoption)?'
+  question.fr: Avez-vous perçu des indemnités journalières ou allocations de
+    sécurité sociale au titre de votre activité indépendantes (maladie,
+    maternité, paternité, adoption) ?
+  titre.en: '[automatic] Social security benefits and daily allowances'
+  titre.fr: Indemnités et allocations journalières de sécurité sociale
 dirigeant . indépendant . IJSS . imposable:
-  description.en: >-
-    [automatic] Indicate only taxable replacement income received, i.e. all
-    replacement income received **except for daily allowances related to a Long
-    Term Condition (LTC)**.
+  description.en: >
+    [automatic] Indicate only the amount of taxable daily allowances and
+    indemnities received, i.e. all allowances and indemnities, except those
+    related to a long-term illness.
 
 
-    This income will be deducted from your contribution base, so that you are not subject to CSG-CRDS twice:
-
-    &gt; Replacement incomes are: the lump-sum maternal rest allowance, the lump-sum daily allowance for interruption of activity, the replacement allowance for maternity, paternity or adoption and the daily sickness allowance.
-  description.fr: >-
-    Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
-    les revenus de remplacement perçus **sauf les indemnités journalières en
-    lien avec une Affection de Longue Durée (ALD)**.
+    These allowances will be deducted from your income from work in order to be subject to the reduced rate of CSG-CRDS.
 
 
-    Ces revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS :
+    <p><u>The replacement income concerned is :</u></p>
 
-    > Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie.
-  question.en: '[automatic] What is the gross amount of taxable per diem benefits received?'
-  question.fr: Quel est le montant brut des indemnités journalières imposables perçues?
+    - daily sickness benefit
+
+    - lump-sum maternal rest allowance
+
+    - fixed daily allowance for interruption of activity (maternity)
+
+    - replacement allowance for maternity
+
+    - paternity or adoption.
+  description.fr: >
+    Indiquez uniquement le montant des allocations et indemnités journalières
+    imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
+    l’exception de celles en lien avec une affection de longue durée.
+
+
+    Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises au taux réduit de la CSG-CRDS.
+
+
+    <p><u>Les revenus de remplacement concernés sont :</u></p>
+
+    - indemnités journalière maladie
+
+    - allocation forfaitaire de repos maternel
+
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+
+    - indemnité de remplacement pour maternité
+
+    - paternité ou adoption.
+  question.en: '[automatic] What is the gross taxable amount of your social
+    security benefits and daily allowances?'
+  question.fr:
+    Quel est le montant brut imposable de vos allocations et indemnités
+    journalières de sécurité sociale ?
   résumé.en: '[automatic] Only if you are not under the micro-tax system'
   résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
-  titre.en: '[automatic] taxable daily allowances'
-  titre.fr: indemnités journalières imposable
+  titre.en: '[automatic] Taxable allowances and per diems'
+  titre.fr: Allocations et indemnités journalières imposables
 dirigeant . indépendant . IJSS . total:
-  description.en: >-
-    [automatic] Indicate only the gross amount of your replacement income,
-    taxable and non-taxable, which appears on the benefit statement provided by
-    your health insurance fund.
+  description.en: >
+    [automatic] Indicate the total gross amount of your taxable and non-taxable
+    daily allowances and benefits received, as shown on the statement of
+    benefits provided by your primary health insurance fund.
 
-    &gt; The replacement incomes are: the lump-sum maternal rest allowance, the lump-sum daily indemnity for interruption of activity, the replacement indemnity for maternity, paternity or adoption and the daily sickness indemnity.
-  description.fr: >-
-    Indiquez uniquement le montant brut de vos revenus de remplacement,
-    imposables et non imposables qui figure sur le relevé de prestations fourni
-    pas votre caisse d'assurance maladie.
 
-    > Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l'indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie.
-  question.en: '[automatic] What is the total gross amount of all your daily benefits?'
-  question.fr: Quel est le montant total brut de toutes vos indemnités journalières ?
-  titre.en: '[automatic] daily allowances'
-  titre.fr: indemnités journalières
+    This replacement income is subject to the reduced CSG-CRDS rate.
+
+
+    <p><u>The allowances and daily benefits concerned are :</u></p>
+
+    - daily sickness benefit
+
+    - lump-sum maternal rest allowance
+
+    - fixed daily allowance for interruption of activity (maternity)
+
+    - maternity replacement allowance
+
+    - paternity or adoption
+  description.fr: >
+    Indiquez le montant total brut de vos allocations et indemnités journalières
+    perçues, imposables et non imposables, qui figure sur le relevé de
+    prestations fourni par votre caisse primaire d’assurance maladie.
+
+
+    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
+
+
+    <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
+
+    - indemnités journalière maladie
+
+    - allocation forfaitaire de repos maternel
+
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+
+    - indemnité de remplacement pour maternité
+
+    - paternité ou adoption
+  question.en:
+    '[automatic] What is the total gross amount of your social security
+    benefits and daily allowances?'
+  question.fr: Quel est le montant brut total de vos allocations et indemnités
+    journalières de sécurité sociale ?
+  titre.en: '[automatic] Total amount of benefits and daily allowances'
+  titre.fr: Montant total des allocations et indemnités journalières
 dirigeant . indépendant . PL:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
@@ -5845,52 +5908,50 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre.fr: taux exonération ZFU
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
   description.en: >-
-    [automatic] If you are the holder of a **disability pension** paid by a
-    non-agricultural non-salaried worker scheme, you benefit from a **total
-    exemption from supplementary pension and
+    [automatic] If you are the holder of a disability pension paid by a
+    non-agricultural non-salaried workers' scheme, you benefit from a total
+    exemption from
 
-    non-agricultural non-salaried workers, you are entitled to a **total exemption from supplementary pension contributions and
+    agricultural workers, you benefit from a total exemption from supplementary pension contributions and
 
-    health insurance contributions**.
-
-
-    So that you can **continue to accumulate complementary pension points** like other workers,
-
-    you are allocated **"free points "**.
+    health contributions.
 
 
-    In the general case, the number of points received corresponds to the **average monthly points contributed during the period of
+    So that you can continue to accumulate supplementary pension points like other workers
 
-    during the period of self-employment** before the pension is paid.
-
-
-    &gt; For example, if you have contributed for 6 years and 11 months for a total of 588 points, the number of free points received each month will be :
+    you are awarded "free points".
 
 
-    &gt; `588 / (6 * 12 + 11) = 7,08`
+    As a rule, the number of points received corresponds to the monthly average of the points contributed
+
+    during the period of self-employment before the pension is paid.
+
+
+    &gt; For example, if you have contributed for 6 years and 11 months for a total of 588 points, you will receive
+
+    &gt; the number of free points received each month will be: `588 / (6 * 12 + 11) = 7.08
   description.fr: >-
-    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime
-    des travailleurs non-salariés
+    Si vous êtes titulaire d’une pension d’invalidité versée par un régime des
+    travailleurs non-salariés
 
-    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et
+    non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
 
-    des cotisations maladie**.
-
-
-    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs,
-
-    il vous est attribué des **"points gratuits"**.
+    des cotisations maladie.
 
 
-    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés
+    Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
 
-    pendant la période d'activité indépendante** avant versement de la pension.
-
-
-    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de :
+    il vous est attribué des "points gratuits".
 
 
-    > `588 / (6 * 12 + 11) = 7,08`
+    En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+
+    pendant la période d'activité indépendante avant versement de la pension.
+
+
+    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
+
+    > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
   question.en: '[automatic] Are you a self-employed disability pensioner?'
   question.fr: Êtes-vous titulaire d’une pension d’invalidité à titre de
     travailleur indépendant ?
@@ -5902,9 +5963,13 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
     active for those who benefited from it prior to its repeal.'
   description.fr:
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour
-    les personnes qui en bénéficiait avant son abbrogation.
-  question.en: '[automatic] Do you benefit from the "age" exemption'
-  question.fr: Bénéficiez-vous du dispositif d'exonération "âge"
+    les personnes qui en bénéficiaient avant son abbrogation.
+  question.en:
+    '[automatic] Do you benefit from the "age for retirement" exemption
+    from the disability-death contribution?'
+  question.fr:
+    Bénéficiez-vous du dispositif d’exonération « âge pour la retraite
+    » de la cotisation invalidité-décès ?
   titre.en: '[automatic] age'
   titre.fr: âge
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
@@ -6164,23 +6229,49 @@ dirigeant . indépendant . revenu professionnel:
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
-    [automatic] Foreign income is income declared by self-employed persons for
-    income received for the exercise of a self-employed activity in another EU,
-    EEA or Swiss state abroad.
+    [automatic] If you are self-employed outside of France, in a European Union
+    (EU)*, European Economic Area (EEA)** or Switzerland
 
-    This income is only subject to contributions and is integrated into the social security base. However, this income is specifically identified in order to deduct it from the CSG/CRDS base.
+    or in a State outside the EU/EEA/Switzerland, with which provisions for the coordination of social protection schemes apply
 
-    To find out if this income is subject to income tax, please refer to the explanatory note on the website [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+    and that the exercise of your self-employed activity outside France has led to affiliation to the general scheme for self-employed workers:
+
+    indicate the amount of your income established outside France.
+
+
+    Indeed, income from an activity carried out outside France is only subject to social security contributions. This income is not subject to CSG-CRDS.
+
+
+    \* Austria, Belgium, Bulgaria, Croatia, Cyprus, Denmark, Estonia, Finland, Germany, Greece, Hungary, Ireland, Spain,
+
+    Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Czech Republic, Romania, Slovakia, Slovenia, Spain, Sweden.
+
+
+    \** EEA States: Iceland, Liechtenstein, Norway.
   description.fr: >
-    Les revenus étrangers sont des revenus déclarés par les travailleurs
-    indépendants pour des revenus perçus au titre de l’exercice d’une activité
-    non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.
+    Si vous exercez une activité non salariée hors de France, dans un État de
+    l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\** ou en
+    Suisse
 
-    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS.
+    ou dans un Etat hors UE/EEE/Suisse, avec lequel des dispositions de coordination des régimes de protection sociale s’appliquent,
 
-    Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
-  question.en: '[automatic] Did you receive income abroad in the course of your activity?'
-  question.fr: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ?
+    et que l’exercice de votre activité non salariée hors de France a donné lieu à affiliation au régime général des travailleurs indépendants :
+
+    indiquez le montant de votre revenu établi hors de France.
+
+
+    En effet, les revenus provenant d’une activité exercée hors de France sont uniquement soumis à cotisations sociales. Ces revenus ne sont pas soumis à la CSG-CRDS.
+
+
+    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande,
+
+    Italie, Lettonie, Lituanie, Luxembourg, Malte, Pays-Bas, Pologne, Portugal, République Tchèque, Roumanie, Slovaquie, Slovénie, Suède.
+
+
+    \** États l’EEE : Islande, Liechtenstein, Norvège.
+  question.en: '[automatic] Did you receive income from self-employment abroad?'
+  question.fr: Avez-vous perçu des revenus au titre de l’exercice d’une activité
+    non salariée à l’étranger ?
   titre.en: '[automatic] foreign income'
   titre.fr: revenus étrangers
 dirigeant . indépendant . revenus étrangers . montant:
@@ -6819,29 +6910,18 @@ déclaration indépendants . nature de l'activité . artisanale:
   titre.fr: artisanale
 déclaration indépendants . nature de l'activité . commerciale:
   description.en: >
-    [automatic] ### Commercial activity
+    [automatic] - Purchase of goods for resale as is (wholesale or retail trade)
 
-    - Purchases of goods for resale in the same condition (wholesale or retail)
+    - Sale of commercial services (equipment rental, transportation, real estate agency, hotel and restaurant business, entertainment business, private security business, rental, etc.)
 
-    - Sale of commercial services (equipment rental, transport, real estate agency, hotel and catering, entertainment business, private security activity, rental, etc.).
-
-
-    ### Industrial activity
-
-
-    Production or processing activity through the use of industrial tools, extraction, mining, handling, storage and warehousing
+    - Production or transformation activity through the use of industrial tools, extraction, mining, handling, warehousing and storage
   description.fr: >
-    ### Activité commerciale
-
-    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de
+    détail)
 
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
 
-
-    ### Activité industrielle
-
-
-    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+    - Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: '[automatic] commercial or industrial'
   titre.fr: commerciale
 déclaration indépendants . nature de l'activité . libérale:
@@ -9041,14 +9121,22 @@ situation personnelle . RSA:
   titre.en: '[automatic] beneficiary RSA or activity bonus'
   titre.fr: bénéficiaire RSA ou prime d'activité
 situation personnelle . domiciliation fiscale à l'étranger:
-  description.en: '[automatic] These insureds are not liable for CSG/CRDS or income tax.'
-  description.fr:
-    Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt
-    sur le revenu.
+  description.en: >
+    [automatic] If your tax residence is outside France, your income is not
+    subject to CSG-CRDS.
+
+
+    However, an increased health contribution of 14.5% will apply.
+  description.fr: >
+    Si votre résidence fiscale est située hors de France, vos revenus d’activité
+    ne sont pas soumis à la CSG-CRDS.
+
+
+    Une cotisation maladie majorée de 14,5% sera en revanche applicable.
   question.en: "[automatic] Is the person's tax residence located abroad?"
   question.fr: La résidence fiscale de la personne est-elle située à l'étranger ?
-  titre.en: tax domicile abroad
-  titre.fr: domiciliation fiscale à l'étranger
+  titre.en: '[automatic] Tax residence outside France'
+  titre.fr: Résidence fiscale hors de France
 établissement:
   description.en: The employee works in one of the company's establishment,
     identified by a SIRET code.

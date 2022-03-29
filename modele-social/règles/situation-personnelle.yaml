@@ -7,8 +7,11 @@ situation personnelle . RSA:
   par défaut: non
 
 situation personnelle . domiciliation fiscale à l'étranger:
-  description: >-
-    Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt sur le revenu.
+  titre: Résidence fiscale hors de France
+  description: |
+    Si votre résidence fiscale est située hors de France, vos revenus d’activité ne sont pas soumis à la CSG-CRDS.
+
+    Une cotisation maladie majorée de 14,5% sera en revanche applicable.
   question: La résidence fiscale de la personne est-elle située à l'étranger ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
