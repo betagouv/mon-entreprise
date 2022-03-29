@@ -50,7 +50,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 			<ResponsiveContainer width="100%" height={400}>
 				<BarChart data={flattenData}>
 					<XAxis dataKey="date" tickFormatter={formatMonth} />
-					<Tooltip content={<CustomTooltip />} />
+					<Tooltip content={CustomTooltip} />
 					{SatisfactionStyle.map(([level, { emoji, color }]) => (
 						<Bar
 							key={level}
@@ -81,26 +81,23 @@ function formatMonth(date: string | Date) {
 
 type CustomTooltipProps = {
 	active?: boolean
-	payload?: [
-		{
-			payload: {
-				total: number
-				'très bien': number
-				bien: number
-				mauvais: number
-				date: string | Date
-			}
+	payload?: {
+		payload?: {
+			total: number
+			'très bien': number
+			bien: number
+			mauvais: number
+			date: string | Date
 		}
-	]
+	}[]
 }
 
-// this component seems useless to me because
-// it is not used with any props in SatisfactionChart
 const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
-	if (!active || !payload) {
+	const data = (payload && payload.length > 0 && payload[0].payload) || null
+
+	if (!active || !data) {
 		return null
 	}
-	const data = payload[0].payload
 
 	return (
 		<StyledLegend>
