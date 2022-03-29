@@ -258,7 +258,8 @@ function ImpositionSection() {
 								</Condition>
 								<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 									<H2>
-										Quel est votre résultat fiscal en 2021 ?<br />
+										Quel est votre résultat fiscal au titre de l'année 2021 ?
+										<br />
 										<small>
 											Charges sociales et exonérations fiscales non incluses{' '}
 											<ExplicationsResultatFiscal />
