@@ -274,6 +274,7 @@ function ImpositionSection() {
 											dottedName="dirigeant . rémunération . totale"
 											onChange={setSituation}
 											autoFocus
+											displayedUnit=""
 										/>
 									</BigInput>
 								</Condition>

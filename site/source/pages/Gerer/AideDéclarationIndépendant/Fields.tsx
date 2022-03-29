@@ -95,6 +95,7 @@ export function SimpleField({
 						dottedName={dottedName}
 						onChange={dispatchValue}
 						showSuggestions={showSuggestions}
+						displayedUnit=""
 					/>
 				</Question>
 			</FromTop>
