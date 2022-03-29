@@ -1,10 +1,33 @@
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
+import styled from 'styled-components'
+
+export const StyledTable = styled.table`
+	${baseParagraphStyle}
+	font-size: 0.85em;
+	text-align: center;
+	border-collapse: collapse;
+	display: block;
+	overflow-y: auto;
+
+	tr:nth-child(2n + 3) {
+		background: var(--lightestColor);
+	}
+
+	td {
+		padding: 0.5rem;
+		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	}
+`
 
 export function ExplicationsResultatFiscal() {
 	return (
-		<ButtonHelp title="Quelles exonérations inclure ?" type="aide">
+		<ButtonHelp
+			title="Quelles exonérations inclure ?"
+			type="aide"
+			small={false}
+		>
 			<Body>
 				Pour calculer le montant du résultat fiscal avant déduction des
 				exonérations et des charges sociales à indiquer dans ce simulateur, vous
@@ -24,20 +47,7 @@ export function ExplicationsResultatFiscal() {
 					Ajoutez les exonérations <strong>(2)</strong>
 				</Li>
 			</Ul>
-			<table
-				css={`
-					font-size: 0.85em;
-					text-align: center;
-
-					tr:nth-child(2n + 3) {
-						background: var(--lightestColor);
-					}
-
-					td {
-						padding: 0.5rem;
-					}
-				`}
-			>
+			<StyledTable>
 				<tr>
 					<td></td>
 					<td></td>
@@ -141,7 +151,7 @@ export function ExplicationsResultatFiscal() {
 					</td>
 					<td></td>
 				</tr>
-			</table>
+			</StyledTable>
 		</ButtonHelp>
 	)
 }
