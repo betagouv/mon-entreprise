@@ -28,7 +28,9 @@
 		"start": "onchange 'règles/**/*.yaml' -- yarn run build",
 		"clean": "rimraf dist node_modules",
 		"postinstall": "yarn run build",
-		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"upgrade:major": "yarn version major && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"upgrade:minor": "yarn version minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"upgrade:patch": "yarn version patch && echo \"ℹ N'oubliez pas de poussez le tag git\"",
 		"test": "node ../scripts/check-changelog.js"
 	}
 }
