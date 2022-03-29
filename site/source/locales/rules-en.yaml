@@ -6910,29 +6910,18 @@ déclaration indépendants . nature de l'activité . artisanale:
   titre.fr: artisanale
 déclaration indépendants . nature de l'activité . commerciale:
   description.en: >
-    [automatic] ### Commercial activity
+    [automatic] - Purchase of goods for resale as is (wholesale or retail trade)
 
-    - Purchases of goods for resale in the same condition (wholesale or retail)
+    - Sale of commercial services (equipment rental, transportation, real estate agency, hotel and restaurant business, entertainment business, private security business, rental, etc.)
 
-    - Sale of commercial services (equipment rental, transport, real estate agency, hotel and catering, entertainment business, private security activity, rental, etc.).
-
-
-    ### Industrial activity
-
-
-    Production or processing activity through the use of industrial tools, extraction, mining, handling, storage and warehousing
+    - Production or transformation activity through the use of industrial tools, extraction, mining, handling, warehousing and storage
   description.fr: >
-    ### Activité commerciale
-
-    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de
+    détail)
 
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
 
-
-    ### Activité industrielle
-
-
-    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+    - Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: '[automatic] commercial or industrial'
   titre.fr: commerciale
 déclaration indépendants . nature de l'activité . libérale:
@@ -9132,14 +9121,22 @@ situation personnelle . RSA:
   titre.en: '[automatic] beneficiary RSA or activity bonus'
   titre.fr: bénéficiaire RSA ou prime d'activité
 situation personnelle . domiciliation fiscale à l'étranger:
-  description.en: '[automatic] These insureds are not liable for CSG/CRDS or income tax.'
-  description.fr:
-    Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt
-    sur le revenu.
+  description.en: >
+    [automatic] If your tax residence is outside France, your income is not
+    subject to CSG-CRDS.
+
+
+    However, an increased health contribution of 14.5% will apply.
+  description.fr: >
+    Si votre résidence fiscale est située hors de France, vos revenus d’activité
+    ne sont pas soumis à la CSG-CRDS.
+
+
+    Une cotisation maladie majorée de 14,5% sera en revanche applicable.
   question.en: "[automatic] Is the person's tax residence located abroad?"
   question.fr: La résidence fiscale de la personne est-elle située à l'étranger ?
-  titre.en: tax domicile abroad
-  titre.fr: domiciliation fiscale à l'étranger
+  titre.en: '[automatic] Tax residence outside France'
+  titre.fr: Résidence fiscale hors de France
 établissement:
   description.en: The employee works in one of the company's establishment,
     identified by a SIRET code.

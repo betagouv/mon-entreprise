@@ -280,14 +280,9 @@ déclaration indépendants . nature de l'activité . libérale:
 déclaration indépendants . nature de l'activité . commerciale:
   formule: nature de l'activité = 'commerciale'
   description: |
-    ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
-
-    ### Activité industrielle
-
-    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
-
+    - Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 déclaration indépendants . nature de l'activité . artisanale:
   formule: nature de l'activité = 'artisanale'
   description: |
