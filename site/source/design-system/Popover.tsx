@@ -74,7 +74,7 @@ export default function Popover(
 				<Underlay {...underlayProps} $offsetTop={offsetTop}>
 					<Container>
 						<Grid container justifyContent="center">
-							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12}>
+							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12} zeroMinWidth>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}

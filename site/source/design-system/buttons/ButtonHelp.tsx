@@ -9,6 +9,7 @@ type ButtonHelpProps = {
 	title: string
 	children: React.ReactNode
 	light?: boolean
+	small?: boolean
 }
 
 export default function ButtonHelp({
@@ -16,6 +17,7 @@ export default function ButtonHelp({
 	title,
 	type,
 	light,
+	small = true,
 }: ButtonHelpProps) {
 	return (
 		<PopoverWithTrigger
@@ -46,7 +48,7 @@ export default function ButtonHelp({
 				</StyledButton>
 			)}
 			title={title}
-			small
+			small={small}
 		>
 			{children}
 		</PopoverWithTrigger>
