@@ -7,3 +7,7 @@ export * as paragraphs from './paragraphs'
 export const Strong = styled.strong`
 	font-weight: 700;
 `
+
+export const U = styled.u`
+	text-decoration: underline;
+`

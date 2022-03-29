@@ -1,4 +1,4 @@
-import { Strong } from '@/design-system/typography'
+import { Strong, U } from '@/design-system/typography'
 import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom'
 import { isIterable } from '../../utils'
 import { SiteNameContext } from '../../Provider'
 import Emoji from './Emoji'
+import { Message } from '@/design-system'
 
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',
@@ -66,11 +67,11 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 }
 
 const CodeBlock = ({
-	value,
-	language,
+	children,
+	className,
 }: {
-	value: string
-	language: string
+	children: string
+	className?: string
 }) => (
 	<div
 		css={`
@@ -78,11 +79,11 @@ const CodeBlock = ({
 		`}
 	>
 		<pre className="ui__ code">
-			<code>{value}</code>
+			<code>{children}</code>
 		</pre>
-		{language === 'yaml' && (
+		{className?.includes('lang-yaml') && (
 			<a
-				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}
+				href={`https://publi.codes/studio?code=${encodeURIComponent(children)}`}
 				target="_blank"
 				rel="noreferrer"
 				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
@@ -112,11 +113,13 @@ export const Markdown = ({
 				h6: H6,
 				p: Body,
 				strong: Strong,
+				u: U,
 				a: LinkRenderer,
 				ul: Ul,
 				li: Li,
 				code: CodeBlock,
 				span: TextRenderer,
+				blockquote: Message,
 				...components,
 			},
 		}}

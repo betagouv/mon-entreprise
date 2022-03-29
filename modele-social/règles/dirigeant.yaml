@@ -1216,12 +1216,19 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
     Article 154 quiquies du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836652/
 
 dirigeant . indépendant . revenus étrangers:
+  question: Avez-vous perçu des revenus au titre de l’exercice d’une activité non salariée à l’étranger ?
   description: |
-    Les revenus étrangers sont des revenus déclarés par les travailleurs indépendants pour des revenus perçus au titre de l’exercice d’une activité non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.
-    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS.
-    Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+    Si vous exercez une activité non salariée hors de France, dans un État de l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\** ou en Suisse
+    ou dans un Etat hors UE/EEE/Suisse, avec lequel des dispositions de coordination des régimes de protection sociale s’appliquent,
+    et que l’exercice de votre activité non salariée hors de France a donné lieu à affiliation au régime général des travailleurs indépendants :
+    indiquez le montant de votre revenu établi hors de France.
 
-  question: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ?
+    En effet, les revenus provenant d’une activité exercée hors de France sont uniquement soumis à cotisations sociales. Ces revenus ne sont pas soumis à la CSG-CRDS.
+
+    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande,
+    Italie, Lettonie, Lituanie, Luxembourg, Malte, Pays-Bas, Pologne, Portugal, République Tchèque, Roumanie, Slovaquie, Slovénie, Suède.
+
+    \** États l’EEE : Islande, Liechtenstein, Norvège.
   par défaut: non
 
 dirigeant . indépendant . revenus étrangers . montant:
@@ -1301,8 +1308,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   unité: €/an
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
-  question: Bénéficiez-vous du dispositif d'exonération "âge"
-  description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiait avant son abbrogation.
+  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite » de la cotisation invalidité-décès ?
+  description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient avant son abbrogation.
   par défaut: non
   applicable si: entreprise . date de création < 01/2016
   rend non applicable: invalidité et décès
@@ -1311,19 +1318,18 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   acronyme: PI
   question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
-    Si vous êtes titulaire d’une **pension d’invalidité** versée par un régime des travailleurs non-salariés
-    non agricoles, vous bénécifiez d’une **exonération totale des cotisations de retraite complémentaire et
-    des cotisations maladie**.
+    Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
+    non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
+    des cotisations maladie.
 
-    Pour que vous puissiez **continuer à accumuler des points de retraite complémentaire** comme les autres travailleurs,
-    il vous est attribué des **"points gratuits"**.
+    Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
+    il vous est attribué des "points gratuits".
 
-    Dans le cas général, le nombre de points reçu correspond à la **moyenne mensuelle des points cotisés
-    pendant la période d'activité indépendante** avant versement de la pension.
+    En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+    pendant la période d'activité indépendante avant versement de la pension.
 
-    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points, le nombre de points gratuits reçu chaque mois sera de :
-
-    > `588 / (6 * 12 + 11) = 7,08`
+    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
+    > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
   type: notification
   niveau: info
   par défaut: non
@@ -1389,54 +1395,48 @@ dirigeant . indépendant . cotisations et contributions . maladie domiciliation 
   arrondi: oui
 
 dirigeant . indépendant . IJSS:
-  titre: indemnités journalières de sécurité sociale
-  description: >-
-    En cas de maladie, maternité, ou accident, y compris suite à un arrêt de travail ou un arrêt
-    pour garde d’enfant en lien avec l’épidémie du Covid-19, le régime général de Sécurité
-    sociale assure le versement de prestations « en espèces ».
+  titre: Indemnités et allocations journalières de sécurité sociale
+  description: |
+    Il s’agit des allocations et indemnités journalières versées par votre caisse primaire d’assurance maladie en cas de maladie, maternité, paternité ou adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de Covid-19.
 
-    Ce sont les indemnités journalières de Sécurité sociale (IJSS).
+    Ces revenus de remplacement sont demandés spécifiquement car ils bénéficient d’un taux réduit de CSG-CRDS.
 
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité
-    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
-    des revenus de remplacement.
+    Les indemnités complémentaires versées dans le cadre de contrats de prévoyance privés (y compris contrat Madelin) ne sont pas concernées.
 
-    Note: Les prestations d’invalidité versées par les régimes
-    d’invalidité-décès ne sont pas concernées
+    Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
 
-  question: Avez-vous perçu des indemnités journalières de maladie, maternité ou paternité au titre de votre activité indépendante ?
+  question: Avez-vous perçu des indemnités journalières ou allocations de sécurité sociale au titre de votre activité indépendantes (maladie, maternité, paternité, adoption) ?
   par défaut: non
 
 dirigeant . indépendant . IJSS . total:
-  titre: indemnités journalières
-  question: >-
-    Quel est le montant total brut de toutes vos indemnités journalières ?
-  description: >-
-    Indiquez uniquement le montant brut de vos revenus de remplacement,
-    imposables et non imposables qui figure sur le relevé de prestations fourni
-    pas votre caisse d'assurance maladie.
+  titre: Montant total des allocations et indemnités journalières
+  question: Quel est le montant brut total de vos allocations et indemnités journalières de sécurité sociale ?
+  description: |
+    Indiquez le montant total brut de vos allocations et indemnités journalières perçues, imposables et non imposables, qui figure sur le relevé de prestations fourni par votre caisse primaire d’assurance maladie.
 
-    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
-    maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
-    l'indemnité de remplacement pour maternité, paternité ou adoption et
-    l'indemnité journalière maladie.
+    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
+
+    <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
+    - indemnités journalière maladie
+    - allocation forfaitaire de repos maternel
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+    - indemnité de remplacement pour maternité
+    - paternité ou adoption
   par défaut: 0 €/an
 
 dirigeant . indépendant . IJSS . imposable:
-  titre: indemnités journalières imposable
+  titre: Allocations et indemnités journalières imposables
   résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
-  question: Quel est le montant brut des indemnités journalières imposables perçues?
-  description: >-
-    Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
-    les revenus de remplacement perçus **sauf les indemnités journalières en
-    lien avec une Affection de Longue Durée (ALD)**.
+  question: Quel est le montant brut imposable de vos allocations et indemnités journalières de sécurité sociale ?
+  description: |
+    Indiquez uniquement le montant des allocations et indemnités journalières imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à l’exception de celles en lien avec une affection de longue durée.
 
+    Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises au taux réduit de la CSG-CRDS.
 
-    Ces revenus seront déduits de votre assiette des contributions, afin de ne
-    pas être soumis deux fois à la CSG-CRDS :
-
-    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
-    maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
-    l’indemnité de remplacement pour maternité, paternité ou adoption et
-    l'indemnité journalière maladie.
+    <p><u>Les revenus de remplacement concernés sont :</u></p>
+    - indemnités journalière maladie
+    - allocation forfaitaire de repos maternel
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+    - indemnité de remplacement pour maternité
+    - paternité ou adoption.
   par défaut: 0 €/an
