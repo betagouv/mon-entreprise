@@ -18,21 +18,28 @@ async function main() {
 }
 
 async function fetchJobOffers() {
-	const response = await fetch('https://beta.gouv.fr/jobs.xml')
-	const content = await response.text()
-	// The XML API isn't the most ergonomic, we ought to have a JSON API.
-	// cf. https://github.com/betagouv/beta.gouv.fr/issues/6343
-	const jobOffers = (await parseXML(content)).feed.entry
-		.map((entry) => ({
-			title: entry.title[0]['_'].trim(),
-			link: entry.link[0].$.href,
-			content: entry.content[0]['_'].trim(),
-		}))
-		.filter(({ title }) => title.includes('Offre de Mon-entreprise'))
-		.map(({ title, ...rest }) => ({
-			...rest,
-			title: title.replace(' - Offre de Mon-entreprise', ''),
-		}))
+	let jobOffers = []
+
+	try {
+		const response = await fetch('https://beta.gouv.fr/jobs.xml')
+		const content = await response.text()
+
+		// The XML API isn't the most ergonomic, we ought to have a JSON API.
+		// cf. https://github.com/betagouv/beta.gouv.fr/issues/6343
+		jobOffers = (await parseXML(content)).feed.entry
+			.map((entry) => ({
+				title: entry.title[0]['_'].trim(),
+				link: entry.link[0].$.href,
+				content: entry.content[0]['_'].trim(),
+			}))
+			.filter(({ title }) => title.includes('Offre de Mon-entreprise'))
+			.map(({ title, ...rest }) => ({
+				...rest,
+				title: title.replace(' - Offre de Mon-entreprise', ''),
+			}))
+	} catch (err) {
+		console.error(err)
+	}
 
 	return jobOffers
 }
