@@ -1,3 +1,7 @@
+### 0.4.0
+
+Ajout de nouvelles règles et fix de bug
+
 ### 0.3.2
 
 Utilise publicodes vbeta.32 en peer dependancy
