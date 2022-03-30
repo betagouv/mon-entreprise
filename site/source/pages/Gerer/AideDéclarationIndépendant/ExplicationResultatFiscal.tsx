@@ -23,11 +23,7 @@ export const StyledTable = styled.table`
 
 export function ExplicationsResultatFiscal() {
 	return (
-		<ButtonHelp
-			title="Quelles exonérations inclure ?"
-			type="aide"
-			small={false}
-		>
+		<ButtonHelp title="Quelles exonérations inclure ?" type="aide" bigPopover>
 			<Body>
 				Pour calculer le montant du résultat fiscal avant déduction des
 				exonérations et des charges sociales à indiquer dans ce simulateur, vous

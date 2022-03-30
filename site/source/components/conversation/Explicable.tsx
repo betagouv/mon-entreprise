@@ -4,12 +4,14 @@ import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 
-export function ExplicableRule({
+export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
 	light,
+	bigPopover,
 }: {
-	dottedName: DottedName
+	dottedName: Names
 	light?: boolean
+	bigPopover?: boolean
 }) {
 	const engine = useContext(EngineContext)
 
@@ -31,6 +33,7 @@ export function ExplicableRule({
 			type="info"
 			title={rule.title}
 			light={light}
+			bigPopover={bigPopover}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 		</ButtonHelp>

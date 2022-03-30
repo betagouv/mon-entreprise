@@ -9,7 +9,7 @@ type ButtonHelpProps = {
 	title: string
 	children: React.ReactNode
 	light?: boolean
-	small?: boolean
+	bigPopover?: boolean
 }
 
 export default function ButtonHelp({
@@ -17,7 +17,7 @@ export default function ButtonHelp({
 	title,
 	type,
 	light,
-	small = true,
+	bigPopover,
 }: ButtonHelpProps) {
 	return (
 		<PopoverWithTrigger
@@ -48,7 +48,7 @@ export default function ButtonHelp({
 				</StyledButton>
 			)}
 			title={title}
-			small={small}
+			small={!bigPopover}
 		>
 			{children}
 		</PopoverWithTrigger>
@@ -88,7 +88,7 @@ const StyledButton = styled(Button)<{ $light?: boolean }>`
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[100]};
 		border-radius: calc(
-			${({ theme }) => theme.spacings.md} / 2 + var(--padding)
+			(${({ theme }) => theme.spacings.md}) / 2 + var(--padding)
 		);
 
 		:hover {

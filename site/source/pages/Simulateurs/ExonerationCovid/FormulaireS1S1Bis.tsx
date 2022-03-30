@@ -1,6 +1,6 @@
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value from '@/components/EngineValue'
 import { Situation } from '@/components/utils/SituationContext'
-import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -79,10 +79,8 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 	return (
 		<>
 			<H3>
-				<Trans>
-					Quelle était votre situation liée à la crise sanitaire durant vos mois
-					d’activité ?
-				</Trans>
+				{engine.getRule('secteur . S1 ou S1bis').rawNode.question}
+				<ExplicableRule dottedName="secteur . S1 ou S1bis" light bigPopover />
 			</H3>
 			<Table>
 				<Thead>
