@@ -1,3 +1,7 @@
+### 0.4.2
+
+Ajoute le fichier index.d.ts dans le paquet
+
 ### 0.4.1
 
 Répare la signature typescript du paquet npm

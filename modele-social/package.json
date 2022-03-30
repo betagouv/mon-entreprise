@@ -1,6 +1,6 @@
 {
 	"name": "modele-social",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "Les règles publicodes du système social français",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",
@@ -13,7 +13,8 @@
 	"homepage": "https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",
 	"license": "MIT",
 	"files": [
-		"dist"
+		"dist",
+		"index.d.ts"
 	],
 	"type": "module",
 	"devDependencies": {
