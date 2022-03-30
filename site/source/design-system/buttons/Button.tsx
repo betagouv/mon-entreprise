@@ -79,18 +79,32 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: 2px solid transparent;
+
 	${({ $isDisabled }) =>
 		$isDisabled &&
 		css`
 			opacity: 50%;
 			cursor: not-allowed;
 		`}
+
 	&:active {
-		transform: translateY(3px);
+		${({ $isDisabled }) =>
+			!$isDisabled &&
+			css`
+				position: relative;
+				top: 3px;
+			`}
 	}
+
 	&:focus-visible {
-		${FocusStyle}
+		${({ $isDisabled }) =>
+			$isDisabled
+				? css`
+						outline: initial;
+				  `
+				: FocusStyle}
 	}
+
 	/* Primary, secondary & tertiary colors */
 	${({ theme, $color }) =>
 		!theme.darkMode &&

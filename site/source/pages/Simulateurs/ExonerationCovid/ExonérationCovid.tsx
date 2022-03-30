@@ -1,3 +1,4 @@
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
 	SituationStateProvider,
@@ -66,7 +67,10 @@ export const ExonérationCovid = () => {
 			) : (
 				<>
 					<Grid item xs={12}>
-						<H3>{engine.getRule('secteur').rawNode.question}</H3>
+						<H3>
+							{engine.getRule('secteur').rawNode.question}
+							<ExplicableRule dottedName="secteur" light />
+						</H3>
 					</Grid>
 
 					<Grid item xs={12} sm={8}>
