@@ -22,7 +22,7 @@
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
-		"test": "yarn workspaces foreach run test",
+		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
 		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
 		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
 		"start": "yarn workspaces foreach -piv --exclude site run start & yarn workspace site run start",
