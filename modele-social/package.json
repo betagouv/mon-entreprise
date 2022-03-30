@@ -13,7 +13,7 @@
 	"homepage": "https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",
 	"license": "MIT",
 	"files": [
-		"dist/index.js"
+		"dist"
 	],
 	"type": "module",
 	"devDependencies": {

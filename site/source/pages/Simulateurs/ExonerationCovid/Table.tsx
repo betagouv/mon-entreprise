@@ -1,7 +1,7 @@
 import { Item, Select } from '@/design-system/field/Select'
 import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
-import { ExoCovidDottedNames } from 'exoneration-covid'
+import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { EvaluatedNode, formatValue } from 'publicodes'
 import { Key } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
