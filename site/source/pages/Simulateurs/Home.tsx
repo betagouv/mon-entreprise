@@ -96,7 +96,6 @@ export default function Simulateurs() {
 					<Trans>Outils pour les indépendants</Trans>
 				</H3>
 				<Grid container spacing={3}>
-					<SimulateurCard {...simulators['exonération-covid']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
 				</Grid>
 
