@@ -518,11 +518,11 @@ code . début d'activité:
 
 code . LFSS:
   variations:
+    - si: LFSS 300 + LFSS 600 = 0€
+      alors: "'N'"
     - si: secteur . S2
       alors:
         texte: O;{{ mois S2 }}
-    - si: LFSS 300 + LFSS 600 = 0€
-      alors: "'N'"
     - si: LFSS 300 = 0€
       alors:
         texte: O;{{ mois 600 }}

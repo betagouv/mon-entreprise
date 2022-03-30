@@ -7,9 +7,13 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
-import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import Engine, {
+	EvaluatedNode,
+	Evaluation,
+	PublicodesExpression,
+} from 'publicodes'
 import { Key, useRef } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useExoCovidEngine, useExoCovidSituationState } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'
@@ -60,6 +64,7 @@ interface Props {
 
 export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 	const engine = useExoCovidEngine()
+	const { t } = useTranslation()
 	const { situation = {} } = useExoCovidSituationState()
 
 	const selectedKey = useRef<{ [key: string]: Key | undefined }>({})
@@ -73,6 +78,12 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 	const months = Object.entries(engine.getParsedRules()).filter(([name]) =>
 		name.match(/^mois \. [^.]*$/)
 	)
+
+	const formatZeroToEmpty = (str?: string) =>
+		typeof str === 'undefined' || str === '0' ? t('vide') : str
+
+	const formatYesNo = (str?: string | null) =>
+		str?.startsWith('O') ? t('oui') : t('non')
 
 	let isAnyRowShowed = false
 
@@ -324,65 +335,106 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 							</Li>
 
 							<Li>
-								Nombres de mois pour lesquels vous remplissez les conditions
-								d'éligibilité
-								<Ul>
-									<Li>
-										LFSS :{' '}
-										<Bold as="span">
-											<Value
-												engine={engine}
-												expression="LFSS . mois éligibles"
-												linkToRule={false}
-												precision={0}
-											/>
-										</Bold>{' '}
-										(
-										<Bold as="span">
-											{engine.evaluate('code . LFSS').nodeValue}
-										</Bold>
-										)
-										<Ul>
-											<Li>
-												dont LFSS 600{' '}
-												<Bold as="span">
-													<Value
-														engine={engine}
-														expression="LFSS 600 . mois éligibles"
-														linkToRule={false}
-														precision={0}
-													/>
-												</Bold>{' '}
-												et LFSS 300{' '}
-												<Bold as="span">
-													<Value
-														engine={engine}
-														expression="LFSS 300 . mois éligibles"
-														linkToRule={false}
-														precision={0}
-													/>
-												</Bold>
-											</Li>
-										</Ul>
-									</Li>
+								Eligibilité LFSS :{' '}
+								<Bold as="span">
+									{formatYesNo(
+										engine.evaluate('code . LFSS')
+											.nodeValue as Evaluation<string>
+									)}
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{
+										engine
+											.evaluate('code . LFSS')
+											.nodeValue?.toString()
+											.split(';')[0]
+									}
+								</Bold>
+								)
+							</Li>
 
-									<Li>
-										LFR1 :{' '}
-										<Bold as="span">
-											<Value
-												engine={engine}
-												expression="LFR1 . mois éligibles"
-												linkToRule={false}
-												precision={0}
-											/>
-										</Bold>{' '}
+							<Li>
+								Eligibilité LFR :{' '}
+								<Bold as="span">
+									{formatYesNo(
+										engine.evaluate('code . LFR1')
+											.nodeValue as Evaluation<string>
+									)}
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{
 										(
-										<Bold as="span">
-											{engine.evaluate('code . LFR1').nodeValue}
-										</Bold>
-										)
-									</Li>
-								</Ul>
+											engine.evaluate('code . LFR1')
+												.nodeValue as Evaluation<string>
+										)?.split(';')[0]
+									}
+								</Bold>
+								)
+							</Li>
+
+							<Li>
+								Nombre de mois LFSS 600 :{' '}
+								<Bold as="span">
+									<Value
+										engine={engine}
+										expression="LFSS 600 . mois éligibles"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{formatZeroToEmpty(
+										engine
+											.evaluate('LFSS 600 . mois éligibles')
+											.nodeValue?.toString()
+									)}
+								</Bold>
+								)
+							</Li>
+
+							<Li>
+								Nombre de mois LFSS 300 :{' '}
+								<Bold as="span">
+									<Value
+										engine={engine}
+										expression="LFSS 300 . mois éligibles"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{formatZeroToEmpty(
+										engine
+											.evaluate('LFSS 300 . mois éligibles')
+											.nodeValue?.toString()
+									)}
+								</Bold>
+								)
+							</Li>
+
+							<Li>
+								Nombre de mois LFR :{' '}
+								<Bold as="span">
+									<Value
+										engine={engine}
+										expression="LFR1 . mois éligibles"
+										linkToRule={false}
+										precision={0}
+									/>
+								</Bold>{' '}
+								(
+								<Bold as="span">
+									{formatZeroToEmpty(
+										engine
+											.evaluate('LFR1 . mois éligibles')
+											.nodeValue?.toString()
+									)}
+								</Bold>
+								)
 							</Li>
 						</RecapExpert>
 					</Grid>
