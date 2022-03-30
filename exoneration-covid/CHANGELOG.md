@@ -1,3 +1,7 @@
+### 0.4.1
+
+Répare la signature typescript du paquet npm
+
 ### 0.4.0
 
 Ajout de nouvelles règles et fix de bug

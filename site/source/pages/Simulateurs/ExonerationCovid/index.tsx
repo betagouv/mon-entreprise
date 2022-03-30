@@ -1,6 +1,8 @@
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { useSituationState } from '@/components/utils/SituationContext'
-import exonerationCovid, { ExoCovidDottedNames } from 'exoneration-covid'
+import exonerationCovid, {
+	DottedName as ExoCovidDottedNames,
+} from 'exoneration-covid'
 import Engine from 'publicodes'
 import { useContext, useRef } from 'react'
 import { ExonérationCovid } from './ExonérationCovid'
