@@ -51,16 +51,21 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 		.filter(falsy)
 
 const formatSimulationDataToAlgolia = (simulations: MetadataSrc) =>
-	Object.entries(simulations).map(([id, simulation]) => ({
-		...simulation,
-		objectID: id,
-		title:
-			('title' in simulation && simulation.title) ||
-			simulation.shortName ||
-			simulation.meta.title,
-		tooltip: ('tooltip' in simulation && simulation.tooltip) || '',
-		description: simulation.meta?.description,
-	}))
+	Object.entries(simulations)
+		.filter(
+			([, simulation]) =>
+				!('private' in simulation && simulation.private === true)
+		)
+		.map(([id, simulation]) => ({
+			...simulation,
+			objectID: id,
+			title:
+				('title' in simulation && simulation.title) ||
+				simulation.shortName ||
+				simulation.meta.title,
+			tooltip: ('tooltip' in simulation && simulation.tooltip) || '',
+			description: simulation.meta?.description,
+		}))
 
 try {
 	console.log('Algolia update START')
