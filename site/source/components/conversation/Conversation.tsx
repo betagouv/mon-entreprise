@@ -19,9 +19,9 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { TrackPage } from '../../ATInternetTracking'
-import './conversation.css'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
+import { evaluateQuestion } from '@/utils'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -66,7 +66,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					`}
 				>
 					<H3>
-						{engine.getRule(currentQuestion).rawNode.question}
+						{evaluateQuestion(engine, engine.getRule(currentQuestion))}
 						<ExplicableRule light dottedName={currentQuestion} />
 					</H3>
 				</div>

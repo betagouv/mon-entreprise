@@ -1,4 +1,4 @@
-import { formatValue, Rule } from 'publicodes'
+import Engine, { formatValue, Rule, RuleNode } from 'publicodes'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
@@ -202,4 +202,18 @@ export async function getIframeOffset(): Promise<number> {
 		window.parent?.postMessage({ kind: 'get-offset' }, '*')
 		window.addEventListener('message', returnOffset)
 	})
+}
+
+export function evaluateQuestion(
+	engine: Engine,
+	question: RuleNode
+): string | undefined | number {
+	if (
+		question.rawNode.question &&
+		typeof question.rawNode.question === 'object'
+	) {
+		return engine.evaluate(question.rawNode.question).nodeValue as string
+	}
+
+	return question.rawNode.question
 }

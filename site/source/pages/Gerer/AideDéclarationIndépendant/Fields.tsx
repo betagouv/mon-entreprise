@@ -12,6 +12,7 @@ import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { Question } from './PreviousVersion'
+import { evaluateQuestion } from '@/utils'
 
 type SubSectionProp = {
 	dottedName: DottedName
@@ -86,7 +87,7 @@ export function SimpleField({
 			<FromTop>
 				<Question>
 					<Intro>
-						{question ?? rule.rawNode.question}&nbsp;
+						{evaluateQuestion(engine, rule)}&nbsp;
 						<ExplicableRule dottedName={dottedName} />
 					</Intro>
 					<SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>

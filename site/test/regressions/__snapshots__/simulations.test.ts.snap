@@ -319,11 +319,11 @@ exports[`calculate simulations-professions-libérales > CIPAV 8`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `"[30000,0,8060,21940,1212,20728]"`;
+exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `"[30000,0,8078,21922,1208,20714]"`;
 
-exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `"[30000,0,8381,21619,1160,20459]"`;
+exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `"[30000,0,8398,21602,1157,20445]"`;
 
-exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `"[300000,0,62709,237291,89754,147537]"`;
+exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `"[300000,0,62883,237117,89673,147444]"`;
 
 exports[`calculate simulations-professions-libérales > avocat 1`] = `
 "[50000,0,11135,38865,5988,32877]
@@ -342,45 +342,45 @@ exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > médecin 1`] = `"[50000,0,14246,35754,5055,30699]"`;
+exports[`calculate simulations-professions-libérales > médecin 1`] = `"[50000,0,14385,35615,5011,30604]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 2`] = `"[50000,0,21962,28038,2740,25298]"`;
+exports[`calculate simulations-professions-libérales > médecin 2`] = `"[50000,0,22059,27941,2710,25231]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 3`] = `"[300000,0,87748,212252,78486,133766]"`;
+exports[`calculate simulations-professions-libérales > médecin 3`] = `"[300000,0,87915,212085,78409,133676]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 4`] = `"[400000,0,107868,292132,117244,174888]"`;
+exports[`calculate simulations-professions-libérales > médecin 4`] = `"[400000,0,108031,291969,117164,174805]"`;
 
 exports[`calculate simulations-professions-libérales > médecin 5`] = `
 "[120000,0,36415,83585,21327,62258]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > médecin 6`] = `"[50000,0,14246,35754,5055,30699]"`;
+exports[`calculate simulations-professions-libérales > médecin 6`] = `"[50000,0,14385,35615,5011,30604]"`;
 
-exports[`calculate simulations-professions-libérales > sage-femme 1`] = `"[50000,0,12451,37549,5593,31956]"`;
+exports[`calculate simulations-professions-libérales > sage-femme 1`] = `"[50000,0,12479,37521,5584,31937]"`;
 
 exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
-"[20000,0,5178,14822,31,14791]
+"[20000,0,5190,14810,29,14781]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"[4000,0,1313,2687,0,2687]
+"[4000,0,1315,2685,0,2685]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 4`] = `
-"[20000,0,5178,14822,31,14791]
+"[20000,0,5190,14810,29,14781]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 5`] = `
-"[20000,0,5255,14745,18,14727]
+"[20000,0,5267,14733,17,14716]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 6`] = `
-"[20000,0,5332,14668,6,14662]
+"[20000,0,5343,14657,4,14653]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 

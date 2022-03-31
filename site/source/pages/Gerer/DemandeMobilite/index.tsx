@@ -63,7 +63,9 @@ const useFields = (
 
 			return (
 				evaluation.nodeValue !== null &&
-				(rule.rawNode.question || rule.rawNode.API || rule.rawNode.type)
+				(evaluateQuestion(engine, rule) ||
+					rule.rawNode.API ||
+					rule.rawNode.type)
 			)
 		})
 		.map((dottedName) => engine.getRule(dottedName))

@@ -14,6 +14,7 @@ import { Container, Spacing } from '@/design-system/layout'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
+import { evaluateQuestion } from '@/utils'
 import { Grid } from '@mui/material'
 import Engine, { Evaluation } from 'publicodes'
 import { useContext } from 'react'
@@ -256,6 +257,7 @@ export const AskCompanyMissingDetails = () => {
 	useSimulationConfig(companyDetailsConfig)
 
 	const [questions, onQuestionAnswered] = useQuestionList()
+	const engine = useEngine()
 
 	return (
 		<>
@@ -273,7 +275,7 @@ export const AskCompanyMissingDetails = () => {
 
 					{questions.map((question) => (
 						<FromTop key={question.dottedName}>
-							<H4>{question.rawNode.question}</H4>
+							<H4>{evaluateQuestion(engine, question)}</H4>
 							<RuleInput
 								dottedName={question.dottedName}
 								onChange={onQuestionAnswered(question.dottedName)}
