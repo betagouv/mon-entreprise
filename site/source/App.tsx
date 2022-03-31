@@ -29,7 +29,7 @@ import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
-import Gérer from './pages/Gerer'
+import Gérer from './pages/gerer'
 import Iframes from './pages/Iframes'
 import Integration from './pages/integration/index'
 import Landing from './pages/Landing/Landing'
@@ -38,6 +38,7 @@ import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
 import redirects from './redirects'
+import { RootState } from './reducers/rootReducer'
 import { constructLocalizedSitePath } from './sitePaths'
 import {
 	retrievePersistedChoixStatutJuridique,
@@ -47,6 +48,10 @@ import {
 	retrievePersistedCompanySituation,
 	setupCompanySituationPersistence,
 } from './storage/persistCompanySituation'
+import {
+	retrievePersistedDRISituation,
+	setupDRISituationPersistence,
+} from './storage/persistDRISituation'
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
 type RootProps = {
@@ -79,11 +84,13 @@ export default function Root({
 				onStoreCreated={(store) => {
 					setupChoixStatutJuridiquePersistence(store)
 					setupCompanySituationPersistence(store)
+					setupDRISituationPersistence(store)
 					setupSimulationPersistence(store)
 				}}
 				initialStore={{
 					choixStatutJuridique: retrievePersistedChoixStatutJuridique(),
 					companySituation: retrievePersistedCompanySituation(),
+					DRISituation: retrievePersistedDRISituation(),
 				}}
 			>
 				<EngineProvider value={engine}>
@@ -98,13 +105,16 @@ const Router = () => {
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const companySituation = useSelector(companySituationSelector)
+	const DRISituation = useSelector((state: RootState) => state.DRISituation)
+
 	const situation = useMemo(
 		() => ({
+			...DRISituation,
 			...companySituation,
 			...configSituation,
 			...simulatorSituation,
 		}),
-		[configSituation, simulatorSituation, companySituation]
+		[configSituation, simulatorSituation, companySituation, DRISituation]
 	)
 
 	return (

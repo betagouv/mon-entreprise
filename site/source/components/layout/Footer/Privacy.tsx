@@ -1,5 +1,5 @@
 import { Checkbox } from '@/design-system/field'
-import PopoverWithTrigger from '@/design-system/PopoverWithTrigger'
+import { PopoverWithTrigger } from '@/design-system'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'

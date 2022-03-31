@@ -43,7 +43,15 @@ const rawSitePathsFr = {
 		index: '/gérer',
 		embaucher: '/embaucher',
 		sécuritéSociale: '/sécurité-sociale',
-		déclarationIndépendant: '/aide-declaration-independants',
+		'déclaration-charges-sociales-indépendant':
+			'/declaration-charges-sociales-independant',
+		déclarationIndépendant: {
+			index: '/aide-declaration-independants',
+			entreprise: '/entreprise',
+			imposition: '/imposition',
+			déclaration: '/declaration',
+			cotisations: '/cotisations',
+		},
 		formulaireMobilité: '/demande-mobilité',
 	},
 	simulateurs: {
@@ -112,7 +120,13 @@ const rawSitePathsEn = {
 		index: '/manage',
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
-		déclarationIndépendant: '/declaration-aid-independent',
+		déclarationIndépendant: {
+			index: '/declaration-aid-independent',
+			imposition: '/taxation',
+			entreprise: '/company',
+			déclaration: '/declaration',
+			cotisations: '/contributions',
+		},
 		formulaireMobilité: '/posting-demand',
 	},
 	simulateurs: {

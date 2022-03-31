@@ -1,14 +1,11 @@
-import { Grid } from '@mui/material'
 import { updateSituation } from '@/actions/actions'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
-import { formatValue, UNSAFE_isNotApplicable } from 'publicodes'
+import { formatValue } from 'publicodes'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	situationSelector,
-	targetUnitSelector,
-} from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
 import RuleLink from '../RuleLink'
@@ -25,7 +22,6 @@ type SimulationGoalProps = {
 	editable?: boolean
 	isTypeBoolean?: boolean
 
-	alwaysShow?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
 		...rest: Parameters<InputProps['onChange']>
@@ -38,15 +34,12 @@ export function SimulationGoal({
 	small = false,
 	onUpdateSituation,
 	appear = true,
-	alwaysShow = false,
 	editable = true,
 	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
-	const situation = useSelector(situationSelector)
-	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 		...(!isTypeBoolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
@@ -61,20 +54,10 @@ export function SimulationGoal({
 		},
 		[dispatch, onUpdateSituation, dottedName]
 	)
-	if (
-		!alwaysShow &&
-		(isNotApplicable === true ||
-			(!(dottedName in situation) &&
-				evaluation.nodeValue === false &&
-				!(dottedName in evaluation.missingVariables)))
-	) {
+	if (evaluation.nodeValue === null) {
 		return null
 	}
-	if (
-		small &&
-		!editable &&
-		(evaluation.nodeValue === null || evaluation.nodeValue === undefined)
-	) {
+	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
 
@@ -125,7 +108,7 @@ export function SimulationGoal({
 								}
 								aria-labelledby={`${dottedName}-label`}
 								aria-describedby={`${dottedName}-description`}
-								displayedUnit=""
+								displayedUnit="€"
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}

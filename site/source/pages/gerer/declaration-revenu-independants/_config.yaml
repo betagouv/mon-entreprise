@@ -1,0 +1,14 @@
+objectifs:
+  - DRI . cotisations
+
+questions:
+  liste noire:
+    - dirigeant . indépendant . cotisations facultatives
+  liste:
+    - DRI . cotisations
+    - ''
+
+unité par défaut: '€'
+
+situation:
+  DRI: oui

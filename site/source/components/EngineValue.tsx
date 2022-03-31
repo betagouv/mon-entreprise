@@ -8,6 +8,7 @@ import Engine, {
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import styled, { keyframes } from 'styled-components'
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
 
@@ -18,6 +19,7 @@ export type ValueProps<Names extends string> = {
 	displayedUnit?: string
 	precision?: number
 	linkToRule?: boolean
+	flashOnChange?: boolean
 } & React.HTMLProps<HTMLSpanElement>
 
 export default function Value<Names extends string>({
@@ -25,6 +27,7 @@ export default function Value<Names extends string>({
 	unit,
 	engine,
 	displayedUnit,
+	flashOnChange = false,
 	precision,
 	linkToRule = true,
 	...props
@@ -49,13 +52,36 @@ export default function Value<Names extends string>({
 	if (isRule && linkToRule) {
 		return (
 			<RuleLink dottedName={expression as DottedName}>
-				<span {...props}>{value}</span>
+				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
+					{value}
+				</StyledValue>
 			</RuleLink>
 		)
 	}
 
-	return <span {...props}>{value}</span>
+	return (
+		<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
+			{value}
+		</StyledValue>
+	)
 }
+const flash = keyframes`
+
+	from {
+    background-color: white;
+		opacity: 0.8;
+  }
+	
+		to {
+			background-color: transparent;
+		}
+
+`
+
+const StyledValue = styled.span<{ $flashOnChange: boolean }>`
+	animation: ${flash} 0.2s 1;
+	will-change: background-color, opacity;
+`
 
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
@@ -77,10 +103,12 @@ export function Condition({
 		: value
 
 	if (Boolean(boolValue) !== boolValue) {
-		// eslint-disable-next-line no-console
 		console.error(
-			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=`,
-			expression
+			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${JSON.stringify(
+				expression,
+				null,
+				2
+			)}`
 		)
 	}
 	if (!boolValue) {

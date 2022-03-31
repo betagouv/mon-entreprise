@@ -156,9 +156,9 @@ it('calculate aide-déclaration-indépendant', () => {
 		aideDéclarationIndépendantsSituations,
 		aideDéclarationConfig.objectifs,
 		{
-			"déclaration indépendants . nature de l'activité": "'commerciale'",
-			'déclaration indépendants . comptabilité': "'engagement'",
-			"déclaration indépendants . régime d'imposition . réel": "'normal'",
+			"déclaration charge sociales . nature de l'activité": "'commerciale'",
+			'déclaration charge sociales . comptabilité': "'engagement'",
+			"déclaration charge sociales . régime d'imposition . réel": "'normal'",
 			...aideDéclarationConfig.situation,
 		}
 	)
@@ -179,13 +179,12 @@ it('calculate simulations-impot-société', () => {
 	runSimulations(
 		impotSocieteSituations,
 		[
-			'entreprise . imposition . IS . impôt sur les sociétés',
-			'entreprise . imposition . IS . impôt sur les sociétés . contribution sociale',
+			'entreprise . imposition . IS . montant',
+			'entreprise . imposition . IS . contribution sociale',
 		],
 		{
 			'entreprise . imposition': "'IS'",
-			'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
-				'oui',
+			'entreprise . imposition . IS . éligible taux réduit': 'oui',
 		}
 	)
 })

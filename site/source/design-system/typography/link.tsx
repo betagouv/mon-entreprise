@@ -19,14 +19,22 @@ export const StyledLinkHover = css`
 			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[800]};
 `
-export const StyledLink = styled.a`
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+export const StyledLink = styled.a<{ isDisabled?: boolean }>`
+	color: ${({ theme, isDisabled }) =>
+		isDisabled
+			? theme.colors.extended.grey[600]
+			: theme.colors.bases.primary[700]};
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]};
 			}
+		`}
+	${({ isDisabled }) =>
+		isDisabled &&
+		css`
+			cursor: default;
 		`}
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
@@ -35,7 +43,7 @@ export const StyledLink = styled.a`
 	text-decoration: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
-		${StyledLinkHover}
+		${({ isDisabled }) => !isDisabled && StyledLinkHover}
 	}
 	&:focus-visible {
 		${FocusStyle}

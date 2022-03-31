@@ -91,7 +91,6 @@ const DividendesSimulationGoals = () => (
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}
-				alwaysShow
 				dottedName="bénéficiaire . dividendes . bruts"
 			/>
 
@@ -105,7 +104,6 @@ const DividendesSimulationGoals = () => (
 			<Condition expression="oui">
 				<SimulationGoal
 					appear={false}
-					alwaysShow
 					dottedName="bénéficiaire . dividendes . nets d'impôt"
 				/>
 			</Condition>

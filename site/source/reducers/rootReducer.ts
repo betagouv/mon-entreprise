@@ -1,5 +1,5 @@
 import { Action } from '@/actions/actions'
-import { ApiCommuneJson, Commune } from '@/api/commune'
+import { Commune } from '@/api/commune'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { defaultTo, without } from 'ramda'
@@ -7,8 +7,9 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import { omit } from '../utils'
-import { companySituation } from './companySituationReducer'
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
+import { companySituation } from './companySituationReducer'
+import { DRISituation } from './DRISituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
@@ -188,6 +189,7 @@ const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
 	companySituation,
+	DRISituation,
 	previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,

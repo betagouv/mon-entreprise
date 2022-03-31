@@ -16,9 +16,7 @@ export default function useSimulationConfig(
 	const url = useHistory().location.pathname.split('?')[0]
 
 	const lastConfig = useSelector(configSelector)
-	useEffect(() => {
-		if (config && lastConfig !== config) {
-			dispatch(setSimulationConfig(config ?? {}, url))
-		}
-	}, [config, dispatch, lastConfig, url])
+	if (config && lastConfig !== config) {
+		dispatch(setSimulationConfig(config ?? {}, url))
+	}
 }

@@ -12,6 +12,7 @@ import {
 	setActiveTarget,
 	batchUpdateSituation,
 } from '@/actions/actions'
+import { isEmpty } from 'ramda'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -47,8 +48,9 @@ export default function useSearchParamsSimulationSharing() {
 				searchParams,
 				dottedNameParamName
 			)
-
-			dispatch(batchUpdateSituation(newSituation as Situation))
+			if (!isEmpty(newSituation)) {
+				dispatch(batchUpdateSituation(newSituation as Situation))
+			}
 
 			const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
 				objectifs.includes(dottedName)

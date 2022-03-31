@@ -1,0 +1,13 @@
+objectifs:
+  - déclaration charge sociales . cotisations obligatoires déductibles
+  - dirigeant . rémunération . totale
+  - dirigeant . rémunération . nette
+
+situation:
+  dirigeant . régime social: "'indépendant'"
+  année: 2021
+  déclaration indépendants: oui
+  dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements
+  impôt: non
+
+unité par défaut: '€'

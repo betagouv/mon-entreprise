@@ -211,15 +211,15 @@ export async function getIframeOffset(): Promise<number> {
 
 export function evaluateQuestion(
 	engine: Engine,
-	question: RuleNode
-): string | undefined | number {
-	if (
-		question.rawNode.question &&
-		typeof question.rawNode.question === 'object'
-	) {
-		return engine.evaluate(question.rawNode.question as PublicodesExpression)
-			.nodeValue as string
+	rule: RuleNode
+): string | undefined {
+	const question = rule.rawNode.question as Exclude<
+		number,
+		PublicodesExpression
+	>
+	if (question && typeof question === 'object') {
+		return engine.evaluate(question as PublicodesExpression).nodeValue as string
 	}
 
-	return question.rawNode.question
+	return question
 }

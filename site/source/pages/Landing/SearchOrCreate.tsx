@@ -1,5 +1,4 @@
 import { resetCompany } from '@/actions/companyActions'
-import { useSetEntreprise } from '@/actions/companyStatusActions'
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
@@ -13,6 +12,7 @@ import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { RootState } from '@/reducers/rootReducer'
 import { getCookieValue } from '@/storage/readCookie'
 import { Grid } from '@mui/material'

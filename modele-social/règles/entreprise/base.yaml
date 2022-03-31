@@ -11,6 +11,9 @@ entreprise . SIREN:
 entreprise . nom:
   type: texte
 
+entreprise . activité principale:
+  type: texte
+
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
   par défaut: 01/01/2021
@@ -72,10 +75,10 @@ entreprise . chiffre d'affaires:
     - dirigeant . rémunération . impôt
     - dirigeant . rémunération . cotisations
     - charges
-    - applicable si: entreprise . imposition . IS
+    - applicable si: imposition . IS
       somme:
         - imposition . IS . résultat net
-        - imposition . IS . impôt sur les sociétés
+        - imposition . IS
   plancher: 0€/an
   arrondi: oui
   identifiant court: CA
@@ -513,6 +516,8 @@ entreprise . activité:
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
 entreprise . activité . libérale:
+  question: Votre activité est-elle une profession libérale ?
+  valeur: activité = 'libérale'
   description: |
     Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
 
@@ -524,6 +529,7 @@ entreprise . activité . libérale:
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . activité . commerciale:
+  valeur: activité = 'commerciale'
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
@@ -534,6 +540,7 @@ entreprise . activité . commerciale:
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 
 entreprise . activité . artisanale:
+  valeur: activité = 'artisanale'
   description: |
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 

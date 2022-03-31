@@ -19,6 +19,7 @@ const SAVED_NAMESPACES = [
 	'entreprise . nom',
 	'établissement . adresse',
 	'établissement . localisation',
+	'entreprise . activité principale',
 ] as Array<DottedName>
 
 export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>
@@ -32,8 +33,8 @@ export function companySituation(state: Situation = {}, action: Action) {
 				)
 			) {
 				return {
-					[action.fieldName]: action.value,
 					...state,
+					[action.fieldName]: action.value,
 				}
 			}
 			break
@@ -46,6 +47,22 @@ export function companySituation(state: Situation = {}, action: Action) {
 				...state,
 				'établissement . localisation': { objet: action.details },
 			}
+		case 'COMPANY::SET_BÉNÉFICE_TYPE':
+			return {
+				...state,
+				'entreprise . imposition . IR . type de bénéfices': `'${
+					action.bénéfice === 'BIC/BNC' ? 'BNC' : action.bénéfice
+				}'`,
+				...(action.bénéfice === 'BA' && {
+					'entreprise . imposition . IR . type de bénéfices . BA possible':
+						'oui',
+				}),
+				...(action.bénéfice === 'BIC/BNC' && {
+					'entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles':
+						'oui',
+				}),
+			}
+
 		case 'SET_SIMULATION':
 			return state['entreprise . SIREN'] ? state : {}
 	}
@@ -65,10 +82,11 @@ export function getCompanySituation(company: Company): Situation {
 		'entreprise . SIREN': `'${company.siren}'`,
 		'entreprise . nom': `'${company.label}'`,
 		'établissement . SIRET': `'${company.firstMatchingEtablissement.siret}'`,
+		'entreprise . activité principale': `'${company.activitePrincipale}'`,
 	}
 }
 
-type CatégorieJuridique = 'EI' | 'SARL' | 'SAS' | 'SELARL' | 'SELAS' | 'AUTRE'
+type CatégorieJuridique = 'EI' | 'SARL' | 'SAS' | 'SELARL' | 'SELAS' | 'autre'
 
 const getCatégorieFromCode = (code: string): CatégorieJuridique => {
 	/*
@@ -86,7 +104,7 @@ const getCatégorieFromCode = (code: string): CatégorieJuridique => {
 		return 'SELARL'
 	}
 	if (code === '5470') {
-		return 'AUTRE'
+		return 'autre'
 	}
 	if (/^54..$/.exec(code)) {
 		return 'SARL'
@@ -98,7 +116,7 @@ const getCatégorieFromCode = (code: string): CatégorieJuridique => {
 		return 'SAS'
 	}
 
-	return 'AUTRE'
+	return 'autre'
 }
 
 // // Profession Libérale

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Route, Switch } from 'react-router-dom'
 import useSimulatorsData from '../Simulateurs/metadata'
-import SimulateurPage from '../Simulateurs/Page'
+import SimulateurPage from '../../components/PageData'
 import IframeFooter from './IframeFooter'
 
 export default function Iframes() {

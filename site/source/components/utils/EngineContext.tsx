@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Rule } from 'publicodes'
-import React, { createContext, useContext } from 'react'
+import { createContext, default as React, useContext } from 'react'
 import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>

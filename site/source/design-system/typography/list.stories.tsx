@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Li, Ol, Ul } from '@/design-system/typography/list'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -25,3 +25,15 @@ export const XL = Template.bind({})
 XL.args = {
 	size: 'XL',
 }
+
+const OlTemplate: ComponentStory<typeof Ol> = (args) => (
+	<Ol {...args}>
+		<Li>Élément 1</Li>
+		<Li>Élément 2</Li>
+		<Li>Élément 3</Li>
+	</Ol>
+)
+
+export const Numbered = OlTemplate.bind({})
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Numbered.args = {}
