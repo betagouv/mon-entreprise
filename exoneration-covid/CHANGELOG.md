@@ -1,3 +1,8 @@
+### 0.4.3
+
+Ajout de textes (description et question)
+Fix sur la règle "code . LFSS"
+
 ### 0.4.2
 
 Ajoute le fichier index.d.ts dans le paquet
