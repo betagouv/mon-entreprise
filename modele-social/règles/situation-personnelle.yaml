@@ -12,7 +12,13 @@ situation personnelle . domiciliation fiscale à l'étranger:
     Si votre résidence fiscale est située hors de France, vos revenus d’activité ne sont pas soumis à la CSG-CRDS.
 
     Une cotisation maladie majorée de 14,5% sera en revanche applicable.
-  question: La résidence fiscale de la personne est-elle située à l'étranger ?
+  question:
+    variations:
+      - si: dirigeant
+        alors:
+          texte: Votre résidence fiscale est-elle située à l'étranger ?
+      - sinon:
+          texte: La résidence fiscale du salarié est-elle située à l'étranger ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
     - contrat salarié . CSG et CRDS
