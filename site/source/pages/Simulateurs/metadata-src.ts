@@ -354,7 +354,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			meta: {
 				description: t(
 					'pages.gérer.aide-déclaration-indépendant.meta.description',
-					'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2020.'
+					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021'
 				),
 				title: t(
 					'pages.gérer.aide-déclaration-indépendant.meta.title',
@@ -364,7 +364,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'gérer.déclarationIndépendant',
 			shortName: t(
 				'pages.gérer.aide-déclaration-indépendant.shortname',
-				'Aide à la déclaration de revenu'
+				'Détermination des charges sociales déductibles'
 			),
 			iframePath: 'aide-déclaration-indépendant',
 			title: t(
@@ -701,7 +701,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		'exonération-covid': {
 			icône: '😷',
 			tracking: 'exoneration_covid',
-			// iframePath: 'exoneration-covid',
+			iframePath: 'exoneration-covid',
 			private: true,
 			pathId: 'simulateurs.exonération-covid',
 			meta: {
@@ -711,12 +711,12 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 				description: t(
 					'pages.simulateurs.dividendes.meta.description',
-					"Indépendants : calculez le montant de l'exonération de cotisations covid sur vos cotisations de 2021."
+					"Déterminez les éléments à déclarer pour bénéficier de l'exonération Covid et obtenir les codes « norme EDI » à lancer le simulateur"
 				),
 			},
 			shortName: t(
 				'pages.simulateurs.dividendes.meta.title',
-				'Exonération Covid'
+				"Simulateur d'exonération COVID"
 			),
 			title: t(
 				'pages.simulateurs.dividendes.title',

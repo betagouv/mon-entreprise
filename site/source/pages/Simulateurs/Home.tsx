@@ -93,10 +93,13 @@ export default function Simulateurs() {
 				</>
 
 				<H3>
-					<Trans>Outils pour les indépendants</Trans>
+					<Trans>
+						Assistants à la déclaration de revenus 2021 des indépendants
+					</Trans>
 				</H3>
 				<Grid container spacing={3}>
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />
+					<SimulateurCard {...simulators['exonération-covid']} />
 				</Grid>
 
 				<H2>
