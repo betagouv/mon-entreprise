@@ -1359,6 +1359,7 @@ pages:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
         you best with this wizard"
       title: Help in choosing the legal status
+    shortname: Legal status assistant
   common:
     ressources-auto-entrepreneur:
       FAQ:
@@ -1622,10 +1623,14 @@ pages:
         orthoptists
     auxiliaire-medical:
       meta:
+        description: Calculation of net income after contributions based on total
+          revenue. Taking into account the non-conventional income.
+        title: "Medical auxiliary : income simulator"
+    avocat:
+      meta:
         description: Calculation of the net income after contributions from the total
           income.
-        title: "Chartered accountant: income simulator"
-    avocat:
+        title: "Lawyer: income simulator"
       shortname: Lawyer
       title: Income simulator for private lawyers
     cartes:
@@ -1763,6 +1768,7 @@ pages:
         share capital will be subject to contributions and levies in the same
         way as his or her remuneration as a manager.</7><8>This case is not yet
         taken into account by this simulator.</8>
+      shortName: Dividends
       title: Dividend Payment Simulator
     ei:
       meta:
@@ -1833,7 +1839,18 @@ pages:
           exemption and obtain the "EDI standard" codes
         title: COVID exemption simulator
       title: Covid contribution exemption simulator for self-employed
+    exonération-covid:
+      meta:
+        description: Determine the elements to be declared to benefit from the Covid
+          exemption and obtain the "EDI standard" codes
+        title: Exemption from covid contributions
+      shortName: COVID exemption simulator
+      title: Covid contribution exemption simulator for self-employed
     expert-comptable:
+      meta:
+        description: Calculation of the net income after contributions from the total
+          income.
+        title: "Accountant: income simulator"
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
     indépendant:
@@ -1890,6 +1907,10 @@ pages:
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
     pharmacien:
+      meta:
+        description: Calculation of net income after deduction of contributions from
+          total revenues for self-employed pharmacists
+        title: "Pharmacist : income simulator"
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
     print-info:
@@ -2022,7 +2043,7 @@ pages:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
         in your declarations
       title: "Online platform income tax return: interactive guide"
-    shortname: Legal status assistant
+    shortname: Collaborative Economy Assistant
 par: per
 par an: per year
 par mois: per month
