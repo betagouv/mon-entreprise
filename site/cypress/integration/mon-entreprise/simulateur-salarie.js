@@ -33,20 +33,17 @@ describe('Simulateur salarié', function () {
 		})
 
 		it('should permit customizing the number of worked hours and clear the input value', function () {
-			cy.get(
-				'#contrat\\ salarié\\ \\.\\ temps\\ de\\ travail\\ \\.\\ temps\\ partiel\\ \\.\\ heures\\ par\\ semaine'
-			).type(25)
+			cy.contains('Voir ma situation').click()
+
+			cy.contains('Heures par semaine').next().find('button').click()
+			cy.focused().type(25)
+			cy.wait(500)
+			cy.contains('Fermer').click()
+
 			cy.get(
 				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ net\\ après\\ impôt'
 			).should(($input) => {
 				expect(+$input.val().replace(/[\s,.€]/g, '')).to.be.below(1000)
-			})
-
-			cy.focused().clear()
-			cy.get(
-				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ net\\ après\\ impôt'
-			).should(($input) => {
-				expect(+$input.val().replace(/[\s,.€]/g, '')).to.be.above(1000)
 			})
 		})
 	})
