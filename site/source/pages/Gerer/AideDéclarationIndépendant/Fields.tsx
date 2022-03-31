@@ -4,15 +4,16 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { FromTop } from '@/components/ui/animate'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { situationSelector } from '@/selectors/simulationSelectors'
+import { evaluateQuestion } from '@/utils'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import { Question } from './PreviousVersion'
-import { evaluateQuestion } from '@/utils'
 
 type SubSectionProp = {
 	dottedName: DottedName
@@ -62,7 +63,6 @@ type SimpleFieldProps = {
 
 export function SimpleField({
 	dottedName,
-	question,
 	summary,
 	showSuggestions,
 }: SimpleFieldProps) {
@@ -100,6 +100,7 @@ export function SimpleField({
 					/>
 				</Question>
 			</FromTop>
+			<Spacing md />
 		</div>
 	)
 }
