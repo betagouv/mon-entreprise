@@ -6584,303 +6584,6 @@ déclaration indépendants . cotisations payées version simple . cotisations so
   question.fr: Quel est le montant de vos cotisations sociales payées cette année ?
   titre.en: '[automatic] social contributions'
   titre.fr: cotisations sociales
-déclaration indépendants . formulaire 2033:
-  résumé.en: '[automatic] Tax package for the simplified actual system'
-  résumé.fr: Liasse fiscale du régime réel simplifié
-  titre.en: '[automatic] form 2033-SD'
-  titre.fr: formulaire 2033-SD
-déclaration indépendants . formulaire 2033 . rubrique 250:
-  description.en: >
-    [automatic] If your business employs employees, add to this amount the total
-    gross remuneration paid during the year
-  description.fr: >
-    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
-    rémunération brute versée durant l'exercice
-  résumé.en: '[automatic] Staff remuneration (+)'
-  résumé.fr: Rémunérations du personnel (+)
-  titre.en: '[automatic] item 250'
-  titre.fr: rubrique 250
-déclaration indépendants . formulaire 2033 . rubrique 252:
-  description.en: >
-    [automatic] If your business employs employees, add to this amount the total
-    employer contributions paid during the year
-  description.fr: >
-    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
-    cotisations patronales payées durant l'exercice
-  résumé.en: '[automatic] Social security charges (+)'
-  résumé.fr: Charges sociales (+)
-  titre.en: '[automatic] heading 252'
-  titre.fr: rubrique 252
-déclaration indépendants . formulaire 2033 . rubrique 324:
-  résumé.en: '[automatic] Non-deductible taxes'
-  résumé.fr: Impôts et taxes non déductibles
-  titre.en: '[automatic] heading 324'
-  titre.fr: rubrique 324
-déclaration indépendants . formulaire 2033 . rubrique 325:
-  résumé.en: '[automatic] Of which, deductible amount of optional contributions
-    paid in application of I of Article 154 bis of the CGI of which optional
-    Madelin contributions (I of Article 154 bis of the CGI)'
-  résumé.fr: Dont montant déductible des cotisations
-    facultatives  versées  en  application  du  I
-    de  l'article  154  bis  du  CGI  dont
-    cotisations  facultatives  Madelin  (I  de l’art. 154 bis du CGI)
-  titre.en: '[automatic] heading 325'
-  titre.fr: rubrique 325
-déclaration indépendants . formulaire 2033 . rubrique 326:
-  résumé.en: '[automatic] Of which amount deductible from compulsory social
-    security contributions excluding CSG-CRDS'
-  résumé.fr: Dont montant déductible des cotisations sociales obligatoires hors CSG-CRDS
-  titre.en: '[automatic] heading 326'
-  titre.fr: rubrique 326
-déclaration indépendants . formulaire 2033 . rubrique 327:
-  résumé.en: '[automatic] Of which, voluntary contributions to new retirement
-    savings plans'
-  résumé.fr: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
-  titre.en: '[automatic] heading 327'
-  titre.fr: rubrique 327
-déclaration indépendants . formulaire 2033 . rubrique 330:
-  description.en:
-    "[automatic] Also add back the amounts specified [page 8 of the
-    dedicated
-    notice](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2\
-    033-sd_2570.pdf#page=8)"
-  description.fr:
-    Réintégrer également les montants spécifiés [page 8 de la notice
-    dédiée](https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2019/2033-sd_2570.pdf#page=8)
-  résumé.en: '[automatic] Miscellaneous to be added back (+)'
-  résumé.fr: Divers à réintégrer (+)
-  titre.en: '[automatic] section 330'
-  titre.fr: rubrique 330
-déclaration indépendants . formulaire 2033 . rubrique 380:
-  résumé.en: '[automatic] Compulsory personal contributions of the operator'
-  résumé.fr: Cotisations personnelles obligatoires de l'exploitant
-  titre.en: '[automatic] item 380'
-  titre.fr: rubrique 380
-déclaration indépendants . formulaire 2033 . rubrique 381:
-  résumé.en: '[automatic] Optional supplementary premiums and contributions'
-  résumé.fr: Primes et cotisations complémentaires facultatives
-  titre.en: '[automatic] heading 381'
-  titre.fr: rubrique 381
-déclaration indépendants . formulaire 2035:
-  résumé.en: '[automatic] Tax package for the controlled declaration system'
-  résumé.fr: Liasse fiscale du régime de la déclaration contrôlée
-  titre.en: '[automatic] form 2035-A-SD'
-  titre.fr: formulaire 2035-A-SD
-déclaration indépendants . formulaire 2035 . rubrique BK:
-  résumé.en: '[automatic] Personal social charges'
-  résumé.fr: Charges sociales personnelles
-  titre.en: '[automatic] BK section'
-  titre.fr: rubrique BK
-déclaration indépendants . formulaire 2035 . rubrique BS:
-  description.en: '[automatic] Contribution to the professional training of the
-    farmer and his spouse, to be added to other existing taxes.'
-  description.fr: Contribution à la formation professionnelle de l'exploitant et
-    de son conjoint, à ajouter aux autres impôts existants.
-  résumé.en: '[automatic] Other taxes (+)'
-  résumé.fr: Autres impôts (+)
-  titre.en: '[automatic] BS section'
-  titre.fr: rubrique BS
-déclaration indépendants . formulaire 2035 . rubrique BT:
-  résumé.en: '[automatic] Of which mandatory'
-  résumé.fr: Dont obligatoires
-  titre.en: '[automatic] LV section'
-  titre.fr: rubrique BT
-déclaration indépendants . formulaire 2035 . rubrique BU:
-  résumé.en: '[automatic] Of which, optional to new retirement savings plans'
-  résumé.fr: Dont facultatives aux nouveaux plans d’épargne retraite
-  titre.en: '[automatic] BU section'
-  titre.fr: rubrique BU
-déclaration indépendants . formulaire 2035 . rubrique BV:
-  résumé.en: '[automatic] Deductible generalized social contribution'
-  résumé.fr: Contribution sociale généralisée déductible
-  titre.en: '[automatic] BV section'
-  titre.fr: rubrique BV
-déclaration indépendants . formulaire 2035 . rubrique BZ:
-  résumé.en: '[automatic] Of which optional Madelin contributions'
-  résumé.fr: Dont cotisations facultatives Madelin
-  titre.en: '[automatic] section BZ'
-  titre.fr: rubrique BZ
-déclaration indépendants . formulaire 2042:
-  résumé.en: '[automatic] Income tax return'
-  résumé.fr: Déclaration des revenus
-  titre.en: '[automatic] form 2042'
-  titre.fr: formulaire 2042
-déclaration indépendants . formulaire 2042 . rubrique 1GB:
-  résumé.en: '[automatic] Salaries and wages'
-  résumé.fr: Traitements et salaires
-  titre.en: '[automatic] item 1GB / 1HB'
-  titre.fr: rubrique 1GB / 1HB
-déclaration indépendants . formulaire 2042 . rubrique DSCA:
-  description.en: >
-    [automatic] The DSCA or DSCB item of the unified tax and social security
-    return corresponds to the amount of compulsory social contributions that are
-    tax deductible (these contributions will be subject to CSG-CRDS). The DSCA
-    or DSCB item appears in the social section "declaration of income of the
-    self-employed" of the 2042 declaration.
-  description.fr: >
-    La rubrique DSCA ou DSCB de la déclaration de revenu fiscale et sociale
-    unifiée correspond au montant des cotisations sociales obligatoires
-    déductibles fiscalement (ces cotisations seront soumises à CSG-CRDS). La
-    rubrique DSCA ou DSCB figure dans le volet social « déclaration de revenus
-    des indépendants » de la déclaration 2042.
-  résumé.en: '[automatic] Compulsory social security contributions'
-  résumé.fr: Cotisations sociales obligatoires
-  titre.en: '[automatic] DSCA / DSCB section'
-  titre.fr: rubrique DSCA / DSCB
-déclaration indépendants . formulaire 2042 . rubrique DSEA:
-  résumé.en: '[automatic] Optional contributions'
-  résumé.fr: Cotisations facultatives
-  titre.en: '[automatic] DSEA / DSEB section'
-  titre.fr: rubrique DSEA / DSEB
-déclaration indépendants . formulaire 2042 . rubrique DSIA:
-  résumé.en: '[automatic] Tobacco shop'
-  résumé.fr: Débit de tabac
-  titre.en: '[automatic] DSIA / DSIB section'
-  titre.fr: rubrique DSIA / DSIB
-déclaration indépendants . formulaire 2042 . rubrique DSLA:
-  résumé.en: '[automatic] Foreign income taxable but exempt from CSG-CRDS'
-  résumé.fr: Revenus étrangers imposables mais exonérés de CSG-CRDS
-  titre.en: '[automatic] DSLA / DSLB section'
-  titre.fr: rubrique DSLA / DSLB
-déclaration indépendants . formulaire 2042 PRO C:
-  titre.en: '[automatic] form 2042 PRO C'
-  titre.fr: formulaire 2042 PRO C
-déclaration indépendants . formulaire 2042 PRO C . rubrique 5HQ:
-  résumé.en: '[automatic] Special declarative regime or micro BNC (gross receipts)'
-  résumé.fr: Régime déclaratif spécial ou micro BNC (recettes brutes)
-  titre.en: '[automatic] item 5HQ / 5IQ'
-  titre.fr: rubrique 5HQ / 5IQ
-déclaration indépendants . formulaire 2042 PRO C . rubrique 5KO:
-  résumé.en: '[automatic] Micro BIC taxable income (sales of goods and similar)'
-  résumé.fr: Revenus imposables micro BIC (ventes de marchandises et assimilées)
-  titre.en: '[automatic] heading 5KO / 5LO'
-  titre.fr: rubrique 5KO / 5LO
-déclaration indépendants . formulaire 2042 PRO C . rubrique 5KP:
-  résumé.en: '[automatic] Micro BIC taxable income (services and furnished rentals)'
-  résumé.fr: Revenus imposables micro BIC (prestations de services et locations meublées)
-  titre.en: '[automatic] item 5KP / 5LP'
-  titre.fr: rubrique 5KP / 5LP
-déclaration indépendants . formulaire 2050:
-  résumé.en: '[automatic] Tax package for the normal actual system'
-  résumé.fr: Liasse fiscale du régime réel normal
-  titre.en: '[automatic] form 2052-SD and 2053-SD'
-  titre.fr: formulaire 2052-SD et 2053-SD
-déclaration indépendants . formulaire 2050 . rubrique A2:
-  résumé.en: "[automatic] Operator's personal contributions"
-  résumé.fr: Cotisations personnelles de l'exploitant
-  titre.en: '[automatic] item A2'
-  titre.fr: rubrique A2
-déclaration indépendants . formulaire 2050 . rubrique A5:
-  résumé.en: '[automatic] Of which amount of compulsory social contributions
-    excluding CSG/CRDS'
-  résumé.fr: Dont montant des cotisations sociales obligatoires hors CSG/CRDS
-  titre.en: '[automatic] section A5'
-  titre.fr: rubrique A5
-déclaration indépendants . formulaire 2050 . rubrique A6:
-  résumé.en: '[automatic] Optional personal supplementary premiums and contributions'
-  résumé.fr: Primes et cotisations complémentaires personnelles facultatives
-  titre.en: '[automatic] heading A6'
-  titre.fr: rubrique A6
-déclaration indépendants . formulaire 2050 . rubrique A7:
-  résumé.en: '[automatic] Of which optional Madelin contributions'
-  résumé.fr: Dont cotisations facultatives Madelin
-  titre.en: '[automatic] section A7'
-  titre.fr: rubrique A7
-déclaration indépendants . formulaire 2050 . rubrique A8:
-  résumé.en: '[automatic] Of which, voluntary contributions to new retirement
-    savings plans'
-  résumé.fr: Dont cotisations facultatives aux nouveaux plans d'épargne retraite
-  titre.en: '[automatic] item A8'
-  titre.fr: rubrique A8
-déclaration indépendants . formulaire 2050 . rubrique FY:
-  description.en: >
-    [automatic] If your business employs employees, add to this amount the total
-    of all remuneration and allowances paid during the year
-  description.fr: >
-    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
-    rémunérations et indemnités versée durant l'exercice
-  résumé.en: '[automatic] Wages and salaries (+)'
-  résumé.fr: Salaires et traitements (+)
-  titre.en: '[automatic] section FY'
-  titre.fr: rubrique FY
-déclaration indépendants . formulaire 2050 . rubrique FZ:
-  description.en: >
-    [automatic] If your business employs employees, add to this amount the total
-    employer's contributions paid during the year, as well as any other social
-    security charges
-  description.fr: >
-    Si votre entreprise emploie des salarié, ajoutez à ce montant le total des
-    cotisations patronales payées durant l'exercice, ainsi que toutes les autres
-    charges sociales
-  résumé.en: '[automatic] Social security charges (+)'
-  résumé.fr: Charges sociales (+)
-  titre.en: '[automatic] section FZ'
-  titre.fr: rubrique FZ
-déclaration indépendants . formulaire 2050 . rubrique WQ:
-  description.en: "[automatic] Add all reinstatements listed on [page 9 of the
-    record](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/20\
-    20/2032-not-sd_2959.pdf#page=9)"
-  description.fr: Ajouter toutes les réintégrations listée dans la [page 9 de la
-    notice](https://www.impots.gouv.fr/portail/files/formulaires/2032-not-sd/2020/2032-not-sd_2959.pdf#page=9)
-  résumé.en: '[automatic] Miscellaneous reinstatements (+)'
-  résumé.fr: Réintégrations diverses (+)
-  titre.en: '[automatic] WQ section'
-  titre.fr: rubrique WQ
-déclaration indépendants . informations résultat par formulaire:
-  titre.en: '[automatic] result information by form'
-  titre.fr: informations résultat par formulaire
-déclaration indépendants . informations résultat par formulaire . assiette sociale:
-  description.en: '[automatic] The base used to calculate social security contributions.'
-  description.fr: Assiette utilisée pour le calcul des cotisations sociales.
-  résumé.en: '[automatic] [A - C1]'
-  résumé.fr: '[A - C1]'
-  titre.en: '[automatic] social base'
-  titre.fr: assiette sociale
-déclaration indépendants . informations résultat par formulaire . cotisations déductibles:
-  description.en:
-    '[automatic] Deductible social contributions for the calculation
-    of the social security base'
-  description.fr:
-    Cotisations et contributions sociales déductibles pour le calcul
-    de l'assiette sociale
-  résumé.en: '[automatic] [C1]'
-  résumé.fr: '[C1]'
-  titre.en: '[automatic] deductible contributions'
-  titre.fr: cotisations déductibles
-déclaration indépendants . informations résultat par formulaire . cotisations non déductibles:
-  description.en: '[automatic] Non-deductible social contributions for the
-    calculation of the social security base'
-  description.fr: Cotisations et contributions sociales non déductibles pour le
-    calcul de l'assiette sociale
-  résumé.en: '[automatic] [C2]'
-  résumé.fr: '[C2]'
-  titre.en: '[automatic] non-deductible contributions'
-  titre.fr: cotisations non déductibles
-déclaration indépendants . informations résultat par formulaire . réduction Covid:
-  description.en: '[automatic] The contribution reduction applicable in the case
-    of the Covid scheme'
-  description.fr: La réduction de cotisation applicable dans le cas du dispositif Covid
-  titre.en: '[automatic] Covid discount'
-  titre.fr: réduction Covid
-déclaration indépendants . informations résultat par formulaire . rémunération nette:
-  description.en:
-    "[automatic] The executive's net income before income tax. This
-    is the remuneration actually paid."
-  description.fr: Le revenu net du dirigeant avant impôt sur le revenu. C'est la
-    rémunération effectivement versée.
-  résumé.en: '[automatic] [A - C1 - C2]'
-  résumé.fr: '[A - C1 - C2]'
-  titre.en: '[automatic] net pay'
-  titre.fr: rémunération nette
-déclaration indépendants . informations résultat par formulaire . rémunération totale:
-  description.en: '[automatic] The manager''s "superbrute" remuneration,
-    including all social contributions.'
-  description.fr: La rémunération "superbrute" du dirigeant, incluant toutes les
-    cotisations et contributions sociales.
-  résumé.en: '[automatic] [A]'
-  résumé.fr: '[A]'
-  titre.en: '[automatic] Total executive compensation'
-  titre.fr: Total rémunération dirigeant
 déclaration indépendants . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
@@ -6949,36 +6652,121 @@ déclaration indépendants . nature de l'activité . libérale:
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
 déclaration indépendants . réduction covid:
-  description.en: >
+  description.en: >-
     [automatic] Within the framework of the health crisis, the Government has
     implemented several exceptional measures concerning the social contributions
-    of self-employed workers affected by the coronavirus crisis, including
+    of self-employed workers affected by the coronavirus crisis.
 
 
-    - a first system of reduction of social security contributions provided for by the 3rd rectifying finance law (LFR3) for 2020(1) within the framework of the first period of health emergency in spring 2020,
+    For the 2021 social security contributions, two reduction schemes are applicable:
 
-    - a second reduction scheme provided for in the Social Security Financing Act (LFSS) for 2021 (2) as part of the second state of health emergency in the autumn of 2020.
-  description.fr: >
+    - the reduction scheme provided for by the Social Security Financing Act (LFSS) 2021(1) in the context of the second period of the state of health emergency beginning in the fall of 2020,
+
+    - the additional mechanism provided for in the 1st Amending Finance Act (LFR1) 2021(2) for periods starting in June 2021,
+
+
+    (1) Decree 2021-75 of January 27, 2021, issued in application of Article 9 of Law 2020-1576 of December 14, 2020 on the financing of social security for 2021.
+
+    Decrees concerning the extension of these measures: Decree 2021-1410 of October 29, 2021 - Decree 2021-1956 of December 31, 2021 - Decree XXXX 
+
+
+    (2) Decree 2021-1094 of August 19, 2021, issued in application of Article 25 of Law 2021-953 of July 19, 2021 on the amended budget for 2021.
+
+
+    **These measures are aimed at self-employed workers whose main activity falls within one of the following sectors and under certain other eligibility conditions:**
+
+    - sector S1: sectors of tourism, hotels, restaurants, sports, culture, air transport and events: see detailed list of activities in sector S1.
+
+    - sector S1 bis: sectors whose activity depends on that of sector 1: see detailed list of activities in sector S1 bis.
+
+    - S2 sector: other sectors of activity which have been banned from carrying on their activity in application of decrees n° 2020-1262 of October 16, 2020 and n° 2020-1310 of October 29, 2020.
+
+
+    **Good to know:** Delivery activities, order collection or take-away sales are not taken into account to assess compliance with the condition of prohibition of reception of the public. 
+
+    The curfew is not considered as a measure of prohibition of reception of the public.
+
+
+    ### Eligibility Requirements and Reduction Amount:
+
+    The reduction applies to the final 2021 personal social security contributions and fees due to Urssaf. 
+
+    The conditions of eligibility are assessed month by month, as is the amount of the reduction.
+
+
+    For more information, visit secu-independants.fr or urssaf.fr.
+  description.fr: >-
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre
     plusieurs mesures exceptionnelles concernant les cotisations et
     contributions sociales des travailleurs indépendants affectés par la crise
-    du coronavirus avec :
+    du coronavirus.
 
 
-    - un premier dispositif de réduction des cotisations et contributions sociales prévu par la 3ème loi de finance rectificative (LFR3) pour 2020(1) dans le cadre de la première période d’état d’urgence sanitaire du printemps 2020,
+    Pour les cotisations et contributions sociales 2021, deux dispositifs de réduction sont applicables :
 
-    - un second dispositif de réduction prévu par la loi de financement de la sécurité sociale (LFSS) pour 2021 (2) dans le cadre de la seconde période d’état d’urgence sanitaire de l’automne 2020.
-  question.en:
-    '[automatic] Do you qualify for the Covid-19 crisis-related payroll
-    tax reduction?'
-  question.fr: Remplissez-vous les conditions pour bénéficier de la réduction de
-    cotisations sociales liées à la crise du Covid-19 ?
+    - le dispositif de réduction prévu par la loi de financement de la sécurité sociale (LFSS) 2021(1) dans le cadre de la seconde période d’état d’urgence sanitaire débutant à l’automne 2020,
+
+    - le dispositif complémentaire prévu par la 1ère loi de finance rectificative (LFR1) 2021(2) pour les périodes à compter de juin 2021,
+
+
+    (1) Décret 2021-75 du 27 janvier 2021 pris en application de l’article 9 de la loi n° 2020-1576 du 14 décembre 2020 de financement de la sécurité sociale pour 2021.
+
+    Décrets relatifs à la prolongation de ces mesures : Décret 2021-1410 du 29 octobre 2021 - Décret 2021-1956 du 31 décembre 2021 – Décret XXXX 
+
+
+    (2) Décret 2021-1094 du 19 août 2021 pris en application de l'article 25 de la loi n° 2021-953 du 19 juillet 2021 de finances rectificative pour 2021.
+
+
+    **Ces mesures s’adressent aux travailleurs indépendants dont l’activité principale relève d’un des secteurs suivants et sous certaines autres conditions d’éligibilité :**
+
+    - secteur dit S1 : secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel : voir liste détaillée des activités relevant du secteur S1.
+
+    - secteur dit S1 bis : secteurs dont l’activité dépend de celle des secteurs 1 : voir liste détaillée des activités relevant du secteur S1 bis.
+
+    - secteur dit S2 : autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité en application des décrets n° 2020-1262 du 16 octobre 2020 et n° 2020-1310 du 29 octobre 2020.
+
+
+    **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public. 
+
+    Le couvre-feu n’est pas considéré comme une mesure d’interdiction d’accueil du public.
+
+
+    ### Conditions d’éligibilité et Montant de la réduction :
+
+    La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf. 
+
+    Les conditions d’éligibilité s’évaluent mois par mois, le montant de la réduction également.
+
+
+    Pour plus d’information, rendez-vous sur secu-independants.fr ou urssaf.fr.
+  question.en: '[automatic] Do you qualify for the Covid-19 reduction in social
+    security contributions in 2021?'
+  question.fr:
+    Remplissez-vous les conditions pour bénéficier de la réduction des
+    cotisations et contributions sociales 2021 liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
 déclaration indépendants . réduction covid . conjoint collaborateur:
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 déclaration indépendants . réduction covid . montant:
+  description.en: >-
+    [automatic] To find out the amount of the exemption, you can use the COVID
+    exemption simulator.
+
+
+    [Go to the simulator](/simulators/exoneration-covid)
+  description.fr: >-
+    Pour connaître le montant de l'exonération, vous pouvez utiliser le
+    simulateur d'exonération COVID.
+
+
+    [Accéder au simulateur](/simulateurs/exonération-covid)
+  question.en:
+    '[automatic] What is the amount of the social exemption related to
+    the health crisis for the contributions of the year 2021?'
+  question.fr: Quel est le montant de l’exonération sociale liée à la crise
+    sanitaire pour les cotisations de l’année 2021 ?
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
 déclaration indépendants . réduction covid . part CSG:
