@@ -41,7 +41,6 @@ export function getNextSteps(
 ): Array<DottedName> {
 	const byCount = ([, [count]]: [unknown, [number]]) => count
 	const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
-
 	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
 		mergeWith(add),
 		{},
@@ -144,7 +143,9 @@ export const useNextQuestions = function (): Array<DottedName> {
 		}
 
 		return next.filter(
-			(question) => engine.evaluate(question).nodeValue !== null
+			(question) =>
+				engine.evaluate(question).nodeValue !== null &&
+				engine.getRule(question).rawNode.question !== undefined
 		)
 	}, [
 		missingVariables,

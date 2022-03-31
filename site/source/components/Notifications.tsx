@@ -1,17 +1,16 @@
 import { hideNotification } from '@/actions/actions'
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { GenericButtonOrLinkProps } from '@/design-system/typography/link'
+import { RootState } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
 import styled from 'styled-components'
 import RuleLink from './RuleLink'
-import Emoji from './utils/Emoji'
 import { Markdown } from './utils/markdown'
-import { Message } from '@/design-system'
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with

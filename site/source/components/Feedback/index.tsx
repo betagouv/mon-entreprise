@@ -1,7 +1,7 @@
 import Emoji from '@/components/utils/Emoji'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
-import Popover from '@/design-system/Popover'
+import Popover from '@/design-system/popover/Popover'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'

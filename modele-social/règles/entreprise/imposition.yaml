@@ -1,20 +1,61 @@
 entreprise . imposition:
-  question: Comment l'entreprise est-elle imposée ?
-  description: |
-    Indiquez si le régime d’imposition des revenus liés à l’activité indépendante relèvent :
-    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleur indépendant, au barème progressif de l’impôt sur le revenu.
-    - de l’impôt sur les sociétés : les bénéfices de l’entreprise sont imposés au nom de la société, au taux de l’impôt sur les sociétés.
+  question: Quel est le **type d'imposition** de votre entreprise ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
       - IR
       - IS
-  par défaut: "'IR'"
+  par défaut:
+    variations:
+      - si:
+          une de ces conditions:
+            - catégorie juridique . SARL . unipersonnelle
+            - catégorie juridique . EI
+        alors: "'IR'"
+      - sinon: "'IS'"
 
 entreprise . imposition . IR:
-  applicable si: imposition = 'IR'
-  titre: Impôt sur le revenu
-  valeur: oui
+  valeur: imposition = 'IR'
+  titre: Impôt sur le revenu (IR)
+  description: |
+    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme les autres revenus de 
+    votre foyer.
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    déclaration de résultat). C'est le comptable qui s'en charge.
+
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres 
+    revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
+
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du 
+    revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
+
+    Avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
+    votre entreprise. Cela veut dire que le montant que vous vous versez depuis le compte bancaire professionnel 
+    vers votre compte bancaire personnel ne change pas le résultat de l'entreprise.
+
+entreprise . imposition . IR . type de bénéfices:
+  question: Quel est le **type de bénéfices** de votre entreprise ?
+  par défaut: oui
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - BNC
+      - BIC
+      - BA
+
+entreprise . imposition . IR . type de bénéfices . BNC:
+  valeur: type de bénéfices = 'BNC'
+
+entreprise . imposition . IR . type de bénéfices . BIC:
+  valeur: type de bénéfices = 'BIC'
+
+entreprise . imposition . IR . type de bénéfices . BA:
+  applicable si: BA possible
+  valeur: type de bénéfices = 'BA'
+
+entreprise . imposition . IR . type de bénéfices . BA possible: non
+entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles: non
 
 entreprise . imposition . IR . micro-fiscal:
   rend non applicable: dirigeant . indépendant . cotisations facultatives
@@ -113,9 +154,124 @@ entreprise . imposition . IR . information sur le report de déficit:
     bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301
 
 entreprise . imposition . IS:
-  applicable si: imposition = 'IS'
-  valeur: oui
-  titre: Impôt sur les sociétés
+  valeur: imposition = 'IS'
+  titre: Impôt sur les sociétés (IS)
+  description: |-
+
+    Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
+
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt 
+    sur les sociétés.
+
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un 
+    **taux fixe**. 
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    déclaration de résultat). C'est le comptable qui s'en charge.
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés : 
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est 
+      déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
+      rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
+      un impôt fixe sur ces derniers : c'est ce que l'on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les revenus que vous touchez.
+
+entreprise . imposition . IS . montant:
+  unité: €/an
+  barème:
+    assiette: résultat imposable
+    multiplicateur: prorata temporis
+    variations:
+      - si: exercice . début >= 01/01/2022
+        alors:
+          tranches:
+            - taux:
+                nom: taux réduit
+                valeur: 15%
+              plafond:
+                nom: plafond taux réduit 1
+                applicable si: éligible taux réduit
+                valeur: 38120 €/an
+            - taux:
+                nom: taux normal
+                valeur: 25%
+      - si: exercice . début >= 01/01/2021
+        alors:
+          tranches:
+            - taux: taux réduit
+              plafond: plafond taux réduit 1
+            - taux: 26.5%
+      - si: exercice . début >= 01/01/2020
+        alors:
+          tranches:
+            - taux: taux réduit
+              plafond: plafond taux réduit 1
+            - taux: 28%
+      - si: exercice . début >= 01/01/2019
+        alors:
+          tranches:
+            - taux: taux réduit
+              plafond: plafond taux réduit 1
+            - taux: 28%
+              plafond:
+                nom: plafond taux réduit 2
+                applicable si: éligible taux réduit
+                valeur: 500000 €/an
+            - taux: 31%
+      - si: exercice . début >= 01/01/2018
+        alors:
+          tranches:
+            - taux: taux réduit
+              plafond: plafond taux réduit 1
+            - taux: 28%
+              plafond: plafond taux réduit 2
+            - taux: 33.3333%
+    arrondi: oui
+
+  références:
+    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+
+entreprise . imposition . IS . éligible taux réduit:
+  par défaut: oui
+  toutes ces conditions:
+    - chiffre d'affaires <= 7630 k€/an * prorata temporis
+    - nom: capital détenu au moins à 75 pourcents par des personnes physiques
+      valeur: oui
+
+entreprise . imposition . IS . prorata temporis:
+  description: |
+    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+  unité: '%'
+  formule: exercice . durée / 1 an
+  # TODO: c'est un peu plus subtil que cela : « En cas d’exercice ouvert ou
+  # arrêté en cours de mois calendaire, le nombre de jours résiduels concourt à
+  # la détermination du rapport pour un montant égal au rapport existant entre
+  # ce nombre et 30. »
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
+
+entreprise . imposition . IS . contribution sociale:
+  # description: |
+  #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
+
+  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution.
+  description: |
+    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur les sociétés. Son montant n’est pas déductible des résultats.
+
+    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
+  formule:
+    produit:
+      taux: 3.3%
+      assiette:
+        valeur: IS
+        abattement: 763000 €/an * prorata temporis
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
 entreprise . imposition . IS . résultat imposable:
   titre: Résultat de l'exercice
@@ -135,97 +291,39 @@ entreprise . imposition . IS . résultat net:
     - chiffre d'affaires
     - (- charges)
     - (- dirigeant . rémunération . totale)
-    - (- impôt sur les sociétés)
+    - (- montant)
   par défaut: 0€
 
-entreprise . imposition . IS . impôt sur les sociétés:
-  unité: €/an
-  formule:
-    barème:
-      assiette: résultat imposable
-      multiplicateur: prorata temporis
-      variations:
-        - si: exercice . début >= 01/01/2022
-          alors:
-            tranches:
-              - taux: 15%
-                plafond: plafond taux réduit 1
-              - taux: 25%
-        - si: exercice . début >= 01/01/2021
-          alors:
-            tranches:
-              - taux: 15%
-                plafond: plafond taux réduit 1
-              - taux: 26.5%
-        - si: exercice . début >= 01/01/2020
-          alors:
-            tranches:
-              - taux: 15%
-                plafond: plafond taux réduit 1
-              - taux: 28%
-        - si: exercice . début >= 01/01/2019
-          alors:
-            tranches:
-              - taux: 15%
-                plafond: plafond taux réduit 1
-              - taux: 28%
-                plafond: plafond taux réduit 2
-              - taux: 31%
-        - si: exercice . début >= 01/01/2018
-          alors:
-            tranches:
-              - taux: 15%
-                plafond: plafond taux réduit 1
-              - taux: 28%
-                plafond: plafond taux réduit 2
-              - taux: 33.3333%
-    arrondi: oui
-  références:
-    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+entreprise . imposition . régime:
+  question: Quel est le **régime d'imposition** de votre entreprise ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - micro-entreprise
+      - déclaration contrôlée
+      - réel simplifié
+      - réel normal
 
-entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 1:
-  applicable si: éligible taux réduit
-  valeur: 38120 €/an
+entreprise . imposition . régime . micro-entreprise:
+  titre: Régime de la micro-entreprise
+  non applicable si: imposition = 'IS'
+  remplace:
+    règle: IR . micro-fiscal
+    par: oui
+  valeur: régime = 'micro-entreprise'
 
-entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 2:
-  applicable si: éligible taux réduit
-  valeur: 500000 €/an
+entreprise . imposition . régime . déclaration contrôlée:
+  applicable si: IR . type de bénéfices . BNC
+  valeur: régime = 'déclaration contrôlée'
 
-entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit:
-  formule:
-    toutes ces conditions:
-      - chiffre d'affaires <= 7630 k€/an * prorata temporis
-      - nom: capital détenu au moins à 75 pourcents par des personnes physiques
-        valeur: oui
+entreprise . imposition . régime . réel normal:
+  titre: Régime réel normal d'imposition
+  acronyme: RN
+  non applicable si: IR . type de bénéfices . BNC
+  valeur: régime = 'réel normal'
 
-entreprise . imposition . IS . impôt sur les sociétés . prorata temporis:
-  description: |
-    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
-    plafonds utilisés dans le barème de l'impôt sur les sociétés.
-  unité: '%'
-  formule: exercice . durée / 1 an
-  # TODO: c'est un peu plus subtil que cela : « En cas d’exercice ouvert ou
-  # arrêté en cours de mois calendaire, le nombre de jours résiduels concourt à
-  # la détermination du rapport pour un montant égal au rapport existant entre
-  # ce nombre et 30. »
-  références:
-    Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
-
-entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
-  # description: |
-  #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
-
-  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution.
-  description: |
-    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur les sociétés. Son montant n’est pas déductible des résultats.
-
-    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
-  formule:
-    produit:
-      taux: 3.3%
-      assiette:
-        valeur: impôt sur les sociétés
-        abattement: 763000 €/an * prorata temporis
-  références:
-    Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
+entreprise . imposition . régime . réel simplifié:
+  titre: Régime réel simplifié d'imposition
+  acronyme: RSI
+  non applicable si: IR . type de bénéfices . BNC
+  valeur: régime = 'réel simplifié'

@@ -1,3 +1,362 @@
+DRI:
+  titre.en: '[automatic] DRI'
+  titre.fr: DRI
+DRI . accompagnement imposition:
+  titre.en: '[automatic] Assistant in support mode'
+  titre.fr: Assistant en mode accompagnement
+DRI . accompagnement imposition . bénéfice:
+  titre.en: '[automatic] profit'
+  titre.fr: bénéfice
+DRI . accompagnement imposition . bénéfice . exceptions:
+  titre.en: '[automatic] exceptions'
+  titre.fr: exceptions
+DRI . accompagnement imposition . bénéfice . explications:
+  titre.en: '[automatic] explanations'
+  titre.fr: explications
+DRI . accompagnement imposition . bénéfice . situation:
+  titre.en: '[automatic] situation'
+  titre.fr: situation
+DRI . accompagnement imposition . explications:
+  titre.en: '[automatic] explanations'
+  titre.fr: explications
+DRI . accompagnement imposition . explications . situation:
+  titre.en: '[automatic] situation'
+  titre.fr: situation
+DRI . accompagnement imposition . régime:
+  titre.en: '[automatic] diet'
+  titre.fr: régime
+DRI . accompagnement imposition . régime memento fiscal:
+  question.en: |-
+    [automatic] In the "Your Tax Obligations" section, 
+    what is the "**tax regime**" listed on the first line?
+  question.fr: |-
+    Dans la section « **vos obligations fiscales** », 
+    quel est le « **régime d'imposition** » inscrit sur la première ligne ?
+  titre.en: '[automatic] tax memento system'
+  titre.fr: régime memento fiscal
+DRI . accompagnement imposition . régime memento fiscal . DECC:
+  titre.en: '[automatic] DECC - Controlled declaration system'
+  titre.fr: DECC - Régime de la déclaration contrôlée
+DRI . accompagnement imposition . régime memento fiscal . MICROE:
+  titre.en: '[automatic] MICROE - Microenterprise regime'
+  titre.fr: MICROE - Régime des micro-entreprises
+DRI . accompagnement imposition . régime memento fiscal . RN:
+  titre.en: '[automatic] RN - Normal Real'
+  titre.fr: RN - Réel normal
+DRI . accompagnement imposition . régime memento fiscal . RSI:
+  titre.en: '[automatic] RSI - Real Simplified Taxation'
+  titre.fr: RSI - Réel simplifié d'imposition
+DRI . accompagnement imposition . régime memento fiscal . SPECIAL:
+  description.en: '[automatic] The special regime corresponds to the
+    **microenterprise regime** for non-commercial profits (BNC)'
+  description.fr: Le régime spécial correspond au **régime de la
+    micro-entreprise** pour les bénéfices de type non commerciaux (BNC)
+  titre.en: '[automatic] SPECIAL - Special regime for non-commercial profits'
+  titre.fr: SPECIAL - Régime spécial des bénéfices non commerciaux
+DRI . accompagnement imposition . type:
+  titre.en: '[automatic] type'
+  titre.fr: type
+DRI . accompagnement imposition . type . exceptions:
+  titre.en: '[automatic] exceptions'
+  titre.fr: exceptions
+DRI . accompagnement imposition . type . situation:
+  titre.en: '[automatic] situation'
+  titre.fr: situation
+DRI . accompagnement imposition par défaut:
+  titre.en: '[automatic] accompaniment by default taxation'
+  titre.fr: accompagnement imposition par défaut
+DRI . cas exclus:
+  titre.en: '[automatic] excluded cases'
+  titre.fr: cas exclus
+DRI . cas exclus . autres outils:
+  titre.en: '[automatic] other tools'
+  titre.fr: autres outils
+DRI . cas exclus . désolé:
+  titre.en: '[automatic] sorry'
+  titre.fr: désolé
+DRI . comptable:
+  titre.en: '[automatic] accountant'
+  titre.fr: comptable
+DRI . cotisations:
+  titre.en: '[automatic] contributions'
+  titre.fr: cotisations
+DRI . cotisations . appelées en 2021:
+  question.en:
+    '[automatic] What is the amount of provisional contributions called
+    for in 2021?'
+  question.fr: Quel est le montant des cotisations provisionnelles appelées en 2021 ?
+  titre.en: '[automatic] called in 2021'
+  titre.fr: appelées en 2021
+DRI . cotisations . assiette CSG:
+  titre.en: '[automatic] CSG base'
+  titre.fr: assiette CSG
+DRI . cotisations . assiette des cotisations:
+  titre.en: '[automatic] basis of assessment'
+  titre.fr: assiette des cotisations
+DRI . cotisations . régularisation:
+  titre.en: '[automatic] regularization'
+  titre.fr: régularisation
+DRI . déclaration revenus:
+  question.en: '[automatic] Who is the person concerned?'
+  question.fr: Quelle est la personne concernée ?
+  titre.en: '[automatic] income tax return'
+  titre.fr: déclaration revenus
+DRI . déclaration revenus . BIC:
+  résumé.en: '[automatic] Including professional furnished rentals'
+  résumé.fr: Y compris locations meublées professionnelles
+  titre.en: '[automatic] Professional industrial and commercial income'
+  titre.fr: Revenus industriels et commerciaux professionnels
+DRI . déclaration revenus . BIC . Régime du bénéfice réel:
+  titre.en: '[automatic] Real profit system'
+  titre.fr: Régime du bénéfice réel
+DRI . déclaration revenus . BIC . durée de l'exercice:
+  titre.en: '[automatic] duration of the exercise'
+  titre.fr: durée de l'exercice
+DRI . déclaration revenus . BIC . déficits:
+  titre.en: '[automatic] deficits'
+  titre.fr: déficits
+DRI . déclaration revenus . BIC . moins-values:
+  note.en: '[automatic] of which short-term capital losses'
+  note.fr: dont moins-values à court terme
+  titre.en: '[automatic] capital losses'
+  titre.fr: moins-values
+DRI . déclaration revenus . BIC . plus-values:
+  note.en: '[automatic] of which short-term capital gains, capital grants,
+    insurance proceeds from loss of assets'
+  note.fr: dont plus-values à court terme, subventions d’équipement, indemnités
+    d’assurance pour perte d’élément d’actif
+  titre.en: '[automatic]  '
+  titre.fr: ' '
+DRI . déclaration revenus . BIC . revenus exonérés:
+  note.en: '[automatic] zoned regimes article 1417, IV, b of the general tax code'
+  note.fr: régimes zonés article 1417, IV, b du code général des impôts
+  titre.en: '[automatic] exempt income'
+  titre.fr: revenus exonérés
+DRI . déclaration revenus . BIC . revenus imposables:
+  note.en: '[automatic] general case'
+  note.fr: cas général
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenus imposables
+DRI . déclaration revenus . BNC:
+  titre.en: '[automatic] Professional non-commercial income'
+  titre.fr: Revenus non commerciaux professionnels
+DRI . déclaration revenus . BNC . durée de l'exercice:
+  titre.en: '[automatic] duration of the exercise'
+  titre.fr: durée de l'exercice
+DRI . déclaration revenus . BNC . déficits:
+  note.en: '[automatic] including non-professional inventors'
+  note.fr: y compris inventeurs non professionnels
+  titre.en: '[automatic] deficits'
+  titre.fr: déficits
+DRI . déclaration revenus . BNC . jeunes créateurs:
+  titre.en: '[automatic] Young creators: 50% deduction'
+  titre.fr: 'Jeunes créateurs : abattement de 50 %'
+DRI . déclaration revenus . BNC . moins-values:
+  note.en: '[automatic] of which short-term capital losses'
+  note.fr: dont moins-values à court terme
+  titre.en: '[automatic] capital losses'
+  titre.fr: moins-values
+DRI . déclaration revenus . BNC . plus-values:
+  note.en: '[automatic] of which short-term capital gains, capital grants,
+    insurance proceeds from loss of assets'
+  note.fr: dont plus-values à court terme, subventions d’équipement, indemnités
+    d’assurance pour perte d’élément d’actif
+  titre.en: '[automatic]  '
+  titre.fr: ' '
+DRI . déclaration revenus . BNC . revenus exonérés:
+  note.en: '[automatic] zoned regimes article 1417, IV, b of the general tax code'
+  note.fr: régimes zonés article 1417, IV, b du code général des impôts
+  titre.en: '[automatic] exempt income'
+  titre.fr: revenus exonérés
+DRI . déclaration revenus . BNC . revenus imposables:
+  note.en: '[automatic] general case'
+  note.fr: cas général
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenus imposables
+DRI . déclaration revenus . BNC . régime de la déclaration contrôlée:
+  titre.en: '[automatic] controlled declaration system'
+  titre.fr: régime de la déclaration contrôlée
+DRI . déclaration revenus . déclarant 1:
+  titre.en: '[automatic] declarant 1'
+  titre.fr: déclarant 1
+DRI . déclaration revenus . déclarant 2:
+  titre.en: '[automatic] declarant 2'
+  titre.fr: déclarant 2
+DRI . déclaration revenus . indépendant:
+  titre.en: '[automatic] Additional data from the income tax return for
+    self-employed persons'
+  titre.fr: Données complémentaires de la déclaration de revenu des indépendants
+DRI . déclaration revenus . indépendant . cotisations facultatives:
+  titre.en: '[automatic] optional contributions'
+  titre.fr: cotisations facultatives
+DRI . déclaration revenus . indépendant . cotisations sociales:
+  titre.en: '[automatic] social contributions'
+  titre.fr: cotisations sociales
+DRI . liasse:
+  titre.en: '[automatic] bundle'
+  titre.fr: liasse
+DRI . liasse . OGA:
+  question.en: '[automatic] Are you a member of an OGA?'
+  question.fr: Êtes-vous adhérant à une OGA ?
+  titre.en: '[automatic] OGA'
+  titre.fr: OGA
+DRI . liasse . déclaration contrôlée:
+  titre.en: '[automatic] controlled declaration'
+  titre.fr: déclaration contrôlée
+DRI . liasse . déclaration contrôlée . AW:
+  résumé.en: '[automatic] of which exemption on "new business" profits'
+  résumé.fr: dont exonération sur le bénéfice « entreprise nouvelle »
+  titre.en: '[automatic] AW'
+  titre.fr: AW
+DRI . liasse . déclaration contrôlée . BT:
+  résumé.en: '[automatic] of which mandatory'
+  résumé.fr: dont obligatoires
+  titre.en: '[automatic] BT'
+  titre.fr: BT
+DRI . liasse . déclaration contrôlée . BU:
+  résumé.en: '[automatic] including optional to new retirement savings plans'
+  résumé.fr: dont facultatives aux nouveaux plans d'épargne retraite
+  titre.en: '[automatic] BU'
+  titre.fr: BU
+DRI . liasse . déclaration contrôlée . BV:
+  résumé.en: '[automatic] deductible generalized social contribution'
+  résumé.fr: contribution sociale généralisée déductible
+  titre.en: '[automatic] BV'
+  titre.fr: BV
+DRI . liasse . déclaration contrôlée . BZ:
+  résumé.en: '[automatic] of which optional Madelin contributions'
+  résumé.fr: dont cotisations facultatives Madelin
+  titre.en: '[automatic] BZ'
+  titre.fr: BZ
+DRI . liasse . déclaration contrôlée . CB:
+  résumé.en: '[automatic] Short-term capital gain'
+  résumé.fr: Plus-value à court terme
+  titre.en: '[automatic] CB'
+  titre.fr: CB
+DRI . liasse . déclaration contrôlée . CE:
+  résumé.en: '[automatic] Total'
+  résumé.fr: Total
+  titre.en: '[automatic] CE'
+  titre.fr: CE
+DRI . liasse . déclaration contrôlée . CI:
+  résumé.en:
+    '[automatic] of which doctor exemption for "areas with a shortage of
+    health care".'
+  résumé.fr: dont exonération médecin « zones déficitaires en offre de soin »
+  titre.en: '[automatic] CI'
+  titre.fr: CI
+DRI . liasse . déclaration contrôlée . CJ:
+  résumé.en: '[automatic] of which Covid Solidarity Fund'
+  résumé.fr: dont aides Fonds de solidarité Covid
+  titre.en: '[automatic] CJ'
+  titre.fr: CJ
+DRI . liasse . déclaration contrôlée . CK:
+  résumé.en: '[automatic] Short-term capital loss'
+  résumé.fr: Moins-value à court terme
+  titre.en: '[automatic] CK'
+  titre.fr: CK
+DRI . liasse . déclaration contrôlée . CN:
+  résumé.en: '[automatic] Total'
+  résumé.fr: Total
+  titre.en: '[automatic] CN'
+  titre.fr: CN
+DRI . liasse . déclaration contrôlée . CO:
+  résumé.en: '[automatic] of which exemption on the "young artists" benefit'
+  résumé.fr: dont exonération sur le bénéfice « jeunes artistes »
+  titre.en: '[automatic] CO'
+  titre.fr: CO
+DRI . liasse . déclaration contrôlée . CQ:
+  résumé.en: '[automatic] of which deduction for "sector 1 physicians'
+  résumé.fr: dont déduction « médecin conventionnés de secteur 1 »
+  titre.en: '[automatic] CQ'
+  titre.fr: CQ
+DRI . liasse . déclaration contrôlée . CS:
+  résumé.en: '[automatic] of which exemption on the "urban free zone entrepreneur" profit'
+  résumé.fr: dont exonération sur le bénéfice « zone franche urbaine entrepreneur »
+  titre.en: '[automatic] CS'
+  titre.fr: CS
+DRI . liasse . déclaration contrôlée . CT:
+  résumé.en: '[automatic] including the contribution to employee savings plans'
+  résumé.fr: dont l'abondement sur l'épargne salariale
+  titre.en: '[automatic] CT'
+  titre.fr: CT
+DRI . liasse . déclaration contrôlée . CU:
+  résumé.en: '[automatic] of which exemption on "young innovative companies" profits'
+  résumé.fr: dont exonération sur le bénéfice « jeunes entreprise innovantes »
+  titre.en: '[automatic] CU'
+  titre.fr: CU
+DRI . liasse . déclaration contrôlée . charges sociales personnelles:
+  titre.en: '[automatic] personal social charges'
+  titre.fr: charges sociales personnelles
+DRI . liasse . déclaration contrôlée . divers à déduire:
+  titre.en: '[automatic] miscellaneous deductible'
+  titre.fr: divers à déduire
+DRI . liasse . déclaration contrôlée . excedents:
+  titre.en: '[automatic] surpluses'
+  titre.fr: excedents
+DRI . liasse . déclaration contrôlée . impôts et taxe:
+  titre.en: '[automatic] taxes and duties'
+  titre.fr: impôts et taxe
+DRI . liasse . déclaration contrôlée . insuffisance:
+  titre.en: '[automatic] insufficiency'
+  titre.fr: insuffisance
+DRI . liasse . remboursement cotisation:
+  question.en: '[automatic] Did you receive a contribution refund in 2021?'
+  question.fr: Avez vous reçu un remboursement de cotisation en 2021 ?
+  titre.en: '[automatic] reimbursement of contribution'
+  titre.fr: remboursement cotisation
+DRI . liasse . réel normal:
+  titre.en: '[automatic] real normal'
+  titre.fr: réel normal
+DRI . liasse . réel simplifié:
+  titre.en: '[automatic] simplified real'
+  titre.fr: réel simplifié
+DRI . liasse . réel simplifié . Divers:
+  titre.en: '[automatic] Various'
+  titre.fr: Divers
+DRI . liasse . réel simplifié . Déductions:
+  titre.en: '[automatic] Deductions'
+  titre.fr: Déductions
+DRI . liasse . réel simplifié . c326:
+  résumé.en: '[automatic] of which amount deductible from compulsory social
+    security contributions'
+  résumé.fr: dont montant déductible des cotisations sociales obligatoires
+  titre.en: '[automatic] 326'
+  titre.fr: '326'
+DRI . liasse . réel simplifié . c342:
+  résumé.en: '[automatic] Deductions'
+  résumé.fr: Déductions
+  titre.en: '[automatic] 342'
+  titre.fr: '342'
+DRI . liasse . réel simplifié . c370:
+  résumé.en: '[automatic] Profit'
+  résumé.fr: Bénéfice
+  titre.en: '[automatic] 370'
+  titre.fr: '370'
+DRI . liasse . réel simplifié . c372:
+  résumé.en: '[automatic] Deficit'
+  résumé.fr: Déficit
+  titre.en: '[automatic] 372'
+  titre.fr: '372'
+DRI . liasse . réel simplifié . c381:
+  résumé.en: '[automatic] Optional premiums and supplementary contributions'
+  résumé.fr: Primes et cotisations complémentaires facultatives
+  titre.en: '[automatic] 381'
+  titre.fr: '381'
+DRI . liasse . réel simplifié . c596:
+  résumé.en: '[automatic] Short term'
+  résumé.fr: Court terme
+  titre.en: '[automatic] 596'
+  titre.fr: '596'
+DRI . liasse . réel simplifié . plus-values et moins-values:
+  titre.en: '[automatic] capital gains and losses'
+  titre.fr: plus-values et moins-values
+DRI . liasse . réel simplifié . résultat:
+  titre.en: '[automatic] Taxable income after deduction of deficits'
+  titre.fr: Résultat fiscal après imputation des déficits
+DRI . nombre de déclarations:
+  titre.en: '[automatic] number of declarations'
+  titre.fr: nombre de déclarations
 SMIC horaire:
   note.en: >
     [automatic] In principle, and unless there is a "boost", the SMIC is
@@ -6362,7 +6721,7 @@ dirigeant . rémunération . totale:
   résumé.fr: Incluant les cotisations et contributions
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
-déclaration indépendants:
+déclaration charge sociales:
   description.en:
     '[automatic] These rules calculate the amounts of social charges
     to be reported in the income tax return of the self-employed and in the
@@ -6370,9 +6729,9 @@ déclaration indépendants:
   description.fr: Ces règles calculent les montants des charges sociales à
     reporter dans la déclaration de revenu  des indépendants et dans les
     déclaration de résultats.
-  titre.en: '[automatic] assistance declaration independent income 2020'
-  titre.fr: déclaration indépendants
-déclaration indépendants . ACRE:
+  titre.en: '[automatic] social security declaration'
+  titre.fr: déclaration charge sociales
+déclaration charge sociales . ACRE:
   description.en: >-
     [automatic] The aid for creating or taking over a business (Acre) consists
     of a partial exemption from social security charges, known as the start-up
@@ -6429,28 +6788,28 @@ déclaration indépendants . ACRE:
   question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
-déclaration indépendants . comptabilité:
+déclaration charge sociales . comptabilité:
   question.en: '[automatic] What method of accounting management is used for the company?'
   question.fr: Quel méthode de gestion de la comptabilité est utilisée pour l'entreprise ?
   titre.en: '[automatic] controlled declaration regime'
   titre.fr: régime de la déclaration contrôlée
-déclaration indépendants . comptabilité . engagement:
+déclaration charge sociales . comptabilité . engagement:
   titre.en: '[automatic] accrual accounting'
   titre.fr: comptabilité d'engagement
-déclaration indépendants . comptabilité . trésorerie:
+déclaration charge sociales . comptabilité . trésorerie:
   titre.en: '[automatic] cash accounting'
   titre.fr: comptabilité de trésorerie
-déclaration indépendants . cotisations obligatoires déductibles:
+déclaration charge sociales . cotisations obligatoires déductibles:
   description.en: '[automatic] Deductible compulsory contributions, useful for
     calculating the CSG/CRDS base'
   description.fr: Cotisations obligatoires déductibles, utile pour calculer
     l'assiette de la CSG/CRDS
   titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
-déclaration indépendants . cotisations payées:
+déclaration charge sociales . cotisations payées:
   titre.en: '[automatic] contributions paid'
   titre.fr: cotisations payées
-déclaration indépendants . cotisations payées . CRDS:
+déclaration charge sociales . cotisations payées . CRDS:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow:
@@ -6483,7 +6842,7 @@ déclaration indépendants . cotisations payées . CRDS:
   question.fr: Quel est le montant total de CRDS payé cette année ?
   titre.en: '[automatic] CRDS'
   titre.fr: CRDS
-déclaration indépendants . cotisations payées . CSG déductible:
+déclaration charge sociales . cotisations payées . CSG déductible:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow:
@@ -6516,7 +6875,7 @@ déclaration indépendants . cotisations payées . CSG déductible:
   question.fr: Quel est le montant total de CSG déductible payé cette année ?
   titre.en: '[automatic] Deductible CSG'
   titre.fr: CSG déductible
-déclaration indépendants . cotisations payées . CSG non déductible:
+déclaration charge sociales . cotisations payées . CSG non déductible:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow:
@@ -6549,10 +6908,10 @@ déclaration indépendants . cotisations payées . CSG non déductible:
   question.fr: Quel est le montant total de CSG non déductible payé cette année ?
   titre.en: '[automatic] Non-deductible CSG'
   titre.fr: CSG non déductible
-déclaration indépendants . cotisations payées . cotisations obligatoires déductibles:
+déclaration charge sociales . cotisations payées . cotisations obligatoires déductibles:
   titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
-déclaration indépendants . cotisations payées . total charges sociales:
+déclaration charge sociales . cotisations payées . total charges sociales:
   description.en: >
     [automatic] You can find this amount in your personal Urssaf space. Here are
     the steps to follow:
@@ -6585,10 +6944,10 @@ déclaration indépendants . cotisations payées . total charges sociales:
     payées pendant l'exercice ?
   titre.en: '[automatic] total social charges'
   titre.fr: total charges sociales
-déclaration indépendants . cotisations payées version simple:
+déclaration charge sociales . cotisations payées version simple:
   titre.en: '[automatic] dues paid simple version'
   titre.fr: cotisations payées version simple
-déclaration indépendants . cotisations payées version simple . CSG déductible et CFP:
+déclaration charge sociales . cotisations payées version simple . CSG déductible et CFP:
   description.en: >
     [automatic] Enter the amount of deductible CSG and PSC you paid in 2021
     (regardless of the year to which these contributions relate).
@@ -6601,7 +6960,7 @@ déclaration indépendants . cotisations payées version simple . CSG déductibl
   question.fr: Quel est le montant total de CSG déductible et CFP payées cette année ?
   titre.en: '[automatic] Deductible CSG and PSC'
   titre.fr: CSG déductible et CFP
-déclaration indépendants . cotisations payées version simple . cotisations sociales:
+déclaration charge sociales . cotisations payées version simple . cotisations sociales:
   description.en: >
     [automatic] Indicate the amount of social contributions to the compulsory
     schemes (sickness-maternity, old age, disability-death, family) that you
@@ -6615,12 +6974,12 @@ déclaration indépendants . cotisations payées version simple . cotisations so
   question.fr: Quel est le montant de vos cotisations sociales payées cette année ?
   titre.en: '[automatic] social contributions'
   titre.fr: cotisations sociales
-déclaration indépendants . nature de l'activité:
+déclaration charge sociales . nature de l'activité:
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
   titre.en: '[automatic] nature of business'
   titre.fr: nature de l'activité
-déclaration indépendants . nature de l'activité . artisanale:
+déclaration charge sociales . nature de l'activité . artisanale:
   description.en: >
     [automatic] It is a service, production, transformation, or repair activity
     carried out by a qualified professional, and which requires specific skills
@@ -6647,7 +7006,7 @@ déclaration indépendants . nature de l'activité . artisanale:
     - Les activités artisanales sont répertoriées par un décret
   titre.en: '[automatic] artisanal'
   titre.fr: artisanale
-déclaration indépendants . nature de l'activité . commerciale:
+déclaration charge sociales . nature de l'activité . commerciale:
   description.en: >
     [automatic] - Purchase of goods for resale as is (wholesale or retail trade)
 
@@ -6663,7 +7022,7 @@ déclaration indépendants . nature de l'activité . commerciale:
     - Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
   titre.en: '[automatic] commercial or industrial'
   titre.fr: commerciale
-déclaration indépendants . nature de l'activité . libérale:
+déclaration charge sociales . nature de l'activité . libérale:
   description.en: >
     [automatic] These are the "intellectual" professions, which are not attached
     to any specific
@@ -6682,7 +7041,7 @@ déclaration indépendants . nature de l'activité . libérale:
     1er janvier 2021.
   titre.en: '[automatic] Liberal attached to the general regime'
   titre.fr: Libérale rattachée au régime général
-déclaration indépendants . réduction covid:
+déclaration charge sociales . réduction covid:
   description.en: >-
     [automatic] Within the framework of the health crisis, the Government has
     implemented several exceptional measures concerning the social contributions
@@ -6785,10 +7144,10 @@ déclaration indépendants . réduction covid:
     cotisations et contributions sociales 2021 liées à la crise du Covid-19 ?
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
-déclaration indépendants . réduction covid . conjoint collaborateur:
+déclaration charge sociales . réduction covid . conjoint collaborateur:
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-déclaration indépendants . réduction covid . montant:
+déclaration charge sociales . réduction covid . montant:
   description.en: >-
     [automatic] To find out the amount of the exemption, you can use the COVID
     exemption simulator.
@@ -6808,33 +7167,33 @@ déclaration indépendants . réduction covid . montant:
     sanitaire pour les cotisations de l’année 2021 ?
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
-déclaration indépendants . réduction covid . part CSG:
+déclaration charge sociales . réduction covid . part CSG:
   titre.en: '[automatic] Covid reduction on CSG'
   titre.fr: Part réduction Covid sur CSG
-déclaration indépendants . réduction covid . part CSG . déductible:
+déclaration charge sociales . réduction covid . part CSG . déductible:
   titre.en: '[automatic] Covid reduction on deductible CSG/CRDS'
   titre.fr: Part réduction Covid sur CSG/CRDS déductible
-déclaration indépendants . réduction covid . part CSG . non déductible:
+déclaration charge sociales . réduction covid . part CSG . non déductible:
   titre.en: '[automatic] Covid reduction on non-deductible CSG/CRDS'
   titre.fr: Part réduction Covid sur CSG/CRDS non déductible
-déclaration indépendants . réduction covid . part cotisations:
+déclaration charge sociales . réduction covid . part cotisations:
   titre.en: '[automatic] Covid reduction on contributions (excluding CSG/CRDS)'
   titre.fr: Part réduction Covid sur cotisations (hors CSG/CRDS)
-déclaration indépendants . réduction covid . pourcentage cotisations:
+déclaration charge sociales . réduction covid . pourcentage cotisations:
   titre.en: '[automatic] percentage contributions'
   titre.fr: pourcentage cotisations
-déclaration indépendants . réduction covid . taux CSG:
+déclaration charge sociales . réduction covid . taux CSG:
   titre.en: '[automatic] CSG rate'
   titre.fr: taux CSG
-déclaration indépendants . réduction covid . total:
+déclaration charge sociales . réduction covid . total:
   description.en: '[automatic] Included in the amount of contributions shown above'
   description.fr: Intégrée dans le montant des cotisations affiché ci-dessus
   titre.en: '[automatic] Covid discount'
   titre.fr: Réduction Covid
-déclaration indépendants . régime d'imposition:
+déclaration charge sociales . régime d'imposition:
   titre.en: '[automatic] tax regime'
   titre.fr: régime d'imposition
-déclaration indépendants . régime d'imposition . déclaration contrôlée:
+déclaration charge sociales . régime d'imposition . déclaration contrôlée:
   description.en: >
     [automatic] If you have to declare non-commercial profits (BNC), you may be
     subject to the controlled declaration regime or the micro-BNC regime; this
@@ -6857,7 +7216,7 @@ déclaration indépendants . régime d'imposition . déclaration contrôlée:
     Dans le cas de la déclaration contrôlée, le contribuable est imposé sur les bénéfices effectivement réalisés. Dans le cas du régime micro-BNC, un abattement forfaitaire de 34 % est appliqué automatiquement après déclaration du chiffre d’affaires.
   titre.en: '[automatic] controlled declaration regime'
   titre.fr: régime de la déclaration contrôlée
-déclaration indépendants . régime d'imposition . réel:
+déclaration charge sociales . régime d'imposition . réel:
   description.en: >
     [automatic] The simplified tax regime (RSI) and the normal tax regime (RN)
     apply to profits made during the financial year and to value added tax
@@ -6876,7 +7235,7 @@ déclaration indépendants . régime d'imposition . réel:
   question.fr: Quel est le régime d'imposition applicable à l'exercice ?
   titre.en: '[automatic] real'
   titre.fr: réel
-déclaration indépendants . régime d'imposition . réel . normal:
+déclaration charge sociales . régime d'imposition . réel . normal:
   description.en: >
     [automatic] The accounting of the company subjected to the normal real
     regime must be more precise than for the simplified real regime:
@@ -6907,7 +7266,7 @@ déclaration indépendants . régime d'imposition . réel . normal:
     - L'entreprise doit tenir un livre journal et un grand livre.
   titre.en: '[automatic] standard real estate regime'
   titre.fr: régime réel normal
-déclaration indépendants . régime d'imposition . réel . simplifié:
+déclaration charge sociales . régime d'imposition . réel . simplifié:
   description.en: >
     [automatic] Companies subject to the simplified real tax regime must keep
     standard accounts: a balance sheet, an income statement and annexes. Special
@@ -6933,34 +7292,34 @@ déclaration indépendants . régime d'imposition . réel . simplifié:
     - le bilan fourni à l’administration fiscale est un bilan simplifié
   titre.en: '[automatic] simplified real estate regime'
   titre.fr: régime réel simplifié
-déclaration indépendants . rémunération déductible:
+déclaration charge sociales . rémunération déductible:
   titre.en: '[automatic] deductible remuneration'
   titre.fr: rémunération déductible
-déclaration indépendants . résultat simple:
+déclaration charge sociales . résultat simple:
   titre.en: '[automatic] simple result'
   titre.fr: résultat simple
-déclaration indépendants . résultat simple . CFP:
+déclaration charge sociales . résultat simple . CFP:
   description.en: '[automatic] Contribution to professional training'
   description.fr: Contribution à la formation professionnelle
   résumé.en: '[automatic] [D]'
   résumé.fr: '[D]'
   titre.en: '[automatic] PSC'
   titre.fr: CFP
-déclaration indépendants . résultat simple . CSG déductible:
+déclaration charge sociales . résultat simple . CSG déductible:
   description.en: '[automatic] Amount of CSG deductible from income tax'
   description.fr: Montant de la CSG déductible à l'impôt sur le revenu
   résumé.en: '[automatic] [B]'
   résumé.fr: '[B]'
   titre.en: '[automatic] Deductible CSG'
   titre.fr: CSG déductible
-déclaration indépendants . résultat simple . assiette sociale:
+déclaration charge sociales . résultat simple . assiette sociale:
   description.en: '[automatic] Basis for calculating social security contributions'
   description.fr: Assiette utilisée pour le calcul des cotisations sociales
   résumé.en: '[automatic] [A - (B + C + D)]'
   résumé.fr: '[A - (B + C + D)]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-déclaration indépendants . résultat simple . cotisations obligatoires:
+déclaration charge sociales . résultat simple . cotisations obligatoires:
   description.en: >
     [automatic] To be reported in :
 
@@ -6989,7 +7348,7 @@ déclaration indépendants . résultat simple . cotisations obligatoires:
   résumé.fr: '[C]'
   titre.en: '[automatic] Deductible mandatory social security contributions'
   titre.fr: Cotisations sociales obligatoires déductibles
-déclaration indépendants . résultat simple . revenu net fiscal:
+déclaration charge sociales . résultat simple . revenu net fiscal:
   description.en:
     '[automatic] Income before deduction of social security charges
     and tax exemptions'
@@ -6998,7 +7357,7 @@ déclaration indépendants . résultat simple . revenu net fiscal:
   résumé.fr: '[A]'
   titre.en: '[automatic] net tax income'
   titre.fr: revenu net fiscal
-déclaration indépendants . résultat simple . total charges sociales déductible:
+déclaration charge sociales . résultat simple . total charges sociales déductible:
   description.en: |
     [automatic] To be reported in :
     - simplified actual system:** item 252 of form 2033-B-SD
@@ -7186,6 +7545,8 @@ entreprise . activité . libérale:
     Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
       - de nature généralement civile,
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
+  question.en: '[automatic] Is your activity a liberal profession?'
+  question.fr: Votre activité est-elle une profession libérale ?
   titre.en: liberal
   titre.fr: libérale
 entreprise . activité . libérale réglementée:
@@ -7312,6 +7673,9 @@ entreprise . activité . service ou vente . vente:
     toutes les activités de restauration et d'hébergement.
   titre.en: '[automatic] sale of goods, catering or accommodation'
   titre.fr: vente de biens, restauration ou hébergement
+entreprise . activité principale:
+  titre.en: '[automatic] main activity'
+  titre.fr: activité principale
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -7345,9 +7709,6 @@ entreprise . catégorie juridique . EI . auto-entrepreneur:
   question.fr: Êtes-vous auto-entrepreneur ?
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
-entreprise . catégorie juridique . EI . imposition entreprise:
-  titre.en: '[automatic] taxation company'
-  titre.fr: imposition entreprise
 entreprise . catégorie juridique . EI . responsabilité limité:
   question.en: '[automatic] Is your business an EIRL?'
   question.fr: Votre entreprise est-elle une EIRL ?
@@ -7357,6 +7718,11 @@ entreprise . catégorie juridique . SARL:
   titre.en: '[automatic] EURL or SARL'
   titre.fr: EURL ou SARL
 entreprise . catégorie juridique . SARL . unipersonnelle:
+  description.en: '[automatic] An EURL is a company with only one partner. This
+    means that you are the sole owner of the company.'
+  description.fr:
+    Une EURL est une entreprise avec un seul associé. Cela signifie
+    que vous êtes le seul et unique propriétaire de l'entreprise.
   question.en: '[automatic] Is your company an EURL?'
   question.fr: Votre entreprise est-elle une EURL ?
   titre.en: '[automatic] EURL'
@@ -7858,27 +8224,67 @@ entreprise . exonérée de TVA:
   titre.en: '[automatic] VAT-exempt'
   titre.fr: exonérée de TVA
 entreprise . imposition:
-  description.en: >
-    [automatic] Indicate whether the taxation system of the income related to
-    the self-employed activity is :
-
-    - Income tax: the company's profits are taxed directly to the self-employed person, at the progressive income tax rate.
-
-    - corporate tax: the company's profits are taxed in the name of the company, at the corporate tax rate.
-  description.fr: >
-    Indiquez si le régime d’imposition des revenus liés à l’activité
-    indépendante relèvent :
-
-    - de l’impôt sur le revenu : les bénéfices de l’entreprise sont imposés directement auprès du travailleur indépendant, au barème progressif de l’impôt sur le revenu.
-
-    - de l’impôt sur les sociétés : les bénéfices de l’entreprise sont imposés au nom de la société, au taux de l’impôt sur les sociétés.
-  question.en: '[automatic] How is the company taxed?'
-  question.fr: Comment l'entreprise est-elle imposée ?
+  question.en: "[automatic] What is your company's **type of taxation**?"
+  question.fr: Quel est le **type d'imposition** de votre entreprise ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
-  titre.en: '[automatic] Income tax'
-  titre.fr: Impôt sur le revenu
+  description.en: >
+    [automatic] The result of your company is taxed at the income tax, like the
+    other incomes of your household. 
+
+    your household income.
+
+
+    The result is determined when you fill in the **tax form** (also called 
+
+    income tax return). This is done by the accountant.
+
+
+    If your company makes money, the result is called **profit**. It is added to the other 
+
+    It is added to other taxable income (if any): **your income tax is higher**.
+
+
+    If your business loses money, the result is called a **deficit**. It reduces the amount of 
+
+    your household taxable income: **Your income tax is lower**.
+
+
+    With income tax, there is no tax difference between your household income and your business income. 
+
+    your business. This means that the amount you pay yourself from your business bank account 
+
+    to your personal bank account does not change the company's result.
+  description.fr: >
+    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme
+    les autres revenus de 
+
+    votre foyer.
+
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+
+    déclaration de résultat). C'est le comptable qui s'en charge.
+
+
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres 
+
+    revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
+
+
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du 
+
+    revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
+
+
+    Avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
+
+    votre entreprise. Cela veut dire que le montant que vous vous versez depuis le compte bancaire professionnel 
+
+    vers votre compte bancaire personnel ne change pas le résultat de l'entreprise.
+  titre.en: '[automatic] Income tax (IR)'
+  titre.fr: Impôt sur le revenu (IR)
 entreprise . imposition . IR . information sur le report de déficit:
   description.en: >
     [automatic] When your taxable income is negative, it reduces the taxable
@@ -7947,13 +8353,89 @@ entreprise . imposition . IR . micro-fiscal . revenu abattu:
     Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
   titre.en: '[automatic] flat-rate micro-tax deduction'
   titre.fr: abattement forfaitaire micro-fiscal
+entreprise . imposition . IR . type de bénéfices:
+  question.en: "[automatic] What is your company's **type of profit**?"
+  question.fr: Quel est le **type de bénéfices** de votre entreprise ?
+  titre.en: '[automatic] type of benefits'
+  titre.fr: type de bénéfices
+entreprise . imposition . IR . type de bénéfices . BA:
+  titre.en: '[automatic] BA'
+  titre.fr: BA
+entreprise . imposition . IR . type de bénéfices . BA possible:
+  titre.en: '[automatic] BA possible'
+  titre.fr: BA possible
+entreprise . imposition . IR . type de bénéfices . BIC:
+  titre.en: '[automatic] BIC'
+  titre.fr: BIC
+entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles:
+  titre.en: '[automatic] BIC and BNC possible'
+  titre.fr: BIC et BNC possibles
+entreprise . imposition . IR . type de bénéfices . BNC:
+  titre.en: '[automatic] BNC'
+  titre.fr: BNC
 entreprise . imposition . IS:
-  titre.en: '[automatic] Corporate income tax'
-  titre.fr: Impôt sur les sociétés
-entreprise . imposition . IS . impôt sur les sociétés:
-  titre.en: '[automatic] corporate tax'
-  titre.fr: impôt sur les sociétés
-entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
+  description.en: >-
+    [automatic] 
+
+    The **result** of your company is taxed at the **corporate tax**.
+
+
+    If your company loses money, the result is called a **deficit**. It will not have to pay corporate 
+
+    corporate income tax.
+
+
+    If your company makes money, the result is called **profit**. It will be taxed at a 
+
+    **fixed rate**. 
+
+
+    The taxable result is determined when filling out the **tax return** (also called 
+
+    income tax return). This is done by the accountant.
+
+
+
+    Please note: there are **two ways of remunerating yourself** with a company that pays corporate income tax: 
+      - You can pay yourself a remuneration as a director during the year. This remuneration is 
+      deducted (subtracted) from the result to calculate the taxable profit of your company. On the other hand, this
+      remuneration is added to the taxable income of your household for the calculation of the income tax.
+      - You can also pay yourself dividends from previous years' profits. You will have to pay
+      a fixed tax on these dividends: this is called the "flat tax".
+
+      In all cases, you will have to pay social security contributions on the income you receive.
+  description.fr: >-
+
+    Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
+
+
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt 
+
+    sur les sociétés.
+
+
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un 
+
+    **taux fixe**. 
+
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+
+    déclaration de résultat). C'est le comptable qui s'en charge.
+
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés : 
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est 
+      déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
+      rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
+      un impôt fixe sur ces derniers : c'est ce que l'on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les revenus que vous touchez.
+  titre.en: '[automatic] Corporate tax (IS)'
+  titre.fr: Impôt sur les sociétés (IS)
+entreprise . imposition . IS . contribution sociale:
   description.en: >
     [automatic] The social contribution on profits is a separate tax from the
     corporate tax. Its amount is not deductible from the results.
@@ -7968,26 +8450,6 @@ entreprise . imposition . IS . impôt sur les sociétés . contribution sociale:
     L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
   titre.en: '[automatic] social contribution'
   titre.fr: contribution sociale
-entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 1:
-  titre.en: '[automatic] ceiling reduced rate 1'
-  titre.fr: plafond taux réduit 1
-entreprise . imposition . IS . impôt sur les sociétés . plafond taux réduit 2:
-  titre.en: '[automatic] ceiling reduced rate 2'
-  titre.fr: plafond taux réduit 2
-entreprise . imposition . IS . impôt sur les sociétés . prorata temporis:
-  description.en: >
-    [automatic] When the duration of the financial year is not equal to one
-    year, the ceilings used in the
-
-    the ceilings used in the corporate tax schedule.
-  description.fr: |
-    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
-    plafonds utilisés dans le barème de l'impôt sur les sociétés.
-  titre.en: '[automatic] prorata temporis'
-  titre.fr: prorata temporis
-entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit:
-  titre.en: '[automatic] eligible for reduced rate'
-  titre.fr: éligible taux réduit
 entreprise . imposition . IS . information sur le report de déficit:
   description.en: >
     [automatic] Losses incurred during a fiscal year can be carried forward to
@@ -7999,6 +8461,20 @@ entreprise . imposition . IS . information sur le report de déficit:
     (report en arrière).
   titre.en: '[automatic] information on deficit carryover'
   titre.fr: information sur le report de déficit
+entreprise . imposition . IS . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
+entreprise . imposition . IS . prorata temporis:
+  description.en: >
+    [automatic] When the duration of the financial year is not equal to one
+    year, the ceilings used in the
+
+    the ceilings used in the corporate tax schedule.
+  description.fr: |
+    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+  titre.en: '[automatic] prorata temporis'
+  titre.fr: prorata temporis
 entreprise . imposition . IS . résultat imposable:
   résumé.en: '[automatic] Taxable for corporate income tax purposes'
   résumé.fr: Imposable à l'impôt sur les sociétés
@@ -8009,6 +8485,26 @@ entreprise . imposition . IS . résultat net:
   résumé.fr: Après déduction des charges et de l'impôt sur les société
   titre.en: '[automatic] net result'
   titre.fr: résultat net
+entreprise . imposition . IS . éligible taux réduit:
+  titre.en: '[automatic] eligible for reduced rate'
+  titre.fr: éligible taux réduit
+entreprise . imposition . régime:
+  question.en: "[automatic] What is your company's **tax regime**?"
+  question.fr: Quel est le **régime d'imposition** de votre entreprise ?
+  titre.en: '[automatic] diet'
+  titre.fr: régime
+entreprise . imposition . régime . déclaration contrôlée:
+  titre.en: '[automatic] controlled declaration'
+  titre.fr: déclaration contrôlée
+entreprise . imposition . régime . micro-entreprise:
+  titre.en: '[automatic] Micro-enterprise regime'
+  titre.fr: Régime de la micro-entreprise
+entreprise . imposition . régime . réel normal:
+  titre.en: '[automatic] Normal real tax system'
+  titre.fr: Régime réel normal d'imposition
+entreprise . imposition . régime . réel simplifié:
+  titre.en: '[automatic] Simplified real tax system'
+  titre.fr: Régime réel simplifié d'imposition
 entreprise . nom:
   titre.en: '[automatic] name'
   titre.fr: nom

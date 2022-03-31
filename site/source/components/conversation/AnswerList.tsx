@@ -43,6 +43,10 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 				)
 				.concat(passedQuestions)
 				.filter((answered) => !(answered in companySituation))
+				.filter(
+					(dottedName) =>
+						engine.getRule(dottedName).rawNode.question !== undefined
+				)
 				.map((dottedName) => engine.evaluate(engine.getRule(dottedName))),
 		[engine, passedQuestions, situation, companySituation]
 	)

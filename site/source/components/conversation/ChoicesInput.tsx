@@ -24,6 +24,8 @@ import {
 } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+import { useEngine } from '../utils/EngineContext'
+import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
 
 const relativeDottedName = (rootDottedName: string, childDottedName: string) =>
@@ -119,7 +121,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	return (
 		<Component onChange={handleChange} value={currentSelection ?? undefined}>
 			<RadioChoice
-				autoFocus={defaultValue}
+				autoFocus={defaultValue && props.autoFocus}
 				choice={choice}
 				rootDottedName={props.dottedName}
 			/>
@@ -174,11 +176,10 @@ function RadioChoice<Names extends string = DottedName>({
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 							</Radio>{' '}
-							{node.rawNode.description && (
-								<ButtonHelp type="info" light title={node.title}>
-									<Markdown>{node.rawNode.description ?? ''}</Markdown>
-								</ButtonHelp>
-							)}
+							<ExplicableRule
+								light
+								dottedName={node.dottedName as DottedName}
+							/>
 						</span>
 					)}
 				</Fragment>
@@ -239,8 +240,8 @@ export function useSelection<Names extends string = DottedName>({
 		missing ? null : defaultValue
 	)
 	const handleChange = useCallback(
-		(value) => {
-			value && setCurrentSelection(value)
+		(value: string) => {
+			setCurrentSelection(value)
 		},
 		[setCurrentSelection]
 	)

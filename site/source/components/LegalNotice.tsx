@@ -1,4 +1,4 @@
-import PopoverWithTrigger from '@/design-system/PopoverWithTrigger'
+import { PopoverWithTrigger } from '@/design-system'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'

@@ -27,6 +27,7 @@ type Props<Names extends string = DottedName> = Omit<
 	autoFocus?: boolean
 	small?: boolean
 	dottedName: Names
+	label?: string
 	onChange: (value: PublicodesExpression | undefined, dottedName: Names) => void
 	// TODO: It would be preferable to replace this "showSuggestions" parameter by
 	// a build-in logic in the engine, by setting the "applicability" of
@@ -191,9 +192,11 @@ export const buildVariantTree = <Name extends string>(
 						variant.explanation as (ASTNode & {
 							nodeKind: 'reference'
 						})[]
-					).map(({ dottedName }) =>
-						buildVariantTree(engine, dottedName as Name)
-					),
+					)
+						.filter((node) => engine.evaluate(node).nodeValue !== null)
+						.map(({ dottedName }) =>
+							buildVariantTree(engine, dottedName as Name)
+						),
 			  }
 			: null
 	) as Choice

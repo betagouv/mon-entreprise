@@ -350,18 +350,18 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter1: 'gerer',
 				chapter2: 'declaration_charges_sociales_independant',
 			},
-			icône: '✍️',
+			icône: '📑',
 			meta: {
 				description: t(
 					'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
-					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021.'
+					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021'
 				),
 				title: t(
 					'pages.gérer.declaration_charges_sociales_indépendant.meta.title',
 					'Détermination des charges sociales déductibles'
 				),
 			},
-			pathId: 'gérer.déclarationIndépendant',
+			pathId: 'gérer.déclaration-charges-sociales-indépendant',
 			shortName: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 				'Détermination des charges sociales déductibles'
@@ -370,6 +370,33 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			title: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
+			),
+		},
+		'déclaration-revenu-indépendant': {
+			tracking: {
+				chapter1: 'gerer',
+				chapter2: 'declaration_revenu_independant',
+			},
+			icône: '✍️',
+			meta: {
+				description: t(
+					'pages.gérer.declaration_revenu_indépendant.meta.description',
+					'Découvrez quels montants remplir dans quelles cases, et obtenez une estimation des cotisations à payer en 2022'
+				),
+				title: t(
+					'pages.gérer.declaration_revenu_indépendant.meta.title',
+					'Assistant à la déclaration de revenu pour les indépendants'
+				),
+			},
+			pathId: 'gérer.déclarationIndépendant.index',
+			shortName: t(
+				'pages.gérer.declaration_revenu_indépendant.shortname',
+				'Assistant déclaration de revenu'
+			),
+			iframePath: 'déclaration-revenu-indépendant',
+			title: t(
+				'pages.gérer.declaration_revenu_indépendant.title',
+				'Assistant à la déclaration de revenu pour les indépendants'
 			),
 		},
 		'demande-mobilité': {

@@ -13,6 +13,9 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import CompanySearchDetails from './SearchDetails'
 import { FromTop } from '../ui/animate'
+import { Message } from '@/design-system'
+import { H3 } from '@/design-system/typography/heading'
+import { Strong } from '@/design-system/typography'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
@@ -93,13 +96,15 @@ function Results({
 }) {
 	return !results.length ? (
 		<FromTop>
-			<MessageContainer>
-				<Intro>Aucune entreprise correspondante trouvée</Intro>
+			<Message type="info" icon>
+				<Body>
+					<Strong>Aucune entreprise correspondante trouvée</Strong>
+				</Body>
 				<Body>
 					Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
 					résultat
 				</Body>
-			</MessageContainer>
+			</Message>
 		</FromTop>
 	) : (
 		<FromTop>

@@ -34,6 +34,7 @@ export type FabriqueSocialEntreprise = {
 		codeCommuneEtablissement: string
 		codePostalEtablissement: string
 		is_siege: boolean
+		activitePrincipaleEtablissement: string
 	}
 	allMatchingEtablissements: Array<{
 		address?: string

@@ -39,6 +39,8 @@
 <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
   <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les
   indépendants.</0>
+Accompagnement activé: Accompagnement activé
+Accompagnement désactivé: Accompagnement désactivé
 "Activité exercée en ": "Activité exercée en "
 Assimilé salarié: Assimilé salarié
 Assistants à la déclaration de revenu 2021 des indépendants: Assistants à la déclaration de revenu 2021 des indépendants
@@ -78,6 +80,7 @@ Découvrir: Découvrir
 "Eligibilité LFSS : ": "Eligibilité LFSS : "
 En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
+Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Exonérations: Exonérations
 Explorez notre documentation: Explorez notre documentation
 ExportSimulation:
@@ -98,7 +101,9 @@ Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
 Ma situation: Ma situation
 Mes réponses: Mes réponses
+Mode accompagnement: Mode accompagnement
 Modifier: Modifier
+Modifier l'entreprise: Modifier l'entreprise
 Mois non concerné: Mois non concerné
 Mon entreprise: Mon entreprise
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
@@ -231,6 +236,37 @@ assistant-DRI:
     cases qui vous concernent avec le montant à remplir</0><1>Une estimation des
     cotisations sociales à payer à l'Urssaf en 2022</1></1></0><1>Mon
     entreprise</1>
+  imposition:
+    intro: <0>Dans cette étape, nous allons déterminer les <2>déclarations qui vous
+      concernent</2> et la <5>liste des cases que vous aurez à remplir</5>.</0>
+    mode-accompagnement:
+      activé: "<0>Tout n'est peut-être pas encore très clair pour vous. Nous allons
+        vous guider pas à pas en vous posant des questions simples. À chaque
+        fois, nous vous donnerons des pistes sur comment trouver les
+        informations pour y répondre.</0><1>Nous vous expliquerons aussi toutes
+        les notions clés reliées à votre déclaration (par exemple : IS/IR, BIC,
+        BNC, liasse fiscale, etc.)</1><2>Vous pouvez changer de mode à tout
+        moment en utilisant l'interrupteur ci-dessous. </2>"
+      désactivé: "<0>Vous avez peut-être une bonne connaissance des notions associées
+        (par exemple : IS/IR, BIC/BNC, liasse fiscale, etc.). Nous irons droit
+        au but en vous posant des <2>questions simples et précises</2> pour vous
+        faire gagner du temps. </0><1>Si vous souhaitez être davantage
+        accompagné pour répondre aux questions, vous pouvez <1>changer de
+        mode</1> à tout moment en utilisant l'interrupteur ci-dessous.</1>"
+      nombre-déclarations: C'est votre {{nthDeclaration}} déclaration de revenu depuis
+        la création de votre entreprise.
+  intro: <0><0>Nous vous accompagnons pour remplir votre <2>déclaration de
+    revenu</2> sur <5>impot.gouv.fr</5>.<7></7></0><1> Répondez à quelques
+    questions, à la fin vous aurez :</1><2><0>Les formulaires qui vous
+    concernent</0><1>La liste des cases qui vous concernent avec le montant à
+    remplir</1><2>Une estimation des cotisations sociales à payer à l'Urssaf en
+    2022</2></2></0>
+  precision: <0>Quelques précisions avant de continuer</0><1>Pour faire votre
+    déclaration de revenu, il faudra vous connecter sur <2>impot.gouv.fr</2> à
+    partir du <5>8 avril 2022</5>.</1><2>Si vous faites remplir votre
+    déclaration de revenu par votre expert-comptable, cet assistant peut quand
+    même vous être utile pour connaître le <2>montant des cotisations sociales à
+    payer en 2022</2></2>
 associés:
   choix1: Seul
   choix2: Plusieurs personnes
@@ -944,10 +980,17 @@ pages:
     declaration_charges_sociales_indépendant:
       meta:
         description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenu 2021.
+          reporter dans votre déclaration de revenu 2021
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
+    declaration_revenu_indépendant:
+      meta:
+        description: Découvrez quels montants remplir dans quelles cases, et obtenez une
+          estimation des cotisations à payer en 2022
+        title: Assistant à la déclaration de revenu pour les indépendants
+      shortname: Assistant déclaration de revenu
+      title: Assistant à la déclaration de revenu pour les indépendants
     demande-mobilité:
       meta:
         description: Formulaire interactif à compléter en cas d'exercice d'une activité
@@ -1581,6 +1624,8 @@ trouver:
     seront automatiquement disponibles pour la suite du parcours sur le site.
   titre: Retrouver mon entreprise
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
+Étape complétée: Étape complétée
+Étape non complétée: Étape non complétée
 Êtes vous satisfait de ce guide ?: Êtes vous satisfait de ce guide ?
 Êtes vous satisfait de cet assistant ?: Êtes vous satisfait de cet assistant ?
 économieCollaborative:

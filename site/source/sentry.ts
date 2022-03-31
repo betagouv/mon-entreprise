@@ -1,7 +1,7 @@
 import { init } from '@sentry/react'
 import { BrowserTracing } from '@sentry/tracing'
-import { getBranch, isProduction, isStaging } from './utils'
 import { CaptureConsole } from '@sentry/integrations'
+import { getBranch, isProduction, isStaging } from './utils'
 
 const branch = getBranch()
 

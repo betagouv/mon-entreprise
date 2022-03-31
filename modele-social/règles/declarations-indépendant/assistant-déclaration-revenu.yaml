@@ -1,0 +1,780 @@
+DRI:
+  valeur: non
+  remplace:
+    - règle: année
+      par: 2021
+    - règle: entreprise . catégorie juridique . EI . auto-entrepreneur . défaut
+      par: non
+
+DRI . cas exclus:
+  applicable si:
+    une de ces conditions:
+      - entreprise . catégorie juridique . EI . auto-entrepreneur
+      - entreprise . catégorie juridique . SAS
+      - entreprise . catégorie juridique . autre
+      - toutes ces conditions:
+          - entreprise . catégorie juridique . SARL
+          - entreprise . catégorie juridique . SARL . unipersonnelle = non
+      - entreprise . date de création >= 01/01/2022
+      - entreprise . imposition . IR . type de bénéfices . BA
+
+  variations:
+    - si: entreprise . imposition . IR . type de bénéfices . BA
+      alors:
+        texte: |-
+          ### Nous ne proposons pas encore d'aide pour les entreprises agricoles
+
+          {{ désolé }}
+    - si: entreprise . catégorie juridique . autre
+      alors:
+        texte: |-
+          ### Nous ne proposons pas encore d'aide pour votre type d'entreprise
+
+          {{ désolé }}
+    - si: entreprise . catégorie juridique . EI . auto-entrepreneur
+      alors:
+        texte: |-
+          ### Nous ne proposons pas encore d'aide pour les auto-entrepreneurs
+
+          {{ désolé }}
+
+          {{ autres outils }}
+
+    - si: entreprise . catégorie juridique . SAS
+      alors:
+        texte: |-
+          ### Nous ne proposons pas encore d'aide pour les dirigeants de SAS(U)
+
+          {{ désolé }}
+
+          {{ autres outils }}
+    - si:
+        une de ces conditions:
+          - toutes ces conditions:
+              - entreprise . catégorie juridique . SARL
+              - entreprise . catégorie juridique . SARL . unipersonnelle = non
+          - entreprise . catégorie juridique . SELARL
+          - entreprise . catégorie juridique . SELAS
+      alors:
+        texte: |-
+          ### Nous ne proposons pas encore d'aide pour les dirigeant de {{ entreprise . catégorie juridique }}
+
+          {{ désolé }}
+
+          {{ autres outils }}
+    - si: entreprise . date de création >= 01/01/2022
+      alors:
+        texte: |-
+          ### Vous avez créé votre entreprise en 2022
+
+          Les revenus de cette entreprise seront à déclarer l'année prochaine. 
+
+          Vous pouvez estimer le montant de votre revenu net après impôt grâce aux 
+          simulateurs disponibles sur ce site.
+
+DRI . cas exclus . désolé:
+  texte: |-
+    Nous en sommes désolés. Si vous rencontrez des difficultés à remplir votre déclaration, 
+    rapprochez-vous de votre comptable. Si vous êtes sans comptable, vous pouvez
+    [contacter le service des impôts](https://www.impots.gouv.fr/contacts).
+
+DRI . cas exclus . autres outils:
+  texte: |-
+    Ce site propose d'autres outils qui pourraient vous intéresser (par exemple un 
+    simulateur de revenu net après impôt).
+
+DRI . nombre de déclarations:
+  somme:
+    - valeur: entreprise . durée d'activité . en fin d'année
+      unité: an
+    - 0.5
+  plancher: 0
+  arrondi: oui
+  unité: ''
+DRI . accompagnement imposition par défaut: nombre de déclarations < 5
+
+DRI . accompagnement imposition:
+  titre: Assistant en mode accompagnement
+  non applicable si: DRI . cas exclus
+  par défaut: accompagnement imposition par défaut
+
+DRI . accompagnement imposition . type:
+  variations:
+    - si: entreprise . catégorie juridique . EI
+      alors:
+        texte: |-
+          Votre entreprise est une **entreprise individuelle**. {{ situation }}
+    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+      alors:
+        texte: |-
+          Votre entreprise est une **EURL**. {{ situation }}
+
+DRI . accompagnement imposition . type . situation:
+  variations:
+    - si: entreprise . imposition . IS
+      alors:
+        texte: Vous avez choisi l'option pour être imposé à l'**impôt sur les sociétés** (IS).
+    - si: entreprise . catégorie juridique . EI
+      alors:
+        texte: |-
+          Par défaut, ce type d'entreprise est imposée à l'**impôt sur le revenu** (IR),
+          mais il y a souvent des exceptions.
+    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+      alors:
+        texte: |-
+          Par défaut, ce type d'entreprise est imposée à l'**impôt sur le revenu** (IR),
+          mais il y a souvent des exceptions.
+
+DRI . accompagnement imposition . type . exceptions:
+  variations:
+    - si: entreprise . catégorie juridique . EI
+      alors:
+        texte: |-
+          Par défaut les entreprises individuelles sont imposées à l'impôt sur le revenu. Cependant, 
+          votre entreprise peut être imposée à l'**impôt sur les société** si : 
+          - c'est une **entreprise individuelle à responsabilité limitée** (EIRL),
+          - et **une demande a été envoyée aux impôts** pour choisir l'impôt sur les sociétés.
+
+          Ce choix a pu être fait pour vous permettre de vous verser des dividendes par exemple.
+
+          {{comptable}}
+    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+      alors:
+        texte: |-
+          Par défaut les EURL sont imposées à l'impôt sur le revenu.
+
+          Votre entreprise est imposée à l'**impôt sur les sociétés** (IS) si **une demande a été envoyée aux impôts**
+          pour choisir l'impôt sur les sociétés. Cette demande a pu avoir lieu lors de la création ou après.
+
+          > Il est assez fréquent que les EURL choisissent l'option de l'impôt sur les sociétés. Ce choix permet 
+          de se verser des dividendes par exemple.
+
+          {{comptable}}
+
+DRI . comptable:
+  texte: En cas de doutes, **demandez à votre comptable**.
+
+DRI . accompagnement imposition . bénéfice:
+  texte: |-
+    L'activité principale de votre entreprise est 
+    « **{{ entreprise . activité principale }}** ».
+    {{situation}}
+DRI . accompagnement imposition . bénéfice . situation:
+  variations:
+    - si:
+        toutes ces conditions:
+          - entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles
+          - entreprise . imposition . IR . type de bénéfices . BNC
+      alors:
+        texte: En général les **bénéfices** de cette activité sont de type **non commerciaux** (BNC), mais il peut y avoir des exceptions.
+    - si:
+        toutes ces conditions:
+          - entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles
+          - entreprise . imposition . IR . type de bénéfices . BIC
+      alors:
+        texte: Dans le cas de votre entreprise, les bénéfices sont de type **industriel et commerciaux** (BIC).
+    - si: entreprise . imposition . IR . type de bénéfices . BIC
+      alors:
+        texte: Les **bénéfices** de ce type d'activité sont de type **industriel et commerciaux** (BIC)
+
+    - si: entreprise . imposition . IR . type de bénéfices . BNC
+      alors:
+        texte: Les **bénéfices** de cette activité sont de type **non commerciaux** (BNC)
+
+DRI . accompagnement imposition . bénéfice . explications:
+  texte: |-
+    La déclaration de revenus contient **trois sections principales** pour déclarer les 
+    bénéfices de votre activité :
+
+    - les bénéfices de type **industriels et commerciaux** (BIC)
+    - les bénéfices de type **non commerciaux** (BNC)
+    - les bénéfices de type **agricoles** (BA)
+
+    Dans votre cas, vous **remplirez la section {{ entreprise . imposition . IR . type de bénéfices}}**
+    pour déclarer les bénéfices (ou déficits) de votre entreprise.
+
+    À noter : le type de bénéfice change la façon dont le comptable doit gérer l'entreprise. Par 
+    exemple, cela détermine s'il doit utiliser une comptabilité de trésorerie ou d'engagement et quelle 
+    liasse fiscale il doit remplir.
+
+DRI . accompagnement imposition . bénéfice . exceptions:
+  applicable si: entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles
+  texte: |-
+    Les bénéfices de votre activité peuvent être de type **industriels et commerciaux** (BIC) si :
+    - la majeure partie de votre activité consiste en la **vente de bien**, 
+    - ou vous créez dans le but de **reproduire et vendre** votre création (par exemple, un photographe d'illustration qui prend des photos pour le compte de clients).
+
+    {{comptable}}
+
+DRI . accompagnement imposition . régime memento fiscal:
+  question: |-
+    Dans la section « **vos obligations fiscales** », 
+    quel est le « **régime d'imposition** » inscrit sur la première ligne ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - RSI
+      - RN
+      - DECC
+      - SPECIAL
+      - MICROE
+
+DRI . accompagnement imposition . régime memento fiscal . RSI:
+  non applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: RSI - Réel simplifié d'imposition
+  valeur: régime memento fiscal = 'RSI'
+  remplace:
+    règle: entreprise . imposition . régime
+    par: "'réel simplifié'"
+DRI . accompagnement imposition . régime memento fiscal . RN:
+  non applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: RN - Réel normal
+  valeur: régime memento fiscal = 'RN'
+  remplace:
+    règle: entreprise . imposition . régime
+    par: "'réel normal'"
+DRI . accompagnement imposition . régime memento fiscal . DECC:
+  applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: DECC - Régime de la déclaration contrôlée
+  valeur: régime memento fiscal = 'DECC'
+  remplace:
+    règle: entreprise . imposition . régime
+    par: "'déclaration contrôlée'"
+DRI . accompagnement imposition . régime memento fiscal . SPECIAL:
+  applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: SPECIAL - Régime spécial des bénéfices non commerciaux
+  description: Le régime spécial correspond au **régime de la micro-entreprise** pour les bénéfices de type non commerciaux (BNC)
+  valeur: régime memento fiscal = 'SPECIAL'
+  remplace:
+    règle: entreprise . imposition . régime
+    par: "'micro-entreprise'"
+DRI . accompagnement imposition . régime memento fiscal . MICROE:
+  non applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: MICROE - Régime des micro-entreprises
+  valeur: régime memento fiscal = 'MICROE'
+  remplace:
+    règle: entreprise . imposition . régime
+    par: "'micro-entreprise'"
+
+DRI . accompagnement imposition . régime:
+  applicable si:
+    une de ces conditions:
+      - entreprise . imposition . régime . réel normal
+      - entreprise . imposition . régime . réel simplifié
+      - entreprise . imposition . régime . déclaration contrôlée
+      - entreprise . imposition . régime . micro-entreprise
+  variations:
+    - si: entreprise . imposition . régime . réel normal
+      alors:
+        texte: Votre entreprise est imposée au **régime réel normal** (RN).
+    - si: entreprise . imposition . régime . réel simplifié
+      alors:
+        texte: Votre entreprise est imposée au **régime réel simplifié** (RSI).
+    - si: entreprise . imposition . régime . déclaration contrôlée
+      alors:
+        texte: Votre entreprise est imposée au **régime de la déclaration contrôlée**.
+    - si: entreprise . imposition . régime . micro-entreprise
+      alors:
+        texte: Votre entreprise est imposée au régime de la **micro-entreprise**.
+
+DRI . accompagnement imposition . explications:
+  texte: |-
+    Votre régime d'imposition change le niveau de détail demandé lors du remplissage des obligations 
+    comptables.
+
+    {{ situation }}
+
+DRI . accompagnement imposition . explications . situation:
+  variations:
+    - si: entreprise . imposition . régime . micro-entreprise
+      alors:
+        texte:
+          Avec le régime de la micro-entreprise, vous n'avez pas à détailler les dépenses de votre
+          entreprise. Le bénéfice imposable est calculé en prenant un **pourcentage du chiffre d'affaires**.
+
+          C'est ce qu'on appelle l'**abattement forfaitaire**.
+
+    - si: entreprise . imposition . régime . réel normal
+      alors:
+        texte: |-
+          Avec le régime réel normal, vous aurez à fournir un bilan comptable complet, qu'il vous faudra déclarer avec un logiciel comptable spécifique (vous ne pourrez pas déclarer le résultat de l'entreprise directement sur impot.gouv.fr)
+
+          Il est donc très fortement conseillé d'avoir un comptable.
+    - si: entreprise . imposition . régime . réel simplifié
+      alors:
+        texte: Avec le régime réel simplifié, vous devrez déposer un bilan comptable simplifié. Il est donc conseillé d'avoir un comptable.
+    - si: entreprise . imposition . régime . déclaration contrôlée
+      alors:
+        texte: Avec le régime de la déclaration contrôlée, vous devrez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'avoir un comptable.
+
+DRI . liasse:
+  valeur: oui
+  applicable si:
+    une de ces conditions:
+      - réel simplifié
+      - réel normal
+      - déclaration contrôlée
+
+DRI . liasse . réel simplifié:
+  applicable si: entreprise . imposition . régime . réel simplifié
+  valeur: oui
+  title: Liasse fiscale du régime réel simplifié
+  meta:
+    formulaire: Formulaire 2033-SD
+
+DRI . liasse . réel simplifié . Déductions:
+  applicable si: entreprise . imposition . IR
+  meta:
+    section: oui
+
+DRI . liasse . réel simplifié . c342:
+  unité: €
+  meta:
+    facultatif: oui
+  applicable si: entreprise . imposition . IR
+  titre: '342'
+  résumé: Déductions
+
+DRI . liasse . réel simplifié . résultat:
+  applicable si: entreprise . imposition . IR
+  titre: Résultat fiscal après imputation des déficits
+  meta:
+    section: oui
+
+DRI . liasse . réel simplifié . c370:
+  unité: €
+  titre: '370'
+  résumé: Bénéfice
+  applicable si: entreprise . imposition . IR
+
+DRI . liasse . réel simplifié . c372:
+  unité: €
+  titre: '372'
+  résumé: Déficit
+  applicable si: entreprise . imposition . IR
+
+DRI . liasse . réel simplifié . Divers:
+  meta:
+    section: oui
+
+DRI . liasse . réel simplifié . c381:
+  unité: €
+  titre: '381'
+  meta:
+    facultatif: oui
+  résumé: Primes et cotisations complémentaires facultatives
+
+DRI . liasse . réel simplifié . c326:
+  titre: '326'
+  unité: €
+  résumé: dont montant déductible des cotisations sociales obligatoires
+
+DRI . liasse . réel simplifié . plus-values et moins-values:
+  applicable si: entreprise . imposition . IR
+  meta:
+    section: oui
+
+DRI . liasse . réel simplifié . c596:
+  applicable si: entreprise . imposition . IR
+  titre: '596'
+  unité: €
+  résumé: Court terme
+
+DRI . liasse . réel normal:
+  applicable si: entreprise . imposition . régime . réel normal
+  valeur: oui
+  title: Liasse fiscale du régime réel normal
+  meta:
+    formulaire: Formulaire 2052-SD et 2053-SD
+
+DRI . liasse . déclaration contrôlée:
+  applicable si: entreprise . imposition . régime . déclaration contrôlée
+  valeur: oui
+  title: Déclaration contrôlée
+  meta:
+    formulaire: Formulaire 2035-SD
+
+DRI . liasse . déclaration contrôlée . impôts et taxe:
+  meta:
+    section: oui
+
+DRI . liasse . déclaration contrôlée . BV:
+  résumé: contribution sociale généralisée déductible
+  unité: €
+
+DRI . liasse . déclaration contrôlée . charges sociales personnelles:
+  meta:
+    section: oui
+
+DRI . liasse . déclaration contrôlée . BT:
+  résumé: dont obligatoires
+  unité: €
+
+DRI . liasse . déclaration contrôlée . BZ:
+  résumé: dont cotisations facultatives Madelin
+  meta:
+    facultatif: oui
+  unité: €
+
+DRI . liasse . déclaration contrôlée . BU:
+  résumé: dont facultatives aux nouveaux plans d'épargne retraite
+  meta:
+    facultatif: oui
+  unité: €
+
+DRI . liasse . déclaration contrôlée . excedents:
+  meta:
+    section: oui
+
+DRI . liasse . déclaration contrôlée . CB:
+  résumé: Plus-value à court terme
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CE:
+  résumé: Total
+  unité: €
+
+DRI . liasse . déclaration contrôlée . insuffisance:
+  meta:
+    section: oui
+
+DRI . liasse . déclaration contrôlée . CK:
+  résumé: Moins-value à court terme
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . divers à déduire:
+  meta:
+    section: oui
+
+DRI . liasse . déclaration contrôlée . CS:
+  résumé: dont exonération sur le bénéfice « zone franche urbaine entrepreneur »
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CT:
+  résumé: dont l'abondement sur l'épargne salariale
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . AW:
+  unité: €
+  résumé: dont exonération sur le bénéfice « entreprise nouvelle »
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CO:
+  unité: €
+  résumé: dont exonération sur le bénéfice « jeunes artistes »
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CU:
+  résumé: dont exonération sur le bénéfice « jeunes entreprise innovantes »
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CQ:
+  résumé: dont déduction « médecin conventionnés de secteur 1 »
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CI:
+  résumé: dont exonération médecin « zones déficitaires en offre de soin »
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CJ:
+  résumé: dont aides Fonds de solidarité Covid
+  unité: €
+  meta:
+    facultatif: oui
+
+DRI . liasse . déclaration contrôlée . CN:
+  unité: €
+  résumé: Total
+
+DRI . liasse . OGA:
+  applicable si: entreprise . imposition . IR
+  question: Êtes-vous adhérant à une OGA ?
+
+DRI . liasse . remboursement cotisation:
+  applicable si: déclaration contrôlée . BT = 0
+  question: Avez vous reçu un remboursement de cotisation en 2021 ?
+
+DRI . déclaration revenus:
+  question: Quelle est la personne concernée ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - déclarant 1
+      - déclarant 2
+  meta:
+    affichage: toggle
+
+DRI . déclaration revenus . déclarant 1:
+  valeur: déclaration revenus = 'déclarant 1'
+DRI . déclaration revenus . déclarant 2:
+  valeur: déclaration revenus = 'déclarant 2'
+
+DRI . déclaration revenus . BNC:
+  applicable si: entreprise . imposition . IR . type de bénéfices . BNC
+  titre: Revenus non commerciaux professionnels
+  valeur: oui
+  meta:
+    section: oui
+
+DRI . déclaration revenus . BNC . durée de l'exercice:
+  applicable si: entreprise . durée d'activité . en fin d'année < 1 an
+  meta:
+    cases: [5XI, 5YI]
+  valeur:
+    valeur: entreprise . durée d'activité . en fin d'année
+    unité: mois
+    arrondi: oui
+  unité: ''
+
+DRI . déclaration revenus . BNC . régime de la déclaration contrôlée:
+  applicable si: entreprise . imposition . régime . déclaration contrôlée
+  valeur: oui
+  meta:
+    section: oui
+
+DRI . déclaration revenus . BNC . revenus exonérés:
+  note: régimes zonés article 1417, IV, b du code général des impôts
+  meta:
+    cases:
+      défaut: [5QB, 5RB]
+      sans OGA: [5QH, 5RH]
+  non applicable si: valeur = 0
+  valeur:
+    nom: valeur
+    meta:
+      affichage: non
+    somme:
+      - valeur: liasse . déclaration contrôlée . CS
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . AW
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CU
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CI
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CT
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CO
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CQ
+        par défaut: 0
+      - valeur: liasse . déclaration contrôlée . CJ
+        par défaut: 0
+    unité: ''
+
+DRI . déclaration revenus . BNC . revenus imposables:
+  note: cas général
+  meta:
+    cases:
+      défaut: [5QC, 5RC]
+      sans OGA: [5QI, 5RI]
+  valeur: liasse . déclaration contrôlée . CE
+  abattement: liasse . déclaration contrôlée . CN
+  unité: ''
+
+DRI . déclaration revenus . BNC . plus-values:
+  titre: ' '
+  note: dont plus-values à court terme, subventions d’équipement, indemnités d’assurance pour perte d’élément d’actif
+  meta:
+    cases:
+      défaut: [5XP, 5YP]
+      sans OGA: [5XQ, 5YQ]
+  valeur: DRI . liasse . déclaration contrôlée . CB
+  unité: ''
+
+DRI . déclaration revenus . BNC . moins-values:
+  titre: ''
+  note: dont moins-values à court terme
+  meta:
+    cases:
+      défaut: [5XH, 5YH]
+      sans OGA: [5XL, 5YL]
+  valeur: DRI . liasse . déclaration contrôlée . CK
+  unité: ''
+
+DRI . déclaration revenus . BNC . déficits:
+  applicable si: liasse . déclaration contrôlée . CE < liasse . déclaration contrôlée . CN
+  note: y compris inventeurs non professionnels
+  meta:
+    cases:
+      défaut: [5QE, 5RE]
+      sans OGA: [5QK, 5RK]
+  valeur: liasse . déclaration contrôlée . CN
+  abattement: liasse . déclaration contrôlée . CE
+  unité: ''
+
+DRI . déclaration revenus . BNC . jeunes créateurs:
+  titre: 'Jeunes créateurs : abattement de 50 %'
+  valeur: DRI . liasse . déclaration contrôlée . CO
+  unité: ''
+  meta:
+    cases: [5QL, 5RL]
+
+DRI . déclaration revenus . BIC:
+  applicable si: entreprise . imposition . IR . type de bénéfices . BIC
+  titre: Revenus industriels et commerciaux professionnels
+  résumé: Y compris locations meublées professionnelles
+  valeur: oui
+  meta:
+    section: oui
+
+DRI . déclaration revenus . BIC . durée de l'exercice:
+  applicable si: entreprise . durée d'activité . en fin d'année < 1 an
+  meta:
+    cases: [5DB, 5EB]
+  valeur:
+    valeur: entreprise . durée d'activité . en fin d'année
+    unité: mois
+    arrondi: oui
+  unité: ''
+
+DRI . déclaration revenus . BIC . Régime du bénéfice réel:
+  non applicable si: entreprise . imposition . régime . micro-entreprise
+  valeur: oui
+  meta:
+    section: oui
+
+DRI . déclaration revenus . BIC . revenus exonérés:
+  note: régimes zonés article 1417, IV, b du code général des impôts
+  meta:
+    cases:
+      défaut: [5KB, 5LB]
+      sans OGA: [5KH, 5LH]
+  non applicable si: valeur = 0
+  valeur:
+    nom: valeur
+    meta:
+      affichage: non
+    valeur: liasse . réel simplifié . c342
+    par défaut: 0
+    unité: ''
+
+DRI . déclaration revenus . BIC . revenus imposables:
+  note: cas général
+  meta:
+    cases:
+      défaut: [5KC, 5LC]
+      sans OGA: [5KI, 5LI]
+  valeur: liasse . réel simplifié . c370
+  unité: ''
+
+DRI . déclaration revenus . BIC . plus-values:
+  applicable si: liasse . réel simplifié . c596 > 0
+  titre: ' '
+  note: dont plus-values à court terme, subventions d’équipement, indemnités d’assurance pour perte d’élément d’actif
+  meta:
+    cases:
+      défaut: [5DK, 5EK]
+      sans OGA: [5DL, 5EL]
+  valeur: liasse . réel simplifié . c596
+  unité: ''
+
+DRI . déclaration revenus . BIC . moins-values:
+  applicable si: liasse . réel simplifié . c596 < 0
+  titre: ''
+  note: dont moins-values à court terme
+  meta:
+    cases:
+      défaut: [5DM, 5EM]
+      sans OGA: [5DN, 5EN]
+  valeur: liasse . réel simplifié . c596
+  unité: ''
+
+DRI . déclaration revenus . BIC . déficits:
+  meta:
+    cases:
+      défaut: [5KF, 5LF]
+      sans OGA: [5KL, 5LL]
+  valeur: liasse . réel simplifié . c372
+  unité: ''
+
+DRI . déclaration revenus . indépendant:
+  titre: Données complémentaires de la déclaration de revenu des indépendants
+  valeur: oui
+  meta:
+    section: oui
+
+DRI . déclaration revenus . indépendant . cotisations sociales:
+  unité: ''
+  meta:
+    cases: [DSCA, DSCB]
+  somme:
+    - DRI . liasse . déclaration contrôlée . BT
+    - DRI . liasse . réel simplifié . c326
+
+DRI . déclaration revenus . indépendant . cotisations facultatives:
+  meta:
+    cases: [DSEA, DSEB]
+  non applicable si: valeur = 0
+  valeur:
+    meta:
+      affichage: non
+    nom: valeur
+    unité: ''
+    somme:
+      - valeur: DRI . liasse . déclaration contrôlée . BZ
+        par défaut: 0
+      - valeur: DRI . liasse . déclaration contrôlée . BU
+        par défaut: 0
+      - valeur: DRI . liasse . réel simplifié . c381
+        par défaut: 0
+
+DRI . cotisations: dirigeant . indépendant . cotisations et contributions + DRI . cotisations . régularisation
+
+DRI . cotisations . assiette des cotisations:
+  rend non applicable:
+    - entreprise . résultat fiscal
+  remplace: dirigeant . indépendant . assiette des cotisations
+  unité: €
+  somme:
+    # BNC
+    - déclaration revenus . BNC . revenus imposables
+    - valeur: déclaration revenus . BNC . plus-values
+      par défaut: 0
+    - valeur: déclaration revenus . BNC . revenus exonérés
+      par défaut: 0
+    # BIC
+    - déclaration revenus . BIC . revenus imposables
+    - valeur: déclaration revenus . BIC . plus-values
+      par défaut: 0
+    - valeur: déclaration revenus . BIC . revenus exonérés
+      par défaut: 0
+
+    # Cotisations facultatives
+    - valeur: déclaration revenus . indépendant . cotisations facultatives
+      par défaut: 0
+  abattement:
+    somme:
+      - valeur: déclaration revenus . BNC . moins-values
+        par défaut: 0
+      - valeur: déclaration revenus . BNC . déficits
+        par défaut: 0
+
+DRI . cotisations . assiette CSG:
+  remplace: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
+  somme:
+    - assiette des cotisations
+    - déclaration revenus . indépendant . cotisations sociales
+
+DRI . cotisations . régularisation:
+  valeur: dirigeant . indépendant . cotisations et contributions - cotisations . appelées en 2021
+
+DRI . cotisations . appelées en 2021:
+  question: Quel est le montant des cotisations provisionnelles appelées en 2021 ?
+  unité: €

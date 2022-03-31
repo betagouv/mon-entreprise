@@ -8,7 +8,11 @@ import styled from 'styled-components'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
 import Value from '../EngineValue'
 
-export function CompanyDetails() {
+export function CompanyDetails({
+	showSituation = false,
+}: {
+	showSituation?: boolean
+}) {
 	return (
 		<StyledCompanyContainer>
 			<div
@@ -31,7 +35,7 @@ export function CompanyDetails() {
 					</H4>
 					<Body>
 						<Trans>
-							Créee le{' '}
+							Entreprise créée le{' '}
 							<Strong>
 								<Value
 									expression="entreprise . date de création"
@@ -48,14 +52,16 @@ export function CompanyDetails() {
 						</Trans>
 					</Body>
 				</div>
-				<div
-					css={`
-						text-align: right;
-					`}
-				>
-					<SeeAnswersButton />
-					<Spacing xs />
-				</div>
+				{showSituation && (
+					<div
+						css={`
+							text-align: right;
+						`}
+					>
+						<SeeAnswersButton />
+						<Spacing xs />
+					</div>
+				)}
 			</div>
 		</StyledCompanyContainer>
 	)

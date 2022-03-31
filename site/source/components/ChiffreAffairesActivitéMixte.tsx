@@ -12,6 +12,7 @@ import { SimulationGoal } from './Simulation'
 import { useEngine } from './utils/EngineContext'
 import { Markdown } from './utils/markdown'
 import { Switch } from '@/design-system/switch'
+import { ExplicableRule } from './conversation/Explicable'
 
 const proportions = {
 	'entreprise . activité . mixte . proportions . service BIC':
@@ -45,7 +46,6 @@ export default function ChiffreAffairesActivitéMixte({
 		<fieldset aria-label={t("Chiffre d'affaires")}>
 			<SimulationGoal
 				appear={false}
-				alwaysShow
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>
@@ -54,7 +54,6 @@ export default function ChiffreAffairesActivitéMixte({
 			<Condition expression="entreprise . activité . mixte">
 				{Object.values(proportions).map((chiffreAffaires) => (
 					<SimulationGoal
-						alwaysShow
 						small
 						key={chiffreAffaires}
 						onUpdateSituation={adjustProportions}
@@ -135,9 +134,7 @@ function ActivitéMixte() {
 						Activité mixte
 					</Switch>
 				</Trans>
-				<ButtonHelp type="aide" title={rule.title} light>
-					<Markdown>{rule.rawNode.description ?? ''}</Markdown>
-				</ButtonHelp>
+				<ExplicableRule dottedName={rule.dottedName} light />
 			</StyledActivitéMixteContainer>
 		</div>
 	)

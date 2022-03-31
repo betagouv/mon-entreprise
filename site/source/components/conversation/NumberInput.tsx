@@ -1,11 +1,11 @@
-import { NumberFieldProps } from '@react-types/numberfield'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { NumberField } from '@/design-system/field'
-import { ASTNode, serializeUnit, Unit } from 'publicodes'
+import { debounce } from '@/utils'
+import { NumberFieldProps } from '@react-types/numberfield'
+import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { debounce } from '@/utils'
 import InputSuggestions from './InputSuggestions'
 import { InputProps } from './RuleInput'
 
@@ -27,9 +27,7 @@ export default function NumberInput({
 		!missing && value != null && typeof value === 'number' ? value : undefined
 	)
 	const { i18n, t } = useTranslation()
-	displayedUnit =
-		displayedUnit ??
-		(unit && getSerializedUnit(currentValue ?? 0, unit, i18n.language, t))
+	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
 	const engine = useContext(EngineContext)
 	useEffect(() => {
 		if (value !== currentValue) {
@@ -40,16 +38,23 @@ export default function NumberInput({
 			)
 		}
 	}, [value])
-	formatOptions = {
-		style: 'decimal',
-		...(unit?.numerators.includes('€')
-			? {
-					style: 'currency',
-					currency: 'EUR',
-					minimumFractionDigits: 0,
-			  }
-			: {}),
-		...formatOptions,
+
+	if (parsedDisplayedUnit && parsedDisplayedUnit.numerators.includes('€')) {
+		parsedDisplayedUnit.numerators = parsedDisplayedUnit.numerators.filter(
+			(u) => u === '€'
+		)
+		formatOptions = {
+			style: 'currency',
+			currency: 'EUR',
+			minimumFractionDigits: 0,
+
+			...formatOptions,
+		}
+	} else {
+		formatOptions = {
+			style: 'decimal',
+			...formatOptions,
+		}
 	}
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
@@ -58,7 +63,15 @@ export default function NumberInput({
 			<NumberField
 				{...(fieldProps as NumberFieldProps)}
 				description=""
-				displayedUnit={displayedUnit}
+				displayedUnit={
+					parsedDisplayedUnit &&
+					getSerializedUnit(
+						currentValue ?? 0,
+						parsedDisplayedUnit,
+						i18n.language,
+						t
+					)
+				}
 				onChange={(valeur) => {
 					setCurrentValue(valeur)
 					if (valeur != null && unité) {

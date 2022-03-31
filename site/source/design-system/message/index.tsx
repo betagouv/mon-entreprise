@@ -5,6 +5,7 @@ import infoIcon from './infoIcon.svg'
 import errorIcon from './errorIcon.svg'
 import successIcon from './successIcon.svg'
 import { Body } from '../typography/paragraphs'
+import { Palette, SmallPalette } from '../styled'
 
 type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
@@ -74,9 +75,9 @@ const StyledMessage = styled.div<
 >`
 	display: flex;
 	position: relative;
-	align-items: flex-start;
+	align-items: baseline;
 	${({ theme, type, border, light }) => {
-		const colorSpace =
+		const colorSpace: Palette | SmallPalette =
 			type === 'secondary' || type === 'primary'
 				? theme.colors.bases[type]
 				: theme.colors.extended[type]
@@ -87,6 +88,13 @@ const StyledMessage = styled.div<
 			border: 2px solid ${colorSpace[border ? 500 : 100]};
 			border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
+
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
+			}
 		`
 	}}
 `

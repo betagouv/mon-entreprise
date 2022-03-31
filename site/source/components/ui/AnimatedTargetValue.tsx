@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'

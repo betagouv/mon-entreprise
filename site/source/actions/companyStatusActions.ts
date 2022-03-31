@@ -1,12 +1,9 @@
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
+import { LegalStatusRequirements } from '@/types/companyTypes'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
-import { LegalStatusRequirements } from '@/types/companyTypes'
 import { Action } from './actions'
-import { addCommuneDetails, setCompany } from './companyActions'
-import { fetchCommuneDetails } from '@/api/commune'
 
 export type CompanyStatusAction = ReturnType<
 	| typeof isSoleProprietorship
@@ -74,21 +71,3 @@ export const resetCompanyStatusChoice = (
 		type: 'RESET_COMPANY_STATUS_CHOICE',
 		answersToReset,
 	} as const)
-
-export const useSetEntreprise = () => {
-	const dispatch = useDispatch()
-
-	return (entreprise: FabriqueSocialEntreprise | null) => {
-		if (entreprise === null) {
-			return
-		}
-		dispatch(setCompany(entreprise))
-		void fetchCommuneDetails(
-			entreprise.firstMatchingEtablissement.codeCommuneEtablissement,
-			entreprise.firstMatchingEtablissement.codePostalEtablissement
-		).then(
-			(communeDetails) =>
-				communeDetails && dispatch(addCommuneDetails(communeDetails))
-		)
-	}
-}

@@ -110,8 +110,8 @@ export const Markdown = ({
 	<MarkdownToJsx
 		{...otherProps}
 		options={{
-			...otherProps.options,
 			forceBlock: true,
+			...otherProps.options,
 			overrides: {
 				h1: H1,
 				h2: H2,
@@ -127,7 +127,9 @@ export const Markdown = ({
 				li: Li,
 				code: CodeBlock,
 				span: TextRenderer,
-				blockquote: Message,
+				blockquote: (props) => (
+					<Message type="info" border={false} icon {...props} />
+				),
 				...components,
 			},
 		}}

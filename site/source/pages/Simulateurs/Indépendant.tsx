@@ -78,7 +78,6 @@ function IndépendantSimulationGoals({
 				<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 					<SimulationGoal
 						appear={false}
-						alwaysShow
 						dottedName="entreprise . chiffre d'affaires"
 					/>
 				</Condition>
@@ -103,7 +102,6 @@ function IndépendantSimulationGoals({
 			<SimulationGoal
 				small
 				editable={false}
-				alwaysShow
 				dottedName="dirigeant . indépendant . cotisations et contributions"
 			/>
 			<Condition expression="entreprise . imposition . IR . micro-fiscal">

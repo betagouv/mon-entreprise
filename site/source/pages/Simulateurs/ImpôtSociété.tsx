@@ -18,8 +18,7 @@ const ISConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		'entreprise . imposition': "'IS'",
-		'entreprise . imposition . IS . impôt sur les sociétés . éligible taux réduit':
-			'oui',
+		'entreprise . imposition . IS . éligible taux réduit': 'oui',
 		"entreprise . chiffre d'affaires . franchise de TVA": 'non',
 	},
 } as SimulationConfig
@@ -106,7 +105,7 @@ function Explanations() {
 			<ExplanationsContainer>
 				<Intro>
 					<Value
-						expression="entreprise . imposition . IS . impôt sur les sociétés"
+						expression="entreprise . imposition . IS . montant"
 						displayedUnit="€"
 						className="payslip__total"
 					/>

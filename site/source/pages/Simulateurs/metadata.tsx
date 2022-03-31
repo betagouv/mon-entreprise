@@ -1,16 +1,20 @@
+import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import React, { createContext, useContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
 import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
-import AideDéclarationIndépendant from '../Gerer/AideDéclarationIndépendant/PreviousVersion'
-import FormulaireMobilitéIndépendant from '../Gerer/DemandeMobilite'
+import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
+import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
+import FormulaireMobilitéIndépendant from '../gerer/demande-mobilité'
 import AidesEmbauche from './AidesEmbauche'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
@@ -43,9 +47,6 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Strong } from '@/design-system/typography'
-import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 
 interface SimulatorsDataParams {
 	t?: TFunction<'translation', string>
@@ -501,8 +502,13 @@ function getSimulatorsData({
 		},
 		'déclaration-charges-sociales-indépendant': {
 			...pureSimulatorsData['déclaration-charges-sociales-indépendant'],
-			component: AideDéclarationIndépendant,
-			path: sitePaths.gérer.déclarationIndépendant,
+			component: DéclarationChargeSocialeIndépendant,
+			path: sitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		},
+		'déclaration-revenu-indépendant': {
+			...pureSimulatorsData['déclaration-revenu-indépendant'],
+			component: DéclarationRevenuIndépendant,
+			path: sitePaths.gérer.déclarationIndépendant.index,
 		},
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],

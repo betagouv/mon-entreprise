@@ -35,7 +35,7 @@ export default function PageHeader({
 				`}
 			>
 				{titre && <H1>{titre}</H1>}
-				{children}
+				<div>{children}</div>
 			</Grid>
 
 			{picture && (

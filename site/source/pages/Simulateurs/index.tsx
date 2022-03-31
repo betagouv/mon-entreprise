@@ -8,7 +8,7 @@ import { Trans } from 'react-i18next'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import Home from './Home'
 import useSimulatorsData from './metadata'
-import SimulateurPage from './Page'
+import SimulateurPage from '../../components/PageData'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
