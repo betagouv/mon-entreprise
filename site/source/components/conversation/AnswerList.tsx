@@ -1,8 +1,9 @@
-import { resetSimulation, stepAction, updateSituation } from '@/actions/actions'
+import { resetSimulation, updateSituation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -12,14 +13,16 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { evaluateQuestion } from '@/utils'
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
-import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Value from '../EngineValue'
+import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
 
 type AnswerListProps = {
@@ -158,63 +161,51 @@ function StepsTable({
 function AnswerElement(
 	rule: EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }
 ) {
-	const [isEditing, setEditing] = useState(false)
-
 	const dispatch = useDispatch()
-	const ruleInputRef = useRef<HTMLDivElement | null>(null)
 
-	useEffect(() => {
-		const onClickOutside = (click: MouseEvent) => {
-			if (!ruleInputRef.current) {
-				return
-			}
-			if (
-				click.target instanceof HTMLElement &&
-				ruleInputRef.current.contains(click.target)
-			) {
-				return
-			}
-			setEditing(false)
-		}
-		window.addEventListener('click', onClickOutside)
-
-		return () => window.removeEventListener('click', onClickOutside)
-	}, [])
-	const situation = useSelector(situationSelector)
+	const dottedName = rule.dottedName
 	const handleChange = useCallback(
 		(value) => {
-			dispatch(updateSituation(rule.dottedName, value))
-
-			if (!(rule.dottedName in situation)) {
-				dispatch(stepAction(rule.dottedName))
-			}
+			dispatch(updateSituation(dottedName, value))
 		},
-		[dispatch, rule.dottedName, situation]
+		[dispatch, dottedName]
 	)
-	const handleSubmit = useCallback(() => {
-		setEditing(false)
-	}, [])
+	const engine = useEngine()
 
 	return rule.rawNode.question ? (
-		isEditing ? (
-			<div ref={ruleInputRef}>
-				<form onSubmit={handleSubmit}>
-					<RuleInput
-						dottedName={rule.dottedName}
-						onChange={handleChange}
-						autoFocus
-						showSuggestions={false}
-						onBlur={handleSubmit}
-						onSubmit={handleSubmit}
-					/>
-				</form>
-			</div>
-		) : (
-			<Link onPress={() => setEditing(true)} title="Modifier">
-				<Value expression={rule.dottedName} linkToRule={false} />{' '}
-				<Emoji emoji="✏" alt="Modifier" />
-			</Link>
-		)
+		<PopoverWithTrigger
+			small
+			trigger={(buttonProps) => (
+				<Link {...buttonProps} title="Modifier">
+					<Value expression={rule.dottedName} linkToRule={false} />{' '}
+					<Emoji emoji="✏" alt="Modifier" />
+				</Link>
+			)}
+		>
+			{(onClose) => (
+				<>
+					<form onSubmit={onClose}>
+						<H3>
+							{evaluateQuestion(engine, engine.getRule(rule.dottedName))}
+							<ExplicableRule light dottedName={rule.dottedName} />
+						</H3>
+						<RuleInput
+							dottedName={rule.dottedName}
+							onChange={handleChange}
+							autoFocus
+							showSuggestions={false}
+							onSubmit={onClose}
+						/>
+					</form>
+
+					<Spacing lg />
+					<Button size="XS" onPress={onClose}>
+						Continuer
+					</Button>
+					<Spacing md />
+				</>
+			)}
+		</PopoverWithTrigger>
 	) : (
 		<Value expression={rule.dottedName} linkToRule={false} />
 	)

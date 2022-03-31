@@ -3550,10 +3550,16 @@ contrat salarié . statut JEI:
 
 
     Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
-  question.en: '[automatic] Does the person benefit from the Young Innovative
-    Company (JEI) exemption?'
-  question.fr: La personne bénéficie-t-elle de l'exonération Jeune Entreprise
-    Innovante (JEI) ?
+  question.en: '[automatic] '
+  question.fr:
+    variations:
+      - alors:
+          texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
+        si: dirigeant
+      - sinon:
+          texte:
+            Le salarié bénéficie-t-il de l'exonération Jeune Entreprise Innovante
+            (JEI) ?
   titre.en: JEI status
   titre.fr: Statut JEI
 contrat salarié . statut JEI . exonération de cotisations:
@@ -5169,11 +5175,10 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     Les practicien et auxiliaire médical exerçant une activité de remplacement
     ne sont pas redevables de la contribution aux unions régionales des
     professionnels de santé (CURPS)
-  question.en: '[automatic] On 1 January 2020, were you working exclusively as a
-    replacement?'
+  question.en: '[automatic] '
   question.fr:
-    Au 1er janvier 2020, exerciez-vous votre activité exclusivement en
-    tant que remplaçant ?
+    texte: Au {{ période . début d'année }}, exerciez-vous votre activité
+      exclusivement en tant que remplaçant ?
   titre.en: '[automatic] replacing'
   titre.fr: remplaçant
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
@@ -9133,8 +9138,14 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
 
     Une cotisation maladie majorée de 14,5% sera en revanche applicable.
-  question.en: "[automatic] Is the person's tax residence located abroad?"
-  question.fr: La résidence fiscale de la personne est-elle située à l'étranger ?
+  question.en: '[automatic] '
+  question.fr:
+    variations:
+      - alors:
+          texte: Votre résidence fiscale est-elle située à l'étranger ?
+        si: dirigeant
+      - sinon:
+          texte: La résidence fiscale du salarié est-elle située à l'étranger ?
   titre.en: '[automatic] Tax residence outside France'
   titre.fr: Résidence fiscale hors de France
 établissement:
