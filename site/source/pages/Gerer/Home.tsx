@@ -206,7 +206,7 @@ export default function Gérer() {
 				</FromTop>
 			)}
 
-			<Trans>
+			<Trans i18nKey="gérer.PdE">
 				<H2>
 					Échanger avec le conseiller qui peut vous aider selon votre
 					problématique
