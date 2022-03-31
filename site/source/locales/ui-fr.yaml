@@ -204,6 +204,12 @@
       avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de
       mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction
       affectant de manière prépondérante la poursuite de votre activité.</1>
+"<0>Entre début {{firstMonth}} {{firstYear}} et fin {{lastMonth}} {{lastYear}}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
+  <0>Entre début {{firstMonth}} {{firstYear}} et fin {{lastMonth}} {{lastYear}},
+  combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez
+  le nombre de mois durant lesquels vous avez fait l’objet d’une mesure
+  d’interdiction affectant de manière prépondérante la poursuite de votre
+  activité.</1>
 "<0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
   <0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté
   par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous
@@ -224,6 +230,9 @@
   <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année
   2021</0>
 <0>Oui</0>: <0>Oui</0>
+<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1>:
+  <0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre
+  parenthèses dans la déclaration EDI de votre client</1>
 "<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1><2><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2> (<4>{engine":
     "evaluate('code . secteur').nodeValue}</4>)</0><1>Activité exercée en <2>{engine":
@@ -272,6 +281,7 @@
                   <6><0></0></6></0></7></0><1>LFR1 : <2><0></0></2>
                   (<5>{engine.evaluate('code .
                   LFR1').nodeValue}</5>)</1></1></3></2>"
+<0>Résumé</0>: <0>Résumé</0>
 "<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
     "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
@@ -331,6 +341,7 @@
   publics sont mobilisés pour vous accompagner en fonction de votre
   problématique.<1></1>Le conseiller compétent proche de chez vous vous rappelle
   sous 5 jours.</3>"
+"Activité exercée en ": "Activité exercée en "
 Assimilé salarié: Assimilé salarié
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants à la déclaration de revenus 2021 des indépendants
 Aucun: Aucun
@@ -355,6 +366,7 @@ Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Créee le <2><0></0><
 Créer une: Créer une
 Devenir: Devenir
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
+"Début d'activité : ": "Début d'activité : "
 Découvrir: Découvrir
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
   Décrivez votre projet ou votre problème en donnant quelques éléments de
@@ -362,6 +374,8 @@ Découvrir: Découvrir
   parapublics, le conseiller compétent pour votre demande. Celui-ci vous
   contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
   situation.
+"Eligibilité LFR : ": "Eligibilité LFR : "
+"Eligibilité LFSS : ": "Eligibilité LFSS : "
 En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
 Exonérations: Exonérations
@@ -392,6 +406,11 @@ Montant de l’exonération sociale liée à la crise sanitaire pour les cotisat
   Montant de l’exonération sociale liée à la crise sanitaire pour les
   cotisations de l’année 2021
 Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021
+"Nombre de mois LFR : ": "Nombre de mois LFR : "
+"Nombre de mois LFSS 300 : ": "Nombre de mois LFSS 300 : "
+"Nombre de mois LFSS 600 : ": "Nombre de mois LFSS 600 : "
+Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité
+"Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : ": "Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : "
 Non: Non
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
@@ -434,6 +453,7 @@ Salaire: Salaire
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
+"Secteur d'activité dont relève l'activité principale : ": "Secteur d'activité dont relève l'activité principale : "
 Simulateurs: Simulateurs
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
@@ -887,6 +907,18 @@ gérant minoritaire:
     titre: Gérant majoritaire ou minoritaire
   titre: Gérant majoritaire ou minoritaire
 gérer:
+  PdE: "<0>Échanger avec le conseiller qui peut vous aider selon votre
+    problématique</0><1><0>Vous souhaitez :</0><1><0>recruter, former vos
+    salariés</0><1>financer vos projets d'investissement</1><2>résoudre un
+    problème de trésorerie</2><3>être conseillé(e) en droit du
+    travail</3><4>développer votre activité commerciale</4><5>vendre sur
+    internet</5><6>vendre ou reprendre une entreprise</6><7>améliorer la santé
+    et sécurité au travail</7><8>entrer dans une démarche de transition
+    écologique & RSE</8></1></1><2><0>Service public simple et rapide : vous
+    êtes rappelé(e) par LE conseiller qui peut vous aider.</0></2><3>Plus de 40
+    partenaires publics sont mobilisés pour vous accompagner en fonction de
+    votre problématique.<1></1>Le conseiller compétent proche de chez vous vous
+    rappelle sous 5 jours.</3>"
   avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
     revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que
     nous développions un nouveau simulateur, laissez-nous message en cliquant

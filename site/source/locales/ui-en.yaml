@@ -200,6 +200,11 @@
       crisis?</0><1>Specify the number of months that you were subject to a
       prohibition measure that significantly affected the continuation of your
       business.</1>
+"<0>Entre début {{firstMonth}} {{firstYear}} et fin {{lastMonth}} {{lastYear}}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
+  <0>Between the beginning {{firstMonth}} {{firstYear}} and the end
+  {{lastMonth}} {{lastYear}}, how many months were you impacted by the health
+  crisis?</0><1>Specify the number of months that you were subject to a ban that
+  significantly affected your business.</1>
 "<0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
   <0>Between {firstMonth} and {lastMonth}, how many months were you impacted by
   the health crisis?</0><1>Specify the number of months that you were subject to
@@ -215,6 +220,9 @@
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>: <0>Month</0><1>Health crisis situation</1><2>Amount of reduction</2>
 <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>: <0>Amount of the social exemption related to the health crisis in 2021</0>
 <0>Oui</0>: <0>Yes</0>
+<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1>:
+  <0>Summary for Third Party Filers</0><1>Transfer the items in brackets to your
+  client's EDI report</1>
 "<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1><2><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2> (<4>{engine":
     "evaluate('code . secteur').nodeValue}</4>)</0><1>Activité exercée en <2>{engine":
@@ -261,6 +269,7 @@
                   and LFSS 300 <6><0></0></6></0></7></0><1>LFR1:
                   <2><0></0></2><5>({engine.evaluate('code .
                   LFR1').nodeValue}</5>)</1></1></3></2>"
+<0>Résumé</0>: <0>Summary</0>
 "<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
     "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
@@ -320,6 +329,7 @@
   competent advisor near you will call you back within 5 days.</3>"
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
+"Activité exercée en ": "Activity carried out in "
 Afficher la description publicodes: Display publicodes description
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
@@ -375,6 +385,7 @@ Demande de mobilité: Demand for mobility
 Destinataire: Levied by
 Devenir: Become
 "Domiciliée à l'adresse :": "Domiciled at the address :"
+"Début d'activité : ": "Start of activity: "
 Déclenchement: Applicability
 Découvrir: Discover
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
@@ -386,6 +397,8 @@ Démarches de création: Creation process checklist
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 Effacer: Reset
+"Eligibilité LFR : ": "LFR Eligibility: "
+"Eligibilité LFSS : ": "LFSS Eligibility: "
 Embauche: Hiring process
 Employeur: Employer
 En incluant l'indemnité de chômage partiel: Including short-time working allowance
@@ -440,6 +453,11 @@ Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant de l’exonération sociale liée à la crise sanitaire pour les cotisations de l’année 2021: Amount of the health crisis exemption for contributions in 2021
 Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Amount of the social exemption related to the health crisis in 2021
 Montant des cotisations: Amount of contributions
+"Nombre de mois LFR : ": "Number of months LFR : "
+"Nombre de mois LFSS 300 : ": "Number of months LFSS 300 : "
+"Nombre de mois LFSS 600 : ": "Number of months LFSS 600 : "
+Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: Number of months for which you are eligible
+"Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : ": "Number of months for which you qualify: "
 Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
@@ -516,6 +534,7 @@ Salarié: Employee
 Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
+"Secteur d'activité dont relève l'activité principale : ": "Sector of activity to which the main activity belongs : "
 Si: If
 Simulateur de salaire: Employee salary simulation
 Simulateurs: Simulations
@@ -1113,6 +1132,17 @@ gérant minoritaire:
     titre: Chairman or managing director in France
   titre: Chairman or managing director
 gérer:
+  PdE: "<0>Discuss with the consultant who can help you according to your
+    problem</0><1><0>You wish to :</0><1><0>recruit, train your
+    employees</0><1>finance your investment projects</1><2>solve a cash flow
+    problem</2><3>be advised on labor law</3><4>develop your commercial
+    activity</4><5>sell on the internet</5><6>selling or taking over a
+    company</6><7>improve health and safety at work</7><8>enter into an
+    ecological and CSR transition process</8></1></1><2><0>Quick and easy public
+    service: you are called back by THE advisor who can help you.</0></2><3>More
+    than 40 public partners are mobilized to assist you according to your
+    problem.<1></1>The competent advisor near you will call you back within 5
+    days.</3>"
   avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
     for your type of business on this site.</0><1>If you would like us to
     develop a new simulator, leave us a message by clicking on the "Make a

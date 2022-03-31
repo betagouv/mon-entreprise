@@ -79,9 +79,11 @@ export const FormulaireS2 = ({
 				<>
 					<Trans>
 						<H3>
-							Entre début {monthNames[firstMonth - 1]} {firstYear.toString()} et
-							fin {monthNames[lastMonth - 1]} {lastYear.toString()}, combien de
-							mois avez-vous été impacté par la crise sanitaire ?
+							Entre début {{ firstMonth: monthNames[firstMonth - 1] }}{' '}
+							{{ firstYear: firstYear.toString() }} et fin{' '}
+							{{ lastMonth: monthNames[lastMonth - 1] }}{' '}
+							{{ lastYear: lastYear.toString() }}, combien de mois avez-vous été
+							impacté par la crise sanitaire ?
 						</H3>
 						<Body>
 							Précisez le nombre de mois durant lesquels vous avez fait l’objet
@@ -167,168 +169,170 @@ export const FormulaireS2 = ({
 				</Trans>
 			)}
 
-			<Trans>
-				<Grid container>
-					<Grid item md={6}>
+			<Grid container>
+				<Grid item md={6}>
+					<Trans>
 						<H3>Résumé</H3>
+					</Trans>
 
-						<RecapExpert>
-							<Li>
+					<RecapExpert>
+						<Li>
+							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
-								<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
-							</Li>
-							<Li>
-								Activité exercée en{' '}
-								<Bold as="span">
-									{engine.evaluate("lieu d'exercice").nodeValue}
-								</Bold>
-							</Li>
-							<Li>
-								Début d'activité :{' '}
-								<Bold as="span">
-									{engine.evaluate("début d'activité").nodeValue}
-								</Bold>
-							</Li>
-							<Li>
+							</Trans>
+							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+						</Li>
+						<Li>
+							<Trans>Activité exercée en </Trans>
+							<Bold as="span">
+								{engine.evaluate("lieu d'exercice").nodeValue}
+							</Bold>
+						</Li>
+						<Li>
+							<Trans>Début d'activité : </Trans>
+							<Bold as="span">
+								{engine.evaluate("début d'activité").nodeValue}
+							</Bold>
+						</Li>
+						<Li>
+							<Trans>
 								Nombres de mois pour lesquels vous remplissez les conditions
 								d'éligibilité :{' '}
-								<Bold as="span">
-									<Value
-										engine={engine}
-										expression="exonération S2 . mois éligibles"
-										linkToRule={false}
-										precision={0}
-									/>
-								</Bold>
-							</Li>
-						</RecapExpert>
-					</Grid>
+							</Trans>
+							<Bold as="span">
+								<Value
+									engine={engine}
+									expression="exonération S2 . mois éligibles"
+									linkToRule={false}
+									precision={0}
+								/>
+							</Bold>
+						</Li>
+					</RecapExpert>
+				</Grid>
 
-					<Grid item md={6}>
+				<Grid item md={6}>
+					<Trans>
 						<H3>Résumé pour les tiers-déclarants</H3>
 						<Body>
 							Reportez les éléments entre parenthèses dans la déclaration EDI de
 							votre client
 						</Body>
+					</Trans>
 
-						<RecapExpert>
-							<Li>
+					<RecapExpert>
+						<Li>
+							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
-								<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
-								<Bold as="span">
-									{engine.evaluate('code . secteur').nodeValue}
-								</Bold>
-								)
-							</Li>
+							</Trans>
+							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
+							<Bold as="span">
+								{engine.evaluate('code . secteur').nodeValue}
+							</Bold>
+							)
+						</Li>
 
-							<Li>
-								Activité exercée en{' '}
-								<Bold as="span">
-									{engine.evaluate("lieu d'exercice").nodeValue}
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{engine.evaluate("code . lieu d'exercice").nodeValue}
-								</Bold>
-								)
-							</Li>
+						<Li>
+							<Trans>Activité exercée en </Trans>
+							<Bold as="span">
+								{engine.evaluate("lieu d'exercice").nodeValue}
+							</Bold>{' '}
+							(
+							<Bold as="span">
+								{engine.evaluate("code . lieu d'exercice").nodeValue}
+							</Bold>
+							)
+						</Li>
 
-							<Li>
-								Début d'activité :{' '}
-								<Bold as="span">
-									{engine.evaluate("début d'activité").nodeValue}
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{engine.evaluate("code . début d'activité").nodeValue}
-								</Bold>
-								)
-							</Li>
+						<Li>
+							<Trans>Début d'activité : </Trans>
+							<Bold as="span">
+								{engine.evaluate("début d'activité").nodeValue}
+							</Bold>{' '}
+							(
+							<Bold as="span">
+								{engine.evaluate("code . début d'activité").nodeValue}
+							</Bold>
+							)
+						</Li>
 
-							<Li>
-								Eligibilité LFSS :{' '}
-								<Bold as="span">
-									{formatYesNo(
-										engine.evaluate('code . LFSS')
-											.nodeValue as Evaluation<string>
-									)}
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{
-										engine
-											.evaluate('code . LFSS')
-											.nodeValue?.toString()
-											.split(';')[0]
-									}
-								</Bold>
-								)
-							</Li>
+						<Li>
+							<Trans>Eligibilité LFSS : </Trans>
+							<Bold as="span">
+								{formatYesNo(
+									engine.evaluate('code . LFSS').nodeValue as Evaluation<string>
+								)}
+							</Bold>{' '}
+							(
+							<Bold as="span">
+								{
+									engine
+										.evaluate('code . LFSS')
+										.nodeValue?.toString()
+										.split(';')[0]
+								}
+							</Bold>
+							)
+						</Li>
 
-							<Li>
-								Eligibilité LFR :{' '}
-								<Bold as="span">
-									{formatYesNo(
-										engine.evaluate('code . LFR1').nodeValue?.toString()
-									)}
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{engine.evaluate('code . LFR1').nodeValue}
-								</Bold>
-								)
-							</Li>
+						<Li>
+							<Trans>Eligibilité LFR : </Trans>
+							<Bold as="span">
+								{formatYesNo(
+									engine.evaluate('code . LFR1').nodeValue?.toString()
+								)}
+							</Bold>{' '}
+							(<Bold as="span">{engine.evaluate('code . LFR1').nodeValue}</Bold>
+							)
+						</Li>
 
-							<Li>
-								Nombre de mois LFSS 600 :{' '}
-								<Bold as="span">
-									<Value
-										engine={engine}
-										expression="exonération S2 . mois éligibles"
-										linkToRule={false}
-										precision={0}
-									/>
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{formatZeroToEmpty(
-										engine
-											.evaluate('exonération S2 . mois éligibles')
-											.nodeValue?.toString()
-									)}
-								</Bold>
-								)
-							</Li>
+						<Li>
+							<Trans>Nombre de mois LFSS 600 : </Trans>
+							<Bold as="span">
+								<Value
+									engine={engine}
+									expression="exonération S2 . mois éligibles"
+									linkToRule={false}
+									precision={0}
+								/>
+							</Bold>{' '}
+							(
+							<Bold as="span">
+								{formatZeroToEmpty(
+									engine
+										.evaluate('exonération S2 . mois éligibles')
+										.nodeValue?.toString()
+								)}
+							</Bold>
+							)
+						</Li>
 
-							<Li>
-								Nombre de mois LFSS 300 :{' '}
-								<Bold as="span">0 mois ({t('vide')})</Bold>
-							</Li>
+						<Li>
+							<Trans>Nombre de mois LFSS 300 : </Trans>
+							<Bold as="span">0 mois ({t('vide')})</Bold>
+						</Li>
 
-							<Li>
-								Nombre de mois LFR :{' '}
-								<Bold as="span">
-									<Value
-										engine={engine}
-										expression="LFR1 . mois éligibles"
-										linkToRule={false}
-										precision={0}
-									/>
-								</Bold>{' '}
-								(
-								<Bold as="span">
-									{formatZeroToEmpty(
-										engine
-											.evaluate('LFR1 . mois éligibles')
-											.nodeValue?.toString()
-									)}
-								</Bold>
-								)
-							</Li>
-						</RecapExpert>
-					</Grid>
+						<Li>
+							<Trans>Nombre de mois LFR : </Trans>
+							<Bold as="span">
+								<Value
+									engine={engine}
+									expression="LFR1 . mois éligibles"
+									linkToRule={false}
+									precision={0}
+								/>
+							</Bold>{' '}
+							(
+							<Bold as="span">
+								{formatZeroToEmpty(
+									engine.evaluate('LFR1 . mois éligibles').nodeValue?.toString()
+								)}
+							</Bold>
+							)
+						</Li>
+					</RecapExpert>
 				</Grid>
-			</Trans>
+			</Grid>
 		</>
 	)
 }
