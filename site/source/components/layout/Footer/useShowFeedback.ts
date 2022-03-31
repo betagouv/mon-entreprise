@@ -9,7 +9,7 @@ export const useShowFeedback = () => {
 	const simulators = useSimulatorsData()
 	if (
 		[
-			simulators['aide-déclaration-indépendant'],
+			simulators['déclaration-charges-sociales-indépendant'],
 			simulators['comparaison-statuts'],
 			simulators['demande-mobilité'],
 		]
