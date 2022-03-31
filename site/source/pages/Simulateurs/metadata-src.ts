@@ -345,31 +345,31 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'Assistant statut juridique'
 			),
 		},
-		'aide-déclaration-indépendant': {
+		'déclaration-charges-sociales-indépendant': {
 			tracking: {
 				chapter1: 'gerer',
-				chapter2: 'aide_declaration_independant',
+				chapter2: 'declaration_charges_sociales_independant',
 			},
 			icône: '✍️',
 			meta: {
 				description: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.description',
-					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021'
+					'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
+					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021.'
 				),
 				title: t(
-					'pages.gérer.aide-déclaration-indépendant.meta.title',
-					'Déclaration de revenus indépendant : calcul du montant des cotisations'
+					'pages.gérer.declaration_charges_sociales_indépendant.meta.title',
+					'Détermination des charges sociales déductibles'
 				),
 			},
 			pathId: 'gérer.déclarationIndépendant',
 			shortName: t(
-				'pages.gérer.aide-déclaration-indépendant.shortname',
+				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 				'Détermination des charges sociales déductibles'
 			),
-			iframePath: 'aide-déclaration-indépendant',
+			iframePath: 'déclaration-charges-sociales-indépendant',
 			title: t(
-				'pages.gérer.aide-déclaration-indépendant.title',
-				'Assistant à la déclaration de revenus pour indépendant'
+				'pages.gérer.declaration_charges_sociales_indépendant.title',
+				'Assistant à la détermination des charges sociales déductibles'
 			),
 		},
 		'demande-mobilité': {
@@ -706,24 +706,24 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.exonération-covid',
 			meta: {
 				title: t(
-					'pages.simulateurs.dividendes.meta.title',
+					'pages.simulateurs.exo-covid.meta.title',
 					'Exonération de cotisations covid'
 				),
 				description: t(
-					'pages.simulateurs.dividendes.meta.description',
-					"Déterminez les éléments à déclarer pour bénéficier de l'exonération Covid et obtenir les codes « norme EDI » à lancer le simulateur"
+					'pages.simulateurs.exo-covid.meta.description',
+					'Déterminez les éléments à déclarer pour bénéficier de l’exonération Covid et obtenir les codes « norme EDI »'
 				),
 			},
 			shortName: t(
-				'pages.simulateurs.dividendes.meta.title',
-				"Simulateur d'exonération COVID"
+				'pages.simulateurs.exo-covid.meta.title',
+				'Simulateur d’exonération COVID'
 			),
 			title: t(
-				'pages.simulateurs.dividendes.title',
+				'pages.simulateurs.exo-covid.title',
 				"Simulateur d'exonération de cotisations Covid pour indépendant"
 			),
 
-			nextSteps: ['aide-déclaration-indépendant'],
+			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
 	} as const
 

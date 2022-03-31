@@ -175,7 +175,7 @@ export default function Gérer() {
 						<WhenApplicable dottedName="dirigeant . indépendant">
 							<SimulateurCard
 								fromGérer
-								{...simulateurs['aide-déclaration-indépendant']}
+								{...simulateurs['déclaration-charges-sociales-indépendant']}
 							/>
 						</WhenApplicable>
 						<WhenApplicable dottedName="entreprise . imposition . IS">
