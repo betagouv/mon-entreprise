@@ -339,6 +339,7 @@ Annuel: Yearly
 Année d'activité: Years of activity
 Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
+Assistants à la déclaration de revenu des indépendants: Self-employed tax return assistants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants to the 2021 tax return for the self-employed
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
@@ -1476,6 +1477,13 @@ pages:
         title: "Self-employed tax return: calculation of the amount of contributions"
       shortname: Determination of deductible social charges
       title: Self-employed tax return assistant
+    declaration_charges_sociales_indépendant:
+      meta:
+        description: Calculate the amount of social security contributions to be
+          reported on your 2021 income tax return.
+        title: Determination of deductible social charges
+      shortname: Determination of deductible social charges
+      title: Assistance in determining deductible social charges
     demande-mobilité:
       meta:
         description: Interactive form to be filled in if you work abroad
@@ -1734,9 +1742,9 @@ pages:
         questions.</4>"
     dividendes:
       meta:
-        description: Determine the elements to be declared to benefit from the Covid
-          exemption and obtain the "EDI standard" codes to launch the simulator
-        title: COVID exemption simulator
+        description: Calculate the amount of tax and contributions on dividends paid by
+          your company.
+        title: Dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the result of the previous year can be kept in reserve (for future
         investments) or paid out as dividends. From the point of view of the
@@ -1755,7 +1763,7 @@ pages:
         share capital will be subject to contributions and levies in the same
         way as his or her remuneration as a manager.</7><8>This case is not yet
         taken into account by this simulator.</8>
-      title: Covid contribution exemption simulator for self-employed
+      title: Dividend Payment Simulator
     ei:
       meta:
         description: Calculation of income from turnover, after deduction of
@@ -1819,6 +1827,12 @@ pages:
         titre: "EURL : income simulator for managers"
       shortname: EURL
       title: EURL Simulator
+    exo-covid:
+      meta:
+        description: Determine the elements to be declared to benefit from the Covid
+          exemption and obtain the "EDI standard" codes
+        title: COVID exemption simulator
+      title: Covid contribution exemption simulator for self-employed
     expert-comptable:
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice

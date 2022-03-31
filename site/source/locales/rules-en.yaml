@@ -8930,10 +8930,10 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr:
     variations:
       - alors:
-          texte: Votre résidence fiscale est-elle située à l'étranger ?
+          texte: Votre résidence fiscale est-elle située hors de France ?
         si: dirigeant
       - sinon:
-          texte: La résidence fiscale du salarié est-elle située à l'étranger ?
+          texte: La résidence fiscale du salarié est-elle située hors de France ?
   titre.en: '[automatic] Tax residence outside France'
   titre.fr: Résidence fiscale hors de France
 établissement:
