@@ -1,7 +1,6 @@
 import { DottedName } from '@/../../modele-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
-import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
@@ -11,7 +10,9 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
-import { H2, H3, H4 } from '@/design-system/typography/heading'
+import { Strong } from '@/design-system/typography'
+import { H2, H4 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { evaluateQuestion } from '@/utils'
@@ -205,6 +206,66 @@ export default function Gérer() {
 				</FromTop>
 			)}
 
+			<Trans>
+				<H2>
+					Échanger avec le conseiller qui peut vous aider selon votre
+					problématique
+				</H2>
+				<Body as="div">
+					<span>Vous souhaitez :</span>
+					<Grid component={Ul} container>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							recruter, former vos salariés
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							financer vos projets d'investissement
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							résoudre un problème de trésorerie
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							être conseillé(e) en droit du travail
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							développer votre activité commerciale
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							vendre sur internet
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							vendre ou reprendre une entreprise
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							améliorer la santé et sécurité au travail
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							entrer dans une démarche de transition écologique & RSE
+						</Grid>
+					</Grid>
+				</Body>
+				<Body>
+					<Strong>
+						Service public simple et rapide : vous êtes rappelé(e) par LE
+						conseiller qui peut vous aider.
+					</Strong>
+				</Body>
+				<Body>
+					Plus de 40 partenaires publics sont mobilisés pour vous accompagner en
+					fonction de votre problématique.
+					<br />
+					Le conseiller compétent proche de chez vous vous rappelle sous 5
+					jours.
+				</Body>
+			</Trans>
+
+			<PlacesDesEntreprisesButton
+				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
+				siret={
+					engine.evaluate('établissement . SIRET')
+						.nodeValue as Evaluation<string>
+				}
+			/>
+
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>
@@ -231,14 +292,6 @@ export default function Gérer() {
 					<KbisCard />
 				</Grid>
 			</Grid>
-
-			<PlacesDesEntreprisesButton
-				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
-				siret={
-					engine.evaluate('établissement . SIRET')
-						.nodeValue as Evaluation<string>
-				}
-			/>
 		</>
 	)
 }

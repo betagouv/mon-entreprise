@@ -11,8 +11,7 @@ export const Ul = styled.ul<UlProps>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	list-style: none;
-	position: relative;
-	padding-left: ${({ theme }) => theme.spacings.lg};
+	padding: 0;
 	${({ size = 'MD' }) =>
 		size === 'XS'
 			? css`
@@ -27,6 +26,8 @@ export const Ul = styled.ul<UlProps>`
 			  `}
 
 	${Li} {
+		position: relative;
+		padding-left: ${({ theme }) => theme.spacings.lg};
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 		&::before {
 			content: '●';
