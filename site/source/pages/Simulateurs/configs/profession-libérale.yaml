@@ -24,8 +24,10 @@ questions:
     - dirigeant . indépendant . cotisations et contributions . exonérations
     - dirigeant . indépendant . revenus étrangers
     - entreprise . ZFU
+    - entreprise . effectif
 unité par défaut: €/an
 situation:
-  dirigeant . régime social: "'indépendant'"
   entreprise . activité: "'libérale'"
-  entreprise . imposition: "'IR'"
+  entreprise . catégorie juridique: "'EI'"
+  entreprise . catégorie juridique . EI . responsabilité limité: non
+  entreprise . catégorie juridique . EI . auto-entrepreneur: non

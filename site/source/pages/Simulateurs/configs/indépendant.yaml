@@ -28,7 +28,9 @@ questions:
     - dirigeant . indépendant . IJSS
     - dirigeant . indépendant . cotisations et contributions . exonérations
     - entreprise . ZFU
+    - entreprise . effectif
     - entreprise . activité . débit de tabac
+
 unité par défaut: €/an
 situation:
   dirigeant . régime social: "'indépendant'"
