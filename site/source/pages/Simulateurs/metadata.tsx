@@ -499,8 +499,8 @@ function getSimulatorsData({
 			component: Créer,
 			path: sitePaths.créer.guideStatut.index,
 		},
-		'aide-déclaration-indépendant': {
-			...pureSimulatorsData['aide-déclaration-indépendant'],
+		'déclaration-charges-sociales-indépendant': {
+			...pureSimulatorsData['déclaration-charges-sociales-indépendant'],
 			component: AideDéclarationIndépendant,
 			path: sitePaths.gérer.déclarationIndépendant,
 		},
