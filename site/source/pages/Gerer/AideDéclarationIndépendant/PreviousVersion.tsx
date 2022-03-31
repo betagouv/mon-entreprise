@@ -123,17 +123,13 @@ export default function AideDéclarationIndépendant() {
 							<H2>
 								<Trans>Exonérations</Trans>
 							</H2>
-							<Body>
-								<Emoji emoji="🏗️" /> Les calculs de l'exonération COVID 2021
-								sont en cours d'implémentation
-							</Body>
+							<SubSection dottedName="déclaration indépendants . réduction covid" />
+							<H3>Autres exonérations</H3>
 							<SimpleField dottedName="déclaration indépendants . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
-							<SubSection
-								hideTitle
-								dottedName="entreprise . effectif . seuil"
-							/>
-
+							<Condition expression="établissement . ZFU">
+								<SimpleField dottedName="entreprise . effectif . seuil" />
+							</Condition>
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle
