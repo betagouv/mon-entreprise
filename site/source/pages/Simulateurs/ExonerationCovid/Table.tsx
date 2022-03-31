@@ -166,9 +166,12 @@ export const Row = ({
 								actualMonth
 							)) ||
 							(lieu === 'outre-mer' &&
-								['mois . octobre 2021', 'mois . novembre 2021'].includes(
-									actualMonth
-								)))
+								[
+									'mois . juin 2021',
+									'mois . juillet 2021',
+									'mois . octobre 2021',
+									'mois . novembre 2021',
+								].includes(actualMonth)))
 					)
 
 					return hideChoice1
