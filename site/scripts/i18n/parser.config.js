@@ -10,7 +10,7 @@ export default {
 	defaultNamespace: 'translation',
 	// Default namespace used in your i18next config
 
-	defaultValue: 'NO_TRANSLATION',
+	defaultValue: (locale, namespace, key) => key,
 	// Default value to give to empty keys
 
 	indentation: 2,

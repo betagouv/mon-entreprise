@@ -341,7 +341,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'créer.guideStatut.index',
 			iframePath: 'choix-statut-juridique',
 			shortName: t(
-				'pages.économie-collaborative.shortname',
+				'pages.choix-statut.shortname',
 				'Assistant statut juridique'
 			),
 		},
@@ -403,11 +403,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			meta: {
 				title: t(
-					'pages.simulateurs.médecin.meta.title',
+					'pages.simulateurs.pharmacien.meta.title',
 					'Pharmacien : simulateur de revenus'
 				),
 				description: t(
-					'pages.simulateurs.médecin.meta.description',
+					'pages.simulateurs.pharmacien.meta.description',
 					'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour pharmacien en libéral'
 				),
 			},
@@ -541,11 +541,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			),
 			meta: {
 				title: t(
-					'pages.simulateurs.auxiliaire-medical.meta.title',
+					'pages.simulateurs.avocat.meta.title',
 					'Avocat : simulateur de revenus'
 				),
 				description: t(
-					'pages.simulateurs.auxiliaire-medical.meta.description',
+					'pages.simulateurs.avocat.meta.description',
 					'Calcul du revenu net après cotisations à partir du total des recettes.'
 				),
 			},
@@ -568,11 +568,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			),
 			meta: {
 				title: t(
-					'pages.simulateurs.auxiliaire-medical.meta.title',
+					'pages.simulateurs.expert-comptable.meta.title',
 					'Expert-comptable : simulateur de revenus'
 				),
 				description: t(
-					'pages.simulateurs.auxiliaire-medical.meta.description',
+					'pages.simulateurs.expert-comptable.meta.description',
 					'Calcul du revenu net après cotisations à partir du total des recettes.'
 				),
 			},
@@ -690,7 +690,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 				color: '#E71D66',
 			},
-			shortName: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
+			shortName: t('pages.simulateurs.dividendes.shortName', 'Dividendes'),
 			title: t(
 				'pages.simulateurs.dividendes.title',
 				'Simulateur de versement de dividendes'
@@ -706,20 +706,20 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.exonération-covid',
 			meta: {
 				title: t(
-					'pages.simulateurs.dividendes.meta.title',
+					'pages.simulateurs.exonération-covid.meta.title',
 					'Exonération de cotisations covid'
 				),
 				description: t(
-					'pages.simulateurs.dividendes.meta.description',
-					"Indépendants : calculez le montant de l'exonération de cotisations covid sur vos cotisations de 2021."
+					'pages.simulateurs.exonération-covid.meta.description',
+					"Déterminez les éléments à déclarer pour bénéficier de l'exonération Covid et obtenir les codes « norme EDI » à lancer le simulateur"
 				),
 			},
 			shortName: t(
-				'pages.simulateurs.dividendes.meta.title',
-				'Exonération Covid'
+				'pages.simulateurs.exonération-covid.shortName',
+				"Simulateur d'exonération COVID"
 			),
 			title: t(
-				'pages.simulateurs.dividendes.title',
+				'pages.simulateurs.exonération-covid.title',
 				"Simulateur d'exonération de cotisations Covid pour indépendant"
 			),
 

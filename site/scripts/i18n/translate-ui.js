@@ -3,6 +3,7 @@ import { assocPath } from 'ramda'
 import yaml from 'yaml'
 import {
 	fetchTranslation,
+	filterUnusedTranslations,
 	getUiMissingTranslations,
 	UiOriginalTranslationPath,
 	UiTranslationPath,
@@ -27,12 +28,17 @@ import {
 				}
 			})
 	)
+
+	const { frTranslations, enTranslations } = filterUnusedTranslations(
+		originalKeys,
+		translatedKeys
+	)
 	writeFileSync(
 		UiTranslationPath,
-		yaml.stringify(translatedKeys, { sortMapEntries: true })
+		yaml.stringify(enTranslations, { sortMapEntries: true })
 	)
 	writeFileSync(
 		UiOriginalTranslationPath,
-		yaml.stringify(originalKeys, { sortMapEntries: true })
+		yaml.stringify(frTranslations, { sortMapEntries: true })
 	)
 })()

@@ -2,7 +2,14 @@ import 'dotenv/config.js'
 import { readFileSync } from 'fs'
 import 'isomorphic-fetch'
 import { stringify } from 'querystring'
-import { equals, mergeAll, path as _path, pick, toPairs } from 'ramda'
+import {
+	assocPath,
+	equals,
+	mergeAll,
+	path as _path,
+	pick,
+	toPairs,
+} from 'ramda'
 import yaml from 'yaml'
 import rules from '../../../modele-social/dist/index.js'
 
@@ -114,6 +121,24 @@ export const getUiMissingTranslations = () => {
 		.map(([key]) => key)
 
 	return pick(missingTranslations, staticKeys)
+}
+
+export const filterUnusedTranslations = (fr, en) => {
+	const staticKeys = JSON.parse(readFileSync(UiStaticAnalysisPath, 'utf-8'))
+
+	const ret = Object.entries(staticKeys).reduce(
+		(obj, [key]) => {
+			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
+
+			obj.frTranslations = assocPath(keys, _path(keys, fr), obj.frTranslations)
+			obj.enTranslations = assocPath(keys, _path(keys, en), obj.enTranslations)
+
+			return obj
+		},
+		{ frTranslations: {}, enTranslations: {} }
+	)
+
+	return ret
 }
 
 export const fetchTranslation = async (text) => {

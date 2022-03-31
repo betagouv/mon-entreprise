@@ -2,9 +2,6 @@
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
-"<0></0> Pour en savoir plus, rendez-vous sur le site <3>aquoiserventlescotisations":
-  urssaf:
-    fr</3>: <0></0> To find out more, go to <3>aquoiserventlescotisations.urssaf.fr</3>
 "<0><0><0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
   "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
     "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
@@ -84,8 +81,6 @@
                         LFR1').nodeValue}</5>)</1></1></3></2></1></0>"
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Baisse entre 30% et 64% du chiffre d'affaires</0>: <0>30% to 64% drop in sales</0>
-<0>Baisse entre 30% à 64% du chiffre d'affaires</0>: <0>30% to 64% drop in sales</0>
-"<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité</1>:
   <0>Social Security Financing Act (LFSS) for 2021</0><1>Prohibition measure
   affecting in a preponderant way the continuation of your activity</1>
@@ -105,347 +100,135 @@
       crisis?</0><1>Specify the number of months that you were subject to a
       prohibition measure that significantly affected the continuation of your
       business.</1>
-"<0>Entre {firstMonth} et {lastMonth}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
-  <0>Between {firstMonth} and {lastMonth}, how many months were you impacted by
-  the health crisis?</0><1>Specify the number of months that you were subject to
-  a ban that significantly affected your business.</1>
-"<0>Entre {monthNames[firstMonth - 1]} {firstYear":
-  "toString()} et {monthNames[lastMonth - 1]} {lastYear":
-    "toString()}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
-      <0>Between {monthNames[firstMonth - 1]} {firstYear.toString()} and
-      {monthNames[lastMonth - 1]} {lastYear.toString()}, how many months were
-      you impacted by the health crisis?</0><1>Specify the number of months that
-      you were subject to a prohibition measure that significantly affected the
-      continuation of your business.</1>
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>: <0>Month</0><1>Health crisis situation</1><2>Amount of reduction</2>
-<0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>: <0>Amount of the social exemption related to the health crisis in 2021</0>
 <0>Oui</0>: <0>Yes</0>
-"<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1><2><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
-  "evaluate('secteur').nodeValue}</2> (<4>{engine":
-    "evaluate('code . secteur').nodeValue}</4>)</0><1>Activité exercée en <2>{engine":
-      "evaluate(\"lieu d'exercice\").nodeValue}</2> (<5>{engine":
-        "evaluate(\"code . lieu d'exercice\").nodeValue}</5>)</1><2>Début d'activité : <2>{engine":
-          "evaluate(\"début d'activité\").nodeValue}</2> (<5>{engine":
-            "evaluate(\"code . début d'activité\").nodeValue}</5>)</2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2><0>LFSS : <2><0></0></2> (<5>{engine":
-              "evaluate('code . LFSS').nodeValue}</5>)</0><1>LFR1 : <2><0></0></2> (<5>{engine":
-                "evaluate('code . LFR1').nodeValue}</5>)</1></2></3></2>": "<0>Summary for Third
-                  Party Filers</0><1>Enter the elements in brackets in your
-                  client's EDI report</1><2><0>Industry in which the primary
-                  business is conducted:
-                  <2>{engine.evaluate('industry').nodeValue}</2><4>({engine.eva\
-                  luate('industry code').nodeValue}</4>)</0><1>Activity carried
-                  out in <2>{engine.evaluate(\"place of
-                  exercise\").nodeValue}</2><5>({engine.evaluate(\"code . place
-                  of exercise\").nodeValue}</5>)</1><2>Start of activity :
-                  <2>{engine.evaluate(\"start of
-                  activity\").nodeValue}</2><5>({engine.evaluate(\"code . start
-                  of activity\").nodeValue}</5>)</2><3>Number of months for
-                  which you meet the eligibility requirements: <2><0>LFSS:
-                  <2><0></0></2><5>({engine.evaluate('code .
-                  LFSS').nodeValue}</5>)</0><1>LFR1:
-                  <2><0></0></2><5>({engine.evaluate('code .
-                  LFR1').nodeValue}</5>)</1></2></3></2>"
-            "evaluate(\"code . début d'activité\").nodeValue}</5>)</2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <2><0></0></2> (<5>{engine":
-              "evaluate('code . LFSS').nodeValue}</5>)<7><0>dont LFSS 600 <2><0></0></2> et LFSS 300 <6><0></0></6></0></7></0><1>LFR1 : <2><0></0></2> (<5>{engine":
-                "evaluate('code . LFR1').nodeValue}</5>)</1></1></3></2>": "<0>Summary for Third
-                  Party Filers</0><1>Enter the elements in brackets in your
-                  client's EDI report</1><2><0>Industry in which the primary
-                  business is conducted:
-                  <2>{engine.evaluate('industry').nodeValue}</2><4>({engine.eva\
-                  luate('industry code').nodeValue}</4>)</0><1>Activity carried
-                  out in <2>{engine.evaluate(\"place of
-                  exercise\").nodeValue}</2><5>({engine.evaluate(\"code . place
-                  of exercise\").nodeValue}</5>)</1><2>Beginning of activity :
-                  <2>{engine.evaluate(\"beginning of
-                  activity\").nodeValue}</2><5>({engine.evaluate(\"code .
-                  beginning of activity\").nodeValue}</5>)</2><3>Number of
-                  months for which you meet the eligibility
-                  requirements<1><0>LFSS :
-                  <2><0></0></2><5>({engine.evaluate('code .
-                  LFSS').nodeValue}</5>)<7><0>of which LFSS 600 <2><0></0></2>
-                  and LFSS 300 <6><0></0></6></0></7></0><1>LFR1:
-                  <2><0></0></2><5>({engine.evaluate('code .
-                  LFR1').nodeValue}</5>)</1></1></3></2>"
-"<0>Résumé</0><1><0>Secteur d'activité dont relève l'activité principale : <2>{engine":
-  "evaluate('secteur').nodeValue}</2></0><1>Activité exercée en <2>{engine":
-    "evaluate(\"lieu d'exercice\").nodeValue}</2></1><2>Début d'activité : <2>{engine":
-      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2><0></0></2></3></1>":
-        "<0>Summary</0><1><0>Sector of activity of the main activity :
-        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity carried out
-        in <2>{engine.evaluate(\"place of
-        exercise\").nodeValue}</2></1><2>Beginning of activity:
-        <2>{engine.evaluate(\"beginning of
-        activity\").nodeValue}</2></2><3>Number of months for which you meet the
-        eligibility requirements: <2><0></0></2></3></1>"
-      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : <2>{formatValue(engine":
-        "evaluate('exonération S2 . mois éligibles'))}</2></3></1>":
-          "<0>Summary</0><1><0>Sector of activity of the main activity :
-          <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity carried
-          out in <2>{engine.evaluate(\"place of
-          exercise\").nodeValue}</2></1><2>Beginning of activity:
-          <2>{engine.evaluate(\"beginning of
-          activity\").nodeValue}</2></2><3>Number of months for which you meet
-          the eligibility conditions: <2>{formatValue(engine.evaluate('exemption
-          S2 . eligible months'))}</2></3></1>"
-      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <1>{monthsCount":
-        LFSS:
-          "toString()} mois</1></0><1>LFR1 : <1>{monthsCount":
-            LFR1:
-              "toString()} mois</1></1></1></3></1>": "<0>Summary</0><1><0>Sector of activity
-                of the main activity :
-                <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity
-                carried out in <2>{engine.evaluate(\"place of
-                exercise\").nodeValue}</2></1><2>Start of activity :
-                <2>{engine.evaluate(\"start of
-                activity\").nodeValue}</2></2><3>Number of months for which you
-                meet the eligibility requirements<1><0>LFSS :
-                <1>{monthsCount.LFSS.toString()} month</1></0><1>LFR1 :
-                <1>{monthsCount.LFR1.toString()} month</1></1></1></3></1>"
-      "evaluate(\"début d'activité\").nodeValue}</2></2><3>Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité<1><0>LFSS : <2><0></0></2></0><1>LFR1 : <2><0></0></2></1></1></3></1>":
-        "<0>Summary</0><1><0>Sector of activity of the main activity :
-        <2>{engine.evaluate('sector').nodeValue}</2></0><1>Activity carried out
-        in <2>{engine.evaluate(\"place of exercise\").nodeValue}</2></1><2>Start
-        of activity: <2>{engine.evaluate(\"start of
-        activity\").nodeValue}</2></2><3>Number of months for which you meet the
-        eligibility requirements<1><0>LFSS: <2><0></0></2></0><1>LFR1:
-        <2><0></0></2></1></1></3></1>"
 <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
   <0>You are not concerned by the exemption of Covid contributions for the
   self-employed.</0>
-A quoi servent mes cotisations ?: What's included in my contributions?
-Accueil: Home
-Afficher la description publicodes: Display publicodes description
-Aide à la déclaration de revenu: Income tax return assistance
-Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
-Aides Covid-19: Covid-19 Aids
-Alors: Then
-Annuel: Yearly
-Année d'activité: Years of activity
-Artiste-auteur: Artist-author
+Annuel: Annual
 Assimilé salarié: '"Assimilé-salarié"'
-Au-delà du dernier plafond: Beyond the last ceiling
-Au-dessus de: Above
 Aucun: No
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
-Calcul: Formula
+Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €): Drop of at least 50% of the monthly turnover (600 €)
+Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €): Decrease of at least 65% of the monthly turnover (600 €)
+Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €): Decrease between 30% and 64% of the monthly turnover (300 €)
 Cette commune n'existe pas: This commune does not exist
-Cette règle ne s'applique pas pour: This rule does not apply for
-Changer: Change
-Chercher dans la documentation: Search the documentation
-Choisir la forme juridique: Choose your legal status
-Choisir plus tard: Choose later
-Chômage partiel: Partial unemployment
-Code d'intégration: Integration Code
-Commencer: Get started
-"Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
-Commune ou code postal: Municipality or postal code
+Charger plus de résultats: Load more results
+Chiffre d'affaires: Sales figures
+Commune ou code postal: City or postal code
 CompanySearchField:
-  ariaClearLabel: Delete search
   description: "The Siret number is a 14 digit number unique to each company. Ex:
     40123778000127"
   label: Company name, SIREN or SIRET
   placeholder: Café de la gare or 40123778000127
-Comparaison statuts: Status comparison
 Continuer: Continue
-Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
-Covid 19: Covid 19
-"Covid-19 : Calculer l'impact du chômage partiel": "Covid-19: Calculating the impact of short-time work"
-"Covid-19 : Découvrez les mesures de soutien aux entreprises": "Covid-19: Find out about business support measures"
-"Covid-19 : Découvrir les mesures de soutien aux entreprises": "Covid-19: Discovering Business Support Measures"
-Coût pour l'entreprise: Cost to the company
-Crée le: Created on
 "Crée le :": "Created on :"
 Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Created on <2><0></0></2> and domiciled at <6><0></0></6>
 Créer une: Create a
-De: From
-Demande de mobilité: Demand for mobility
-Destinataire: Levied by
 Devenir: Become
+Dividendes nets: Net dividends
 "Domiciliée à l'adresse :": "Domiciled at the address :"
-Déclenchement: Applicability
-Découvrir: Discover
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
   Describe your project or your problem by giving some background information.
   We identify, among all the public and parapublic partners, the competent
   advisor for your request. He or she will contact you by phone within 5 days
   and will accompany you according to your situation.
-Démarches de création: Creation process checklist
-Désactivée: Inactive
-Détail annuel des cotisations: Annual detail of my contributions
-Effacer: Reset
-Embauche: Hiring process
-Employeur: Employer
-En incluant l'indemnité de chômage partiel: Including short-time working allowance
+"Eligibilité aux mois de mars, avril ou mai 2021 (250 €)": Eligibility in March, April or May 2021 (250 €)
 En savoir plus: Learn more
-En-dessous de: Below
 Entreprise Individuelle: Sole Proprietorship
-Entrez des mots clefs ici: Enter keywords
-Entrée: Enter
-Envoyer: Send
-Exemples: Examples
-Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
-Explorez notre documentation: Explore our documentation
 ExportSimulation:
   Banner: Print or save as PDF
-Faire une simulation: Launch a simulation
+Fermer: Close
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
-Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
-"Gérant majoritaire ": "Majority Manager "
 Gérant minoritaire: Managing director
 Gérant minoritaire ou égalitaire: Minority or equal manager
 Habituellement: Usually
-Imprimer: Print
+Impôt: Tax
 Impôt au barème: Tax on the scale
-Impôts: Taxes
-"Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
 Indépendant: Indépendant
-Indépendants et dirigeants: Self-employed and executives
+Interdiction d'accueil du public (600 €): Prohibition to receive the public (600 €)
 International: International
-Intégrer l'interface de simulation: Integrate the simulation interface
-Intégrer la bibliothèque de calcul: Integrate the calculation library
 Intégrer nos simulateurs: Integrate our simulators
-Intégrer un simulateur: Integrating a simulator
 J'ai compris: understood
-Janvier 2019: January 2019
 Jusqu’au: Until
-La somme de: This rule is the sum of
 Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
 Ma situation: My situation
 Mensuel: Monthly
-Mes réponses: My answers
 Modifier: Modify
-Modifier mes réponses: Change my answers
 Mois non concerné: Month not concerned
 Mon entreprise: My company
-Mon revenu: My income
-Montant: Amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant de l’exonération sociale liée à la crise sanitaire pour les cotisations de l’année 2021: Amount of the health crisis exemption for contributions in 2021
-Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Amount of the social exemption related to the health crisis in 2021
-Montant des cotisations: Amount of contributions
 Non: No
-Nous n'avons rien trouvé: We didn't find any matching registered company.
+Nouvelle fenêtre: New window
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 Outils pour les indépendants: Tools for the self-employed
 PFU (<1>"flat tax"</1>): Flat tax
-Pages associées: Related pages
-Par statut: By status
-Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
-Part salariale: Employee share
 Part salarié: Employee share
 Pas en auto-entrepreneur: Not in auto-entrepreneur
-Pas implémenté: Not implemented
 Passer: Skip
 Personnalisez l'intégration: Customize the integration
-"Perte de revenu net :": "Loss of net income :"
-Plafonds des tranches: Wafer ceilings
-Plein écran: Fullscreen
 Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
-Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
-Professionnels de santé: Health Care Professionals
-Professions: Professions
 Professions libérales: By job
-Protection sociale: Social security
 Précédent: Previous
 Prévisualisation: Preview
 Que cherchez-vous ?: What are you looking for?
-Quel module ?: What module?
-Quelle couleur ?: What color?
 Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
   What was your situation related to the health crisis during your months of
   activity?
-Quelques exemples de salaires: Some salary exemples
-Quelques intégrations: Some integrations
-Recherche en cours...: Searching...
 Rechercher: Search
-Rechercher une entreprise: Search for a company
 Rechercher votre entreprise: Search for your company
-Recommencer: Start again
 Recommencer la simulation: Start the simulation again
-Rend non applicable les règles suivantes: Makes the following rules not applicable
-Renseigner mon entreprise: Find my company
-Responsabilité limitée: Limited liability
 Ressources utiles: Helpful resources
 Retour: Back
 Retour à la création: Back to creation
-Retour à ma déclaration: Back to my statement
 Retour à mon activité: Back to my business
-Revenir à la documentation: Go back to documentation
-Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
+Revenu (incluant les dépenses liées à l'activité): Income (including expenses related to the activity)
 Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
-"Revenu net avec chômage partiel :": "Net income with short-time work :"
-Revenu net mensuel: Monthly net income
 Revenus étranger: Foreign income
 Règles de calculs: Rules
-Réductions: Discounts
-Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
-Résultat: Result
-S'inscrire: Register
-Saisissez le nom d'une commune: Enter the name of a municipality
-Saisissez votre domaine d'activité: Enter your business area
+Saisissez votre domaine d'activité: Enter your field of activity
 Salaire: Salary
+Salaire brut mensuel: Gross monthly salary
 Salaire net: Net Salary
-Salaire net et brut: Net and gross salary
-Salarié: Employee
 Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
-Sans responsabilité limitée: Without limited liability
-Si: If
-Simulateur de salaire: Employee salary simulation
 Simulateurs: Simulations
 Simulation en cours: Simulation in progress
-Simulations personnalisées: Customized simulations
-Sinon: Else
+Situation liée à la crise sanitaire: Situation related to the health crisis
 Situation personnelle: Personal situation
-"Siège :": "Headquarters:"
 Suivant: Next
 Supprimer toute ma situation: Delete my entire situation
-Taux: Rate
-Taux calculé: Calculated rate
-Taux moyen: Average rate
 Total des retenues: Total withheld
-"Total payé par l'entreprise :": "Total paid by the company :"
-Tout effacer: Delete all
-Tout le site: The whole site
-Tranche de l'assiette: Scale bracket
 Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
 Un seul associé: Only one partner
-Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
 "Versement : ": "Payment : "
-Vie privée: Privacy
 Voir la fiche Urssaf: See the Urssaf sheet
 Voir la fiche de paie: See the pay slip
-Voir la répartition des cotisations: View contribution breakdown
-Voir le code source: See the source code
 Voir les autres simulateurs: See the other simulators
 Voir ma situation: See my situation
-Voir mes paramètres: See my situation
-Votre adresse e-mail: Your email address
-Votre entreprise: Your company
 Votre forme juridique: Your legal status
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you a SAS(U) manager? <2>Access the dedicated income simulator</2>
-aide: Help
 aide-déclaration-indépendant:
-  banner: Find out more about our tax<1>return</1>tool
   description: <0><0>This tool is an aid for the declaration of income for
     <2>self-employed workers</2>. It allows you to know the amount of deductible
     social charges.</0><1>You remain entirely responsible for any omissions or
@@ -459,19 +242,12 @@ aide-déclaration-indépendant:
     determine the type of declaration to be completed, as well as the methods of
     calculating social contributions.</4>
   entreprise:
-    description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
   results:
-    ongoing: Calculation in progress...
     title: Amounts to report on your tax return
     title-short: Your tax returns
-an: year
-année: year
-applicable si: applicable if
+août: August
 après:
-  actions:
-    avance: Go to social security
-    retour: Creation checklist
   ape:
     description: The APE code corresponds to your company's <1>sector of
       activity</1>. It classifies the main branch of your company in the French
@@ -500,9 +276,6 @@ après:
       SIRET is composed by the SIREN followed by the establishment number (NIC).
     titre: The SIRET number
   titre: After registration
-arrondi-to-decimals: Rounding to {explanation.decimals.nodeValue} decimal
-arrondi-to-decimals_plural: Rounding to {explanation.decimals.nodeValue} decimals
-assiette: base
 assistant-DRI:
   description: <0><0>This tool will help you to fill in your tax <2>return</2> on
     impot.gouv.fr. You will have at the end :</0><1><0>The list of boxes that
@@ -526,8 +299,7 @@ associés:
       involved in the creation of a company in France.
     titre: Number of partners to start a business in France
   titre: Number of partners
-auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
-auto-entreprise: auto-enterprise
+auto-entreprise: self-employed
 autoentrepreneur:
   description: >
     <0>
@@ -548,11 +320,8 @@ autoentrepreneur:
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
     titre: Auto-entrepreneur
   titre: Auto-entrepeneur
+avril: April
 back: Return to the simulation
-barème: scale
-calcul-avec: "Calculation from <1></1>with :"
-cancelExample: Back to your situation
-car dépend de: because it depends on
 cards:
   simulator-resource:
     cta: Go to the simulator
@@ -560,8 +329,6 @@ checklist:
   showmore:
     closed: Read more
     open: Hide details
-cible: target
-clickexample: Click on a situation to see the result
 cliquez pour insérer cette suggestion: click to insert this suggestion
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
@@ -618,28 +385,12 @@ comparaisonRégimes:
     <0> Additional health insurance <1>(mutuelle santé)</1></0>
     <1> Compulsory </1>
     <2> Highly recommended </2>
-  page:
-    description: >
-      What is the best scheme for your situation? Discover their differences and
-      simulate your income and retirement in one minute for each of the options.
-    titre: >
-      Self-employed, assimilated employee or auto-entrepreneur: discover the
-      social scheme that best suits you
   plafondCA: <0>Turnover ceiling</0><1><0>No</0></1><2><0>Yes</0><1>(72,500 € in
     services / 176,200 € in the sale of goods, catering or
     accommodation)</1></2>
-  période: |
-    <0>Period</0>
   retraite: |
     <0>Retirement pay</0>
   retraiteEstimation:
-    infobulle:
-      AS: Pension calculated for 172 quarters contributed to the general scheme with
-        no change in income.
-      auto: Pension calculated for 172 quarters contributed as auto-entrepreneur with
-        no change in income.
-      indep: Pension calculated for 172 quarters contributed to the self-employed
-        scheme with no change in income.
     infobulles:
       AS: Pension calculated for 172 quarters contributed to the general scheme with
         no change in income.
@@ -650,8 +401,6 @@ comparaisonRégimes:
     legend: |
       <0>Retirement pay</0>
       <1>(before taxes)</1>
-  revenuNetApresImpot: |
-    <0>Net income after taxes</0>
   revenuNetAvantImpot: |
     <0>Net contribution income<1>(before income tax)</1></0>
   seuil: |
@@ -672,26 +421,9 @@ comparaisonRégimes:
       "1": EI, EIRL, EURL or SARL with majority director
       "2": EI or EIRL
     legend: Possible legal status
-  sécuritéSociale: |
-    <0> Social security</0>
-    <1> General scheme <1>(Régime général)</1></1>
-    <2> Self-employed scheme <1>(Sécurité sociale des indépendants)</1></2>
-  titre: >
-    Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which
-    scheme to choose?
   titreSelection: |
     Create my company as:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
-composantes: components
-coronavirus:
-  description: "<0>Coronavirus and short-time working: what impact on my
-    income?</0><1>The government is putting in place measures to support
-    employees affected by the Coronavirus crisis. One of the key measures is the
-    assumption of the entire short-time working compensation by the State.</1>"
-  page:
-    description: Estimate net income with short-time working benefits
-    titre: "Coronavirus and short-time working: what impact on your income?"
-cotisation: contribution
 créer:
   cta:
     continue: Continue the guide
@@ -722,12 +454,7 @@ dividendes:
     French companies subject to corporation tax (IS), and does not concern
     self-employed workers.</0><1>The amount of tax on dividends is calculated in
     addition to the tax on other taxable income.</1>
-domiciliation inconnue: unknown address
-domiciliée à: domiciled in
-déductible: deductible
-déplier: show more
-dû par: owed by
-d’aides: aids
+décembre: December
 embauche:
   chaque mois: >
     <0>Then each month</0> <1>
@@ -769,19 +496,10 @@ embauche:
     registre:
       titre: Keep an updated staff register
     titre: Hiring process checklist
-employeur: employer
 en deux fois: in two parts
 en incluant: including
 en titres-restaurant: in restaurant vouchers
 entreprise:
-  page:
-    autoEntrepreneur:
-      description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
-      titre: How to become {{autoEntrepreneur}}
-    entreprise:
-      description: A complete todo list to help you create a {{status}} with the
-        French administration.`
-      titre: Create an {{status}}
   ressources:
     après:
       body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
@@ -930,17 +648,7 @@ entreprise:
       titre: Write the company's articles
     titre: The to-do list for creating your business
     titre2: Recommended before starting your activity
-est un SIREN non diffusible: is a non-distributable SIREN
-examples: Examples
-expected: the expected result was
-facteur: multiplier
-fail: This test failed
 feedback:
-  bad:
-    form:
-      email: Your email (if you would like an answer from us)
-      headline: Your feedback is valuable to us in order to continuously improve this
-        site. What should we work on to better meet your expectations?
   beta-testeur: To continue to give your opinion and access to the new products in
     preview, register on the <2>list of beta-testers</2>
   question: Was this page useful to you?
@@ -985,6 +693,7 @@ formeJuridique:
     liability, subject to a flat-rate scheme for the calculation of taxes and
     the payment of social security contributions.
   titre: Choice of legal status
+février: February
 gerer:
   choix:
     embauche:
@@ -1021,33 +730,13 @@ gérer:
         tax return
       cta: Completing my return
       title: Income tax return (self-employed)
-    embauche: >
-      <0>Estimate the amount spent for hiring</0>
-
-      <1>Calculate how much your company will have to spend to pay your next employee</1>
     is:
       body: Calculate the amount of corporate tax from your profit.
       cta: Launch the simulator
       title: Estimating the amount of corporate tax
-    revenus:
-      body: Estimate the exact amount of your contributions thanks to the {{regime}}
-        simulator of the Urssaf
-      cta: Calculate my net income
-      title: Income as a business owner
-    titre: What do you want to do?
-  cta: Find my company
   description: Do you want to pay yourself an income or hire someone? You will
     have to pay contributions and taxes. Anticipate their amounts thanks to the
     simulators adapted to your situation.
-  entreprise:
-    auto: Are you an auto-entrepreneur?
-    changer: Change the selected company
-    dirigeant:
-      description: If you are a majority director or a member of a majority board, you
-        will not have the same social security coverage as a minority director.
-      titre: Are you a majority shareholder?
-    majoritaire: Majority director
-    minoritaire: Minority director
   ressources:
     autoEntrepreneur:
       body: You will be able to declare your turnover, pay your contributions, and
@@ -1082,20 +771,16 @@ gérer:
       cta: Read the guide
       title: Understanding Social Security
   titre: Manage my business
-heure: hour
-heures: hours
 impotSociété:
-  exerciceDates: Exercise from <2></2> to <6></6>
   warning: "This simulator is aimed at <2>“TPE”</2>: it takes into account the
     reduced corporate tax rates."
-imprimer: Print
 impôt: tax
 impôt sur le revenu: income tax
-indemnité: benefit
-indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
-jour: day
+janvier: January
 jours: days
+juillet: July
+juin: June
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
     <2>team</2> within the<5>Urssaf</5>. We are committed to being close to your
@@ -1105,26 +790,13 @@ landing:
     to remove all uncertainties with regard to the administration so that you
     can concentrate on what matters: your business.</3>"
   choice:
-    continue: Continue with the company
     create:
-      body: Assistance in choosing a legal status and a complete list of the steps
-        involved in setting up a business
       title: I don't have a business yet
-    manage:
-      body: Personalized tools to anticipate the amount of social contributions to be
-        paid and better manage your cash flow.
-      title: Manage my business
     simulators:
-      body: The exhaustive list of all the simulators available on the site.
       title: Discover all the simulators and assistants
-  choices:
-    continue: Continue with the company
-  covid19: "Covid-19: Calculating the impact of short-time work"
   outils: <0>The tools at your disposal</0><1>We provide you with assistants and
     simulators to help you manage your business, anticipate levies and plan your
     cash flow accordingly.</1>
-  outils_cta: <0></0> Discover all simulators and assistants
-  seeSimulators: See the simulators list
   subtitle: The resources needed to develop your business, from legal status to hiring.
   title: The official tools for entrepreneurs
 legalNotice:
@@ -1148,23 +820,18 @@ legalNotice:
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
-maj2019: The simulation is up-to-date in 2019.
+mai: May
+mars: March
 mensuel: monthly
 mois: month
-montant à atteindre: minimum value
-multiplicateur: multiplier
 nextSteps:
   integration-iframe:
     body: Discover how to add this simulator on your website in one click via a
       turnkey script.
     cta: See the documentation
     title: Integrate the web module
-non: no
-non applicable si: not applicable if
-non déductible: not deductible
-noresults: No results
-ou: or
-oui: yes
+novembre: November
+octobre: October
 page:
   documentation:
     title: Documentation
@@ -1221,6 +888,7 @@ pages:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
         you best with this wizard"
       title: Help in choosing the legal status
+    shortname: Legal status assistant
   common:
     ressources-auto-entrepreneur:
       FAQ:
@@ -1228,11 +896,6 @@ pages:
           questions that one is led to ask as an auto-entrepreneur
         cta: See the answers
         title: Frequently asked questions
-      impôt:
-        body: The official information of the tax authorities concerning
-          auto-entrepreneurs and the micro-enterprise regime.
-        cta: See the help
-        title: How to declare your income to the tax authorities?
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
@@ -1299,7 +962,6 @@ pages:
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
-    code à copier: "Here is the code to copy and paste on your site:"
     couleur: "What color? "
     home:
       choice:
@@ -1308,14 +970,10 @@ pages:
             turnkey script.
           cta: Start
           title: Integrate a simulator
-        library: <0>Using the calculation engine</0><1>The entire socio-fiscal
-          calculation engine developed by Urssaf, freely available in the form
-          of an NPM library.</1>
       description: In addition to the mycompanyinfrance site, we provide free and open
         source tools to integrate on your website. You can thus include the
         tools created for <1>mycompanyinfrance</1> directly in the usual paths
         of your users.
-      titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
         communication between the parent page and the iframe for automatic
@@ -1345,41 +1003,6 @@ pages:
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
   simulateurs:
-    EI:
-      meta:
-        description: Calculation of income from turnover, after deduction of
-          contributions and taxes
-        ogDescription: "Thanks to the auto-entrepreneur income simulator developed by
-          Urssaf, you can estimate your income based on your monthly or annual
-          turnover to better manage your cash flow. Or the other way round: find
-          out how much to charge to achieve a certain income."
-        ogTitle: "Sole proprietorship: quickly calculate your net income from your
-          turnover and vice versa"
-        titre: "Sole proprietorship (EI): income simulator"
-      seo explanation: <0>How to calculate the net income of a sole trader?</0><1>A
-        sole trader must pay social security contributions to the authorities.
-        These contributions are used to finance social security, and open up
-        rights, particularly for retirement and health insurance. They are also
-        used to finance professional training.</1><2><0></0> <2>See the details
-        of the calculation of contributions</2></2><3>Do not forget to deduct
-        all expenses incurred in the course of the business (equipment, raw
-        materials, premises, transport). These are deductible from the company's
-        income, which means that you will not pay tax or contributions on their
-        amount (unless you have opted for the micro-tax option).</3><4>The
-        complete calculation formula is therefore :<1><0>Net income = Turnover -
-        Professional expenses - Social contributions</0></1></4><5>How do you
-        calculate the social security contributions of a sole
-        proprietorship?</5><6>The manager of a sole proprietorship pays social
-        security contributions, proportional to the company's <2></2>. Their
-        amount varies according to the type of activity (liberal profession,
-        craftsman, shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
-        etc.). To find out the amount, you can use this simulator, and refine
-        the</6><7> As a company's result is only known at the end of the
-        accounting year, the manager pays provisional contributions which will
-        then be adjusted once the real income has been declared, the following
-        year.</7>
-      shortname: Sole proprietorship
-      title: Income simulator for sole proprietorship (EI)
     accueil:
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
@@ -1469,7 +1092,6 @@ pages:
         abatement income for an auto-entrepreneur</2></10>
       shortname: Auto-entrepreneur
       title: Self-entrepreneur Income Simulator
-      titre: Auto-entrepreneur income simulator
     auxiliaire:
       shortname: Medical Auxiliary
       title: Income simulator for a private medical assistant
@@ -1477,15 +1099,16 @@ pages:
         orthoptists
     auxiliaire-medical:
       meta:
+        description: Calculation of net income after contributions based on total
+          revenue. Taking into account the non-conventional income.
+        title: "Medical auxiliary : income simulator"
+    avocat:
+      meta:
         description: Calculation of the net income after contributions from the total
           income.
-        title: "Chartered accountant: income simulator"
-    avocat:
+        title: "Lawyer: income simulator"
       shortname: Lawyer
       title: Income simulator for private lawyers
-    cartes:
-      intégrer module web: <0>Integrate the web module</0><1>Add this simulator to
-        your website in one click</1>
     chirurgien-dentiste:
       meta:
         description: Calculation of the net income after contributions from the total
@@ -1494,38 +1117,6 @@ pages:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
     chômage-partiel:
-      explications seo: >-
-        [👨 Integrate this simulator on your
-        site](/integration/iframe?module=simulateur-chomage-partiel)
-
-        ## How do you calculate the partial activity allowance?
-
-        The basic partial activity allowance is set by law at 70% of gross earnings. It is prorated according to the number of hours off work. For an employee at €2,300 gross who works 50% of his usual time, this gives **€2,300 × 50% × 70% = €805**.
-
-        In addition to this basic allowance, there is a supplementary allowance for salaries close to the minimum wage. This additional allowance is paid when the combined remuneration and basic allowance are below a net SMIC.
-
-        These allowances must be paid by the employer, who will then be reimbursed in part or in full by the State.
-
-        👉 [See details of the calculation of the allowance](/documentation/contrat-salarié/activité-partielle/indemnités)
-
-
-        ## How do you calculate the portion reimbursed by the state? ##
-
-        The State covers part of the partial compensation for wages up to 4.5 SMIC, with a minimum of €8.03 per hour off.
-
-        In concrete terms, this results in **100%** coverage for wages close to the SMIC. It then gradually decreases until it stabilizes at **93%** for wages between €2,000 and €7,000 (~ 4.5 SMIC).
-
-        👉 [See the details of the calculation of the reimbursement of the allowance](/documentation/contrat-salarié/activité-partielle/indemnisation-entreprise)
-
-        ## How do you report a partial activity?
-
-        In the face of the coronavirus crisis, the modalities for partial activity have been lightened. The employer is allowed to place his employees in activity partial before the formal application is filed. It shall provide that then a period of **30 days** to comply. The benefits will be paid retroactively from the date of inception of the plan. of short-time work.
-
-        👉 [Apply for short-time work](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001) (french)
-
-        ## What are the social contributions to be paid for the partial activity allowance?
-
-        The partial activity allowance is subject to the CSG/CRDS and to an disease contribution in some cases. For more information, see the explanatory page on [the Urssaf website](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html) (french).
       meta:
         description: Calculation of the net income for the employee and the remaining
           amount to be paid by the employer after reimbursement by the State,
@@ -1576,30 +1167,11 @@ pages:
       shortname: Status Comparison
       title: "Self-employed, assimilated employee or auto-entrepreneur: which plan to
         choose?"
-    dirigean sasu:
-      explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
-        for a conventional employee, the SASU <1>manager</1> pays social
-        security contributions on the salary he or she pays. The contributions
-        are calculated in the same way as for the employee: they are broken down
-        into the employer and employee parts and are expressed as a percentage
-        of the gross salary.</1><2>On the other hand, the assimilated
-        manager-employee does not pay <2>unemployment contributions</2>.
-        Moreover, they do not benefit from the <5>general reduction</5> in
-        contributions or from the schemes governed by the Labour Code, such as
-        <9>overtime</9> or bonuses.</2><3>A SASU executive's salary can be
-        calculated by entering the total amount of the salary in the \"total
-        expense\" box, but he or she can claim the <2>ACRE reduction</2> at the
-        beginning of the activity, under certain conditions.</3><4>You can use
-        our simulator to calculate the <2>net remuneration</2> from a
-        super-gross amount allocated to the executive's remuneration. To do
-        this, simply enter the announced compensation in the total loaded box.
-        The simulation can then be refined by answering the various
-        questions.</4>"
     dividendes:
       meta:
-        description: "Self-employed: calculate the amount of the covid exemption on your
-          2021 contributions."
-        title: Covid Exemption
+        description: Calculate the amount of tax and contributions on dividends paid by
+          your company.
+        title: Dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the result of the previous year can be kept in reserve (for future
         investments) or paid out as dividends. From the point of view of the
@@ -1618,7 +1190,8 @@ pages:
         share capital will be subject to contributions and levies in the same
         way as his or her remuneration as a manager.</7><8>This case is not yet
         taken into account by this simulator.</8>
-      title: Covid contribution exemption simulator for self-employed
+      shortName: Dividends
+      title: Dividend Payment Simulator
     ei:
       meta:
         description: Calculation of income from turnover, after deduction of
@@ -1682,7 +1255,18 @@ pages:
         titre: "EURL : income simulator for managers"
       shortname: EURL
       title: EURL Simulator
+    exonération-covid:
+      meta:
+        description: Determine the elements to be declared to benefit from the Covid
+          exemption and obtain the "EDI standard" codes to launch the simulator
+        title: Exemption from covid contributions
+      shortName: COVID exemption simulator
+      title: Covid contribution exemption simulator for self-employed
     expert-comptable:
+      meta:
+        description: Calculation of the net income after contributions from the total
+          income.
+        title: "Accountant: income simulator"
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
     indépendant:
@@ -1739,13 +1323,16 @@ pages:
       shortname: PAMC
       title: "PAMC: contribution and income simulators"
     pharmacien:
+      meta:
+        description: Calculation of net income after deduction of contributions from
+          total revenues for self-employed pharmacists
+        title: "Pharmacist : income simulator"
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
     print-info:
       date: This simulation was performed on
       recover: You can find this simulation and other tools to help you create and
         manage your business on <2>mon-entreprise.urssaf.fr</2>.
-      title: Would you like to recover this simulation?
     profession-libérale:
       meta:
         description: Net Income Calculation for Self-Employed Persons in Liberal Income
@@ -1764,29 +1351,6 @@ pages:
       alt-image1: Net salary (received by the employee) = Gross salary (written in the
         employment contract) - employee contributions (pension, social security,
         etc.)
-      explication seo: <0>Calculate your net salary</0><1>During the job interview,
-        the employer usually offers a "gross" remuneration. The announced amount
-        thus includes employee contributions, which are used to finance the
-        employee's social protection and which are deducted from the "net"
-        salary received by the employee.</1><2>You can use our simulator to
-        convert the <2>gross salary into net</2> salary. To do this, simply
-        enter the salary shown in the gross salary box. The simulation can be
-        refined by answering different questions (on CDD, framework status,
-        etc.).</2><3></3><4>Furthermore, since 2019,<1> income tax</1> is
-        withheld at source. To do this, the “Direction Générale des Finances
-        Publiques” (DGFiP) sends the employer the tax rate calculated from the
-        employee's tax return. If this rate is unknown, for example in the first
-        year of employment, the employer uses the <5>neutral
-        rate</5>.</4><5>Cost of hiring</5><6>If you are looking to hire, you can
-        calculate the total cost of your employee's remuneration, as well as the
-        corresponding employer and employee contribution amounts. This enables
-        you to define the pay level in knowledge of the overall amount of
-        expense this represents for your company.</6><7>In addition to salary,
-        our simulator takes into account the calculation of benefits in kind
-        (telephone, company car, etc.), as well as the compulsory health
-        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
-        not all taken into account by our simulator, you can find them on the
-        <6>official portal</6>.</8>
       meta:
         description: Calculation of net salary, net after tax and total employer cost in
           France. Many options are available (executive, internship,
@@ -1834,7 +1398,6 @@ pages:
       shortname: Employee
       title: Employee income simulator
       title-employeur: Hiring Cost Simulator
-      titre: Income simulator for employees
     sasu:
       meta:
         description: Calculation of net salary from turnover + expenses and vice versa.
@@ -1860,7 +1423,6 @@ pages:
         the various questions.</4>"
       shortname: SAS(U)
       title: SAS(U) Simulator
-      titre: Revenue simulator for SAS(U) executive
     select-year:
       access: Access the {{year}} simulator
       back: Return to the {{year}} simulator
@@ -1871,20 +1433,15 @@ pages:
       description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
         in your declarations
       title: "Online platform income tax return: interactive guide"
-    shortname: Legal status assistant
-par: per
-par an: per year
-par mois: per month
+    shortname: Collaborative Economy Assistant
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
     Lots of financial aids for your enterprise exist, explore them on
     <1>aides-entreprises.fr (French)</1>.
-  heures: "Hours worked per month: "
   notice: This simulation helps you understand your French payslip, but it should
     not be used as one. For further details, check <1>service-public.fr
     (French)</1>.
   repartition: Distribution of total amount
-plafond: ceiling
 pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
 previousSimulationBanner:
   info: Your previous simulation data have been saved.
@@ -1902,23 +1459,8 @@ privacyContent:
     measure below:</2><3><0>I do not want to send anonymous data about my use of
     the site for audience measurement purposes</0></3>
   title: Personal data
-quicklinks:
-  Avantages: Benefits
-  CDD: Fixed-term
-  CDI: Permanent
-  Cadre: '"Cadre" status'
-  Charges: Expenses
-  Commune: Town
-  Date de création: Creation date
-  Heures supplémentaires: Overtime
-  Impôt: Tax
-  Impôt sur le revenu: Income tax
-  JEI: Innovating company (JEI)
-  Temps partiel: Part time
-  Type d'activité: Activity type
 recherche-globale:
   placeholder: Keyword or acronym (e.g. CSG)
-replier: show less
 responsabilité:
   bouton1: Limited liability company
   bouton2: Sole proprietorship
@@ -1934,43 +1476,15 @@ responsabilité:
     <3>You cannot welcome new partners into a sole proprietorship.</3>
   intro: This choice determines your degree of responsibility and your ability to
     welcome new partners in the future
-  page:
-    titre: Choose between Sole Proprietorship and Limited Liability Company in France
   société: >
     <0>Limited liability company:</0>
 
     You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
   titre: Limited liability company or sole proprietorship
-salaire: salary
-salarié: employee
 select:
   value:
     default: Choose an option
-selectionRégime:
-  comparer:
-    cta: Compare social schemes
-    description: The executive's social scheme has a very strong influence on the
-      level of social protection and the perceived income. To help you see more
-      clearly and choose the plan that suits you best, we have designed a quick
-      comparator.
-    titre: Not sure which one to choose?
-  page:
-    titre: Social scheme selection
-  titre: Which social scheme would you like to explore?
-  warning:
-    artiste-auteur: This estimate is proposed for information only. It is based on
-      the applicable regulatory elements and the elements that you have entered,
-      but it does not take into account your entire situation. The actual amount
-      of your contributions may therefore be different.
-    cfe: The simulator does not include the corporate property tax (CFE), which is
-      due from the second year of the fiscal year. Its amount varies greatly
-      depending on the company's turnover and the company's domiciliation.
-      <2>More info.</2>
-    plus: Read explanations
-    sasu: Corporate income tax and dividend management are not yet implemented.
-    titre: Before starting...
-    urssaf: The figures are indicative and do not replace the actual accounts of the
-      Urssaf, impots.gouv.fr, etc
+septembre: September
 shareSimulation:
   banner: Generate a share link
   button:
@@ -2026,25 +1540,19 @@ simulateurs:
     cotisations-ordinales: For regulated professions, the simulator does not
       calculate the amount of contributions to the order. They must be added
       manually in the "operating expenses" box.
-    indépendant: <0>The simulator does not take into account the micro-BNC and
-      micro-BIC regimes.</0>
     plus: Read the details
     profession-libérale: <0>This simulator is intended for use in the NLC
       professions. It does not take into account the professional practice
       societies or the micro-NBP scheme.</0>
-    sasu: Corporate income tax and dividend management are not yet implemented.
     titre: Before we start...
     urssaf: The calculations are indicative and are not a substitute for the actual
       statements of Urssaf, impots.gouv.fr, or others.
 simulation-end:
   cta: Know the steps to take
   hiring:
-    cta: Know the procedures
     text: You can now turn your hiring project into reality.
   text: You have reached the most accurate estimate.
   title: No more questions left!
-site:
-  titleTemplate: "%s - My Company"
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms
@@ -2065,31 +1573,14 @@ sécu:
     <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
   page:
     titre: Social Security
-  titre: Social security in France
-taux: rate
-taxe: tax
 tous les 6 mois: every 6 months
-toutes ces conditions: all of these apply
-trimestres: quarters
-trimestres validés: validated quarters
+trimestres acquis: quarters acquired
 trimestriel: quarterly
-trouver:
-  description: Thanks to the SIREN database, the public information of your
-    company will be used automatically in the next steps.
-  non: I don't have a company yet
-  ok: Confirm and simulate hiring costs
-  page:
-    description: Find your existing company, and start simulate hiring cost
-      customized to your situation
-  titre: Find your company
-une de ces conditions: one of these applies
+"{label}": null
+"{type}": null
 À quoi servent mes cotisations ?: How are my contributions distributed?
-Échap: Esc
-Économie collaborative: Collaborative Economy
-État: State
-Êtes vous satisfait de ce guide ?: Are you satisfied with this guide?
+Échanger avec un conseiller: Talk to a consultant
 Êtes vous satisfait de cet assistant ?: Are you satisfied with this assistant?
-à: to
 économieCollaborative:
   WIP: <0>This assistant is under development.</0> Do not hesitate to send us all
     your remarks, ideas, questions by clicking on the "Make a suggestion" button
@@ -2131,9 +1622,6 @@ une de ces conditions: one of these applies
       check that its corporate purpose is compatible with the activities
       concerned (and change it if necessary). Otherwise, you will have to start
       a new business.</1> <2>Create a company</2>
-    guide: <0><0></0> Consult the Urssaf guide</0><1>Find out about the social
-      status for each type of rental (property, furnished, short-term,
-      classified, etc.).</1><2>PDF</2>
     impôts: <0>Declare your income to the tax autorities</0> <1>For these
       activities, you only need to report your income on your tax return. For
       more information, you can visit the <2>dedicated page on
