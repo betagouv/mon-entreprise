@@ -332,6 +332,7 @@
   problématique.<1></1>Le conseiller compétent proche de chez vous vous rappelle
   sous 5 jours.</3>"
 Assimilé salarié: Assimilé salarié
+Assistants à la déclaration de revenus 2021 des indépendants: Assistants à la déclaration de revenus 2021 des indépendants
 Aucun: Aucun
 Aucun résultat: Aucun résultat
 Auto-entrepreneur: Auto-entrepreneur
@@ -1202,10 +1203,10 @@ pages:
   gérer:
     aide-déclaration-indépendant:
       meta:
-        description: Calculer facilement les montants des charges sociales à reporter
-          dans votre déclaration de revenu 2020.
+        description: Calculez le montant des cotisations et contributions sociales à
+          reporter dans votre déclaration de revenu 2021
         title: "Déclaration de revenus indépendant : calcul du montant des cotisations"
-      shortname: Aide à la déclaration de revenu
+      shortname: Détermination des charges sociales déductibles
       title: Assistant à la déclaration de revenus pour indépendant
     demande-mobilité:
       meta:
@@ -1383,9 +1384,9 @@ pages:
         ?"
     dividendes:
       meta:
-        description: "Indépendants : calculez le montant de l'exonération de cotisations
-          covid sur vos cotisations de 2021."
-        title: Exonération Covid
+        description: Déterminez les éléments à déclarer pour bénéficier de l'exonération
+          Covid et obtenir les codes « norme EDI » à lancer le simulateur
+        title: Simulateur d'exonération COVID
       seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
