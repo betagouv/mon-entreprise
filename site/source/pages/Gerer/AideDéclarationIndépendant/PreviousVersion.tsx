@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { updateSituation } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
 import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
@@ -12,30 +11,18 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { situationSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import { useCallback } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
 import { TrackPage } from '../../../ATInternetTracking'
 import simulationConfig from './config.yaml'
 import { ExplicationsResultatFiscal } from './ExplicationResultatFiscal'
 import { SimpleField, SubSection } from './Fields'
 import ResultatsSimples from './RésultatSimple'
-import ResultatsParFormulaire from './RésultatsParFormulaire'
 import illustration from './undraw_fill_in_mie5.svg'
-
-/**
- * Nous avons proposé une nouvelle vision des résultat plus complète, avec une proposition d'aide pour
- * l'ensemble des cases liées aux cotisations sociales.
- *
- * Hors de propos pour 2021, étant donné que cela prendrait beaucoup de temps à valider par la DGFiP
- * En attendant, on propose la version "simple" (mais moins utile).
- *
- * Le but est de faire valider la version plus complète pour la déclaration de revenu 2021.
- */
-const FEATURE_FLAG_RESULTATS_COMPLETS =
-	!import.meta.env.SSR && document.location.search.includes('next')
 
 export default function AideDéclarationIndépendant() {
 	useSimulationConfig(simulationConfig)
@@ -151,9 +138,7 @@ export default function AideDéclarationIndépendant() {
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle
 							/>
-							{FEATURE_FLAG_RESULTATS_COMPLETS && (
-								<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
-							)}
+
 							<H2>
 								<Trans>International</Trans>
 							</H2>
@@ -188,27 +173,10 @@ export default function AideDéclarationIndépendant() {
 					</Grid>
 				</Grid>
 			</FromTop>
-			{FEATURE_FLAG_RESULTATS_COMPLETS ? (
-				<>
-					<SubSection dottedName="déclaration indépendants . régime d'imposition" />
-					<Condition
-						expression={{
-							'une de ces conditions': [
-								"déclaration indépendants . régime d'imposition . réel",
-								"déclaration indépendants . régime d'imposition . déclaration contrôlée",
-								'entreprise . imposition . IR . micro-fiscal',
-							],
-						}}
-					>
-						<TrackPage name="simulation terminée" />
-						<ResultatsParFormulaire />
-					</Condition>
-				</>
-			) : (
-				<WhenAlreadyDefined dottedName="déclaration indépendants . résultat simple . cotisations obligatoires">
-					<ResultatsSimples />
-				</WhenAlreadyDefined>
-			)}
+
+			<WhenAlreadyDefined dottedName="déclaration indépendants . résultat simple . cotisations obligatoires">
+				<ResultatsSimples />
+			</WhenAlreadyDefined>
 		</>
 	)
 }
@@ -234,9 +202,7 @@ function ImpositionSection() {
 					{/* </WhenApplicable> */}
 					<Condition
 						expression={
-							FEATURE_FLAG_RESULTATS_COMPLETS
-								? 'oui'
-								: 'déclaration indépendants . cotisations payées version simple = non'
+							'déclaration indépendants . cotisations payées version simple = non'
 						}
 					>
 						<FromTop key={situation['entreprise . imposition']}>
