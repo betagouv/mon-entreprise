@@ -329,6 +329,7 @@ Annuel: Yearly
 Année d'activité: Years of activity
 Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
+Assistants à la déclaration de revenus 2021 des indépendants: Assistants to the 2021 tax return for the self-employed
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
 Aucun: No
@@ -1440,10 +1441,10 @@ pages:
   gérer:
     aide-déclaration-indépendant:
       meta:
-        description: Easily calculate the amount of payroll taxes to report on your 2019
-          income tax return.
+        description: Calculate the amount of social security contributions to be
+          reported on your 2021 income tax return
         title: "Self-employed tax return: calculation of the amount of contributions"
-      shortname: Income tax return assistance
+      shortname: Determination of deductible social charges
       title: Self-employed tax return assistant
     demande-mobilité:
       meta:
@@ -1703,9 +1704,9 @@ pages:
         questions.</4>"
     dividendes:
       meta:
-        description: "Self-employed: calculate the amount of the covid exemption on your
-          2021 contributions."
-        title: Covid Exemption
+        description: Determine the elements to be declared to benefit from the Covid
+          exemption and obtain the "EDI standard" codes to launch the simulator
+        title: COVID exemption simulator
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the result of the previous year can be kept in reserve (for future
         investments) or paid out as dividends. From the point of view of the
