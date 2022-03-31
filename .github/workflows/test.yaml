@@ -50,4 +50,7 @@ jobs:
           node-version: '16'
           cache: 'yarn'
       - run: yarn install --immutable
-      - run: yarn workspace site run i18n:check
+      # La traduction auto des règles est cassée
+      # CF https://github.com/betagouv/mon-entreprise/issues/2078
+      # - run: yarn workspace site run i18n:check
+      - run: yarn workspace site run i18n:ui:check
