@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import RuleInput from '@/components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
@@ -11,9 +10,11 @@ import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { evaluateQuestion, hash } from '@/utils'
+import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { isEmpty, omit } from 'ramda'
+import { omit } from 'ramda'
 import {
 	Fragment,
 	lazy,
@@ -23,7 +24,6 @@ import {
 	useState,
 } from 'react'
 import { TrackPage } from '../../../ATInternetTracking'
-import { hash } from '@/utils'
 import formulaire from './demande-mobilité.yaml'
 import picture from './undraw_Traveling_re_weve.svg'
 

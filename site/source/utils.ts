@@ -1,4 +1,9 @@
-import Engine, { formatValue, Rule, RuleNode } from 'publicodes'
+import Engine, {
+	formatValue,
+	PublicodesExpression,
+	Rule,
+	RuleNode,
+} from 'publicodes'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
@@ -212,7 +217,8 @@ export function evaluateQuestion(
 		question.rawNode.question &&
 		typeof question.rawNode.question === 'object'
 	) {
-		return engine.evaluate(question.rawNode.question).nodeValue as string
+		return engine.evaluate(question.rawNode.question as PublicodesExpression)
+			.nodeValue as string
 	}
 
 	return question.rawNode.question
