@@ -297,6 +297,19 @@ mois . janvier 2022 . LFSS 600:
 mois . janvier 2022 . LFSS 300:
   valeur: janvier 2022 = 'LFSS 300'
 
+mois . février 2022:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . février 2022 . LFSS 600:
+  valeur: février 2022 = 'LFSS 600'
+  meta:
+    baisse d'au moins: 65%
+mois . février 2022 . LFSS 300:
+  valeur: février 2022 = 'LFSS 300'
+
 LFSS 600:
   applicable si: secteur . S1 ou S1bis
   produit:
@@ -335,6 +348,8 @@ LFSS 600:
           par défaut: non
         - valeur: mois . janvier 2022 . LFSS 600
           par défaut: non
+        - valeur: mois . février 2022 . LFSS 600
+          par défaut: non
 
 LFSS 600 . montant mensuel: LFSS 600 . assiette * 1 mois
 
@@ -353,6 +368,8 @@ LFSS 300:
         - valeur: mois . décembre 2021 . LFSS 300
           par défaut: non
         - valeur: mois . janvier 2022 . LFSS 300
+          par défaut: non
+        - valeur: mois . février 2022 . LFSS 300
           par défaut: non
 
 LFSS 300 . montant mensuel: LFSS 300 . assiette * 1 mois
