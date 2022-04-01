@@ -191,75 +191,71 @@ function ImpositionSection() {
 	return (
 		<>
 			<SimpleField dottedName="entreprise . imposition" />
-			{situation['entreprise . imposition'] != null && (
-				<>
-					{/* <WhenApplicable dottedName="déclaration indépendants . comptabilité"> */}
-					<SimpleField dottedName="déclaration indépendants . comptabilité" />
-					{/* </WhenApplicable> */}
-					<Condition
-						expression={
-							'déclaration indépendants . cotisations payées version simple = non'
-						}
-					>
-						<FromTop key={situation['entreprise . imposition']}>
-							<Condition expression="entreprise . imposition . IR">
-								<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
-								<Condition expression="entreprise . imposition . IR . micro-fiscal">
-									<H2>
-										Quel est votre chiffre d'affaires hors taxes en 2021 ?
-									</H2>
-									<SmallBody>
-										Indiquez le montant hors taxes de votre chiffre d’affaires
-										ou de vos recettes bruts (avant déduction de l’abattement
-										forfaitaire pour frais et charges) et avant déduction des
-										exonérations fiscales dont vous avez bénéficié
-									</SmallBody>
-									<SimpleField dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
-									<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
-									<SimpleField dottedName="entreprise . chiffre d'affaires . service BNC" />
-								</Condition>
-								<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
-									<H2>
-										Quel est votre résultat fiscal au titre de l'année 2021 ?
-										<br />
-										<small>
-											Charges sociales et exonérations fiscales non incluses{' '}
-											<ExplicationsResultatFiscal />
-										</small>
-									</H2>
-									<SmallBody>
-										Le résultat fiscal correspond aux produits moins les
-										charges. Il peut être positif (bénéfice) ou négatif
-										(déficit).
-									</SmallBody>
-									<BigInput>
-										<RuleInput
-											dottedName="dirigeant . rémunération . totale"
-											onChange={setSituation}
-											autoFocus
-											displayedUnit=""
-										/>
-									</BigInput>
-								</Condition>
+
+			<WhenAlreadyDefined dottedName="entreprise . imposition">
+				{/* <WhenApplicable dottedName="déclaration indépendants . comptabilité"> */}
+				<SimpleField dottedName="déclaration indépendants . comptabilité" />
+				{/* </WhenApplicable> */}
+				<Condition
+					expression={
+						'déclaration indépendants . cotisations payées version simple = non'
+					}
+				>
+					<FromTop key={situation['entreprise . imposition']}>
+						<Condition expression="entreprise . imposition . IR">
+							<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
+							<Condition expression="entreprise . imposition . IR . micro-fiscal">
+								<H2>Quel est votre chiffre d'affaires hors taxes en 2021 ?</H2>
+								<SmallBody>
+									Indiquez le montant hors taxes de votre chiffre d’affaires ou
+									de vos recettes bruts (avant déduction de l’abattement
+									forfaitaire pour frais et charges) et avant déduction des
+									exonérations fiscales dont vous avez bénéficié
+								</SmallBody>
+								<SimpleField dottedName="entreprise . chiffre d'affaires . vente restauration hébergement" />
+								<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
+								<SimpleField dottedName="entreprise . chiffre d'affaires . service BNC" />
 							</Condition>
-							<Condition expression="entreprise . imposition . IS">
+							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
 								<H2>
-									Quel est le montant net de votre rémunération en 2021 ?
+									Quel est votre résultat fiscal au titre de l'année 2021 ?
 									<br />
-									<small>Sans tenir compte des charges sociales</small>
+									<small>
+										Charges sociales et exonérations fiscales non incluses{' '}
+										<ExplicationsResultatFiscal />
+									</small>
 								</H2>
+								<SmallBody>
+									Le résultat fiscal correspond aux produits moins les charges.
+									Il peut être positif (bénéfice) ou négatif (déficit).
+								</SmallBody>
 								<BigInput>
 									<RuleInput
-										dottedName="dirigeant . rémunération . nette"
+										dottedName="dirigeant . rémunération . totale"
 										onChange={setSituation}
 										autoFocus
+										displayedUnit=""
 									/>
 								</BigInput>
 							</Condition>
-						</FromTop>
-					</Condition>
-				</>
-			)}
+						</Condition>
+						<Condition expression="entreprise . imposition . IS">
+							<H2>
+								Quel est le montant net de votre rémunération en 2021 ?
+								<br />
+								<small>Sans tenir compte des charges sociales</small>
+							</H2>
+							<BigInput>
+								<RuleInput
+									dottedName="dirigeant . rémunération . nette"
+									onChange={setSituation}
+									autoFocus
+								/>
+							</BigInput>
+						</Condition>
+					</FromTop>
+				</Condition>
+			</WhenAlreadyDefined>
 		</>
 	)
 }

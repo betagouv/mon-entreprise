@@ -1395,7 +1395,7 @@ dirigeant . indépendant . cotisations et contributions . maladie domiciliation 
   arrondi: oui
 
 dirigeant . indépendant . IJSS:
-  titre: Indemnités et allocations journalières de sécurité sociale
+  titre: Allocations et indemnités journalières de sécurité sociale
   description: |
     Il s’agit des allocations et indemnités journalières versées par votre caisse primaire d’assurance maladie en cas de maladie, maternité, paternité ou adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de Covid-19.
 
@@ -1417,11 +1417,10 @@ dirigeant . indépendant . IJSS . total:
     Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
 
     <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
-    - indemnités journalière maladie
+    - indemnité journalière maladie
     - allocation forfaitaire de repos maternel
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-    - indemnité de remplacement pour maternité
-    - paternité ou adoption
+    - indemnité de remplacement pour maternité, paternité ou adoption
   par défaut: 0 €/an
 
 dirigeant . indépendant . IJSS . imposable:
@@ -1434,9 +1433,8 @@ dirigeant . indépendant . IJSS . imposable:
     Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises au taux réduit de la CSG-CRDS.
 
     <p><u>Les revenus de remplacement concernés sont :</u></p>
-    - indemnités journalière maladie
+    - indemnité journalière maladie
     - allocation forfaitaire de repos maternel
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-    - indemnité de remplacement pour maternité
-    - paternité ou adoption.
+    - indemnité de remplacement pour maternité, paternité ou adoption
   par défaut: 0 €/an
