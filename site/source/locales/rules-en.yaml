@@ -4213,8 +4213,8 @@ dirigeant . indépendant . IJSS:
   question.fr: Avez-vous perçu des indemnités journalières ou allocations de
     sécurité sociale au titre de votre activité indépendantes (maladie,
     maternité, paternité, adoption) ?
-  titre.en: '[automatic] Social security benefits and daily allowances'
-  titre.fr: Indemnités et allocations journalières de sécurité sociale
+  titre.en: '[automatic] Social security allowances and per diems'
+  titre.fr: Allocations et indemnités journalières de sécurité sociale
 dirigeant . indépendant . IJSS . imposable:
   description.en: >
     [automatic] Indicate only the amount of taxable daily allowances and
@@ -4233,9 +4233,7 @@ dirigeant . indépendant . IJSS . imposable:
 
     - fixed daily allowance for interruption of activity (maternity)
 
-    - replacement allowance for maternity
-
-    - paternity or adoption.
+    - replacement allowance for maternity, paternity or adoption
   description.fr: >
     Indiquez uniquement le montant des allocations et indemnités journalières
     imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
@@ -4247,15 +4245,13 @@ dirigeant . indépendant . IJSS . imposable:
 
     <p><u>Les revenus de remplacement concernés sont :</u></p>
 
-    - indemnités journalière maladie
+    - indemnité journalière maladie
 
     - allocation forfaitaire de repos maternel
 
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
 
-    - indemnité de remplacement pour maternité
-
-    - paternité ou adoption.
+    - indemnité de remplacement pour maternité, paternité ou adoption
   question.en: '[automatic] What is the gross taxable amount of your social
     security benefits and daily allowances?'
   question.fr:
@@ -4277,15 +4273,13 @@ dirigeant . indépendant . IJSS . total:
 
     <p><u>The allowances and daily benefits concerned are :</u></p>
 
-    - daily sickness benefit
+    - daily sickness allowance
 
     - lump-sum maternal rest allowance
 
     - fixed daily allowance for interruption of activity (maternity)
 
-    - maternity replacement allowance
-
-    - paternity or adoption
+    - replacement allowance for maternity, paternity or adoption
   description.fr: >
     Indiquez le montant total brut de vos allocations et indemnités journalières
     perçues, imposables et non imposables, qui figure sur le relevé de
@@ -4297,15 +4291,13 @@ dirigeant . indépendant . IJSS . total:
 
     <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
 
-    - indemnités journalière maladie
+    - indemnité journalière maladie
 
     - allocation forfaitaire de repos maternel
 
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
 
-    - indemnité de remplacement pour maternité
-
-    - paternité ou adoption
+    - indemnité de remplacement pour maternité, paternité ou adoption
   question.en:
     '[automatic] What is the total gross amount of your social security
     benefits and daily allowances?'
@@ -6335,10 +6327,13 @@ dirigeant . rémunération . totale:
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 déclaration indépendants:
-  description.en: '[automatic] These rules calculate the amounts claimed on the
-    2022 self-employment tax return on 2021 income.'
-  description.fr: Ces règles calculent les montants demandés dans la déclaration
-    de revenu des indépendants de 2022 sur les revenus 2021.
+  description.en:
+    '[automatic] These rules calculate the amounts of social charges
+    to be reported in the income tax return of the self-employed and in the
+    income tax returns.'
+  description.fr: Ces règles calculent les montants des charges sociales à
+    reporter dans la déclaration de revenu  des indépendants et dans les
+    déclaration de résultats.
   titre.en: '[automatic] assistance declaration independent income 2020'
   titre.fr: déclaration indépendants
 déclaration indépendants . ACRE:
@@ -6667,7 +6662,7 @@ déclaration indépendants . réduction covid:
 
     (1) Decree 2021-75 of January 27, 2021, issued in application of Article 9 of Law 2020-1576 of December 14, 2020 on the financing of social security for 2021.
 
-    Decrees concerning the extension of these measures: Decree 2021-1410 of October 29, 2021 - Decree 2021-1956 of December 31, 2021 - Decree XXXX 
+    Decrees concerning the extension of these measures: Decree 2021-1410 of October 29, 2021 - Decree 2021-1956 of December 31, 2021 - Decree 2022-170 of February 11, 2022
 
 
     (2) Decree 2021-1094 of August 19, 2021, issued in application of Article 25 of Law 2021-953 of July 19, 2021 on the amended budget for 2021.
@@ -6675,26 +6670,30 @@ déclaration indépendants . réduction covid:
 
     **These measures are aimed at self-employed workers whose main activity falls within one of the following sectors and under certain other eligibility conditions:**
 
-    - sector S1: sectors of tourism, hotels, restaurants, sports, culture, air transport and events: see detailed list of activities in sector S1.
+    - sector known as S1: sectors of tourism, hotels, restaurants, sports, culture, air transport and events
 
-    - sector S1 bis: sectors whose activity depends on that of sector 1: see detailed list of activities in sector S1 bis.
+    - sector called S1 bis: sectors whose activity depends on that of sector 1
 
-    - S2 sector: other sectors of activity which have been banned from carrying on their activity in application of decrees n° 2020-1262 of October 16, 2020 and n° 2020-1310 of October 29, 2020.
-
-
-    **Good to know:** Delivery activities, order collection or take-away sales are not taken into account to assess compliance with the condition of prohibition of reception of the public. 
-
-    The curfew is not considered as a measure of prohibition of reception of the public.
+    - sector called S2: other sectors of activity that have been banned from carrying on their activity in a preponderant way
 
 
-    ### Eligibility Requirements and Reduction Amount:
+    [See the detailed list of activities of the different sectors](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
 
-    The reduction applies to the final 2021 personal social security contributions and fees due to Urssaf. 
+
+    **Good to know:** Delivery, pick-up or take-away activities are not taken into account when assessing compliance with the condition of prohibition of reception of the public. 
+
+    A curfew is not considered to be a prohibition on the reception of the public.
+
+
+    ### Eligibility Requirements and Amount of Reduction:
+
+    The reduction applies to the final 2021 personal social security contributions due to Urssaf. 
+
 
     The conditions of eligibility are assessed month by month, as is the amount of the reduction.
 
 
-    For more information, visit secu-independants.fr or urssaf.fr.
+    For more information, and to know the amount of the exemption you can benefit from, you can use the [COVID exemption simulator](/simulators/exoneration-covid "New window").
   description.fr: >-
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre
     plusieurs mesures exceptionnelles concernant les cotisations et
@@ -6711,7 +6710,7 @@ déclaration indépendants . réduction covid:
 
     (1) Décret 2021-75 du 27 janvier 2021 pris en application de l’article 9 de la loi n° 2020-1576 du 14 décembre 2020 de financement de la sécurité sociale pour 2021.
 
-    Décrets relatifs à la prolongation de ces mesures : Décret 2021-1410 du 29 octobre 2021 - Décret 2021-1956 du 31 décembre 2021 – Décret XXXX 
+    Décrets relatifs à la prolongation de ces mesures : Décret 2021-1410 du 29 octobre 2021 - Décret 2021-1956 du 31 décembre 2021 – Décret 2022-170 du 11 février 2022
 
 
     (2) Décret 2021-1094 du 19 août 2021 pris en application de l'article 25 de la loi n° 2021-953 du 19 juillet 2021 de finances rectificative pour 2021.
@@ -6719,11 +6718,14 @@ déclaration indépendants . réduction covid:
 
     **Ces mesures s’adressent aux travailleurs indépendants dont l’activité principale relève d’un des secteurs suivants et sous certaines autres conditions d’éligibilité :**
 
-    - secteur dit S1 : secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel : voir liste détaillée des activités relevant du secteur S1.
+    - secteur dit S1 : secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
 
-    - secteur dit S1 bis : secteurs dont l’activité dépend de celle des secteurs 1 : voir liste détaillée des activités relevant du secteur S1 bis.
+    - secteur dit S1 bis : secteurs dont l’activité dépend de celle des secteurs 1
 
-    - secteur dit S2 : autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité en application des décrets n° 2020-1262 du 16 octobre 2020 et n° 2020-1310 du 29 octobre 2020.
+    - secteur dit S2 : autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité
+
+
+    [Voir la liste détaillée des activités des différents secteurs](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
 
 
     **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public. 
@@ -6731,14 +6733,15 @@ déclaration indépendants . réduction covid:
     Le couvre-feu n’est pas considéré comme une mesure d’interdiction d’accueil du public.
 
 
-    ### Conditions d’éligibilité et Montant de la réduction :
+    ### Conditions d’éligibilité et montant de la réduction :
 
     La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf. 
+
 
     Les conditions d’éligibilité s’évaluent mois par mois, le montant de la réduction également.
 
 
-    Pour plus d’information, rendez-vous sur secu-independants.fr ou urssaf.fr.
+    Pour plus d’information, et connaitre le montant de l’exonération dont vous pouvez bénéficier, vous pouvez utiliser le [simulateur d’exonération COVID](/simulateurs/exonération-covid "Nouvelle fenêtre").
   question.en: '[automatic] Do you qualify for the Covid-19 reduction in social
     security contributions in 2021?'
   question.fr:
@@ -6755,13 +6758,13 @@ déclaration indépendants . réduction covid . montant:
     exemption simulator.
 
 
-    [Go to the simulator](/simulators/exoneration-covid)
+    [Go to the simulator](/simulators/exoneration-covid "New window")
   description.fr: >-
     Pour connaître le montant de l'exonération, vous pouvez utiliser le
     simulateur d'exonération COVID.
 
 
-    [Accéder au simulateur](/simulateurs/exonération-covid)
+    [Accéder au simulateur](/simulateurs/exonération-covid "Nouvelle fenêtre")
   question.en:
     '[automatic] What is the amount of the social exemption related to
     the health crisis for the contributions of the year 2021?'

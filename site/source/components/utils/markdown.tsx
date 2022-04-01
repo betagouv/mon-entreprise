@@ -23,9 +23,17 @@ export function LinkRenderer({
 }: {
 	href?: string
 	children: React.ReactNode
+	title?: string
 }) {
 	const siteName = useContext(SiteNameContext)
 
+	if (otherProps.title?.startsWith('Nouvelle fenêtre')) {
+		return (
+			<Link target="_blank" rel="noreferrer" href={href} {...otherProps}>
+				{children}
+			</Link>
+		)
+	}
 	if (href && !href.startsWith('http')) {
 		return (
 			<Link to={href} {...otherProps}>

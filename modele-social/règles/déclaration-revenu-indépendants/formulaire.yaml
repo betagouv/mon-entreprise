@@ -1,9 +1,7 @@
-# AIDE A LA DECLARATION DES INDEPENDANTS
-
 déclaration indépendants:
   description: >-
-    Ces règles calculent les montants demandés dans la déclaration de revenu des
-    indépendants de 2022 sur les revenus 2021.
+    Ces règles calculent les montants des charges sociales à reporter dans la déclaration de revenu 
+    des indépendants et dans les déclaration de résultats.
   formule: non
   remplace:
     - règle: entreprise . ACRE
@@ -320,23 +318,26 @@ déclaration indépendants . réduction covid:
     - le dispositif complémentaire prévu par la 1ère loi de finance rectificative (LFR1) 2021(2) pour les périodes à compter de juin 2021,
 
     (1) Décret 2021-75 du 27 janvier 2021 pris en application de l’article 9 de la loi n° 2020-1576 du 14 décembre 2020 de financement de la sécurité sociale pour 2021.
-    Décrets relatifs à la prolongation de ces mesures : Décret 2021-1410 du 29 octobre 2021 - Décret 2021-1956 du 31 décembre 2021 – Décret XXXX 
+    Décrets relatifs à la prolongation de ces mesures : Décret 2021-1410 du 29 octobre 2021 - Décret 2021-1956 du 31 décembre 2021 – Décret 2022-170 du 11 février 2022
 
     (2) Décret 2021-1094 du 19 août 2021 pris en application de l'article 25 de la loi n° 2021-953 du 19 juillet 2021 de finances rectificative pour 2021.
 
     **Ces mesures s’adressent aux travailleurs indépendants dont l’activité principale relève d’un des secteurs suivants et sous certaines autres conditions d’éligibilité :**
-    - secteur dit S1 : secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel : voir liste détaillée des activités relevant du secteur S1.
-    - secteur dit S1 bis : secteurs dont l’activité dépend de celle des secteurs 1 : voir liste détaillée des activités relevant du secteur S1 bis.
-    - secteur dit S2 : autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité en application des décrets n° 2020-1262 du 16 octobre 2020 et n° 2020-1310 du 29 octobre 2020.
+    - secteur dit S1 : secteurs du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+    - secteur dit S1 bis : secteurs dont l’activité dépend de celle des secteurs 1
+    - secteur dit S2 : autres secteurs d’activité qui ont fait l’objet d’une interdiction affectant de manière prépondérante la poursuite de leur activité
+
+    [Voir la liste détaillée des activités des différents secteurs](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
 
     **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public. 
     Le couvre-feu n’est pas considéré comme une mesure d’interdiction d’accueil du public.
 
-    ### Conditions d’éligibilité et Montant de la réduction :
+    ### Conditions d’éligibilité et montant de la réduction :
     La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf. 
+
     Les conditions d’éligibilité s’évaluent mois par mois, le montant de la réduction également.
 
-    Pour plus d’information, rendez-vous sur secu-independants.fr ou urssaf.fr.
+    Pour plus d’information, et connaitre le montant de l’exonération dont vous pouvez bénéficier, vous pouvez utiliser le [simulateur d’exonération COVID](/simulateurs/exonération-covid "Nouvelle fenêtre").
   par défaut: non
 
 déclaration indépendants . réduction covid . montant:
@@ -344,7 +345,7 @@ déclaration indépendants . réduction covid . montant:
   description: |-
     Pour connaître le montant de l'exonération, vous pouvez utiliser le simulateur d'exonération COVID.
 
-    [Accéder au simulateur](/simulateurs/exonération-covid)
+    [Accéder au simulateur](/simulateurs/exonération-covid "Nouvelle fenêtre")
   titre: Réduction Covid
   par défaut: 0 €/an
 
