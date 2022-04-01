@@ -1,7 +1,3 @@
-### 0.5.0
-
-Supprime février 2022
-
 ### 0.4.3
 
 Ajout de textes (description et question)

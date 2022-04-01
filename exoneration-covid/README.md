@@ -26,6 +26,7 @@ engine.setSituation({
     'mois . août 2021': 'non',
     'mois . décembre 2021': "'LFSS 300'",
     'mois . janvier 2022': "'LFSS 600'",
+    'mois . février 2022': "'LFSS 300'",
 })
 
 console.log(formatValue(engine.evaluate('montant total'))) // "2 650 €"
@@ -75,7 +76,8 @@ Ci-dessus, `months` contiendra la liste des mois qui sont applicables par rappor
     "mois . juillet 2021",
     "mois . août 2021",
     "mois . décembre 2021",
-    "mois . janvier 2022"
+    "mois . janvier 2022",
+    "mois . février 2022"
 ]
 ```
 
@@ -138,6 +140,7 @@ const currentSituation = {
     'mois éligibles . août 2021': "'LFR1'",
     'mois éligibles . décembre 2021': "'LFSS 300'",
     'mois éligibles . janvier 2022': "'non'",
+    'mois éligibles . février 2022': "'LFSS 300'",
 }
 
 const montantTotal = engine
