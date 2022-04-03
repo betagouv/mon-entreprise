@@ -191,12 +191,6 @@ yarn preview:mon-entreprise
 yarn preview:infrance
 ```
 
-### Worker en développement
-
-Nous utilisons [vite](https://vitejs.dev/) pour le serveur de développement et comme bundler. Aucun bundling n'est fait en développement, ce qui accélère considérablement le temps de rechargement de l'app à chaque modification. Pour cela, la syntaxe ESModule est utilisée partout, y compris dans les worker. Malheureusement, tous les navigateurs ne [supportent pas encore cette fonctionalité](https://caniuse.com/mdn-api_worker_worker_ecmascript_modules) (en particulier [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1247687)).
-
-Par conséquent, les workers ne fonctionnent pas en mode développement sous firefox. Ce n'est pas critique mais il faut le savoir.
-
 ### Tests
 
 Pour tester les règles, il est recommandé de:

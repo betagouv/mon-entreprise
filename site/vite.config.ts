@@ -71,7 +71,7 @@ export default defineConfig(({ command }) => ({
 			sites: {
 				'mon-entreprise': {
 					lang: 'fr',
-					entry: '/source/entry.fr.tsx',
+					entry: '/source/entry-fr.tsx',
 					title:
 						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
 					description:
@@ -80,7 +80,7 @@ export default defineConfig(({ command }) => ({
 				},
 				infrance: {
 					lang: 'en',
-					entry: '/source/entry.en.tsx',
+					entry: '/source/entry-en.tsx',
 					title:
 						'My company in France: A step-by-step guide to start a business in France',
 					description:
@@ -106,6 +106,10 @@ export default defineConfig(({ command }) => ({
 		},
 	},
 	optimizeDeps: {
+		// TODO: for some reason (ViteJS bug?) we need to define a entry file in the
+		// "main" field of package.json. Ideally this shouldn't be required. It's
+		// not possible to write comments in package.json here it is.
+		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],
 		exclude: ['publicodes-react', 'publicodes'],
 		// Optimize cjs deps from publicodes
 		include: ['publicodes > moo', 'publicodes > nearley', 'yaml'],
