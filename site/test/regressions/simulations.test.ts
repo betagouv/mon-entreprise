@@ -8,7 +8,7 @@
 import { expect, it } from 'vitest'
 import rules, { DottedName } from 'modele-social'
 import { engineFactory } from '../../source/components/utils/EngineContext'
-import aideDéclarationConfig from '../../source/pages/Gerer/AideDéclarationIndépendant/config.yaml'
+import aideDéclarationConfig from '../../source/pages/gerer/declaration-charges-sociales-independant/_config.yaml'
 import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/pages/Simulateurs/configs/auto-entrepreneur.yaml'
 import dividendesConfig from '../../source/pages/Simulateurs/configs/dividendes.yaml'
