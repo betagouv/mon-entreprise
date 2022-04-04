@@ -61,7 +61,7 @@ export default function Déclaration() {
 				<Grid item lg={10} xl={8}>
 					<FromTop>
 						<H2>Aide au remplissage de la déclaration de revenu</H2>
-						<Trans i18nKey="assistant-DRI.imposition.intro">
+						<Trans i18nKey="assistant-DRI.declaration.intro">
 							<Intro>
 								Nous allons maintenant vous indiquer comment remplir votre
 								déclaration de revenu personnelle à partir de la déclaration de

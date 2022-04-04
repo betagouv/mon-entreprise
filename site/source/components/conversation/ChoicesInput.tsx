@@ -21,7 +21,7 @@ import {
 	useEffect,
 	useState,
 } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
@@ -137,6 +137,7 @@ function RadioChoice<Names extends string = DottedName>({
 	rootDottedName: Names
 }) {
 	const hiddenOptions = useContext(HiddenOptionContext)
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -184,9 +185,7 @@ function RadioChoice<Names extends string = DottedName>({
 			))}
 			{choice.canGiveUp && (
 				<>
-					<Radio value={'non'}>
-						<Trans>Aucun</Trans>
-					</Radio>
+					<Radio value={'non'}>{t('Aucun')}</Radio>
 				</>
 			)}
 		</>

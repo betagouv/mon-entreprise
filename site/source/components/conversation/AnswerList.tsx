@@ -95,9 +95,9 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 
 			{companyQuestions.length > 0 && (
 				<>
-					<H3>
-						<Trans>Mon entreprise</Trans>
-					</H3>
+					<Trans>
+						<H3>Mon entreprise</H3>
+					</Trans>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing sm />
 					<div
