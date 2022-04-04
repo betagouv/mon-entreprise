@@ -378,6 +378,8 @@ comparaisonRégimes:
     legend: Statuts juridiques possibles
   titreSelection: "Créer mon entreprise en tant que :"
   trimestreValidés: <0>Nombre de trimestres validés <1>(pour la retraite)</1></0>
+copied: Copié
+copyMessage: Copier le message
 créer:
   cta:
     continue: Continuer le guide
