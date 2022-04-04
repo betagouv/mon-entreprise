@@ -1,6 +1,7 @@
 {
 	"recommendations": [
 		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
 		"ban.spellright",
 		"styled-components.vscode-styled-components",
 		"bungcip.better-toml",
