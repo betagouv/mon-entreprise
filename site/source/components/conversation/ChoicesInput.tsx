@@ -1,6 +1,5 @@
 import { useDebounce } from '@/components/utils'
 import Emoji from '@/components/utils/Emoji'
-import { Markdown } from '@/components/utils/markdown'
 import {
 	Radio,
 	RadioCard,
@@ -8,7 +7,6 @@ import {
 	RadioGroup,
 	ToggleGroup,
 } from '@/design-system'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
@@ -17,6 +15,7 @@ import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
 import {
 	createContext,
 	Fragment,
+	Key,
 	useCallback,
 	useContext,
 	useEffect,
@@ -24,7 +23,6 @@ import {
 } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
-import { useEngine } from '../utils/EngineContext'
 import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
 
@@ -121,7 +119,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	return (
 		<Component onChange={handleChange} value={currentSelection ?? undefined}>
 			<RadioChoice
-				autoFocus={defaultValue && props.autoFocus}
+				autoFocus={props.autoFocus ? defaultValue : undefined}
 				choice={choice}
 				rootDottedName={props.dottedName}
 			/>
@@ -240,8 +238,8 @@ export function useSelection<Names extends string = DottedName>({
 		missing ? null : defaultValue
 	)
 	const handleChange = useCallback(
-		(value: string) => {
-			setCurrentSelection(value)
+		(value: Key) => {
+			setCurrentSelection(value.toString())
 		},
 		[setCurrentSelection]
 	)

@@ -1,4 +1,3 @@
-import { DottedName } from '@/../../modele-social'
 import { Condition } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -81,7 +80,8 @@ function useSteps() {
 	const step2Progress = useProgress(Step2Objectifs)
 	const step3Progress = useProgress(useStep3Objectifs())
 	const step4Progress = useSimulationProgress()
-	const casExclu = useEngine().evaluate('DRI . cas exclus ').nodeValue
+	const casExclu = useEngine().evaluate('DRI . cas exclus ')
+		.nodeValue as boolean
 
 	return [
 		{

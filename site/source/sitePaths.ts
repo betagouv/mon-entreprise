@@ -120,6 +120,8 @@ const rawSitePathsEn = {
 		index: '/manage',
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
+		'déclaration-charges-sociales-indépendant':
+			'/declaration-social-charges-independent',
 		déclarationIndépendant: {
 			index: '/declaration-aid-independent',
 			imposition: '/taxation',

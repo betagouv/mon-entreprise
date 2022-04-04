@@ -13,6 +13,7 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { formatValue } from 'publicodes'
@@ -371,7 +372,11 @@ function LiasseFiscaleTitle() {
 	const liasse = engine.getRule(liasseDottedName)
 
 	return (
-		<FormulaireTitle formulaire={liasse.rawNode.meta?.formulaire ?? ''}>
+		<FormulaireTitle
+			formulaire={
+				getMeta<{ formulaire?: string }>(liasse.rawNode, {}).formulaire ?? ''
+			}
+		>
 			<H3>{liasse.title}</H3>
 		</FormulaireTitle>
 	)

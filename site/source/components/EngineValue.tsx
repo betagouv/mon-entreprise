@@ -20,7 +20,7 @@ export type ValueProps<Names extends string> = {
 	precision?: number
 	linkToRule?: boolean
 	flashOnChange?: boolean
-} & React.HTMLProps<HTMLSpanElement>
+} & React.HTMLAttributes<HTMLSpanElement>
 
 export default function Value<Names extends string>({
 	expression,
@@ -48,7 +48,8 @@ export default function Value<Names extends string>({
 		displayedUnit,
 		language,
 		precision,
-	})
+	}) as string
+
 	if (isRule && linkToRule) {
 		return (
 			<RuleLink dottedName={expression as DottedName}>

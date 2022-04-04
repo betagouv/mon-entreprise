@@ -14,21 +14,29 @@ import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
-import { RuleNode } from 'publicodes'
+import { Rule, RuleNode } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
 
+interface Meta {
+	facultatif?: 'oui' | 'non'
+	section?: 'oui' | 'non'
+	affichage?: string
+	cases?: string[] | { défaut: string[] }
+}
+
 export function useObjectifs(): Array<DottedName> {
 	return useLiasseFiscaleFields()
 		.filter(
 			([, rule]) =>
-				rule.rawNode.meta?.facultatif !== 'oui' &&
-				rule.rawNode.meta?.section !== 'oui'
+				getMeta<Meta>(rule.rawNode, {})?.facultatif !== 'oui' &&
+				getMeta<Meta>(rule.rawNode, {})?.section !== 'oui'
 		)
 		.map(([dottedName]) => dottedName)
 }
@@ -202,7 +210,7 @@ function LiasseFiscale() {
 	return (
 		<>
 			{fields.map(([dottedName, rule]) =>
-				rule.rawNode.meta?.section === 'oui' ? (
+				getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
 					<Grid xs={12}>
 						<H3
 							css={`
@@ -227,7 +235,9 @@ function useDéclarationRevenuFields() {
 	const fields = useMemo(
 		() =>
 			Object.entries(engine.getParsedRules())
-				.filter(([, rule]) => rule.rawNode.meta?.affichage !== 'non')
+				.filter(
+					([, rule]) => getMeta<Meta>(rule.rawNode, {})?.affichage !== 'non'
+				)
 				.filter(([dottedName]) =>
 					dottedName.startsWith('DRI . déclaration revenus')
 				)
@@ -248,6 +258,16 @@ function ResultSection() {
 	const isLiasseFiscaleCompleted = useProgress(objectifs) === 1
 	if (!isLiasseFiscaleCompleted) {
 		return null
+	}
+
+	const getCases = (rule: Rule): string[] => {
+		const meta = getMeta<Meta>(rule, {})
+
+		return (
+			(Array.isArray(meta.cases) && meta.cases) ||
+			(typeof meta.cases === 'object' && meta.cases.défaut) ||
+			[]
+		)
 	}
 
 	return (
@@ -271,7 +291,7 @@ function ResultSection() {
 								justifyContent={'space-between'}
 							>
 								{fields.map(([dottedName, rule]) =>
-									rule.rawNode.meta?.section === 'oui' ? (
+									getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
 										<Grid xs={12}>
 											{rule.dottedName.split(' . ').length === 3 ? (
 												<H3>{rule.title}</H3>
@@ -294,13 +314,7 @@ function ResultSection() {
 											</Grid>
 											<Grid item xs="auto">
 												<Body>
-													<Strong>
-														{
-															(rule.rawNode.meta?.cases.défaut ??
-																rule.rawNode.meta?.cases ??
-																[])[0]
-														}
-													</Strong>
+													<Strong>{getCases(rule.rawNode)[0]}</Strong>
 													<StyledCase>
 														<Value expression={dottedName} linkToRule={false} />
 													</StyledCase>
