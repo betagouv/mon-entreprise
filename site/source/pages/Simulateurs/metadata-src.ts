@@ -702,7 +702,6 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			icône: '😷',
 			tracking: 'exoneration_covid',
 			iframePath: 'exoneration-covid',
-			private: true,
 			pathId: 'simulateurs.exonération-covid',
 			meta: {
 				title: t(

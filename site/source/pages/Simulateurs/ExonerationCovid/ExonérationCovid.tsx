@@ -1,3 +1,4 @@
+import { TrackPage } from '@/ATInternetTracking'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
@@ -60,12 +61,20 @@ export const ExonérationCovid = () => {
 		<SituationStateProvider value={situationState}>
 			{step2 ? (
 				engine.evaluate('secteur').nodeValue !== 'S2' ? (
-					<FormulaireS1S1Bis onChange={updateSituation} />
+					<>
+						<TrackPage name="S1_S1bis" />
+						<FormulaireS1S1Bis onChange={updateSituation} />
+					</>
 				) : (
-					<FormulaireS2 onChange={updateSituation} />
+					<>
+						<TrackPage name="S2" />
+
+						<FormulaireS2 onChange={updateSituation} />
+					</>
 				)
 			) : (
 				<>
+					<TrackPage name="accueil" />
 					<Grid item xs={12}>
 						<H3>
 							{engine.getRule('secteur').rawNode.question}
