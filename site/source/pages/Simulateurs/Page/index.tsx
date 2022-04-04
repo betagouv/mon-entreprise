@@ -51,7 +51,7 @@ export default function PageData(props: PageDataProps) {
 
 	const année = useContext(EngineContext).evaluate('année')
 		.nodeValue as Evaluation<number>
-	const year = typeof année === 'number' && année != 2022 ? ` - ${année}` : ''
+	const year = typeof année === 'number' && année !== 2022 ? ` - ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig(config)

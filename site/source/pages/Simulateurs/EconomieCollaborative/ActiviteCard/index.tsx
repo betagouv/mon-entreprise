@@ -40,7 +40,9 @@ export const ActiviteCard = ({
 		// debounce to avoid double onClick call when clicking on checkbox
 		() =>
 			debounce(1, () => {
-				selected === undefined ? null : dispatch?.(toggleActivité(title))
+				if (selected !== undefined) {
+					dispatch?.(toggleActivité(title))
+				}
 			})(),
 		[dispatch, selected]
 	)

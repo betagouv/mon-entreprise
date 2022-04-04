@@ -71,7 +71,7 @@ export default function Notifications() {
 			{messages.map(({ sévérité, dottedName, résumé, description }) => (
 				<Message
 					icon
-					type={sévérité == 'avertissement' ? 'info' : 'primary'}
+					type={sévérité === 'avertissement' ? 'info' : 'primary'}
 					key={dottedName}
 				>
 					<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}

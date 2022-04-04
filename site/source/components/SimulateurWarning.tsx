@@ -22,7 +22,7 @@ export default function SimulateurWarning({
 			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
 		>
 			<Ul>
-				{simulateur == 'auto-entrepreneur' && (
+				{simulateur === 'auto-entrepreneur' && (
 					<>
 						<Li>
 							<Trans i18nKey="simulateurs.warning.auto-entrepreneur">
@@ -59,7 +59,7 @@ export default function SimulateurWarning({
 					</Li>
 				)}
 
-				{simulateur == 'profession-libérale' && (
+				{simulateur === 'profession-libérale' && (
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<Li>
 							Ce simulateur est à destination des professions libérales en BNC.

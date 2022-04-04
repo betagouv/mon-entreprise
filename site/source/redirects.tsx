@@ -15,5 +15,5 @@ export default (netlifyToml as { redirects: NetlifyRedirect[] }).redirects
 		from: decodeURIComponent(from.replace(/^:.*?\//, '/')),
 		to: decodeURIComponent(to.replace(/^:.*?\//, '/').replace(':splat', '*')),
 	}))
-	.filter(({ from, to }) => from != to)
+	.filter(({ from, to }) => from !== to)
 	.map((props) => <Redirect key={props.from} {...props} exact />)

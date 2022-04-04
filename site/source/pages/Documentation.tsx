@@ -264,6 +264,8 @@ function componentCSS(Compo: unknown, props: Record<never, never>): string {
 			}
 			// eslint-disable-next-line no-console
 			console.error('Should not happen', result, typeof result)
+
+			return false
 		})
 		.join('')
 }
