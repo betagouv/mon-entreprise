@@ -357,12 +357,8 @@ function useSimpleNumberFieldState(
 		commit: () => {
 			rawInputValue && updateInputValue(numberValue)
 		},
-		incrementToMax: () => {
-			return
-		},
-		decrementToMin: () => {
-			return
-		},
+		incrementToMax: () => null,
+		decrementToMin: () => null,
 		setInputValue: handleInputValueChange,
 		formatter,
 	}

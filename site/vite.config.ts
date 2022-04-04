@@ -38,7 +38,7 @@ export default defineConfig(({ command }) => ({
 					return
 				}
 
-				const relativePath = filePath.replace(__dirname + '/', '')
+				const relativePath = filePath.replace(path.join(__dirname, '/'), '')
 				console.log('Transform:', relativePath)
 
 				const source = JSON.stringify(data)
@@ -59,8 +59,6 @@ export default defineConfig(({ command }) => ({
 					.emit()
 					.then(() => console.log('  Done!  :', relativePath + '.d.ts'))
 					.catch((err) => console.error(err))
-
-				return
 			},
 		}),
 		toml,

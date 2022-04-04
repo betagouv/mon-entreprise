@@ -2,9 +2,11 @@ import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivité
 import { WhenAlreadyDefined } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import StackedBarChart from '@/components/StackedBarChart'
 import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'

@@ -40,7 +40,7 @@ export function SimulationGoal({
 	appear = true,
 	alwaysShow = false,
 	editable = true,
-	isTypeBoolean = false, //TODO : remove when type inference works in publicodes
+	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()

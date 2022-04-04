@@ -28,7 +28,7 @@ export function getNotifications(engine: Engine) {
 	return Object.values(engine.getParsedRules())
 		.filter(
 			(rule) =>
-				rule.rawNode['type'] === 'notification' &&
+				rule.rawNode.type === 'notification' &&
 				!!engine.evaluate(rule.dottedName).nodeValue
 		)
 		.map(({ dottedName, rawNode: { sévérité, résumé, description } }) => ({

@@ -184,7 +184,7 @@ export const Row = ({
 		.filter(<T,>(x: T | null): x is T => Boolean(x))
 
 	if (items.length > 0) {
-		items.unshift({ key: 'non', text: choices['non'][0] })
+		items.unshift({ key: 'non', text: choices.non[0] })
 	}
 
 	return (

@@ -90,7 +90,7 @@ export default function Options() {
 								}}
 							>
 								<g style={{ fill: '#030303' }}>
-									<path d={icons['github'].icon} />
+									<path d={icons.github.icon} />
 								</g>
 							</svg>
 						}

@@ -2,8 +2,10 @@ import { updateSituation } from '@/actions/actions'
 import { HiddenOptionContext } from '@/components/conversation/ChoicesInput'
 import { Condition } from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
-import Simulation from '@/components/Simulation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import StackedBarChart from '@/components/StackedBarChart'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'

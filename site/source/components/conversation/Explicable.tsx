@@ -25,7 +25,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 		return null
 	}
 
-	//TODO montrer les variables de type 'une possibilité'
+	// TODO montrer les variables de type 'une possibilité'
 
 	return (
 		<ButtonHelp

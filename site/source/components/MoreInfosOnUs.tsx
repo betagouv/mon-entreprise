@@ -66,7 +66,7 @@ export default function MoreInfosOnUs() {
 								}}
 							>
 								<g>
-									<path d={icons['github'].icon} />
+									<path d={icons.github.icon} />
 								</g>
 							</svg>
 						}

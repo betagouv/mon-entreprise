@@ -237,7 +237,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<img src={logosSrc['IRCEC']} title="logo IRCEC" />
+									<img src={logosSrc.IRCEC} title="logo IRCEC" />
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value

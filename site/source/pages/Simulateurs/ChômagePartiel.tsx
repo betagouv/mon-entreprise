@@ -1,6 +1,8 @@
 import RuleLink from '@/components/RuleLink'
-import Simulation from '@/components/Simulation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
