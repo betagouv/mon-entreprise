@@ -53,16 +53,16 @@ async function searchFullText(
 	if (!response.ok) {
 		return null
 	}
-	const json: SireneData = await response.json()
+	const json = (await response.json()) as SireneData
 	const etablissements = json.etablissement
 		.filter(
-			({ is_siege, categorie_entreprise, activite_principale }) =>
-				categorie_entreprise !== 'ETI' &&
-				is_siege === '1' &&
-				activite_principale !== '8411Z'
+			(data) =>
+				data.categorie_entreprise !== 'ETI' &&
+				data.is_siege === '1' &&
+				data.activite_principale !== '8411Z'
 		)
-		.map(({ l1_normalisee, siren }) => ({
-			denomination: l1_normalisee,
+		.map(({ l1_normalisee: denomination, siren }) => ({
+			denomination,
 			siren,
 		}))
 

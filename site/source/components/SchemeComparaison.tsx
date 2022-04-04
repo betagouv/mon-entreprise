@@ -50,8 +50,7 @@ export default function SchemeComparaison({
 
 	const situation = useSelector(situationSelector)
 	const displayResult =
-		useSelector(situationSelector)['dirigeant . rémunération . totale'] !=
-		undefined
+		useSelector(situationSelector)['dirigeant . rémunération . totale'] != null
 	const assimiléEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({

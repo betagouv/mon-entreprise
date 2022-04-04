@@ -1,7 +1,6 @@
-import {
+import originalReduceReducers, {
 	Action as OriginalAction,
 	Reducer as OriginalReducer,
-	default as originalReduceReducers,
 } from 'reduce-reducers'
 
 type Reducer<S, A extends OriginalAction> = (state: S, action: A) => S

@@ -64,7 +64,9 @@ module.exports = {
 			],
 			plugins: ['@typescript-eslint', 'react', 'react-hooks'],
 			rules: {
+				'no-void': 'off',
 				'ban-ts-comment': 'off',
+				'no-use-before-define': 'off',
 				'react/no-unescaped-entities': 'off',
 				'react/jsx-no-target-blank': 'off',
 				'@typescript-eslint/ban-ts-comment': 'off',

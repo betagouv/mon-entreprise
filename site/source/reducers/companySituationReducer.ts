@@ -47,7 +47,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 				'établissement . localisation': { objet: action.details },
 			}
 		case 'SET_SIMULATION':
-			state['entreprise . SIREN'] ? state : {}
+			return state['entreprise . SIREN'] ? state : {}
 	}
 
 	return state

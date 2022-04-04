@@ -137,8 +137,8 @@ export const wrapperDebounceEvents = <T>(
 
 				if (typeof original === 'function') {
 					const debouncedFunction = async (...params: unknown[]) => {
-						await new Promise((res) =>
-							setTimeout(() => res(original(...params)), ms)
+						await new Promise((resolve) =>
+							setTimeout(() => resolve(original(...params)), ms)
 						)
 					}
 
@@ -202,7 +202,7 @@ export async function getIframeOffset(): Promise<number> {
 			resolve(evt.data.value)
 		}
 		if (!window.parent.postMessage) {
-			reject('No parent window')
+			reject(new Error('No parent window'))
 		}
 		window.parent?.postMessage({ kind: 'get-offset' }, '*')
 		window.addEventListener('message', returnOffset)

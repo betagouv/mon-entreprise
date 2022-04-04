@@ -30,7 +30,7 @@ export default function NewsBanner() {
 	useEffect(() => {
 		setItem(
 			localStorageKey,
-			lastViewedRelease == undefined ? lastRelease.name : lastViewedRelease
+			lastViewedRelease == null ? lastRelease.name : lastViewedRelease
 		)
 	}, [])
 
