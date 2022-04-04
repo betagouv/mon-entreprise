@@ -20,7 +20,7 @@
 		"lint:eslint:fix": "yarn lint:eslint --fix",
 		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",
-		"lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
+		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
 		"test": "yarn workspaces foreach run test",
