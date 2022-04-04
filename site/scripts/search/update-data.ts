@@ -42,7 +42,7 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 				ruleName,
 				namespace,
 				pathDepth: path.length,
-				acronyme: acronyme,
+				acronyme,
 				titre: title,
 				icone: icônes,
 				description: description || résumé,

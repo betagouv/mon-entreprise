@@ -86,8 +86,8 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
 						<SimulateurCard small {...simulators.médecin} />
 						<SimulateurCard small {...simulators['sage-femme']} />
-						<SimulateurCard small {...simulators['pharmacien']} />
-						<SimulateurCard small {...simulators['avocat']} />
+						<SimulateurCard small {...simulators.pharmacien} />
+						<SimulateurCard small {...simulators.avocat} />
 						<SimulateurCard small {...simulators['expert-comptable']} />
 					</Grid>
 				</>
@@ -108,8 +108,8 @@ export default function Simulateurs() {
 					<Trans>Autres outils</Trans>
 				</H2>
 				<Grid container spacing={3}>
-					<SimulateurCard {...simulators['is']} />
-					<SimulateurCard {...simulators['dividendes']} />
+					<SimulateurCard {...simulators.is} />
+					<SimulateurCard {...simulators.dividendes} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['demande-mobilité']} />
 				</Grid>

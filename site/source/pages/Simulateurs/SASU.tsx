@@ -1,8 +1,10 @@
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 
 export function SASUSimulation() {
 	return (

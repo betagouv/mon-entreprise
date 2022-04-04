@@ -97,6 +97,7 @@ export class Log implements ATTracker {
 	constructor(options?: Record<string, string | number>) {
 		console.debug('ATTracker::new', options)
 	}
+
 	setProp(name: string, value: boolean | string, persistent: boolean): void {
 		console.debug('ATTracker::setProp', { name, value, persistent })
 	}
@@ -106,6 +107,7 @@ export class Log implements ATTracker {
 			console.debug('ATTracker::events.send', name, data)
 		},
 	}
+
 	privacy: ATTracker['privacy'] = {
 		setVisitorMode(...args) {
 			console.debug('ATTracker::privacy.setVisitorMode', ...args)
@@ -119,6 +121,7 @@ export class Log implements ATTracker {
 			return { name: 'exempt' }
 		},
 	}
+
 	dispatch(): void {
 		console.debug('ATTracker::dispatch')
 	}

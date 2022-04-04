@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import BarChartBranch from './BarChart'
 import './Distribution.css'
-import './PaySlip'
 import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 

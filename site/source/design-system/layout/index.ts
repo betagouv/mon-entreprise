@@ -1,5 +1,6 @@
-export { default as Container } from './Container'
 import styled from 'styled-components'
+
+export { default as Container } from './Container'
 
 export const Spacing = styled.div<
 	| { xxl: true }

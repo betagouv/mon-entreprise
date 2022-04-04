@@ -5,9 +5,11 @@ import Value, {
 } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
-import Simulation from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'

@@ -6,13 +6,15 @@ export function hexToHSL(hex: string): [number, number, number] {
 	let r = parseInt(result[1], 16)
 	let g = parseInt(result[2], 16)
 	let b = parseInt(result[3], 16)
-	;(r /= 255), (g /= 255), (b /= 255)
-	const max = Math.max(r, g, b),
-		min = Math.min(r, g, b)
-	let h = 0,
-		s = 0
+	r /= 255
+	g /= 255
+	b /= 255
+	const max = Math.max(r, g, b)
+	const min = Math.min(r, g, b)
+	let h = 0
+	let s = 0
 	const l = (max + min) / 2
-	if (max != min) {
+	if (max !== min) {
 		const d = max - min
 		s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
 		switch (max) {

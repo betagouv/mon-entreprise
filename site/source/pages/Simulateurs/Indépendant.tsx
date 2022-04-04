@@ -3,9 +3,11 @@ import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivité
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { DottedName } from 'modele-social'

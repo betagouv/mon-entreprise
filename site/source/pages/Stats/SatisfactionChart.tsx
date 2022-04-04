@@ -111,16 +111,16 @@ const CustomTooltip = ({ payload, active }: CustomTooltipProps) => {
 			<Ul size="XS">
 				<Li>
 					<Strong>
-						{Math.round((data['très bien'] ?? 0) + (data['bien'] ?? 0))}%
+						{Math.round((data['très bien'] ?? 0) + (data.bien ?? 0))}%
 					</Strong>{' '}
 					satisfaits{' '}
 					<small>
 						({Math.round(data['très bien'] ?? 0)}% <Emoji emoji="😀" /> /{' '}
-						{Math.round(data['bien'] ?? 0)}% <Emoji emoji="🙂" />)
+						{Math.round(data.bien ?? 0)}% <Emoji emoji="🙂" />)
 					</small>
 				</Li>
 				<Li>
-					<Strong>{Math.round(data['mauvais'] ?? 0)}%</Strong> négatifs
+					<Strong>{Math.round(data.mauvais ?? 0)}%</Strong> négatifs
 					<Emoji emoji="🙁" />
 				</Li>
 			</Ul>

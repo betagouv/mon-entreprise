@@ -77,7 +77,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 										'entreprise.page.description',
 										"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française.",
 									],
-									{ statut: statut }
+									{ statut }
 							  )
 					}
 				/>

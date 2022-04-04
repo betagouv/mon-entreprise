@@ -48,24 +48,24 @@ export function getNextSteps(
 		missingVariables
 	)
 
-	const innerKeys = flatten(map(keys, missingVariables)),
-		missingByTargetsAdvanced = Object.fromEntries(
-			Object.entries(countBy(identity, innerKeys)).map(
-				// Give higher score to top level questions
-				([name, score]) => [
-					name,
-					score + Math.max(0, 4 - name.split('.').length),
-				]
-			)
+	const innerKeys = flatten(map(keys, missingVariables))
+	const missingByTargetsAdvanced = Object.fromEntries(
+		Object.entries(countBy(identity, innerKeys)).map(
+			// Give higher score to top level questions
+			([name, score]) => [name, score + Math.max(0, 4 - name.split('.').length)]
 		)
+	)
 
 	const missingByCompound = mergeWith(
-			pair,
-			missingByTargetsAdvanced,
-			missingByTotalScore
-		),
-		pairs = toPairs<number>(missingByCompound),
-		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
+		pair,
+		missingByTargetsAdvanced,
+		missingByTotalScore
+	)
+	const pairs = toPairs<number>(missingByCompound)
+	const sortedPairs = sortWith(
+		[descend(byCount), descend(byScore) as any],
+		pairs
+	)
 
 	return map(head, sortedPairs) as any
 }

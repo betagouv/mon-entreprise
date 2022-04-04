@@ -181,12 +181,8 @@ export default function Gérer() {
 						<WhenApplicable dottedName="entreprise . imposition . IS">
 							<Grid item xs={12} md={6} lg={4} alignSelf="flex-end">
 								<Grid container spacing={3} columns={2}>
-									<SimulateurCard fromGérer {...simulateurs['is']} small />
-									<SimulateurCard
-										fromGérer
-										{...simulateurs['dividendes']}
-										small
-									/>
+									<SimulateurCard fromGérer {...simulateurs.is} small />
+									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
 								</Grid>
 							</Grid>
 						</WhenApplicable>

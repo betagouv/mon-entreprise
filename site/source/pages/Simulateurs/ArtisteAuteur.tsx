@@ -2,9 +2,11 @@ import { DistributionBranch } from '@/components/Distribution'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import { EngineContext } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'

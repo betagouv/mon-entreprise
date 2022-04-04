@@ -121,9 +121,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				</Trans>
 			</H3>
 			<Body>
-				{customEndMessages ? (
-					customEndMessages
-				) : (
+				{customEndMessages || (
 					<Trans i18nKey="simulation-end.text">
 						Vous avez maintenant accès à l'estimation la plus précise possible.
 					</Trans>

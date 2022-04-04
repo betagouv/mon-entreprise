@@ -244,10 +244,10 @@ function getSimulatorsData({
 			),
 		},
 		eirl: {
-			...pureSimulatorsData['eirl'],
+			...pureSimulatorsData.eirl,
 			config: indépendantConfig as SimulationConfig,
 			meta: {
-				...pureSimulatorsData['eirl']?.meta,
+				...pureSimulatorsData.eirl?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
 			component: IndépendantSimulation,
@@ -255,10 +255,10 @@ function getSimulatorsData({
 			nextSteps: ['comparaison-statuts'],
 		},
 		sasu: {
-			...pureSimulatorsData['sasu'],
+			...pureSimulatorsData.sasu,
 			config: sasuConfig as SimulationConfig,
 			meta: {
-				...pureSimulatorsData['sasu']?.meta,
+				...pureSimulatorsData.sasu?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.sasu,
@@ -306,10 +306,10 @@ function getSimulatorsData({
 			),
 		},
 		eurl: {
-			...pureSimulatorsData['eurl'],
+			...pureSimulatorsData.eurl,
 			config: eurlConfig as SimulationConfig,
 			meta: {
-				...pureSimulatorsData['eurl']?.meta,
+				...pureSimulatorsData.eurl?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
 			path: sitePaths.simulateurs.eurl,
@@ -510,7 +510,7 @@ function getSimulatorsData({
 			path: sitePaths.gérer.formulaireMobilité,
 		},
 		pharmacien: {
-			...pureSimulatorsData['pharmacien'],
+			...pureSimulatorsData.pharmacien,
 			config: pharmacienConfig,
 			path: sitePaths.simulateurs['profession-libérale'].pharmacien,
 			component: IndépendantPLSimulation,
@@ -540,7 +540,7 @@ function getSimulatorsData({
 			component: IndépendantPLSimulation,
 		},
 		avocat: {
-			...pureSimulatorsData['avocat'],
+			...pureSimulatorsData.avocat,
 			config: avocatConfig,
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
 			component: IndépendantPLSimulation,
@@ -558,7 +558,7 @@ function getSimulatorsData({
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
-			...pureSimulatorsData['pamc'],
+			...pureSimulatorsData.pamc,
 			path: sitePaths.simulateurs.pamc,
 			config: professionLibéraleConfig as SimulationConfig,
 			component: PAMCHome,
@@ -595,7 +595,7 @@ function getSimulatorsData({
 			component: AidesEmbauche,
 		},
 		is: {
-			...pureSimulatorsData['is'],
+			...pureSimulatorsData.is,
 			path: sitePaths.simulateurs.is,
 			component: ISSimulation,
 			seoExplanations: (
@@ -633,7 +633,7 @@ function getSimulatorsData({
 			),
 		},
 		dividendes: {
-			...pureSimulatorsData['dividendes'],
+			...pureSimulatorsData.dividendes,
 			path: sitePaths.simulateurs.dividendes,
 			component: DividendesSimulation,
 			config: dividendesConfig as SimulationConfig,

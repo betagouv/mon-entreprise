@@ -66,8 +66,6 @@ export default function useSearchParamsSimulationSharing() {
 
 			setUrlSituationIsExtracted(true)
 		}
-
-		return
 	}, [
 		currentUrl,
 		simulationUrl,

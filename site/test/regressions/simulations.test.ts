@@ -59,7 +59,7 @@ const runSimulations = (
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
 				.filter(
 					(rule) =>
-						rule.rawNode['type'] === 'notification' &&
+						rule.rawNode.type === 'notification' &&
 						engine.evaluate(rule.dottedName).nodeValue === true
 				)
 				.map((node) => node.dottedName)

@@ -120,7 +120,7 @@ export function WhenNotApplicable({
 }
 
 export function WhenAlreadyDefined({
-	dottedName: dottedName,
+	dottedName,
 	children,
 }: {
 	dottedName: DottedName
@@ -135,7 +135,7 @@ export function WhenAlreadyDefined({
 }
 
 export function WhenNotAlreadyDefined({
-	dottedName: dottedName,
+	dottedName,
 	children,
 }: {
 	dottedName: DottedName
