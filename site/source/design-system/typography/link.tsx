@@ -19,9 +19,9 @@ export const StyledLinkHover = css`
 			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[800]};
 `
-export const StyledLink = styled.a<{ isDisabled?: boolean }>`
-	color: ${({ theme, isDisabled }) =>
-		isDisabled
+export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
+	color: ${({ theme, $isDisabled }) =>
+		$isDisabled
 			? theme.colors.extended.grey[600]
 			: theme.colors.bases.primary[700]};
 	${({ theme }) =>
@@ -31,8 +31,8 @@ export const StyledLink = styled.a<{ isDisabled?: boolean }>`
 				color: ${theme.colors.extended.grey[100]};
 			}
 		`}
-	${({ isDisabled }) =>
-		isDisabled &&
+	${({ $isDisabled }) =>
+		$isDisabled &&
 		css`
 			cursor: default;
 		`}
@@ -43,20 +43,36 @@ export const StyledLink = styled.a<{ isDisabled?: boolean }>`
 	text-decoration: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
-		${({ isDisabled }) => !isDisabled && StyledLinkHover}
+		${({ $isDisabled }) => !$isDisabled && StyledLinkHover}
 	}
 	&:focus-visible {
-		${FocusStyle}
+		${({ $isDisabled }) =>
+			$isDisabled
+				? css`
+						outline: none;
+				  `
+				: FocusStyle}
 	}
 `
 
 export const Link = React.forwardRef<
 	HTMLAnchorElement | HTMLButtonElement,
-	GenericButtonOrLinkProps & { children: React.ReactNode }
->(function Link(ariaButtonProps, forwardedRef) {
+	GenericButtonOrLinkProps & {
+		children: React.ReactNode
+		isDisabled?: boolean
+	}
+>(function Link(props, forwardedRef) {
+	const { isDisabled, ...ariaButtonProps } = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
-	return <StyledLink {...buttonOrLinkProps} />
+	return (
+		<StyledLink
+			{...buttonOrLinkProps}
+			$isDisabled={isDisabled}
+			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
+			as={isDisabled ? 'span' : buttonOrLinkProps.as}
+		/>
+	)
 })
 
 export function useExternalLinkProps({
@@ -138,6 +154,8 @@ export function useButtonOrLink(
 				].includes(key)
 		)
 	)
+
+	console.log(initialProps)
 
 	const buttonOrLinkProps = {
 		...initialProps,
