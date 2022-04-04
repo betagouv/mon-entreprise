@@ -54,6 +54,7 @@ module.exports = {
 			},
 			extends: [
 				'eslint:recommended',
+				'standard',
 				'plugin:@typescript-eslint/recommended',
 				'plugin:@typescript-eslint/recommended-requiring-type-checking',
 				'plugin:react/recommended',
@@ -82,8 +83,8 @@ module.exports = {
 					{ multiline: { delimiter: 'none' } },
 				],
 
+				// Auto fixable lint error
 				'prefer-const': 'error',
-				curly: 'error',
 				'padding-line-between-statements': [
 					'error',
 					// Require padding line before return statement
