@@ -18,8 +18,8 @@ import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { Rule, RuleNode } from 'publicodes'
-import { useContext, useMemo } from 'react'
-import { Trans } from 'react-i18next'
+import { useContext, useEffect, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
@@ -42,6 +42,7 @@ export function useObjectifs(): Array<DottedName> {
 }
 
 export default function Déclaration() {
+	const { t } = useTranslation()
 	const engine = useEngine()
 	const liasseDottedName = (
 		[
@@ -50,6 +51,17 @@ export default function Déclaration() {
 			'DRI . liasse . déclaration contrôlée',
 		] as const
 	).find((dottedName) => engine.evaluate(dottedName).nodeValue !== null)
+
+	const [msgCopied, setMsgCopied] = useState(false)
+
+	useEffect(() => {
+		const handler = setTimeout(() => setMsgCopied(false), 5000)
+
+		return () => {
+			clearTimeout(handler)
+		}
+	}, [msgCopied])
+
 	if (!liasseDottedName) {
 		return null // TODO : micro-fiscal
 	}
@@ -150,9 +162,27 @@ export default function Déclaration() {
 								<Message type="secondary">
 									<Markdown>{ModeleMessageComptable}</Markdown>
 								</Message>
-								<Button light size="XS">
-									Copier le message
-								</Button>
+								{navigator.clipboard && (
+									<Button
+										light
+										size="XS"
+										onPress={() => {
+											navigator.clipboard
+												.writeText(ModeleMessageComptable)
+												.catch((err) =>
+													// eslint-disable-next-line no-console
+													console.error(err)
+												)
+											setMsgCopied(true)
+										}}
+									>
+										{msgCopied ? (
+											<>✅ {t('copied', 'Copié')}</>
+										) : (
+											<>📋 {t('copyMessage', 'Copier le message')}</>
+										)}
+									</Button>
+								)}
 							</Item>
 						</Accordion>
 						<H2>{liasse.title}</H2>
@@ -211,7 +241,7 @@ function LiasseFiscale() {
 		<>
 			{fields.map(([dottedName, rule]) =>
 				getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
-					<Grid xs={12}>
+					<Grid item xs={12} key={dottedName}>
 						<H3
 							css={`
 								margin-bottom: 0rem;
@@ -221,7 +251,7 @@ function LiasseFiscale() {
 						</H3>
 					</Grid>
 				) : (
-					<Grid md={4} sm={6} xs={12}>
+					<Grid item md={4} sm={6} xs={12} key={dottedName}>
 						<SimpleField dottedName={dottedName} />
 					</Grid>
 				)
