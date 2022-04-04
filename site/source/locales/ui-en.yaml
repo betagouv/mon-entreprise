@@ -556,6 +556,8 @@ comparaisonRégimes:
     Create my company as:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
 composantes: components
+copied: Copy
+copyMessage: Copy the message
 coronavirus:
   description: "<0>Coronavirus and short-time working: what impact on my
     income?</0><1>The government is putting in place measures to support
