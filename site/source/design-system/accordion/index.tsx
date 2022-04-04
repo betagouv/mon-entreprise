@@ -1,10 +1,9 @@
 import { FocusStyle } from '@/design-system/global-style'
 import { useAccordion, useAccordionItem } from '@react-aria/accordion'
-import { filterDOMProps } from '@react-aria/utils'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
@@ -18,11 +17,7 @@ export default function Accordion<T extends object>(
 	const { accordionProps } = useAccordion(props, state, ref)
 
 	return (
-		<StyledAccordionGroup
-			{...filterDOMProps(props)}
-			{...accordionProps}
-			ref={ref}
-		>
+		<StyledAccordionGroup {...props} {...accordionProps} ref={ref}>
 			{[...state.collection].map((item) => (
 				<AccordionItem<T> key={item.key} item={item} state={state} />
 			))}
@@ -62,7 +57,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	})
 
 	return (
-		<StyledAccordionItem>
+		<StyledAccordionItem onMouseDown={(x) => x.stopPropagation()}>
 			<StyledTitle>
 				<StyledButton {...buttonProps} ref={ref}>
 					<span>{item.props.title}</span>

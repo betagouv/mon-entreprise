@@ -152,7 +152,6 @@ export default function Imposition() {
 							</Intro>
 							<Message type="info" icon>
 								<Body>
-									<Body></Body>
 									Si vous ne retrouvez pas ce document, ou si il n'est plus à
 									jour, vous pouvez{' '}
 									<Strong>contacter le service des impôt</Strong> pour qu'il

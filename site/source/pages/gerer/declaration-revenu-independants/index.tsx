@@ -10,6 +10,7 @@ import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { omit } from '@/utils'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router'
@@ -55,7 +56,7 @@ export default function AideDéclarationIndépendant() {
 			<Spacing lg />
 			<Stepper aria-label="Étapes de l'assistant">
 				{steps.map((step) => (
-					<Step key={step.to} {...step} />
+					<Step key={step.to} {...omit(step, 'page')} />
 				))}
 			</Stepper>
 			<Switch>
