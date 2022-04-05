@@ -2,16 +2,20 @@ import Conversation from '@/components/conversation/Conversation'
 import Value, { WhenAlreadyDefined } from '@/components/EngineValue'
 import { FromBottom, FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 
 export default function Cotisations() {
 	const progress = useSimulationProgress()
+	const engine = useEngine()
 
 	return (
 		<FromTop>
@@ -32,35 +36,31 @@ export default function Cotisations() {
 					justifyContent="center"
 				>
 					<Grid item md={6} sm={12}>
-						<H2>Cotisations provisionnelles</H2>
+						<H2>
+							{engine.getRule('DRI . cotisations . provisionnelles').title}
+						</H2>
 						<Intro>
-							<Value expression="dirigeant . indépendant . cotisations et contributions" />
+							<Value
+								expression="dirigeant . indépendant . cotisations et contributions"
+								displayedUnit="€"
+							/>
 						</Intro>
-						<Body>
-							En 2022, vous allez payer chaque mois une{' '}
-							<Strong>avance sur le montant des cotisations</Strong> que vous
-							devrez . C'est ce que l'on appelle{' '}
-							<Strong>les cotisations provisionnelles</Strong>. Elles sont
-							calculées à partir de votre revenu de 2021 (déclaré en 2022).
-						</Body>
-						<Body>
-							Ces cotisations seront <Strong>régularisées en 2023</Strong>, une
-							fois que l'Urssaf connaîtra votre revenu réel de 2022.
-						</Body>
+						<Markdown>
+							{engine.getRule('DRI . cotisations . provisionnelles').rawNode
+								.description ?? ''}
+						</Markdown>{' '}
 					</Grid>
 					<Grid item md={6} sm={12}>
-						<H2>Régularisation des cotisations</H2>
+						<H2>
+							{engine.getRule('DRI . cotisations . régularisation').title}
+						</H2>
 						<Intro>
 							<Value expression="DRI . cotisations . régularisation" />
 						</Intro>
-						<Body>
-							C'est la différence entre les cotisations provisionnelles payées
-							en 2021 et le montant que vous deviez effectivement payer.
-						</Body>
-						<Body>
-							Ce dernier est calculé à partir de votre revenu de 2021 (déclaré
-							en 2022).
-						</Body>
+						<Markdown>
+							{engine.getRule('DRI . cotisations . régularisation').rawNode
+								.description ?? ''}
+						</Markdown>{' '}
 					</Grid>
 					<Grid item lg={10} xl={8}>
 						<Spacing md />

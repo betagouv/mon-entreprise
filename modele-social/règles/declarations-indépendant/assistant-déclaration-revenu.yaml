@@ -1,8 +1,6 @@
 DRI:
   valeur: non
   remplace:
-    - règle: année
-      par: 2021
     - règle: entreprise . catégorie juridique . EI . auto-entrepreneur . défaut
       par: non
 
@@ -398,10 +396,6 @@ DRI . liasse . déclaration contrôlée . impôts et taxe:
   meta:
     section: oui
 
-DRI . liasse . déclaration contrôlée . BV:
-  résumé: contribution sociale généralisée déductible
-  unité: €
-
 DRI . liasse . déclaration contrôlée . charges sociales personnelles:
   meta:
     section: oui
@@ -735,13 +729,15 @@ DRI . déclaration revenus . indépendant . cotisations facultatives:
       - valeur: DRI . liasse . réel simplifié . c381
         par défaut: 0
 
-DRI . cotisations: dirigeant . indépendant . cotisations et contributions + DRI . cotisations . régularisation
+DRI . cotisations:
+  valeur: dirigeant . indépendant . cotisations et contributions + cotisations . régularisation
+  unité: €
 
 DRI . cotisations . assiette des cotisations:
+  unité: €/an
   rend non applicable:
     - entreprise . résultat fiscal
   remplace: dirigeant . indépendant . assiette des cotisations
-  unité: €
   somme:
     # BNC
     - déclaration revenus . BNC . revenus imposables
@@ -772,9 +768,48 @@ DRI . cotisations . assiette CSG:
     - assiette des cotisations
     - déclaration revenus . indépendant . cotisations sociales
 
+DRI . cotisations . provisionnelles:
+  titre: Cotisations provisionnelles
+  description: |-
+    En 2022, vous allez payer chaque mois une **avance sur le montant des cotisation**s que vous devrez . C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
+
+    Ces cotisations seront **régularisées en 2023**, une fois que l'Urssaf connaîtra votre revenu réel de 2022.
+
+    [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
+
 DRI . cotisations . régularisation:
-  valeur: dirigeant . indépendant . cotisations et contributions - cotisations . appelées en 2021
+  titre: Régularisation des cotisations
+  valeur: |-
+    cotisations . dûes en 2021
+    - cotisations . appelées en 2021
+  description: |-
+    C'est la différence entre les cotisations provisionnelles payées
+    en 2021 et le montant que vous deviez effectivement payer.
+
+    Ce dernier est calculé à partir de votre revenu de 2021 (déclaré
+    en 2022).
+
+    [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html)
+
+DRI . cotisations . dûes en 2021:
+  titre: Cotisations dûes en 2021
+  unité: €
+  recalcul:
+    règle: dirigeant . indépendant . cotisations et contributions
+    avec:
+      dirigeant . indépendant . cotisations facultatives . total: 0
+      année: 2021
 
 DRI . cotisations . appelées en 2021:
+  titre: Cotisations appelées en 2021
+  description: |-
+    Vous pouvez retrouver le montant total des cotisations appelées en 2021 depuis votre espace personnel Urssaf. Voici la marche à suivre :
+
+    1. Connectez-vous sur [votre espace personnel urssaf.fr](https://www.urssaf.fr/portail/home/connectez-vous.html)
+    2. Dans le menu « Mes services en ligne », cliquez sur **« Mes cotisations »**
+    3. Dans le menu de navigation de gauche, cliquez sur **« Cotisations annuelles »**
+    4. Selectionnez **l'année 2021**
+    5. Le montant total des cotisations appelées sur l'année 2021 est affichée sur la dernière ligne **« Total »**
+
   question: Quel est le montant des cotisations provisionnelles appelées en 2021 ?
   unité: €
