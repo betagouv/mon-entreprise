@@ -53,7 +53,7 @@ export const SalaireNetSection = () => {
 			/>
 			<Line
 				negative
-				rule="contrat salarié . frais professionnels . titres-restaurant"
+				rule="contrat salarié . frais professionnels . titres-restaurant . montant"
 			/>
 			<Line rule="contrat salarié . rémunération . net" />
 			<Condition expression="impôt . montant > 0">

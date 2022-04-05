@@ -63,7 +63,7 @@ contrat salarié . frais professionnels:
     frais de panier, titres-restaurant, forfait mobilités durables...).
   formule:
     somme:
-      - titres-restaurant . part employeur
+      - titres-restaurant . montant . part employeur
       - abonnement transports publics . prise en charge
       - transports personnels
 
@@ -77,6 +77,22 @@ contrat salarié . frais professionnels . part déductible:
       - titres-restaurant . part déductible
       - abonnement transports publics . prise en charge
       - transports personnels . part déductible
+contrat salarié . frais professionnels . titres-restaurant applicable:
+  description: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
+    régler la consommation :
+
+      - d’un repas,
+
+      - de préparations alimentaires directement consommables,
+
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
 
 contrat salarié . frais professionnels . titres-restaurant:
   icônes: 🍽️
@@ -95,37 +111,36 @@ contrat salarié . frais professionnels . titres-restaurant:
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-  applicable si:
-    nom: éligible
-    question: Le salarié reçoit-il des titres-restaurant ?
-    par défaut: non
-  formule:
-    produit:
-      assiette: montant unitaire
-      facteur: nombre
-      composantes:
-        - attributs:
-            nom: part employeur
-          taux: taux participation employeur
-        - attributs:
-            nom: part salarié
-          taux: 100% - taux participation employeur
+
+  question: Le salarié reçoit-il des titres-restaurant ?
+  par défaut: non
+
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  produit:
+    assiette: montant unitaire
+    facteur: nombre
+    composantes:
+      - attributs:
+          nom: part employeur
+        taux: taux participation employeur
+      - attributs:
+          nom: part salarié
+        taux: 100% - taux participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre: Titres-restaurant (déductible)
-  formule:
-    valeur: part employeur
-    plafond:
-      produit:
-        assiette: nombre
-        facteur:
-          nom: max
-          valeur:
-            variations:
-              - si: année = 2022
-                alors: 5.69 €/titres-restaurant
-              - si: année = 2021
-                alors: 5.55 €/titres-restaurant
+  valeur: montant . part employeur
+  plafond:
+    produit:
+      assiette: nombre
+      facteur:
+        nom: max
+        valeur:
+          variations:
+            - si: année = 2022
+              alors: 5.69 €/titres-restaurant
+            - si: année = 2021
+              alors: 5.55 €/titres-restaurant
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
@@ -1901,7 +1916,7 @@ contrat salarié . rémunération . net:
     somme:
       - net avec revenus de remplacement
       - (- avantages en nature . montant)
-      - (- frais professionnels . titres-restaurant)
+      - (- frais professionnels . titres-restaurant . montant)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
