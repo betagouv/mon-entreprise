@@ -29,6 +29,7 @@ type SimulationProps = {
 	results?: React.ReactNode
 	children?: React.ReactNode
 	afterQuestionsSlot?: React.ReactNode
+	hideDetails?: boolean
 	customEndMessages?: ConversationProps['customEndMessages']
 }
 
@@ -47,6 +48,7 @@ export default function Simulation({
 	children,
 	afterQuestionsSlot,
 	customEndMessages,
+	hideDetails = false,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const existingCompany = !!useSelector(companySituationSelector)[
@@ -93,7 +95,7 @@ export default function Simulation({
 								</PopoverWithTrigger>
 							</Banner>
 						)}
-						{firstStepCompleted && (
+						{firstStepCompleted && !hideDetails && (
 							<>
 								<ShareOrSaveSimulationBanner />
 								<Spacing lg />
@@ -102,7 +104,7 @@ export default function Simulation({
 					</div>
 				</StyledGrid>
 			</Grid>
-			{firstStepCompleted && (
+			{firstStepCompleted && !hideDetails && (
 				<>
 					<div className="print-hidden">
 						<FadeIn>
