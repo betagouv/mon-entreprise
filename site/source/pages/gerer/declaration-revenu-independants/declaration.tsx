@@ -18,7 +18,7 @@ import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { Rule, RuleNode } from 'publicodes'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
@@ -322,7 +322,7 @@ function ResultSection() {
 							>
 								{fields.map(([dottedName, rule]) =>
 									getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
-										<Grid xs={12}>
+										<Grid item xs={12} key={dottedName}>
 											{rule.dottedName.split(' . ').length === 3 ? (
 												<H3>{rule.title}</H3>
 											) : (
@@ -336,7 +336,7 @@ function ResultSection() {
 											)}
 										</Grid>
 									) : (
-										<>
+										<Fragment key={dottedName}>
 											<Grid item xs={12} sm={8} md={9}>
 												<Body>
 													{rule.title} <em>{rule.rawNode.note}</em>
@@ -350,7 +350,7 @@ function ResultSection() {
 													</StyledCase>
 												</Body>
 											</Grid>
-										</>
+										</Fragment>
 									)
 								)}
 							</Grid>

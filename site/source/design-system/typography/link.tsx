@@ -155,8 +155,6 @@ export function useButtonOrLink(
 		)
 	)
 
-	console.log(initialProps)
-
 	const buttonOrLinkProps = {
 		...initialProps,
 		...buttonProps,
