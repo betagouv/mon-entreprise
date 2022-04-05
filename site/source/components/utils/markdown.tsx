@@ -1,7 +1,7 @@
 import { Strong, U } from '@/design-system/typography'
 import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
@@ -124,6 +124,7 @@ export const Markdown = ({
 				u: U,
 				a: LinkRenderer,
 				ul: Ul,
+				ol: Ol,
 				li: Li,
 				code: CodeBlock,
 				span: TextRenderer,
