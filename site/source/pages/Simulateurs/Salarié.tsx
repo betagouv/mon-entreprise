@@ -99,7 +99,7 @@ function SalariéSimulationGoals() {
 function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const dottedName =
-		'contrat salarié . frais professionnels . titres-restaurant'
+		'contrat salarié . frais professionnels . titres-restaurant . montant'
 
 	return (
 		<Condition expression={`${dottedName} > 0`}>

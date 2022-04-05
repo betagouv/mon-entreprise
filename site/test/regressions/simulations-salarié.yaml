@@ -258,14 +258,14 @@ JEI:
 
 frais pro - titres restaurant:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . frais professionnels . titres-restaurant . éligible: oui
+    contrat salarié . frais professionnels . titres-restaurant: oui
     contrat salarié . frais professionnels . titres-restaurant . nombre: 10 titres-restaurant
   - contrat salarié . rémunération . brut de base: 3000 €/mois
-    contrat salarié . frais professionnels . titres-restaurant . éligible: oui
+    contrat salarié . frais professionnels . titres-restaurant: oui
     contrat salarié . frais professionnels . titres-restaurant . nombre: 20 titres-restaurant
     contrat salarié . frais professionnels . titres-restaurant . montant unitaire: 20€/titre-restaurant
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . frais professionnels . titres-restaurant . éligible: oui
+    contrat salarié . frais professionnels . titres-restaurant: oui
     contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 55%
 
 frais pro - abonnement transports publics:
