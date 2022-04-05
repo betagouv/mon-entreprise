@@ -24,6 +24,7 @@ import { SimulationGoals, SimulationGoal } from './Simulation'
 import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
 import useSimulationConfig from './utils/useSimulationConfig'
+import { Grid } from '@mui/material'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -305,7 +306,7 @@ export default function SchemeComparaison({
 				)}
 				<div className="legend" />
 
-				<div className=" AS-indep-et-auto  ">
+				<div className="AS-indep-et-auto">
 					{!conversationStarted ? (
 						<>
 							<Trans i18nKey="comparaisonRégimes.simulationText">
@@ -319,28 +320,31 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<Simulation
-							customEndMessages={
-								<>
-									<SmallBody>
-										Vous pouvez consulter les différentes estimations dans le
-										tableau ci-dessous
-									</SmallBody>
+						<Grid container columns={8}>
+							<Simulation
+								hideDetails
+								customEndMessages={
+									<>
+										<SmallBody>
+											Vous pouvez consulter les différentes estimations dans le
+											tableau ci-dessous
+										</SmallBody>
 
-									<SeeAnswersButton />
-								</>
-							}
-						>
-							<SimulationGoals
-								toggles={<PeriodSwitch />}
-								legend={
-									'Estimations sur votre rémunération brute et vos charges'
+										<SeeAnswersButton />
+									</>
 								}
 							>
-								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
-								<SimulationGoal dottedName="entreprise . charges" />
-							</SimulationGoals>
-						</Simulation>
+								<SimulationGoals
+									toggles={<PeriodSwitch />}
+									legend={
+										'Estimations sur votre rémunération brute et vos charges'
+									}
+								>
+									<SimulationGoal dottedName="dirigeant . rémunération . totale" />
+									<SimulationGoal dottedName="entreprise . charges" />
+								</SimulationGoals>
+							</Simulation>
+						</Grid>
 					)}
 				</div>
 				{displayResult && (
@@ -395,147 +399,6 @@ export default function SchemeComparaison({
 									expression="dirigeant . rémunération . nette - entreprise . charges"
 								/>
 							</>
-						</div>
-
-						<H3 className="legend">
-							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
-								<span>Pension de retraite</span>
-								<small>(avant impôts)</small>
-							</Trans>
-						</H3>
-						<div className="AS">
-							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
-								precision={0}
-								expression="protection sociale . retraite"
-							/>{' '}
-							<InfoBulle>
-								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
-									Pension calculée pour 172 trimestres cotisés au régime général
-									sans variations de revenus.
-								</Trans>
-							</InfoBulle>
-						</div>
-						<div className="indep">
-							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
-								precision={0}
-								expression="protection sociale . retraite"
-							/>{' '}
-							<InfoBulle>
-								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-									Pension calculée à titre indicatif pour 172 trimestres cotisés
-									au régime des indépendants sans variations de revenus.
-								</Trans>
-							</InfoBulle>
-						</div>
-						<div className="auto">
-							{plafondAutoEntrepreneurDépassé ? (
-								'—'
-							) : (
-								<>
-									<Value
-										linkToRule={false}
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										expression="protection sociale . retraite"
-									/>{' '}
-									<InfoBulle>
-										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
-											Pension calculée pour 172 trimestres cotisés en
-											auto-entrepreneur sans variations de revenus.
-										</Trans>
-									</InfoBulle>
-								</>
-							)}
-						</div>
-						<Trans i18nKey="comparaisonRégimes.trimestreValidés">
-							<H3 className="legend">
-								Nombre de trimestres validés <small>(pour la retraite)</small>
-							</H3>
-						</Trans>
-						<div className="AS">
-							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
-								precision={0}
-								displayedUnit="trimestre"
-								expression="protection sociale . retraite . base . trimestres"
-							/>
-						</div>
-						<div className="indep">
-							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
-								precision={0}
-								expression="protection sociale . retraite . base . trimestres"
-								displayedUnit="trimestre"
-							/>
-						</div>
-						<div className="auto">
-							{plafondAutoEntrepreneurDépassé ? (
-								'—'
-							) : (
-								<Value
-									linkToRule={false}
-									engine={autoEntrepreneurEngine}
-									precision={0}
-									expression="protection sociale . retraite . base . trimestres"
-									displayedUnit="trimestres"
-								/>
-							)}
-						</div>
-						<Trans i18nKey="comparaisonRégimes.indemnités">
-							<H3 className="legend">
-								Indemnités journalières <small>(en cas d'arrêt maladie)</small>
-							</H3>
-						</Trans>
-						<div className="AS">
-							<span>
-								<Value
-									linkToRule={false}
-									engine={assimiléEngine}
-									precision={0}
-									expression="protection sociale . santé . indemnités journalières"
-								/>
-							</span>
-							<small>
-								(
-								<Value
-									linkToRule={false}
-									engine={assimiléEngine}
-									precision={0}
-									expression="protection sociale . accidents du travail et maladies professionnelles"
-								/>{' '}
-								<Trans>
-									pour les accidents de trajet/travail et maladie pro
-								</Trans>
-								)
-							</small>
-						</div>
-						<div className="indep">
-							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
-								precision={0}
-								expression="protection sociale . santé . indemnités journalières"
-							/>
-						</div>
-						<div className="auto">
-							{plafondAutoEntrepreneurDépassé ? (
-								'—'
-							) : (
-								<span>
-									<Value
-										linkToRule={false}
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										expression="protection sociale . santé . indemnités journalières"
-									/>
-								</span>
-							)}
 						</div>
 					</>
 				)}
