@@ -7,11 +7,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { configSelector } from '@/selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
-import {
-	updateSituation,
-	setActiveTarget,
-	batchUpdateSituation,
-} from '@/actions/actions'
+import { setActiveTarget, batchUpdateSituation } from '@/actions/actions'
 import { isEmpty } from 'ramda'
 
 type Objectifs = (string | { objectifs: string[] })[]
@@ -139,15 +135,17 @@ export function getSearchParamsFromSituation(
 ): URLSearchParams {
 	const searchParams = new URLSearchParams()
 	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
-	;(Object.entries(situation) as [DottedName, any][]).forEach(
-		([dottedName, value]) => {
-			const paramName = dottedNameParamNameMapping[dottedName]
-			const serializedValue = serializeEvaluation(engine.evaluate(value))
-			if (typeof serializedValue !== 'undefined') {
-				searchParams.set(paramName, serializedValue)
-			}
+
+	Object.entries(situation).forEach(([dottedName, value]) => {
+		const paramName = dottedNameParamNameMapping[dottedName]
+		const serializedValue = serializeEvaluation(engine.evaluate(value))
+
+		if (typeof serializedValue !== 'undefined') {
+			searchParams.set(paramName, serializedValue)
+		} else if (typeof value === 'object') {
+			searchParams.set(paramName, JSON.stringify(value))
 		}
-	)
+	})
 	searchParams.sort()
 
 	return searchParams
@@ -157,7 +155,8 @@ export function getSituationFromSearchParams(
 	searchParams: URLSearchParams,
 	dottedNameParamName: [DottedName, ParamName][]
 ) {
-	const situation: { [key in DottedName]?: string } = {}
+	const situation: { [key in DottedName]?: string | Record<string, unknown> } =
+		{}
 
 	const paramNameDottedName = dottedNameParamName.reduce(
 		(dottedNameBySearchParamName, [dottedName, paramName]) => ({
@@ -170,6 +169,17 @@ export function getSituationFromSearchParams(
 	searchParams.forEach((value, paramName) => {
 		if (Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)) {
 			situation[paramNameDottedName[paramName]] = value
+
+			if (value.startsWith('{') && value.endsWith('}')) {
+				try {
+					const parsed = JSON.parse(value) as Record<string, unknown>
+
+					situation[paramNameDottedName[paramName]] = parsed
+				} catch (error) {
+					// eslint-disable-next-line no-console
+					console.error(error)
+				}
+			}
 		}
 	})
 

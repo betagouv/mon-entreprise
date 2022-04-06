@@ -1,29 +1,31 @@
-import { Grid } from '@mui/material'
 import Emoji from '@/components/utils/Emoji'
+import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
-import { PopoverWithTrigger } from '@/design-system'
-import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { RootState } from '@/reducers/rootReducer'
 import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
+import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
+import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
-import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
 
 export function useUrl() {
 	const language = useTranslation().i18n.language
 	const situation = {
 		...useSelector(situationSelector),
 		...useSelector(companySituationSelector),
+		...useSelector((state: RootState) => state.DRISituation),
 	}
-	delete situation['entreprise . SIREN']
+
 	const searchParams = useParamsFromSituation(situation)
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 
@@ -42,7 +44,15 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
-export default function ShareOrSaveSimulationBanner() {
+export default function ShareOrSaveSimulationBanner({
+	share,
+	print,
+	placeDesEntreprises,
+}: {
+	share?: boolean
+	print?: boolean
+	placeDesEntreprises?: boolean
+}) {
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
 	const shareAPIAvailable = !!window?.navigator?.share
@@ -69,42 +79,45 @@ export default function ShareOrSaveSimulationBanner() {
 				spacing={4}
 				justifyContent="center"
 			>
-				<Grid item xs={12} sm="auto">
-					<PopoverWithTrigger
-						title={t('shareSimulation.modal.title', 'Votre lien de partage')}
-						trigger={(buttonProps) => (
-							<Button
-								{...buttonProps}
-								light
-								size="XS"
-								onPress={(e) => {
-									tracker.events.send('click.action', {
-										click_chapter1: 'feature:partage',
-										click: 'démarré',
-									})
-									startSharing().catch(
-										// eslint-disable-next-line no-console
-										(err) => console.error(err)
-									)
+				{share && (
+					<Grid item xs={12} sm="auto">
+						<PopoverWithTrigger
+							title={t('shareSimulation.modal.title', 'Votre lien de partage')}
+							trigger={(buttonProps) => (
+								<Button
+									{...buttonProps}
+									light
+									size="XS"
+									onPress={(e) => {
+										tracker.events.send('click.action', {
+											click_chapter1: 'feature:partage',
+											click: 'démarré',
+										})
+										tracker.dispatch()
+										startSharing().catch(
+											// eslint-disable-next-line no-console
+											(err) => console.error(err)
+										)
 
-									buttonProps?.onPress?.(e)
-								}}
-							>
-								<Emoji emoji="🔗" />
-								<ButtonLabel>
-									<Trans i18nKey="shareSimulation.banner">
-										Générer un lien de partage
-									</Trans>
-								</ButtonLabel>
-							</Button>
-						)}
-						small
-					>
-						<ShareSimulationPopup url={url} />
-					</PopoverWithTrigger>
-				</Grid>
+										buttonProps?.onPress?.(e)
+									}}
+								>
+									<Emoji emoji="🔗" />
+									<ButtonLabel>
+										<Trans i18nKey="shareSimulation.banner">
+											Générer un lien de partage
+										</Trans>
+									</ButtonLabel>
+								</Button>
+							)}
+							small
+						>
+							<ShareSimulationPopup url={url} />
+						</PopoverWithTrigger>
+					</Grid>
+				)}
 
-				{typeof window.print === 'function' && (
+				{print && typeof window.print === 'function' && (
 					<Grid item xs={12} sm="auto">
 						<Button light size="XS" onPress={() => window.print()}>
 							<Emoji emoji="🖨" />
@@ -117,9 +130,11 @@ export default function ShareOrSaveSimulationBanner() {
 					</Grid>
 				)}
 
-				<Grid item xs={12} sm="auto">
-					<PlacesDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
-				</Grid>
+				{placeDesEntreprises && (
+					<Grid item xs={12} sm="auto">
+						<PlacesDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					</Grid>
+				)}
 			</Grid>
 		</>
 	)
