@@ -1,5 +1,5 @@
 import { OverlayProvider } from '@react-aria/overlays'
-import { ErrorBoundary, createReduxEnhancer } from '@sentry/react'
+import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
@@ -22,22 +22,13 @@ import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import reducers, { RootState } from '@/reducers/rootReducer'
-import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
-import {
-	applyMiddleware,
-	createStore,
-	Middleware,
-	PreloadedState,
-	Store,
-	StoreEnhancer,
-} from 'redux'
+import { inIframe } from './utils'
+import { store } from './store'
+import * as safeLocalStorage from './storage/safeLocalStorage'
 
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-import * as safeLocalStorage from './storage/safeLocalStorage'
-import { inIframe } from './utils'
 
 if (
 	!import.meta.env.SSR &&
@@ -63,40 +54,17 @@ type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
-const composeEnhancers = composeWithDevToolsDevelopmentOnly(
-	import.meta.env.VITE_REDUX_TRACE ? { trace: true, traceLimit: 25 } : {}
-)
-
-const sentryReduxEnhancer = createReduxEnhancer({}) as StoreEnhancer
-
 export type ProviderProps = {
 	basename: SiteName
 	children: ReactNode
 	sitePaths?: SitePaths
-	initialStore?: PreloadedState<RootState>
-	onStoreCreated?: (store: Store) => void
-	reduxMiddlewares?: Array<Middleware>
 }
 
 export default function Provider({
 	basename,
-	reduxMiddlewares = [],
-	initialStore,
-	onStoreCreated,
 	children,
 	sitePaths = {} as SitePaths,
 }: ProviderProps): JSX.Element {
-	const storeEnhancer = composeEnhancers(
-		applyMiddleware(...reduxMiddlewares),
-		sentryReduxEnhancer
-	)
-
-	// Hack: useMemo is used to persist the store across hot reloads.
-	const store = useMemo(() => {
-		return createStore(reducers, initialStore, storeEnhancer)
-	}, [])
-	onStoreCreated?.(store)
-
 	useIframeResizer()
 
 	return (
