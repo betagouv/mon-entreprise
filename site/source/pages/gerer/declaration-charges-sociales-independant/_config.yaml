@@ -1,12 +1,12 @@
 objectifs:
-  - déclaration charge sociales . cotisations obligatoires déductibles
-  - dirigeant . rémunération . totale
-  - dirigeant . rémunération . nette
-
+  - déclaration charge sociales . résultat . cotisations obligatoires
+  - déclaration charge sociales . résultat . total charges sociales déductible
+  - déclaration charge sociales . résultat . revenu net fiscal
+  - déclaration charge sociales . résultat . assiette sociale
 situation:
+  déclaration charge sociales: oui
   dirigeant . régime social: "'indépendant'"
   année: 2021
-  déclaration indépendants: oui
   dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements
   impôt: non
 

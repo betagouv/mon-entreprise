@@ -5,7 +5,7 @@ import PageHeader from '@/components/PageHeader'
 import PreviousSimulationBanner from '@/components/PreviousSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
-import Emoji from '@/components/utils/Emoji'
+import { useEngine } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -18,10 +18,10 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TrackPage } from '../../../ATInternetTracking'
-import simulationConfig from './_config.yaml'
-import { ExplicationsResultatFiscal } from './_components/ExplicationResultatFiscal'
 import { SimpleField, SubSection } from '../_components/Fields'
+import { ExplicationsResultatFiscal } from './_components/ExplicationResultatFiscal'
 import ResultatsSimples from './_components/RésultatSimple'
+import simulationConfig from './_config.yaml'
 import illustration from './_undraw_fill_in_mie5.svg'
 
 export default function AideDéclarationIndépendant() {
@@ -114,7 +114,7 @@ export default function AideDéclarationIndépendant() {
 								<Trans>Situation personnelle</Trans>
 							</H2>
 							<SimpleField dottedName="situation personnelle . RSA" />
-							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+							<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 								<SubSection dottedName="dirigeant . indépendant . IJSS" />
 							</Condition>
 							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
@@ -122,8 +122,11 @@ export default function AideDéclarationIndépendant() {
 							<H2>
 								<Trans>Exonérations</Trans>
 							</H2>
-							<SubSection dottedName="déclaration charge sociales . réduction covid" />
-							<H3>Autres exonérations</H3>
+							<SubSection dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . covid" />
+							<H3>
+								<Trans>Autres exonérations</Trans>
+							</H3>
+							{/* <SubSection dottedName="déclaration charge sociales . réduction covid" /> */}
 							<SimpleField dottedName="déclaration charge sociales . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<Condition expression="établissement . ZFU">
@@ -131,6 +134,9 @@ export default function AideDéclarationIndépendant() {
 							</Condition>
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+								without={[
+									'dirigeant . indépendant . cotisations et contributions . exonérations . covid',
+								]}
 								hideTitle
 							/>
 
@@ -138,7 +144,7 @@ export default function AideDéclarationIndépendant() {
 								<Trans>International</Trans>
 							</H2>
 							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+							<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 								<SubSection
 									dottedName="dirigeant . indépendant . revenus étrangers"
 									hideTitle
@@ -161,15 +167,15 @@ export default function AideDéclarationIndépendant() {
 							</Condition>
 						</Condition>
 
-						<Condition expression="déclaration charge sociales . cotisations payées version simple">
-							<SimpleField dottedName="déclaration charge sociales . cotisations payées version simple . cotisations sociales" />
-							<SimpleField dottedName="déclaration charge sociales . cotisations payées version simple . CSG déductible et CFP" />
+						<Condition expression="déclaration charge sociales . cotisations payées">
+							<SimpleField dottedName="déclaration charge sociales . cotisations payées . cotisations sociales" />
+							<SimpleField dottedName="déclaration charge sociales . cotisations payées . CSG déductible et CFP" />
 						</Condition>
 					</Grid>
 				</Grid>
 			</FromTop>
 
-			<WhenAlreadyDefined dottedName="déclaration charge sociales . résultat simple . cotisations obligatoires">
+			<WhenAlreadyDefined dottedName="déclaration charge sociales . résultat . cotisations obligatoires">
 				<ResultatsSimples />
 			</WhenAlreadyDefined>
 		</>
@@ -179,12 +185,15 @@ export default function AideDéclarationIndépendant() {
 function ImpositionSection() {
 	const dispatch = useDispatch()
 
-	const situation = useSelector(situationSelector)
 	const setSituation = useCallback(
 		(value, dottedName) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[dispatch]
+	)
+	console.log(
+		useEngine().evaluate('entreprise . imposition'),
+		useEngine().evaluate('entreprise . imposition . IS')
 	)
 
 	return (
@@ -192,18 +201,15 @@ function ImpositionSection() {
 			<SimpleField dottedName="entreprise . imposition" />
 
 			<WhenAlreadyDefined dottedName="entreprise . imposition">
-				{/* <WhenApplicable dottedName="déclaration charge sociales . comptabilité"> */}
 				<SimpleField dottedName="déclaration charge sociales . comptabilité" />
-				{/* </WhenApplicable> */}
+
 				<Condition
-					expression={
-						'déclaration charge sociales . cotisations payées version simple = non'
-					}
+					expression={'déclaration charge sociales . cotisations payées = non'}
 				>
-					<FromTop key={situation['entreprise . imposition']}>
+					<FromTop>
 						<Condition expression="entreprise . imposition . IR">
-							<SimpleField dottedName="entreprise . imposition . IR . micro-fiscal" />
-							<Condition expression="entreprise . imposition . IR . micro-fiscal">
+							<SimpleField dottedName="entreprise . imposition . régime . micro-entreprise" />
+							<Condition expression="entreprise . imposition . régime . micro-entreprise">
 								<H2>Quel est votre chiffre d'affaires hors taxes en 2021 ?</H2>
 								<SmallBody>
 									Indiquez le montant hors taxes de votre chiffre d’affaires ou
@@ -215,7 +221,7 @@ function ImpositionSection() {
 								<SimpleField dottedName="entreprise . chiffre d'affaires . service BIC" />
 								<SimpleField dottedName="entreprise . chiffre d'affaires . service BNC" />
 							</Condition>
-							<Condition expression="entreprise . imposition . IR . micro-fiscal = non">
+							<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 								<H2>
 									Quel est votre résultat fiscal au titre de l'année 2021 ?
 									<br />

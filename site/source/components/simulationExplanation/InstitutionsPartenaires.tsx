@@ -138,7 +138,7 @@ export function ImpôtsDGFIP() {
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
 						La direction générale des finances publiques (DGFiP) est l'organisme
 						qui collecte l'impôt sur le revenu.{' '}
-						<Condition expression="entreprise . imposition . IR . micro-fiscal">
+						<Condition expression="entreprise . imposition . régime . micro-entreprise">
 							Le montant calculé{' '}
 							<strong>
 								prend en compte l'abattement du régime micro-fiscal

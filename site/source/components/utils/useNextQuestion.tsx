@@ -90,9 +90,13 @@ export function getNextQuestions(
 		'non prioritaires': notPriority = [],
 		liste: whitelist = [],
 		'liste noire': blacklist = [],
+		"à l'affiche": displayed = {},
 	} = questionConfig
 
-	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
+	let nextSteps = difference(
+		[...Object.values(displayed), ...getNextSteps(missingVariables)],
+		answeredQuestions
+	)
 	nextSteps = nextSteps.filter(
 		(step) =>
 			(!whitelist.length || whitelist.some((name) => step.startsWith(name))) &&
@@ -129,7 +133,7 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const situation = useSelector(situationSelector)
 	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
-		(node) => engine.evaluate(node).missingVariables ?? {}
+		(objectif) => engine.evaluate(objectif).missingVariables ?? {}
 	)
 	const nextQuestions = useMemo(() => {
 		let next = getNextQuestions(
