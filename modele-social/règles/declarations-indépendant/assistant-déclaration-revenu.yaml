@@ -513,11 +513,16 @@ DRI . déclaration revenus:
       - déclarant 2
   meta:
     affichage: toggle
+    section: oui
 
 DRI . déclaration revenus . déclarant 1:
   valeur: déclaration revenus = 'déclarant 1'
+  meta:
+    affichage: non
 DRI . déclaration revenus . déclarant 2:
   valeur: déclaration revenus = 'déclarant 2'
+  meta:
+    affichage: non
 
 DRI . déclaration revenus . BNC:
   applicable si: entreprise . imposition . IR . type de bénéfices . BNC

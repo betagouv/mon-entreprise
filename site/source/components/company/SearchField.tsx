@@ -6,7 +6,7 @@ import {
 } from '@/api/fabrique-social'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
 import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +14,6 @@ import styled from 'styled-components'
 import CompanySearchDetails from './SearchDetails'
 import { FromTop } from '../ui/animate'
 import { Message } from '@/design-system'
-import { H3 } from '@/design-system/typography/heading'
 import { Strong } from '@/design-system/typography'
 
 const StyledCard = styled(Card)`
@@ -111,7 +110,11 @@ function Results({
 			<Grid container spacing={2} data-test-id="company-search-results">
 				{results.map((etablissement) => (
 					<Grid key={etablissement.siren} item xs={12}>
-						<StyledCard onPress={() => onSubmit?.(etablissement)} compact>
+						<StyledCard
+							bodyAs="div"
+							onPress={() => onSubmit?.(etablissement)}
+							compact
+						>
 							<CompanySearchDetails entreprise={etablissement} />
 						</StyledCard>
 					</Grid>
@@ -120,16 +123,3 @@ function Results({
 		</FromTop>
 	)
 }
-
-const MessageContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	background: ${({ theme }) => theme.colors.bases.primary[500]};
-	margin-top: 0.4rem;
-	padding: 0.6rem 1rem 0;
-	border-radius: 0.3rem;
-
-	${Intro}, ${Body} {
-		margin-top: 0;
-	}
-`

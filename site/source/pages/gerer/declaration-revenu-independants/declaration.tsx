@@ -1,4 +1,5 @@
-import { DottedName } from '@/../../modele-social'
+import { DottedName } from 'modele-social'
+import RuleInput from '@/components/conversation/RuleInput'
 import Value, { Condition } from '@/components/EngineValue'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
@@ -18,11 +19,20 @@ import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { Rule, RuleNode } from 'publicodes'
-import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import {
+	Fragment,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
+import { updateSituation } from '@/actions/actions'
+import { useDispatch } from 'react-redux'
 
 interface Meta {
 	facultatif?: 'oui' | 'non'
@@ -54,6 +64,8 @@ export default function Déclaration() {
 
 	const [msgCopied, setMsgCopied] = useState(false)
 
+	const fields = useLiasseFiscaleFields()
+
 	useEffect(() => {
 		const handler = setTimeout(() => setMsgCopied(false), 5000)
 
@@ -66,6 +78,17 @@ export default function Déclaration() {
 		return null // TODO : micro-fiscal
 	}
 	const liasse = engine.getRule(liasseDottedName)
+
+	const ModeleMessageComptableCase = ModeleMessageComptable.replace(
+		'{{cases}}',
+		fields
+			.filter(
+				([, { rawNode }]) =>
+					getMeta<{ section?: 'oui' | 'non' }>(rawNode, {}).section !== 'oui'
+			)
+			.map(([, { title }]) => title)
+			.join(', ')
+	)
 
 	return (
 		<>
@@ -160,7 +183,7 @@ export default function Déclaration() {
 								</Body>
 								<Body>Voici un modèle de message à transmettre :</Body>
 								<Message type="secondary">
-									<Markdown>{ModeleMessageComptable}</Markdown>
+									<Markdown>{ModeleMessageComptableCase}</Markdown>
 								</Message>
 								{navigator.clipboard && (
 									<Button
@@ -168,7 +191,7 @@ export default function Déclaration() {
 										size="XS"
 										onPress={() => {
 											navigator.clipboard
-												.writeText(ModeleMessageComptable)
+												.writeText(ModeleMessageComptableCase)
 												.catch((err) =>
 													// eslint-disable-next-line no-console
 													console.error(err)
@@ -210,7 +233,7 @@ d'indépendant sur impot.gouv.fr. J'aurais besoin pour cela des
 informations suivantes contenues dans les cases suivantes de
 la déclaration de résultat de l'entreprise :
 
-Case BV BT, BK, BZ, ... 
+Case {{cases}}
 
 Je vous remercie de m'envoyer ces informations ou directement
 un exemplaire de la déclaration déjà remplie.
@@ -272,7 +295,7 @@ function useDéclarationRevenuFields() {
 					dottedName.startsWith('DRI . déclaration revenus')
 				)
 				.filter(
-					([dottedName]) => engine.evaluate(dottedName).nodeValue != null
+					([dottedName]) => engine.evaluate(dottedName).nodeValue !== null
 				),
 		[engine.parsedSituation]
 	)
@@ -284,6 +307,15 @@ function ResultSection() {
 	const objectifs = useObjectifs()
 	const fields = useDéclarationRevenuFields()
 	const sitePaths = useContext(SitePathsContext)
+	const engine = useEngine()
+	const dispatch = useDispatch()
+
+	const dispatchValue = useCallback(
+		(value, dottedName: DottedName) => {
+			dispatch(updateSituation(dottedName, value))
+		},
+		[dispatch]
+	)
 
 	const isLiasseFiscaleCompleted = useProgress(objectifs) === 1
 	if (!isLiasseFiscaleCompleted) {
@@ -300,6 +332,11 @@ function ResultSection() {
 		)
 	}
 
+	const declarant =
+		engine.evaluate('DRI . déclaration revenus').nodeValue === 'déclarant 2'
+			? 1
+			: 0
+
 	return (
 		<Container
 			darkMode
@@ -311,7 +348,7 @@ function ResultSection() {
 					container
 					spacing={3}
 					alignItems="stretch"
-					flexWrap={'wrap-reverse'}
+					flexWrap="wrap-reverse"
 					justifyContent="center"
 				>
 					<Grid item lg={8} xl={7}>
@@ -321,39 +358,58 @@ function ResultSection() {
 								alignItems="flex-end"
 								justifyContent={'space-between'}
 							>
-								{fields.map(([dottedName, rule]) =>
-									getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
-										<Grid item xs={12} key={dottedName}>
-											{rule.dottedName.split(' . ').length === 3 ? (
-												<H3>{rule.title}</H3>
-											) : (
-												<H4
-													css={`
-														margin-top: 0rem;
-													`}
-												>
-													{rule.title}
-												</H4>
-											)}
-										</Grid>
-									) : (
-										<Fragment key={dottedName}>
-											<Grid item xs={12} sm={8} md={9}>
-												<Body>
-													{rule.title} <em>{rule.rawNode.note}</em>
-												</Body>
+								{fields
+									.filter(() => !false)
+									.map(([dottedName, rule]) =>
+										getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
+											<Grid item xs={12} key={dottedName}>
+												{rule.dottedName.split(' . ').length === 2 ? (
+													<>
+														<H3
+															css={`
+																margin-top: 1rem;
+															`}
+														>
+															{rule.rawNode.question}
+														</H3>
+														<RuleInput
+															dottedName={dottedName as DottedName}
+															onChange={dispatchValue}
+														/>
+													</>
+												) : rule.dottedName.split(' . ').length === 3 ? (
+													<H3>{rule.title}</H3>
+												) : (
+													<H4
+														css={`
+															margin-top: 0rem;
+														`}
+													>
+														{rule.title}
+													</H4>
+												)}
 											</Grid>
-											<Grid item xs="auto">
-												<Body>
-													<Strong>{getCases(rule.rawNode)[0]}</Strong>
-													<StyledCase>
-														<Value expression={dottedName} linkToRule={false} />
-													</StyledCase>
-												</Body>
-											</Grid>
-										</Fragment>
-									)
-								)}
+										) : (
+											<Fragment key={dottedName}>
+												<Grid item xs={12} sm={8} md={9}>
+													<Body>
+														{rule.title} <em>{rule.rawNode.note}</em>
+													</Body>
+												</Grid>
+												<Grid item xs="auto">
+													<Body>
+														<Strong>{getCases(rule.rawNode)[declarant]}</Strong>
+														<StyledCase>
+															<Value
+																expression={dottedName}
+																linkToRule={false}
+															/>
+														</StyledCase>
+													</Body>
+												</Grid>
+											</Fragment>
+										)
+									)}
 							</Grid>
 
 							<ShareOrSaveSimulationBanner share print />
