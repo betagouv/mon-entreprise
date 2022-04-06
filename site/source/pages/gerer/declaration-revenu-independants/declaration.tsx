@@ -1,12 +1,12 @@
 import { DottedName } from '@/../../modele-social'
 import Value, { Condition } from '@/components/EngineValue'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import Accordion from '@/design-system/accordion'
-import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
@@ -312,6 +312,7 @@ function ResultSection() {
 					spacing={3}
 					alignItems="stretch"
 					flexWrap={'wrap-reverse'}
+					justifyContent="center"
 				>
 					<Grid item lg={8} xl={7}>
 						<Message border={false}>
@@ -354,16 +355,9 @@ function ResultSection() {
 									)
 								)}
 							</Grid>
-							<Spacing lg />
 
-							<AnswerGroup justifyContent={'center'}>
-								<Button size="XS" light isDisabled>
-									Imprimer ou sauvegarder en PDF
-								</Button>
-								<Button size="XS" light isDisabled>
-									Obtenir un lien de partage
-								</Button>
-							</AnswerGroup>
+							<ShareOrSaveSimulationBanner share print />
+
 							<Spacing xl />
 
 							<Grid

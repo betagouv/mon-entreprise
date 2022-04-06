@@ -97,7 +97,7 @@ export default function Simulation({
 						)}
 						{firstStepCompleted && !hideDetails && (
 							<>
-								<ShareOrSaveSimulationBanner />
+								<ShareOrSaveSimulationBanner share print placeDesEntreprises />
 								<Spacing lg />
 							</>
 						)}
