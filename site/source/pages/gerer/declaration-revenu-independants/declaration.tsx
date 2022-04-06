@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import RuleInput from '@/components/conversation/RuleInput'
-import Value, { Condition } from '@/components/EngineValue'
+import Value, { Condition, WhenApplicable } from '@/components/EngineValue'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -38,7 +38,7 @@ interface Meta {
 	facultatif?: 'oui' | 'non'
 	section?: 'oui' | 'non'
 	affichage?: string
-	cases?: string[] | { défaut: string[] }
+	cases?: string[] | { défaut: string[]; 'sans OGA': string[] }
 }
 
 export function useObjectifs(): Array<DottedName> {
@@ -217,9 +217,21 @@ export default function Déclaration() {
 						</Body>
 					</FromTop>
 				</Grid>
+
 				<LiasseFiscale />
+
+				<WhenApplicable dottedName="DRI . liasse . OGA">
+					<Grid item xs={12}>
+						<RuleInputWithTitle
+							title={engine.getRule('DRI . liasse . OGA').rawNode.question}
+							dottedName="DRI . liasse . OGA"
+						/>
+					</Grid>
+				</WhenApplicable>
 			</Grid>
+
 			<Spacing xxl />
+
 			<ResultSection />
 		</>
 	)
@@ -303,11 +315,13 @@ function useDéclarationRevenuFields() {
 	return fields
 }
 
-function ResultSection() {
-	const objectifs = useObjectifs()
-	const fields = useDéclarationRevenuFields()
-	const sitePaths = useContext(SitePathsContext)
-	const engine = useEngine()
+const RuleInputWithTitle = ({
+	title,
+	dottedName,
+}: {
+	title?: string
+	dottedName: string
+}) => {
 	const dispatch = useDispatch()
 
 	const dispatchValue = useCallback(
@@ -317,19 +331,52 @@ function ResultSection() {
 		[dispatch]
 	)
 
+	return (
+		<>
+			{title && (
+				<H3
+					css={`
+						margin-top: 1rem;
+					`}
+				>
+					{title}
+				</H3>
+			)}
+			<RuleInput
+				dottedName={dottedName as DottedName}
+				onChange={dispatchValue}
+			/>
+		</>
+	)
+}
+
+function ResultSection() {
+	const objectifs = useObjectifs()
+	const fields = useDéclarationRevenuFields()
+	const sitePaths = useContext(SitePathsContext)
+	const engine = useEngine()
+
+	const caseName =
+		engine.evaluate('DRI . liasse . OGA').nodeValue === false
+			? 'sans OGA'
+			: 'défaut'
+
+	const getCases = useCallback(
+		(rule: Rule): string[] => {
+			const meta = getMeta<Meta>(rule, {})
+
+			return (
+				(Array.isArray(meta.cases) && meta.cases) ||
+				(typeof meta.cases === 'object' && meta.cases[caseName]) ||
+				[]
+			)
+		},
+		[caseName]
+	)
+
 	const isLiasseFiscaleCompleted = useProgress(objectifs) === 1
 	if (!isLiasseFiscaleCompleted) {
 		return null
-	}
-
-	const getCases = (rule: Rule): string[] => {
-		const meta = getMeta<Meta>(rule, {})
-
-		return (
-			(Array.isArray(meta.cases) && meta.cases) ||
-			(typeof meta.cases === 'object' && meta.cases.défaut) ||
-			[]
-		)
 	}
 
 	const declarant =
@@ -365,16 +412,9 @@ function ResultSection() {
 											<Grid item xs={12} key={dottedName}>
 												{rule.dottedName.split(' . ').length === 2 ? (
 													<>
-														<H3
-															css={`
-																margin-top: 1rem;
-															`}
-														>
-															{rule.rawNode.question}
-														</H3>
-														<RuleInput
+														<RuleInputWithTitle
+															title={rule.rawNode.question}
 															dottedName={dottedName as DottedName}
-															onChange={dispatchValue}
 														/>
 													</>
 												) : rule.dottedName.split(' . ').length === 3 ? (
