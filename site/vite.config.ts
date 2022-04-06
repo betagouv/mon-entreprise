@@ -106,9 +106,6 @@ export default defineConfig(({ command }) => ({
 		},
 	},
 	optimizeDeps: {
-		// TODO: for some reason (ViteJS bug?) we need to define a entry file in the
-		// "main" field of package.json. Ideally this shouldn't be required. It's
-		// not possible to write comments in package.json here it is.
 		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],
 		exclude: ['publicodes-react', 'publicodes'],
 		// Optimize cjs deps from publicodes

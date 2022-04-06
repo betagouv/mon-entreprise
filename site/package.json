@@ -10,7 +10,7 @@
 	},
 	"type": "module",
 	"private": true,
-	"main": "./source/entry-fr.tsx",
+	"main": "./source/entry-empty.js",
 	"engines": {
 		"node": ">=12.16.1"
 	},
