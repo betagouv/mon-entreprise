@@ -40,19 +40,6 @@ import Provider, { ProviderProps } from './Provider'
 import redirects from './redirects'
 import { RootState } from './reducers/rootReducer'
 import { constructLocalizedSitePath } from './sitePaths'
-import {
-	retrievePersistedChoixStatutJuridique,
-	setupChoixStatutJuridiquePersistence,
-} from './storage/persistChoixStatutJuridique'
-import {
-	retrievePersistedCompanySituation,
-	setupCompanySituationPersistence,
-} from './storage/persistCompanySituation'
-import {
-	retrievePersistedDRISituation,
-	setupDRISituationPersistence,
-} from './storage/persistDRISituation'
-import { setupSimulationPersistence } from './storage/persistSimulation'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -78,21 +65,7 @@ export default function Root({
 
 	return (
 		<StrictMode>
-			<Provider
-				basename={basename}
-				sitePaths={paths}
-				onStoreCreated={(store) => {
-					setupChoixStatutJuridiquePersistence(store)
-					setupCompanySituationPersistence(store)
-					setupDRISituationPersistence(store)
-					setupSimulationPersistence(store)
-				}}
-				initialStore={{
-					choixStatutJuridique: retrievePersistedChoixStatutJuridique(),
-					companySituation: retrievePersistedCompanySituation(),
-					DRISituation: retrievePersistedDRISituation(),
-				}}
-			>
+			<Provider basename={basename} sitePaths={paths}>
 				<EngineProvider value={engine}>
 					<Router />
 				</EngineProvider>
