@@ -586,7 +586,7 @@ entreprise . activité . service ou vente . service:
 
 entreprise . activité . mixte:
   titre: Activités mixtes
-  applicable si: entreprise . imposition . IR . micro-fiscal
+  applicable si: entreprise . imposition . régime . micro-entreprise
   question: Votre entreprise a-t-elle plusieurs types d'activités ?
   par défaut: non
   description: |

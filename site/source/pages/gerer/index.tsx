@@ -1,7 +1,11 @@
 import { DottedName } from '@/../../modele-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
-import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
+import {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
@@ -108,11 +112,7 @@ const infereSimulateurRevenuFromSituation = (
 	) {
 		return 'sasu'
 	}
-	if (
-		engine.evaluate(
-			'entreprise . catégorie juridique . EI . responsabilité limité'
-		).nodeValue
-	) {
+	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
 		return 'eirl'
 	}
 	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
@@ -230,14 +230,14 @@ function Home() {
 								{...simulateurs['déclaration-revenu-indépendant']}
 							/>
 						</WhenApplicable>
-						<WhenApplicable dottedName="entreprise . imposition . IS">
+						<Condition expression="entreprise . imposition . IS">
 							<Grid item xs={12} md={6} lg={4} alignSelf="flex-end">
 								<Grid container spacing={3} columns={2}>
 									<SimulateurCard fromGérer {...simulateurs.is} small />
 									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
 								</Grid>
 							</Grid>
-						</WhenApplicable>
+						</Condition>
 					</Grid>
 				</FromTop>
 				<Spacing xl />
@@ -347,6 +347,9 @@ function Home() {
 const companyDetailsConfig = {
 	situation: {
 		'contrat salarié': 'non',
+	},
+	questions: {
+		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
 	},
 	objectifs: [
 		'dirigeant . régime social',

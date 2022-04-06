@@ -5,12 +5,14 @@ import { FadeIn } from '@/components/ui/animate'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import {
 	situationSelector,
 	targetUnitSelector,
 } from '@/selectors/simulationSelectors'
+import { evaluateQuestion } from '@/utils'
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
@@ -21,11 +23,13 @@ import styled from 'styled-components'
 type SubSectionProp = {
 	dottedName: DottedName
 	hideTitle?: boolean
+	without?: DottedName[]
 }
 
 export function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false,
+	without = [],
 }: SubSectionProp) {
 	const engine = useContext(EngineContext)
 	const ruleTitle = engine.getRule(sectionDottedName)?.title
@@ -45,7 +49,11 @@ export function SubSection({
 			rawNode: { question },
 		} = engine.getRule(nextStep)
 
-		return !!question && dottedName.startsWith(sectionDottedName)
+		return (
+			!!question &&
+			dottedName.startsWith(sectionDottedName) &&
+			!without.some((dottedName) => nextStep.startsWith(dottedName))
+		)
 	})
 
 	return (
@@ -82,9 +90,12 @@ export function SimpleField({
 		[dispatch]
 	)
 
-	const displayedQuestion = question ?? rule.rawNode.question
+	const displayedQuestion =
+		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
+
 	const labelId = useSSRSafeId()
 	const targetUnit = useSelector(targetUnitSelector)
+	console.log(dottedName, evaluation)
 	if (evaluation.nodeValue === null) {
 		return null
 	}
@@ -111,6 +122,7 @@ export function SimpleField({
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
 			/>
+			<Spacing md />
 		</FadeIn>
 	)
 }

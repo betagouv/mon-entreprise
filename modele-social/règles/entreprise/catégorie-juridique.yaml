@@ -23,9 +23,10 @@ entreprise . catégorie juridique . EI . auto-entrepreneur:
     nom: défaut
     valeur: oui
   remplace:
-    règle: imposition . IR . micro-fiscal
-    par: oui
-
+    - règle: imposition . régime
+      par: "'micro-entreprise'"
+    - règle: entreprise . imposition
+      par: "'IR'"
 entreprise . catégorie juridique . EI . responsabilité limité:
   non applicable si: auto-entrepreneur # pour simplifier
   titre: 'EIRL'
@@ -62,9 +63,6 @@ entreprise . catégorie juridique . SELAS:
       par: oui
 
 entreprise . catégorie juridique . SAS:
-  remplace: #TODO nous ne gérons pas encore les SASU à l'IR
-    règle: entreprise . imposition
-    par: "'IS'"
   titre: 'SASU ou SAS'
   valeur: catégorie juridique = 'SAS'
 

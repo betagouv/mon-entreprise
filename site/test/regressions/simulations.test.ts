@@ -17,7 +17,7 @@ import professionLibéraleConfig from '../../source/pages/Simulateurs/configs/pr
 import remunerationDirigeantConfig from '../../source/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import employeeConfig from '../../source/pages/Simulateurs/configs/salarié.yaml'
 import { Simulation } from '../../source/reducers/rootReducer'
-import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
+import aideDéclarationIndépendantsSituations from './assistant-charges-sociales.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import dividendesSituations from './simulations-dividendes.yaml'
@@ -135,11 +135,7 @@ it('calculate simulations-rémunération-dirigeant (indépendant)', () => {
 	runSimulations(
 		remunerationDirigeantSituations,
 		remunerationDirigeantConfig.objectifs,
-		{
-			...remunerationDirigeantConfig.situation,
-			'dirigeant . régime social': "'indépendant'",
-			'entreprise . imposition': "'IR'",
-		}
+		remunerationDirigeantConfig.situation
 	)
 })
 
@@ -151,14 +147,13 @@ it('calculate simulations-artiste-auteur', () => {
 	)
 })
 
-it('calculate aide-déclaration-indépendant', () => {
+it('calculate assistant-charges-sociales', () => {
 	runSimulations(
 		aideDéclarationIndépendantsSituations,
 		aideDéclarationConfig.objectifs,
 		{
-			"déclaration charge sociales . nature de l'activité": "'commerciale'",
 			'déclaration charge sociales . comptabilité': "'engagement'",
-			"déclaration charge sociales . régime d'imposition . réel": "'normal'",
+			'entreprise . imposition . régime . micro-fiscal': "'non'",
 			...aideDéclarationConfig.situation,
 		}
 	)

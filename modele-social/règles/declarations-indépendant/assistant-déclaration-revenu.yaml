@@ -94,7 +94,7 @@ DRI . accompagnement imposition par défaut: nombre de déclarations < 5
 DRI . accompagnement imposition:
   titre: Assistant en mode accompagnement
   non applicable si: DRI . cas exclus
-  par défaut: accompagnement imposition par défaut
+  valeur: accompagnement imposition par défaut
 
 DRI . accompagnement imposition . type:
   variations:

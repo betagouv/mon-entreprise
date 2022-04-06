@@ -5,7 +5,7 @@ questions:
   liste noire:
     - dirigeant . indépendant . cotisations facultatives
     - entreprise . effectif . seuil
-    - entreprise . imposition . IR . micro-fiscal
+    - entreprise . imposition . régime . micro-entreprise
   liste:
     - DRI . cotisations
     - ''
@@ -14,3 +14,5 @@ unité par défaut: '€'
 
 situation:
   DRI: oui
+  impôt:
+    non applicable si: oui

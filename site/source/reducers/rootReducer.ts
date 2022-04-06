@@ -37,11 +37,7 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 	}
 }
 
-type QuestionsKind =
-	| "à l'affiche"
-	| 'non prioritaires'
-	| 'liste'
-	| 'liste noire'
+type QuestionsKind = 'non prioritaires' | 'liste' | 'liste noire'
 
 export type SimulationConfig = Partial<{
 	objectifs:
@@ -50,7 +46,9 @@ export type SimulationConfig = Partial<{
 	'objectifs cachés'?: Array<DottedName>
 	situation: Simulation['situation']
 	bloquant: Array<DottedName>
-	questions: Partial<Record<QuestionsKind, Array<DottedName>>>
+	questions: Partial<Record<QuestionsKind, Array<DottedName>>> & {
+		"à l'affiche"?: Record<string, DottedName>
+	}
 	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
 	'unité par défaut': string
 	color: string
