@@ -142,8 +142,8 @@ function simulation(
 				...state,
 				situation: omit(
 					{ ...state.situation },
-					action.fieldName as keyof Simulation['situation']
-				),
+					action.fieldName
+				) as Simulation['situation'],
 			}
 
 			return newState
