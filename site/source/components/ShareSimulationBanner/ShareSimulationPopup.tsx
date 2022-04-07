@@ -50,12 +50,10 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 						<Button
 							size="XS"
 							onPress={() => {
-								tracker.click.set({
-									chapter1: 'feature:partage',
-									type: 'action',
-									name: 'lien copié',
+								tracker.events.send('click.action', {
+									click_chapter1: 'feature:partage',
+									click: 'lien copié',
 								})
-								tracker.dispatch()
 								navigator.clipboard.writeText(url).catch((err) =>
 									// eslint-disable-next-line no-console
 									console.error(err)

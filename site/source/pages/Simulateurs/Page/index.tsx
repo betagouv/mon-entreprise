@@ -85,32 +85,33 @@ export default function PageData(props: PageDataProps) {
 
 	return (
 		<CurrentSimulatorDataProvider value={props}>
-			<TrackChapter {...trackInfo} />
-			{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
-			{title && !inIframe && (
-				<>
-					<H1>
-						{title}
-						{year}
-					</H1>
-					{tooltip && <Intro>{tooltip}</Intro>}
-				</>
-			)}
-			{description && !inIframe && description}
+			<TrackChapter {...trackInfo}>
+				{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
+				{title && !inIframe && (
+					<>
+						<H1>
+							{title}
+							{year}
+						</H1>
+						{tooltip && <Intro>{tooltip}</Intro>}
+					</>
+				)}
+				{description && !inIframe && description}
 
-			<Component />
+				<Component />
 
-			{!inIframe && (
-				<>
-					<section>{seoExplanations}</section>
-					<NextSteps
-						iframePath={privateIframe ? undefined : iframePath}
-						nextSteps={nextSteps}
-					/>
+				{!inIframe && (
+					<>
+						<section>{seoExplanations}</section>
+						<NextSteps
+							iframePath={privateIframe ? undefined : iframePath}
+							nextSteps={nextSteps}
+						/>
 
-					<Spacing lg />
-				</>
-			)}
+						<Spacing lg />
+					</>
+				)}
+			</TrackChapter>
 		</CurrentSimulatorDataProvider>
 	)
 }

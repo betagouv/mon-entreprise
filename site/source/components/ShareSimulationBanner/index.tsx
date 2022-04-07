@@ -78,12 +78,10 @@ export default function ShareOrSaveSimulationBanner() {
 								light
 								size="XS"
 								onPress={(e) => {
-									tracker.click.set({
-										chapter1: 'feature:partage',
-										type: 'action',
-										name: 'démarré',
+									tracker.events.send('click.action', {
+										click_chapter1: 'feature:partage',
+										click: 'démarré',
 									})
-									tracker.dispatch()
 									startSharing().catch(
 										// eslint-disable-next-line no-console
 										(err) => console.error(err)

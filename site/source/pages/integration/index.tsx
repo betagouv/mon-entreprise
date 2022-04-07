@@ -24,8 +24,7 @@ export default function Integration() {
 	const openJobOffer = (jobOffers as Array<JobOffer>)[0]
 
 	return (
-		<>
-			<TrackChapter chapter1="integration" />
+		<TrackChapter chapter1="integration">
 			<ScrollToTop />
 
 			{pathname !== sitePaths.integration.index && (
@@ -54,6 +53,6 @@ export default function Integration() {
 				<Route path={sitePaths.integration.iframe} component={Iframe} />
 				<Route path={sitePaths.integration.library} component={Library} />
 			</Switch>
-		</>
+		</TrackChapter>
 	)
 }
