@@ -411,12 +411,10 @@ function ResultSection() {
 										getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
 											<Grid item xs={12} key={dottedName}>
 												{rule.dottedName.split(' . ').length === 2 ? (
-													<>
-														<RuleInputWithTitle
-															title={rule.rawNode.question}
-															dottedName={dottedName as DottedName}
-														/>
-													</>
+													<RuleInputWithTitle
+														title={rule.rawNode.question}
+														dottedName={dottedName as DottedName}
+													/>
 												) : rule.dottedName.split(' . ').length === 3 ? (
 													<H3>{rule.title}</H3>
 												) : (

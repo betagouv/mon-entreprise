@@ -1,4 +1,4 @@
-import { DottedName } from '@/../../modele-social'
+import { DottedName } from 'modele-social'
 import { useEngine } from '@/components/utils/EngineContext'
 import { isEmpty } from 'ramda'
 
@@ -14,7 +14,7 @@ export function useProgress(objectifs: DottedName[]): number {
 	const objectifsRemplis = objectifsApplicables.filter((objectif) =>
 		isEmpty(objectif.missingVariables)
 	)
-	console.log(objectifsRemplis, objectifsApplicables)
+
 	if (!objectifsApplicables.length) {
 		return 0
 	}
