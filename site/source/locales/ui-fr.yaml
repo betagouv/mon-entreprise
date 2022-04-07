@@ -237,9 +237,9 @@ après:
   titre: Après la création
 assistant-DRI:
   declaration:
-    intro: <0>Nous allons maintenant vous indiquer comment remplir votre déclaration
-      de revenu personnelle à partir de la déclaration de résultat de votre
-      entreprise.</0>
+    intro: <0>Nous allons maintenant vous indiquer comment <2>remplir votre
+      déclaration de revenu personnelle</2> à partir de la déclaration de
+      résultat de votre entreprise.</0>
   description: <0><0>Cet outil vous aidera à remplir votre <2>déclaration de
     revenu</2> sur impot.gouv.fr. Vous aurez à la fin :</0><1><0>La liste des
     cases qui vous concernent avec le montant à remplir</0><1>Une estimation des
@@ -265,7 +265,7 @@ assistant-DRI:
       nombre-déclarations: C'est votre {{nthDeclaration}} déclaration de revenu depuis
         la création de votre entreprise.
   intro: <0><0>Nous vous accompagnons pour remplir votre <2>déclaration de
-    revenu</2> sur <5>impot.gouv.fr</5>.<7></7></0><1> Répondez à quelques
+    revenu</2> sur <5>impot.gouv.fr</5>.<7></7></0><1>Répondez à ces quelques
     questions, à la fin vous aurez :</1><2><0>Les formulaires qui vous
     concernent</0><1>La liste des cases qui vous concernent avec le montant à
     remplir</1><2>Une estimation des cotisations sociales à payer à l'Urssaf en
@@ -1500,6 +1500,7 @@ privacyContent:
   title: Données personnelles
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (ex : CSG)"
+required: Requis
 responsabilité:
   bouton1: Société
   bouton2: Entreprise individuelle
