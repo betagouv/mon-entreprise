@@ -22,7 +22,7 @@ export default function Cotisations() {
 			<Grid container item lg={10} xl={8}>
 				<Intro>
 					En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
-					l'Urssaf. Voici comment elles seront calculées :
+					l'Urssaf. Voici une estimation personalisée de leur montant :
 				</Intro>
 			</Grid>
 			<Container
