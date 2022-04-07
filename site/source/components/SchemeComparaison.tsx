@@ -5,26 +5,25 @@ import {
 } from '@/actions/companyStatusActions'
 import Value from '@/components/EngineValue'
 import Simulation from '@/components/Simulation'
-import InfoBulle from '@/components/ui/InfoBulle'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import revenusSVG from '@/images/revenus.svg'
-import { useCallback, useMemo, useState } from 'react'
+import { situationSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import styled, { css } from 'styled-components'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
-import { SimulationGoals, SimulationGoal } from './Simulation'
-
+import { SimulationGoal, SimulationGoals } from './Simulation'
 import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
+import { SitePathsContext } from './utils/SitePathsContext'
 import useSimulationConfig from './utils/useSimulationConfig'
-import { Grid } from '@mui/material'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -35,7 +34,10 @@ export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
-	useSimulationConfig(dirigeantComparaison)
+	const sitePath = useContext(SitePathsContext)
+	useSimulationConfig(dirigeantComparaison, {
+		path: sitePath.simulateurs.comparaison,
+	})
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
 

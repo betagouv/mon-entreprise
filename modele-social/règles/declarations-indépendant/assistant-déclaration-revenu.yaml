@@ -388,9 +388,9 @@ DRI . liasse . réel simplifié . c596:
   applicable si: entreprise . imposition . IR
   titre: '596'
   unité: €
-  résumé: Court terme
   meta:
-    requis: oui
+    facultatif: oui
+  résumé: Court terme
 
 DRI . liasse . réel normal:
   applicable si: entreprise . imposition . régime . réel normal
@@ -549,6 +549,7 @@ DRI . déclaration revenus:
     possibilités:
       - déclarant 1
       - déclarant 2
+  par défaut: "'déclarant 1'"
   meta:
     affichage: toggle
     section: oui

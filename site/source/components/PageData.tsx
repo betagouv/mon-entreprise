@@ -57,7 +57,7 @@ export default function PageData(props: PageDataProps) {
 		typeof année === 'number' && année != 2022 ? ` - version ${année}` : ''
 
 	const inIframe = useIsEmbedded()
-	useSimulationConfig(config)
+	useSimulationConfig(config, { path })
 	useSearchParamsSimulationSharing()
 
 	// TODO : Move this logic elsewhere.

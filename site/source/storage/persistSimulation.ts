@@ -1,7 +1,8 @@
 import { Action } from '@/actions/actions'
 import { RootState } from '@/reducers/rootReducer'
-import { Store } from 'redux'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
+import { isEmpty } from 'ramda'
+import { Store } from 'redux'
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
@@ -20,7 +21,7 @@ export function setupSimulationPersistence(
 		if (!state.simulation?.url) {
 			return
 		}
-		if (!state.simulation?.foldedSteps.length) {
+		if (isEmpty(state.simulation?.situation)) {
 			return
 		}
 		safeLocalStorage.setItem(
