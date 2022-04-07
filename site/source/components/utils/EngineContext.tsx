@@ -1,6 +1,9 @@
+import { deleteFromSituation } from '@/actions/actions'
+import { omit } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Rule } from 'publicodes'
 import { createContext, default as React, useContext } from 'react'
+import { useDispatch } from 'react-redux'
 import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>
@@ -37,7 +40,41 @@ export function SituationProvider<Names extends string = DottedName>({
 	situation,
 }: SituationProviderProps<Names>) {
 	const engine = useContext(EngineContext)
-	engine.setSituation(situation)
+	const dispatch = useDispatch()
+
+	let loop = true
+	while (loop) {
+		try {
+			engine.setSituation(situation)
+			loop = false
+		} catch (error) {
+			const errorStr = (error as Error).toString()
+			const faultyDottedName = ((/Erreur syntaxique/.test(errorStr) &&
+				errorStr.match(/"[^"[]*\[([^"\]]*)\][^"\]]*"/)) ||
+				null)?.[1]
+
+			if (faultyDottedName == null) {
+				loop = false
+				// eslint-disable-next-line no-console
+				console.error(error)
+			} else {
+				// eslint-disable-next-line no-console
+				console.error(
+					'Key omit from situation:',
+					`"${faultyDottedName}"\n\n`,
+					error
+				)
+
+				// Hack: Omit faultyDottedName from situation
+				situation = omit(
+					situation,
+					faultyDottedName as Names
+				) as typeof situation
+				// Delete faultyDottedName from redux store
+				dispatch(deleteFromSituation(faultyDottedName as DottedName))
+			}
+		}
+	}
 
 	return (
 		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
