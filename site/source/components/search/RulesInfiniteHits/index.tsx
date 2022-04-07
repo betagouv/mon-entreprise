@@ -10,7 +10,7 @@ import { DottedName } from 'modele-social'
 import RuleLink from '../../RuleLink'
 import { Highlight } from '../Hightlight'
 
-type Hit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
+type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
 
 const StyledRuleLink = styled(RuleLink)`
 	${SmallBody}, ${Body} {
@@ -42,7 +42,7 @@ const HitContainer = styled.li`
 	}
 `
 
-const Hit = (hit: Hit) => {
+const Hit = (hit: THit) => {
 	return (
 		<HitContainer>
 			<StyledRuleLink dottedName={hit.objectID}>
@@ -89,7 +89,14 @@ const InfiniteHits = styled.div`
 	}
 `
 
-const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }) => {
+interface IHits {
+	hits: THit[]
+	hasMore: boolean
+	hasPrevious: boolean
+	refineNext: () => void
+}
+
+const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }: IHits) => {
 	const { t } = useTranslation()
 
 	return (

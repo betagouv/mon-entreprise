@@ -16,6 +16,15 @@ export default function RuleLink(
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useContext(EngineContext)
 
+	try {
+		engine.getRule(props.dottedName)
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error(error)
+
+		return null
+	}
+
 	return (
 		<EngineRuleLink
 			{...props}
