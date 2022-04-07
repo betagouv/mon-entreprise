@@ -138,6 +138,17 @@ function simulation(
 
 			return { ...state, situation: { ...situation, [dottedName]: value } }
 		}
+		case 'DELETE_FROM_SITUATION': {
+			const newState = {
+				...state,
+				situation: omit(
+					{ ...state.situation },
+					action.fieldName as keyof Simulation['situation']
+				),
+			}
+
+			return newState
+		}
 		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold') {

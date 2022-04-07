@@ -1,6 +1,7 @@
 import { DottedName } from '@/../../modele-social'
 import { Action } from '@/actions/actions'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { omit } from '@/utils'
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [
@@ -38,6 +39,11 @@ export function companySituation(state: Situation = {}, action: Action) {
 				}
 			}
 			break
+		case 'DELETE_FROM_SITUATION': {
+			const newState = omit({ ...state }, action.fieldName)
+
+			return newState
+		}
 		case 'COMPANY::SET_EXISTING_COMPANY':
 			return getCompanySituation(action.entreprise)
 		case 'COMPANY::RESET':

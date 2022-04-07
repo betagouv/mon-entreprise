@@ -1,5 +1,6 @@
 import { DottedName } from '@/../../modele-social'
 import { Action } from '@/actions/actions'
+import { omit } from '@/utils'
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = ['DRI'] as Array<DottedName>
@@ -18,6 +19,11 @@ export function DRISituation(state: Situation = {}, action: Action) {
 				}
 			}
 			break
+		case 'DELETE_FROM_SITUATION': {
+			const newState = omit({ ...state }, action.fieldName)
+
+			return newState
+		}
 		case 'COMPANY::RESET':
 			return {}
 	}

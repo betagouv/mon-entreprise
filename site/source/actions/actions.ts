@@ -17,7 +17,7 @@ export type Action =
 			| typeof setSimulationConfig
 			| typeof stepAction
 			| typeof updateSituation
-			| typeof updateSituation
+			| typeof deleteFromSituation
 			| typeof updateUnit
 			| typeof batchUpdateSituation
 	  >
@@ -64,6 +64,12 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 		type: 'UPDATE_SITUATION',
 		fieldName,
 		value,
+	} as const)
+
+export const deleteFromSituation = (fieldName: DottedName) =>
+	({
+		type: 'DELETE_FROM_SITUATION',
+		fieldName,
 	} as const)
 
 export const batchUpdateSituation = (
