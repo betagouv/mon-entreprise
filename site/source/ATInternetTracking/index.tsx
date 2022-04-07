@@ -80,10 +80,12 @@ export function TrackPage({
 		tag.events.send(
 			'page.display',
 			Object.fromEntries(
-				Object.entries({ chapter1, chapter2, chapter3, name }).map(([k, v]) => [
-					k,
-					v && toAtString(v),
-				])
+				Object.entries({
+					page_chapter1: chapter1,
+					page_chapter2: chapter2,
+					page_chapter3: chapter3,
+					page: name,
+				}).map(([k, v]) => [k, v && toAtString(v)])
 			)
 		)
 	}, [tag, name, chapter1, chapter2, chapter3])

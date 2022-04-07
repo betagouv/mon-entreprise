@@ -11,10 +11,10 @@ export const INDICATOR = {
 } as const
 
 type PageHit = {
-	name?: string
-	chapter1?: string
-	chapter2?: string
-	chapter3?: string
+	page?: string
+	page_chapter1?: string
+	page_chapter2?: string
+	page_chapter3?: string
 }
 
 type ClickHit = {
