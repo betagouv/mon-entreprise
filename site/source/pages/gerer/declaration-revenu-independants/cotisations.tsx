@@ -1,6 +1,6 @@
 import Conversation from '@/components/conversation/Conversation'
 import Value, { WhenAlreadyDefined } from '@/components/EngineValue'
-import { Appear, FromBottom, FromTop } from '@/components/ui/animate'
+import { Appear, FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -9,8 +9,7 @@ import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Intro } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
 
 export default function Cotisations() {

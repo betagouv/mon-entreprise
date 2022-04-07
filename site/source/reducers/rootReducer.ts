@@ -9,7 +9,6 @@ import { objectifsSelector } from '../selectors/simulationSelectors'
 import { omit } from '../utils'
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
-import { DRISituation } from './DRISituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
@@ -198,7 +197,6 @@ const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
 	companySituation,
-	DRISituation,
 	previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,

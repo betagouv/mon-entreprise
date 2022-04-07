@@ -10,16 +10,12 @@ import {
 	retrievePersistedCompanySituation,
 	setupCompanySituationPersistence,
 } from './storage/persistCompanySituation'
-import {
-	retrievePersistedDRISituation,
-	setupDRISituationPersistence,
-} from './storage/persistDRISituation'
+
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
 const initialStore = {
 	choixStatutJuridique: retrievePersistedChoixStatutJuridique(),
 	companySituation: retrievePersistedCompanySituation(),
-	DRISituation: retrievePersistedDRISituation(),
 }
 
 const composeEnhancers = composeWithDevToolsDevelopmentOnly(
@@ -34,5 +30,4 @@ export const store = createStore(reducers, initialStore, storeEnhancer)
 
 setupChoixStatutJuridiquePersistence(store)
 setupCompanySituationPersistence(store)
-setupDRISituationPersistence(store)
 setupSimulationPersistence(store)

@@ -1,29 +1,27 @@
 import { Condition } from '@/components/EngineValue'
-import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Step, Stepper } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { omit } from '@/utils'
 import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router'
 import Cotisations from './cotisations'
 import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
 import Imposition, { OBJECTIFS as Step2Objectifs } from './imposition'
 import { useProgress } from './_components/hooks'
-import illustration from './_components/undraw_fill_in_mie5.svg'
 import config from './_config.yaml'
 
 export default function AideDéclarationIndépendant() {
-	useSimulationConfig(config)
+	const sitePaths = useContext(SitePathsContext)
+	useSimulationConfig(config, {
+		path: sitePaths.gérer.déclarationIndépendant.index,
+		autoloadLastSimulation: true,
+	})
 	const steps = useSteps()
 	const defaultCurrentStep =
 		steps

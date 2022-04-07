@@ -1,6 +1,5 @@
 import { DottedName } from '@/../../modele-social'
 import { resetCompany } from '@/actions/companyActions'
-import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import {
@@ -8,7 +7,8 @@ import {
 	WhenApplicable,
 	WhenNotAlreadyDefined,
 } from '@/components/EngineValue'
-import { FromBottom, FromTop } from '@/components/ui/animate'
+import PageHeader from '@/components/PageHeader'
+import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
@@ -18,17 +18,17 @@ import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
-import illustration from './_components/undraw_fill_in_mie5.svg'
 import { useProgress } from './_components/hooks'
 import notHandled from './_components/undraw_access_denied_re_awnf.svg'
-import PageHeader from '@/components/PageHeader'
-import { Li, Ul } from '@/design-system/typography/list'
+import illustration from './_components/undraw_fill_in_mie5.svg'
 
 export const OBJECTIFS: DottedName[] = [
 	'entreprise . SIREN',
@@ -70,7 +70,7 @@ export default function Accueil() {
 			<Grid container>
 				<Grid item lg={10} xl={8}>
 					<WhenNotAlreadyDefined dottedName="entreprise . SIREN">
-						<Message border={false}>
+						<Message border={false} icon>
 							<Body>
 								Vous pouvez rechercher votre entreprise avec{' '}
 								<Strong>votre nom</Strong>, le{' '}
@@ -80,9 +80,7 @@ export default function Accueil() {
 						<CompanySearchField onSubmit={setEntreprise} />
 					</WhenNotAlreadyDefined>
 					<WhenAlreadyDefined dottedName="entreprise . SIREN">
-						<FromBottom>
-							<CompanyDetails />
-						</FromBottom>
+						<CompanyDetails />
 
 						<Button size="XS" light onPress={() => dispatch(resetCompany())}>
 							<Trans>Modifier l'entreprise</Trans>

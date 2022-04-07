@@ -2,7 +2,6 @@ import Emoji from '@/components/utils/Emoji'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
-import { RootState } from '@/reducers/rootReducer'
 import {
 	companySituationSelector,
 	situationSelector,
@@ -23,7 +22,6 @@ export function useUrl() {
 	const situation = {
 		...useSelector(situationSelector),
 		...useSelector(companySituationSelector),
-		...useSelector((state: RootState) => state.DRISituation),
 	}
 
 	const searchParams = useParamsFromSituation(situation)
@@ -93,7 +91,6 @@ export default function ShareOrSaveSimulationBanner({
 											click_chapter1: 'feature:partage',
 											click: 'démarré',
 										})
-										tracker.dispatch()
 										startSharing().catch(
 											// eslint-disable-next-line no-console
 											(err) => console.error(err)

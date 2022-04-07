@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { HiddenOptionContext } from '@/components/conversation/ChoicesInput'
 import Conversation from '@/components/conversation/Conversation'
 import { FromTop } from '@/components/ui/animate'
@@ -8,17 +7,17 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import { useParamsFromSituation } from '@/components/utils/useSearchParamsSimulationSharing'
-import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Card } from '@/design-system/card'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import { partition } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { SimulationConfig, Situation } from '@/reducers/rootReducer'
 import { TrackPage } from '../../../ATInternetTracking'
 
 type AideDescriptor = {
@@ -162,8 +161,6 @@ const config = {
 } as SimulationConfig
 
 export default function AidesEmbauche() {
-	useSimulationConfig(config)
-
 	return (
 		<>
 			<Warning

@@ -11,12 +11,14 @@ import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
@@ -35,21 +37,18 @@ import {
 } from 'react-router'
 import styled from 'styled-components'
 import { TrackChapter, TrackPage } from '../../ATInternetTracking'
+import PageData from '../../components/PageData'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
+import Embaucher from './embaucher'
+import SocialSecurity from './sécurité-sociale'
 import { AutoEntrepreneurCard } from './_components/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './_components/DemarcheEmbauche'
-import { KbisCard } from './_components/KBISCard'
-import { MobiliteCard } from './_components/MobiliteCard'
-import SocialSecurity from './sécurité-sociale'
-import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
 import forms from './_components/forms.svg'
 import growth from './_components/growth.svg'
-import { ScrollToTop } from '@/components/utils/Scroll'
-
-import { Link } from '@/design-system/typography/link'
-import Embaucher from './embaucher'
-import PageData from '../../components/PageData'
+import { KbisCard } from './_components/KBISCard'
+import { MobiliteCard } from './_components/MobiliteCard'
+import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
 
 export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
@@ -358,7 +357,8 @@ const companyDetailsConfig = {
 }
 
 export const AskCompanyMissingDetails = () => {
-	useSimulationConfig(companyDetailsConfig)
+	const sitePaths = useContext(SitePathsContext)
+	useSimulationConfig(companyDetailsConfig, { path: sitePaths.gérer.index })
 
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()

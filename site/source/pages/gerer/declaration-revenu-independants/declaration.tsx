@@ -1,6 +1,7 @@
-import { DottedName } from 'modele-social'
+import { updateSituation } from '@/actions/actions'
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import Value, { Condition, WhenApplicable } from '@/components/EngineValue'
+import Value, { Condition } from '@/components/EngineValue'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -18,6 +19,7 @@ import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
+import { DottedName } from 'modele-social'
 import { Rule, RuleNode } from 'publicodes'
 import {
 	Fragment,
@@ -28,12 +30,10 @@ import {
 	useState,
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
-import { updateSituation } from '@/actions/actions'
-import { useDispatch } from 'react-redux'
-import { ExplicableRule } from '@/components/conversation/Explicable'
 
 interface Meta {
 	requis?: 'oui' | 'non'
@@ -97,15 +97,16 @@ export default function Déclaration() {
 			<Grid container>
 				<Grid item lg={10} xl={8}>
 					<FromTop>
-						<H2>Aide au remplissage de la déclaration de revenu</H2>
 						<Trans i18nKey="assistant-DRI.declaration.intro">
 							<Intro>
-								Nous allons maintenant vous indiquer comment remplir votre
-								déclaration de revenu personnelle à partir de la déclaration de
-								résultat de votre entreprise.
+								Nous allons maintenant vous indiquer comment{' '}
+								<Strong>remplir votre déclaration de revenu personnelle</Strong>{' '}
+								à partir de la déclaration de résultat de votre entreprise.
 							</Intro>
 						</Trans>
-						<H3>Où trouver la déclaration de résultat de l'entreprise ?</H3>
+						<H3 as="h2">
+							Où trouver la déclaration de résultat de l'entreprise ?
+						</H3>
 
 						<Body>
 							C'est le comptable qui se charge de remplir la déclaration de
@@ -221,10 +222,12 @@ export default function Déclaration() {
 				</Grid>
 
 				<LiasseFiscale />
-				<H2>Renseignements complémentaires</H2>
+				<Grid item xs={12}>
+					<H2>Renseignements complémentaires</H2>
 
-				<SimpleField dottedName="DRI . liasse . OGA" />
-				<SimpleField dottedName="DRI . liasse . rémunération dirigeant" />
+					<SimpleField dottedName="DRI . liasse . OGA" />
+					<SimpleField dottedName="DRI . liasse . rémunération dirigeant" />
+				</Grid>
 			</Grid>
 
 			<Spacing xxl />
@@ -284,7 +287,9 @@ function LiasseFiscale() {
 					</Grid>
 				) : (
 					<Grid item md={4} sm={6} xs={12} key={dottedName}>
-						<SimpleField dottedName={dottedName} />
+						<FromTop>
+							<SimpleField dottedName={dottedName} />
+						</FromTop>
 					</Grid>
 				)
 			)}

@@ -6,6 +6,7 @@ import PreviousSimulationBanner from '@/components/PreviousSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
+import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -13,7 +14,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { Grid } from '@mui/material'
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -25,7 +26,11 @@ import simulationConfig from './_config.yaml'
 import illustration from './_undraw_fill_in_mie5.svg'
 
 export default function AideDéclarationIndépendant() {
-	useSimulationConfig(simulationConfig)
+	const sitePaths = useContext(SitePathsContext)
+	useSimulationConfig(simulationConfig, {
+		path: sitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		autoloadLastSimulation: true,
+	})
 	const situation = useSelector(situationSelector)
 
 	return (

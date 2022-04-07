@@ -38,7 +38,6 @@ import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
 import redirects from './redirects'
-import { RootState } from './reducers/rootReducer'
 import { constructLocalizedSitePath } from './sitePaths'
 
 type RootProps = {
@@ -78,16 +77,14 @@ const Router = () => {
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const companySituation = useSelector(companySituationSelector)
-	const DRISituation = useSelector((state: RootState) => state.DRISituation)
 
 	const situation = useMemo(
 		() => ({
-			...DRISituation,
 			...companySituation,
 			...configSituation,
 			...simulatorSituation,
 		}),
-		[configSituation, simulatorSituation, companySituation, DRISituation]
+		[configSituation, simulatorSituation, companySituation]
 	)
 
 	return (

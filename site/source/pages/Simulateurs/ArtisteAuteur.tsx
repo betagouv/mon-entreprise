@@ -8,15 +8,11 @@ import Simulation, {
 } from '@/components/Simulation'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
-import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import config from './configs/artiste-auteur.yaml'
 
 export default function ArtisteAuteur() {
-	useSimulationConfig(config)
-
 	return (
 		<>
 			<Simulation explanations={<CotisationsResult />}>

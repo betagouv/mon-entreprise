@@ -1,9 +1,9 @@
 import { loadPreviousSimulation } from '@/actions/actions'
 import { Link } from '@/design-system/typography/link'
-import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { Trans } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import Banner from './Banner'
 
 export default function PreviousSimulationBanner() {
