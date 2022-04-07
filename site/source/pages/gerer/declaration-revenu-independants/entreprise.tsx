@@ -24,8 +24,11 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
+import illustration from './_components/undraw_fill_in_mie5.svg'
 import { useProgress } from './_components/hooks'
 import notHandled from './_components/undraw_access_denied_re_awnf.svg'
+import PageHeader from '@/components/PageHeader'
+import { Li, Ul } from '@/design-system/typography/list'
 
 export const OBJECTIFS: DottedName[] = [
 	'entreprise . SIREN',
@@ -44,19 +47,36 @@ export default function Accueil() {
 
 	return (
 		<>
+			<Trans i18nKey="assistant-DRI.intro">
+				<PageHeader picture={illustration}>
+					<Intro>
+						Nous vous accompagnons pour remplir votre{' '}
+						<Strong>déclaration de revenu</Strong> sur{' '}
+						<Link href="https://www.impots.gouv.fr/accueil">impot.gouv.fr</Link>
+						.<br />
+					</Intro>
+					<Body>Répondez à ces quelques questions, à la fin vous aurez :</Body>
+					<Ul>
+						<Li>Les formulaires qui vous concernent</Li>
+						<Li>
+							La liste des cases qui vous concernent avec le montant à remplir
+						</Li>
+						<Li>
+							Une estimation des cotisations sociales à payer à l'Urssaf en 2022
+						</Li>
+					</Ul>
+				</PageHeader>
+			</Trans>
 			<Grid container>
 				<Grid item lg={10} xl={8}>
-					<Intro>
-						La première étape est de <Strong>trouver votre entreprise</Strong>.
-						Nous utiliserons les informations disponibles ouvertement sur
-						l'INSEE pour mieux vous guider par la suite.
-					</Intro>
-
 					<WhenNotAlreadyDefined dottedName="entreprise . SIREN">
-						<Body>
-							Vous pouvez rechercher avec votre nom, le nom de votre entreprise,
-							le SIREN ou le SIRET
-						</Body>
+						<Message border={false}>
+							<Body>
+								Vous pouvez rechercher votre entreprise avec{' '}
+								<Strong>votre nom</Strong>, le{' '}
+								<Strong>nom de votre entreprise</Strong>, le SIREN ou le SIRET
+							</Body>
+						</Message>
 						<CompanySearchField onSubmit={setEntreprise} />
 					</WhenNotAlreadyDefined>
 					<WhenAlreadyDefined dottedName="entreprise . SIREN">

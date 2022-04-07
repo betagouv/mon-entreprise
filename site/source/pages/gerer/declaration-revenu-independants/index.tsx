@@ -32,45 +32,31 @@ export default function AideDéclarationIndépendant() {
 		steps.find((step) => !step.isDisabled)
 
 	return (
-		<Condition expression="DRI">
-			<Trans i18nKey="assistant-DRI.intro">
-				<PageHeader picture={illustration}>
-					<Intro>
-						Nous vous accompagnons pour remplir votre{' '}
-						<Strong>déclaration de revenu</Strong> sur{' '}
-						<Link href="https://www.impots.gouv.fr/accueil">impot.gouv.fr</Link>
-						.<br />
-					</Intro>
-					<Body> Répondez à quelques questions, à la fin vous aurez :</Body>
-					<Ul>
-						<Li>Les formulaires qui vous concernent</Li>
-						<Li>
-							La liste des cases qui vous concernent avec le montant à remplir
-						</Li>
-						<Li>
-							Une estimation des cotisations sociales à payer à l'Urssaf en 2022
-						</Li>
-					</Ul>
-				</PageHeader>
-			</Trans>
-			<Spacing lg />
-			<Stepper aria-label="Étapes de l'assistant">
-				{steps.map((step) => (
-					<Step key={step.to} {...omit(step, 'page')} />
-				))}
-			</Stepper>
-			<Switch>
-				{steps.map(
-					(step) =>
-						step.page &&
-						!step.isDisabled && (
-							<Route key={step.to} path={step.to} exact component={step.page} />
-						)
-				)}
-				{defaultCurrentStep && <Redirect to={defaultCurrentStep.to} />}
-			</Switch>
-			<Spacing xxl />
-		</Condition>
+		<>
+			<Condition expression="DRI">
+				<Stepper aria-label="Étapes de l'assistant">
+					{steps.map((step) => (
+						<Step key={step.to} {...omit(step, 'page')} />
+					))}
+				</Stepper>
+				<Switch>
+					{steps.map(
+						(step) =>
+							step.page &&
+							!step.isDisabled && (
+								<Route
+									key={step.to}
+									path={step.to}
+									exact
+									component={step.page}
+								/>
+							)
+					)}
+					{defaultCurrentStep && <Redirect to={defaultCurrentStep.to} />}
+				</Switch>
+				<Spacing xxl />
+			</Condition>
+		</>
 	)
 }
 
