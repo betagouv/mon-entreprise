@@ -127,12 +127,13 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluate(dottedName).nodeValue == null) {
+	if (engine.evaluate(dottedName).nodeValue === null) {
 		return null
 	}
 
 	return <>{children}</>
 }
+
 export function WhenNotApplicable({
 	dottedName,
 	children,
