@@ -219,15 +219,10 @@ export default function Déclaration() {
 				</Grid>
 
 				<LiasseFiscale />
+				<H2>Renseignements complémentaires</H2>
 
-				<WhenApplicable dottedName="DRI . liasse . OGA">
-					<Grid item xs={12}>
-						<RuleInputWithTitle
-							title={engine.getRule('DRI . liasse . OGA').rawNode.question}
-							dottedName="DRI . liasse . OGA"
-						/>
-					</Grid>
-				</WhenApplicable>
+				<SimpleField dottedName="DRI . liasse . OGA" />
+				<SimpleField dottedName="DRI . liasse . rémunération dirigeant" />
 			</Grid>
 
 			<Spacing xxl />

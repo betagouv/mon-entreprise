@@ -1,6 +1,6 @@
 import Conversation from '@/components/conversation/Conversation'
 import Value, { WhenAlreadyDefined } from '@/components/EngineValue'
-import { FromBottom, FromTop } from '@/components/ui/animate'
+import { Appear, FromBottom, FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -63,7 +63,22 @@ export default function Cotisations() {
 						</Markdown>{' '}
 					</Grid>
 					<Grid item lg={10} xl={8}>
-						<Spacing md />
+						<WhenAlreadyDefined dottedName="DRI . cotisations">
+							<Appear>
+								<Message icon border={false}>
+									<Intro>
+										En 2022, vous devrez payer à l'Urssaf{' '}
+										<Strong>
+											{' '}
+											<Value expression="DRI . cotisations" />
+										</Strong>{' '}
+										de cotisations sociales.
+									</Intro>
+								</Message>
+							</Appear>
+						</WhenAlreadyDefined>
+					</Grid>
+					<Grid item lg={10} xl={8}>
 						<Intro as="h2">
 							Améliorez votre estimation en répondant aux questions suivantes
 							pour l'année 2021
@@ -79,22 +94,6 @@ export default function Cotisations() {
 								<Conversation />
 							</div>
 						</Message>
-					</Grid>
-					<Grid item lg={10} xl={8}>
-						<WhenAlreadyDefined dottedName="DRI . cotisations">
-							<FromBottom>
-								<Message icon type="success" border={false}>
-									<Intro>
-										En 2022, vous devrez payer à l'Urssaf{' '}
-										<Strong>
-											{' '}
-											<Value expression="DRI . cotisations" />
-										</Strong>{' '}
-										de cotisations sociales.
-									</Intro>
-								</Message>
-							</FromBottom>
-						</WhenAlreadyDefined>
 					</Grid>
 				</Grid>
 				<Spacing md />
