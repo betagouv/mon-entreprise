@@ -70,14 +70,14 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 										'entreprise.page.autoEntrepreneur.description',
 										'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.',
 									],
-									{ autoEntrepreneur: t(statut) }
+									{ autoEntrepreneur: statut }
 							  )
 							: t(
 									[
 										'entreprise.page.description',
 										"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française.",
 									],
-									{ statut: t(statut) }
+									{ statut: statut }
 							  )
 					}
 				/>

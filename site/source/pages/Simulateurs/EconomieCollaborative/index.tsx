@@ -20,8 +20,7 @@ export default function ÉconomieCollaborative() {
 		: sitePaths.simulateurs.économieCollaborative.index
 
 	return (
-		<>
-			<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative" />
+		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
 			<div css="transform: translateY(2rem)">
 				<Link exact activeStyle={{ display: 'none' }} to={indexPath}>
 					←{' '}
@@ -43,6 +42,6 @@ export default function ÉconomieCollaborative() {
 					/>
 				</Switch>
 			</StoreProvider>
-		</>
+		</TrackChapter>
 	)
 }

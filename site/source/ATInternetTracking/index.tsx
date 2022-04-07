@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 import { ATTracker, Log } from './Tracker'
 
 export const TrackingContext = createContext<ATTracker>(new Log())
@@ -27,57 +27,66 @@ type Chapter1 =
 	| 'documentation'
 	| 'integration'
 
-let chapters: {
+type Chapters = {
 	chapter1?: Chapter1
 	chapter2?: string
 	chapter3?: string
-} = {}
+}
 
-export function TrackChapter(props: {
-	chapter1?: Chapter1
-	chapter2?: string
-	chapter3?: string
-}) {
+const PageChapterContext = createContext<Chapters>({})
+
+function useChapters(props: Chapters): Chapters {
+	let chapters = useContext(PageChapterContext)
 	if (props.chapter1) {
 		chapters = { chapter2: '', chapter3: '', ...props }
-
-		return null
 	}
 	if (props.chapter2) {
 		chapters = { ...chapters, chapter3: '', ...props }
-
-		return null
+	}
+	if (props.chapter3) {
+		chapters = { ...chapters, ...props }
 	}
 
-	chapters = { ...chapters, ...props }
-
-	return null
+	return chapters
 }
 
-export function TrackPage(props: {
-	name?: string
+export function TrackChapter({
+	children,
+	...chaptersProps
+}: {
 	chapter1?: Chapter1
 	chapter2?: string
 	chapter3?: string
+	children: React.ReactNode
 }) {
-	const tag = useContext(TrackingContext)
-	TrackChapter(props)
-	const propsFormatted = Object.fromEntries(
-		Object.entries({ ...chapters, name: props.name }).map(([k, v]) => [
-			k,
-			v && toAtString(v),
-		])
+	const chapters = useChapters(chaptersProps)
+
+	return (
+		<PageChapterContext.Provider value={chapters}>
+			{children}
+		</PageChapterContext.Provider>
 	)
+}
+
+export function TrackPage({
+	name,
+	...chapters
+}: {
+	name?: string
+} & Chapters) {
+	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
+	const tag = useContext(TrackingContext)
 	useEffect(() => {
-		tag.page.set(propsFormatted)
-		tag.dispatch()
-	}, [
-		tag,
-		propsFormatted.name,
-		propsFormatted.chapter1,
-		propsFormatted.chapter2,
-		propsFormatted.chapter3,
-	])
+		tag.events.send(
+			'page.display',
+			Object.fromEntries(
+				Object.entries({ chapter1, chapter2, chapter3, name }).map(([k, v]) => [
+					k,
+					v && toAtString(v),
+				])
+			)
+		)
+	}, [tag, name, chapter1, chapter2, chapter3])
 
 	return null
 }

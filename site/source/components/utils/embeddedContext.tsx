@@ -1,3 +1,4 @@
+import { TrackingContext } from '@/ATInternetTracking'
 import React, {
 	createContext,
 	ReactNode,

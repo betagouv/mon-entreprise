@@ -16,20 +16,21 @@ export default function CreateMyCompany() {
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
-			<TrackChapter chapter1="creer" />
-			<Switch>
-				<Route exact path={sitePaths.créer.index} component={Home} />
-				{LANDING_LEGAL_STATUS_LIST.map((statut) => (
-					<Route path={sitePaths.créer[statut]} key={statut}>
-						<CreationChecklist statut={statut} />
-					</Route>
-				))}
-				<Route path={sitePaths.créer.après} component={AfterRegistration} />
-				<Route
-					path={sitePaths.créer.guideStatut.index}
-					component={GuideStatut}
-				/>
-			</Switch>
+			<TrackChapter chapter1="creer">
+				<Switch>
+					<Route exact path={sitePaths.créer.index} component={Home} />
+					{LANDING_LEGAL_STATUS_LIST.map((statut) => (
+						<Route path={sitePaths.créer[statut]} key={statut}>
+							<CreationChecklist statut={statut} />
+						</Route>
+					))}
+					<Route path={sitePaths.créer.après} component={AfterRegistration} />
+					<Route
+						path={sitePaths.créer.guideStatut.index}
+						component={GuideStatut}
+					/>
+				</Switch>
+			</TrackChapter>
 		</>
 	)
 }

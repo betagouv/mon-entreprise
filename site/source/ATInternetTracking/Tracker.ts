@@ -10,42 +10,50 @@ export const INDICATOR = {
 	PAGE: {},
 } as const
 
-type CustomSiteIndicator = {
-	[INDICATOR.SITE.LANGAGE]: '[fr]' | '[en]' // langage du site (mycompanyinfrance ou mon-entreprise)
-	[INDICATOR.SITE.EMBARQUÉ]: '1' | '0' // intégration externe
-}
-type CustomPageIndicator = Record<string, string>
-type CustomVars = {
-	site?: Partial<CustomSiteIndicator>
-	page?: Partial<CustomPageIndicator>
-}
-type ATHit = {
+type PageHit = {
 	name?: string
 	chapter1?: string
 	chapter2?: string
 	chapter3?: string
-	level2?: string
-	customVars?: CustomVars
+}
+
+type ClickHit = {
+	click?: string
+	click_chapter1?: string
+	click_chapter2?: string
+	click_chapter3?: string
 }
 
 export interface ATTracker {
-	page: {
-		set(infos: ATHit): void
-	}
-	click: {
-		set(
-			infos: ATHit & { type: 'exit' | 'download' | 'action' | 'navigation' }
+	setProp(prop: 'env_language', value: 'fr' | 'en', persistant: true): void
+	setProp(prop: 'simulateur_embarque', value: boolean, persistant: true): void
+	setProp(
+		prop: 'evenement_type',
+		value: 'telechargement',
+		persistant: false
+	): void
+
+	events: {
+		send(type: 'page.display', data: PageHit): void
+		send(
+			type: 'demarche.document',
+			data: { click: 'demande_formulaire_a1' }
+		): void
+		send(
+			type:
+				| 'click.action'
+				| 'click.navigation'
+				| 'click.download'
+				| 'click.exit',
+			data: ClickHit
 		): void
 	}
-	customVars: {
-		set(variables: CustomVars): void
-	}
+
 	privacy: {
 		setVisitorMode(authority: 'cnil', type: 'exempt'): void
 		setVisitorOptout(): void
 		getVisitorMode(): { name: 'exempt' | 'optout' }
 	}
-	dispatch(): void
 }
 
 type ATTrackerClass = { new (options: { site: number }): ATTracker }
@@ -61,28 +69,24 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 	if (Number.isNaN(site)) {
 		throw new Error('expect string siteId to be of number form')
 	}
-	const BaseTracker: ATTrackerClass = siteId ? ATInternet?.Tracker.Tag : Log
+	const BaseTracker: ATTrackerClass =
+		siteId && !import.meta.env.SSR ? ATInternet?.Tracker.Tag : Log
 	class Tag extends BaseTracker {
-		site: CustomSiteIndicator = {
-			[INDICATOR.SITE.LANGAGE]: '[fr]',
-			[INDICATOR.SITE.EMBARQUÉ]:
-				!import.meta.env.SSR && document.location.pathname.includes('/iframes/')
-					? '1'
-					: '0',
-		}
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
-			this.site[INDICATOR.SITE.LANGAGE] = `[${options.language}]`
+			this.setProp('env_language', options.language, true)
+
+			this.setProp(
+				'simulateur_embarque',
+				document.location.pathname.includes('/iframes/'),
+				true
+			)
+
 			if (import.meta.env.MODE === 'production' && doNotTrack) {
 				this.privacy.setVisitorOptout()
 			} else {
 				this.privacy.setVisitorMode('cnil', 'exempt')
 			}
-		}
-
-		dispatch() {
-			this.customVars.set({ site: this.site })
-			super.dispatch()
 		}
 	}
 
@@ -93,19 +97,13 @@ export class Log implements ATTracker {
 	constructor(options?: Record<string, string | number>) {
 		console.debug('ATTracker::new', options)
 	}
-	page = {
-		set(infos: ATHit): void {
-			console.debug('ATTracker::page.set', infos)
-		},
+	setProp(name: string, value: boolean | string, persistent: boolean): void {
+		console.debug('ATTracker::setProp', { name, value, persistent })
 	}
-	click = {
-		set(infos: ATHit): void {
-			console.debug('ATTracker::click.set', infos)
-		},
-	}
-	customVars: ATTracker['customVars'] = {
-		set(variables) {
-			console.debug('ATTracker::customVars.set', variables)
+
+	events = {
+		send(name: string, data: Record<string, unknown>): void {
+			console.debug('ATTracker::events.send', name, data)
 		},
 	}
 	privacy: ATTracker['privacy'] = {

@@ -27,26 +27,27 @@ export default function Gérer() {
 				</Link>
 			)}
 
-			<TrackChapter chapter1="gerer" />
-			<Switch>
-				<Route exact path={sitePaths.gérer.index} component={Home} />
-				<Route
-					path={sitePaths.gérer.sécuritéSociale}
-					component={SécuritéSociale}
-				/>
-				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
-				{[
-					simulateurs['déclaration-charges-sociales-indépendant'],
-					simulateurs['demande-mobilité'],
-				].map((p) => (
+			<TrackChapter chapter1="gerer">
+				<Switch>
+					<Route exact path={sitePaths.gérer.index} component={Home} />
 					<Route
-						key={p.shortName}
-						exact
-						path={p.path}
-						render={() => <PageData {...p} />}
+						path={sitePaths.gérer.sécuritéSociale}
+						component={SécuritéSociale}
 					/>
-				))}
-			</Switch>
+					<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
+					{[
+						simulateurs['déclaration-charges-sociales-indépendant'],
+						simulateurs['demande-mobilité'],
+					].map((p) => (
+						<Route
+							key={p.shortName}
+							exact
+							path={p.path}
+							render={() => <PageData {...p} />}
+						/>
+					))}
+				</Switch>
+			</TrackChapter>
 		</>
 	)
 }

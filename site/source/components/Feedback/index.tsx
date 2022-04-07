@@ -53,24 +53,22 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 		showForm: false,
 		showThanks: false,
 	})
-	const ATTracker = useContext(TrackingContext)
+	const tag = useContext(TrackingContext)
 
 	const handleFeedback = useCallback(
 		(rating: 'mauvais' | 'moyen' | 'bien' | 'très bien') => {
 			setFeedbackGivenForUrl(url)
-			ATTracker.click.set({
-				chapter1: 'satisfaction',
-				type: 'action',
-				name: rating,
+			tag.events.send('click.action', {
+				click_chapter1: 'satisfaction',
+				click: rating,
 			})
-			ATTracker.dispatch()
 			const askDetails = ['mauvais', 'moyen'].includes(rating)
 			setState({
 				showThanks: !askDetails,
 				showForm: askDetails,
 			})
 		},
-		[ATTracker, url]
+		[tag, url]
 	)
 
 	const openSuggestionForm = useCallback(() => {

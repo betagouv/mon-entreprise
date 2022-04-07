@@ -16,7 +16,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
 import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { TrackPage } from '../../ATInternetTracking'
+import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
 import Créer from '../Creer'
 import Documentation from '../Documentation'
@@ -28,6 +28,7 @@ import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
+import { Log } from '@/ATInternetTracking/Tracker'
 
 const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
@@ -137,33 +138,36 @@ function IntegrationCustomizer() {
 						<Trans>Prévisualisation</Trans>
 					</H3>
 					<PrevisualisationContainer columns={10}>
-						<MemoryRouter
-							key={currentModule}
-							initialEntries={[`/iframes/${currentIframePath}`]}
-						>
-							<ThemeColorsProvider
-								color={color == null ? color : hexToHSL(color)}
+						<TrackingContext.Provider value={DummyTracker}>
+							<MemoryRouter
+								key={currentModule}
+								initialEntries={[`/iframes/${currentIframePath}`]}
 							>
-								<IsEmbeddedProvider isEmbeded>
-									<Route
-										path={sitePaths.simulateurs.index}
-										component={Simulateurs}
-									/>
-									<Route path={sitePaths.créer.index} component={Créer} />
-									<Route
-										path={sitePaths.documentation.index}
-										component={Documentation}
-									/>
-									<Iframes />
-								</IsEmbeddedProvider>
-							</ThemeColorsProvider>
-						</MemoryRouter>
+								<ThemeColorsProvider
+									color={color == null ? color : hexToHSL(color)}
+								>
+									<IsEmbeddedProvider isEmbeded>
+										<Route
+											path={sitePaths.simulateurs.index}
+											component={Simulateurs}
+										/>
+										<Route path={sitePaths.créer.index} component={Créer} />
+										<Route
+											path={sitePaths.documentation.index}
+											component={Documentation}
+										/>
+										<Iframes />
+									</IsEmbeddedProvider>
+								</ThemeColorsProvider>
+							</MemoryRouter>
+						</TrackingContext.Provider>
 					</PrevisualisationContainer>
 				</Grid>
 			</Grid>
 		</>
 	)
 }
+const DummyTracker = new Log()
 
 const PrevisualisationContainer = styled(Grid)`
 	background-color: white;

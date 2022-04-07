@@ -57,33 +57,36 @@ export default function Créer() {
 			<Link to={sitePaths.créer.index}>
 				← <Trans>Retour</Trans>
 			</Link>
-			<TrackChapter chapter2="guide" />
-			<H1>
-				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
-			</H1>
-			<PreviousAnswers />
-			<FromBottom key={location.pathname}>
-				<Switch>
-					<Route path={sitePaths.créer.guideStatut.soleProprietorship}>
-						<SoleProprietorship />
-					</Route>
-					<Route path={sitePaths.créer.guideStatut.directorStatus}>
-						<DirectorStatus />
-					</Route>
-					<Route path={sitePaths.créer.guideStatut.autoEntrepreneur}>
-						<AutoEntrepreneur />
-					</Route>
-					<Route path={sitePaths.créer.guideStatut.multipleAssociates}>
-						<NumberOfAssociate />
-					</Route>
-					<Route path={sitePaths.créer.guideStatut.minorityDirector}>
-						<MinorityDirector />
-					</Route>
-					<Route path={sitePaths.créer.guideStatut.liste}>
-						<PickLegalStatus />
-					</Route>
-				</Switch>
-			</FromBottom>
+			<TrackChapter chapter2="guide">
+				<H1>
+					<Trans i18nKey="formeJuridique.titre">
+						Choix du statut juridique
+					</Trans>
+				</H1>
+				<PreviousAnswers />
+				<FromBottom key={location.pathname}>
+					<Switch>
+						<Route path={sitePaths.créer.guideStatut.soleProprietorship}>
+							<SoleProprietorship />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.directorStatus}>
+							<DirectorStatus />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.autoEntrepreneur}>
+							<AutoEntrepreneur />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.multipleAssociates}>
+							<NumberOfAssociate />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.minorityDirector}>
+							<MinorityDirector />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.liste}>
+							<PickLegalStatus />
+						</Route>
+					</Switch>
+				</FromBottom>
+			</TrackChapter>
 		</>
 	)
 }
