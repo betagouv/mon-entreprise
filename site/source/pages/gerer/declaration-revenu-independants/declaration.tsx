@@ -33,8 +33,10 @@ import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
 import { updateSituation } from '@/actions/actions'
 import { useDispatch } from 'react-redux'
+import { ExplicableRule } from '@/components/conversation/Explicable'
 
 interface Meta {
+	requis?: 'oui' | 'non'
 	facultatif?: 'oui' | 'non'
 	section?: 'oui' | 'non'
 	affichage?: string
@@ -335,6 +337,7 @@ const RuleInputWithTitle = ({
 					`}
 				>
 					{title}
+					<ExplicableRule dottedName={dottedName} />
 				</H3>
 			)}
 			<RuleInput

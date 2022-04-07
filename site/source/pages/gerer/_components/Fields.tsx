@@ -12,11 +12,12 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from '@/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import { evaluateQuestion, getMeta } from '@/utils'
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -78,10 +79,12 @@ export function SimpleField({
 	summary,
 	showSuggestions = false,
 }: SimpleFieldProps) {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
+	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 
 	const dispatchValue = useCallback(
 		(value, dottedName: DottedName) => {
@@ -116,9 +119,13 @@ export function SimpleField({
 				label={
 					!displayedQuestion
 						? rule.title +
-						  (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '')
+						  (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '') +
+						  (meta.requis === 'oui'
+								? ` – *${t('required', 'Requis').toLowerCase()}`
+								: '')
 						: undefined
 				}
+				required={meta.requis === 'oui'}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
 			/>

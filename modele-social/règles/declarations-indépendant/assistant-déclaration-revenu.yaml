@@ -350,12 +350,16 @@ DRI . liasse . réel simplifié . c370:
   titre: '370'
   résumé: Bénéfice
   applicable si: entreprise . imposition . IR
+  meta:
+    requis: oui
 
 DRI . liasse . réel simplifié . c372:
   unité: €
   titre: '372'
   résumé: Déficit
   applicable si: entreprise . imposition . IR
+  meta:
+    requis: oui
 
 DRI . liasse . réel simplifié . Divers:
   meta:
@@ -372,6 +376,8 @@ DRI . liasse . réel simplifié . c326:
   titre: '326'
   unité: €
   résumé: dont montant déductible des cotisations sociales obligatoires
+  meta:
+    requis: oui
 
 DRI . liasse . réel simplifié . plus-values et moins-values:
   applicable si: entreprise . imposition . IR
@@ -383,6 +389,8 @@ DRI . liasse . réel simplifié . c596:
   titre: '596'
   unité: €
   résumé: Court terme
+  meta:
+    requis: oui
 
 DRI . liasse . réel normal:
   applicable si: entreprise . imposition . régime . réel normal
@@ -409,6 +417,8 @@ DRI . liasse . déclaration contrôlée . charges sociales personnelles:
 DRI . liasse . déclaration contrôlée . BT:
   résumé: dont obligatoires
   unité: €
+  meta:
+    requis: oui
 
 DRI . liasse . déclaration contrôlée . BZ:
   résumé: dont cotisations facultatives Madelin
@@ -435,6 +445,8 @@ DRI . liasse . déclaration contrôlée . CB:
 DRI . liasse . déclaration contrôlée . CE:
   résumé: Total
   unité: €
+  meta:
+    requis: oui
 
 DRI . liasse . déclaration contrôlée . insuffisance:
   meta:
@@ -501,6 +513,8 @@ DRI . liasse . déclaration contrôlée . CJ:
 DRI . liasse . déclaration contrôlée . CN:
   unité: €
   résumé: Total
+  meta:
+    requis: oui
 
 DRI . liasse . OGA:
   applicable si: entreprise . imposition . IR
