@@ -95,7 +95,7 @@ export function SimpleField({
 
 	const labelId = useSSRSafeId()
 	const targetUnit = useSelector(targetUnitSelector)
-	console.log(dottedName, evaluation)
+
 	if (evaluation.nodeValue === null) {
 		return null
 	}
