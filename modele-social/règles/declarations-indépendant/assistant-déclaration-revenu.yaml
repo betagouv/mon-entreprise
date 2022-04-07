@@ -208,6 +208,11 @@ DRI . accompagnement imposition . régime memento fiscal:
   question: |-
     Dans la section « **vos obligations fiscales** », 
     quel est le « **régime d'imposition** » inscrit sur la première ligne ?
+  par défaut:
+    variations:
+      - si: entreprise . imposition . IR . type de bénéfices . BNC
+        alors: "'DECC'"
+      - sinon: "'RSI'"
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -224,6 +229,7 @@ DRI . accompagnement imposition . régime memento fiscal . RSI:
   remplace:
     règle: entreprise . imposition . régime
     par: "'réel simplifié'"
+
 DRI . accompagnement imposition . régime memento fiscal . RN:
   non applicable si: entreprise . imposition . IR . type de bénéfices . BNC
   titre: RN - Réel normal
@@ -498,7 +504,25 @@ DRI . liasse . déclaration contrôlée . CN:
 
 DRI . liasse . OGA:
   applicable si: entreprise . imposition . IR
-  question: Êtes-vous adhérant à une OGA ?
+  question: Êtes-vous adhérant à un Organisme de Gestion Agrée (OGA) ?
+  par défaut: oui
+  description: |-
+    Un organisme de gestion agréé a pour mission d’apporter une assistance à ses adhérents en matière de gestion, comptabilité et fiscalité.
+
+    Si vous faites le choix d’adhérer à un organisme de gestion agréé, vous pourrez bénéficier d’aides et de conseils dans l’accomplissement de vos obligations administratives, notamment fiscales.
+
+    Adhérer à un organisme de gestion agréé permet de bénéficier d'une **abence de majoration** des bénéfices pour le calcul de l'impôt sur le revenu.
+  références:
+    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/organisme-gestion-agree
+
+DRI . liasse . rémunération dirigeant:
+  applicable si: entreprise . imposition . IS
+  question:
+    texte: |-
+      Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise **{{ entreprise . nom }}** en 2021 ?
+  description: |-
+    Cela correspond à la rémunération totale qui a été versée sur votre compte bancaire personnel pour cette activité. Elle sera à reporter dans la section « Traitement et salaire » de votre déclaration de revenu.
+  unité: €
 
 DRI . liasse . remboursement cotisation:
   applicable si: déclaration contrôlée . BT = 0
@@ -523,6 +547,17 @@ DRI . déclaration revenus . déclarant 2:
   valeur: déclaration revenus = 'déclarant 2'
   meta:
     affichage: non
+
+DRI . déclaration revenus . traitements et salaire:
+  applicable si: entreprise . imposition . IS
+  meta:
+    section: oui
+
+DRI . déclaration revenus . traitements et salaire . revenus des associés et gérants:
+  meta:
+    cases: [1GB, 1HB]
+  unité: ''
+  valeur: liasse . rémunération dirigeant
 
 DRI . déclaration revenus . BNC:
   applicable si: entreprise . imposition . IR . type de bénéfices . BNC
@@ -756,6 +791,8 @@ DRI . cotisations . assiette des cotisations:
       par défaut: 0
     - valeur: déclaration revenus . BIC . revenus exonérés
       par défaut: 0
+    # Traitement et salaire (BNC)
+    - liasse . rémunération dirigeant
 
     # Cotisations facultatives
     - valeur: déclaration revenus . indépendant . cotisations facultatives
@@ -774,7 +811,7 @@ DRI . cotisations . assiette CSG:
     - déclaration revenus . indépendant . cotisations sociales
 
 DRI . cotisations . provisionnelles:
-  titre: Cotisations provisionnelles
+  titre: Vos cotisations provisionnelles
   description: |-
     En 2022, vous allez payer chaque mois une **avance sur le montant des cotisation**s que vous devrez . C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
 
@@ -783,7 +820,7 @@ DRI . cotisations . provisionnelles:
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
 
 DRI . cotisations . régularisation:
-  titre: Régularisation des cotisations
+  titre: Votre régularisation
   valeur: |-
     cotisations . dûes en 2021
     - cotisations . appelées en 2021
