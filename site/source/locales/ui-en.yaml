@@ -348,8 +348,8 @@ arrondi-to-decimals_plural: Rounding to {explanation.decimals.nodeValue} decimal
 assiette: base
 assistant-DRI:
   declaration:
-    intro: <0>We will now show you how to complete your personal income tax return
-      from your company's income tax return.</0>
+    intro: <0>We will now show you how to <2>complete your personal income tax
+      return</2> from your company's income tax return.</0>
   description: <0><0>This tool will help you to fill in your tax <2>return</2> on
     impot.gouv.fr. You will have at the end :</0><1><0>The list of boxes that
     concern you with the amount to fill in</0><1>An estimate of the social
@@ -374,9 +374,9 @@ assistant-DRI:
       nombre-déclarations: This is your {{nthDeclaration}} tax return since the
         creation of your company.
   intro: <0><0>We help you to fill in your tax <2>return</2> on
-    <5>impot.gouv.fr</5>.<7></7></0><1> Answer a few questions, at the end you
-    will have :</1><2><0>The forms that concern you</0><1>The list of the boxes
-    that concern you with the amount to be filled</1><2>An estimate of the
+    <5>impot.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
+    you will have :</1><2><0>The forms that concern you</0><1>The list of the
+    boxes that concern you with the amount to be filled</1><2>An estimate of the
     social security contributions to be paid to the Urssaf in 2022</2></2></0>
   precision: <0>A few details before continuing</0><1>To file your income tax
     return, you will have to log on to <2>impot.gouv.fr</2> from <5>April 8,
@@ -1846,6 +1846,7 @@ quicklinks:
 recherche-globale:
   placeholder: Keyword or acronym (e.g. CSG)
 replier: show less
+required: Required
 responsabilité:
   bouton1: Limited liability company
   bouton2: Sole proprietorship
