@@ -11,14 +11,14 @@ export const INDICATOR = {
 } as const
 
 type PageHit = {
-	page?: string
+	page: string
 	page_chapter1?: string
 	page_chapter2?: string
 	page_chapter3?: string
 }
 
 type ClickHit = {
-	click?: string
+	click: string
 	click_chapter1?: string
 	click_chapter2?: string
 	click_chapter3?: string
@@ -36,16 +36,13 @@ export interface ATTracker {
 	events: {
 		send(type: 'page.display', data: PageHit): void
 		send(
-			type: 'demarche.document',
-			data: { click: 'demande_formulaire_a1' }
-		): void
-		send(
 			type:
+				| 'demarche.document'
 				| 'click.action'
 				| 'click.navigation'
 				| 'click.download'
 				| 'click.exit',
-			data: ClickHit
+			data: ClickHit & PageHit
 		): void
 	}
 
@@ -71,7 +68,8 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 	}
 	const BaseTracker: ATTrackerClass =
 		siteId && !import.meta.env.SSR ? ATInternet?.Tracker.Tag : Log
-	class Tag extends BaseTracker {
+
+	class Tag extends BaseTracker implements ATTracker {
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
 			this.setProp('env_language', options.language, true)
@@ -87,6 +85,23 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			} else {
 				this.privacy.setVisitorMode('cnil', 'exempt')
 			}
+		}
+
+		#currentPageInfo: PageHit = { page: 'accueil' }
+		#send: ATTracker['events']['send'] = (type, data) => {
+			if (type === 'page.display') {
+				this.#currentPageInfo = data
+				super.events.send(type, data)
+				return
+			}
+			if (!('click' in data)) {
+				throw new Error('invalid argument error')
+			}
+			super.events.send(type, { ...this.#currentPageInfo, ...data })
+		}
+
+		events = {
+			send: this.#send,
 		}
 	}
 
