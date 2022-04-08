@@ -87,22 +87,22 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			}
 		}
 
-		#currentPageInfo: PageHit = { page: 'accueil' }
-		#send: ATTracker['events']['send'] = (type, data) => {
-			if (type === 'page.display') {
-				this.#currentPageInfo = data
-				super.events.send(type, data)
-				return
-			}
-			if (!('click' in data)) {
-				throw new Error('invalid argument error')
-			}
-			super.events.send(type, { ...this.#currentPageInfo, ...data })
-		}
+		// #currentPageInfo: PageHit = { page: 'accueil' }
+		// #send: ATTracker['events']['send'] = (type, data) => {
+		// 	if (type === 'page.display') {
+		// 		this.#currentPageInfo = data
+		// 		super.events.send(type, data)
+		// 		return
+		// 	}
+		// 	if (!('click' in data)) {
+		// 		throw new Error('invalid argument error')
+		// 	}
+		// 	super.events.send(type, { ...this.#currentPageInfo, ...data })
+		// }
 
-		events = {
-			send: this.#send,
-		}
+		// events = {
+		// 	send: this.#send,
+		// }
 	}
 
 	return Tag
