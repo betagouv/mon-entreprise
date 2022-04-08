@@ -11,14 +11,14 @@ export const INDICATOR = {
 } as const
 
 type PageHit = {
-	page: string
+	page?: string
 	page_chapter1?: string
 	page_chapter2?: string
 	page_chapter3?: string
 }
 
 type ClickHit = {
-	click: string
+	click?: string
 	click_chapter1?: string
 	click_chapter2?: string
 	click_chapter3?: string
@@ -70,10 +70,24 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		siteId && !import.meta.env.SSR ? ATInternet?.Tracker.Tag : Log
 
 	class Tag extends BaseTracker implements ATTracker {
+		#send: ATTracker['events']['send']
+
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
-			this.setProp('env_language', options.language, true)
+			this.#send = this.events.send
+			this.events.send = (type, data) => {
+				if (type === 'page.display') {
+					this.#currentPageInfo = data
+					this.#send(type, data)
+					return
+				}
+				if (!('click' in data)) {
+					throw new Error('invalid argument error')
+				}
+				this.#send(type, { ...this.#currentPageInfo, ...data })
+			}
 
+			this.setProp('env_language', options.language, true)
 			this.setProp(
 				'simulateur_embarque',
 				document.location.pathname.includes('/iframes/') ? 1 : 0,
@@ -87,22 +101,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			}
 		}
 
-		// #currentPageInfo: PageHit = { page: 'accueil' }
-		// #send: ATTracker['events']['send'] = (type, data) => {
-		// 	if (type === 'page.display') {
-		// 		this.#currentPageInfo = data
-		// 		super.events.send(type, data)
-		// 		return
-		// 	}
-		// 	if (!('click' in data)) {
-		// 		throw new Error('invalid argument error')
-		// 	}
-		// 	super.events.send(type, { ...this.#currentPageInfo, ...data })
-		// }
-
-		// events = {
-		// 	send: this.#send,
-		// }
+		#currentPageInfo: PageHit = {}
 	}
 
 	return Tag
