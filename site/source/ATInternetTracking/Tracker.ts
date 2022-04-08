@@ -74,11 +74,12 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 
 		constructor(options: { language: 'fr' | 'en' }) {
 			super({ site })
-			this.#send = this.events.send
+			this.#send = this.events.send.bind(this)
 			this.events.send = (type, data) => {
 				if (type === 'page.display') {
 					this.#currentPageInfo = data
 					this.#send(type, data)
+
 					return
 				}
 				if (!('click' in data)) {
