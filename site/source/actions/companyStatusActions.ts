@@ -78,7 +78,7 @@ export const resetCompanyStatusChoice = (
 export const useSetEntreprise = () => {
 	const dispatch = useDispatch()
 
-	return (entreprise: FabriqueSocialEntreprise) => {
+	return (entreprise: FabriqueSocialEntreprise | null) => {
 		if (entreprise === null) {
 			return
 		}

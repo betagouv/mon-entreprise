@@ -1,20 +1,22 @@
 import { resetCompany } from '@/actions/companyActions'
 import { useSetEntreprise } from '@/actions/companyStatusActions'
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import {
+	FabriqueSocialEntreprise,
+	searchDenominationOrSiren,
+} from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
-import Value from '@/components/EngineValue'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { Message } from '@/design-system'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
-import { H3, H4 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system/typography/heading'
 import { RootState } from '@/reducers/rootReducer'
+import { getCookieValue } from '@/storage/readCookie'
 import { Grid } from '@mui/material'
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -25,6 +27,7 @@ export default function SearchOrCreate() {
 		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	)
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
 	const dispatch = useDispatch()
 
@@ -86,4 +89,42 @@ function useHandleCompanySubmit() {
 	)
 
 	return handleCompanySubmit
+}
+
+function useSetEntrepriseFromUrssafConnection() {
+	const setEntreprise = useSetEntreprise()
+	const siret = siretFromUrssafFrConnection()
+	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	useEffect(() => {
+		if (siret && !companySIREN) {
+			searchDenominationOrSiren(siret)
+				.then((results) => {
+					if (results?.length !== 1) {
+						return
+					}
+					setEntreprise(results[0])
+				})
+				.catch((err) => {
+					console.log(err)
+					console.log(`Could not fetch company details for ${siret}`)
+				})
+		}
+	}, [siret, companySIREN])
+}
+
+// We can read cookies set on the urssaf.fr domain, which contain informations
+// such as the SIRET number. The cookie format could change at any time so we
+// wrap its read access in a `try / catch`.
+function siretFromUrssafFrConnection(): string | null {
+	try {
+		// Note: The `ctxUrssaf` contains more informations, but currently we only
+		// need to retreive the SIRET which is slightly more easy to read from the
+		// `EnLigne` cookie.
+		const cookieValue = decodeURIComponent(getCookieValue('EnLigne'))
+		const siret = cookieValue.match('siret=([0-9]{14})')?.pop()
+
+		return siret ?? null
+	} catch {
+		return null
+	}
 }
