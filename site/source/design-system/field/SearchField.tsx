@@ -1,3 +1,5 @@
+import { Loader } from '@/design-system/icons/Loader'
+import { SearchIcon } from '@/design-system/icons/SearchIcon'
 import { useButton } from '@react-aria/button'
 import { useSearchField } from '@react-aria/searchfield'
 import {
@@ -5,9 +7,7 @@ import {
 	useSearchFieldState,
 } from '@react-stately/searchfield'
 import { AriaSearchFieldProps } from '@react-types/searchfield'
-import { Loader } from '@/design-system/icons/Loader'
-import { SearchIcon } from '@/design-system/icons/SearchIcon'
-import { InputHTMLAttributes, useRef } from 'react'
+import { useRef } from 'react'
 import styled, { css } from 'styled-components'
 import {
 	StyledContainer,
