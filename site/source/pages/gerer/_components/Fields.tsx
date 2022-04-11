@@ -120,9 +120,7 @@ export function SimpleField({
 					!displayedQuestion
 						? rule.title +
 						  (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '') +
-						  (meta.requis === 'oui'
-								? ` – *${t('required', 'Requis').toLowerCase()}`
-								: '')
+						  (meta.requis === 'oui' ? `*` : '')
 						: undefined
 				}
 				required={meta.requis === 'oui'}

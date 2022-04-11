@@ -95,7 +95,7 @@ export default function Déclaration() {
 
 	return (
 		<>
-			<Grid container>
+			<Grid container spacing={2} alignItems="flex-end">
 				<Grid item lg={10} xl={8}>
 					<FromTop>
 						<Trans i18nKey="assistant-DRI.declaration.intro">
@@ -275,8 +275,10 @@ function LiasseFiscale() {
 
 	return (
 		<>
-			{fields.map(([dottedName, rule]) =>
-				getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
+			{fields.map(([dottedName, rule]) => {
+				const { section, affichage } = getMeta<Meta>(rule.rawNode, {})
+
+				return section === 'oui' ? (
 					<Grid item xs={12} key={dottedName}>
 						<H3
 							css={`
@@ -287,13 +289,27 @@ function LiasseFiscale() {
 						</H3>
 					</Grid>
 				) : (
-					<Grid item md={4} sm={6} xs={12} key={dottedName}>
-						<FromTop>
-							<SimpleField dottedName={dottedName} />
-						</FromTop>
-					</Grid>
+					(!affichage || (affichage && affichage !== 'non')) && (
+						<Grid
+							item
+							md={affichage ? 6 : 4}
+							sm={affichage ? 8 : 6}
+							xs={12}
+							key={dottedName}
+						>
+							<FromTop>
+								<SimpleField dottedName={dottedName} />
+							</FromTop>
+						</Grid>
+					)
 				)
-			)}
+			})}
+
+			<Grid item xs={12}>
+				<Body>
+					* <Trans i18nKey="fieldRequired">Champ requis</Trans>
+				</Body>
+			</Grid>
 		</>
 	)
 }
