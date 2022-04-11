@@ -589,6 +589,7 @@ feedback:
   reportError: Faire une suggestion
   simulator: Êtes-vous satisfait de ce simulateur&nbsp;?
   thanks: Merci de votre retour !
+fieldRequired: Champ requis
 footer:
   accessibilité: "Accessibilité : non conforme"
 formeJuridique:
