@@ -33,6 +33,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../_components/Fields'
+import Exceptions from './_components/Exceptions'
 import { useProgress } from './_components/hooks'
 
 interface Meta {
@@ -484,11 +485,15 @@ function ResultSection() {
 							`}
 						>
 							<Message type="info" border={false}>
-								<Body>Ces informations sont fournies à titre indicatif.</Body>
+								<Body>
+									Ces informations sont fournies à titre indicatif.
+									<Exceptions />
+								</Body>
 								<SmallBody>
 									Vous restez entièrement responsable d'éventuels oublis ou
 									inexactitudes dans votre déclaration.
 								</SmallBody>
+
 								<SmallBody>
 									En cas de doutes, rapprochez-vous de votre comptable.
 								</SmallBody>
