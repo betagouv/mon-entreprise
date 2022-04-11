@@ -346,21 +346,24 @@ DRI . liasse . réel simplifié . résultat:
     section: oui
 
 DRI . liasse . réel simplifié . bénéfice ou déficit:
-  question: Êtes-vous en bénéfice (case 370) ou en déficit (case 372) ?
+  applicable si: entreprise . imposition . IR
+  question: Votre entreprise est-elle en bénéfice (case 370) ou en déficit (case 372) ?
+  par défaut: "'bénéfice'"
   une possibilité:
     choix obligatoire: oui
     possibilités:
-      - 'bénéfice'
-      - 'déficit'
+      - bénéfice
+      - déficit
   meta:
     affichage: toggle
 
-DRI . liasse . réel simplifié . bénéfice:
-  valeur: bénéfice ou déficit = 'DRI . liasse . réel simplifié . bénéfice'
+DRI . liasse . réel simplifié . bénéfice ou déficit . bénéfice:
+  valeur: bénéfice ou déficit = 'bénéfice'
   meta:
     affichage: non
-DRI . liasse . réel simplifié . déficit:
-  valeur: bénéfice ou déficit = 'DRI . liasse . réel simplifié . déficit'
+
+DRI . liasse . réel simplifié . bénéfice ou déficit . déficit:
+  valeur: bénéfice ou déficit = 'déficit'
   meta:
     affichage: non
 
@@ -368,10 +371,7 @@ DRI . liasse . réel simplifié . c370:
   unité: €
   titre: '370'
   résumé: Bénéfice
-  applicable si:
-    toutes ces conditions:
-      - entreprise . imposition . IR
-      - DRI . liasse . réel simplifié . bénéfice
+  applicable si: DRI . liasse . réel simplifié . bénéfice ou déficit . bénéfice
   meta:
     requis: oui
 
@@ -379,10 +379,7 @@ DRI . liasse . réel simplifié . c372:
   unité: €
   titre: '372'
   résumé: Déficit
-  applicable si:
-    toutes ces conditions:
-      - entreprise . imposition . IR
-      - DRI . liasse . réel simplifié . déficit
+  applicable si: DRI . liasse . réel simplifié . bénéfice ou déficit . déficit
   meta:
     requis: oui
 
