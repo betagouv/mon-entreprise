@@ -2,7 +2,7 @@ import { deleteFromSituation } from '@/actions/actions'
 import { omit } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Rule } from 'publicodes'
-import { createContext, default as React, useContext } from 'react'
+import { createContext, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import i18n from '../../locales/i18n'
 

@@ -54,7 +54,7 @@ export default function PageData(props: PageDataProps) {
 
 	const année = useSelector(situationSelector)['année']
 	const year =
-		typeof année === 'number' && année != 2022 ? ` - version ${année}` : ''
+		typeof année === 'number' && année !== 2022 ? ` - version ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig(config, { path })

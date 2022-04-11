@@ -65,26 +65,27 @@ export default function Gérer() {
 				</Link>
 			)}
 
-			<TrackChapter chapter1="gerer" />
-			<Switch>
-				<Route exact path={sitePaths.gérer.index} component={Home} />
-				<Route
-					path={sitePaths.gérer.sécuritéSociale}
-					component={SocialSecurity}
-				/>
-				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
-				{[
-					simulateurs['déclaration-charges-sociales-indépendant'],
-					simulateurs['déclaration-revenu-indépendant'],
-					simulateurs['demande-mobilité'],
-				].map((p) => (
+			<TrackChapter chapter1="gerer">
+				<Switch>
+					<Route exact path={sitePaths.gérer.index} component={Home} />
 					<Route
-						key={p.shortName}
-						path={p.path}
-						render={() => <PageData {...p} />}
+						path={sitePaths.gérer.sécuritéSociale}
+						component={SocialSecurity}
 					/>
-				))}
-			</Switch>
+					<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
+					{[
+						simulateurs['déclaration-charges-sociales-indépendant'],
+						simulateurs['déclaration-revenu-indépendant'],
+						simulateurs['demande-mobilité'],
+					].map((p) => (
+						<Route
+							key={p.shortName}
+							path={p.path}
+							render={() => <PageData {...p} />}
+						/>
+					))}
+				</Switch>
+			</TrackChapter>
 		</>
 	)
 }
