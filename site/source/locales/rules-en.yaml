@@ -417,6 +417,14 @@ DRI . liasse . réel simplifié . Divers:
 DRI . liasse . réel simplifié . Déductions:
   titre.en: '[automatic] Deductions'
   titre.fr: Déductions
+DRI . liasse . réel simplifié . bénéfice:
+  titre.en: '[automatic] profit'
+  titre.fr: bénéfice
+DRI . liasse . réel simplifié . bénéfice ou déficit:
+  question.en: '[automatic] Are you in profit (box 370) or deficit (box 372)?'
+  question.fr: Êtes-vous en bénéfice (case 370) ou en déficit (case 372) ?
+  titre.en: '[automatic] profit or deficit'
+  titre.fr: bénéfice ou déficit
 DRI . liasse . réel simplifié . c326:
   résumé.en: '[automatic] of which amount deductible from compulsory social
     security contributions'
@@ -448,6 +456,9 @@ DRI . liasse . réel simplifié . c596:
   résumé.fr: Court terme
   titre.en: '[automatic] 596'
   titre.fr: '596'
+DRI . liasse . réel simplifié . déficit:
+  titre.en: '[automatic] deficit'
+  titre.fr: déficit
 DRI . liasse . réel simplifié . plus-values et moins-values:
   titre.en: '[automatic] capital gains and losses'
   titre.fr: plus-values et moins-values

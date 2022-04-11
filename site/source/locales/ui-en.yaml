@@ -824,6 +824,7 @@ feedback:
   simulator: Do you like this simulator ?
   thanks: Thank for your feedback! You can contact us directly at <1>
     </1><2>contact@mon-entreprise.beta.gouv.fr</2>
+fieldRequired: Required field
 footer:
   accessibilité: "Accessibility: not compliant"
 formeJuridique:
