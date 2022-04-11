@@ -45,7 +45,9 @@ export function DisableAnimationOnPrintProvider({
 	const isPrintContext = useIsPrintContext()
 
 	return (
-		<DisableAnimationContext.Provider value={isPrintContext}>
+		<DisableAnimationContext.Provider
+			value={isPrintContext || import.meta.env.SSR}
+		>
 			{children}
 		</DisableAnimationContext.Provider>
 	)
