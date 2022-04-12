@@ -398,6 +398,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_revenu_indépendant.title',
 				'Assistant à la déclaration de revenu pour les indépendants'
 			),
+			nextSteps: [
+				'exonération-covid',
+				'déclaration-charges-sociales-indépendant',
+			],
 		},
 		'demande-mobilité': {
 			tracking: {
