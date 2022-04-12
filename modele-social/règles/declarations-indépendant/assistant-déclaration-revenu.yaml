@@ -22,30 +22,30 @@ DRI . cas exclus:
         texte: |-
           ### Nous ne proposons pas encore d'aide pour les entreprises agricoles
 
-          {{ désolé }}
+          {{ textes . désolé }}
     - si: entreprise . catégorie juridique . autre
       alors:
         texte: |-
           ### Nous ne proposons pas encore d'aide pour votre type d'entreprise
 
-          {{ désolé }}
+          {{ textes . désolé }}
     - si: entreprise . catégorie juridique . EI . auto-entrepreneur
       alors:
         texte: |-
           ### Nous ne proposons pas encore d'aide pour les auto-entrepreneurs
 
-          {{ désolé }}
+          {{ textes . désolé }}
 
-          {{ autres outils }}
+          {{ textes . autres outils }}
 
     - si: entreprise . catégorie juridique . SAS
       alors:
         texte: |-
           ### Nous ne proposons pas encore d'aide pour les dirigeants de SAS(U)
 
-          {{ désolé }}
+          {{ textes . désolé }}
 
-          {{ autres outils }}
+          {{ textes . autres outils }}
     - si:
         une de ces conditions:
           - toutes ces conditions:
@@ -57,9 +57,9 @@ DRI . cas exclus:
         texte: |-
           ### Nous ne proposons pas encore d'aide pour les dirigeant de {{ entreprise . catégorie juridique }}
 
-          {{ désolé }}
+          {{ textes . désolé }}
 
-          {{ autres outils }}
+          {{ textes . autres outils }}
     - si: entreprise . date de création >= 01/01/2022
       alors:
         texte: |-
@@ -70,16 +70,20 @@ DRI . cas exclus:
           Vous pouvez estimer le montant de votre revenu net après impôt grâce aux 
           simulateurs disponibles sur ce site.
 
-DRI . cas exclus . désolé:
+DRI . textes: oui
+DRI . textes . désolé:
   texte: |-
-    Nous en sommes désolés. Si vous rencontrez des difficultés à remplir votre déclaration, 
+    Si vous rencontrez des difficultés à remplir votre déclaration, 
     rapprochez-vous de votre comptable. Si vous êtes sans comptable, vous pouvez
     [contacter le service des impôts](https://www.impots.gouv.fr/contacts).
 
-DRI . cas exclus . autres outils:
+DRI . textes . autres outils:
   texte: |-
     Ce site propose d'autres outils qui pourraient vous intéresser (par exemple un 
     simulateur de revenu net après impôt).
+
+DRI . textes . comptable:
+  texte: En cas de doutes, **demandez à votre comptable**.
 
 DRI . nombre de déclarations:
   somme:
@@ -135,7 +139,7 @@ DRI . accompagnement imposition . type . exceptions:
 
           Ce choix a pu être fait pour vous permettre de vous verser des dividendes par exemple.
 
-          {{comptable}}
+          {{ textes . comptable }}
     - si: entreprise . catégorie juridique . SARL . unipersonnelle
       alors:
         texte: |-
@@ -147,10 +151,7 @@ DRI . accompagnement imposition . type . exceptions:
           > Il est assez fréquent que les EURL choisissent l'option de l'impôt sur les sociétés. Ce choix permet 
           de se verser des dividendes par exemple.
 
-          {{comptable}}
-
-DRI . comptable:
-  texte: En cas de doutes, **demandez à votre comptable**.
+          {{ textes . comptable }}
 
 DRI . accompagnement imposition . bénéfice:
   texte: |-
@@ -202,7 +203,7 @@ DRI . accompagnement imposition . bénéfice . exceptions:
     - la majeure partie de votre activité consiste en la **vente de bien**, 
     - ou vous créez dans le but de **reproduire et vendre** votre création (par exemple, un photographe d'illustration qui prend des photos pour le compte de clients).
 
-    {{comptable}}
+    {{ textes . comptable }}
 
 DRI . accompagnement imposition . régime memento fiscal:
   question: |-
@@ -311,6 +312,17 @@ DRI . accompagnement imposition . explications . situation:
       alors:
         texte: Avec le régime de la déclaration contrôlée, vous devrez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'avoir un comptable.
 
+DRI . imposition cas exclus:
+  applicable si:
+    une de ces conditions:
+      - entreprise . imposition . régime . réel normal
+      - entreprise . imposition . régime . micro-entreprise
+
+  texte: |-
+    #### Nous ne proposons pas encore d'aide à la déclaration de revenu pour le régime {{ entreprise . imposition . régime }}
+
+    {{ textes . désolé }}
+
 DRI . liasse:
   valeur: oui
   applicable si:
@@ -410,6 +422,7 @@ DRI . liasse . réel simplifié . c596:
   applicable si: entreprise . imposition . IR
   titre: '596'
   unité: €
+  par défaut: 0€
   meta:
     facultatif: oui
   résumé: Court terme

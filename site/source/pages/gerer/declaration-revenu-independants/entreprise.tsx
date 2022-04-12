@@ -19,7 +19,7 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { Grid } from '@mui/material'
 import { useContext } from 'react'
@@ -27,7 +27,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
 import { useProgress } from './_components/hooks'
-import notHandled from './_components/undraw_access_denied_re_awnf.svg'
+import NotHandledCase from './_components/NotHandledCase'
 import illustration from './_components/undraw_fill_in_mie5.svg'
 
 export const OBJECTIFS: DottedName[] = [
@@ -97,48 +97,11 @@ export default function Accueil() {
 				<Grid item lg={10} xl={8}>
 					<WhenApplicable dottedName="DRI . cas exclus">
 						<FromTop>
-							<Message type="info">
-								<Grid
-									container
-									justifyContent="center"
-									spacing={3}
-									alignItems="center"
-								>
-									<Grid
-										item
-										xs={6}
-										md={3}
-										sx={{ order: { md: 0, xs: 1, sm: 1 } }}
-									>
-										<img
-											src={notHandled}
-											alt=""
-											css={`
-												width: 100%;
-												padding: 1rem;
-											`}
-										/>
-									</Grid>
-									<Grid item md={9}>
-										<Markdown>
-											{engine.evaluate('DRI . cas exclus').nodeValue as string}
-										</Markdown>
-									</Grid>
-									<Grid item lg={2} />
-									<Grid item md="auto">
-										<Button color="tertiary" to={sitePaths.gérer.index}>
-											Découvrir les simulateur et assistant pour mon entreprise
-										</Button>
-									</Grid>
-									<Grid item>
-										<SmallBody>
-											Si vous souhaitez que cet assistant à la déclaration gère
-											votre cas dans le futur, laissez-nous message en cliquant
-											sur le bouton "Faire une suggestion" en bas de la page.
-										</SmallBody>
-									</Grid>
-								</Grid>
-							</Message>
+							<NotHandledCase>
+								<Markdown>
+									{engine.evaluate('DRI . cas exclus').nodeValue as string}
+								</Markdown>
+							</NotHandledCase>
 						</FromTop>
 					</WhenApplicable>
 					{showGoToNextStep && (
