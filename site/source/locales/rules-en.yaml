@@ -270,9 +270,9 @@ DRI . déclaration revenus . traitements et salaire:
 DRI . déclaration revenus . traitements et salaire . revenus des associés et gérants:
   titre.en: '[automatic] income of partners and managers'
   titre.fr: revenus des associés et gérants
-DRI . déclaration revenus manuel:
+DRI . déclaration revenus manuelle:
   titre.en: '[automatic] manual income tax return'
-  titre.fr: déclaration revenus manuel
+  titre.fr: déclaration revenus manuelle
 DRI . imposition cas exclus:
   titre.en: '[automatic] taxation excluded cases'
   titre.fr: imposition cas exclus

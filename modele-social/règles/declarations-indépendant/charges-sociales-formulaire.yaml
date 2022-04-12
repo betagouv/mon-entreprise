@@ -135,6 +135,7 @@ déclaration charge sociales . nature de l'activité . commerciale:
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
     - Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+
 déclaration charge sociales . nature de l'activité . artisanale:
   formule: nature de l'activité = 'artisanale'
   description: |

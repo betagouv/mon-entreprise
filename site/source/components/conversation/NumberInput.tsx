@@ -74,6 +74,7 @@ export default function NumberInput({
 				}
 				onChange={(valeur) => {
 					setCurrentValue(valeur)
+
 					if (valeur != null && unité) {
 						debouncedOnChange({ valeur, unité })
 					} else {
