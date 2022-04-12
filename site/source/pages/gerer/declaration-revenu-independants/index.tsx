@@ -80,7 +80,8 @@ export default function AideDéclarationIndépendant() {
 					)}
 					{defaultCurrentStep && <Redirect to={defaultCurrentStep.to} />}
 				</Switch>
-				<Spacing xxl />
+
+				<Spacing xl />
 			</Condition>
 		</>
 	)
