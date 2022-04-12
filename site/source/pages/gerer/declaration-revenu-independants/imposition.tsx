@@ -1,5 +1,9 @@
 import { DottedName } from '@/../../modele-social'
-import { Condition, WhenApplicable } from '@/components/EngineValue'
+import {
+	Condition,
+	WhenApplicable,
+	WhenNotApplicable,
+} from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -10,7 +14,7 @@ import { Button } from '@/design-system/buttons'
 import { Container, Spacing } from '@/design-system/layout'
 import PopoverWithTrigger from '@/design-system/popover/PopoverWithTrigger'
 import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
@@ -237,6 +241,7 @@ function ModifyInformation(props: {
 
 function ResultSection() {
 	const sitePaths = useContext(SitePathsContext)
+	const engine = useEngine()
 
 	return (
 		<FromTop>
@@ -245,12 +250,14 @@ function ResultSection() {
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				<H2>Vos déclarations fiscales</H2>
+
 				<Grid container spacing={4}>
 					<Grid item lg={6}>
 						<H3>Pour vous</H3>
+
 						<Message border={false}>
 							<FormulaireTitle formulaire="Formulaire 2042">
-								<H3>Déclaration de revenus</H3>
+								<H3 as="h4">Déclaration de revenus</H3>
 							</FormulaireTitle>
 							<Body>
 								C'est la déclaration de revenu qui est effectuée chaque année
@@ -272,18 +279,22 @@ function ResultSection() {
 								En tant qu'indépendant vous aurez à remplir une section spéciale
 								sur le montant des cotisations.
 							</Body>
-							<Spacing md />
-							<div
-								css={`
-									text-align: center;
-								`}
-							>
-								<Button to={sitePaths.gérer.déclarationIndépendant.déclaration}>
-									Continuer vers l'aide au remplissage
-								</Button>
-							</div>
-							<Spacing sm />
 
+							<WhenNotApplicable dottedName="DRI . imposition cas exclus">
+								<Spacing md />
+								<div
+									css={`
+										text-align: center;
+									`}
+								>
+									<Button
+										to={sitePaths.gérer.déclarationIndépendant.déclaration}
+									>
+										Continuer vers l'aide au remplissage
+									</Button>
+								</div>
+								<Spacing sm />
+							</WhenNotApplicable>
 							<SmallBody>
 								Je connais déjà les cases et montants à remplir :{' '}
 								<Link to={sitePaths.index} isDisabled>
@@ -292,6 +303,46 @@ function ResultSection() {
 							</SmallBody>
 							<Spacing md />
 						</Message>
+						<WhenApplicable dottedName="DRI . imposition cas exclus">
+							<FromTop>
+								<Message type="info" border={false}>
+									<Markdown>
+										{
+											engine.evaluate('DRI . imposition cas exclus')
+												.nodeValue as string
+										}
+									</Markdown>
+									<Condition expression="entreprise . imposition . régime . micro-entreprise">
+										<H5>Calculer le montant des cotisations sociales 2021</H5>
+										<SmallBody>
+											Nous mettons à votre disposition un assistant pour
+											connaître le montant des cotisations sociales à renseigner
+											dans la section spéciale travailleurs indépendant de la
+											déclaration de revenu.
+										</SmallBody>
+										<div
+											css={`
+												text-align: center;
+											`}
+										>
+											<Button
+												light
+												size="XS"
+												color="tertiary"
+												to={
+													sitePaths.gérer[
+														'déclaration-charges-sociales-indépendant'
+													]
+												}
+											>
+												Accéder à l'assistant
+											</Button>
+										</div>
+										<Spacing sm />
+									</Condition>
+								</Message>
+							</FromTop>
+						</WhenApplicable>
 					</Grid>
 					<Grid item lg={6}>
 						<H3>Pour votre entreprise</H3>
@@ -376,7 +427,7 @@ function LiasseFiscaleTitle() {
 				getMeta<{ formulaire?: string }>(liasse.rawNode, {}).formulaire ?? ''
 			}
 		>
-			<H3>{liasse.title}</H3>
+			<H3 as="h4">{liasse.title}</H3>
 		</FormulaireTitle>
 	)
 }

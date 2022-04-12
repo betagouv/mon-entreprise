@@ -1,5 +1,5 @@
 import Conversation from '@/components/conversation/Conversation'
-import Value, { WhenAlreadyDefined } from '@/components/EngineValue'
+import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import { Appear, FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -66,12 +66,21 @@ export default function Cotisations() {
 							<Appear>
 								<Message icon border={false}>
 									<Intro>
-										En 2022, vous devrez payer à l'Urssaf{' '}
-										<Strong>
-											{' '}
-											<Value expression="DRI . cotisations" />
-										</Strong>{' '}
-										de cotisations sociales.
+										<Condition expression="DRI . cotisations >= 0">
+											En 2022, vous devrez payer à l'Urssaf{' '}
+											<Strong>
+												{' '}
+												<Value expression="DRI . cotisations" />
+											</Strong>{' '}
+											de cotisations sociales.
+										</Condition>
+										<Condition expression="DRI . cotisations < 0">
+											En 2022, l'Urssaf vous remboursera{' '}
+											<Strong>
+												{' '}
+												<Value expression="DRI . cotisations * -1" />
+											</Strong>{' '}
+										</Condition>
 									</Intro>
 								</Message>
 							</Appear>
