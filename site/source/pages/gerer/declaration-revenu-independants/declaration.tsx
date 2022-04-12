@@ -93,6 +93,20 @@ export default function Déclaration() {
 			.join(', ')
 	)
 
+	if (engine.evaluate('DRI . déclaration revenus manuel').nodeValue) {
+		return (
+			<>
+				<Grid item xs={12}>
+					<H2>Renseignements complémentaires</H2>
+					<SimpleField dottedName="DRI . liasse . OGA" />
+					<SimpleField dottedName="DRI . liasse . rémunération dirigeant" />
+				</Grid>
+
+				<ResultSection />
+			</>
+		)
+	}
+
 	return (
 		<>
 			<Grid container spacing={2} alignItems="flex-end">
@@ -223,9 +237,9 @@ export default function Déclaration() {
 				</Grid>
 
 				<LiasseFiscale />
+
 				<Grid item xs={12}>
 					<H2>Renseignements complémentaires</H2>
-
 					<SimpleField dottedName="DRI . liasse . OGA" />
 					<SimpleField dottedName="DRI . liasse . rémunération dirigeant" />
 				</Grid>
@@ -399,6 +413,10 @@ function ResultSection() {
 		return null
 	}
 
+	const déclarationRevenusManuel = engine.evaluate(
+		'DRI . déclaration revenus manuel'
+	).nodeValue
+
 	const declarant =
 		engine.evaluate('DRI . déclaration revenus').nodeValue === 'déclarant 2'
 			? 1
@@ -406,8 +424,12 @@ function ResultSection() {
 
 	return (
 		<Container
-			darkMode
-			backgroundColor={(theme) => theme.colors.bases.primary[600]}
+			darkMode={!déclarationRevenusManuel}
+			backgroundColor={
+				!déclarationRevenusManuel
+					? (theme) => theme.colors.bases.primary[600]
+					: undefined
+			}
 		>
 			<FromTop>
 				<H2>Votre déclaration de revenu</H2>
@@ -454,17 +476,28 @@ function ResultSection() {
 														{rule.title} <em>{rule.rawNode.note}</em>
 													</Body>
 												</Grid>
-												<Grid item xs="auto">
-													<Body>
-														<Strong>{getCases(rule.rawNode)[declarant]}</Strong>
-														<StyledCase>
-															<Value
-																expression={dottedName}
-																linkToRule={false}
-															/>
-														</StyledCase>
-													</Body>
-												</Grid>
+												{déclarationRevenusManuel ? (
+													<Grid item xs={6}>
+														<SimpleField
+															label={getCases(rule.rawNode)[declarant]}
+															dottedName={dottedName as DottedName}
+														/>
+													</Grid>
+												) : (
+													<Grid item xs="auto">
+														<Body>
+															<Strong>
+																{getCases(rule.rawNode)[declarant]}
+															</Strong>
+															<StyledCase>
+																<Value
+																	expression={dottedName}
+																	linkToRule={false}
+																/>
+															</StyledCase>
+														</Body>
+													</Grid>
+												)}
 											</Fragment>
 										)
 									)}

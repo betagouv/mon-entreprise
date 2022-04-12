@@ -4,6 +4,7 @@ import {
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
+import { updateSituation } from '@/actions/actions'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -21,8 +22,9 @@ import { getMeta } from '@/utils'
 import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { formatValue } from 'publicodes'
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
 import FormulaireTitle from './_components/FormulaireTitle'
 import { useProgress } from './_components/hooks'
@@ -242,6 +244,14 @@ function ModifyInformation(props: {
 function ResultSection() {
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useEngine()
+	const dispatch = useDispatch()
+
+	const dispatchValue = useCallback(
+		(value, dottedName: DottedName) => {
+			dispatch(updateSituation(dottedName, value))
+		},
+		[dispatch]
+	)
 
 	return (
 		<FromTop>
@@ -289,6 +299,9 @@ function ResultSection() {
 								>
 									<Button
 										to={sitePaths.gérer.déclarationIndépendant.déclaration}
+										onPress={() => {
+											dispatchValue('non', 'DRI . déclaration revenus manuel')
+										}}
 									>
 										Continuer vers l'aide au remplissage
 									</Button>
@@ -297,7 +310,12 @@ function ResultSection() {
 							</WhenNotApplicable>
 							<SmallBody>
 								Je connais déjà les cases et montants à remplir :{' '}
-								<Link to={sitePaths.index} isDisabled>
+								<Link
+									to={sitePaths.gérer.déclarationIndépendant.déclaration}
+									onPress={() => {
+										dispatchValue('oui', 'DRI . déclaration revenus manuel')
+									}}
+								>
 									accéder directement à l'estimation de mes cotisations en 2022.
 								</Link>
 							</SmallBody>
