@@ -196,10 +196,6 @@ function ImpositionSection() {
 		},
 		[dispatch]
 	)
-	console.log(
-		useEngine().evaluate('entreprise . imposition'),
-		useEngine().evaluate('entreprise . imposition . IS')
-	)
 
 	return (
 		<>
