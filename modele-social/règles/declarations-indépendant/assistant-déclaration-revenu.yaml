@@ -577,6 +577,11 @@ DRI . liasse . remboursement cotisation:
   applicable si: déclaration contrôlée . BT = 0
   question: Avez vous reçu un remboursement de cotisation en 2021 ?
 
+DRI . déclaration revenus manuel:
+  par défaut: non
+  meta:
+    affichage: non
+
 DRI . déclaration revenus:
   question: Quelle est la personne concernée ?
   une possibilité:

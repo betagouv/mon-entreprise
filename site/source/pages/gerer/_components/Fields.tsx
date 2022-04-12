@@ -71,6 +71,7 @@ type SimpleFieldProps = {
 	summary?: RuleNode['rawNode']['résumé']
 	question?: RuleNode['rawNode']['question']
 	showSuggestions?: boolean
+	label?: string
 }
 
 export function SimpleField({
@@ -78,8 +79,8 @@ export function SimpleField({
 	question,
 	summary,
 	showSuggestions = false,
+	label,
 }: SimpleFieldProps) {
-	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const evaluation = engine.evaluate(dottedName)
@@ -117,11 +118,12 @@ export function SimpleField({
 				displayedUnit={targetUnit}
 				aria-labelledby={displayedQuestion ? labelId : undefined}
 				label={
-					!displayedQuestion
+					label ??
+					(!displayedQuestion
 						? rule.title +
 						  (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '') +
 						  (meta.requis === 'oui' ? `*` : '')
-						: undefined
+						: undefined)
 				}
 				required={meta.requis === 'oui'}
 				onChange={dispatchValue}
