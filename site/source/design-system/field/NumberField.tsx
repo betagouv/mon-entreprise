@@ -252,7 +252,7 @@ function useSimpleNumberFieldState(
 		.join('')
 
 	const inputValue =
-		rawInputValue === undefined && numberValue
+		rawInputValue === undefined && numberValue !== undefined
 			? formatter.format(numberValue)
 			: rawInputValue === '' || (!rawInputValue && props.placeholder == null)
 			? defaultInputValue

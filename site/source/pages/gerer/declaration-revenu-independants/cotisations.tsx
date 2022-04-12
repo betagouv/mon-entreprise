@@ -101,16 +101,24 @@ export default function Cotisations() {
 								`}
 							>
 								<Conversation />
+								<div
+									css={`
+										position: relative;
+										top: -2px;
+										margin: 0 -1.5rem;
+									`}
+								>
+									<Progress progress={progress} />
+								</div>
 							</div>
 						</Message>
 					</Grid>
 				</Grid>
 				<Spacing md />
 			</Container>
-			<Progress progress={progress} />
 
 			<Container backgroundColor={(theme) => theme.colors.bases.tertiary[100]}>
-				<PageFeedback />
+				<PageFeedback customMessage="Qu'avez-vous pensé de cet assistant ?" />
 			</Container>
 		</FromTop>
 	)

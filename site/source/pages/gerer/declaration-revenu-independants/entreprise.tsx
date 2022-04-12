@@ -50,8 +50,8 @@ export default function Accueil() {
 			<Trans i18nKey="assistant-DRI.intro">
 				<PageHeader picture={illustration}>
 					<Intro>
-						Nous vous accompagnons pour remplir votre{' '}
-						<Strong>déclaration de revenu</Strong> sur{' '}
+						Nous vous accompagnons pour remplir les revenus de votre entreprise
+						dans votre <Strong>déclaration de revenu</Strong> sur{' '}
 						<Link href="https://www.impots.gouv.fr/accueil">impot.gouv.fr</Link>
 						.<br />
 					</Intro>

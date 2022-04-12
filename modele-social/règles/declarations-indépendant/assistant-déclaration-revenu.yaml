@@ -345,8 +345,6 @@ DRI . liasse . réel simplifié . Déductions:
 
 DRI . liasse . réel simplifié . c342:
   unité: €
-  meta:
-    facultatif: oui
   applicable si: entreprise . imposition . IR
   titre: '342'
   résumé: Déductions
@@ -402,8 +400,6 @@ DRI . liasse . réel simplifié . Divers:
 DRI . liasse . réel simplifié . c381:
   unité: €
   titre: '381'
-  meta:
-    facultatif: oui
   résumé: Primes et cotisations complémentaires facultatives
 
 DRI . liasse . réel simplifié . c326:
@@ -423,8 +419,6 @@ DRI . liasse . réel simplifié . c596:
   titre: '596'
   unité: €
   par défaut: 0€
-  meta:
-    facultatif: oui
   résumé: Court terme
 
 DRI . liasse . réel normal:
@@ -457,14 +451,10 @@ DRI . liasse . déclaration contrôlée . BT:
 
 DRI . liasse . déclaration contrôlée . BZ:
   résumé: dont cotisations facultatives Madelin
-  meta:
-    facultatif: oui
   unité: €
 
 DRI . liasse . déclaration contrôlée . BU:
   résumé: dont facultatives aux nouveaux plans d'épargne retraite
-  meta:
-    facultatif: oui
   unité: €
 
 DRI . liasse . déclaration contrôlée . excedents:
@@ -474,8 +464,6 @@ DRI . liasse . déclaration contrôlée . excedents:
 DRI . liasse . déclaration contrôlée . CB:
   résumé: Plus-value à court terme
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CE:
   résumé: Total
@@ -490,8 +478,6 @@ DRI . liasse . déclaration contrôlée . insuffisance:
 DRI . liasse . déclaration contrôlée . CK:
   résumé: Moins-value à court terme
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . divers à déduire:
   meta:
@@ -500,50 +486,34 @@ DRI . liasse . déclaration contrôlée . divers à déduire:
 DRI . liasse . déclaration contrôlée . CS:
   résumé: dont exonération sur le bénéfice « zone franche urbaine entrepreneur »
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CT:
   résumé: dont l'abondement sur l'épargne salariale
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . AW:
   unité: €
   résumé: dont exonération sur le bénéfice « entreprise nouvelle »
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CO:
   unité: €
   résumé: dont exonération sur le bénéfice « jeunes artistes »
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CU:
   résumé: dont exonération sur le bénéfice « jeunes entreprise innovantes »
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CQ:
   résumé: dont déduction « médecin conventionnés de secteur 1 »
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CI:
   résumé: dont exonération médecin « zones déficitaires en offre de soin »
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CJ:
   résumé: dont aides Fonds de solidarité Covid
   unité: €
-  meta:
-    facultatif: oui
 
 DRI . liasse . déclaration contrôlée . CN:
   unité: €
@@ -551,7 +521,8 @@ DRI . liasse . déclaration contrôlée . CN:
   meta:
     requis: oui
 
-DRI . liasse . OGA:
+DRI . informations complémentaires: oui
+DRI . informations complémentaires . OGA:
   applicable si: entreprise . imposition . IR
   question: Êtes-vous adhérant à un Organisme de Gestion Agrée (OGA) ?
   par défaut: oui
@@ -564,7 +535,7 @@ DRI . liasse . OGA:
   références:
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/organisme-gestion-agree
 
-DRI . liasse . rémunération dirigeant:
+DRI . informations complémentaires . rémunération dirigeant:
   applicable si: entreprise . imposition . IS
   question:
     texte: |-
@@ -573,16 +544,13 @@ DRI . liasse . rémunération dirigeant:
     Cela correspond à la rémunération totale qui a été versée sur votre compte bancaire personnel pour cette activité. Elle sera à reporter dans la section « Traitement et salaire » de votre déclaration de revenu.
   unité: €
 
-DRI . liasse . remboursement cotisation:
-  applicable si: déclaration contrôlée . BT = 0
-  question: Avez vous reçu un remboursement de cotisation en 2021 ?
-
-DRI . déclaration revenus manuel:
+DRI . déclaration revenus manuelle:
   par défaut: non
   meta:
     affichage: non
 
-DRI . déclaration revenus:
+DRI . déclarant:
+  non applicable si: DRI . déclaration revenus manuelle
   question: Quelle est la personne concernée ?
   une possibilité:
     choix obligatoire: oui
@@ -591,18 +559,17 @@ DRI . déclaration revenus:
       - déclarant 2
   par défaut: "'déclarant 1'"
   meta:
-    affichage: toggle
     section: oui
+    affichage: toggle
 
-DRI . déclaration revenus . déclarant 1:
-  valeur: déclaration revenus = 'déclarant 1'
+DRI . déclarant . déclarant 1:
+  valeur: déclarant = 'déclarant 1'
+DRI . déclarant . déclarant 2:
+  valeur: déclarant = 'déclarant 2'
+
+DRI . déclaration revenus:
   meta:
     affichage: non
-DRI . déclaration revenus . déclarant 2:
-  valeur: déclaration revenus = 'déclarant 2'
-  meta:
-    affichage: non
-
 DRI . déclaration revenus . traitements et salaire:
   applicable si: entreprise . imposition . IS
   meta:
@@ -611,8 +578,9 @@ DRI . déclaration revenus . traitements et salaire:
 DRI . déclaration revenus . traitements et salaire . revenus des associés et gérants:
   meta:
     cases: [1GB, 1HB]
+    requis: oui
   unité: ''
-  valeur: liasse . rémunération dirigeant
+  valeur: informations complémentaires . rémunération dirigeant
 
 DRI . déclaration revenus . BNC:
   applicable si: entreprise . imposition . IR . type de bénéfices . BNC
@@ -640,10 +608,14 @@ DRI . déclaration revenus . BNC . régime de la déclaration contrôlée:
 DRI . déclaration revenus . BNC . revenus exonérés:
   note: régimes zonés article 1417, IV, b du code général des impôts
   meta:
+    requis: oui
     cases:
       défaut: [5QB, 5RB]
       sans OGA: [5QH, 5RH]
-  non applicable si: valeur = 0
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - valeur > 0
   valeur:
     nom: valeur
     meta:
@@ -670,6 +642,7 @@ DRI . déclaration revenus . BNC . revenus exonérés:
 DRI . déclaration revenus . BNC . revenus imposables:
   note: cas général
   meta:
+    requis: oui
     cases:
       défaut: [5QC, 5RC]
       sans OGA: [5QI, 5RI]
@@ -684,6 +657,7 @@ DRI . déclaration revenus . BNC . plus-values:
     cases:
       défaut: [5XP, 5YP]
       sans OGA: [5XQ, 5YQ]
+    requis: oui
   valeur: DRI . liasse . déclaration contrôlée . CB
   unité: ''
 
@@ -694,18 +668,26 @@ DRI . déclaration revenus . BNC . moins-values:
     cases:
       défaut: [5XH, 5YH]
       sans OGA: [5XL, 5YL]
+    requis: oui
   valeur: DRI . liasse . déclaration contrôlée . CK
   unité: ''
 
 DRI . déclaration revenus . BNC . déficits:
-  applicable si: liasse . déclaration contrôlée . CE < liasse . déclaration contrôlée . CN
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - liasse . déclaration contrôlée . CE < liasse . déclaration contrôlée . CN
+
   note: y compris inventeurs non professionnels
   meta:
     cases:
       défaut: [5QE, 5RE]
       sans OGA: [5QK, 5RK]
-  valeur: liasse . déclaration contrôlée . CN
-  abattement: liasse . déclaration contrôlée . CE
+    requis: oui
+  valeur:
+    valeur: liasse . déclaration contrôlée . CN
+    par défaut: 0
+    abattement: liasse . déclaration contrôlée . CE
   unité: ''
 
 DRI . déclaration revenus . BNC . jeunes créateurs:
@@ -738,25 +720,31 @@ DRI . déclaration revenus . BIC . Régime du bénéfice réel:
   valeur: oui
   meta:
     section: oui
+    requis: oui
 
 DRI . déclaration revenus . BIC . revenus exonérés:
   note: régimes zonés article 1417, IV, b du code général des impôts
   meta:
+    requis: oui
     cases:
       défaut: [5KB, 5LB]
       sans OGA: [5KH, 5LH]
-  non applicable si: valeur = 0
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - valeur > 0
   valeur:
     nom: valeur
     meta:
       affichage: non
+      requis: oui
     valeur: liasse . réel simplifié . c342
-    par défaut: 0
     unité: ''
 
 DRI . déclaration revenus . BIC . revenus imposables:
   note: cas général
   meta:
+    requis: oui
     cases:
       défaut: [5KC, 5LC]
       sans OGA: [5KI, 5LI]
@@ -764,10 +752,14 @@ DRI . déclaration revenus . BIC . revenus imposables:
   unité: ''
 
 DRI . déclaration revenus . BIC . plus-values:
-  applicable si: liasse . réel simplifié . c596 > 0
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - liasse . réel simplifié . c596 >= 0
   titre: ' '
   note: dont plus-values à court terme, subventions d’équipement, indemnités d’assurance pour perte d’élément d’actif
   meta:
+    requis: oui
     cases:
       défaut: [5DK, 5EK]
       sans OGA: [5DL, 5EL]
@@ -775,10 +767,14 @@ DRI . déclaration revenus . BIC . plus-values:
   unité: ''
 
 DRI . déclaration revenus . BIC . moins-values:
-  applicable si: liasse . réel simplifié . c596 < 0
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - liasse . réel simplifié . c596 < 0
   titre: ''
   note: dont moins-values à court terme
   meta:
+    requis: oui
     cases:
       défaut: [5DM, 5EM]
       sans OGA: [5DN, 5EN]
@@ -787,6 +783,7 @@ DRI . déclaration revenus . BIC . moins-values:
 
 DRI . déclaration revenus . BIC . déficits:
   meta:
+    requis: oui
     cases:
       défaut: [5KF, 5LF]
       sans OGA: [5KL, 5LL]
@@ -795,6 +792,7 @@ DRI . déclaration revenus . BIC . déficits:
 
 DRI . déclaration revenus . indépendant:
   titre: Données complémentaires de la déclaration de revenu des indépendants
+
   valeur: oui
   meta:
     section: oui
@@ -802,6 +800,7 @@ DRI . déclaration revenus . indépendant:
 DRI . déclaration revenus . indépendant . cotisations sociales:
   unité: ''
   meta:
+    requis: oui
     cases: [DSCA, DSCB]
   somme:
     - DRI . liasse . déclaration contrôlée . BT
@@ -809,8 +808,12 @@ DRI . déclaration revenus . indépendant . cotisations sociales:
 
 DRI . déclaration revenus . indépendant . cotisations facultatives:
   meta:
+    requis: oui
     cases: [DSEA, DSEB]
-  non applicable si: valeur = 0
+  applicable si:
+    une de ces conditions:
+      - déclaration revenus manuelle
+      - valeur > 0
   valeur:
     meta:
       affichage: non
@@ -847,7 +850,7 @@ DRI . cotisations . assiette des cotisations:
     - valeur: déclaration revenus . BIC . revenus exonérés
       par défaut: 0
     # Traitement et salaire (BNC)
-    - liasse . rémunération dirigeant
+    - informations complémentaires . rémunération dirigeant
 
     # Cotisations facultatives
     - valeur: déclaration revenus . indépendant . cotisations facultatives

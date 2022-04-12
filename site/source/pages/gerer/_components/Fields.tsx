@@ -17,7 +17,6 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -86,7 +85,6 @@ export function SimpleField({
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
-
 	const dispatchValue = useCallback(
 		(value, dottedName: DottedName) => {
 			dispatch(updateSituation(dottedName, value))
@@ -94,7 +92,7 @@ export function SimpleField({
 		[dispatch]
 	)
 
-	const displayedQuestion =
+	let displayedQuestion =
 		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
 
 	const labelId = useSSRSafeId()
@@ -103,33 +101,41 @@ export function SimpleField({
 	if (evaluation.nodeValue === null) {
 		return null
 	}
+	let displayedLabel =
+		label ??
+		(!displayedQuestion
+			? rule.title + (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '')
+			: undefined)
+	if (meta.requis === 'oui') {
+		if (displayedLabel) {
+			displayedLabel += ' *'
+		}
+		if (displayedQuestion) {
+			displayedQuestion += ' *'
+		}
+	}
 
 	return (
 		<FadeIn>
-			<StyledQuestion id={labelId}>
-				{displayedQuestion && (
+			{displayedQuestion ? (
+				<StyledQuestion id={labelId}>
 					<Markdown components={{ p: Intro }}>{displayedQuestion}</Markdown>
-				)}
-				<ExplicableRule dottedName={dottedName} />
-			</StyledQuestion>
+					<ExplicableRule dottedName={dottedName} />
+				</StyledQuestion>
+			) : (
+				<Spacing sm />
+			)}
 			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
 			<RuleInput
 				dottedName={dottedName}
 				displayedUnit={targetUnit}
 				aria-labelledby={displayedQuestion ? labelId : undefined}
-				label={
-					label ??
-					(!displayedQuestion
-						? rule.title +
-						  (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '') +
-						  (meta.requis === 'oui' ? `*` : '')
-						: undefined)
-				}
+				label={displayedLabel}
 				required={meta.requis === 'oui'}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
 			/>
-			<Spacing md />
+			<Spacing sm />
 		</FadeIn>
 	)
 }

@@ -1,10 +1,10 @@
 import { DottedName } from '@/../../modele-social'
+import { updateSituation } from '@/actions/actions'
 import {
 	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
-import { updateSituation } from '@/actions/actions'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -300,7 +300,7 @@ function ResultSection() {
 									<Button
 										to={sitePaths.gérer.déclarationIndépendant.déclaration}
 										onPress={() => {
-											dispatchValue('non', 'DRI . déclaration revenus manuel')
+											dispatchValue('non', 'DRI . déclaration revenus manuelle')
 										}}
 									>
 										Continuer vers l'aide au remplissage
@@ -313,7 +313,7 @@ function ResultSection() {
 								<Link
 									to={sitePaths.gérer.déclarationIndépendant.déclaration}
 									onPress={() => {
-										dispatchValue('oui', 'DRI . déclaration revenus manuel')
+										dispatchValue('oui', 'DRI . déclaration revenus manuelle')
 									}}
 								>
 									accéder directement à l'estimation de mes cotisations en 2022.

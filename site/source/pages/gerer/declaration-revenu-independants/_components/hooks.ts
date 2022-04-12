@@ -1,6 +1,8 @@
-import { DottedName } from 'modele-social'
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
 import { isEmpty } from 'ramda'
+import { useMemo } from 'react'
 
 export function useProgress(objectifs: DottedName[]): number {
 	const engine = useEngine()
@@ -14,10 +16,32 @@ export function useProgress(objectifs: DottedName[]): number {
 	const objectifsRemplis = objectifsApplicables.filter((objectif) =>
 		isEmpty(objectif.missingVariables)
 	)
+	console.log(objectifsApplicables, objectifsRemplis)
 
 	if (!objectifsApplicables.length) {
 		return 0
 	}
 
 	return objectifsRemplis.length / objectifsApplicables.length
+}
+
+export function useApplicableFields(
+	dottedNameOrRegexp: DottedName | RegExp
+): Array<[DottedName, RuleNode]> {
+	const engine = useEngine()
+	const fields = useMemo(
+		() =>
+			(Object.entries(engine.getParsedRules()) as Array<[DottedName, RuleNode]>)
+				.filter(([dottedName]) =>
+					typeof dottedNameOrRegexp === 'string'
+						? dottedName.startsWith(dottedNameOrRegexp)
+						: dottedName.match(dottedNameOrRegexp)
+				)
+				.filter(
+					([dottedName]) => engine.evaluate(dottedName).nodeValue !== null
+				),
+		[engine.parsedSituation]
+	)
+
+	return fields
 }

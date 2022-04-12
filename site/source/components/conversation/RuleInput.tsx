@@ -28,6 +28,7 @@ type Props<Names extends string = DottedName> = Omit<
 	small?: boolean
 	dottedName: Names
 	label?: string
+	missing?: boolean
 	onChange: (value: PublicodesExpression | undefined, dottedName: Names) => void
 	// TODO: It would be preferable to replace this "showSuggestions" parameter by
 	// a build-in logic in the engine, by setting the "applicability" of
@@ -72,6 +73,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	onSubmit = () => null,
 	showDefaultDateValue = false,
 	modifiers = {},
+	missing,
 	...props
 }: Props<Names>) {
 	const engine = useContext(EngineContext)
@@ -81,7 +83,9 @@ export default function RuleInput<Names extends string = DottedName>({
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
-		missing: !showDefaultDateValue && !!evaluation.missingVariables[dottedName],
+		missing:
+			missing ??
+			(!showDefaultDateValue && !!evaluation.missingVariables[dottedName]),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,
