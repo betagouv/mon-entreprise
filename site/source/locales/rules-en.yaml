@@ -279,6 +279,9 @@ DRI . déclaration revenus . traitements et salaire:
 DRI . déclaration revenus . traitements et salaire . revenus des associés et gérants:
   titre.en: '[automatic] income of partners and managers'
   titre.fr: revenus des associés et gérants
+DRI . déclaration revenus manuel:
+  titre.en: '[automatic] manual income tax return'
+  titre.fr: déclaration revenus manuel
 DRI . liasse:
   titre.en: '[automatic] bundle'
   titre.fr: liasse
