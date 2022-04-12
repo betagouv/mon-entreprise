@@ -68,15 +68,6 @@ DRI . accompagnement imposition par défaut:
 DRI . cas exclus:
   titre.en: '[automatic] excluded cases'
   titre.fr: cas exclus
-DRI . cas exclus . autres outils:
-  titre.en: '[automatic] other tools'
-  titre.fr: autres outils
-DRI . cas exclus . désolé:
-  titre.en: '[automatic] sorry'
-  titre.fr: désolé
-DRI . comptable:
-  titre.en: '[automatic] accountant'
-  titre.fr: comptable
 DRI . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
@@ -282,6 +273,9 @@ DRI . déclaration revenus . traitements et salaire . revenus des associés et g
 DRI . déclaration revenus manuel:
   titre.en: '[automatic] manual income tax return'
   titre.fr: déclaration revenus manuel
+DRI . imposition cas exclus:
+  titre.en: '[automatic] taxation excluded cases'
+  titre.fr: imposition cas exclus
 DRI . liasse:
   titre.en: '[automatic] bundle'
   titre.fr: liasse
@@ -420,14 +414,17 @@ DRI . liasse . réel simplifié . Divers:
 DRI . liasse . réel simplifié . Déductions:
   titre.en: '[automatic] Deductions'
   titre.fr: Déductions
-DRI . liasse . réel simplifié . bénéfice:
-  titre.en: '[automatic] profit'
-  titre.fr: bénéfice
 DRI . liasse . réel simplifié . bénéfice ou déficit:
-  question.en: '[automatic] Are you in profit (box 370) or deficit (box 372)?'
-  question.fr: Êtes-vous en bénéfice (case 370) ou en déficit (case 372) ?
+  question.en: '[automatic] Is your company in profit (box 370) or in deficit (box 372)?'
+  question.fr: Votre entreprise est-elle en bénéfice (case 370) ou en déficit (case 372) ?
   titre.en: '[automatic] profit or deficit'
   titre.fr: bénéfice ou déficit
+DRI . liasse . réel simplifié . bénéfice ou déficit . bénéfice:
+  titre.en: '[automatic] profit'
+  titre.fr: bénéfice
+DRI . liasse . réel simplifié . bénéfice ou déficit . déficit:
+  titre.en: '[automatic] deficit'
+  titre.fr: déficit
 DRI . liasse . réel simplifié . c326:
   résumé.en: '[automatic] of which amount deductible from compulsory social
     security contributions'
@@ -459,9 +456,6 @@ DRI . liasse . réel simplifié . c596:
   résumé.fr: Court terme
   titre.en: '[automatic] 596'
   titre.fr: '596'
-DRI . liasse . réel simplifié . déficit:
-  titre.en: '[automatic] deficit'
-  titre.fr: déficit
 DRI . liasse . réel simplifié . plus-values et moins-values:
   titre.en: '[automatic] capital gains and losses'
   titre.fr: plus-values et moins-values
@@ -485,6 +479,18 @@ DRI . liasse . rémunération dirigeant:
 DRI . nombre de déclarations:
   titre.en: '[automatic] number of declarations'
   titre.fr: nombre de déclarations
+DRI . textes:
+  titre.en: '[automatic] texts'
+  titre.fr: textes
+DRI . textes . autres outils:
+  titre.en: '[automatic] other tools'
+  titre.fr: autres outils
+DRI . textes . comptable:
+  titre.en: '[automatic] accountant'
+  titre.fr: comptable
+DRI . textes . désolé:
+  titre.en: '[automatic] sorry'
+  titre.fr: désolé
 SMIC horaire:
   note.en: >
     [automatic] In principle, and unless there is a "boost", the SMIC is
