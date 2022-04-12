@@ -140,7 +140,7 @@ export default function Imposition() {
 											</Markdown>
 										</Item>
 									) : (
-										(null as any) // Problem with AriaAccordionProps type
+										(null as unknown as JSX.Element) // Problem with AriaAccordionProps type
 									)}
 								</Accordion>
 								<WhenApplicable dottedName="DRI . accompagnement imposition . bénéfice . exceptions">
