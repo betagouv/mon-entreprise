@@ -1,5 +1,5 @@
 import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
-import { map, reduce, toPairs, zipObj } from 'ramda'
+import { reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -13,13 +13,6 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'auto-entrepreneur-EIRL',
 	'SA',
 ]
-
-type LocalizedPath = string
-type SitePathObject<T> = {
-	index: LocalizedPath
-} & {
-	[key in keyof T]: string | SitePathObject<T[key]>
-}
 
 const rawSitePathsFr = {
 	index: '',
@@ -203,24 +196,38 @@ const checkedSitePathsFr: RequiredPath & typeof rawSitePathsFr = rawSitePathsFr
 // If there is a type error here, check rawSitePathsEn object matches the metadata-src.ts pathId
 const checkedSitePathsEn: RequiredPath & typeof rawSitePathsEn = rawSitePathsEn
 
-function constructSitePaths<T extends SitePathObject<T>>(
+type SitePathObject<T> = {
+	[K in keyof T]: T[K] extends string ? string : SitePathObject<T[K]>
+} & {
+	index: string
+}
+
+function constructSitePaths<T>(
 	root: string,
-	{ index, ...sitePaths }: T
-): T {
+	{ index, ...sitePaths }: SitePathObject<T>
+): SitePathObject<T> {
+	const entries = Object.entries(sitePaths) as [
+		string,
+		string | SitePathObject<T>
+	][]
+
 	return {
 		index: root + index,
-		...map((value: LocalizedPath | SitePathObject<string>) =>
-			typeof value === 'string'
-				? root + index + value
-				: constructSitePaths(root + index, value as any)
-		)(sitePaths as any),
-	} as any
+		...Object.fromEntries(
+			entries.map(([k, value]) => [
+				k,
+				typeof value === 'string'
+					? root + index + value
+					: constructSitePaths(root + index, value),
+			])
+		),
+	} as SitePathObject<T>
 }
 
 export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
 	const sitePaths = language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
 
-	return constructSitePaths('', sitePaths)
+	return constructSitePaths<typeof sitePaths>('', sitePaths)
 }
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>

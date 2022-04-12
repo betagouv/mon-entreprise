@@ -1,5 +1,6 @@
 import Conversation from '@/components/conversation/Conversation'
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
+import PageFeedback from '@/components/Feedback'
 import { Appear, FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -107,6 +108,10 @@ export default function Cotisations() {
 				<Spacing md />
 			</Container>
 			<Progress progress={progress} />
+
+			<Container backgroundColor={(theme) => theme.colors.bases.tertiary[100]}>
+				<PageFeedback />
+			</Container>
 		</FromTop>
 	)
 }

@@ -7,13 +7,22 @@ export const useShowFeedback = () => {
 	const currentPath = useLocation().pathname
 	const sitePath = useContext(SitePathsContext)
 	const simulators = useSimulatorsData()
+
+	const blacklisted = [
+		sitePath.gérer.déclarationIndépendant.cotisations,
+	].includes(currentPath)
+
+	if (blacklisted) {
+		return false
+	}
+
 	if (
 		[
 			simulators['déclaration-charges-sociales-indépendant'],
 			simulators['comparaison-statuts'],
 			simulators['demande-mobilité'],
 		]
-			.map((s) => s.path as string)
+			.map((s) => s.path)
 			.includes(currentPath)
 	) {
 		return true
