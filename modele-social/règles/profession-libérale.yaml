@@ -318,6 +318,47 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
   références:
     Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
+  question: Avez-vous choisi de surcotiser pour améliorer vos droits à la retraite complémentaire ?
+  non applicable si: classe = 'Classe H'
+  description: |-
+    Afin d’améliorer vos droits, vous pouvez choisir de
+    cotiser dans la classe immédiatement supérieure
+    à celle qui correspond à votre tranche de revenus
+    professionnels.
+
+    Cette option vous permettra d’acquérir davantage 
+    de points et donc d’augmenter le montant de
+    votre future pension de retraite.
+
+    Pour cotiser en classe supérieure au régime
+    complémentaire, rendez-vous sur votre espace
+    personnel Cipav :
+    - onglet « Services en ligne » ;
+    - rubrique « Demander à cotiser en classe supérieure ».
+  par défaut: non
+  références:
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide pratique 2022 - Professionnels libéraux - La Cipav_0.pdf#page=15
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
+  titre: Classe avec l'option surcotisation
+  remplace: classe
+  variations:
+    - si: classe = 'Classe A'
+      alors: "'Classe B'"
+    - si: classe = 'Classe B'
+      alors: "'Classe C'"
+    - si: classe = 'Classe C'
+      alors: "'Classe D'"
+    - si: classe = 'Classe D'
+      alors: "'Classe E'"
+    - si: classe = 'Classe E'
+      alors: "'Classe F'"
+    - si: classe = 'Classe F'
+      alors: "'Classe G'"
+    - si: classe = 'Classe G'
+      alors: "'Classe H'"
+
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   titre: invalidité et décès (CIPAV)
