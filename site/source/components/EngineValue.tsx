@@ -40,6 +40,7 @@ export default function Value<Names extends string>({
 	const e = engine ?? defaultEngine
 	const isRule =
 		typeof expression === 'string' && expression in e.getParsedRules()
+
 	const evaluation = e.evaluate({
 		valeur: expression,
 		...(unit && { unité: unit }),
@@ -51,6 +52,21 @@ export default function Value<Names extends string>({
 	}) as string
 
 	if (isRule && linkToRule) {
+		const ruleEvaluation = e.evaluate(expression)
+		let dottedName = expression as DottedName
+		if (ruleEvaluation.visualisationKind === 'replacement') {
+			dottedName =
+				(
+					ruleEvaluation as {
+						explanation: Array<{
+							satisfied: boolean
+							consequence: { dottedName: DottedName }
+						}>
+					}
+				).explanation.find(({ satisfied }) => satisfied === true)?.consequence
+					.dottedName ?? dottedName
+		}
+
 		return (
 			<RuleLink dottedName={expression as DottedName}>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
