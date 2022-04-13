@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+import replace from '@rollup/plugin-replace'
 import yaml from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
@@ -22,7 +23,15 @@ export default defineConfig(({ command }) => ({
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
 	publicDir: 'source/public',
+	build: {
+		sourcemap: true,
+	},
 	plugins: [
+		command === 'build' &&
+			replace({
+				__SENTRY_DEBUG__: false,
+				preventAssignment: false,
+			}),
 		react({
 			babel: { plugins: ['babel-plugin-styled-components'] },
 		}),

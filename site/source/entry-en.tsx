@@ -5,6 +5,7 @@ import i18next from './locales/i18n'
 import ruleTranslations from './locales/rules-en.yaml'
 import translateRules from './locales/translateRules'
 import translations from './locales/ui-en.yaml'
+import { withProfiler } from '@sentry/react'
 import './sentry'
 
 export const AppEn = () => (
@@ -18,6 +19,8 @@ export const AppEn = () => (
 	</I18nProvider>
 )
 
+const AppEnWithProfiler = withProfiler(AppEn)
+
 i18next.addResourceBundle('en', 'translation', translations)
 
 if (!import.meta.env.SSR) {
@@ -25,5 +28,5 @@ if (!import.meta.env.SSR) {
 		// eslint-disable-next-line no-console
 		console.error(err)
 	)
-	render(<AppEn />, document.querySelector('#js'))
+	render(<AppEnWithProfiler />, document.querySelector('#js'))
 }

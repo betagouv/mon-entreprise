@@ -1,5 +1,5 @@
 import { OverlayProvider } from '@react-aria/overlays'
-import { ErrorBoundary } from '@sentry/react'
+import { ErrorBoundary, createReduxEnhancer } from '@sentry/react'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
@@ -30,6 +30,7 @@ import {
 	Middleware,
 	PreloadedState,
 	Store,
+	StoreEnhancer,
 } from 'redux'
 
 // ATInternet Tracking
@@ -66,6 +67,8 @@ const composeEnhancers = composeWithDevToolsDevelopmentOnly(
 	import.meta.env.VITE_REDUX_TRACE ? { trace: true, traceLimit: 25 } : {}
 )
 
+const sentryReduxEnhancer = createReduxEnhancer({}) as StoreEnhancer
+
 export type ProviderProps = {
 	basename: SiteName
 	children: ReactNode
@@ -83,7 +86,10 @@ export default function Provider({
 	children,
 	sitePaths = {} as SitePaths,
 }: ProviderProps): JSX.Element {
-	const storeEnhancer = composeEnhancers(applyMiddleware(...reduxMiddlewares))
+	const storeEnhancer = composeEnhancers(
+		applyMiddleware(...reduxMiddlewares),
+		sentryReduxEnhancer
+	)
 
 	// Hack: useMemo is used to persist the store across hot reloads.
 	const store = useMemo(() => {
