@@ -67,7 +67,6 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
-
 	if (type === 'select') {
 		return (
 			<Select

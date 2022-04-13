@@ -12,6 +12,7 @@ import Engine, {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
+import { isEmpty } from 'ramda'
 import React, { useContext } from 'react'
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
@@ -53,7 +54,6 @@ export type InputProps<Name extends string = string> = Omit<
 		question: RuleNode['rawNode']['question']
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
-		missing: boolean
 		onChange: (value: PublicodesExpression | undefined) => void
 	}
 
@@ -73,7 +73,6 @@ export default function RuleInput<Names extends string = DottedName>({
 	onSubmit = () => null,
 	showDefaultDateValue = false,
 	modifiers = {},
-	missing,
 	...props
 }: Props<Names>) {
 	const engine = useContext(EngineContext)
@@ -83,9 +82,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
-		missing:
-			missing ??
-			(!showDefaultDateValue && !!evaluation.missingVariables[dottedName]),
+		missing: !showDefaultDateValue && !isEmpty(evaluation.missingVariables),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,
@@ -96,7 +93,6 @@ export default function RuleInput<Names extends string = DottedName>({
 		suggestions: showSuggestions ? rule.suggestions : {},
 		...props,
 	}
-
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
 	if (getVariant(engine.getRule(dottedName))) {
