@@ -384,23 +384,6 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
 
-dirigeant . indépendant . PL . CNAVPL . retraite . points:
-  somme:
-    - nom: points T1
-      valeur:
-        produit:
-          assiette: retraite . tranche T1
-          taux: 525 / (plafond sécurité sociale temps plein * 8.23%)
-          plancher: 0
-      arrondi: 1 décimale
-    - nom: points T2
-      valeur:
-        produit:
-          assiette: retraite . tranche T2
-          taux: 25 / (5 * plafond sécurité sociale temps plein * 8.23%)
-          plancher: 0
-      arrondi: 1 décimale
-
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
   titre: retraite de base (CNAVPL)
