@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/react'
-import { Integrations } from '@sentry/tracing'
+import { init } from '@sentry/react'
+import { BrowserTracing } from '@sentry/tracing'
 import { getBranch, isProduction, isStaging } from './utils'
 import { CaptureConsole } from '@sentry/integrations'
 
@@ -16,17 +16,17 @@ if (branch && isStaging()) {
 const release =
 	branch && `${branch}-` + import.meta.env.VITE_GITHUB_SHA?.substring(0, 7)
 
-if (isProduction()) {
-	Sentry.init({
-		dsn: 'https://92bbc21937b24136a2fe1b1d922b000f@o548798.ingest.sentry.io/5745615',
-		integrations: [
-			new Integrations.BrowserTracing(),
-			new CaptureConsole({ levels: ['error'] }),
-		],
-		release,
-		// Set tracesSampleRate to 1.0 to capture 100%
-		// of transactions for performance monitoring.
-		// We recommend adjusting this value in production
-		tracesSampleRate: 0.05,
-	})
-}
+// if (isProduction()) {
+init({
+	dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
+	integrations: [
+		new BrowserTracing(),
+		new CaptureConsole({ levels: ['error'] }),
+	],
+	release,
+	// Set tracesSampleRate to 1.0 to capture 100%
+	// of transactions for performance monitoring.
+	// We recommend adjusting this value in production
+	tracesSampleRate: 1,
+})
+// }
