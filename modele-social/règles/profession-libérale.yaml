@@ -235,8 +235,7 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
 dirigeant . indépendant . PL . CIPAV:
   description: |
     La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
-  rend non applicable:
-    - conjoint collaborateur
+
   références:
     Site web: https://www.lacipav.fr/
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
@@ -435,6 +434,50 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
   titre: classe C
 
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
+  applicable si: conjoint collaborateur
+  valeur: oui
+
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . retraite complémentaire:
+  titre: retraite complémentaire (conjoint collaborateur CIPAV)
+  remplace: conjoint collaborateur . cotisations . retraite complémentaire
+  produit:
+    assiette: retraite complémentaire
+    taux: pourcentage
+  arrondi: oui
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . invalidité et décès:
+  titre: invalidité et décès (conjoint collaborateur CIPAV)
+  remplace: conjoint collaborateur . cotisations . invalidité et décès
+  produit:
+    assiette: invalidité et décès
+    taux: pourcentage
+  arrondi: oui
+
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion:
+  question: À quelle proportion du revenu le conjoint cotise-t'il pour le régime complémentaire et le régime d'invalidité-décès CIPAV ?
+  par défaut: "'quart'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - quart
+        - moitié
+
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . quart:
+  formule: proportion = 'quart'
+  titre: '25 %'
+
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . moitié:
+  formule: proportion = 'moitié'
+  titre: '50 %'
+
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . pourcentage:
+  variations:
+    - si: proportion . quart
+      alors: 25 %
+    - si: proportion . moitié
+      alors: 50 %
+
 dirigeant . indépendant . PL . CNAVPL:
   description: |
     La caisse nationale d'assurance vieillesse des professions libérales est
@@ -480,7 +523,8 @@ dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
   remplace: cotisations et contributions . retraite de base
   formule: CNAVPL . retraite
 
-dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
+dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
+  titre: indemnités journalières maladie (profession libérale)
   description: |
     Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
     la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
@@ -489,21 +533,82 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
     En conséquence une nouvelle cotisation est créée.
   remplace: cotisations et contributions . indemnités journalières maladie
   non applicable si: PL . CNBF
-  formule:
-    produit:
-      assiette:
-        valeur: assiette des cotisations
-        plafond: 3 * plafond sécurité sociale temps plein
-        plancher: 40% * plafond sécurité sociale temps plein
-      taux:
-        variations:
-          - si: année = 2022
-            alors: 0.3%
-          - si: année = 2021
-            alors: 0.15%
-    arrondi: oui
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plafond: 3 * plafond sécurité sociale temps plein
+      plancher: 40% * plafond sécurité sociale temps plein
+    taux:
+      variations:
+        - si: année = 2022
+          alors: 0.30%
+        - si: année = 2021
+          alors: 0.15%
+  arrondi: oui
   références:
     Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
+  applicable si: conjoint collaborateur
+  valeur: oui
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
+  question: À quelle proportion du revenu le conjoint cotise-t'il pour le régime de base ?
+  par défaut: "'quart'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - quart
+        - moitié
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . quart:
+  formule: proportion = 'quart'
+  titre: '25 %'
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . moitié:
+  formule: proportion = 'moitié'
+  titre: '50 %'
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
+  titre: assiette conjoint collaborateur
+  remplace: conjoint collaborateur . cotisations . assiette
+  unité: €/an
+  arrondi: oui
+  produit:
+    assiette: assiette des cotisations
+    taux: 50 %
+    variations:
+      - si: conjoint collaborateur . assiette . forfaitaire
+        alors:
+          assiette: plafond sécurité sociale temps plein
+      - si: proportion . quart
+        alors:
+          taux: 25%
+      - sinon: oui
+        # sinon rien ne change
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
+  titre: Retraite de base (conjoint collaborateur CNAVPL)
+  remplace: dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
+  recalcul:
+    règle: CNAVPL . retraite
+    avec:
+      CNAVPL . retraite . tranche T1 . revenu cotisé:
+        valeur: conjoint collaborateur . assiette
+        plancher: assiette minimale . retraite
+      CNAVPL . retraite . tranche T2 . revenu cotisé:
+        valeur: conjoint collaborateur . assiette
+        plancher: assiette minimale . retraite
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
+  titre: indemnités journalières maladie (conjoint collaborateur CNAVPL)
+  non applicable si: année < 2022
+  remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
+  recalcul:
+    règle: indemnités journalières maladie
+    avec:
+      assiette des cotisations: 40% * plafond sécurité sociale temps plein
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:

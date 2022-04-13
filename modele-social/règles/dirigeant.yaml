@@ -539,20 +539,6 @@ dirigeant . indépendant . assiette des cotisations:
       - cotisations facultatives . déductibles
   plancher: 0
 
-dirigeant . indépendant . conjoint collaborateur:
-  question: Avez-vous un conjoint collaborateur ?
-  description: |
-    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémentaires.
-    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
-    - exercer une activité professionnelle régulière et habituelle dans l'entreprise
-    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans
-    - ne pas être rémunéré
-    - ne pas être associé de la société.
-  par défaut: non
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
-
 dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre: Cotisations et contributions non déductibles fiscalement
   somme:
@@ -614,14 +600,29 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
         - taux: 0%
           plafond: 100%
 
+dirigeant . indépendant . conjoint collaborateur:
+  question: Avez-vous un conjoint collaborateur ?
+  description: |
+    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémentaires.
+    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
+    - exercer une activité professionnelle régulière et habituelle dans l'entreprise
+    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans
+    - ne pas être rémunéré
+    - ne pas être associé de la société.
+  par défaut: non
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
+
 dirigeant . indépendant . conjoint collaborateur . assiette:
   titre: Choix assiette (conjoint collaborateur)
   question: Sur quelle base le conjoint cotise-t'il ?
   description: |
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
-    - 1/3 du Plafond de Sécurité Sociale
-    - Option sur le revenu du chef avec partage ( ½ ou 1/3)
-    - Option sur le revenu du chef sans partage ( ½ ou 1/3)
+    - Le conjoint cotise sur un revenu forfaitaire
+    - Le conjoint cotise sur un pourcentage du revenu du professionnel sans qu’il y ait partage de ce revenu.
+    - Le conjoint cotise sur une fraction du revenu du professionnel. Le revenu est partagé entre les deux conjoints.
+
   par défaut: "'forfaitaire'"
   formule:
     une possibilité:
@@ -645,15 +646,20 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
     Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   formule: assiette = 'revenu avec partage'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage . assiette gérant:
+  titre: assiette (partagée avec le conjoint collaborateur)
+  valeur: assiette des cotisations - cotisations . assiette
   remplace:
     règle: assiette des cotisations
-    par: assiette des cotisations - cotisations . assiette
     dans:
       - cotisations et contributions . retraite de base
       - cotisations et contributions . retraite complémentaire
       - cotisations et contributions . invalidité et décès
+      - dirigeant . indépendant . PL . CNAVPL . retraite
+
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise (un tiers ou la moitié).
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise.
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
@@ -747,6 +753,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       - cotisations . assiette
       - 20% * plafond sécurité sociale temps plein
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  titre: invalidité et décès (conjoint collaborateur)
   unité: €/an
   produit:
     assiette: assiette
@@ -755,6 +762,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
   arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  titre: indemnités journalières maladie (conjoint collaborateur)
   produit:
     assiette:
       valeur: 40% * plafond sécurité sociale temps plein
