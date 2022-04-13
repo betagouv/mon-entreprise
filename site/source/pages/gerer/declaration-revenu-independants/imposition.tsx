@@ -160,7 +160,7 @@ export default function Imposition() {
 								<Body>
 									Si vous ne retrouvez pas ce document, ou si il n'est plus à
 									jour, vous pouvez{' '}
-									<Strong>contacter le service des impôt</Strong> pour qu'il
+									<Strong>contacter le service des impôts</Strong> pour qu'il
 									vous transmette à nouveau ces informations.
 								</Body>
 								<Body>
@@ -286,7 +286,7 @@ function ResultSection() {
 								n'est pas automatique.
 							</Body>
 							<Body>
-								En tant qu'indépendant vous aurez à remplir une section spéciale
+								En tant qu'indépendant vous devez remplir une section spéciale
 								sur le montant des cotisations.
 							</Body>
 
@@ -378,7 +378,7 @@ function ResultSection() {
 									</Body>
 								</Condition>
 								<Body>
-									Si vous avez un comptable, il se chargera de la remplir et de
+									Si vous avez un comptable, il se chargera de le remplir et de
 									l'envoyer à l'administration fiscale.
 								</Body>
 

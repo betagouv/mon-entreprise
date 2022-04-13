@@ -65,21 +65,21 @@ DRI . cas exclus:
         texte: |-
           ### Vous avez créé votre entreprise en 2022
 
-          Les revenus de cette entreprise seront à déclarer l'année prochaine. 
+          Les revenus de cette entreprise seront à déclarer l'année prochaine.
 
-          Vous pouvez estimer le montant de votre revenu net après impôt grâce aux 
+          Vous pouvez estimer le montant de votre revenu net après impôt grâce aux
           simulateurs disponibles sur ce site.
 
 DRI . textes: oui
 DRI . textes . désolé:
   texte: |-
-    Si vous rencontrez des difficultés à remplir votre déclaration, 
+    Si vous rencontrez des difficultés à remplir votre déclaration,
     rapprochez-vous de votre comptable. Si vous êtes sans comptable, vous pouvez
     [contacter le service des impôts](https://www.impots.gouv.fr/contacts).
 
 DRI . textes . autres outils:
   texte: |-
-    Ce site propose d'autres outils qui pourraient vous intéresser (par exemple un 
+    Ce site propose d'autres outils qui pourraient vous intéresser (par exemple un
     simulateur de revenu net après impôt).
 
 DRI . textes . comptable:
@@ -132,8 +132,8 @@ DRI . accompagnement imposition . type . exceptions:
     - si: entreprise . catégorie juridique . EI
       alors:
         texte: |-
-          Par défaut les entreprises individuelles sont imposées à l'impôt sur le revenu. Cependant, 
-          votre entreprise peut être imposée à l'**impôt sur les société** si : 
+          Par défaut les entreprises individuelles sont imposées à l'impôt sur le revenu. Cependant,
+          votre entreprise peut être imposée à l'**impôt sur les société** si :
           - c'est une **entreprise individuelle à responsabilité limitée** (EIRL),
           - et **une demande a été envoyée aux impôts** pour choisir l'impôt sur les sociétés.
 
@@ -148,14 +148,14 @@ DRI . accompagnement imposition . type . exceptions:
           Votre entreprise est imposée à l'**impôt sur les sociétés** (IS) si **une demande a été envoyée aux impôts**
           pour choisir l'impôt sur les sociétés. Cette demande a pu avoir lieu lors de la création ou après.
 
-          > Il est assez fréquent que les EURL choisissent l'option de l'impôt sur les sociétés. Ce choix permet 
+          > Il est assez fréquent que les EURL choisissent l'option de l'impôt sur les sociétés. Ce choix permet
           de se verser des dividendes par exemple.
 
           {{ textes . comptable }}
 
 DRI . accompagnement imposition . bénéfice:
   texte: |-
-    L'activité principale de votre entreprise est 
+    L'activité principale de votre entreprise est
     « **{{ entreprise . activité principale }}** ».
     {{situation}}
 DRI . accompagnement imposition . bénéfice . situation:
@@ -182,7 +182,7 @@ DRI . accompagnement imposition . bénéfice . situation:
 
 DRI . accompagnement imposition . bénéfice . explications:
   texte: |-
-    La déclaration de revenus contient **trois sections principales** pour déclarer les 
+    La déclaration de revenus contient **trois sections principales** pour déclarer les
     bénéfices de votre activité :
 
     - les bénéfices de type **industriels et commerciaux** (BIC)
@@ -192,22 +192,22 @@ DRI . accompagnement imposition . bénéfice . explications:
     Dans votre cas, vous **remplirez la section {{ entreprise . imposition . IR . type de bénéfices}}**
     pour déclarer les bénéfices (ou déficits) de votre entreprise.
 
-    À noter : le type de bénéfice change la façon dont le comptable doit gérer l'entreprise. Par 
-    exemple, cela détermine s'il doit utiliser une comptabilité de trésorerie ou d'engagement et quelle 
+    À noter : le type de bénéfice change la façon dont le comptable doit gérer l'entreprise. Par
+    exemple, cela détermine s'il doit utiliser une comptabilité de trésorerie ou d'engagement et quelle
     liasse fiscale il doit remplir.
 
 DRI . accompagnement imposition . bénéfice . exceptions:
   applicable si: entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles
   texte: |-
     Les bénéfices de votre activité peuvent être de type **industriels et commerciaux** (BIC) si :
-    - la majeure partie de votre activité consiste en la **vente de bien**, 
+    - la majeure partie de votre activité consiste en la **vente de bien**,
     - ou vous créez dans le but de **reproduire et vendre** votre création (par exemple, un photographe d'illustration qui prend des photos pour le compte de clients).
 
     {{ textes . comptable }}
 
 DRI . accompagnement imposition . régime memento fiscal:
   question: |-
-    Dans la section « **vos obligations fiscales** », 
+    Dans la section « **vos obligations fiscales** »,
     quel est le « **régime d'imposition** » inscrit sur la première ligne ?
   par défaut:
     variations:
@@ -284,7 +284,7 @@ DRI . accompagnement imposition . régime:
 
 DRI . accompagnement imposition . explications:
   texte: |-
-    Votre régime d'imposition change le niveau de détail demandé lors du remplissage des obligations 
+    Votre régime d'imposition change le niveau de détail demandé lors du remplissage des obligations
     comptables.
 
     {{ situation }}
@@ -307,10 +307,10 @@ DRI . accompagnement imposition . explications . situation:
           Il est donc très fortement conseillé d'avoir un comptable.
     - si: entreprise . imposition . régime . réel simplifié
       alors:
-        texte: Avec le régime réel simplifié, vous devrez déposer un bilan comptable simplifié. Il est donc conseillé d'avoir un comptable.
+        texte: Avec le régime réel simplifié, vous devez déposer un bilan comptable simplifié. Il est donc conseillé d'avoir un comptable.
     - si: entreprise . imposition . régime . déclaration contrôlée
       alors:
-        texte: Avec le régime de la déclaration contrôlée, vous devrez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'avoir un comptable.
+        texte: Avec le régime de la déclaration contrôlée, vous devez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'avoir un comptable.
 
 DRI . imposition cas exclus:
   applicable si:
@@ -871,7 +871,7 @@ DRI . cotisations . assiette CSG:
 DRI . cotisations . provisionnelles:
   titre: Vos cotisations provisionnelles
   description: |-
-    En 2022, vous allez payer chaque mois une **avance sur le montant des cotisation**s que vous devrez . C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
+    En 2022, vous allez payer chaque mois une **avance sur le montant des cotisations** à payer. C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
 
     Ces cotisations seront **régularisées en 2023**, une fois que l'Urssaf connaîtra votre revenu réel de 2022.
 
