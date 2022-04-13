@@ -50,24 +50,32 @@ export const Ul = styled.ul<ListProps>`
 
 export const Ol = styled.ol<ListProps>`
 	${BaseListStyle}
-	padding-left: ${({ theme }) => theme.spacings.xl};
 
-	${({ size = 'MD', theme }) =>
+	${({ size = 'MD' }) =>
 		size === 'XS'
 			? css`
 					font-size: 0.875rem;
-					padding-left: ${theme.spacings.lg};
 					line-height: 1.25rem;
 			  `
 			: size === 'XL' &&
 			  css`
 					font-size: 1.25rem;
 					line-height: 2rem;
-					padding-left: ${theme.spacings.xxl};
 			  `}
 
 	${Li} {
 		counter-increment: step-counter;
+		padding-left: ${({ theme }) => theme.spacings.xl};
+
+		${({ size = 'MD', theme }) =>
+			size === 'XS'
+				? css`
+						padding-left: ${theme.spacings.lg};
+				  `
+				: size === 'XL' &&
+				  css`
+						padding-left: ${theme.spacings.xxl};
+				  `}
 	}
 	${Li}::before {
 		content: counter(step-counter);
