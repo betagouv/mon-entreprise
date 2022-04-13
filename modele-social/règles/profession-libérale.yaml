@@ -374,7 +374,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
         taux: 8.23%
         plafond: plafond sécurité sociale temps plein
       - attributs:
-          nom: tranche t2
+          nom: tranche T2
           arrondi: oui
         taux: 1.87%
         plafond: 5 * plafond sécurité sociale temps plein
@@ -383,6 +383,23 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
     cotisation minimale (Guide CNAVPL): https://www.cnavpl.fr/wp-content/uploads/2020/10/guide-site-2020.pdf#page=21
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
+
+dirigeant . indépendant . PL . CNAVPL . retraite . points:
+  somme:
+    - nom: points T1
+      valeur:
+        produit:
+          assiette: retraite . tranche T1
+          taux: 525 / (plafond sécurité sociale temps plein * 8.23%)
+          plancher: 0
+      arrondi: 1 décimale
+    - nom: points T2
+      valeur:
+        produit:
+          assiette: retraite . tranche T2
+          taux: 25 / (5 * plafond sécurité sociale temps plein * 8.23%)
+          plancher: 0
+      arrondi: 1 décimale
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . CNAVPL . retraite . remplace:

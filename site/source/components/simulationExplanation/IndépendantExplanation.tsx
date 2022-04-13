@@ -63,7 +63,9 @@ export default function IndépendantExplanation() {
 				</section>
 			</Condition>
 			<InstitutionsPartenaires />
-			{/* <DroitsRetraite /> */}
+			<Condition expression="dirigeant . indépendant . PL . CIPAV">
+				<DroitsRetraite />
+			</Condition>
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>
@@ -162,9 +164,11 @@ function DistributionBranch({
 
 function DroitsRetraite() {
 	const { t } = useTranslation()
+	const engine = useEngine()
+	console.log(engine)
 	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
 	if (
-		!import.meta.env.SSR ||
+		// !import.meta.env.SSR ||
 		document.referrer?.includes('secu-independants.fr') ||
 		document.referrer?.includes('simulateur-rsi.urssaf.fr')
 	) {
@@ -181,6 +185,15 @@ function DroitsRetraite() {
 						<Value
 							expression="protection sociale . retraite . base . trimestres . indépendant"
 							displayedUnit={t('trimestres acquis')}
+						/>
+					</RuleLink>
+				</Li>
+				<Li>
+					Points de retraite acquis :{' '}
+					<RuleLink dottedName="dirigeant . indépendant . PL . CNAVPL . retraite . points">
+						<Value
+							expression="dirigeant . indépendant . PL . CNAVPL . retraite . points"
+							displayedUnit={t('points de retraite acquis')}
 						/>
 					</RuleLink>
 				</Li>
