@@ -253,64 +253,68 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   titre: retraite complémentaire (CIPAV)
   unité: €/an
+  variations:
+    - si: année = 2021
+      alors:
+        variations:
+          - si: classe = 'Classe A'
+            alors: 1457
+          - si: classe = 'Classe B'
+            alors: 2913
+          - si: classe = 'Classe C'
+            alors: 4370
+          - si: classe = 'Classe D'
+            alors: 7283
+          - si: classe = 'Classe E'
+            alors: 10196
+          - si: classe = 'Classe F'
+            alors: 16023
+          - si: classe = 'Classe G'
+            alors: 17479
+          - si: classe = 'Classe H'
+            alors: 18936
+    - si: année = 2022
+      alors:
+        variations:
+          - si: classe = 'Classe A'
+            alors: 1527
+          - si: classe = 'Classe B'
+            alors: 3055
+          - si: classe = 'Classe C'
+            alors: 4582
+          - si: classe = 'Classe D'
+            alors: 7637
+          - si: classe = 'Classe E'
+            alors: 10692
+          - si: classe = 'Classe F'
+            alors: 16802
+          - si: classe = 'Classe G'
+            alors: 18329
+          - si: classe = 'Classe H'
+            alors: 19857
+  références:
+    Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
+  titre: Classe de cotisation
   grille:
     assiette: assiette des cotisations
     tranches:
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 1527
-            - si: année = 2021
-              alors: 1457
+      - montant: "'Classe A'"
         plafond: 26581 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 3055
-            - si: année = 2021
-              alors: 2913
+      - montant: "'Classe B'"
         plafond: 49281 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 4582
-            - si: année = 2021
-              alors: 4370
+      - montant: "'Classe C'"
         plafond: 57851 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 7637
-            - si: année = 2021
-              alors: 7283
+      - montant: "'Classe D'"
         plafond: 66401 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 10692
-            - si: année = 2021
-              alors: 10196
+      - montant: "'Classe E'"
         plafond: 83061 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 16802
-            - si: année = 2021
-              alors: 16023
+      - montant: "'Classe F'"
         plafond: 103181 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 18329
-            - si: année = 2021
-              alors: 17479
+      - montant: "'Classe G'"
         plafond: 123301 €/an
-      - montant:
-          variations:
-            - si: année = 2022
-              alors: 19857
-            - si: année = 2021
-              alors: 18936
+      - montant: "'Classe H'"
   références:
     Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 

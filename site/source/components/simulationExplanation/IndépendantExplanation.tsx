@@ -165,15 +165,6 @@ function DistributionBranch({
 function DroitsRetraite() {
 	const { t } = useTranslation()
 
-	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
-	if (
-		// !import.meta.env.SSR ||
-		document.referrer?.includes('secu-independants.fr') ||
-		document.referrer?.includes('simulateur-rsi.urssaf.fr')
-	) {
-		return null
-	}
-
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
 			<H3 as="h2">Retraite : droits acquis sur l'année</H3>
@@ -187,16 +178,18 @@ function DroitsRetraite() {
 						/>
 					</RuleLink>
 				</Li>
+				<WhenApplicable dottedName="protection sociale . retraite . CNAVPL">
+					<Li>
+						Points de retraite de base acquis :{' '}
+						<Value
+							linkToRule
+							expression="protection sociale . retraite . CNAVPL"
+							displayedUnit={t('points')}
+						/>
+					</Li>
+				</WhenApplicable>
 				<Li>
-					Points de retraite de base acquis :{' '}
-					<Value
-						linkToRule
-						expression="protection sociale . retraite . CNAVPL"
-						displayedUnit={t('points')}
-					/>
-				</Li>
-				<Li>
-					Retraite complémentaire :{' '}
+					Points de retraite complémentaire acquis :{' '}
 					<WhenApplicable dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 						<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
 							<Value
@@ -217,7 +210,7 @@ function DroitsRetraite() {
 								</RuleLink>
 							</SmallBody>
 						</WhenApplicable>
-						<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
+						<WhenApplicable dottedName="dirigeant . indépendant . PL">
 							<SmallBody>
 								Ce simulateur ne gère pas les droits acquis de retraite
 								complémentaire pour les professions libérales

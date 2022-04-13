@@ -53,6 +53,7 @@ protection sociale . retraite . plr:
   valeur: "'Non implémenté'"
 
 protection sociale . retraite . CNAVPL:
+  applicable si: dirigeant . indépendant . PL . CNAVPL
   description: |-
     Les professions libérales affiliées à la CNAVPL ont un régime de retraite de base par point.
 
@@ -86,6 +87,32 @@ protection sociale . retraite . CNAVPL:
     geant à avoir recours à l’assistance d’une tierce personne ;
     - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
     de leur profession pour une durée de plus de 6 mois
+  références:
+    guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
+
+protection sociale . retraite . CIPAV:
+  applicable si: dirigeant . indépendant . PL . CIPAV
+  remplace: protection sociale . retraite . complémentaire indépendants . points acquis
+  unité: points
+  variations:
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
+      alors: 36
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
+      alors: 72
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
+      alors: 108
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
+      alors: 180
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
+      alors: 252
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
+      alors: 396
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
+      alors: 432
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
+      alors: 468
+  références:
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
 protection sociale . retraite . CNAVPL . cotisation maximum T1:
   recalcul:
