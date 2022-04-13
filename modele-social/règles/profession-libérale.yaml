@@ -369,6 +369,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
     ont les mêmes taux de cotisations pour leur retraite de base.
   produit:
     assiette:
+      nom: revenu cotisé
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
     composantes:

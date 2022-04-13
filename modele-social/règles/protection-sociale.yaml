@@ -44,88 +44,6 @@ protection sociale . retraite:
       - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
       - On ne calcule pas le nombre de trimestres validés par année
 
-protection sociale . retraite . plr:
-  applicable si: dirigeant . indépendant . PL . CNAVPL
-  remplace: retraite
-  rend non applicable: complémentaire indépendants
-  titre: Retraite profession libérale réglementée
-  description: Nous n'avons pas implémenté les règles spécifiques aux professions libérales réglementées.
-  valeur: "'Non implémenté'"
-
-protection sociale . retraite . CNAVPL:
-  applicable si: dirigeant . indépendant . PL . CNAVPL
-  description: |-
-    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de base par point.
-
-    Le nombre de points acquis chaque année est déterminé en fonction des revenus
-    professionnels soumis à cotisations :
-
-    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
-    annuel de la sécurité sociale),
-    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
-    fond annuel de la sécurité sociale).
-
-    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
-    sur la cotisation maximale et arrondi à la décimale la plus proche
-
-  somme:
-    - nom: points T1
-      produit:
-        assiette: 525 points
-        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 / cotisation maximum T1
-      arrondi: 1 décimale
-    - nom: points T2
-      produit:
-        assiette: 25 points
-        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 / cotisation maximum T2
-      arrondi: 1 décimale
-  note: |-
-    Des points supplémentaires peuvent être attribués :
-    - points rachetés ;
-    - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
-    - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
-    geant à avoir recours à l’assistance d’une tierce personne ;
-    - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
-    de leur profession pour une durée de plus de 6 mois
-  références:
-    guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
-
-protection sociale . retraite . CIPAV:
-  applicable si: dirigeant . indépendant . PL . CIPAV
-  remplace: protection sociale . retraite . complémentaire indépendants . points acquis
-  unité: points
-  variations:
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
-      alors: 36
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
-      alors: 72
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
-      alors: 108
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
-      alors: 180
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
-      alors: 252
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
-      alors: 396
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
-      alors: 432
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
-      alors: 468
-  références:
-    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
-
-protection sociale . retraite . CNAVPL . cotisation maximum T1:
-  recalcul:
-    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
-    avec:
-      dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale temps plein
-
-protection sociale . retraite . CNAVPL . cotisation maximum T2:
-  recalcul:
-    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
-    avec:
-      dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale temps plein
-
 protection sociale . retraite . base:
   # TODO : vérifier les modalités de calcul pour les salariés et les autoentrepreneurs. Il est possible que ce soit le même mécanisme que pour les indépendants.
   titre: pension de retraite de base
@@ -270,6 +188,85 @@ protection sociale . retraite . mois cotisés:
   unité: mois
   formule: 172 trimestres * 3 mois/trimestre
   notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
+
+protection sociale . retraite . CNAVPL:
+  applicable si: dirigeant . indépendant . PL . CNAVPL
+  remplace:
+    règle: base . trimestres . indépendant . revenu cotisé
+    dans: base . trimestres . indépendant
+    # Bug https://github.com/betagouv/publicodes/issues/207
+    par: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 . revenu cotisé
+  description: |-
+    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de base par point.
+
+    Le nombre de points acquis chaque année est déterminé en fonction des revenus
+    professionnels soumis à cotisations :
+
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
+    annuel de la sécurité sociale),
+    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
+    fond annuel de la sécurité sociale).
+
+    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
+    sur la cotisation maximale et arrondi à la décimale la plus proche
+
+  somme:
+    - nom: points T1
+      produit:
+        assiette: 525 points
+        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 / cotisation maximum T1
+      arrondi: 1 décimale
+    - nom: points T2
+      produit:
+        assiette: 25 points
+        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 / cotisation maximum T2
+      arrondi: 1 décimale
+  note: |-
+    Des points supplémentaires peuvent être attribués :
+    - points rachetés ;
+    - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
+    - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
+    geant à avoir recours à l’assistance d’une tierce personne ;
+    - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
+    de leur profession pour une durée de plus de 6 mois
+  références:
+    guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
+
+protection sociale . retraite . CIPAV:
+  applicable si: dirigeant . indépendant . PL . CIPAV
+  remplace: protection sociale . retraite . complémentaire indépendants . points acquis
+  unité: points
+  variations:
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
+      alors: 36
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
+      alors: 72
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
+      alors: 108
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
+      alors: 180
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
+      alors: 252
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
+      alors: 396
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
+      alors: 432
+    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
+      alors: 468
+  références:
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+
+protection sociale . retraite . CNAVPL . cotisation maximum T1:
+  recalcul:
+    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
+    avec:
+      dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale temps plein
+
+protection sociale . retraite . CNAVPL . cotisation maximum T2:
+  recalcul:
+    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
+    avec:
+      dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale temps plein
 
 protection sociale . retraite . complémentaire salarié:
   produit:
