@@ -292,6 +292,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
             alors: 18329
           - si: classe = 'Classe H'
             alors: 19857
+  abattement: réduction . taux
   références:
     Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
@@ -320,7 +321,10 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
   question: Avez-vous choisi de surcotiser pour améliorer vos droits à la retraite complémentaire ?
-  non applicable si: classe = 'Classe H'
+  non applicable si:
+    une de ces conditions:
+      - classe = 'Classe H'
+      - réduction
   description: |-
     Afin d’améliorer vos droits, vous pouvez choisir de
     cotiser dans la classe immédiatement supérieure
@@ -358,6 +362,42 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
       alors: "'Classe G'"
     - si: classe = 'Classe G'
       alors: "'Classe H'"
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction:
+  applicable si: assiette des cotisations <= plafond réduction
+  question: Avez-vous demandé une réduction de votre cotisation au régime complémentaire ?
+  description: |-
+    Si vos revenus de sont inférieurs
+    ou égaux à 24 314 €, vous avez la possibilité de
+    demander une réduction de votre cotisation au
+    régime complémentaire. 
+
+    Cette réduction est provisoire, elle sera maintenue ou supprimée une fois que
+    vous déclarez vos revenus de l'année.
+
+    Si votre situation financière vous contraint à
+    demander une réduction du montant de votre
+    cotisation au régime complémentaire, rendez-vous
+    sur votre espace personnel Cipav :
+    - onglet « Services en ligne » ;
+    - rubrique « Demander une réduction des cotisations ».
+  par défaut: non
+  références:
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=16
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . plafond réduction: 24314 €/an
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction . taux:
+  grille:
+    assiette: assiette des cotisations
+    tranches:
+      - montant: 100%
+        plafond: 6170 €
+      - montant: 75%
+        plafond: 12157 €
+      - montant: 50%
+        plafond: 18236 €
+      - montant: 25%
+        plafond: plafond réduction
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
