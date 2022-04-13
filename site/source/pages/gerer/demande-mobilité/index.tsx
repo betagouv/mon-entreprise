@@ -100,6 +100,7 @@ function FormulairePublicodes() {
 
 	engine.setSituation(situation)
 	const fields = useFields(engine)
+	console.log(fields)
 	const missingValues = Object.keys(
 		fields.reduce(
 			(missingValues, { dottedName }) => ({
@@ -151,9 +152,10 @@ function FormulairePublicodes() {
 											>
 												{' '}
 												<Markdown>
-													{typeof question !== 'string'
-														? (engine.evaluate(question) as any).nodeValue
-														: question}
+													{evaluateQuestion(
+														engine,
+														engine.getRule(dottedName)
+													) ?? ''}
 												</Markdown>
 											</div>
 										)}

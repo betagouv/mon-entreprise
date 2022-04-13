@@ -1,13 +1,14 @@
 situation:
   question: >-
     ## Quelle type d'activité est concernée ?
-  par défaut: non
   une possibilité:
     choix obligatoire: oui
     possibilités: [PAM, PL, AC, auto-entrepreneur, salarié, artiste-auteur]
+  par défaut: "'non défini'"
+
 situation . PAM:
+  valeur: situation = 'PAM'
   titre: Praticien et auxiliaire médical
-  applicable si: situation . TNS
   description: >-
     Choisissez cette option si vous exercez en libéral une des professions suivantes :
     - Auxiliaire médical (infirmier, masseur-kinésithérapeute,
@@ -16,28 +17,36 @@ situation . PAM:
     - Chirurgien-dentiste
     - Sage-femme
 
-situation . artiste-auteur:
-situation . TNS:
-  une de ces conditions:
-    - situation = 'PAM'
-    - situation = 'artiste-auteur'
+situation . artiste-auteur: situation = 'artiste-auteur'
 
 situation . PL:
   titre: Indépendant profession libérale
+  valeur: situation = 'PL'
+
 situation . AC:
   titre: Indépendant artisan ou commerçant
+  valeur: situation = 'AC'
+
 situation . auto-entrepreneur:
+  valeur: situation = 'auto-entrepreneur'
+
 situation . salarié:
   titre: salarié (CEA et TESE)
+  valeur: situation = 'salarié'
+
+situation . TNS:
+  une de ces conditions:
+    - situation . PAM
+    - situation . artiste-auteur
 
 situation . notification:
   type: groupe
   titre: ''
   applicable si:
     une de ces conditions:
-      - situation = 'PL'
-      - situation = 'AC'
-      - situation = 'auto-entrepreneur'
+      - situation . PL
+      - situation . AC
+      - situation . auto-entrepreneur
 
   description: >
     ## Vos services évoluent
@@ -55,7 +64,7 @@ situation . notification:
 situation . notification . TI:
   type: groupe
   titre: ''
-  non applicable si: situation = 'auto-entrepreneur'
+  non applicable si: situation . auto-entrepreneur
   valeur: oui
   description: >-
     [Plus d'informations](https://www.urssaf.fr/portail/home/independant/ma-situation-ou-mes-coordonnees/je-souhaite-travailler-hors-de-f.html)
@@ -63,7 +72,7 @@ situation . notification . TI:
 situation . notification . auto-entrepreneur:
   type: groupe
   titre: ''
-  applicable si: situation = 'auto-entrepreneur'
+  applicable si: situation . auto-entrepreneur
   valeur: oui
   description: >-
     [Plus d'informations](https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#je-voudrais-travailler-a-letrang)
@@ -80,7 +89,7 @@ PAM:
     Après étude de votre demande, si les conditions le permettent, vous recevrez un certificat A1 (ou le formulaire spécifique) attestant du maintien à la Sécurité sociale française.
 
 notification signature:
-  applicable si: situation
+  applicable si: situation != 'non défini'
   non applicable si: situation . notification
   valeur: oui
   titre: ''
@@ -100,7 +109,7 @@ infos personnelles:
   valeur: oui
 
 salarié CEA ou TESE:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   question: Êtes-vous adhérent au TESE ou au CEA ?
   une possibilité:
     choix obligatoire: oui
@@ -111,14 +120,14 @@ salarié CEA ou TESE . TESE:
 salarié CEA ou TESE . CEA:
 
 infos salarié:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   valeur: oui
   titre: Informations concernant le salarié
   type: groupe
 
 données assuré:
   non applicable si: situation . notification
-  applicable si: situation
+  applicable si: situation != 'non défini'
   type: groupe
   titre: ''
   somme:
@@ -183,14 +192,14 @@ activité indépendante:
   titre: Votre activité en France
 
 entreprise en france:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   type: groupe
   formule: oui
   titre: L'entreprise en France
 
 entreprise france:
   valeur: oui
-  applicable si: situation
+  applicable si: situation != 'non défini'
   non applicable si: situation . notification
 
 entreprise france . SIRET:
@@ -221,17 +230,17 @@ entreprise france . nature de l'activité:
     Saisissez une courte description de votre activité en France (ex: plombier, coach sportif, aménagement intérieur)
 
 contact:
-  applicable si: situation
+  applicable si: situation != 'non défini'
   non applicable si: situation . notification
   titre: Vos coordonnées de contact
   type: groupe
   valeur: oui
 
 contact . nom:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   type: texte
 contact . prénom:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   type: texte
 contact . email:
   type: texte
@@ -240,7 +249,7 @@ contact . téléphone:
 
 demande:
   titre: Votre demande
-  applicable si: situation
+  applicable si: situation != 'non défini'
   non applicable si: situation . notification
   type: groupe
   valeur: oui
@@ -280,7 +289,7 @@ demande . PAM . détachement possible:
     - activité semblable
 
 demande . salarié:
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   question: 'Le salarié va exercer son activité professionnelle à l’étranger :'
   par défaut: non
   une possibilité:
@@ -483,7 +492,7 @@ détachement . pays hors UE . autre:
 
 détachement . salarié:
   toutes ces conditions:
-    - situation = 'salarié'
+    - situation . salarié
     - pays
 
 détachement . salarié . statut:
@@ -908,7 +917,7 @@ pluriactivité . activité substantielle en France . critère salarié:
     - la rémunération
 
     Choisissez celui qui reflète au mieux votre estimation sur les 12 prochains mois.
-  applicable si: situation = 'salarié'
+  applicable si: situation . salarié
   une possibilité:
     choix obligatoire: oui
     possibilités: ['Le temps de travail', 'La rémunération']
@@ -941,7 +950,7 @@ pluriactivité . activité substantielle en France . critère PAM . Les prestati
 pluriactivité . salarié:
   applicable si:
     toutes ces conditions:
-      - situation = 'salarié'
+      - situation . salarié
       - nombre
 pluriactivité . salarié . employeurs multiples:
   question: Votre salarié a-t-il plusieurs autres employeurs ?
