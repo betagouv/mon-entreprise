@@ -219,6 +219,12 @@
       continuation of your business.</1>
 <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>: <0>Month</0><1>Health crisis situation</1><2>Amount of reduction</2>
 <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>: <0>Amount of the social exemption related to the health crisis in 2021</0>
+"<0>Montant total de l'exonération Covid applicable aux cotisations 2021</0><1>L'exonération correspondante s'impute sur les cotisations et contributions sociale définitives 2021, hors CFP (contribution à la formation professionnelle) et CURPS (contribution aux unions régionales des professionnels de santé), dans la limite des cotisations restant dues à l'Urssaf.</1>":
+  <0>Total amount of Covid exemption applicable to 2021 contributions</0><1>The
+  corresponding exemption will be deducted from the final 2021 social security
+  contributions, excluding the CFP (contribution to professional training) and
+  CURPS (contribution to regional unions of health professionals), up to the
+  limit of the contributions still due to the Urssaf.</1>
 <0>Oui</0>: <0>Yes</0>
 <0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1>:
   <0>Summary for Third Party Filers</0><1>Transfer the items in brackets to your

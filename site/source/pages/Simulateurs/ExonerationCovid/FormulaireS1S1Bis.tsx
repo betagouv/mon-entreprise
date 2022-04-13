@@ -222,8 +222,18 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 				<GridTotal container>
 					<Grid item xs>
 						<Trans>
-							Montant de l’exonération sociale liée à la crise sanitaire pour
-							les cotisations de l’année 2021
+							<Bold>
+								Montant total de l'exonération Covid applicable aux cotisations
+								2021
+							</Bold>
+
+							<Italic>
+								L'exonération correspondante s'impute sur les cotisations et
+								contributions sociale définitives 2021, hors CFP (contribution à
+								la formation professionnelle) et CURPS (contribution aux unions
+								régionales des professionnels de santé), dans la limite des
+								cotisations restant dues à l'Urssaf.
+							</Italic>
 						</Trans>
 					</Grid>
 

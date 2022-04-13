@@ -33,9 +33,11 @@ export const Italic = styled.div`
 `
 
 export const GridTotal = styled(Grid)`
-	font-size: 1.25rem;
-	line-height: 1.5rem;
-	font-weight: 700;
+	${Bold} {
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+		font-weight: 700;
+	}
 `
 
 export const Total = styled.div`
