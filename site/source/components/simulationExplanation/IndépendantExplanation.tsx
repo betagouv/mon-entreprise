@@ -12,12 +12,12 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { ThemeContext } from 'styled-components'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
@@ -164,8 +164,7 @@ function DistributionBranch({
 
 function DroitsRetraite() {
 	const { t } = useTranslation()
-	const engine = useEngine()
-	console.log(engine)
+
 	/** Le simulateur ne doit pas faire apparaître les droits à la retraite sur secu-independant.fr */
 	if (
 		// !import.meta.env.SSR ||
@@ -189,13 +188,12 @@ function DroitsRetraite() {
 					</RuleLink>
 				</Li>
 				<Li>
-					Points de retraite acquis :{' '}
-					<RuleLink dottedName="dirigeant . indépendant . PL . CNAVPL . retraite . points">
-						<Value
-							expression="dirigeant . indépendant . PL . CNAVPL . retraite . points"
-							displayedUnit={t('points de retraite acquis')}
-						/>
-					</RuleLink>
+					Points de retraite de base acquis :{' '}
+					<Value
+						linkToRule
+						expression="protection sociale . retraite . CNAVPL"
+						displayedUnit={t('points')}
+					/>
 				</Li>
 				<Li>
 					Retraite complémentaire :{' '}
