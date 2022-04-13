@@ -2281,6 +2281,8 @@ contrat salarié . frais professionnels . titres-restaurant:
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  question.en: '[automatic] Does the employee receive meal vouchers?'
+  question.fr: Le salarié reçoit-il des titres-restaurant ?
   titre.en: '[automatic] restaurant vouchers'
   titre.fr: titres-restaurant
 contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
@@ -2295,6 +2297,9 @@ contrat salarié . frais professionnels . titres-restaurant . contrôle taux emp
   description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
   titre.en: '[automatic] control minimum employer rate'
   titre.fr: contrôle taux employeur min
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   description.en: '[automatic] There is no maximum or minimum value for meal
     vouchers. However, in order to benefit from the contribution exemption, the
@@ -2339,6 +2344,37 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   suggestions.60%.fr: 60%
   titre.en: '[automatic] employer contribution rate'
   titre.fr: taux participation employeur
+contrat salarié . frais professionnels . titres-restaurant applicable:
+  description.en: >-
+    [automatic] The meal voucher is a special payment voucher for "meals" given
+    by the employer to the employee.
+
+
+    The employee can only use the meal vouchers in his possession to pay for consumption:
+
+      - a meal,
+
+      - directly consumable food preparations,
+
+      - fruits and vegetables.
+
+    This title can be issued on paper or in dematerialized form.
+  description.fr: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
+
+      - d’un repas,
+
+      - de préparations alimentaires directement consommables,
+
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  titre.en: '[automatic] applicable meal vouchers'
+  titre.fr: titres-restaurant applicable
 contrat salarié . frais professionnels . transports personnels:
   titre.en: '[automatic] personal transports'
   titre.fr: transports personnels
