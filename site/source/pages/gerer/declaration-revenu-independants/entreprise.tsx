@@ -110,7 +110,7 @@ export default function Accueil() {
 								<Trans i18nKey="assistant-DRI.precision">
 									<H3>Quelques précisions avant de continuer</H3>
 									<Body>
-										Pour faire votre déclaration de revenu, il faudra vous
+										Pour faire votre déclaration de revenu, il faut vous
 										connecter sur{' '}
 										<Link href="https://www.impots.gouv.fr/accueil">
 											impot.gouv.fr
@@ -118,9 +118,9 @@ export default function Accueil() {
 										à partir du <Strong>8 avril 2022</Strong>.
 									</Body>
 									<Body>
-										Si vous faites remplir votre déclaration de revenu par votre
-										expert-comptable, cet assistant peut quand même vous être
-										utile pour connaître le{' '}
+										Si c'est votre expert-comptable qui remplit votre
+										déclaration, cet assistant peut quand même vous être utile
+										pour connaître le{' '}
 										<Strong>
 											montant des cotisations sociales à payer en 2022
 										</Strong>
