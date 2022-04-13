@@ -253,6 +253,7 @@ protection sociale . retraite . CIPAV:
       alors: 432
     - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
       alors: 468
+  abattement: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction . taux
   références:
     Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
