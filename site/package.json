@@ -129,7 +129,7 @@
 		"@types/styled-components": "^5.1.24",
 		"@vitejs/plugin-legacy": "^1.7.1",
 		"@vitejs/plugin-react": "^1.2.0",
-		"cypress": "^7.7.0",
+		"cypress": "^9.5.4",
 		"cypress-plugin-tab": "^1.0.5",
 		"cypress-wait-until": "^1.7.2",
 		"dotenv": "=8.1.0",
