@@ -34,8 +34,6 @@ describe(`Navigation to income simulator using company name (${
 		'geo.api.gouv.fr',
 	]
 	beforeEach(function () {
-		cy.clearLocalStorage() // Try to avoid flaky tests
-
 		pendingRequests = new Set()
 		responses = {}
 		cy.setInterceptResponses(
@@ -44,6 +42,7 @@ describe(`Navigation to income simulator using company name (${
 			hostnamesToRecord,
 			GERER_FIXTURES_FOLDER
 		)
+		cy.clearLocalStorage() // Try to avoid flaky tests
 		cy.visit('/')
 	})
 	afterEach(function () {
