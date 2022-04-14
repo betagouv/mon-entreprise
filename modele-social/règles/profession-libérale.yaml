@@ -372,9 +372,13 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
   question: Avez-vous choisi de surcotiser pour améliorer vos droits à la retraite complémentaire ?
   non applicable si:
     une de ces conditions:
-      - classe = 'Classe H'
+      - retraite complémentaire . classe = 'Classe H'
       - réduction
       - exonération ACRE
+  remplace:
+    règle: retraite complémentaire . classe
+    par: option surcotisation . classe
+    sauf dans: option surcotisation
   description: |-
     Afin d’améliorer vos droits, vous pouvez choisir de
     cotiser dans la classe immédiatement supérieure
@@ -396,7 +400,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
   titre: Classe avec l'option surcotisation
-  remplace: classe
   variations:
     - si: classe = 'Classe A'
       alors: "'Classe B'"
