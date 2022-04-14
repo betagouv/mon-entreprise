@@ -115,3 +115,15 @@ conjoint collaborateur:
     dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
     dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion: "'moitié'"
+
+CIPAV ACRE:
+  - &CNAVPL-ACRE
+    dirigeant . rémunération . nette: 5000 €/an
+    entreprise . ACRE: oui
+    entreprise . date de création: 11/11/2021
+  - <<: *CNAVPL-ACRE
+    dirigeant . rémunération . nette: 20000 €/an
+  - <<: *CNAVPL-ACRE
+    dirigeant . rémunération . nette: 50000 €/an
+  - <<: *CNAVPL-ACRE
+    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . exonération ACRE: "'cotisation classe A'"

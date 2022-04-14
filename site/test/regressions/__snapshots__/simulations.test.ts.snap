@@ -303,6 +303,17 @@ exports[`calculate simulations-indépendant > échelle de revenus 8`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `"[7434,0,2434,5000,0,5000,36,3,67]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `"[24242,0,4242,20000,876,19124,36,4,266]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
+"[69846,0,19846,50000,9490,40510,108,4,531]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 4`] = `"[7434,0,2434,5000,0,5000,36,3,67]"`;
+
 exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 1`] = `"[1598,0,1098,500,0,500,0,2,61]"`;
 
 exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 2`] = `"[13289,0,3289,10000,0,10000,9,4,133]"`;
