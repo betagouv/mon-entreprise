@@ -95,7 +95,11 @@ CIPAV réduction et surcotisation:
   - dirigeant . rémunération . nette: 100000 €/an
     dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
 
-conjoint collaborateur:
+CIPAV exonération incapacité:
+  - dirigeant . rémunération . nette: 40000 €/an
+    dirigeant . indépendant . PL . CNAVPL . exonération incapacité: oui
+
+CIPAV conjoint collaborateur:
   - &CNAVPL-conjoint-collaborateur
     dirigeant . rémunération . nette: 60000 €/an
     dirigeant . indépendant . conjoint collaborateur: oui
