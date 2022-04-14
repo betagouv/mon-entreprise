@@ -16,17 +16,17 @@ if (branch && isStaging()) {
 const release =
 	branch && `${branch}-` + import.meta.env.VITE_GITHUB_SHA?.substring(0, 7)
 
-// if (isProduction()) {
-init({
-	dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
-	integrations: [
-		new BrowserTracing(),
-		new CaptureConsole({ levels: ['error'] }),
-	],
-	release,
-	// Set tracesSampleRate to 1.0 to capture 100%
-	// of transactions for performance monitoring.
-	// We recommend adjusting this value in production
-	tracesSampleRate: 1,
-})
-// }
+if (isProduction()) {
+	init({
+		dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
+		integrations: [
+			new BrowserTracing(),
+			new CaptureConsole({ levels: ['error'] }),
+		],
+		release,
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 0.1,
+	})
+}
