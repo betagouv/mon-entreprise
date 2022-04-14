@@ -398,6 +398,23 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction . 
       - montant: 25%
         plafond: plafond réduction
 
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . éxonération incapacité exercice:
+  question: Avez-vous été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs ?
+  par défaut: non
+  description: |-
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs,
+    vous êtes alors exonéré du paiement de la cotisation.
+
+    L’exonération est annuelle et comporte l’attribution des points de la classe A.
+
+    Pour être recevable, votre demande d’exonération pour incapacité doit-être accompagnée du formulaire à faire remplir par
+    votre médecin traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . éxonération incapacité exercice . remplace:
+  remplace: dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation
+  applicable si: éxonération incapacité exercice
+  valeur: "'A'"
+
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   titre: invalidité et décès (CIPAV)
