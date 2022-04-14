@@ -5,8 +5,8 @@
 // We only persist targets values in the file system, in order to be resilient to rule renaming (if a rule is
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
-import { expect, it } from 'vitest'
 import rules, { DottedName } from 'modele-social'
+import { expect, it } from 'vitest'
 import { engineFactory } from '../../source/components/utils/EngineContext'
 import aideDéclarationConfig from '../../source/pages/gerer/declaration-charges-sociales-independant/_config.yaml'
 import artisteAuteurConfig from '../../source/pages/Simulateurs/configs/artiste-auteur.yaml'

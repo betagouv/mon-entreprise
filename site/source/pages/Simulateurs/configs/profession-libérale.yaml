@@ -5,6 +5,9 @@ objectifs:
   - dirigeant . rémunération . nette
   - impôt . montant
   - dirigeant . rémunération . nette après impôt
+  - protection sociale . retraite . complémentaire indépendants . points acquis
+  - protection sociale . retraite . base . trimestres . indépendant
+  - protection sociale . retraite . CNAVPL
 
 questions:
   liste noire:
