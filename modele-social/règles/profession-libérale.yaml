@@ -235,7 +235,9 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
 dirigeant . indépendant . PL . CIPAV:
   description: |
     La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
-
+  remplace:
+    règle: cotisations et contributions . retraite complémentaire
+    par: retraite complémentaire
   références:
     Site web: https://www.lacipav.fr/
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
@@ -249,7 +251,7 @@ dirigeant . indépendant . PL . CIPAV:
           - entreprise . activité . libérale réglementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
-  remplace: cotisations et contributions . retraite complémentaire
+  non applicable si: exonération incapacité
   titre: retraite complémentaire (CIPAV)
   unité: €/an
   variations:
@@ -317,6 +319,19 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
       - montant: "'Classe H'"
   références:
     Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+
+dirigeant . indépendant . PL . CIPAV . exonération incapacité:
+  applicable si: CNAVPL . exonération incapacité
+  notification: info
+  description:
+    Pour être recevable, votre demande d’exonération pour incapacité doit-être accompagnée du formulaire à faire remplir par
+    votre médecin traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
+  remplace:
+    règle: retraite complémentaire . classe
+    dans: protection sociale . retraite . CIPAV
+  valeur: "'Classe A'"
+  références:
+    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . exonération ACRE:
   applicable si:
@@ -435,25 +450,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction . 
       - montant: 25%
         plafond: plafond réduction
 
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . exonération incapacité exercice:
-  question: Avez-vous été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs ?
-  par défaut: non
-  description: |-
-    Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs,
-    vous êtes alors exonéré du paiement de la cotisation.
-
-    L’exonération est annuelle et comporte l’attribution des points de la classe A.
-
-    Pour être recevable, votre demande d’exonération pour incapacité doit-être accompagnée du formulaire à faire remplir par
-    votre médecin traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
-  remplace:
-    règle: retraite complémentaire . classe
-    valeur: "'Classe A'"
-    dans: protection sociale . retraite . CIPAV
-  rend non applicable: retraite complémentaire
-  références:
-    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
-
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   titre: invalidité et décès (CIPAV)
@@ -552,8 +548,12 @@ dirigeant . indépendant . PL . CNAVPL:
     CARCDSF, CAVEC etc..)
   non applicable si: régime général
   valeur: oui
+  références:
+    liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
+    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
 
 dirigeant . indépendant . PL . CNAVPL . retraite:
+  non applicable si: exonération incapacité
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -576,19 +576,19 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
         plafond: 5 * plafond sécurité sociale temps plein
   références:
     cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
-    cotisation minimale (Guide CNAVPL): https://www.cnavpl.fr/wp-content/uploads/2020/10/guide-site-2020.pdf#page=21
-    liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
-    Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
+    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
-dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
+dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
   titre: retraite de base (CNAVPL)
   non applicable si:
     une de ces conditions:
       - PL . CNBF
       - PL . CARMF
-  remplace: cotisations et contributions . retraite de base
-  formule: CNAVPL . retraite
+  remplace:
+    règle: cotisations et contributions . retraite de base
+    par: retraite
+  valeur: oui
 
 dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   titre: indemnités journalières maladie (profession libérale)
@@ -614,6 +614,16 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   arrondi: oui
   références:
     Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
+
+dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
+  question: Avez-vous été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs cette année ?
+  par défaut: non
+  description: |-
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
+    vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
+
+  références:
+    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
   applicable si: conjoint collaborateur
