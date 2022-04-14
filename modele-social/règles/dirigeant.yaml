@@ -143,6 +143,7 @@ dirigeant . assimilé salarié . réduction ACRE:
   variations:
     - si: contrat salarié . cotisations . assiette <= 75% * plafond sécurité sociale temps plein
       alors:
+        nom: cotisations ACRE
         somme:
           - contrat salarié . maladie
           - contrat salarié . allocations familiales
@@ -157,11 +158,7 @@ dirigeant . assimilé salarié . réduction ACRE:
 
 dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
   recalcul:
-    règle:
-      somme:
-        - contrat salarié . maladie
-        - contrat salarié . allocations familiales
-        - contrat salarié . vieillesse
+    règle: cotisations ACRE
     avec:
       contrat salarié . cotisations . assiette: 75% * plafond sécurité sociale temps plein
       entreprise . ACRE: non
