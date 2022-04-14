@@ -603,14 +603,23 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 dirigeant . indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
   description: |
-    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémentaires.
-    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
-    - exercer une activité professionnelle régulière et habituelle dans l'entreprise
-    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans
-    - ne pas être rémunéré
-    - ne pas être associé de la société.
+    En tant que collaborateur, le conjoint d'un indépendant verse des cotisations en matière de retraite et d'invalidité-décès et bénéficie en contrepartie de droits propres. Il s'acquitte aussi d'une cotisation indemnités journalières et peut être indemnisé en cas d'arrêt de travail.
+
+    ### Conjoint collaborateur : pour qui ?
+
+    Pour que le conjoint puisse choisir le statut de conjoint collaborateur, le chef d'entreprise doit exercer en entreprise individuelle, être le gérant majoritaire ou appartenir à un collège de gérance majoritaire, d'une entreprise en SARL ou EURL sans limitation de l'effectif salarié.
+
+    Le conjoint doit :
+    - participer de manière régulière à l'activité de l'entreprise ;
+    - ne pas être rémunéré pour cette activité ;
+    - doit être marié ou lié par un pacte civil de solidarité (Pacs) au chef d'entreprise, ou être le concubin.
+
+    > #### Avantages du statut conjoint collaborateur
+    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités administratives) et d’un faible coût pour l’entreprise pour une protection sociale complète. Il peut être choisi même si le conjoint exerce une activité hors de l’entreprise.
+
   par défaut: non
   références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/artisan-commercant/conjoint-du-chef-dentreprise/conjoint-collaborateur.html
     secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
 

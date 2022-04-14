@@ -234,7 +234,7 @@ protection sociale . retraite . CNAVPL:
 
 protection sociale . retraite . CIPAV:
   applicable si: dirigeant . indépendant . PL . CIPAV
-  remplace: protection sociale . retraite . complémentaire indépendants . points acquis
+  remplace: complémentaire indépendants . points acquis
   unité: points
   variations:
     - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
