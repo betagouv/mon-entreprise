@@ -383,12 +383,11 @@ LFR1 applicable:
     toutes ces conditions:
       - secteur . S1 ou S1bis
       - début d'activité . date < 06/2021
-  non applicable si:
-    toutes ces conditions:
-      - début d'activité . date >= 01/2021
-      - mois . mars 2021 . LFSS 600 = non
-      - mois . avril 2021 . LFSS 600 = non
-      - mois . mai 2021 . LFSS 600 = non
+      - une de ces conditions:
+          - début d'activité . date < 01/2021
+          - mois . mars 2021 . LFSS 600
+          - mois . avril 2021 . LFSS 600
+          - mois . mai 2021 . LFSS 600
 
 LFR1:
   produit:

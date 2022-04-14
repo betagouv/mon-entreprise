@@ -115,7 +115,7 @@ export const Row = ({
 	const engine = useExoCovidEngine()
 
 	const choices = {
-		non: [t('Aucun')],
+		non: [t('Aucun (0 €)')],
 		'LFSS 600': [
 			t("Interdiction d'accueil du public (600 €)"),
 			t("Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €)"),
