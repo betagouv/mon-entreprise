@@ -27,10 +27,10 @@ DRI . accompagnement imposition . régime:
   titre.fr: régime
 DRI . accompagnement imposition . régime memento fiscal:
   question.en: |-
-    [automatic] In the "Your Tax Obligations" section, 
+    [automatic] In the "Your Tax Obligations" section,
     what is the "**tax regime**" listed on the first line?
   question.fr: |-
-    Dans la section « **vos obligations fiscales** », 
+    Dans la section « **vos obligations fiscales** »,
     quel est le « **régime d'imposition** » inscrit sur la première ligne ?
   titre.en: '[automatic] tax memento system'
   titre.fr: régime memento fiscal
@@ -129,7 +129,7 @@ DRI . cotisations . provisionnelles:
     [Read more](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
   description.fr: >-
     En 2022, vous allez payer chaque mois une **avance sur le montant des
-    cotisation**s que vous devrez . C'est ce que l'on appelle les **cotisations
+    cotisations** à payer. C'est ce que l'on appelle les **cotisations
     provisionnelles**. Elles sont calculées à partir de votre revenu de 2021
     (déclaré en 2022).
 
@@ -168,9 +168,18 @@ DRI . cotisations . régularisation:
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html)
   titre.en: '[automatic] Your regularization'
   titre.fr: Votre régularisation
-DRI . déclaration revenus:
+DRI . déclarant:
   question.en: '[automatic] Who is the person concerned?'
   question.fr: Quelle est la personne concernée ?
+  titre.en: '[automatic] declaring'
+  titre.fr: déclarant
+DRI . déclarant . déclarant 1:
+  titre.en: '[automatic] declarant 1'
+  titre.fr: déclarant 1
+DRI . déclarant . déclarant 2:
+  titre.en: '[automatic] declarant 2'
+  titre.fr: déclarant 2
+DRI . déclaration revenus:
   titre.en: '[automatic] income tax return'
   titre.fr: déclaration revenus
 DRI . déclaration revenus . BIC:
@@ -248,12 +257,6 @@ DRI . déclaration revenus . BNC . revenus imposables:
 DRI . déclaration revenus . BNC . régime de la déclaration contrôlée:
   titre.en: '[automatic] controlled declaration system'
   titre.fr: régime de la déclaration contrôlée
-DRI . déclaration revenus . déclarant 1:
-  titre.en: '[automatic] declarant 1'
-  titre.fr: déclarant 1
-DRI . déclaration revenus . déclarant 2:
-  titre.en: '[automatic] declarant 2'
-  titre.fr: déclarant 2
 DRI . déclaration revenus . indépendant:
   titre.en: '[automatic] Additional data from the income tax return for
     self-employed persons'
@@ -276,10 +279,10 @@ DRI . déclaration revenus manuelle:
 DRI . imposition cas exclus:
   titre.en: '[automatic] taxation excluded cases'
   titre.fr: imposition cas exclus
-DRI . liasse:
-  titre.en: '[automatic] bundle'
-  titre.fr: liasse
-DRI . liasse . OGA:
+DRI . informations complémentaires:
+  titre.en: '[automatic] additional information'
+  titre.fr: informations complémentaires
+DRI . informations complémentaires . OGA:
   description.en: >-
     [automatic] The mission of an approved management organization is to provide
     assistance to its members in management, accounting and taxation.
@@ -302,6 +305,23 @@ DRI . liasse . OGA:
   question.fr: Êtes-vous adhérant à un Organisme de Gestion Agrée (OGA) ?
   titre.en: '[automatic] OGA'
   titre.fr: OGA
+DRI . informations complémentaires . rémunération dirigeant:
+  description.en: '[automatic] This is the total compensation that was paid into
+    your personal bank account for this activity. It will be reported in the
+    "Salary and Wages" section of your income tax return.'
+  description.fr: Cela correspond à la rémunération totale qui a été versée sur
+    votre compte bancaire personnel pour cette activité. Elle sera à reporter
+    dans la section « Traitement et salaire » de votre déclaration de revenu.
+  question.en: '[automatic] '
+  question.fr:
+    texte:
+      Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise
+      **{{ entreprise . nom }}** en 2021 ?
+  titre.en: '[automatic] executive compensation'
+  titre.fr: rémunération dirigeant
+DRI . liasse:
+  titre.en: '[automatic] bundle'
+  titre.fr: liasse
 DRI . liasse . déclaration contrôlée:
   titre.en: '[automatic] controlled declaration'
   titre.fr: déclaration contrôlée
@@ -397,11 +417,6 @@ DRI . liasse . déclaration contrôlée . impôts et taxe:
 DRI . liasse . déclaration contrôlée . insuffisance:
   titre.en: '[automatic] insufficiency'
   titre.fr: insuffisance
-DRI . liasse . remboursement cotisation:
-  question.en: '[automatic] Did you receive a contribution refund in 2021?'
-  question.fr: Avez vous reçu un remboursement de cotisation en 2021 ?
-  titre.en: '[automatic] reimbursement of contribution'
-  titre.fr: remboursement cotisation
 DRI . liasse . réel normal:
   titre.en: '[automatic] real normal'
   titre.fr: réel normal
@@ -462,20 +477,6 @@ DRI . liasse . réel simplifié . plus-values et moins-values:
 DRI . liasse . réel simplifié . résultat:
   titre.en: '[automatic] Taxable income after deduction of deficits'
   titre.fr: Résultat fiscal après imputation des déficits
-DRI . liasse . rémunération dirigeant:
-  description.en: '[automatic] This is the total compensation that was paid into
-    your personal bank account for this activity. It will be reported in the
-    "Salary and Wages" section of your income tax return.'
-  description.fr: Cela correspond à la rémunération totale qui a été versée sur
-    votre compte bancaire personnel pour cette activité. Elle sera à reporter
-    dans la section « Traitement et salaire » de votre déclaration de revenu.
-  question.en: '[automatic] '
-  question.fr:
-    texte:
-      Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise
-      **{{ entreprise . nom }}** en 2021 ?
-  titre.en: '[automatic] executive compensation'
-  titre.fr: rémunération dirigeant
 DRI . nombre de déclarations:
   titre.en: '[automatic] number of declarations'
   titre.fr: nombre de déclarations
