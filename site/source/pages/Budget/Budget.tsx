@@ -22,6 +22,7 @@ const [
 	ressources2019,
 	ressources2020,
 	ressources2021,
+	ressources2022,
 	ressourcesDescription,
 ] = prose.split(/\r?\n-{3,}\r?\n/)
 
@@ -29,12 +30,15 @@ const ressources = {
 	2019: ressources2019,
 	2020: ressources2020,
 	2021: ressources2021,
-}
+	2022: ressources2022,
+} as const
 
 export default function Budget() {
-	const years = ['2019', '2020', '2021'] as const
+	const years = ['2019', '2020', '2021', '2022'] as const
 	const quarters = ['T1', 'T2', 'T3', 'T4']
-	const [selectedYear, setSelectedYear] = useState<typeof years[number]>('2021')
+	const [selectedYear, setSelectedYear] = useState<typeof years[number]>(
+		years[years.length - 1]
+	)
 	const categories = uniq(
 		quarters
 			.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
