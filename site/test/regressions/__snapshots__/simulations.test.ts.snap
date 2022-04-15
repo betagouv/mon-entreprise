@@ -351,15 +351,17 @@ exports[`calculate simulations-professions-libérales > CIPAV exonération incap
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 1`] = `"[1598,0,1098,500,0,500,0,2,61]"`;
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 1`] = `"[16239,0,6239,10000,0,10000,72,4,135]"`;
 
-exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 2`] = `"[13289,0,3289,10000,0,10000,9,4,133]"`;
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 2`] = `
+"[73230,0,23230,50000,9518,40482,180,4,531]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
 
-exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 3`] = `"[null,0,null,10000,null,null,null,null,null]"`;
-
-exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 4`] = `"[null,0,null,50000,null,null,null,null,null]"`;
-
-exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 5`] = `"[null,0,null,100000,null,null,null,null,null]"`;
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 3`] = `
+"[149211,0,49211,100000,28382,71618,468,4,538]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `"[3277,0,2777,500,0,500,36,2,61]"`;
 

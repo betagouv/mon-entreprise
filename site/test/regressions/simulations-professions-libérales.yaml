@@ -84,10 +84,6 @@ CIPAV échelle de revenu:
   - dirigeant . rémunération . nette: 1000000 €/an
 
 CIPAV réduction et surcotisation:
-  - dirigeant . rémunération . nette: 500 €/an
-    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction: oui
-  - dirigeant . rémunération . nette: 10000 €/an
-    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction: oui
   - dirigeant . rémunération . nette: 10000 €/an
     dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
   - dirigeant . rémunération . nette: 50000 €/an
@@ -129,5 +125,3 @@ CIPAV ACRE:
     dirigeant . rémunération . nette: 20000 €/an
   - <<: *CNAVPL-ACRE
     dirigeant . rémunération . nette: 50000 €/an
-  - <<: *CNAVPL-ACRE
-    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . exonération ACRE: "'cotisation classe A'"
