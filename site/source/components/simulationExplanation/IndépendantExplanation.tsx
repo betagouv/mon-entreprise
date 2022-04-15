@@ -63,9 +63,7 @@ export default function IndépendantExplanation() {
 				</section>
 			</Condition>
 			<InstitutionsPartenaires />
-			<Condition expression="dirigeant . indépendant . PL . CIPAV">
-				<DroitsRetraite />
-			</Condition>
+
 			<DistributionSection>
 				<Distribution />
 			</DistributionSection>
