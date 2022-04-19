@@ -572,6 +572,7 @@ DRI . déclaration revenus:
     affichage: non
 DRI . déclaration revenus . traitements et salaire:
   applicable si: entreprise . imposition . IS
+  valeur: oui
   meta:
     section: oui
 

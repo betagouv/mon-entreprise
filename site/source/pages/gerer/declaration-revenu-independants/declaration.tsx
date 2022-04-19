@@ -163,6 +163,7 @@ export default function Déclaration() {
 					<Grid item xs={12}>
 						<H2>Renseignements complémentaires</H2>
 						<SimpleField dottedName="DRI . informations complémentaires . OGA" />
+						<SimpleField dottedName="DRI . informations complémentaires . rémunération dirigeant" />
 					</Grid>
 				</Grid>
 
