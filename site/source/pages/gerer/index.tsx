@@ -1,4 +1,4 @@
-import { DottedName } from '@/../../modele-social'
+import { searchDenominationOrSiren } from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
@@ -22,10 +22,12 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
+import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { evaluateQuestion } from '@/utils'
 import { Grid } from '@mui/material'
+import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import {
@@ -33,6 +35,7 @@ import {
 	Route,
 	Switch,
 	useLocation,
+	useParams,
 	useRouteMatch,
 } from 'react-router'
 import styled from 'styled-components'
@@ -67,7 +70,11 @@ export default function Gérer() {
 
 			<TrackChapter chapter1="gerer">
 				<Switch>
-					<Route exact path={sitePaths.gérer.index} component={Home} />
+					<Route
+						exact
+						path={[sitePaths.gérer.index, sitePaths.gérer.siren]}
+						component={Home}
+					/>
 					<Route
 						path={sitePaths.gérer.sécuritéSociale}
 						component={SocialSecurity}
@@ -163,7 +170,10 @@ function Home() {
 	const simulateurs = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useEngine()
-	if (!engine.evaluate('entreprise . SIREN').nodeValue) {
+	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
+	const { siren, entrepriseNotFound, entreprisePending } = useSirenFromParams()
+
+	if ((!siren && !engineSiren) || (siren && entrepriseNotFound)) {
 		return <Redirect to={sitePaths.index} />
 	}
 
@@ -185,7 +195,15 @@ function Home() {
 						aux simulateurs adaptés à votre situation.
 					</Trans>
 				</Intro>
-				<AskCompanyMissingDetails />
+				{entreprisePending ? (
+					<Message type="info" border={false}>
+						<Intro>
+							<Trans i18nKey="loading">Chargement en cours...</Trans>
+						</Intro>
+					</Message>
+				) : (
+					<AskCompanyMissingDetails />
+				)}
 				<Spacing xl />
 			</PageHeader>
 
@@ -396,6 +414,56 @@ export const AskCompanyMissingDetails = () => {
 			)}
 		</>
 	)
+}
+
+const useSirenFromParams = () => {
+	const { siren } = useParams<{ siren?: string }>()
+	const setEntreprise = useSetEntreprise()
+	const engine = useEngine()
+	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
+
+	const [entreprisePending, setEntreprisePending] = useState(
+		(siren != null && siren !== engineSiren) ?? false
+	)
+	const [entrepriseNotFound, setEntrepriseNotFound] = useState(false)
+
+	useEffect(() => {
+		let canceled = false
+		if (!siren) {
+			return
+		}
+		setEntreprisePending(true)
+		searchDenominationOrSiren(siren)
+			.then((entreprises) => {
+				if (canceled) {
+					return
+				}
+				setEntreprisePending(false)
+				if (!entreprises || !entreprises.length) {
+					return setEntrepriseNotFound(true)
+				}
+				setEntreprise(entreprises[0])
+			})
+			.catch((error) => {
+				if (canceled) {
+					return
+				}
+				setEntrepriseNotFound(true)
+				setEntreprisePending(false)
+				// eslint-disable-next-line no-console
+				console.error(error)
+			})
+
+		return () => {
+			canceled = true
+		}
+	}, [setEntreprise, siren])
+
+	return {
+		siren,
+		entreprisePending,
+		entrepriseNotFound,
+	}
 }
 
 const FormsImage = styled.img`

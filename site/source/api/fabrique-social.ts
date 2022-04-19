@@ -1,5 +1,3 @@
-export { fetchCompanyDetails } from './sirene'
-
 export async function searchDenominationOrSiren(value: string) {
 	return searchFullText(value)
 }
