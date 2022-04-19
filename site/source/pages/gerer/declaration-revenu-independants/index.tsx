@@ -23,7 +23,7 @@ import config from './_config.yaml'
 export default function AideDéclarationIndépendant() {
 	const sitePaths = useContext(SitePathsContext)
 	useSimulationConfig(config, {
-		path: sitePaths.gérer.déclarationIndépendant.index,
+		path: sitePaths.gérer.déclarationIndépendant.beta,
 		autoloadLastSimulation: true,
 	})
 	const steps = useSteps()

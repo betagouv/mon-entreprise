@@ -372,7 +372,37 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'Assistant à la détermination des charges sociales déductibles'
 			),
 		},
+
+		// TODO: Delete "déclaration-revenu-indépendant" object when DRI will no longer be in beta
 		'déclaration-revenu-indépendant': {
+			tracking: {
+				chapter1: 'gerer',
+				chapter2: 'declaration_charges_sociales_independant',
+			},
+			icône: '📑',
+			meta: {
+				description: t(
+					'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
+					'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021'
+				),
+				title: t(
+					'pages.gérer.declaration_charges_sociales_indépendant.meta.title',
+					'Détermination des charges sociales déductibles'
+				),
+			},
+			pathId: 'gérer.déclarationIndépendant.index',
+			shortName: t(
+				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
+				'Détermination des charges sociales déductibles'
+			),
+			iframePath: 'déclaration-charges-sociales-indépendant',
+			title: t(
+				'pages.gérer.declaration_charges_sociales_indépendant.title',
+				'Assistant à la détermination des charges sociales déductibles'
+			),
+		},
+
+		'déclaration-revenu-indépendant-beta': {
 			tracking: {
 				chapter1: 'gerer',
 				chapter2: 'declaration_revenu_independant',
@@ -388,7 +418,8 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 					'Assistant à la déclaration de revenu pour les indépendants'
 				),
 			},
-			pathId: 'gérer.déclarationIndépendant.index',
+			pathId: 'gérer.déclarationIndépendant.beta',
+			private: true,
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
 				'Assistant déclaration de revenu'
