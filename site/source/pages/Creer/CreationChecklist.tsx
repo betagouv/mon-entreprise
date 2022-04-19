@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import {
 	checkCompanyCreationItem,
 	initializeCompanyCreationChecklist,
@@ -16,12 +15,13 @@ import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { RootState } from '@/reducers/rootReducer'
+import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { TrackPage } from '../../ATInternetTracking'
 import StatutDescription from './StatutDescription'
 
@@ -399,7 +399,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						name="chooseCertifiedAccountant"
 						title={t(
 							'entreprise.tâches.comptable.titre',
-							'Choisir un comptable'
+							'Choisir un expert-comptable'
 						)}
 						explanations={
 							<SmallBody>
@@ -408,8 +408,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									<Link href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
 										obligations comptables
 									</Link>
-									. Il est conseillé de faire appel aux services d'un comptable
-									ou d'un logiciel de comptabilité en ligne.
+									. Il est conseillé de faire appel aux services d'un
+									expert-comptable ou d'un logiciel de comptabilité en ligne.
 								</Trans>
 							</SmallBody>
 						}

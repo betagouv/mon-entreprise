@@ -16,7 +16,6 @@ export function useProgress(objectifs: DottedName[]): number {
 	const objectifsRemplis = objectifsApplicables.filter((objectif) =>
 		isEmpty(objectif.missingVariables)
 	)
-	console.log(objectifsApplicables, objectifsRemplis)
 
 	if (!objectifsApplicables.length) {
 		return 0

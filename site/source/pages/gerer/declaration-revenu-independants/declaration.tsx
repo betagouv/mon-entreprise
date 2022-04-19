@@ -7,7 +7,7 @@ import Accordion from '@/design-system/accordion'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H2, H3, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -76,9 +76,9 @@ export default function Déclaration() {
 							</H3>
 
 							<Body>
-								C'est le comptable qui se charge de remplir la déclaration de
-								résultat. Il s'occupe également de la transmettre aux impôts en
-								début d'année.
+								C'est l'expert-comptable qui se charge de remplir la déclaration
+								de résultat. Il s'occupe également de la transmettre aux impôts
+								en début d'année.
 							</Body>
 
 							<Accordion>
@@ -136,12 +136,12 @@ export default function Déclaration() {
 									<Message type="info" icon border={false}>
 										Si votre déclaration n'est pas présente, ou si vous n'avez
 										pas accès à votre espace professionnel sur impot.gouv.fr,
-										vous pouvez demander à votre comptable.
+										vous pouvez demander à votre expert-comptable.
 									</Message>
 								</Item>
 
 								<Item
-									title="Demander à mon comptable la liste des cases"
+									title="Demander à mon expert-comptable"
 									key="comptable"
 									hasChildItems={false}
 								>
@@ -155,6 +155,17 @@ export default function Déclaration() {
 								déclaration de résultat de votre entreprise dans le formulaire
 								suivant.
 							</Body>
+							<Message type="info">
+								<H6 as="h3">Écriture entre parenthèse ( )</H6>
+								<Body>
+									Certains montants sont écris entre parenthèses dans la
+									déclaration de résultat. Par exemple, la case « plus value »
+									peut contenir <code>(1546)</code>. C'est une écriture
+									comptable pour dire que le montant est négatif. Vous pouvez le
+									reporter dans ce formulaire en utilisant le signe « - »
+									habituel.
+								</Body>
+							</Message>
 						</FromTop>
 					</Grid>
 
@@ -179,10 +190,10 @@ Bonjour,
 
 Je souhaite procéder à la déclaration de mes revenus
 d'indépendant sur impot.gouv.fr. J'aurais besoin pour cela des
-informations suivantes contenues dans les cases suivantes de
+informations suivantes de
 la déclaration de résultat de l'entreprise :
 
-Case {{cases}}
+{{cases}}
 
 Je vous remercie de m'envoyer ces informations ou directement
 un exemplaire de la déclaration déjà remplie.
@@ -191,17 +202,25 @@ Bien à vous,`
 
 function useModeleMessageComptable() {
 	const fields = useLiasseFiscaleFields()
+	const isIS = useEngine().evaluate('entreprise . imposition . IS')
+		.nodeValue as boolean
 
-	return ModeleMessageComptable.replace(
-		'{{cases}}',
-		fields
-			.filter(
-				([, { rawNode }]) =>
-					getMeta<{ section?: 'oui' | 'non' }>(rawNode, {}).section !== 'oui'
-			)
-			.map(([, { title }]) => title)
-			.join(', ')
-	)
+	let cases = fields
+		.filter(
+			([, { rawNode }]) =>
+				getMeta<{ section?: 'oui' | 'non' }>(rawNode, {}).section !== 'oui'
+		)
+		.map(
+			([, { title, rawNode }]) =>
+				`- Case ${title} (${rawNode.résumé ?? ''})\n\n`
+		)
+		.join('')
+	if (isIS) {
+		cases +=
+			'Il me faudrait également le montant total de ma rémunération versée en tant que dirigeant en 2021 (hors dividendes).'
+	}
+
+	return ModeleMessageComptable.replace('{{cases}}', cases)
 }
 
 function MessageComptable() {
@@ -222,7 +241,7 @@ function MessageComptable() {
 			<Body>
 				Si le formulaire de déclaration de résultat de votre entreprise
 				n'apparaît pas encore sur le site des impôts, vous pouvez demander
-				directement à votre comptable les montants nécessaire.
+				directement à votre expert-comptable les montants nécessaire.
 			</Body>
 			<Body>Voici un modèle de message à transmettre :</Body>
 			<Message type="secondary">

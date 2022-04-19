@@ -1,7 +1,7 @@
 import { updateSituation } from '@/actions/actions'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import Value from '@/components/EngineValue'
+import Value, { Condition } from '@/components/EngineValue'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -135,6 +135,12 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 			}
 		>
 			<FromTop>
+				{déclarationRevenusManuel && (
+					<Body>
+						Pour accéder à l'estimation des cotisations, il vous faut saisir les
+						éléments de votre déclaration de revenu.
+					</Body>
+				)}
 				<H2>Votre déclaration de revenu</H2>
 				<Grid
 					container
@@ -147,6 +153,12 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 						lg={déclarationRevenusManuel ? 11 : 8}
 						xl={déclarationRevenusManuel ? 9 : 7}
 					>
+						<Condition expression="entreprise . imposition . IS">
+							<Message type="info" icon>
+								Cet assistant ne gère pas encore le cas des dividendes. En cas
+								de doute, demandez à votre expert comptable.
+							</Message>
+						</Condition>
 						<Message border={false}>
 							<Grid
 								container
@@ -207,10 +219,12 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 									)
 								)}
 							</Grid>
-							<SmallBody>
-								Vous devez compléter tous les champs pour continuer. Si un
-								champs est vide, inscrivez la valeur 0.
-							</SmallBody>
+							{déclarationRevenusManuel && (
+								<SmallBody>
+									* Champs requis. Vous devez compléter tous les champs pour
+									continuer. Si un champs est vide, inscrivez la valeur 0.
+								</SmallBody>
+							)}
 							<ShareOrSaveSimulationBanner share print />
 
 							<Spacing xl />
@@ -253,7 +267,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 									</SmallBody>
 
 									<SmallBody>
-										En cas de doutes, rapprochez-vous de votre comptable.
+										En cas de doutes, rapprochez-vous de votre expert-comptable.
 									</SmallBody>
 								</Message>
 							</div>

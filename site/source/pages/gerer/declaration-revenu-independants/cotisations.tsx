@@ -1,7 +1,7 @@
 import Conversation from '@/components/conversation/Conversation'
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import PageFeedback from '@/components/Feedback'
-import { Appear, FromTop } from '@/components/ui/animate'
+import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -9,9 +9,10 @@ import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { H2, H3 } from '@/design-system/typography/heading'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { Grid } from '@mui/material'
+import { SimpleField } from '../_components/Fields'
 
 export default function Cotisations() {
 	const progress = useSimulationProgress()
@@ -19,107 +20,110 @@ export default function Cotisations() {
 
 	return (
 		<FromTop>
-			<Grid container item lg={10} xl={8}>
-				<Intro>
-					En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
-					l'Urssaf. Voici une estimation personalisée de leur montant :
-				</Intro>
+			<Grid container spacing={4}>
+				<Grid item lg={10} xl={8}>
+					<Intro>
+						En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
+						l'Urssaf. Pour avoir une première estimation de leur montant, il
+						vous reste une dernière question à répondre :
+					</Intro>
+					<SimpleField dottedName="DRI . cotisations . appelées en 2021" />
+				</Grid>
 			</Grid>
-			<Container
-				darkMode
-				backgroundColor={(theme) => theme.colors.bases.primary[600]}
-			>
-				<Grid
-					container
-					columnSpacing={4}
-					rowSpacing={2}
-					justifyContent="center"
+			<Spacing lg />
+			<WhenAlreadyDefined dottedName="DRI . cotisations . appelées en 2021">
+				<Container
+					darkMode
+					backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				>
-					<Grid item md={6} sm={12}>
-						<H2>
-							{engine.getRule('DRI . cotisations . provisionnelles').title}
-						</H2>
-						<Intro>
-							<Value
-								expression="dirigeant . indépendant . cotisations et contributions"
-								displayedUnit="€"
-							/>
-						</Intro>
-						<Markdown>
-							{engine.getRule('DRI . cotisations . provisionnelles').rawNode
-								.description ?? ''}
-						</Markdown>{' '}
-					</Grid>
-					<Grid item md={6} sm={12}>
-						<H2>
-							{engine.getRule('DRI . cotisations . régularisation').title}
-						</H2>
-						<Intro>
-							<Value expression="DRI . cotisations . régularisation" />
-						</Intro>
-						<Markdown>
-							{engine.getRule('DRI . cotisations . régularisation').rawNode
-								.description ?? ''}
-						</Markdown>{' '}
-					</Grid>
-					<Grid item lg={10} xl={8}>
-						<WhenAlreadyDefined dottedName="DRI . cotisations">
-							<Appear>
-								<Message icon border={false}>
-									<Intro>
-										<Condition expression="DRI . cotisations >= 0">
-											En 2022, vous devrez payer à l'Urssaf{' '}
-											<Strong>
-												{' '}
-												<Value expression="DRI . cotisations" />
-											</Strong>{' '}
-											de cotisations sociales.
-										</Condition>
-										<Condition expression="DRI . cotisations < 0">
-											En 2022, l'Urssaf vous remboursera{' '}
-											<Strong>
-												{' '}
-												<Value expression="DRI . cotisations * -1" />
-											</Strong>{' '}
-										</Condition>
-									</Intro>
-								</Message>
-							</Appear>
-						</WhenAlreadyDefined>
-					</Grid>
-					<Grid item lg={10} xl={8}>
-						<Intro as="h2">
-							Améliorez votre estimation en répondant aux questions suivantes
-							pour l'année 2021
-						</Intro>
-					</Grid>
-					<Grid item lg={10} xl={8}>
-						<Message border={false}>
-							<div
-								css={`
-									margin: -0.75rem 0;
-								`}
-							>
-								<Conversation />
+					<Grid container columnSpacing={4} rowSpacing={2}>
+						<Grid item lg={10} xl={8}>
+							<H2>Estimation des cotisations à payer</H2>
+							<Body>
+								Voici votre estimation personalisée, calculée sur la base des
+								éléments renseignées sur la déclaration de revenu de la page
+								précédente :
+							</Body>
+							<Message icon border={false}>
+								<Intro>
+									<Condition expression="DRI . cotisations >= 0">
+										En 2022, vous devrez payer à l'Urssaf{' '}
+										<Strong>
+											{' '}
+											<Value expression="DRI . cotisations" />
+										</Strong>{' '}
+										de cotisations sociales.
+									</Condition>
+									<Condition expression="DRI . cotisations < 0">
+										En 2022, l'Urssaf vous remboursera{' '}
+										<Strong>
+											{' '}
+											<Value expression="DRI . cotisations * -1" />
+										</Strong>{' '}
+									</Condition>
+								</Intro>
+							</Message>
+
+							<Intro>
+								Améliorez cette estimation en répondant aux questions suivantes
+								pour l'année 2021
+							</Intro>
+							<Message border={false}>
 								<div
 									css={`
-										position: relative;
-										top: -2px;
-										margin: 0 -1.5rem;
+										margin: -0.75rem 0;
 									`}
 								>
-									<Progress progress={progress} />
+									<Conversation />
+									<div
+										css={`
+											position: relative;
+											top: -2px;
+											margin: 0 -1.5rem;
+										`}
+									>
+										<Progress progress={progress} />
+									</div>
 								</div>
-							</div>
-						</Message>
+							</Message>
+						</Grid>
+						<Grid item md={6} sm={12}>
+							<H3>
+								{engine.getRule('DRI . cotisations . provisionnelles').title}
+							</H3>
+							<Intro>
+								<Value
+									expression="dirigeant . indépendant . cotisations et contributions"
+									displayedUnit="€"
+								/>
+							</Intro>
+							<Markdown>
+								{engine.getRule('DRI . cotisations . provisionnelles').rawNode
+									.description ?? ''}
+							</Markdown>{' '}
+						</Grid>
+						<Grid item md={6} sm={12}>
+							<H3>
+								{engine.getRule('DRI . cotisations . régularisation').title}
+							</H3>
+							<Intro>
+								<Value expression="DRI . cotisations . régularisation" />
+							</Intro>
+							<Markdown>
+								{engine.getRule('DRI . cotisations . régularisation').rawNode
+									.description ?? ''}
+							</Markdown>{' '}
+						</Grid>
 					</Grid>
-				</Grid>
-				<Spacing md />
-			</Container>
+					<Spacing md />
+				</Container>
 
-			<Container backgroundColor={(theme) => theme.colors.bases.tertiary[100]}>
-				<PageFeedback customMessage="Qu'avez-vous pensé de cet assistant ?" />
-			</Container>
+				<Container
+					backgroundColor={(theme) => theme.colors.bases.tertiary[100]}
+				>
+					<PageFeedback customMessage="Qu'avez-vous pensé de cet assistant ?" />
+				</Container>
+			</WhenAlreadyDefined>
 		</FromTop>
 	)
 }
