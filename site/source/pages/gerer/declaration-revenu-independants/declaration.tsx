@@ -151,7 +151,7 @@ export default function Déclaration() {
 							<H2>{liasse.title}</H2>
 							<Body>
 								Pour connaître les cases à remplir dans votre déclaration de
-								revenu personnelle, copiez les montant renseignés dans la
+								revenu personnelle, copiez les montants renseignés dans la
 								déclaration de résultat de votre entreprise dans le formulaire
 								suivant.
 							</Body>
