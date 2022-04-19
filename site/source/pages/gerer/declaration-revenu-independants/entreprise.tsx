@@ -9,6 +9,7 @@ import {
 } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { FromTop } from '@/components/ui/animate'
+import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
@@ -26,6 +27,7 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
+import Exceptions from './_components/Exceptions'
 import { useProgress } from './_components/hooks'
 import NotHandledCase from './_components/NotHandledCase'
 import illustration from './_components/undraw_fill_in_mie5.svg'
@@ -50,8 +52,9 @@ export default function Accueil() {
 			<Trans i18nKey="assistant-DRI.intro">
 				<PageHeader picture={illustration}>
 					<Intro>
-						Nous vous accompagnons pour remplir les revenus de votre entreprise
-						dans votre <Strong>déclaration de revenu</Strong> sur{' '}
+						Nous vous proposons une aide pour remplir les revenus issus de votre
+						activité professionnelle dans votre{' '}
+						<Strong>déclaration des revenu de 2021</Strong> sur{' '}
 						<Link href="https://www.impots.gouv.fr/accueil">impot.gouv.fr</Link>
 						.<br />
 					</Intro>
@@ -69,11 +72,31 @@ export default function Accueil() {
 			</Trans>
 			<Grid container>
 				<Grid item lg={10} xl={8}>
+					<Warning localStorageKey="DRI">
+						<Ul>
+							<Li>
+								Cet assistant est proposé à titre indicatif. Vous restez
+								entièrement responsable d'éventuels oublis ou inexactitudes dans
+								votre déclaration. En cas de doutes, rapprochez-vous de votre
+								expert-comptable.
+							</Li>
+							<Li>
+								Cet assistant ne prend pas en compte tous les types
+								d'entreprises ni tous les dispositifs fiscaux applicables.{' '}
+								<Exceptions />
+							</Li>
+							<Li>
+								Le calcul des cotisations est une estimation : seuls les montant
+								effectivement appelés par l'Urssaf seront valides en fin de
+								compte.
+							</Li>
+						</Ul>
+					</Warning>
 					<WhenNotAlreadyDefined dottedName="entreprise . SIREN">
 						<Message border={false} icon>
 							<Body>
 								Vous pouvez rechercher votre entreprise avec{' '}
-								<Strong>votre nom</Strong>, le{' '}
+								<Strong>votre prénom et votre nom</Strong>, le{' '}
 								<Strong>nom de votre entreprise</Strong>, le SIREN ou le SIRET
 							</Body>
 						</Message>
@@ -106,25 +129,32 @@ export default function Accueil() {
 					</WhenApplicable>
 					{showGoToNextStep && (
 						<FromTop>
-							<Message border={false}>
+							<Message>
 								<Trans i18nKey="assistant-DRI.precision">
 									<H3>Quelques précisions avant de continuer</H3>
-									<Body>
-										Pour faire votre déclaration de revenu, il faut vous
-										connecter sur{' '}
-										<Link href="https://www.impots.gouv.fr/accueil">
-											impot.gouv.fr
-										</Link>{' '}
-										à partir du <Strong>8 avril 2022</Strong>.
-									</Body>
-									<Body>
-										Si c'est votre expert-comptable qui remplit votre
-										déclaration, cet assistant peut quand même vous être utile
-										pour connaître le{' '}
-										<Strong>
-											montant des cotisations sociales à payer en 2022
-										</Strong>
-									</Body>
+									<Ul>
+										<Li>
+											Si c'est votre expert-comptable qui remplit votre
+											déclaration, cet assistant peut quand même vous être utile
+											pour connaître le{' '}
+											<Strong>
+												montant des cotisations sociales à payer en 2022
+											</Strong>
+										</Li>
+										<Li>
+											Cet outil est <Strong>100 % confidentiel</Strong> : toutes
+											les informations que vous renseignez resteront dans votre
+											navigateur.
+										</Li>
+										<Li>
+											Pour faire votre déclaration de revenu, il faudra vous
+											connecter sur{' '}
+											<Link href="https://www.impots.gouv.fr/accueil">
+												impot.gouv.fr
+											</Link>
+											.
+										</Li>
+									</Ul>
 								</Trans>
 								<div
 									css={`

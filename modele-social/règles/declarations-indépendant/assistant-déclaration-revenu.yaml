@@ -74,7 +74,7 @@ DRI . textes: oui
 DRI . textes . désolé:
   texte: |-
     Si vous rencontrez des difficultés à remplir votre déclaration,
-    rapprochez-vous de votre comptable. Si vous êtes sans comptable, vous pouvez
+    rapprochez-vous de votre expert-comptable. Si vous êtes sans comptable, vous pouvez
     [contacter le service des impôts](https://www.impots.gouv.fr/contacts).
 
 DRI . textes . autres outils:
@@ -83,7 +83,7 @@ DRI . textes . autres outils:
     simulateur de revenu net après impôt).
 
 DRI . textes . comptable:
-  texte: En cas de doutes, **demandez à votre comptable**.
+  texte: En cas de doutes, **demandez à votre expert-comptable**.
 
 DRI . nombre de déclarations:
   somme:
@@ -135,9 +135,9 @@ DRI . accompagnement imposition . type . exceptions:
           Par défaut les entreprises individuelles sont imposées à l'impôt sur le revenu. Cependant,
           votre entreprise peut être imposée à l'**impôt sur les société** si :
           - c'est une **entreprise individuelle à responsabilité limitée** (EIRL),
-          - et **une demande a été envoyée aux impôts** pour choisir l'impôt sur les sociétés.
+          - une demande a été faite aux impôts pour choisir **l'option pour l'impôt sur les société**
 
-          Ce choix a pu être fait pour vous permettre de vous verser des dividendes par exemple.
+          Cette option a pu être choisie pour vous permettre de vous verser des dividendes par exemple.
 
           {{ textes . comptable }}
     - si: entreprise . catégorie juridique . SARL . unipersonnelle
@@ -192,9 +192,7 @@ DRI . accompagnement imposition . bénéfice . explications:
     Dans votre cas, vous **remplirez la section {{ entreprise . imposition . IR . type de bénéfices}}**
     pour déclarer les bénéfices (ou déficits) de votre entreprise.
 
-    À noter : le type de bénéfice change la façon dont le comptable doit gérer l'entreprise. Par
-    exemple, cela détermine s'il doit utiliser une comptabilité de trésorerie ou d'engagement et quelle
-    liasse fiscale il doit remplir.
+    À noter : le type de bénéfice peut changer la façon dont l'expert-comptable gére l'entreprise et le type de formulaire à remplir pour faire la déclaration de résultats de l'entreprise.
 
 DRI . accompagnement imposition . bénéfice . exceptions:
   applicable si: entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles
@@ -209,11 +207,7 @@ DRI . accompagnement imposition . régime memento fiscal:
   question: |-
     Dans la section « **vos obligations fiscales** »,
     quel est le « **régime d'imposition** » inscrit sur la première ligne ?
-  par défaut:
-    variations:
-      - si: entreprise . imposition . IR . type de bénéfices . BNC
-        alors: "'DECC'"
-      - sinon: "'RSI'"
+
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -268,6 +262,7 @@ DRI . accompagnement imposition . régime:
       - entreprise . imposition . régime . réel simplifié
       - entreprise . imposition . régime . déclaration contrôlée
       - entreprise . imposition . régime . micro-entreprise
+
   variations:
     - si: entreprise . imposition . régime . réel normal
       alors:
@@ -304,13 +299,13 @@ DRI . accompagnement imposition . explications . situation:
         texte: |-
           Avec le régime réel normal, vous aurez à fournir un bilan comptable complet, qu'il vous faudra déclarer avec un logiciel comptable spécifique (vous ne pourrez pas déclarer le résultat de l'entreprise directement sur impot.gouv.fr)
 
-          Il est donc très fortement conseillé d'avoir un comptable.
+          Il est donc très fortement conseillé d'faire appel à un expert-comptable.
     - si: entreprise . imposition . régime . réel simplifié
       alors:
-        texte: Avec le régime réel simplifié, vous devez déposer un bilan comptable simplifié. Il est donc conseillé d'avoir un comptable.
+        texte: Avec le régime réel simplifié, vous devez déposer un bilan comptable simplifié. Il est donc conseillé d'faire appel à un expert-comptable.
     - si: entreprise . imposition . régime . déclaration contrôlée
       alors:
-        texte: Avec le régime de la déclaration contrôlée, vous devez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'avoir un comptable.
+        texte: Avec le régime de la déclaration contrôlée, vous devez tenir une comptabilité complète, et établir les comptes annuels en fin d'année. Il est donc conseillé d'faire appel à un expert-comptable.
 
 DRI . imposition cas exclus:
   applicable si:
@@ -542,6 +537,8 @@ DRI . informations complémentaires . rémunération dirigeant:
       Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise **{{ entreprise . nom }}** en 2021 ?
   description: |-
     Cela correspond à la rémunération totale qui a été versée sur votre compte bancaire personnel pour cette activité. Elle sera à reporter dans la section « Traitement et salaire » de votre déclaration de revenu.
+
+    Si vous ne la connaissez pas, vous pouvez vous renseigner auprès de votre expert-comptable.
   unité: €
 
 DRI . déclaration revenus manuelle:
@@ -570,6 +567,7 @@ DRI . déclarant . déclarant 2:
 DRI . déclaration revenus:
   meta:
     affichage: non
+
 DRI . déclaration revenus . traitements et salaire:
   applicable si: entreprise . imposition . IS
   valeur: oui
@@ -870,7 +868,7 @@ DRI . cotisations . assiette CSG:
     - déclaration revenus . indépendant . cotisations sociales
 
 DRI . cotisations . provisionnelles:
-  titre: Vos cotisations provisionnelles
+  titre: Vos cotisations provisionnelles estimées
   description: |-
     En 2022, vous allez payer chaque mois une **avance sur le montant des cotisations** à payer. C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
 
@@ -879,7 +877,7 @@ DRI . cotisations . provisionnelles:
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
 
 DRI . cotisations . régularisation:
-  titre: Votre régularisation
+  titre: Votre régularisation estimée
   valeur: |-
     cotisations . dûes en 2021
     - cotisations . appelées en 2021

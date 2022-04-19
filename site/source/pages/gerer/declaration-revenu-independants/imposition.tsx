@@ -168,16 +168,16 @@ export default function Imposition() {
 										Contacter le service des impôts
 									</Link>
 								</Body>
-								<SmallBody>
-									Vous pouvez également vous rapprocher de votre comptable pour
+								<Body>
+									Vous pouvez également vous{' '}
+									<Strong>rapprocher de votre expert-comptable</Strong> pour
 									avoir cette information.
-								</SmallBody>
+								</Body>
 							</Message>
 
 							<SimpleField dottedName="DRI . accompagnement imposition . régime memento fiscal" />
 							<Spacing lg />
-
-							<WhenApplicable dottedName="DRI . accompagnement imposition . régime">
+							<Condition expression="DRI . accompagnement imposition . régime">
 								<Markdown components={{ p: Intro }}>
 									{formatValue(
 										engine.evaluate('DRI . accompagnement imposition . régime')
@@ -198,7 +198,7 @@ export default function Imposition() {
 										</Markdown>
 									</Item>
 								</Accordion>
-							</WhenApplicable>
+							</Condition>
 						</FromTop>
 					</Condition>
 					<Condition expression="DRI . accompagnement imposition = non">
@@ -282,8 +282,8 @@ function ResultSection() {
 								.
 							</Body>
 							<Body>
-								Vous pouvez demander à votre comptable de s'en charger, mais ce
-								n'est pas automatique.
+								Vous pouvez demander à votre expert-comptable de s'en charger,
+								mais ce n'est pas automatique.
 							</Body>
 							<Body>
 								En tant qu'indépendant vous devez remplir une section spéciale
@@ -308,19 +308,8 @@ function ResultSection() {
 								</div>
 								<Spacing sm />
 							</WhenNotApplicable>
-							<SmallBody>
-								Je connais déjà les cases et montants à remplir :{' '}
-								<Link
-									to={sitePaths.gérer.déclarationIndépendant.déclaration}
-									onPress={() => {
-										dispatchValue('oui', 'DRI . déclaration revenus manuelle')
-									}}
-								>
-									accéder directement à l'estimation de mes cotisations en 2022.
-								</Link>
-							</SmallBody>
-							<Spacing md />
 						</Message>
+
 						<WhenApplicable dottedName="DRI . imposition cas exclus">
 							<FromTop>
 								<Message type="info" border={false}>
@@ -361,6 +350,38 @@ function ResultSection() {
 								</Message>
 							</FromTop>
 						</WhenApplicable>
+						<WhenNotApplicable dottedName="DRI . imposition cas exclus">
+							<Message border={false}>
+								<H5>
+									Accéder à directement à l'estimation des cotisations sociales
+								</H5>
+								<SmallBody>
+									Si vous connaissez déjà les montants à reporter dans votre
+									déclaration de revenu personnelle, vous pouvez accéder
+									directement à l'estimation des cotisations sociales à payer en
+									2022 :
+								</SmallBody>
+								<Spacing sm />
+
+								<div
+									css={`
+										text-align: center;
+									`}
+								>
+									<Button
+										light
+										size="XS"
+										to={sitePaths.gérer.déclarationIndépendant.déclaration}
+										onPress={() => {
+											dispatchValue('oui', 'DRI . déclaration revenus manuelle')
+										}}
+									>
+										Estimer mes cotisations en 2022
+									</Button>
+								</div>
+								<Spacing md />
+							</Message>
+						</WhenNotApplicable>
 					</Grid>
 					<Grid item lg={6}>
 						<H3>Pour votre entreprise</H3>
@@ -378,8 +399,8 @@ function ResultSection() {
 									</Body>
 								</Condition>
 								<Body>
-									Si vous avez un comptable, il se chargera de le remplir et de
-									l'envoyer à l'administration fiscale.
+									Si vous avez un expert-comptable, il se chargera de le remplir
+									et de l'envoyer à l'administration fiscale.
 								</Body>
 
 								<Body>

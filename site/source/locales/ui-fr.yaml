@@ -537,8 +537,8 @@ entreprise:
     comptable:
       description: La gestion d'une entreprise impose un certain nombre
         d'<1>obligations comptables</1>. Il est conseillé de faire appel aux
-        services d'un comptable ou d'un logiciel de comptabilité en ligne.
-      titre: Choisir un comptable
+        services d'un expert-comptable ou d'un logiciel de comptabilité en ligne.
+      titre: Choisir un expert-comptable
     formeJuridique:
       titre: Choisir la forme juridique
     formulaire:
