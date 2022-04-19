@@ -13,7 +13,7 @@ import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { ThemeContext } from 'styled-components'
@@ -64,12 +64,23 @@ function OptionBarèmeSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const dottedName = 'impôt . méthode de calcul' as DottedName
-	const currentOptionPFU = engine.evaluate(dottedName).nodeValue as string
+	const engineOptionPFU = engine.evaluate(dottedName).nodeValue as string
+
+	const [currentOptionPFU, setCurrentOptionPFU] = useState(engineOptionPFU)
+
+	useEffect(() => {
+		if (currentOptionPFU !== engineOptionPFU) {
+			setCurrentOptionPFU(engineOptionPFU)
+		}
+	}, [currentOptionPFU, engineOptionPFU])
 
 	return (
 		<ToggleGroup
-			defaultValue={currentOptionPFU}
-			onChange={(value) => dispatch(updateSituation(dottedName, `'${value}'`))}
+			value={currentOptionPFU}
+			onChange={(value) => {
+				setCurrentOptionPFU(value)
+				dispatch(updateSituation(dottedName, `'${value}'`))
+			}}
 		>
 			<Radio value="PFU">
 				<Trans>
