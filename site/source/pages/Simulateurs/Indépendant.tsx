@@ -13,6 +13,7 @@ import { Radio, ToggleGroup } from '@/design-system/field'
 import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
+import { useEffect, useState } from 'react'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -123,14 +124,23 @@ function IndépendantSimulationGoals({
 function ImpositionSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const currentImposition = engine.evaluate('entreprise . imposition').nodeValue
+	const engineImposition = engine.evaluate('entreprise . imposition')
+		.nodeValue as string
+	const [currentImposition, setCurrentImposition] = useState(engineImposition)
+
+	useEffect(() => {
+		if (currentImposition !== engineImposition) {
+			setCurrentImposition(engineImposition)
+		}
+	}, [currentImposition, engineImposition])
 
 	return (
 		<ToggleGroup
-			defaultValue={currentImposition as string}
-			onChange={(imposition) =>
+			value={currentImposition}
+			onChange={(imposition) => {
+				setCurrentImposition(imposition)
 				dispatch(updateSituation('entreprise . imposition', `'${imposition}'`))
-			}
+			}}
 		>
 			{(['IR', 'IS'] as const).map((imposition) => (
 				<span
