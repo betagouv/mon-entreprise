@@ -507,8 +507,13 @@ function getSimulatorsData({
 		},
 		'déclaration-revenu-indépendant': {
 			...pureSimulatorsData['déclaration-revenu-indépendant'],
-			component: DéclarationRevenuIndépendant,
+			component: DéclarationChargeSocialeIndépendant,
 			path: sitePaths.gérer.déclarationIndépendant.index,
+		},
+		'déclaration-revenu-indépendant-beta': {
+			...pureSimulatorsData['déclaration-revenu-indépendant-beta'],
+			component: DéclarationRevenuIndépendant,
+			path: sitePaths.gérer.déclarationIndépendant.beta,
 		},
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],

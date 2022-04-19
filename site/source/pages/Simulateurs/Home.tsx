@@ -98,7 +98,6 @@ export default function Simulateurs() {
 					</Trans>
 				</H3>
 				<Grid container spacing={3}>
-					<SimulateurCard {...simulators['déclaration-revenu-indépendant']} />
 					<SimulateurCard
 						{...simulators['déclaration-charges-sociales-indépendant']}
 					/>
