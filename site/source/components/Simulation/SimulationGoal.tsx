@@ -113,6 +113,7 @@ export function SimulationGoal({
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
 								onChange={onChange}
+								missing={dottedName in evaluation.missingVariables}
 								small={small}
 								formatOptions={{
 									maximumFractionDigits: 0,
