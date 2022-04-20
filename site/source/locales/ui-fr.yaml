@@ -2,6 +2,9 @@
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
+"<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>":
+  <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
+  l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Baisse entre 30% et 64% du chiffre d'affaires</0>: <0>Baisse entre 30% et 64% du chiffre d'affaires</0>
 <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité</1>:
@@ -1652,6 +1655,9 @@ trouver:
   description: Grâce à la base SIREN, les données publiques sur votre entreprise
     seront automatiquement disponibles pour la suite du parcours sur le site.
   titre: Retrouver mon entreprise
+warning:
+  overwrite:
+    situation: Voulez-vous écraser votre situation ?
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée

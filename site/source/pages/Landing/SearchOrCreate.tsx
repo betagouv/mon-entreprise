@@ -19,7 +19,7 @@ import { Grid } from '@mui/material'
 import { useCallback, useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { generatePath, useHistory } from 'react-router-dom'
 
 export default function SearchOrCreate() {
 	const sitePaths = useContext(SitePathsContext)
@@ -40,7 +40,11 @@ export default function SearchOrCreate() {
 						<CompanyDetails />
 						<Spacing md />
 						<AnswerGroup>
-							<Button to={sitePaths.gérer.index}>
+							<Button
+								to={generatePath(sitePaths.gérer.index, {
+									entreprise: companySIREN as string,
+								})}
+							>
 								Continuer avec cette entreprise
 							</Button>
 							<Button light onPress={() => dispatch(resetCompany())}>
@@ -80,12 +84,18 @@ function useHandleCompanySubmit() {
 	const history = useHistory()
 	const sitePaths = useContext(SitePathsContext)
 	const setEntreprise = useSetEntreprise()
+
 	const handleCompanySubmit = useCallback(
-		(établissement: FabriqueSocialEntreprise) => {
+		(établissement: FabriqueSocialEntreprise | null) => {
+			if (!établissement) {
+				return
+			}
 			setEntreprise(établissement)
-			history.push(sitePaths.gérer.index)
+			const entreprise = établissement.siren
+			const path = generatePath(sitePaths.gérer.index, { entreprise })
+			history.push(path)
 		},
-		[history, setEntreprise, sitePaths]
+		[history, setEntreprise, sitePaths.gérer.index]
 	)
 
 	return handleCompanySubmit

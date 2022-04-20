@@ -2,6 +2,9 @@
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
+"<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>":
+  <0><0>We have detected an old situation, are you sure you want to overwrite
+  it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Baisse entre 30% et 64% du chiffre d'affaires</0>: <0>30% to 64% drop in sales</0>
 <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité</1>:
@@ -2025,6 +2028,9 @@ trouver:
       customized to your situation
   titre: Find your company
 une de ces conditions: one of these applies
+warning:
+  overwrite:
+    situation: Do you want to crush your situation?
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Échap: Esc
 Économie collaborative: Collaborative Economy
