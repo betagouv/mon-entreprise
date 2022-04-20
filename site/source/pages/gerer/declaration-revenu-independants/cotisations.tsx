@@ -1,6 +1,7 @@
 import Conversation from '@/components/conversation/Conversation'
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import PageFeedback from '@/components/Feedback'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -23,12 +24,14 @@ export default function Cotisations() {
 		<FromTop>
 			<Grid container spacing={4}>
 				<Grid item lg={10} xl={8}>
-					<Intro>
-						En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
-						l'Urssaf. Pour avoir une première estimation de leur montant, il
-						vous reste une dernière question à répondre :
-					</Intro>
-					<SimpleField dottedName="DRI . cotisations . appelées en 2021" />
+					<div className="print-hidden">
+						<Intro>
+							En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
+							l'Urssaf. Pour avoir une première estimation de leur montant, il
+							vous reste une dernière question à répondre :
+						</Intro>
+						<SimpleField dottedName="DRI . cotisations . appelées en 2021" />
+					</div>
 				</Grid>
 			</Grid>
 			<Spacing lg />
@@ -42,11 +45,7 @@ export default function Cotisations() {
 							<Grid item lg={10} xl={8}>
 								<FromTop>
 									<H2>Estimation des cotisations à payer</H2>
-									<Body>
-										Voici votre estimation personalisée, calculée sur la base
-										des éléments renseignées sur la déclaration de revenu de la
-										page précédente :
-									</Body>
+
 									<Message icon border={false}>
 										<Intro>
 											<Condition expression="DRI . cotisations >= 0">
@@ -66,11 +65,20 @@ export default function Cotisations() {
 											</Condition>
 										</Intro>
 									</Message>
-
-									<Intro>
-										Améliorez cette estimation en répondant aux questions
-										suivantes pour l'année 2021
-									</Intro>
+									<div className="print-hidden">
+										<Body>
+											Cette estimation a été calculée sur la base des éléments
+											renseignés sur les pages précédentes.
+										</Body>
+										<Body>
+											Vous pouvez{' '}
+											<Strong>
+												améliorer la précision de cette estimation
+											</Strong>{' '}
+											en répondant aux questions suivantes qui concernent{' '}
+											<Strong>l'année 2021</Strong> :
+										</Body>
+									</div>
 									<Message border={false}>
 										<div
 											css={`
@@ -81,7 +89,7 @@ export default function Cotisations() {
 												customSituationVisualisation={
 													<>
 														<Grid container>
-															<DéclarationRevenu editable />
+															<DéclarationRevenu />
 														</Grid>
 													</>
 												}
@@ -99,6 +107,7 @@ export default function Cotisations() {
 									</Message>
 								</FromTop>
 							</Grid>
+
 							<Grid item md={6} sm={12}>
 								<H3>
 									{engine.getRule('DRI . cotisations . provisionnelles').title}
@@ -127,7 +136,8 @@ export default function Cotisations() {
 								</Markdown>{' '}
 							</Grid>
 						</Grid>
-						<Spacing md />
+						<ShareOrSaveSimulationBanner share print />
+						<Spacing xl />
 					</FromTop>
 				</Container>
 

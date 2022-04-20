@@ -4,7 +4,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 
-export default function ExportRecover() {
+export default function PrintExportRecover() {
 	return (
 		<section className="print-only">
 			<Message>

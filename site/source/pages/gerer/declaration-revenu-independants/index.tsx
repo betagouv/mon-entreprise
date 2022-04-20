@@ -1,4 +1,5 @@
 import { Condition } from '@/components/EngineValue'
+import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
@@ -31,12 +32,15 @@ export default function AideDéclarationIndépendant() {
 
 	return (
 		<>
+			<PrintExportRecover />
 			<Condition expression="DRI">
-				<Stepper aria-label="Étapes de l'assistant">
-					{steps.map((step) => (
-						<Step key={step.to} {...omit(step, 'page')} />
-					))}
-				</Stepper>
+				<div className="print-hidden">
+					<Stepper aria-label="Étapes de l'assistant">
+						{steps.map((step) => (
+							<Step key={step.to} {...omit(step, 'page')} />
+						))}
+					</Stepper>
+				</div>
 				<Switch>
 					{steps.map(
 						(step) =>
@@ -52,7 +56,6 @@ export default function AideDéclarationIndépendant() {
 					)}
 					{defaultCurrentStep && <Redirect to={defaultCurrentStep.to} />}
 				</Switch>
-
 				<Spacing xl />
 			</Condition>
 		</>
