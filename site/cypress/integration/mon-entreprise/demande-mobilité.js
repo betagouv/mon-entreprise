@@ -15,7 +15,7 @@ describe(`Formulaire demande mobilité (${
 	let responses = {}
 	const hostnamesToRecord = ['geo.api.gouv.fr']
 
-	beforeEach(function () {
+	before(function () {
 		pendingRequests = new Set()
 		responses = {}
 		cy.setInterceptResponses(
@@ -24,19 +24,24 @@ describe(`Formulaire demande mobilité (${
 			hostnamesToRecord,
 			DEMANDE_MOBILITE_FIXTURES_FOLDER
 		)
+		cy.clearLocalStorage() // Try to avoid flaky tests
 		cy.visit(encodeURI('/gérer/demande-mobilité'))
 	})
-	afterEach(function () {
+	after(function () {
 		cy.writeInterceptResponses(
 			pendingRequests,
 			responses,
 			DEMANDE_MOBILITE_FIXTURES_FOLDER
 		)
 	})
-
-	it('should allow to complete and download', function () {
-		cy.contains('Salarié').click().wait(500)
-		cy.focused().tab().type('{downarrow}')
+	it('should allow to select salarié', function () {
+		cy.contains('Salarié (CEA et TESE)').click()
+		cy.contains('Informations concernant le salarié')
+		cy.contains('Êtes-vous adhérent au TESE ou au CEA')
+			.parent()
+			.next()
+			.contains('TESE')
+			.click()
 
 		// "coordonnées" section
 		cy.contains('Nom').click({ force: true })
@@ -128,10 +133,16 @@ describe(`Formulaire demande mobilité (${
 
 		cy.focused().type('Docker').tab().type('Docker')
 
-		cy.contains('Divorcé').click().wait(250)
-		cy.focused().tab().type('{downarrow}{downarrow}').wait(1000)
+		cy.contains('Divorcé').click()
+		cy.contains("Le salarié sera-t'il accompagné d'ayants droits")
+			.parent()
+			.next()
+			.contains('Oui')
+			.click()
+		cy.contains("Combien d'ayants droits partiront")
 		cy.focused().tab().type(1)
 		cy.contains('Ayant droit n°1')
+		cy.wait(100)
 		cy.focused()
 			.tab()
 			.type('Deladj')

@@ -16,4 +16,5 @@ unité par défaut: €/mois
 situation:
   dirigeant: non
   contrat salarié . activité partielle: oui
-  contrat salarié . complémentaire santé: non
+  contrat salarié . complémentaire santé:
+    applicable si: non
