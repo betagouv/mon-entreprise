@@ -1,8 +1,9 @@
-import { Grid } from '@mui/material'
 import { Button } from '@/design-system/buttons'
 import { TextField } from '@/design-system/field'
-import { Spacing } from '@/design-system/layout'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { Strong } from '@/design-system/typography'
+import { H3 } from '@/design-system/typography/heading'
+import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackingContext } from '../../ATInternetTracking'
@@ -28,13 +29,13 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 
 	return (
 		<>
-			<Body>
+			<Intro>
 				<Trans key="shareSimulation.modal.notice">
-					Voici le lien que vous pouvez envoyer pour accéder à votre simulation.
+					Ce lien peut être utilisé pour accéder à votre simulation
 				</Trans>
-			</Body>
+			</Intro>
 
-			<Grid container spacing={2}>
+			<Grid container spacing={3}>
 				<Grid item xs={12} sm>
 					<TextField
 						inputRef={inputRef}
@@ -79,7 +80,25 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 					</Grid>
 				)}
 			</Grid>
-			<Spacing xl />
+
+			<Trans i18nKey="shareSimulation.description">
+				<H3>À quoi sert le lien de partage&nbsp;?</H3>
+				<Body>
+					Les simulateurs et assistants de mon-entreprise.urssaf.fr sont{' '}
+					<Strong>100 % confidentiels</Strong> : les informations que vous
+					renseignez ne quittent jamais votre navigateur.
+				</Body>
+				<Body>
+					Pour <Strong>envoyer une simulation</Strong> à une autre personne, ou{' '}
+					<Strong>retrouver votre simulation sur un autre appareil</Strong> que
+					celui-ci, vous pouvez utiliser un lien de partage.
+				</Body>
+				<Body>
+					Celui ci contient votre situation directement sous forme de texte.
+					Comme ça, pas besoin de passer par un fichier ou par une sauvegarde
+					sur un serveur externe&nbsp;!
+				</Body>
+			</Trans>
 		</>
 	)
 }
