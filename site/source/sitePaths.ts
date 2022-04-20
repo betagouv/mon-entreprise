@@ -33,8 +33,7 @@ const rawSitePathsFr = {
 		},
 	},
 	gérer: {
-		index: '/gérer',
-		siren: '/:siren',
+		index: '/gérer/:entreprise',
 		embaucher: '/embaucher',
 		sécuritéSociale: '/sécurité-sociale',
 		'déclaration-charges-sociales-indépendant':
@@ -112,8 +111,7 @@ const rawSitePathsEn = {
 		},
 	},
 	gérer: {
-		index: '/manage',
-		siren: '/:siren',
+		index: '/manage/:entreprise',
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
 		'déclaration-charges-sociales-indépendant':

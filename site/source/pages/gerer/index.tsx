@@ -1,4 +1,8 @@
-import { searchDenominationOrSiren } from '@/api/fabrique-social'
+import { resetCompany } from '@/actions/companyActions'
+import {
+	FabriqueSocialEntreprise,
+	searchDenominationOrSiren,
+} from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
@@ -14,7 +18,8 @@ import { Markdown } from '@/components/utils/markdown'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
-import { Message } from '@/design-system'
+import { Message, Popover } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
@@ -25,11 +30,13 @@ import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { evaluateQuestion } from '@/utils'
 import { Grid } from '@mui/material'
+import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
 import { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import {
 	Redirect,
 	Route,
@@ -170,10 +177,27 @@ function Home() {
 	const simulateurs = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useEngine()
+	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
-	const { siren, entrepriseNotFound, entreprisePending } = useSirenFromParams()
+	const [overwrite, setOverwrite] = useState(false)
+	const { param, entreprise, entrepriseNotFound, entreprisePending } =
+		useSirenFromParams(overwrite)
 
-	if ((!siren && !engineSiren) || (siren && entrepriseNotFound)) {
+	const setEntreprise = useSetEntreprise()
+
+	const updateEntrprise =
+		!entreprisePending &&
+		!entrepriseNotFound &&
+		entreprise &&
+		entreprise.siren !== engineSiren
+
+	useEffect(() => {
+		if (updateEntrprise) {
+			setEntreprise(entreprise)
+		}
+	}, [entreprise, setEntreprise, updateEntrprise])
+
+	if ((!param && !engineSiren) || (param && entrepriseNotFound)) {
 		return <Redirect to={sitePaths.index} />
 	}
 
@@ -182,6 +206,15 @@ function Home() {
 			<Helmet>
 				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
 			</Helmet>
+
+			{param && param !== engineSiren && !overwrite && (
+				<PopoverOverwriteSituation
+					onOverwrite={() => {
+						dispatch(resetCompany())
+						setOverwrite(true)
+					}}
+				/>
+			)}
 
 			<TrackPage name="accueil" />
 			<PageHeader
@@ -416,24 +449,89 @@ export const AskCompanyMissingDetails = () => {
 	)
 }
 
-const useSirenFromParams = () => {
-	const { siren } = useParams<{ siren?: string }>()
-	const setEntreprise = useSetEntreprise()
+const PopoverOverwriteSituation = ({
+	onOverwrite,
+	onCancel,
+}: {
+	onOverwrite?: () => void
+	onCancel?: () => void
+}) => {
+	const { t } = useTranslation()
+	const state = useOverlayTriggerState({ defaultOpen: true })
+
+	if (!state.isOpen) {
+		return null
+	}
+
+	return (
+		<Popover
+			title={t(
+				'warning.overwrite.situation',
+				'Voulez-vous écraser votre situation ?'
+			)}
+			onClose={() => {
+				state.close()
+				onCancel?.()
+			}}
+			isDismissable
+			small
+		>
+			<Trans>
+				<Message type="info">
+					<Body>
+						Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
+						l'écraser ?
+					</Body>
+				</Message>
+				<Grid container justifyContent="end" spacing={2}>
+					<Grid item>
+						<Button
+							size="XS"
+							onClick={() => {
+								onOverwrite?.()
+							}}
+						>
+							Ecraser
+						</Button>
+					</Grid>
+					<Grid item>
+						<Button
+							size="XS"
+							light
+							onClick={() => {
+								state.close()
+								onCancel?.()
+							}}
+						>
+							Annuler
+						</Button>
+					</Grid>
+				</Grid>
+			</Trans>
+		</Popover>
+	)
+}
+
+const useSirenFromParams = (overwrite: boolean) => {
+	const { entreprise: param } = useParams<{ entreprise?: string }>()
+	const [entreprise, setEntreprise] = useState<FabriqueSocialEntreprise | null>(
+		null
+	)
 	const engine = useEngine()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
 
-	const [entreprisePending, setEntreprisePending] = useState(
-		(siren != null && siren !== engineSiren) ?? false
-	)
+	const [entreprisePending, setEntreprisePending] = useState(false)
 	const [entrepriseNotFound, setEntrepriseNotFound] = useState(false)
+
+	const pass = param && param !== engineSiren && !overwrite
 
 	useEffect(() => {
 		let canceled = false
-		if (!siren) {
+		if (!param || pass) {
 			return
 		}
 		setEntreprisePending(true)
-		searchDenominationOrSiren(siren)
+		searchDenominationOrSiren(param)
 			.then((entreprises) => {
 				if (canceled) {
 					return
@@ -457,10 +555,11 @@ const useSirenFromParams = () => {
 		return () => {
 			canceled = true
 		}
-	}, [setEntreprise, siren])
+	}, [setEntreprise, param, pass])
 
 	return {
-		siren,
+		param,
+		entreprise,
 		entreprisePending,
 		entrepriseNotFound,
 	}

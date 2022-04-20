@@ -1,14 +1,11 @@
 import { Grid } from '@mui/material'
 import { useSearchFieldState } from '@react-stately/searchfield'
-import {
-	FabriqueSocialEntreprise,
-	searchDenominationOrSiren,
-} from '@/api/fabrique-social'
+import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import CompanySearchDetails from './SearchDetails'
@@ -24,9 +21,10 @@ export function CompanySearchField(props: {
 	label?: ReactNode
 	onValue?: () => void
 	onClear?: () => void
-	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
+	onSubmit?: (search: FabriqueSocialEntreprise | null) => void
 }) {
 	const { t } = useTranslation()
+	const refResults = useRef<FabriqueSocialEntreprise[] | null>(null)
 
 	const searchFieldProps = {
 		...props,
@@ -35,20 +33,9 @@ export function CompanySearchField(props: {
 			'CompanySearchField.description',
 			'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Ex : 40123778000127'
 		),
-		onSubmit(value: string) {
-			// This should probably click on the first item of the list of values...
-			// Or use the current set of results...
-			searchDenominationOrSiren(value)
-				.then((result) => {
-					if (!result || result.length !== 1) {
-						return
-					}
-					props.onSubmit?.(result[0])
-				})
-				.catch((err) =>
-					// eslint-disable-next-line no-console
-					console.error(err)
-				)
+		onSubmit() {
+			const results = refResults.current
+			props.onSubmit?.(results?.[0] ?? null)
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',
@@ -58,13 +45,17 @@ export function CompanySearchField(props: {
 
 	const state = useSearchFieldState(searchFieldProps)
 
-	const { onValue, onClear } = props
+	const { onValue, onClear, onSubmit } = props
 	useEffect(
 		() => (!state.value ? onClear?.() : onValue?.()),
 		[state.value, onValue, onClear]
 	)
 
 	const [searchPending, results] = useSearchCompany(state.value)
+
+	useEffect(() => {
+		refResults.current = results ?? null
+	}, [results])
 
 	return (
 		<Grid container>
@@ -79,7 +70,7 @@ export function CompanySearchField(props: {
 			</Grid>
 			<Grid item xs={12}>
 				{state.value && !searchPending && (
-					<Results results={results} onSubmit={props.onSubmit} />
+					<Results results={results} onSubmit={onSubmit} />
 				)}
 			</Grid>
 		</Grid>

@@ -3,6 +3,7 @@ import { usePersistingState } from '@/components/utils/persistState'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
+import { useGérerPath } from '@/hooks/useGérerPath'
 import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch, useLocation } from 'react-router-dom'
@@ -12,6 +13,7 @@ import SimulateurPage from '../../components/PageData'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
+	const gérerPath = useGérerPath()
 	const { state, pathname } = useLocation()
 	const [lastState, setLastState] = usePersistingState<{
 		fromGérer?: boolean
@@ -45,7 +47,7 @@ export default function Simulateurs() {
 
 			{pathname !== sitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link to={sitePaths.gérer.index}>
+					<Link to={gérerPath}>
 						← <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (
