@@ -373,17 +373,18 @@ assistant-DRI:
         below.</1>"
       nombre-déclarations: This is your {{nthDeclaration}} tax return since the
         creation of your company.
-  intro: <0><0>We help you to fill in the income of your company in your tax
-    <1>return</1> on <4>impot.gouv.fr</4>.<6></6></0><1>Answer these few
-    questions, at the end you will have :</1><2><0>The forms that concern
-    you</0><1>The list of the boxes that concern you with the amount to be
-    filled in</1><2>An estimate of the social security contributions to be paid
-    to the Urssaf in 2022</2></2></0>
-  precision: <0>A few clarifications before continuing</0><1>To file your income
-    tax return, you must log on to <2>impot.gouv.fr</2> from <5>April 8,
-    2022</5>.</1><2>If it is your accountant who fills in your declaration, this
-    assistant can still be useful to know the <2>amount of social security
-    contributions to be paid in 2022</2></2>
+  intro: <0><0>We propose you a help to fill in the income from your professional
+    activity in your <2>income tax return of 2021</2> on
+    <5>impot.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
+    you will have :</1><2><0>The forms that concern you</0><1>The list of the
+    boxes that concern you with the amount to be filled</1><2>An estimate of the
+    social security contributions to be paid to the Urssaf in 2022</2></2></0>
+  precision: "<0>A few clarifications before continuing</0><1><0>If your
+    accountant completes your declaration, this wizard can still be useful to
+    know the <2>amount of social security contributions to be paid in
+    2022</2></0><1>This tool is <1>100% confidential</1>: all the information
+    you enter will remain in your browser.</1><2>To make your income tax return,
+    you will have to connect to <2>impot.gouv.fr</2>.</2></1>"
 associés:
   choix1: Alone
   choix2: Several partners
@@ -1906,9 +1907,16 @@ shareSimulation:
   button:
     copied: Copied
     copy: Copy the link
+  description: "<0>What is the purpose of the sharing link?</0><1>The simulators
+    and assistants on mon-entreprise.urssaf.fr are <2>100% confidential</2>: the
+    information you enter never leaves your browser.</1><2>To <1>send a
+    simulation</1> to another person, or to <4>find your simulation on another
+    device</4>, you can use a sharing link.</2><3>This one contains your
+    situation directly in text form. This way, you don't have to go through a
+    file or a backup on an external server!</3>"
   modal:
     helpText: The link is selected, you can copy and paste it.
-    notice: Here is the link you can send to access your simulation.
+    notice: This link can be used to access your simulation
     title: Your sharing link
   navigatorShare: My Simulation My Company
 simulateurs:

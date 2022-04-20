@@ -264,18 +264,20 @@ assistant-DRI:
         mode</1> à tout moment en utilisant l'interrupteur ci-dessous.</1>"
       nombre-déclarations: C'est votre {{nthDeclaration}} déclaration de revenu depuis
         la création de votre entreprise.
-  intro: <0><0>Nous vous accompagnons pour remplir les revenus de votre entreprise
-    dans votre <1>déclaration de revenu</1> sur
-    <4>impot.gouv.fr</4>.<6></6></0><1>Répondez à ces quelques questions, à la
-    fin vous aurez :</1><2><0>Les formulaires qui vous concernent</0><1>La liste
-    des cases qui vous concernent avec le montant à remplir</1><2>Une estimation
-    des cotisations sociales à payer à l'Urssaf en 2022</2></2></0>
-  precision: <0>Quelques précisions avant de continuer</0><1>Pour faire votre
-    déclaration de revenu, il faut vous connecter sur <2>impot.gouv.fr</2> à
-    partir du <5>8 avril 2022</5>.</1><2>Si c'est votre expert-comptable qui
-    remplit votre déclaration, cet assistant peut quand même vous être utile
-    pour connaître le <2>montant des cotisations sociales à payer en
-    2022</2></2>
+  intro: <0><0>Nous vous proposons une aide pour remplir les revenus issus de
+    votre activité professionnelle dans votre <2>déclaration des revenu de
+    2021</2> sur <5>impot.gouv.fr</5>.<7></7></0><1>Répondez à ces quelques
+    questions, à la fin vous aurez :</1><2><0>Les formulaires qui vous
+    concernent</0><1>La liste des cases qui vous concernent avec le montant à
+    remplir</1><2>Une estimation des cotisations sociales à payer à l'Urssaf en
+    2022</2></2></0>
+  precision: "<0>Quelques précisions avant de continuer</0><1><0>Si c'est votre
+    expert-comptable qui remplit votre déclaration, cet assistant peut quand
+    même vous être utile pour connaître le <2>montant des cotisations sociales à
+    payer en 2022</2></0><1>Cet outil est <1>100 % confidentiel</1> : toutes les
+    informations que vous renseignez resteront dans votre navigateur.</1><2>Pour
+    faire votre déclaration de revenu, il faudra vous connecter sur
+    <2>impot.gouv.fr</2>.</2></1>"
 associés:
   choix1: Seul
   choix2: Plusieurs personnes
@@ -537,7 +539,8 @@ entreprise:
     comptable:
       description: La gestion d'une entreprise impose un certain nombre
         d'<1>obligations comptables</1>. Il est conseillé de faire appel aux
-        services d'un expert-comptable ou d'un logiciel de comptabilité en ligne.
+        services d'un expert-comptable ou d'un logiciel de comptabilité en
+        ligne.
       titre: Choisir un expert-comptable
     formeJuridique:
       titre: Choisir la forme juridique
@@ -1529,9 +1532,17 @@ shareSimulation:
   button:
     copied: Copié
     copy: Copier le lien
+  description: "<0>À quoi sert le lien de partage&nbsp;?</0><1>Les simulateurs et
+    assistants de mon-entreprise.urssaf.fr sont <2>100 % confidentiels</2> : les
+    informations que vous renseignez ne quittent jamais votre
+    navigateur.</1><2>Pour <1>envoyer une simulation</1> à une autre personne,
+    ou <4>retrouver votre simulation sur un autre appareil</4> que celui-ci,
+    vous pouvez utiliser un lien de partage.</2><3>Celui ci contient votre
+    situation directement sous forme de texte. Comme ça, pas besoin de passer
+    par un fichier ou par une sauvegarde sur un serveur externe&nbsp;!</3>"
   modal:
     helpText: Le lien est sélectionné, vous pouvez le copier/coller
-    notice: Voici le lien que vous pouvez envoyer pour accéder à votre simulation.
+    notice: Ce lien peut être utilisé pour accéder à votre simulation
     title: Votre lien de partage
   navigatorShare: Ma simulation Mon Entreprise
 simulateurs:
