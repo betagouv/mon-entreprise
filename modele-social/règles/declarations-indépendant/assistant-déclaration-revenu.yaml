@@ -518,6 +518,7 @@ DRI . liasse . déclaration contrôlée . CN:
 
 DRI . informations complémentaires: oui
 DRI . informations complémentaires . OGA:
+  titre: Adhérent OGA
   applicable si: entreprise . imposition . IR
   question: Êtes-vous adhérant à un Organisme de Gestion Agrée (OGA) ?
   par défaut: oui

@@ -91,35 +91,12 @@ function getAllCases(rule: RuleNode): string[] {
 }
 
 export function DéclarationRevenuSection({ progress }: { progress: number }) {
-	const fields = useDéclarationRevenuFields()
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useEngine()
 
-	const caseName =
-		engine.evaluate('DRI . informations complémentaires . OGA').nodeValue ===
-		false
-			? 'sans OGA'
-			: 'défaut'
-
-	const getCases = useCallback(
-		(rule: Rule): string[] => {
-			const meta = getMeta<Meta>(rule, {})
-
-			return (
-				(Array.isArray(meta.cases) && meta.cases) ||
-				(typeof meta.cases === 'object' && meta.cases[caseName]) ||
-				[]
-			)
-		},
-		[caseName]
-	)
-
 	const déclarationRevenusManuel = engine.evaluate(
 		'DRI . déclaration revenus manuelle'
-	).nodeValue
-
-	const declarant =
-		engine.evaluate('DRI . déclarant').nodeValue === 'déclarant 2' ? 1 : 0
+	).nodeValue as boolean
 
 	if (!déclarationRevenusManuel && progress !== 1) {
 		return null
@@ -167,57 +144,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								justifyContent="space-between"
 							>
 								<SimpleField dottedName="DRI . déclarant" />
-
-								{fields.map(([dottedName, rule]) =>
-									getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
-										<Grid item xs={12} key={dottedName}>
-											{rule.dottedName.split(' . ').length === 2 ? (
-												<RuleInputWithTitle
-													title={rule.rawNode.question}
-													dottedName={dottedName}
-												/>
-											) : rule.dottedName.split(' . ').length === 3 ? (
-												<H3>{rule.title}</H3>
-											) : (
-												<H4
-													css={`
-														margin-top: 0rem;
-													`}
-												>
-													{rule.title}
-												</H4>
-											)}
-										</Grid>
-									) : (
-										<Fragment key={dottedName}>
-											<Grid item xs={12} md={8}>
-												<Body>
-													{rule.title} <em>{rule.rawNode.note}</em>
-												</Body>
-											</Grid>
-											{déclarationRevenusManuel ? (
-												<Grid item sm={12} md>
-													<SimpleField
-														label={getAllCases(rule).join(' / ')}
-														dottedName={dottedName}
-													/>
-												</Grid>
-											) : (
-												<Grid item xs="auto">
-													<Body>
-														<Strong>{getCases(rule.rawNode)[declarant]}</Strong>
-														<StyledCase>
-															<Value
-																expression={dottedName}
-																linkToRule={false}
-															/>
-														</StyledCase>
-													</Body>
-												</Grid>
-											)}
-										</Fragment>
-									)
-								)}
+								<DéclarationRevenu editable={déclarationRevenusManuel} />
 							</Grid>
 							{déclarationRevenusManuel && (
 								<SmallBody>
@@ -225,9 +152,8 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 									continuer. Si un champs est vide, inscrivez la valeur 0.
 								</SmallBody>
 							)}
-							<ShareOrSaveSimulationBanner share print />
 
-							<Spacing xl />
+							<Spacing lg />
 
 							<Grid
 								xs={12}
@@ -245,6 +171,8 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								</Button>
 							</Grid>
 							<Spacing md />
+							<ShareOrSaveSimulationBanner share print />
+							<Spacing lg />
 						</Message>
 					</Grid>
 					{!déclarationRevenusManuel && (
@@ -277,6 +205,88 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 				<Spacing xl />
 			</FromTop>
 		</Container>
+	)
+}
+
+export function DéclarationRevenu({
+	editable = false,
+}: {
+	editable?: boolean
+}) {
+	const fields = useDéclarationRevenuFields()
+	const engine = useEngine()
+
+	const caseName =
+		engine.evaluate('DRI . informations complémentaires . OGA').nodeValue ===
+		false
+			? 'sans OGA'
+			: 'défaut'
+
+	const getCases = useCallback(
+		(rule: Rule): string[] => {
+			const meta = getMeta<Meta>(rule, {})
+
+			return (
+				(Array.isArray(meta.cases) && meta.cases) ||
+				(typeof meta.cases === 'object' && meta.cases[caseName]) ||
+				[]
+			)
+		},
+		[caseName]
+	)
+	const declarant =
+		engine.evaluate('DRI . déclarant').nodeValue === 'déclarant 2' ? 1 : 0
+
+	return (
+		<>
+			{fields.map(([dottedName, rule]) =>
+				getMeta<Meta>(rule.rawNode, {})?.section === 'oui' ? (
+					<Grid item xs={12} key={dottedName}>
+						{rule.dottedName.split(' . ').length === 2 ? (
+							<RuleInputWithTitle
+								title={rule.rawNode.question}
+								dottedName={dottedName}
+							/>
+						) : rule.dottedName.split(' . ').length === 3 ? (
+							<H3>{rule.title}</H3>
+						) : (
+							<H4
+								css={`
+									margin-top: 0rem;
+								`}
+							>
+								{rule.title}
+							</H4>
+						)}
+					</Grid>
+				) : (
+					<Fragment key={dottedName}>
+						<Grid item xs={12} md={8}>
+							<Body>
+								{rule.title} <em>{rule.rawNode.note}</em>
+							</Body>
+						</Grid>
+						{editable ? (
+							<Grid item sm={12} md>
+								<SimpleField
+									label={getAllCases(rule).join(' / ')}
+									dottedName={dottedName}
+								/>
+							</Grid>
+						) : (
+							<Grid item xs="auto">
+								<Body>
+									<Strong>{getCases(rule.rawNode)[declarant]}</Strong>
+									<StyledCase>
+										<Value expression={dottedName} linkToRule={false} />
+									</StyledCase>
+								</Body>
+							</Grid>
+						)}
+					</Fragment>
+				)
+			)}
+		</>
 	)
 }
 

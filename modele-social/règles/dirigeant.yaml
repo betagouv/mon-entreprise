@@ -615,6 +615,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
           plafond: 100%
 
 dirigeant . indépendant . conjoint collaborateur . assiette:
+  titre: Choix assiette (conjoint collaborateur)
   question: Sur quelle base le conjoint cotise-t'il ?
   description: |
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
@@ -656,6 +657,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans parta
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
+  titre: Proportion revenu (conjoint collaborateur)
   question: À quelle proportion du revenu le conjoint cotise-t'il ?
   par défaut: "'tiers'"
   formule:

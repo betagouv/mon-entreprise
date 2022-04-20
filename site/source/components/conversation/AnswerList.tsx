@@ -27,9 +27,10 @@ import RuleInput from './RuleInput'
 
 type AnswerListProps = {
 	onClose: () => void
+	children?: React.ReactNode
 }
 
-export default function AnswerList({ onClose }: AnswerListProps) {
+export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
@@ -75,7 +76,9 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 					</H3>
 
 					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
-					<Spacing sm />
+					{children}
+
+					<Spacing lg />
 					<div
 						css={`
 							text-align: center;
@@ -92,14 +95,13 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 					</div>
 				</>
 			)}
-
 			{companyQuestions.length > 0 && (
 				<>
 					<Trans>
 						<H3>Mon entreprise</H3>
 					</Trans>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
-					<Spacing sm />
+					<Spacing lg />
 					<div
 						css={`
 							text-align: center;
@@ -152,6 +154,7 @@ function StepsTable({
 					>
 						<Grid item xs>
 							{rule.title}
+							<ExplicableRule light dottedName={rule.dottedName} />
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />
