@@ -171,6 +171,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								</Button>
 							</Grid>
 							<Spacing md />
+
 							<ShareOrSaveSimulationBanner share print />
 							<Spacing lg />
 						</Message>

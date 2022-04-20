@@ -15,8 +15,8 @@ import { useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
 import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'
+import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
-import ExportRecover from './../simulationExplanation/ExportRecover'
 import { FadeIn, FromTop } from './../ui/animate'
 import { Questions } from './Questions'
 
@@ -60,7 +60,7 @@ export default function Simulation({
 			{!firstStepCompleted && <TrackPage name="accueil" />}
 			<Grid container spacing={2} justifyContent="center">
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
-					<ExportRecover />
+					<PrintExportRecover />
 					{children}
 
 					<div className="print-hidden">
