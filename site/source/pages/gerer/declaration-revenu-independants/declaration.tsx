@@ -155,17 +155,19 @@ export default function Déclaration() {
 								déclaration de résultat de votre entreprise dans le formulaire
 								suivant.
 							</Body>
-							<Message type="info">
-								<H6 as="h3">Écriture entre parenthèse ( )</H6>
-								<Body>
-									Certains montants sont écris entre parenthèses dans la
-									déclaration de résultat. Par exemple, la case « plus value »
-									peut contenir <code>(1546)</code>. C'est une écriture
-									comptable pour dire que le montant est négatif. Vous pouvez le
-									reporter dans ce formulaire en utilisant le signe « - »
-									habituel.
-								</Body>
-							</Message>
+							<Condition expression="entreprise . imposition . IR . type de bénéfices . BIC">
+								<Message type="info">
+									<H6 as="h3">Écriture entre parenthèse ( )</H6>
+									<Body>
+										Certains montants sont écris entre parenthèses dans la
+										déclaration de résultat. Par exemple, la case « plus value »
+										peut contenir <code>(1546)</code>. C'est une écriture
+										comptable pour dire que le montant est négatif. Vous pouvez
+										le reporter dans ce formulaire en utilisant le signe « - »
+										habituel.
+									</Body>
+								</Message>
+							</Condition>
 						</FromTop>
 					</Grid>
 

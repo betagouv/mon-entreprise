@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { goToQuestion, stepAction, updateSituation } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
 import Notifications from '@/components/Notifications'
@@ -10,24 +9,29 @@ import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { PublicodesExpression } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
-import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { evaluateQuestion } from '@/utils'
+import { Grid } from '@mui/material'
+import { PublicodesExpression } from 'publicodes'
+import React, { useContext, useEffect } from 'react'
+import { Trans } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
-import { evaluateQuestion } from '@/utils'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
+	customSituationVisualisation?: React.ReactNode
 }
 
-export default function Conversation({ customEndMessages }: ConversationProps) {
+export default function Conversation({
+	customEndMessages,
+	customSituationVisualisation,
+}: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const currentQuestion = useNextQuestions()[0]
@@ -104,7 +108,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</Button>
 					</Grid>
 					<Grid container item xs={12} sm justifyContent="flex-end">
-						<SeeAnswersButton />
+						<SeeAnswersButton>{customSituationVisualisation}</SeeAnswersButton>
 					</Grid>
 				</Grid>
 				<Notifications />
@@ -136,7 +140,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					</Grid>
 				)}
 				<Grid container item xs={6} sm justifyContent="flex-end">
-					<SeeAnswersButton />
+					<SeeAnswersButton>{customSituationVisualisation}</SeeAnswersButton>
 				</Grid>
 			</Grid>
 			<Spacing lg />
