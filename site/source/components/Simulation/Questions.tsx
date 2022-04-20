@@ -32,15 +32,16 @@ export function Questions({
 	return (
 		<>
 			<Progress progress={progress} />
-			<QuestionsContainer className="print-hidden">
-				{progress < 1 && (
-					<Notice>
-						<Trans i18nKey="simulateurs.précision.défaut">
-							Améliorez votre simulation en répondant aux questions :
-						</Trans>
-					</Notice>
-				)}
-
+			<QuestionsContainer>
+				<div className="print-hidden">
+					{progress < 1 && (
+						<Notice>
+							<Trans i18nKey="simulateurs.précision.défaut">
+								Améliorez votre simulation en répondant aux questions :
+							</Trans>
+						</Notice>
+					)}
+				</div>
 				<Conversation customEndMessages={customEndMessages} />
 			</QuestionsContainer>
 		</>

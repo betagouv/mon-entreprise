@@ -10,14 +10,16 @@ export default function SeeAnswersButton({
 	children?: React.ReactNode
 }) {
 	return (
-		<PopoverWithTrigger
-			trigger={(buttonProps) => (
-				<Button {...buttonProps} size="XS" light>
-					<Trans>Voir ma situation</Trans>
-				</Button>
-			)}
-		>
-			{(close) => <Answers onClose={close}>{children}</Answers>}
-		</PopoverWithTrigger>
+		<>
+			<PopoverWithTrigger
+				trigger={(buttonProps) => (
+					<Button {...buttonProps} size="XS" light>
+						<Trans>Voir ma situation</Trans>
+					</Button>
+				)}
+			>
+				{(close) => <Answers onClose={close}>{children}</Answers>}
+			</PopoverWithTrigger>
+		</>
 	)
 }
