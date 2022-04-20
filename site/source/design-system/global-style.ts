@@ -145,7 +145,7 @@ button:enabled {
 }
 @media print {
 	.print-only {
-		display: block;
+		display: initial;
 	}
 }
 

@@ -72,6 +72,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	showSuggestions = true,
 	onSubmit = () => null,
 	showDefaultDateValue = false,
+	missing,
 	modifiers = {},
 	...props
 }: Props<Names>) {
@@ -82,7 +83,9 @@ export default function RuleInput<Names extends string = DottedName>({
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
-		missing: !showDefaultDateValue && !isEmpty(evaluation.missingVariables),
+		missing:
+			missing ??
+			(!showDefaultDateValue && !isEmpty(evaluation.missingVariables)),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		title: rule.title,

@@ -20,6 +20,7 @@ import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
+import { FromTop } from '../ui/animate'
 import AnswerList from './AnswerList'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
@@ -66,7 +67,7 @@ export default function Conversation({
 			</div>
 			<div className="print-hidden">
 				{currentQuestion ? (
-					<>
+					<FromTop>
 						{Object.keys(situation).length !== 0 && (
 							<TrackPage name="simulation commencée" />
 						)}
@@ -134,7 +135,7 @@ export default function Conversation({
 							<Notifications />
 						</form>
 						<QuickLinks />
-					</>
+					</FromTop>
 				) : (
 					<div style={{ textAlign: 'center' }}>
 						<TrackPage name="simulation terminée" />
