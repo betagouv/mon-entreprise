@@ -17,9 +17,11 @@ describe('Simulateur salarié', function () {
 				.next()
 				.find('button')
 				.click()
-			cy.contains('Oui').click()
-			cy.wait(500)
-			cy.contains('Fermer').click()
+
+			cy.get('div[role="dialog"]').contains('Oui').click()
+			cy.wait(300)
+			cy.get('div[role="dialog"]').contains('Continuer').click()
+			cy.get('div[role="dialog"]').contains('Fermer').click()
 		})
 
 		it('should permit selecting the smic before part-time contrat', function () {
@@ -35,7 +37,11 @@ describe('Simulateur salarié', function () {
 		it('should permit customizing the number of worked hours and clear the input value', function () {
 			cy.contains('Voir ma situation').click()
 
-			cy.contains('Heures par semaine').next().find('button').click()
+			cy.get('div[role="dialog"]')
+				.contains('Heures par semaine')
+				.next()
+				.find('button')
+				.click()
 			cy.focused().type(25)
 			cy.wait(500)
 			cy.contains('Fermer').click()

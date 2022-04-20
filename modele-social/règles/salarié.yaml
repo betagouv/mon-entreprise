@@ -1225,7 +1225,7 @@ contrat salarié . professionnalisation:
     indéterminée (CDI), la période de professionnalisation proprement-dite
     devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
     prolongée jusqu'à 36 mois.
-  applicable si: contrat salarié = 'professionnalisation'
+  valeur: contrat salarié = 'professionnalisation'
   rend non applicable: rémunération . contrôle smic
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478

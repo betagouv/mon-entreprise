@@ -291,19 +291,22 @@ demande . PAM . détachement possible:
 demande . salarié:
   applicable si: situation . salarié
   question: 'Le salarié va exercer son activité professionnelle à l’étranger :'
-  par défaut: non
   une possibilité:
     choix obligatoire: oui
     possibilités:
       - détachement
       - pluriactivité
+
 demande . salarié . détachement:
   titre: pour une période déterminée et dans un seul pays (Détachement)
-  valeur: demande . salarié = 'détachement'
+  valeur: salarié = 'détachement'
+  par défaut: non
 
 demande . salarié . pluriactivité:
   titre: de façon alternée ou simultanée entre la France et un ou plusieurs pays (Pluriactivité)
-  valeur: demande . salarié = 'pluriactivité'
+  valeur: salarié = 'pluriactivité'
+  par défaut: non
+
 demande . salarié . détachement . notification:
   valeur: oui
   titre: ''
@@ -367,7 +370,7 @@ détachement:
   applicable si:
     une de ces conditions:
       - demande . PAM . détachement possible
-      - demande . salarié = 'détachement'
+      - demande . salarié . détachement
   titre: Demande de détachement
   valeur: oui
   type: groupe
@@ -780,7 +783,7 @@ pluriactivité:
       - toutes ces conditions:
           - demande . PAM
           - demande . PAM . détachement possible = non
-      - demande . salarié = 'pluriactivité'
+      - demande . salarié . pluriactivité
   valeur: oui
   titre: Demande de pluriactivité
   type: groupe
