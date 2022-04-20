@@ -28,14 +28,16 @@ export function ExplicableRule<Names extends string = DottedName>({
 	// TODO montrer les variables de type 'une possibilité'
 
 	return (
-		<ButtonHelp
-			key={rule.dottedName}
-			type="info"
-			title={rule.title}
-			light={light}
-			bigPopover={bigPopover}
-		>
-			<Markdown>{rule.rawNode.description}</Markdown>
-		</ButtonHelp>
+		<span className="print-hidden">
+			<ButtonHelp
+				key={rule.dottedName}
+				type="info"
+				title={rule.title}
+				light={light}
+				bigPopover={bigPopover}
+			>
+				<Markdown>{rule.rawNode.description}</Markdown>
+			</ButtonHelp>
+		</span>
 	)
 }

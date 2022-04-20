@@ -1,7 +1,7 @@
 import { ConversationProps } from '@/components/conversation/Conversation'
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
-import { Message, PopoverWithTrigger } from '@/design-system'
+import { PopoverWithTrigger } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import {
@@ -58,9 +58,9 @@ export default function Simulation({
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
-			<ExportRecover />
 			<Grid container spacing={2} justifyContent="center">
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
+					<ExportRecover />
 					{children}
 
 					<div className="print-hidden">
@@ -68,18 +68,20 @@ export default function Simulation({
 							<>
 								<Spacing sm />
 								<PreviousSimulationBanner />
-								{afterQuestionsSlot}
 							</>
 						)}
-
-						{firstStepCompleted && (
-							<FromTop>
-								{results}
-								<Questions customEndMessages={customEndMessages} />
-								<Spacing sm />
-								{afterQuestionsSlot}
-							</FromTop>
-						)}
+					</div>
+					{firstStepCompleted && (
+						<>
+							<div className="print-hidden">
+								<FromTop>{results}</FromTop>
+							</div>
+							<Questions customEndMessages={customEndMessages} />
+						</>
+					)}
+					<div className="print-hidden">
+						<Spacing sm />
+						{afterQuestionsSlot}
 						{existingCompany && (
 							<Banner icon="✏">
 								Ce simulateur a été prérempli avec la situation de votre

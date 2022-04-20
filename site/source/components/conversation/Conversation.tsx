@@ -20,6 +20,7 @@ import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
+import AnswerList from './AnswerList'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
 
@@ -52,98 +53,123 @@ export default function Conversation({
 		dispatch(updateSituation(currentQuestion, value))
 	}
 
-	return currentQuestion ? (
+	return (
 		<>
-			{Object.keys(situation).length !== 0 && (
-				<TrackPage name="simulation commencée" />
-			)}
-			<form
-				onSubmit={(e) => {
-					e.preventDefault()
-					goToNextQuestion()
-				}}
-			>
-				<div
-					css={`
-						display: inline-flex;
-						align-items: baseline;
-					`}
+			<div className="print-only">
+				<AnswerList
+					onClose={() => {
+						// do nothing.
+					}}
 				>
-					<H3>
-						{evaluateQuestion(engine, engine.getRule(currentQuestion))}
-						<ExplicableRule light dottedName={currentQuestion} />
-					</H3>
-				</div>
-				<fieldset>
-					<RuleInput
-						dottedName={currentQuestion}
-						onChange={onChange}
-						autoFocus
-						key={currentQuestion}
-						onSubmit={goToNextQuestion}
-					/>
-				</fieldset>
-				<Spacing md />
-				<button aria-hidden className="sr-only" type="submit" tabIndex={-1} />
-				<Grid container spacing={2}>
-					{previousAnswers.length > 0 && (
-						<Grid item xs={6} sm="auto">
-							<Button light onPress={goToPrevious} size="XS">
-								← <Trans>Précédent</Trans>
-							</Button>
-						</Grid>
-					)}
-					<Grid item xs={6} sm="auto">
-						<Button
-							size="XS"
-							onPress={goToNextQuestion}
-							light={!currentQuestionIsAnswered}
+					{customSituationVisualisation}
+				</AnswerList>
+			</div>
+			<div className="print-hidden">
+				{currentQuestion ? (
+					<>
+						{Object.keys(situation).length !== 0 && (
+							<TrackPage name="simulation commencée" />
+						)}
+						<form
+							onSubmit={(e) => {
+								e.preventDefault()
+								goToNextQuestion()
+							}}
 						>
-							{currentQuestionIsAnswered ? (
-								<Trans>Suivant</Trans>
-							) : (
-								<Trans>Passer</Trans>
-							)}{' '}
-							→
-						</Button>
-					</Grid>
-					<Grid container item xs={12} sm justifyContent="flex-end">
-						<SeeAnswersButton>{customSituationVisualisation}</SeeAnswersButton>
-					</Grid>
-				</Grid>
-				<Notifications />
-			</form>
-			<QuickLinks />
+							<div
+								css={`
+									display: inline-flex;
+									align-items: baseline;
+								`}
+							>
+								<H3>
+									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
+									<ExplicableRule light dottedName={currentQuestion} />
+								</H3>
+							</div>
+							<fieldset>
+								<RuleInput
+									dottedName={currentQuestion}
+									onChange={onChange}
+									autoFocus
+									key={currentQuestion}
+									onSubmit={goToNextQuestion}
+								/>
+							</fieldset>
+							<Spacing md />
+							<button
+								aria-hidden
+								className="sr-only"
+								type="submit"
+								tabIndex={-1}
+							/>
+							<Grid container spacing={2}>
+								{previousAnswers.length > 0 && (
+									<Grid item xs={6} sm="auto">
+										<Button light onPress={goToPrevious} size="XS">
+											← <Trans>Précédent</Trans>
+										</Button>
+									</Grid>
+								)}
+								<Grid item xs={6} sm="auto">
+									<Button
+										size="XS"
+										onPress={goToNextQuestion}
+										light={!currentQuestionIsAnswered}
+									>
+										{currentQuestionIsAnswered ? (
+											<Trans>Suivant</Trans>
+										) : (
+											<Trans>Passer</Trans>
+										)}{' '}
+										→
+									</Button>
+								</Grid>
+								<Grid container item xs={12} sm justifyContent="flex-end">
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
+								</Grid>
+							</Grid>
+							<Notifications />
+						</form>
+						<QuickLinks />
+					</>
+				) : (
+					<div style={{ textAlign: 'center' }}>
+						<TrackPage name="simulation terminée" />
+						<H3>
+							<Emoji emoji="🌟" />{' '}
+							<Trans i18nKey="simulation-end.title">
+								Vous avez complété cette simulation
+							</Trans>
+						</H3>
+						<Body>
+							{customEndMessages || (
+								<Trans i18nKey="simulation-end.text">
+									Vous avez maintenant accès à l'estimation la plus précise
+									possible.
+								</Trans>
+							)}
+						</Body>
+						<Grid container spacing={2}>
+							{previousAnswers.length > 0 && (
+								<Grid item xs={6} sm="auto">
+									<Button light onPress={goToPrevious} size="XS">
+										← <Trans>Précédent</Trans>
+									</Button>
+								</Grid>
+							)}
+							<Grid container item xs={6} sm justifyContent="flex-end">
+								<SeeAnswersButton>
+									{customSituationVisualisation}
+								</SeeAnswersButton>
+							</Grid>
+						</Grid>
+						<Spacing lg />
+					</div>
+				)}
+			</div>
 		</>
-	) : (
-		<div style={{ textAlign: 'center' }}>
-			<TrackPage name="simulation terminée" />
-			<H3>
-				<Emoji emoji="🌟" />{' '}
-				<Trans i18nKey="simulation-end.title">
-					Vous avez complété cette simulation
-				</Trans>
-			</H3>
-			<Body>
-				{customEndMessages || (
-					<Trans i18nKey="simulation-end.text">
-						Vous avez maintenant accès à l'estimation la plus précise possible.
-					</Trans>
-				)}
-			</Body>
-			<Grid container spacing={2}>
-				{previousAnswers.length > 0 && (
-					<Grid item xs={6} sm="auto">
-						<Button light onPress={goToPrevious} size="XS">
-							← <Trans>Précédent</Trans>
-						</Button>
-					</Grid>
-				)}
-				<Grid container item xs={6} sm justifyContent="flex-end">
-					<SeeAnswersButton>{customSituationVisualisation}</SeeAnswersButton>
-				</Grid>
-			</Grid>
-			<Spacing lg />
-		</div>
 	)
 }

@@ -80,6 +80,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 
 					<Spacing lg />
 					<div
+						className="print-hidden"
 						css={`
 							text-align: center;
 						`}
@@ -103,6 +104,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing lg />
 					<div
+						className="print-hidden"
 						css={`
 							text-align: center;
 						`}
@@ -122,13 +124,13 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 			)}
 
 			{!!nextSteps.length && (
-				<>
+				<div className="print-hidden">
 					<H2>
 						<Emoji emoji="🔮 " />
 						<Trans>Prochaines questions</Trans>
 					</H2>
 					<StepsTable {...{ rules: nextSteps, onClose }} />
-				</>
+				</div>
 			)}
 		</div>
 	)
@@ -185,7 +187,9 @@ function AnswerElement(
 			trigger={(buttonProps) => (
 				<Link {...buttonProps} title="Modifier">
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
-					<Emoji emoji="✏" alt="Modifier" />
+					<span className="print-hidden">
+						<Emoji emoji="✏" alt="Modifier" />
+					</span>
 				</Link>
 			)}
 		>
@@ -227,5 +231,6 @@ const StyledAnswerList = styled(Grid)`
 	font-family: ${({ theme }) => theme.fonts.main};
 	:nth-child(2n) {
 		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+		color-adjust: exact !important;
 	}
 `
