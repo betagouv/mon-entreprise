@@ -607,17 +607,17 @@ contrat salarié . déduction forfaitaire spécifique:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
 contrat salarié . déduction forfaitaire spécifique . taux:
-  formule:
-    variations:
-      - si: profession = 'journaliste'
-        alors: 20%
-      - si: profession = 'ouvrier du bâtiment'
-        alors: 10%
-      - si: profession = 'artiste musicien'
-        alors: 20%
-      - si: profession = 'pilote de ligne ou personnel navigant'
-        alors: 30%
-      - sinon: 0%
+  variations:
+    - si: profession = 'journaliste'
+      alors: 20%
+    - si: profession = 'ouvrier du bâtiment'
+      alors: 10%
+    - si: profession = 'artiste musicien'
+      alors: 20%
+    - si: profession = 'pilote de ligne ou personnel navigant'
+      alors: 30%
+    - sinon: 0%
+  par défaut: 10%
   références:
     Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
 
@@ -633,14 +633,13 @@ contrat salarié . déduction forfaitaire spécifique . profession:
       choix obligatoire: oui
 
 contrat salarié . déduction forfaitaire spécifique . profession . journaliste:
-  formule: contrat salarié . déduction forfaitaire spécifique . profession = 'journaliste'
+  valeur: profession = 'journaliste'
   icônes: ✒
   description: >-
     Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
     Critiques dramatiques et musicaux.
 
 contrat salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
-  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
   remplace:
     - règle: vieillesse . employeur . plafonnée . taux
       par: vieillesse . employeur . plafonnée . taux * réduction de taux
@@ -662,7 +661,6 @@ contrat salarié . déduction forfaitaire spécifique . profession . journaliste
   formule: 80%
 
 contrat salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
-  applicable si: déduction forfaitaire spécifique . profession = 'journaliste'
   remplace: rémunération . net imposable
   titre: net imposable journaliste
   formule:

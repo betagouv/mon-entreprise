@@ -24,6 +24,7 @@ questions:
     - impôt
   non prioritaires:
     - dirigeant . indépendant . cotisations facultatives
+    - dirigeant . indépendant . PL . CNAVPL . exonération incapacité
     - dirigeant . indépendant . IJSS
     - dirigeant . indépendant . cotisations et contributions . exonérations
     - dirigeant . indépendant . revenus étrangers

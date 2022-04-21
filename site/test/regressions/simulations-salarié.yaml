@@ -301,7 +301,6 @@ frais pro - transports personnels seul:
     contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
     contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
     contrat salarié . déduction forfaitaire spécifique: oui
-    contrat salarié . déduction forfaitaire spécifique . taux: 20%
 
 frais pro - abo transports + transports personnels:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
