@@ -72,6 +72,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
+
 	if (type === 'select') {
 		return (
 			<Select
@@ -126,6 +127,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 				autoFocus={props.autoFocus ? defaultValue : undefined}
 				choice={choice}
 				rootDottedName={props.dottedName}
+				type={type}
 			/>
 		</Component>
 	)
@@ -135,10 +137,12 @@ function RadioChoice<Names extends string = DottedName>({
 	choice,
 	autoFocus,
 	rootDottedName,
+	type,
 }: {
 	choice: Choice
 	autoFocus?: string
 	rootDottedName: Names
+	type: 'radio' | 'toggle'
 }) {
 	const hiddenOptions = useContext(HiddenOptionContext)
 	const { t } = useTranslation()
@@ -161,7 +165,11 @@ function RadioChoice<Names extends string = DottedName>({
 							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
-								<RadioChoice choice={node} rootDottedName={rootDottedName} />
+								<RadioChoice
+									choice={node}
+									rootDottedName={rootDottedName}
+									type={type}
+								/>
 							</StyledSubRadioGroup>
 						</div>
 					) : (
@@ -179,10 +187,12 @@ function RadioChoice<Names extends string = DottedName>({
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 							</Radio>{' '}
-							<ExplicableRule
-								light
-								dottedName={node.dottedName as DottedName}
-							/>
+							{type !== 'toggle' && (
+								<ExplicableRule
+									light
+									dottedName={node.dottedName as DottedName}
+								/>
+							)}
 						</span>
 					)}
 				</Fragment>
