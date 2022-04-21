@@ -11,7 +11,7 @@ describe('Simulateur salarié', function () {
 	describe('part time contract', function () {
 		before(function () {
 			cy.get('button').contains('SMIC').click()
-			cy.contains('Voir ma situation').click()
+			cy.contains('Modifier mes réponses').click()
 			cy.get('div[role="dialog"]')
 				.contains('Temps partiel')
 				.next()
@@ -35,7 +35,7 @@ describe('Simulateur salarié', function () {
 		})
 
 		it('should permit customizing the number of worked hours and clear the input value', function () {
-			cy.contains('Voir ma situation').click()
+			cy.contains('Modifier mes réponses').click()
 
 			cy.get('div[role="dialog"]')
 				.contains('Heures par semaine')

@@ -17,7 +17,7 @@ describe('Champs localisation (simulateur salarié)', function () {
 			.type('Steenvoorde')
 		cy.contains('Steenvoorde (59114)').click({ force: true })
 		cy.contains('Suivant').click({ force: true })
-		cy.contains('Voir ma situation').click({ force: true })
+		cy.contains('Modifier mes réponses').click({ force: true })
 		cy.contains('Steenvoorde')
 	})
 })
