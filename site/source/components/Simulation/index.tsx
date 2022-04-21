@@ -62,48 +62,52 @@ export default function Simulation({
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
 					{children}
-
-					<div className="print-hidden">
-						{!firstStepCompleted && (
+					<FromTop>
+						<div className="print-hidden">
+							{!firstStepCompleted && (
+								<>
+									<Spacing sm />
+									<PreviousSimulationBanner />
+								</>
+							)}
+						</div>
+						{firstStepCompleted && (
 							<>
-								<Spacing sm />
-								<PreviousSimulationBanner />
+								<div className="print-hidden">
+									<FromTop>{results}</FromTop>
+								</div>
+								<Questions customEndMessages={customEndMessages} />
 							</>
 						)}
-					</div>
-					{firstStepCompleted && (
-						<>
-							<div className="print-hidden">
-								<FromTop>{results}</FromTop>
-							</div>
-							<Questions customEndMessages={customEndMessages} />
-						</>
-					)}
-					<div className="print-hidden">
-						<Spacing sm />
-						{afterQuestionsSlot}
-						{existingCompany && (
-							<Banner icon="✏">
-								Ce simulateur a été prérempli avec la situation de votre
-								entreprise.{' '}
-								<PopoverWithTrigger
-									trigger={(buttonProps) => (
-										<Link {...buttonProps}>
-											<Trans>Voir ma situation</Trans>
-										</Link>
-									)}
-								>
-									{(close) => <AnswerList onClose={close} />}
-								</PopoverWithTrigger>
-							</Banner>
-						)}
-						{firstStepCompleted && !hideDetails && (
-							<>
-								<ShareOrSaveSimulationBanner share print placeDesEntreprises />
-								<Spacing lg />
-							</>
-						)}
-					</div>
+						<div className="print-hidden">
+							{afterQuestionsSlot}
+							{existingCompany && (
+								<Banner icon="✏">
+									Ce simulateur a été prérempli avec la situation de votre
+									entreprise.{' '}
+									<PopoverWithTrigger
+										trigger={(buttonProps) => (
+											<Link {...buttonProps}>
+												<Trans>Voir ma situation</Trans>
+											</Link>
+										)}
+									>
+										{(close) => <AnswerList onClose={close} />}
+									</PopoverWithTrigger>
+								</Banner>
+							)}
+							{firstStepCompleted && !hideDetails && (
+								<>
+									<ShareOrSaveSimulationBanner
+										share
+										print
+										placeDesEntreprises
+									/>
+									<Spacing lg />
+								</>
+							)}
+						</div>
+					</FromTop>
 				</StyledGrid>
 			</Grid>
 			{firstStepCompleted && !hideDetails && (
