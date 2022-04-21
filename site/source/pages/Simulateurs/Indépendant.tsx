@@ -1,7 +1,9 @@
 import { updateSituation } from '@/actions/actions'
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
+import RuleInput from '@/components/conversation/RuleInput'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
+import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
@@ -9,8 +11,6 @@ import Simulation, {
 } from '@/components/Simulation'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { useDispatch } from 'react-redux'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
-import RuleInput from '@/components/conversation/RuleInput'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -55,6 +55,7 @@ export default function IndépendantSimulation() {
 					toggles={
 						<>
 							<RuleInput
+								type="toggle"
 								dottedName="entreprise . imposition"
 								onChange={(imposition) => {
 									dispatch(

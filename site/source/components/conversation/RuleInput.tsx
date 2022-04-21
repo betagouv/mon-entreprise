@@ -40,7 +40,7 @@ type Props<Names extends string = DottedName> = Omit<
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
 	onSubmit?: (source: string) => void
-
+	type?: 'radio' | 'card' | 'toggle' | 'select'
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 	modifiers?: Record<string, string>
@@ -73,6 +73,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	onSubmit = () => null,
 	showDefaultDateValue = false,
 	missing,
+	type,
 	modifiers = {},
 	...props
 }: Props<Names>) {
@@ -99,9 +100,10 @@ export default function RuleInput<Names extends string = DottedName>({
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
 	if (getVariant(engine.getRule(dottedName))) {
-		const type =
-			meta.affichage &&
-			['radio', 'card', 'toggle', 'select'].includes(meta.affichage)
+		type =
+			type ??
+			(meta.affichage &&
+				['radio', 'card', 'toggle', 'select'].includes(meta.affichage))
 				? (meta.affichage as 'radio' | 'card' | 'toggle' | 'select')
 				: 'radio'
 
