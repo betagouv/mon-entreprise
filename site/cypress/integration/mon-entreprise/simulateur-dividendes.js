@@ -14,8 +14,4 @@ describe('Simulateur dividendes', function () {
 		cy.contains(/[cC]otisations\s+17,2\s*%/)
 		cy.contains(/[Ii]mpôt\s+12,8\s*%/)
 	})
-
-	it('should allow switching PFU with barème', function () {
-		cy.get('div [role="radiogroup"] input').eq(0).should('not.be.checked')
-	})
 })

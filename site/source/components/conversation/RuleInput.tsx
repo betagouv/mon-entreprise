@@ -98,7 +98,6 @@ export default function RuleInput<Names extends string = DottedName>({
 		...props,
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
-
 	if (getVariant(engine.getRule(dottedName))) {
 		const type =
 			inputType ??
