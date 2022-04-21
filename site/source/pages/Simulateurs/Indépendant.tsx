@@ -8,12 +8,9 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { useEngine } from '@/components/utils/EngineContext'
-import { Radio, ToggleGroup } from '@/design-system/field'
-import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
-import { useEffect, useState } from 'react'
+import RuleInput from '@/components/conversation/RuleInput'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -44,6 +41,8 @@ export function EntrepriseIndividuelle() {
 }
 
 export default function IndépendantSimulation() {
+	const dispatch = useDispatch()
+
 	return (
 		<>
 			<Simulation
@@ -55,7 +54,14 @@ export default function IndépendantSimulation() {
 					legend="Vos revenus d'indépendant"
 					toggles={
 						<>
-							<ImpositionSwitch />
+							<RuleInput
+								dottedName="entreprise . imposition"
+								onChange={(imposition) => {
+									dispatch(
+										updateSituation('entreprise . imposition', imposition)
+									)
+								}}
+							/>
 
 							<PeriodSwitch />
 						</>
@@ -118,44 +124,5 @@ function IndépendantSimulationGoals({
 			</Condition>
 			<SimulationGoal dottedName="dirigeant . rémunération . nette après impôt" />
 		</SimulationGoals>
-	)
-}
-
-function ImpositionSwitch() {
-	const dispatch = useDispatch()
-	const engine = useEngine()
-	const engineImposition = engine.evaluate('entreprise . imposition')
-		.nodeValue as string
-	const [currentImposition, setCurrentImposition] = useState(engineImposition)
-
-	useEffect(() => {
-		if (currentImposition !== engineImposition) {
-			setCurrentImposition(engineImposition)
-		}
-	}, [currentImposition, engineImposition])
-
-	return (
-		<ToggleGroup
-			value={currentImposition}
-			onChange={(imposition) => {
-				setCurrentImposition(imposition)
-				dispatch(updateSituation('entreprise . imposition', `'${imposition}'`))
-			}}
-		>
-			{(['IR', 'IS'] as const).map((imposition) => (
-				<span
-					key={imposition}
-					className={currentImposition !== imposition ? 'print-hidden' : ''}
-				>
-					<Radio value={imposition}>
-						{
-							engine.getRule(
-								`entreprise . imposition . ${imposition}` as DottedName
-							).title
-						}
-					</Radio>
-				</span>
-			))}
-		</ToggleGroup>
 	)
 }
