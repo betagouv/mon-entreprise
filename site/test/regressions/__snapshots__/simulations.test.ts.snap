@@ -312,8 +312,6 @@ exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV ACRE 4`] = `"[7434,0,2434,5000,0,5000,36,3,67]"`;
-
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
 "[90886,0,30886,60000,12661,47339,180,4,533]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
@@ -862,7 +860,7 @@ exports[`calculate simulations-salarié > frais pro - transports personnels seul
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 5`] = `"[4390,0,3200,2548,2349]"`;
 
-exports[`calculate simulations-salarié > frais pro - transports personnels seul 6`] = `"[4118,0,3200,2583,2381]"`;
+exports[`calculate simulations-salarié > frais pro - transports personnels seul 6`] = `"[4135,0,3200,2589,2480]"`;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 1`] = `"[2522,0,2000,1636,1601]"`;
 
