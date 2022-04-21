@@ -70,9 +70,11 @@ export function TrackChapter({
 
 export function TrackPage({
 	name,
+	children,
 	...chapters
 }: {
 	name?: string
+	children?: React.ReactNode
 } & Chapters) {
 	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
 	const tag = useContext(TrackingContext)
@@ -90,5 +92,5 @@ export function TrackPage({
 		)
 	}, [tag, name, chapter1, chapter2, chapter3])
 
-	return null
+	return <>{children}</>
 }

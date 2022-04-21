@@ -422,7 +422,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			private: true,
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
-				'Assistant déclaration de revenu'
+				'Assistant déclaration de revenu [beta]'
 			),
 			iframePath: 'déclaration-revenu-indépendant',
 			title: t(

@@ -1,3 +1,4 @@
+import { TrackPage } from '@/ATInternetTracking'
 import { Condition } from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -59,128 +60,132 @@ export default function Déclaration() {
 	return (
 		<>
 			<Condition expression="DRI . déclaration revenus manuelle = non">
-				<Grid container spacing={2} alignItems="flex-end">
-					<Grid item lg={10} xl={8}>
-						<FromTop>
-							<Trans i18nKey="assistant-DRI.declaration.intro">
-								<Intro>
-									Nous allons maintenant vous indiquer comment{' '}
-									<Strong>
-										remplir votre déclaration de revenu personnelle
-									</Strong>{' '}
-									à partir de la déclaration de résultat de votre entreprise.
-								</Intro>
-							</Trans>
-							<H3 as="h2">
-								Où trouver la déclaration de résultat de l'entreprise ?
-							</H3>
+				<TrackPage name="declaration_resultat">
+					<Grid container spacing={2} alignItems="flex-end">
+						<Grid item lg={10} xl={8}>
+							<FromTop>
+								<Trans i18nKey="assistant-DRI.declaration.intro">
+									<Intro>
+										Nous allons maintenant vous indiquer comment{' '}
+										<Strong>
+											remplir votre déclaration de revenu personnelle
+										</Strong>{' '}
+										à partir de la déclaration de résultat de votre entreprise.
+									</Intro>
+								</Trans>
+								<H3 as="h2">
+									Où trouver la déclaration de résultat de l'entreprise ?
+								</H3>
 
-							<Body>
-								C'est l'expert-comptable qui se charge de remplir la déclaration
-								de résultat. Il s'occupe également de la transmettre aux impôts
-								en début d'année.
-							</Body>
+								<Body>
+									C'est l'expert-comptable qui se charge de remplir la
+									déclaration de résultat. Il s'occupe également de la
+									transmettre aux impôts en début d'année.
+								</Body>
 
-							<Accordion>
-								<Item
-									title="Récupérer le formulaire complété sur «&nbsp;impot.gouv.fr&nbsp;»"
-									key="impot.gouv.fr"
-									hasChildItems={false}
-								>
-									<Body>
-										Si le formulaire de déclaration de résultat de votre
-										entreprise a déjà été envoyé aux impôts, vous pouvez y
-										accéder en suivant ces étapes :{' '}
-									</Body>
-									<Ol>
-										<Li>
-											Connectez-vous à votre espace professionnel sur{' '}
-											<Link
-												href="https://cfspro.impots.gouv.fr/mire/accueil.do"
-												title="Accéder à mon espace professionnel"
-											>
-												impot.gouv.fr
-											</Link>
-										</Li>
-										<Li>
-											Dans le menu «&nbsp;<Strong>consulter</Strong>&nbsp;»,
-											cliquez sur «&nbsp;<Strong>compte fiscal</Strong>&nbsp;»
-										</Li>
-										<Li>
-											Dans le menu «&nbsp;<Strong>Accès par impôt</Strong>
-											&nbsp;», allez sur «&nbsp;
-											<Strong>
-												<Condition expression="entreprise . imposition . IR . type de bénéfices . BNC">
-													Bénéfices non commerciaux
-												</Condition>
-												<Condition expression="entreprise . imposition . IR . type de bénéfices . BIC">
-													Bénéfices industriels et commerciaux
-												</Condition>
-												<Condition expression="entreprise . imposition . IS">
-													Impôt sur les sociétés
-												</Condition>
-											</Strong>
-											&nbsp;», puis sur «&nbsp;
-											<Strong>Déclarations</Strong>&nbsp;»
-										</Li>
-										<Li>
-											Cliquez sur la première ligne{' '}
-											<Strong>«&nbsp;Exercice clos le 31/12/2021&nbsp;»</Strong>
-										</Li>
-										<Li>
-											Cliquez sur la <Strong>date en gras</Strong> dans la
-											colonne « date de dépôt&nbsp;»
-										</Li>
-									</Ol>
-									<Spacing md />
-									<Message type="info" icon border={false}>
-										Si votre déclaration n'est pas présente, ou si vous n'avez
-										pas accès à votre espace professionnel sur impot.gouv.fr,
-										vous pouvez demander à votre expert-comptable.
+								<Accordion>
+									<Item
+										title="Récupérer le formulaire complété sur «&nbsp;impot.gouv.fr&nbsp;»"
+										key="impot.gouv.fr"
+										hasChildItems={false}
+									>
+										<Body>
+											Si le formulaire de déclaration de résultat de votre
+											entreprise a déjà été envoyé aux impôts, vous pouvez y
+											accéder en suivant ces étapes :{' '}
+										</Body>
+										<Ol>
+											<Li>
+												Connectez-vous à votre espace professionnel sur{' '}
+												<Link
+													href="https://cfspro.impots.gouv.fr/mire/accueil.do"
+													title="Accéder à mon espace professionnel"
+												>
+													impot.gouv.fr
+												</Link>
+											</Li>
+											<Li>
+												Dans le menu «&nbsp;<Strong>consulter</Strong>&nbsp;»,
+												cliquez sur «&nbsp;<Strong>compte fiscal</Strong>&nbsp;»
+											</Li>
+											<Li>
+												Dans le menu «&nbsp;<Strong>Accès par impôt</Strong>
+												&nbsp;», allez sur «&nbsp;
+												<Strong>
+													<Condition expression="entreprise . imposition . IR . type de bénéfices . BNC">
+														Bénéfices non commerciaux
+													</Condition>
+													<Condition expression="entreprise . imposition . IR . type de bénéfices . BIC">
+														Bénéfices industriels et commerciaux
+													</Condition>
+													<Condition expression="entreprise . imposition . IS">
+														Impôt sur les sociétés
+													</Condition>
+												</Strong>
+												&nbsp;», puis sur «&nbsp;
+												<Strong>Déclarations</Strong>&nbsp;»
+											</Li>
+											<Li>
+												Cliquez sur la première ligne{' '}
+												<Strong>
+													«&nbsp;Exercice clos le 31/12/2021&nbsp;»
+												</Strong>
+											</Li>
+											<Li>
+												Cliquez sur la <Strong>date en gras</Strong> dans la
+												colonne « date de dépôt&nbsp;»
+											</Li>
+										</Ol>
+										<Spacing md />
+										<Message type="info" icon border={false}>
+											Si votre déclaration n'est pas présente, ou si vous n'avez
+											pas accès à votre espace professionnel sur impot.gouv.fr,
+											vous pouvez demander à votre expert-comptable.
+										</Message>
+									</Item>
+
+									<Item
+										title="Demander à mon expert-comptable"
+										key="comptable"
+										hasChildItems={false}
+									>
+										<MessageComptable />
+									</Item>
+								</Accordion>
+								<H2>{liasse.title}</H2>
+								<Body>
+									Pour connaître les cases à remplir dans votre déclaration de
+									revenu personnelle, copiez les montants renseignés dans la
+									déclaration de résultat de votre entreprise dans le formulaire
+									suivant.
+								</Body>
+								<Condition expression="entreprise . imposition . IR . type de bénéfices . BIC">
+									<Message type="info">
+										<H6 as="h3">Écriture entre parenthèse ( )</H6>
+										<Body>
+											Certains montants sont écris entre parenthèses dans la
+											déclaration de résultat. Par exemple, la case « plus value
+											» peut contenir <code>(1546)</code>. C'est une écriture
+											comptable pour dire que le montant est négatif. Vous
+											pouvez le reporter dans ce formulaire en utilisant le
+											signe « - » habituel.
+										</Body>
 									</Message>
-								</Item>
+								</Condition>
+							</FromTop>
+						</Grid>
 
-								<Item
-									title="Demander à mon expert-comptable"
-									key="comptable"
-									hasChildItems={false}
-								>
-									<MessageComptable />
-								</Item>
-							</Accordion>
-							<H2>{liasse.title}</H2>
-							<Body>
-								Pour connaître les cases à remplir dans votre déclaration de
-								revenu personnelle, copiez les montants renseignés dans la
-								déclaration de résultat de votre entreprise dans le formulaire
-								suivant.
-							</Body>
-							<Condition expression="entreprise . imposition . IR . type de bénéfices . BIC">
-								<Message type="info">
-									<H6 as="h3">Écriture entre parenthèse ( )</H6>
-									<Body>
-										Certains montants sont écris entre parenthèses dans la
-										déclaration de résultat. Par exemple, la case « plus value »
-										peut contenir <code>(1546)</code>. C'est une écriture
-										comptable pour dire que le montant est négatif. Vous pouvez
-										le reporter dans ce formulaire en utilisant le signe « - »
-										habituel.
-									</Body>
-								</Message>
-							</Condition>
-						</FromTop>
+						<LiasseFiscale />
+
+						<Grid item xs={12}>
+							<H2>Renseignements complémentaires</H2>
+							<SimpleField dottedName="DRI . informations complémentaires . OGA" />
+							<SimpleField dottedName="DRI . informations complémentaires . rémunération dirigeant" />
+						</Grid>
 					</Grid>
 
-					<LiasseFiscale />
-
-					<Grid item xs={12}>
-						<H2>Renseignements complémentaires</H2>
-						<SimpleField dottedName="DRI . informations complémentaires . OGA" />
-						<SimpleField dottedName="DRI . informations complémentaires . rémunération dirigeant" />
-					</Grid>
-				</Grid>
-
-				<Spacing xxl />
+					<Spacing xxl />
+				</TrackPage>
 			</Condition>
 			<DéclarationRevenuSection progress={progress} />
 		</>
