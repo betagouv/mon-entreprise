@@ -72,40 +72,32 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 
 			{!!answeredAndPassedQuestions.length && (
 				<>
-					<Grid container alignItems={'baseline'}>
-						<Grid item xs>
-							<H3>
-								<Trans>Simulation en cours</Trans>
-							</H3>
-						</Grid>
-						<Grid item>
-							<div
-								className="print-hidden"
-								css={`
-									text-align: right;
-								`}
-							>
-								<Button
-									size="XS"
-									light
-									onPress={() => {
-										dispatch(resetSimulation())
-									}}
-								>
-									<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
-								</Button>
-							</div>
-						</Grid>
-					</Grid>
+					<H3>
+						<Trans>Simulation en cours</Trans>
+					</H3>
 
 					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
 					{children}
+					<div
+						className="print-hidden"
+						css={`
+							text-align: center;
+						`}
+					>
+						<Button
+							size="XS"
+							light
+							onPress={() => {
+								dispatch(resetSimulation())
+							}}
+						>
+							<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
+						</Button>
+					</div>
 				</>
 			)}
 			{companyQuestions.length > 0 && (
 				<>
-					<Spacing md />
-
 					<H3>
 						<Trans>Mon entreprise</Trans>
 					</H3>
