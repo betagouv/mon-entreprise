@@ -31,7 +31,12 @@ export const companySituationSelector = (state: RootState) =>
 export const firstStepCompletedSelector = (state: RootState) => {
 	const situation = situationSelector(state)
 
-	return Object.keys(situation).length > 0
+	return (
+		Object.keys(situation).filter(
+			// Hack to prevent questions from showing after selection 'IR or IS' in the toggle above simulator
+			(dottedName) => dottedName !== 'entreprise . imposition'
+		).length > 0
+	)
 }
 
 export const targetUnitSelector = (state: RootState) =>
