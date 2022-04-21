@@ -13,6 +13,8 @@ entreprise . imposition:
             - catégorie juridique . EI
         alors: "'IR'"
       - sinon: "'IS'"
+  meta:
+    affichage: toggle
 
 entreprise . imposition . IR:
   valeur: imposition = 'IR'

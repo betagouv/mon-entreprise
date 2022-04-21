@@ -1,4 +1,3 @@
-import { useDebounce } from '@/components/utils'
 import Emoji from '@/components/utils/Emoji'
 import {
 	Radio,
@@ -11,7 +10,12 @@ import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode, RuleNode, serializeEvaluation } from 'publicodes'
+import {
+	EvaluatedNode,
+	Evaluation,
+	RuleNode,
+	serializeEvaluation,
+} from 'publicodes'
 import {
 	createContext,
 	Fragment,
@@ -19,6 +23,7 @@ import {
 	useCallback,
 	useContext,
 	useEffect,
+	useRef,
 	useState,
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -229,29 +234,38 @@ export function useSelection<Names extends string = DottedName>({
 	onChange,
 	missing,
 }: InputProps<Names>) {
-	const defaultValue = serializeEvaluation({
-		nodeValue: value,
-	} as EvaluatedNode)
-	const [currentSelection, setCurrentSelection] = useState(
-		missing ? null : defaultValue
+	const serializeValue = (nodeValue: Evaluation) =>
+		serializeEvaluation({ nodeValue } as EvaluatedNode)
+
+	const defaultValue = serializeValue(value)
+	const [currentSelection, setCurrentSelection] = useState<string | null>(
+		(!missing && defaultValue) || null
 	)
+
+	const debounce = useRef<NodeJS.Timeout>()
 	const handleChange = useCallback(
-		(value: Key) => {
-			setCurrentSelection(value.toString())
+		(val: Key) => {
+			val = val.toString()
+			setCurrentSelection(val)
+
+			debounce.current != null && clearTimeout(debounce.current)
+			debounce.current = setTimeout(() => {
+				onChange(val)
+			}, 300)
 		},
-		[setCurrentSelection]
+		[onChange]
 	)
-	const debouncedSelection = useDebounce(currentSelection, 300)
+
+	const lastValue = useRef(value)
 	useEffect(() => {
-		if (
-			debouncedSelection &&
-			(missing ||
-				serializeEvaluation({ nodeValue: value } as EvaluatedNode) !==
-					debouncedSelection)
-		) {
-			onChange(debouncedSelection)
+		if (lastValue.current !== value) {
+			const newSelection = serializeValue(value)
+			if (newSelection && newSelection !== currentSelection) {
+				handleChange(newSelection)
+			}
+			lastValue.current = value
 		}
-	}, [debouncedSelection])
+	}, [currentSelection, handleChange, value])
 
 	return { currentSelection, handleChange, defaultValue }
 }
