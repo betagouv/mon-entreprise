@@ -959,7 +959,7 @@ contrat salarié . CDD . événement:
         - rupture anticipée salarié
         - rupture pour faute grave ou force majeure
         - rupture pendant période essai
-  par défaut: non
+  par défaut: "''"
 
 contrat salarié . CDD . événement . poursuite du CDD en CDI:
   titre: Poursuite du CDD en CDI
