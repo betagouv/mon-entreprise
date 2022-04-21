@@ -203,9 +203,9 @@ aide-déclaration-indépendant:
     cas suivants :</0></2><3><0>Vous exercez une activité libérale relevant d’un
     régime de retraite des professions libérales en comptabilité
     d'engagement</0><1>Votre entreprise est domiciliée dans les
-    DOM</1></3></1><2></2><3>Imposition</3><4>Ces quelques questions permettent
-    de déterminer le type de déclaration à remplir, ainsi que les modalités de
-    calcul des cotisations sociales.</4>
+    DOM</1></3></1><2>Imposition</2><3>Ces quelques questions permettent de
+    déterminer le type de déclaration à remplir, ainsi que les modalités de
+    calcul des cotisations sociales.</3>
   entreprise:
     titre: <0>Entreprise et activité</0>
   results:
@@ -1011,7 +1011,7 @@ pages:
         description: Découvrez quels montants remplir dans quelles cases, et obtenez une
           estimation des cotisations à payer en 2022
         title: Assistant à la déclaration de revenu pour les indépendants
-      shortname: Assistant déclaration de revenu
+      shortname: Assistant déclaration de revenu [beta]
       title: Assistant à la déclaration de revenu pour les indépendants
     demande-mobilité:
       meta:

@@ -100,7 +100,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
 
-			nextSteps: ['comparaison-statuts'],
+			nextSteps: ['déclaration-revenu-indépendant-beta', 'comparaison-statuts'],
 		},
 		sasu: {
 			tracking: {
@@ -160,7 +160,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.eurl',
 			shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
 			title: t('pages.simulateurs.eurl.title', "Simulateur d'EURL"),
-			nextSteps: ['is', 'comparaison-statuts'],
+			nextSteps: [
+				'déclaration-revenu-indépendant-beta',
+				'is',
+				'comparaison-statuts',
+			],
 		},
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
@@ -215,7 +219,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 					"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
 				),
 			},
-			nextSteps: ['comparaison-statuts', 'is'],
+			nextSteps: [
+				'déclaration-revenu-indépendant-beta',
+				'comparaison-statuts',
+				'is',
+			],
 		},
 
 		'artiste-auteur': {
@@ -371,6 +379,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
 			),
+			nextSteps: ['exonération-covid', 'déclaration-revenu-indépendant-beta'],
 		},
 
 		// TODO: Delete "déclaration-revenu-indépendant" object when DRI will no longer be in beta
@@ -400,6 +409,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
 			),
+			nextSteps: ['exonération-covid', 'déclaration-revenu-indépendant-beta'],
 		},
 
 		'déclaration-revenu-indépendant-beta': {
@@ -419,7 +429,6 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 			},
 			pathId: 'gérer.déclarationIndépendant.beta',
-			private: true,
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
 				'Assistant déclaration de revenu [beta]'

@@ -298,7 +298,7 @@ function Home() {
 						<WhenApplicable dottedName="dirigeant . indépendant">
 							<SimulateurCard
 								fromGérer
-								{...simulateurs['déclaration-revenu-indépendant']}
+								{...simulateurs['déclaration-revenu-indépendant-beta']}
 							/>
 						</WhenApplicable>
 						<Condition expression="entreprise . imposition . IS">

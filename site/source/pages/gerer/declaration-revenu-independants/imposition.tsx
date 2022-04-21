@@ -3,6 +3,7 @@ import { updateSituation } from '@/actions/actions'
 import { TrackPage } from '@/ATInternetTracking'
 import {
 	Condition,
+	WhenAlreadyDefined,
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
@@ -178,7 +179,7 @@ export default function Imposition() {
 
 							<SimpleField dottedName="DRI . accompagnement imposition . régime memento fiscal" />
 							<Spacing lg />
-							<Condition expression="DRI . accompagnement imposition . régime">
+							<WhenAlreadyDefined dottedName="DRI . accompagnement imposition . régime">
 								<Markdown components={{ p: Intro }}>
 									{formatValue(
 										engine.evaluate('DRI . accompagnement imposition . régime')
@@ -199,7 +200,7 @@ export default function Imposition() {
 										</Markdown>
 									</Item>
 								</Accordion>
-							</Condition>
+							</WhenAlreadyDefined>
 						</FromTop>
 					</Condition>
 					<Condition expression="DRI . accompagnement imposition = non">
