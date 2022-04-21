@@ -6,15 +6,17 @@ import Answers from './AnswerList'
 
 export default function SeeAnswersButton({
 	children,
+	label,
 }: {
 	children?: React.ReactNode
+	label?: React.ReactNode
 }) {
 	return (
 		<>
 			<PopoverWithTrigger
 				trigger={(buttonProps) => (
 					<Button {...buttonProps} size="XS" color="secondary" light>
-						<Trans>Voir mes réponses</Trans>
+						{label ?? <Trans>Voir mes réponses</Trans>}
 					</Button>
 				)}
 			>

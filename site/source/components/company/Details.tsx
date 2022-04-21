@@ -3,6 +3,7 @@ import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
@@ -15,19 +16,8 @@ export function CompanyDetails({
 }) {
 	return (
 		<StyledCompanyContainer>
-			<div
-				css={`
-					display: flex;
-					align-items: flex-end;
-					gap: 1rem;
-					justify-content: flex-end;
-				`}
-			>
-				<div
-					css={`
-						flex: 1;
-					`}
-				>
+			<Grid container alignItems={'flex-end'} justifyContent={'center'}>
+				<Grid item xs={12} lg>
 					<H4 data-test-id="currently-selected-company">
 						{' '}
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
@@ -51,18 +41,14 @@ export function CompanyDetails({
 							</Strong>
 						</Trans>
 					</Body>
-				</div>
+				</Grid>
 				{showSituation && (
-					<div
-						css={`
-							text-align: right;
-						`}
-					>
-						<SeeAnswersButton />
-						<Spacing xs />
-					</div>
+					<Grid item xs={12} sm="auto">
+						<SeeAnswersButton label={<Trans>Voir ma situation</Trans>} />
+						<Spacing sm />
+					</Grid>
 				)}
-			</div>
+			</Grid>
 		</StyledCompanyContainer>
 	)
 }
