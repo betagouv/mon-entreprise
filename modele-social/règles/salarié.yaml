@@ -623,7 +623,6 @@ contrat salarié . déduction forfaitaire spécifique . taux:
 
 contrat salarié . déduction forfaitaire spécifique . profession:
   question: Quelle est la profession du salarié pour l'application de la déduction forfaitaire spécifique ?
-  par défaut: non
   formule:
     une possibilité:
       possibilités:
@@ -3738,7 +3737,8 @@ contrat salarié . lodeom . paramètre T:
         alors: 0.3254
   note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.
 
-contrat salarié . cotisations . assiette forfaitaire: non
+contrat salarié . cotisations . assiette forfaitaire:
+  applicable si: non
 
 contrat salarié . cotisations . assiette forfaitaire . montant:
   titre: assiette forfaitaire de cotisations
