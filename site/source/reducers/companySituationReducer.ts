@@ -6,7 +6,6 @@ import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [
 	'contrat salarié . ATMP',
-	'contrat salarié . convention collective',
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
 	'entreprise . ACRE',
