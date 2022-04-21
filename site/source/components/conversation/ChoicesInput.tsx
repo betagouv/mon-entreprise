@@ -256,6 +256,9 @@ export function useSelection<Names extends string = DottedName>({
 	const handleChange = useCallback(
 		(val: Key) => {
 			val = val.toString()
+			if (!val.length) {
+				return
+			}
 			setCurrentSelection(val)
 
 			debounce.current != null && clearTimeout(debounce.current)
