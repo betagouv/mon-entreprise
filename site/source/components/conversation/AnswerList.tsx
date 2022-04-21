@@ -112,22 +112,22 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing md />
-					{/* <Grid container item lg={12} justifyContent="center"> */}
-					<Message type="info" border={false}>
-						<Body>
-							Les réponses liées à l'entreprise sont automatiquement
-							sauvegardées d'une simulation à l'autre.{' '}
-							<Link
-								onPress={() => {
-									dispatch(resetSimulation())
-									dispatch(resetCompany())
-								}}
-							>
-								<Trans>Supprimer les données sauvegardées.</Trans>{' '}
-							</Link>
-						</Body>
-					</Message>
-					{/* </Grid> */}
+					<div className="print-hidden">
+						<Message type="info" border={false}>
+							<Body>
+								Les réponses liées à l'entreprise sont automatiquement
+								sauvegardées d'une simulation à l'autre.{' '}
+								<Link
+									onPress={() => {
+										dispatch(resetSimulation())
+										dispatch(resetCompany())
+									}}
+								>
+									<Trans>Supprimer les données sauvegardées.</Trans>{' '}
+								</Link>
+							</Body>
+						</Message>
+					</div>
 				</>
 			)}
 
