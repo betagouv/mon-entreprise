@@ -10,6 +10,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import RuleLink from './RuleLink'
+import { Appear } from './ui/animate'
 import { Markdown } from './utils/markdown'
 
 // To add a new notification to a simulator, you should create a publicodes rule
@@ -67,27 +68,29 @@ export default function Notifications() {
 				margin-top: 1rem;
 			`}
 		>
-			{messages.map(({ sévérité, dottedName, résumé, description }) => (
-				<Message
-					icon
-					type={sévérité === 'avertissement' ? 'info' : 'primary'}
-					key={dottedName}
-				>
-					<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
-					{résumé && (
-						<RuleLink dottedName={dottedName as DottedName}>
-							<Trans>En savoir plus</Trans>
-						</RuleLink>
-					)}
-					<HideButton
-						className="hide"
-						aria-label="close"
-						onClick={() => dispatch(hideNotification(dottedName))}
+			<Appear>
+				{messages.map(({ sévérité, dottedName, résumé, description }) => (
+					<Message
+						icon
+						type={sévérité === 'avertissement' ? 'info' : 'primary'}
+						key={dottedName}
 					>
-						×
-					</HideButton>
-				</Message>
-			))}
+						<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
+						{résumé && (
+							<RuleLink dottedName={dottedName as DottedName}>
+								<Trans>En savoir plus</Trans>
+							</RuleLink>
+						)}
+						<HideButton
+							className="hide"
+							aria-label="close"
+							onClick={() => dispatch(hideNotification(dottedName))}
+						>
+							×
+						</HideButton>
+					</Message>
+				))}
+			</Appear>
 		</div>
 	)
 }
