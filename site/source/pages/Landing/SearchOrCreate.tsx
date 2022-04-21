@@ -41,7 +41,7 @@ export default function SearchOrCreate() {
 						<Spacing md />
 						<AnswerGroup>
 							<Button
-								to={generatePath(sitePaths.gérer.index, {
+								to={generatePath(sitePaths.gérer.entreprise, {
 									entreprise: companySIREN as string,
 								})}
 							>
@@ -92,10 +92,10 @@ function useHandleCompanySubmit() {
 			}
 			setEntreprise(établissement)
 			const entreprise = établissement.siren
-			const path = generatePath(sitePaths.gérer.index, { entreprise })
+			const path = generatePath(sitePaths.gérer.entreprise, { entreprise })
 			history.push(path)
 		},
-		[history, setEntreprise, sitePaths.gérer.index]
+		[history, setEntreprise, sitePaths.gérer.entreprise]
 	)
 
 	return handleCompanySubmit
