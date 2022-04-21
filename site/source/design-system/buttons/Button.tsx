@@ -110,7 +110,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		!theme.darkMode &&
 		css`
 			border-color: ${theme.colors.bases[$color][
-				$color === 'primary' ? 700 : $color === 'secondary' ? 500 : 300
+				$color === 'primary' ? 700 : 300
 			]};
 
 			background-color: ${theme.colors.bases[$color][
@@ -126,6 +126,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		css`
 			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
 			background-color: ${theme.colors.extended.grey[100]};
+			${$color === 'secondary' &&
+			css`
+				border-color: ${theme.colors.bases[$color][500]};
+			`}
 		`}
 
 	@media not print {
@@ -162,7 +166,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				: /* Primary, secondary & tertiary colors */
 				  css`
 						background-color: ${theme.colors.bases[$color][
-							$color === 'primary' ? 800 : $color === 'secondary' ? 500 : 400
+							$color === 'primary' ? 800 : 400
+						]};
+						border-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 800 : 400
 						]};
 				  `}
 	}
