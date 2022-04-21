@@ -55,7 +55,7 @@ export default function IndépendantSimulation() {
 					toggles={
 						<>
 							<RuleInput
-								type="toggle"
+								inputType="toggle"
 								dottedName="entreprise . imposition"
 								onChange={(imposition) => {
 									dispatch(
