@@ -28,16 +28,18 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
+import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 import { Grid } from '@mui/material'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
+	generatePath,
 	Redirect,
 	Route,
 	Switch,
@@ -64,7 +66,10 @@ export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
-	const showLink = !useRouteMatch({ path: sitePaths.gérer.index, exact: true })
+	const showLink = !useRouteMatch({
+		path: [sitePaths.gérer.index, sitePaths.gérer.entreprise],
+		exact: true,
+	})
 
 	return (
 		<>
@@ -77,11 +82,6 @@ export default function Gérer() {
 
 			<TrackChapter chapter1="gerer">
 				<Switch>
-					<Route
-						exact
-						path={[sitePaths.gérer.index, sitePaths.gérer.siren]}
-						component={Home}
-					/>
 					<Route
 						path={sitePaths.gérer.sécuritéSociale}
 						component={SocialSecurity}
@@ -99,6 +99,11 @@ export default function Gérer() {
 							render={() => <PageData {...p} />}
 						/>
 					))}
+					<Route
+						exact
+						path={[sitePaths.gérer.index, sitePaths.gérer.entreprise]}
+						component={Home}
+					/>
 				</Switch>
 			</TrackChapter>
 		</>
@@ -179,13 +184,15 @@ function Home() {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
-	const [overwrite, setOverwrite] = useState(false)
+	const [overwrite, setOverwrite] = useState(engineSiren === undefined)
 	const { param, entreprise, entrepriseNotFound, entreprisePending } =
 		useSirenFromParams(overwrite)
+	const gérerPath = useGérerPath()
 
 	const setEntreprise = useSetEntreprise()
 
 	const updateEntrprise =
+		overwrite &&
 		!entreprisePending &&
 		!entrepriseNotFound &&
 		entreprise &&
@@ -194,10 +201,22 @@ function Home() {
 	useEffect(() => {
 		if (updateEntrprise) {
 			setEntreprise(entreprise)
+			setOverwrite(false)
 		}
 	}, [entreprise, setEntreprise, updateEntrprise])
 
-	if ((!param && !engineSiren) || (param && entrepriseNotFound)) {
+	if (
+		gérerPath &&
+		(param == null || (entreprise?.siren && entreprise.siren !== param))
+	) {
+		return <Redirect to={gérerPath} />
+	}
+
+	if (
+		(!param && !engineSiren) ||
+		(param && entrepriseNotFound) ||
+		(entreprise && !overwrite && !engineSiren)
+	) {
 		return <Redirect to={sitePaths.index} />
 	}
 
@@ -512,6 +531,19 @@ const PopoverOverwriteSituation = ({
 	)
 }
 
+const useGérerPath = () => {
+	const sitePaths = useContext(SitePathsContext)
+	const company = useSelector(companySituationSelector)
+
+	if (company['entreprise . SIREN']) {
+		const siren = (company['entreprise . SIREN'] as string).replace(/'/g, '')
+
+		return generatePath(sitePaths.gérer.entreprise, { entreprise: siren })
+	}
+
+	return null
+}
+
 const useSirenFromParams = (overwrite: boolean) => {
 	const { entreprise: param } = useParams<{ entreprise?: string }>()
 	const [entreprise, setEntreprise] = useState<FabriqueSocialEntreprise | null>(
@@ -525,11 +557,13 @@ const useSirenFromParams = (overwrite: boolean) => {
 
 	const pass = param && param !== engineSiren && !overwrite
 
+	const once = useRef(false)
 	useEffect(() => {
 		let canceled = false
-		if (!param || pass) {
+		if (!param || pass || once.current) {
 			return
 		}
+		once.current = true
 		setEntreprisePending(true)
 		searchDenominationOrSiren(param)
 			.then((entreprises) => {
