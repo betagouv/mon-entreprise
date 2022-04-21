@@ -3738,8 +3738,7 @@ contrat salarié . lodeom . paramètre T:
         alors: 0.3254
   note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.
 
-contrat salarié . cotisations . assiette forfaitaire:
-  formule: non
+contrat salarié . cotisations . assiette forfaitaire: non
 
 contrat salarié . cotisations . assiette forfaitaire . montant:
   titre: assiette forfaitaire de cotisations

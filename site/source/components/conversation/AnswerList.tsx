@@ -3,11 +3,12 @@ import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
-import { PopoverWithTrigger } from '@/design-system'
+import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import {
 	answeredQuestionsSelector,
 	companySituationSelector,
@@ -71,55 +72,62 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 
 			{!!answeredAndPassedQuestions.length && (
 				<>
-					<H3>
-						<Trans>Simulation en cours</Trans>
-					</H3>
+					<Grid container alignItems={'baseline'}>
+						<Grid item xs>
+							<H3>
+								<Trans>Simulation en cours</Trans>
+							</H3>
+						</Grid>
+						<Grid item>
+							<div
+								className="print-hidden"
+								css={`
+									text-align: right;
+								`}
+							>
+								<Button
+									size="XS"
+									light
+									onPress={() => {
+										dispatch(resetSimulation())
+									}}
+								>
+									<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
+								</Button>
+							</div>
+						</Grid>
+					</Grid>
 
 					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
 					{children}
-
-					<Spacing lg />
-					<div
-						className="print-hidden"
-						css={`
-							text-align: center;
-						`}
-					>
-						<Button
-							size="XS"
-							onPress={() => {
-								dispatch(resetSimulation())
-							}}
-						>
-							<Emoji emoji="🗑" /> <Trans>Recommencer la simulation</Trans>
-						</Button>
-					</div>
 				</>
 			)}
 			{companyQuestions.length > 0 && (
 				<>
-					<Trans>
-						<H3>Mon entreprise</H3>
-					</Trans>
+					<Spacing md />
+
+					<H3>
+						<Trans>Mon entreprise</Trans>
+					</H3>
+
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
-					<Spacing lg />
-					<div
-						className="print-hidden"
-						css={`
-							text-align: center;
-						`}
-					>
-						<Button
-							light
-							size="XS"
-							onClick={() => {
-								dispatch(resetSimulation())
-								dispatch(resetCompany())
-							}}
-						>
-							<Emoji emoji="🗑" /> <Trans>Supprimer toute ma situation</Trans>
-						</Button>
-					</div>
+					<Spacing md />
+					{/* <Grid container item lg={12} justifyContent="center"> */}
+					<Message type="info" border={false}>
+						<Body>
+							Les réponses liées à l'entreprise sont automatiquement
+							sauvegardées d'une simulation à l'autre.{' '}
+							<Link
+								onPress={() => {
+									dispatch(resetSimulation())
+									dispatch(resetCompany())
+								}}
+							>
+								<Trans>Supprimer les données sauvegardées.</Trans>{' '}
+							</Link>
+						</Body>
+					</Message>
+					{/* </Grid> */}
 				</>
 			)}
 
@@ -226,11 +234,14 @@ const StyledAnswer = styled(Grid)`
 	text-align: right;
 `
 const StyledAnswerList = styled(Grid)`
-	padding: ${({ theme }) => theme.spacings.xs};
-	margin: 0 -${({ theme }) => theme.spacings.xs};
+	margin: ${({ theme }) => `${theme.spacings.md} 0`};
+
 	font-family: ${({ theme }) => theme.fonts.main};
 	:nth-child(2n) {
 		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
 		color-adjust: exact !important;
+		outline: solid
+			${({ theme }) =>
+				`calc(${theme.spacings.md} / 2) ${theme.colors.bases.primary[100]}`};
 	}
 `
