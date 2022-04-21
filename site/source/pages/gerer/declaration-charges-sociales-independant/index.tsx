@@ -2,10 +2,8 @@ import { updateSituation } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
 import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
-import PreviousSimulationBanner from '@/components/PreviousSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
-import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Strong } from '@/design-system/typography'
@@ -71,7 +69,6 @@ export default function AideDéclarationIndépendant() {
 						<Li>Votre entreprise est domiciliée dans les DOM</Li>
 					</Ul>
 				</Warning>
-				<PreviousSimulationBanner />
 
 				<H2>Imposition</H2>
 				<Body>
