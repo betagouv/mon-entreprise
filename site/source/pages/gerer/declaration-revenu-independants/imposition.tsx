@@ -1,5 +1,6 @@
 import { DottedName } from '@/../../modele-social'
 import { updateSituation } from '@/actions/actions'
+import { TrackPage } from '@/ATInternetTracking'
 import {
 	Condition,
 	WhenApplicable,
@@ -41,7 +42,7 @@ export default function Imposition() {
 	const { t } = useTranslation()
 
 	return (
-		<>
+		<TrackPage name="imposition">
 			<Grid container>
 				<Grid item lg={10} xl={8}>
 					<Trans i18nKey="assistant-DRI.imposition.intro">
@@ -212,7 +213,7 @@ export default function Imposition() {
 			</Grid>
 			<Spacing xl />
 			{progress === 1 && <ResultSection />}
-		</>
+		</TrackPage>
 	)
 }
 

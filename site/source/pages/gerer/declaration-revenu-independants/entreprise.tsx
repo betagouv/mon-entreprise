@@ -1,5 +1,6 @@
 import { DottedName } from '@/../../modele-social'
 import { resetCompany } from '@/actions/companyActions'
+import { TrackPage } from '@/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import {
@@ -48,7 +49,7 @@ export default function Accueil() {
 		progress === 1 && engine.evaluate('DRI . cas exclus').nodeValue === null
 
 	return (
-		<>
+		<TrackPage name="entreprise">
 			<Trans i18nKey="assistant-DRI.intro">
 				<PageHeader picture={illustration}>
 					<Intro>
@@ -175,6 +176,6 @@ export default function Accueil() {
 					)}
 				</Grid>
 			</Grid>
-		</>
+		</TrackPage>
 	)
 }

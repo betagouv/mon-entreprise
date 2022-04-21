@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import PageHeader from '@/components/PageHeader'
 import InfoBulle from '@/components/ui/InfoBulle'
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
@@ -11,6 +10,7 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -102,6 +102,9 @@ export default function Simulateurs() {
 						{...simulators['déclaration-charges-sociales-indépendant']}
 					/>
 					<SimulateurCard {...simulators['exonération-covid']} />
+					<SimulateurCard
+						{...simulators['déclaration-revenu-indépendant-beta']}
+					/>
 				</Grid>
 
 				<H2>

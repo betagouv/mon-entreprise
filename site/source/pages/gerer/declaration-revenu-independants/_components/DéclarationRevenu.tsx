@@ -1,4 +1,5 @@
 import { updateSituation } from '@/actions/actions'
+import { TrackPage } from '@/ATInternetTracking'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value, { Condition } from '@/components/EngineValue'
@@ -111,6 +112,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 					: undefined
 			}
 		>
+			<TrackPage name="declaration_revenu" />
 			<FromTop>
 				{déclarationRevenusManuel && (
 					<Body>
