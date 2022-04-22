@@ -77,23 +77,23 @@ exports[`calculate assistant-charges-sociales > échelle de revenus 8`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-artiste-auteur > bnc 1`] = `"[1230]"`;
+exports[`calculate simulations-artiste-auteur > bnc 1`] = `"[763]"`;
 
-exports[`calculate simulations-artiste-auteur > bnc 2`] = `"[1863]"`;
+exports[`calculate simulations-artiste-auteur > bnc 2`] = `"[1156]"`;
 
 exports[`calculate simulations-artiste-auteur > bnc 3`] = `
-"[931]
+"[578]
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
-"[160]
+"[99]
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 2`] = `"[1603]"`;
+exports[`calculate simulations-artiste-auteur > salarié 2`] = `"[988]"`;
 
-exports[`calculate simulations-artiste-auteur > salarié 3`] = `"[12410]"`;
+exports[`calculate simulations-artiste-auteur > salarié 3`] = `"[9880]"`;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `"[22962,247,20000,0,20000]"`;
 

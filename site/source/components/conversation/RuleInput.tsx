@@ -80,7 +80,6 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
-	console.log(missing, evaluation.missingVariables)
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,

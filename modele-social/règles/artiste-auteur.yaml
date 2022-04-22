@@ -223,7 +223,7 @@ artiste-auteur . cotisations . IRCEC . profession:
       possibilités:
         - RACD
         - RACL
-  par défaut: non
+  par défaut: "''"
 
 artiste-auteur . cotisations . IRCEC . profession . RACD:
   icônes: 🎞️

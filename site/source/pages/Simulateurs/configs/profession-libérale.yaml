@@ -34,5 +34,6 @@ unité par défaut: €/an
 situation:
   entreprise . activité: "'libérale'"
   entreprise . catégorie juridique: "'EI'"
+  entreprise . imposition: "'IR'"
   entreprise . catégorie juridique . EI . responsabilité limité: non
   entreprise . catégorie juridique . EI . auto-entrepreneur: non

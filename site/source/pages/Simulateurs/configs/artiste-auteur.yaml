@@ -1,5 +1,9 @@
 situation:
-  dirigeant: non
+  artiste-auteur: oui
+  dirigeant:
+    applicable si: non
+  contrat salarié:
+    applicable si: non
 
 unité par défaut: €/an
 objectifs:
