@@ -418,6 +418,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter2: 'declaration_revenu_independant',
 			},
 			icône: '✍️',
+			iframePath: 'déclaration-revenu-indépendant',
 			meta: {
 				description: t(
 					'pages.gérer.declaration_revenu_indépendant.meta.description',
@@ -433,7 +434,6 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_revenu_indépendant.shortname',
 				'Assistant déclaration de revenu [beta]'
 			),
-			iframePath: 'déclaration-revenu-indépendant',
 			title: t(
 				'pages.gérer.declaration_revenu_indépendant.title',
 				'Assistant à la déclaration de revenu pour les indépendants'

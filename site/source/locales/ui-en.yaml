@@ -1221,12 +1221,11 @@ pages:
       csp-title: Iframe integration and content security policy
       intro: <0><0>Integrate the web module</0><1>Our simulators can be integrated
         seamlessly by adding a simple line of code to your web page.</1><2>You
-        can choose the simulator to integrate and <2>customize the main color of
-        the module</2> to fit the visual theme of your page.</2><3>The
-        <1>data-lang="en"</1> attribute allows you to choose English as the
-        simulator language.</3></0><1></1><2></2><3>Note that if your site uses
-        a content security policy via the HTTP <1>Content-Security-Policy</1>
-        response header, a benign error may appear in the console. <3></3></3>
+        can choose which simulator to integrate and <2>customize the main color
+        of the module</2> to blend in with the visual theme of your
+        page.</2></0><1></1><2></2><3>Note that if your site uses a content
+        security policy via the HTTP <1>Content-Security-Policy</1> response
+        header, a benign error may appear in the console. <3></3></3>
     module: What module?
   gérer:
     aide-déclaration-indépendant:

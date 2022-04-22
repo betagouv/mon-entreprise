@@ -9,7 +9,7 @@ import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
 import { Grid } from '@mui/material'
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
@@ -21,6 +21,7 @@ import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
 import Créer from '../Creer'
 import Documentation from '../Documentation'
+import AssistantDéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
 import Iframes from '../Iframes'
 import Simulateurs from '../Simulateurs'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
@@ -140,30 +141,37 @@ function IntegrationCustomizer() {
 					<H3>
 						<Trans>Prévisualisation</Trans>
 					</H3>
+
 					<PrevisualisationContainer>
-						<TrackingContext.Provider value={DummyTracker}>
-							<MemoryRouter
-								key={currentModule}
-								initialEntries={[`/iframes/${currentIframePath}`]}
-							>
-								<ThemeColorsProvider
-									color={color == null ? color : hexToHSL(color)}
+						<Previsualisation>
+							<TrackingContext.Provider value={DummyTracker}>
+								<MemoryRouter
+									key={currentModule}
+									initialEntries={[`/iframes/${currentIframePath}`]}
 								>
-									<IsEmbeddedProvider isEmbeded>
-										<Route
-											path={sitePaths.simulateurs.index}
-											component={Simulateurs}
-										/>
-										<Route path={sitePaths.créer.index} component={Créer} />
-										<Route
-											path={sitePaths.documentation.index}
-											component={Documentation}
-										/>
-										<Iframes />
-									</IsEmbeddedProvider>
-								</ThemeColorsProvider>
-							</MemoryRouter>
-						</TrackingContext.Provider>
+									<ThemeColorsProvider
+										color={color == null ? color : hexToHSL(color)}
+									>
+										<IsEmbeddedProvider isEmbeded>
+											<Route
+												path={sitePaths.simulateurs.index}
+												component={Simulateurs}
+											/>
+											<Route path={sitePaths.créer.index} component={Créer} />
+											<Route
+												path={sitePaths.gérer.déclarationIndépendant.beta}
+												component={AssistantDéclarationRevenuIndépendant}
+											/>
+											<Route
+												path={sitePaths.documentation.index}
+												component={Documentation}
+											/>
+											<Iframes />
+										</IsEmbeddedProvider>
+									</ThemeColorsProvider>
+								</MemoryRouter>
+							</TrackingContext.Provider>
+						</Previsualisation>
 					</PrevisualisationContainer>
 				</Grid>
 			</Grid>
@@ -172,11 +180,14 @@ function IntegrationCustomizer() {
 }
 const DummyTracker = new Log()
 
-const PrevisualisationContainer = styled.div`
+const Previsualisation = styled.div`
 	background-color: white;
-	border: 2px solid ${({ theme }) => theme.colors.extended.grey[300]};
-	border-radius: 0.3rem;
-	padding-top: 2rem;
+	margin-top: 2rem;
+	overflow: hidden;
+`
+const PrevisualisationContainer = styled.div`
+	outline: 2px solid ${({ theme }) => theme.colors.extended.grey[300]};
+	outline-offset: 1rem;
 `
 
 const Logo = styled.img`
@@ -191,18 +202,14 @@ export default function Integration() {
 			<Trans i18nKey="pages.développeurs.iframe.intro">
 				<div>
 					<H1>Intégrez le module Web</H1>
-					<Body>
+					<Intro>
 						Nos simulateurs sont intégrables de manière transparente en ajoutant
 						une simple ligne de code à votre page Web.
-					</Body>
+					</Intro>
 					<Body>
 						Vous pouvez choisir le simulateur à intégrer et{' '}
 						<strong>personnaliser la couleur principale du module</strong> pour
 						le fondre dans le thème visuel de votre page.
-					</Body>
-					<Body>
-						L'attribut <i>data-lang="en"</i> vous permet quant à lui de choisir
-						l'anglais comme langue du simulateur.
 					</Body>
 				</div>
 				<IntegrationCustomizer />

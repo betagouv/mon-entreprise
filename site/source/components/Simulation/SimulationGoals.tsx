@@ -1,8 +1,8 @@
-import { Grid } from '@mui/material'
 import { Link } from '@/design-system/typography/link'
+import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { Logo } from '../Logo'
 import { useIsEmbedded } from '../utils/embeddedContext'
@@ -28,12 +28,14 @@ export function SimulationGoals({
 	children,
 }: SimulationGoalsProps) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
+	const isEmbeded = useIsEmbedded()
 
 	return (
 		<WatchInitialRender>
 			<TopSection toggles={toggles} />
 
 			<StyledSimulationGoals
+				isEmbeded={isEmbeded}
 				isFirstStepCompleted={isFirstStepCompleted}
 				publique={publique}
 				role="group"
@@ -51,7 +53,10 @@ export function SimulationGoals({
 }
 
 const StyledSimulationGoals = styled.div<
-	Pick<SimulationGoalsProps, 'publique'> & { isFirstStepCompleted: boolean }
+	Pick<SimulationGoalsProps, 'publique'> & {
+		isFirstStepCompleted: boolean
+		isEmbeded: boolean
+	}
 >`
 	z-index: 1;
 	position: relative;
@@ -64,10 +69,11 @@ const StyledSimulationGoals = styled.div<
 			border-bottom-left-radius: 0;
 		`}
 	transition: border-radius 0.15s;
-	background: ${({ theme, publique }) => {
-		const colorPalette = publique
-			? theme.colors.publics[publique]
-			: theme.colors.bases.primary
+	background: ${({ theme, publique, isEmbeded }) => {
+		const colorPalette =
+			publique && !isEmbeded
+				? theme.colors.publics[publique]
+				: theme.colors.bases.primary
 
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};

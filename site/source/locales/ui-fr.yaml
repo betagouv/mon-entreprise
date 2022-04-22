@@ -984,12 +984,10 @@ pages:
         manière transparente en ajoutant une simple ligne de code à votre page
         Web.</1><2>Vous pouvez choisir le simulateur à intégrer et
         <2>personnaliser la couleur principale du module</2> pour le fondre dans
-        le thème visuel de votre page.</2><3>L'attribut <1>data-lang="en"</1>
-        vous permet quant à lui de choisir l'anglais comme langue du
-        simulateur.</3></0><1></1><2></2><3>À noter que si votre site utilise
-        une politique de sécurité de contenu via l'en-tête de réponse HTTP
-        <1>Content-Security-Policy</1>, une erreur bénigne peut apparaître dans
-        la console. <3></3></3>
+        le thème visuel de votre page.</2></0><1></1><2></2><3>À noter que si
+        votre site utilise une politique de sécurité de contenu via l'en-tête de
+        réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
+        apparaître dans la console. <3></3></3>
     module: Quel module ?
   gérer:
     aide-déclaration-indépendant:
