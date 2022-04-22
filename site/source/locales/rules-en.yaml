@@ -138,8 +138,8 @@ DRI . cotisations . provisionnelles:
 
 
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
-  titre.en: '[automatic] Your provisional contributions'
-  titre.fr: Vos cotisations provisionnelles
+  titre.en: '[automatic] Your estimated provisional contributions'
+  titre.fr: Vos cotisations provisionnelles estimées
 DRI . cotisations . régularisation:
   description.en: >-
     [automatic] This is the difference between the instalments you paid in 2021
@@ -166,8 +166,8 @@ DRI . cotisations . régularisation:
 
 
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html)
-  titre.en: '[automatic] Your regularization'
-  titre.fr: Votre régularisation
+  titre.en: '[automatic] Your estimated accrual'
+  titre.fr: Votre régularisation estimée
 DRI . déclarant:
   question.en: '[automatic] Who is the person concerned?'
   question.fr: Quelle est la personne concernée ?
@@ -291,7 +291,7 @@ DRI . informations complémentaires . OGA:
     If you choose to join a certified management organization, you will be able to benefit from assistance and advice in fulfilling your administrative obligations, particularly in terms of taxation.
 
 
-    Joining an approved management organization allows you to benefit from an **abstraction exemption** of profits for the calculation of income tax.
+    Joining an approved management organization allows you to benefit from an **absence of increase** of the profits for the calculation of the income tax.
   description.fr: >-
     Un organisme de gestion agréé a pour mission d’apporter une assistance à ses
     adhérents en matière de gestion, comptabilité et fiscalité.
@@ -300,18 +300,26 @@ DRI . informations complémentaires . OGA:
     Si vous faites le choix d’adhérer à un organisme de gestion agréé, vous pourrez bénéficier d’aides et de conseils dans l’accomplissement de vos obligations administratives, notamment fiscales.
 
 
-    Adhérer à un organisme de gestion agréé permet de bénéficier d'une **abence de majoration** des bénéfices pour le calcul de l'impôt sur le revenu.
+    Adhérer à un organisme de gestion agréé permet de bénéficier d'une **absence de majoration** des bénéfices pour le calcul de l'impôt sur le revenu.
   question.en: '[automatic] Are you a member of an Organisme de Gestion Agrée (OGA)?'
   question.fr: Êtes-vous adhérant à un Organisme de Gestion Agrée (OGA) ?
-  titre.en: '[automatic] OGA'
-  titre.fr: OGA
+  titre.en: '[automatic] OGA member'
+  titre.fr: Adhérent OGA
 DRI . informations complémentaires . rémunération dirigeant:
-  description.en: '[automatic] This is the total compensation that was paid into
-    your personal bank account for this activity. It will be reported in the
-    "Salary and Wages" section of your income tax return.'
-  description.fr: Cela correspond à la rémunération totale qui a été versée sur
-    votre compte bancaire personnel pour cette activité. Elle sera à reporter
-    dans la section « Traitement et salaire » de votre déclaration de revenu.
+  description.en: >-
+    [automatic] This is the total compensation that was paid into your personal
+    bank account for this activity. It will be reported in the "Salary and
+    Wages" section of your income tax return.
+
+
+    If you don't know it, you can ask your accountant.
+  description.fr: >-
+    Cela correspond à la rémunération totale qui a été versée sur votre compte
+    bancaire personnel pour cette activité. Elle sera à reporter dans la section
+    « Traitement et salaire » de votre déclaration de revenu.
+
+
+    Si vous ne la connaissez pas, vous pouvez vous renseigner auprès de votre expert-comptable.
   question.en: '[automatic] '
   question.fr:
     texte:
@@ -4738,10 +4746,10 @@ dirigeant . indépendant . IJSS:
 
     Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
   question.en: '[automatic] Did you receive daily allowances or social security
-    benefits for your independent activity (illness, maternity, paternity,
+    benefits for your self-employed activity (illness, maternity, paternity,
     adoption)?'
   question.fr: Avez-vous perçu des indemnités journalières ou allocations de
-    sécurité sociale au titre de votre activité indépendantes (maladie,
+    sécurité sociale au titre de votre activité indépendante (maladie,
     maternité, paternité, adoption) ?
   titre.en: '[automatic] Social security allowances and per diems'
   titre.fr: Allocations et indemnités journalières de sécurité sociale
@@ -5290,6 +5298,41 @@ dirigeant . indépendant . PL . CIPAV:
     réglementées.
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
+  titre.en: '[automatic] collaborating spouse'
+  titre.fr: conjoint collaborateur
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . invalidité et décès:
+  titre.en: '[automatic] disability and death (CIPAV collaborating spouse)'
+  titre.fr: invalidité et décès (conjoint collaborateur CIPAV)
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . pourcentage:
+  titre.en: '[automatic] percentage'
+  titre.fr: pourcentage
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion:
+  question.en: '[automatic] What proportion of income does the spouse contribute
+    to the CIPAV supplementary plan and the CIPAV disability-death plan?'
+  question.fr: À quelle proportion du revenu le conjoint cotise-t'il pour le
+    régime complémentaire et le régime d'invalidité-décès CIPAV ?
+  titre.en: '[automatic] proportion'
+  titre.fr: proportion
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . moitié:
+  titre.en: '[automatic] 50 %'
+  titre.fr: 50 %
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . quart:
+  titre.en: '[automatic] 25 %'
+  titre.fr: 25 %
+dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CIPAV collaborating spouse)'
+  titre.fr: retraite complémentaire (conjoint collaborateur CIPAV)
+dirigeant . indépendant . PL . CIPAV . exonération incapacité:
+  description.en: '[automatic] To be eligible, your request for exemption for
+    disability must be accompanied by a form to be filled out by your attending
+    physician and sent to CIPAV no later than March 31 of the following year.'
+  description.fr:
+    Pour être recevable, votre demande d’exonération pour incapacité
+    doit-être accompagnée du formulaire à faire remplir par votre médecin
+    traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
+  titre.en: '[automatic] disability exemption'
+  titre.fr: exonération incapacité
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   titre.en: '[automatic] disability and death (CIPAV)'
   titre.fr: invalidité et décès (CIPAV)
@@ -5320,9 +5363,75 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
   titre.en: '[automatic] class C'
   titre.fr: classe C
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
+  description.en: >-
+    [automatic] A member who can prove that he or she has received, for the
+    previous year, professional income of less than 15% of the social security
+    ceiling
+
+    of the social security ceiling in force on January 1st of the current year (i.e. 6 170 € for a ceiling of 41 136 € in 2022),
+
+    may, at his or her express request, be exempted from this contribution.
+  description.fr: >-
+    L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un
+    revenu professionnel inférieur à 15 % du plafond
+
+    de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
+
+    peut, à sa demande expresse, être dispensé de cette cotisation.
+  question.en: '[automatic] Have you asked to be exempted from CIPAV disability
+    and death contributions? (income of the previous year lower than 6 170€)'
+  question.fr:
+    Avez-vous demandé à être exonéré de la cotisations invalidité-décès
+    CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
+  titre.en: '[automatic] disability and death exemption'
+  titre.fr: exonération invalidité et décès
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CIPAV)'
   titre.fr: retraite complémentaire (CIPAV)
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
+  titre.en: '[automatic] Contribution class'
+  titre.fr: Classe de cotisation
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
+  description.en: |-
+    [automatic] To improve your entitlements, you may choose to
+    to contribute in the class immediately above the one
+    the one that corresponds to your professional income bracket.
+    income bracket.
+
+    This option will allow you to acquire more points and therefore 
+    points and thus increase the amount of your future
+    your future retirement pension.
+
+    To contribute to the higher class of the
+    scheme, go to your personal Cipav space
+    Cipav personal space:
+    - Online services" tab;
+    - Apply to contribute to the higher class" section.
+  description.fr: |-
+    Afin d’améliorer vos droits, vous pouvez choisir de
+    cotiser dans la classe immédiatement supérieure
+    à celle qui correspond à votre tranche de revenus
+    professionnels.
+
+    Cette option vous permettra d’acquérir davantage 
+    de points et donc d’augmenter le montant de
+    votre future pension de retraite.
+
+    Pour cotiser en classe supérieure au régime
+    complémentaire, rendez-vous sur votre espace
+    personnel Cipav :
+    - onglet « Services en ligne » ;
+    - rubrique « Demander à cotiser en classe supérieure ».
+  question.en: '[automatic] Have you chosen to make additional contributions to
+    improve your supplementary pension rights?'
+  question.fr: Avez-vous choisi de surcotiser pour améliorer vos droits à la
+    retraite complémentaire ?
+  titre.en: '[automatic] optional extra contribution'
+  titre.fr: option surcotisation
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
+  titre.en: '[automatic] Class with overpayment option'
+  titre.fr: Classe avec l'option surcotisation
 dirigeant . indépendant . PL . CNAVPL:
   description.en: >
     [automatic] The National Old Age Insurance Fund for the liberal professions
@@ -5337,10 +5446,52 @@ dirigeant . indépendant . PL . CNAVPL:
     CARCDSF, CAVEC etc..)
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
-dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
+  titre.en: '[automatic] collaborating spouse'
+  titre.fr: conjoint collaborateur
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
+  titre.en: '[automatic] base collaborating spouse'
+  titre.fr: assiette conjoint collaborateur
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
+  titre.en: '[automatic] daily sickness benefits (CNAVPL collaborating spouse)'
+  titre.fr: indemnités journalières maladie (conjoint collaborateur CNAVPL)
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
+  question.en: '[automatic] What proportion of income does the spouse contribute
+    to the basic plan?'
+  question.fr: À quelle proportion du revenu le conjoint cotise-t'il pour le
+    régime de base ?
+  titre.en: '[automatic] proportion'
+  titre.fr: proportion
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . moitié:
+  titre.en: '[automatic] 50 %'
+  titre.fr: 50 %
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . quart:
+  titre.en: '[automatic] 25 %'
+  titre.fr: 25 %
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
+  titre.en: '[automatic] Basic pension (collaborating spouse CNAVPL)'
+  titre.fr: Retraite de base (conjoint collaborateur CNAVPL)
+dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
+  description.en: >-
+    [automatic] If you have been unable to practice your profession for at least
+    six months
+
+    you are then exempt from paying contributions to the general and complementary schemes
+  description.fr: >-
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois,
+
+    vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
+  question.en: '[automatic] Have you been unable to practice your profession for
+    at least six consecutive months this year?'
+  question.fr: Avez-vous été atteint d’une incapacité d’exercice de votre
+    profession pendant au moins six mois consécutifs cette année ?
+  titre.en: '[automatic] disability waiver'
+  titre.fr: exonération incapacité
+dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   description.en: |
-    [automatic] Since 1 July 2021, members of one of the pension funds of the
-    CNAVPL pension funds can receive daily allowances during a sick leave.
+    [automatic] Since July 1, 2021, members of one of the pension funds of the
+    CNAVPL can benefit from daily allowances during a sick leave.
     sick leave.
 
     Consequently, a new contribution is created.
@@ -5350,8 +5501,11 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières:
     maladie.
 
     En conséquence une nouvelle cotisation est créée.
-  titre.en: '[automatic] per diems'
-  titre.fr: indemnités journalières
+  titre.en: '[automatic] daily sickness benefits (liberal profession)'
+  titre.fr: indemnités journalières maladie (profession libérale)
+dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
+  titre.en: '[automatic] basic pension (CNAVPL)'
+  titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . CNAVPL . retraite:
   description.en: |
     [automatic] All liberal professions (except lawyers)
@@ -5359,9 +5513,6 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
   description.fr: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
-  titre.en: '[automatic] basic pension (CNAVPL)'
-  titre.fr: retraite de base (CNAVPL)
-dirigeant . indépendant . PL . CNAVPL . retraite . remplace:
   titre.en: '[automatic] basic pension (CNAVPL)'
   titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . CNBF:
@@ -6074,59 +6225,82 @@ dirigeant . indépendant . assiette minimale . retraite:
   titre.fr: assiette minimale retraite
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
-    [automatic] Allows the manager's spouse to be covered by the social
-    protection system in exchange for the payment of additional social
-    contributions.
+    [automatic] As an employee, the spouse of a self-employed person pays
+    pension and disability-death contributions and in return has his or her own
+    rights. He also pays a contribution for daily allowances and can be
+    compensated in case of work stoppage.
 
-    In order to benefit from it, the manager's spouse or PACS partner must
 
-    - have a regular and usual professional activity in the company
+    ### Collaborating spouse: for whom?
 
-    - be mentioned in the RCS for traders or in the RM for craftsmen
 
-    - not be remunerated
+    In order for the spouse to be able to choose the status of collaborating spouse, the business owner must work in a sole proprietorship, be the majority manager or belong to a majority management college, of a SARL or EURL business without limitation of the number of employees.
 
-    - not be a partner of the company.
+
+    The spouse must :
+
+    - participate regularly in the activity of the company;
+
+    - not be remunerated for this activity;
+
+    - must be married or linked by a civil solidarity pact (Pacs) to the head of the company, or be the cohabitant.
+
+
+    #### Advantages of the status of collaborating spouse
+
+    &gt; This status of collaborating spouse is flexible, simple (few administrative formalities) and of low cost for the company for a complete social protection. It can be chosen even if the spouse has an activity outside the company.
   description.fr: >
-    Permet au conjoint du dirigeant d'être couvert par la protection sociale
-    moyennant le paiement de cotisations sociales supplémentaires.
+    En tant que collaborateur, le conjoint d'un indépendant verse des
+    cotisations en matière de retraite et d'invalidité-décès et bénéficie en
+    contrepartie de droits propres. Il s'acquitte aussi d'une cotisation
+    indemnités journalières et peut être indemnisé en cas d'arrêt de travail.
 
-    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
 
-    - exercer une activité professionnelle régulière et habituelle dans l'entreprise
+    ### Conjoint collaborateur : pour qui ?
 
-    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans
 
-    - ne pas être rémunéré
+    Pour que le conjoint puisse choisir le statut de conjoint collaborateur, le chef d'entreprise doit exercer en entreprise individuelle, être le gérant majoritaire ou appartenir à un collège de gérance majoritaire, d'une entreprise en SARL ou EURL sans limitation de l'effectif salarié.
 
-    - ne pas être associé de la société.
+
+    Le conjoint doit :
+
+    - participer de manière régulière à l'activité de l'entreprise ;
+
+    - ne pas être rémunéré pour cette activité ;
+
+    - doit être marié ou lié par un pacte civil de solidarité (Pacs) au chef d'entreprise, ou être le concubin.
+
+
+    > #### Avantages du statut conjoint collaborateur
+
+    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités administratives) et d’un faible coût pour l’entreprise pour une protection sociale complète. Il peut être choisi même si le conjoint exerce une activité hors de l’entreprise.
   question.en: '[automatic] Do you have a collaborating spouse?'
   question.fr: Avez-vous un conjoint collaborateur ?
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 dirigeant . indépendant . conjoint collaborateur . assiette:
   description.en: >
-    [automatic] The collaborating spouse has three choices of base for the
-    calculation of these contributions:
+    [automatic] The collaborating spouse has three choices for the calculation
+    of these contributions:
 
-    - 1/3 of the Social Security Ceiling
+    - The spouse contributes on a lump sum income
 
-    - Option on the income of the head with sharing (½ or 1/3)
+    - The spouse contributes on a percentage of the professional's income without sharing this income.
 
-    - Option on the income of the head without sharing (½ or 1/3)
+    - The spouse contributes on a fraction of the professional's income. The income is shared between the two spouses.
   description.fr: >
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul
     de ces cotisations :
 
-    - 1/3 du Plafond de Sécurité Sociale
+    - Le conjoint cotise sur un revenu forfaitaire
 
-    - Option sur le revenu du chef avec partage ( ½ ou 1/3)
+    - Le conjoint cotise sur un pourcentage du revenu du professionnel sans qu’il y ait partage de ce revenu.
 
-    - Option sur le revenu du chef sans partage ( ½ ou 1/3)
+    - Le conjoint cotise sur une fraction du revenu du professionnel. Le revenu est partagé entre les deux conjoints.
   question.en: '[automatic] On what basis does the spouse contribute?'
   question.fr: Sur quelle base le conjoint cotise-t'il ?
-  titre.en: '[automatic] plate'
-  titre.fr: assiette
+  titre.en: '[automatic] Choice of base (collaborating spouse)'
+  titre.fr: Choix assiette (conjoint collaborateur)
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
   description.en: >
     [automatic] The collaborating spouse will pay contributions equivalent to a
@@ -6147,8 +6321,8 @@ dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
   question.en: '[automatic] What proportion of income does the spouse contribute?'
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
-  titre.en: '[automatic] percentage'
-  titre.fr: pourcentage
+  titre.en: '[automatic] Proportion of income (collaborating spouse)'
+  titre.fr: Proportion revenu (conjoint collaborateur)
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié:
   titre.en: '[automatic] 1/2'
   titre.fr: 1/2
@@ -6168,13 +6342,16 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   titre.en: '[automatic] split income'
   titre.fr: revenu avec partage
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage . assiette gérant:
+  titre.en: '[automatic] base (shared with the collaborating spouse)'
+  titre.fr: assiette (partagée avec le conjoint collaborateur)
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description.en: "[automatic] The collaborating spouse will pay social security
-    contributions calculated on a percentage basis of the company manager's
-    contribution base (one third or one half)."
+  description.en: '[automatic] The collaborating spouse will pay social security
+    contributions calculated on a percentage basis of the contribution base of
+    the manager of the company.'
   description.fr: Le conjoint collaborateur paiera des cotisations sociales
     calculées sur une base d'un pourcentage du assiette des cotisations du
-    gérant de l'entreprise (un tiers ou la moitié).
+    gérant de l'entreprise.
   titre.en: '[automatic] undivided income'
   titre.fr: revenu sans partage
 dirigeant . indépendant . conjoint collaborateur . cotisations:
@@ -6187,11 +6364,11 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retra
   titre.en: '[automatic] pension base'
   titre.fr: assiette retraite
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
-  titre.en: '[automatic] daily sickness benefits'
-  titre.fr: indemnités journalières maladie
+  titre.en: '[automatic] daily sickness benefits (collaborating spouse)'
+  titre.fr: indemnités journalières maladie (conjoint collaborateur)
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
+  titre.en: '[automatic] disability and death (collaborating spouse)'
+  titre.fr: invalidité et décès (conjoint collaborateur)
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
   titre.en: '[automatic] disability and death base'
   titre.fr: assiette invalidité et décès
@@ -8133,12 +8310,12 @@ entreprise . imposition . IR:
 
     The result is determined when you fill in the **tax form** (also called 
 
-    income tax return). This is done by the accountant.
+    income tax return). Your accountant will take care of this.
 
 
     If your company makes money, the result is called **profit**. It is added to the other 
 
-    It is added to other taxable income (if any): **your income tax is higher**.
+    taxable income (if any): **your income tax is higher**.
 
 
     If your business loses money, the result is called a **deficit**. It reduces the amount of 
@@ -8146,11 +8323,9 @@ entreprise . imposition . IR:
     your household taxable income: **Your income tax is lower**.
 
 
-    With income tax, there is no tax difference between your household income and your business income. 
+    Note: With income tax, there is no tax difference between your household income and your business income. 
 
-    your business. This means that the amount you pay yourself from your business bank account 
-
-    to your personal bank account does not change the company's result.
+    your business.
   description.fr: >
     Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme
     les autres revenus de 
@@ -8173,11 +8348,9 @@ entreprise . imposition . IR:
     revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
 
 
-    Avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
+    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
 
-    votre entreprise. Cela veut dire que le montant que vous vous versez depuis le compte bancaire professionnel 
-
-    vers votre compte bancaire personnel ne change pas le résultat de l'entreprise.
+    votre entreprise.
   titre.en: '[automatic] Income tax (IR)'
   titre.fr: Impôt sur le revenu (IR)
 entreprise . imposition . IR . information sur le report de déficit:
@@ -9068,6 +9241,90 @@ protection sociale . retraite:
   résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   titre.en: pensions
   titre.fr: retraite
+protection sociale . retraite . CIPAV:
+  titre.en: '[automatic] CIPAV'
+  titre.fr: CIPAV
+protection sociale . retraite . CNAVPL:
+  description.en: >-
+    [automatic] The liberal professions affiliated to the CNAVPL have a basic
+    pension plan based on points.
+
+
+    The number of points acquired each year is determined according to the professional income
+
+    income subject to contributions:
+
+
+    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security
+
+    annual social security ceiling),
+
+    - the maximum contribution on bracket T2 allows the acquisition of 25 points (from 0 to five times the annual social security pla-
+
+    the annual social security ceiling).
+
+
+    For each bracket, the number of points allocated is calculated in proportion to the effective contribution
+
+    the maximum contribution and rounded to the nearest decimal place
+  description.fr: >-
+    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de
+    base par point.
+
+
+    Le nombre de points acquis chaque année est déterminé en fonction des revenus
+
+    professionnels soumis à cotisations :
+
+
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
+
+    annuel de la sécurité sociale),
+
+    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
+
+    fond annuel de la sécurité sociale).
+
+
+    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
+
+    sur la cotisation maximale et arrondi à la décimale la plus proche
+  note.en: >-
+    [automatic] Additional points may be awarded:
+
+    - redeemed points;
+
+    - 100 additional points for the calendar quarter in which childbirth occurs,
+
+    - 200 additional points per calendar year for the insured person suffering from a disability requiring the assistance of a third party
+
+    200 additional points per calendar year concerned for insured persons suffering from a disability that requires them to have recourse to the assistance of a third party;
+
+    - 400 points per calendar year for persons recognized as being unable to exercise their profession for a
+
+    of their profession for a period of more than 6 months
+  note.fr: >-
+    Des points supplémentaires peuvent être attribués :
+
+    - points rachetés ;
+
+    - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
+
+    - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
+
+    geant à avoir recours à l’assistance d’une tierce personne ;
+
+    - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
+
+    de leur profession pour une durée de plus de 6 mois
+  titre.en: '[automatic] CNAVPL'
+  titre.fr: CNAVPL
+protection sociale . retraite . CNAVPL . cotisation maximum T1:
+  titre.en: '[automatic] maximum contribution T1'
+  titre.fr: cotisation maximum T1
+protection sociale . retraite . CNAVPL . cotisation maximum T2:
+  titre.en: '[automatic] maximum fee T2'
+  titre.fr: cotisation maximum T2
 protection sociale . retraite . base:
   note.en:
     '[automatic] Impatriates are exempt from paying pension contributions.
@@ -9193,13 +9450,6 @@ protection sociale . retraite . complémentaire salarié . points acquis . valeu
 protection sociale . retraite . mois cotisés:
   titre.en: contributed months
   titre.fr: mois cotisés
-protection sociale . retraite . plr:
-  description.en: '[automatic] We have not implemented the specific rules for
-    regulated professions.'
-  description.fr: Nous n'avons pas implémenté les règles spécifiques aux
-    professions libérales réglementées.
-  titre.en: '[automatic] Retirement from regulated professions'
-  titre.fr: Retraite profession libérale réglementée
 protection sociale . revenu moyen:
   description.en: The income used to calculate the amount of retirement pensions
     and daily social security allowances during a work stoppage.
