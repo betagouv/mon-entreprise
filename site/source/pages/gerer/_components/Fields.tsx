@@ -16,6 +16,7 @@ import { evaluateQuestion, getMeta } from '@/utils'
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
+import { isEmpty } from 'ramda'
 import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -132,6 +133,7 @@ export function SimpleField({
 				aria-labelledby={displayedQuestion ? labelId : undefined}
 				label={displayedLabel}
 				required={meta.requis === 'oui'}
+				missing={!isEmpty(evaluation.missingVariables)}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
 			/>

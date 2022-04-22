@@ -22,13 +22,13 @@ import './commands'
 
 const resizeObserverLoopErrRe = /^[^(ResizeObserver loop limit exceeded)]/
 Cypress.on('uncaught:exception', (err) => {
-  /* 
+	/* 
     The error 'ResizeObserver loop limit exceeded' is benigne 
     Returning false here prevents Cypress from failing the test 
    
     cf https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded
    */
-  if (resizeObserverLoopErrRe.test(err.message)) {
-    return false
-  }
+	if (resizeObserverLoopErrRe.test(err.message)) {
+		return false
+	}
 })

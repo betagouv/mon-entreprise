@@ -1,4 +1,5 @@
 import { DottedName } from '@/../../modele-social'
+import { resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import { TrackPage } from '@/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
@@ -106,7 +107,14 @@ export default function Accueil() {
 					<WhenAlreadyDefined dottedName="entreprise . SIREN">
 						<CompanyDetails />
 
-						<Button size="XS" light onPress={() => dispatch(resetCompany())}>
+						<Button
+							size="XS"
+							light
+							onPress={() => {
+								dispatch(resetSimulation())
+								dispatch(resetCompany())
+							}}
+						>
 							<Trans>Modifier l'entreprise</Trans>
 						</Button>
 					</WhenAlreadyDefined>
