@@ -35,7 +35,7 @@ describe(`Formulaire demande mobilité (${
 		)
 	})
 	it('should allow to select salarié', function () {
-		cy.contains('Salarié (CEA et TESE)').click()
+		cy.contains('Employeur adhérent au TESE ou au CEA').click()
 		cy.contains('Informations concernant le salarié')
 		cy.contains('Êtes-vous adhérent au TESE ou au CEA')
 			.parent()

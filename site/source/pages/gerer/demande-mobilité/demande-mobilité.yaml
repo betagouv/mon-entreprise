@@ -3,7 +3,19 @@ situation:
     ## Quelle type d'activité est concernée ?
   une possibilité:
     choix obligatoire: oui
-    possibilités: [PAM, PL, AC, auto-entrepreneur, salarié, artiste-auteur]
+    possibilités:
+      [
+        AC,
+        auto-entrepreneur,
+        PL,
+        PAM,
+        artiste-auteur,
+        salarié,
+        salarié 2,
+        intermittent,
+        non actif,
+        autres,
+      ]
   par défaut: "'non défini'"
 
 situation . PAM:
@@ -31,8 +43,24 @@ situation . auto-entrepreneur:
   valeur: situation = 'auto-entrepreneur'
 
 situation . salarié:
-  titre: salarié (CEA et TESE)
+  titre: employeur adhérent au TESE ou au CEA
   valeur: situation = 'salarié'
+
+situation . salarié 2:
+  titre: salarié
+  valeur: situation = 'salarié 2'
+
+situation . intermittent:
+  titre: intermittent du spectacle
+  valeur: situation = 'intermittent'
+
+situation . non actif:
+  titre: Demandeur d'emploi / Étudiant / Pensionné
+  valeur: situation = 'non actif'
+
+situation . autres:
+  titre: Autre catégorie
+  valeur: situation = 'autres'
 
 situation . TNS:
   une de ces conditions:
@@ -77,13 +105,22 @@ situation . notification . auto-entrepreneur:
   description: >-
     [Plus d'informations](https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#je-voudrais-travailler-a-letrang)
 
-PAM:
+situation . générique:
+  une de ces conditions:
+    - TNS
+    - salarié 2
+    - intermittent
+    - non actif
+    - autres
+
+notification générique:
   titre: ''
   type: groupe
   valeur: oui
-  applicable si: situation . TNS
+  applicable si: situation . générique
+
   description: >-
-    Vous exercez une activité non salariée ou salariée dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à [mobilite-internationale@urssaf.fr].
+    Vous exercez une activité non salariée ou salariée dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à **mobilite-internationale@urssaf.fr**.
 
 
     Après étude de votre demande, si les conditions le permettent, vous recevrez un certificat A1 (ou le formulaire spécifique) attestant du maintien à la Sécurité sociale française.
@@ -103,7 +140,7 @@ notification signature:
     *En cas de difficultés pour remplir ce formulaire, contactez un conseiller par email mobilite-internationale@urssaf.fr ou par téléphone au +33(0) 806 804 213 du lundi au vendredi de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).*
 
 infos personnelles:
-  applicable si: situation . TNS
+  applicable si: situation . générique
   titre: Vos informations personnelles
   type: groupe
   valeur: oui
@@ -126,8 +163,10 @@ infos salarié:
   type: groupe
 
 données assuré:
-  non applicable si: situation . notification
-  applicable si: situation != 'non défini'
+  applicable si:
+    toutes ces conditions:
+      - situation != 'non défini'
+      - situation . notification = non
   type: groupe
   titre: ''
   somme:
@@ -199,8 +238,14 @@ entreprise en france:
 
 entreprise france:
   valeur: oui
-  applicable si: situation != 'non défini'
-  non applicable si: situation . notification
+  applicable si:
+    toutes ces conditions:
+      - situation != 'non défini'
+      - situation . notification = non
+      - situation . intermittent = non
+      - situation . salarié 2 = non
+      - situation . non actif = non
+      - situation . autres = non
 
 entreprise france . SIRET:
   type: texte
@@ -230,8 +275,10 @@ entreprise france . nature de l'activité:
     Saisissez une courte description de votre activité en France (ex: plombier, coach sportif, aménagement intérieur)
 
 contact:
-  applicable si: situation != 'non défini'
-  non applicable si: situation . notification
+  applicable si:
+    toutes ces conditions:
+      - situation != 'non défini'
+      - situation . notification = non
   titre: Vos coordonnées de contact
   type: groupe
   valeur: oui
@@ -250,7 +297,13 @@ contact . téléphone:
 demande:
   titre: Votre demande
   applicable si: situation != 'non défini'
-  non applicable si: situation . notification
+  non applicable si:
+    une de ces conditions:
+      - situation . notification
+      - situation . salarié 2
+      - situation . intermittent
+      - situation . non actif
+      - situation . autres
   type: groupe
   valeur: oui
 
@@ -784,6 +837,10 @@ pluriactivité:
           - demande . PAM
           - demande . PAM . détachement possible = non
       - demande . salarié . pluriactivité
+      - situation . salarié 2
+      - situation . intermittent
+      - situation . non actif
+      - situation . autres
   valeur: oui
   titre: Demande de pluriactivité
   type: groupe
@@ -792,9 +849,9 @@ pluriactivité . nombre:
   titre: Nombre de pays
   question:
     variations:
-      - si: situation . TNS
-        alors: "'Dans combien de pays, autre que la France, allez-vous travailler de façon alternée ou simultanée ?'"
-      - sinon: "'Dans combien de pays, autre que la France, votre salarié va-t-il travailler de façon alternée ou simultanée ?'"
+      - si: situation . salarié
+        alors: "'Dans combien de pays, autre que la France, votre salarié va-t-il travailler de façon alternée ou simultanée ?'"
+      - sinon: "'Dans combien de pays, autre que la France, allez-vous travailler de façon alternée ou simultanée ?'"
   type: nombre
   unité: pays
   par défaut: 1
@@ -818,9 +875,9 @@ pluriactivité . pays n°1: &pluriactivité
     - nom: statut
       question:
         variations:
-          - si: situation . TNS
-            alors: "'####  Quel sera votre statut dans ce pays ?'"
-          - sinon: "'####  Quel sera le statut de votre salarié dans ce pays ?'"
+          - si: situation . salarié
+            alors: "'####  Quel sera le statut de votre salarié dans ce pays ?'"
+          - sinon: "'####  Quel sera votre statut dans ce pays ?'"
       une possibilité:
         choix obligatoire: oui
         possibilités:
@@ -897,16 +954,25 @@ pluriactivité . période:
       type: date
 
 pluriactivité . activité substantielle en France:
+  non applicable si:
+    une de ces conditions:
+      - situation . non actif
+      - situation . autres
   applicable si: nombre
   titre: Activité en France
   type: groupe
   valeur: oui
 pluriactivité . activité substantielle en France . question:
+  non applicable si:
+    une de ces conditions:
+      - situation . non actif
+      - situation . autres
   question:
     variations:
-      - si: situation . TNS
-        alors: "'**Aujourd'hui, pensez-vous qu'au moins 25% de votre activité sur les 12 prochains mois sera réalisée en France ?**'"
-      - sinon: "'**Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre salarié sur les 12 prochains mois sera réalisée en France ?**'"
+      - si: situation . salarié
+        alors: "'**Aujourd'hui, pensez-vous qu'au moins 25% de l’activité de votre salarié sur les 12 prochains mois sera réalisée en France ?**'"
+      - sinon: "'**Aujourd'hui, pensez-vous qu'au moins 25% de votre activité sur les 12 prochains mois sera réalisée en France ?**'"
+
   description: |
     Si vous éprouvez une difficulté à faire cette estimation sur les 12 prochains mois, basez-vous sur la situation des 12 derniers mois, afin de faire une projection.
 
@@ -927,6 +993,22 @@ pluriactivité . activité substantielle en France . critère salarié:
 
 pluriactivité . activité substantielle en France . critère salarié . Le temps de travail:
 pluriactivité . activité substantielle en France . critère salarié . La rémunération:
+pluriactivité . activité substantielle en France . critère salarié 2:
+  applicable si: situation . salarié 2
+  valeur: oui
+  titre: ''
+  type: groupe
+  description: |-
+    Pour faire cette estimation, appuyez- vous sur le **temps de travail**.
+
+pluriactivité . activité substantielle en France . critère intermittent:
+  applicable si: situation . intermittent
+  titre: ''
+  valeur: oui
+  type: groupe
+  description: |-
+    Pour faire cette estimation, appuyez- vous sur la **rémunération** et/ou le **temps passé**.
+
 pluriactivité . activité substantielle en France . critère PAM:
   question: |
     **Quel critère avez-vous utilisé pour faire cette estimation ?**
@@ -984,7 +1066,9 @@ pluriactivité . salarié . siège social:
 pluriactivité . pays centre d'intérêt:
   applicable si:
     toutes ces conditions:
-      - situation . TNS
+      - une de ces conditions:
+          - situation . TNS
+          - situation . salarié 2
       - nombre
   non applicable si: activité substantielle en France . question
   type: groupe
@@ -1003,17 +1087,19 @@ pluriactivité . pays centre d'intérêt:
 
 
 
-    ** Exemple **
+    #### Exemple 
 
-    > M. Z est travailleur non salarié. Il exerce une partie de son activité en
+    *M. Z est travailleur non salarié. Il exerce une partie de son activité en
     Belgique et une partie aux Pays-Bas. Il vit en France. Il ne possède pas
     de locaux fixes et permanents. Cependant, il travaille principalement aux
-    Pays-Bas et gagne la majorité de ses revenus dans ce pays. Son intention
-    d’établir son activité aux Pays-Bas, où il est en voie d’acquérir des locaux
+    Pays-Bas et gagne la majorité de ses revenus dans ce pays.*
+
+
+    *Son intention d’établir son activité aux Pays-Bas, où il est en voie d’acquérir des locaux
     permanents. Bien que M. Z n’exerce pas une partie substantielle de son
     activité aux Pays-Bas, il a l’intention, comme en témoignent les
     circonstances (notamment ses projets), de faire des Pays-Bas le centre
-    d’intérêt de son activité.
+    d’intérêt de son activité.*
 
 pluriactivité . pays centre d'intérêt . pays:
   API: pays détachement
@@ -1025,23 +1111,36 @@ pluriactivité . pays centre d'intérêt . pays . autre:
   type: texte
 
 pluriactivité . télétravail:
+  non applicable si:
+    une de ces conditions:
+      - situation . intermittent
+      - situation . non actif
+      - situation . autres
   applicable si: nombre
   par défaut: non
   question:
     variations:
-      - si: situation . TNS
-        alors: "'####  Allez-vous télétravailler durant votre mission ?'"
-      - sinon: "'####  Votre salarié va-t-il télétravailler durant sa mission ?'"
+      - si: situation . salarié
+        alors: "'####  Votre salarié va-t-il télétravailler durant sa mission ?'"
+      - sinon: "'####  Allez-vous télétravailler durant votre mission ?'"
 pluriactivité . télétravail . pays:
+  applicable si: télétravail
   question: Depuis quel pays ?
   API: pays détachement
 
 pluriactivité . télétravail . fréquence:
+  applicable si: télétravail
   question: Combien de jours par semaine ?
   unité: jour/semaine
 
 pluriactivité . chômage étranger:
   applicable si: nombre
+  non applicable si:
+    une de ces conditions:
+      - situation . salarié 2
+      - situation . intermittent
+      - situation . non actif
+      - situation . autres
   par défaut: non
   question:
     variations:
@@ -1050,6 +1149,7 @@ pluriactivité . chômage étranger:
       - sinon: "'#### Votre salarié bénéficie-t-il d’une prestation chômage dans un autre pays ?'"
 
 pluriactivité . chômage étranger . pays:
+  applicable si: chômage étranger
   question: Dans quel pays ?
   API: pays détachement
 
