@@ -6,6 +6,7 @@ import Emoji from '@/components/utils/Emoji'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
+import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
@@ -14,14 +15,7 @@ import { evaluateQuestion, hash, omit } from '@/utils'
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import {
-	Fragment,
-	lazy,
-	Suspense,
-	useCallback,
-	useContext,
-	useState,
-} from 'react'
+import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
 import { TrackPage } from '../../../ATInternetTracking'
 import formulaire from './demande-mobilité.yaml'
 import picture from './undraw_Traveling_re_weve.svg'
@@ -30,7 +24,11 @@ const LazyEndBlock = import.meta.env.SSR
 	? () => null
 	: lazy(() => import('./EndBlock'))
 
+// Remove Guide urssaf from Ressource utiles section
+const config = { situation: { dirigeant: 'non' } }
+
 export default function PageMobilité() {
+	useSimulationConfig(config, { path: 'page-mobilité' })
 	const engine = new Engine(formulaire)
 
 	return (
@@ -76,6 +74,7 @@ function FormulairePublicodes() {
 	const [situation, setSituation] = usePersistingState<
 		Record<string, PublicodesExpression>
 	>(`formulaire-détachement:${VERSION}`, {})
+
 	const onChange = useCallback(
 		(dottedName, value) => {
 			if (value === undefined) {
@@ -90,16 +89,12 @@ function FormulairePublicodes() {
 		[setSituation]
 	)
 
-	// This is a hack to reset value inside all uncontrolled fields input on clear
-	const [clearFieldsKey, setKey] = useState(0)
 	const handleClear = useCallback(() => {
 		setSituation({})
-		setKey(clearFieldsKey + 1)
-	}, [clearFieldsKey, setSituation])
+	}, [setSituation])
 
 	engine.setSituation(situation)
 	const fields = useFields(engine)
-	console.log(fields)
 	const missingValues = Object.keys(
 		fields.reduce(
 			(missingValues, { dottedName }) => ({

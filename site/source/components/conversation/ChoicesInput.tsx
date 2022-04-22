@@ -273,12 +273,12 @@ export function useSelection<Names extends string = DottedName>({
 	useEffect(() => {
 		if (lastValue.current !== value) {
 			const newSelection = serializeValue(value)
-			if (newSelection && newSelection !== currentSelection) {
+			if (newSelection && newSelection !== currentSelection && !missing) {
 				handleChange(newSelection)
 			}
 			lastValue.current = value
 		}
-	}, [currentSelection, handleChange, value])
+	}, [currentSelection, handleChange, value, missing])
 
 	return { currentSelection, handleChange, defaultValue }
 }

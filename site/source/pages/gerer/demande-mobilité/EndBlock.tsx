@@ -1,16 +1,17 @@
-import { Grid } from '@mui/material'
-import { BlobProvider } from '@react-pdf/renderer'
+import { Condition } from '@/components/EngineValue'
 import Emoji from '@/components/utils/Emoji'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
+import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Checkbox, TextField } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
-import { PopoverWithTrigger } from '@/design-system'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
+import { BlobProvider } from '@react-pdf/renderer'
 import { RuleNode, utils } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
@@ -139,6 +140,27 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 						mobilite-internationale@urssaf.fr
 					</Link>
 				</Body>
+				<Condition expression="situation . intermittent">
+					<Intro>
+						Merci de joindre également à votre formulaire les documents suivants
+						:
+					</Intro>
+					<Ul>
+						<Li>La copie du contrat</Li>
+						<Li>L’attestation Pôle Emploi Service </Li>
+					</Ul>
+				</Condition>
+				<Condition expression="situation . non actif">
+					<Intro>
+						Merci de joindre également à votre formulaire tout document
+						permettant de justifier de votre statut
+					</Intro>
+					<Ul>
+						<Li> Etudiant : une copie de votre carte d’étudiant</Li>
+						<Li> Demandeur d’emploi : une attestation pôle emploi</Li>
+						<Li> Retraité : notification de pension </Li>
+					</Ul>
+				</Condition>
 				<Suspense
 					fallback={
 						<blockquote>
