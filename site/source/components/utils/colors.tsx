@@ -39,8 +39,10 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 		[color]
 	)
 	useEffect(() => {
-		divRef.current?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, `${hue}deg`)
-		divRef.current?.style.setProperty(
+		const root = document.querySelector(':root') as HTMLElement | undefined
+		console.log(root)
+		root?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, `${hue}deg`)
+		root?.style.setProperty(
 			`--${SATURATION_CSS_VARIABLE_NAME}`,
 			`${saturation}%`
 		)

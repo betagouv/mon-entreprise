@@ -1,16 +1,17 @@
-import { Grid } from '@mui/material'
+import { Log } from '@/ATInternetTracking/Tracker'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { PopoverWithTrigger } from '@/design-system'
 import { Article } from '@/design-system/card'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
-import { PopoverWithTrigger } from '@/design-system'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
+import { Grid } from '@mui/material'
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
@@ -28,7 +29,6 @@ import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
-import { Log } from '@/ATInternetTracking/Tracker'
 
 const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
@@ -80,8 +80,8 @@ function IntegrationCustomizer() {
 				<Trans>Personnalisez l'intégration</Trans>
 			</H2>
 
-			<Grid container spacing={3}>
-				<Grid item lg={4}>
+			<Grid container spacing={4} justifyContent={'space-between'}>
+				<Grid item xl={4} lg={5} md>
 					<H3>
 						<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
 					</H3>
@@ -110,7 +110,8 @@ function IntegrationCustomizer() {
 							)
 							.filter(((el) => Boolean(el)) as <T>(x: T | undefined) => x is T)}
 					</Select>
-
+				</Grid>
+				<Grid item xs={'auto'}>
 					<H3>
 						<Trans i18nKey="pages.développeurs.couleur">
 							Quelle couleur ?{' '}
@@ -120,6 +121,8 @@ function IntegrationCustomizer() {
 					<Suspense fallback={<div>Chargement...</div>}>
 						<LazyColorPicker color={color} onChange={setColor} />
 					</Suspense>
+				</Grid>
+				<Grid item xs>
 					<H3>
 						<Trans i18nKey="pages.développeurs.code.titre">
 							Code d'intégration
@@ -133,11 +136,11 @@ function IntegrationCustomizer() {
 					</Body>
 					<IntegrationCode color={color} module={currentIframePath} />
 				</Grid>
-				<Grid item lg={8}>
+				<Grid item xs={12}>
 					<H3>
 						<Trans>Prévisualisation</Trans>
 					</H3>
-					<PrevisualisationContainer columns={10}>
+					<PrevisualisationContainer>
 						<TrackingContext.Provider value={DummyTracker}>
 							<MemoryRouter
 								key={currentModule}
@@ -169,12 +172,11 @@ function IntegrationCustomizer() {
 }
 const DummyTracker = new Log()
 
-const PrevisualisationContainer = styled(Grid)`
+const PrevisualisationContainer = styled.div`
 	background-color: white;
-	border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-	box-shadow: ${({ theme }) => theme.elevations[2]};
+	border: 2px solid ${({ theme }) => theme.colors.extended.grey[300]};
 	border-radius: 0.3rem;
-	padding: 1rem;
+	padding-top: 2rem;
 `
 
 const Logo = styled.img`
