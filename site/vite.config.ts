@@ -157,20 +157,19 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			vite.middlewares.use(async (req, res, next) => {
 				const url = req.originalUrl
+				const firstLevelDir = url?.slice(1).split('/')[0]
+
 				if (url === '/') {
 					res.writeHead(302, { Location: '/' + options.defaultSite })
 					res.end()
 				} else if (
-					url &&
-					Object.keys(options.sites).some((name) =>
-						url.slice(1).startsWith(name)
-					)
+					firstLevelDir &&
+					Object.keys(options.sites).some((name) => firstLevelDir === name)
 				) {
-					const siteName = url.slice(1).split('/')[0]
+					const siteName = firstLevelDir
 					const content = await vite.transformIndexHtml(
-						'/',
-						await fillTemplate(siteName),
-						url
+						url,
+						await fillTemplate(siteName)
 					)
 					res.end(content)
 				} else {

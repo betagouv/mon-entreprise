@@ -3,6 +3,7 @@
 // CommonJS when I wrote it.
 // cf. https://github.com/vitejs/vite/blob/133fcea5223263b0ae08ac9a0422b55183ebd266/packages/vite/src/node/build.ts#L495
 // cf. https://github.com/vitejs/vite/pull/2157
+// cf. https://github.com/vitejs/vite/pull/6812
 
 // TODO: We could use something like https://github.com/Aslemammad/tinypool to
 // prerender all pages in parallel (used by vitest). Or move to SSR with a
