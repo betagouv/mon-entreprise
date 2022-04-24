@@ -9,7 +9,6 @@
 		"directory": "site"
 	},
 	"private": true,
-	"main": "./source/entry-empty.js",
 	"engines": {
 		"node": ">=12.16.1"
 	},
