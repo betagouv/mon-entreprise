@@ -1,7 +1,6 @@
 // TODO: Ré-activer ce test. Désactivé à cause d'un problème d'import entre
 // publicodes-react et styled-component dans le contexte de test uniquement.
-// J'ai bon espoir que ce problème soit résolu "tout seul" lors d'une prochaine
-// version de vitest.
+// https://github.com/styled-components/styled-components/issues/3601
 
 // import { expect, describe, it } from 'vitest'
 // import { roundedPercentages } from './StackedBarChart'
