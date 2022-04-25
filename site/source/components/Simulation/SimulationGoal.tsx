@@ -3,7 +3,7 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
-import { formatValue } from 'publicodes'
+import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -48,7 +48,7 @@ export function SimulationGoal({
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(
-		(x) => {
+		(x?: PublicodesExpression) => {
 			dispatch(updateSituation(dottedName, x))
 			onUpdateSituation?.(dottedName, x)
 		},
