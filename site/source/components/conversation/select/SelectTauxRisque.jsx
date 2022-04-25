@@ -1,13 +1,32 @@
+import { Card } from '@/design-system/card'
+import { Select } from '@/design-system/field/Select'
 import TextField from '@/design-system/field/TextField'
+import { Li, Ul } from '@/design-system/typography/list'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import Worker from './SelectTauxRisque.worker.js?worker'
+
 const worker = !import.meta.env.SSR && new Worker()
+
+const formatTauxNet = (taux) => {
+	const tauxNet = parseFloat(taux.replace(',', '.'))
+	if (isNaN(tauxNet)) {
+		return 'Taux inconnu'
+	}
+
+	return tauxNet + ' %'
+}
 
 function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 	const [searchResults, setSearchResults] = useState()
-	let submitOnChange = (option) => {
-		onChange(option['Taux net'].replace(',', '.') + '%')
+	const submitOnChange = (option) => {
+		const tauxNet = parseFloat(option['Taux net'].replace(',', '.'))
+		if (isNaN(tauxNet)) {
+			// eslint-disable-next-line no-console
+			console.error('Taux inconnu', option)
+		}
+		onChange(isNaN(tauxNet) ? undefined : tauxNet + '%')
 		onSubmit()
 	}
 	const { t } = useTranslation()
@@ -18,6 +37,7 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 
 		worker.onmessage = ({ data: results }) => setSearchResults(results)
 	}, [options])
+
 	return (
 		<>
 			<TextField
@@ -31,6 +51,7 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 				onChange={(input) => {
 					if (input.length < 2) {
 						setSearchResults(undefined)
+
 						return
 					}
 					worker.postMessage({ input })
@@ -39,34 +60,19 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 
 			{searchResults &&
 				searchResults.map((option) => (
-					<div
+					<Card
+						bodyAs={Wrapper}
+						onPress={() => submitOnChange(option)}
+						compact
 						key={JSON.stringify(option)}
 						css={`
-							text-align: left;
-							width: 100%;
-							padding: 0 0.4rem;
-							border-radius: 0.3rem;
-							display: flex;
-							align-items: center;
-							cursor: pointer;
-							:hover,
-							:focus {
-								background-color: var(--lighterColor);
-							}
-							background: white;
-							border-radius: 0.6rem;
-							margin-top: 0.4rem;
-							span {
-								display: inline-block;
-								margin: 0.6rem;
-							}
+							padding: 0.4rem;
+							margin-top: 0.5rem;
 						`}
-						onClick={() => submitOnChange(option)}
 					>
 						<span
 							css={`
-								width: 65%;
-								font-size: 85%;
+								flex: 6;
 							`}
 						>
 							{option['Nature du risque']}
@@ -74,17 +80,16 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 
 						<span
 							css={`
-								width: 10%;
-								min-width: 3em;
+								flex: 2;
 								color: #333;
+								font-size: 1rem;
 							`}
 						>
-							<span>{option['Taux net'] + ' %'}</span>
+							{formatTauxNet(option['Taux net'])}
 						</span>
 						<span
 							css={`
-								width: 20%;
-								font-size: 85%;
+								flex: 4;
 								background-color: #ddd;
 								color: #333;
 								border-radius: 0.25em;
@@ -94,13 +99,20 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 						>
 							{option['Catégorie']}
 						</span>
-					</div>
+					</Card>
 				))}
 		</>
 	)
 }
 
-export default function Select(props) {
+const Wrapper = styled.div`
+	display: flex;
+	align-items: center;
+	text-align: left;
+	font-size: 0.85rem;
+`
+
+export default function SelectAtmp(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
@@ -108,10 +120,11 @@ export default function Select(props) {
 		)
 			.then((response) => {
 				if (!response.ok) {
-					let error = new Error(response.statusText)
+					const error = new Error(response.statusText)
 					error.response = response
 					throw error
 				}
+
 				return response.json()
 			})
 			.then((json) => setOptions(json))
@@ -122,5 +135,6 @@ export default function Select(props) {
 	}, [])
 
 	if (!options) return null
+
 	return <SelectComponent {...props} options={options} />
 }
