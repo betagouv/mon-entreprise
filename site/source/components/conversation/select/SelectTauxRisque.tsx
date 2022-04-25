@@ -1,41 +1,59 @@
 import { Card } from '@/design-system/card'
-import { Select } from '@/design-system/field/Select'
 import TextField from '@/design-system/field/TextField'
-import { Li, Ul } from '@/design-system/typography/list'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Worker from './SelectTauxRisque.worker.js?worker'
 
-const worker = !import.meta.env.SSR && new Worker()
+const worker = !import.meta.env.SSR ? new Worker() : null
 
-const formatTauxNet = (taux) => {
+const formatTauxNet = (taux: string) => {
 	const tauxNet = parseFloat(taux.replace(',', '.'))
 	if (isNaN(tauxNet)) {
 		return 'Taux inconnu'
 	}
 
-	return tauxNet + ' %'
+	return `${tauxNet} %`
 }
 
-function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
-	const [searchResults, setSearchResults] = useState()
-	const submitOnChange = (option) => {
+interface Result {
+	'Nature du risque': string
+	'Code risque': string
+	'Taux net': string
+	Catégorie: string
+}
+
+function SelectComponent({
+	onChange,
+	onSubmit,
+	options,
+	autoFocus,
+}: {
+	options: Result[]
+	autoFocus?: boolean
+	onChange?: (value: string | undefined) => void
+	onSubmit?: () => void
+}) {
+	const [searchResults, setSearchResults] = useState<Result[]>()
+	const submitOnChange = (option: Result) => {
 		const tauxNet = parseFloat(option['Taux net'].replace(',', '.'))
 		if (isNaN(tauxNet)) {
 			// eslint-disable-next-line no-console
 			console.error('Taux inconnu', option)
 		}
-		onChange(isNaN(tauxNet) ? undefined : tauxNet + '%')
-		onSubmit()
+		onChange?.(isNaN(tauxNet) ? undefined : `${tauxNet}%`)
+		onSubmit?.()
 	}
 	const { t } = useTranslation()
 	useEffect(() => {
-		worker.postMessage({
+		worker?.postMessage({
 			options,
 		})
 
-		worker.onmessage = ({ data: results }) => setSearchResults(results)
+		if (worker?.onmessage) {
+			worker.onmessage = ({ data: results }: { data: Result[] }) =>
+				setSearchResults(results)
+		}
 	}, [options])
 
 	return (
@@ -54,7 +72,7 @@ function SelectComponent({ onChange, onSubmit, options, autoFocus }) {
 
 						return
 					}
-					worker.postMessage({ input })
+					worker?.postMessage({ input })
 				}}
 			/>
 
@@ -112,20 +130,26 @@ const Wrapper = styled.div`
 	font-size: 0.85rem;
 `
 
-export default function SelectAtmp(props) {
-	const [options, setOptions] = useState(null)
+interface ErrorT extends Error {
+	response: unknown
+}
+
+export default function SelectAtmp(
+	props: Parameters<typeof SelectComponent>[0]
+) {
+	const [options, setOptions] = useState<Result[] | null>(null)
 	useEffect(() => {
 		fetch(
 			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2021.json'
 		)
 			.then((response) => {
 				if (!response.ok) {
-					const error = new Error(response.statusText)
+					const error = new Error(response.statusText) as ErrorT
 					error.response = response
 					throw error
 				}
 
-				return response.json()
+				return response.json() as Promise<Result[]>
 			})
 			.then((json) => setOptions(json))
 			.catch(
