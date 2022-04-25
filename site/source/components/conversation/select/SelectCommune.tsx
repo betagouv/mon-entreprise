@@ -117,7 +117,6 @@ export default function Select({
 				case 'Enter':
 					submitFocusedElem()
 					e.preventDefault()
-					e.stopPropagation()
 					break
 			}
 		},
