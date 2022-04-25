@@ -57,14 +57,22 @@ export default function ShareOrSaveSimulationBanner({
 	const url = useUrl()
 	const startSharing = async () => {
 		if (shareAPIAvailable) {
-			await window.navigator.share({
-				title: document.title,
-				text: t(
-					'shareSimulation.navigatorShare',
-					'Ma simulation Mon Entreprise'
-				),
-				url,
-			})
+			try {
+				await window.navigator.share({
+					title: document.title,
+					text: t(
+						'shareSimulation.navigatorShare',
+						'Ma simulation Mon Entreprise'
+					),
+					url,
+				})
+			} catch (e) {
+				if (e instanceof Error && e.toString().includes('AbortError')) {
+					return
+				}
+				// eslint-disable-next-line no-console
+				console.error(e)
+			}
 		}
 	}
 
