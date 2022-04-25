@@ -1,4 +1,9 @@
-import { goToQuestion, stepAction, updateSituation } from '@/actions/actions'
+import {
+	deleteFromSituation,
+	goToQuestion,
+	stepAction,
+	updateSituation,
+} from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
 import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
@@ -51,7 +56,12 @@ export default function Conversation({
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 
 	const onChange = (value: PublicodesExpression | undefined) => {
-		dispatch(updateSituation(currentQuestion, value))
+		dispatch(
+			(value == null ? deleteFromSituation : updateSituation)(
+				currentQuestion,
+				value
+			)
+		)
 	}
 
 	return (
