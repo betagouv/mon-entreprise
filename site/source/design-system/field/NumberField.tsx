@@ -36,13 +36,18 @@ export default function NumberField(props: NumberFieldProps) {
 	const { locale } = useLocale()
 	const step = !props.step
 		? 10 **
-		  (Math.floor(
-				Math.log10(
-					(props.value ?? props.defaultValue ?? props.placeholder ?? 10) * 2
-				)
-		  ) -
-				1)
+		  Math.max(
+				Math.floor(
+					Math.log10(
+						Math.abs(
+							props.value ?? props.defaultValue ?? props.placeholder ?? 10
+						) * 2
+					)
+				) - 1,
+				0
+		  )
 		: 1
+
 	const ref = useRef<HTMLInputElement>(null)
 	const state = useSimpleNumberFieldState({
 		...props,
@@ -334,12 +339,12 @@ function useSimpleNumberFieldState(
 	)
 
 	const increment = () => {
-		const newValue = (numberValue ?? props.placeholder ?? 0) + props.step
+		const newValue = (numberValue ?? props.placeholder ?? 0) + (props.step || 0)
 		updateInputValue(newValue)
 		updateNumberValue(newValue)
 	}
 	const decrement = () => {
-		const newValue = (numberValue ?? props.placeholder ?? 0) - props.step
+		const newValue = (numberValue ?? props.placeholder ?? 0) - (props.step || 0)
 		updateInputValue(newValue)
 		updateNumberValue(newValue)
 	}
