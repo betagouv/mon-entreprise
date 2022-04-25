@@ -24,8 +24,8 @@ const PALETTE = {
 const rawIframeColor = new URLSearchParams(
 	import.meta.env.SSR ? '' : document.location.search.substring(1)
 ).get('couleur')
-const IFRAME_COLOR: [number, number] = rawIframeColor
-	? JSON.parse(decodeURIComponent(rawIframeColor))
+const IFRAME_COLOR = rawIframeColor
+	? (JSON.parse(decodeURIComponent(rawIframeColor)) as number[])
 	: DEFAULT_COLOR_HS
 
 // Note that the iframeColor is first set in the index.html file, but without
@@ -40,7 +40,6 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	)
 	useEffect(() => {
 		const root = document.querySelector(':root') as HTMLElement | undefined
-		console.log(root)
 		root?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, `${hue}deg`)
 		root?.style.setProperty(
 			`--${SATURATION_CSS_VARIABLE_NAME}`,
