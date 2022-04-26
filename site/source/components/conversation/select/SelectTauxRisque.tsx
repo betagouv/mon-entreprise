@@ -137,7 +137,7 @@ interface ErrorT extends Error {
 }
 
 export default function SelectAtmp(
-	props: Parameters<typeof SelectComponent>[0]
+	props: Omit<Parameters<typeof SelectComponent>[0], 'options'>
 ) {
 	const [options, setOptions] = useState<Result[] | null>(null)
 
