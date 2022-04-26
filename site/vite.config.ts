@@ -159,6 +159,10 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 				const url = req.originalUrl
 				const firstLevelDir = url?.slice(1).split('/')[0]
 
+				if (url && /\?.*html-proxy/.test(url)) {
+					return next()
+				}
+
 				if (url === '/') {
 					res.writeHead(302, { Location: '/' + options.defaultSite })
 					res.end()
