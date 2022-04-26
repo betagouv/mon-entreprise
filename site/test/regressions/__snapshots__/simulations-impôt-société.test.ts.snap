@@ -1,0 +1,24 @@
+// Vitest Snapshot v1
+
+exports[`calculate simulations-impot-société > bénéfices 1`] = `
+"[0,0]
+Notifications affichées : entreprise . imposition . IS . information sur le report de déficit"
+`;
+
+exports[`calculate simulations-impot-société > bénéfices 2`] = `"[0,0]"`;
+
+exports[`calculate simulations-impot-société > bénéfices 3`] = `"[300,0]"`;
+
+exports[`calculate simulations-impot-société > bénéfices 4`] = `"[3000,0]"`;
+
+exports[`calculate simulations-impot-société > bénéfices 5`] = `"[48628,0]"`;
+
+exports[`calculate simulations-impot-société > bénéfices 6`] = `"[525628,0]"`;
+
+exports[`calculate simulations-impot-société > bénéfices 7`] = `"[5295628,149646]"`;
+
+exports[`calculate simulations-impot-société > prorata temporis 1`] = `"[260628,0]"`;
+
+exports[`calculate simulations-impot-société > prorata temporis 2`] = `"[277936,0]"`;
+
+exports[`calculate simulations-impot-société > prorata temporis 3`] = `"[272981,0]"`;

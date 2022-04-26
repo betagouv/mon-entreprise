@@ -1,0 +1,146 @@
+// Vitest Snapshot v1
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `"[7434,0,2434,5000,0,5000,36,3,67]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `"[24242,0,4242,20000,876,19124,36,4,266]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
+"[69846,0,19846,50000,9490,40510,108,4,531]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
+"[90886,0,30886,60000,12661,47339,180,4,533]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
+"[90334,0,30334,60000,12657,47343,180,4,533]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
+"[90012,0,30012,60000,12654,47346,180,4,708]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
+"[92076,0,32076,60000,12671,47329,180,4,533]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
+"[90530,0,30530,60000,12658,47342,180,4,805]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `"[4895,0,3895,1000,0,1000,36,2,122]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 7`] = `
+"[93016,0,33016,60000,12679,47321,180,4,533]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
+"[47070,0,7070,40000,6304,33696,36,4,400]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 1`] = `"[16239,0,6239,10000,0,10000,72,4,135]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 2`] = `
+"[73230,0,23230,50000,9518,40482,180,4,531]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 3`] = `
+"[149211,0,49211,100000,28382,71618,468,4,538]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `"[3277,0,2777,500,0,500,36,2,61]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `"[3838,0,2838,1000,0,1000,36,2,61]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `"[4398,0,2898,1500,0,1500,36,2,61]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `"[4959,0,2959,2000,0,2000,36,2,61]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `"[8377,0,3377,5000,0,5000,36,3,67]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `"[14552,0,4552,10000,0,10000,36,4,134]"`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 7`] = `
+"[147523,0,47523,100000,28363,71637,432,4,538]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
+"[1239427,0,239427,1000000,473298,526702,468,4,550]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `"[30000,0,8078,21922,1208,20714,0,4,293]"`;
+
+exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `"[30000,0,8398,21602,1157,20445,0,4,289]"`;
+
+exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `"[300000,0,62883,237117,89673,147444,0,4,550]"`;
+
+exports[`calculate simulations-professions-libérales > avocat 1`] = `
+"[50000,0,11135,38865,5988,32877,0,4,518]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > avocat 2`] = `
+"[50000,0,11805,38195,5787,32408,0,4,510]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `"[20000,0,5014,14986,57,14929,0,4,200]"`;
+
+exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
+"[50000,0,14816,35184,4884,30300,0,4,471]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > médecin 1`] = `"[50000,0,14385,35615,5011,30604,0,4,476]"`;
+
+exports[`calculate simulations-professions-libérales > médecin 2`] = `"[50000,0,22059,27941,2710,25231,0,4,378]"`;
+
+exports[`calculate simulations-professions-libérales > médecin 3`] = `"[300000,0,87915,212085,78409,133676,0,4,550]"`;
+
+exports[`calculate simulations-professions-libérales > médecin 4`] = `"[400000,0,108031,291969,117164,174805,0,4,550]"`;
+
+exports[`calculate simulations-professions-libérales > médecin 5`] = `
+"[120000,0,36415,83585,21327,62258,0,4,536]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-professions-libérales > médecin 6`] = `"[50000,0,14385,35615,5011,30604,0,4,476]"`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 1`] = `"[50000,0,12479,37521,5584,31937,0,4,501]"`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
+"[20000,0,5190,14810,29,14781,0,4,198]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
+`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
+"[4000,0,1315,2685,0,2685,0,2,61]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
+`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 4`] = `
+"[20000,0,5190,14810,29,14781,0,4,198]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
+`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 5`] = `
+"[20000,0,5267,14733,17,14716,0,4,197]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
+`;
+
+exports[`calculate simulations-professions-libérales > sage-femme 6`] = `
+"[20000,0,5343,14657,4,14653,0,4,196]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
+`;

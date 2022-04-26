@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`calculate simulations-artiste-auteur > bnc 1`] = `"[763]"`;
+
+exports[`calculate simulations-artiste-auteur > bnc 2`] = `"[1156]"`;
+
+exports[`calculate simulations-artiste-auteur > bnc 3`] = `
+"[578]
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
+`;
+
+exports[`calculate simulations-artiste-auteur > salarié 1`] = `
+"[99]
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
+`;
+
+exports[`calculate simulations-artiste-auteur > salarié 2`] = `"[988]"`;
+
+exports[`calculate simulations-artiste-auteur > salarié 3`] = `"[9880]"`;
