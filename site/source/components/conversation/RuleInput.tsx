@@ -1,6 +1,5 @@
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
-import SelectAtmp from '@/components/conversation/select/SelectTauxRisque'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
@@ -17,6 +16,7 @@ import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
+import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
 
 type Props<Names extends string = DottedName> = Omit<

@@ -3,7 +3,7 @@ import TextField from '@/design-system/field/TextField'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Worker from './SelectTauxRisque.worker.js?worker'
+import Worker from './SelectTauxRisque.worker?worker'
 
 const worker = !import.meta.env.SSR ? new Worker() : null
 
@@ -16,7 +16,7 @@ const formatTauxNet = (taux: string) => {
 	return `${tauxNet} %`
 }
 
-interface Result {
+export interface Result {
 	'Nature du risque': string
 	'Code risque': string
 	'Taux net': string
@@ -34,7 +34,9 @@ function SelectComponent({
 	onChange?: (value: string | undefined) => void
 	onSubmit?: () => void
 }) {
+	const { t } = useTranslation()
 	const [searchResults, setSearchResults] = useState<Result[]>()
+
 	const submitOnChange = (option: Result) => {
 		const tauxNet = parseFloat(option['Taux net'].replace(',', '.'))
 		if (isNaN(tauxNet)) {
@@ -44,13 +46,13 @@ function SelectComponent({
 		onChange?.(isNaN(tauxNet) ? undefined : `${tauxNet}%`)
 		onSubmit?.()
 	}
-	const { t } = useTranslation()
+
 	useEffect(() => {
 		worker?.postMessage({
 			options,
 		})
 
-		if (worker?.onmessage) {
+		if (worker) {
 			worker.onmessage = ({ data: results }: { data: Result[] }) =>
 				setSearchResults(results)
 		}
@@ -138,6 +140,7 @@ export default function SelectAtmp(
 	props: Parameters<typeof SelectComponent>[0]
 ) {
 	const [options, setOptions] = useState<Result[] | null>(null)
+
 	useEffect(() => {
 		fetch(
 			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2021.json'
