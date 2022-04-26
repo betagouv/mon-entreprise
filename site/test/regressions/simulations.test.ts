@@ -77,12 +77,52 @@ const runSimulations = (
 		})
 	)
 
+const getMissingVariables = (
+	evaluatedNode: ReturnType<typeof engine['evaluate']>
+) =>
+	Object.entries(evaluatedNode.missingVariables)
+		.sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
+		.map(([name]) => name)
+
 it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,
 		employeeConfig.situation
 	)
+
+	expect(
+		getMissingVariables(
+			engine
+				.setSituation({
+					...employeeConfig.situation,
+					'contrat salarié . rémunération . brut de base': '3000 €/mois',
+				})
+				.evaluate('contrat salarié . rémunération . net après impôt')
+		)
+	).toMatchInlineSnapshot(`
+		[
+		  "contrat salarié",
+		  "contrat salarié . convention collective",
+		  "contrat salarié . temps de travail . temps partiel",
+		  "contrat salarié . rémunération . primes . activité . base",
+		  "contrat salarié . temps de travail . heures supplémentaires",
+		  "contrat salarié . frais professionnels . abonnement transports publics . montant",
+		  "contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant",
+		  "contrat salarié . déduction forfaitaire spécifique",
+		  "contrat salarié . frais professionnels . titres-restaurant",
+		  "contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant",
+		  "contrat salarié . rémunération . avantages en nature",
+		  "contrat salarié . rémunération . primes . fin d'année . treizième mois",
+		  "contrat salarié . complémentaire santé . forfait",
+		  "contrat salarié . complémentaire santé . part employeur",
+		  "situation personnelle . domiciliation fiscale à l'étranger",
+		  "contrat salarié . statut cadre",
+		  "contrat salarié . régime des impatriés",
+		  "établissement . localisation",
+		  "impôt . méthode de calcul",
+		]
+	`)
 })
 
 it('calculate simulations-indépendant', () => {
@@ -106,6 +146,29 @@ it('calculate simulations-auto-entrepreneur', () => {
 		autoentrepreneurConfig.objectifs,
 		autoentrepreneurConfig.situation
 	)
+
+	expect(
+		getMissingVariables(
+			engine
+				.setSituation({
+					...autoentrepreneurConfig.situation,
+					"dirigeant . auto-entrepreneur . chiffre d'affaires": '30000 €/an',
+				})
+				.evaluate('dirigeant . auto-entrepreneur . net après impôt')
+		)
+	).toMatchInlineSnapshot(`
+		[
+		  "entreprise . activité . mixte",
+		  "entreprise . activité",
+		  "impôt . foyer fiscal . enfants à charge",
+		  "entreprise . activité . service ou vente",
+		  "impôt . foyer fiscal . situation de famille",
+		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
+		  "entreprise . date de création",
+		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
+		  "impôt . méthode de calcul",
+		]
+	`)
 })
 
 it('calculate simulations-rémunération-dirigeant (assimilé salarié)', () => {
