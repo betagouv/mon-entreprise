@@ -38,7 +38,7 @@ type Props<Names extends string = DottedName> = Omit<
 	// implement this behavior currently
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
-	onSubmit?: (source: string) => void
+	onSubmit?: (source?: string) => void
 	inputType?: 'radio' | 'card' | 'toggle' | 'select'
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
