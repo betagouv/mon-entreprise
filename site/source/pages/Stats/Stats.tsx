@@ -335,7 +335,7 @@ function SimulateursChoice(props: {
 		<Select
 			onSelectionChange={props.onChange as any}
 			defaultSelectedKey={props.value}
-			label={'Selectionner la fonctionnalité'}
+			label={'Sélectionner la fonctionnalité'}
 		>
 			<Item key={''} textValue="Tout le site">
 				<Emoji emoji="🌍" />
