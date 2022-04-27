@@ -143,7 +143,7 @@ export default function SelectAtmp(
 
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2021.json'
+			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2022.json'
 		)
 			.then((response) => {
 				if (!response.ok) {
