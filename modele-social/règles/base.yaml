@@ -57,16 +57,24 @@ SMIC horaire:
       - si: établissement . localisation . département = 'Mayotte'
         alors:
           variations:
+            - si: date >= 01/05/2022
+              alors: 8.19 €/heure
             - si: date >= 01/01/2022
               alors: 7.98 €/heure
-            - si: date >= 01/01/2021
+            - si: date >= 01/10/2021
               alors: 7.91 €/heure
+            - si: date >= 01/01/2021
+              alors: 7.74 €/heure
       - sinon:
           variations:
+            - si: date >= 01/05/2022
+              alors: 10.85 €/heure
             - si: date >= 01/01/2022
               alors: 10.57 €/heure
-            - si: date >= 01/01/2021
+            - si: date >= 01/10/2021
               alors: 10.48 €/heure
+            - si: date >= 01/01/2021
+              alors: 10.25 €/heure
   note: |
     En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
     de chaque année. Toutefois une revalorisation doit intervenir en cours
