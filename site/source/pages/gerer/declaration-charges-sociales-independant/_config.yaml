@@ -6,7 +6,7 @@ objectifs:
 situation:
   déclaration charge sociales: oui
   dirigeant . régime social: "'indépendant'"
-  année: 2021
+  date: 01/01/2021
   dirigeant . indépendant . PL . CIPAV: non # TODO En attendant la transitivité des remplacements
   impôt: non
 

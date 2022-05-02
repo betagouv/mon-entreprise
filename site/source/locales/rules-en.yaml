@@ -525,9 +525,6 @@ SMIC temps plein . net imposable:
   description.fr: Montant du SMIC net imposable pour un temps plein.
   titre.en: '[automatic] minimum net taxable income'
   titre.fr: SMIC net imposable
-année:
-  titre.en: '[automatic] year'
-  titre.fr: année
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
@@ -4438,6 +4435,9 @@ contrat salarié . vieillesse:
   description.fr: Cotisation au régime de retraite de base des salariés.
   titre.en: Basic pension contribution
   titre.fr: vieillesse
+date:
+  titre.en: '[automatic] '
+  titre.fr: date
 dirigeant:
   titre.en: '[automatic] manager'
   titre.fr: dirigeant
@@ -5393,28 +5393,14 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
   titre.en: '[automatic] Contribution class'
   titre.fr: Classe de cotisation
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
-  description.en: |-
-    [automatic] To improve your entitlements, you may choose to
-    to contribute in the class immediately above the one
-    the one that corresponds to your professional income bracket.
-    income bracket.
-
-    This option will allow you to acquire more points and therefore 
-    points and thus increase the amount of your future
-    your future retirement pension.
-
-    To contribute to the higher class of the
-    scheme, go to your personal Cipav space
-    Cipav personal space:
-    - Online services" tab;
-    - Apply to contribute to the higher class" section.
+  description.en: '[automatic] '
   description.fr: |-
     Afin d’améliorer vos droits, vous pouvez choisir de
     cotiser dans la classe immédiatement supérieure
     à celle qui correspond à votre tranche de revenus
     professionnels.
 
-    Cette option vous permettra d’acquérir davantage 
+    Cette option vous permettra d’acquérir davantage
     de points et donc d’augmenter le montant de
     votre future pension de retraite.
 
@@ -6476,31 +6462,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . indépendant . cotisations et contributions . début activité:
-  description.en: >
-    [automatic] When you start your activity, your **professional income** is
-    not known**.
-
-    are not known**, the contributions and fees for the first two years are calculated on a
-
-    are calculated on a **lump sum basis**.
-
-
-
-    These contributions will be adjusted and regularized according to your actual income for the year of exercise.
-
-    the year of the exercise. If your income is higher than the flat rate used to calculate your provisional
-
-    for the calculation of the provisional contributions, you will be required to pay an 
-
-    **additional contributions**.
-
-
-
-    This simulator calculates the so-called definitive contributions on the basis of your actual income from
-
-    activity. It therefore allows you to anticipate the amount of this adjustment and to
-
-    **plan your cash flow** accordingly.
+  description.en: '[automatic] '
   description.fr: >
     Lorsque vous commencez votre activité, vos **revenus professionnels**
 
@@ -6514,7 +6476,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
 
-    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un 
+    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un
 
     **complément de cotisations**.
 
@@ -6611,53 +6573,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre.en: '[automatic] ZFU exemption rate'
   titre.fr: taux exonération ZFU
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:
-  description.en: >-
-    [automatic] Within the framework of the health crisis, the Government has
-    implemented several exceptional measures concerning the social contributions
-    of self-employed workers affected by the coronavirus crisis.
-
-
-    For the 2021 social security contributions, two reduction schemes are applicable:
-
-    - the reduction scheme provided for by the Social Security Financing Act (LFSS) 2021(1) in the context of the second period of the state of health emergency beginning in the fall of 2020,
-
-    - the additional mechanism provided for in the 1st Amending Finance Act (LFR1) 2021(2) for periods starting in June 2021,
-
-
-    (1) Decree 2021-75 of January 27, 2021, issued in application of Article 9 of Law 2020-1576 of December 14, 2020 on the financing of social security for 2021.
-
-    Decrees concerning the extension of these measures: Decree 2021-1410 of October 29, 2021 - Decree 2021-1956 of December 31, 2021 - Decree 2022-170 of February 11, 2022
-
-
-    (2) Decree 2021-1094 of August 19, 2021, issued in application of Article 25 of Law 2021-953 of July 19, 2021 on the amended budget for 2021.
-
-
-    **These measures are aimed at self-employed workers whose main activity falls within one of the following sectors and under certain other conditions of eligibility:**
-
-    - sector known as S1: sectors of tourism, hotels, restaurants, sports, culture, air transport and events
-
-    - sector called S1 bis: sectors whose activity depends on that of sector 1
-
-    - sector called S2: other sectors of activity that have been banned from carrying on their activity in a preponderant way
-
-
-    [See the detailed list of activities of the different sectors](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
-
-
-    **Good to know:** Delivery, pick-up or take-away activities are not taken into account when assessing compliance with the condition of prohibition of reception of the public. 
-
-    A curfew is not considered to be a prohibition on the reception of the public.
-
-
-    ### Eligibility Requirements and Amount of Reduction:
-
-    The reduction applies to the final 2021 personal social security contributions due to Urssaf. 
-
-
-    The conditions of eligibility are assessed month by month, as is the amount of the reduction.
-
-
-    For more information, and to know the amount of the exemption you can benefit from, you can use the [COVID exemption simulator](/simulators/exoneration-covid "New window").
+  description.en: '[automatic] '
   description.fr: >-
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre
     plusieurs mesures exceptionnelles concernant les cotisations et
@@ -6692,14 +6608,14 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
     [Voir la liste détaillée des activités des différents secteurs](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
 
 
-    **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public. 
+    **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
 
     Le couvre-feu n’est pas considéré comme une mesure d’interdiction d’accueil du public.
 
 
     ### Conditions d’éligibilité et montant de la réduction :
 
-    La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf. 
+    La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf.
 
 
     Les conditions d’éligibilité s’évaluent mois par mois, le montant de la réduction également.
@@ -9364,30 +9280,7 @@ protection sociale . retraite . base . trimestres . auto-entrepreneur:
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
 protection sociale . retraite . base . trimestres . indépendant:
-  note.en: >-
-    [automatic] Reminder: for self-employed workers, the validation of quarters
-    is based on the **contributed income**.
-
-
-    The last paragraph of article R351-9 of the Social Security Code, as made applicable to self-employed workers by articles D634-1 and R634-1 of the same code, with adaptations, provides that for the period after December 31, 2013, as many quarters are to be retained as the annual income corresponding to the deductions made by the insured person represents times the amount of the minimum growth wage in force on January 1 of the year in question, calculated on the basis of 150 hours, with a maximum of four quarters per calendar year.
-
-
-    By deductions made by the insured, the text refers (in the case of a self-employed person who is not necessarily up to date with his or her contributions) to the basic old-age pension scheme contributions actually paid by him or her (and not to the contributions called for).
-
-
-    The annual income corresponding to the deductions made by the insured (so-called "contributed income") is the income reconstituted from the basic old-age pension scheme contributions ("RVB") actually paid by the insured.    
-
-
-    The contributed income is therefore the basic old-age pension contribution actually paid for the year N divided by the basic old-age pension contribution rate for that year N.
-
-
-    Final RVB contribution actually paid for a year N (+ deductions or exemptions generating rights) / RVB contribution rate for this year N (for the part generating rights applicable to the capped income).
-
-
-    This income (known as "contributed income" for a year N) is used to validate quarters for a year N.
-
-
-    It is compared to the threshold of 150 smic/hour to determine the number of quarters to be validated (contributed income of year N /150 smic h).
+  note.en: '[automatic] '
   note.fr: >-
     Rappel : la validation de trimestres s’effectue, pour les travailleurs
     indépendants à partir du **revenu cotisé**
@@ -9399,7 +9292,7 @@ protection sociale . retraite . base . trimestres . indépendant:
     Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
 
 
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.    
+    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
 
 
     Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.

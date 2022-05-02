@@ -15,11 +15,13 @@ const Bold = styled.span<{ bold: boolean }>`
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
-	const year = useContext(EngineContext).evaluate('année')
+	const year = useContext(EngineContext).evaluate('date')
 	const choices = [2021, 2022]
 
-	const actualYear =
-		(year.nodeValue as Evaluation<number>) || new Date().getFullYear()
+	const actualYear = Number(
+		(year.nodeValue?.toString().slice(-4) as Evaluation<number> | undefined) ||
+			new Date().getFullYear()
+	)
 
 	return (
 		<Banner hideAfterFirstStep={false} icon={'📅'}>
@@ -33,7 +35,9 @@ export const SelectSimulationYear = () => {
 					.map((year) => (
 						<span key={year}>
 							<DesignSystemLink
-								onPress={() => dispatch(updateSituation('année', year))}
+								onPress={() =>
+									dispatch(updateSituation('date', `01/01/${year}`))
+								}
 								title={t(
 									'pages.simulateurs.select-year.click-to-change-year',
 									"Cliquez pour changer d'année"

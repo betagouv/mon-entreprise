@@ -30,7 +30,7 @@ describe('Simulateur salarié', function () {
 			).should(($input) => {
 				expect(+$input.val().replace(/[\s,.€]/g, ''))
 					.to.be.above(1300)
-					.and.to.be.below(1500)
+					.and.to.be.below(1600)
 			})
 		})
 

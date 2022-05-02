@@ -18,19 +18,19 @@ entreprise . imposition . IR:
   valeur: imposition = 'IR'
   titre: Impôt sur le revenu (IR)
   description: |
-    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme les autres revenus de 
+    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme les autres revenus de
     votre foyer.
 
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
     déclaration de résultat). C'est l'expert-comptable qui s'en charge.
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres 
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres
     revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du 
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du
     revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
 
-    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
+    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de
     votre entreprise.
 
 entreprise . imposition . IR . type de bénéfices:
@@ -75,18 +75,18 @@ entreprise . imposition . IS:
 
     Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt 
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt
     sur les sociétés.
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un 
-    **taux fixe**. 
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un
+    **taux fixe**.
 
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
     déclaration de résultat). C'est l'expert-comptable qui s'en charge.
 
 
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés : 
-      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est 
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est
       déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
       rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
       - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
@@ -100,7 +100,7 @@ entreprise . imposition . IS . montant:
     assiette: résultat imposable
     multiplicateur: prorata temporis
     variations:
-      - si: exercice . début >= 01/01/2022
+      - si: exercice . début >= 01/2022
         alors:
           tranches:
             - taux:
@@ -113,13 +113,13 @@ entreprise . imposition . IS . montant:
             - taux:
                 nom: taux normal
                 valeur: 25%
-      - si: exercice . début >= 01/01/2021
+      - si: exercice . début >= 01/2021
         alors:
           tranches:
             - taux: taux réduit
               plafond: plafond taux réduit 1
             - taux: 26.5%
-      - si: exercice . début >= 01/01/2020
+      - si: exercice . début >= 01/2020
         alors:
           tranches:
             - taux: taux réduit

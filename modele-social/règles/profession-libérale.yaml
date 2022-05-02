@@ -255,26 +255,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre: retraite complémentaire (CIPAV)
   unité: €/an
   variations:
-    - si: année = 2021
-      alors:
-        variations:
-          - si: classe = 'Classe A'
-            alors: 1457
-          - si: classe = 'Classe B'
-            alors: 2913
-          - si: classe = 'Classe C'
-            alors: 4370
-          - si: classe = 'Classe D'
-            alors: 7283
-          - si: classe = 'Classe E'
-            alors: 10196
-          - si: classe = 'Classe F'
-            alors: 16023
-          - si: classe = 'Classe G'
-            alors: 17479
-          - si: classe = 'Classe H'
-            alors: 18936
-    - si: année = 2022
+    - si: date >= 01/2022
       alors:
         variations:
           - si: classe = 'Classe A'
@@ -293,6 +274,25 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
             alors: 18329
           - si: classe = 'Classe H'
             alors: 19857
+    - si: date >= 01/2021
+      alors:
+        variations:
+          - si: classe = 'Classe A'
+            alors: 1457
+          - si: classe = 'Classe B'
+            alors: 2913
+          - si: classe = 'Classe C'
+            alors: 4370
+          - si: classe = 'Classe D'
+            alors: 7283
+          - si: classe = 'Classe E'
+            alors: 10196
+          - si: classe = 'Classe F'
+            alors: 16023
+          - si: classe = 'Classe G'
+            alors: 17479
+          - si: classe = 'Classe H'
+            alors: 18936
   références:
     Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
@@ -345,7 +345,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
     à celle qui correspond à votre tranche de revenus
     professionnels.
 
-    Cette option vous permettra d’acquérir davantage 
+    Cette option vous permettra d’acquérir davantage
     de points et donc d’augmenter le montant de
     votre future pension de retraite.
 
@@ -533,9 +533,9 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
       plancher: 40% * plafond sécurité sociale temps plein
     taux:
       variations:
-        - si: année = 2022
+        - si: date >= 01/2022
           alors: 0.30%
-        - si: année = 2021
+        - si: date >= 01/2021
           alors: 0.15%
   arrondi: oui
   références:
@@ -606,7 +606,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
   titre: indemnités journalières maladie (conjoint collaborateur CNAVPL)
-  non applicable si: année < 2022
+  non applicable si: date < 01/01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   recalcul:
     règle: indemnités journalières maladie
@@ -928,9 +928,9 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
   valeur:
     variations:
-      - si: année = 2022
+      - si: date >= 01/2022
         alors: 1232 €
-      - si: année = 2021
+      - si: date >= 01/2021
         alors: 1200 €
   reference:
     site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
@@ -1003,9 +1003,9 @@ dirigeant . indépendant . PL . CAVP . PCV:
 
 dirigeant . indépendant . PL . CAVP . PCV . cotisations forfaitaire:
   variations:
-    - si: année = 2022
+    - si: date >= 01/2022
       alors: 1788 €/an
-    - si: année = 2021
+    - si: date >= 01/2021
       alors: 1728 €/an
   références:
     site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
@@ -1044,9 +1044,9 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   formule:
     somme:
       - variations:
-          - si: année = 2022
+          - si: date >= 01/2022
             alors: 1840 €/an
-          - si: année = 2021
+          - si: date >= 01/2021
             alors: 1648 €/an
       - barème:
           assiette: assiette des cotisations
@@ -1056,9 +1056,9 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
             - taux: 3%
               plafond:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 193913 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 176413 €/an
         arrondi: oui
   références:
@@ -1068,9 +1068,9 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
   titre: invalidité et décès (CARPIMKO)
   remplace: cotisations et contributions . invalidité et décès
   variations:
-    - si: année = 2022
+    - si: date >= 01/2022
       alors: 776 €/an
-    - si: année = 2021
+    - si: date >= 01/2021
       alors: 678 €/an
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
@@ -1082,9 +1082,9 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
     somme:
       - nom: forfaitaire
         variations:
-          - si: année = 2022
+          - si: date >= 01/2022
             alors: 601 €/an
-          - si: année = 2021
+          - si: date >= 01/2021
             alors: 590 €/an
       - nom: proportionnelle
         produit:
@@ -1484,37 +1484,37 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
           tranches:
             - montant:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 303 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 290 €/an
               plafond: 1 an
             - montant:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 608 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 581 €/an
               plafond: 2 ans
             - montant:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 954 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 912 €/an
               plafond: 3 ans
             - montant:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 1299 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 1242 €/an
               plafond: 5 ans
             - montant:
                 variations:
-                  - si: année = 2022
+                  - si: date >= 01/2022
                     alors: 1658 €/an
-                  - si: année = 2021
+                  - si: date >= 01/2021
                     alors: 1586 €/an
       - nom: cotisation proportionnelle
         produit:
@@ -1522,9 +1522,9 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
           assiette: assiette des cotisations
           plafond:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 297549 €/an
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 291718 €/an
   références:
     barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
@@ -1536,44 +1536,44 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     assiette: assiette des cotisations
     multiplicateur:
       variations:
-        - si: année = 2022
+        - si: date >= 01/2022
           alors: 42507 €/an
-        - si: année = 2021
+        - si: date >= 01/2021
           alors: 41674 €/an
     tranches:
       - taux:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 4.60%
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 4%
         plafond: 1
       - taux:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 8.80%
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 8%
         plafond: 2
       - taux:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 10.20%
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 9.2%
         plafond: 3
       - taux:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 11.60%
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 10.4%
         plafond: 4
       - taux:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 13%
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 11.6%
         plafond: 5
   arrondi: oui
@@ -1592,15 +1592,15 @@ dirigeant . indépendant . PL . CNBF . RID:
       - si: entreprise . durée d'activité . en fin d'année < 5 ans
         alors:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 58 €/an
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 55 €/an
       - sinon:
           variations:
-            - si: année = 2022
+            - si: date >= 01/2022
               alors: 145 €/an
-            - si: année = 2021
+            - si: date >= 01/2021
               alors: 137 €/an
   références:
     barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
@@ -1627,58 +1627,58 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
       tranches:
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 670
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 648
           plafond: 16190 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 2511
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 2430
           plafond: 32350 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 3962
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 3834
           plafond: 44790 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 6194
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 5994
           plafond: 64560 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 9877
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 9558
           plafond: 79040 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 15066
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 14580
           plafond: 94850 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 16740
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 16200
           plafond: 132780 €/an
         - montant:
             variations:
-              - si: année = 2022
+              - si: date >= 01/2022
                 alors: 20925
-              - si: année = 2021
+              - si: date >= 01/2021
                 alors: 20250
   références:
     Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
