@@ -305,11 +305,11 @@ protection sociale . retraite . complémentaire salarié . points acquis:
 
 protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
   variations:
-    - si: date >= 01/01/2022
+    - si: date >= 01/2022
       alors: 17.4316 €/point
-    - si: date >= 01/01/2021
+    - si: date >= 01/2021
       alors: 17.3982 €/point
-    - si: date >= 01/01/2020
+    - si: date >= 01/2020
       alors: 17.3982 €/point
     - si: date >= 01/01/2019
       alors: 17.0571 €/point
@@ -324,11 +324,11 @@ protection sociale . retraite . complémentaire indépendants:
     facteur:
       nom: valeur du point
       variations:
-        - si: date >= 01/01/2022
+        - si: date >= 01/2022
           alors: 1.221 €/an/point
-        - si: date >= 01/01/2021
+        - si: date >= 01/2021
           alors: 1.208 €/an/point
-        - si: date >= 01/01/2020
+        - si: date >= 01/2020
           alors: 1.203 €/an/point
         - si: date >= 01/01/2019
           alors: 1.191 €/an/point
@@ -347,11 +347,11 @@ protection sociale . retraite . complémentaire indépendants . points acquis:
 
 protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
   variations:
-    - si: date >= 01/01/2022
+    - si: date >= 01/2022
       alors: 17.956 €/point
-    - si: date >= 01/01/2021
+    - si: date >= 01/2021
       alors: 17.765 €/point
-    - si: date >= 01/01/2020
+    - si: date >= 01/2020
       alors: 17.691 €/point
     - si: date >= 01/01/2019
       alors: 17.515 €/point

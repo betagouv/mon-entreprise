@@ -13,7 +13,7 @@ DRI . cas exclus:
       - toutes ces conditions:
           - entreprise . catégorie juridique . SARL
           - entreprise . catégorie juridique . SARL . unipersonnelle = non
-      - entreprise . date de création >= 01/01/2022
+      - entreprise . date de création >= 01/2022
       - entreprise . imposition . IR . type de bénéfices . BA
 
   variations:
@@ -60,7 +60,7 @@ DRI . cas exclus:
           {{ textes . désolé }}
 
           {{ textes . autres outils }}
-    - si: entreprise . date de création >= 01/01/2022
+    - si: entreprise . date de création >= 01/2022
       alors:
         texte: |-
           ### Vous avez créé votre entreprise en 2022

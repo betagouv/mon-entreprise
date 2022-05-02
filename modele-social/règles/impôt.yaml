@@ -382,19 +382,19 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     valeur: 10% * assiette
     plafond:
       variations:
-        - si: date >= 01/01/2022
+        - si: date >= 01/2022
           alors: 12829 €/an
-        - si: date >= 01/01/2021
+        - si: date >= 01/2021
           alors: 12652 €/an
-        - si: date >= 01/01/2020
+        - si: date >= 01/2020
           alors: 12627 €/an
     plancher:
       variations:
-        - si: date >= 01/01/2022
+        - si: date >= 01/2022
           alors: 448 €/an
-        - si: date >= 01/01/2021
+        - si: date >= 01/2021
           alors: 442 €/an
-        - si: date >= 01/01/2020
+        - si: date >= 01/2020
           alors: 441 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
@@ -451,19 +451,19 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
         variations:
-          - si: date >= 01/01/2022
+          - si: date >= 01/2022
             alors: 1307 €/an
-          - si: date >= 01/01/2021
+          - si: date >= 01/2021
             alors: 1289 €/an
-          - si: date >= 01/01/2020
+          - si: date >= 01/2020
             alors: 1286 €/an
     - sinon:
         variations:
-          - si: date >= 01/01/2022
+          - si: date >= 01/2022
             alors: 790 €/an
-          - si: date >= 01/01/2021
+          - si: date >= 01/2021
             alors: 779 €/an
-          - si: date >= 01/01/2020
+          - si: date >= 01/2020
             alors: 777 €/an
   abattement: 45.25% * impôt brut
   références:
@@ -510,30 +510,30 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 0%
         plafond:
           variations:
-            - si: date >= 01/01/2022
+            - si: date >= 01/2022
               alors: 10225 €/part/an
-            - si: date >= 01/01/2021
+            - si: date >= 01/2021
               alors: 10084 €/part/an
       - taux: 11%
         plafond:
           variations:
-            - si: date >= 01/01/2022
+            - si: date >= 01/2022
               alors: 26070 €/part/an
-            - si: date >= 01/01/2021
+            - si: date >= 01/2021
               alors: 25710 €/part/an
       - taux: 30%
         plafond:
           variations:
-            - si: date >= 01/01/2022
+            - si: date >= 01/2022
               alors: 74545 €/part/an
-            - si: date >= 01/01/2021
+            - si: date >= 01/2021
               alors: 73516 €/part/an
       - taux: 41%
         plafond:
           variations:
-            - si: date >= 01/01/2022
+            - si: date >= 01/2022
               alors: 160336 €/part/an
-            - si: date >= 01/01/2021
+            - si: date >= 01/2021
               alors: 158122 €/part/an
       - taux: 45%
   exemples:

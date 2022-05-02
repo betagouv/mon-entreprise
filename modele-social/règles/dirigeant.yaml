@@ -310,7 +310,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
                 une de ces conditions:
                   - entreprise . activité . libérale réglementée
                   - toutes ces conditions:
-                      - date >= 01/01/2022
+                      - date >= 01/2022
                       - entreprise . activité = 'libérale'
               alors: 0.2%
             - sinon: 0.1%
@@ -1023,7 +1023,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     la première et de la deuxième année d’activité (à l’exception de la cotisation Maladie
     et indemnités journalières pour lesquelles l’assiette forfaitaire est égale à 40% du
     plafond annuel de la Sécurité sociale).
-  applicable si: entreprise . date de création >= 01/01/2020
+  applicable si: entreprise . date de création >= 01/2020
   unité: €/an
   recalcul:
     règle: cotisations et contributions
@@ -1175,9 +1175,9 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
           titre: plafond retraite complémentaire des indépendants
           valeur:
             variations:
-              - si: date >= 01/01/2022
+              - si: date >= 01/2022
                 alors: 38916 €/an
-              - si: date >= 01/01/2021
+              - si: date >= 01/2021
                 alors: 38493 €/an
       - taux: 8%
         plafond: 4 * plafond sécurité sociale temps plein
@@ -1402,7 +1402,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   applicable si:
     toutes ces conditions:
-      - date >= 01/01/2020
+      - date >= 01/2020
       - date <= 31/12/2021
   titre: Réduction de cotisation Covid
   remplace:
