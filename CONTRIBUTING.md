@@ -230,6 +230,31 @@ Checklist:
 
 [wiki normes]: https://github.com/betagouv/mon-entreprise/wiki/Comment-lire-les-normes-(la-loi)-efficacement-pour-r%C3%A9diger-des-r%C3%A8gles-Publicodes%3F
 
+### Développement simultané de Publicodes et de mon-entreprise
+
+Il est parfois utile de tester des évolutions de publicodes sur mon-entreprise. C'est possible de la manière suivante :
+
+-   cloner les deux dépôts
+-   sur le dépôt `publicodes` lancer un `yarn build --watch` pour avoir du rechargement à chaud
+-   sur le dépôt `mon-entreprise` lancer un `yarn link ../publicodes --all` pour lier dynamiquement les paquets `publicodes` et `publicodes-react`
+
+La commande yarn link prend en paramètre un chemin relatif au dépôt courant, et fonctionne uniquement en local.
+
+Pour revenir au paquet publié sur NPM il faut utiliser
+
+```sh
+yarn unlink --all
+```
+
+Pour déployer une version preview de mon-entreprise utilisant une version de publicodes non publiée sur NPM il est possible de référencer un commit ou une branche dans l'attribut résolution du `package.json` :
+
+```json
+{
+    "publicodes": "betagouv/publicodes#head=refacto&workspace=publicodes",
+    "publicodes-react": "betagouv/publicodes#head=refacto&workspace=publicodes-react"
+}
+```
+
 ## Retours utilisateurs
 
 Nous gérons les retours utilisateurs avec plusieurs outils :
@@ -238,10 +263,10 @@ Nous gérons les retours utilisateurs avec plusieurs outils :
 -   Github pour suivre le développement des demandes
 -   et ATInternet, notre outil de statistiques, pour suivre la notation des pages
 
-Nous recevons les messages des utilisateurs sur Zammad. Si la demande concerne une nouvelle fonctionnalité, nous ouvrons un ticket sur Github avec l'étiquette [retour utilisateur](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%8F%93+retour+utilisateur%22). Cel nous permet de récupérer la liste des demandes avec l'API Github pour l'afficher sur le site.
+Nous recevons les messages des utilisateurs sur Zammad. Si la demande concerne une nouvelle fonctionnalité, nous ouvrons un ticket sur Github avec l'étiquette [retour utilisateur](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%8F%93+retour+utilisateur%22). Cela nous permet de récupérer la liste des demandes avec l'API Github pour l'afficher sur le site.
 
 Zammad permet également d'ajouter une étiquette au message, ce qui nous permet de l'associer au ticket Github correspondant. Avec l'API Zammad, nous pouvons ainsi compter le nombre de demandes sur une fonctionnalité donnée. Enfin quand le ticket est fermé sur Github un petit robot nous rappelle de prévenir les utilisateurs qui nous on fait le retour, ainsi on peut revenir vers eux même plusieurs mois après pour leur indiquer que leur demande a été intégrée.
 
-Quant à la notation des pages avec des smileys, elle fonctionne via des événements personnalisés remontés sur notre outil de statistiques. Nous récupérer le nombre d'événements par page avec l'API fournie pour la présenter sur notre [page statistique dédiée](https://mon-entreprise.urssaf.fr/stats).
+Quant à la notation des pages avec des smileys, elle fonctionne via des événements personnalisés remontés sur notre outil de statistiques. Nous récupérons le nombre d'événements par page avec l'API fournie pour la présenter sur notre [page statistique dédiée](https://mon-entreprise.urssaf.fr/stats).
 
 Là-aussi nous utilisons l'API fournie pour récupérer les valeurs par page et les présenter vis avec l'API pour la présenter sur notre page statistiques.
