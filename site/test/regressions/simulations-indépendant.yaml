@@ -65,7 +65,7 @@ conjoint collaborateur:
 
 exonération covid:
   - &exoneration-covid
-    année: 2021
+    date: 01/01/2021
     dirigeant . rémunération . nette: 50000 €/an
     dirigeant . indépendant . cotisations et contributions . exonérations . covid: oui
     dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant: 1500

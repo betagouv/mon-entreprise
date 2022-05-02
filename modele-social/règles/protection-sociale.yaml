@@ -122,7 +122,7 @@ protection sociale . retraite . base . trimestres . indépendant:
 
     Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
 
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.    
+    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
 
     Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
 
@@ -282,13 +282,13 @@ protection sociale . retraite . complémentaire salarié:
     facteur:
       nom: valeur du point
       variations:
-        - si: année = 2022
+        - si: date >= 01/11/2022
           alors: 1.2841 €/an/point
-        - si: année = 2021
+        - si: date >= 01/11/2021
           alors: 1.2714 €/an/point
-        - si: année = 2020
+        - si: date >= 01/11/2020
           alors: 1.2714 €/an/point
-        - si: année = 2019
+        - si: date >= 01/11/2019
           alors: 1.2588 €/an/point
   note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
@@ -305,13 +305,13 @@ protection sociale . retraite . complémentaire salarié . points acquis:
 
 protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
   variations:
-    - si: année = 2022
+    - si: date >= 01/01/2022
       alors: 17.4316 €/point
-    - si: année = 2021
+    - si: date >= 01/01/2021
       alors: 17.3982 €/point
-    - si: année = 2020
+    - si: date >= 01/01/2020
       alors: 17.3982 €/point
-    - si: année = 2019
+    - si: date >= 01/01/2019
       alors: 17.0571 €/point
   références:
     barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Historique_valeur_du_point_salaire_de_reference.pdf
@@ -324,13 +324,13 @@ protection sociale . retraite . complémentaire indépendants:
     facteur:
       nom: valeur du point
       variations:
-        - si: année = 2022
+        - si: date >= 01/01/2022
           alors: 1.221 €/an/point
-        - si: année = 2021
+        - si: date >= 01/01/2021
           alors: 1.208 €/an/point
-        - si: année = 2020
+        - si: date >= 01/01/2020
           alors: 1.203 €/an/point
-        - si: année = 2019
+        - si: date >= 01/01/2019
           alors: 1.191 €/an/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
@@ -347,13 +347,13 @@ protection sociale . retraite . complémentaire indépendants . points acquis:
 
 protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
   variations:
-    - si: année = 2022
+    - si: date >= 01/01/2022
       alors: 17.956 €/point
-    - si: année = 2021
+    - si: date >= 01/01/2021
       alors: 17.765 €/point
-    - si: année = 2020
+    - si: date >= 01/01/2020
       alors: 17.691 €/point
-    - si: année = 2019
+    - si: date >= 01/01/2019
       alors: 17.515 €/point
   références:
     barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar

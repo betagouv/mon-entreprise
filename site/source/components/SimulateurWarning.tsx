@@ -14,8 +14,10 @@ type SimulateurWarningProps = {
 export default function SimulateurWarning({
 	simulateur,
 }: SimulateurWarningProps) {
-	const year = useContext(EngineContext).evaluate('année')
-		.nodeValue as Evaluation<number>
+	const year = useContext(EngineContext)
+		.evaluate('date')
+		.nodeValue?.toString()
+		.slice(-4) as Evaluation<number> | undefined
 
 	return (
 		<Warning

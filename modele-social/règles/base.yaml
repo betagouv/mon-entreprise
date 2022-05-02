@@ -1,4 +1,4 @@
-année: 2022
+date: 01/05/2022
 période: oui
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
@@ -8,19 +8,21 @@ période . semaines par mois:
   unité: semaines/mois
   formule: 52 semaines/an / 12 mois/an
 
+# TODO: This is fragile, we should have a more robust and generic way of
+# calculating the beginning and the end of the year of a given date.
 période . début d'année:
   variations:
-    - si: année = 2022
+    - si: date >= 01/01/2022
       alors: 01/01/2022
-    - si: année = 2021
+    - si: date >= 01/01/2021
       alors: 01/01/2021
 
 période . fin d'année:
   variations:
-    - si: année = 2022
-      alors: 31/12/2022
-    - si: année = 2021
+    - si: date <= 31/12/2021
       alors: 31/12/2021
+    - si: date <= 31/12/2022
+      alors: 31/12/2022
 
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
@@ -55,15 +57,15 @@ SMIC horaire:
       - si: établissement . localisation . département = 'Mayotte'
         alors:
           variations:
-            - si: année = 2022
+            - si: date >= 01/01/2022
               alors: 7.98 €/heure
-            - si: année = 2021
+            - si: date >= 01/01/2021
               alors: 7.91 €/heure
       - sinon:
           variations:
-            - si: année = 2022
+            - si: date >= 01/01/2022
               alors: 10.57 €/heure
-            - si: année = 2021
+            - si: date >= 01/01/2021
               alors: 10.48 €/heure
   note: |
     En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier

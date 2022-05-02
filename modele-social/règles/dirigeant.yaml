@@ -310,7 +310,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
                 une de ces conditions:
                   - entreprise . activité . libérale réglementée
                   - toutes ces conditions:
-                      - année >= 2022
+                      - date >= 01/01/2022
                       - entreprise . activité = 'libérale'
               alors: 0.2%
             - sinon: 0.1%
@@ -1010,7 +1010,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels de
     l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise en compte
-    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un 
+    pour le calcul des cotisations provisionnelles alors vous serez redevable d’un
     **complément de cotisations**.
 
 
@@ -1175,9 +1175,9 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
           titre: plafond retraite complémentaire des indépendants
           valeur:
             variations:
-              - si: année = 2022
+              - si: date >= 01/01/2022
                 alors: 38916 €/an
-              - si: année = 2021
+              - si: date >= 01/01/2021
                 alors: 38493 €/an
       - taux: 8%
         plafond: 4 * plafond sécurité sociale temps plein
@@ -1401,9 +1401,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   applicable si:
-    une de ces conditions:
-      - année = 2021
-      - année = 2020
+    toutes ces conditions:
+      - date >= 01/01/2020
+      - date <= 31/12/2021
   titre: Réduction de cotisation Covid
   remplace:
     - règle: cotisations
@@ -1439,11 +1439,11 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
 
     [Voir la liste détaillée des activités des différents secteurs](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
 
-    **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public. 
+    **Bon à savoir :** 	Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte pour apprécier le respect de la condition d’interdiction d’accueil du public.
     Le couvre-feu n’est pas considéré comme une mesure d’interdiction d’accueil du public.
 
     ### Conditions d’éligibilité et montant de la réduction :
-    La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf. 
+    La réduction s’applique aux cotisations et contributions sociales personnelles définitives 2021 dues à l’Urssaf.
 
     Les conditions d’éligibilité s’évaluent mois par mois, le montant de la réduction également.
 
