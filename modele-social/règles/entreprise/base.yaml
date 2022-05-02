@@ -99,6 +99,7 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
         valeur: chiffre d'affaires
   arrondi: oui
   plancher: 0€/an
+  par défaut: 0€/an
   description: |
     ### Vente de biens
     Il s’agit du chiffre d'affaires de toutes les opérations comportant
@@ -132,6 +133,7 @@ entreprise . chiffre d'affaires . service BIC:
     services qui nécessite plus qu'un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
+  par défaut: 0€/an
   variations:
     - si: activité . mixte
       alors:
@@ -149,6 +151,7 @@ entreprise . chiffre d'affaires . service BNC:
   résumé: Recettes hors taxes
   question: Quelles sont les recettes issues de l’activité libérale ?
   arrondi: oui
+  par défaut: 0€/an
   plancher: 0€/an
   description: |
     Ce sont toutes les opérations dont l'activité intellectuelle tient

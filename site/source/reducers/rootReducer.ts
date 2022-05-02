@@ -141,7 +141,7 @@ function simulation(
 			const newState = {
 				...state,
 				situation: omit(
-					{ ...state.situation },
+					state.situation,
 					action.fieldName
 				) as Simulation['situation'],
 			}

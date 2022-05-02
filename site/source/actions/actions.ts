@@ -1,9 +1,9 @@
+import { SimulationConfig } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { SimulationConfig } from '@/reducers/rootReducer'
+import { CompanyActions } from './companyActions'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'
-import { CompanyActions } from './companyActions'
 import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
@@ -60,11 +60,13 @@ export const setActiveTarget = (targetName: DottedName) =>
 	} as const)
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
-	({
-		type: 'UPDATE_SITUATION',
-		fieldName,
-		value,
-	} as const)
+	value === undefined
+		? deleteFromSituation(fieldName)
+		: ({
+				type: 'UPDATE_SITUATION',
+				fieldName,
+				value,
+		  } as const)
 
 export const deleteFromSituation = (fieldName: DottedName) =>
 	({

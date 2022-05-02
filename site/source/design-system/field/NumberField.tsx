@@ -360,7 +360,9 @@ function useSimpleNumberFieldState(
 		canDecrement: true,
 		validate: () => true,
 		commit: () => {
-			rawInputValue && updateInputValue(numberValue)
+			numberValue === undefined
+				? setInputValue(numberValue)
+				: updateInputValue(numberValue)
 		},
 		incrementToMax: () => null,
 		decrementToMin: () => null,

@@ -155,21 +155,7 @@ export default function AideDéclarationIndépendant() {
 						</Condition>
 
 						<Condition expression="déclaration charge sociales . cotisations payées">
-							<SubSection dottedName="déclaration charge sociales . cotisations payées" />
-							<SimpleField dottedName="déclaration charge sociales . nature de l'activité" />
-							<SimpleField dottedName="dirigeant . indépendant . conjoint collaborateur" />
-							<SubSection dottedName="dirigeant . indépendant . cotisations facultatives" />
-							{/* We can't use a subsection here cause revenu étrangers is not missing when CSG is replaced */}
-							<H3>
-								<Trans>Revenus étranger</Trans>
-							</H3>
-							<SimpleField dottedName="dirigeant . indépendant . revenus étrangers" />
-							<Condition expression="dirigeant . indépendant . revenus étrangers">
-								<SimpleField dottedName="dirigeant . indépendant . revenus étrangers . montant" />
-							</Condition>
-						</Condition>
-
-						<Condition expression="déclaration charge sociales . cotisations payées">
+							<H2>Cotisations et contributions sociales en 2021</H2>
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . cotisations sociales" />
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . CSG déductible et CFP" />
 						</Condition>
@@ -177,7 +163,7 @@ export default function AideDéclarationIndépendant() {
 				</Grid>
 			</FromTop>
 
-			<WhenAlreadyDefined dottedName="déclaration charge sociales . résultat . cotisations obligatoires">
+			<WhenAlreadyDefined dottedName="déclaration charge sociales . résultat . total charges sociales déductible">
 				<ResultatsSimples />
 			</WhenAlreadyDefined>
 		</>

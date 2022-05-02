@@ -587,70 +587,70 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . 
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > ACRE 1`] = `
-"[0,null,null,null,null,null]
+"[0,null,null,null,0,null]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > ACRE 2`] = `
-"[0,null,null,null,null,null]
+"[0,null,null,null,0,null]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > ACRE 3`] = `
-"[0,null,null,null,null,null]
+"[0,null,null,null,0,null]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 1`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 1`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 2`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 2`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 3`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 3`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 4`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 4`] = `"[0,null,null,null,0,null]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 5`] = `
 "[0,261252,261252,20568,4,56]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . IS . information sur le report de déficit"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 6`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 6`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 7`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > Contrats Madelin 7`] = `"[0,null,null,null,0,null]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > JEI 1`] = `"[2829,33949,0,32212,4,49]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 1`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 1`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 2`] = `"[0,null,null,null,null,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 2`] = `"[0,null,null,null,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 3`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 3`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 4`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 5`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 5`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 6`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > activités 6`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 1`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 1`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 2`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > avec charges 2`] = `"[0,null,null,null,0,null]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 1`] = `"[0,87,87,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 2`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 2`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 3`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 3`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 4`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 4`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 5`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 5`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 6`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 6`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 7`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 7`] = `"[0,null,null,null,0,null]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 8`] = `"[0,null,null,null,null,null]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant) > échelle de rémunération 8`] = `"[0,null,null,null,0,null]"`;
 
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "[3499,0,2500,2005,1894]

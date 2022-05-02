@@ -133,7 +133,10 @@ export function SimpleField({
 				aria-labelledby={displayedQuestion ? labelId : undefined}
 				label={displayedLabel}
 				required={meta.requis === 'oui'}
-				missing={!isEmpty(evaluation.missingVariables)}
+				missing={
+					evaluation.nodeValue === undefined &&
+					!isEmpty(evaluation.missingVariables)
+				}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
 			/>
