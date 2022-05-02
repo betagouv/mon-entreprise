@@ -509,6 +509,8 @@ contrat salarié . activité partielle . indemnisation entreprise:
     multiplication:
       assiette: retrait absence
       taux: taux d'indemnisation
+    # TODO: plus à jour depuis le 1er avril 2022
+    # confer https://github.com/betagouv/mon-entreprise/issues/2119#issuecomment-1114785875
     plancher:
       variations:
         - si: date >= 01/01/2022
@@ -523,6 +525,7 @@ contrat salarié . activité partielle . indemnisation entreprise:
           rémunération . brut de base: 4.5 * SMIC
   références:
     Décret mise à jour 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044614377
+
 contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation
   description: >-
