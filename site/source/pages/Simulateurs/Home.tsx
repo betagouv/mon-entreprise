@@ -53,7 +53,6 @@ export default function Simulateurs() {
 				<Grid container spacing={3}>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
-					<SimulateurCard {...simulators['aides-embauche']} />
 				</Grid>
 
 				<H3>

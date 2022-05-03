@@ -35,7 +35,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.salarié',
 			shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
-			nextSteps: ['chômage-partiel', 'aides-embauche'],
+			nextSteps: ['chômage-partiel'],
 		},
 		'entreprise-individuelle': {
 			tracking: {
@@ -285,7 +285,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'Covid-19 : Simulateur de chômage partiel'
 			),
 
-			nextSteps: ['salarié', 'aides-embauche'],
+			nextSteps: ['salarié'],
 		},
 		'comparaison-statuts': {
 			tracking: 'comparaison_statut',
@@ -696,36 +696,6 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
-		},
-		'aides-embauche': {
-			icône: '🎁',
-			tracking: 'aides_embauche',
-			meta: {
-				title: t(
-					'pages.simulateurs.aides-embauche.meta.title',
-					'Aides à l’embauche'
-				),
-				description: t(
-					'pages.simulateurs.aides-embauche.meta.description',
-					'Découvrez les principales aides à l’embauche et estimez leur montant en répondant à quelques questions.'
-				),
-				color: '#11965f',
-			},
-			pathId: 'simulateurs.aides-embauche',
-			iframePath: 'aides-embauche',
-			shortName: t(
-				'pages.simulateurs.aides-embauche.meta.title',
-				'Aides à l’embauche'
-			),
-			title: t(
-				'pages.simulateurs.aides-embauche.meta.title',
-				'Aides à l’embauche'
-			),
-			description: t(
-				'pages.simulateurs.aides-embauche.introduction',
-				"Les employeurs peuvent bénéficier d'une aide financière pour l'embauche de certains publics prioritaires. Découvrez les dispositifs existants et estimez le montant de l'aide en répondant aux questions."
-			),
-			nextSteps: ['salarié'],
 		},
 		is: {
 			icône: '🗓',

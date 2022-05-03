@@ -8,14 +8,13 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
-import React, { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
 import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
 import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
 import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
 import FormulaireMobilitéIndépendant from '../gerer/demande-mobilité'
-import AidesEmbauche from './AidesEmbauche'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import ChômagePartielComponent from './ChômagePartiel'
@@ -33,7 +32,6 @@ import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './images/illustration-net-brut.png'
-import logoFranceRelance from './images/logo-france-relance.svg'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
@@ -483,7 +481,7 @@ function getSimulatorsData({
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['salarié', 'aides-embauche'],
+			nextSteps: ['salarié'],
 		},
 		'comparaison-statuts': {
 			...pureSimulatorsData['comparaison-statuts'],
@@ -573,37 +571,6 @@ function getSimulatorsData({
 			path: sitePaths.simulateurs.pamc,
 			config: professionLibéraleConfig as SimulationConfig,
 			component: PAMCHome,
-		},
-		'aides-embauche': {
-			...pureSimulatorsData['aides-embauche'],
-			path: sitePaths.simulateurs['aides-embauche'],
-			// Cette description est surchargé car elle contient ici du JSX
-			description: (
-				<Body>
-					<Link
-						href="https://www.gouvernement.fr/france-relance"
-						title="Aller sur le site France Relance"
-					>
-						<img
-							src={logoFranceRelance}
-							alt="Logo France Relance"
-							style={{
-								width: '120px',
-								marginBottom: '1rem',
-								marginLeft: '1rem',
-								float: 'right',
-							}}
-						/>
-					</Link>
-					<Trans i18nKey="pages.simulateurs.aides-embauche.introduction">
-						Les employeurs peuvent bénéficier d'une aide financière pour
-						l'embauche de certains publics prioritaires. Découvrez les
-						dispositifs existants et estimez le montant de l'aide en répondant
-						aux questions.
-					</Trans>
-				</Body>
-			),
-			component: AidesEmbauche,
 		},
 		is: {
 			...pureSimulatorsData.is,

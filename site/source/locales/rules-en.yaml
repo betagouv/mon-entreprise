@@ -4696,16 +4696,10 @@ dirigeant . auto-entrepreneur . net de cotisations:
   titre.en: '[automatic] Net contribution income'
   titre.fr: Revenu net de cotisations
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
-  description.en: >
-    [automatic] The ACRE rate used is the one corresponding to the current
-    month. The
-
-    simulator does not yet take into account the overlapping of 2 periods of
-
-    of acre on the same year.
+  description.en: '[automatic] '
   description.fr: |
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
-    simulateur ne prend pas encore en compte le chevauchement de 2 période
+    simulateur ne prend pas encore en compte le chevauchement de deux périodes
     d'acre sur une meme année.
   titre.en: '[automatic] notification annual ACRE calculation'
   titre.fr: notification calcul ACRE annuel
@@ -8217,54 +8211,30 @@ entreprise . imposition:
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
-  description.en: >
-    [automatic] The result of your company is taxed at the income tax, like the
-    other incomes of your household. 
-
-    your household income.
-
-
-    The result is determined when you fill in the **tax form** (also called 
-
-    income tax return). Your accountant will take care of this.
-
-
-    If your company makes money, the result is called **profit**. It is added to the other 
-
-    taxable income (if any): **your income tax is higher**.
-
-
-    If your business loses money, the result is called a **deficit**. It reduces the amount of 
-
-    your household taxable income: **Your income tax is lower**.
-
-
-    Note: With income tax, there is no tax difference between your household income and your business income. 
-
-    your business.
+  description.en: '[automatic] '
   description.fr: >
     Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme
-    les autres revenus de 
+    les autres revenus de
 
     votre foyer.
 
 
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
 
     déclaration de résultat). C'est l'expert-comptable qui s'en charge.
 
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres 
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres
 
     revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
 
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du 
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du
 
     revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
 
 
-    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de 
+    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de
 
     votre entreprise.
   titre.en: '[automatic] Income tax (IR)'
@@ -8309,59 +8279,30 @@ entreprise . imposition . IR . type de bénéfices . BNC:
   titre.en: '[automatic] BNC'
   titre.fr: BNC
 entreprise . imposition . IS:
-  description.en: >-
-    [automatic] 
-
-    The **result** of your company is taxed at the **corporate tax**.
-
-
-    If your company loses money, the result is called a **deficit**. It will not have to pay corporate 
-
-    corporate income tax.
-
-
-    If your company makes money, the result is called **profit**. It will be taxed at a 
-
-    **fixed rate**. 
-
-
-    The taxable result is determined when filling out the **tax return** (also called 
-
-    income tax return). This is done by the accountant.
-
-
-
-    Please note: there are **two ways of remunerating yourself** with a company that pays corporate income tax: 
-      - You can pay yourself a remuneration as a director during the year. This remuneration is 
-      deducted (subtracted) from the result to calculate the taxable profit of your company. On the other hand, this
-      remuneration is added to the taxable income of your household for the calculation of the income tax.
-      - You can also pay yourself dividends from previous years' profits. You will have to pay
-      a fixed tax on these dividends: this is called the "flat tax".
-
-      In all cases, you will have to pay social security contributions on the income you receive.
+  description.en: '[automatic] '
   description.fr: >-
 
     Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
 
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt 
+    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt
 
     sur les sociétés.
 
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un 
+    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un
 
-    **taux fixe**. 
+    **taux fixe**.
 
 
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée 
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
 
     déclaration de résultat). C'est l'expert-comptable qui s'en charge.
 
 
 
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés : 
-      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est 
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est
       déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
       rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
       - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
