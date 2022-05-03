@@ -11289,7 +11289,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.36
   peerDependencies:
     publicodes: ^1.0.0-beta.32
   languageName: unknown
@@ -15099,7 +15099,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.32
+    publicodes: ^1.0.0-beta.36
   peerDependencies:
     publicodes: ^1.0.0-beta.32
   languageName: unknown
@@ -16625,41 +16625,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:1.0.0-beta.33":
-  version: 1.0.0-beta.33
-  resolution: "publicodes-react@npm:1.0.0-beta.33"
+"publicodes-react@npm:^1.0.0-beta.36":
+  version: 1.0.0-beta.36
+  resolution: "publicodes-react@npm:1.0.0-beta.36"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
-    publicodes: 1.0.0-beta.33
+    publicodes: 1.0.0-beta.36
     react: ^17.0.2
-  checksum: f455b85579191eda86599ea0cf97f7523f0e03cd1d5b1063031734458cfd022706664138deb74d85d06e6bd1672c0ab71a3e1034fa1647bb0f6b292d5bf9381a
+  checksum: 6fdd9070ab67232929d6d16137a1e7f1595788abfa8793c1dd6ec0de4d8183a79ea7ea45aa7d7a0680bec724a471c577ce7f2b86e1d3ad15010697c7c1d25a6e
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.33":
-  version: 1.0.0-beta.33
-  resolution: "publicodes@npm:1.0.0-beta.33"
+"publicodes@npm:^1.0.0-beta.36":
+  version: 1.0.0-beta.36
+  resolution: "publicodes@npm:1.0.0-beta.36"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 065fd94d2b639c0ae9d5ae52effa2998fa1e9e94c02177e97b467c55ac3f8658310b494eedefd2b0ccc58de3829529709080d8d2aad800cdfb496b7cf62fc8f7
-  languageName: node
-  linkType: hard
-
-"publicodes@npm:^1.0.0-beta.32":
-  version: 1.0.0-beta.34
-  resolution: "publicodes@npm:1.0.0-beta.34"
-  dependencies:
-    moo: ^0.5.1
-    nearley: ^2.19.2
-    yaml: ^1.9.2
-  peerDependencies:
-    "@types/mocha": ^9.0.0
-  checksum: 8904460eb095f37fc38a5f16756e4315b2f26cf3f0d02300dfe87a63cfa37da45e72b19550fec7d977361c830d9010f5663937b98d3c36c3d8a6a1d6592daacd
+  checksum: 8a4baa98df719ceea80f0873f344b4024881025391a26e4354af7676bedb11519bed2b515eb60cdea8a26ed9d46596f4ba85fd1c3932c4029c6aa9ad84c0d47d
   languageName: node
   linkType: hard
 
@@ -18511,8 +18498,8 @@ __metadata:
     isomorphic-fetch: ^2.2.1
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
-    publicodes: =1.0.0-beta.33
-    publicodes-react: 1.0.0-beta.33
+    publicodes: ^1.0.0-beta.36
+    publicodes-react: ^1.0.0-beta.36
     ramda: ^0.27.0
     react: ^17.0.0
     react-color: ^2.14.0

@@ -32,8 +32,8 @@ export const SECTION_ORDER = [
 type Section = typeof SECTION_ORDER[number]
 
 function getSection(rule: RuleNode): Section {
-	const section = ('protection sociale . ' +
-		(rule.rawNode.cotisation?.branche ?? '')) as Section
+	const branche = ((rule.rawNode as any).cotisation?.branche ?? '') as string
+	const section = ('protection sociale . ' + branche) as Section
 	if (SECTION_ORDER.includes(section)) {
 		return section
 	}
