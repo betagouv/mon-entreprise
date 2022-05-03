@@ -1722,36 +1722,6 @@ contrat salarié . aides employeur:
   résumé.fr: Pour l'employeur, différées dans le temps
   titre.en: '[automatic] employer assistance'
   titre.fr: aides employeur
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
-  description.en: >-
-    [automatic] As part of the economic recovery plan for the start of the new
-    school year in 2020, the government is putting in place exceptional
-    assistance for the recruitment of apprentices.
-
-    This aid is open for contracts signed between 1 July 2020 and 28 February 2021. It replaces the one-off aid available to companies with fewer than 250 employees who hire an apprentice with a CAP (vocational training certificate) at Bac level.
-  description.fr: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des
-    apprentis.
-
-    Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à Bac.
-  titre.en: '[automatic] exceptional assistance in hiring apprentices'
-  titre.fr: aide exceptionnelle à l'embauche d'apprentis
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
-  description.en: >-
-    [automatic] As part of the economic recovery plan for the autumn of 2020,
-    the government is putting in place exceptional assistance for the
-    recruitment of young people under 26 years of age.
-
-    The aid amounts to 4,000 euros over one year for a full-time employee. This amount is pro-rated according to working hours and the duration of the employment contract.
-  description.fr: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des jeunes
-    de moins de 26 ans.
-
-    L’aide est de 4 000 euros sur un an pour un salarié à temps plein. Ce montant est proratisé en fonction du temps de travail et de la durée du contrat de travail.
-  titre.en: '[automatic] exceptional support for youth employment'
-  titre.fr: aide exceptionnelle à l'embauche des jeunes
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description.en: >
     Since 2019, a single hiring aid has replaced four previous schemes. The
@@ -1766,15 +1736,6 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
-contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
-  description.en: '[automatic] As part of the recovery plan, the government has
-    decided to create a recruitment aid aimed at encouraging the employment of
-    people with disabilities, regardless of their age.'
-  description.fr: Dans le cadre du plan de relance, le gouvernement a décidé de
-    créer une aide à l’embauche visant à favoriser l’emploi des personnes en
-    situation de handicap quel que soit leur âge.
-  titre.en: '[automatic] aid for the recruitment of disabled workers'
-  titre.fr: aide à l'embauche des travailleurs handicapés
 contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
   description.en: |
     [automatic] Employers can get €2,000 for the hiring of an
@@ -3118,11 +3079,6 @@ contrat salarié . intermittents du spectacle . technicien:
 contrat salarié . intermittents du spectacle . technicien . non cadre:
   titre.en: not "cadre"
   titre.fr: non cadre
-contrat salarié . jeune de moins de 26 ans:
-  question.en: '[automatic] Is the employee under 26 years of age?'
-  question.fr: Le salarié a-t-il moins de 26 ans ?
-  titre.en: '[automatic] young person under 26 years old'
-  titre.fr: jeune de moins de 26 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas

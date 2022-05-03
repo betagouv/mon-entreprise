@@ -86,27 +86,6 @@ exports[`calculate simulations-salarié > aides 4`] = `
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
-exports[`calculate simulations-salarié > aides 5`] = `"[1800,0,2000,1561,1527]"`;
-
-exports[`calculate simulations-salarié > aides 6`] = `"[2050,0,2000,1561,1527]"`;
-
-exports[`calculate simulations-salarié > aides embauche covid 1`] = `
-"[1232,0,1500,1165,1165]
-Notifications affichées : contrat salarié . rémunération . contrôle smic"
-`;
-
-exports[`calculate simulations-salarié > aides embauche covid 2`] = `"[7079,0,5000,3948,3298]"`;
-
-exports[`calculate simulations-salarié > aides embauche covid 3`] = `
-"[1407,0,1500,1284,1284]
-Notifications affichées : contrat salarié . CDD . information, contrat salarié . rémunération . contrôle smic"
-`;
-
-exports[`calculate simulations-salarié > aides embauche covid 4`] = `
-"[881,0,1500,1457,1457]
-Notifications affichées : contrat salarié . rémunération . contrôle smic"
-`;
-
 exports[`calculate simulations-salarié > apprentissage 1`] = `
 "[1547,0,1500,1457,1457]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
@@ -152,7 +131,7 @@ exports[`calculate simulations-salarié > cdd 5`] = `
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
-exports[`calculate simulations-salarié > contrat pro 1`] = `"[899,0,1500,1165,1165]"`;
+exports[`calculate simulations-salarié > contrat pro 1`] = `"[1566,0,1500,1165,1165]"`;
 
 exports[`calculate simulations-salarié > contrat pro 2`] = `"[1566,0,1500,1165,1165]"`;
 
