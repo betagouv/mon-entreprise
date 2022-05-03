@@ -68,7 +68,7 @@ protection sociale . retraite . base . taux de la pension:
       - si: trimestres = 0
         alors: 0%
       - sinon: 50%
-  note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
+  note: On ne prend pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
