@@ -27,6 +27,18 @@ exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `"[2000
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `"[null,715,null,null,null]"`;
 
+exports[`calculate simulations-auto-entrepreneur > activités 1`] = `"[20000,370,15560,0,15560]"`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 2`] = `"[20000,373,15520,0,15520]"`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 3`] = `"[20000,222,17332,0,17332]"`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 4`] = `"[20000,380,15444,0,15444]"`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 5`] = `"[20000,215,17420,0,17420]"`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 6`] = `"[20000,369,15568,0,15568]"`;
+
 exports[`calculate simulations-auto-entrepreneur > aides 1`] = `"[5741,62,5000,0,5000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > aides 2`] = `"[57419,618,50000,237,49763]"`;

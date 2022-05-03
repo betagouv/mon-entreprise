@@ -21,6 +21,23 @@ exports[`calculate simulations-indépendant > conjoint collaborateur 6`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
+exports[`calculate simulations-indépendant > contrats madelin 1`] = `"[30000,13181,16819,17881,433,16386,10000,40000,3559]"`;
+
+exports[`calculate simulations-indépendant > contrats madelin 2`] = `"[30000,14381,15619,17881,433,15186,10000,40000,3559]"`;
+
+exports[`calculate simulations-indépendant > contrats madelin 3`] = `"[30000,10381,19619,20431,841,18778,10000,40000,3559]"`;
+
+exports[`calculate simulations-indépendant > contrats madelin 4`] = `"[20000,6732,13268,13809,0,13268,1000,21000,3559]"`;
+
+exports[`calculate simulations-indépendant > contrats madelin 5`] = `
+"[300000,79617,220383,228526,82145,138238,15000,315000,3559]
+Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+`;
+
+exports[`calculate simulations-indépendant > contrats madelin 6`] = `"[20000,6832,13168,13709,0,13168,500,20500,3559]"`;
+
+exports[`calculate simulations-indépendant > contrats madelin 7`] = `"[20000,13132,6868,9695,0,6868,0,20000,3559]"`;
+
 exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `"[30000,13181,16819,17881,433,16386,0,30000,3559]"`;
 
 exports[`calculate simulations-indépendant > cotisations facultatives 2`] = `"[30000,14381,15619,17881,433,15186,0,30000,3559]"`;
