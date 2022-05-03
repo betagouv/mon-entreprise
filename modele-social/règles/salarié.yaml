@@ -2075,14 +2075,10 @@ contrat salarié . aides employeur:
 contrat salarié . aides employeur . aides à l'embauche:
   description: |
     L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
-  formule:
-    le maximum de:
-      - aide à l'embauche d'apprentis
-      - aide exceptionnelle à l'embauche d'apprentis
-      - aide exceptionnelle à l'embauche des jeunes
-      - aide à l'embauche senior professionnalisation
-      - aide à l'embauche des travailleurs handicapés
-      - emploi franc
+  le maximum de:
+    - aide à l'embauche d'apprentis
+    - aide à l'embauche senior professionnalisation
+    - emploi franc
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description: |
@@ -2103,69 +2099,6 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       - sinon: 1200 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
-
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
-  description: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des
-    apprentis.
-
-    Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et
-    le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les
-    entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à
-    Bac.
-  applicable si:
-    toutes ces conditions:
-      - une de ces conditions:
-          - apprentissage
-          - professionnalisation . jeune de moins de 30 ans
-      - ancienneté . date d'embauche >= 01/07/2020
-      - ancienneté . date d'embauche <= 31/12/2021
-      - temps de travail . temps effectif > 0 heures/mois
-  formule:
-    variations:
-      - si: salarié majeur
-        alors: 8000 €/an
-      - sinon: 5000 €/an
-  rend non applicable: aide à l'embauche d'apprentis
-  références:
-    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
-
-contrat salarié . jeune de moins de 26 ans:
-  question: Le salarié a-t-il moins de 26 ans ?
-  par défaut: non
-
-contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
-  non applicable si: aides employeur . emploi franc
-  description: >-
-    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
-    gouvernement met en place une aide exceptionnelle au recrutement des
-    jeunes de moins de 26 ans.
-
-    L’aide est de 4 000 euros sur un an pour un salarié à temps plein. Ce
-    montant est proratisé en fonction du temps de travail et de la durée du
-    contrat de travail.
-  applicable si:
-    toutes ces conditions:
-      - ancienneté . date d'embauche >= 01/08/2020
-      - ancienneté . date d'embauche <= 31/05/2021
-      - rémunération . brut de base <= 2 * SMIC
-      - une de ces conditions:
-          - CDI
-          - toutes ces conditions:
-              - CDD
-              - CDD . durée contrat >= 3 mois
-      - jeune de moins de 26 ans
-  rend non applicable:
-    # Dispositifs moins généreux et non cumulables
-    - aide à l'embauche des travailleurs handicapés
-  formule:
-    produit:
-      assiette: 4000 €/an
-      facteur: temps de travail . quotité de travail effective
-    arrondi: oui
-  références:
-    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
   description: |
@@ -2196,22 +2129,9 @@ contrat salarié . aides employeur . emploi franc:
     multiplication:
       assiette:
         variations:
-          - si:
-              toutes ces conditions:
-                - ancienneté . date d'embauche >= 15/10/2020
-                - ancienneté . date d'embauche <= 31/05/2021
-                - jeune de moins de 26 ans
-            alors:
-              nom: emploi franc plus
-              variations:
-                - si: CDD
-                  alors: 5500 €/an
-                - sinon: 7000 €/an
-          - sinon:
-              variations:
-                - si: CDD
-                  alors: 2500 €/an
-                - sinon: 5000 €/an
+          - si: CDD
+            alors: 2500 €/an
+          - sinon: 5000 €/an
       facteur: temps de travail . quotité de travail effective
     arrondi: oui
   références:
@@ -2241,33 +2161,6 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
-
-contrat salarié . aides employeur . aide à l'embauche des travailleurs handicapés:
-  non applicable si: aides employeur . emploi franc
-  description: >-
-    Dans le cadre du plan de relance, le gouvernement a décidé de créer une aide
-    à l’embauche visant à favoriser l’emploi des personnes en situation de
-    handicap quel que soit leur âge.
-  applicable si:
-    toutes ces conditions:
-      - nom: situation de handicap
-        question: Le salarié a-t'il la reconnaissance de travailleur handicapé (RQTH) ?
-        par défaut: non
-      - ancienneté . date d'embauche >= 01/09/2020
-      - ancienneté . date d'embauche <= 30/06/2021
-      - rémunération . brut de base <= 2 * SMIC
-      - une de ces conditions:
-          - CDI
-          - toutes ces conditions:
-              - CDD
-              - CDD . durée contrat >= 3 mois
-  formule:
-    produit:
-      assiette: 4000 €/an
-      facteur: temps de travail . quotité de travail effective
-    arrondi: oui
-  références:
-    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . temps de travail . temps effectif:
   formule:
