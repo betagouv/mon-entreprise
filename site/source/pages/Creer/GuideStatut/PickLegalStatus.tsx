@@ -2,7 +2,6 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { filter } from 'ramda'
 import { Fragment, useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -111,20 +110,25 @@ export default function SetMainStatus() {
 				)}
 			</H2>
 
-			{Object.keys(filter(Boolean, possibleStatus)).map(
-				/* https://github.com/microsoft/TypeScript/issues/32811 */
-				(statut: any) => (
-					<Fragment key={statut}>
-						<H3>
-							<StatutTitle statut={statut} language={i18n.language} />
-						</H3>
-						<Body>
-							<StatutDescription statut={statut} />
-						</Body>
-						<StatutButton statut={statut} />
-					</Fragment>
-				)
-			)}
+			{Object.entries(possibleStatus)
+				.filter(([, v]) => Boolean(v))
+				.map(
+					/* https://github.com/microsoft/TypeScript/issues/32811 */
+					([statut]) => (
+						<Fragment key={statut}>
+							<H3>
+								<StatutTitle
+									statut={statut as LegalStatus}
+									language={i18n.language}
+								/>
+							</H3>
+							<Body>
+								<StatutDescription statut={statut as LegalStatus} />
+							</Body>
+							<StatutButton statut={statut as LegalStatus} />
+						</Fragment>
+					)
+				)}
 		</>
 	)
 }

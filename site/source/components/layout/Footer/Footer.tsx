@@ -28,19 +28,19 @@ export default function Footer() {
 			? `${window.location.protocol}//${window.location.host}`
 			: '') + window.location.pathname
 	const uri = decodeURIComponent(encodedUri || '').replace(/\/$/, '')
-	const hrefLink = hrefLangLink[language][uri] || []
+	const hrefLink = hrefLangLink[language][uri]
 
 	return (
 		<>
 			<Helmet>
-				{hrefLink.map(({ href, hrefLang }) => (
+				{hrefLink && (
 					<link
-						key={hrefLang}
+						key={hrefLink.hrefLang}
 						rel="alternate"
-						hrefLang={hrefLang}
-						href={href}
+						hrefLang={hrefLink.hrefLang}
+						href={hrefLink.href}
 					/>
-				))}
+				)}
 			</Helmet>
 			<div
 				css={`
@@ -97,23 +97,23 @@ export default function Footer() {
 											<InscriptionBetaTesteur />
 										</li>
 									)}
-									{hrefLink.map(({ hrefLang, href }) => (
-										<li key={hrefLang}>
-											<Link href={href} openInSameWindow>
-												{hrefLang === 'fr' ? (
+									{hrefLink && (
+										<li key={hrefLink.hrefLang}>
+											<Link href={hrefLink.href} openInSameWindow>
+												{hrefLink.hrefLang === 'fr' ? (
 													<>
 														Passer en français <Emoji emoji="🇫🇷" />
 													</>
-												) : hrefLang === 'en' ? (
+												) : hrefLink.hrefLang === 'en' ? (
 													<>
 														Switch to English <Emoji emoji="🇬🇧" />
 													</>
 												) : (
-													hrefLang
+													hrefLink.hrefLang
 												)}
 											</Link>
 										</li>
-									))}
+									)}
 								</ul>
 							</FooterColumn>
 

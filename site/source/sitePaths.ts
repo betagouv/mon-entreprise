@@ -1,5 +1,4 @@
 import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
-import { reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -235,13 +234,12 @@ export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
 const deepReduce = (fn: any, initialValue?: any, object?: any): any =>
-	reduce(
+	Object.entries(object).reduce(
 		(acc, [key, value]) =>
 			typeof value === 'object'
 				? deepReduce(fn, acc, value)
 				: fn(acc, value, key),
-		initialValue,
-		toPairs(object)
+		initialValue
 	)
 
 type SiteMap = Array<string>
@@ -271,12 +269,10 @@ const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
 )
 
 export const hrefLangLink = {
-	en: zipObj(
-		enSiteMap,
-		frSiteMap.map((href) => [{ href, hrefLang: 'fr' }])
+	en: Object.fromEntries(
+		enSiteMap.map((key, i) => [key, { href: frSiteMap[i], hrefLang: 'fr' }])
 	),
-	fr: zipObj(
-		frSiteMap,
-		enSiteMap.map((href) => [{ href, hrefLang: 'en' }])
+	fr: Object.fromEntries(
+		frSiteMap.map((key, i) => [key, { href: enSiteMap[i], hrefLang: 'en' }])
 	),
 }

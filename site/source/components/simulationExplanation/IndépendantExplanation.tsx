@@ -14,7 +14,6 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
-import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -115,7 +114,7 @@ function Distribution() {
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
 
-	const maximum = distribution.map(([, value]) => value).reduce(max, 0)
+	const maximum = Math.max(...distribution.map(([, value]) => value))
 
 	return (
 		<>

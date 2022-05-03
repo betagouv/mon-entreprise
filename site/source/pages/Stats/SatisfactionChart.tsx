@@ -3,7 +3,6 @@ import Emoji from '@/components/utils/Emoji'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { add, mapObjIndexed } from 'ramda'
 import {
 	Bar,
 	BarChart,
@@ -25,9 +24,11 @@ export const SatisfactionStyle: [
 ]
 
 function toPercentage(data: Record<string, number>): Record<string, number> {
-	const total = Object.values(data).reduce(add)
+	const total = Object.values(data).reduce((a, b: number) => a + b, 0)
 
-	return { ...mapObjIndexed((value) => (100 * value) / total, data), total }
+	return Object.fromEntries(
+		Object.entries(data).map(([key, value]) => [key, (100 * value) / total])
+	)
 }
 
 type SatisfactionChartProps = {

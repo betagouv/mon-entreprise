@@ -77,8 +77,7 @@ export function hash(str: string): number {
 }
 
 export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
-	const returnObject = { ...obj }
-	delete returnObject[key]
+	const { [key]: _ignore, ...returnObject } = obj
 
 	return returnObject
 }

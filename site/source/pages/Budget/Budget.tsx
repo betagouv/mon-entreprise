@@ -6,7 +6,6 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { Item, Select } from '@/design-system/field/Select'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
-import { sum, uniq } from 'ramda'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -33,17 +32,21 @@ const ressources = {
 	2022: ressources2022,
 } as const
 
+const arraySum = (arr: number[]) => arr.reduce((a, b) => a + b, 0)
+
 export default function Budget() {
 	const years = ['2019', '2020', '2021', '2022'] as const
 	const quarters = ['T1', 'T2', 'T3', 'T4']
 	const [selectedYear, setSelectedYear] = useState<typeof years[number]>(
 		years[years.length - 1]
 	)
-	const categories = uniq(
-		quarters
-			.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
-			.reduce((acc, curr) => [...acc, ...curr], [])
-	)
+	const categories = [
+		...new Set(
+			quarters
+				.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
+				.reduce((acc, curr) => [...acc, ...curr], [])
+		),
+	]
 
 	const { language } = useTranslation().i18n
 
@@ -115,7 +118,7 @@ export default function Budget() {
 										})}
 										<td>
 											{formatValue(
-												sum(
+												arraySum(
 													quarters.map(
 														(q) => budget[selectedYear]?.[q]?.[label] ?? 0
 													)
@@ -133,7 +136,7 @@ export default function Budget() {
 								<tr>
 									<td>Total HT</td>
 									{quarters.map((q) => {
-										const value = sum(
+										const value = arraySum(
 											Object.values(budget[selectedYear]?.[q] ?? {})
 										)
 
@@ -150,9 +153,11 @@ export default function Budget() {
 									})}
 									<td>
 										{formatValue(
-											sum(
+											arraySum(
 												quarters.map((q) =>
-													sum(Object.values(budget[selectedYear]?.[q] ?? {}))
+													arraySum(
+														Object.values(budget[selectedYear]?.[q] ?? {})
+													)
 												)
 											),
 											{
@@ -166,7 +171,8 @@ export default function Budget() {
 									<td>Total TTC</td>
 									{quarters.map((q) => {
 										const value = Math.round(
-											sum(Object.values(budget[selectedYear]?.[q] ?? {})) * 1.2
+											arraySum(Object.values(budget[selectedYear]?.[q] ?? {})) *
+												1.2
 										)
 
 										return (
@@ -183,10 +189,10 @@ export default function Budget() {
 									<td>
 										{formatValue(
 											Math.round(
-												sum(
+												arraySum(
 													quarters.map(
 														(q) =>
-															sum(
+															arraySum(
 																Object.values(budget[selectedYear]?.[q] ?? {})
 															) * 1.2
 													)

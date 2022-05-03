@@ -8,7 +8,7 @@ import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
-import { add, groupBy, mapObjIndexed, mergeWith, toPairs } from 'ramda'
+import { add, groupBy, mapObjIndexed, mergeWith } from 'ramda'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -46,7 +46,7 @@ const isPAM = (name: string | undefined) =>
 	].includes(name)
 
 const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
-	return toPairs(
+	return Object.entries(
 		groupBy(
 			(p) => ('date' in p ? p.date : p.month),
 			pages.filter(
@@ -67,7 +67,7 @@ const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
 }
 
 function groupByDate(data: Pageish[]) {
-	return toPairs(
+	return Object.entries(
 		groupBy(
 			(p) => ('date' in p ? p.date : p.month),
 			data.filter((d) => 'page' in d && d.page === 'accueil')

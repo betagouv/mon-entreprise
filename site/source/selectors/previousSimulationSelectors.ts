@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 
 export type PreviousSimulation = {
 	situation: Simulation['situation']
-	activeTargetInput: RootState['activeTargetInput']
+	activeTargetInput: DottedName | null
 	foldedSteps: Array<DottedName> | undefined
 }
 

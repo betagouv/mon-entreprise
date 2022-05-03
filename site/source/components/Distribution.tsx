@@ -1,6 +1,5 @@
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import { max } from 'ramda'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
@@ -28,7 +27,7 @@ export default function Distribution() {
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
 
-	const maximum = distribution.map(([, value]) => value).reduce(max, 0)
+	const maximum = Math.max(...distribution.map(([, value]) => value))
 
 	return (
 		<div className="distribution-chart__container">
