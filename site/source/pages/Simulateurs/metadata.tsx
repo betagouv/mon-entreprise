@@ -378,7 +378,7 @@ function getSimulatorsData({
 						revenu. Le revenu imposable est alors calculé comme un pourcentage
 						du chiffre d'affaires. C'est qu'on appel l'abattement forfaitaire.
 						Ce pourcentage varie en fonction du type d'activité excercé. On dit
-						qu'il est forfaitaire car il ne prends pas en compte les dépenses
+						qu'il est forfaitaire car il ne prend pas en compte les dépenses
 						réelles effectuées dans le cadre de l'activité.
 					</Body>
 					<Body>

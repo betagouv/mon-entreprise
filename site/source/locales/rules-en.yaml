@@ -4471,7 +4471,7 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
     simulator does not yet take into account the calculation of the ACRE month by month.
   description.fr: |
     Le taux ACRE utilisé est une moyenne annuelle. Le
-    simulateur ne prends pas encore en compte le calcul de l'ACRE mois par mois.
+    simulateur ne prend pas encore en compte le calcul de l'ACRE mois par mois.
   titre.en: '[automatic] notification annual rate'
   titre.fr: notification taux annuel
 dirigeant . auto-entrepreneur:
@@ -4705,7 +4705,7 @@ dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
     of acre on the same year.
   description.fr: |
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
-    simulateur ne prends pas encore en compte le chevauchement de 2 période
+    simulateur ne prend pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
   titre.en: '[automatic] notification annual ACRE calculation'
   titre.fr: notification calcul ACRE annuel
@@ -9260,7 +9260,7 @@ protection sociale . retraite . base . taux de la pension:
     following the missing quarters. The contributor is therefore considered to
     start at full rate, i.e. at age 67 (or earlier if all quarters are
     validated).'
-  note.fr: On ne prends pas en compte la décote du taux suite aux trimestres
+  note.fr: On ne prend pas en compte la décote du taux suite aux trimestres
     manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans
     (ou avant si tous les trimestres sont validés).
   titre.en: rate of the pension
