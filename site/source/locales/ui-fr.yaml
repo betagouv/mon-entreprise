@@ -1022,51 +1022,6 @@ pages:
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les
         dernières évolutions législatives.
       titre: Simulateurs disponibles
-    aides-embauche:
-      aides:
-        apprenti: Pour l’embauche d’un apprenti ou d’un jeune en contrat de
-          professionnalisation.<1></1>L’aide est versée <3>mensuellement</3> et
-          automatiquement par l’Agence de services et de paiement (ASP).
-        emploi franc: Pour l’embauche d’un jeune issu d’un quartier prioritaire de la
-          ville (QPV). L’aide peut aller jusqu’à 17 000 € sur trois
-          ans.<1></1>L’aide est versée tous les <3>6 mois</3> par Pôle emploi.
-        handicapé: Pour l’embauche d’un travailleur en situation de
-          handicap.<1></1>L’aide est versée <3>trimestriellement</3> par
-          l’Agence de services et de paiement (ASP).
-        jeune: Pour l’embauche d’un jeune de moins de 26 ans en CDI ou pour un CDD d’au
-          moins 3 mois.<1></1>L’aide est versée <3>trimestriellement</3> par
-          l’Agence de services et de paiement (ASP).
-        senior: Pour une embauche en contrat de professionnalisation d’un demandeur
-          d’emploi de 45 ans ou plus.<1></1>L’aide est versée par Pôle emploi
-          sous la forme de deux versements de 1000 € chacun.
-      card:
-        action: Simuler une embauche
-        montant: Montant de l’aide
-        première année: " la première année"
-      introduction: Les employeurs peuvent bénéficier d'une aide financière pour
-        l'embauche de certains publics prioritaires. Découvrez les dispositifs
-        existants et estimez le montant de l'aide en répondant aux questions.
-      message fin: Vous pouvez maintenant simuler le coût d’embauche précis en
-        sélectionnant une aide éligible.
-      meta:
-        description: Découvrez les principales aides à l’embauche et estimez leur
-          montant en répondant à quelques questions.
-        title: Aides à l’embauche
-      outro: <0>En savoir plus sur les aides</0><1>Vous pouvez retrouver une liste
-        plus complète des aides à l'embauche existantes sur le portail
-        <2>les-aides.fr</2> édité par les chambres de commerce et
-        d'industrie.</1><2>Dans le cadre du plan « France Relance » le
-        gouvernement met en place une série de mesures pour encourager les
-        nouvelles embauches.</2><3>Rendez-vous sur le portail
-        <2>#1jeune1solution</2> pour en savoir plus</3>
-      titres:
-        aides: Les aides
-        aidesDisponibles: Aides disponibles
-        autresAides: Les autres aides
-      warning: Ce simulateur présente une liste réduite des aides à l'embauche et
-        n'intègre pas l'ensemble des conditions d'éligibilité.<1></1>Une
-        simulation plus complète peut être réalisée en cliquant sur « Simuler
-        une Embauche ».
     artiste-auteur:
       meta:
         description: Estimez les cotisations sociales sur les droits d'auteur et sur le

@@ -40,6 +40,7 @@ export default function PageData(props: PageDataProps) {
 	const {
 		meta,
 		config,
+		title,
 		tracking,
 		tooltip,
 		description,
@@ -50,7 +51,6 @@ export default function PageData(props: PageDataProps) {
 		nextSteps,
 		path,
 	} = props
-	let { title } = props
 
 	const année = useSelector(situationSelector)['année']
 	const year =
@@ -59,24 +59,6 @@ export default function PageData(props: PageDataProps) {
 	const inIframe = useIsEmbedded()
 	useSimulationConfig(config, { path })
 	useSearchParamsSimulationSharing()
-
-	// TODO : Move this logic elsewhere.
-	//
-	// Some user where expecting to be on a simulator for employers instead of the
-	// one for employees coming from the page listing all incentives for
-	// employers. This makes sense, but at the same time our main simulator works
-	// for both employers and employees, so for now we just use a URL parameter
-	// `?view=employeur` to cusomize the title of the page. We may want to provide
-	// additional customization in the future depending to the targeted audience.
-	const sitePaths = useContext(SitePathsContext)
-	const view = new URLSearchParams(useLocation().search).get('view')
-	const { t } = useTranslation()
-	if (view === 'employeur' && path === sitePaths.simulateurs.salarié) {
-		title = t(
-			'pages.simulateurs.salarié.title-employeur',
-			"Simulateur de coûts d'embauche"
-		)
-	}
 
 	const trackInfo = {
 		chapter1:
