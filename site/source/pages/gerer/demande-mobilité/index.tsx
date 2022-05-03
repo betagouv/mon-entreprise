@@ -10,11 +10,10 @@ import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import { evaluateQuestion, hash } from '@/utils'
+import { evaluateQuestion, hash, omit } from '@/utils'
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { omit } from 'ramda'
 import {
 	Fragment,
 	lazy,
@@ -80,7 +79,7 @@ function FormulairePublicodes() {
 	const onChange = useCallback(
 		(dottedName, value) => {
 			if (value === undefined) {
-				setSituation((situation) => omit([dottedName], situation))
+				setSituation((situation) => omit(situation, dottedName))
 			} else {
 				setSituation((situation) => ({
 					...situation,

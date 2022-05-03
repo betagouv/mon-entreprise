@@ -5,7 +5,6 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { Spacing } from '@/design-system/layout'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { intersection } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -90,10 +89,9 @@ export const ActivitéSelection = ({
 }: ActivitéSelectionProps) => {
 	const { state } = useContext(StoreContext)
 	const activitéRépondue = activitésRéponduesSelector(state)
-	const nextButtonDisabled = !intersection(
-		activitésEffectuéesSelector(state),
-		activités
-	).length
+	const nextButtonDisabled = activitésEffectuéesSelector(state).every(
+		(a) => !activités.includes(a)
+	)
 
 	return (
 		<>

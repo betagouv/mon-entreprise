@@ -2,7 +2,6 @@ import { Action } from '@/actions/actions'
 import { Commune } from '@/api/commune'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
-import { defaultTo, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { objectifsSelector } from '../selectors/simulationSelectors'
@@ -114,17 +113,16 @@ function simulation(
 			}
 
 		case 'UPDATE_SITUATION': {
-			const objectifs = without(
-				['entreprise . charges'],
-				objectifsSelector({ simulation: state } as RootState)
-			)
+			const objectifs = objectifsSelector({
+				simulation: state,
+			} as RootState).filter((name) => name !== 'entreprise . charges')
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
 			if (value === undefined) {
 				return { ...state, situation: omit(situation, dottedName) }
 			}
 			if (objectifs.includes(dottedName)) {
-				const objectifsToReset = without([dottedName], objectifs)
+				const objectifsToReset = objectifs.filter((name) => name !== dottedName)
 				const newSituation = Object.fromEntries(
 					Object.entries(situation).filter(
 						([dottedName]) =>
@@ -160,7 +158,7 @@ function simulation(
 			if (name === 'unfold') {
 				return {
 					...state,
-					foldedSteps: without([step], state.foldedSteps),
+					foldedSteps: state.foldedSteps.filter((name) => name !== step),
 					unfoldedStep: step,
 				}
 			}
@@ -197,7 +195,7 @@ const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
 	companySituation,
-	previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
+	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,
 })

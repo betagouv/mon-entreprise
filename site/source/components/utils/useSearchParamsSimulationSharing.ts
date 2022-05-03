@@ -8,7 +8,6 @@ import { configSelector } from '@/selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
 import { setActiveTarget, batchUpdateSituation } from '@/actions/actions'
-import { isEmpty } from 'ramda'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -44,7 +43,7 @@ export default function useSearchParamsSimulationSharing() {
 				searchParams,
 				dottedNameParamName
 			)
-			if (!isEmpty(newSituation)) {
+			if (Object.keys(newSituation).length > 0) {
 				dispatch(batchUpdateSituation(newSituation as Situation))
 			}
 

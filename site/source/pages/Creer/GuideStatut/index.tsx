@@ -3,7 +3,6 @@ import { FromBottom } from '@/components/ui/animate'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { dropWhile, toPairs } from 'ramda'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,21 +28,24 @@ const useResetFollowingAnswers = () => {
 			) as (keyof typeof state.choixStatutJuridique.companyLegalStatus)[]
 	)
 	useEffect(() => {
-		const companyStatusCurrentQuestionName = (toPairs(
+		const companyStatusCurrentQuestionName = (Object.entries(
 			sitePaths.créer.guideStatut
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		if (!companyStatusCurrentQuestionName) {
 			return
 		}
 
-		const answersToReset = dropWhile(
-			(a) => a !== companyStatusCurrentQuestionName,
-			answeredQuestion
+		const firstAnswerToResetIndex = answeredQuestion.findIndex(
+			(a) => a === companyStatusCurrentQuestionName
 		)
-		if (!answersToReset.length) {
-			return
+
+		if (firstAnswerToResetIndex !== -1) {
+			dispatch(
+				resetCompanyStatusChoice(
+					answeredQuestion.slice(firstAnswerToResetIndex)
+				)
+			)
 		}
-		dispatch(resetCompanyStatusChoice(answersToReset))
 	}, [location.pathname, dispatch, sitePaths.créer.guideStatut])
 }
 

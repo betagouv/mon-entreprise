@@ -1,7 +1,6 @@
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { ASTNode } from 'publicodes'
-import { toPairs } from 'ramda'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -27,7 +26,7 @@ export default function InputSuggestions({
 
 	return (
 		<StyledInputSuggestion className={className}>
-			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
+			{Object.entries(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<Link
 						key={text}

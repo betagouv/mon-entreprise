@@ -1,6 +1,5 @@
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
-import { isNil } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -77,7 +76,7 @@ export default function PreviousAnswers() {
 		<PreviousAnswersList>
 			{Object.entries(legalStatus).map(
 				([key, value]) =>
-					!isNil(value) && (
+					value !== undefined && (
 						<PreviousAnswersItem key={key}>
 							<Link
 								to={

@@ -1,4 +1,3 @@
-import { assoc, mapObjIndexed } from 'ramda'
 import { Rule } from 'publicodes'
 
 type Translation = Record<string, string>
@@ -15,21 +14,17 @@ const translateSuggestion: translateAttribute = (
 	rule,
 	translation,
 	lang
-) =>
-	assoc(
-		'suggestions',
-		Object.entries(rule.suggestions!).reduce(
-			(acc, [name, value]) => ({
-				...acc,
-				[translation[`${prop}.${name}.${lang}`]?.replace(
-					/^\[automatic\] /,
-					''
-				)]: value,
-			}),
-			{}
-		),
-		rule
-	)
+) => ({
+	...rule,
+	suggestions: Object.entries(rule.suggestions!).reduce(
+		(acc, [name, value]) => ({
+			...acc,
+			[translation[`${prop}.${name}.${lang}`]?.replace(/^\[automatic\] /, '')]:
+				value,
+		}),
+		{}
+	),
+})
 
 export const attributesToTranslate = [
 	'titre',
@@ -49,7 +44,7 @@ const translateProp =
 		let propTrans = translation[prop + '.' + lang]
 		propTrans = propTrans?.replace(/^\[automatic\] /, '')
 
-		return propTrans ? assoc(prop, propTrans, rule) : rule
+		return propTrans ? { ...rule, [prop]: propTrans } : rule
 	}
 
 function translateRule<Names extends string>(
@@ -74,13 +69,14 @@ export default function translateRules<Names extends string>(
 	translations: Record<Names, Translation>,
 	rules: Record<Names, Rule>
 ): Record<Names, Rule> {
-	const translatedRules = mapObjIndexed(
-		(rule: Rule, name: string) =>
+	const translatedRules = Object.fromEntries(
+		Object.entries<Rule>(rules).map(([name, rule]) => [
+			name,
 			rule && typeof rule === 'object'
 				? translateRule(lang, translations, name, rule)
 				: rule,
-		rules
+		])
 	)
 
-	return translatedRules
+	return translatedRules as Record<Names, Rule>
 }

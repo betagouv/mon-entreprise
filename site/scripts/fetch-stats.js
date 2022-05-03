@@ -2,8 +2,6 @@ import 'dotenv/config.js'
 import 'isomorphic-fetch'
 import fs from 'fs'
 import path from 'path'
-import { filter, flatten, map, partition, pipe } from 'ramda'
-import { compose } from 'redux'
 import { fileURLToPath } from 'url'
 import { createDataDir, writeInDataDir } from './utils.js'
 
@@ -157,21 +155,23 @@ const last36Months = {
 			.slice(0, 8) + '01',
 	end: yesterday,
 }
-const uniformiseData = pipe(
-	// For some reason, an artifact create ghost page with unlogical chapter metrics...
-	// It seems to only by one per month thought... This hacks resolves it
-	filter(({ m_visits }) => m_visits === undefined || m_visits > 2),
-	map(({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
-		date: d_evo_day != null ? d_evo_day : d_evo_month,
-		nombre: m_visits != null ? m_visits : m_events,
-		...data,
-	}))
-)
-const flattenPage = compose(
-	flatten,
-	map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r }))),
-	filter((p) => p.page_chapter2 !== 'N/A') // Remove simulateur landing page
-)
+const uniformiseData = (data) =>
+	data
+		.map(({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
+			date: d_evo_day != null ? d_evo_day : d_evo_month,
+			nombre: m_visits != null ? m_visits : m_events,
+			...data,
+		}))
+		// For some reason, an artifact create ghost page with unlogical chapter metrics...
+		// It seems to only by one per month thought... This hacks resolves it
+		.filter(({ m_visits }) => m_visits === undefined || m_visits > 2)
+
+const flattenPage = (list) =>
+	list
+		.flat()
+		.map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r })))
+		.filter((p) => p.page_chapter2 !== 'N/A') // Remove simulateur landing page
+
 async function fetchDailyVisits() {
 	const pages = uniformiseData(
 		flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D')))
@@ -261,12 +261,12 @@ async function fetchUserFeedbackIssues() {
 	const issues = Object.entries(data.data.repository)
 		.filter(([, value]) => !!value)
 		.map(([k, value]) => ({ ...value, count: +/[\d]+$/.exec(k)[0] }))
-	const [closed, open] = partition((s) => s.closedAt, issues)
+
 	return {
-		open,
-		closed: closed.sort(
-			(i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)
-		),
+		open: issues.filter((s) => !s.closedAt),
+		closed: issues
+			.filter((s) => s.closedAt)
+			.sort((i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)),
 	}
 }
 async function main() {
