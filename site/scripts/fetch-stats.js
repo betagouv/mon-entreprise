@@ -168,9 +168,9 @@ const uniformiseData = (data) =>
 
 const flattenPage = (list) =>
 	list
-		.flat()
-		.map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r })))
 		.filter((p) => p.page_chapter2 !== 'N/A') // Remove simulateur landing page
+		.map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r })))
+		.flat()
 
 async function fetchDailyVisits() {
 	const pages = uniformiseData(
