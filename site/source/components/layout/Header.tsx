@@ -30,9 +30,7 @@ export default function Header() {
 				/>
 				{language === 'fr' && <SearchButton />}
 			</StyledHeader>
-			<BrowserOnly>
-				<NewsBanner />
-			</BrowserOnly>
+			<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>
 		</Container>
 	)
 }
