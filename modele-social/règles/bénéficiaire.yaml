@@ -94,9 +94,9 @@ bénéficiaire . dividendes . cotisations et contributions:
 
 bénéficiaire . dividendes . imposables:
   somme:
-    - bruts
+    - valeur: bruts
+      abattement: 40%
     - (- cotisations et contributions . CSG déductible)
-  abattement: 40%
   titre: Net imposable des dividendes auxquels s'applique le barème de l'impôt
     sur le revenu
   description: |
@@ -108,6 +108,7 @@ bénéficiaire . dividendes . imposables:
     - les dividendes sont décidés en assemblée générale.
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963
+    Article 158 du Code général des impôts: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000038836594/
 
 # [TODO] [dividendes-indep]
 bénéficiaire . dividendes . cotisations et contributions . assiette forfaitaire:
