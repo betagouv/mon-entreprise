@@ -353,7 +353,7 @@ impôt . foyer fiscal . taux effectif:
   variations:
     - si: revenu imposable = 0
       alors: 0%
-    - sinon: impôt à payer / revenu imposable
+    - sinon: impôt à payer / revenu imposable . revenu brut
 
 impôt . foyer fiscal . revenu imposable:
   formule:
@@ -367,19 +367,25 @@ impôt . foyer fiscal . revenu imposable:
       - bénéficiaire . dividendes . imposables
       - autres revenus imposables
 
+impôt . foyer fiscal . revenu imposable . revenu brut:
+  somme:
+    - revenu imposable
+    - (- revenu d'activité abattu)
+    - revenu d'activité
+
+impôt . foyer fiscal . revenu imposable . revenu d'activité:
+  variations:
+    - si: dirigeant = non
+      alors: contrat salarié . rémunération . net imposable
+    - si: entreprise . imposition = 'IS'
+      alors: dirigeant . rémunération . imposable
+
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description: |
     Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
-  valeur:
-    nom: assiette
-    variations:
-      - si: dirigeant = non
-        alors: contrat salarié . rémunération . net imposable
-      - si: entreprise . imposition = 'IS'
-        alors: dirigeant . rémunération . imposable
-      - sinon: 0 €/an
+  valeur: revenu d'activité
   abattement:
-    valeur: 10% * assiette
+    valeur: 10% * revenu d'activité
     plafond:
       variations:
         - si: date >= 01/2022
