@@ -181,6 +181,13 @@ impôt sur le revenu - quotient familial:
     contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . situation de famille: "'veuf'"
     impôt . foyer fiscal . enfants à charge: 2
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 20000 €/mois
+    impôt . foyer fiscal . enfants à charge: 3
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 20000 €/mois
+    impôt . foyer fiscal . enfants à charge: 1
+    impôt . foyer fiscal . parent isolé: oui
 
 heures supplémentaires et complémentaires:
   - contrat salarié . rémunération . brut de base: 2000 €/mois

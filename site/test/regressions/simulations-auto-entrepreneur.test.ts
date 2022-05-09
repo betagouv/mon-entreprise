@@ -23,10 +23,10 @@ it('calculate simulations-auto-entrepreneur', () => {
 		[
 		  "entreprise . activité . mixte",
 		  "entreprise . activité",
-		  "impôt . foyer fiscal . enfants à charge",
 		  "entreprise . activité . service ou vente",
-		  "impôt . foyer fiscal . situation de famille",
+		  "impôt . foyer fiscal . enfants à charge",
 		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
+		  "impôt . foyer fiscal . situation de famille",
 		  "entreprise . date de création",
 		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
 		  "impôt . méthode de calcul",

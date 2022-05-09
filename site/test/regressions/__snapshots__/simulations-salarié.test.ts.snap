@@ -43,7 +43,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié > JEI 1`] = `"[3434,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié > JEI 2`] = `
-"[26535,0,20000,15969,10359]
+"[26535,0,20000,15969,10721]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -54,7 +54,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 
 exports[`calculate simulations-salarié > activité partielle 2`] = `"[980,0,4000,2220,2098]"`;
 
-exports[`calculate simulations-salarié > activité partielle 3`] = `"[2154,0,8000,4462,3639]"`;
+exports[`calculate simulations-salarié > activité partielle 3`] = `"[2154,0,8000,4462,3721]"`;
 
 exports[`calculate simulations-salarié > activité partielle 4`] = `"[1614,0,4000,2405,2217]"`;
 
@@ -70,12 +70,12 @@ exports[`calculate simulations-salarié > activité partielle 9`] = `"[1216,0,20
 
 exports[`calculate simulations-salarié > activité partielle 10`] = `"[2360,0,6000,4182,3498]"`;
 
-exports[`calculate simulations-salarié > activité partielle 11`] = `"[4323,0,9000,6147,4790]"`;
+exports[`calculate simulations-salarié > activité partielle 11`] = `"[4323,0,9000,6147,4925]"`;
 
 exports[`calculate simulations-salarié > aides 1`] = `"[2296,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié > aides 2`] = `
-"[12819,0,10000,8911,7538]
+"[12819,0,10000,8911,7675]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé, contrat salarié . régime des impatriés . information"
 `;
 
@@ -220,25 +220,35 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 Notifications affichées : contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents"
 `;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 1`] = `"[4070,0,3000,2353,2336]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 1`] = `"[4070,0,3000,2353,2269]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 2`] = `"[4070,0,3000,2353,2353]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 2`] = `"[4070,0,3000,2353,2337]"`;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 3`] = `"[4070,0,3000,2353,2353]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 4`] = `"[4070,0,3000,2353,1911]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 4`] = `"[4070,0,3000,2353,1935]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 5`] = `"[4070,0,3000,2353,2219]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 5`] = `"[4070,0,3000,2353,2201]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 6`] = `"[12886,0,9000,7156,6052]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 6`] = `"[12886,0,9000,7156,6162]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 7`] = `"[12886,0,9000,7156,6342]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 7`] = `"[12886,0,9000,7156,6669]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 8`] = `"[12886,0,9000,7156,6859]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 8`] = `"[12886,0,9000,7156,6889]"`;
 
-exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 9`] = `"[4070,0,3000,2353,2178]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 9`] = `"[4070,0,3000,2353,2195]"`;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 10`] = `"[4070,0,3000,2353,2353]"`;
+
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 11`] = `
+"[28342,0,20000,15969,12840]
+Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
+`;
+
+exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 12`] = `
+"[28342,0,20000,15969,11996]
+Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
+`;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 1`] = `"[4070,0,3000,2353,2168]"`;
 
@@ -398,21 +408,21 @@ exports[`calculate simulations-salarié > échelle de salaires 11`] = `"[5428,0,
 exports[`calculate simulations-salarié > échelle de salaires 12`] = `"[7079,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié > échelle de salaires 13`] = `
-"[14315,0,10000,7958,5892]
+"[14315,0,10000,7958,6099]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 14`] = `
-"[28342,0,20000,15969,10359]
+"[28342,0,20000,15969,10721]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 15`] = `
-"[128588,0,100000,87157,45821]
+"[128588,0,100000,87157,46312]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 16`] = `
-"[1244012,0,1000000,896257,445643]
+"[1244012,0,1000000,896257,446164]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
