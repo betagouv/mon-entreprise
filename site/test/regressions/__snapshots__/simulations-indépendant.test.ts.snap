@@ -72,12 +72,12 @@ Notifications affichées : dirigeant . indépendant . cotisations et contributio
 `;
 
 exports[`calculate simulations-indépendant > imposition à l'IS 1`] = `
-"[100000,30100,69900,72612,15030,54870,0,100000,3559]
+"[100000,30100,69900,72612,13527,56373,0,100000,3559]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-indépendant > imposition à l'IS 2`] = `
-"[100000,30100,69900,72612,15030,54870,0,100000,3559]
+"[100000,30100,69900,72612,13527,56373,0,100000,3559]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
