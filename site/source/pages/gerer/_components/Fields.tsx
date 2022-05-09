@@ -134,7 +134,7 @@ export function SimpleField({
 				label={displayedLabel}
 				required={meta.requis === 'oui'}
 				missing={
-					evaluation.nodeValue === undefined &&
+					evaluation.nodeValue === undefined ||
 					!isEmpty(evaluation.missingVariables)
 				}
 				onChange={dispatchValue}
