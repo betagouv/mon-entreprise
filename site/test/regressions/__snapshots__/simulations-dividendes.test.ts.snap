@@ -1,20 +1,20 @@
 // Vitest Snapshot v1
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 1`] = `"[200,166,34,0,112,112,0]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 1`] = `"[200,166,34,0,106,106,0]"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `"[20000000,11149363,3440000,5410637,11184000,11184000,48]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `"[20000000,11415923,3440000,5144077,10640000,10640000,48]"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 3`] = `"[200,112,34,40,112,112,36]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 3`] = `"[200,115,34,38,106,106,36]"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 4`] = `"[20000,14985,3440,613,11184,11184,5]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 4`] = `"[20000,15045,3440,578,10640,10640,5]"`;
 
-exports[`calculate simulations-dividendes > barème défauts 1`] = `"[200,166,34,0,112,112,0]"`;
+exports[`calculate simulations-dividendes > barème défauts 1`] = `"[200,166,34,0,106,106,0]"`;
 
-exports[`calculate simulations-dividendes > barème défauts 2`] = `"[20000000,11113031,3440000,5446969,11184000,11184000,49]"`;
+exports[`calculate simulations-dividendes > barème défauts 2`] = `"[20000000,11379591,3440000,5180409,10640000,10640000,49]"`;
 
-exports[`calculate simulations-dividendes > barème défauts 3`] = `"[200,111,34,47,112,112,42]"`;
+exports[`calculate simulations-dividendes > barème défauts 3`] = `"[200,113,34,45,106,106,42]"`;
 
-exports[`calculate simulations-dividendes > barème défauts 4`] = `"[20000,13205,3440,2244,11184,11184,20]"`;
+exports[`calculate simulations-dividendes > barème défauts 4`] = `"[20000,13368,3440,2126,10640,10640,20]"`;
 
 exports[`calculate simulations-dividendes > pfu 1`] = `"[200,140,34,26,120,120,0]"`;
 
