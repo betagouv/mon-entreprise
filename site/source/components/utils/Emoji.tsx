@@ -13,7 +13,7 @@ type PropType = {
 // - using a real React component works better with the translation scripts
 export default function Emoji({ emoji, alt, title }: PropType) {
 	const language = useTranslation().i18n.language
-
+	alt ??= emoji
 	const siteUrl =
 		language === 'fr'
 			? import.meta.env.VITE_FR_BASE_URL
