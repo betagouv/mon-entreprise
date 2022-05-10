@@ -527,8 +527,8 @@ entreprise:
         "1": Le but d'un <1>compte bancaire d'entreprise</1> est de séparer les actifs
           de l'entreprise des vôtres.
         "2": "Le compte d'entreprise vous permet de :"
-        EI: "Si son ouverture n'est pas obligatoire pour un IE, elle reste fortement
-          recommandée. "
+        EI: "Si son ouverture n'est pas obligatoire pour une entreprise individuelle,
+          elle reste fortement recommandée. "
         liste: <0>Différencier vos opérations privées et
           professionnelles</0><1>Faciliter les déclarations fiscales</1>
       titre: Ouvrir un compte bancaire

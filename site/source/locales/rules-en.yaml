@@ -8529,21 +8529,12 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
   titre.en: '[automatic] without attached units'
   titre.fr: sans parts rattachées
-impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
-  titre.en: '[automatic] uncapped'
-  titre.fr: sans plafonnement
-impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement . sans parts rattachées:
-  titre.en: '[automatic] without attached units'
-  titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   titre.en: '[automatic] family quotient'
   titre.fr: quotient familial
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
-impôt . foyer fiscal . impôt sur le revenu . quotient familial . sans parts rattachées:
-  titre.en: '[automatic] without attached units'
-  titre.fr: sans parts rattachées
 impôt . foyer fiscal . impôt à payer:
   titre.en: '[automatic] tax payable'
   titre.fr: impôt à payer
@@ -8581,9 +8572,17 @@ impôt . foyer fiscal . nombre de parts . principales:
 impôt . foyer fiscal . nombre de parts . rattachées:
   titre.en: '[automatic] related'
   titre.fr: rattachées
-impôt . foyer fiscal . nombre de parts . sans parts rattachées:
-  titre.en: '[automatic] without attached units'
-  titre.fr: sans parts rattachées
+impôt . foyer fiscal . parent isolé:
+  question.en: '[automatic] '
+  question.fr:
+    variations:
+      - alors:
+          texte: Vivez-vous seul avec vos enfants ?
+        si: impôt . foyer fiscal . enfants à charge > 1
+      - sinon:
+          texte: Vivez-vous seul avec votre enfant ?
+  titre.en: '[automatic] single parent'
+  titre.fr: parent isolé
 impôt . foyer fiscal . revenu fiscal de référence:
   description.en: "[automatic] The reference tax income corresponds to the
     household's slaughtered income adjusted with a quotient mechanism and
@@ -8602,6 +8601,12 @@ impôt . foyer fiscal . revenu imposable . autres revenus imposables:
   question.fr: Quel est le montant total des autres revenus imposables du foyer fiscal ?
   titre.en: '[automatic] Other taxable income of the tax household'
   titre.fr: Autres revenus imposables du foyer fiscal
+impôt . foyer fiscal . revenu imposable . revenu brut:
+  titre.en: '[automatic] gross income'
+  titre.fr: revenu brut
+impôt . foyer fiscal . revenu imposable . revenu d'activité:
+  titre.en: '[automatic] activity income'
+  titre.fr: revenu d'activité
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description.en: >
     [automatic] In the general case, the tax is calculated after the application

@@ -236,8 +236,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								</Trans>{' '}
 								{statut === 'EI' && (
 									<Trans i18nKey="entreprise.tâches.banque.description.EI">
-										Si son ouverture n'est pas obligatoire pour un IE, elle
-										reste fortement recommandée.{' '}
+										Si son ouverture n'est pas obligatoire pour une entreprise
+										individuelle, elle reste fortement recommandée.{' '}
 									</Trans>
 								)}
 								<Trans i18nKey="entreprise.tâches.banque.description.2">
@@ -377,7 +377,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								href={
 									isAutoentrepreneur
 										? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
-										: 'https://account.guichet-entreprises.fr/user/create'
+										: 'https://formalites.entreprises.gouv.fr/'
 								}
 							>
 								Faire la démarche en ligne

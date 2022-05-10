@@ -727,7 +727,8 @@ entreprise:
         "1": The purpose of a <1>professional bank account</1> is to separate your
           company's assets from your personal assets.
         "2": "The professional bank account allows you to:"
-        EI: If its opening is not obligatory for an EI, it is strongly recommended.
+        EI: "Although it is not mandatory for a sole proprietorship, it is strongly
+          recommended. "
         liste: >
           <0>Differentiate your private and professional operations and simplify
           your cash management</0>
