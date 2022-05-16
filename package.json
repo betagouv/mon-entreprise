@@ -11,6 +11,7 @@
 	"workspaces": [
 		"modele-social",
 		"exoneration-covid",
+		"api",
 		"site"
 	],
 	"type": "module",
