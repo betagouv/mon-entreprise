@@ -47,6 +47,7 @@ module.exports = {
 				// eslint-disable-next-line no-undef
 				tsconfigRootDir: __dirname,
 				project: [
+					'./api/tsconfig.json',
 					'./site/tsconfig.json',
 					'./modele-social/tsconfig.json',
 					'./exoneration-covid/tsconfig.json',
