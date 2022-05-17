@@ -178,6 +178,8 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 const EmojiButton = styled.button`
 	font-size: 1.5rem;
 	padding: 0.6rem;
+	border: none;
+	background: none;
 	transition: transform 0.05s;
 	will-change: transform;
 	:hover {

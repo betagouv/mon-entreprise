@@ -126,10 +126,6 @@ fieldset {
 	min-width: 0;
 }
 
-button {
-	background: none;
-	border: none;
-}
 
 button:enabled {
 	cursor: pointer;

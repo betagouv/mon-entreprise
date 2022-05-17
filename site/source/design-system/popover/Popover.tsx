@@ -194,6 +194,10 @@ const CloseButtonContainer = styled.div`
 const CloseButton = styled.button`
 	display: inline-flex;
 	align-items: center;
+
+	background: none;
+	border: none;
+
 	color: ${({ theme }) => theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;

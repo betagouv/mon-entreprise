@@ -6,6 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 import rules, { DottedName } from 'modele-social'
+import { EvaluatedNode } from 'publicodes'
 import { expect } from 'vitest'
 import { engineFactory } from '../../source/components/utils/EngineContext'
 import { Simulation } from '../../source/reducers/rootReducer'
@@ -61,9 +62,6 @@ export const runSimulations = (
 		})
 	)
 
-export const getMissingVariables = (
-	evaluatedNode: ReturnType<typeof engine['evaluate']>
-) =>
-	Object.entries(evaluatedNode.missingVariables)
-		.sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
-		.map(([name]) => name)
+export function getMissingVariables(node: EvaluatedNode) {
+	return Object.keys(node.missingVariables).sort()
+}

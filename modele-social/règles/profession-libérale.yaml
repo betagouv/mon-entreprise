@@ -493,11 +493,13 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
       - attributs:
           nom: tranche T1
           arrondi: oui
+          unité: €/an
         taux: 8.23%
         plafond: plafond sécurité sociale temps plein
       - attributs:
           nom: tranche T2
           arrondi: oui
+          unité: €/an
         taux: 1.87%
         plafond: 5 * plafond sécurité sociale temps plein
   références:
@@ -538,6 +540,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
         - si: date >= 01/2021
           alors: 0.15%
   arrondi: oui
+  unité: €/an
   références:
     Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
 
@@ -588,8 +591,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
       - si: proportion . quart
         alors:
           taux: 25%
-      - sinon: oui
-        # sinon rien ne change
+      - sinon: {}
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   titre: Retraite de base (conjoint collaborateur CNAVPL)
@@ -704,6 +706,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
           - sinon: 0.1%
     plafond: 0.50% * plafond sécurité sociale temps plein
     arrondi: oui
+    unité: €/an
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
 
@@ -1139,19 +1142,19 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
   titre: participation CPAM à la retraite de base
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      taux:
-        grille:
-          assiette: assiette des cotisations
-          multiplicateur: plafond sécurité sociale temps plein
-          tranches:
-            - montant: 2.15%
-              plafond: 140%
-            - montant: 1.51%
-              plafond: 250%
-            - montant: 1.12%
+  unité: €/an
+  produit:
+    assiette: assiette des cotisations
+    taux:
+      grille:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale temps plein
+        tranches:
+          - montant: 2.15%
+            plafond: 140%
+          - montant: 1.51%
+            plafond: 250%
+          - montant: 1.12%
     arrondi: oui
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
@@ -1179,7 +1182,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
           assiette: assiette des cotisations
           plafond: 3.5 * plafond sécurité sociale temps plein
           taux: 9.80%
-
+  unité: €/an
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
@@ -1234,6 +1237,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
             assiette: PAMC . revenus activité conventionnée
             plafond: 5 * plafond sécurité sociale temps plein
             taux: 3.80%
+      unité: €/an
     abattement: participation CPAM
     arrondi: oui
   références:
@@ -1271,6 +1275,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
   formule:
+    unité: €/an
     barème:
       assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
@@ -1342,22 +1347,22 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
 
     Cette dispense entraîne l’annulation des droits pour l’année et les points
     non cotisés ne sont pas rachetables.
-  formule:
-    somme:
-      - forfaitaire
-      - proportionnelle
-    arrondi: oui
 
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
-  formule: 1440.60 €/an
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      plafond: 5 * plafond sécurité sociale temps plein
-      taux: 0.725 %
-  références:
-    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+  somme:
+    - forfaitaire
+    - proportionnelle
+  arrondi: oui
+  avec:
+    forfaitaire: 1440.60 €/an
+    proportionnelle:
+      produit:
+        assiette: assiette des cotisations
+        plafond: 5 * plafond sécurité sociale temps plein
+        taux: 0.725 %
+      unité: €/an
+      références:
+        Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   titre: Participation CPAM à la prestation complémentaire vieillesse
   formule:
@@ -1420,6 +1425,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
         - A
         - B
         - C
+
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . A:
   titre: classe A
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . B:

@@ -11,20 +11,20 @@ import Simulation, {
 } from '@/components/Simulation'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
 import { FromTop } from '@/components/ui/animate'
+import BrowserOnly from '@/components/utils/BrowserOnly'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
-import { reduceAST } from 'publicodes'
+import { ASTNode, reduceAST } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
-import BrowserOnly from '@/components/utils/BrowserOnly'
 
 const ButtonContainer = styled.div`
 	margin: 2rem 1rem;
@@ -132,10 +132,11 @@ function AidesGlimpse() {
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
 	const aideLink = reduceAST(
 		(acc, node) => {
-			if (node.nodeKind === 'somme') {
-				const aidesNotNul = node.explanation
-					.map((n) => engine.evaluate(n))
-					.filter(({ nodeValue }) => nodeValue !== false)
+			if (node.sourceMap?.mecanismName === 'somme') {
+				const aidesNotNul =
+					(node.sourceMap?.args.valeur as ASTNode[])
+						.map((n) => engine.evaluate(n))
+						.filter(({ nodeValue }) => nodeValue !== false) ?? []
 				if (aidesNotNul.length === 1 && 'dottedName' in aidesNotNul[0]) {
 					return aidesNotNul[0].dottedName as DottedName
 				} else {

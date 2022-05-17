@@ -1,10 +1,13 @@
-import Value, { Condition, ValueProps } from '@/components/EngineValue'
+import Value, {
+	Condition,
+	ValueProps,
+	WhenAlreadyDefined,
+	WhenApplicable,
+} from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { H4 } from '@/design-system/typography/heading'
 import { DottedName } from 'modele-social'
-import { isNotApplicable, isNotYetDefined } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
-import { useEngine } from './utils/EngineContext'
 
 export const SalaireBrutSection = () => {
 	return (
@@ -82,28 +85,20 @@ export function Line({
 	title,
 	...props
 }: LineProps) {
-	const engine = useEngine()
-
-	const evaluatedNode = engine.evaluate(rule)
-	if (
-		isNotYetDefined(evaluatedNode.nodeValue) ||
-		// ⚠️ isNotApplicable is a bad func only here to help with further refactoring:
-		isNotApplicable(evaluatedNode.nodeValue) ||
-		evaluatedNode.nodeValue === 0
-	) {
-		return null
-	}
-
 	return (
-		<Condition expression={`${rule} > 0`}>
-			<RuleLink dottedName={rule}>{title}</RuleLink>
-			<Value
-				linkToRule={false}
-				expression={(negative ? '- ' : '') + rule}
-				unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
-				displayedUnit={displayedUnit}
-				{...props}
-			/>
-		</Condition>
+		<WhenApplicable dottedName={rule}>
+			<WhenAlreadyDefined dottedName={rule}>
+				<Condition expression={`${rule} > 0`}>
+					<RuleLink dottedName={rule}>{title}</RuleLink>
+					<Value
+						linkToRule={false}
+						expression={(negative ? '- ' : '') + rule}
+						unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
+						displayedUnit={displayedUnit}
+						{...props}
+					/>
+				</Condition>
+			</WhenAlreadyDefined>
+		</WhenApplicable>
 	)
 }

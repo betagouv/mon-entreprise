@@ -2438,17 +2438,14 @@ contrat salarié . réduction générale . coefficient:
 
 contrat salarié . réduction générale . T:
   titre: Coefficient T
-  unité: ''
-  formule:
-    somme:
-      - T sécurité sociale et chômage
-      - valeur: retraite complémentaire . employeur . taux tranche 1
-        plafond: 4.72%
-      - valeur: contribution d'équilibre général . employeur . taux tranche 1
-        plafond: 1.29%
+  somme:
+    - T sécurité sociale et chômage
+    - valeur: retraite complémentaire . employeur . taux tranche 1
+      plafond: 4.72%
+    - valeur: contribution d'équilibre général . employeur . taux tranche 1
+      plafond: 1.29%
 
 contrat salarié . réduction générale . T sécurité sociale et chômage:
-  unité: ''
   formule:
     somme:
       - maladie . taux employeur
@@ -3593,25 +3590,25 @@ contrat salarié . lodeom . éligible barème innovation et croissance:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
 
 contrat salarié . lodeom . borne inférieure:
-  formule:
-    variations:
-      - si: éligible barème compétitivité
-        alors: 130%
-      - sinon: 170%
+  unité: ''
+  variations:
+    - si: éligible barème compétitivité
+      alors: 130%
+    - sinon: 170%
 
 contrat salarié . lodeom . borne supérieure:
   unité: ''
-  formule:
-    variations:
-      - si: éligible barème compétitivité
-        alors: 220%
-      - si: éligible barème compétitivité renforcée
-        alors: 270%
-      - si: éligible barème innovation et croissance
-        alors: 350%
+  variations:
+    - si: éligible barème compétitivité
+      alors: 220%
+    - si: éligible barème compétitivité renforcée
+      alors: 270%
+    - si: éligible barème innovation et croissance
+      alors: 350%
 
 contrat salarié . lodeom . multiplicateur:
   note: pour le barème 1 le dénominateur vaut 0,9
+  unité: '%'
   formule: (borne inférieure * paramètre T) / (borne supérieure - borne inférieure)
 
 contrat salarié . lodeom . paramètre T:
