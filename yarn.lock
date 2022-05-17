@@ -7617,11 +7617,11 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "portal:/home/wiinxt/mon-entreprise/modele-social"
     nodemon: ^2.0.15
-    publicodes: 1.0.0-beta.35
+    publicodes: ^1.0.0-beta.35
     publicodes-api: "portal:/home/wiinxt/publicodes/packages/api"
     swagger-ui-dist: ^4.11.0
     ts-node: ^10.7.0
-    typescript: next
+    typescript: 4.7.1-rc
     wait-on: ^6.0.1
   languageName: unknown
   linkType: soft
@@ -17804,19 +17804,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:1.0.0-beta.35":
-  version: 1.0.0-beta.35
-  resolution: "publicodes@npm:1.0.0-beta.35"
-  dependencies:
-    moo: ^0.5.1
-    nearley: ^2.19.2
-    yaml: ^1.9.2
-  peerDependencies:
-    "@types/mocha": ^9.0.0
-  checksum: 0d575559278fd31438c052e3be5676d10af09683b80398f99ab33a8a33f7a80577c6f70df57fdc20d7344e140dc8cf91767dbf59a64e121998ecbe404b599889
-  languageName: node
-  linkType: hard
-
 "publicodes@npm:=1.0.0-beta.40":
   version: 1.0.0-beta.40
   resolution: "publicodes@npm:1.0.0-beta.40"
@@ -17827,6 +17814,19 @@ __metadata:
   peerDependencies:
     "@types/mocha": ^9.0.0
   checksum: 5bfd4d157332d319f2a7b958e0df165756dd94c63f39d47e4f834ff491e8a6311636676ba5f800f48499658a0ea614e2f85c70a3af4fe675918aca6ab3ed7443
+  languageName: node
+  linkType: hard
+
+"publicodes@npm:^1.0.0-beta.35":
+  version: 1.0.0-beta.36
+  resolution: "publicodes@npm:1.0.0-beta.36"
+  dependencies:
+    moo: ^0.5.1
+    nearley: ^2.19.2
+    yaml: ^1.9.2
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 8a4baa98df719ceea80f0873f344b4024881025391a26e4354af7676bedb11519bed2b515eb60cdea8a26ed9d46596f4ba85fd1c3932c4029c6aa9ad84c0d47d
   languageName: node
   linkType: hard
 
@@ -21192,6 +21192,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:4.7.1-rc":
+  version: 4.7.1-rc
+  resolution: "typescript@npm:4.7.1-rc"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: c340f341cb974310b20c49ff52419cd0041e9591d0e25c127d1f8796300b72cf89484448128dfac13f49346b8b56ce257f4e75165b9f941b43d11936849de15c
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.2.4, typescript@npm:^4.3.2":
   version: 4.6.3
   resolution: "typescript@npm:4.6.3"
@@ -21202,13 +21212,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:next":
-  version: 4.8.0-dev.20220516
-  resolution: "typescript@npm:4.8.0-dev.20220516"
+"typescript@patch:typescript@4.7.1-rc#~builtin<compat/typescript>":
+  version: 4.7.1-rc
+  resolution: "typescript@patch:typescript@npm%3A4.7.1-rc#~builtin<compat/typescript>::version=4.7.1-rc&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: d43403ddda1d8bfb8190394bb9f5adfce7289ce85ed591d21c71a2d0ba13313f05e50a0eb14870f35426b2746fee0ef531359a34551afb7824eda89e37c72aea
+  checksum: 76f6f2e270199a2d239204c9f3d866f9817c83da1d870f15a6657437d2ec5f5411f987508effd02a38f438b443c2967c10d06514150911a8bcba4bc53c8630ca
   languageName: node
   linkType: hard
 
@@ -21219,16 +21229,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 6bf45caf847062420592e711bc9c28bf5f9a9a7fa8245343b81493e4ededae33f1774009d1234d911422d1646a2c839f44e1a23ecb111b40a60ac2ea4c1482a8
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@next#~builtin<compat/typescript>":
-  version: 4.8.0-dev.20220516
-  resolution: "typescript@patch:typescript@npm%3A4.8.0-dev.20220516#~builtin<compat/typescript>::version=4.8.0-dev.20220516&hash=bda367"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: b0b2c8323836111458a0da249fee32e7681d7ea784d0157deb22be80c2fdcab84c1ec733c6576365239554a17cc515c1d443a9882f99e097cdc28a187c3faf77
   languageName: node
   linkType: hard
 
