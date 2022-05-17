@@ -29,7 +29,7 @@
 		"koa": "^2.13.4",
 		"koa-static": "^5.0.0",
 		"modele-social": "portal:/home/wiinxt/mon-entreprise/modele-social",
-		"publicodes": "1.0.0-beta.35",
+		"publicodes": "^1.0.0-beta.35",
 		"publicodes-api": "portal:/home/wiinxt/publicodes/packages/api",
 		"swagger-ui-dist": "^4.11.0"
 	},
@@ -43,7 +43,7 @@
 		"@types/swagger-ui-dist": "^3.30.1",
 		"nodemon": "^2.0.15",
 		"ts-node": "^10.7.0",
-		"typescript": "next",
+		"typescript": "4.7.1-rc",
 		"wait-on": "^6.0.1"
 	}
 }
