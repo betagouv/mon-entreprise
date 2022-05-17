@@ -8,14 +8,14 @@
 	"type": "module",
 	"scripts": {
 		"validate": "yarn swagger-cli validate ./source/openapi.yaml",
-		"start": "yarn build:watch & wait-on ./dist && NODE_OPTIONS=--experimental-json-modules nodemon ./source/index.ts",
+		"start": "yarn clean && yarn build:watch & wait-on ./dist && NODE_OPTIONS=--experimental-json-modules nodemon -d 1s ./source/index.ts",
 		"build": "yarn build:openapi && yarn build:ts",
 		"build:watch": "yarn build:openapi:watch & yarn wait:openapi && yarn build:ts:watch --preserveWatchOutput",
 		"build:ts": "NODE_OPTIONS=--experimental-json-modules tsc",
 		"build:ts:watch": "yarn build:ts -w",
 		"wait:openapi": "wait-on ./source/openapi.json",
 		"build:openapi": "yarn run swagger-cli bundle ./source/openapi.yaml > ./source/openapi.json",
-		"build:openapi:watch": "nodemon -w ./source/openapi.yaml -x \"yarn build:openapi\"",
+		"build:openapi:watch": "nodemon -d 500ms -w ./source/openapi.yaml -x \"yarn build:openapi\"",
 		"clean": "rm -rf dist ./source/openapi.json"
 	},
 	"repository": {
