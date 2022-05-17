@@ -1,11 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	formatValue,
-	isNotApplicable,
-	isNotYetDefined,
-	PublicodesExpression,
-} from 'publicodes'
+import Engine, { ASTNode, formatValue, PublicodesExpression } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { keyframes } from 'styled-components'
@@ -54,7 +48,7 @@ export default function Value<Names extends string>({
 	if (isRule && linkToRule) {
 		const ruleEvaluation = e.evaluate(expression)
 		let dottedName = expression as DottedName
-		if (ruleEvaluation.visualisationKind === 'replacement') {
+		if (ruleEvaluation.sourceMap?.mecanismName === 'replacement') {
 			dottedName =
 				(
 					ruleEvaluation as {
@@ -102,33 +96,14 @@ const StyledValue = styled.span<{ $flashOnChange: boolean }>`
 
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
-	defaultIfNotYetDefined?: boolean
 	children: React.ReactNode
 }
 
-export function Condition({
-	expression,
-	defaultIfNotYetDefined = false,
-	children,
-}: ConditionProps) {
+export function Condition({ expression, children }: ConditionProps) {
 	const engine = useEngine()
-	const value = engine.evaluate(expression).nodeValue
-	const boolValue = isNotYetDefined(value)
-		? defaultIfNotYetDefined
-		: isNotApplicable(value)
-		? false
-		: value
+	const nodeValue = engine.evaluate({ '!=': [expression, 'non'] }).nodeValue
 
-	if (Boolean(boolValue) !== boolValue) {
-		console.error(
-			`[ CONDITION NON-BOOLEENNE ] dans le composant Condition: expression=${JSON.stringify(
-				expression,
-				null,
-				2
-			)}`
-		)
-	}
-	if (!boolValue) {
+	if (!nodeValue) {
 		return null
 	}
 
@@ -143,7 +118,7 @@ export function WhenApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluate(dottedName).nodeValue === null) {
+	if (engine.evaluate({ 'est applicable': dottedName }).nodeValue !== true) {
 		return null
 	}
 
@@ -158,7 +133,9 @@ export function WhenNotApplicable({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (engine.evaluate(dottedName).nodeValue !== null) {
+	if (
+		engine.evaluate({ 'est non applicable': dottedName }).nodeValue !== true
+	) {
 		return null
 	}
 
@@ -173,7 +150,7 @@ export function WhenAlreadyDefined({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
+	if (engine.evaluate({ 'est non défini': dottedName }).nodeValue) {
 		return null
 	}
 
@@ -188,7 +165,7 @@ export function WhenNotAlreadyDefined({
 	children: React.ReactNode
 }) {
 	const engine = useEngine()
-	if (!isNotYetDefined(engine.evaluate(dottedName).nodeValue)) {
+	if (engine.evaluate({ 'est défini': dottedName }).nodeValue) {
 		return null
 	}
 

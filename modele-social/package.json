@@ -20,10 +20,10 @@
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
 		"onchange": "^7.1.0",
-		"publicodes": "^1.0.0-beta.32"
+		"publicodes": "=1.0.0-beta.40"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.0-beta.32"
+		"publicodes": "*"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",

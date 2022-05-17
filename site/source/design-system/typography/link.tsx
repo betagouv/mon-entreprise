@@ -1,6 +1,6 @@
+import { FocusStyle } from '@/design-system/global-style'
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
-import { FocusStyle } from '@/design-system/global-style'
 import React, {
 	ComponentPropsWithRef,
 	CSSProperties,
@@ -40,6 +40,8 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 	font-weight: 700;
 	padding: 0;
 	font-size: inherit;
+	background: none;
+	border: none;
 	text-decoration: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {

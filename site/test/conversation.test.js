@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest'
+import rules from 'modele-social'
 import Engine from 'publicodes'
+import { describe, expect, it } from 'vitest'
 import {
 	getNextQuestions,
 	getNextSteps,
 } from '../source/components/utils/useNextQuestion'
-import rules from 'modele-social'
 
 describe('conversation', function () {
 	it('should start with the first missing variable', function () {
@@ -12,12 +12,10 @@ describe('conversation', function () {
 			// TODO - this won't work without the indirection, figure out why
 			top: 'oui',
 			'top . startHere': { formule: { somme: ['a', 'b'] } },
-			'top . a': { formule: 'aa' },
-			'top . b': { formule: 'bb' },
-			'top . aa': { question: '?', titre: 'a', unité: '€' },
-			'top . bb': { question: '?', titre: 'b', unité: '€' },
+			'top . a': { question: '?', titre: 'a', unité: '€' },
+			'top . b': { question: '?', titre: 'b', unité: '€' },
 		}).evaluate('top . startHere').missingVariables
-		expect(getNextQuestions([missingVariables])[0]).to.equal('top . aa')
+		expect(getNextQuestions([missingVariables])[0]).to.equal('top . a')
 	})
 	it('should first ask for questions without defaults, then those with defaults', function () {
 		const engine = new Engine({

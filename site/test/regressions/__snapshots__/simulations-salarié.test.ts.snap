@@ -246,7 +246,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 12`] = `
-"[28342,0,20000,15969,11996]
+"[28342,0,20000,15969,11030]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
