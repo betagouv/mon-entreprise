@@ -24,7 +24,7 @@
 		"noFallthroughCasesInSwitch": true,
 
 		/* Module Resolution Options */
-		"moduleResolution": "Node",
+		"moduleResolution": "NodeNext",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 
