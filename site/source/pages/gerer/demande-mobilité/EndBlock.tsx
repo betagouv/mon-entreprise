@@ -57,15 +57,12 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 					small
 				>
 					<Ul>
-						{missingValues.map(
-							({ title, dottedName, rawNode }) =>
-								rawNode.type !== 'groupe' && (
-									<Li key={dottedName}>
-										<Strong>{title}</Strong>{' '}
-										<small>({utils.ruleParents(dottedName)[0]})</small>
-									</Li>
-								)
-						)}
+						{missingValues.map(({ title, dottedName }) => (
+							<Li key={dottedName}>
+								<Strong>{title}</Strong>{' '}
+								<small>({utils.ruleParents(dottedName)[0]})</small>
+							</Li>
+						))}
 					</Ul>
 				</PopoverWithTrigger>
 			</>

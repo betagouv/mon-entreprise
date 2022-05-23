@@ -133,6 +133,7 @@ describe(`Formulaire demande mobilité (${
 
 		cy.focused().type('Docker').tab().type('Docker')
 
+		cy.contains('Statut marital').click({ force: true })
 		cy.contains('Divorcé').click()
 		cy.contains("Le salarié sera-t'il accompagné d'ayants droits")
 			.parent()
@@ -151,7 +152,8 @@ describe(`Formulaire demande mobilité (${
 			.tab()
 			.type('1978-04-21')
 			.tab()
-		cy.focused().type('{downarrow}').wait(250)
+		cy.contains('Lien de parenté').click({ force: true })
+		cy.contains('Enfant').click()
 		cy.focused().tab()
 		cy.focused().type('{downarrow}').wait(500)
 

@@ -68,6 +68,7 @@ situation . TNS:
     - situation . artiste-auteur
 
 situation . notification:
+  valeur: oui
   type: groupe
   titre: ''
   applicable si:
@@ -87,21 +88,20 @@ situation . notification:
 
 
     Si votre demande est acceptée, vous recevrez immédiatement la possibilité de télécharger votre certificat. Le cas échéant, si une analyse approfondie de votre demande est nécessaire, vous pourrez être sollicité par votre conseiller mobilité internationale afin de produire les compléments utiles au traitement de votre demande.
-  valeur: oui
 
 situation . notification . TI:
+  valeur: oui
   type: groupe
   titre: ''
   non applicable si: situation . auto-entrepreneur
-  valeur: oui
   description: >-
     [Plus d'informations](https://www.urssaf.fr/portail/home/independant/ma-situation-ou-mes-coordonnees/je-souhaite-travailler-hors-de-f.html)
 
 situation . notification . auto-entrepreneur:
+  valeur: oui
   type: groupe
   titre: ''
   applicable si: situation . auto-entrepreneur
-  valeur: oui
   description: >-
     [Plus d'informations](https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#je-voudrais-travailler-a-letrang)
 
@@ -113,23 +113,43 @@ situation . générique:
     - non actif
     - autres
 
+notification salarié TNS:
+  titre: ''
+  description: >-
+    Vous exercez une activité non salariée ou salariée dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à **mobilite-internationale@urssaf.fr**.
+  applicable si:
+    une de ces conditions:
+      - situation . TNS
+      - situation . salarié 2
+  valeur: oui
+  type: groupe
+
+notification autre:
+  titre: ''
+  description: >-
+    Vous exercez une activité dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à **mobilite-internationale@urssaf.fr**.
+  applicable si: situation . générique
+  non applicable si:
+    une de ces conditions:
+      - situation . TNS
+      - situation . salarié 2
+  valeur: oui
+  type: groupe
+
 notification générique:
   titre: ''
-  type: groupe
   valeur: oui
+  type: groupe
   applicable si: situation . générique
 
   description: >-
-    Vous exercez une activité non salariée ou salariée dans un ou plusieurs Etats (pays) membres de l’UE, de l’espace économique européen, en Suisse ou dans un pays lié à la France par pays hors UE. A ce titre, vous devez compléter ce formulaire pour définir votre régime de Sécurité sociale applicable durant cette période et l’envoyer par email à **mobilite-internationale@urssaf.fr**.
-
-
     Après étude de votre demande, si les conditions le permettent, vous recevrez un certificat A1 (ou le formulaire spécifique) attestant du maintien à la Sécurité sociale française.
 
 notification signature:
   applicable si: situation != 'non défini'
   non applicable si: situation . notification
-  valeur: oui
   titre: ''
+  valeur: oui
   type: groupe
   description: |
     #### Ce document doit être signé ✍️
@@ -142,8 +162,8 @@ notification signature:
 infos personnelles:
   applicable si: situation . générique
   titre: Vos informations personnelles
-  type: groupe
   valeur: oui
+  type: groupe
 
 salarié CEA ou TESE:
   applicable si: situation . salarié
@@ -158,8 +178,8 @@ salarié CEA ou TESE . CEA:
 
 infos salarié:
   applicable si: situation . salarié
-  valeur: oui
   titre: Informations concernant le salarié
+  valeur: oui
   type: groupe
 
 données assuré:
@@ -167,77 +187,80 @@ données assuré:
     toutes ces conditions:
       - situation != 'non défini'
       - situation . notification = non
+  valeur: oui
   type: groupe
   titre: ''
-  somme:
-    - nom: nom
+  avec:
+    nom:
       type: texte
       titre: Nom
-    - nom: prénoms
+    prénoms:
       type: texte
       titre: Prénoms
-    - nom: numéro de sécurité sociale
+    numéro de sécurité sociale:
       titre: Numéro de sécurité sociale
       description: Saisissez les 15 chiffres du numéro tel qu'il apparaît sur la carte vitale par exemple.
       type: texte
-    - nom: nationalité
+    nationalité:
       type: texte
       titre: Nationalité
-    - nom: date de naissance
+    date de naissance:
       type: date
       titre: Date de naissance
-    - <<:
-        - titre: commune de naissance
-          nom: commune de naissance
-        - &commune
-          type: groupe
-          titre: ''
-          nom: commune
-          somme:
-            - nom: étranger
-              question: La commune est-elle située à l'étranger ?
-              par défaut: non
-            - nom: commune
-              titre: Commune
-              non applicable si: étranger
-              API: commune
-            - nom: commune étranger
-              applicable si: étranger
-              type: texte
-              titre: Commune
-            - nom: code postal étranger
-              titre: code postal
-              applicable si: étranger
-              type: texte
-            - nom: pays
-              applicable si: étranger
-              titre: Pays
-              type: texte
 
-    - nom: adresse
-      titre: Adresse de résidence actuelle
-      applicable si: commune de naissance
+    titre: commune de naissance
+    commune de naissance: &commune
+      valeur: oui
       type: groupe
-      somme:
-        - *commune
-        - nom: adresse
+      titre: Commune de naissance
+      avec:
+        étranger:
+          question: La commune est-elle située à l'étranger ?
+          par défaut: non
+        commune:
+          titre: Commune
+          non applicable si: étranger
+          API: commune
+        commune étranger:
+          applicable si: étranger
+          type: texte
+          titre: Commune
+        code postal étranger:
+          titre: code postal
+          applicable si: étranger
+          type: texte
+        pays:
+          applicable si: étranger
+          titre: Pays
+          type: texte
+
+    adresse:
+      titre: Adresse de résidence actuelle
+      valeur: oui
+      type: groupe
+      avec:
+        commune:
+          <<: *commune
+          titre: ''
+        adresse:
           type: texte
           titre: Adresse
 
 activité indépendante:
   applicable si: situation . TNS
+  valeur: oui
   type: groupe
   formule: oui
   titre: Votre activité en France
 
 entreprise en france:
   applicable si: situation . salarié
+  valeur: oui
   type: groupe
   formule: oui
   titre: L'entreprise en France
 
 entreprise france:
-  valeur: oui
   applicable si:
     toutes ces conditions:
       - situation != 'non défini'
@@ -280,8 +303,8 @@ contact:
       - situation != 'non défini'
       - situation . notification = non
   titre: Vos coordonnées de contact
-  type: groupe
   valeur: oui
+  type: groupe
 
 contact . nom:
   applicable si: situation . salarié
@@ -304,12 +327,12 @@ demande:
       - situation . intermittent
       - situation . non actif
       - situation . autres
-  type: groupe
   valeur: oui
+  type: groupe
 
 demande . PAM:
-  valeur: oui
   applicable si: situation . TNS
+  valeur: oui
 
 demande . PAM . pays unique:
   question: >
@@ -334,7 +357,6 @@ demande . PAM . date de fin connue:
   question: Votre activité à l'étranger est-elle limitée dans le temps ?
 
 demande . PAM . détachement possible:
-  par défaut: non
   toutes ces conditions:
     - date de fin connue
     - pays unique
@@ -361,8 +383,8 @@ demande . salarié . pluriactivité:
   par défaut: non
 
 demande . salarié . détachement . notification:
-  valeur: oui
   titre: ''
+  valeur: oui
   type: groupe
   description: |
     ### Pays d’accueil & conditions
@@ -421,9 +443,11 @@ demande . salarié . pluriactivité . notification:
 détachement:
   note: 3.3
   applicable si:
-    une de ces conditions:
-      - demande . PAM . détachement possible
-      - demande . salarié . détachement
+    toutes ces conditions:
+      - est défini: demande . PAM . détachement possible
+      - une de ces conditions:
+          - demande . PAM . détachement possible
+          - demande . salarié . détachement
   titre: Demande de détachement
   valeur: oui
   type: groupe
@@ -512,8 +536,8 @@ détachement . pays hors UE . convention bilatérale:
 détachement . pays hors UE . autre:
   applicable si: pays = 'Autre'
   titre: ''
-  type: groupe
   valeur: oui
+  type: groupe
   description: >-
     ### Ce pays n’a pas d’accord de protection sociale avec la France.
 
@@ -572,47 +596,49 @@ détachement . salarié . statut . autre:
 
 détachement . entreprise: &entreprise-étranger
   applicable si: pays
+  valeur: oui
   type: groupe
   titre: Renseignements relatifs à l'entreprise / client / chantier de l'activité à l'étranger
-  somme:
-    - nom: nom
+  avec:
+    nom:
       type: texte
       titre: Nom de l'entreprise / client / chantier
-    - nom: numéro
+    numéro:
       applicable si: pays hors UE
       type: texte
       titre: Numéro d'identification
       description: Le numéro d'identification de l'entreprise dans le pays (l'équivalent du SIREN en France)
-    - nom: adresse connue
+    adresse connue:
       non applicable si: pays hors UE
       question: |
         #### Connaissez vous l'adresse de l'activité à l'étranger ?
       par défaut: non
-    - nom: adresse demandée
+    adresse demandée:
       une de ces conditions:
         - adresse connue
         - pays hors UE
-    - nom: adresse
+    adresse:
       applicable si: adresse demandée
       type: texte
       titre: Adresse
-    - nom: code postal
+    code postal:
       applicable si: adresse demandée
       type: texte
       titre: Code postal
-    - nom: ville
+    ville:
       applicable si: adresse demandée
       type: texte
       titre: Ville
-    - nom: contact entreprise
+    contact entreprise:
       applicable si: pays hors UE
       titre: Coordonnées de contact de l'entreprise
+      valeur: oui
       type: groupe
-      somme:
-        - nom: email
+      avec:
+        email:
           type: texte
           titre: email
-        - nom: téléphone
+        téléphone:
           type: texte
           titre: téléphone
 
@@ -652,6 +678,7 @@ détachement . salarié . pays exercice normal:
     Pour en savoir plus : [site du CLEISS](https://www.cleiss.fr/)
 
 détachement . salarié . liens hierarchique:
+  valeur: oui
   type: groupe
   formule: oui
   titre: 'Le salarié conserve-t-il ses liens hierarchiques avec votre entreprise ?'
@@ -671,17 +698,21 @@ détachement . salarié . remplacement salarié détaché:
   question: >
     #### Votre salarié remplace-t-il un autre salarié détaché ?
 détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
+  valeur: oui
   type: groupe
   titre: Renseignements complémentaires demandés par le pays d’accueil
   applicable si: pays hors UE
-  somme:
-    - nom: profession en France
+  avec:
+    profession en France:
       titre: profession en France
       type: texte
-    - nom: description du travail
+    description du travail:
       titre: courte description du travail effectué à l'étranger
       type: texte
-    - nom: statut marital
+    statut marital:
+      meta:
+        affichage: select
+      titre: Statut marital
       question:
         variations:
           - si: situation . TNS
@@ -690,23 +721,23 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
       une possibilité:
         choix obligatoire: oui
         possibilités: [célibataire, marié, veuf, divorcé, séparé]
-    - nom: statut marital . célibataire
+    statut marital . célibataire:
       valeur: statut marital = 'célibataire'
       titre: célibataire
-    - nom: statut marital . marié
+    statut marital . marié:
       valeur: statut marital = 'marié'
       titre: marié
-    - nom: statut marital . divorcé
+    statut marital . divorcé:
       valeur: statut marital = 'divorcé'
       titre: divorcé
-    - nom: statut marital . séparé
+    statut marital . séparé:
       valeur: statut marital = 'séparé'
       titre: séparé
-    - nom: statut marital . veuf
+    statut marital . veuf:
       valeur: statut marital = 'veuf'
       titre: veuf
 
-    - nom: ayants droits
+    ayants droits:
       question:
         variations:
           - si: situation . TNS
@@ -714,135 +745,142 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
           - sinon: "'Le salarié sera-t'il accompagné d'ayants droits ?'"
       description: Indiquez si des membres de la famille (y compris éloignée) partiront à l’étranger pour la durée de la mission.
       par défaut: non
-    - nom: nombre ayants droits
+    nombre ayants droits:
       applicable si: ayants droits
       type: nombre
       unité: personnes
       par défaut: 1
-
       question: Combien d'ayants droits partiront ?
-    - &ayant-droit
-      nom: ayant droit n°1
-      titre: ayant droit n°1
-      type: groupe
-      applicable si: nombre ayants droits > 0
-      somme:
-        - nom: Nom
-          titre: Nom
-          type: texte
-        - nom: Prénoms
-          titre: prénoms
-          type: texte
-        - nom: date de naissance
-          titre: Date de naissance
-          type: date
-        - nom: lien de parenté
-          titre: Lien de parenté
-          question: Quel est le lien de parenté de l'ayant droit ?
-          une possibilité:
-            choix obligatoire: oui
-            possibilités:
-              [
-                mère,
-                père,
-                conjoint,
-                enfant,
-                soeur,
-                frère,
-                grand-père,
-                grand-mère,
-                tante,
-                oncle,
-                cousin,
-                cousine,
-                neveu,
-                nièce,
-              ]
-        - nom: lien de parenté . mère
-          valeur: lien de parenté = 'mère'
-          titre: mère
-        - nom: lien de parenté . père
-          valeur: lien de parenté = 'père'
-          titre: père
-        - nom: lien de parenté . conjoint
-          valeur: lien de parenté = 'conjoint'
-          titre: conjoint
-        - nom: lien de parenté . enfant
-          valeur: lien de parenté = 'enfant'
-          titre: enfant
-        - nom: lien de parenté . soeur
-          valeur: lien de parenté = 'soeur'
-          titre: soeur
-        - nom: lien de parenté . frère
-          valeur: lien de parenté = 'frère'
-          titre: frère
-        - nom: lien de parenté . grand-père
-          valeur: lien de parenté = 'grand'
-          titre: grand-père
-        - nom: lien de parenté . grand-mère
-          valeur: lien de parenté = 'grand'
-          titre: grand-mère
-        - nom: lien de parenté . tante
-          valeur: lien de parenté = 'tante'
-          titre: tante
-        - nom: lien de parenté . oncle
-          valeur: lien de parenté = 'oncle'
-          titre: oncle
-        - nom: lien de parenté . cousin
-          valeur: lien de parenté = 'cousin'
-          titre: cousin
-        - nom: lien de parenté . cousine
-          valeur: lien de parenté = 'cousine'
-          titre: cousine
-        - nom: lien de parenté . neveu
-          valeur: lien de parenté = 'neveu'
-          titre: neveu
-        - nom: lien de parenté . nièce
-          valeur: lien de parenté = 'nièce'
-          titre: nièce
-    - <<: *ayant-droit
-      nom: ayant droit n°2
+      avec:
+        ayant droit n°1: &ayant-droit
+          titre: ayant droit n°1
+          valeur: oui
+          type: groupe
+          applicable si: nombre ayants droits > 0
+          avec:
+            nom:
+              titre: Nom
+              type: texte
+            prénoms:
+              titre: prénoms
+              type: texte
+            date de naissance:
+              titre: Date de naissance
+              type: date
+            lien de parenté:
+              titre: Lien de parenté
+
+              meta:
+                affichage: select
+              une possibilité:
+                choix obligatoire: oui
+                possibilités:
+                  [
+                    mère,
+                    père,
+                    conjoint,
+                    enfant,
+                    soeur,
+                    frère,
+                    grand-père,
+                    grand-mère,
+                    tante,
+                    oncle,
+                    cousin,
+                    cousine,
+                    neveu,
+                    nièce,
+                  ]
+            lien de parenté . mère:
+              valeur: lien de parenté = 'mère'
+              titre: mère
+            lien de parenté . père:
+              valeur: lien de parenté = 'père'
+              titre: père
+            lien de parenté . conjoint:
+              valeur: lien de parenté = 'conjoint'
+              titre: conjoint
+            lien de parenté . enfant:
+              valeur: lien de parenté = 'enfant'
+              titre: enfant
+            lien de parenté . soeur:
+              valeur: lien de parenté = 'soeur'
+              titre: soeur
+            lien de parenté . frère:
+              valeur: lien de parenté = 'frère'
+              titre: frère
+            lien de parenté . grand-père:
+              valeur: lien de parenté = 'grand'
+              titre: grand-père
+            lien de parenté . grand-mère:
+              valeur: lien de parenté = 'grand'
+              titre: grand-mère
+            lien de parenté . tante:
+              valeur: lien de parenté = 'tante'
+              titre: tante
+            lien de parenté . oncle:
+              valeur: lien de parenté = 'oncle'
+              titre: oncle
+            lien de parenté . cousin:
+              valeur: lien de parenté = 'cousin'
+              titre: cousin
+            lien de parenté . cousine:
+              valeur: lien de parenté = 'cousine'
+              titre: cousine
+            lien de parenté . neveu:
+              valeur: lien de parenté = 'neveu'
+              titre: neveu
+            lien de parenté . nièce:
+              valeur: lien de parenté = 'nièce'
+              titre: nièce
+    ayant droit n°2:
+      <<: *ayant-droit
       titre: ayant droit n°2
       applicable si: nombre ayants droits > 1
-    - <<: *ayant-droit
-      nom: ayant droit n°3
+    ayant droit n°3:
+      <<: *ayant-droit
       titre: ayant droit n°3
       applicable si: nombre ayants droits > 2
-    - <<: *ayant-droit
-      nom: ayant droit n°4
+    ayant droit n°4:
+      <<: *ayant-droit
       titre: ayant droit n°4
       applicable si: nombre ayants droits > 3
-    - <<: *ayant-droit
-      nom: ayant droit n°5
+    ayant droit n°5:
+      <<: *ayant-droit
       titre: ayant droit n°5
       applicable si: nombre ayants droits > 4
-    - <<: *ayant-droit
-      nom: ayant droit n°6
+    ayant droit n°6:
+      <<: *ayant-droit
       titre: ayant droit n°6
       applicable si: nombre ayants droits > 5
-    - <<: *ayant-droit
-      nom: ayant droit n°7
+    ayant droit n°7:
+      <<: *ayant-droit
       titre: ayant droit n°7
       applicable si: nombre ayants droits > 6
-    - <<: *ayant-droit
-      nom: ayant droit n°8
+    ayant droit n°8:
+      <<: *ayant-droit
       titre: ayant droit n°8
       applicable si: nombre ayants droits > 7
 
 pluriactivité:
-  non applicable si: situation . notification
+  non applicable si:
+    une de ces conditions:
+      - situation = 'non défini'
+      - situation . notification
+      - est non défini: demande . salarié
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
           - demande . PAM
+          - est défini: demande . PAM . détachement possible
           - demande . PAM . détachement possible = non
       - demande . salarié . pluriactivité
       - situation . salarié 2
       - situation . intermittent
       - situation . non actif
       - situation . autres
-  valeur: oui
   titre: Demande de pluriactivité
+  valeur: oui
   type: groupe
 
 pluriactivité . nombre:
@@ -861,18 +899,19 @@ pluriactivité . nombre:
 pluriactivité . pays hors UE: non
 
 pluriactivité . pays n°1: &pluriactivité
+  valeur: oui
   type: groupe
   applicable si: nombre >= 1
-  somme:
-    - nom: pays
+  avec:
+    pays:
       titre: Pays
       API: pays détachement
       par défaut: non
-    - nom: pays . autre
+    pays . autre:
       applicable si: pays = 'Autre'
       titre: Nom du pays
       type: texte
-    - nom: statut
+    statut:
       question:
         variations:
           - si: situation . salarié
@@ -888,26 +927,26 @@ pluriactivité . pays n°1: &pluriactivité
             agent contractuel,
             autre,
           ]
-    - nom: statut . salarié
+    statut . salarié:
       titre: salarié
       valeur: statut = 'salarié'
-    - nom: statut . travailleur indépendant
+    statut . travailleur indépendant:
       titre: travailleur indépendant
       valeur: statut = 'travailleur indépendant'
-    - nom: statut . fonctionnaire
+    statut . fonctionnaire:
       titre: fonctionnaire
       valeur: statut = 'fonctionnaire'
-    - nom: statut . agent contractuel
+    statut . agent contractuel:
       titre: agent contractuel
       valeur: statut = 'agent contractuel'
-    - nom: statut . autre
+    statut . autre:
       titre: autre
       valeur: statut = 'autre'
-    - nom: profession exercée
+    profession exercée:
       titre: profession exercée
       type: texte
 
-    - nom: entreprise
+    entreprise:
       titre: Coordonnée du lieu d'exercice
       <<: *entreprise-étranger
 
@@ -941,14 +980,15 @@ pluriactivité . période:
     Votre demande sera automatiquement saisie pour une durée de 12 mois.
     Si la mission/contrat venait à dépasser 12 mois, vous devrez renouveler votre demande tous les ans.
 
+  valeur: oui
   type: groupe
-  somme:
-    - nom: date de fin connue
+  avec:
+    date de fin connue:
       question: Connaissez-vous la date de fin ?
-    - nom: début
+    début:
       titre: date de début
       type: date
-    - nom: fin
+    fin:
       applicable si: date de fin connue
       titre: date de fin
       type: date
@@ -960,8 +1000,8 @@ pluriactivité . activité substantielle en France:
       - situation . autres
   applicable si: nombre
   titre: Activité en France
-  type: groupe
   valeur: oui
+  type: groupe
 pluriactivité . activité substantielle en France . question:
   non applicable si:
     une de ces conditions:
@@ -995,8 +1035,8 @@ pluriactivité . activité substantielle en France . critère salarié . Le temp
 pluriactivité . activité substantielle en France . critère salarié . La rémunération:
 pluriactivité . activité substantielle en France . critère salarié 2:
   applicable si: situation . salarié 2
-  valeur: oui
   titre: ''
+  valeur: oui
   type: groupe
   description: |-
     Pour faire cette estimation, appuyez- vous sur le **temps de travail**.
@@ -1071,8 +1111,8 @@ pluriactivité . pays centre d'intérêt:
           - situation . salarié 2
       - nombre
   non applicable si: activité substantielle en France . question
+  valeur: oui
   type: groupe
-  formule: oui
 
   titre: Quel sera votre pays "centre d'intêret" pour les 12 prochains mois ?
   description: >-
@@ -1087,7 +1127,7 @@ pluriactivité . pays centre d'intérêt:
 
 
 
-    #### Exemple 
+    #### Exemple
 
     *M. Z est travailleur non salarié. Il exerce une partie de son activité en
     Belgique et une partie aux Pays-Bas. Il vit en France. Il ne possède pas
@@ -1102,9 +1142,11 @@ pluriactivité . pays centre d'intérêt:
     d’intérêt de son activité.*
 
 pluriactivité . pays centre d'intérêt . pays:
+  applicable si:
+    est défini: pays centre d'intérêt
   API: pays détachement
-  par défaut: non
   titre: Pays "centre d'intêret"
+
 pluriactivité . pays centre d'intérêt . pays . autre:
   applicable si: pays = 'Autre'
   titre: Nom du pays
@@ -1126,7 +1168,7 @@ pluriactivité . télétravail:
 pluriactivité . télétravail . pays:
   applicable si: télétravail
   question: Depuis quel pays ?
-  API: pays détachement
+  API: pays détachement plus France
 
 pluriactivité . télétravail . fréquence:
   applicable si: télétravail
@@ -1154,6 +1196,7 @@ pluriactivité . chômage étranger . pays:
   API: pays détachement
 
 commentaires additionnels:
+  valeur: oui
   type: groupe
   formule: oui
   applicable si:
