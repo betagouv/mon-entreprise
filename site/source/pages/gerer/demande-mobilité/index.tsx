@@ -11,7 +11,7 @@ import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import { evaluateQuestion, hash, omit } from '@/utils'
+import { evaluateQuestion, getMeta, hash, omit } from '@/utils'
 import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
@@ -55,14 +55,16 @@ const useFields = (
 ): Array<ReturnType<Engine['getRule']>> => {
 	return Object.keys(engine.getParsedRules())
 		.filter((dottedName) => {
-			const evaluation = engine.evaluate(dottedName)
+			const evaluation = engine.evaluate({ 'est applicable': dottedName })
 			const rule = engine.getRule(dottedName)
+			const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
 			return (
-				evaluation.nodeValue !== null &&
-				(evaluateQuestion(engine, rule) ||
+				evaluation.nodeValue === true &&
+				(rule.rawNode.question ||
 					rule.rawNode.API ||
-					rule.rawNode.type)
+					rule.rawNode.type ||
+					meta?.affichage)
 			)
 		})
 		.map((dottedName) => engine.getRule(dottedName))
@@ -94,12 +96,15 @@ function FormulairePublicodes() {
 	}, [setSituation])
 
 	engine.setSituation(situation)
+
 	const fields = useFields(engine)
 	const missingValues = Object.keys(
 		fields.reduce(
-			(missingValues, { dottedName }) => ({
+			(missingValues, { dottedName, rawNode }) => ({
 				...missingValues,
-				...engine.evaluate(dottedName).missingVariables,
+				...(rawNode.type === 'groupe'
+					? {}
+					: engine.evaluate(dottedName).missingVariables),
 			}),
 			{}
 		)
@@ -109,7 +114,13 @@ function FormulairePublicodes() {
 		<>
 			<Grid container spacing={2}>
 				{fields.map(
-					({ rawNode: { description, type, question }, title, dottedName }) => {
+					({
+						rawNode: { description, type, question, ...rawNode },
+						title,
+						dottedName,
+					}) => {
+						const meta = getMeta<{ affichage?: string }>(rawNode, {})
+
 						const headerLevel = Math.min(dottedName.split(' . ').length + 1, 6)
 						const HeaderComponent = headings.fromLevel(headerLevel)
 
@@ -136,7 +147,12 @@ function FormulairePublicodes() {
 									<Grid
 										item
 										xs={12}
-										md={question || type === 'booléen' ? 12 : 6}
+										md={
+											(question || type === 'booléen') &&
+											meta?.affichage !== 'select'
+												? 12
+												: 6
+										}
 									>
 										{question && (
 											<div
