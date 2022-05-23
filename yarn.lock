@@ -2941,9 +2941,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.36":
-  version: 1.0.0-beta.36
-  resolution: "@publicodes/api@npm:1.0.0-beta.36"
+"@publicodes/api@npm:^1.0.0-beta.37":
+  version: 1.0.0-beta.37
+  resolution: "@publicodes/api@npm:1.0.0-beta.37"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -2952,7 +2952,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.35
-  checksum: f25a8d7d3b64b409c63cbd1c472dbe78ac7155e716badea21a18061265b4496fd075de8d21bbbdfe412a0e8bea4b2c43013f536238b9396cf48dbc32edfb8590
+  checksum: d76304cac8a9e94be70e27246a134801216cce5da70e4edeba52a42d688748050aada2482f939f0fdd032e00913e1a20c279fa99aae0bb7f9c640835808e2b39
   languageName: node
   linkType: hard
 
@@ -7733,7 +7733,7 @@ __metadata:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
     "@netlify/functions": ^1.0.0
-    "@publicodes/api": ^1.0.0-beta.36
+    "@publicodes/api": ^1.0.0-beta.37
     "@types/koa": ^2.13.4
     "@types/koa-static": ^4.0.2
     "@types/koa__cors": ^3.3.0
@@ -7745,7 +7745,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.36
+    publicodes: ^1.0.0-beta.37
     serverless-http: ^3.0.1
     swagger-ui-dist: ^4.11.0
     ts-node: ^10.7.0
@@ -18318,16 +18318,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.36":
-  version: 1.0.0-beta.36
-  resolution: "publicodes@npm:1.0.0-beta.36"
+"publicodes@npm:^1.0.0-beta.37":
+  version: 1.0.0-beta.37
+  resolution: "publicodes@npm:1.0.0-beta.37"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 8a4baa98df719ceea80f0873f344b4024881025391a26e4354af7676bedb11519bed2b515eb60cdea8a26ed9d46596f4ba85fd1c3932c4029c6aa9ad84c0d47d
+  checksum: 44497196de20c33850df3357c614c6037fdacffb17ecbd4eed7796b27f94e390da1ac97861364f72f60c921116b945b24a1c7383327c2ba3aa3fab33b18953cd
   languageName: node
   linkType: hard
 
