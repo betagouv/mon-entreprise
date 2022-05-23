@@ -3,7 +3,7 @@
 		/* Basic Options */
 		// "incremental": true, // disabled for tsup, see https://github.com/egoist/tsup/issues/615 for implementation status
 		"target": "ES2020",
-		"module": "Node16",
+		"module": "NodeNext",
 		"outDir": "dist",
 		"declaration": true,
 
@@ -24,7 +24,7 @@
 		"noFallthroughCasesInSwitch": true,
 
 		/* Module Resolution Options */
-		"moduleResolution": "Node16",
+		"moduleResolution": "NodeNext",
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
@@ -35,6 +35,6 @@
 	"ts-node": {
 		"esm": true
 	},
-	"include": ["source", "serverless.ts"],
+	"include": ["source", "serverless.ts", "tsup.config.ts"],
 	"exclude": ["**/node_modules", "**/dist", "**/*.test.*"]
 }
