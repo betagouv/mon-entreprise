@@ -111,8 +111,26 @@ jobs:
             site/storybook-static/**
           if-no-files-found: error
 
+  build-api:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
+      - run: yarn install --frozen-lockfile
+      - name: Build API
+        run: yarn workspace api build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: static-api
+          path: |
+            api/dist/**
+          if-no-files-found: error
+
   deploy-preview:
-    needs: [build, build-storybook, deploy-context]
+    needs: [build, build-storybook, build-api, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
@@ -127,6 +145,10 @@ jobs:
         with:
           name: static-storybook
           path: dist/dev/storybook
+      - uses: actions/download-artifact@v2
+        with:
+          name: static-api
+          path: dist/netlify/functions/api
       - id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
