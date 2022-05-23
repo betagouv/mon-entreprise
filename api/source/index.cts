@@ -1,12 +1,17 @@
 import cors from '@koa/cors'
 import Router from '@koa/router'
+// @ts-ignore
 import { koaMiddleware as publicodesAPI } from '@publicodes/api'
 import { readFileSync } from 'fs'
 import Koa from 'koa'
+// @ts-ignore
 import rules from 'modele-social'
 import path from 'path'
+// @ts-ignore
 import Engine from 'publicodes'
+// @ts-ignore
 import { docRoutes } from './route/doc.js'
+// @ts-ignore
 import { openapiRoutes } from './route/openapi.js'
 
 type State = Koa.DefaultState
