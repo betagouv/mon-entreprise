@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		/* Basic Options */
-		"incremental": true,
-		"target": "ES2022",
+		// "incremental": true, // disabled for tsup, see https://github.com/egoist/tsup/issues/615 for implementation status
+		"target": "ES2020",
 		"module": "Node16",
 		"outDir": "dist",
 		"declaration": true,
@@ -25,6 +25,7 @@
 
 		/* Module Resolution Options */
 		"moduleResolution": "Node16",
+		"isolatedModules": true,
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 
@@ -34,6 +35,6 @@
 	"ts-node": {
 		"esm": true
 	},
-	"include": ["source"],
+	"include": ["source", "serverless.ts"],
 	"exclude": ["**/node_modules", "**/dist", "**/*.test.*"]
 }
