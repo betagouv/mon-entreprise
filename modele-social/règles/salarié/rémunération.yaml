@@ -1,0 +1,648 @@
+salarié . rémunération:
+
+salarié . rémunération . net de cotisations:
+  titre: Salaire net de cotisations
+  type: rémunération
+  formule:
+    somme:
+      - brut
+      - (- cotisations . salarié)
+
+salarié . rémunération . net avec revenus de remplacement:
+  formule:
+    somme:
+      - net de cotisations
+      - revenus de remplacement
+      - (- CSG et CRDS . revenus de remplacement)
+      - (- cotisations . maladie sur les revenus de remplacement)
+
+salarié . rémunération . net imposable:
+  titre: Salaire net imposable
+  type: salaire
+  description: |
+    C'est la base utilisée pour calculer l'impôt sur le revenu.
+  valeur:
+    nom: base
+    description: Le net imposable avant les exonérations et déductions
+    somme:
+      - net avec revenus de remplacement
+      - avantages sociaux
+      - CSG et CRDS . non déductible
+  abattement:
+    somme:
+      - frais professionnels . part déductible
+      - prime d'impatriation
+      - exonération d'impôt des stagiaires et apprentis
+      - heures supplémentaires et complémentaires défiscalisées
+      - retraite supplémentaire . exonération fiscale
+      - prévoyance . exonération fiscale
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
+  unité: €/mois
+  formule:
+    valeur:
+      somme:
+        - heures supplémentaires
+        - heures complémentaires
+    plafond: 5358 €/an
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+salarié . rémunération . net:
+  titre: Salaire net
+  identifiant court: salaire-net
+  unité: €/mois
+  type: salaire
+  question: Quel est votre salaire net ?
+  résumé: Salaire net avant impôt
+  description: >-
+    C'est le montant que le salarié toucherait à la fin du mois avant de payer
+    l'impôt sur le revenu.
+
+    Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la
+    source).
+
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou
+    diminution des cotisations) alors que le salaire brut est contractuel (pour
+    le changer, il faut signer un avenant au contrat).
+
+  formule:
+    somme:
+      - net avec revenus de remplacement
+      - (- avantages en nature . montant)
+      - (- frais professionnels . titres-restaurant . montant)
+
+salarié . rémunération . net après impôt:
+  titre: Salaire net après impôt
+  identifiant court: salaire-net-apres-impot
+  résumé: Versé sur le compte bancaire
+  question: Quel est le revenu net du salarié après impôt ?
+  type: salaire
+  unité: €/mois
+  description: |
+    Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
+
+    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé).
+
+    C'est une bonne estimation du revenu net d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
+
+    Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
+  références:
+    Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
+
+  formule: net - impôt . montant
+
+salarié . rémunération . contrôle smic:
+  type: notification
+  sévérité: avertissement
+  formule: assiette de vérification du SMIC < contrat . temps de travail . SMIC
+  description: Le salaire saisi est inférieur au SMIC.
+
+salarié . rémunération . taux horaire:
+  unité: €/heure
+  formule: assiette de vérification du SMIC / temps de travail
+
+salarié . rémunération . taux horaire . heures supplémentaires:
+  titre: taux horaire (heure supplémentaire)
+  description: >
+    Le taux horaire utilisé pour calculer la rémunération liée au heures
+    supplémentaires. Il intègre les avantages en nature et les primes
+    constituant la contrepartie d'un travail fourni.
+  unité: €/heure
+  formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat . temps de travail
+  références:
+    e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
+    rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
+    legisocial: https://www.legisocial.fr/actualites-sociales/1074-avantage-en-nature-et-heures-supplementaires-les-consequences-sur-le-bulletin-de-paie.html
+
+salarié . rémunération . assiette de vérification du SMIC:
+  description: >
+    C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
+  unité: €/mois
+  formule:
+    somme:
+      - contrat . salaire brut
+      - avantages en nature . montant
+      - primes . activité
+  note: >
+    Les primes de fin d'année ou de 13ième mois sont prises en compte dans
+    l'assiette de vérification du SMIC mais seulement le mois où elles sont
+    payées (et non de manière lissée sur l'année), c'est pourquoi nous ne les
+    incluons pas dans cette formule.
+
+salarié . rémunération . assiette congés payés:
+  titre: Assiette pour le calcul de l'indemnité de congés payés
+  description: >-
+    Pendant ses congés, le salarié ne perçoit pas son salaire. Il perçoit une
+    indemnité de congés payés.
+
+    Toutes les sommes ayant le caractère de salaire sont prises en compte pour
+    déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en
+    compte.
+  somme:
+    - contrat . salaire brut
+    - heures supplémentaires
+    - heures complémentaires
+    - avantages en nature
+    - primes . ancienneté
+    - primes . activité
+    - indemnités CDD . fin de contrat
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F33359
+
+salarié . rémunération . primes:
+  description: |
+    Les primes sont des compléments de salaire versés au salarié en vertu du
+    contrat de travail, de la convention collective, d'un usage d'entreprise, ou
+    bien à titre bénévole par l'employeur.
+
+    Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
+    sur le revenu.
+
+  formule:
+    somme:
+      - base
+      - activité
+      - primes . ancienneté
+      - fin d'année . montant
+
+salarié . rémunération . primes . base:
+  formule: 0€/mois
+
+salarié . rémunération . primes . activité:
+  unité: €/mois
+
+  titre: primes d'activité
+  description: >
+    Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
+
+    Ces primes sont prises en compte pour le calcul du salaire minimum
+  formule:
+    somme:
+      - activité . conventionnelles
+      - activité . base
+
+salarié . rémunération . primes . activité . base:
+  titre: primes d'activité
+  question: Quel est le montant des primes liées à l'activité du salarié ?
+  par défaut: 0 €/mois
+
+salarié . rémunération . primes . activité . conventionnelles:
+  formule: 0 €/mois
+
+salarié . rémunération . primes . ancienneté:
+  formule: 0 €/mois
+
+salarié . rémunération . primes . fin d'année:
+  titre: Prime de fin d'année ou de treizième mois
+  question: Le salarié bénéficie-t-il d'un treizième mois ?
+  description: >
+    La prime de treizième mois est un avantage accordé au salarié qui peut être
+    prévu par la convention collective ou le contrat de travail. Elle est
+    généralement versée en fin d'année.
+  par défaut: non
+  avec:
+    montant:
+      titre: Prime de fin d'année ou de treizième mois
+      description: |
+        Cette prime est le plus souvent versée en une seule fois à la fin de
+        l'année.
+
+        Les salariés à temps partiel ont dont à la prime de fin d'année dans les
+        mêmes conditions que les autres salariés en proportion de leur durée du
+        travail.
+      produit:
+        assiette: assiette de vérification du SMIC * contrat . temps de travail . quotité
+        facteur: (13 mois - 1 an) / 1 an
+  note: >
+    Certaines entreprises proposent une prime de fin d'année sur une base de
+    13,5 mois, 14 mois voire 15 mois.
+
+salarié . rémunération . indemnités CDD:
+  applicable si: contrat . CDD
+  note: >-
+    Ces indemnités sont versées à la fin du contrat, mais dans le simulateur elles sont réparties sur les salaires mensuels de la durée du contrat. 
+    Cela est dû à une limitation du moteur de calcul, qui ne gère pas encore la temporalité.
+  somme:
+    - fin de contrat
+    - congés payés
+
+  avec:
+    congés payés:
+      titre: indemnité compensatrice de congés payés
+
+      description: |
+        Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+        en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+        Il est cependant courant que le salarié ne puisse pas prendre tous ses
+        congés avant le terme de son contrat, il bénéficie alors d'une indemnité
+        compensatrice de congés payés versée par l'employeur.
+
+        Il existe deux méthodes pour calculer l'indemnité de congés non pris.
+
+        ### Méthode "du dixième"
+
+        Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci
+        a accompli des heures supplémentaires. Une indemnité égale au dixième de la
+        rémunération brute totale perçue par le salarié au cours de la période de
+        référence.
+
+        ### Méthode "maintien du salaire"
+
+        Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
+        bénéficié d’une augmentation de salaire.
+
+        Pour effectuer le calcul, l'employeur peut tenir compte soit :
+        - de l'horaire réel du mois,
+        - du nombre moyen de jours ouvrés (ou ouvrables),
+        - du nombre réel de jours ouvrés (ou ouvrables).
+
+      unité: €/mois
+      non applicable si:
+        une de ces conditions:
+          - salarié . contrat . CDD . congés pris . proportion = 100%
+          - salarié . contrat . CDD . reconduction en CDI
+      le maximum de:
+        - nom: Méthode du dixième
+          produit:
+            assiette: assiette congés payés
+            taux: 10%
+          abattement: salarié . contrat . CDD . congés pris . proportion
+
+        - nom: Méthode du maintien de salaire
+          produit:
+            assiette: assiette congés payés
+            facteur: salarié . contrat . CDD . congés pris . proportion par rapport aux jours ouvrés
+
+      note: |
+        L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
+        À noter, la loi El Khomri modifie l'article L3141-12:
+        - avant : Les congés peuvent être pris dès l'ouverture des droits
+        - maintenant : Les congés peuvent être pris dès l’embauche
+      références:
+        Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
+        Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
+        Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
+        assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
+        Méthode du maintien de salaire: https://www.service-public.fr/particuliers/vosdroits/F33359
+
+    fin de contrat:
+      titre: indemnité de fin de contrat
+      alias: prime de précarité
+      applicable si: contrat . CDD . indemnité de fin de contrat
+      produit:
+        assiette:
+          somme:
+            - contrat . salaire brut
+            - avantages en nature . montant
+            - primes
+            - heures supplémentaires
+        taux: 10%
+      référence:
+        Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
+        service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F40
+
+salarié . rémunération . brut:
+  description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
+  titre: Rémunération brute
+  # Pour les frais professionnels, et les cotisations de prévoyance facultative
+  # et de retraite complémentaire on ne ré-intègre ici que la part employeur
+  # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
+  # base` dont elle vient en déduction).
+  somme:
+    - contrat . salaire brut
+    - avantages en nature . montant
+    - primes
+    - indemnités CDD
+    - heures supplémentaires
+    - heures complémentaires
+    - frais professionnels
+    - prévoyance . employeur
+    - retraite supplémentaire . employeur
+  abattement: activité partielle . retrait absence
+
+salarié . rémunération . heures supplémentaires:
+  titre: rémunération heures supplémentaires
+  description: La rémunération relative aux heures supplémentaires
+  formule:
+    produit:
+      assiette: taux horaire . heures supplémentaires
+      facteur:
+        somme:
+          - temps de travail . heures supplémentaires
+          - temps de travail . heures supplémentaires . majoration
+
+salarié . rémunération . heures complémentaires:
+  titre: rémunération heures complémentaires
+  description: La rémunération relative aux heures complémentaires
+  formule:
+    produit:
+      assiette: taux horaire . heures supplémentaires
+      facteur:
+        somme:
+          - temps de travail . heures complémentaires
+          - temps de travail . heures complémentaires . majoration
+
+salarié . rémunération . revenus de remplacement:
+  description: >-
+    Les revenus de remplacement sont les revenus perçus en remplacement de la
+    rémunération du travail : allocations de chômage ou de chômage partiel,
+    indemnités maladie ou accident du travail, pension de retraite, revenu
+    d'intégration sociale, etc.
+
+    Ces revenus sont imposables mais sont exonérés de cotisations sociales. Ils
+    sont soumis à la CSG/CRDS avec un taux spécifique.
+  formule:
+    somme:
+      - activité partielle . indemnités
+  note: >-
+    L'indemnité complémentaire n'est pas ajoutée ici car elle est
+    systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
+    revenus.
+
+    L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
+
+salarié . rémunération . frais professionnels:
+  titre: remboursement de frais
+  unité: €/mois
+  description: >-
+    Les frais professionnels correspondent à des dépenses engagées par le
+    salarié pour les besoins de son activité professionnelle. Ces frais sont
+    ensuite remboursés par l’employeur.
+
+
+    Le dédommagement de ces frais peut prendre la forme :
+
+      - d’un remboursement des dépenses réelles sur justificatifs ;
+
+      - d’un versement d’allocations forfaitaires ;
+
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+
+
+    Les frais professionnels sont généralement exclus de la base de calcul des
+    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de
+    dépassement de plafond pour les remboursements forfaitaires (
+    frais de panier, titres-restaurant, forfait mobilités durables...).
+  formule:
+    somme:
+      - titres-restaurant . montant . part employeur
+      - abonnement transports publics . prise en charge
+      - transports personnels
+
+salarié . rémunération . frais professionnels . part déductible:
+  titre: Frais professionnels déductibles
+  description: >-
+    Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
+    de l'impôt sur le revenu.
+  formule:
+    somme:
+      - titres-restaurant . part déductible
+      - abonnement transports publics . prise en charge
+      - transports personnels . part déductible
+
+salarié . rémunération . frais professionnels . titres-restaurant:
+  icônes: 🍽️
+  description: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
+    régler la consommation :
+
+      - d’un repas,
+
+      - de préparations alimentaires directement consommables,
+
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+
+  question: Le salarié reçoit-il des titres-restaurant ?
+  par défaut: non
+
+salarié . rémunération . frais professionnels . titres-restaurant . montant:
+  produit:
+    assiette: montant unitaire
+    facteur: nombre
+    composantes:
+      - attributs:
+          nom: part employeur
+        taux: taux participation employeur
+      - attributs:
+          nom: part salarié
+        taux: 100% - taux participation employeur
+
+salarié . rémunération . frais professionnels . titres-restaurant . part déductible:
+  titre: Titres-restaurant (déductible)
+  valeur: montant . part employeur
+  plafond:
+    produit:
+      assiette: nombre
+      facteur:
+        nom: max
+        valeur:
+          variations:
+            - si: date >= 01/2022
+              alors: 5.69 €/titres-restaurant
+            - si: date >= 01/2021
+              alors: 5.55 €/titres-restaurant
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
+
+salarié . rémunération . frais professionnels . titres-restaurant . nombre:
+  question: Combien de titres-restaurant sont distribués au salarié ?
+  arrondi: oui
+  par défaut:
+    produit:
+      assiette: 19 titres-restaurant/mois
+      facteur: temps de travail . quotité
+  suggestions:
+    5 repas/semaines: 5 titres-restaurant/semaines * période . semaines par mois
+    3 repas/semaine: 3 titres-restaurant/semaines * période . semaines par mois
+
+salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire:
+  question: Quelle est la valeur unitaire du titre-restaurant ?
+  description: >-
+    Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
+    revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
+    dépasser 11,38€ par titre en 2021.
+  par défaut: 8 €/titre-restaurant
+  suggestions:
+    faible: 6 €/titre-restaurant
+    moyenne: 8 €/titre-restaurant
+    max exonéré:
+      valeur: part déductible . max / taux participation employeur
+      unité: € / titre-restaurant
+
+salarié . rémunération . frais professionnels . titres-restaurant . taux participation employeur:
+  description: >-
+    Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
+    de 60% maximum.
+  question: Quelle est la participation de l'employeur ?
+  par défaut: 50 %
+  suggestions:
+    50%: 50 %
+    60%: 60 %
+
+salarié . rémunération . frais professionnels . titres-restaurant . contrôle taux employeur min:
+  type: notification
+  sévérité: avertissement
+  formule: taux participation employeur < 50%
+  description: La part employeur du titre-restaurant doit être de 50% au minimum
+
+salarié . rémunération . frais professionnels . titres-restaurant . contrôle taux employeur max:
+  type: notification
+  sévérité: avertissement
+  formule: taux participation employeur > 60%
+  description: La part employeur du titre-restaurant doit être de 60% au maximum
+
+salarié . rémunération . frais professionnels . abonnement transports publics:
+  icônes: 🚍
+
+salarié . rémunération . frais professionnels . abonnement transports publics . montant:
+  titre: Abonnement aux transports publics
+  question: Quel montant le salarié dépense-t-il en abonnement aux transports publics chaque mois ?
+  unité: €/mois
+  par défaut: 0 €/mois
+  description: |
+    L'employeur doit prendre en charge 50% du montant dépensé par le salarié pour les transports publics lui permettant de se rendre sur son lieu de travail.
+
+    Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
+
+    Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+  références:
+    Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
+    Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+  suggestions:
+    Navigo: 75 €/mois
+    Técély: 65 €/mois
+    RTM: 40 €/mois
+    Tisséo: 42.50 €/mois
+    TBM: 42.20 €/mois
+
+salarié . rémunération . frais professionnels . abonnement transports publics . taux de participation employeur:
+  valeur: 50%
+
+salarié . rémunération . frais professionnels . abonnement transports publics . taux de prise en charge:
+  titre: Taux de prise en charge
+  valeur:
+    produit:
+      assiette:
+        valeur: contrat . temps de travail . quotité
+        plafond: 50%
+      taux: 2 * taux de participation employeur
+
+salarié . rémunération . frais professionnels . abonnement transports publics . prise en charge:
+  titre: Abonnement transports publics, part prise en charge par l'employeur (déductible)
+  unité: €/mois
+  valeur: taux de prise en charge * montant
+
+salarié . rémunération . frais professionnels . transports personnels:
+  non applicable si: déduction forfaitaire spécifique
+  somme:
+    - carburant faible émission . montant
+    - forfait mobilités durables . montant
+  références:
+    circ. DGT-DSS 2009-1 du 28 janvier 2009: https://www.legifrance.gouv.fr/download/file/pdf/cir_2423/CIRC
+
+salarié . rémunération . frais professionnels . transports personnels . part déductible:
+  valeur:
+    somme:
+      - carburant faible émission . part déductible
+      - forfait mobilités durables . part déductible
+
+salarié . rémunération . frais professionnels . transports personnels . proportion déduction:
+  titre: Facteur de proportion de la déductibilité
+  valeur:
+    produit:
+      assiette:
+        valeur: contrat . temps de travail . quotité
+        plafond: 50%
+      taux: 200%
+  références:
+    Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
+
+salarié . rémunération . frais professionnels . transports personnels . carburant faible émission:
+
+salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant:
+  titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène
+  question: Quel montant l'employeur prend-il en charge des dépenses en carburant pour véhicule électrique, hybride rechargeable ou hydrogènes?
+  unité: €/an
+  par défaut: 0 €/an
+  description: |
+    L'employeur peut prendre en charge tout ou partie des frais de carburant dépensés par l'employé pour son véhicule électriques, hybrides rechargeables ou hydrogènes, sur présentation de justificatif.
+
+    Cette prise en charge peut profiter d'une exonération des cotisations sociales et de l'impôt sur le revenu. Le montant maximal déductible est de 200€/an, mais attention
+
+      - le plafond est partiellement réduit du montant de la prise en charge des frais d'abonnement aux transports publics
+
+      - cette prise en charge de carburant entre dans la même assiette que la prise en charge du forfait mobilités durables.
+
+    Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
+
+    Pour verser une prime de salaire équivalente à 200€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
+  références:
+    Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+    Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+
+salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . part déductible:
+  titre: Prise en charge du carburant pour véhicule électrique, hybride rechargeable ou hydrogène (part déductible)
+  unité: €/an
+  valeur: montant
+  plafond:
+    le minimum de:
+      - proportion déduction * 200€/an
+      - valeur: proportion déduction * 500€/an
+        abattement: abonnement transports publics . prise en charge
+
+salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables:
+
+salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant:
+  titre: Prise en charge des frais de transports forfait mobilités durables
+  question: Quel montant l'employeur prend-il en charge dans le cadre du forfait mobilités durables ?
+  unité: €/an
+  par défaut: 0 €/an
+  description: |
+    L'employeur peut prendre en charge tout ou partie des frais de déplacement liés à l'utilisation des véhicules entrant dans le cadre du forfait mobilités durables
+
+      - le vélo et vélo à assistance électrique
+
+      - le covoiturage (conducteur ou passager)
+
+      - les engins de déplacement personnels en location ou en libre-service
+
+      - l'autopartage avec des véhicules électriques, hybrides rechargeables ou hydrogènes
+
+      - les transports en commun (hors abonnement).
+
+    L'ancienne Indemnité Kilométrique Vélo entre maintenant dans ce dispositif. Elle peut être poursuivie mais son montant devra être imputé ici.
+
+    L'employeur peut prendre en charge ces frais jusqu'à 500€/an de manière exonérée de cotisations sociales et d'impôt. Attention cependant
+
+      - le plafond est réduit du montant de la prise en charge des frais d'abonnement aux transports publics
+
+      - la prise en charge du carburant faible émission entre dans cette assiette également.
+
+    Dans le cas d'un temps partiel, l'avantage sera le même pour un mi-temps ou plus. En dessous, un facteur proportionnel sera appliqué.
+
+    Pour verser une prime de salaire équivalente à 500€/an à son salarié sans ce dispositif, **l'employeur devrait débourser près de 800€ pour un salaire médian**.
+  références:
+    Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+    Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+
+salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . part déductible:
+  titre: Prise en charge des frais de transports forfait mobilités durables (part déductible)
+  unité: €/an
+  valeur: montant
+  plafond:
+    valeur: proportion déduction * 500€/an
+    abattement:
+      somme:
+        - abonnement transports publics . prise en charge
+        - carburant faible émission . part déductible

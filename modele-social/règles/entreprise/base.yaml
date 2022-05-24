@@ -460,7 +460,7 @@ entreprise . association non lucrative:
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
   # -> pas de taxe ni contribution d'apprentissage
   rend non applicable:
-    - contrat salarié . taxe d'apprentissage
+    - salarié . taxe d'apprentissage
 
 entreprise . exonérée de TVA:
   question: L'entreprise est-elle exonérée de TVA (hors franchise de base) ?
@@ -475,7 +475,7 @@ entreprise . exonérée de TVA:
 
 entreprise . taxe sur les salaires . montant avant décote:
   formule:
-    valeur: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
+    valeur: salarié . taxe sur les salaires . barème / 1 employé * effectif
     abattement: abattement associations
 
 entreprise . taxe sur les salaires . abattement associations:

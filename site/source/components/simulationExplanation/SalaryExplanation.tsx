@@ -8,6 +8,7 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeContext } from 'styled-components'
@@ -114,7 +115,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 			<StackedBarChart
 				data={[
 					{
-						dottedName: 'contrat salarié . rémunération . net après impôt',
+						dottedName: 'salarié . rémunération . net après impôt',
 						title: t('Revenu disponible'),
 						color: colors.bases.primary[600],
 					},
@@ -124,7 +125,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 						color: colors.bases.secondary[500],
 					},
 					{
-						dottedName: 'contrat salarié . cotisations',
+						dottedName: 'salarié . cotisations',
 						color: colors.bases.secondary[300],
 					},
 				]}

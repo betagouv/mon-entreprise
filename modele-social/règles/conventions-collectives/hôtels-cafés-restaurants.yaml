@@ -1,15 +1,15 @@
-contrat salarié . convention collective . HCR:
+salarié . convention collective . HCR:
   formule: convention collective = 'HCR'
   titre: hôtels, cafés restaurants HCR
   icônes: 🍴
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 
-contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
+salarié . convention collective . HCR . montant forfaitaire d'un repas:
   remplace:
     règle: rémunération . avantages en nature . nourriture . montant . repas forfaitaire
   formule: 3.94 €/repas
 
-contrat salarié . convention collective . HCR . majoration heures supplémentaires:
+salarié . convention collective . HCR . majoration heures supplémentaires:
   remplace: temps de travail . heures supplémentaires . majoration
   formule:
     barème:
@@ -22,9 +22,9 @@ contrat salarié . convention collective . HCR . majoration heures supplémentai
           plafond: 8 heures/semaine
         - taux: 50%
 
-contrat salarié . convention collective . HCR . prévoyance conventionnelle:
+salarié . convention collective . HCR . prévoyance conventionnelle:
   produit:
-    assiette: rémunération . brut de base
+    assiette: contrat . salaire brut
     plafond: plafond sécurité sociale
     composantes:
       - attributs:

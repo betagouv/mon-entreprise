@@ -1,20 +1,20 @@
 objectifs:
-  - contrat salarié . rémunération . brut de base
+  - salarié . contrat . salaire brut
 
 objectifs cachés:
-  - contrat salarié . rémunération . net
-  - contrat salarié . prix du travail
+  - salarié . rémunération . net
+  - salarié . prix du travail
 
 questions:
   liste:
-    - contrat salarié . activité partielle
-    - contrat salarié . temps de travail
+    - salarié . activité partielle
+    - salarié . temps de travail
     - établissement . localisation
 
 unité par défaut: €/mois
 
 situation:
   dirigeant: non
-  contrat salarié . activité partielle: oui
-  contrat salarié . complémentaire santé:
+  salarié . activité partielle: oui
+  salarié . complémentaire santé:
     applicable si: non

@@ -52,11 +52,11 @@ export function getCotisationsBySection(
 			(acc, node) => {
 				if (
 					node.nodeKind === 'reference' &&
-					node.dottedName !== 'contrat salarié . cotisations' &&
-					node.dottedName?.startsWith('contrat salarié . ') &&
+					node.dottedName !== 'salarié . cotisations' &&
+					node.dottedName?.startsWith('salarié . ') &&
 					!node.dottedName?.endsWith('$SITUATION') &&
 					node.dottedName !==
-						'contrat salarié . cotisations . patronales . réductions de cotisations'
+						'salarié . cotisations . patronales . réductions de cotisations'
 				) {
 					return [...acc, node]
 				}
@@ -68,8 +68,8 @@ export function getCotisationsBySection(
 
 	const cotisations = (
 		[
-			...findCotisations('contrat salarié . cotisations . patronales'),
-			...findCotisations('contrat salarié . cotisations . salariales'),
+			...findCotisations('salarié . cotisations . employeur'),
+			...findCotisations('salarié . cotisations . salarié'),
 		] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>
 	)
 		.map((cotisation) => cotisation.dottedName)
@@ -114,12 +114,12 @@ export default function PaySlip() {
 		>
 			<div className="payslip__salarySection">
 				<Line
-					rule="contrat salarié . temps de travail"
+					rule="salarié . temps de travail"
 					displayedUnit="heures/mois"
 					precision={1}
 				/>
 				<Line
-					rule="contrat salarié . temps de travail . heures supplémentaires"
+					rule="salarié . temps de travail . heures supplémentaires"
 					displayedUnit="heures/mois"
 					precision={1}
 				/>
@@ -154,19 +154,15 @@ export default function PaySlip() {
 				})}
 				{/* Réductions */}
 
-				<RuleLink
-					dottedName={
-						'contrat salarié . cotisations . réductions de cotisations'
-					}
-				/>
+				<RuleLink dottedName={'salarié . cotisations . exonérations'} />
 
 				<Value
-					expression="- contrat salarié . cotisations . patronales . réductions de cotisations"
+					expression="- salarié . cotisations . exonérations . employeur"
 					unit="€/mois"
 					displayedUnit="€"
 				/>
 				<Value
-					expression="- contrat salarié . cotisations . salariales . réductions de cotisations"
+					expression="- salarié . cotisations . exonérations . salarié"
 					unit="€/mois"
 					displayedUnit="€"
 				/>
@@ -178,20 +174,20 @@ export default function PaySlip() {
 				</Body>
 				<div>
 					<Value
-						expression="contrat salarié . cotisations . patronales"
+						expression="salarié . cotisations . employeur"
 						displayedUnit="€"
 						className="payslip__total"
 					/>
 				</div>
 				<div>
 					<Value
-						expression="contrat salarié . cotisations . salariales"
+						expression="salarié . cotisations . salarié"
 						displayedUnit="€"
 						className="payslip__total"
 					/>
 				</div>
 				{/* Salaire chargé */}
-				<Line rule="contrat salarié . rémunération . total" />
+				<Line rule="salarié . rémunération . total" />
 				<span />
 			</div>
 			{/* Section salaire net */}
@@ -225,13 +221,13 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const partSalariale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,
-			engine.getRule('contrat salarié . cotisations . salariales')
+			engine.getRule('salarié . cotisations . salarié')
 		) ?? '0'
 	)
 	const partPatronale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,
-			engine.getRule('contrat salarié . cotisations . patronales')
+			engine.getRule('salarié . cotisations . employeur')
 		) ?? '0'
 	)
 

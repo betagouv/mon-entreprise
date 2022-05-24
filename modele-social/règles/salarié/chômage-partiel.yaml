@@ -1,0 +1,15 @@
+chômage partiel: oui
+
+chômage partiel . revenu net habituel:
+  formule:
+    recalcul:
+      règle: salarié . rémunération . net
+      avec:
+        salarié . activité partielle: non
+
+chômage partiel . coût employeur habituel:
+  formule:
+    recalcul:
+      règle: salarié . prix du travail
+      avec:
+        salarié . activité partielle: non

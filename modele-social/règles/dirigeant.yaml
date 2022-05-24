@@ -43,7 +43,7 @@ dirigeant . rémunération . totale:
   résumé: Incluant les cotisations et contributions
   variations:
     - si: assimilé salarié
-      alors: contrat salarié . rémunération . total
+      alors: salarié . rémunération . total
     - si: entreprise . imposition . IS
       alors:
         somme:
@@ -65,7 +65,7 @@ dirigeant . rémunération . nette:
 dirigeant . rémunération . cotisations:
   variations:
     - si: assimilé salarié
-      alors: contrat salarié . cotisations
+      alors: salarié . cotisations
     - si: indépendant
       alors: indépendant . cotisations et contributions
     - si: auto-entrepreneur
@@ -75,7 +75,7 @@ dirigeant . rémunération . imposable:
   titre: revenu imposable
   variations:
     - si: assimilé salarié
-      alors: contrat salarié . rémunération . net imposable
+      alors: salarié . rémunération . net imposable
     - si: indépendant
       alors: indépendant . revenu professionnel
     - si: auto-entrepreneur
@@ -108,30 +108,28 @@ dirigeant . assimilé salarié:
   applicable si: régime social = 'assimilé salarié'
   valeur: oui
   remplace:
-    - règle: contrat salarié
+    - règle: salarié
       par: "'CDI'"
-    - règle: contrat salarié . statut cadre
+    - règle: salarié . statut cadre
       par: oui
   rend non applicable:
-    - contrat salarié . convention collective
-    - contrat salarié . activité partielle
-    - contrat salarié . rémunération . primes
-    - contrat salarié . rémunération . primes . fin d'année
-    - contrat salarié . rémunération . primes . activité
-    - contrat salarié . frais professionnels
-    - contrat salarié . chômage
-    - contrat salarié . réduction générale
-    - contrat salarié . allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
-    - contrat salarié . lodeom
-    - contrat salarié . AGS
-    - contrat salarié . APEC
-    - contrat salarié . contribution au dialogue social
-    - contrat salarié . temps de travail . temps partiel
-    - contrat salarié . temps de travail . heures supplémentaires
-    - contrat salarié . déduction forfaitaire spécifique
-    - contrat salarié . régime des impatriés
-    - contrat salarié . rémunération . contrôle smic
+    - salarié . convention collective
+    - salarié . activité partielle
+    - salarié . rémunération . primes
+    - salarié . rémunération . frais professionnels
+    - salarié . chômage
+    - salarié . cotisations . exonérations . lodeom
+    - salarié . cotisations . exonérations . réduction générale
+    - salarié . allocations familiales . taux réduit
+    - salarié . maladie . taux employeur . taux réduit
+    - salarié . AGS
+    - salarié . APEC
+    - salarié . contribution au dialogue social
+    - salarié . contrat . temps de travail . temps partiel
+    - salarié . temps de travail . heures supplémentaires
+    - salarié . déduction forfaitaire spécifique
+    - salarié . régime des impatriés
+    - salarié . rémunération . contrôle smic
     - entreprise . association non lucrative
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-assimiles-salarie.html
@@ -139,19 +137,19 @@ dirigeant . assimilé salarié:
 
 dirigeant . assimilé salarié . réduction ACRE:
   applicable si: entreprise . ACRE
-  non applicable si: contrat salarié . cotisations . assiette > 100% * plafond sécurité sociale temps plein
+  non applicable si: salarié . cotisations . assiette > 100% * plafond sécurité sociale temps plein
   variations:
-    - si: contrat salarié . cotisations . assiette <= 75% * plafond sécurité sociale temps plein
+    - si: salarié . cotisations . assiette <= 75% * plafond sécurité sociale temps plein
       alors:
         nom: cotisations ACRE
         somme:
-          - contrat salarié . maladie
-          - contrat salarié . allocations familiales
-          - contrat salarié . vieillesse
+          - salarié . maladie
+          - salarié . allocations familiales
+          - salarié . vieillesse
     - sinon:
         produit:
           assiette: assiette taux réduit
-          taux: (plafond sécurité sociale temps plein - contrat salarié . cotisations . assiette) / (25% * plafond sécurité sociale temps plein)
+          taux: (plafond sécurité sociale temps plein - salarié . cotisations . assiette) / (25% * plafond sécurité sociale temps plein)
 
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/laccre/quelles-exonerations-pour-2022.html
@@ -160,9 +158,9 @@ dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
   recalcul:
     règle: cotisations ACRE
     avec:
-      contrat salarié . cotisations . assiette: 75% * plafond sécurité sociale temps plein
+      salarié . cotisations . assiette: 75% * plafond sécurité sociale temps plein
       entreprise . ACRE: non
-      contrat salarié . maladie . employeur . contribution solidarité autonomie: non
+      salarié . maladie . employeur . contribution solidarité autonomie: non
 
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
   formule: oui
@@ -174,7 +172,7 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
 dirigeant . auto-entrepreneur:
   applicable si: régime social = 'auto-entrepreneur'
   valeur: oui
-  rend non applicable: contrat salarié
+  rend non applicable: salarié
   icônes: 🚶
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
@@ -510,7 +508,7 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
 dirigeant . indépendant:
   applicable si: régime social = 'indépendant'
   valeur: oui
-  rend non applicable: contrat salarié
+  rend non applicable: salarié
 
 dirigeant . indépendant . revenu professionnel:
   description: rémunération du dirigeant au régime des indépendant

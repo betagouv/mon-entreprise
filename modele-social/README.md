@@ -19,9 +19,9 @@ const engine = new Engine(rules)
 
 const net = engine
     .setSituation({
-        'contrat salarié . rémunération . brut de base': '3000 €/mois',
+        'salarié . contrat . salaire brut': '3000 €/mois',
     })
-    .evaluate('contrat salarié . rémunération . net')
+    .evaluate('salarié . rémunération . net')
 
 console.log(formatValue(net))
 ```

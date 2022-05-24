@@ -2,6 +2,11 @@ situation:
   artiste-auteur: oui
   dirigeant:
     applicable si: non
+<<<<<<< HEAD
+=======
+  salarié:
+    applicable si: non
+>>>>>>> 1b6060f4e (Refacto des règles salarié)
 
 unité par défaut: €/an
 objectifs:

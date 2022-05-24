@@ -1,15 +1,15 @@
 objectifs:
   - dirigeant . rémunération . totale
-  - contrat salarié . cotisations
-  - contrat salarié . rémunération . net
+  - salarié . cotisations
+  - salarié . rémunération . net
   - impôt . montant
-  - contrat salarié . rémunération . net après impôt
+  - salarié . rémunération . net après impôt
 
 questions:
   à l'affiche:
     ACRE: entreprise . ACRE
     Commune: établissement . localisation
-    Avantages en nature: contrat salarié . rémunération . avantages en nature
+    Avantages en nature: salarié . rémunération . avantages en nature
     Impôt sur le revenu: impôt . méthode de calcul
 
   liste noire:
@@ -22,8 +22,8 @@ questions:
     - entreprise . effectif
     - établissement . localisation
     - entreprise . ratio alternants
-    - contrat salarié . complémentaire santé
-    - contrat salarié . régime des impatriés
+    - salarié . complémentaire santé
+    - salarié . régime des impatriés
 
 unité par défaut: €/an
 situation:
@@ -31,5 +31,5 @@ situation:
   entreprise . résultat fiscal: 0 €/an
 
   #TODO : en attendant que la transitivité du remplacement soit implémentée (https://github.com/betagouv/publicodes/issues/55)
-  contrat salarié . activité partielle: non
-  contrat salarié . déduction forfaitaire spécifique: non
+  salarié . activité partielle: non
+  salarié . déduction forfaitaire spécifique: non

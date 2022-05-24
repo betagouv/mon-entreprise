@@ -5,7 +5,7 @@ import { omit } from '@/utils'
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [
-	'contrat salarié . ATMP',
+	'salarié . ATMP',
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
 	'entreprise . ACRE',

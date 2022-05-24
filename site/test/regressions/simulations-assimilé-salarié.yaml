@@ -28,4 +28,4 @@ ACRE:
 JEI:
   - dirigeant . rémunération . totale: 4000 €/mois
     dirigeant . régime social: "'assimilé salarié'"
-    contrat salarié . statut JEI: oui
+    salarié . cotisations . exonérations . JEI: oui
