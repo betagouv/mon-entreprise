@@ -368,36 +368,36 @@ lodeom:
 lodeom compétitivité renforcée:
   - salarié . contrat . salaire brut: 1521.22 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème compétitivité renforcée: oui
+    salarié . cotisations . exonérations . lodeom . barème compétitivité renforcée: oui
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème compétitivité renforcée: oui
+    salarié . cotisations . exonérations . lodeom . barème compétitivité renforcée: oui
   - salarié . contrat . salaire brut: 3000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème compétitivité renforcée: oui
+    salarié . cotisations . exonérations . lodeom . barème compétitivité renforcée: oui
   - salarié . contrat . salaire brut: 4000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème compétitivité renforcée: oui
+    salarié . cotisations . exonérations . lodeom . barème compétitivité renforcée: oui
   - salarié . contrat . salaire brut: 5500 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème compétitivité renforcée: oui
+    salarié . cotisations . exonérations . lodeom . barème compétitivité renforcée: oui
 
 lodeom innovation et croissance:
   - salarié . contrat . salaire brut: 1521.22 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème innovation et croissance: oui
+    salarié . cotisations . exonérations . lodeom . barème innovation et croissance: oui
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème innovation et croissance: oui
+    salarié . cotisations . exonérations . lodeom . barème innovation et croissance: oui
   - salarié . contrat . salaire brut: 3000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème innovation et croissance: oui
+    salarié . cotisations . exonérations . lodeom . barème innovation et croissance: oui
   - salarié . contrat . salaire brut: 4000 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème innovation et croissance: oui
+    salarié . cotisations . exonérations . lodeom . barème innovation et croissance: oui
   - salarié . contrat . salaire brut: 5500 €/mois
     salarié . cotisations . exonérations . lodeom . zone un: oui
-    salarié . cotisations . exonérations . lodeom . éligible barème innovation et croissance: oui
+    salarié . cotisations . exonérations . lodeom . barème innovation et croissance: oui
 
 taux spécifiques retraite complémentaire:
   - salarié . contrat . salaire brut: 1521.22 €/mois
