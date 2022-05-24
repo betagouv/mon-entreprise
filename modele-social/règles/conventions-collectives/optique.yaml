@@ -1,9 +1,9 @@
-contrat salarié . convention collective . optique:
+salarié . convention collective . optique:
   formule: convention collective = 'optique'
   titre: Optique
   icônes: 👓
 
-contrat salarié . convention collective . optique . prime d'ancienneté:
+salarié . convention collective . optique . prime d'ancienneté:
   applicable si: convention collective = 'optique'
   remplace: rémunération . primes . ancienneté
   formule:
@@ -25,7 +25,7 @@ contrat salarié . convention collective . optique . prime d'ancienneté:
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichIDCC.do?idSectionTA=KALISCTA000005736434&cidTexte=KALITEXT000005649634&idConvention=KALICONT000005635912
 
-contrat salarié . convention collective . optique . salaire minimum conventionnel:
+salarié . convention collective . optique . salaire minimum conventionnel:
   unité: €/mois
   formule:
     variations:
@@ -63,25 +63,25 @@ contrat salarié . convention collective . optique . salaire minimum conventionn
         alors: 2970
       - sinon: 3170
 
-contrat salarié . convention collective . optique . coefficient:
+salarié . convention collective . optique . coefficient:
   question: Quel est le coefficient correspondant au poste du salarié ?
   description: >-
     Se référer à la [grille fournie par la convention collective](https://www.optometrie-aof.com/images/telecharger/convention_collective.pdf#page=45).
   par défaut: 110 points
 
-contrat salarié . convention collective . optique . prévoyance:
+salarié . convention collective . optique . prévoyance:
   non applicable si: prévoyance obligatoire cadre
   formule:
     barème:
-      assiette: rémunération . brut de base
+      assiette: contrat . salaire brut
       tranches:
         - taux: 0.46%
           plafond: 4 * plafond sécurité sociale
 
-contrat salarié . convention collective . optique . prévoyance . employeur:
-  remplace: contrat salarié . prévoyance . employeur
+salarié . convention collective . optique . prévoyance . employeur:
+  remplace: salarié . prévoyance . employeur
   formule: 60% * prévoyance
 
-contrat salarié . convention collective . optique . prévoyance . salarié:
-  remplace: contrat salarié . prévoyance . salarié
+salarié . convention collective . optique . prévoyance . salarié:
+  remplace: salarié . prévoyance . salarié
   formule: 40% * prévoyance

@@ -71,7 +71,7 @@ export default function ChômagePartiel() {
 				<SimulationGoals legend="Salaire brut avant chômage partiel">
 					<SimulationGoal
 						label={t('Salaire brut mensuel')}
-						dottedName="contrat salarié . rémunération . brut de base"
+						dottedName="salarié . contrat . salaire brut"
 					/>
 				</SimulationGoals>
 			</Simulation>
@@ -86,9 +86,9 @@ function ExplanationSection() {
 	} = useTranslation()
 
 	const engine = useEngine()
-	const net = 'contrat salarié . rémunération . net'
+	const net = 'salarié . rémunération . net'
 	const netHabituel = 'chômage partiel . revenu net habituel'
-	const totalEntreprise = 'contrat salarié . prix du travail'
+	const totalEntreprise = 'salarié . prix du travail'
 	const totalEntrepriseHabituel = 'chômage partiel . coût employeur habituel'
 
 	return (

@@ -1,0 +1,1036 @@
+salarié:
+
+salarié . ancienneté:
+  formule:
+    durée:
+      depuis: contrat . date d'embauche
+
+salarié . prime d'impatriation:
+  description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
+  applicable si: régime des impatriés
+  formule:
+    produit:
+      assiette: rémunération . net imposable . base
+      taux: 30%
+  références:
+    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+    Bofip: https://bofip.impots.gouv.fr/bofip/5677-PGP
+
+salarié . activité partielle:
+  description: >-
+    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
+    dispositif de chômage partiel étendu dans lequel l'État prend en charge
+    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+
+    La déclaration d'activité partielle est simplifiée et l'effet est
+    rétroactif.
+  par défaut: non
+  rend non applicable:
+    - temps de travail . heures supplémentaires
+    - temps de travail . heures complémentaires
+  références:
+    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
+    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+salarié . activité partielle . rémunération mensuelle minimale:
+  acronyme: RMM
+  description: >-
+    Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
+    une rémunération mensuelle minimale qui peut donner lieu à un versement
+    complémentaire de l’employeur.
+  références:
+    Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
+  formule:
+    recalcul:
+      règle: salarié . rémunération . net de cotisations
+      avec:
+        contrat . salaire brut: contrat . temps de travail . SMIC
+        activité partielle: non
+        temps de travail . heures supplémentaires: non
+        temps de travail . heures complémentaires: non
+
+salarié . activité partielle . heures chômées:
+  unité: heures/mois
+  formule:
+    valeur: contrat . temps de travail - heures travaillées
+    plancher: 0
+
+salarié . activité partielle . heures travaillées:
+  titre: heures travaillées restantes
+  question: Quelle est le nombre d'heures travaillées sur le mois ?
+  description: >-
+    Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées. Doit être
+    inférieur au temps contractuel.
+  par défaut: 0 heures/mois
+  suggestions:
+    30 h/semaine: 130 heures/mois
+    20 h/semaine: 86.6666 heures/mois
+    10 h/semaine: 43.3333 heures/mois
+
+salarié . activité partielle . heures travaillées . contrôle temps de travail:
+  type: notification
+  sévérité: avertissement
+  formule: heures travaillées > contrat . temps de travail
+  description: >-
+    Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
+    à celui inscrit dans le contrat de travail.
+
+salarié . activité partielle . indemnités:
+  titre: indemnités activité partielle
+  description: >-
+    La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
+    l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
+    reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie de
+    l’Etat une allocation d’activité partielle.
+
+    Si après versement de l’indemnité d’activité partielle la rémunération du
+    salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
+    les articles L3232-1 et suivants du code du travail pour les salariés à temps
+    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
+    somme initialement perçue par le salarié.
+
+  formule:
+    somme:
+      - base
+      - complémentaire
+      - conventionnelle
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+salarié . activité partielle . indemnités . base:
+  titre: indemnités d'activité partielle de base
+  formule:
+    multiplication:
+      assiette: retrait absence
+      # Historique:
+      # - avant le 01/07/2021: 70%
+      # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
+      taux:
+        valeur:
+          variations:
+            - si: secteur d'activité restreint
+              alors: 70%
+              # Historique 60% jusqu'au 31 octobre 2021, 70% après
+            - sinon: 60%
+        nom: taux
+
+salarié . activité partielle . indemnités . complémentaire:
+  titre: indemnité complémentaire
+  description: >-
+    L'indemnité complémentaire de chômage partielle est une indemnité versée par
+    l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
+    rémunération effectivement perçue ne soit jamais inférieure à celle
+    du SMIC net.
+  # La condition suivante assure que cette règle ne crée pas de boucle avec indemnités . conventionnelle . part soumise à cotisation
+  non applicable si: contrat . salaire brut > 3.15 * contrat . temps de travail . SMIC
+  formule:
+    valeur: rémunération mensuelle minimale
+    abattement:
+      somme:
+        - rémunération . net de cotisations
+        - indemnités . base
+        - indemnités . conventionnelle
+
+salarié . activité partielle . indemnités . conventionnelle:
+  applicable si: convention syntec
+  formule:
+    produit:
+      assiette: retrait absence
+      taux:
+        grille:
+          assiette: rémunération . assiette congés payés
+          tranches:
+            - montant: 95% - indemnités . base . taux
+              plafond: 2000 €/mois
+            - montant: 80% - indemnités . base . taux
+              plafond: plafond sécurité sociale temps plein
+            - montant: 75% - indemnités . base . taux
+  références:
+    Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
+    Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
+
+salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation:
+  applicable si:
+    toutes ces conditions:
+      - indemnités . conventionnelle > 0
+      - indemnités . conventionnelle + indemnités . base > 3.15 * contrat . temps de travail . SMIC
+  remplace: salarié . cotisations . assiette
+  rend non applicable: cotisations . exonérations . réduction générale
+  #     règle: salarié . cotisations . assiette
+  #     par: salarié . cotisations . assiette + part soumise à cotisation
+  formule:
+    somme:
+      - salarié . cotisations . assiette
+      - valeur: activité partielle . indemnités - 3.15 * contrat . temps de travail . SMIC
+        plafond: activité partielle . indemnités . conventionnelle
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html
+    Ordonnance du 22 avril 2020, article 5: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041814597/#JORFARTI000041814602
+
+salarié . activité partielle . retrait absence:
+  titre: retrait activité partielle
+  formule:
+    multiplication:
+      assiette: rémunération . taux horaire
+      facteur: heures chômées
+
+salarié . activité partielle . indemnisation entreprise:
+  titre: Remboursement de l'indemnité d'activité partielle
+  description: >-
+    Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
+    l'indemnité de chômage partiel pour les commerces fermés sera prise à
+    100% en charge par l'état.
+  formule:
+    multiplication:
+      assiette: retrait absence
+      taux: taux d'indemnisation
+    # TODO: plus à jour depuis le 1er avril 2022
+    # confer https://github.com/betagouv/mon-entreprise/issues/2119#issuecomment-1114785875
+    plancher:
+      variations:
+        - si: date >= 01/2022
+          alors: 8.37 €/heure * heures chômées
+        - si: date >= 01/10/2021
+          alors: 8.30 €/heure * heures chômées
+        - si: date >= 01/2021
+          alors: 8.11 €/heure * heures chômées
+    plafond:
+      recalcul:
+        avec:
+          contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
+  références:
+    Décret mise à jour 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044614377
+
+salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  titre: taux d'allocation
+  description: >-
+    Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
+  formule:
+    variations:
+      - si: secteur d'activité restreint
+        # Historique:
+        # - avant le 01/07/2021: 70%
+        # - avant le 01/08/2021: 60%
+        # - avant le 01/09/2021: 52%
+        # - à partir du 01/09/2021: 36%
+        alors: 70%
+      # Historique:
+      # - avant le 01/06/2021: 60%
+      # - avant le 01/07/2021: 52%
+      # - à partir du 01/07/2021: 36%
+      - sinon: 36%
+
+salarié . activité partielle . secteur d'activité restreint:
+  question: >-
+    Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
+    réglementaires ? (ex. : tourisme, restauration, culture, événementiel)
+  description: >-
+    Les entreprises dont l'activité a été interrompue par décision administrative en raison de la crise sanitaire, ou qui sont situées dans une circonscription territoriale soumise à des restrictions spécifiques des conditions d'exercice de l'activité économique et de circulation des personnes prises par l'autorité administrative lorsqu'ils subissent une forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus affectés et qui continuent de subir une très forte baisse du chiffre d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre 2021.
+
+
+    Sont concernées :
+
+      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
+
+      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
+
+      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
+
+  références:
+    Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
+    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A15140
+
+  par défaut: non
+
+# TODO : This should be merged with other convention collectives
+salarié . activité partielle . convention syntec:
+  question: La convention collective Syntec est-elle applicable à l'entreprise ?
+  description: >-
+    Convention Collective applicable aux salariés des Bureaux d'Études
+    Techniques, des Cabinets d'Ingénieurs-Conseils et des Sociétés de Conseils.
+
+    Cette convention collective prévoit notamment une majoration de l'indemnité
+    de chômage partielle au dessus du minimum légal et à la charge de
+    l'entreprise.
+  par défaut: non
+
+salarié . déduction forfaitaire spécifique:
+  description: >-
+    Pour une liste précise de professions, l'employeur peut pratiquer une
+    déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base de
+    calcul des cotisations sociales. spécifique consiste en un abattement sur l'assiette
+    des cotisations sociales. Elle peut s'appliquer si le salarié supporte
+    effectivement des frais lors de son activité professionnelle.
+
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en
+    charge ou rembourse la totalité des frais professionnels, il est impossible
+    d’appliquer la DFS.
+  titre: assiette avec DFS
+  question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
+  par défaut: non
+  remplace:
+    règle: cotisations . assiette
+    par:
+      valeur: cotisations . assiette
+      abattement:
+        valeur: taux * cotisations . assiette
+        plafond: 7600 €/an
+      plancher: cotisations . assiette minimale
+    sauf dans: salarié . CSG et CRDS
+    # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
+    # pour les journalistes. Nécessite probablement de faire un re-remplacement
+    # inverse.
+  références:
+    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
+
+salarié . déduction forfaitaire spécifique . taux:
+  variations:
+    - si: profession = 'journaliste'
+      alors: 20%
+    - si: profession = 'ouvrier du bâtiment'
+      alors: 10%
+    - si: profession = 'artiste musicien'
+      alors: 20%
+    - si: profession = 'pilote de ligne ou personnel navigant'
+      alors: 30%
+    - sinon: 0%
+  par défaut: 10%
+  références:
+    Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
+
+salarié . déduction forfaitaire spécifique . profession:
+  question: Quelle est la profession du salarié pour l'application de la déduction forfaitaire spécifique ?
+  formule:
+    une possibilité:
+      possibilités:
+        - journaliste
+        - ouvrier du bâtiment
+        - artiste musicien
+        - pilote de ligne ou personnel navigant
+      choix obligatoire: oui
+
+salarié . déduction forfaitaire spécifique . profession . journaliste:
+  valeur: profession = 'journaliste'
+  icônes: ✒
+  description: >-
+    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
+    Critiques dramatiques et musicaux.
+
+salarié . déduction forfaitaire spécifique . profession . journaliste . réduction de taux:
+  remplace:
+    - règle: vieillesse . employeur . plafonnée . taux
+      par: vieillesse . employeur . plafonnée . taux * réduction de taux
+    - règle: vieillesse . employeur . déplafonnée . taux
+      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . plafonnée . taux
+      par: vieillesse . salarié . plafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . déplafonnée . taux
+      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
+
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: ATMP . taux
+      par: ATMP . taux * réduction de taux
+    - règle: ATMP . taux minimum
+      par: ATMP . taux minimum * réduction de taux
+  formule: 80%
+
+salarié . déduction forfaitaire spécifique . profession . journaliste . abattement fiscal:
+  remplace: rémunération . net imposable
+  titre: net imposable journaliste
+  formule:
+    valeur: rémunération . net imposable
+    abattement: 7650€/an
+
+salarié . déduction forfaitaire spécifique . profession . ouvrier du bâtiment:
+  icônes: 👷‍♂️
+  description: >-
+    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
+    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
+    travaillent en usine ou en atelier.
+
+salarié . déduction forfaitaire spécifique . profession . artiste musicien:
+  icônes: 🎼
+  description: >-
+    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
+    théâtre
+
+salarié . déduction forfaitaire spécifique . profession . pilote de ligne ou personnel navigant:
+  icônes: ✈
+  description: >-
+    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
+    transports aériens ; pilotes et mécaniciens employés par les maisons de
+    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
+    moniteurs d’aéro-clubs et des écoles d’aviation civile
+
+salarié . ATMP:
+  titre: Cotisation Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
+  cotisation:
+    dû par: employeur
+    branche: accidents du travail et maladies professionnelles
+    destinataire: Urssaf
+    responsable: CARSAT
+  formule:
+    produit:
+      assiette: cotisations . assiette
+      taux:
+        nom: taux
+        variations:
+          - si: taux connu
+            alors: taux personnalisé
+          - si: taux réduit
+            alors: 0.8%
+          - sinon: ATMP . taux collectif ATMP
+  références:
+    taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
+salarié . ATMP . taux minimum:
+  description: >-
+    Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour le
+    calcul de la réduction générale de cotisations
+  variations:
+    - si: date >= 01/2022
+      alors: 0.59%
+    - si: date >= 01/2021
+      alors: 0.70 %
+  références:
+    Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041460928&cidTexte=LEGITEXT000006073189&dateTexte=20200101
+    Mise à jour 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044793102
+
+salarié . ATMP . taux moyen:
+  formule: 2.24%
+  références:
+    Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
+salarié . ATMP . taux réduit:
+  titre: taux réduit pour activité sans risque
+  question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
+  description: |
+    Ce taux correspond :
+    - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
+    - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit.
+  applicable si: entreprise . effectif <= 150
+  par défaut: non
+  références:
+    fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
+
+salarié . ATMP . taux connu:
+  question: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
+  par défaut: non
+  description: |
+    Le taux de la cotisation Accident du Travail et Maladie Professionnel varie selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels sont exposé leur salariés.
+
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
+
+    A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
+
+    Entre les deux, le taux est modulé.
+
+    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
+  références:
+    Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
+    Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
+
+salarié . ATMP . taux personnalisé:
+  question: Quel est le taux AT/MP de l'entreprise ?
+  description: >
+    Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter son taux effectif directement sur espace net-entreprise.
+  références:
+    Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/
+  par défaut: taux moyen
+
+salarié . ATMP . taux collectif ATMP:
+  titre: Taux collectif ATMP
+  non applicable si: taux connu
+  question: De quel domaine d'activité dépend votre entreprise ?
+  description: |
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+  par défaut: taux moyen
+  references:
+    Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
+salarié . exonération d'impôt des stagiaires et apprentis:
+  description: |
+    Les salaires versés aux apprentis ainsi que les gratifications de stages sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
+  références:
+    Article 81 bis du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029236245&cidTexte=LEGITEXT000006069577
+  applicable si:
+    une de ces conditions:
+      - contrat . apprentissage
+      - contrat . stage
+  formule: SMIC temps plein
+
+salarié . cotisations . assiette:
+  titre: Assiette des cotisations sociales
+  description: |
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  formule:
+    valeur: rémunération . brut
+    abattement:
+      somme:
+        - rémunération . frais professionnels . part déductible
+        - contrat . stage . gratification minimale
+        # TODO: La prévoyance et la retraite supplémentaire ne sont pour
+        # l'instant pas exposées sur les simulateurs. Je les désactive ici pour
+        # résoudre un problème de cycle avec la déduction forfaitaire
+        # spécifique.
+        #
+        # Il faudra soit supprimer complètement ces règles prévoyance /
+        # retraite supplémentaire (que j'avais ajoutées dans le cadre du POC
+        # Paie), soit les exposer dans un simulateur.
+        #
+        # - prévoyance . part déductible
+        # - retraite supplémentaire . part déductible
+
+salarié . cotisations . assiette . salariale:
+  titre: Assiette des cotisations sociales
+  description: |
+    Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
+  références:
+    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+  formule:
+    variations:
+      - si: contrat . apprentissage
+        alors:
+          valeur: cotisations . assiette
+          abattement: 79% * SMIC temps plein
+      - sinon: cotisations . assiette
+
+salarié . cotisations . assiette minimale:
+  formule:
+    recalcul:
+      règle: rémunération . assiette de vérification du SMIC
+      avec:
+        contrat . salaire brut: SMIC horaire * temps de travail . effectif
+
+salarié . avantages sociaux:
+  description: >
+    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
+    Ils sont soumis à l'impôt sur le revenu.
+  unité: €/mois
+  formule:
+    somme:
+      - prévoyance . employeur
+      - retraite supplémentaire . employeur
+      - prévoyance obligatoire cadre
+      - complémentaire santé . employeur
+
+salarié . rémunération . avantages en nature:
+  icônes: 🛏️🚗🥗📱
+  titre: Avantages en nature
+  description: |
+    Les avantages en nature sont constitués par la fourniture par l’entreprise à ses travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du bénéficiant inférieure à leur valeur réelle.
+
+
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
+  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
+  par défaut: non
+
+salarié . rémunération . avantages en nature . montant:
+  titre: Avantages en nature
+  description: >
+    Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+  formule:
+    somme:
+      - nourriture . montant
+      - ntic . montant
+      - autres . montant
+
+salarié . rémunération . avantages en nature . ntic:
+  icônes: 💻📱
+  description: |
+    L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité professionnelle à titre permanent est constitutif d’un avantage en nature.
+
+
+    Cet avantage est inclus dans la base de calcul des cotisations de Sécurité sociale et d’assurance chômage.
+
+
+    La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
+  question: >
+    L'entreprise fournit-elle gratuitement un outil issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
+  par défaut: oui
+
+salarié . rémunération . avantages en nature . autres:
+  question: >
+    Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
+  par défaut: non
+
+salarié . rémunération . avantages en nature . autres . montant:
+  titre: autres
+  question: >
+    Quel est le montant de ces autres avantages ?
+  par défaut: 0 €/mois
+  suggestions:
+    🚗 véhicule: 260 €/mois
+
+salarié . rémunération . avantages en nature . ntic . montant:
+  titre: outils NTIC
+
+  description: |
+    Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
+
+    ```
+    [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
+    ```
+     soit 10,08€
+  formule:
+    produit:
+      assiette:
+        somme:
+          - coût appareils
+          - abonnements * 12 mois
+      taux: 10% /an
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+
+salarié . rémunération . avantages en nature . ntic . coût appareils:
+  question: >
+    Quel est le coût total neuf des appareils mis à disposition ?
+  par défaut: 800 €
+  # TODO : vérifier et documenter les chiffres
+  suggestions:
+    📱: 400 €
+    📱✨ (haut de gamme): 850 €
+    💻: 1200 €
+    💻 + 📱✨: 2050 €
+
+salarié . rémunération . avantages en nature . ntic . abonnements:
+  question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
+  par défaut: 20 €/mois
+  suggestions:
+    aucun: 0 €/mois
+    standard: 20 €/mois
+    international: 40 €/mois
+
+salarié . rémunération . avantages en nature . nourriture:
+  icônes: 🍝
+  question: >
+    L'entreprise fournit-elle gratuitement des repas ?
+  par défaut: non
+  description: >
+    Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+
+salarié . rémunération . avantages en nature . nourriture . montant:
+  titre: nourriture
+  unité: €/mois
+  formule:
+    produit:
+      assiette:
+        valeur: 4.85 €/repas
+        nom: repas forfaitaire
+      facteur: repas par mois
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
+
+salarié . rémunération . avantages en nature . nourriture . repas par mois:
+  question: >
+    Combien de repas par mois sont payés par l'entreprise ?
+  par défaut: 21 repas/mois
+  suggestions:
+    1 par jour: 21 repas/mois
+    2 par jour: 42 repas/mois
+
+salarié . statut cadre:
+  question: Le salarié a-t-il le statut cadre ?
+  description: |
+    Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
+    appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
+    reconnu par les conventions collectives, qui détermine l'appartenance à une
+    caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du
+    contrat de travail.
+
+
+    Reconnaissant initialement les compétences techniques et le rôle
+    d'encadrement du salarié, le statut s'est progressivement élargi à un
+    ensemble de postes de plus en plus nombreux, et a fini par recouvrir une
+    large population, mêlant managers, experts et dirigeants.
+
+
+    Il s'agit d'une notion mal définie désignant des concepts différents selon
+    le point de vue envisagé — que ce soit en termes de statut, de
+    représentation sociale, de rôle dans l'entreprise ou de culture.
+  par défaut: non
+  références:
+    wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise
+
+salarié . plafond sécurité sociale:
+  acronyme: PSS
+  unité: €/mois
+  formule:
+    valeur: plafond sécurité sociale temps plein * temps de travail . effectif . quotité
+    # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
+    # effectif . quotité. Cela pose problème en cas de de chômage
+    # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
+    # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
+    # divisions par zéro (si j'ai bien compris le problème, il est possible
+    # que le problème exact soit un peu différent).
+    plancher: 1 €/mois
+
+salarié . plafond sécurité sociale . renonciation proratisation:
+  description: >-
+    D'un commun accord, l'employeur et l'employé peuvent renoncer à la réduction
+    du plafond de la sécurité sociale (applicable pour les salariés à temps
+    partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
+  # TODO : Réactiver la règle (peut être ajouter des références et la déplacer dans l'espace de nom temps de travail)
+  valeur: non
+  applicable si: temps de travail . quotité < 100%
+  remplace:
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+
+salarié . prix du travail:
+  titre: Coût total
+  identifiant court: cout-embauche
+  résumé: Dépensé par l'entreprise
+  question: Quel est le coût total de cette embauche ?
+  description: |
+    Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
+
+  somme:
+    - rémunération . total
+    - taxe sur les salaires
+  abattement: aides employeur
+  unité: €/mois
+
+salarié . rémunération . total:
+  titre: Total chargé
+  question: Quelle est la rémunération chargée ?
+  résumé: Dépensé par l'entreprise
+  type: salaire
+  unité: €/mois
+  description: |
+    C'est le total que l'employeur doit verser pour employer un salarié.
+  formule:
+    somme:
+      - brut
+      - cotisations . employeur
+      - activité partielle . indemnités
+
+salarié . aides employeur:
+  titre: aides employeur
+  résumé: Pour l'employeur, différées dans le temps
+  description: |
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous la forme d’un crédit d'impôt.
+
+    Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
+  formule:
+    somme:
+      - aides à l'embauche
+      - activité partielle . indemnisation entreprise
+
+salarié . aides employeur . aides à l'embauche:
+  description: |
+    L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
+  le maximum de:
+    - aide à l'embauche d'apprentis
+    - aide à l'embauche senior professionnalisation
+    - emploi franc
+
+salarié . aides employeur . aide à l'embauche d'apprentis:
+  description: |
+    Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
+
+    Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . effectif < 250
+      - contrat . apprentissage
+      - contrat . apprentissage . diplôme préparé . niveau bac ou moins
+  formule:
+    variations:
+      - si: contrat . apprentissage . ancienneté = 'moins d'un an'
+        alors: 4125 €/an
+      - si: contrat . apprentissage . ancienneté = 'moins de deux ans'
+        alors: 2000 €/an
+      - sinon: 1200 €/an
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+
+salarié . aides employeur . aide à l'embauche senior professionnalisation:
+  description: |
+    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
+    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
+  applicable si: contrat . professionnalisation . salarié de 45 ans et plus
+  formule:
+    produit:
+      assiette: 2000 €/an
+      facteur: temps de travail . effectif . quotité
+    arrondi: oui
+  références:
+    Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
+    Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
+
+salarié . aides employeur . emploi franc:
+  description: |
+    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
+    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+    (QPV).
+
+    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
+    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+    [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  applicable si: éligible
+  formule:
+    multiplication:
+      assiette:
+        variations:
+          - si: contrat . CDD
+            alors: 2500 €/an
+          - sinon: 5000 €/an
+      facteur: temps de travail . effectif . quotité
+    arrondi: oui
+  références:
+    Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
+
+salarié . aides employeur . emploi franc . éligible:
+  titre: éligibilité à l'aide emploi franc
+  applicable si:
+    une de ces conditions:
+      - contrat . CDI
+      - toutes ces conditions:
+          - contrat . CDD
+          - contrat . CDD . durée contrat >= 6
+  question: Cette embauche est-elle éligible à l'aide emploi-franc ?
+  description: |
+    Conditions :
+    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
+    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
+  par défaut: non
+
+salarié . temps de travail:
+  unité: heures/mois
+  somme:
+    - contrat . temps de travail
+    - heures supplémentaires
+    - heures complémentaires
+  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+  avec:
+    quotité:
+      description: Temps de travail en proportion du temps complet légal.
+      valeur: temps de travail / durée légale du travail . mensuelle
+      plafond: 100%
+      unité: '%'
+    SMIC:
+      description: |
+        Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
+
+        Les heures supplémentaires et les heures complémentaires sont prises en
+        compte sans tenir compte de la majoration.
+      formule: temps de travail * SMIC horaire
+      références:
+        Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
+
+salarié . temps de travail . effectif:
+  titre: temps de travail effectif
+  valeur: temps de travail
+  abattement: activité partielle . heures chômées
+  avec:
+    quotité:
+      description: >-
+        Le plafond de la sécurité sociale doit être pro-ratisé en retirant les
+        absences ainsi que les jours passés au chômage partiel.
+      valeur: temps de travail . effectif / durée légale du travail . mensuelle
+      unité: '%'
+
+salarié . temps de travail . heures supplémentaires:
+  description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
+  titre: Nombre d'heures supplémentaires
+  non applicable si: contrat . temps de travail . temps partiel
+  question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées ?
+  par défaut: 0 heure/mois
+  suggestions:
+    aucune: 0 heure/mois
+    39h / semaine: 17.33 heures/mois
+    42h / semaine: 30.33 heures/mois
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
+  avec:
+    contrôle 44h max:
+      type: notification
+      formule:
+        toutes ces conditions:
+          - heures supplémentaires > 9 heures/semaine * période . semaines par mois
+          - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
+      description: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+    contrôle 48h max:
+      type: notification
+      sévérité: avertissement
+      formule: heures supplémentaires > 13 heures/semaine * période . semaines par mois
+      description: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+
+salarié . temps de travail . heures supplémentaires . majoration:
+  description: |
+    La rémunération des heures supplémentaires fait l'objet d'un ou plusieurs taux de majoration, fixés par convention ou accord collectif d'entreprise ou d'établissement (ou, à défaut, par convention ou accord de branche). Chaque taux est au minimum fixé à 10%.
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
+    - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
+    - 50 % pour les heures suivantes.
+  titre: majoration heures supplémentaires
+  note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
+  unité: heure/mois
+  formule:
+    barème:
+      assiette: heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - taux: 25%
+          plafond: 8 heures/semaine
+        - taux: 50%
+
+salarié . temps de travail . heures complémentaires:
+  description: >
+    Les heures complémentaires sont les heures effectuées par un salarié à temps
+    partiel au delà de son horaire contractuel. Les heures complémentaires ne
+    doivent pas amener le salarié à travailler pour une durée supérieur à la
+    durée légale ou conventionnelle du travail.
+  applicable si: contrat . temps de travail . temps partiel
+  question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées ?
+  par défaut: 0 heure/mois
+  avec:
+    contrôle heures complémentaires 10 pourcents:
+      type: notification
+      formule: heures complémentaires > seuil légal
+      description: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
+
+    # TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
+    contrôle heures complémentaires max:
+      type: notification
+      sévérité: avertissement
+      valeur: contrat . temps de travail + heures complémentaires >= durée légale du travail . mensuelle
+      description: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
+
+    seuil légal:
+      description: >-
+        Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut
+        être supérieur à un dixième de la durée contractuelle du temps partiel.
+
+        Si la convention le permet, les heures complémentaire au delà de ce seuil
+        sont rémunérée avec une majoration de 25%
+      unité: heures/mois
+      produit:
+        assiette: contrat . temps de travail
+        taux: 10%
+      arrondi: 0 décimales
+
+salarié . temps de travail . heures complémentaires . majoration:
+  description: >
+    La rémunération des heures complémentaire fait l'objet d'un ou plusieurs
+    taux de majoration, fixés par convention ou accord collectif d'entreprise ou
+    d'établissement (ou, à défaut, par convention ou accord de branche). Chaque
+    taux est au minimum fixé à 10%.
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
+    - 10 % pour les heures effectuées dans la limite d'un dixième de la durée contractuelle
+    - 25 % pour les heures suivantes.
+  titre: majoration heures complémentaires
+  barème:
+    assiette: heures complémentaires
+    mutliplicateur:
+    tranches:
+      - taux: 10%
+        plafond: seuil légal
+      - taux: 25%
+
+salarié . complémentaire santé . part employeur:
+  description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
+  question: Quelle est la part de la complémentaire santé payée par l'employeur ?
+  suggestions:
+    50%: 50%
+    100%: 100%
+  par défaut: 50%
+
+salarié . complémentaire santé . part employeur min:
+  type: notification
+  sévérité: avertissement
+  formule: part employeur < 50%
+  description: La part employeur de la complémentaire santé doit être de 50% au minimum
+
+salarié . complémentaire santé . part salarié:
+  description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
+  formule: 100% - part employeur
+
+salarié . complémentaire santé . forfait:
+  titre: Forfait de complémentaire santé entreprise
+  description: >-
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
+    doit prendre à sa charge au moins la moitié de son coût.
+
+    Le montant peut varier, mais la prévoyance doit couvrir un panier minimum
+    légal de soins.
+
+  note: >-
+    Pour des raisons historiques, la couverture sociale santé des salariés
+    d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de
+    complémentaire santé qui leur sont proposés sont inférieurs. Une étude de
+    Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70%
+    du prix moyen en France.
+
+  références:
+    les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+    Alsace-moselle étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
+
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  par défaut: 40 €/mois
+  suggestions:
+    basique: 40 €/mois
+    élevé: 100 €/mois
+    alsace moselle basique: 30 €/mois
+
+salarié . complémentaire santé . contrôle min:
+  type: notification
+  sévérité: avertissement
+  formule: complémentaire santé . forfait < 15 €/mois
+  description: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
+
+salarié . régime alsace moselle:
+  titre: Régime Alsace-Moselle
+  description: |
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
+
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+  formule:
+    une de ces conditions:
+      - établissement . localisation . département = 'Bas-Rhin'
+      - établissement . localisation . département = 'Haut-Rhin'
+      - établissement . localisation . département = 'Moselle'
+
+salarié . convention collective:
+  par défaut: "'droit commun'"
+  question: "Quelle convention collective est applicable à l'entreprise ?"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - droit commun
+        - HCR
+        - BTP
+        - sport
+        - SVP
+        - compta
+        - optique
+
+salarié . convention collective . contrôle décharge:
+  type: notification
+  sévérité: avertissement
+  formule: convention collective != 'droit commun'
+  description: >-
+    Attention : l'implémentation des conventions collective est encore partielle
+    et non vérifiée. Néanmoins, cela permet d'obtenir une première estimation,
+    plus précise que le régime général.
+
+salarié . convention collective . droit commun:
+  formule: convention collective = 'droit commun'

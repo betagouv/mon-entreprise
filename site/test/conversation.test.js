@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { describe, expect, it } from 'vitest'
 import {
 	getNextQuestions,
-	getNextSteps,
+	getNextSteps
 } from '../source/components/utils/useNextQuestion'
 
 describe('conversation', function () {
@@ -67,14 +67,14 @@ describe('conversation', function () {
 		const result = Object.keys(
 			new Engine(rules)
 				.setSituation({
-					'contrat salarié': 'oui',
-					'contrat salarié . CDD': 'oui',
-					'contrat salarié . rémunération . brut de base': '2300',
+					'salarié': 'oui',
+					'salarié . contrat . CDD': 'oui',
+					'salarié . contrat . salaire brut': '2300',
 				})
-				.evaluate('contrat salarié . rémunération . net').missingVariables
+				.evaluate('salarié . rémunération . net').missingVariables
 		)
 
-		expect(result).to.include('contrat salarié . CDD . motif')
+		expect(result).to.include('salarié . contrat . CDD . motif')
 	})
 })
 

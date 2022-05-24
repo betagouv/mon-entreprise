@@ -1,34 +1,34 @@
 objectifs:
-  - contrat salarié . prix du travail
-  - contrat salarié . rémunération . brut de base . équivalent temps plein
-  - contrat salarié . rémunération . brut de base
-  - contrat salarié . rémunération . net
-  - contrat salarié . rémunération . net après impôt
+  - salarié . prix du travail
+  - salarié . contrat . salaire brut . équivalent temps plein
+  - salarié . contrat . salaire brut
+  - salarié . rémunération . net
+  - salarié . rémunération . net après impôt
 
 questions:
   à l'affiche:
-    Type de contrat: contrat salarié
-    Temps partiel: contrat salarié . temps de travail . temps partiel
-    Emploi franc: contrat salarié . aides employeur . emploi franc . éligible
-    Cadre: contrat salarié . statut cadre
-    Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
-    Titres-restaurant: contrat salarié . frais professionnels . titres-restaurant
+    Type de contrat: salarié
+    Temps partiel: salarié . contrat . temps de travail . temps partiel
+    Emploi franc: salarié . aides employeur . emploi franc . éligible
+    Cadre: salarié . statut cadre
+    Heures supplémentaires: salarié . temps de travail . heures supplémentaires
+    Titres-restaurant: salarié . rémunération . frais professionnels . titres-restaurant
     Impôt: impôt . méthode de calcul
     Commune: établissement . localisation
   non prioritaires:
-    - contrat salarié . frais professionnels
-    - contrat salarié . rémunération . avantages en nature
+    - salarié . rémunération . frais professionnels
+    - salarié . rémunération . avantages en nature
     - entreprise . association non lucrative
     - entreprise . non assujettie à TVA
-    - contrat salarié . statut JEI
-    - contrat salarié . complémentaire santé
-    - contrat salarié . régime des impatriés
+    - salarié . cotisations . exonérations . JEI
+    - salarié . complémentaire santé
+    - salarié . régime des impatriés
 unité par défaut: €/mois
 situation:
   dirigeant: non
   entreprise . catégorie juridique: non
   entreprise . imposition: non
-  contrat salarié . activité partielle: non
+  salarié . activité partielle: non
   impôt . méthode de calcul . par défaut:
     # On utilise le taux neutre qui est plus rapide à calculer et qui correspond
     # à une fiche de paie pour laquelle le taux effectif n'est pas connu
@@ -41,6 +41,6 @@ situation:
     # 6000 €/mois correspond au seuil où les tranches du barème neutre
     # augmentent par paliers de 4% ou 5%.
     variations:
-      - si: contrat salarié . rémunération . brut de base <= 6000 €/mois
+      - si: salarié . contrat . salaire brut <= 6000 €/mois
         alors: "'taux neutre'"
       - sinon: "'barème standard'"

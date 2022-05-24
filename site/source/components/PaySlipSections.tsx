@@ -15,17 +15,17 @@ export const SalaireBrutSection = () => {
 			<H4 className="payslip__salaryTitle">
 				<Trans>Salaire</Trans>
 			</H4>
-			<Line rule="contrat salarié . rémunération . brut de base" />
-			<Line rule="contrat salarié . rémunération . avantages en nature . montant" />
-			<Line rule="contrat salarié . activité partielle . retrait absence" />
-			<Line rule="contrat salarié . activité partielle . indemnités" />
-			<Line rule="contrat salarié . rémunération . heures supplémentaires" />
-			<Line rule="contrat salarié . rémunération . heures complémentaires" />
-			<Line rule="contrat salarié . rémunération . primes" />
-			<Line rule="contrat salarié . frais professionnels" />
-			<Line rule="contrat salarié . CDD . indemnités salarié" />
-			<Condition expression="contrat salarié . rémunération . brut de base != contrat salarié . rémunération . brut">
-				<Line rule="contrat salarié . rémunération . brut" />
+			<Line rule="salarié . contrat . salaire brut" />
+			<Line rule="salarié . rémunération . avantages en nature . montant" />
+			<Line rule="salarié . activité partielle . retrait absence" />
+			<Line rule="salarié . activité partielle . indemnités" />
+			<Line rule="salarié . rémunération . heures supplémentaires" />
+			<Line rule="salarié . rémunération . heures complémentaires" />
+			<Line rule="salarié . rémunération . primes" />
+			<Line rule="salarié . rémunération . frais professionnels" />
+			<Line rule="salarié . rémunération . indemnités CDD" />
+			<Condition expression="salarié . contrat . salaire brut != salarié . rémunération . brut">
+				<Line rule="salarié . rémunération . brut" />
 			</Condition>
 		</div>
 	)
@@ -39,26 +39,26 @@ export const SalaireNetSection = () => {
 			<H4 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
 			</H4>
-			<Line rule="contrat salarié . rémunération . net imposable" />
+			<Line rule="salarié . rémunération . net imposable" />
 			<Condition
 				expression={{
 					'toutes ces conditions': [
-						'contrat salarié . rémunération . avantages en nature', // bool
-						'contrat salarié . frais professionnels . titres-restaurant', // bool
+						'salarié . rémunération . avantages en nature', // bool
+						'salarié . rémunération . frais professionnels . titres-restaurant', // bool
 					],
 				}}
 			>
-				<Line rule="contrat salarié . rémunération . net de cotisations" />
+				<Line rule="salarié . rémunération . net de cotisations" />
 			</Condition>
 			<Line
 				negative
-				rule="contrat salarié . rémunération . avantages en nature . montant"
+				rule="salarié . rémunération . avantages en nature . montant"
 			/>
 			<Line
 				negative
-				rule="contrat salarié . frais professionnels . titres-restaurant . montant"
+				rule="salarié . rémunération . frais professionnels . titres-restaurant . montant"
 			/>
-			<Line rule="contrat salarié . rémunération . net" />
+			<Line rule="salarié . rémunération . net" />
 			<Condition expression="impôt . montant > 0">
 				<Line
 					negative
@@ -66,7 +66,7 @@ export const SalaireNetSection = () => {
 					title={t('impôt sur le revenu')}
 					unit="€/mois"
 				/>
-				<Line rule="contrat salarié . rémunération . net après impôt" />
+				<Line rule="salarié . rémunération . net après impôt" />
 			</Condition>
 		</div>
 	)

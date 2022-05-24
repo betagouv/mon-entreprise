@@ -5,7 +5,7 @@ describe('Partage (simulateur salarié)', function () {
 		'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
-		'contrat salarié': "'CDD'",
+		'salarié': "'CDD'",
 		'salaire-brut': '1539€/mois',
 	})
 	searchParams.set('utm_source', 'sharing')

@@ -83,17 +83,17 @@ function SalariéSimulationGoals() {
 			toggles={<PeriodSwitch />}
 			legend="Rémunération du salarié"
 		>
-			<SimulationGoal dottedName="contrat salarié . prix du travail" />
+			<SimulationGoal dottedName="salarié . prix du travail" />
 			<AidesGlimpse />
 
-			<SimulationGoal dottedName="contrat salarié . rémunération . brut de base" />
+			<SimulationGoal dottedName="salarié . contrat . salaire brut" />
 			<SimulationGoal
 				small
-				dottedName="contrat salarié . rémunération . brut de base . équivalent temps plein"
+				dottedName="salarié . contrat . salaire brut . équivalent temps plein"
 			/>
-			<SimulationGoal dottedName="contrat salarié . rémunération . net" />
+			<SimulationGoal dottedName="salarié . rémunération . net" />
 			<TitreRestaurant />
-			<SimulationGoal dottedName="contrat salarié . rémunération . net après impôt" />
+			<SimulationGoal dottedName="salarié . rémunération . net après impôt" />
 		</SimulationGoals>
 	)
 }
@@ -101,7 +101,7 @@ function SalariéSimulationGoals() {
 function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const dottedName =
-		'contrat salarié . frais professionnels . titres-restaurant . montant'
+		'salarié . rémunération . frais professionnels . titres-restaurant . montant'
 
 	return (
 		<Condition expression={`${dottedName} > 0`}>
@@ -124,7 +124,7 @@ function TitreRestaurant() {
 
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const dottedName = 'contrat salarié . aides employeur' as DottedName
+	const dottedName = 'salarié . aides employeur' as DottedName
 	const engine = useEngine()
 	const aides = engine.getRule(dottedName)
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous

@@ -83,7 +83,7 @@ protection sociale . retraite . base . trimestres:
 protection sociale . retraite . base . trimestres . salarié:
   unité: trimestres validés/an
   grille: &bareme_trimestre
-    assiette: contrat salarié . rémunération . brut
+    assiette: salarié . rémunération . brut
     multiplicateur: SMIC horaire
     tranches:
       - montant: 0
@@ -190,7 +190,7 @@ protection sociale . revenu moyen:
     le maximum de:
       - dirigeant . indépendant . revenu professionnel
       - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      - contrat salarié . rémunération . brut
+      - salarié . rémunération . brut
 
 protection sociale . retraite . mois cotisés:
   unité: mois
@@ -302,7 +302,7 @@ protection sociale . retraite . complémentaire salarié . points acquis:
   unité: points/mois
   note: |
     On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
-  valeur: contrat salarié . retraite complémentaire / valeur d'acquisition
+  valeur: salarié . retraite complémentaire / valeur d'acquisition
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
@@ -447,7 +447,7 @@ protection sociale . santé . indemnités journalières . salarié:
   unité: €/jour
 
   notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
-  applicable si: contrat salarié
+  applicable si: salarié
   formule:
     produit:
       assiette: revenu moyen
@@ -519,7 +519,7 @@ protection sociale . accidents du travail et maladies professionnelles:
 
   unité: €/jour
 
-  applicable si: contrat salarié
+  applicable si: salarié
   formule:
     produit:
       assiette:

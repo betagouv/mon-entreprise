@@ -1,4 +1,4 @@
-contrat salarié . convention collective . compta:
+salarié . convention collective . compta:
   formule: convention collective = 'compta'
   titre: Experts-comptables et commissaires aux comptes
   icônes: 🧮
@@ -10,7 +10,7 @@ contrat salarié . convention collective . compta:
     Légifrance: https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635826
     Synthèse Dicotravail: https://www.dicotravail.com/convention-collective/experts-comptables-jo-3020-idcc-787/
 
-contrat salarié . convention collective . compta . majoration heures supplémentaires:
+salarié . convention collective . compta . majoration heures supplémentaires:
   remplace: temps de travail . heures supplémentaires . majoration
   formule:
     barème:

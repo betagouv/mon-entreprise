@@ -92,7 +92,7 @@ SMIC temps plein:
   unité: €/mois
   formule:
     produit:
-      assiette: contrat salarié . temps de travail . base légale * période . semaines par mois
+      assiette: durée légale du travail . mensuelle
       facteur: SMIC horaire
   références:
     décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042677359?r=s75zUOEVpR
@@ -102,8 +102,15 @@ SMIC temps plein . net imposable:
   description: Montant du SMIC net imposable pour un temps plein.
   formule:
     recalcul:
-      règle: contrat salarié . rémunération . net imposable . base
+      règle: salarié . rémunération . net imposable . base
       avec:
-        contrat salarié . rémunération . brut de base: SMIC temps plein
+        salarié . contrat . salaire brut: SMIC temps plein
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
+
+durée légale du travail:
+  valeur: 35 heures/semaine
+  avec:
+    mensuelle: durée légale du travail * période . semaines par mois
+  références:
+    Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail

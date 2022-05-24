@@ -21,7 +21,7 @@ situation personnelle . domiciliation fiscale à l'étranger:
           texte: La résidence fiscale du salarié est-elle située hors de France ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
-    - contrat salarié . CSG et CRDS
+    - salarié . CSG et CRDS
   par défaut: non
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html

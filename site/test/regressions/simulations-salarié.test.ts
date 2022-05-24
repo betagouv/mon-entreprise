@@ -15,29 +15,29 @@ it('calculate simulations-salarié', () => {
 			engine
 				.setSituation({
 					...employeeConfig.situation,
-					'contrat salarié . rémunération . brut de base': '3000 €/mois',
+					'salarié . contrat . salaire brut': '3000 €/mois',
 				})
-				.evaluate('contrat salarié . rémunération . net après impôt')
+				.evaluate('salarié . rémunération . net après impôt')
 		)
 	).toMatchInlineSnapshot(`
 		[
-		  "contrat salarié",
-		  "contrat salarié . complémentaire santé . forfait",
-		  "contrat salarié . complémentaire santé . part employeur",
-		  "contrat salarié . convention collective",
-		  "contrat salarié . déduction forfaitaire spécifique",
-		  "contrat salarié . frais professionnels . abonnement transports publics . montant",
-		  "contrat salarié . frais professionnels . titres-restaurant",
-		  "contrat salarié . frais professionnels . transports personnels . carburant faible émission . montant",
-		  "contrat salarié . frais professionnels . transports personnels . forfait mobilités durables . montant",
-		  "contrat salarié . régime des impatriés",
-		  "contrat salarié . rémunération . avantages en nature",
-		  "contrat salarié . rémunération . primes . activité . base",
-		  "contrat salarié . rémunération . primes . fin d'année . treizième mois",
-		  "contrat salarié . statut cadre",
-		  "contrat salarié . temps de travail . heures supplémentaires",
-		  "contrat salarié . temps de travail . temps partiel",
 		  "impôt . méthode de calcul",
+		  "salarié . complémentaire santé . forfait",
+		  "salarié . complémentaire santé . part employeur",
+		  "salarié . contrat",
+		  "salarié . contrat . temps de travail . temps partiel",
+		  "salarié . convention collective",
+		  "salarié . déduction forfaitaire spécifique",
+		  "salarié . régime des impatriés",
+		  "salarié . rémunération . avantages en nature",
+		  "salarié . rémunération . frais professionnels . abonnement transports publics . montant",
+		  "salarié . rémunération . frais professionnels . titres-restaurant",
+		  "salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant",
+		  "salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant",
+		  "salarié . rémunération . primes . activité . base",
+		  "salarié . rémunération . primes . fin d'année",
+		  "salarié . statut cadre",
+		  "salarié . temps de travail . heures supplémentaires",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
 		  "établissement . localisation",
 		]

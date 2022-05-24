@@ -1,0 +1,462 @@
+salarié . contrat:
+  icônes: 📄
+  question: De quel type de contrat s'agit-il ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - CDI
+      - CDD
+      - apprentissage
+      - professionnalisation
+      - stage
+  par défaut: "'CDI'"
+  description: |
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
+  références:
+    Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/contrat-de-travail-les-principales-caracteristiques
+  avec:
+    CDI:
+      valeur: contrat = 'CDI'
+      titre: CDI
+
+    CDD:
+      titre: CDD
+      valeur: contrat = 'CDD'
+      description: |
+        Par défaut, faire travailler quelqu'un en France établit automatiquement un CDI à temps plein.
+        Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
+      références:
+        Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/le-contrat-a-duree-determinee-cdd
+      avec:
+        information:
+          type: notification
+          valeur: oui
+          description: >-
+            Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
+            [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+
+    apprentissage:
+      titre: apprentissage
+      valeur: contrat = 'apprentissage'
+      description: |
+        Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
+      rend non applicable:
+        - CSG et CRDS
+        - statut cadre
+        - cotisations . exonérations . JEI
+        - régime des impatriés
+        - temps de travail . temps partiel
+
+    professionnalisation:
+      titre: professionnalisation
+      valeur: contrat = 'professionnalisation'
+      description: |
+        Le contrat de professionnalisation est un contrat de travail en alternance
+        réservé à un public prioritaire : jeunes de 16 à 25 ans dans le cadre de
+        leur formation initiale, demandeurs d'emplois, bénéficiaires du RSA, ASS ou
+        AAH, et les personnes ayant bénéficié d'un contrat unique d'insertion.
+
+        Il peut prendre la forme d'un contrat à durée déterminée (CDD) ou
+        indéterminée (CDI), la période de professionnalisation proprement-dite
+        devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
+        prolongée jusqu'à 36 mois.
+      rend non applicable: rémunération . contrôle smic
+      références:
+        Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
+
+    stage:
+      titre: stage
+      description: |
+        Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
+      formule: contrat = 'stage'
+      rend non applicable:
+        - statut cadre
+        - cotisations . exonérations . JEI
+        - cotisations . exonérations . réduction générale
+        - cotisations . exonérations . lodeom
+        - allocations familiales . taux réduit
+        - maladie . taux employeur . taux réduit
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - chômage
+        - AGS
+        - complémentaire santé
+        - contribution au dialogue social
+        - déduction forfaitaire spécifique
+        - temps de travail . temps partiel
+        - temps de travail . heures supplémentaires
+        - régime des impatriés
+        - rémunération . contrôle smic
+        - salarié . activité partielle
+      avec:
+        avertissement:
+          type: notification
+          sévérité: avertissement
+          valeur: oui
+          description: >-
+            Une convention de stage **n'est pas un contrat de travail**, et ne peut pas être conclue pour réaliser une tâche régulière correspondant à un poste de travail permanent, ou à un accroissement temporaire de l'activité de l'entreprise. [Code de l'éducation - Article L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
+            Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+        contrôle gratification minimale:
+          type: notification
+          sévérité: avertissement
+          valeur: contrat . salaire brut < gratification minimale
+          description: >-
+            La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+        gratification minimale:
+          valeur: 15% * plafond sécurité sociale temps plein
+          Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
+
+salarié . contrat . apprentissage . diplôme préparé:
+  question: Quel type de diplôme l'apprenti prépare-t-il ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - niveau bac ou moins
+        - niveau supérieur au bac
+  par défaut: "'niveau supérieur au bac'"
+
+salarié . contrat . apprentissage . diplôme préparé . niveau bac ou moins:
+  titre: Diplôme d'un niveau inférieur ou égal au bac
+  formule: diplôme préparé = 'niveau bac ou moins'
+  description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV (Bac Pro, BP, BTM)
+
+salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au bac:
+  titre: Diplôme d'un niveau supérieur au bac
+  formule: diplôme préparé = 'niveau supérieur au bac'
+  description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
+
+salarié . contrat . apprentissage . ancienneté:
+  question: Depuis combien de temps l'apprenti est-il employé ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins d'un an
+        - moins de deux ans
+        - moins de trois ans
+        - moins de quatre ans
+  par défaut: "'moins d'un an'"
+
+salarié . contrat . apprentissage . ancienneté . moins d'un an:
+  formule: ancienneté = 'moins d'un an'
+
+salarié . contrat . apprentissage . ancienneté . moins de deux ans:
+  formule: ancienneté = 'moins de deux ans'
+
+salarié . contrat . apprentissage . ancienneté . moins de trois ans:
+  formule: ancienneté = 'moins de trois ans'
+
+salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
+  formule: ancienneté = 'moins de quatre ans'
+  type: notification
+  description: >-
+    La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
+    travailleur handicapé est reconnue à l'apprenti.
+
+salarié . contrat . professionnalisation . jeune de moins de 30 ans:
+  question: Le salarié embauché a-t'il moins de 30 ans ?
+  par défaut: oui
+
+salarié . contrat . professionnalisation . salarié de 45 ans et plus:
+  non applicable si: jeune de moins de 30 ans
+  question: Le salarié embauché a-t'il 45 ans ou plus ?
+  par défaut: non
+
+salarié . contrat . CDD . motif:
+  titre: Motif de recours
+  question: Quel est le motif de recours au CDD ?
+  description: |
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
+  une possibilité:
+    choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
+    possibilités:
+      - classique
+      - contrat aidé
+      - complément formation
+      - issue d'apprentissage
+  # les CDD d'usage "concentrent la moitié des embauches en CDD"
+  par défaut: "'classique . accroissement activité'"
+  références:
+    Code du travail - Articles L1242-1 à 4: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=E318966AA9DEB9E32465297F15B04D86.tpdila20v_1?idSectionTA=LEGISCTA000006195639&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+    le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
+    embaucher en CDD: https://www.service-public.fr/particuliers/vosdroits/F34
+    les cas de recours au CDD: https://www.easycdd.com/LEGISLATION-CDD/Avant-de-rediger-un-contrat-CDD/Les-cas-de-recours-au-contrat-CDD
+  avec:
+    classique:
+      titre: motifs classiques
+      une possibilité:
+        choix obligatoire: oui
+        possibilités:
+          - remplacement
+          - accroissement activité
+          - saisonnier
+          - usage
+          - mission
+      références:
+        Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+      avec:
+        saisonnier:
+          titre: Saisonnier
+          valeur: salarié . contrat . CDD . motif = 'classique . saisonnier'
+          description: Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter chaque année selon une périodicité à peu près fixe, en fonction du rythme des saisons ou des modes de vie collectifs.
+
+        accroissement activité:
+          titre: Accroissement temporaire d'activité
+          valeur: salarié . contrat . CDD . motif = 'classique . accroissement activité'
+          description: Accroissement temporaire de l'activité de l'entreprise
+
+        remplacement:
+          titre: Contrat de remplacement
+          valeur: salarié . contrat . CDD . motif = 'classique . remplacement'
+          description: |
+            Nous regroupons dans cette catégorie les cas suivants.
+
+            - Remplacement d'un salarié en cas :
+              - D'absence ;
+              - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+              - De suspension de son contrat de travail ;
+              - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+              - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+            - Remplacement d'un chef d'entreprise artisanale, industrielle ou commerciale, d'une personne exerçant une profession libérale, de son conjoint participant effectivement à l'activité de l'entreprise à titre professionnel et habituel ou d'un associé non salarié d'une société civile professionnelle, d'une société civile de moyens d'une société d'exercice libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+            - Remplacement du chef d'une exploitation agricole ou d'une entreprise mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime, d'un aide familial, d'un associé d'exploitation, ou de leur conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il participe effectivement à l'activité de l'exploitation agricole ou de l'entreprise ;
+
+        mission:
+          titre: Contrat de mission
+          valeur: salarié . contrat . CDD . motif = 'classique . mission'
+          description: |
+            > Aussi appelé contrat à objet défini.
+
+            Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de branche étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+            - Les nécessités économiques auxquelles ces contrats sont susceptibles d'apporter une réponse adaptée ;
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini bénéficient de garanties relatives à l'aide au reclassement, à la validation des acquis de l'expérience, à la priorité de réembauche et à l'accès à la formation professionnelle continue et peuvent, au cours du délai de prévenance, mobiliser les moyens disponibles pour organiser la suite de leur parcours professionnel ;
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini ont priorité d'accès aux emplois en contrat à durée indéterminée dans l'entreprise.
+
+        usage:
+          titre: Contrat d'usage
+          alias: motif extra
+          valeur: salarié . contrat . CDD . motif = 'classique . usage'
+          description: Emplois pour lesquels, dans certains secteurs d'activité définis par décret ou par convention ou accord collectif de travail étendu, il est d'usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l'activité exercée et du caractère par nature temporaire de ces emplois ;
+          références:
+            Embauche en contrat d'extra: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
+
+    complément formation:
+      titre: Complément de formation professionnelle
+      valeur: salarié . contrat . CDD . motif = 'complément formation'
+      description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
+      références:
+        Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+        Code du travail - Décret D1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000018537448&cidTexte=LEGITEXT000006072050
+
+    issue d'apprentissage:
+      titre: À l'issue d'un contrat d'apprentissage
+      valeur: salarié . contrat . CDD . motif = 'issue d'apprentissage'
+      description: |
+        A l'issue d'un contrat d'apprentissage, un contrat de travail à durée déterminée peut être conclu lorsque l'apprenti doit satisfaire aux obligations du service national dans un délai de moins d'un an après l'expiration du contrat d'apprentissage.
+      références:
+        Code du travail - Article L1242-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000028498598&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+
+    contrat aidé:
+      titre: Contrat aidé (CUI, alternance, ...)
+      valeur: salarié . contrat . CDD . motif = 'contrat aidé'
+      références:
+        Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+    # TODO Attention : il faudrait peut-être prendre en compte les interdictions du CDD.
+    # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
+
+salarié . contrat . CDD . durée contrat:
+  icônes: ⏳
+  titre: durée du contrat
+  question: Quelle est la durée du contrat ?
+  description: |
+    [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
+  références:
+    Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+  suggestions:
+    18 mois: 18 mois
+    1 an: 12 mois
+    6 mois: 6 mois
+    3 mois: 3 mois
+  # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
+  par défaut: 1 mois
+
+salarié . contrat . CDD . indemnité de fin de contrat:
+  alias: prime de précarité
+  question: Le salarié a-t-il droit à l'indemnité de fin de contrat (dite prime de précarité) ?
+  description: Si vous ne savez pas, cliquez sur « Passer »
+  par défaut:
+    valeur: oui
+    non applicable si:
+      une de ces conditions:
+        - motif = 'classique . usage'
+        - motif = 'classique . saisonnier'
+        - motif . complément formation
+        - motif . contrat aidé
+        - reconduction en CDI
+        - rupture sans indemnité
+        - CDD jeune vacances
+
+  avec:
+    rupture sans indemnité:
+      titre: Rupture pour faute grave, force majeure, ou par le salarié.
+      question: Le contrat CDD a-t-il été rompu pendant la période d'essai, pour faute grave, force majeure, ou de manière anticipée par le salarié ?
+      description: Dans ces cas, aucune majoration ou indemnité sur le CDD ne sera à verser.
+      par défaut: non
+      références:
+        Faute grave: https://code.travail.gouv.fr/fiche-service-public/faute-simple-grave-ou-lourde-quelles-differences-pour-le-salarie-licencie
+        Force majeure: https://code.travail.gouv.fr/fiche-service-public/rupture-du-contrat-de-travail-pour-cas-de-force-majeure?q=rupture%20du%20contrat%20et%20force%20majeure
+
+    CDD jeune vacances:
+      par défaut: non
+      question: Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires ou universitaires (« job d’été ») ?
+      description: >-
+
+        Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
+
+  références:
+    Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
+    Fiche Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
+    Fiche La prime de précarité est-elle due: https://www.service-public.fr/particuliers/vosdroits/F803
+    Le travail saisonnier: http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
+    La prime de précarité n'est pas due si: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
+    Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
+
+salarié . contrat . CDD . reconduction en CDI:
+  question: Allez-vous proposer un CDI à l'issue du CDD ?
+  description: |
+    Vous proposez au salarié, au terme du CDD, une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
+  par défaut: non
+
+salarié . contrat . CDD . congés pris:
+  question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
+  description: |
+    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
+    Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
+  unité: jours ouvrés
+  suggestions:
+    la totalité: congés dus sur la durée du contrat
+    la moitié: 50% * congés dus sur la durée du contrat
+    aucun: 0 jours ouvrés
+  par défaut: congés dus sur la durée du contrat
+  avec:
+    jours ouvrés sur la durée du contrat:
+      produit:
+        assiette: 253 jours ouvrés/an
+        facteur: durée contrat
+
+    congés dus sur la durée du contrat:
+      produit:
+        assiette: 25 jours ouvrés/an
+        facteur: durée contrat
+      arrondi: 2 décimales
+
+    contrôle congés non pris max:
+      type: notification
+      sévérité: avertissement
+      valeur: congés pris > congés dus sur la durée du contrat
+      description: Le nombre de jours de congés pris est supérieur à la totalité des jours de congés acquis sur la durée du contrat (par défaut 25 jours / an)
+
+    proportion:
+      unité: '%'
+      valeur: congés pris / congés dus sur la durée du contrat
+      plafond: 100%
+
+    proportion par rapport aux jours ouvrés: (congés dus sur la durée du contrat - congés pris) / jours ouvrés sur la durée du contrat
+
+salarié . contrat . date d'embauche:
+  question: Quelle est la date d'embauche du salarié ?
+  par défaut: 01/10/2021
+  suggestions:
+    Début 2021: 01/01/2021
+    Début 2020: 01/01/2020
+    Fin 2017: 31/12/2017
+  type: date
+
+salarié . contrat . salaire brut:
+  identifiant court: salaire-brut
+  résumé: Brut de référence (sans les primes, indemnités ni majorations)
+  type: salaire
+  question: Quel est votre salaire brut ?
+  description: |
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
+
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
+  unité: €/mois
+  suggestions:
+    salaire médian: 2300 €/mois
+    SMIC: temps de travail . SMIC
+  inversion numérique:
+    question: Quel est le salaire ?
+    titre: salaire
+    avec:
+      - prix du travail
+      - rémunération . total
+      - rémunération . net
+      - rémunération . net après impôt
+      - équivalent temps plein
+      - dirigeant . rémunération . totale
+
+  références:
+    Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+
+  avec:
+    équivalent temps plein:
+      applicable si: temps de travail . temps partiel
+      titre: Salaire brut équivalent temps plein
+      résumé: Le salaire si l'embauche se faisait à temps plein
+      question: Quel est le salaire en équivalent temps plein ?
+      unité: €/mois
+      valeur: salaire brut / temps de travail . quotité
+    contrôle salaire élevé:
+      type: notification
+      toutes ces conditions:
+        - salaire brut >= 10000 €/mois
+        - dirigeant = non
+      description: >-
+        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
+
+salarié . contrat . temps de travail:
+  unité: heures/mois
+  produit:
+    assiette:
+      variations:
+        - si: temps partiel
+          alors: temps partiel . heures par semaine
+        - sinon: durée légale du travail
+    facteur: période . semaines par mois
+  avec:
+    quotité:
+      valeur: temps de travail / durée légale du travail . mensuelle
+      unité: '%'
+    SMIC: SMIC temps plein * quotité
+
+salarié . contrat . temps de travail . temps partiel:
+  question: Le contrat est-il à temps partiel ?
+  description: |
+    Deux contrats au même salaire, l'un à temps partiel, l'autre à temps complet, peuvent donner lieu à des montants de cotisation différents.
+
+    Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
+  par défaut: non
+  avec:
+    heures par semaine:
+      par défaut: 32 heures/semaine
+      question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
+      suggestions:
+        4 jours / semaine: durée légale du travail * 4 / 5
+        mi-temps: durée légale du travail / 2
+
+    contrôle temps min:
+      type: notification
+      sévérité: avertissement
+      formule: heures par semaine < 24 heures/semaine
+      description: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+
+    contrôle temps max:
+      type: notification
+      sévérité: avertissement
+      formule: heures par semaine >= durée légale du travail
+      description: Un temps partiel doit être en dessous de la durée de travail légale (35h)

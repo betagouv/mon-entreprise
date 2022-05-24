@@ -113,7 +113,7 @@ export function getNextQuestions(
 	const lastStep = answeredQuestions[answeredQuestions.length - 1]
 
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est
-	// "une possibilité", exemple "contrat salarié . cdd"
+	// "une possibilité", exemple "salarié . contrat . CDD"
 	const lastStepWithAnswer =
 		lastStep && situation[lastStep]
 			? ([lastStep, situation[lastStep]]
