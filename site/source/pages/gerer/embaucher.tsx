@@ -8,10 +8,10 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { RootState } from '@/reducers/rootReducer'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulatorRessourceCard } from '../Simulateurs/cards/SimulatorRessourceCard'
 
@@ -175,12 +175,12 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="complementaryHealth"
 					title={t(
-						'embauche.tâches.complémentaire santé.titre',
-						'Choisir une complémentaire santé'
+						'embauche.tâches.prévoyance . santé.titre',
+						'Choisir une prévoyance . santé'
 					)}
 					explanations={
 						<Body>
-							<Trans i18nKey="embauche.tâches.complémentaire santé.description">
+							<Trans i18nKey="embauche.tâches.prévoyance . santé.description">
 								Vous devez couvrir vos salariés avec l'assurance complémentaire
 								santé privée de votre choix (aussi appelée "mutuelle"), pour
 								autant qu'elle offre un ensemble de garanties minimales.

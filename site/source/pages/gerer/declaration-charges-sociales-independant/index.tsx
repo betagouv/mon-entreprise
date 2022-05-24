@@ -132,7 +132,7 @@ export default function AideDéclarationIndépendant() {
 							<SimpleField dottedName="déclaration charge sociales . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<Condition expression="établissement . ZFU">
-								<SimpleField dottedName="entreprise . effectif . seuil" />
+								<SimpleField dottedName="entreprise . salariés . effectif . seuil" />
 							</Condition>
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"

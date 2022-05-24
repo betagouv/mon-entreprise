@@ -6,7 +6,7 @@ dirigeant . indépendant . PL:
   formule: oui
 
 dirigeant . indépendant . PL . métier:
-  applicable si: entreprise . activité . libérale réglementée
+  applicable si: entreprise . activité . libérale . réglementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   formule:
@@ -113,7 +113,7 @@ dirigeant . indépendant . PL . métier . expert-comptable:
 dirigeant . indépendant . PL . option régime général:
   applicable si:
     toutes ces conditions:
-      - entreprise . activité . libérale réglementée = non
+      - entreprise . activité . libérale . réglementée = non
       - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: |
@@ -146,7 +146,7 @@ dirigeant . indépendant . PL . régime général:
   formule:
     toutes ces conditions:
       - CIPAV = non
-      - entreprise . activité . libérale réglementée = non
+      - entreprise . activité . libérale . réglementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
@@ -167,7 +167,7 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   formule:
     barème:
       assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: plafond sécurité sociale
       tranches:
         - taux: 0%
           plafond: 1
@@ -189,7 +189,7 @@ dirigeant . indépendant . PL . maladie:
     taux:
       taux progressif:
         assiette: assiette des cotisations
-        multiplicateur: plafond sécurité sociale temps plein
+        multiplicateur: plafond sécurité sociale
         tranches:
           - plafond: 0%
             taux: 1.5%
@@ -211,7 +211,7 @@ dirigeant . indépendant . PL . cotisations Urssaf:
     dépendance).
   formule:
     somme:
-      - cotisations et contributions . CSG et CRDS
+      - cotisations et contributions . CSG-CRDS
       - cotisations et contributions . maladie
       - cotisations et contributions . allocations familiales
       - cotisations et contributions . formation professionnelle
@@ -246,7 +246,7 @@ dirigeant . indépendant . PL . CIPAV:
       - toutes ces conditions:
           - entreprise . date de création < 01/2019
           - option régime général = non
-          - entreprise . activité . libérale réglementée = non
+          - entreprise . activité . libérale . réglementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   non applicable si: exonération incapacité
@@ -493,13 +493,13 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
           arrondi: oui
           unité: €/an
         taux: 8.23%
-        plafond: plafond sécurité sociale temps plein
+        plafond: plafond sécurité sociale
       - attributs:
           nom: tranche T2
           arrondi: oui
           unité: €/an
         taux: 1.87%
-        plafond: 5 * plafond sécurité sociale temps plein
+        plafond: 5 * plafond sécurité sociale
   références:
     cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
@@ -529,8 +529,8 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   produit:
     assiette:
       valeur: assiette des cotisations
-      plafond: 3 * plafond sécurité sociale temps plein
-      plancher: 40% * plafond sécurité sociale temps plein
+      plafond: 3 * plafond sécurité sociale
+      plancher: 40% * plafond sécurité sociale
     taux:
       variations:
         - si: date >= 01/2022
@@ -585,7 +585,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
     variations:
       - si: conjoint collaborateur . assiette . forfaitaire
         alors:
-          assiette: plafond sécurité sociale temps plein
+          assiette: plafond sécurité sociale
       - si: proportion . quart
         alors:
           taux: 25%
@@ -611,7 +611,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités jo
   recalcul:
     règle: indemnités journalières maladie
     avec:
-      assiette des cotisations: 40% * plafond sécurité sociale temps plein
+      assiette des cotisations: 40% * plafond sécurité sociale
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:
@@ -625,7 +625,7 @@ dirigeant . indépendant . PL . PAMC:
 
   rend non applicable:
     - conjoint collaborateur
-    - entreprise . chiffre d'affaires . franchise de TVA
+    - entreprise . TVA . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
@@ -702,7 +702,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
           - si: métier = 'santé . chirurgien-dentiste'
             alors: 0.3%
           - sinon: 0.1%
-    plafond: 0.50% * plafond sécurité sociale temps plein
+    plafond: 0.50% * plafond sécurité sociale
     arrondi: oui
     unité: €/an
   références:
@@ -809,7 +809,7 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
       taux:
         grille:
           assiette: assiette participation CPAM
-          multiplicateur: plafond sécurité sociale temps plein
+          multiplicateur: plafond sécurité sociale
           tranches:
             - montant: 100%
               plafond: 140%
@@ -911,7 +911,7 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
   type: notification
   formule:
     une de ces conditions:
-      - assiette des cotisations < 1.8125 * plafond sécurité sociale temps plein
+      - assiette des cotisations < 1.8125 * plafond sécurité sociale
       - entreprise . durée d'activité <= 2 an
   résumé: |
     Une réduction de cotisations peut être demandée les 2 premières années, ou
@@ -954,7 +954,7 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré pa
   formule:
     grille:
       assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: plafond sécurité sociale
       tranches:
         - montant: 2 * cotisation de référence
           plafond: 1.8125
@@ -1016,7 +1016,7 @@ dirigeant . indépendant . PL . CAVP . PCV . cotisations proportionnelle:
     produit:
       assiette: assiette des cotisations
       taux: 0.30%
-      plafond: 5 * plafond sécurité sociale temps plein
+      plafond: 5 * plafond sécurité sociale
 
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
   somme:
@@ -1143,7 +1143,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
     taux:
       grille:
         assiette: assiette des cotisations
-        multiplicateur: plafond sécurité sociale temps plein
+        multiplicateur: plafond sécurité sociale
         tranches:
           - montant: 2.15%
             plafond: 140%
@@ -1175,7 +1175,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     - sinon:
         produit:
           assiette: assiette des cotisations
-          plafond: 3.5 * plafond sécurité sociale temps plein
+          plafond: 3.5 * plafond sécurité sociale
           taux: 10%
   unité: €/an
   références:
@@ -1200,7 +1200,7 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
   formule:
     grille:
       assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: plafond sécurité sociale
       tranches:
         - montant: 631 €/an
           plafond: 1
@@ -1231,12 +1231,13 @@ dirigeant . indépendant . PL . CARMF . ASV:
         - 5136 €/an
         - produit:
             assiette: PAMC . revenus activité conventionnée
-            plafond: 5 * plafond sécurité sociale temps plein
+            plafond: 5 * plafond sécurité sociale
             taux: 3.80%
       unité: €/an
     abattement: participation CPAM
     arrondi: oui
   références:
+    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
     Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
@@ -1274,7 +1275,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     unité: €/an
     barème:
       assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: plafond sécurité sociale
       tranches:
         - taux: 0%
           plafond: 0.85
@@ -1294,7 +1295,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     arrondi: oui
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
-  formule: assiette des cotisations < 85% * plafond sécurité sociale temps plein
+  formule: assiette des cotisations < 85% * plafond sécurité sociale
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
@@ -1315,7 +1316,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
-  formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
+  formule: assiette des cotisations / (85% * plafond sécurité sociale)
   références:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -1353,7 +1354,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
     proportionnelle:
       produit:
         assiette: assiette des cotisations
-        plafond: 5 * plafond sécurité sociale temps plein
+        plafond: 5 * plafond sécurité sociale
         taux: 0.725 %
       unité: €/an
       références:

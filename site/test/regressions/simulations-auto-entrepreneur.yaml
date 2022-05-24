@@ -12,9 +12,9 @@
 
 aides:
   - dirigeant . auto-entrepreneur . net de cotisations: 5000 €/an
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 50000 €/an
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . auto-entrepreneur . net de cotisations: 25000 €/an
@@ -24,26 +24,26 @@ impôt sur le revenu:
 ACRE:
   - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
     entreprise . date de création: 01/01/2021
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
     entreprise . date de création: 01/01/2020
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 30000 €/an
     entreprise . date de création: 01/06/2021
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 40000 €/an
     entreprise . date de création: 01/06/2020
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
 
 activités:
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . activité: "'libérale'"
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . activité: "'libérale'"
-    entreprise . activité . libérale réglementée: oui
+    entreprise . activité . libérale . réglementée: oui
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . activité: "'artisanale'"
     entreprise . activité . service ou vente: "'vente'"

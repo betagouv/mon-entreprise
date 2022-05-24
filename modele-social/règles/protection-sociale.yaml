@@ -1,4 +1,5 @@
 protection sociale:
+  experimental: oui
   description: >
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents
     du travail et maladies professionnelles, retraite et chômage. A cela s'ajoutent
@@ -49,7 +50,7 @@ protection sociale . retraite . base:
   titre: pension de retraite de base
   produit:
     taux: taux de la pension
-    plafond: plafond sécurité sociale temps plein
+    plafond: plafond sécurité sociale
     assiette:
       variations:
         - si: dirigeant . indépendant
@@ -84,7 +85,7 @@ protection sociale . retraite . base . trimestres . salarié:
   unité: trimestres validés/an
   grille: &bareme_trimestre
     assiette: salarié . rémunération . brut
-    multiplicateur: SMIC horaire
+    multiplicateur: SMIC . horaire
     tranches:
       - montant: 0
         plafond: 150 heures/an
@@ -271,13 +272,13 @@ protection sociale . retraite . CNAVPL . cotisation maximum T1:
   recalcul:
     règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
     avec:
-      dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale temps plein
+      dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale
 
 protection sociale . retraite . CNAVPL . cotisation maximum T2:
   recalcul:
     règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
     avec:
-      dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale temps plein
+      dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
 
 protection sociale . retraite . complémentaire salarié:
   produit:
@@ -302,7 +303,7 @@ protection sociale . retraite . complémentaire salarié . points acquis:
   unité: points/mois
   note: |
     On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
-  valeur: salarié . retraite complémentaire / valeur d'acquisition
+  valeur: salarié . cotisations . retraite complémentaire / valeur d'acquisition
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
@@ -401,7 +402,7 @@ protection sociale . santé . indemnités journalières:
     brut et versées tous les 14 jours en moyenne.
   non applicable si:
     toutes ces conditions:
-      - entreprise . activité . libérale réglementée
+      - entreprise . activité . libérale . réglementée
       - dirigeant . indépendant . PL . régime général = non
   unité: €/jour
   note: |
@@ -452,7 +453,7 @@ protection sociale . santé . indemnités journalières . salarié:
     produit:
       assiette: revenu moyen
       taux: 50%
-      plafond: 1.8 * SMIC temps plein
+      plafond: 1.8 * SMIC
   reférences:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
 
@@ -524,7 +525,7 @@ protection sociale . accidents du travail et maladies professionnelles:
     produit:
       assiette:
         valeur: revenu moyen
-        plafond: 83.4% * plafond sécurité sociale temps plein
+        plafond: 83.4% * plafond sécurité sociale
       taux:
         nom: Pourcentage du salaire journalier de référence
         valeur: 60%
@@ -559,7 +560,7 @@ protection sociale . transport:
   description: |
     Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
 
-    ## Le versement transport en quelques chiffres
+    ## Le versement mobilité en quelques chiffres
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France.
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:

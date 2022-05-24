@@ -133,8 +133,6 @@ Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 Outils pour les indépendants: Outils pour les indépendants
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
-Part employeur: Part employeur
-Part salarié: Part salarié
 Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
@@ -433,12 +431,6 @@ embauche:
     emploi associatif (CEA)</8> gèrent automatiquement la transmission de la DSN
     pour vous.</0><1>Remettre la fiche de paie à votre employé</1></1>
   tâches:
-    complémentaire santé:
-      description: Vous devez couvrir vos salariés avec l'assurance complémentaire
-        santé privée de votre choix (aussi appelée "mutuelle"), pour autant
-        qu'elle offre un ensemble de garanties minimales. L'employeur doit payer
-        au moins la moitié du forfait.
-      titre: Choisir une complémentaire santé
     contrat:
       titre: Signer un contrat de travail avec votre employé
     description: Toutes les étapes nécessaires à l'embauche de votre premier employé.
@@ -463,9 +455,16 @@ embauche:
       description: Trouver mon institution de prévoyance
       titre: Prendre contact avec l'institution de prévoyance complémentaire
         obligatoire qui vous est assignée
+    prévoyance . santé:
+      description: Vous devez couvrir vos salariés avec l'assurance complémentaire
+        santé privée de votre choix (aussi appelée "mutuelle"), pour autant
+        qu'elle offre un ensemble de garanties minimales. L'employeur doit payer
+        au moins la moitié du forfait.
+      titre: Choisir une prévoyance . santé
     registre:
       titre: Tenir un registre des employés à jour
     titre: Les formalités pour embaucher
+employeur: employeur
 en deux fois: en deux fois
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
@@ -891,7 +890,7 @@ pages:
   développeur:
     api: "<0>Utiliser notre API REST </0><1><0>API en version beta</0><1>Des
       changements cassants sont succeptibles d'être apportés dans les prochaines
-      semaines.</1><2>N'hésitez pas à faire des retours sur son utilisation
+      semaine.</1><2>N'hésitez pas à faire des retours sur son utilisation
       directement sur Github.</2></1><2>Si votre site ou service requiert de
       faire des calculs sur des salaires, par exemple passer du salaire brut au
       salaire net, bonne nouvelle : tous les calculs de cotisations et impôts de
@@ -940,12 +939,12 @@ pages:
       travaille dans une entreprise de <15>22 salariés</15>.</0></16><17>Voici
       ce que donne le calcul pour cet exemple plus complet
       :</17><18><0></0></18><19><0></0>Notez que dans l'exemple précédent nous
-      devons spécifier nous-même le taux de versement transport.</19><20>Alors
+      devons spécifier nous-même le taux de versement mobilité.</19><20>Alors
       que dans le simulateur <2>salarié</2>, il suffit de renseigner la commune
       et le taux correspondant est automatiquement déterminé. C'est voulu : pour
       garder la bibliothèque (et le site) légers, nous utilisons deux API en
       ligne. L'<4>API Géo - communes</4> pour passer du nom de la commune au
-      code commune. Puis l'<7>API versement transport</7>, développé et maintenu
+      code commune. Puis l'<7>API versement mobilité</7>, développé et maintenu
       par nos soins, qui n'est pas documenté mais son utilisation est très
       simple et compréhensible <10>dans ce composant React qui l'appelle</10>,
       composant qui fait aussi appel à l'API commune.</20><21>Faire des
@@ -1131,7 +1130,7 @@ pages:
         ogDescription: Accédez à une première estimation en saisissant à partir d'un
           salaire brut. Vous pourrez ensuite personaliser votre situation (temps
           partiel, convention, etc). Prends en compte la totalité des
-          cotisations, y compris celles spécifiques à l'indemnité (CSG et CRDS).
+          cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS).
         ogTitle: "Simulateur chômage partiel : découvrez l'impact sur le revenu net
           salarié et le coût total employeur."
         titre: "Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
@@ -1525,6 +1524,7 @@ responsabilité:
     démarches de création sont un peu plus lourdes, puisqu'elles incluent
     notamment la rédaction de statuts et le dépôt d'un capital."
   titre: Entreprise individuelle ou société ?
+salarié: salarié
 select:
   value:
     default: Choisissez une option
@@ -1572,8 +1572,8 @@ simulateurs:
       calculés sans prendre en compte l'exonération de début d'activité
       ACRE</0></2></0>
   inversionFail: >-
-    Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de
-    seuil dans le calcul des cotisations.
+    Le montant saisi abouti à un résultat impossible. Cela est dû à
+    un effet de seuil dans le calcul des cotisations.
 
 
     Nous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).

@@ -191,9 +191,7 @@ PFU (<1>"flat tax"</1>): Flat tax
 Pages associées: Related pages
 Par statut: By status
 Part du salaire net maintenue: Share of net salary maintained
-Part employeur: Employer share
 Part salariale: Employee share
-Part salarié: Employee share
 Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
@@ -424,8 +422,8 @@ autoentrepreneur:
     </1>
   page:
     description: >
-      The auto-entrepreneur benefits from a simplified scheme of declaration and
-      payment,
+      The auto-entrepreneur benefits from a simplified scheme of
+      declaration and payment,
 
       for which tax and social contributions are based on the turnover achieved
 
@@ -486,10 +484,10 @@ comparaisonRégimes:
 
     <3> Montly or quaterly</3>
   description: >
-    When you create your company, the choice of legal status will determine to
-    which social scheme the executive is affiliated. There are three different
-    ones, each with its advantages and disadvantages. Thanks to this comparison,
-    you will be able to select the one that best suits you.
+    When you create your company, the choice of legal status will
+    determine to which social scheme the executive is affiliated. There are
+    three different ones, each with its advantages and disadvantages. Thanks to
+    this comparison, you will be able to select the one that best suits you.
   déduction: |
     <0> Deduction of expenses</0>
     <1>Yes <1>(tax regime of the actual)</1></1>
@@ -504,8 +502,9 @@ comparaisonRégimes:
     <2> Highly recommended </2>
   page:
     description: >
-      What is the best scheme for your situation? Discover their differences and
-      simulate your income and retirement in one minute for each of the options.
+      What is the best scheme for your situation? Discover their
+      differences and simulate your income and retirement in one minute for each
+      of the options.
     titre: >
       Self-employed, assimilated employee or auto-entrepreneur: discover the
       social scheme that best suits you
@@ -622,26 +621,20 @@ embauche:
       <2>Deliver the standardised payslip to your employee</2>
     </1> <2>Get an example payslip</2>
   tâches:
-    complémentaire santé:
-      description: >
-        You must cover your employees with the private complementary health
-        insurance ("complémentaire santé" or colloquially "mutuelle" in French)
-        of your choice as long as it provides a set of minimum guarantees. The
-        employer must pay at least half of the package.
-      titre: Pick a private complementary health insurance
     contrat:
       titre: Sign an employment contract with your employee
     description: All the necessary steps to hire your first employee.
     dpae:
       description: >
-        This can be done through the form called DPAE, must be completed within
-        8 days before any hiring, and can <2>be done online (Fr)</2>
+        This can be done through the form called DPAE, must be completed
+        within 8 days before any hiring, and can <2>be done online (Fr)</2>
       titre: Declare your hiring t  o the social administration
     logiciel de paie:
       description: >
-        With fewer than 20 employees, payslips and declarations can be handled
-        online by the <2> Tese (Fr)</2>, a tool developped by the french social
-        administration. You can also use <5>a private payslip software (Fr)</5>
+        With fewer than 20 employees, payslips and declarations can be
+        handled online by the <2> Tese (Fr)</2>, a tool developped by the french
+        social administration. You can also use <5>a private payslip software
+        (Fr)</5>
       titre: Choose a payslip software
     medecine:
       description: Don't forget to plan an initial appointment for each new hire.
@@ -652,10 +645,17 @@ embauche:
     pension:
       description: Find your pension institute (Fr)
       titre: Contact the compulsory supplementary pension institution assigned to you
+    prévoyance . santé:
+      description: >
+        You must cover your employees with the private complementary health
+        insurance ("prévoyance . santé" or colloquially "mutuelle" in French) of
+        your choice as long as it provides a set of minimum guarantees. The
+        employer must pay at least half of the package.
+      titre: Pick a private complementary health insurance
     registre:
       titre: Keep an updated staff register
     titre: Hiring process checklist
-employeur: employer
+employeur: Employer share
 en deux fois: in two parts
 en incluant: including
 en titres-restaurant: in restaurant vouchers
@@ -882,11 +882,11 @@ gerer:
       title: Estimate the amount of a hiring
 gérant minoritaire:
   description: >
-    <0>Some special rules apply depending on the amount of shares owned by the
-    director.</0><1><0><0>Chairman</0>: The director is in majority, or is part
-    of a managing board that is in majority.</0><1><0>Managing director</0>: The
-    director is in minority (or equality), or is part of a managing board that
-    is in minority (or equality).</1></1>
+    <0>Some special rules apply depending on the amount of shares owned
+    by the director.</0><1><0><0>Chairman</0>: The director is in majority, or
+    is part of a managing board that is in majority.</0><1><0>Managing
+    director</0>: The director is in minority (or equality), or is part of a
+    managing board that is in minority (or equality).</1></1>
   page:
     description: Some special rules apply depending on the amount of shares owned by
       the director and this can lead to a different status when creating your
@@ -1875,7 +1875,7 @@ responsabilité:
     You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
   titre: Limited liability company or sole proprietorship
 salaire: salary
-salarié: employee
+salarié: Employee share
 select:
   value:
     default: Choose an option
@@ -1939,8 +1939,8 @@ simulateurs:
       urssaf: The Urssaf collects the contributions used to finance social security
         (health insurance, family allowances, dependence).
   inversionFail: >-
-    The amount entered results in an impossible result. This is due to a
-    threshold effect in the calculation of contributions.
+    The amount entered results in an impossible result. This is due
+    to a threshold effect in the calculation of contributions.
 
 
     We invite you to try again by slightly modifying the amount entered (a few euros more for example).

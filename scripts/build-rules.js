@@ -1,7 +1,8 @@
 /* eslint-env node */
 import fs from 'fs'
-import path from 'path'
 import yaml from 'js-yaml'
+import path from 'path'
+import Engine from 'publicodes'
 
 const publicodesDir = './règles'
 const outDir = './dist'
@@ -43,7 +44,7 @@ function readRules() {
 
 export default function writeJSFile() {
 	const rules = readRules()
-	const names = Object.keys(rules)
+	const names = Object.keys(new Engine(rules).getParsedRules())
 	const jsString = `export default ${JSON.stringify(rules, null, 2)}`
 	fs.writeFileSync(path.resolve(outDir, 'index.js'), jsString)
 	fs.writeFileSync(

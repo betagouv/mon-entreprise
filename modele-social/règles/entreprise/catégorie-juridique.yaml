@@ -27,11 +27,6 @@ entreprise . catégorie juridique . EI . auto-entrepreneur:
       par: "'micro-entreprise'"
     - règle: entreprise . imposition
       par: "'IR'"
-entreprise . catégorie juridique . EI . responsabilité limité:
-  non applicable si: auto-entrepreneur # pour simplifier
-  titre: 'EIRL'
-  question: Votre entreprise est-elle une EIRL ?
-  par défaut: non
 
 entreprise . catégorie juridique . SARL:
   titre: 'EURL ou SARL'
@@ -50,7 +45,7 @@ entreprise . catégorie juridique . SELARL:
   remplace:
     - règle: entreprise . activité
       par: "'libérale'"
-    - règle: entreprise . activité . libérale réglementée
+    - règle: entreprise . activité . libérale . réglementée
       par: oui
 
 entreprise . catégorie juridique . SELAS:
@@ -59,7 +54,7 @@ entreprise . catégorie juridique . SELAS:
   remplace:
     - règle: entreprise . activité
       par: "'libérale'"
-    - règle: entreprise . activité . libérale réglementée
+    - règle: entreprise . activité . libérale . réglementée
       par: oui
 
 entreprise . catégorie juridique . SAS:

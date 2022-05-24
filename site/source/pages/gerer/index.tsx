@@ -421,9 +421,6 @@ function Home() {
 }
 
 const companyDetailsConfig = {
-	situation: {
-		salarié: 'non',
-	},
 	questions: {
 		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
 	},

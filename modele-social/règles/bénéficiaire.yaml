@@ -1,4 +1,5 @@
 bénéficiaire:
+  experimental: oui
   applicable si: entreprise . imposition . IS
   description: |
     Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
@@ -7,6 +8,7 @@ bénéficiaire:
     Attention: nous ne prenons en compte ici que le cas de figure de l'associé
       unique (SASU et EURL).
   valeur: non
+
 # [TODO] [dividendes-indep]
 bénéficiaire . compte courant d'associé:
   par défaut: 0€

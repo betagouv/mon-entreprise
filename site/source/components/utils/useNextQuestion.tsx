@@ -1,10 +1,9 @@
-import { Simulation, SimulationConfig } from '@/reducers/rootReducer'
+import { SimulationConfig } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	configSelector,
 	currentQuestionSelector,
 	objectifsSelector,
-	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { useContext, useMemo } from 'react'
@@ -29,46 +28,9 @@ export function getNextSteps(
 		{}
 	)
 
-	const innerKeys = missingVariables.map((mv) => Object.keys(mv)).flat()
-	const missingByTargetsAdvanced = Object.fromEntries(
-		Object.entries(
-			innerKeys.reduce<Record<string, number>>(
-				(counters, key) => ({
-					...counters,
-					[key]: (counters[key] ?? 0) + 1,
-				}),
-				{}
-			)
-		).map(
-			// Give higher score to top level questions
-			([name, score]) => [name, score + Math.max(0, 4 - name.split('.').length)]
-		)
-	)
-
-	const missingByCompoundEntries = [
-		...new Set([
-			...Object.keys(missingByTargetsAdvanced),
-			...Object.keys(missingByTotalScore),
-		]),
-	].map((name): [string, { score: number; count: number }] => [
-		name,
-		{
-			count: missingByTargetsAdvanced[name] ?? 0,
-			score: missingByTotalScore[name] ?? 0,
-		},
-	])
-
-	const sortedEntries = missingByCompoundEntries.sort(
-		([, scoresA], [, scoresB]) => {
-			if (scoresA.count === scoresB.count) {
-				return scoresB.score - scoresA.score
-			} else {
-				return scoresB.count - scoresA.count
-			}
-		}
-	)
-
-	return sortedEntries.map(([name]) => name) as Array<DottedName>
+	return Object.entries(missingByTotalScore)
+		.sort(([, a], [, b]) => b - a)
+		.map(([a]) => a) as Array<DottedName>
 }
 
 // Max : 1
@@ -86,22 +48,15 @@ const questionDifference = (ruleA = '', ruleB = '') => {
 export function getNextQuestions(
 	missingVariables: Array<MissingVariables>,
 	questionConfig: SimulationConfig['questions'] = {},
-	answeredQuestions: Array<DottedName> = [],
-	situation: Simulation['situation'] = {}
+	answeredQuestions: Array<DottedName> = []
 ): Array<DottedName> {
 	const {
 		'non prioritaires': notPriority = [],
 		liste: whitelist = [],
 		'liste noire': blacklist = [],
-		"à l'affiche": displayed = {},
 	} = questionConfig
 
-	const nextSteps = [
-		...new Set([
-			...Object.values(displayed),
-			...getNextSteps(missingVariables),
-		]),
-	]
+	const nextSteps = getNextSteps(missingVariables)
 		.filter((name) => !answeredQuestions.includes(name))
 		.filter(
 			(step) =>
@@ -110,24 +65,15 @@ export function getNextQuestions(
 				(!blacklist.length || !blacklist.some((name) => step === name))
 		)
 
-	const lastStep = answeredQuestions[answeredQuestions.length - 1]
-
-	// L'ajout de la réponse permet de traiter les questions dont la réponse est
-	// "une possibilité", exemple "salarié . contrat . CDD"
-	const lastStepWithAnswer =
-		lastStep && situation[lastStep]
-			? ([lastStep, situation[lastStep]]
-					.join(' . ')
-					.replace(/'/g, '')
-					.trim() as DottedName)
-			: lastStep
-
 	const score = (question: string) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
-		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
+		const differenceCoeff = questionDifference(
+			question,
+			answeredQuestions.at(-1)
+		)
 
 		return indexList + indexNotPriority + differenceCoeff
 	}
@@ -140,7 +86,6 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions
-	const situation = useSelector(situationSelector)
 	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
 		(objectif) => engine.evaluate(objectif).missingVariables ?? {}
@@ -149,8 +94,7 @@ export const useNextQuestions = function (): Array<DottedName> {
 		let next = getNextQuestions(
 			missingVariables,
 			questionsConfig ?? {},
-			answeredQuestions,
-			situation
+			answeredQuestions
 		)
 		if (currentQuestion && currentQuestion !== next[0]) {
 			next = [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
@@ -165,7 +109,6 @@ export const useNextQuestions = function (): Array<DottedName> {
 		missingVariables,
 		questionsConfig,
 		answeredQuestions,
-		situation,
 		engine,
 		currentQuestion,
 	])

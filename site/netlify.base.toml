@@ -23,6 +23,62 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   to = "https://twemoji.maxcdn.com/:splat"
   status = 200
 
+
+
+############
+# Prerender will be added by script build:prerender
+#[prerender]#
+
+############
+# Redirects for single page app config
+
+
+# Mon-entreprise.fr
+[[redirects]]
+  from = ":SITE_FR/robots.txt"
+  to = "/robots.fr.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_FR/sitemap.txt"
+  to = "/sitemap.fr.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_FR/dev/storybook"
+  to = "/dev/storybook/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_FR/*"
+  to = "/mon-entreprise.html"
+  status = 200
+
+
+# Mycompanyinfrance
+
+
+[[redirects]]
+  from = ":SITE_EN/robots.txt"
+  to = "/robots.en.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/sitemap.txt"
+  to = "/sitemap.en.txt"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/dev/storybook"
+  to = "/dev/storybook/index.html"
+  status = 200
+
+[[redirects]]
+  from = ":SITE_EN/*"
+  to = "/infrance.html"
+  status = 200
+
+
 ############
 # Redirects following architectural changes
 
@@ -100,55 +156,84 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   status = 301
 
 
-############
-# Prerender will be added by script build:prerender
-#[prerender]#
+####################
+# Redirect following huge refacto in modele-social
+##################""
 
-############
-# Redirects for single page app config
-
-
-# Mon-entreprise.fr
-[[redirects]]
-  from = ":SITE_FR/robots.txt"
-  to = "/robots.fr.txt"
-  status = 200
+# We redirect the 20 url with the most click in google search console
+# to prevent negative impact on referencement
 
 [[redirects]]
-  from = ":SITE_FR/sitemap.txt"
-  to = "/sitemap.fr.txt"
-  status = 200
+  from=":SITE_FR/documentation/SMIC-temps-plein/net-imposable"
+  to=":SITE_FR/documentation/SMIC/net-imposable"
+  status=301
 
 [[redirects]]
-  from = ":SITE_FR/dev/storybook"
-  to = "/dev/storybook/index.html"
-  status = 200
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-apr%C3%A8s-imp%C3%B4t"
+  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/pay%C3%A9-apr%C3%A8s-imp%C3%B4t"
+  status=301
 
 [[redirects]]
-  from = ":SITE_FR/*"
-  to = "/mon-entreprise.html"
-  status = 200
-
-
-# Mycompanyinfrance
-
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/frais-professionnels/transports-personnels/carburant-faible-%C3%A9mission/montant"
+  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/frais-professionnels/trajets-domicile-travail/forfait-mobilit%C3%A9s-durables/montant"
+  status=301
 
 [[redirects]]
-  from = ":SITE_EN/robots.txt"
-  to = "/robots.en.txt"
-  status = 200
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-g%C3%A9n%C3%A9ral"
+  to=":SITE_FR/documentation/salari%C3%A9/cotisations/CEG"
+  status=301
 
 [[redirects]]
-  from = ":SITE_EN/sitemap.txt"
-  to = "/sitemap.en.txt"
-  status = 200
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-technique"
+  to=":SITE_FR/documentation/contrat/cotisations/CET"
+  status=301
 
 [[redirects]]
-  from = ":SITE_EN/dev/storybook"
-  to = "/dev/storybook/index.html"
-  status = 200
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/prime-d'impatriation"
+  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable/exon%C3%A9ration-prime-d'impatriation"
+  status=301
 
 [[redirects]]
-  from = ":SITE_EN/*"
-  to = "/infrance.html"
-  status = 200
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-imposable"
+  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/formation-professionnelle"
+  to=":SITE_FR/documentation/salari%C3%A9/cotisations/formation-professionnelle"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/participation-effort-de-construction"
+  to=":SITE_FR/documentation/salari%C3%A9/cotisations/PEEC"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/brut-de-base"
+  to=":SITE_FR/documentation/salari%C3%A9/contrat/salaire-brut"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/CDD/indemnit%C3%A9-compensatrice-de-cong%C3%A9s-pay%C3%A9s"
+  to=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/ind%C3%A9mnit%C3%A9s-CDD/cong%C3%A9s-pay%C3%A9s"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net"
+  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/à-payer-avant-imp%C3%B4t"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/CDD/*"
+  to=":SITE_FR/documentation/salari%C3%A9/contrat/CDD/:splat"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/apprentissage/*"
+  to=":SITE_FR/documentation/salari%C3%A9/contrat/apprentissage/:splat"
+  status=301
+
+[[redirects]]
+  from=":SITE_FR/documentation/contrat-salari%C3%A9/*"
+  to=":SITE_FR/documentation/salari%C3%A9/:splat"
+  status=301

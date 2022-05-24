@@ -12998,9 +12998,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^10.3.0":
-  version: 10.3.0
-  resolution: "cypress@npm:10.3.0"
+"cypress@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "cypress@npm:10.7.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -13046,7 +13046,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 9cc6d8cd087d7c79f07ad83b8ef9b183f44cf816499bba53e1cee2b6f987d0a6893be209fcd47660cdd0e8456bd132813abe8a6bd15f446d9c96e0129be2de29
+  checksum: ef8a5ae54f3404f7926e1e248ba7a27c7f66e654a9603bf9df6366731d8dd75455f6ec9cc34d7e55e1a8c3cb8e0e36ce59add81b7b14466f2063cfe45e6c00f4
   languageName: node
   linkType: hard
 
@@ -15394,7 +15394,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: =1.0.0-beta.49
+    publicodes: =1.0.0-beta.52
   peerDependencies:
     publicodes: ^1.0.0-beta.52
   languageName: unknown
@@ -23332,19 +23332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.49":
-  version: 1.0.0-beta.49
-  resolution: "publicodes@npm:1.0.0-beta.49"
-  dependencies:
-    moo: ^0.5.1
-    nearley: ^2.19.2
-  peerDependencies:
-    "@types/mocha": ^9.0.0
-  checksum: 8a83106dc82e3332005b320413e33ecbe9b90762d28c054acfba2f57e281e8485b6f6c9c60eb5c5d3707b1216865be44f05428c4e68c5d6ae6042e1acbffc964
-  languageName: node
-  linkType: hard
-
-"publicodes@npm:^1.0.0-beta.52":
+"publicodes@npm:=1.0.0-beta.52, publicodes@npm:^1.0.0-beta.52":
   version: 1.0.0-beta.52
   resolution: "publicodes@npm:1.0.0-beta.52"
   dependencies:
@@ -25413,7 +25401,7 @@ __metadata:
     "@vitejs/plugin-legacy": ^1.8.2
     "@vitejs/plugin-react": ^1.3.2
     algoliasearch: ^4.10.2
-    cypress: ^10.3.0
+    cypress: ^10.7.0
     cypress-plugin-tab: ^1.0.5
     cypress-wait-until: ^1.7.2
     dotenv: =8.1.0
@@ -25463,7 +25451,7 @@ __metadata:
     workbox-strategies: ^6.5.3
     workbox-window: ^6.5.3
     xml2js: ^0.4.23
-    yaml: ^1.9.2
+    yaml: ^2.1.1
   languageName: unknown
   linkType: soft
 
@@ -27354,11 +27342,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.2.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 96d3030cb01143570567cb4f3a616b10df65f658f0e74e853e77a089a6a954e35c800be7db8b9bfe9a1ae05d9c2897e281359f65e4caa1caf266368e1c4febd3
+  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
   languageName: node
   linkType: hard
 
@@ -29047,10 +29035,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.10.0, yaml@npm:^1.7.2, yaml@npm:^1.9.2":
+"yaml@npm:^1.10.0, yaml@npm:^1.7.2":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "yaml@npm:2.1.1"
+  checksum: f48bb209918aa57cfaf78ef6448d1a1f8187f45c746f933268b7023dc59e5456004611879126c9bb5ea55b0a2b1c2b392dfde436931ece0c703a3d754562bb96
   languageName: node
   linkType: hard
 

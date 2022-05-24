@@ -4,7 +4,7 @@ déclaration charge sociales:
     des indépendants et dans les déclaration de résultats.
   formule: non
   remplace:
-    - règle: entreprise . ACRE
+    - règle: entreprise . exonérations . ACRE
       par: ACRE
 
     - # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs

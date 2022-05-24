@@ -41,10 +41,10 @@ salarié . contrat:
       description: |
         Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
       rend non applicable:
-        - CSG et CRDS
         - statut cadre
+        - cotisations . CSG-CRDS
         - cotisations . exonérations . JEI
-        - régime des impatriés
+        - régimes spécifiques . impatriés
         - temps de travail . temps partiel
 
     professionnalisation:
@@ -60,7 +60,7 @@ salarié . contrat:
         indéterminée (CDI), la période de professionnalisation proprement-dite
         devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
         prolongée jusqu'à 36 mois.
-      rend non applicable: rémunération . contrôle smic
+      rend non applicable: rémunération . assiette de vérification du SMIC . contrôle
       références:
         Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
@@ -68,26 +68,27 @@ salarié . contrat:
       titre: stage
       description: |
         Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
-      formule: contrat = 'stage'
+      valeur: contrat = 'stage'
       rend non applicable:
-        - statut cadre
-        - cotisations . exonérations . JEI
-        - cotisations . exonérations . réduction générale
-        - cotisations . exonérations . lodeom
-        - allocations familiales . taux réduit
-        - maladie . taux employeur . taux réduit
-        - retraite complémentaire
-        - contribution d'équilibre général
-        - chômage
-        - AGS
-        - complémentaire santé
-        - contribution au dialogue social
-        - déduction forfaitaire spécifique
+        - cotisations . exonérations
+        - cotisations . allocations familiales . taux réduit
+        - cotisations . maladie . employeur . taux réduit
+        - cotisations . retraite complémentaire
+        - cotisations . CEG
+        - cotisations . chômage
+        - cotisations . AGS
+        - cotisations . prévoyances . santé
+        - cotisations . contribution au dialogue social
+
         - temps de travail . temps partiel
         - temps de travail . heures supplémentaires
-        - régime des impatriés
-        - rémunération . contrôle smic
-        - salarié . activité partielle
+        - activité partielle
+
+        - statut cadre
+        - régimes spécifiques . DFS
+        - régimes spécifiques . impatriés
+
+        - rémunération . assiette de vérification du SMIC . contrôle
       avec:
         avertissement:
           type: notification
@@ -104,7 +105,7 @@ salarié . contrat:
           description: >-
             La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
         gratification minimale:
-          valeur: 15% * plafond sécurité sociale temps plein
+          valeur: 15% * plafond sécurité sociale
           Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
 
 salarié . contrat . apprentissage . diplôme préparé:
@@ -268,7 +269,7 @@ salarié . contrat . CDD . motif:
     # TODO Attention : il faudrait peut-être prendre en compte les interdictions du CDD.
     # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-salarié . contrat . CDD . durée contrat:
+salarié . contrat . CDD . durée:
   icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
@@ -326,9 +327,9 @@ salarié . contrat . CDD . indemnité de fin de contrat:
     Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
 
 salarié . contrat . CDD . reconduction en CDI:
-  question: Allez-vous proposer un CDI à l'issue du CDD ?
+  question: Le CDD sera-t-il reconduit en CDI ?
   description: |
-    Vous proposez au salarié, au terme du CDD, une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
+    Le salarié se voit proposé, au terme du CDD, une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
   par défaut: non
 
 salarié . contrat . CDD . congés pris:
@@ -342,16 +343,18 @@ salarié . contrat . CDD . congés pris:
     la moitié: 50% * congés dus sur la durée du contrat
     aucun: 0 jours ouvrés
   par défaut: congés dus sur la durée du contrat
+  références:
+    A-t-on droit à des congés payés pendant un CDD ?: https://www.service-public.fr/particuliers/vosdroits/F2931
   avec:
     jours ouvrés sur la durée du contrat:
       produit:
         assiette: 253 jours ouvrés/an
-        facteur: durée contrat
+        facteur: durée
 
     congés dus sur la durée du contrat:
       produit:
         assiette: 25 jours ouvrés/an
-        facteur: durée contrat
+        facteur: durée
       arrondi: 2 décimales
 
     contrôle congés non pris max:
@@ -384,19 +387,18 @@ salarié . contrat . salaire brut:
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
-    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
+    Il ne comprend pas les indemnités, avantages en nature et primes...
   unité: €/mois
   suggestions:
-    salaire médian: 2300 €/mois
+    salaire médian: 2500 €/mois
     SMIC: temps de travail . SMIC
   inversion numérique:
     question: Quel est le salaire ?
     titre: salaire
     avec:
-      - prix du travail
-      - rémunération . total
-      - rémunération . net
-      - rémunération . net après impôt
+      - coût total employeur
+      - rémunération . net . à payer avant impôt
+      - rémunération . net . payé après impôt
       - équivalent temps plein
       - dirigeant . rémunération . totale
 
@@ -426,13 +428,13 @@ salarié . contrat . temps de travail:
       variations:
         - si: temps partiel
           alors: temps partiel . heures par semaine
-        - sinon: durée légale du travail
+        - sinon: temps de travail . durée légale
     facteur: période . semaines par mois
   avec:
     quotité:
-      valeur: temps de travail / durée légale du travail . mensuelle
+      valeur: temps de travail / temps de travail . durée légale . mensuelle
       unité: '%'
-    SMIC: SMIC temps plein * quotité
+    SMIC: SMIC * quotité
 
 salarié . contrat . temps de travail . temps partiel:
   question: Le contrat est-il à temps partiel ?
@@ -446,8 +448,8 @@ salarié . contrat . temps de travail . temps partiel:
       par défaut: 32 heures/semaine
       question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
       suggestions:
-        4 jours / semaine: durée légale du travail * 4 / 5
-        mi-temps: durée légale du travail / 2
+        4 jours / semaine: temps de travail . durée légale * 4 / 5
+        mi-temps: temps de travail . durée légale / 2
 
     contrôle temps min:
       type: notification
@@ -458,5 +460,28 @@ salarié . contrat . temps de travail . temps partiel:
     contrôle temps max:
       type: notification
       sévérité: avertissement
-      formule: heures par semaine >= durée légale du travail
+      formule: heures par semaine >= temps de travail . durée légale
       description: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+
+salarié . contrat . statut cadre:
+  question: Le salarié a-t-il le statut cadre ?
+  description: |
+    Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
+    appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
+    reconnu par les conventions collectives, qui détermine l'appartenance à une
+    caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du
+    contrat de travail.
+
+
+    Reconnaissant initialement les compétences techniques et le rôle
+    d'encadrement du salarié, le statut s'est progressivement élargi à un
+    ensemble de postes de plus en plus nombreux, et a fini par recouvrir une
+    large population, mêlant managers, experts et dirigeants.
+
+
+    Il s'agit d'une notion mal définie désignant des concepts différents selon
+    le point de vue envisagé — que ce soit en termes de statut, de
+    représentation sociale, de rôle dans l'entreprise ou de culture.
+  par défaut: non
+  références:
+    wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise

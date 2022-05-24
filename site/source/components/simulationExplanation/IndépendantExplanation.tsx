@@ -37,13 +37,13 @@ export default function IndépendantExplanation() {
 					<CotisationsRégularisation />
 				</WhenNotApplicable>
 			</section>
-			<Condition expression="dirigeant . rémunération . nette après impôt > 0 €/an">
+			<Condition expression="dirigeant . rémunération . net après impôt > 0 €/an">
 				<section>
 					<H3 as="h2">Répartition du revenu</H3>
 					<StackedBarChart
 						data={[
 							{
-								dottedName: 'dirigeant . rémunération . nette après impôt',
+								dottedName: 'dirigeant . rémunération . net après impôt',
 								title: t('Revenu disponible'),
 								color: colors.bases.primary[600],
 							},
@@ -79,18 +79,18 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . santé': [
 		'dirigeant . indépendant . cotisations et contributions . maladie',
 		'dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2',
+		'dirigeant . indépendant . cotisations et contributions . CSG-CRDS * 5.95 / 9.2',
 	],
 	'protection sociale . invalidité et décès': [
 		'dirigeant . indépendant . cotisations et contributions . invalidité et décès',
 	],
 	'protection sociale . famille': [
 		'dirigeant . indépendant . cotisations et contributions . allocations familiales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 0.95 / 9.2',
+		'dirigeant . indépendant . cotisations et contributions . CSG-CRDS * 0.95 / 9.2',
 	],
 	'protection sociale . autres': [
 		'dirigeant . indépendant . cotisations et contributions . contributions spéciales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 2.3 / 9.2',
+		'dirigeant . indépendant . cotisations et contributions . CSG-CRDS * 2.3 / 9.2',
 	],
 	'protection sociale . formation': [
 		'dirigeant . indépendant . cotisations et contributions . formation professionnelle',

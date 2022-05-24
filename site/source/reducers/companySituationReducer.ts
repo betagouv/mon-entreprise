@@ -8,18 +8,18 @@ const SAVED_NAMESPACES = [
 	'salarié . ATMP',
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
-	'entreprise . ACRE',
+	'entreprise . exonérations . ACRE',
 	'entreprise . activité',
 	'entreprise . catégorie juridique',
 	'entreprise . date de création',
-	'entreprise . effectif',
-	'entreprise . exonérée de TVA',
+	'entreprise . salariés . effectif',
+	'entreprise . TVA',
 	'entreprise . imposition',
 	'entreprise . SIREN',
 	'entreprise . nom',
 	'établissement . adresse',
 	'établissement . localisation',
-	'entreprise . activité principale',
+	'entreprise . activité . principale',
 ] as Array<DottedName>
 
 export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>
@@ -85,7 +85,7 @@ export function getCompanySituation(company: Company): Situation {
 		'entreprise . SIREN': `'${company.siren}'`,
 		'entreprise . nom': `'${company.label}'`,
 		'établissement . SIRET': `'${company.firstMatchingEtablissement.siret}'`,
-		'entreprise . activité principale': `'${company.activitePrincipale}'`,
+		'entreprise . activité . principale': `'${company.activitePrincipale}'`,
 	}
 }
 

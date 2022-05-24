@@ -21,9 +21,9 @@ export function SASUSimulation() {
 						small
 						dottedName="salarié . cotisations"
 					/>
-					<SimulationGoal dottedName="salarié . rémunération . net" />
+					<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
 					<SimulationGoal small editable={false} dottedName="impôt . montant" />
-					<SimulationGoal dottedName="salarié . rémunération . net après impôt" />
+					<SimulationGoal dottedName="salarié . rémunération . net . payé après impôt" />
 				</SimulationGoals>
 			</Simulation>
 		</>

@@ -1,0 +1,240 @@
+salarié . rémunération . revenus de remplacement:
+  experimental: oui
+  description: >-
+    Les revenus de remplacement sont les revenus perçus en remplacement de la
+    rémunération du travail : allocations de chômage ou de chômage partiel,
+    indemnités maladie ou accident du travail, pension de retraite, revenu
+    d'intégration sociale, etc.
+
+    Ces revenus sont imposables mais sont exonérés de cotisations sociales. Ils
+    sont soumis à la CSG/CRDS avec un taux spécifique.
+  somme:
+    - activité partielle . indemnités
+  note: >-
+    L'indemnité complémentaire n'est pas ajoutée ici car elle est
+    systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
+    revenus.
+
+    L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
+  avec:
+    net:
+      valeur: revenus de remplacement
+      abattement:
+        somme:
+          - cotisation maladie
+          - salarié . cotisations . CSG-CRDS . revenus de remplacement
+
+    cotisation maladie:
+      produit:
+        assiette: revenus de remplacement
+        taux:
+          variations:
+            - si: établissement . localisation . département = 'Mayotte'
+              alors: 2.35%
+            - si: régimes spécifiques . alsace moselle
+              alors: 1.5%
+            - sinon: 0%
+
+salarié . activité partielle:
+  experimental: oui
+  description: >-
+    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
+    dispositif de chômage partiel étendu dans lequel l'État prend en charge
+    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+
+    La déclaration d'activité partielle est simplifiée et l'effet est
+    rétroactif.
+  par défaut: non
+  rend non applicable:
+    - temps de travail . heures supplémentaires
+    - temps de travail . heures complémentaires
+  références:
+    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
+    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+salarié . activité partielle . rémunération mensuelle minimale:
+  acronyme: RMM
+  description: >-
+    Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
+    une rémunération mensuelle minimale qui peut donner lieu à un versement
+    complémentaire de l’employeur.
+  références:
+    Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
+  formule:
+    recalcul:
+      règle: salarié . rémunération . net . sans revenus de remplacement
+      avec:
+        contrat . salaire brut: contrat . temps de travail . SMIC
+        activité partielle: non
+        temps de travail . heures supplémentaires: non
+        temps de travail . heures complémentaires: non
+
+salarié . activité partielle . heures chômées:
+  unité: heures/mois
+  formule:
+    valeur: contrat . temps de travail - heures travaillées
+    plancher: 0
+
+salarié . activité partielle . heures travaillées:
+  titre: heures travaillées restantes
+  question: Quelle est le nombre d'heures travaillées sur le mois ?
+  description: >-
+    Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées. Doit être
+    inférieur au temps contractuel.
+  par défaut: 0 heures/mois
+  suggestions:
+    30 h/semaine: 130 heures/mois
+    20 h/semaine: 86.6666 heures/mois
+    10 h/semaine: 43.3333 heures/mois
+
+salarié . activité partielle . heures travaillées . contrôle temps de travail:
+  type: notification
+  sévérité: avertissement
+  formule: heures travaillées > contrat . temps de travail
+  description: >-
+    Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
+    à celui inscrit dans le contrat de travail.
+
+salarié . activité partielle . indemnités:
+  titre: indemnités activité partielle
+  description: >-
+    La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
+    l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
+    reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie de
+    l’Etat une allocation d’activité partielle.
+
+    Si après versement de l’indemnité d’activité partielle la rémunération du
+    salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
+    les articles L3232-1 et suivants du code du travail pour les salariés à temps
+    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
+    somme initialement perçue par le salarié.
+
+  formule:
+    somme:
+      - base
+      - complémentaire
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+salarié . activité partielle . indemnités . base:
+  titre: indemnités d'activité partielle de base
+  formule:
+    multiplication:
+      assiette: retrait absence
+      # Historique:
+      # - avant le 01/07/2021: 70%
+      # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
+      taux:
+        valeur:
+          variations:
+            - si: secteur d'activité restreint
+              alors: 70%
+              # Historique 60% jusqu'au 31 octobre 2021, 70% après
+            - sinon: 60%
+        nom: taux
+
+salarié . activité partielle . indemnités . complémentaire:
+  titre: indemnité complémentaire
+  description: >-
+    L'indemnité complémentaire de chômage partielle est une indemnité versée par
+    l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
+    rémunération effectivement perçue ne soit jamais inférieure à celle
+    du SMIC net.
+  # La condition suivante assure que cette règle ne crée pas de boucle avec indemnités . conventionnelle . part soumise à cotisation
+  non applicable si: contrat . salaire brut > 3.15 * contrat . temps de travail . SMIC
+  formule:
+    valeur: rémunération mensuelle minimale
+    abattement:
+      somme:
+        - rémunération . net . sans revenus de remplacement
+        - indemnités . base
+
+salarié . activité partielle . retrait absence:
+  titre: retrait activité partielle
+  formule:
+    multiplication:
+      assiette: rémunération . taux horaire
+      facteur: heures chômées
+
+salarié . activité partielle . indemnisation entreprise:
+  titre: Remboursement de l'indemnité d'activité partielle
+  description: >-
+    Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
+    l'indemnité de chômage partiel pour les commerces fermés sera prise à
+    100% en charge par l'état.
+  formule:
+    multiplication:
+      assiette: retrait absence
+      taux: taux d'indemnisation
+    # TODO: plus à jour depuis le 1er avril 2022
+    # confer https://github.com/betagouv/mon-entreprise/issues/2119#issuecomment-1114785875
+    plancher:
+      variations:
+        - si: date >= 01/2022
+          alors: 8.37 €/heures * heures chômées
+        - si: date >= 01/10/2021
+          alors: 8.30 €/heures * heures chômées
+        - si: date >= 01/2021
+          alors: 8.11 €/heures * heures chômées
+    plafond:
+      recalcul:
+        avec:
+          contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
+  références:
+    Décret mise à jour 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044614377
+
+salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  titre: taux d'allocation
+  description: >-
+    Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
+  formule:
+    variations:
+      - si: secteur d'activité restreint
+        # Historique:
+        # - avant le 01/07/2021: 70%
+        # - avant le 01/08/2021: 60%
+        # - avant le 01/09/2021: 52%
+        # - à partir du 01/09/2021: 36%
+        alors: 70%
+      # Historique:
+      # - avant le 01/06/2021: 60%
+      # - avant le 01/07/2021: 52%
+      # - à partir du 01/07/2021: 36%
+      - sinon: 36%
+
+salarié . activité partielle . secteur d'activité restreint:
+  question: >-
+    Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
+    réglementaires ? (ex. : tourisme, restauration, culture, événementiel)
+  description: >-
+    Les entreprises dont l'activité a été interrompue par décision administrative en raison de la crise sanitaire, ou qui sont situées dans une circonscription territoriale soumise à des restrictions spécifiques des conditions d'exercice de l'activité économique et de circulation des personnes prises par l'autorité administrative lorsqu'ils subissent une forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus affectés et qui continuent de subir une très forte baisse du chiffre d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre 2021.
+
+
+    Sont concernées :
+
+      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
+
+      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
+
+      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
+
+  références:
+    Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
+    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A15140
+
+  par défaut: non
+
+salarié . activité partielle . net habituel:
+  recalcul:
+    règle: salarié . rémunération . net . à payer avant impôt
+    avec:
+      activité partielle: non
+
+salarié . activité partielle . total employeur habituel:
+  recalcul:
+    règle: salarié . coût total employeur
+    avec:
+      activité partielle: non

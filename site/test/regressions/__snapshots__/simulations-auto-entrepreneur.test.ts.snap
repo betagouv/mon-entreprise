@@ -2,22 +2,13 @@
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `"[22962,247,20000,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
-"[22630,219,20000,0,20000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
-`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `"[22630,219,20000,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
-"[34443,370,30000,0,30000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
-`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `"[34443,370,30000,0,30000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `"[45938,495,40000,0,40000]"`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
-"[21390,116,20000,0,20000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
-`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `"[21390,116,20000,0,20000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `"[20000,292,16500,0,16500]"`;
 
@@ -63,10 +54,10 @@ exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `"[
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
 "[114824,1235,100000,3912,96088]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
 "[1148298,12358,1000000,131652,868348]
-Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement, entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés, entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
 `;

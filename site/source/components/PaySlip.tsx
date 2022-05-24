@@ -132,10 +132,10 @@ export default function PaySlip() {
 					<Trans>Cotisations sociales</Trans>
 				</H4>
 				<H4>
-					<Trans>Part employeur</Trans>
+					<Trans>employeur</Trans>
 				</H4>
 				<H4>
-					<Trans>Part salarié</Trans>
+					<Trans>salarié</Trans>
 				</H4>
 				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 					const section = parsedRules[sectionDottedName]
@@ -187,7 +187,7 @@ export default function PaySlip() {
 					/>
 				</div>
 				{/* Salaire chargé */}
-				<Line rule="salarié . rémunération . total" />
+				<Line rule="salarié . coût total employeur" />
 				<span />
 			</div>
 			{/* Section salaire net */}
@@ -204,7 +204,8 @@ function findReferenceInNode(
 		(acc, node) => {
 			if (
 				node.nodeKind === 'reference' &&
-				node.dottedName?.startsWith(dottedName)
+				node.dottedName?.startsWith(dottedName) &&
+				!node.dottedName.endsWith('$SITUATION')
 			) {
 				return node.dottedName
 			} else if (node.nodeKind === 'reference') {

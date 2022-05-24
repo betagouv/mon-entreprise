@@ -27,15 +27,15 @@ salarié . convention collective . BTP . catégorie . ouvrier:
 salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire:
   produit:
     assiette: contrat . salaire brut
-    plafond: 3 * plafond sécurité sociale
+    plafond: 3 * temps de travail . plafond sécurité sociale
     composantes:
       - attributs:
           nom: employeur
-          remplace: prévoyance . employeur
+          remplace: cotisations . prévoyances . conventionnelle . employeur
         taux: 1.72%
       - attributs:
           nom: salarié
-          remplace: prévoyance . salarié
+          remplace: cotisations . prévoyances . conventionnelle . salarié
         taux: 0.87%
 
 salarié . convention collective . BTP . catégorie . etam:
@@ -44,13 +44,13 @@ salarié . convention collective . BTP . catégorie . etam:
   icônes: 👷‍♂️
   formule: catégorie = 'etam'
   remplace:
-    - règle: retraite complémentaire . employeur . taux tranche 1
+    - règle: cotisations . retraite complémentaire . employeur . taux T1
       par: 4.47%
-    - règle: retraite complémentaire . employeur . taux tranche 2
+    - règle: cotisations . retraite complémentaire . employeur . taux T2
       par: 12.70%
-    - règle: retraite complémentaire . salarié . taux tranche 1
+    - règle: cotisations . retraite complémentaire . salarié . taux T1
       par: 3.40%
-    - règle: retraite complémentaire . salarié . taux tranche 2
+    - règle: cotisations . retraite complémentaire . salarié . taux T2
       par: 8.89%
   note: >-
     Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
@@ -58,15 +58,15 @@ salarié . convention collective . BTP . catégorie . etam:
 salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
   produit:
     assiette: contrat . salaire brut
-    plafond: 3 * plafond sécurité sociale
+    plafond: 3 * temps de travail . plafond sécurité sociale
     composantes:
       - attributs:
           nom: employeur
-          remplace: prévoyance . employeur
+          remplace: cotisations . prévoyances . conventionnelle . employeur
         taux: 1.25%
       - attributs:
           nom: salarié
-          remplace: prévoyance . salarié
+          remplace: cotisations . prévoyances . conventionnelle . salarié
         taux: 0.60%
 
 salarié . convention collective . BTP . catégorie . cadre:
@@ -74,7 +74,7 @@ salarié . convention collective . BTP . catégorie . cadre:
   titre: Cadre
   icônes: 👩‍💼
   remplace:
-    - règle: statut cadre
+    - règle: contrat . statut cadre
       par: oui
 
 salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
@@ -84,7 +84,7 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
     composantes:
       - attributs:
           nom: employeur
-          remplace: prévoyance . employeur
+          remplace: cotisations . prévoyances . conventionnelle . employeur
         tranches:
           - taux: 1.50%
             plafond: 1
@@ -94,7 +94,7 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
             plafond: 8
       - attributs:
           nom: salarié
-          remplace: prévoyance . salarié
+          remplace: cotisations . prévoyances . conventionnelle . salarié
         tranches:
           - taux: 0%
             plafond: 1
@@ -154,17 +154,17 @@ salarié . convention collective . BTP . congés intempéries . caisse de rattac
         - méditerranée
         - sud ouest
   par défaut: "'idf'"
-
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf:
-  titre: Île-de-France
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . nord ouest:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand ouest:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre ouest:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand est:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . rhône alpes auvergne:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . méditerranée:
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement . sud ouest:
+  avec:
+    idf:
+      titre: Île-de-France
+    nord ouest:
+    grand ouest:
+    centre ouest:
+    centre:
+    grand est:
+    rhône alpes auvergne:
+    méditerranée:
+    sud ouest:
 
 salarié . convention collective . BTP . OPPBTP:
   formule:

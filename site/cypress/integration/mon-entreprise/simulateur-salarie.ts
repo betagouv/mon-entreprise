@@ -6,7 +6,7 @@ describe('Simulateur salarié', function () {
 	}
 
 	before(function () {
-		return cy.visit(encodeURI('/simulateurs/salarié'))
+		return cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
 	})
 
 	describe('part time contract', function () {
@@ -25,15 +25,15 @@ describe('Simulateur salarié', function () {
 		})
 
 		it('should permit selecting the smic before part-time contrat', function () {
-			cy.get(
-				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
-			).should(($input) => {
-				const val = $input
-					.val()
-					.toString()
-					.replace(/[\s,.€]/g, '')
-				expect(parseInt(val)).to.be.above(1300).and.to.be.below(1600)
-			})
+			cy.get('#salarié\\ \\.\\ contrat\\ \\.\\ salaire\\ brut').should(
+				($input) => {
+					const val = $input
+						.val()
+						.toString()
+						.replace(/[\s,.€]/g, '')
+					expect(parseInt(val)).to.be.above(1300).and.to.be.below(1600)
+				}
+			)
 		})
 
 		it('should permit customizing the number of worked hours and clear the input value', function () {
@@ -48,7 +48,7 @@ describe('Simulateur salarié', function () {
 			cy.contains('Fermer').click()
 
 			cy.get(
-				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ net\\ après\\ impôt'
+				'#salarié\\ \\.\\ rémunération\\ \\.\\ net\\ \\.\\ payé\\ après\\ impôt'
 			).should(($input) => {
 				const val = $input
 					.val()

@@ -2,14 +2,14 @@ objectifs:
   - entreprise . chiffre d'affaires
   - dirigeant . rémunération . totale
   - dirigeant . rémunération . nette
-  - dirigeant . rémunération . nette après impôt
+  - dirigeant . rémunération . net après impôt
 
 questions:
   à l'affiche:
     Type d'activité: entreprise . activité
     Micro-fiscal: entreprise . imposition . régime . micro-entreprise
     Date de création: entreprise . date de création
-    ACRE: entreprise . ACRE
+    ACRE: entreprise . exonérations . ACRE
     Contrats Madelins: dirigeant . indépendant . cotisations facultatives
     Conjoint collaborateur: dirigeant . indépendant . conjoint collaborateur
     Impôt sur le revenu: impôt . méthode de calcul
@@ -19,17 +19,14 @@ questions:
     - entreprise . exercice . fin
     - entreprise . catégorie juridique
     - entreprise . imposition . régime
-  liste:
-    - entreprise
-    - établissement
-    - dirigeant . indépendant
-    - situation personnelle
-    - impôt
   non prioritaires:
+    - dirigeant . indépendant . cotisations facultatives
     - dirigeant . indépendant . IJSS
-    - dirigeant . indépendant . cotisations et contributions . exonérations
+    - dirigeant . indépendant . PL . PAMC . IJSS
+    - dirigeant . indépendant . PL . CNAVPL . exonération incapacité
+    - dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité
     - entreprise . ZFU
-    - entreprise . effectif
+    - entreprise . salariés . effectif
     - entreprise . activité . débit de tabac
 
 unité par défaut: €/an

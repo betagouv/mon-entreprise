@@ -1,0 +1,92 @@
+salarié . aides employeur:
+  titre: aides employeur
+  résumé: Pour l'employeur, différées dans le temps
+  description: |
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous la forme d’un crédit d'impôt.
+
+    Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
+  formule:
+    somme:
+      - aides à l'embauche
+      - activité partielle . indemnisation entreprise
+
+salarié . aides employeur . aides à l'embauche:
+  description: |
+    L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
+  le maximum de:
+    - aide à l'embauche d'apprentis
+    - aide à l'embauche senior professionnalisation
+    - emploi franc
+
+salarié . aides employeur . aide à l'embauche d'apprentis:
+  description: |
+    Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
+
+    Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . salariés . effectif < 250
+      - contrat . apprentissage
+      - contrat . apprentissage . diplôme préparé . niveau bac ou moins
+  formule:
+    variations:
+      - si: contrat . apprentissage . ancienneté = 'moins d'un an'
+        alors: 4125 €/an
+      - si: contrat . apprentissage . ancienneté = 'moins de deux ans'
+        alors: 2000 €/an
+      - sinon: 1200 €/an
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+
+salarié . aides employeur . aide à l'embauche senior professionnalisation:
+  description: |
+    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
+    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
+  applicable si: contrat . professionnalisation . salarié de 45 ans et plus
+  formule:
+    produit:
+      assiette: 2000 €/an
+      facteur: temps de travail . effectif . quotité
+    arrondi: oui
+  références:
+    Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
+    Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
+
+salarié . aides employeur . emploi franc:
+  description: |
+    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
+    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+    (QPV).
+
+    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
+    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+    [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  applicable si: éligible
+  formule:
+    multiplication:
+      assiette:
+        variations:
+          - si: contrat . CDD
+            alors: 2500 €/an
+          - sinon: 5000 €/an
+      facteur: temps de travail . effectif . quotité
+    arrondi: oui
+  références:
+    Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
+
+salarié . aides employeur . emploi franc . éligible:
+  titre: éligibilité à l'aide emploi franc
+  applicable si:
+    une de ces conditions:
+      - contrat . CDI
+      - toutes ces conditions:
+          - contrat . CDD
+          - contrat . CDD . durée >= 6
+  question: Cette embauche est-elle éligible à l'aide emploi-franc ?
+  description: |
+    Conditions :
+    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
+    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
+  par défaut: non
