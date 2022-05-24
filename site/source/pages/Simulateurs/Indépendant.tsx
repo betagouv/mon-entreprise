@@ -124,7 +124,7 @@ function IndépendantSimulationGoals({
 			<Condition expression="impôt . montant > 0">
 				<SimulationGoal small editable={false} dottedName="impôt . montant" />
 			</Condition>
-			<SimulationGoal dottedName="dirigeant . rémunération . nette après impôt" />
+			<SimulationGoal dottedName="dirigeant . rémunération . net après impôt" />
 		</SimulationGoals>
 	)
 }

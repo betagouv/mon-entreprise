@@ -1,16 +1,16 @@
-import { TextField } from '@/design-system/field'
-import { Body } from '@/design-system/typography/paragraphs'
-import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
-import { debounce } from '@/utils'
-import { InputProps } from '../RuleInput'
 import {
 	Commune,
 	fetchCommuneDetails,
 	SearchCommune,
 	searchCommunes,
 } from '@/api/commune'
+import { TextField } from '@/design-system/field'
+import { Body } from '@/design-system/typography/paragraphs'
+import { debounce } from '@/utils'
+import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
+import { InputProps } from '../RuleInput'
 
 function formatCommune(value: SearchCommune) {
 	return value && `${value.nom} (${value.codePostal})`
@@ -63,7 +63,7 @@ export default function Select({
 			} catch (error) {
 				// eslint-disable-next-line no-console
 				console.warn(
-					'Erreur dans la récupération du taux de versement transport à partir du code commune',
+					'Erreur dans la récupération du taux de versement mobilité à partir du code commune',
 					error
 				)
 			}

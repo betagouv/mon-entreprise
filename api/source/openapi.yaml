@@ -23,11 +23,12 @@ paths:
                   {
                     'situation':
                       {
-                        'contrat salarié . rémunération . brut de base':
+                        'salarié . contrat . salaire brut':
                           { 'valeur': 4200, 'unité': '€ / mois' },
-                        'contrat salarié': "'CDI'",
+                        'salarié . contrat': "'CDI'",
                       },
-                    'expressions': ['contrat salarié . rémunération . net'],
+                    'expressions':
+                      ['salarié . rémunération . net à payer avant impôt'],
                   }
               MicroEntreprise:
                 value:
@@ -36,7 +37,7 @@ paths:
                       {
                         "dirigeant . auto-entrepreneur . chiffre d'affaires": '42000 €/an',
                         'entreprise . activité': "'libérale'",
-                        'entreprise . activité . libérale réglementée': 'non',
+                        'entreprise . activité . libérale . réglementée': 'non',
                         'entreprise . catégorie juridique': "'EI'",
                         'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
                         'dirigeant . auto-entrepreneur . impôt . versement libératoire': 'non',
@@ -57,6 +58,6 @@ paths:
       parameters:
         - examples:
             SalaireNet:
-              value: 'contrat salarié . rémunération . net'
+              value: 'salarié . rémunération . net à payer avant impôt'
             Impot:
               value: 'impôt . méthode de calcul'

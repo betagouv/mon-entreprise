@@ -1,45 +1,44 @@
 salarié . cotisations:
   description: Total des cotisations employeur
-  formule:
-    somme:
-      - nom: employeur
-        titre: Cotisations employeur
-        somme:
-          - maladie . employeur
-          - ATMP
-          - prévoyance obligatoire cadre
-          - vieillesse . employeur
-          - retraite complémentaire . employeur
-          - complémentaire santé . employeur
-          - contribution d'équilibre général . employeur
-          - contribution d'équilibre technique . employeur
-          - allocations familiales
-          - chômage . employeur
-          - APEC . employeur
-          - AGS
-          - FNAL
-          - participation effort de construction
-          - contribution au dialogue social
-          - formation professionnelle
-          - versement transport
-          - taxe d'apprentissage
-          - CPF CDD
-          - forfait social
-        abattement: exonérations . employeur
+  somme:
+    - nom: employeur
+      titre: Cotisations employeur
+      somme:
+        - maladie . employeur
+        - CSA
+        - ATMP
+        - vieillesse . employeur
+        - retraite complémentaire . employeur
+        - CEG . employeur
+        - CET . employeur
+        - allocations familiales
+        - chômage . employeur
+        - APEC . employeur
+        - AGS
+        - FNAL
+        - PEEC
+        - contribution au dialogue social
+        - formation professionnelle
+        - versement mobilité
+        - taxe d'apprentissage
+        - CPF CDD
+        - forfait social
+        - prévoyances . employeur
+      abattement: exonérations . employeur
 
-      - nom: salarié
-        titre: Cotisations salarié
-        somme:
-          - vieillesse . salarié
-          - maladie . salarié
-          - retraite complémentaire . salarié
-          - contribution d'équilibre général . salarié
-          - contribution d'équilibre technique . salarié
-          - chômage . salarié
-          - CSG et CRDS
-          - APEC . salarié
-          - complémentaire santé . salarié
-        abattement: exonérations . salarié
+    - nom: salarié
+      titre: Cotisations salarié
+      somme:
+        - vieillesse . salarié
+        - maladie . salarié
+        - retraite complémentaire . salarié
+        - CEG . salarié
+        - chômage . salarié
+        - CSG-CRDS
+        - APEC . salarié
+        - prévoyances . salarié
+        # - retraite supplémentaire . salarié
+      abattement: exonérations . salarié
 
 salarié . cotisations . exonérations:
   titre: Réductions et exonérations de cotisations
@@ -79,7 +78,7 @@ salarié . cotisations . exonérations . heures supplémentaires:
               somme:
                 - vieillesse . salarié
                 - retraite complémentaire . salarié
-                - contribution d'équilibre général . salarié
+                - CEG . salarié
             facteur: 1 / assiette
           plafond: 11.31%
       références:
@@ -88,16 +87,17 @@ salarié . cotisations . exonérations . heures supplémentaires:
         Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
     - nom: employeur
-      applicable si: entreprise . effectif < 20
+      applicable si: entreprise . salariés . effectif < 20
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         assiette: temps de travail . heures supplémentaires
-        facteur: 1.50 €/heure
+        facteur: 1.50 €/heures
       note: La déduction ne s’applique pas aux heures complémentaires
       références:
         urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
 
 salarié . cotisations . exonérations . lodeom:
+  beta: oui
   valeur: oui
   applicable si:
     nom: zone un
@@ -122,7 +122,7 @@ salarié . cotisations . exonérations . lodeom:
           - barème compétitivité renforcée
           - barème innovation et croissance
       une de ces conditions:
-        - entreprise . effectif < 11
+        - entreprise . salariés . effectif < 11
         - nom: secteurs d'activité éligible
           question: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
           description: |
@@ -139,7 +139,7 @@ salarié . cotisations . exonérations . lodeom:
             Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
 
     barème compétitivité renforcée:
-      applicable si: entreprise . effectif < 250
+      applicable si: entreprise . salariés . effectif < 250
       non applicable si: barème innovation et croissance
       question: Êtes-vous éligibles au barème compétitivité renforcée ?
       description: |
@@ -152,7 +152,7 @@ salarié . cotisations . exonérations . lodeom:
         Fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
 
     barème innovation et croissance:
-      applicable si: entreprise . effectif < 250
+      applicable si: entreprise . salariés . effectif < 250
       question: Êtes-vous éligibles au barème innovation et croissance ?
       description: |
         - Sont éligibles à ce barème les employeurs occupant moins de 250 salariés et ayant réalisé un chiffre d’affaires annuel inférieur à 50 millions d’euros, au titre de la rémunération des salariés concourant essentiellement à la réalisation de projets innovants dans le domaine des technologies de l’information et de la communication.
@@ -179,6 +179,7 @@ salarié . cotisations . exonérations . lodeom . montant:
     facteur: coefficient
   avec:
     coefficient:
+      privé: oui
       variations:
         - si: barème compétitivité
           alors: 1.3 * T / 0.9 * (2.2 * temps de travail . SMIC / cotisations . assiette - 1)
@@ -193,13 +194,14 @@ salarié . cotisations . exonérations . lodeom . montant:
       Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
 
     imputation sécurité sociale:
-      formule:
-        produit:
-          assiette: réduction générale
-          facteur: T . sécurité sociale et chômage / T
+      privé: oui
+      produit:
+        assiette: réduction générale
+        facteur: T . sécurité sociale et chômage / T
 
     imputation retraite complémentaire:
-      formule: réduction générale - imputation sécurité sociale
+      privé: oui
+      valeur: réduction générale - imputation sécurité sociale
 
 salarié . cotisations . exonérations . JEI:
   question:
@@ -235,7 +237,7 @@ salarié . cotisations . exonérations . JEI:
   rend non applicable:
     - réduction générale
     - allocations familiales . taux réduit
-    - salarié . maladie . taux employeur . taux réduit
+    - salarié . cotisations . maladie . employeur . taux réduit
     - lodeom
 
 salarié . cotisations . exonérations . JEI . montant:
@@ -264,7 +266,6 @@ salarié . cotisations . exonérations . réduction générale:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-  non applicable si: cotisations . assiette forfaitaire . montant > 0
   produit:
     assiette: cotisations . assiette
     facteur: coefficient
@@ -272,59 +273,92 @@ salarié . cotisations . exonérations . réduction générale:
 
   avec:
     coefficient:
-      formule:
-        produit:
-          assiette: temps de travail . SMIC / cotisations . assiette * 1.6 - 1
-          facteur: T / 0.6
-        plancher: 0%
-        plafond: T
-        arrondi: 4 décimales
+      privé: oui
+      produit:
+        assiette: temps de travail . SMIC / cotisations . assiette * 1.6 - 1
+        facteur: T / 0.6
+      plancher: 0%
+      plafond: T
+      arrondi: 4 décimales
       références:
         urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
         Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
 
     imputation sécurité sociale:
-      formule:
-        produit:
-          assiette: réduction générale
-          facteur: T . sécurité sociale et chômage / T
+      privé: oui
+      produit:
+        assiette: réduction générale
+        facteur: T . sécurité sociale et chômage / T
 
     imputation retraite complémentaire:
-      formule: réduction générale - imputation sécurité sociale
+      privé: oui
+      valeur: réduction générale - imputation sécurité sociale
 
     plafond avec application de la DFS:
-      applicable si: déduction forfaitaire spécifique
+      privé: oui
+      applicable si: régimes spécifiques . DFS
       unité: €/mois
-      formule:
-        produit:
-          taux: 130%
-          assiette:
-            recalcul:
-              règle: réduction générale
-              avec:
-                déduction forfaitaire spécifique: non
+      produit:
+        taux: 130%
+        assiette:
+          recalcul:
+            règle: réduction générale
+            avec:
+              régimes spécifiques . DFS: non
 
 salarié . cotisations . exonérations . T:
+  privé: oui
   titre: Coefficient T
+  unité: '%'
   somme:
     - sécurité sociale et chômage
-    - valeur: retraite complémentaire . employeur . taux tranche 1
+    - valeur: retraite complémentaire . employeur . taux T1
       plafond: 4.72%
-    - valeur: contribution d'équilibre général . employeur . taux tranche 1
+    - valeur: CEG . employeur . taux T1
       plafond: 1.29%
 
   avec:
     sécurité sociale et chômage:
       titre: Coefficient T sécurité sociale et chômage
       somme:
-        - maladie . taux employeur
+        - maladie . employeur . taux
         - allocations familiales . taux
         - vieillesse . employeur . déplafonnée . taux
         - vieillesse . employeur . plafonnée . taux
-        - maladie . taux solidarité autonomie
+        - CSA . taux
         - ATMP . taux minimum
         - FNAL . taux
         - chômage . employeur . taux
+
+salarié . cotisations . assiette:
+  titre: Assiette des cotisations sociales
+  description: |
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  somme:
+    - nom: sans prévoyance
+      description: L'assiette des cotisations avant la réintégration de la part non déductible de la prévoyance employeur. C'est elle qui sert de base au calcul des prévoyances proportionnelles au revenu.
+      valeur: rémunération . brut
+      abattement:
+        somme:
+          - rémunération . frais professionnels . déductible
+          - contrat . stage . gratification minimale
+    - prévoyances . employeur . non déductible socialement
+
+salarié . cotisations . assiette . salariale:
+  titre: Assiette des cotisations sociales
+  description: |
+    Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
+  références:
+    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+  formule:
+    variations:
+      - si: contrat . apprentissage
+        alors:
+          valeur: cotisations . assiette
+          abattement: 79% * SMIC
+      - sinon: cotisations . assiette
 
 salarié . cotisations . CPF CDD:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
@@ -341,7 +375,8 @@ salarié . cotisations . CPF CDD:
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
 
-salarié . contribution d'équilibre général:
+salarié . cotisations . CEG:
+  titre: contribution d'équilibre général
   description: >-
     Cette cotisation créée en 2019 permet à la fois de compenser les
     charges résultant des départs à la retraite avant 67 ans et d’honorer les
@@ -350,253 +385,278 @@ salarié . contribution d'équilibre général:
   acronyme: CEG
   cotisation:
     branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC-ARRCO
-  formule:
-    barème:
-      assiette: cotisations . assiette
-      multiplicateur: plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: employeur
-          tranches:
-            - taux:
-                nom: taux tranche 1
-                valeur: 1.29%
-              plafond: 1
-            - taux: 1.62%
-              plafond: 8
-        - attributs:
-            nom: salarié
-          assiette: cotisations . assiette . salariale
-          tranches:
-            - taux: 0.86%
-              plafond: 1
-            - taux: 1.08%
-              plafond: 8
+  barème:
+    assiette: cotisations . assiette
+    multiplicateur: temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: employeur
+        tranches:
+          - taux:
+              valeur: 1.29%
+              nom: taux T1
+            plafond: 1
+          - taux: 1.62%
+            plafond: 8
+      - attributs:
+          nom: salarié
+        assiette: cotisations . assiette . salariale
+        tranches:
+          - taux: 0.86%
+            plafond: 1
+          - taux: 1.08%
+            plafond: 8
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
 
-salarié . contribution d'équilibre technique:
+salarié . cotisations . CET:
+  titre: contribution d'équilibre technique
   acronyme: CET
   cotisation:
     branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC-ARRCO
-  applicable si: cotisations . assiette > plafond sécurité sociale
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      plafond: 8 * plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: employeur
-          taux:
-            nom: taux
-            valeur: 0.21%
-        - attributs:
-            nom: salarié
-          taux: 0.14%
+  applicable si: cotisations . assiette > temps de travail . plafond sécurité sociale
+  produit:
+    assiette: cotisations . assiette
+    plafond: 8 * temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: employeur
+        taux:
+          nom: taux
+          valeur: 0.21%
+      - attributs:
+          nom: salarié
+        taux: 0.14%
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
 
-salarié . retraite complémentaire:
+salarié . cotisations . retraite complémentaire:
   cotisation:
     branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC-ARRCO
   description: |
     Cotisations de retraite complémentaire.
-  formule:
-    barème:
-      assiette: cotisations . assiette
-      multiplicateur: plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: employeur
-          tranches:
-            - taux:
-                nom: taux tranche 1
-                valeur: 4.72%
-              plafond: 1
-            - taux:
-                nom: taux tranche 2
-                valeur: 12.95%
-              plafond: 8
-        - attributs:
-            nom: salarié
-          assiette: cotisations . assiette . salariale
-          tranches:
-            - taux:
-                nom: taux tranche 1
-                valeur: 3.15%
-              plafond: 1
-            - taux:
-                nom: taux tranche 2
-                valeur: 8.64%
-              plafond: 8
+  barème:
+    assiette: cotisations . assiette
+    multiplicateur: temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: employeur
+        tranches:
+          - taux:
+              valeur: 4.72%
+              nom: taux T1
+            plafond: 1
+          - taux:
+              valeur: 12.95%
+              nom: taux T2
+            plafond: 8
+      - attributs:
+          nom: salarié
+        assiette: cotisations . assiette . salariale
+        tranches:
+          - taux:
+              valeur: 3.15%
+              nom: taux T1
+            plafond: 1
+          - taux:
+              valeur: 8.64%
+              nom: taux T2
+            plafond: 8
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
-    régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+    régimes des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
 
-salarié . retraite supplémentaire:
-  formule:
-    somme:
-      - nom: employeur
-        valeur: 0€/mois
-      - nom: salarié
-        valeur: 0€/mois
+# TODO : ajouter le forfait social pour les cotisations de retraite supplémentaire
+# salarié . cotisations . retraite supplémentaire:
+#   par défaut: non
+#   somme:
+#     - nom: employeur
+#       valeur: 0€/mois
+#     - nom: salarié
+#       valeur: 0€/mois
+#   avec:
+#     déductible:
+#       valeur: employeur
+#       abattement:
+#         valeur: 5% * rémunération . brut
+#         plafond: 5% * temps de travail . plafond sécurité sociale
+#       références:
+#         Article D242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037456320&cidTexte=LEGITEXT000006073189&dateTexte=20180930
+#     exonérée:
+#       titre: retraite supplémentaire exonérée d'impôt
+#       valeur: retraite supplémentaire
+#       plafond:
+#         produit:
+#           assiette: rémunération . brut
+#           plafond: 8 * temps de travail . plafond sécurité sociale
+#           taux: 8%
+#       références:
+#         Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
-salarié . retraite supplémentaire . part déductible:
-  formule:
-    valeur: retraite supplémentaire . employeur
-    abattement: plafond d'exonération sociale employeur
-
-salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
-  formule:
-    valeur: 5% * rémunération . brut
-    plafond: 5% * plafond sécurité sociale
-  références:
-    Article D242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037456320&cidTexte=LEGITEXT000006073189&dateTexte=20180930
-
-salarié . retraite supplémentaire . exonération fiscale:
-  titre: retraite supplémentaire exonérée d'impôt
-  formule:
-    valeur: retraite supplémentaire
-    plafond:
-      produit:
-        assiette: rémunération . brut
-        plafond: 8 * plafond sécurité sociale temps plein
-        taux: 8%
-  références:
-    Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
-
-salarié . AGS:
-  description: Cotisation au Régime de Garantie des Salaires
+salarié . cotisations . AGS:
+  titre: Régime de garanti des salaires (AGS)
+  description: >-
+    Cette cotisations permet de garantir les salaires des employés en cas de difficultés de l'entreprise (sauvegarde, redressement, liquidation). Elle paie les salaires sur les 60 derniers jours de travail. Elle permet de payer des préavis et des indemnités de fin de contrat.
   cotisation:
-    dû par: employeur
     branche: assurance chômage
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux: 0.15%
-      plafond: 4 * plafond sécurité sociale
+  produit:
+    assiette: cotisations . assiette
+    taux: 0.15%
+    plafond: 4 * temps de travail . plafond sécurité sociale
 
-salarié . allocations familiales:
+salarié . cotisations . allocations familiales:
   cotisation:
     dû par: employeur
     branche: famille
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux:
-        nom: taux
-        valeur:
-        variations:
-          - si: taux réduit
-            alors: 3.45%
-          - sinon: 5.25%
+  produit:
+    assiette: cotisations . assiette
+    taux:
+      nom: taux
+      variations:
+        - si: taux réduit
+          alors: 3.45%
+        - sinon: 5.25%
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+  avec:
+    taux réduit: cotisations . assiette < temps de travail . SMIC * 3.5
 
-salarié . allocations familiales . taux réduit:
-  formule: cotisations . assiette < plafond de réduction
-
-salarié . allocations familiales . taux réduit . plafond de réduction:
-  titre: Plafond de la réduction des allocations familiales
-  formule: temps de travail . SMIC * 3.5
-
-salarié . APEC:
-  cotisation:
-    branche: assurance chômage
-    type de retraite: complémentaire
-    destinataire: APEC
+salarié . cotisations . APEC:
+  titre: Association pour l’emploi des cadres
+  acronymes: APEC
   description: |
-    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
+    Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
   références:
     chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  applicable si: contrat . statut cadre
+  produit:
+    assiette: cotisations . assiette
+    plafond: 4 * temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: employeur
+        taux: 0.036%
+      - attributs:
+          nom: salarié
+        taux: 0.024%
 
-  applicable si: statut cadre
-
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      plafond: 4 * plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: employeur
-          taux: 0.036%
-        - attributs:
-            nom: salarié
-          taux: 0.024%
-
-salarié . chômage:
+salarié . cotisations . chômage:
   cotisation:
     branche: assurance chômage
-    destinataire: Pôle emploi
-    dû par: employeur
   description: Cotisation d’assurance chômage
   références:
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
+  produit:
+    assiette: cotisations . assiette
+    plafond: 4 * temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: salarié
+        taux:
+          nom: taux
+          valeur: 0%
+      - attributs:
+          nom: employeur
+        taux:
+          nom: taux
+          valeur: 4.05%
+
+salarié . cotisations . ATMP:
+  titre: Cotisation Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
+  cotisation:
+    dû par: employeur
+    branche: accidents du travail et maladies professionnelles
+    destinataire: Urssaf
+    responsable: CARSAT
   formule:
     produit:
       assiette: cotisations . assiette
-      plafond: 4 * plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: salarié
-          taux:
-            nom: taux
-            valeur: 0%
-        - attributs:
-            nom: employeur
-          taux:
-            nom: taux
-            valeur: 4.05%
-
-salarié . complémentaire santé:
-  description: |
-    L'Assurance maladie (Sécurité sociale) ne rembourse pas complètement vos dépenses de santé.
-
-    La complémentaire santé d'entreprise complète ces remboursements, en totalité ou en partie.
-
-    En plus de la complémentaire santé, le dispositif collectif de l'entreprise peut proposer d'autres garanties (garanties décès, garantie dépendance, etc.).
-  cotisation:
-    branche: santé
+      taux:
+        nom: taux
+        variations:
+          - si: taux connu
+            alors: taux personnalisé
+          - si: taux réduit
+            alors: 0.8%
+          - sinon: taux collectif
   références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F20739
-  formule:
-    produit:
-      assiette: forfait
-      composantes:
-        # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
-        - attributs:
-            nom: employeur
-          taux: part employeur
-        - attributs:
-            nom: salarié
-          taux: part salarié
-  exemples:
-    - nom: forfait à 40€
-      situation:
-        forfait: 40
-      valeur attendue: 40
-    - nom: forfait à 100€ payé par l'employeur
-      situation:
-        forfait: 100
-        part employeur: 100
-      valeur attendue: 100
+    taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
 
-salarié . contribution au dialogue social:
-  cotisation:
-    dû par: employeur
-    collecteur: Urssaf
+  avec:
+    taux minimum:
+      description: >-
+        Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour le
+        calcul de la réduction générale de cotisations
+      variations:
+        - si: date >= 01/2022
+          alors: 0.59%
+        - si: date >= 01/2021
+          alors: 0.70 %
+      références:
+        Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041460928&cidTexte=LEGITEXT000006073189&dateTexte=20200101
+        Mise à jour 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044793102
+
+    taux moyen:
+      valeur: 2.24%
+      références:
+        Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
+    taux réduit:
+      titre: taux réduit pour activité sans risque
+      question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
+      description: |
+        Ce taux correspond :
+        - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
+        - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit.
+      applicable si: entreprise . salariés . effectif <= 150
+      par défaut: non
+      références:
+        fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
+
+    taux connu:
+      question: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
+      par défaut: non
+      description: |
+        Le taux de la cotisation Accident du Travail et Maladie Professionnel varie selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels sont exposé leur salariés.
+
+        Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
+
+        A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
+
+        Entre les deux, le taux est modulé.
+
+        Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
+      références:
+        Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
+        Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
+
+    taux personnalisé:
+      question: Quel est le taux AT/MP de l'entreprise ?
+      description: >
+        Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter son taux effectif directement sur espace net-entreprise.
+      références:
+        Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/
+      par défaut: taux moyen
+
+    taux collectif:
+      titre: Taux collectif ATMP
+      non applicable si: taux connu
+      question: De quel domaine d'activité dépend votre entreprise ?
+      description: |
+        Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
+        ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+      par défaut: taux moyen
+      references:
+        Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
+salarié . cotisations . contribution au dialogue social:
   description: |
     Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
 
@@ -605,16 +665,11 @@ salarié . contribution au dialogue social:
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
+  produit:
+    assiette: cotisations . assiette
+    taux: 0.016%
 
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux: 0.016%
-
-salarié . CSG et CRDS:
-  cotisation:
-    dû par: salarié
-    collecteur: Urssaf
+salarié . cotisations . CSG-CRDS:
   description: >-
     La CSG et la CRDS sont dues par tous les salariés remplissant les deux
     conditions suivantes :
@@ -625,53 +680,50 @@ salarié . CSG et CRDS:
     Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas
     dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte
     d’assuré social).
-  formule:
-    somme:
-      - CSG
-      - CRDS
+  somme:
+    - CSG
+    - CRDS
 
-salarié . CSG et CRDS . assiette de base:
+salarié . cotisations . CSG-CRDS . assiette de base:
   références:
-    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
-    abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
+    Les revenus salariaux soumis à la CSG et à la CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
+    Les revenus exclus de l’abattement d’assiette: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-  formule:
-    somme:
-      - assiette abattue totale
-      # TODO : ce sont les cotisations forfaitaires qui ne rentrent pas dans
-      # l'abattue, et non tous les avantages sociaux
-      - avantages sociaux
-      # - (- assiette revenu remplacements)
-      - (- assiette heures supplémentaires et complémentaires défiscalisées)
+  somme:
+    - assiette abattue
+    - prévoyances . employeur
+    # - (- assiette revenu remplacements)
+  abattement: assiette heures supplémentaires et complémentaires défiscalisées
+  avec:
+    assiette abattue:
+      barème:
+        assiette:
+          cotisations . assiette . sans prévoyance
+          # - rémunération . revenus de remplacement
 
-salarié . CSG et CRDS . assiette abattue totale:
-  formule:
-    barème:
-      assiette:
-        cotisations . assiette
-        # - rémunération . revenus de remplacement
-      multiplicateur: plafond sécurité sociale
-      # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
-      tranches:
-        - taux: 98.25%
-          plafond: 4
-        - taux: 100%
+        multiplicateur: temps de travail . plafond sécurité sociale
+        # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
+        tranches:
+          - taux: 98.25%
+            plafond: 4
+          - taux: 100%
 
-salarié . CSG et CRDS . assiette revenu remplacements:
-  formule:
-    produit:
-      taux: 98.25%
-      assiette: rémunération . revenus de remplacement
+salarié . cotisations . CSG-CRDS . assiette revenu remplacements:
+  # TODO : déplacer dans une section "revenu de remplacement"
+  privé: oui
+  produit:
+    taux: 98.25%
+    assiette: rémunération . revenus de remplacement
 
-salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
-  formule:
-    produit:
-      assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
-      taux: 98.25%
+salarié . cotisations . CSG-CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
+  privé: oui
+  produit:
+    assiette: rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées
+    taux: 98.25%
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-salarié . CSG et CRDS . non déductible:
+salarié . cotisations . CSG-CRDS . non déductible:
   titre: CSG non déductible et CRDS
   formule:
     somme:
@@ -680,7 +732,7 @@ salarié . CSG et CRDS . non déductible:
       - revenus de remplacement . CSG non déductible
       - revenus de remplacement . CRDS
 
-salarié . CSG et CRDS . CSG:
+salarié . cotisations . CSG-CRDS . CSG:
   non applicable si: établissement . localisation . département = 'Mayotte'
   description: >-
     La contribution sociale généralisée (CSG) est un impôt destiné à participer
@@ -698,132 +750,102 @@ salarié . CSG et CRDS . CSG:
 
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
     également le fonds de solidarité vieillesse
-  formule:
-    multiplication:
-      assiette: assiette de base
-      composantes:
-        - attributs:
-            nom: déductible
-          taux:
-            nom: taux
-            valeur: 6.8%
-        - attributs:
-            nom: non déductible
-          composantes:
-            - taux:
-                nom: taux
-                valeur: 2.4%
-            - attributs:
-                nom: heures supplémentaires et complémentaires défiscalisées
-              assiette: assiette heures supplémentaires et complémentaires défiscalisées
-              taux: déductible . taux + non déductible . taux
+  multiplication:
+    assiette: assiette de base
+    composantes:
+      - attributs:
+          nom: déductible
+        taux:
+          nom: taux
+          valeur: 6.8%
+      - attributs:
+          nom: non déductible
+        composantes:
+          - taux:
+              nom: taux
+              valeur: 2.4%
+          - attributs:
+              nom: heures supplémentaires et complémentaires défiscalisées
+              privé: oui
+            assiette: assiette heures supplémentaires et complémentaires défiscalisées
+            taux: déductible . taux + non déductible . taux
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-  exemples:
-    - nom: 'CSG cadre'
-      situation:
-        cotisations . assiette: 1500
-        complémentaire santé . forfait: 40
-        statut cadre: oui
-      valeur attendue: 139.495
-    - nom: 'CSG non cadre'
-      situation:
-        cotisations . assiette: 1500
-        complémentaire santé . forfait: 40
-      valeur attendue: 137.425
 
-salarié . CSG et CRDS . CRDS:
-  cotisation:
-    impôt: oui
-    dû par: salarié
+salarié . cotisations . CSG-CRDS . CRDS:
   description: Contribution pour le remboursement de la dette sociale
-  formule:
-    produit:
-      assiette:
-        somme:
-          - assiette de base
-          - assiette heures supplémentaires et complémentaires défiscalisées
-      taux:
-        nom: taux
-        valeur: 0.5%
+  produit:
+    assiette:
+      somme:
+        - assiette de base
+        - assiette heures supplémentaires et complémentaires défiscalisées
+    taux:
+      nom: taux
+      valeur: 0.5%
 
-salarié . CSG et CRDS . revenus de remplacement:
-  titre: CSG et CRDS revenus de remplacement
+salarié . cotisations . CSG-CRDS . revenus de remplacement:
+  titre: CSG-CRDS revenus de remplacement
   description: >-
-    La CSG et CRDS prélevées sur les revenus de remplacement.
+    La CSG-CRDS prélevées sur les revenus de remplacement.
   note: >-
     Le prélèvement de la CSG et de la CRDS ne peut pas avoir pour effet de
     réduire le montant de la rémunération d’activité et des allocations de
     chômage à un seuil inférieur au Smic brut.
-  formule:
-    somme:
-      - revenus de remplacement . CSG déductible
-      - revenus de remplacement . CSG non déductible
-      - revenus de remplacement . CRDS
+  somme:
+    - nom: CSG déductible
+      titre: CSG déductible revenus de remplacement
+      produit:
+        assiette: CSG-CRDS . assiette revenu remplacements
+        taux: 3.8%
+      plafond:
+        nom: plafond
+        somme:
+          - rémunération . net . sans revenus de remplacement
+          - rémunération . revenus de remplacement
+          - (- SMIC)
+        plancher: 0€/mois
+    - nom: CSG non déductible
+      titre: CSG non déductible revenus de remplacement
+      produit:
+        assiette: CSG-CRDS . assiette revenu remplacements
+        taux: CSG . non déductible . taux
+      plafond:
+        nom: plafond
+        valeur: CSG déductible . plafond - CSG déductible
+    - nom: CRDS
+      titre: CRDS revenus de remplacement
+      produit:
+        assiette: assiette revenu remplacements
+        taux: CRDS . taux
+      plafond: CSG non déductible . plafond - CSG non déductible
 
-salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
-  titre: CSG déductible revenus de remplacement
-  produit:
-    assiette: CSG et CRDS . assiette revenu remplacements
-    taux: 3.8%
-  plafond:
-    nom: plafond
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- SMIC temps plein)
-    plancher: 0€/mois
-  note:
-
-salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
-  titre: CSG non déductible revenus de remplacement
-  produit:
-    assiette: CSG et CRDS . assiette revenu remplacements
-    taux: CSG . non déductible . taux
-  plafond:
-    nom: plafond
-    valeur: CSG déductible . plafond - CSG déductible
-
-salarié . CSG et CRDS . revenus de remplacement . CRDS:
-  titre: CRDS revenus de remplacement
-  produit:
-    assiette: assiette revenu remplacements
-    taux: CRDS . taux
-  plafond:
-    valeur: CSG non déductible . plafond - CSG non déductible
-
-salarié . FNAL:
+salarié . cotisations . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
   description: |
     Le fonds national d’aide au logement (Fnal) est une contribution qui assure le financement de l’allocation logement.
   cotisation:
-    dû par: employeur
-    destinataire: Urssaf
     branche: famille
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
-  formule:
-    produit:
-      assiette:
-        valeur: cotisations . assiette
-        plafond:
-          applicable si: éligible taux réduit
-          valeur: plafond sécurité sociale
-      taux:
-        nom: taux
-        variations:
-          - si: éligible taux réduit
-            alors: 0.1%
-          - sinon: 0.5%
+  produit:
+    assiette:
+      valeur: cotisations . assiette
+      plafond:
+        applicable si: éligible taux réduit
+        valeur: temps de travail . plafond sécurité sociale
+    taux:
+      nom: taux
+      variations:
+        - si: éligible taux réduit
+          alors: 0.1%
+        - sinon: 0.5%
+  avec:
+    privé: oui
+    éligible taux réduit: entreprise . salariés . effectif < 50
 
-salarié . FNAL . éligible taux réduit:
-  formule: entreprise . effectif < 50
-
-salarié . formation professionnelle:
+salarié . cotisations . formation professionnelle:
   cotisation:
-    dû par: employeur
-    collecteur: OPCO
     branche: formation
     # TODO majoration pour les entreprises de travail temporaire
     #
@@ -841,479 +863,383 @@ salarié . formation professionnelle:
     - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
   non applicable si:
     toutes ces conditions:
-      - entreprise . effectif < 11
+      - entreprise . salariés . effectif < 11
       - contrat . apprentissage
 
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      variations:
-        - si: entreprise . effectif < 11
-          alors:
-            taux: 0.55%
-        - sinon:
-            taux: 1%
+  produit:
+    assiette: cotisations . assiette
+    variations:
+      - si: entreprise . salariés . effectif < 11
+        alors:
+          taux: 0.55%
+      - sinon:
+          taux: 1%
   références:
     fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
     Bercy infos: https://www.economie.gouv.fr/entreprises/contribution-formation-professionnelle
     Taux réduit: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037387044&cidTexte=LEGITEXT000006072050&dateTexte=20190101
 
-salarié . maladie:
+salarié . cotisations . maladie:
+  description: La cotisation d’assurance maladie-maternité-invalidité finance les prestations versées par le régime général de Sécurité sociale en cas d’incapacité de travail. Elle permet le versement des prestations en nature et en espèces.
   cotisation:
     branche: santé
-  description: Cotisations de la branche maladie
+  synonymes: [Cotisation maladie - maternité - invalidité - décès]
   références:
-    fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+    Fiche Urssaf sur la cotisation maladie: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+    Cas particuliers: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit/cas-particuliers.html
+    Le régime local Alsace-Moselle: https://regime-local.fr
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
     Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      composantes:
-        - attributs:
-            nom: employeur
-          composantes:
-            - attributs:
-                titre: maladie, maternité, invalidité, décès
-                nom: base
-              taux: taux employeur
-            - attributs:
-                nom: contribution solidarité autonomie
-              taux: taux solidarité autonomie
-        - attributs:
-            nom: salarié
-            titre: maladie, maternité, invalidité, décès salarié
-          taux: taux salarié
+  produit:
+    assiette: cotisations . assiette
+    composantes:
+      - attributs:
+          nom: employeur
+          avec:
+            taux réduit: cotisations . assiette < 2.5 * temps de travail . SMIC
+        taux:
+          nom: taux
+          variations:
+            - si: taux réduit
+              alors: 7%
+            - sinon: 13%
 
-salarié . maladie . taux solidarité autonomie:
+      - attributs:
+          nom: salarié
+        taux:
+          nom: taux
+          variations:
+            - si: régimes spécifiques . alsace moselle
+              alors:
+                variations:
+                  - si: date >= 01/04/2022
+                    alors: 1.3%
+                  - sinon: 1.5%
+
+            - si: situation personnelle . domiciliation fiscale à l'étranger
+              alors: 5.50%
+
+salarié . cotisations . CSA:
+  titre: Contribution solidarité autonomie
+  cotisation:
+    branche: santé
   acronyme: CSA
-  formule: 0.3%
+  produit:
+    assiette: cotisations . assiette
+    taux:
+      nom: taux
+      valeur: 0.3%
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
     Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
 
-salarié . maladie . taux employeur:
-  formule:
-    variations:
-      - si: taux réduit
-        alors: 7%
-      - sinon: 13%
-
-salarié . maladie . taux employeur . taux réduit:
-  formule: cotisations . assiette < plafond de réduction employeur
-
-salarié . maladie . taux salarié:
-  formule:
-    variations:
-      - si: régime alsace moselle
-        alors: 1.5%
-      - sinon: 0%
-
-salarié . maladie . plafond de réduction employeur:
-  formule: 2.5 * temps de travail . SMIC
-
-salarié . participation effort de construction:
+salarié . cotisations . PEEC:
   titre: Participation à l'effort de construction
   alias: Dispositif du 1% logement
   acronyme: PEEC
   description: Participation des employeurs à l'effort de construction
   cotisation:
     branche: logement
-    dû par: employeur
-    impôt: oui
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
   note: |
     L'employeur a le choix entre verser cet impôt à un "organisme du 1% patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
-  non applicable si: entreprise . effectif < 50
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux: 0.45%
+  non applicable si: entreprise . salariés . effectif < 50
+  produit:
+    assiette: cotisations . assiette
+    taux: 0.45%
 
-salarié . prévoyance:
-  formule:
-    somme:
-      - nom: employeur
-        formule: 0 €/mois
-      - nom: salarié
-        formule: 0 €/mois
-
-salarié . prévoyance . part déductible:
-  formule:
-    valeur: prévoyance . employeur
-    abattement: plafond exonération sociale employeur
-
-salarié . prévoyance . plafond exonération sociale employeur:
-  formule:
-    somme:
-      - 6% * plafond sécurité sociale
-      - 1.5% * rémunération . brut
-    plafond: 12% * plafond sécurité sociale
-
-# TODO: À fusionner avec `salarié . prévoyance`. Pour l'instant pas
-# gênant d'avoir deux cotisations séparées car `salarié . prévoyance`
-# est toujours nulle (pas de question associée)
-salarié . prévoyance obligatoire cadre:
-  titre: Prévoyance obligatoire pour les cadres
+salarié . cotisations . prévoyances:
+  titre: prévoyances complémentaires
+  possiblement non applicable: oui
   cotisation:
-    dû par: employeur
     branche: santé
-  références:
-    minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
-  applicable si: statut cadre
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      plafond: plafond sécurité sociale
-      taux: 1.5%
-      # TODO attention : il semblerait que ce 1.5% englobe aussi la
-      # complémentaire santé ! La confusion serait entretenue par les organismes
-      # de prévoyance...
-
-salarié . prévoyance . exonération fiscale:
-  titre: prévoyance exonérée d'impôt
-  formule:
-    valeur: prévoyance
-    plafond:
+  somme:
+    - nom: employeur
       somme:
-        - 5% * plafond sécurité sociale temps plein
-        - 2% * rémunération . brut
-      plafond: 2% * 8 * plafond sécurité sociale temps plein
-  références:
-    Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
+        - santé . employeur
+        - conventionnelle . employeur
+        - nom: cadres
+          applicable si: contrat . statut cadre
+          description: prévoyance obligatoire pour les cadres
+          privé: oui
+          produit:
+            assiette: cotisations . assiette . sans prévoyance
+            plafond: plafond sécurité sociale
+            taux: 1.5%
 
-salarié . taxe d'apprentissage:
-  cotisation:
-    destinataire: Opérateurs de compétences (OPCO)
-    branche: formation
-    dû par: employeur
-  description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
-  applicable si:
-    une de ces conditions:
-      - entreprise . effectif > 10
-      - contrat . apprentissage = non
-  références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
-    csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
-
-  note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
-  formule:
-    somme:
-      - base
-      - contribution supplémentaire
-
-salarié . taxe d'apprentissage . assiette:
-  titre: assiette de la taxe d'apprentissage
-  description: Le salaire des apprentis est partiellement exonéré dans la base de calcul de la taxe d'apprentissage.
-  formule:
-    variations:
-      - si: contrat . apprentissage
-        alors:
-          valeur: cotisations . assiette
+      avec:
+        non déductible socialement:
+          titre: Prévoyance employeur non déductible
+          description: Montant de la part employeur des prévoyances à réintégrer pour le calcul de l'assiette des cotisations
+          valeur: employeur
           abattement:
-            variations:
-              - si: établissement . localisation . outre-mer
-                alors: 20% * temps de travail . SMIC
-              - sinon: 11% * temps de travail . SMIC
-      - sinon: cotisations . assiette
+            somme:
+              - 6% * plafond sécurité sociale
+              - 1.5% * rémunération . brut
+            plafond: 12% * plafond sécurité sociale
+          références:
+            La limite de l'exonération sociale: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/la-prevoyance-complementaire/la-limite-de-lexoneration-social.html
+        # TODO: autre
 
-salarié . taxe d'apprentissage . base:
-  titre: taxe d'apprentissage de base
-  formule:
-    produit:
-      assiette: assiette
-      taux:
-        variations:
-          - si: régime alsace moselle
-            alors: 0.44%
-          - sinon: 0.68%
+    - nom: salarié
+      somme:
+        - santé . salarié
+        - conventionnelle . salarié
+        # TODO: autre
 
-salarié . taxe d'apprentissage . contribution supplémentaire:
-  applicable si:
-    toutes ces conditions:
-      - entreprise . effectif >= 250
-      - entreprise . ratio alternants < 5%
+      avec:
+        non déductible:
+          titre: Prévoyance salarié non déductible
+          valeur: salarié
+          abattement:
+            somme:
+              - 5% * plafond sécurité sociale
+              - 2% * rémunération . brut
+            plafond: 2% * 8 * plafond sécurité sociale
+        références:
+          Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
-  formule:
-    produit:
-      assiette: assiette
+  avec:
+    conventionnelle:
+      somme:
+        - nom: employeur
+          non applicable si: oui
+        - nom: salarié
+          non applicable si: oui
 
-      # exception:
-      #   si: régime géographique = Alsace-Moselle
-      #   références:
-      #     - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
-      #     - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
-      #     # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
-      #   facteur: 0.52
+salarié . cotisations . prévoyances . santé:
+  avec:
+    montant:
+      titre: prévoyance complémentaire santé (mutuelle)
+      synonymes:
+        - mutuelle
+        - prévoyance . santé
+      cotisation:
+        branche: maladie
+      description: |
+        En complément des garanties de base de la Sécurité sociale, un salarié peut bénéficier de prestations de la complémentaire santé de son entreprise (ou de l'association qui l'emploie). C'est l'employeur qui négocie le contrat et assure son suivi auprès de l'organisme assureur. La complémentaire santé d'entreprise doit prendre en charge un minimum de garanties.
 
-      variations:
-        - si: taxe d'apprentissage . csa au taux majoré
-          alors:
-            taux: 0.6%
-        - si: entreprise . ratio alternants < 1%
-          alors:
-            taux: 0.4%
-        - si: entreprise . ratio alternants < 2%
-          alors:
-            taux: 0.2%
-        - si: entreprise . ratio alternants < 3%
-          alors:
-            taux: 0.1%
-        - si: entreprise . ratio alternants < 5%
-          alors:
-            taux: 0.05%
+      question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé de l'entreprise (mutuelle) ?
+      par défaut: 40 €/mois
+      suggestions:
+        basique: 40 €/mois
+        élevé: 100 €/mois
+        alsace moselle basique: 30 €/mois
+      références:
+        Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+        les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+      # TODO : ajouter le cas des dispenses https://www.service-public.fr/particuliers/vosdroits/F20740
 
-salarié . taxe d'apprentissage . csa au taux majoré:
-  titre: CSA au taux majoré
-  formule:
-    toutes ces conditions:
-      - entreprise . effectif >= 2000
-      - entreprise . ratio alternants < 1%
+    taux employeur:
+      description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
+      question: Quelle est la part de la complémentaire santé payée par l'employeur ?
+      suggestions:
+        50%: 50%
+        100%: 100%
+      par défaut: 50%
+      avec:
+        contrôle min:
+          type: notification
+          sévérité: avertissement
+          valeur: taux employeur < 50%
+          description: La part employeur de la complémentaire santé doit être de 50% au minimum
+    employeur: montant * taux employeur
+    salarié: montant - taux employeur
 
-salarié . taxe sur les salaires . assiette de base:
-  formule:
-    somme:
-      - cotisations . assiette
-      - avantages sociaux
-  références:
-    assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
-
-salarié . taxe sur les salaires . assiette:
-  formule:
-    valeur: assiette de base
-    abattement: prime d'impatriation
-  références:
-    bofig: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
-    impots.gouv.fr: https://www.impots.gouv.fr/portail/international-particulier/le-regime-des-impatries
-
-salarié . taxe sur les salaires . barème:
-  unité: €/an
-
-  formule:
-    barème:
-      assiette: assiette
-      tranches:
-        - taux: 4.25%
-          plafond: 8004 €/an
-        - taux: 8.5%
-          plafond: 15981 €/an
-        - taux: 13.6%
-  exemples:
-    - nom: salaire médian
-      situation:
-        salarié . taxe sur les salaires: oui
-        assiette: 2300
-      valeur attendue: 2598.40
-  note: |
-    Nous n'implémentons pas les taux spécifiques pour l'outre-mer
-  références:
-    barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-
-salarié . régime des impatriés:
-  question: Le salarié bénéficie-t-il du régime des impatriés ?
-  non applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  par défaut: non
-  description: |
-    Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
-
-    Vous devez en outre ne pas avoir été fiscalement domicilié en France les cinq années civiles précédant celle de la prise de fonctions et fixer en France votre domicile fiscal dès votre prise de fonctions.
-
-    Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
-
-  note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
-  rend non applicable:
-    - vieillesse
-    - retraite complémentaire
-    - protection sociale . retraite . base
-  références:
-    impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
-    bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
-    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
-
-salarié . régime des impatriés . information:
-  type: notification
-  formule: oui
-  description: |-
-    Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
-    - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
-    - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
-
-    [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
-
-salarié . taxe sur les salaires:
-  unité: €/mois
-  taxe:
-    dû par: employeur
-  description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  applicable si: entreprise . taxe sur les salaires
-  formule: entreprise . taxe sur les salaires * 1 employé / entreprise . effectif
-  note: |
-    Nous supposons ici que tous les salariés de l'entreprise ont la même rémunération
-    Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
-  exemples:
-    - nom: non applicable par défaut
-      situation:
-        contrat . salaire brut: 2300
-      valeur attendue: false
-    - nom: association non lucrative unipersonnelle
-      situation:
-        entreprise . association non lucrative: oui
-        contrat . salaire brut: 2300
-        entreprise . effectif: 1
-      valeur attendue: 0
-    - nom: association non lucrative
-      situation:
-        entreprise . association non lucrative: oui
-        contrat . salaire brut: 2300
-        entreprise . effectif: 10
-        complémentaire santé . forfait: 0
-      valeur attendue: 41.17
-
-  références:
-    fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-
-salarié . versement transport:
-  description: Contribution sur les salaires destinée au financement des transports publics.
-  applicable si: entreprise . effectif > 10
-  cotisation:
-    branche: transport
-    dû par: employeur
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux: établissement . taux du versement transport
-
-  références:
-    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
-
-salarié . vieillesse:
+salarié . cotisations . vieillesse:
   cotisation:
     branche: retraite
-    collecteur: Urssaf
-    destinataire: CNAV
-    # CTP: 100
-  description: Cotisation au régime de retraite de base des salariés.
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      composantes:
-        - attributs:
-            nom: salarié
-          assiette: cotisations . assiette . salariale
-          composantes:
-            - attributs:
-                nom: déplafonnée
-              taux:
-                nom: taux
-                valeur: 0.4%
-            - attributs:
-                nom: plafonnée
-              taux:
-                nom: taux
-                valeur: 6.90%
-              plafond: plafond sécurité sociale
-        - attributs:
-            nom: employeur
-          composantes:
-            - attributs:
-                nom: déplafonnée
-              taux:
-                nom: taux
-                valeur: 1.9%
-            - attributs:
-                nom: plafonnée
-              taux:
-                nom: taux
-                valeur: 8.55%
-              plafond: plafond sécurité sociale
-
+  description: Cotisation vieillesse pour le régime de retraite de base des salariés.
+  produit:
+    assiette: cotisations . assiette
+    composantes:
+      - attributs:
+          nom: salarié
+        assiette: cotisations . assiette . salariale
+        composantes:
+          - attributs:
+              nom: déplafonnée
+            taux:
+              nom: taux
+              valeur: 0.4%
+          - attributs:
+              nom: plafonnée
+            taux:
+              nom: taux
+              valeur: 6.90%
+            plafond: temps de travail . plafond sécurité sociale
+      - attributs:
+          nom: employeur
+        composantes:
+          - attributs:
+              nom: déplafonnée
+            taux:
+              nom: taux
+              valeur: 1.9%
+          - attributs:
+              nom: plafonnée
+            taux:
+              nom: taux
+              valeur: 8.55%
+            plafond: temps de travail . plafond sécurité sociale
   références:
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
 
-salarié . forfait social:
+salarié . cotisations . taxe d'apprentissage:
+  cotisation:
+    branche: formation
+  description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
+  applicable si:
+    une de ces conditions:
+      - entreprise . salariés . effectif > 10
+      - contrat . apprentissage = non
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+
+  note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
+  somme:
+    - nom: base
+      privé: oui
+      produit:
+        assiette: assiette
+        taux:
+          variations:
+            - si: régimes spécifiques . alsace moselle
+              alors: 0.44%
+            - sinon: 0.68%
+    - contribution supplémentaire
+  avec:
+    assiette:
+      titre: assiette de la taxe d'apprentissage
+      privé: oui
+      description: Le salaire des apprentis est partiellement exonéré dans la base de calcul de la taxe d'apprentissage.
+      variations:
+        - si: contrat . apprentissage
+          alors:
+            valeur: cotisations . assiette
+            abattement:
+              variations:
+                - si: établissement . localisation . outre-mer
+                  alors: 20% * temps de travail . SMIC
+                - sinon: 11% * temps de travail . SMIC
+        - sinon: cotisations . assiette
+
+    contribution supplémentaire:
+      privé: oui
+      applicable si:
+        toutes ces conditions:
+          - entreprise . salariés . effectif >= 250
+          - entreprise . salariés . ratio alternants < 5%
+      produit:
+        assiette: assiette
+        variations:
+          - si: CSA au taux majoré
+            alors:
+              taux: 0.6%
+          - si: entreprise . salariés . ratio alternants < 1%
+            alors:
+              taux: 0.4%
+          - si: entreprise . salariés . ratio alternants < 2%
+            alors:
+              taux: 0.2%
+          - si: entreprise . salariés . ratio alternants < 3%
+            alors:
+              taux: 0.1%
+          - si: entreprise . salariés . ratio alternants < 5%
+            alors:
+              taux: 0.05%
+      avec:
+        CSA au taux majoré:
+          toutes ces conditions:
+            - entreprise . salariés . effectif >= 2000
+            - entreprise . salariés . ratio alternants < 1%
+  # TODO :
+  # exception:
+  #   si: régime géographique = Alsace-Moselle
+  #   références:
+  #     - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
+  #     - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
+  #     # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
+  #   facteur: 0.52
+
+salarié . cotisations . versement mobilité:
+  description: Contribution sur les salaires destinée au financement des transports publics.
+  applicable si: entreprise . salariés . effectif > 10
+  cotisation:
+    branche: transport
+  produit:
+    assiette: cotisations . assiette
+    taux: établissement . versement mobilité
+
+  références:
+    Recherchez le taux de versement mobilité applicable dans votre ville: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
+    Le versement mobilité, ça vous concerne ?: https://www.economie.gouv.fr/entreprises/versement-mobilite-transport
+    Article wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+salarié . cotisations . forfait social:
   titre: Forfait social
   description: |
     Le forfait social est une contribution versée par l'employeur. Elle est prélevée sur les rémunérations ou gains non soumis aux cotisations et contributions sociales, mais assujettis à la CSG.
-  applicable si: entreprise . effectif > 10
+  applicable si: entreprise . salariés . effectif > 10
   cotisation:
     branche: retraite
-    collecteur: Urssaf
-    destinataire: CNAV
-    dû par: employeur
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
-  formule:
-    produit:
-      assiette: avantages sociaux
-      taux: 8%
-    # Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
-
-salarié . maladie . taux domiciliation fiscale étranger:
-  titre: taux salarié (domiciliation fiscale à l'étranger)
-  applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  remplace: taux salarié
-  formule: 5.50%
+  produit:
+    assiette: prévoyances . employeur
+    taux: 8%
+  # TODO Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
 
 salarié . cotisations . assiette forfaitaire:
   applicable si: non
 
-salarié . cotisations . assiette forfaitaire . montant:
-  titre: assiette forfaitaire de cotisations
-  non applicable si: rémunération réelle
-  remplace:
-    - règle: cotisations . assiette
-      sauf dans:
-        - chômage
-        - retraite complémentaire
-        - contribution d'équilibre général
-        - contribution d'équilibre technique
-        - convention collective
-        # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
-        - assiette . salariale
-    - règle: assiette . salariale
-      dans: vieillesse
-    - règle: CSG et CRDS . assiette abattue totale
-    - règle: plafond sécurité sociale
-      par: plafond sécurité sociale temps plein
-      sauf dans:
-        - chômage
-        - retraite complémentaire
-        - contribution d'équilibre général
-        - contribution d'équilibre technique
-        - convention collective
-        # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
-        - assiette . salariale
-  formule:
-    valeur: assiette forfaitaire
-    plancher: minimum
-  références:
-    exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
-    CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
-    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane
+  avec:
+    rémunération réelle:
+      question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
+      par défaut: non
 
-salarié . cotisations . assiette forfaitaire . minimum:
-  description: >
-    Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
-      1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
-  applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale temps plein
-  formule: 70% * rémunération . brut
-
-salarié . cotisations . assiette forfaitaire . rémunération réelle:
-  question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
-  par défaut: non
-
-salarié . cotisations . maladie sur les revenus de remplacement:
-  formule:
-    produit:
-      assiette: rémunération . revenus de remplacement
-      taux:
-        variations:
-          - si: établissement . localisation . département = 'Mayotte'
-            alors: 2.35%
-          - si: régime alsace moselle
-            alors: 1.5%
-          - sinon: 0%
+    montant:
+      privé: oui
+      titre: assiette forfaitaire de cotisations
+      non applicable si: rémunération réelle
+      rend non applicable:
+        - exonérations . réduction générale
+        - exonérations . lodeom
+      remplace:
+        - règle: cotisations . assiette
+          sauf dans:
+            - chômage
+            - retraite complémentaire
+            - CEG
+            - CET
+            - convention collective
+            # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
+            - assiette . salariale
+        - règle: assiette . salariale
+          dans: vieillesse
+        - règle: CSG-CRDS . assiette de base . assiette abattue
+        - règle: temps de travail . plafond sécurité sociale
+          par: plafond sécurité sociale
+          sauf dans:
+            - chômage
+            - retraite complémentaire
+            - CEG
+            - CET
+            - convention collective
+            # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
+            - assiette . salariale
+      valeur: assiette forfaitaire
+      plancher:
+        applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale
+        valeur: 70% * rémunération . brut
+      références:
+        exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
+        CSG-CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+        plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane
+      note: |
+        Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
+        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération

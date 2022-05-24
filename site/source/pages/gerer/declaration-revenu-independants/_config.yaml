@@ -4,7 +4,7 @@ objectifs:
 questions:
   liste noire:
     - dirigeant . indépendant . cotisations facultatives
-    - entreprise . effectif . seuil
+    - entreprise . salariés . effectif . seuil
     - entreprise . imposition . régime . micro-entreprise
   liste:
     - DRI . cotisations

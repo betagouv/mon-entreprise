@@ -5,7 +5,9 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 declare global {
-	const $: any
+	interface JQuery {
+		ZammadForm(options: any): void
+	}
 }
 
 // TODO: we could implement the form logic ourselves to avoid including
@@ -27,6 +29,7 @@ export default function FeedbackForm() {
 			script.id = 'zammad_form_script'
 			script.async = true
 			script.onload = () => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 				$('#feedback-form').ZammadForm({
 					messageTitle: `Remarque sur ${
 						isSimulateur ? 'le simulateur' : 'la page'

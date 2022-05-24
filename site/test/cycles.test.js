@@ -31,7 +31,7 @@ describe.skip('DottedNames graph', () => {
 				'dirigeant . rémunération . imposable',
 				'dirigeant . auto-entrepreneur . impôt . revenu imposable',
 				"entreprise . chiffre d'affaires",
-				'dirigeant . rémunération . nette après impôt',
+				'dirigeant . rémunération . net après impôt',
 				'dirigeant . rémunération . nette',
 				'dirigeant . rémunération . totale',
 				'impôt . montant',

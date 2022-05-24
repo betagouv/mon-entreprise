@@ -5,7 +5,7 @@ describe('Champs localisation (simulateur salarié)', function () {
 		return
 	}
 	before(function () {
-		return cy.visit(encodeURI('/simulateurs/salarié'))
+		return cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
 	})
 
 	it('should not crash when selecting localisation', function () {

@@ -20,7 +20,7 @@ export type SearchCommune = {
 }
 
 export type Commune = SearchCommune & {
-	'taux du versement transport': number
+	'taux du versement mobilité': number
 }
 
 export async function searchCommunes(
@@ -72,7 +72,7 @@ export async function fetchCommuneDetails(
 
 	return {
 		...commune,
-		'taux du versement transport': taux,
+		'taux du versement mobilité': taux,
 	}
 }
 

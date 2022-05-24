@@ -2,7 +2,7 @@ titre: |
   Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise après paiement des cotisations et de l'impôt sur le revenu.
 
 objectifs:
-  - salarié . rémunération . net
+  - salarié . rémunération . net . à payer avant impôt
   - dirigeant . rémunération . nette
   - dirigeant . auto-entrepreneur . net de cotisations
   - protection sociale . retraite
@@ -12,7 +12,7 @@ objectifs:
 questions:
   liste noire:
     - entreprise . charges
-    - entreprise . activité . libérale réglementée
+    - entreprise . activité . libérale . réglementée
   liste:
     - entreprise . activité
 unité par défaut: €/an

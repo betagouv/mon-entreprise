@@ -265,7 +265,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 				ogDescription: t(
 					'pages.simulateurs.chômage-partiel.meta.ogDescription',
-					"Accédez à une première estimation en saisissant à partir d'un salaire brut. Vous pourrez ensuite personaliser votre situation (temps partiel, convention, etc). Prends en compte la totalité des cotisations, y compris celles spécifiques à l'indemnité (CSG et CRDS)."
+					"Accédez à une première estimation en saisissant à partir d'un salaire brut. Vous pourrez ensuite personaliser votre situation (temps partiel, convention, etc). Prends en compte la totalité des cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS)."
 				),
 				ogTitle: t(
 					'pages.simulateurs.chômage-partiel.meta.ogTitle',

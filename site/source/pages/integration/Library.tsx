@@ -126,11 +126,11 @@ export default function Library() {
 				<Body>
 					<Emoji emoji="ℹ️ " />
 					Notez que dans l'exemple précédent nous devons spécifier nous-même le
-					taux de versement transport.
+					taux de versement mobilité.
 				</Body>
 				<Body>
 					Alors que dans le simulateur{' '}
-					<Link href="https://mon-entreprise.urssaf.fr/simulateurs/salarié">
+					<Link href="https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net">
 						salarié
 					</Link>
 					, il suffit de renseigner la commune et le taux correspondant est
@@ -140,8 +140,8 @@ export default function Library() {
 						API Géo - communes
 					</Link>{' '}
 					pour passer du nom de la commune au code commune. Puis l'
-					<Link href="">API versement transport</Link>, développé et maintenu
-					par nos soins, qui n'est pas documenté mais son utilisation est très
+					<Link href="">API versement mobilité</Link>, développé et maintenu par
+					nos soins, qui n'est pas documenté mais son utilisation est très
 					simple et compréhensible{' '}
 					<Link href="https://github.com/betagouv/mon-entreprise/blob/f3e79f42516c0822e8c6d8f6e9fc5646c82fd018/source/components/conversation/select/SelectGéo.js#L7-L14">
 						dans ce composant React qui l'appelle

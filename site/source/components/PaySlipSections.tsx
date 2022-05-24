@@ -39,7 +39,7 @@ export const SalaireNetSection = () => {
 			<H4 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
 			</H4>
-			<Line rule="salarié . rémunération . net imposable" />
+			<Line rule="salarié . rémunération . net . imposable" />
 			<Condition
 				expression={{
 					'toutes ces conditions': [
@@ -48,7 +48,7 @@ export const SalaireNetSection = () => {
 					],
 				}}
 			>
-				<Line rule="salarié . rémunération . net de cotisations" />
+				<Line rule="salarié . rémunération . net" />
 			</Condition>
 			<Line
 				negative
@@ -58,7 +58,7 @@ export const SalaireNetSection = () => {
 				negative
 				rule="salarié . rémunération . frais professionnels . titres-restaurant . montant"
 			/>
-			<Line rule="salarié . rémunération . net" />
+			<Line rule="salarié . rémunération . net . à payer avant impôt" />
 			<Condition expression="impôt . montant > 0">
 				<Line
 					negative
@@ -66,7 +66,7 @@ export const SalaireNetSection = () => {
 					title={t('impôt sur le revenu')}
 					unit="€/mois"
 				/>
-				<Line rule="salarié . rémunération . net après impôt" />
+				<Line rule="salarié . rémunération . net . payé après impôt" />
 			</Condition>
 		</div>
 	)

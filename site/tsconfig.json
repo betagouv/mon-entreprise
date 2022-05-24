@@ -28,6 +28,7 @@
 		"scripts",
 		"test/**/*.ts",
 		"vite.config.ts",
+		"cypress.config.ts",
 		"vite-iframe-script.config.ts",
 		"prerender.ts",
 		"vite-pwa-options.ts"

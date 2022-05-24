@@ -20,7 +20,7 @@ const ISConfig = {
 	situation: {
 		'entreprise . imposition': "'IS'",
 		'entreprise . imposition . IS . éligible taux réduit': 'oui',
-		"entreprise . chiffre d'affaires . franchise de TVA": 'non',
+		'entreprise . TVA . franchise de TVA': 'non',
 	},
 } as SimulationConfig
 

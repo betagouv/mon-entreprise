@@ -21,7 +21,7 @@ const net = engine
     .setSituation({
         'salarié . contrat . salaire brut': '3000 €/mois',
     })
-    .evaluate('salarié . rémunération . net')
+    .evaluate('salarié . rémunération . net . à payer avant impôt')
 
 console.log(formatValue(net))
 ```

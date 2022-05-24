@@ -5,7 +5,7 @@ describe('Persistence (simulateur salarié)', function () {
 		return
 	}
 	before(function () {
-		return cy.visit(encodeURI('/simulateurs/salarié'))
+		return cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
 	})
 	beforeEach(function () {
 		cy.clearLocalStorage()
@@ -28,7 +28,7 @@ describe('Persistence (simulateur salarié)', function () {
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
-		cy.visit(encodeURI('/simulateurs/salarié'))
+		cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
 		cy.contains('Retrouver ma simulation').click()
 		cy.get(inputSelector).first().invoke('val').should('match', /42/)
 	})

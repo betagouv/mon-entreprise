@@ -18,18 +18,18 @@
 
 effectif:
   - salarié . contrat . salaire brut: 2000 €/mois
-    entreprise . effectif: 10 employés
+    entreprise . salariés . effectif: 10 employés
   - salarié . contrat . salaire brut: 2000 €/mois
-    entreprise . effectif: 20 employés
+    entreprise . salariés . effectif: 20 employés
   - salarié . contrat . salaire brut: 2000 €/mois
-    entreprise . effectif: 50 employés
+    entreprise . salariés . effectif: 50 employés
   - salarié . contrat . salaire brut: 2000 €/mois
-    entreprise . effectif: 100 employés
+    entreprise . salariés . effectif: 100 employés
 
 inversions:
-  - salarié . prix du travail: 2000 €/mois
-  - salarié . rémunération . net: 2000 €/mois
-  - salarié . rémunération . net après impôt: 2000 €/mois
+  - salarié . coût total employeur: 2000 €/mois
+  - salarié . rémunération . net . à payer avant impôt: 2000 €/mois
+  - salarié . rémunération . net . payé après impôt: 2000 €/mois
 
 stage:
   - salarié . contrat: "'stage'"
@@ -56,25 +56,27 @@ contrat pro:
 
 cadre:
   - salarié . contrat . salaire brut: 3000 €/mois
-    salarié . statut cadre: oui
-
+    salarié . contrat . statut cadre: oui
+  # Prévoyances au dessus du plafond de déduction :
+  - salarié . contrat . salaire brut: 8000 €/mois
+    salarié . cotisations . prévoyances . santé . montant: 250€/mois
 cdd:
   - &CDD
     salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 2200 €/mois
   - <<: *CDD
-    salarié . contrat . CDD . durée contrat: 6 mois
+    salarié . contrat . CDD . durée: 6 mois
     salarié . contrat . CDD . congés pris: 5 jours ouvrés
   - <<: *CDD
     salarié . temps de travail . heures supplémentaires: 10 heures/mois
-    salarié . contrat . CDD . durée contrat: 6 mois
+    salarié . contrat . CDD . durée: 6 mois
     salarié . contrat . CDD . congés pris: 5 jours ouvrés
   - <<: *CDD
-    salarié . contrat . CDD . durée contrat: 10 mois
+    salarié . contrat . CDD . durée: 10 mois
     salarié . temps de travail . heures supplémentaires: 5 heures/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 100€/mois
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 360€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 100€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 360€/mois
     salarié . rémunération . avantages en nature: oui
     salarié . rémunération . avantages en nature . montant: 200 €/mois
   - <<: *CDD
@@ -82,20 +84,20 @@ cdd:
 
 atmp:
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . ATMP . taux collectif ATMP: 5%
+    salarié . cotisations . ATMP . taux collectif: 5%
 
 aides:
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . cotisations . exonérations . JEI: oui
   - salarié . contrat . salaire brut: 10000 €/mois
-    salarié . régime des impatriés: oui
+    salarié . régimes spécifiques . impatriés: oui
   # emploi franc
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . aides employeur . emploi franc . éligible: oui
     salarié . contrat . date d'embauche: 01/09/2020
   - salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 2000 €/mois
-    salarié . contrat . CDD . durée contrat: 6 mois
+    salarié . contrat . CDD . durée: 6 mois
     salarié . aides employeur . emploi franc . éligible: oui
     salarié . contrat . date d'embauche: 01/09/2020
 
@@ -126,7 +128,7 @@ impôt sur le revenu:
     impôt . méthode de calcul: "'taux neutre'"
   - salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 3000 €/mois
-    salarié . contrat . CDD . durée contrat: 2
+    salarié . contrat . CDD . durée: 2
     impôt . méthode de calcul: "'taux neutre'"
   - salarié . contrat . salaire brut: 3000 €/mois
     impôt . méthode de calcul: "'taux neutre'"
@@ -194,7 +196,7 @@ heures supplémentaires et complémentaires:
     salarié . temps de travail . heures supplémentaires: 3 heures/mois
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . temps de travail . heures supplémentaires: 5 heures/mois
-    entreprise . effectif: 100 employés
+    entreprise . salariés . effectif: 100 employés
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . temps de travail . heures supplémentaires: 5 heures/mois
     salarié . convention collective: "'HCR'"
@@ -244,79 +246,79 @@ frais pro - titres restaurant:
     salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire: 20€/titre-restaurant
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . rémunération . frais professionnels . titres-restaurant: oui
-    salarié . rémunération . frais professionnels . titres-restaurant . taux participation employeur: 55%
+    salarié . rémunération . frais professionnels . titres-restaurant . taux employeur: 55%
 
 frais pro - abonnement transports publics:
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/mois
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 1500€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 1500€/mois
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/mois
     salarié . contrat . temps de travail . quotité: 50%
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/mois
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/mois
     salarié . contrat . temps de travail . quotité: 20%
 
 frais pro - transports personnels seul:
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 500€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 500€/an
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 1000€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 5000€/an
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
     salarié . contrat . temps de travail . quotité: 50%
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
     salarié . contrat . temps de travail . quotité: 20%
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
-    salarié . déduction forfaitaire spécifique: oui
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
+    salarié . régimes spécifiques . DFS: oui
 
 frais pro - abo transports + transports personnels:
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/an
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 100€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 360€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 100€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 360€/an
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 80€/an
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 1000€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 5000€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 80€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 1000€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 5000€/an
   - salarié . contrat . salaire brut: 3200 €/mois
-    salarié . rémunération . frais professionnels . abonnement transports publics . montant: 7000€/an
-    salarié . rémunération . frais professionnels . transports personnels . carburant faible émission . montant: 200€/an
-    salarié . rémunération . frais professionnels . transports personnels . forfait mobilités durables . montant: 300€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 7000€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
 
 frais pro - DFS:
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'journaliste'"
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'ouvrier du bâtiment'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'ouvrier du bâtiment'"
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'artiste musicien'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'artiste musicien'"
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'pilote de ligne ou personnel navigant'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'pilote de ligne ou personnel navigant'"
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . déduction forfaitaire spécifique: non
-    salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
+    salarié . régimes spécifiques . DFS: non
+    salarié . régimes spécifiques . DFS . profession: "'journaliste'"
   # Test des taux réduits journalistes et abattement fiscal
   - salarié . contrat . salaire brut: 1700 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'journaliste'"
   - salarié . contrat . salaire brut: 2600 €/mois
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'journaliste'"
 
 activité partielle:
   - salarié . contrat . salaire brut: 1560 €/mois
@@ -337,21 +339,8 @@ activité partielle:
     salarié . contrat . temps de travail . temps partiel . heures par semaine: 28 heures/semaine
   - salarié . contrat . salaire brut: 4000 €/mois
     salarié . activité partielle: oui
-    salarié . déduction forfaitaire spécifique: oui
-    salarié . déduction forfaitaire spécifique . profession: "'journaliste'"
-  - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . activité partielle: oui
-    salarié . activité partielle . convention syntec: oui
-  - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . activité partielle . heures travaillées: 75.833275 heures/mois
-    salarié . activité partielle: oui
-    salarié . activité partielle . convention syntec: oui
-  - salarié . contrat . salaire brut: 6000 €/mois
-    salarié . activité partielle: oui
-    salarié . activité partielle . convention syntec: oui
-  - salarié . contrat . salaire brut: 9000 €/mois
-    salarié . activité partielle: oui
-    salarié . activité partielle . convention syntec: oui
+    salarié . régimes spécifiques . DFS: oui
+    salarié . régimes spécifiques . DFS . profession: "'journaliste'"
 
 lodeom:
   - salarié . contrat . salaire brut: 1521.22 €/mois
@@ -401,17 +390,17 @@ lodeom innovation et croissance:
 
 taux spécifiques retraite complémentaire:
   - salarié . contrat . salaire brut: 1521.22 €/mois
-    salarié . retraite complémentaire . employeur . taux tranche 1: 5.59%
-    salarié . retraite complémentaire . salarié . taux tranche 1: 2.28%
+    salarié . cotisations . retraite complémentaire . employeur . taux T1: 5.59%
+    salarié . cotisations . retraite complémentaire . salarié . taux T1: 2.28%
   - salarié . contrat . salaire brut: 2500 €/mois
-    salarié . retraite complémentaire . employeur . taux tranche 1: 5.59%
-    salarié . retraite complémentaire . salarié . taux tranche 1: 2.28%
+    salarié . cotisations . retraite complémentaire . employeur . taux T1: 5.59%
+    salarié . cotisations . retraite complémentaire . salarié . taux T1: 2.28%
   - salarié . contrat . salaire brut: 1521.22 €/mois
-    salarié . retraite complémentaire . employeur . taux tranche 1: 3.94%
-    salarié . retraite complémentaire . salarié . taux tranche 1: 3.93%
+    salarié . cotisations . retraite complémentaire . employeur . taux T1: 3.94%
+    salarié . cotisations . retraite complémentaire . salarié . taux T1: 3.93%
   - salarié . contrat . salaire brut: 2500 €/mois
-    salarié . retraite complémentaire . employeur . taux tranche 1: 3.94%
-    salarié . retraite complémentaire . salarié . taux tranche 1: 3.93%
+    salarié . cotisations . retraite complémentaire . employeur . taux T1: 3.94%
+    salarié . cotisations . retraite complémentaire . salarié . taux T1: 3.93%
 
 CCN batiment:
   - salarié . contrat . salaire brut: 2500 €/mois
@@ -446,7 +435,7 @@ CCN spectacle vivant:
   - salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 2500 €/mois
     salarié . convention collective: "'SVP'"
-    salarié . intermittents du spectacle: "'technicien'"
+    salarié . régimes spécifiques . intermittents du spectacle: "'technicien'"
 
 CCN sport:
   - salarié . contrat . salaire brut: 500 €/mois

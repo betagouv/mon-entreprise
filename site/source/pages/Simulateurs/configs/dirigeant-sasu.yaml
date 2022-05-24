@@ -1,13 +1,13 @@
 objectifs:
   - dirigeant . rémunération . totale
   - salarié . cotisations
-  - salarié . rémunération . net
+  - salarié . rémunération . net . à payer avant impôt
   - impôt . montant
-  - salarié . rémunération . net après impôt
+  - salarié . rémunération . net . payé après impôt
 
 questions:
   à l'affiche:
-    ACRE: entreprise . ACRE
+    ACRE: entreprise . exonérations . ACRE
     Commune: établissement . localisation
     Avantages en nature: salarié . rémunération . avantages en nature
     Impôt sur le revenu: impôt . méthode de calcul
@@ -18,12 +18,10 @@ questions:
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
   non prioritaires:
-    - entreprise . non assujettie à TVA
-    - entreprise . effectif
+    - entreprise . TVA
     - établissement . localisation
-    - entreprise . ratio alternants
-    - salarié . complémentaire santé
-    - salarié . régime des impatriés
+    - situation personnelle . domiciliation fiscale à l'étranger
+    - salarié . régimes spécifiques . impatriés
 
 unité par défaut: €/an
 situation:
@@ -32,4 +30,4 @@ situation:
 
   #TODO : en attendant que la transitivité du remplacement soit implémentée (https://github.com/betagouv/publicodes/issues/55)
   salarié . activité partielle: non
-  salarié . déduction forfaitaire spécifique: non
+  salarié . régimes spécifiques . DFS: non

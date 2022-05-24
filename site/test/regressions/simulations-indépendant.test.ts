@@ -11,7 +11,7 @@ it('calculate simulations-indépendant', () => {
 		'dirigeant . rémunération . nette',
 		'dirigeant . indépendant . revenu professionnel',
 		'impôt . montant',
-		'dirigeant . rémunération . nette après impôt',
+		'dirigeant . rémunération . net après impôt',
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
 		'dirigeant . indépendant . cotisations et contributions . début activité',

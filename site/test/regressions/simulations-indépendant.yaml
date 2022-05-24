@@ -11,9 +11,9 @@
 inversions:
   - dirigeant . rémunération . totale: 2000 €/an
   - dirigeant . rémunération . totale: 50000 €/an
-  - dirigeant . rémunération . nette après impôt: 10000 €/an
-  - dirigeant . rémunération . nette après impôt: 40000 €/an
-  - dirigeant . rémunération . nette après impôt: 10000 €/an
+  - dirigeant . rémunération . net après impôt: 10000 €/an
+  - dirigeant . rémunération . net après impôt: 40000 €/an
+  - dirigeant . rémunération . net après impôt: 10000 €/an
     entreprise . charges: 1000 €/an
   - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
@@ -34,7 +34,7 @@ activité:
 acre:
   - dirigeant . rémunération . nette: 50000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . rémunération . nette: 20000 €/an

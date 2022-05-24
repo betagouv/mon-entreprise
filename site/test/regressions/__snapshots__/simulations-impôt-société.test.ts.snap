@@ -11,13 +11,13 @@ exports[`calculate simulations-impot-société > bénéfices 3`] = `"[300,0]"`;
 
 exports[`calculate simulations-impot-société > bénéfices 4`] = `"[3000,0]"`;
 
-exports[`calculate simulations-impot-société > bénéfices 5`] = `"[48628,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 5`] = `"[46198,0]"`;
 
-exports[`calculate simulations-impot-société > bénéfices 6`] = `"[525628,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 6`] = `"[496198,0]"`;
 
-exports[`calculate simulations-impot-société > bénéfices 7`] = `"[5295628,149646]"`;
+exports[`calculate simulations-impot-société > bénéfices 7`] = `"[4996198,139765]"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 1`] = `"[260628,0]"`;
+exports[`calculate simulations-impot-société > prorata temporis 1`] = `"[246198,0]"`;
 
 exports[`calculate simulations-impot-société > prorata temporis 2`] = `"[277936,0]"`;
 

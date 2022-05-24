@@ -4,7 +4,7 @@ objectifs:
   - dirigeant . indépendant . cotisations et contributions
   - dirigeant . rémunération . nette
   - impôt . montant
-  - dirigeant . rémunération . nette après impôt
+  - dirigeant . rémunération . net après impôt
   - protection sociale . retraite . complémentaire indépendants . points acquis
   - protection sociale . retraite . base . trimestres . indépendant
   - protection sociale . retraite . CNAVPL
@@ -12,28 +12,21 @@ objectifs:
 questions:
   liste noire:
     - entreprise . charges
+    - entreprise . imposition . régime
   liste:
     - entreprise . activité
     - dirigeant . indépendant . PL . métier
-    - entreprise . date de création
-    - entreprise . ACRE
-    - dirigeant . indépendant
-    - entreprise
-    - établissement
-    - situation personnelle
-    - impôt
+    - '' # Toutes les autres questions
   non prioritaires:
     - dirigeant . indépendant . cotisations facultatives
-    - dirigeant . indépendant . PL . CNAVPL . exonération incapacité
     - dirigeant . indépendant . IJSS
-    - dirigeant . indépendant . cotisations et contributions . exonérations
-    - dirigeant . indépendant . revenus étrangers
-    - entreprise . ZFU
-    - entreprise . effectif
+    - dirigeant . indépendant . PL . PAMC . IJSS
+    - dirigeant . indépendant . PL . CNAVPL . exonération incapacité
+    - dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité
+
 unité par défaut: €/an
 situation:
   entreprise . activité: "'libérale'"
   entreprise . catégorie juridique: "'EI'"
   entreprise . imposition: "'IR'"
-  entreprise . catégorie juridique . EI . responsabilité limité: non
   entreprise . catégorie juridique . EI . auto-entrepreneur: non

@@ -1,0 +1,150 @@
+entreprise . activité:
+  titre: nature de l'activité
+  question: Quelle est la nature de votre activité principale ?
+  description: Votre type d'activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
+  par défaut: "'commerciale'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - artisanale
+        - commerciale
+        - libérale
+  références:
+    Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+    Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
+
+entreprise . activité . libérale:
+  question: Votre activité est-elle une profession libérale ?
+  valeur: activité = 'libérale'
+  description: |
+    Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
+
+    Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
+      - de nature généralement civile,
+      - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
+  références:
+    fiche Wikipedia: https://fr.wikipedia.org/wiki/Profession_lib%C3%A9rale
+    liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . activité . commerciale:
+  valeur: activité = 'commerciale'
+  description: |
+    ### Activité commerciale
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Vente de prestations de service commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
+
+    ### Activité industrielle
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+
+entreprise . activité . artisanale:
+  valeur: activité = 'artisanale'
+  description: |
+    C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
+
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
+
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
+    - Les activités artisanales sont répertoriées par un décret
+  références:
+    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
+
+entreprise . activité . service ou vente:
+  non applicable si: mixte
+  applicable si:
+    une de ces conditions:
+      - activité = 'artisanale'
+      - activité = 'commerciale'
+  question: Quelle est le type d'activité de l'entreprise ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - vente
+        - service
+  par défaut: "'vente'"
+
+entreprise . activité . service ou vente . vente:
+  titre: vente de biens, restauration ou hébergement
+  description: |
+    Il s’agit de toute opération comportant transfert de propriété d'un bien
+    corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
+    toutes les activités de restauration et d'hébergement.
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . activité . service ou vente . service:
+  titre: prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c'est-à-dire ayant une existence matérielle).
+
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
+
+entreprise . activité . mixte:
+  experimental: oui
+  titre: Activités mixtes
+  applicable si: entreprise . imposition . régime . micro-entreprise
+  question: Votre entreprise a-t-elle plusieurs types d'activités ?
+  par défaut: non
+  description: |
+    Il est possible d'avoir plusieurs activités avec des types de revenus
+    différents pour une même entreprise.
+
+    Par exemple, une entreprise de plomberie qui facture l'achat et la pose d'un
+    robinet a une partie de son chiffre d'affaires en vente de materiel (le robinet)
+    et une partie en prestation de service (la pose).
+
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
+
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
+
+    Si votre entreprise a des activités correspondants à plusieurs catégories de
+    revenus, répondez oui à cette question.
+
+entreprise . activité . mixte . proportions:
+  description: Part des différentes activités dans le chiffre d'affaires
+  titre: proportion activité
+  unité: '%'
+  somme:
+    - nom: service BIC
+      variations:
+        - si: activité = 'libérale'
+          alors: 0%
+        - sinon: 50%
+    - nom: service BNC
+      variations:
+        - si: activité = 'libérale'
+          alors: 2 / 3
+        - sinon: 0%
+    - nom: vente restauration hébergement
+      variations:
+        - si: activité = 'libérale'
+          alors: 1 / 3
+        - sinon: 50%
+  note: Il appartient à l'utilisateur de bien vérifier que la somme des trois pourcentages renseignés vaut 100%.
+
+entreprise . activité . libérale . réglementée:
+  question: Est-ce une activité libérale réglementée ?
+  par défaut: non
+  description: |
+    Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+
+    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+  références:
+    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . activité . débit de tabac:
+  experimental: oui
+  applicable si: activité = 'commerciale'
+  question: Exercez-vous une activité de vente de tabac ?
+  par défaut: non

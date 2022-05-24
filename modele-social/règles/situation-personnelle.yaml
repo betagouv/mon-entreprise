@@ -1,4 +1,5 @@
-situation personnelle: oui
+situation personnelle:
+  experimental: oui
 
 situation personnelle . RSA:
   titre: bénéficiaire RSA ou prime d'activité
@@ -9,9 +10,10 @@ situation personnelle . RSA:
 situation personnelle . domiciliation fiscale à l'étranger:
   titre: Résidence fiscale hors de France
   description: |
-    Si votre résidence fiscale est située hors de France, vos revenus d’activité ne sont pas soumis à la CSG-CRDS.
+    Si la résidence fiscale est située hors de France, les revenus d’activité ne sont pas soumis à la CSG-CRDS.
 
-    Une cotisation maladie majorée de 14,5% sera en revanche applicable.
+    Une cotisation maladie majorée sera en revanche applicable.
+
   question:
     variations:
       - si: dirigeant
@@ -20,8 +22,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
       - sinon:
           texte: La résidence fiscale du salarié est-elle située hors de France ?
   rend non applicable:
-    - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
-    - salarié . CSG et CRDS
+    - dirigeant . indépendant . cotisations et contributions . CSG-CRDS
+    - salarié . cotisations . CSG-CRDS
+
   par défaut: non
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html

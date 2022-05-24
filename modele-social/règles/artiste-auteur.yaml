@@ -1,4 +1,5 @@
 artiste-auteur:
+  experimental: oui
   description: Le régime des artistes-auteurs
   icônes: 👩‍🎨
 
@@ -56,7 +57,6 @@ artiste-auteur . cotisations:
     arrondi: oui
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/vos-cotisations-et-contributions.html
-
 artiste-auteur . cotisations . assiette:
   description: Les revenus des artistes-auteurs peuvent être catégorisés soit comme des traitements et salaires, soit comme des bénéfices non commerciaux. Les cotisations sociales sont payées sur la somme des revenus de ces deux catégories.
   formule:
@@ -87,12 +87,12 @@ artiste-auteur . cotisations . option surcotisation:
 
 artiste-auteur . cotisations . assiette surcotisation:
   produit:
-    assiette: SMIC horaire
+    assiette: SMIC . horaire
     facteur:
       variations:
         - si: date >= 01/01/2019
-          alors: 600 heures/an * SMIC horaire
-        - sinon: 900 heures/an * SMIC horaire
+          alors: 600 heures/an * SMIC . horaire
+        - sinon: 900 heures/an * SMIC . horaire
 
 artiste-auteur . cotisations . avertissement trimestres retraite:
   type: notification
@@ -100,7 +100,7 @@ artiste-auteur . cotisations . avertissement trimestres retraite:
   formule:
     toutes ces conditions:
       - assiette > 0 €/an
-      - assiette < 600 heures/an * SMIC horaire
+      - assiette < 600 heures/an * SMIC . horaire
       - option surcotisation = non
   description: |
     Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
@@ -115,11 +115,11 @@ artiste-auteur . cotisations . vieillesse:
       composantes:
         - attributs:
             nom: plafonnée
-          taux: salarié . vieillesse . salarié . plafonnée . taux - 0.75%
-          plafond: plafond sécurité sociale temps plein
+          taux: salarié . cotisations . vieillesse . salarié . plafonnée . taux - 0.75%
+          plafond: plafond sécurité sociale
         - attributs:
             nom: déplafonnée
-          taux: salarié . vieillesse . salarié . déplafonnée . taux - 0.4%
+          taux: salarié . cotisations . vieillesse . salarié . déplafonnée . taux - 0.4%
 
 artiste-auteur . cotisations . CSG-CRDS:
   formule:
@@ -138,7 +138,7 @@ artiste-auteur . cotisations . CSG-CRDS . abattement:
     produit:
       assiette: revenus . traitements et salaires
       taux: 1.75%
-      plafond: 4 * plafond sécurité sociale temps plein
+      plafond: 4 * plafond sécurité sociale
 
 artiste-auteur . cotisations . CSG-CRDS . CSG:
   formule:

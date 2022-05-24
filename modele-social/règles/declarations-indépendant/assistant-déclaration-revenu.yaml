@@ -1,4 +1,5 @@
 DRI:
+  experimental: oui
   valeur: non
   remplace:
     - règle: entreprise . catégorie juridique . EI . auto-entrepreneur . défaut
@@ -158,7 +159,7 @@ DRI . accompagnement imposition . type . exceptions:
 DRI . accompagnement imposition . bénéfice:
   texte: |-
     L'activité principale de votre entreprise est
-    « **{{ entreprise . activité principale }}** ».
+    « **{{ entreprise . activité . principale }}** ».
     {{situation}}
 DRI . accompagnement imposition . bénéfice . situation:
   variations:
@@ -855,7 +856,7 @@ DRI . cotisations . assiette des cotisations:
         par défaut: 0
 
 DRI . cotisations . assiette CSG:
-  remplace: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
+  remplace: dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette
   somme:
     - assiette des cotisations
     - déclaration revenus . indépendant . cotisations sociales

@@ -70,18 +70,16 @@ salarié . convention collective . optique . coefficient:
   par défaut: 110 points
 
 salarié . convention collective . optique . prévoyance:
-  non applicable si: prévoyance obligatoire cadre
-  formule:
-    barème:
-      assiette: contrat . salaire brut
-      tranches:
-        - taux: 0.46%
-          plafond: 4 * plafond sécurité sociale
-
-salarié . convention collective . optique . prévoyance . employeur:
-  remplace: salarié . prévoyance . employeur
-  formule: 60% * prévoyance
-
-salarié . convention collective . optique . prévoyance . salarié:
-  remplace: salarié . prévoyance . salarié
-  formule: 40% * prévoyance
+  non applicable si: contrat . statut cadre
+  barème:
+    assiette: contrat . salaire brut
+    tranches:
+      - taux: 0.46%
+        plafond: 4 * plafond sécurité sociale
+  avec:
+    employeur:
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+      valeur: 60% * prévoyance
+    salarié:
+      remplace: cotisations . prévoyances . conventionnelle . salarié
+      valeur: 40% * prévoyance

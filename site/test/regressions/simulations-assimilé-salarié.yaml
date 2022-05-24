@@ -17,13 +17,13 @@ avec charges:
 ACRE:
   - dirigeant . rémunération . totale: 10000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . rémunération . totale: 20000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
   - dirigeant . rémunération . totale: 30000 €/an
     entreprise . date de création: 01/06/2021
-    entreprise . ACRE: oui
+    entreprise . exonérations . ACRE: oui
 
 JEI:
   - dirigeant . rémunération . totale: 4000 €/mois

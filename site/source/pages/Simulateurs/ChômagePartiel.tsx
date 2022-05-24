@@ -86,10 +86,11 @@ function ExplanationSection() {
 	} = useTranslation()
 
 	const engine = useEngine()
-	const net = 'salarié . rémunération . net'
-	const netHabituel = 'chômage partiel . revenu net habituel'
-	const totalEntreprise = 'salarié . prix du travail'
-	const totalEntrepriseHabituel = 'chômage partiel . coût employeur habituel'
+	const net = 'salarié . rémunération . net . à payer avant impôt'
+	const netHabituel = 'salarié . activité partielle . net habituel'
+	const totalEntreprise = 'salarié . coût total employeur'
+	const totalEntrepriseHabituel =
+		'salarié . activité partielle . total employeur habituel'
 
 	return (
 		<FromTop>

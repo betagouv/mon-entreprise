@@ -25,7 +25,7 @@ export default function API() {
 					<H3 as="h1">API en version beta</H3>
 					<Intro>
 						Des changements cassants sont succeptibles d'être apportés dans les
-						prochaines semaines.
+						prochaines semaine.
 					</Intro>
 					<Body>
 						N'hésitez pas à faire des retours sur son utilisation directement

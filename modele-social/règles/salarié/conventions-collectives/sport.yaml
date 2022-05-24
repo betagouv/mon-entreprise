@@ -12,7 +12,6 @@ salarié . convention collective . sport . cotisations . employeur:
   remplace: salarié . cotisations . employeur
   somme:
     - salarié . cotisations . employeur
-    - prévoyance . employeur
     - financement du paritarisme
 
 salarié . convention collective . sport . cotisations . financement du paritarisme:
@@ -22,61 +21,50 @@ salarié . convention collective . sport . cotisations . financement du paritari
     produit:
       assiette: cotisations . assiette
       taux: 0.06%
-    plancher: 3 €.employé/an / entreprise . effectif
+    plancher: 3 €.employé/an / entreprise . salariés . effectif
 
 salarié . convention collective . sport . cotisations . prévoyance:
-  remplace:
-    - règle: cotisations . salarié
-      par:
-        somme:
-          - cotisations . salarié
-          - prévoyance . salarié
-    - règle: avantages sociaux
-      par:
-        somme:
-          - prévoyance . employeur
-          - avantages sociaux
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      plafond: 8 * plafond sécurité sociale
-      composantes:
-        - attributs:
-            nom: employeur
-          taux: 0.29%
-        - attributs:
-            nom: salarié
-          taux: 0.29%
+  produit:
+    assiette:
+      valeur: cotisations . assiette
+      plafond: 8 * temps de travail . plafond sécurité sociale
+    composantes:
+      - attributs:
+          remplace: cotisations . prévoyances . conventionnelle . employeur
+          nom: employeur
+        taux: 0.29%
+      - attributs:
+          remplace: cotisations . prévoyances . conventionnelle . salarié
+          nom: salarié
+        taux: 0.29%
   références:
     Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
 salarié . convention collective . sport . cotisations . régime frais de santé:
-  remplace: salarié . complémentaire santé . forfait
-  formule:
-    produit:
-      assiette: plafond sécurité sociale temps plein
-      taux: taux
+  remplace: cotisations . prévoyances . santé . montant
+  produit:
+    assiette: plafond sécurité sociale
+    taux: taux
 
 salarié . convention collective . sport . cotisations . régime frais de santé . taux:
-  formule:
-    variations:
-      - si: régime alsace moselle
-        alors:
-          variations:
-            - si: option . R1
-              alors: 0.59%
-            - si: option . R2
-              alors: 0.77%
-            - si: option . R3
-              alors: 0.89%
-      - sinon:
-          variations:
-            - si: option . R1
-              alors: 0.92%
-            - si: option . R2
-              alors: 1.17%
-            - si: option . R3
-              alors: 1.32%
+  variations:
+    - si: régimes spécifiques . alsace moselle
+      alors:
+        variations:
+          - si: option . R1
+            alors: 0.59%
+          - si: option . R2
+            alors: 0.77%
+          - si: option . R3
+            alors: 0.89%
+    - sinon:
+        variations:
+          - si: option . R1
+            alors: 0.92%
+          - si: option . R2
+            alors: 1.17%
+          - si: option . R3
+            alors: 1.32%
   référence:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
     unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
@@ -101,7 +89,7 @@ salarié . convention collective . sport . cotisations . régime frais de santé
   formule: option = 'R3'
 
 salarié . convention collective . sport . cotisations . formation professionnelle:
-  remplace: salarié . formation professionnelle
+  remplace: cotisations . formation professionnelle
   formule:
     somme:
       - plan de formation
@@ -117,14 +105,14 @@ salarié . convention collective . sport . cotisations . formation professionnel
       assiette: cotisations . assiette
       taux:
         variations:
-          - si: entreprise . effectif < 20
+          - si: entreprise . salariés . effectif < 20
             alors: 1.45%
-          - si: entreprise . effectif >= 20
+          - si: entreprise . salariés . effectif >= 20
             alors: 0.90%
     plancher: versement minimum
 
 salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum:
-  applicable si: entreprise . effectif < 10
+  applicable si: entreprise . salariés . effectif < 10
   formule: 30 €/mois
 
 salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation:
@@ -133,21 +121,21 @@ salarié . convention collective . sport . cotisations . formation professionnel
       assiette: cotisations . assiette
       taux:
         variations:
-          - si: entreprise . effectif < 20
+          - si: entreprise . salariés . effectif < 20
             alors: 0.15%
-          - si: entreprise . effectif >= 20
+          - si: entreprise . salariés . effectif >= 20
             alors: 0.50%
     plancher: versement minimum
 
 salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum:
-  applicable si: entreprise . effectif < 10
+  applicable si: entreprise . salariés . effectif < 10
   formule: 5 €/mois
 
 salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI:
   applicable si:
     toutes ces conditions:
       - contrat . CDI
-      - entreprise . effectif >= 20
+      - entreprise . salariés . effectif >= 20
   formule:
     produit:
       assiette: cotisations . assiette
@@ -174,10 +162,7 @@ salarié . convention collective . sport . exonération cotisation AT:
     une de ces conditions:
       - joueur entraineur
       - refus
-  remplace:
-    règle: ATMP
-    par: non
-  formule: oui
+  rend non applicable: cotisations . ATMP
 
 salarié . convention collective . sport . exonération cotisation AT . refus:
   titre: refus exonération AT
@@ -185,23 +170,23 @@ salarié . convention collective . sport . exonération cotisation AT . refus:
   par défaut: non
 
 salarié . convention collective . sport . cotisations . assiette forfaitaire:
-  applicable si: assiette franchisée < SMIC horaire * 115 heures/mois
+  applicable si: assiette franchisée < SMIC . horaire * 115 heures/mois
   remplace: salarié . cotisations . assiette forfaitaire
   formule:
     grille:
       assiette: assiette franchisée
-      multiplicateur: SMIC horaire / 1 mois
+      multiplicateur: SMIC . horaire / 1 mois
       unité: €/mois
       tranches:
-        - montant: 5 * SMIC horaire
+        - montant: 5 * SMIC . horaire
           plafond: 45 heures
-        - montant: 15 * SMIC horaire
+        - montant: 15 * SMIC . horaire
           plafond: 60 heures
-        - montant: 25 * SMIC horaire
+        - montant: 25 * SMIC . horaire
           plafond: 80 heures
-        - montant: 35 * SMIC horaire
+        - montant: 35 * SMIC . horaire
           plafond: 100 heures
-        - montant: 50 * SMIC horaire
+        - montant: 50 * SMIC . horaire
           plafond: 115 heures
 
 salarié . convention collective . sport . primes . nombre de manifestations:
@@ -232,7 +217,7 @@ salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1
   formule:
     valeur: manifestation 1
-    plafond: 70% * plafond journalier sécurité sociale
+    plafond: 70% * plafond sécurité sociale . journalier
 
 salarié . convention collective . sport . primes . manifestation 2:
   question: Quelle prime pour la deuxième manifestation ?
@@ -243,7 +228,7 @@ salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2
   formule:
     valeur: manifestation 2
-    plafond: 70% * plafond journalier sécurité sociale
+    plafond: 70% * plafond sécurité sociale . journalier
 
 salarié . convention collective . sport . primes . manifestation 3:
   question: Quelle prime pour la troisième manifestation ?
@@ -254,7 +239,7 @@ salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3
   formule:
     valeur: manifestation 3
-    plafond: 70% * plafond journalier sécurité sociale
+    plafond: 70% * plafond sécurité sociale . journalier
 
 salarié . convention collective . sport . primes . manifestation 4:
   question: Quelle prime pour la quatrième manifestation ?
@@ -265,7 +250,7 @@ salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4
   formule:
     valeur: manifestation 4
-    plafond: 70% * plafond journalier sécurité sociale
+    plafond: 70% * plafond sécurité sociale . journalier
 
 salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
@@ -276,7 +261,7 @@ salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5
   formule:
     valeur: manifestation 5
-    plafond: 70% * plafond journalier sécurité sociale
+    plafond: 70% * plafond sécurité sociale . journalier
 
 salarié . convention collective . sport . primes . autres manifestations:
   question: Quelles primes pour les autres manifestations ?
@@ -284,7 +269,7 @@ salarié . convention collective . sport . primes . autres manifestations:
   par défaut: 100 €
 
 salarié . convention collective . sport . cotisations . franchise:
-  applicable si: entreprise . effectif < 10
+  applicable si: entreprise . salariés . effectif < 10
   unité: €/mois
   formule:
     somme:

@@ -42,7 +42,7 @@ for (var key in iframeAttributes) {
 
 const links = document.createElement('div')
 const moduleToSitePath = {
-	'simulateur-embauche': '/simulateurs/salarié',
+	'simulateur-embauche': '/simulateurs/salaire-brut-net',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
 	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
