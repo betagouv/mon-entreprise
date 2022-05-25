@@ -6,7 +6,7 @@
 		"url": "https://github.com/betagouv/mon-entreprise.git"
 	},
 	"engines": {
-		"node": ">=12.16.1"
+		"node": "^16"
 	},
 	"workspaces": [
 		"modele-social",
@@ -16,6 +16,7 @@
 	],
 	"type": "module",
 	"scripts": {
+		"scalingo-postbuild": "echo 'yarn workspaces focus api && yarn workspace api run build' ; yarn workspaces focus api && yarn workspace api run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",

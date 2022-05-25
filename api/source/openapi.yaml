@@ -3,6 +3,9 @@ openapi: 3.0.0
 info:
   title: Mon-entreprise API
   version: beta
-  description: Cet API expose les règles Publicodes de [mon-entrprise](https://mon-entreprise.urssaf.fr/).
+  description: Cet API expose les règles Publicodes de [mon-entreprise](https://mon-entreprise.urssaf.fr/).
+
+servers:
+  - url: https://test-api.osc-fr1.scalingo.io/api/v1/
 
 paths: {}

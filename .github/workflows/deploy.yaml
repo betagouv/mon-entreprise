@@ -95,7 +95,7 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
@@ -119,7 +119,7 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - name: Build API
         run: yarn workspace api build
       - uses: actions/upload-artifact@v2
@@ -130,7 +130,7 @@ jobs:
           if-no-files-found: error
 
   deploy-preview:
-    needs: [build, build-storybook, build-api, deploy-context]
+    needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
@@ -145,12 +145,8 @@ jobs:
         with:
           name: static-storybook
           path: dist/dev/storybook
-      - uses: actions/download-artifact@v2
-        with:
-          name: static-api
-          path: dist/netlify/functions/api
       - id: deploy-netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './dist'
           netlify-config-path: ./netlify.toml
