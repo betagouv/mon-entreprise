@@ -218,7 +218,6 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 							</td>
 							{line.map((cell, j) => (
 								<td key={j}>
-									{' '}
 									<ValueWithLink {...cell} />
 									{cell.additionalText && (
 										<p

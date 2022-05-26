@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
-import { PlacesDesEntreprisesButton } from '../PlaceDesEntreprises'
+import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
@@ -137,7 +137,7 @@ export default function ShareOrSaveSimulationBanner({
 
 				{placeDesEntreprises && (
 					<Grid item xs={12} sm="auto">
-						<PlacesDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+						<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
 					</Grid>
 				)}
 			</Grid>

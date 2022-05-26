@@ -25,7 +25,7 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
-export const PlacesDesEntreprisesButton = ({
+export const PlaceDesEntreprisesButton = ({
 	pathname,
 	siret,
 }: {
