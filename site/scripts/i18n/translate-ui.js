@@ -1,5 +1,4 @@
 import { readFileSync, writeFileSync } from 'fs'
-import { assocPath } from 'ramda'
 import yaml from 'yaml'
 import {
 	fetchTranslation,
@@ -36,3 +35,15 @@ import {
 		yaml.stringify(originalKeys, { sortMapEntries: true })
 	)
 })()
+
+function assocPath(path, val, obj) {
+	if (path.length === 0) return val
+
+	const key = path[0]
+
+	if (path.length >= 2) {
+		val = assocPath(path.slice(1), val, obj?.[key] ?? {})
+	}
+
+	return { ...obj, [key]: val }
+}

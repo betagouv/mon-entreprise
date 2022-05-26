@@ -6065,15 +6065,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:^0.26.43":
-  version: 0.26.44
-  resolution: "@types/ramda@npm:0.26.44"
-  dependencies:
-    ts-toolbelt: ^6.3.3
-  checksum: 5dbb5dfb0311d4c777ee4d65df4c553a5af4bde06148c149d70fffdfe2498fe3709d892e681f4bdba907662e74ed7d7a09359d13b489f0797edc20719de45a10
-  languageName: node
-  linkType: hard
-
 "@types/react-color@npm:^3.0.1":
   version: 3.0.6
   resolution: "@types/react-color@npm:3.0.6"
@@ -16803,7 +16794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramda@npm:^0.27.0, ramda@npm:^0.27.1":
+"ramda@npm:^0.27.1":
   version: 0.27.2
   resolution: "ramda@npm:0.27.2"
   checksum: 28d6735dd1eea1a796c56cf6111f3673c6105bbd736e521cdd7826c46a18eeff337c2dba4668f6eed990d539b9961fd6db19aa46ccc1530ba67a396c0a9f580d
@@ -18473,7 +18464,6 @@ __metadata:
     "@storybook/builder-vite": ^0.1.23
     "@storybook/react": ^6.5.0-alpha.49
     "@storybook/testing-library": ^0.0.9
-    "@types/ramda": ^0.26.43
     "@types/react": ^17.0.0
     "@types/react-color": ^3.0.1
     "@types/react-dom": ^17.0.9
@@ -18500,7 +18490,6 @@ __metadata:
     modele-social: "workspace:^"
     publicodes: =1.0.0-beta.40
     publicodes-react: =1.0.0-beta.40
-    ramda: ^0.27.0
     react: ^17.0.0
     react-color: ^2.14.0
     react-dom: ^17.0.0
@@ -19688,13 +19677,6 @@ __metadata:
     typescript:
       optional: true
   checksum: c2a698b85d521298fe6f2435fbf2d3dc5834b423ea25abd321805ead3f399dbeedce7ca09492d7eb005b9d2c009c6b9587055bc3ab273dc6b9e40eefd7edb5b2
-  languageName: node
-  linkType: hard
-
-"ts-toolbelt@npm:^6.3.3":
-  version: 6.15.5
-  resolution: "ts-toolbelt@npm:6.15.5"
-  checksum: 24ad00cfd9ce735c76c873a9b1347eac475b94e39ebbdf100c9019dce88dd5f4babed52884cf82bb456a38c28edd0099ab6f704b84b2e5e034852b618472c1f3
   languageName: node
   linkType: hard
 

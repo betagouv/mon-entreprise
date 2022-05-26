@@ -82,6 +82,24 @@ export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
 	return returnObject
 }
 
+// TODO: This is will be included in the ES spec soon. Remove our custom
+// implementation and rely on browser native support and polyfill when it is
+// available.
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/groupBy
+// https://caniuse.com/?search=groupby
+export function groupBy<E, G extends string>(
+	arr: Array<E>,
+	callback: (elm: E, index: number, array: Array<E>) => G
+): Record<G, Array<E>> {
+	return arr.reduce((result, item, currentIndex) => {
+		const key = callback(item, currentIndex, arr)
+		result[key] = result[key] || []
+		result[key].push(item)
+
+		return result
+	}, {} as Record<G, Array<E>>)
+}
+
 export function isIterable<T>(obj: unknown): obj is Iterable<T> {
 	return Symbol.iterator in Object(obj)
 }
