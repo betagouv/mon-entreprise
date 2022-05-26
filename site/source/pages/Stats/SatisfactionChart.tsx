@@ -26,9 +26,12 @@ export const SatisfactionStyle: [
 function toPercentage(data: Record<string, number>): Record<string, number> {
 	const total = Object.values(data).reduce((a, b: number) => a + b, 0)
 
-	return Object.fromEntries(
-		Object.entries(data).map(([key, value]) => [key, (100 * value) / total])
-	)
+	return {
+		...Object.fromEntries(
+			Object.entries(data).map(([key, value]) => [key, (100 * value) / total])
+		),
+		total,
+	}
 }
 
 type SatisfactionChartProps = {
@@ -47,29 +50,23 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 		.filter((d) => Object.values(d.nombre).reduce((a, b) => a + b, 0))
 
 	return (
-		<>
-			<ResponsiveContainer width="100%" height={400}>
-				<BarChart data={flattenData}>
-					<XAxis dataKey="date" tickFormatter={formatMonth} />
-					<Tooltip content={CustomTooltip} />
-					{SatisfactionStyle.map(([level, { emoji, color }]) => (
-						<Bar
-							key={level}
-							dataKey={level}
-							stackId="1"
-							fill={color}
-							maxBarSize={50}
-						>
-							<LabelList
-								dataKey={level}
-								content={() => emoji}
-								position="left"
-							/>
-						</Bar>
-					))}
-				</BarChart>
-			</ResponsiveContainer>
-		</>
+		<ResponsiveContainer width="100%" height={400}>
+			<BarChart data={flattenData}>
+				<XAxis dataKey="date" tickFormatter={formatMonth} />
+				<Tooltip content={CustomTooltip} />
+				{SatisfactionStyle.map(([level, { emoji, color }]) => (
+					<Bar
+						key={level}
+						dataKey={level}
+						stackId="1"
+						fill={color}
+						maxBarSize={50}
+					>
+						<LabelList dataKey={level} content={() => emoji} position="left" />
+					</Bar>
+				))}
+			</BarChart>
+		</ResponsiveContainer>
 	)
 }
 

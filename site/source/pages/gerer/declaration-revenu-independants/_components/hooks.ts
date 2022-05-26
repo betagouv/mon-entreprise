@@ -1,7 +1,6 @@
 import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { isEmpty } from 'ramda'
 import { useMemo } from 'react'
 
 export function useProgress(objectifs: DottedName[]): number {
@@ -13,8 +12,8 @@ export function useProgress(objectifs: DottedName[]): number {
 	const objectifsApplicables = evaluatedObjectifs.filter(
 		(objectif) => objectif.nodeValue !== null
 	)
-	const objectifsRemplis = objectifsApplicables.filter((objectif) =>
-		isEmpty(objectif.missingVariables)
+	const objectifsRemplis = objectifsApplicables.filter(
+		(objectif) => Object.keys(objectif.missingVariables).length === 0
 	)
 
 	if (!objectifsApplicables.length) {

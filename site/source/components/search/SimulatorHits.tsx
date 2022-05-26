@@ -6,7 +6,6 @@ import InfoBulle from '@/design-system/InfoBulle'
 import { H3 } from '@/design-system/typography/heading'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
-import { path } from 'ramda'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Hit } from 'react-instantsearch-core'
@@ -69,12 +68,12 @@ export const SimulatorHits = connectHits<
 							<Grid item key={hit.objectID} xs={12} lg={6}>
 								<SimulateurCardHit
 									hit={hit}
-									path={
-										path(
-											hit.pathId.split('.'),
-											sitePaths
-										) as ExtractFromSimuData<'path'>
-									}
+									path={hit.pathId
+										.split('.')
+										.reduce<ExtractFromSimuData<'path'>>(
+											(acc, curr) => acc[curr as any],
+											sitePaths as any
+										)}
 								/>
 							</Grid>
 						)

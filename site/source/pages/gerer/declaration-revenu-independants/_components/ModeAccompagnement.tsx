@@ -7,7 +7,6 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useOrdinal } from '@/hooks/useOrdinal'
-import { isEmpty } from 'ramda'
 import { useCallback } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -28,7 +27,7 @@ export default function ModeAccompagnement() {
 
 	const dispatch = useDispatch()
 	const imposition = engine.evaluate('entreprise . imposition')
-	if (isSelected && !isEmpty(imposition.missingVariables)) {
+	if (isSelected && Object.keys(imposition.missingVariables).length > 0) {
 		dispatch(
 			updateSituation(
 				'entreprise . imposition',

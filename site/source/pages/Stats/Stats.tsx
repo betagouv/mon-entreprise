@@ -8,13 +8,12 @@ import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
-import { add, groupBy, mapObjIndexed, mergeWith } from 'ramda'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toAtString } from '../../ATInternetTracking'
 import statsJson from '@/data/stats.json'
-import { debounce } from '../../utils'
+import { debounce, groupBy } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Chart, { Data, isDataStacked } from './Chart'
@@ -48,20 +47,24 @@ const isPAM = (name: string | undefined) =>
 const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
 	return Object.entries(
 		groupBy(
-			(p) => ('date' in p ? p.date : p.month),
 			pages.filter(
 				(p) =>
 					!chapter2 ||
 					((!('page' in p) || p.page !== 'accueil_pamc') &&
 						(p.page_chapter2 === chapter2 ||
 							(chapter2 === 'PAM' && isPAM(p.page_chapter3))))
-			)
+			),
+			(p) => ('date' in p ? p.date : p.month)
 		)
 	).map(([date, values]) => ({
 		date,
-		nombre: mapObjIndexed(
-			(v: Array<{ nombre: number }>) => v.map((v) => v.nombre).reduce(add),
-			groupBy((x) => ('page' in x ? x.page : x.click), values)
+		nombre: Object.fromEntries(
+			Object.entries(
+				groupBy(values, (x) => ('page' in x ? x.page : x.click))
+			).map(([key, values]) => [
+				key,
+				values.reduce((sum, value) => sum + value.nombre, 0),
+			])
 		),
 	}))
 }
@@ -69,16 +72,19 @@ const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
 function groupByDate(data: Pageish[]) {
 	return Object.entries(
 		groupBy(
-			(p) => ('date' in p ? p.date : p.month),
-			data.filter((d) => 'page' in d && d.page === 'accueil')
+			data.filter((d) => 'page' in d && d.page === 'accueil'),
+			(p) => ('date' in p ? p.date : p.month)
 		)
 	).map(([date, values]) => ({
 		date,
 		nombre: Object.fromEntries(
 			Object.entries(
-				groupBy((x) => x.page_chapter1 + ' / ' + x.page_chapter2, values)
+				groupBy(values, (x) => x.page_chapter1 + ' / ' + x.page_chapter2)
 			)
-				.map(([k, v]) => [k, v.map((v) => v.nombre).reduce(add, 0)] as const)
+				.map(
+					([k, v]) =>
+						[k, v.map((v) => v.nombre).reduce((a, b) => a + b, 0)] as const
+				)
 				.sort((a, b) => b[1] - a[1])
 				.slice(0, 7)
 		),
@@ -89,8 +95,19 @@ const computeTotals = (
 	data: Data<number> | Data<Record<string, number>>
 ): number | Record<string, number> => {
 	return isDataStacked(data)
-		? data.map((d) => d.nombre).reduce(mergeWith(add), {})
-		: data.map((d) => d.nombre).reduce(add, 0)
+		? data
+				.map((d) => d.nombre)
+				.reduce(
+					(acc, record) =>
+						[...Object.entries(acc), ...Object.entries(record)].reduce(
+							(merge, [key, value]) => {
+								return { ...merge, [key]: (acc[key] ?? 0) + value }
+							},
+							{}
+						),
+					{}
+				)
+		: data.map((d) => d.nombre).reduce((a, b) => a + b, 0)
 }
 
 interface BrushStartEndIndex {
