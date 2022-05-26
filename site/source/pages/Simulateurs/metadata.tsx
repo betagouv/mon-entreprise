@@ -1,4 +1,4 @@
-import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
+import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
@@ -151,13 +151,15 @@ function getSimulatorsData({
 							<Li>
 								Vous informer sur l'apprentissage, le contrat de
 								professionnalisation, les emplois francs en quartiers
-								prioritaires, le VTE...
+								prioritaires, le{' '}
+								<abbr title="Volontariat Territorial en Entreprise">VTE</abbr>
+								...
 							</Li>
 							<Li>Trouver des candidats</Li>
 							<Li>Recruter une personne en situation de handicap</Li>
 						</Ul>
 						<Strong>
-							Service public simple et rapide : vous êtes rappelé(e) par LE
+							Service public simple et rapide : vous êtes rappelé(e) par le
 							conseiller qui peut vous aider.
 						</Strong>
 					</Body>
@@ -165,7 +167,7 @@ function getSimulatorsData({
 						Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
 						locales...
 					</Body>
-					<PlacesDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
 				</Trans>
 			),
 		},
@@ -448,6 +450,30 @@ function getSimulatorsData({
 						<RuleLink dottedName="contrat salarié . activité partielle . indemnisation entreprise">
 							Voir le détail du calcul du remboursement de l'indemnité
 						</RuleLink>
+					</Body>
+					<H2>Échanger avec un conseiller sur l'activité partielle</H2>
+					<Body as="div">
+						Vous souhaitez :
+						<Ul>
+							<Li>vérifier l'allocation perçue, le reste à charge</Li>
+							<Li>
+								connaître la procédure de consultation du{' '}
+								<abbr title="Comité social et économique">CSE</abbr>, la demande
+								d'autorisation préalable
+							</Li>
+							<Li>vous informer sur l'activité partielle longue durée</Li>
+							<Li>
+								former vos salariés en activité partielle à de nouvelles
+								compétences (coûts pédagogique pris en charge)
+							</Li>
+						</Ul>
+						<Body>
+							Service public simple et rapide : vous êtes rappelé(e) par le
+							conseiller qui peut vous aider. Partenaires mobilisés : les
+							directions départementales de l'emploi, du travail et des
+							solidarités.
+						</Body>
+						<PlaceDesEntreprisesButton pathname="/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/demande/activite-partielle" />
 					</Body>
 					<H2>Comment déclarer une activité partielle ?</H2>
 					<Body>

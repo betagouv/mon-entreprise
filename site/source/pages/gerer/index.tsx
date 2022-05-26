@@ -11,7 +11,7 @@ import {
 	WhenNotApplicable,
 } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
-import { PlacesDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
+import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -377,7 +377,7 @@ function Home() {
 				</Body>
 			</Trans>
 
-			<PlacesDesEntreprisesButton
+			<PlaceDesEntreprisesButton
 				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
 				siret={
 					engine.evaluate('établissement . SIRET')

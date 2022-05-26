@@ -1104,7 +1104,7 @@ pages:
         ogTitle: "Simulateur chômage partiel : découvrez l'impact sur le revenu net
           salarié et le coût total employeur."
         titre: "Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
-      seo: <0>Comment calculer l'indemnité d'activité partielle ?</0><1>L'indemnité
+      seo: "<0>Comment calculer l'indemnité d'activité partielle ?</0><1>L'indemnité
         d'activité partielle de base est fixée par la loi à <2>70% du brut</2>.
         Elle est proratisée en fonction du nombre d'heures chômées. Pour un
         salarié à 2300 € brut mensuel, qui travaille à 50% de son temps usuel,
@@ -1122,18 +1122,27 @@ pages:
         progressivement jusqu'à se stabiliser à <6>93%</6> pour les salaires
         compris <9>entre 2000 € et 7000 €</9> (salaire correspondant à la limite
         de 4,5 SMIC).</5><6>👉 <2>Voir le détail du calcul du remboursement de
-        l'indemnité</2></6><7>Comment déclarer une activité partielle
-        ?</7><8>Face à la crise du coronavirus, les modalités de passage en
+        l'indemnité</2></6><7>Échanger avec un conseiller sur l'activité
+        partielle</7><8>Vous souhaitez :<1><0>vérifier l'allocation perçue, le
+        reste à charge</0><1>connaître la procédure de consultation du
+        <2>CSE</2>, la demande d'autorisation préalable</1><2>vous informer sur
+        l'activité partielle longue durée</2><3>former vos salariés en activité
+        partielle à de nouvelles compétences (coûts pédagogique pris en
+        charge)</3></1><2>Service public simple et rapide : vous êtes rappelé(e)
+        par le conseiller qui peut vous aider. Partenaires mobilisés : les
+        directions départementales de l'emploi, du travail et des
+        solidarités.</2><3></3></8><9>Comment déclarer une activité partielle
+        ?</9><10>Face à la crise du coronavirus, les modalités de passage en
         activité partielle ont été allégées. L'employeur est autorisé a placer
         ses salariés en activité partielle avant que la demande officielle ne
         soit déposée. Celui-ci dispose ensuite d'un délai de <2>30 jours</2>
         pour se mettre en règle. Les indemnités seront versées avec un effet
-        rétro-actif débutant à la mise en place du chômage partiel.</8><9>👉
-        <2>Effectuer la demande de chômage partiel</2></9><10> Quelles sont les
+        rétro-actif débutant à la mise en place du chômage partiel.</10><11>👉
+        <2>Effectuer la demande de chômage partiel</2></11><12> Quelles sont les
         cotisations sociales à payer pour l'indemnité d'activité partielle
-        ?</10><11>L'indemnité d'activité partielle est soumise à la CSG/CRDS et
+        ?</12><13>L'indemnité d'activité partielle est soumise à la CSG/CRDS et
         à une contribution maladie dans certains cas. Pour en savoir plus, voir
-        la page explicative sur <2>le site de l'Urssaf</2>.</11>
+        la page explicative sur <2>le site de l'Urssaf</2>.</13>"
       shortname: Chômage partiel
       title: "Covid-19 : Simulateur de chômage partiel"
     comparaison:
@@ -1387,10 +1396,10 @@ pages:
         recrutement</9><10>Vous souhaitez :<1><0>Être conseillé(e) sur les aides
         à l'embauche mobilisables pour votre recrutement</0><1>Vous informer sur
         l'apprentissage, le contrat de professionnalisation, les emplois francs
-        en quartiers prioritaires, le VTE...</1><2>Trouver des
+        en quartiers prioritaires, le <2>VTE</2>...</1><2>Trouver des
         candidats</2><3>Recruter une personne en situation de
         handicap</3></1><2>Service public simple et rapide : vous êtes
-        rappelé(e) par LE conseiller qui peut vous
+        rappelé(e) par le conseiller qui peut vous
         aider.</2></10><11>Partenaires mobilisés : Pôle emploi, APEC, Cap
         Emploi, missions locales...</11><12></12>"
       shortname: Salarié
