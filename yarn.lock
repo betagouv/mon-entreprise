@@ -2951,9 +2951,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.40":
-  version: 1.0.0-beta.40
-  resolution: "@publicodes/api@npm:1.0.0-beta.40"
+"@publicodes/api@npm:^1.0.0-beta.41":
+  version: 1.0.0-beta.41
+  resolution: "@publicodes/api@npm:1.0.0-beta.41"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -2961,8 +2961,8 @@ __metadata:
     koa-body: ^5.0.0
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
-    publicodes: ^1.0.0-beta.35
-  checksum: d1f19deef3533dbaae0e249ee0a1f3d1faa506c6267224d082f535a449148c1cd9d4698aaef752f955160700f6ebac5e6020e86d96d25f7e1a8b44a13e48134d
+    publicodes: ^1.0.0-beta.40
+  checksum: 86a2c7146937b795720185c9fc937cadadd5cd894a485a4eee410dd5f0f41e5b1be399c71c22dbc8dcf51ad282ad53fe681b8890aff02bacc08a84a6f9f8e363
   languageName: node
   linkType: hard
 
@@ -7735,7 +7735,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.40
+    "@publicodes/api": ^1.0.0-beta.41
     "@types/koa": ^2.13.4
     "@types/koa-static": ^4.0.2
     "@types/koa__cors": ^3.3.0
@@ -7747,7 +7747,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: ^0.6.1
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.40
+    publicodes: ^1.0.0-beta.41
     swagger-ui-dist: ^4.11.1
     ts-node: ^10.8.0
     typescript: ^4.7.2
@@ -18063,7 +18063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.40, publicodes@npm:^1.0.0-beta.40":
+"publicodes@npm:=1.0.0-beta.40":
   version: 1.0.0-beta.40
   resolution: "publicodes@npm:1.0.0-beta.40"
   dependencies:
@@ -18076,7 +18076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.41":
+"publicodes@npm:=1.0.0-beta.41, publicodes@npm:^1.0.0-beta.41":
   version: 1.0.0-beta.41
   resolution: "publicodes@npm:1.0.0-beta.41"
   dependencies:

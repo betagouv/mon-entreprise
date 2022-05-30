@@ -8,12 +8,10 @@ import { mergeDeep } from '../utils.js'
  * @param customOpenapi
  * @returns
  */
-export const openapiRoutes = (customOpenapi?: Record<string, unknown>) => {
+export const openapiRoutes = (customOpenapi: Record<string, unknown>) => {
 	const router = new Router()
 
-	const mergedOpenapi = customOpenapi
-		? mergeDeep(publicodesOpenapi, customOpenapi)
-		: publicodesOpenapi
+	const mergedOpenapi = mergeDeep(publicodesOpenapi, customOpenapi)
 
 	router.get('/openapi.json', (ctx: Context) => {
 		ctx.type = 'application/json'

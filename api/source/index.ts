@@ -16,7 +16,7 @@ const router = new Router<State, Context>()
 
 app.use(cors())
 
-const apiRoutes = publicodesAPI(() => new Engine(rules))
+const apiRoutes = publicodesAPI(new Engine(rules))
 
 router.use('/api/v1', apiRoutes, docRoutes(), openapiRoutes(openapi))
 
