@@ -38,12 +38,8 @@ jobs:
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
@@ -90,12 +86,8 @@ jobs:
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
@@ -114,12 +106,8 @@ jobs:
   build-api:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}-v2
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       - name: Build API
         run: yarn workspace api build
       - uses: actions/upload-artifact@v2
@@ -137,7 +125,7 @@ jobs:
       matrix:
         site: ['', 'en']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v2
         with:
           name: static-site
@@ -170,7 +158,7 @@ jobs:
     runs-on: ubuntu-18.04
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v2
         with:
           name: static-site
@@ -218,6 +206,7 @@ jobs:
             - mon-entreprise : ${{ needs.deploy-context.outputs.fr_url }}
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
+            - API : ${{ needs.deploy-context.outputs.fr_url }}/api/v1/doc/
 
   e2e-test-preview:
     env:
@@ -260,12 +249,8 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
         with:
@@ -320,12 +305,8 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+        uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v2
         with:

@@ -16,12 +16,8 @@ jobs:
     needs: deploy-context
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}

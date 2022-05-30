@@ -5,23 +5,15 @@ jobs:
   lint:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       - run: yarn lint
 
   typecheck:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
         env:
           # Secrets of all kinds for fetching stats & releases
           GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
@@ -33,23 +25,15 @@ jobs:
   unit:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       - run: yarn test
 
   i18n:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'yarn'
-      - run: yarn install --immutable
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
       # La traduction auto des règles est cassée
       # CF https://github.com/betagouv/mon-entreprise/issues/2078
       # - run: yarn workspace site run i18n:check
