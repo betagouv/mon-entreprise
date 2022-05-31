@@ -7,12 +7,12 @@ exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `"[34443,370,30000,0,30000]"`;
-
-exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
-"[45273,439,40000,0,40000]
+exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
+"[32086,174,30000,0,30000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
+
+exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `"[45938,495,40000,0,40000]"`;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
 "[21390,116,20000,0,20000]
