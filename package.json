@@ -16,6 +16,7 @@
 	],
 	"type": "module",
 	"scripts": {
+		"pre-commit": "yarn workspaces foreach -pi run pre-commit",
 		"scalingo-postbuild": "echo 'yarn workspaces focus api && yarn workspace api run build' ; yarn workspaces focus api && yarn workspace api run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
@@ -24,7 +25,7 @@
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
-		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
+		"postinstall": "husky install && yarn workspaces foreach -piv --exclude site run prepack",
 		"test": "yarn workspaces foreach run test",
 		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
 		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
@@ -50,6 +51,7 @@
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-react": "^7.30.0",
 		"eslint-plugin-react-hooks": "^4.5.0",
+		"husky": "^8.0.0",
 		"prettier": "^2.6.2",
 		"rimraf": "^3.0.2"
 	}

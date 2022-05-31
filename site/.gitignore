@@ -4,3 +4,4 @@ source/data/*
 cypress/videos
 cypress/screenshots
 cypress/downloads
+.deps.json

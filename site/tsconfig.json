@@ -19,6 +19,9 @@
 		"noEmit": true,
 		"strict": true
 	},
+	"ts-node": {
+		"transpileOnly": true
+	},
 	"include": [
 		"source",
 		"scripts",
