@@ -109,7 +109,7 @@ artiste-auteur . cotisations . vieillesse:
         - attributs:
             nom: plafonnée
           taux: contrat salarié . vieillesse . salarié . plafonnée . taux - 0.75%
-          plafond: contrat salarié . plafond sécurité sociale
+          plafond: plafond sécurité sociale temps plein
         - attributs:
             nom: déplafonnée
           taux: contrat salarié . vieillesse . salarié . déplafonnée . taux - 0.4%
@@ -131,7 +131,7 @@ artiste-auteur . cotisations . CSG-CRDS . abattement:
     produit:
       assiette: revenus . traitements et salaires
       taux: 1.75%
-      plafond: 4 * contrat salarié . plafond sécurité sociale
+      plafond: 4 * plafond sécurité sociale temps plein
 
 artiste-auteur . cotisations . CSG-CRDS . CSG:
   formule:
