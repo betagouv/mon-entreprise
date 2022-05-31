@@ -10,7 +10,7 @@
 	},
 	"private": true,
 	"engines": {
-		"node": ">=12.16.1"
+		"node": "^16"
 	},
 	"type": "module",
 	"browserslist": [
@@ -18,6 +18,8 @@
 		"not ie < 11"
 	],
 	"scripts": {
+		"pre-commit": "ts-node-esm scripts/preCommit/index.ts",
+		"build:yaml-to-dts": "ts-node-esm scripts/build-yaml-to-dts.ts",
 		"postinstall": "node scripts/prepare.js",
 		"start": "vite dev",
 		"build": "NODE_OPTIONS='--max-old-space-size=6144'; vite build && yarn build:iframe-script",
@@ -110,6 +112,7 @@
 		"@redux-devtools/extension": "^3.2.2",
 		"@rollup/plugin-replace": "^4.0.0",
 		"@rollup/plugin-yaml": "^3.1.0",
+		"@rushstack/package-deps-hash": "^3.2.20",
 		"@storybook/addon-actions": "^6.5.0-alpha.49",
 		"@storybook/addon-essentials": "^6.5.0-alpha.49",
 		"@storybook/addon-interactions": "^6.5.0-alpha.49",
@@ -139,8 +142,8 @@
 		"rollup-plugin-toml": "^1.0.0",
 		"serve-static": "^1.14.2",
 		"ts-morph": "^13.0.3",
-		"ts-node": "^10.5.0",
-		"typescript": "^4.3.2",
+		"ts-node": "^10.8.0",
+		"typescript": "^4.7.2",
 		"vite": "^2.9.9",
 		"vite-plugin-shim-react-pdf": "^1.0.5",
 		"vitest": "^0.9.4",
