@@ -186,15 +186,20 @@ const StatsDetail = () => {
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
-			<Grid
-				container
-				spacing={2}
+			<div
 				css={`
+					display: flex;
+					flex-direction: column;
 					justify-content: space-between;
-					align-items: flex-end;
+					gap: 12px;
+
+					@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+						flex-direction: row;
+						align-items: flex-end;
+					}
 				`}
 			>
-				<Grid item xs={12} sm={6} md={4}>
+				<div>
 					<SimulateursChoice
 						onChange={setChapter2}
 						value={chapter2}
@@ -204,8 +209,8 @@ const StatsDetail = () => {
 					<Grid container columns={4}>
 						<SelectedSimulator chapter2={chapter2} />
 					</Grid>
-				</Grid>
-				<Grid item>
+				</div>
+				<div>
 					<ToggleGroup onChange={setPeriod as any} defaultValue={period}>
 						<Radio value="jours">
 							<Trans>jours</Trans>
@@ -214,8 +219,8 @@ const StatsDetail = () => {
 							<Trans>mois</Trans>
 						</Radio>
 					</ToggleGroup>
-				</Grid>
-			</Grid>
+				</div>
+			</div>
 
 			<Spacing lg />
 

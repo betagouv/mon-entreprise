@@ -9,12 +9,10 @@ const breakPoints = ['sm', 'md', 'lg', 'xl'] as Array<SpacingKey>
 
 type ContainerContext = {
 	nbColumns: number
-	spacing: number
 }
 
 const GridContainerContext = createContext<ContainerContext>({
 	nbColumns: 12,
-	spacing: 0,
 })
 
 type GridProps =
@@ -36,37 +34,19 @@ export function Grid(props: GridProps) {
 }
 
 const StyledGridContainer = styled.div<GridContainerProps>`
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
+	display: grid;
+	grid-template-columns: repeat(${(props) => props.columns ?? 12}, 1fr);
+	/* flex-wrap: wrap;
+
+	flex-direction: row; */
 
 	gap: ${({ spacing }) => (spacing ?? 0) * 6}px;
 `
 
-const flexBasis = <Id extends SpacingKey | 'xs'>(
-	id: Id,
-	props: Record<Id, number> & ContainerContext
-) => {
-	const widthInNumberOfColumns = props[id]
-	const proportion = widthInNumberOfColumns / props.nbColumns
-	const nbColumns = Math.floor(1 / proportion)
-	const spacingToDispatch = (props.spacing * 6 * (nbColumns - 1)) / nbColumns
-
-	return `calc(
-		${proportion * 100}% - ${spacingToDispatch}px
-	)`
-}
-
 const StyledGridItem = styled.div<GridItemProps>`
-	${(props) =>
-		props.xs
-			? css`
-					flex-basis: ${flexBasis('xs', props)};
-					flex-grow: 0;
-			  `
-			: css`
-					flex-grow: 1;
-			  `}
+	${(props) => css`
+		grid-column: span ${props.xs ?? props.nbColumns};
+	`}
 
 	${(props) =>
 		breakPoints
@@ -74,8 +54,7 @@ const StyledGridItem = styled.div<GridItemProps>`
 			.map(
 				(id) => css`
 					@media (min-width: ${({ theme }) => theme.breakpointsWidth[id]}) {
-						flex-basis: ${flexBasis(id, props)};
-						flex-grow: 0;
+						grid-column: span ${props[id]};
 					}
 				`
 			)}
@@ -96,7 +75,7 @@ function GridContainer({
 	children,
 }: GridContainerProps) {
 	return (
-		<GridContainerContext.Provider value={{ nbColumns: columns, spacing }}>
+		<GridContainerContext.Provider value={{ nbColumns: columns }}>
 			<StyledGridContainer spacing={spacing} className={className} id={id}>
 				{children}
 			</StyledGridContainer>
@@ -106,9 +85,8 @@ function GridContainer({
 
 type GridItemProps = {
 	children?: React.ReactNode
-	xs?: number
 	className?: string
-} & Partial<Record<SpacingKey, number>>
+} & Partial<Record<SpacingKey | 'xs', number>>
 
 function GridItem({ xs, sm, md, lg, xl, className, children }: GridItemProps) {
 	const containerContext = useContext(GridContainerContext)
