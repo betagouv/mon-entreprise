@@ -894,7 +894,32 @@ pages:
           auto-entrepreneurs et le régime de la micro-entreprise.
         cta: Consulter l'aide
         title: Comment déclarer son revenu aux impôts ?
-  dévelopeurs:
+  développeur:
+    api: "<0>Utiliser notre API REST</0><1>Si votre site ou service requiert de
+      faire des calculs de salaire, par exemple passer du salaire brut au
+      salaire net, bonne nouvelle : tous les calculs de cotisations et impôts
+      qui sont derrière mon-entreprise sont libres et utilisé via notre <2>API
+      REST</2>.<4>Google Sheets</4></1><2>Comment utiliser cette API
+      ?</2><3>Toutes nos règles de calculs sont écrites en `publicodes`, un
+      language déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder
+      des algorithmes d'intérêt public. <2>En savoir plus sur
+      publicodes</2></3><4></4><5><0>{{js}}</0></5><6><0></0></6><7>Lancer le
+      calcul</7><8>Il ne vous reste plus qu'à paramétrer le moteur avec les
+      règles du paquet `modele-social` et à appeler la fonction `evaluate` sur
+      la règle que dont vous souhaitez la valeur. Voici un exemple pour le
+      calcul brut / net</8><9>Paramétrer le calcul</9><10>Vous l'aurez constaté
+      dans l'exemple précédent, la recette d'un calcul est simple : des
+      variables d'entrée (le salaire brut), une ou plusieurs variables de
+      sorties (le salaire net).</10><11>Le calcul est cependant paramétrable
+      avec toutes les possibilités permise dans la legislation.</11><12>Toutes
+      ces variables sont listées et expliquées sur la <2>documentation en
+      ligne</2>. Cette documentation est auto-générée depuis les fichiers de
+      règles publicodes, elle est donc constamment à jour.</12><13>Lançons un
+      calcul plus proche d'une fiche de paie : voici une description de la
+      situation d'entrée annotée de liens vers les pages correspondantes de la
+      documentation :</13><14><0> Un <3>cadre</3> gagnant <7>3 400€ bruts</7> ,
+      qui bénéficie de <11>titres-restaurant</11> et qui travaille dans une
+      entreprise de <15>22 salariés</15>.</0></14>"
     bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
       votre site ou service gagnerait à afficher des calculs de salaire, par
       exemple passer du salaire brut au salaire net, bonne nouvelle : tous les
@@ -902,7 +927,7 @@ pages:
       libres et facilement réutilisable grâce à la <2>bibliothèque NPM
       publicodes</2>.</1><2>Comment utiliser cette librairie ?</2><3>Toutes nos
       règles de calculs sont écrites en `publicodes`, un language déclaratif
-      développé par beta.gouv.fr et l'Urssaf pour encoder des algorithme
+      développé par beta.gouv.fr et l'Urssaf pour encoder des algorithmes
       d'intérêt public. <2>En savoir plus sur publicodes</2></3><4>Pour
       effectuer vos propre calculs, vous devons donc installer l'interpréteur
       publicodes, télécharger les règles utilisées sur mon-entreprise, appeler
@@ -943,7 +968,6 @@ pages:
       faible pour un SMIC que pour un haut revenu. Autrement dit, les hauts
       salaires paient une partie des cotisations sociales des bas
       salaires.</23><24><0></0></24>"
-  développeurs:
     choice:
       github:
         body: Tous nos outils sont ouverts et développés publiquement sur GitHub.
@@ -965,6 +989,11 @@ pages:
     couleur: "Quelle couleur ? "
     home:
       choice:
+        api:
+          body: Utiliser nos simulateurs via notre API ouverte aussi bien sur votre
+            serveur que dans vos fichier Excel/GSheets.
+          cta: Commencer
+          title: Utiliser notre API REST
         iframe:
           body: Intégrer l'un de nos simulateurs en un clic dans votre site Web, via un
             script clé en main.

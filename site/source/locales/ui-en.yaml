@@ -1131,7 +1131,30 @@ pages:
           auto-entrepreneurs and the micro-enterprise regime.
         cta: See the help
         title: How to declare your income to the tax authorities?
-  dévelopeurs:
+  développeur:
+    api: "<0>Use our REST API</0><1>If your site or service requires salary
+      calculations, such as going from gross to net salary, good news: all the
+      tax and contribution calculations behind my-company are free and used via
+      our <2>REST API</2>.<4>Google Sheets</4></1><2>How to use this
+      API?</2><3>All our calculation rules are written in `publicodes`, a
+      declarative language developed by beta.gouv.fr and the Urssaf to encode
+      algorithms of public interest. <2>Learn more about
+      publicodes</2></3><4></4><5><0>{{js}}</0></5><6><0></0></6><7>Launch the
+      calculation</7><8>All you have to do is to set the engine with the rules
+      of the `social-modele` package and to call the `evaluate` function on the
+      rule you want the value of. Here is an example for the gross/net
+      calculation</8><9>Setting up the calculation</9><10>As you can see in the
+      previous example, the recipe for a calculation is simple: input variables
+      (the gross salary), one or more output variables (the net
+      salary).</10><11>The calculation is however configurable with all the
+      possibilities allowed in the legislation.</11><12>All these variables are
+      listed and explained in the <2>online documentation</2>. This
+      documentation is auto-generated from the publicode rules files, so it is
+      constantly updated.</12><13>Let's run a calculation closer to a pay slip:
+      here is a description of the input situation annotated with links to the
+      corresponding pages in the documentation:</13><14><0> An <3>executive</3>
+      earning <7>3,400€ gross</7>, who benefits from <11>meal vouchers</11> and
+      who works in a company with <15>22 employees</15>.</0></14>"
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
@@ -1141,10 +1164,10 @@ pages:
       a declarative language developed by beta.gouv.fr and the Urssaf to encode
       algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
       perform your own calculations, you must install the publicodes
-      interpreter, download the rules used on my-company, call the evaluation
-      function.</4><5>Installation</5><6><0>npm install --save publicodes
-      modele-social</0></6><7>For more details on the installation, please refer
-      to the <2>dedicated documentation</2></7><8>Launch the
+      interpreter, download the rules used on mycompanyinfrance, call the
+      evaluation function.</4><5>Installation</5><6><0>npm install --save
+      publicodes modele-social</0></6><7>For more details on the installation,
+      please refer to the <2>dedicated documentation</2></7><8>Launch the
       calculation</8><9>All you have to do is set up the engine with the rules
       from the `social-modele` package and call the `evaluate` function on the
       rule you want the value of. Here is an example for the gross/net
@@ -1177,7 +1200,6 @@ pages:
       progressivity of the total wage, which is in percent lower for a minimum
       wage than for a high income. In other words, high earners pay part of the
       social contributions of low earners.</23><24><0></0></24>"
-  développeurs:
     choice:
       github:
         body: The entire socio-fiscal calculation engine developed by the Urssaf, freely
@@ -1197,23 +1219,23 @@ pages:
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
-    code à copier: "Here is the code to copy and paste on your site:"
     couleur: "What color? "
     home:
       choice:
+        api:
+          body: Use our simulators via our open API both on your server and in your
+            Excel/GSheets.
+          cta: Start
+          title: Using our REST API
         iframe:
           body: Integrate one of our simulators in one click into your website, via a
             turnkey script.
           cta: Start
           title: Integrate a simulator
-        library: <0>Using the calculation engine</0><1>The entire socio-fiscal
-          calculation engine developed by Urssaf, freely available in the form
-          of an NPM library.</1>
       description: In addition to the mycompanyinfrance site, we provide free and open
         source tools to integrate on your website. You can thus include the
         tools created for <1>mycompanyinfrance</1> directly in the usual paths
         of your users.
-      titre: Integrate social security law at the heart of your tools
     iframe:
       csp-1: <0>The error below that appears in the console is related to the
         communication between the parent page and the iframe for automatic

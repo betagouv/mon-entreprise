@@ -84,7 +84,7 @@ function IntegrationCustomizer() {
 			<Grid container spacing={4} justifyContent={'space-between'}>
 				<Grid item xl={4} lg={5} md>
 					<H3>
-						<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
+						<Trans i18nKey="pages.développeur.module">Quel module ?</Trans>
 					</H3>
 					<Select
 						label="Assistant ou simulateur"
@@ -114,9 +114,7 @@ function IntegrationCustomizer() {
 				</Grid>
 				<Grid item xs={'auto'}>
 					<H3>
-						<Trans i18nKey="pages.développeurs.couleur">
-							Quelle couleur ?{' '}
-						</Trans>
+						<Trans i18nKey="pages.développeur.couleur">Quelle couleur ? </Trans>
 						<Emoji emoji="🎨" />
 					</H3>
 					<Suspense fallback={<div>Chargement...</div>}>
@@ -125,13 +123,13 @@ function IntegrationCustomizer() {
 				</Grid>
 				<Grid item xs>
 					<H3>
-						<Trans i18nKey="pages.développeurs.code.titre">
+						<Trans i18nKey="pages.développeur.code.titre">
 							Code d'intégration
 						</Trans>
 						<Emoji emoji="🛠" />
 					</H3>
 					<Body>
-						<Trans i18nKey="pages.développeurs.code.description">
+						<Trans i18nKey="pages.développeur.code.description">
 							Voici le code à copier-coller sur votre site&nbsp;:
 						</Trans>
 					</Body>
@@ -199,7 +197,7 @@ export default function Integration() {
 	return (
 		<>
 			<TrackPage name="module_web" />
-			<Trans i18nKey="pages.développeurs.iframe.intro">
+			<Trans i18nKey="pages.développeur.iframe.intro">
 				<div>
 					<H1>Intégrez le module Web</H1>
 					<Intro>
@@ -296,12 +294,12 @@ function EnSavoirPlusCSP() {
 				</Link>
 			)}
 			title={t(
-				'pages.développeurs.iframe.csp-title',
+				'pages.développeur.iframe.csp-title',
 				'Intégration iframe et politique de sécurité de contenu'
 			)}
 			small
 		>
-			<Trans i18nKey="pages.développeurs.iframe.csp-1">
+			<Trans i18nKey="pages.développeur.iframe.csp-1">
 				<Body>
 					L'erreur ci-dessous qui s'affiche dans la console est liée à la
 					communication entre la page parente et l'iframe pour le
@@ -314,7 +312,7 @@ function EnSavoirPlusCSP() {
 				recipient window's origin
 			</blockquote>
 			<Body>
-				<Trans i18nKey="pages.développeurs.iframe.csp-2">
+				<Trans i18nKey="pages.développeur.iframe.csp-2">
 					Vous pouvez la corriger avec la politique suivante :
 				</Trans>
 			</Body>
