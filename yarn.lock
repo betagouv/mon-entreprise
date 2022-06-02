@@ -11833,15 +11833,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mocha@npm:^10.0.4":
-  version: 10.0.4
-  resolution: "eslint-plugin-mocha@npm:10.0.4"
+"eslint-plugin-mocha@npm:^10.0.5":
+  version: 10.0.5
+  resolution: "eslint-plugin-mocha@npm:10.0.5"
   dependencies:
     eslint-utils: ^3.0.0
-    ramda: ^0.28.0
+    rambda: ^7.1.0
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: f175eb94b1e238ece54bf46fa36389758591131397ec96db149d6d4046d7f25476f70c7de68499a72ae94f8d8303d592264a4ce6446f31bc891abd953324c94f
+  checksum: b49f9f64056db355ca43d4fa7d68047434c10c2b1e2ee41eb14f69e0acf60fa3c57c300900cc67fc2e84dbf134792de04553ce6e792037b911e3606512c6431f
   languageName: node
   linkType: hard
 
@@ -18382,6 +18382,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rambda@npm:^7.1.0":
+  version: 7.1.4
+  resolution: "rambda@npm:7.1.4"
+  checksum: 05683dcb1bc76504beabb83a8b39488738ba744e12eda43ea29a00b28e61d2be923b9310c575aa5a70c25bf2195de070aa8351b78b6ebc212ceb455ef8544cdb
+  languageName: node
+  linkType: hard
+
 "ramda@npm:^0.21.0":
   version: 0.21.0
   resolution: "ramda@npm:0.21.0"
@@ -18393,13 +18400,6 @@ __metadata:
   version: 0.26.1
   resolution: "ramda@npm:0.26.1"
   checksum: 19c2730e44c129538151ae034c89be9b2c6a4ccc7c65cff57497418bc532ce09282f98cd927c39b0b03c6bc3f1d1a12d822b7b07f96a1634f4958a6c05b7b384
-  languageName: node
-  linkType: hard
-
-"ramda@npm:^0.28.0":
-  version: 0.28.0
-  resolution: "ramda@npm:0.28.0"
-  checksum: 44ea6e5010bba70151b6a92d8114a91915e8b5a16105cce65fae58c9d7386b812c429645e35f21141d7087568550ce383bc10ee1a65cdec951f4b69ea457e6a4
   languageName: node
   linkType: hard
 
@@ -19671,7 +19671,7 @@ __metadata:
     eslint-config-standard: ^17.0.0
     eslint-plugin-cypress: ^2.12.1
     eslint-plugin-import: ^2.26.0
-    eslint-plugin-mocha: ^10.0.4
+    eslint-plugin-mocha: ^10.0.5
     eslint-plugin-n: ^15.2.0
     eslint-plugin-promise: ^6.0.0
     eslint-plugin-react: ^7.30.0
