@@ -3,7 +3,7 @@ import { Article } from '@/design-system/card'
 import { Trans, useTranslation } from 'react-i18next'
 
 type IframeIntegrationCardProps = {
-	sitePaths: { integration: { iframe: string } }
+	sitePaths: { développeur: { iframe: string } }
 	iframePath: string
 }
 
@@ -23,7 +23,7 @@ export function IframeIntegrationCard({
 			}
 			ctaLabel={t('nextSteps.integration-iframe.cta', 'Voir la documentation')}
 			to={{
-				pathname: sitePaths.integration.iframe,
+				pathname: sitePaths.développeur.iframe,
 				search: `?module=${iframePath}`,
 			}}
 		>

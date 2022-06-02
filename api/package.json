@@ -1,13 +1,18 @@
 {
 	"name": "api",
-	"license": "MIT",
 	"version": "0.0.0",
 	"description": "API du site mon-entreprise",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "api"
+	},
+	"license": "MIT",
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
-		"test": "run validate",
+		"test": "run validate && vitest",
 		"test:type": "tsc --noEmit",
 		"validate": "yarn swagger-cli validate ./source/openapi.yaml",
 		"postinstall": "yarn build:openapi",
@@ -20,12 +25,7 @@
 		"wait:openapi": "wait-on ./source/openapi.json",
 		"build:openapi": "yarn run swagger-cli bundle ./source/openapi.yaml -o ./source/openapi.json",
 		"build:openapi:watch": "nodemon -d 500ms -w ./source/openapi.yaml -x \"yarn build:openapi\"",
-		"clean": "rm -rf dist ./source/openapi.json"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "api"
+		"clean": "rimraf dist ./source/openapi.json"
 	},
 	"dependencies": {
 		"@koa/cors": "^3.3.0",
@@ -46,9 +46,12 @@
 		"@types/koa__router": "^8.0.11",
 		"@types/node": "^17.0.35",
 		"@types/swagger-ui-dist": "^3.30.1",
+		"chai-http": "^4.3.0",
 		"nodemon": "^2.0.16",
+		"rimraf": "^3.0.2",
 		"ts-node": "^10.8.0",
 		"typescript": "^4.7.2",
+		"vitest": "^0.13.1",
 		"wait-on": "^6.0.1"
 	}
 }

@@ -5,16 +5,13 @@
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git"
 	},
-	"engines": {
-		"node": "^16"
-	},
+	"type": "module",
 	"workspaces": [
 		"modele-social",
 		"exoneration-covid",
 		"api",
 		"site"
 	],
-	"type": "module",
 	"scripts": {
 		"pre-commit": "yarn workspaces foreach -pi run pre-commit",
 		"scalingo-postbuild": "echo 'yarn workspaces focus api && yarn workspace api run build' ; yarn workspaces focus api && yarn workspace api run build",
@@ -37,7 +34,6 @@
 	"resolutions": {
 		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
 	},
-	"packageManager": "yarn@3.2.0",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.25.0",
 		"@typescript-eslint/parser": "^5.25.0",
@@ -54,5 +50,9 @@
 		"husky": "^8.0.0",
 		"prettier": "^2.6.2",
 		"rimraf": "^3.0.2"
+	},
+	"packageManager": "yarn@3.2.0",
+	"engines": {
+		"node": "^16"
 	}
 }

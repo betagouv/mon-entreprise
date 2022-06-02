@@ -36,5 +36,5 @@
 		"esm": true
 	},
 	"include": ["source"],
-	"exclude": ["**/node_modules", "**/dist", "**/*.test.*"]
+	"exclude": ["**/node_modules", "**/dist", "vitest.config.ts"]
 }

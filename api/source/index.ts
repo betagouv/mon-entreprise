@@ -28,7 +28,9 @@ app.use((ctx) => {
 
 const port = process.env.PORT || 3004
 
-app.listen(port, function () {
+const server = app.listen(port, function () {
 	// eslint-disable-next-line no-console
 	console.log('listening on port:', port)
 })
+
+export { server, app }
