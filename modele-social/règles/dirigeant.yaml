@@ -383,7 +383,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
               plafond: 3 ans
     - si: entreprise . durée d'activité < 1 an
       alors: 50%
-    - sinon: 0%
 
   références:
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
