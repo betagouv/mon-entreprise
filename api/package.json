@@ -34,7 +34,7 @@
 		"koa": "^2.13.4",
 		"koa-body": "^5.0.0",
 		"koa-static": "^5.0.0",
-		"modele-social": "^0.6.1",
+		"modele-social": "workspace:^",
 		"publicodes": "^1.0.0-beta.41",
 		"swagger-ui-dist": "^4.11.1"
 	},
