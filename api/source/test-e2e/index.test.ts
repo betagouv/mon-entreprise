@@ -62,19 +62,6 @@ describe('e2e test mon-entreprise api', () => {
 		).resolves.toMatchSnapshot()
 	})
 
-	it('Test rules endpoint', async () => {
-		await expect(
-			chai
-				.request(server)
-				.get('/api/v1/rules')
-				.then((res) => {
-					expect(res.status).toMatchInlineSnapshot('200')
-
-					return JSON.parse(res.text) as Record<string, unknown>
-				})
-		).resolves.toMatchSnapshot()
-	})
-
 	it('Test openapi.json endpoint', async () => {
 		await expect(
 			chai
