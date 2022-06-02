@@ -1,3 +1,8 @@
+## 0.5.0
+
+Fixe une version de publicodes minimum en peerDependancy.
+Réecrit les règles pour fonctionner avec la dernière version de publicodes (=40)
+
 ### 0.4.4
 
 Répare les conditions de LFR1

@@ -1,6 +1,6 @@
 {
 	"name": "modele-social",
-	"version": "0.6.1",
+	"version": "0.7.0",
 	"description": "Les règles publicodes du système social français",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",
@@ -20,10 +20,10 @@
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
 		"onchange": "^7.1.0",
-		"publicodes": "=1.0.0-beta.40"
+		"publicodes": "=1.0.0-beta.41"
 	},
 	"peerDependencies": {
-		"publicodes": "*"
+		"publicodes": "^1.0.0-beta.41"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",
