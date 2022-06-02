@@ -191,7 +191,7 @@ function Home() {
 
 	const setEntreprise = useSetEntreprise()
 
-	const updateEntrprise =
+	const updateEntreprise =
 		overwrite &&
 		!entreprisePending &&
 		!entrepriseNotFound &&
@@ -199,11 +199,11 @@ function Home() {
 		entreprise.siren !== engineSiren
 
 	useEffect(() => {
-		if (updateEntrprise) {
+		if (updateEntreprise) {
 			setEntreprise(entreprise)
 			setOverwrite(false)
 		}
-	}, [entreprise, setEntreprise, updateEntrprise])
+	}, [entreprise, setEntreprise, updateEntreprise])
 
 	if (
 		gérerPath &&
