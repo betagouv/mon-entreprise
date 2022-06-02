@@ -7780,7 +7780,7 @@ __metadata:
     koa: ^2.13.4
     koa-body: ^5.0.0
     koa-static: ^5.0.0
-    modele-social: ^0.6.1
+    modele-social: "workspace:^"
     nodemon: ^2.0.16
     publicodes: ^1.0.0-beta.41
     rimraf: ^3.0.2
@@ -16487,15 +16487,6 @@ __metadata:
   version: 0.4.0
   resolution: "mktemp@npm:0.4.0"
   checksum: f67d8b1ed599807a4ec154efc6a50d61b28f4183fa740c4fe3bd75ce8442d84a3b8fca382fb3cb4e20bb883cb14478a7fe549c4eab6135cd213163ca5083f0fe
-  languageName: node
-  linkType: hard
-
-"modele-social@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "modele-social@npm:0.6.1"
-  peerDependencies:
-    publicodes: ^1.0.0-beta.32
-  checksum: b0bcdb859a739616de31d184e9f2eb5fc7f8b6a3d376976f0d62acf3847a476393d7d387a965056033e9ca718436add48e44b543a59b6235dbff87c89cdefbd3
   languageName: node
   linkType: hard
 
