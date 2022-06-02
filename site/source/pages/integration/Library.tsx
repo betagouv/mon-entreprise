@@ -26,7 +26,7 @@ export default function Library() {
 				<Body>
 					Toutes nos règles de calculs sont écrites en `publicodes`, un language
 					déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder des
-					algorithme d'intérêt public.{' '}
+					algorithmes d'intérêt public.{' '}
 					<Link href="https://publi.codes">En savoir plus sur publicodes</Link>
 				</Body>
 				<Body>

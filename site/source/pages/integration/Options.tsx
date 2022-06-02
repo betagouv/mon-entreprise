@@ -40,14 +40,14 @@ export default function Options() {
 				</Intro>
 			</PageHeader>
 			<Grid container spacing={2}>
-				<Grid item xs={12} md={6} xl={3}>
+				<Grid item xs={12} md={6} lg={4}>
 					<Card
 						icon={<Emoji emoji="📱" />}
 						title={t(
 							'pages.développeurs.home.choice.iframe.title',
 							'Intégrer un simulateur'
 						)}
-						to={sitePaths.integration.iframe}
+						to={sitePaths.développeur.iframe}
 						ctaLabel={t(
 							'pages.développeurs.home.choice.iframe.cta',
 							'Commencer'
@@ -61,24 +61,27 @@ export default function Options() {
 						</Body>
 					</Card>
 				</Grid>
-				<Grid item xs={12} md={6} xl={3}>
+
+				<Grid item xs={12} md={6} lg={4}>
 					<Card
-						icon={<Emoji emoji="🧰" />}
+						icon={<Emoji emoji="👩‍💻" />}
 						title={t(
-							'pages.développeurs.choice.library.title',
-							'Libraire de calcul'
+							'pages.développeurs.home.choice.api.title',
+							'Utiliser notre API REST'
 						)}
-						to={sitePaths.integration.library}
-						ctaLabel={t('pages.développeurs.choice.library.cta', 'Commencer')}
+						to={sitePaths.développeur.api}
+						ctaLabel={t('pages.développeurs.home.choice.api.cta', 'Commencer')}
 					>
-						<Trans i18nKey="pages.développeurs.choice.library.body">
-							L'intégralité du moteur de calcul socio-fiscal développé par
-							l'Urssaf, mis à disposition librement sous forme de bibliothèque
-							NPM.
-						</Trans>
+						<Body>
+							<Trans i18nKey="pages.développeurs.home.choice.api.body">
+								Utiliser nos simulateurs via notre API ouverte aussi bien sur
+								votre serveur que dans vos fichier Excel/GSheets.
+							</Trans>
+						</Body>
 					</Card>
 				</Grid>
-				<Grid item xs={12} md={6} xl={3}>
+
+				<Grid item xs={12} md={6} lg={4}>
 					<Card
 						icon={
 							<svg
@@ -108,7 +111,25 @@ export default function Options() {
 					</Card>
 				</Grid>
 
-				<Grid item xs={12} md={6} xl={3}>
+				<Grid item xs={12} md={6} lg={4}>
+					<Card
+						icon={<Emoji emoji="🧰" />}
+						title={t(
+							'pages.développeurs.choice.library.title',
+							'Libraire de calcul'
+						)}
+						to={sitePaths.développeur.library}
+						ctaLabel={t('pages.développeurs.choice.library.cta', 'Commencer')}
+					>
+						<Trans i18nKey="pages.développeurs.choice.library.body">
+							L'intégralité du moteur de calcul socio-fiscal développé par
+							l'Urssaf, mis à disposition librement sous forme de bibliothèque
+							NPM.
+						</Trans>
+					</Card>
+				</Grid>
+
+				<Grid item xs={12} md={6} lg={4}>
 					<Card
 						icon={<Emoji emoji="📚" />}
 						title={t(

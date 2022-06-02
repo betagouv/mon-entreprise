@@ -76,6 +76,9 @@ export default defineConfig(({ command }) => ({
 				'!**/node_modules/publicodes-react/**',
 			],
 		},
+		proxy: {
+			'/api': 'http://localhost:3004',
+		},
 	},
 	optimizeDeps: {
 		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],

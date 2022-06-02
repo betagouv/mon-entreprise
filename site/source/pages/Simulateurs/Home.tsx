@@ -131,7 +131,7 @@ export default function Simulateurs() {
 						<Li>
 							<Strong>Intégrables facilement et gratuitement</Strong> sur
 							n'importe quel site internet.{' '}
-							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
+							<Link to={sitePaths.développeur.iframe}>En savoir plus</Link>.
 						</Li>
 					</Ul>
 				</Trans>
