@@ -83,10 +83,11 @@ const rawSitePathsFr = {
 	stats: '/stats',
 	accessibilité: '/accessibilité',
 	budget: '/budget',
-	integration: {
-		index: '/intégration',
+	développeur: {
+		index: '/développeur',
 		iframe: '/iframe',
 		library: '/bibliothèque-de-calcul',
+		api: '/api',
 	},
 	documentation: {
 		index: '/documentation',
@@ -159,11 +160,11 @@ const rawSitePathsEn = {
 	},
 	nouveautés: '/news',
 	accessibilité: '/accessibility',
-
-	integration: {
-		...rawSitePathsFr.integration,
-		index: '/integration',
+	développeur: {
+		...rawSitePathsFr.développeur,
+		index: '/developer',
 		library: '/library',
+		api: '/api',
 	},
 } as const
 

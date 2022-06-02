@@ -88,7 +88,7 @@ export default function Footer() {
 							<FooterColumn>
 								<ul>
 									<li>
-										<Link to={sitePaths.integration.index}>
+										<Link to={sitePaths.développeur.index}>
 											<Trans>Intégrer nos simulateurs</Trans>
 										</Link>
 									</li>

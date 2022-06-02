@@ -130,7 +130,7 @@ const App = () => {
 						path={sitePaths.documentation.index}
 						component={Documentation}
 					/>
-					<Route path={sitePaths.integration.index} component={Integration} />
+					<Route path={sitePaths.développeur.index} component={Integration} />
 					<Route path={sitePaths.nouveautés} component={Nouveautés} />
 					<Route path={sitePaths.stats} component={Stats} />
 					<Route path={sitePaths.budget} component={Budget} />

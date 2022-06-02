@@ -1,7 +1,6 @@
 import { execOnFileChange } from './execOnFileChange.js'
 
-console.log('Search for changed file.')
-console.time('Done in')
+console.log('Search for changed file...')
 
 const results = await execOnFileChange({
 	basePath: './',
@@ -30,5 +29,3 @@ results
 			console.error(result.stderr)
 		}
 	})
-
-console.timeEnd('Done in')
