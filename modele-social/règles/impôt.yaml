@@ -292,7 +292,7 @@ impôt . foyer fiscal . situation de famille . veuf:
 
 impôt . foyer fiscal . enfants à charge:
   question: Combien d'enfants sont à charge du foyer fiscal ?
-  par défaut: 0 enfants
+  par défaut: 0 enfant
 
 impôt . foyer fiscal . parent isolé:
   par défaut: non
@@ -305,11 +305,11 @@ impôt . foyer fiscal . parent isolé:
           texte: Vivez-vous seul avec votre enfant ?
   applicable si:
     toutes ces conditions:
-      - enfants à charge > 0 enfants
+      - enfants à charge > 0 enfant
       - situation de famille = 'célibataire'
 
 impôt . foyer fiscal . nombre de parts:
-  unité: parts
+  unité: part
   formule:
     somme:
       - principales
@@ -321,12 +321,12 @@ impôt . foyer fiscal . nombre de parts . principales:
   formule:
     variations:
       - si: situation de famille = 'couple'
-        alors: 2 parts
+        alors: 2 part
       - sinon: 1 part
 
 impôt . foyer fiscal . nombre de parts . rattachées:
   variations:
-    - si: enfants à charge <= 2 enfants
+    - si: enfants à charge <= 2 enfant
       alors: 0.5 part/enfant * enfants à charge
     - sinon: (1 part/enfant * enfants à charge) - 1 part
 
@@ -364,16 +364,15 @@ impôt . foyer fiscal . taux effectif:
     - sinon: impôt à payer / revenu imposable . revenu brut
 
 impôt . foyer fiscal . revenu imposable:
-  formule:
-    somme:
-      - revenu d'activité abattu
-      - applicable si:
-          toutes ces conditions:
-            - dirigeant . rémunération . imposable
-            - entreprise . imposition . IR
-        valeur: dirigeant . rémunération . imposable
-      - bénéficiaire . dividendes . imposables
-      - autres revenus imposables
+  somme:
+    - revenu d'activité abattu
+    - applicable si:
+        toutes ces conditions:
+          - dirigeant . rémunération . imposable
+          - entreprise . imposition . IR
+      valeur: dirigeant . rémunération . imposable
+    - bénéficiaire . dividendes . imposables
+    - autres revenus imposables
 
 impôt . foyer fiscal . revenu imposable . revenu brut:
   somme:
@@ -485,7 +484,7 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an
-  formule: revenu imposable / nombre de parts
+  valeur: revenu imposable / nombre de parts
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   somme:
