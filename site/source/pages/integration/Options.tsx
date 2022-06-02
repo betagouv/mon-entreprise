@@ -31,7 +31,7 @@ export default function Options() {
 				}
 			>
 				<Intro>
-					<Trans i18nKey="pages.développeurs.home.description">
+					<Trans i18nKey="pages.développeur.home.description">
 						En plus du site mon-entreprise, nous mettons à disposition des
 						outils gratuits et libres à intégrer sur votre site web. Vous pouvez
 						ainsi inclure les outils créés pour <strong>mon-entreprise</strong>{' '}
@@ -44,17 +44,17 @@ export default function Options() {
 					<Card
 						icon={<Emoji emoji="📱" />}
 						title={t(
-							'pages.développeurs.home.choice.iframe.title',
+							'pages.développeur.home.choice.iframe.title',
 							'Intégrer un simulateur'
 						)}
 						to={sitePaths.développeur.iframe}
 						ctaLabel={t(
-							'pages.développeurs.home.choice.iframe.cta',
+							'pages.développeur.home.choice.iframe.cta',
 							'Commencer'
 						)}
 					>
 						<Body>
-							<Trans i18nKey="pages.développeurs.home.choice.iframe.body">
+							<Trans i18nKey="pages.développeur.home.choice.iframe.body">
 								Intégrer l'un de nos simulateurs en un clic dans votre site Web,
 								via un script clé en main.
 							</Trans>
@@ -66,14 +66,14 @@ export default function Options() {
 					<Card
 						icon={<Emoji emoji="👩‍💻" />}
 						title={t(
-							'pages.développeurs.home.choice.api.title',
+							'pages.développeur.home.choice.api.title',
 							'Utiliser notre API REST'
 						)}
 						to={sitePaths.développeur.api}
-						ctaLabel={t('pages.développeurs.home.choice.api.cta', 'Commencer')}
+						ctaLabel={t('pages.développeur.home.choice.api.cta', 'Commencer')}
 					>
 						<Body>
-							<Trans i18nKey="pages.développeurs.home.choice.api.body">
+							<Trans i18nKey="pages.développeur.home.choice.api.body">
 								Utiliser nos simulateurs via notre API ouverte aussi bien sur
 								votre serveur que dans vos fichier Excel/GSheets.
 							</Trans>
@@ -98,13 +98,13 @@ export default function Options() {
 							</svg>
 						}
 						title={t(
-							'pages.développeurs.choice.github.title',
+							'pages.développeur.choice.github.title',
 							'Contribuer sur GitHub'
 						)}
-						ctaLabel={t('pages.développeurs.choice.github.cta', 'Commencer')}
+						ctaLabel={t('pages.développeur.choice.github.cta', 'Commencer')}
 						href="https://github.com/betagouv/mon-entreprise"
 					>
-						<Trans i18nKey="pages.développeurs.choice.github.body">
+						<Trans i18nKey="pages.développeur.choice.github.body">
 							Tous nos outils sont ouverts et développés publiquement sur
 							GitHub.
 						</Trans>
@@ -115,13 +115,13 @@ export default function Options() {
 					<Card
 						icon={<Emoji emoji="🧰" />}
 						title={t(
-							'pages.développeurs.choice.library.title',
+							'pages.développeur.choice.library.title',
 							'Libraire de calcul'
 						)}
 						to={sitePaths.développeur.library}
-						ctaLabel={t('pages.développeurs.choice.library.cta', 'Commencer')}
+						ctaLabel={t('pages.développeur.choice.library.cta', 'Commencer')}
 					>
-						<Trans i18nKey="pages.développeurs.choice.library.body">
+						<Trans i18nKey="pages.développeur.choice.library.body">
 							L'intégralité du moteur de calcul socio-fiscal développé par
 							l'Urssaf, mis à disposition librement sous forme de bibliothèque
 							NPM.
@@ -132,17 +132,11 @@ export default function Options() {
 				<Grid item xs={12} md={6} lg={4}>
 					<Card
 						icon={<Emoji emoji="📚" />}
-						title={t(
-							'pages.développeurs.choice.publicodes.title',
-							'Publicodes'
-						)}
-						ctaLabel={t(
-							'pages.développeurs.choice.publicodes.cta',
-							'Découvrir'
-						)}
+						title={t('pages.développeur.choice.publicodes.title', 'Publicodes')}
+						ctaLabel={t('pages.développeur.choice.publicodes.cta', 'Découvrir')}
 						href="https://publi.codes/"
 					>
-						<Trans i18nKey="pages.développeurs.choice.publicodes.body">
+						<Trans i18nKey="pages.développeur.choice.publicodes.body">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
 							encoder des algorithmes “explicables”.
 						</Trans>

@@ -45,7 +45,7 @@ export default function API() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
-			<Trans i18nKey="pages.dévelopeurs.api">
+			<Trans i18nKey="pages.développeur.api">
 				<H1>Utiliser notre API REST</H1>
 				<Body>
 					Si votre site ou service requiert de faire des calculs de salaire, par
@@ -69,7 +69,7 @@ export default function API() {
 				<Body></Body>
 				{/* <H3>Installation</H3> */}
 				<pre>
-					<code>{js}</code>
+					<code>{{ js }}</code>
 				</pre>
 
 				<div

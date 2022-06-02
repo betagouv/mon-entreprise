@@ -9,7 +9,7 @@ export default function Library() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
-			<Trans i18nKey="pages.dévelopeurs.bibliothèque">
+			<Trans i18nKey="pages.développeur.bibliothèque">
 				<H1>Intégrez notre bibliothèque de calcul</H1>
 				<Body>
 					Si vous pensez que votre site ou service gagnerait à afficher des
