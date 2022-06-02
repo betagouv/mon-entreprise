@@ -14,7 +14,7 @@
 	],
 	"scripts": {
 		"pre-commit": "yarn workspaces foreach -pi run pre-commit",
-		"scalingo-postbuild": "CI=true ; yarn test:type && yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
+		"scalingo-postbuild": "CI=true ; yarn test:type && yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test && yarn workspaces focus api --production",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
