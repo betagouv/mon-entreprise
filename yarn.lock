@@ -6068,7 +6068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chai@npm:^4.3.1":
+"@types/chai@npm:4, @types/chai@npm:^4.3.1":
   version: 4.3.1
   resolution: "@types/chai@npm:4.3.1"
   checksum: 2ee246b76c469cd620a7a1876a73bc597074361b67d547b4bd96a0c1adb43597ede2d8589ab626192e14349d83cbb646cc11e2c179eeeb43ff11596de94d82c4
@@ -6088,6 +6088,13 @@ __metadata:
   version: 0.5.5
   resolution: "@types/content-disposition@npm:0.5.5"
   checksum: fdf7379db1d509990bcf9a21d85f05aad878596f28b1418f9179f6436cb22513262c670ce88c6055054a7f5804a9303eeacb70aa59a5e11ffdc1434559db9692
+  languageName: node
+  linkType: hard
+
+"@types/cookiejar@npm:*":
+  version: 2.1.2
+  resolution: "@types/cookiejar@npm:2.1.2"
+  checksum: f6e1903454007f86edd6c3520cbb4d553e1d4e17eaf1f77f6f75e3270f48cc828d74397a113a36942f5fe52f9fa71067bcfa738f53ad468fcca0bc52cb1cbd28
   languageName: node
   linkType: hard
 
@@ -6737,6 +6744,16 @@ __metadata:
     "@types/react": "*"
     csstype: ^3.0.2
   checksum: 158c69085ad899622f558426c623d3052f7b521ede01c0fd342280c93ef2ac462a39c4c3b2374e7c7e2630fcc64dfcfd8f4446c8d4809cbac9a7b962a73357c0
+  languageName: node
+  linkType: hard
+
+"@types/superagent@npm:^3.8.3":
+  version: 3.8.7
+  resolution: "@types/superagent@npm:3.8.7"
+  dependencies:
+    "@types/cookiejar": "*"
+    "@types/node": "*"
+  checksum: 87ca335703f203c5f558977f4a7cd29fef792698007952631575518085f1604791b7a85ceb4f03b395a20ce82f4e8c87d78b1a142b3721f5043195329a4bfc00
   languageName: node
   linkType: hard
 
@@ -7759,15 +7776,18 @@ __metadata:
     "@types/koa__router": ^8.0.11
     "@types/node": ^17.0.35
     "@types/swagger-ui-dist": ^3.30.1
+    chai-http: ^4.3.0
     koa: ^2.13.4
     koa-body: ^5.0.0
     koa-static: ^5.0.0
     modele-social: ^0.6.1
     nodemon: ^2.0.16
     publicodes: ^1.0.0-beta.41
+    rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
     ts-node: ^10.8.0
     typescript: ^4.7.2
+    vitest: ^0.13.1
     wait-on: ^6.0.1
   languageName: unknown
   linkType: soft
@@ -9154,6 +9174,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chai-http@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "chai-http@npm:4.3.0"
+  dependencies:
+    "@types/chai": 4
+    "@types/superagent": ^3.8.3
+    cookiejar: ^2.1.1
+    is-ip: ^2.0.0
+    methods: ^1.1.2
+    qs: ^6.5.1
+    superagent: ^3.7.0
+  checksum: 273275ca08518145898e1c10adc1a2c8bbf79bd03415c4213a88a67e2c90fac3d611a25812bcffb59fce80399a914dd01a2014515daa5bec84cbb75a23c837a5
+  languageName: node
+  linkType: hard
+
 "chai@npm:^4.3.6":
   version: 4.3.6
   resolution: "chai@npm:4.3.6"
@@ -9718,7 +9753,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"component-emitter@npm:^1.2.1":
+"component-emitter@npm:^1.2.0, component-emitter@npm:^1.2.1":
   version: 1.3.0
   resolution: "component-emitter@npm:1.3.0"
   checksum: b3c46de38ffd35c57d1c02488355be9f218e582aec72d72d1b8bbec95a3ac1b38c96cd6e03ff015577e68f550fbb361a3bfdbd9bb248be9390b7b3745691be6b
@@ -9851,6 +9886,13 @@ __metadata:
   version: 0.4.2
   resolution: "cookie@npm:0.4.2"
   checksum: a00833c998bedf8e787b4c342defe5fa419abd96b32f4464f718b91022586b8f1bafbddd499288e75c037642493c83083da426c6a9080d309e3bd90fd11baa9b
+  languageName: node
+  linkType: hard
+
+"cookiejar@npm:^2.1.0, cookiejar@npm:^2.1.1":
+  version: 2.1.3
+  resolution: "cookiejar@npm:2.1.3"
+  checksum: 88259983ebc52ceb23cdacfa48762b6a518a57872eff1c7ed01d214fff5cf492e2660d7d5c04700a28f1787a76811df39e8639f8e17670b3cf94ecd86e161f07
   languageName: node
   linkType: hard
 
@@ -12691,6 +12733,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"form-data@npm:^2.3.1":
+  version: 2.5.1
+  resolution: "form-data@npm:2.5.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.6
+    mime-types: ^2.1.12
+  checksum: 5134ada56cc246b293a1ac7678dba6830000603a3979cf83ff7b2f21f2e3725202237cfb89e32bcb38a1d35727efbd3c3a22e65b42321e8ade8eec01ce755d08
+  languageName: node
+  linkType: hard
+
 "form-data@npm:^3.0.0":
   version: 3.0.1
   resolution: "form-data@npm:3.0.1"
@@ -12710,6 +12763,13 @@ __metadata:
     combined-stream: ^1.0.6
     mime-types: ^2.1.12
   checksum: 10c1780fa13dbe1ff3100114c2ce1f9307f8be10b14bf16e103815356ff567b6be39d70fc4a40f8990b9660012dc24b0f5e1dde1b6426166eb23a445ba068ca3
+  languageName: node
+  linkType: hard
+
+"formidable@npm:^1.2.0":
+  version: 1.2.6
+  resolution: "formidable@npm:1.2.6"
+  checksum: 2b68ed07ba88302b9c63f8eda94f19a460cef6017bfda48348f09f41d2a36660c9353137991618e0e4c3db115b41e4b8f6fa63bc973b7a7c91dec66acdd02a56
   languageName: node
   linkType: hard
 
@@ -14147,6 +14207,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ip-regex@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "ip-regex@npm:2.1.0"
+  checksum: 331d95052aa53ce245745ea0fc3a6a1e2e3c8d6da65fa8ea52bf73768c1b22a9ac50629d1d2b08c04e7b3ac4c21b536693c149ce2c2615ee4796030e5b3e3cba
+  languageName: node
+  linkType: hard
+
 "ip@npm:^1.1.5":
   version: 1.1.5
   resolution: "ip@npm:1.1.5"
@@ -14511,6 +14578,15 @@ __metadata:
   dependencies:
     is-glob: ^2.0.0
   checksum: 184dd40d9c7a765506e4fdcd7e664f86de68a4d5d429964b160255fe40de1b4323d1b4e6ea76ff87debf788a330e4f27cb1dfe5fc2420405e1c8a16a6ed87092
+  languageName: node
+  linkType: hard
+
+"is-ip@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "is-ip@npm:2.0.0"
+  dependencies:
+    ip-regex: ^2.0.0
+  checksum: ad85d3a0bccca2c0096f5067b8f5fd0a0f9a26e5ed0990bb88eca004853422fbec4a26ec7a70342888f866074a9720b2cc11428e26c5950d6822a1dbefb80307
   languageName: node
   linkType: hard
 
@@ -16125,7 +16201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"methods@npm:^1.1.2, methods@npm:~1.1.2":
+"methods@npm:^1.1.1, methods@npm:^1.1.2, methods@npm:~1.1.2":
   version: 1.1.2
   resolution: "methods@npm:1.1.2"
   checksum: 0917ff4041fa8e2f2fda5425a955fe16ca411591fbd123c0d722fcf02b73971ed6f764d85f0a6f547ce49ee0221ce2c19a5fa692157931cecb422984f1dcd13a
@@ -16198,7 +16274,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime@npm:1.6.0":
+"mime@npm:1.6.0, mime@npm:^1.4.1":
   version: 1.6.0
   resolution: "mime@npm:1.6.0"
   bin:
@@ -18235,7 +18311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0, qs@npm:^6.4.0":
+"qs@npm:^6.10.0, qs@npm:^6.4.0, qs@npm:^6.5.1":
   version: 6.10.3
   resolution: "qs@npm:6.10.3"
   dependencies:
@@ -20826,6 +20902,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"superagent@npm:^3.7.0":
+  version: 3.8.3
+  resolution: "superagent@npm:3.8.3"
+  dependencies:
+    component-emitter: ^1.2.0
+    cookiejar: ^2.1.0
+    debug: ^3.1.0
+    extend: ^3.0.0
+    form-data: ^2.3.1
+    formidable: ^1.2.0
+    methods: ^1.1.1
+    mime: ^1.4.1
+    qs: ^6.5.1
+    readable-stream: ^2.3.5
+  checksum: b13d0303259d76c9180bd40d97d9f0713760f5ced1aef089bdb2fcdf69cfaef89004cd6e986416d59bd9a2f0f9933d72521b5171fa26f89b781a2c3460c516fe
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^5.3.0, supports-color@npm:^5.5.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -21170,6 +21264,13 @@ __metadata:
   version: 0.1.2
   resolution: "tinypool@npm:0.1.2"
   checksum: 886ec64fcbd5a02336c2127973be3ee184d643f3ffc86d6e52752b0eb396b048801dc07e16fbb6012ab130f58104e0bbd59989ed21f5a49e707a661387e89f86
+  languageName: node
+  linkType: hard
+
+"tinypool@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "tinypool@npm:0.1.3"
+  checksum: 13ac687a23c03b02c2bf0b9711a3bb191d2c37941775a001b9617aac541c11ba144fb08de74f3f9723ec2649410f5d4fa7f0398fedd462b39fe3b30d19615ad8
   languageName: node
   linkType: hard
 
@@ -22375,6 +22476,38 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 9292b8ba510a393d0c61c407ebfb4eaa818b2d8d106b3476cdc94cb57a0c59348a535936d698db04b35910a1cfdb16aeaf872f0f995b54cf6d7ed31bc7886deb
+  languageName: node
+  linkType: hard
+
+"vitest@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "vitest@npm:0.13.1"
+  dependencies:
+    "@types/chai": ^4.3.1
+    "@types/chai-subset": ^1.3.3
+    chai: ^4.3.6
+    debug: ^4.3.4
+    local-pkg: ^0.4.1
+    tinypool: ^0.1.3
+    tinyspy: ^0.3.2
+    vite: ^2.9.9
+  peerDependencies:
+    "@vitest/ui": "*"
+    c8: "*"
+    happy-dom: "*"
+    jsdom: "*"
+  peerDependenciesMeta:
+    "@vitest/ui":
+      optional: true
+    c8:
+      optional: true
+    happy-dom:
+      optional: true
+    jsdom:
+      optional: true
+  bin:
+    vitest: vitest.mjs
+  checksum: 28006581e3c16f67838f1a7c2f08cd67415267849d5a2f46ece7fcceed683a1c2beb7c153d5e34e6891fd0f40d032ea0b3aa8775890f00c057fe0e91735114c7
   languageName: node
   linkType: hard
 
