@@ -8,7 +8,9 @@ import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>
 
-const unitsTranslations = Object.entries(i18n.getResourceBundle('fr', 'units'))
+const unitsTranslations = Object.entries(
+	i18n.getResourceBundle('fr', 'units') as Record<string, string>
+)
 const engineOptions = {
 	getUnitKey(unit: string): string {
 		const key = unitsTranslations
