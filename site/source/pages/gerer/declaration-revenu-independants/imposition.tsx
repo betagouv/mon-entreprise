@@ -7,6 +7,7 @@ import {
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
+import { RuleReferences } from '@/components/References'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -96,6 +97,19 @@ export default function Imposition() {
 										)}
 									</Markdown>
 								</Item>
+								<Item
+									key="ressources utiles"
+									title={t('Ressources utiles')}
+									hasChildItems={false}
+								>
+									<RuleReferences
+										dottedNames={[
+											'entreprise . imposition',
+											'entreprise . imposition . IS',
+											'entreprise . imposition . IR',
+										]}
+									/>
+								</Item>
 							</Accordion>
 							<ModifyInformation dottedName="entreprise . imposition">
 								Modifier le type d'imposition
@@ -144,6 +158,19 @@ export default function Imposition() {
 									) : (
 										(null as unknown as JSX.Element) // Problem with AriaAccordionProps type
 									)}
+									<Item
+										key="ressources utiles"
+										title={t('Ressources utiles')}
+										hasChildItems={false}
+									>
+										<RuleReferences
+											dottedNames={[
+												'entreprise . imposition . IR . type de bénéfices',
+												'entreprise . imposition . IR . type de bénéfices . BNC',
+												'entreprise . imposition . IR . type de bénéfices . BIC',
+											]}
+										/>
+									</Item>
 								</Accordion>
 								<WhenApplicable dottedName="DRI . accompagnement imposition . bénéfice . exceptions">
 									<ModifyInformation dottedName="entreprise . imposition . IR . type de bénéfices">

@@ -1,4 +1,3 @@
-import { useButton } from '@react-aria/button'
 import { FocusStyle } from '@/design-system/global-style'
 import { Chevron } from '@/design-system/icons'
 import { H4 } from '@/design-system/typography/heading'
@@ -9,6 +8,7 @@ import {
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -23,6 +23,7 @@ export function Article({
 	title,
 	ctaLabel,
 	children,
+
 	icon,
 	...ariaButtonProps
 }: ArticleProps) {
