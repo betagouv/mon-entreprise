@@ -2935,9 +2935,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.41":
-  version: 1.0.0-beta.41
-  resolution: "@publicodes/api@npm:1.0.0-beta.41"
+"@publicodes/api@npm:^1.0.0-beta.42":
+  version: 1.0.0-beta.42
+  resolution: "@publicodes/api@npm:1.0.0-beta.42"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -2946,7 +2946,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.40
-  checksum: 86a2c7146937b795720185c9fc937cadadd5cd894a485a4eee410dd5f0f41e5b1be399c71c22dbc8dcf51ad282ad53fe681b8890aff02bacc08a84a6f9f8e363
+  checksum: 1763f67efeb20aaabe4b0ade8fc8c73d021dfcb503cb836e0f58d20dabcce722bbeaa410748863dade9c20b875ffeadfd5242c6ab81e199c06a3e65ca1211325
   languageName: node
   linkType: hard
 
@@ -7769,7 +7769,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.41
+    "@publicodes/api": ^1.0.0-beta.42
     "@types/koa": ^2.13.4
     "@types/koa-static": ^4.0.2
     "@types/koa__cors": ^3.3.0
@@ -7782,7 +7782,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.41
+    publicodes: ^1.0.0-beta.42
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
     ts-node: ^10.8.0
@@ -18201,7 +18201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.41, publicodes@npm:^1.0.0-beta.41":
+"publicodes@npm:=1.0.0-beta.41":
   version: 1.0.0-beta.41
   resolution: "publicodes@npm:1.0.0-beta.41"
   dependencies:
@@ -18214,16 +18214,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.37":
-  version: 1.0.0-beta.37
-  resolution: "publicodes@npm:1.0.0-beta.37"
+"publicodes@npm:^1.0.0-beta.42":
+  version: 1.0.0-beta.42
+  resolution: "publicodes@npm:1.0.0-beta.42"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 44497196de20c33850df3357c614c6037fdacffb17ecbd4eed7796b27f94e390da1ac97861364f72f60c921116b945b24a1c7383327c2ba3aa3fab33b18953cd
+  checksum: be3bd5d77c55645689a7bfde61bd4d3d1cb66186dce4c4d0e8b0b78d97dc8cf66299af131381b0fa012b4ca004b619f5f63ce5838d8decb7ae1049b0e9a7cffa
   languageName: node
   linkType: hard
 
