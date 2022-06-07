@@ -82,6 +82,8 @@ const StyledAccordionItem = styled.div`
 const StyledButton = styled.button`
 	display: flex;
 	width: 100%;
+	background: none;
+	border: none;
 	justify-content: space-between;
 	${({ theme }) => css`
 		font-family: ${theme.fonts.main};
