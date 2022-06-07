@@ -896,30 +896,25 @@ pages:
         title: Comment déclarer son revenu aux impôts ?
   développeur:
     api: "<0>Utiliser notre API REST</0><1>Si votre site ou service requiert de
-      faire des calculs de salaire, par exemple passer du salaire brut au
+      faire des calculs sur des salaires, par exemple passer du salaire brut au
       salaire net, bonne nouvelle : tous les calculs de cotisations et impôts
-      qui sont derrière mon-entreprise sont libres et utilisé via notre <2>API
-      REST</2>.<4>Google Sheets</4></1><2>Comment utiliser cette API
-      ?</2><3>Toutes nos règles de calculs sont écrites en `publicodes`, un
+      qui sont derrière mon-entreprise sont libres et utilisable via notre
+      <2>API REST</2>.</1><2>Comment utiliser cette API ?</2><3>L'api
+      mon-entreprise est totalement ouverte et sans authentification, elle se
+      compose de 3 routes qui s'inspirent des méthodes de l'interpréteur
+      Publicodes : <1>/evaluate</1>, <4>/rules</4> et
+      <7>/rules/:rule</7>.</3><4><0>Qu'est ce que Publicodes ?</0><1>C'est un
       language déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder
-      des algorithmes d'intérêt public. <2>En savoir plus sur
-      publicodes</2></3><4></4><5><0>{{js}}</0></5><6><0></0></6><7>Lancer le
-      calcul</7><8>Il ne vous reste plus qu'à paramétrer le moteur avec les
-      règles du paquet `modele-social` et à appeler la fonction `evaluate` sur
-      la règle que dont vous souhaitez la valeur. Voici un exemple pour le
-      calcul brut / net</8><9>Paramétrer le calcul</9><10>Vous l'aurez constaté
-      dans l'exemple précédent, la recette d'un calcul est simple : des
-      variables d'entrée (le salaire brut), une ou plusieurs variables de
-      sorties (le salaire net).</10><11>Le calcul est cependant paramétrable
-      avec toutes les possibilités permise dans la legislation.</11><12>Toutes
-      ces variables sont listées et expliquées sur la <2>documentation en
-      ligne</2>. Cette documentation est auto-générée depuis les fichiers de
-      règles publicodes, elle est donc constamment à jour.</12><13>Lançons un
-      calcul plus proche d'une fiche de paie : voici une description de la
-      situation d'entrée annotée de liens vers les pages correspondantes de la
-      documentation :</13><14><0> Un <3>cadre</3> gagnant <7>3 400€ bruts</7> ,
-      qui bénéficie de <11>titres-restaurant</11> et qui travaille dans une
-      entreprise de <15>22 salariés</15>.</0></14>"
+      des algorithmes d'intérêt public.<1></1>Toutes nos règles de calculs sont
+      donc écrites dans ce language.<3></3><4>En savoir plus sur
+      publicodes</4></1></4><5>POST /evaluate</5><6>Permet d'évaluer les
+      expressions de publicode avec une situation donnée<1></1>Vous trouverez
+      plus d'infos sur la structure du JSON à envoyer sur notre
+      <4>Swagger</4>.</6><7>GET /rules</7><8>Permet de récupérer toutes les
+      règles publicodes</8><9>GET /rules/:rule</9><10>Permet de récupérer une
+      règle publicodes</10><11>Exemple</11><12>Voici un exemple d'utilisation
+      des différentes routes, vous pouvez explorer leur code dans le dossier
+      <1>example</1></12><13><0></0></13>"
     bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
       votre site ou service gagnerait à afficher des calculs de salaire, par
       exemple passer du salaire brut au salaire net, bonne nouvelle : tous les

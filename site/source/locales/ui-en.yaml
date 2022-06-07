@@ -1132,29 +1132,24 @@ pages:
         cta: See the help
         title: How to declare your income to the tax authorities?
   développeur:
-    api: "<0>Use our REST API</0><1>If your site or service requires salary
-      calculations, such as going from gross to net salary, good news: all the
-      tax and contribution calculations behind my-company are free and used via
-      our <2>REST API</2>.<4>Google Sheets</4></1><2>How to use this
-      API?</2><3>All our calculation rules are written in `publicodes`, a
+    api: "<0>Use our REST API</0><1>If your website or service requires to make
+      calculations on salaries, for example to switch from gross to net salary,
+      good news: all the calculations of contributions and taxes that are behind
+      my-company are free and usable via our <2>REST API</2>.</1><2>How to use
+      this API?</2><3>The my-company api is totally open and without
+      authentication, it is composed of 3 routes inspired by the methods of the
+      Publicodes interpreter: <1>/evaluate</1>, <4>/rules</4> and
+      <7>/rules/:rule</7>.</3><4><0>What is Publicodes?</0><1>It is a
       declarative language developed by beta.gouv.fr and the Urssaf to encode
-      algorithms of public interest. <2>Learn more about
-      publicodes</2></3><4></4><5><0>{{js}}</0></5><6><0></0></6><7>Launch the
-      calculation</7><8>All you have to do is to set the engine with the rules
-      of the `social-modele` package and to call the `evaluate` function on the
-      rule you want the value of. Here is an example for the gross/net
-      calculation</8><9>Setting up the calculation</9><10>As you can see in the
-      previous example, the recipe for a calculation is simple: input variables
-      (the gross salary), one or more output variables (the net
-      salary).</10><11>The calculation is however configurable with all the
-      possibilities allowed in the legislation.</11><12>All these variables are
-      listed and explained in the <2>online documentation</2>. This
-      documentation is auto-generated from the publicode rules files, so it is
-      constantly updated.</12><13>Let's run a calculation closer to a pay slip:
-      here is a description of the input situation annotated with links to the
-      corresponding pages in the documentation:</13><14><0> An <3>executive</3>
-      earning <7>3,400€ gross</7>, who benefits from <11>meal vouchers</11> and
-      who works in a company with <15>22 employees</15>.</0></14>"
+      public interest algorithms.<1></1>All our calculation rules are written in
+      this language.<3></3><4>Learn more about publicodes</4></1></4><5>POST
+      /evaluate</5><6>Allows to evaluate the expressions of publicode with a
+      given situation<1></1>You will find more info on the structure of the JSON
+      to send on our <4>Swagger</4>.</6><7>GET /rules</7><8>Retrieve all
+      publicode rules</8><9>GET /rules/:rule</9><10>Retrieve a publicodes
+      rule</10><11>Example</11><12>Here is an example of how to use the
+      different routes, you can explore their code in the
+      <1>example</1>folder</12><13><0></0></13>"
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
