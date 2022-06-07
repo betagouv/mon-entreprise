@@ -105,6 +105,8 @@ export default function SearchField(
 const StyledClearButton = styled.button`
 	position: absolute;
 	right: 0;
+	background: none;
+	border: none;
 	font-size: 2rem;
 	line-height: 2rem;
 	height: ${({ theme }) => theme.spacings.xxxl};
