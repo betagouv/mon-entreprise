@@ -510,7 +510,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       },
     },
   ],
-  "situationError": null,
 }
 `;
 
@@ -734,7 +733,6 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
       },
     },
   ],
-  "situationError": null,
 }
 `;
 
@@ -758,81 +756,79 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
       },
       "EvaluateResponse": {
         "description": "Schéma retourné par l'endpoint evaluate",
-        "properties": {
-          "evaluate": {
-            "items": {
-              "anyOf": [
-                {
-                  "properties": {
-                    "missingVariables": {
-                      "items": {
-                        "type": "string",
-                      },
-                      "type": "array",
-                    },
-                    "nodeValue": {
-                      "type": "number",
-                    },
-                    "traversedVariables": {
-                      "items": {
-                        "type": "string",
-                      },
-                      "type": "array",
-                    },
-                  },
-                  "type": "object",
-                },
-                {
-                  "properties": {
-                    "error": {
+        "oneOf": [
+          {
+            "properties": {
+              "evaluate": {
+                "items": {
+                  "anyOf": [
+                    {
                       "properties": {
-                        "message": {
-                          "type": "string",
+                        "missingVariables": {
+                          "items": {
+                            "type": "string",
+                          },
+                          "type": "array",
+                        },
+                        "nodeValue": {
+                          "type": "number",
+                        },
+                        "traversedVariables": {
+                          "items": {
+                            "type": "string",
+                          },
+                          "type": "array",
                         },
                       },
                       "type": "object",
                     },
-                  },
-                  "type": "object",
+                    {
+                      "properties": {
+                        "error": {
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                            },
+                          },
+                          "type": "object",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  ],
                 },
-              ],
-            },
-            "type": "array",
-          },
-          "situationError": {
-            "nullable": true,
-            "properties": {
-              "message": {
-                "type": "string",
+                "type": "array",
               },
             },
             "type": "object",
           },
-        },
-        "type": "object",
+          {
+            "properties": {
+              "situationError": {
+                "properties": {
+                  "message": {
+                    "type": "string",
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "type": "object",
+          },
+        ],
       },
       "Expressions": {
         "description": "Une expression ou un tableau d'expressions Publicodes",
         "oneOf": [
           {
             "items": {
-              "oneOf": [
-                {
-                  "type": "string",
-                },
-                {
-                  "type": "object",
-                },
-              ],
+              "$ref": "#/components/schemas/PublicodesExpression",
             },
             "minItems": 1,
             "type": "array",
           },
           {
-            "type": "string",
-          },
-          {
-            "type": "object",
+            "$ref": "#/components/schemas/PublicodesExpression",
           },
         ],
       },
@@ -861,6 +857,22 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
           "type": "object",
         },
         "type": "array",
+      },
+      "PublicodesExpression": {
+        "description": "Une expression Publicodes",
+        "oneOf": [
+          {
+            "type": "number",
+          },
+          {
+            "type": "string",
+          },
+          {
+            "additionalProperties": {},
+            "minProperties": 1,
+            "type": "object",
+          },
+        ],
       },
       "Rule": {
         "properties": {
@@ -904,7 +916,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
       },
       "Situation": {
         "additionalProperties": {
-          "type": "string",
+          "$ref": "#/components/schemas/PublicodesExpression",
         },
         "description": "La situation avec laquelle l'expression ou les expressions seront évaluées",
         "type": "object",
@@ -920,7 +932,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
   "paths": {
     "/evaluate": {
       "post": {
-        "operationId": "/evaluate",
+        "operationId": "evaluate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -961,7 +973,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
     },
     "/rules": {
       "get": {
-        "operationId": "/rules",
+        "operationId": "rules",
         "responses": {
           "200": {
             "content": {
@@ -992,7 +1004,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
     },
     "/rules/{rule}": {
       "get": {
-        "operationId": "/rules/{rule}",
+        "operationId": "rules-rule",
         "parameters": [
           {
             "description": "Rule to get",
