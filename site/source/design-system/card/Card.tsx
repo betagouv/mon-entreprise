@@ -1,6 +1,6 @@
 import { StyledButton } from '@/design-system/buttons/Button'
 import { FocusStyle } from '@/design-system/global-style'
-import { H3, HeadingUnderline } from '@/design-system/typography/heading'
+import { H3, H4, HeadingUnderline } from '@/design-system/typography/heading'
 import {
 	GenericButtonOrLinkProps,
 	NewWindowLinkIcon,
@@ -44,7 +44,12 @@ export function Card({
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
 				{icon && <IconContainer>{icon}</IconContainer>}
-				{title && <StyledHeader {...titleProps} />}
+				{title &&
+					(compact ? (
+						<CompactStyledHeader {...titleProps} />
+					) : (
+						<StyledHeader {...titleProps} />
+					))}
 				<div
 					css={`
 						flex: 1;
@@ -84,7 +89,9 @@ export function getTitleProps(children: React.ReactNode, as: keyof ReactHTML) {
 
 	return { as, children }
 }
-
+const CompactStyledHeader = styled(H4)`
+	text-align: center;
+`
 const StyledHeader = styled(H3)`
 	text-align: center;
 	${HeadingUnderline}
