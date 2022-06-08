@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-18.04
     outputs:
       env-name: ${{ steps.deploy-env.outputs.name }}
+      api_url: ${{ steps.base-urls.outputs.api }}
       fr_url: ${{ steps.base-urls.outputs.fr }}
       en_url: ${{ steps.base-urls.outputs.en }}
     steps:
@@ -28,12 +29,14 @@ jobs:
         run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
       - id: base-urls
         run:
+          echo "::set-output name=api::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise-api.osc-fr1.scalingo.io' || format('https://mon-entreprise-api-pr{0}.osc-fr1.scalingo.io', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
           echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
 
   build:
     needs: deploy-context
     env:
+      API_BASE_URL: ${{ needs.deploy-context.outputs.api_url }}
       VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-18.04
@@ -62,6 +65,7 @@ jobs:
           yarn workspace site build:prerender
       - name: Replace site placeholders in netlify.toml redirection file
         run: |
+          sed -i "s|:API_URL|$API_BASE_URL|g" site/netlify.toml;
           sed -i "s|:SITE_FR|$VITE_FR_BASE_URL|g" site/netlify.toml;
           sed -i "s|:SITE_EN|$VITE_EN_BASE_URL|g" site/netlify.toml;
       - name: Update Algolia index
