@@ -18,7 +18,7 @@ export default Sentry
 
 // not mandatory, but adding domains does help a lot with breadcrumbs
 export const requestHandler = (ctx: Context, next: Next) => {
-	return new Promise<void>((resolve, reject) => {
+	return new Promise<void>((resolve) => {
 		const local = Domains.create()
 		local.add(ctx as never)
 		local.on('error', (err) => {
