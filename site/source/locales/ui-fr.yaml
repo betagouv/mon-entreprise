@@ -985,8 +985,8 @@ pages:
     home:
       choice:
         api:
-          body: Utiliser nos simulateurs via notre API ouverte aussi bien sur votre
-            serveur que dans vos fichier Excel/GSheets.
+          body: Utilisez nos simulateurs via notre API ouverte dans vos différents
+            services.
           cta: Commencer
           title: Utiliser notre API REST
         iframe:
@@ -994,6 +994,10 @@ pages:
             script clé en main.
           cta: Commencer
           title: Intégrer un simulateur
+        spreadsheet:
+          body: Utilisez nos simulateurs dans vos fichiers Excel/Sheets.
+          cta: Commencer
+          title: Utiliser avec un tableur
       description: En plus du site mon-entreprise, nous mettons à disposition des
         outils gratuits et libres à intégrer sur votre site web. Vous pouvez
         ainsi inclure les outils créés pour <1>mon-entreprise</1> directement
@@ -1013,6 +1017,16 @@ pages:
         réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
         apparaître dans la console. <3></3></3>
     module: Quel module ?
+    spreadsheet: <0>Utiliser avec un tableur</0><1>Vous souhaitez utiliser un
+      simulateur dans une feuille Google Sheets ou Excel ? C'est possible grâce
+      à notre <2>API REST</2> !</1><2>Intégrer un simulateur dans
+      Excel/Sheets</2><3>À terme, il sera possible de réaliser une simulation
+      type sur notre site puis d'exporter ces informations pour créer une
+      fonction Excel/Sheets à intégrer dans votre fichier.<1></1>Actuellement,
+      vous pouvez vous inspirer de l'exemple
+      ci-dessous.</3><4>Exemple</4><5>Vous pouvez trouver un exemple complet
+      avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
+      vérifier les scripts avec "Afficher le fichier de script Apps")</5>
   gérer:
     aide-déclaration-indépendant:
       meta:

@@ -12,6 +12,7 @@ import API from './API'
 import Iframe from './Iframe'
 import Library from './Library'
 import Options from './Options'
+import Spreadsheet from './Spreadsheet'
 
 type JobOffer = {
 	title: string
@@ -54,6 +55,10 @@ export default function Integration() {
 				<Route path={sitePaths.développeur.iframe} component={Iframe} />
 				<Route path={sitePaths.développeur.library} component={Library} />
 				<Route path={sitePaths.développeur.api} component={API} />
+				<Route
+					path={sitePaths.développeur.spreadsheet}
+					component={Spreadsheet}
+				/>
 			</Switch>
 		</TrackChapter>
 	)
