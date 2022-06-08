@@ -2935,9 +2935,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.42":
-  version: 1.0.0-beta.42
-  resolution: "@publicodes/api@npm:1.0.0-beta.42"
+"@publicodes/api@npm:^1.0.0-beta.43":
+  version: 1.0.0-beta.43
+  resolution: "@publicodes/api@npm:1.0.0-beta.43"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -2946,7 +2946,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.40
-  checksum: 1763f67efeb20aaabe4b0ade8fc8c73d021dfcb503cb836e0f58d20dabcce722bbeaa410748863dade9c20b875ffeadfd5242c6ab81e199c06a3e65ca1211325
+  checksum: 1d9926b9b1768cba070870a76c1f7e3aa37259eb075f24e914e157bbecaa9e98b176d59a598223fc25624cb437bb80d03f4ff62af2ca39ce954c77d21d0fed29
   languageName: node
   linkType: hard
 
@@ -7837,7 +7837,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.42
+    "@publicodes/api": ^1.0.0-beta.43
     "@sentry/node": ^7.1.1
     "@sentry/tracing": ^7.1.1
     "@types/koa": ^2.13.4
@@ -7852,7 +7852,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.42
+    publicodes: ^1.0.0-beta.43
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
     ts-node: ^10.8.0
@@ -18291,16 +18291,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.42":
-  version: 1.0.0-beta.42
-  resolution: "publicodes@npm:1.0.0-beta.42"
+"publicodes@npm:^1.0.0-beta.43":
+  version: 1.0.0-beta.43
+  resolution: "publicodes@npm:1.0.0-beta.43"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: be3bd5d77c55645689a7bfde61bd4d3d1cb66186dce4c4d0e8b0b78d97dc8cf66299af131381b0fa012b4ca004b619f5f63ce5838d8decb7ae1049b0e9a7cffa
+  checksum: 10eb33426db2a4fc2781869d908020b3f7597d612db364d0cf55de7d9145977ec608dbd94c7684766d252ad9c2c477917c21d5408db30f7363310996cd31456e
   languageName: node
   linkType: hard
 
