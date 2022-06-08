@@ -36,7 +36,8 @@ export function useApplicableFields(
 						: dottedName.match(dottedNameOrRegexp)
 				)
 				.filter(
-					([dottedName]) => engine.evaluate(dottedName).nodeValue !== null
+					([dottedName]) =>
+						engine.evaluate({ 'est applicable': dottedName }).nodeValue === true
 				),
 		[engine.parsedSituation]
 	)

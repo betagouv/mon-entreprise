@@ -104,9 +104,9 @@ export default function Imposition() {
 								>
 									<RuleReferences
 										dottedNames={[
-											'entreprise . imposition',
 											'entreprise . imposition . IS',
 											'entreprise . imposition . IR',
+											'entreprise . imposition',
 										]}
 									/>
 								</Item>
@@ -165,9 +165,9 @@ export default function Imposition() {
 									>
 										<RuleReferences
 											dottedNames={[
-												'entreprise . imposition . IR . type de bénéfices',
 												'entreprise . imposition . IR . type de bénéfices . BNC',
 												'entreprise . imposition . IR . type de bénéfices . BIC',
+												'entreprise . imposition . IR . type de bénéfices',
 											]}
 										/>
 									</Item>
@@ -225,6 +225,21 @@ export default function Imposition() {
 												)
 											)}
 										</Markdown>
+									</Item>
+									<Item
+										key="ressources utiles"
+										title={t('Ressources utiles')}
+										hasChildItems={false}
+									>
+										<RuleReferences
+											dottedNames={[
+												'entreprise . imposition . régime . micro-entreprise',
+												'entreprise . imposition . régime . déclaration contrôlée',
+												'entreprise . imposition . régime . réel simplifié',
+												'entreprise . imposition . régime . réel normal',
+												'entreprise . imposition . régime',
+											]}
+										/>
 									</Item>
 								</Accordion>
 							</WhenAlreadyDefined>

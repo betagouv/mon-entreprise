@@ -1,6 +1,7 @@
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
+import { capitalise0 } from '@/utils'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import styled from 'styled-components'
@@ -35,7 +36,7 @@ function Reference({ href, title }: { href: string; title: string }) {
 						flex: 1;
 					`}
 				>
-					{title}
+					{capitalise0(title)}
 				</div>
 				{domain in referencesImages && (
 					<StyledImage

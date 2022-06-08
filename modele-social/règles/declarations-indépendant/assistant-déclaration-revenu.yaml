@@ -140,6 +140,8 @@ DRI . accompagnement imposition . type . exceptions:
           Cette option a pu être choisie pour vous permettre de vous verser des dividendes par exemple.
 
           {{ textes . comptable }}
+
+          [En savoir plus](https://entreprendre.service-public.fr/vosdroits/F36380)
     - si: entreprise . catégorie juridique . SARL . unipersonnelle
       alors:
         texte: |-
