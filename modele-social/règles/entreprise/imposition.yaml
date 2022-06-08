@@ -16,7 +16,7 @@ entreprise . imposition:
 
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices?block_id=186
-    Comment choisir l'imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
+    Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
     Guide complet sur les types de résultats d'une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
 
 entreprise . imposition . IR:
@@ -105,6 +105,7 @@ entreprise . imposition . IS:
       Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les revenus que vous touchez.
   références:
     "Impôt sur les sociétés : entreprises concernées et taux d'imposition": https://entreprendre.service-public.fr/vosdroits/F23575
+    Comment choisir l'imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
 
 entreprise . imposition . IS . montant:
   unité: €/an
@@ -230,6 +231,8 @@ entreprise . imposition . régime:
       - déclaration contrôlée
       - réel simplifié
       - réel normal
+  références:
+    Les différents régimes d'imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
 
 entreprise . imposition . régime . micro-entreprise:
   titre: Régime de la micro-entreprise
@@ -246,6 +249,9 @@ entreprise . imposition . régime . micro-entreprise:
     Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
 
     Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
+  références:
+    Imposition du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23267
+    "Changement de régime d'imposition: comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
 
 entreprise . imposition . régime . micro-entreprise . revenu abattu:
   remplace: résultat fiscal
@@ -324,15 +330,21 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
 entreprise . imposition . régime . déclaration contrôlée:
   applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'déclaration contrôlée'
+  références:
+    Qu’est-ce que le régime de la déclaration contrôlée ?: https://www.economie.gouv.fr/entreprises/regime-declaration-controlee
 
 entreprise . imposition . régime . réel normal:
   titre: Régime réel normal d'imposition
   acronyme: RN
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel normal'
+  références:
+    Qu'est-ce que le régime réel normal ?: https://www.economie.gouv.fr/entreprises/regime-reel-normal-imposition
 
 entreprise . imposition . régime . réel simplifié:
   titre: Régime réel simplifié d'imposition
   acronyme: RSI
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel simplifié'
+  références:
+    Qu’est-ce que le régime réel simplifié ?: https://www.economie.gouv.fr/entreprises/regime-reel-simplifie
