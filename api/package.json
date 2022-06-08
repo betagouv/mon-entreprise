@@ -17,7 +17,7 @@
 		"validate": "yarn swagger-cli validate ./source/openapi.yaml",
 		"postinstall": "yarn build:openapi",
 		"start": "yarn clean && yarn build:watch & wait-on ./dist && nodemon -d 1s ./dist/",
-		"start:prod": "nodemon -d 500ms -w ./dist/index.js -x 'node ./dist/index.js || touch ./dist/index.js'",
+		"start:prod": "NODE_ENV=production nodemon -d 500ms -w ./dist/index.js -x 'node ./dist/index.js || touch ./dist/index.js'",
 		"build": "yarn build:openapi && yarn build:ts",
 		"build:watch": "yarn build:openapi:watch & yarn wait:openapi && yarn build:ts:watch",
 		"build:ts": "tsc",
