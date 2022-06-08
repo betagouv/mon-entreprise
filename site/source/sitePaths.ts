@@ -88,6 +88,7 @@ const rawSitePathsFr = {
 		iframe: '/iframe',
 		library: '/bibliothèque-de-calcul',
 		api: '/api',
+		spreadsheet: '/tableur',
 	},
 	documentation: {
 		index: '/documentation',
@@ -165,6 +166,7 @@ const rawSitePathsEn = {
 		index: '/developer',
 		library: '/library',
 		api: '/api',
+		spreadsheet: '/spreadsheet',
 	},
 } as const
 

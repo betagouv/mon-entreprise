@@ -1218,8 +1218,7 @@ pages:
     home:
       choice:
         api:
-          body: Use our simulators via our open API both on your server and in your
-            Excel/GSheets.
+          body: Use our simulators via our open API in your different services.
           cta: Start
           title: Using our REST API
         iframe:
@@ -1227,6 +1226,10 @@ pages:
             turnkey script.
           cta: Start
           title: Integrate a simulator
+        spreadsheet:
+          body: Use our simulators in your Excel/Sheets.
+          cta: Start
+          title: Use with a spreadsheet
       description: In addition to the mycompanyinfrance site, we provide free and open
         source tools to integrate on your website. You can thus include the
         tools created for <1>mycompanyinfrance</1> directly in the usual paths
@@ -1245,6 +1248,15 @@ pages:
         security policy via the HTTP <1>Content-Security-Policy</1> response
         header, a benign error may appear in the console. <3></3></3>
     module: What module?
+    spreadsheet: <0>Using with a spreadsheet</0><1>You want to use a simulator in a
+      Google Sheets or Excel sheet? It's possible thanks to our <2>REST
+      API</2>!</1><2>Integrate a simulator in Excel/Sheets</2><3>Eventually, it
+      will be possible to run a typical simulation on our site and then export
+      this information to create an Excel/Sheets function to integrate into your
+      file.<1></1>Currently, you can use the example below as a
+      guide.</3><4>Example</4><5>You can find a complete example with <2>Google
+      Sheets</2>, click on "Create a copy" (you can check the scripts with "View
+      Apps script file")</5>
   gérer:
     aide-déclaration-indépendant:
       meta:

@@ -1,10 +1,10 @@
-import { Grid } from '@mui/material'
 import PageHeader from '@/components/PageHeader'
 import { icons } from '@/components/ui/SocialIcon'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -74,8 +74,8 @@ export default function Options() {
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.api.body">
-								Utiliser nos simulateurs via notre API ouverte aussi bien sur
-								votre serveur que dans vos fichier Excel/GSheets.
+								Utilisez nos simulateurs via notre API ouverte dans vos
+								différents services.
 							</Trans>
 						</Body>
 					</Card>
@@ -83,31 +83,22 @@ export default function Options() {
 
 				<Grid item xs={12} md={6} lg={4}>
 					<Card
-						icon={
-							<svg
-								viewBox="15 15 34 34"
-								style={{
-									width: '1rem',
-									height: '1rem',
-									margin: 0,
-								}}
-							>
-								<g style={{ fill: '#030303' }}>
-									<path d={icons.github.icon} />
-								</g>
-							</svg>
-						}
+						icon={<Emoji emoji="📝" />}
 						title={t(
-							'pages.développeur.choice.github.title',
-							'Contribuer sur GitHub'
+							'pages.développeur.home.choice.spreadsheet.title',
+							'Utiliser avec un tableur'
 						)}
-						ctaLabel={t('pages.développeur.choice.github.cta', 'Commencer')}
-						href="https://github.com/betagouv/mon-entreprise"
+						to={sitePaths.développeur.spreadsheet}
+						ctaLabel={t(
+							'pages.développeur.home.choice.spreadsheet.cta',
+							'Commencer'
+						)}
 					>
-						<Trans i18nKey="pages.développeur.choice.github.body">
-							Tous nos outils sont ouverts et développés publiquement sur
-							GitHub.
-						</Trans>
+						<Body>
+							<Trans i18nKey="pages.développeur.home.choice.spreadsheet.body">
+								Utilisez nos simulateurs dans vos fichiers Excel/Sheets.
+							</Trans>
+						</Body>
 					</Card>
 				</Grid>
 
@@ -139,6 +130,36 @@ export default function Options() {
 						<Trans i18nKey="pages.développeur.choice.publicodes.body">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
 							encoder des algorithmes “explicables”.
+						</Trans>
+					</Card>
+				</Grid>
+
+				<Grid item xs={12} md={6} lg={4}>
+					<Card
+						icon={
+							<svg
+								viewBox="15 15 34 34"
+								style={{
+									width: '1rem',
+									height: '1rem',
+									margin: 0,
+								}}
+							>
+								<g style={{ fill: '#030303' }}>
+									<path d={icons.github.icon} />
+								</g>
+							</svg>
+						}
+						title={t(
+							'pages.développeur.choice.github.title',
+							'Contribuer sur GitHub'
+						)}
+						ctaLabel={t('pages.développeur.choice.github.cta', 'Commencer')}
+						href="https://github.com/betagouv/mon-entreprise"
+					>
+						<Trans i18nKey="pages.développeur.choice.github.body">
+							Tous nos outils sont ouverts et développés publiquement sur
+							GitHub.
 						</Trans>
 					</Card>
 				</Grid>

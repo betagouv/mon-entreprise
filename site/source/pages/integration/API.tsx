@@ -24,12 +24,9 @@ export default function API() {
 					nouvelle : tous les calculs de cotisations et impôts qui sont derrière
 					mon-entreprise sont libres et utilisable via notre{' '}
 					<Link href="/api/v1/doc/">API REST</Link>.
-					{/* <Link href="https://docs.google.com/spreadsheets/d/1wbfxRdmEbUBgsXbGVc0Q6uqAV4IfLvux6oUJXJLhlaU/edit?usp=sharing">
-						Google Sheets
-					</Link> */}
 				</Body>
-				<H2>Comment utiliser cette API ?</H2>
 
+				<H2>Comment utiliser cette API ?</H2>
 				<Body>
 					L'api mon-entreprise est totalement ouverte et sans authentification,
 					elle se compose de 3 routes qui s'inspirent des méthodes de
