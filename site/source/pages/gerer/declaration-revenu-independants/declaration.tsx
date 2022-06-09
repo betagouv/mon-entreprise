@@ -61,7 +61,13 @@ export default function Déclaration() {
 		<>
 			<Condition expression="DRI . déclaration revenus manuelle = non">
 				<TrackPage name="declaration_resultat">
-					<Grid container spacing={2} alignItems="flex-end">
+					<Grid
+						container
+						spacing={2}
+						css={`
+							align-items: flex-end;
+						`}
+					>
 						<Grid item lg={10} xl={8}>
 							<FromTop>
 								<Trans i18nKey="assistant-DRI.declaration.intro">

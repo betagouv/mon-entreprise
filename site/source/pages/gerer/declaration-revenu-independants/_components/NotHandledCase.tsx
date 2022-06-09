@@ -4,6 +4,7 @@ import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useContext } from 'react'
+import styled from 'styled-components'
 import notHandled from './undraw_access_denied_re_awnf.svg'
 
 export default function NotHandledCase({
@@ -23,18 +24,7 @@ export default function NotHandledCase({
 				`}
 				spacing={3}
 			>
-				<Grid
-					item
-					xs={6}
-					md={3}
-					css={`
-						order: 1;
-
-						@media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-							order: 0;
-						}
-					`}
-				>
+				<ReverseOrderOnMobile item xs={6} md={3}>
 					<img
 						src={notHandled}
 						alt=""
@@ -43,7 +33,7 @@ export default function NotHandledCase({
 							padding: 1rem;
 						`}
 					/>
-				</Grid>
+				</ReverseOrderOnMobile>
 				<Grid item md={9}>
 					{children}
 				</Grid>
@@ -64,3 +54,11 @@ export default function NotHandledCase({
 		</Message>
 	)
 }
+
+const ReverseOrderOnMobile = styled(Grid)`
+	order: 1;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		order: 0;
+	}
+`

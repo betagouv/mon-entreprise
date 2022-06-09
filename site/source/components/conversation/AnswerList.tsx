@@ -160,15 +160,7 @@ function StepsTable({
 			{rules
 				.filter((rule) => rule.nodeValue !== null)
 				.map((rule) => (
-					<StyledAnswerList
-						container
-						css={`
-							align-items: baseline;
-							justify: content: flex-end;
-						`}
-						key={rule.dottedName}
-						gap={2}
-					>
+					<StyledAnswerList container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
 							<ExplicableRule light dottedName={rule.dottedName} />
@@ -242,6 +234,9 @@ const StyledAnswer = styled(Grid)`
 `
 const StyledAnswerList = styled(Grid)`
 	margin: ${({ theme }) => `${theme.spacings.md} 0`};
+	align-items: baseline;
+	justify-content: flex-end;
+	gap: ${({ theme }) => theme.spacings.sm};
 
 	font-family: ${({ theme }) => theme.fonts.main};
 	:nth-child(2n) {

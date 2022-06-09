@@ -10,6 +10,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData from '../Simulateurs/metadata'
@@ -108,18 +109,7 @@ export default function Landing() {
 						align-items: flex-end;
 					`}
 				>
-					<Grid
-						item
-						xs={2}
-						md={2}
-						css={`
-							display: none;
-
-							@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-								display: block;
-							}
-						`}
-					>
+					<HideOnMobile item xs={2} md={2}>
 						<img
 							src={illustration2Svg}
 							css={`
@@ -128,7 +118,7 @@ export default function Landing() {
 								padding-bottom: 1rem;
 							`}
 						/>
-					</Grid>
+					</HideOnMobile>
 					<Grid item md={10}>
 						<Trans i18nKey="landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
@@ -167,3 +157,11 @@ export default function Landing() {
 		</>
 	)
 }
+
+const HideOnMobile = styled(Grid)`
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: block;
+	}
+`

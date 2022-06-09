@@ -82,7 +82,9 @@ export default function ShareOrSaveSimulationBanner({
 				container
 				className=" print-hidden"
 				spacing={4}
-				justifyContent="center"
+				css={`
+					justify-content: center;
+				`}
 			>
 				{share && (
 					<Grid item xs={12} sm="auto">

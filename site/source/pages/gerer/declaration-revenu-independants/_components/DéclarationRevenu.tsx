@@ -144,9 +144,9 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								container
 								css={`
 									align-items: center;
+									justify-content: space-between;
 								`}
 								spacing={1}
-								justifyContent="space-between"
 							>
 								<SimpleField dottedName="DRI . déclarant" />
 								<DéclarationRevenu editable={déclarationRevenusManuel} />

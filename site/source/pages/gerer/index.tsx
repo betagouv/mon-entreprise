@@ -307,7 +307,15 @@ function Home() {
 							/>
 						</WhenApplicable>
 						<Condition expression="entreprise . imposition . IS">
-							<Grid item xs={12} md={6} lg={4} alignSelf="flex-end">
+							<Grid
+								item
+								xs={12}
+								md={6}
+								lg={4}
+								css={`
+									align-self: flex-end;
+								`}
+							>
 								<Grid container spacing={3} columns={2}>
 									<SimulateurCard fromGérer {...simulateurs.is} small />
 									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
@@ -337,35 +345,17 @@ function Home() {
 				</H2>
 				<Body as="div">
 					<span>Vous souhaitez :</span>
-					<Grid component={Ul} container>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							recruter, former vos salariés
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							financer vos projets d'investissement
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							résoudre un problème de trésorerie
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							être conseillé(e) en droit du travail
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							développer votre activité commerciale
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							vendre sur internet
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							vendre ou reprendre une entreprise
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							améliorer la santé et sécurité au travail
-						</Grid>
-						<Grid component={Li} item xs={12} md={6} lg={4}>
-							entrer dans une démarche de transition écologique & RSE
-						</Grid>
-					</Grid>
+					<UlInColumns>
+						<li>recruter, former vos salariés</li>
+						<li>financer vos projets d'investissement</li>
+						<li>résoudre un problème de trésorerie</li>
+						<li>être conseillé(e) en droit du travail</li>
+						<li>développer votre activité commerciale</li>
+						<li>vendre sur internet</li>
+						<li>vendre ou reprendre une entreprise</li>
+						<li>améliorer la santé et sécurité au travail</li>
+						<li>entrer dans une démarche de transition écologique & RSE</li>
+					</UlInColumns>
 				</Body>
 				<Body>
 					<Strong>
@@ -432,6 +422,15 @@ const companyDetailsConfig = {
 		'entreprise . imposition',
 	] as DottedName[],
 }
+
+const UlInColumns = styled.ul`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		columns: 2;
+	}
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		columns: 3;
+	}
+`
 
 export const AskCompanyMissingDetails = () => {
 	const sitePaths = useContext(SitePathsContext)
@@ -507,7 +506,13 @@ const PopoverOverwriteSituation = ({
 						l'écraser ?
 					</Body>
 				</Message>
-				<Grid container justifyContent="end" spacing={2}>
+				<Grid
+					container
+					css={`
+						justify-content: end;
+					`}
+					spacing={2}
+				>
 					<Grid item>
 						<Button
 							size="XS"

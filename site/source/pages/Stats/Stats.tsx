@@ -10,6 +10,8 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom-v5-compat'
+import styled from 'styled-components'
 import { toAtString } from '../../ATInternetTracking'
 import { debounce, groupBy } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
@@ -20,7 +22,6 @@ import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
-import { useSearchParams } from 'react-router-dom-v5-compat'
 
 const stats = statsJson as unknown as StatsStruct
 
@@ -185,20 +186,12 @@ const StatsDetail = () => {
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
-			<div
-				css={`
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					gap: 12px;
-
-					@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-						flex-direction: row;
-						align-items: flex-end;
-					}
-				`}
-			>
-				<div>
+			<Indicators>
+				<div
+					css={`
+						flex-basis: 50%;
+					`}
+				>
 					<SimulateursChoice
 						onChange={setChapter2}
 						value={chapter2}
@@ -219,7 +212,7 @@ const StatsDetail = () => {
 						</Radio>
 					</ToggleGroup>
 				</div>
-			</div>
+			</Indicators>
 
 			<Spacing lg />
 
@@ -294,6 +287,18 @@ const StatsDetail = () => {
 		</>
 	)
 }
+
+const Indicators = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 12px;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		flex-direction: row;
+		align-items: flex-end;
+	}
+`
 
 export default function Stats() {
 	return (

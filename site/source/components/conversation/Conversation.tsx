@@ -136,7 +136,6 @@ export default function Conversation({
 									</Button>
 								</Grid>
 								<Grid
-									container
 									item
 									xs={12}
 									sm
@@ -179,7 +178,6 @@ export default function Conversation({
 								</Grid>
 							)}
 							<Grid
-								container
 								item
 								xs={6}
 								sm

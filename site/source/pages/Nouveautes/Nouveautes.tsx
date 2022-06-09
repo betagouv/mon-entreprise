@@ -88,17 +88,7 @@ export default function Nouveautés() {
 				</Body>
 
 				<Grid container spacing={2}>
-					<Grid
-						item
-						xs={12}
-						css={`
-							display: block;
-
-							@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-								display: none;
-							}
-						`}
-					>
+					<MobileGridItem>
 						<Select
 							label="Date de la newsletter"
 							value={selectedRelease}
@@ -111,18 +101,8 @@ export default function Nouveautés() {
 								<Item textValue={release.name}>{release.name}</Item>
 							)}
 						</Select>
-					</Grid>
-					<Grid
-						item
-						lg={3}
-						css={`
-							display: none;
-
-							@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-								display: block;
-							}
-						`}
-					>
+					</MobileGridItem>
+					<DesktopGridItem>
 						<Sidebar>
 							{data.map(({ name }, index) => (
 								<li key={name}>
@@ -130,7 +110,7 @@ export default function Nouveautés() {
 								</li>
 							))}
 						</Sidebar>
-					</Grid>
+					</DesktopGridItem>
 					<Grid item xs={12} lg={9}>
 						<MainBlock>
 							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
@@ -167,13 +147,19 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<Emoji emoji={removeGithubIssuesReferences(children)} />
 )
 
-const NewsSection = styled.section`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
+	display: block;
 
-	@media (min-width: 1250px) {
-		margin-left: -175px;
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		display: none;
+	}
+`
+
+const DesktopGridItem = styled(Grid).attrs({ item: true, lg: 3 })`
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		display: block;
 	}
 `
 

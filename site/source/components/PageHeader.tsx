@@ -43,24 +43,20 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<Grid
-					item
-					className="hide-mobile"
-					md={3}
-					lg={4}
-					css={`
-						align-self: flex-end;
-						z-index: -1;
-						display: none;
-
-						@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-							display: block;
-						}
-					`}
-				>
+				<InnerGrid item className="hide-mobile" md={3} lg={4}>
 					<Illustration className="hide-mobile" titre={titre} src={picture} />
-				</Grid>
+				</InnerGrid>
 			)}
 		</Grid>
 	)
 }
+
+const InnerGrid = styled(Grid)`
+	align-self: flex-end;
+	z-index: -1;
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: block;
+	}
+`

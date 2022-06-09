@@ -160,7 +160,13 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
+					<Grid
+						item
+						xs="auto"
+						css={`
+							align-self: end;
+						`}
+					>
 						<Total>
 							<Value
 								engine={engine}
@@ -179,7 +185,13 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
+					<Grid
+						item
+						xs="auto"
+						css={`
+							align-self: end;
+						`}
+					>
 						<Total>
 							<Value
 								engine={engine}
@@ -204,7 +216,13 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
+					<Grid
+						item
+						xs="auto"
+						css={`
+							align-self: end;
+						`}
+					>
 						<Total>
 							<Value
 								engine={engine}
@@ -236,7 +254,13 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid item xs="auto" alignSelf={'end'}>
+					<Grid
+						item
+						xs="auto"
+						css={`
+							align-self: end;
+						`}
+					>
 						<Total>
 							<Value
 								engine={engine}

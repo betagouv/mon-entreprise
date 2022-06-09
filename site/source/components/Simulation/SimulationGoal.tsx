@@ -68,9 +68,9 @@ export function SimulationGoal({
 					container
 					css={`
 						align-items: baseline;
+						justify-content: space-between;
 					`}
 					spacing={2}
-					justifyContent="space-between"
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
@@ -87,19 +87,9 @@ export function SimulationGoal({
 							</SmallBody>
 						</StyledGoalHeader>
 					</Grid>
-					<Grid
-						item
-						md
-						css={`
-							display: none;
-
-							@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-								display: block;
-							}
-						`}
-					>
+					<StyledGuideLectureContainer>
 						<StyledGuideLecture small={small} />
-					</Grid>
+					</StyledGuideLectureContainer>
 					{editable ? (
 						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
 							{!isFocused && !small && (
@@ -140,6 +130,18 @@ export function SimulationGoal({
 		</Appear>
 	)
 }
+
+const StyledGuideLectureContainer = styled(Grid).attrs({
+	item: true,
+	md: true,
+})`
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: block;
+	}
+`
+
 const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	small: boolean
 }>`

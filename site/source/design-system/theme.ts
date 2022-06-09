@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components'
 
-export const defaultTheme = {
+const baseTheme = {
 	colors: {
 		bases: {
 			primary: {
@@ -167,22 +167,24 @@ export const defaultTheme = {
 
 // We use the Grid from material-ui, we need to uniformise
 // breakpoints and spacing with the Urssaf design system
-export type SpacingKey = keyof typeof defaultTheme.breakpointsWidth
+export type SpacingKey = keyof typeof baseTheme.breakpointsWidth
 const breakpoints = Object.fromEntries(
-	Object.entries(defaultTheme.breakpointsWidth).map(([key, value]) => [
+	Object.entries(baseTheme.breakpointsWidth).map(([key, value]) => [
 		key,
 		Number.parseInt(value),
 	])
 ) as Record<SpacingKey, number>
 
-export const theme: DefaultTheme = {
+const theme: DefaultTheme = {
 	breakpoints: {
 		values: {
 			xs: 0,
 			...breakpoints,
 		},
 	},
-	spacing: Object.values(defaultTheme.spacings),
+	spacing: Object.values(baseTheme.spacings),
 
-	...defaultTheme,
+	...baseTheme,
 }
+
+export default theme

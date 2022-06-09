@@ -6,12 +6,14 @@ const breakPoints = ['sm', 'md', 'lg', 'xl'] as Array<SpacingKey>
 
 type ContainerContext = {
 	nbColumns: number
-	spacing: number
+	rowSpacing: number
+	columnSpacing: number
 }
 
 const GridContainerContext = createContext<ContainerContext>({
 	nbColumns: 12,
-	spacing: 0,
+	columnSpacing: 0,
+	rowSpacing: 0,
 })
 
 type BreakpointConfig = number | true | 'auto' | undefined
@@ -61,13 +63,14 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	margin-left: -${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
-	margin-top: -${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
+	margin-left: -${({ theme, columnSpacing }) => theme.spacing[columnSpacing ?? 0]};
+	margin-top: -${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
-	padding-left: ${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
-	padding-top: ${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
+	padding-left: ${({ theme, columnSpacing }) =>
+		theme.spacing[columnSpacing ?? 0]};
+	padding-top: ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
 	${(props) => breakPointCss(props.xs, props.nbColumns)}
 
 	${(props) =>
@@ -84,6 +87,8 @@ const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
 type GridContainerProps = {
 	columns?: number
 	spacing?: number
+	columnSpacing?: number
+	rowSpacing?: number
 	className?: string
 	id?: string
 	children: React.ReactNode
@@ -92,13 +97,26 @@ type GridContainerProps = {
 function GridContainer({
 	columns = 12,
 	spacing = 0,
+	columnSpacing,
+	rowSpacing,
 	className,
 	id,
 	children,
 }: GridContainerProps) {
 	return (
-		<GridContainerContext.Provider value={{ nbColumns: columns, spacing }}>
-			<StyledGridContainer spacing={spacing} className={className} id={id}>
+		<GridContainerContext.Provider
+			value={{
+				nbColumns: columns,
+				columnSpacing: columnSpacing ?? spacing,
+				rowSpacing: rowSpacing ?? spacing,
+			}}
+		>
+			<StyledGridContainer
+				columnSpacing={columnSpacing ?? spacing}
+				rowSpacing={rowSpacing ?? spacing}
+				className={className}
+				id={id}
+			>
 				{children}
 			</StyledGridContainer>
 		</GridContainerContext.Provider>
@@ -108,7 +126,7 @@ function GridContainer({
 type GridItemProps = {
 	children?: React.ReactNode
 	className?: string
-} & Record<SpacingKey | 'xs', BreakpointConfig>
+} & Partial<Record<SpacingKey | 'xs', BreakpointConfig>>
 
 function GridItem({ xs, sm, md, lg, xl, className, children }: GridItemProps) {
 	const containerContext = useContext(GridContainerContext)

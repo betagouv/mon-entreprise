@@ -124,7 +124,13 @@ export const FormulaireS2 = ({
 								</Trans>
 							</Grid>
 
-							<Grid item xs="auto" alignSelf={'end'}>
+							<Grid
+								item
+								xs="auto"
+								css={`
+									align-self: end;
+								`}
+							>
 								<Total>
 									<Value
 										engine={engine}
@@ -157,7 +163,13 @@ export const FormulaireS2 = ({
 								</Trans>
 							</Grid>
 
-							<Grid item xs="auto" alignSelf={'end'}>
+							<Grid
+								item
+								xs="auto"
+								css={`
+									align-self: end;
+								`}
+							>
 								<Total>
 									<Value
 										engine={engine}
