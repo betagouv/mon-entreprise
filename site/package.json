@@ -46,16 +46,11 @@
 		"storybook": "start-storybook -p 6006",
 		"build:storybook": "build-storybook"
 	},
-	"resolutions": {
-		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-	},
 	"dependencies": {
 		"@emotion/react": "^11.7.1",
 		"@emotion/styled": "^11.6.0",
 		"@icons/material": "^0.4.1",
 		"@internationalized/number": "^3.0.3",
-		"@mui/material": "^5.0.4",
-		"@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
 		"@react-aria/accordion": "^3.0.0-alpha.5",
 		"@react-aria/button": "^3.4.1",
 		"@react-aria/checkbox": "^3.2.3",

@@ -14,8 +14,6 @@ const GridContainerContext = createContext<ContainerContext>({
 	spacing: 0,
 })
 
-const spacingValues = ['0rem', '0.5rem', '0.75rem', '1rem', '1.5rem']
-
 type BreakpointConfig = number | true | 'auto' | undefined
 const breakPointCss = (
 	breakPointConfig: BreakpointConfig,
@@ -63,13 +61,13 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	margin-left: -${({ spacing }) => spacingValues[spacing ?? 0]};
-	margin-top: -${({ spacing }) => spacingValues[spacing ?? 0]};
+	margin-left: -${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
+	margin-top: -${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
-	padding-left: ${({ spacing }) => spacingValues[spacing ?? 0]};
-	padding-top: ${({ spacing }) => spacingValues[spacing ?? 0]};
+	padding-left: ${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
+	padding-top: ${({ theme, spacing }) => theme.spacing[spacing ?? 0]};
 	${(props) => breakPointCss(props.xs, props.nbColumns)}
 
 	${(props) =>

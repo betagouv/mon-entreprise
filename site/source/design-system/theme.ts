@@ -1,4 +1,3 @@
-import { createTheme } from '@mui/material'
 import { DefaultTheme } from 'styled-components'
 
 export const defaultTheme = {
@@ -176,7 +175,7 @@ const breakpoints = Object.fromEntries(
 	])
 ) as Record<SpacingKey, number>
 
-export const theme: DefaultTheme = createTheme({
+export const theme: DefaultTheme = {
 	breakpoints: {
 		values: {
 			xs: 0,
@@ -186,4 +185,4 @@ export const theme: DefaultTheme = createTheme({
 	spacing: Object.values(defaultTheme.spacings),
 
 	...defaultTheme,
-})
+}
