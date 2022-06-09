@@ -1,12 +1,11 @@
 import Emoji from '@/components/utils/Emoji'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { Grid } from '@/design-system/grid'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'

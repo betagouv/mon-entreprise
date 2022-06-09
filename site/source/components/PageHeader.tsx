@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/grid'
+import { Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
@@ -8,8 +8,6 @@ const Illustration = styled.img<{ titre: ReactNode }>`
 	width: 100%;
 	vertical-align: bottom;
 	padding-top: ${({ theme }) => theme.spacings.xl};
-	/* transform-origin: center right;
-	transform: scale(1.25); */
 `
 
 export default function PageHeader({

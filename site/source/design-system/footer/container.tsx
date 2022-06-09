@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/grid'
+import { Grid } from '@/design-system/layout'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 

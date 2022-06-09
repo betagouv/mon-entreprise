@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/grid'
+import { Grid } from '@/design-system/layout'
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { Checkbox } from '@/design-system/field'

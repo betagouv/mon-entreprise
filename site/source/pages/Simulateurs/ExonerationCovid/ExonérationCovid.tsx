@@ -6,9 +6,8 @@ import {
 	useSynchronizedSituationState,
 } from '@/components/utils/SituationContext'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Grid } from '@/design-system/grid'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect } from 'react'

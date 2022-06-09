@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/grid'
+import { Grid } from '@/design-system/layout'
 import { SmallCard } from '@/design-system/card'
 import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'

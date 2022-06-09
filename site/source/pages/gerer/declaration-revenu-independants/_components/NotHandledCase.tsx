@@ -1,8 +1,8 @@
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { Grid } from '@/design-system/grid'
 import { useContext } from 'react'
 import notHandled from './undraw_access_denied_re_awnf.svg'
 

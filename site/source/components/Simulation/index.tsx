@@ -2,8 +2,7 @@ import { ConversationProps } from '@/components/conversation/Conversation'
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
-import { Grid } from '@/design-system/grid'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,

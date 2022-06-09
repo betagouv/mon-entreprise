@@ -1,7 +1,7 @@
 import { updateSituation } from '@/actions/actions'
+import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
-import { Grid } from '@/design-system/grid'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
