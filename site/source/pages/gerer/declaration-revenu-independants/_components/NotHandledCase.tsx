@@ -2,7 +2,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useContext } from 'react'
 import notHandled from './undraw_access_denied_re_awnf.svg'
 
@@ -15,8 +15,26 @@ export default function NotHandledCase({
 
 	return (
 		<Message type="info">
-			<Grid container justifyContent="center" spacing={3} alignItems="center">
-				<Grid item xs={6} md={3} sx={{ order: { md: 0, xs: 1, sm: 1 } }}>
+			<Grid
+				container
+				css={`
+					justify-content: center;
+					align-items: center;
+				`}
+				spacing={3}
+			>
+				<Grid
+					item
+					xs={6}
+					md={3}
+					css={`
+						order: 1;
+
+						@media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+							order: 0;
+						}
+					`}
+				>
 					<img
 						src={notHandled}
 						alt=""

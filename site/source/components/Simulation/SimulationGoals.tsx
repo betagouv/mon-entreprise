@@ -1,6 +1,6 @@
 import { Link } from '@/design-system/typography/link'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled, { css, ThemeProvider } from 'styled-components'

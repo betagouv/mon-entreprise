@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'

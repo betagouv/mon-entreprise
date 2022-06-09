@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { FromBottom } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'

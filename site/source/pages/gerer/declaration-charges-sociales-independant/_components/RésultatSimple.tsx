@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import Value, { Condition } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'

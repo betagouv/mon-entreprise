@@ -5,7 +5,7 @@ import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, {
 	EvaluatedNode,

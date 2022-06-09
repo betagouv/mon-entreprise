@@ -11,7 +11,7 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
@@ -79,7 +79,13 @@ function IntegrationCustomizer() {
 				<Trans>Personnalisez l'intégration</Trans>
 			</H2>
 
-			<Grid container spacing={4} justifyContent={'space-between'}>
+			<Grid
+				container
+				spacing={4}
+				css={`
+					justify-content: space-between;
+				`}
+			>
 				<Grid item xl={4} lg={5} md>
 					<H3>
 						<Trans i18nKey="pages.développeur.module">Quel module ?</Trans>

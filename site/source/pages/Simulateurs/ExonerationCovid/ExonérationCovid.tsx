@@ -8,7 +8,7 @@ import {
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect } from 'react'
@@ -115,7 +115,7 @@ export const ExonérationCovid = () => {
 
 			<Spacing lg />
 
-			<Grid container justifyContent={step2 ? '' : 'end'}>
+			<Grid container css={step2 ? '' : `justify-content: end`}>
 				<Grid item xs={6} sm="auto">
 					{step2 ? (
 						<Button

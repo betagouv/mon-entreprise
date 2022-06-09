@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import Distribution from '@/components/Distribution'
 import PaySlip from '@/components/PaySlip'
 import StackedBarChart from '@/components/StackedBarChart'
@@ -36,7 +36,12 @@ export default function SalaryExplanation() {
 
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<div ref={payslipRef} />
-				<Grid container justifyContent="center">
+				<Grid
+					container
+					css={`
+						justify-content: center;
+					`}
+				>
 					<Grid item xl={9} lg={10}>
 						<H2>
 							<Trans>Fiche de paie</Trans>

@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { H1 } from '@/design-system/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
@@ -22,7 +22,13 @@ export default function PageHeader({
 	picture?: string
 }) {
 	return (
-		<Grid container spacing={3} alignItems="center">
+		<Grid
+			container
+			spacing={3}
+			css={`
+				align-items: center;
+			`}
+		>
 			<Grid
 				item
 				sm={12}
@@ -44,8 +50,15 @@ export default function PageHeader({
 					className="hide-mobile"
 					md={3}
 					lg={4}
-					alignSelf="flex-end"
-					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
+					css={`
+						align-self: flex-end;
+						z-index: -1;
+						display: none;
+
+						@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+							display: block;
+						}
+					`}
 				>
 					<Illustration className="hide-mobile" titre={titre} src={picture} />
 				</Grid>

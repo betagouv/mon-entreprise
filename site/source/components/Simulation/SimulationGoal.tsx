@@ -1,7 +1,7 @@
 import { updateSituation } from '@/actions/actions'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
@@ -66,7 +66,9 @@ export function SimulationGoal({
 			<StyledGoal>
 				<Grid
 					container
-					alignItems="baseline"
+					css={`
+						align-items: baseline;
+					`}
 					spacing={2}
 					justifyContent="space-between"
 				>
@@ -88,7 +90,13 @@ export function SimulationGoal({
 					<Grid
 						item
 						md
-						sx={{ display: { sm: 'none', xs: 'none', md: 'block' } }}
+						css={`
+							display: none;
+
+							@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+								display: block;
+							}
+						`}
 					>
 						<StyledGuideLecture small={small} />
 					</Grid>

@@ -100,11 +100,6 @@ interface CustomTheme {
 	darkMode: boolean
 }
 
-declare module '@mui/material/styles' {
-	export interface Theme extends SystemTheme, CustomTheme {}
-	export interface ThemeOptions extends SystemThemeOptions, CustomTheme {}
-}
-
 declare module 'styled-components' {
 	export interface DefaultTheme extends SystemTheme, CustomTheme {}
 }

@@ -14,7 +14,7 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { DottedName } from 'modele-social'
 import { Rule, RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext } from 'react'
@@ -124,8 +124,10 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 				<Grid
 					container
 					spacing={3}
-					alignItems="stretch"
-					flexWrap="wrap-reverse"
+					css={`
+						align-items: stretch;
+						flex-wrap: wrap-reverse;
+					`}
 				>
 					<Grid
 						item
@@ -141,7 +143,9 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 						<Message border={false}>
 							<Grid
 								container
-								alignItems="center"
+								css={`
+									align-items: center;
+								`}
 								spacing={1}
 								justifyContent="space-between"
 							>

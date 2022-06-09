@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import PagesChart from '@/components/charts/PagesCharts'
 import InfoBulle from '@/components/ui/InfoBulle'
 import Emoji from '@/components/utils/Emoji'
@@ -189,8 +189,10 @@ const StatsDetail = () => {
 			<Grid
 				container
 				spacing={2}
-				justifyContent="space-between"
-				alignItems="flex-end"
+				css={`
+					justify-content: space-between;
+					align-items: flex-end;
+				`}
 			>
 				<Grid item xs={12} sm={6} md={4}>
 					<SimulateursChoice

@@ -12,7 +12,7 @@ import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { SimpleField } from '../_components/Fields'
 import { DéclarationRevenu } from './_components/DéclarationRevenu'
 

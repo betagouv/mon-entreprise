@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import Emoji from '@/components/utils/Emoji'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'

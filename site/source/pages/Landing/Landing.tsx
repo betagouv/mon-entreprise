@@ -8,7 +8,7 @@ import { Container, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { TrackPage } from '../../ATInternetTracking'
@@ -69,8 +69,10 @@ export default function Landing() {
 				<Grid
 					container
 					spacing={4}
-					alignItems="stretch"
-					justifyContent="center"
+					css={`
+						align-items: stretch;
+						justify-content: center;
+					`}
 				>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
@@ -101,12 +103,23 @@ export default function Landing() {
 			</Container>
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<Spacing lg />
-				<Grid container alignItems="flex-end">
+				<Grid
+					container
+					css={`
+						align-items: flex-end;
+					`}
+				>
 					<Grid
 						item
 						xs={2}
 						md={2}
-						sx={{ display: { xs: 'none', md: 'block' } }}
+						css={`
+							display: none;
+
+							@media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+								display: block;
+							}
+						`}
 					>
 						<img
 							src={illustration2Svg}

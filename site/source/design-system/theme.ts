@@ -168,7 +168,7 @@ export const defaultTheme = {
 
 // We use the Grid from material-ui, we need to uniformise
 // breakpoints and spacing with the Urssaf design system
-type SpacingKey = keyof typeof defaultTheme.breakpointsWidth
+export type SpacingKey = keyof typeof defaultTheme.breakpointsWidth
 const breakpoints = Object.fromEntries(
 	Object.entries(defaultTheme.breakpointsWidth).map(([key, value]) => [
 		key,

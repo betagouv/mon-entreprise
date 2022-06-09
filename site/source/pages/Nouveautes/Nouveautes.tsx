@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { determinant, hideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Emoji from '@/components/utils/Emoji'
@@ -89,7 +89,17 @@ export default function Nouveautés() {
 				</Body>
 
 				<Grid container spacing={2}>
-					<Grid item xs={12} sx={{ display: { xs: 'block', lg: 'none' } }}>
+					<Grid
+						item
+						xs={12}
+						css={`
+							display: block;
+
+							@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+								display: none;
+							}
+						`}
+					>
 						<Select
 							label="Date de la newsletter"
 							value={selectedRelease}
@@ -103,7 +113,17 @@ export default function Nouveautés() {
 							)}
 						</Select>
 					</Grid>
-					<Grid item lg={3} sx={{ display: { xs: 'none', lg: 'block' } }}>
+					<Grid
+						item
+						lg={3}
+						css={`
+							display: none;
+
+							@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+								display: block;
+							}
+						`}
+					>
 						<Sidebar>
 							{data.map(({ name }, index) => (
 								<li key={name}>

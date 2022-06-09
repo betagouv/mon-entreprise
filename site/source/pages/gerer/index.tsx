@@ -30,7 +30,7 @@ import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
@@ -267,7 +267,13 @@ function Home() {
 					<FormsImage src={forms} alt="" />
 					<Spacing xs />
 					<H2>Simulateurs pour votre entreprise</H2>
-					<Grid container spacing={3} position="relative">
+					<Grid
+						container
+						spacing={3}
+						css={`
+							position: relative;
+						`}
+					>
 						{dirigeantSimulateur ? (
 							<SimulateurCard fromGérer {...simulateurs[dirigeantSimulateur]} />
 						) : (

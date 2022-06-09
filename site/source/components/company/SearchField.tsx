@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { Card } from '@/design-system/card'

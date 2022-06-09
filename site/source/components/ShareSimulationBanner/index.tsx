@@ -6,7 +6,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'

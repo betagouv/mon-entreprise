@@ -15,7 +15,7 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import { useCallback, useMemo } from 'react'
@@ -163,8 +163,10 @@ function StepsTable({
 				.map((rule) => (
 					<StyledAnswerList
 						container
-						alignItems={'baseline'}
-						justifyContent="flex-end"
+						css={`
+							align-items: baseline;
+							justify: content: flex-end;
+						`}
 						key={rule.dottedName}
 						gap={2}
 					>

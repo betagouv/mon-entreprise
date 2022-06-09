@@ -1,5 +1,5 @@
 import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { FocusScope } from '@react-aria/focus'

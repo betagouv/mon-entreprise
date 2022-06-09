@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/grid'
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { Checkbox } from '@/design-system/field'
