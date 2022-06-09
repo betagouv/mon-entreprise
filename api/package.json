@@ -12,9 +12,8 @@
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
-		"test": "run validate && vitest",
+		"test": "vitest",
 		"test:type": "tsc --noEmit",
-		"validate": "yarn swagger-cli validate ./source/openapi.yaml",
 		"postinstall": "yarn build:openapi",
 		"start": "yarn clean && yarn build:watch & wait-on ./dist && nodemon -d 1s ./dist/",
 		"start:prod": "NODE_ENV=production nodemon -d 500ms -w ./dist/index.js -x 'node ./dist/index.js || touch ./dist/index.js'",
