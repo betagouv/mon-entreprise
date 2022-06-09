@@ -1139,17 +1139,14 @@ pages:
       this API?</2><3>The my-company api is totally open and without
       authentication, it is composed of 3 routes inspired by the methods of the
       Publicodes interpreter: <1>/evaluate</1>, <4>/rules</4> and
-      <7>/rules/:rule</7>.</3><4><0>What is Publicodes?</0><1>It is a
-      declarative language developed by beta.gouv.fr and the Urssaf to encode
-      public interest algorithms.<1></1>All our calculation rules are written in
-      this language.<3></3><4>Learn more about publicodes</4></1></4><5>POST
-      /evaluate</5><6>Allows to evaluate the expressions of publicode with a
-      given situation<1></1>You will find more info on the structure of the JSON
-      to send on our <4>Swagger</4>.</6><7>GET /rules</7><8>Retrieve all
-      publicode rules</8><9>GET /rules/:rule</9><10>Retrieve a publicodes
-      rule</10><11>Example</11><12>Here is an example of how to use the
-      different routes, you can explore their code in the
-      <1>example</1>folder</12><13><0></0></13>"
+      <7>/rules/:rule</7>.<9></9><10></10>Find more information on our
+      <13>Swagger UI</13>.<15></15></3><4><0>What is Publicodes?</0><1>It is a
+      declarative language developed by beta.gouv.fr and Urssaf to encode public
+      interest algorithms.<1></1>All our calculation rules are therefore written
+      in this language.<3></3><4>Learn more about
+      publicodes</4></1></4><5>Example</5><6>Here is an example of how to use
+      the different routes, you can explore their code in the
+      <1>example</1>folder</6><7><0></0></7>"
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
