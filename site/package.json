@@ -47,9 +47,6 @@
 		"build:storybook": "build-storybook"
 	},
 	"dependencies": {
-		"@emotion/react": "^11.7.1",
-		"@emotion/styled": "^11.6.0",
-		"@icons/material": "^0.4.1",
 		"@internationalized/number": "^3.0.3",
 		"@react-aria/accordion": "^3.0.0-alpha.5",
 		"@react-aria/button": "^3.4.1",
