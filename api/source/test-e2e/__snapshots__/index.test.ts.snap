@@ -939,6 +939,43 @@ Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api)
         "requestBody": {
           "content": {
             "application/json": {
+              "examples": {
+                "MicroEntreprise": {
+                  "value": {
+                    "expressions": [
+                      {
+                        "unité": "€/an",
+                        "valeur": "dirigeant . auto-entrepreneur . cotisations et contributions",
+                      },
+                      "dirigeant . rémunération . impôt",
+                      "dirigeant . auto-entrepreneur . net après impôt",
+                    ],
+                    "situation": {
+                      "dirigeant . auto-entrepreneur . chiffre d'affaires": "42000 €/an",
+                      "dirigeant . auto-entrepreneur . impôt . versement libératoire": "non",
+                      "entreprise . activité": "'libérale'",
+                      "entreprise . activité . libérale réglementée": "non",
+                      "entreprise . catégorie juridique": "'EI'",
+                      "entreprise . catégorie juridique . EI . auto-entrepreneur": "oui",
+                      "impôt . méthode de calcul": "'taux neutre'",
+                    },
+                  },
+                },
+                "SalaireBrutEnNet": {
+                  "value": {
+                    "expressions": [
+                      "contrat salarié . rémunération . net",
+                    ],
+                    "situation": {
+                      "contrat salarié": "'CDI'",
+                      "contrat salarié . rémunération . brut de base": {
+                        "unité": "€ / mois",
+                        "valeur": 4200,
+                      },
+                    },
+                  },
+                },
+              },
               "schema": {
                 "$ref": "#/components/schemas/EvaluateBody",
               },
@@ -1011,6 +1048,14 @@ Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api)
         "parameters": [
           {
             "description": "Rule to get",
+            "examples": {
+              "Impot": {
+                "value": "impôt . méthode de calcul",
+              },
+              "SalaireNet": {
+                "value": "contrat salarié . rémunération . net",
+              },
+            },
             "in": "path",
             "name": "rule",
             "required": true,
