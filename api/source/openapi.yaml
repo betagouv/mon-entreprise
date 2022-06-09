@@ -11,4 +11,52 @@ info:
 servers:
   - url: /api/v1/
 
-paths: {}
+paths:
+  /evaluate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            examples:
+              SalaireBrutEnNet:
+                value:
+                  {
+                    'situation':
+                      {
+                        'contrat salarié . rémunération . brut de base':
+                          { 'valeur': 4200, 'unité': '€ / mois' },
+                        'contrat salarié': "'CDI'",
+                      },
+                    'expressions': ['contrat salarié . rémunération . net'],
+                  }
+              MicroEntreprise:
+                value:
+                  {
+                    situation:
+                      {
+                        "dirigeant . auto-entrepreneur . chiffre d'affaires": '42000 €/an',
+                        'entreprise . activité': "'libérale'",
+                        'entreprise . activité . libérale réglementée': 'non',
+                        'entreprise . catégorie juridique': "'EI'",
+                        'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
+                        'dirigeant . auto-entrepreneur . impôt . versement libératoire': 'non',
+                        'impôt . méthode de calcul': "'taux neutre'",
+                      },
+                    expressions:
+                      [
+                        {
+                          'valeur': 'dirigeant . auto-entrepreneur . cotisations et contributions',
+                          'unité': '€/an',
+                        },
+                        'dirigeant . rémunération . impôt',
+                        'dirigeant . auto-entrepreneur . net après impôt',
+                      ],
+                  }
+  /rules/{rule}:
+    get:
+      parameters:
+        - examples:
+            SalaireNet:
+              value: 'contrat salarié . rémunération . net'
+            Impot:
+              value: 'impôt . méthode de calcul'

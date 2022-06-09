@@ -33,6 +33,11 @@ export default function API() {
 					l'interpréteur Publicodes : <InlineCode>/evaluate</InlineCode>,{' '}
 					<InlineCode>/rules</InlineCode> et{' '}
 					<InlineCode>/rules/:rule</InlineCode>.
+					<br />
+					<br />
+					Retrouvez plus d'informations sur notre{' '}
+					<Link href="/api/v1/doc/#/publicodes-api/evaluate">Swagger UI</Link>.
+					<br />
 				</Body>
 
 				<Message type="info">
@@ -46,22 +51,6 @@ export default function API() {
 						<a href="https://publi.codes">En savoir plus sur publicodes</a>
 					</Body>
 				</Message>
-
-				<H3>POST /evaluate</H3>
-				<Body>
-					Permet d'évaluer les expressions de publicode avec une situation
-					donnée
-					<br />
-					Vous trouverez plus d'infos sur la structure du JSON à envoyer sur
-					notre{' '}
-					<Link href="/api/v1/doc/#/publicodes-api/evaluate">Swagger</Link>.
-				</Body>
-
-				<H3>GET /rules</H3>
-				<Body>Permet de récupérer toutes les règles publicodes</Body>
-
-				<H3>GET /rules/:rule</H3>
-				<Body>Permet de récupérer une règle publicodes</Body>
 
 				<H2>Exemple</H2>
 				<Body>
