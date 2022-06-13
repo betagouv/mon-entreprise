@@ -1132,21 +1132,23 @@ pages:
         cta: See the help
         title: How to declare your income to the tax authorities?
   développeur:
-    api: "<0>Use our REST API</0><1>If your website or service requires to make
-      calculations on salaries, for example to switch from gross to net salary,
-      good news: all the calculations of contributions and taxes that are behind
-      my-company are free and usable via our <2>REST API</2>.</1><2>How to use
-      this API?</2><3>The my-company api is totally open and without
-      authentication, it is composed of 3 routes inspired by the methods of the
-      Publicodes interpreter: <1>/evaluate</1>, <4>/rules</4> and
-      <7>/rules/:rule</7>.<9></9><10></10>Find more information on our
-      <13>Swagger UI</13>.<15></15></3><4><0>What is Publicodes?</0><1>It is a
-      declarative language developed by beta.gouv.fr and Urssaf to encode public
-      interest algorithms.<1></1>All our calculation rules are therefore written
-      in this language.<3></3><4>Learn more about
-      publicodes</4></1></4><5>Example</5><6>Here is an example of how to use
-      the different routes, you can explore their code in the
-      <1>example</1>folder</6><7><0></0></7>"
+    api: "<0>Use our REST API </0><1><0>API in beta version</0><1>Some breaking
+      changes are likely to be made in the coming weeks.</1><2>Feel free to give
+      feedback on its use directly on Github.</2></1><2>If your site or service
+      requires to make calculations on salaries, for example to pass from gross
+      salary to net salary, good news: all calculations of contributions and
+      taxes of my-company are free and usable via our REST API.</2><3><0>Try the
+      API</0></3><4>How to use this API?</4><5>The my-company api is totally
+      open and without authentication, it is composed of 3 routes inspired by
+      the methods of the <1>Publicodes</1> interpreter: <4>/evaluate</4>,
+      <6>/rules</6> and <9>/rules/:rule</9>. Find more information on our
+      <12>Swagger UI</12>.<14></14></5><6><0>What is
+      Publicodes?</0><1>Publicodes is a declarative language developed by
+      beta.gouv.fr and Urssaf to encode public interest algorithms. All our
+      calculation rules are implemented in this language.</1><2><0>Learn more
+      about publicodes</0></2></6><7>Example</7><8>Here is an example of how to
+      use the different routes, you can explore their code in the
+      <1>example</1>folder</8><9><0></0></9>"
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       website or service would benefit from displaying salary calculations, for
       example switching from gross to net salary, good news: all the tax and
