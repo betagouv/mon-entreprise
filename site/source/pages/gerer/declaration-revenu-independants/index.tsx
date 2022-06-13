@@ -1,3 +1,4 @@
+import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -5,12 +6,11 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Step, Stepper } from '@/design-system'
-import { Container, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { omit } from '@/utils'
-import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router'
@@ -19,7 +19,6 @@ import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
 import Imposition, { OBJECTIFS as Step2Objectifs } from './imposition'
 import { useProgress } from './_components/hooks'
-import wipSvg from './_components/undraw_qa_engineers_dg-5-p.svg'
 import config from './_config.yaml'
 
 export default function AideDéclarationIndépendant() {
@@ -39,31 +38,22 @@ export default function AideDéclarationIndépendant() {
 		<>
 			<PrintExportRecover />
 			<Condition expression="DRI">
-				<Container
-					backgroundColor={(theme) => theme.colors.bases.tertiary[100]}
-				>
-					<Grid container spacing={4} alignItems="center">
-						<Grid item sm={3}>
-							<img src={wipSvg} style={{ width: '100%', padding: '0.25rem' }} />
-						</Grid>
-						<Grid item sm={9}>
-							<H3 as="h2">
-								<Strong>Cet assistant est en version beta</Strong>
-							</H3>
-							<Intro>
-								Nous travaillons à valider les informations et les calculs, mais
-								des <Strong>erreurs peuvent être présentes</Strong>.
-							</Intro>
-							<Body>
-								Bien qu'il ne soit pas terminé, nous avons choisi de publier cet
-								outil pour avoir vos retours. Si vous pensez avoir trouvé un
-								problème ou si vous voulez nous partager une remarque, vous
-								pouvez nous contacter via le bouton « Faire une suggestion » en
-								bas de page.
-							</Body>
-						</Grid>
-					</Grid>
-				</Container>
+				<BetaBanner>
+					<H3 as="h2">
+						<Strong>Cet assistant est en version beta</Strong>
+					</H3>
+					<Intro>
+						Nous travaillons à valider les informations et les calculs, mais des{' '}
+						<Strong>erreurs peuvent être présentes</Strong>.
+					</Intro>
+					<Body>
+						Bien qu'il ne soit pas terminé, nous avons choisi de publier cet
+						outil pour avoir vos retours. Si vous pensez avoir trouvé un
+						problème ou si vous voulez nous partager une remarque, vous pouvez
+						nous contacter via le bouton « Faire une suggestion » en bas de
+						page.
+					</Body>
+				</BetaBanner>
 				<Spacing lg />
 				<div className="print-hidden">
 					<Stepper aria-label="Étapes de l'assistant">

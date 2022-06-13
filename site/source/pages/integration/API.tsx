@@ -1,8 +1,10 @@
+import BetaBanner from '@/components/BetaBanner'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Message } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { H1, H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -16,39 +18,55 @@ export default function API() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
+
 			<Trans i18nKey="pages.développeur.api">
-				<H1>Utiliser notre API REST</H1>
-				<Body>
+				<H1>Utiliser notre API REST </H1>
+				<BetaBanner>
+					<H3 as="h1">API en version beta</H3>
+					<Intro>
+						Des changements cassants sont succeptibles d'être apportés dans les
+						prochaines semaines.
+					</Intro>
+					<Body>
+						N'hésitez pas à faire des retours sur son utilisation directement
+						sur Github.
+					</Body>
+				</BetaBanner>
+				<Intro>
 					Si votre site ou service requiert de faire des calculs sur des
 					salaires, par exemple passer du salaire brut au salaire net, bonne
-					nouvelle : tous les calculs de cotisations et impôts qui sont derrière
-					mon-entreprise sont libres et utilisable via notre{' '}
-					<Link href="/api/v1/doc/">API REST</Link>.
+					nouvelle : tous les calculs de cotisations et impôts de mon-entreprise
+					sont libres et utilisable via notre API REST.
+				</Intro>
+				<Body>
+					<Button size="XL" href="/api/v1/doc">
+						Essayer l'API
+					</Button>
 				</Body>
-
 				<H2>Comment utiliser cette API ?</H2>
+
 				<Body>
 					L'api mon-entreprise est totalement ouverte et sans authentification,
 					elle se compose de 3 routes qui s'inspirent des méthodes de
-					l'interpréteur Publicodes : <InlineCode>/evaluate</InlineCode>,{' '}
-					<InlineCode>/rules</InlineCode> et{' '}
-					<InlineCode>/rules/:rule</InlineCode>.
-					<br />
-					<br />
-					Retrouvez plus d'informations sur notre{' '}
+					l'interpréteur <Link href="https://publi.codes">Publicodes</Link> :{' '}
+					<InlineCode>/evaluate</InlineCode>, <InlineCode>/rules</InlineCode> et{' '}
+					<InlineCode>/rules/:rule</InlineCode>. Retrouvez plus d'informations
+					sur notre{' '}
 					<Link href="/api/v1/doc/#/publicodes-api/evaluate">Swagger UI</Link>.
 					<br />
 				</Body>
 
-				<Message type="info">
-					<H4>Qu'est ce que Publicodes ?</H4>
+				<Message>
+					<H4 as="h3">Qu'est ce que Publicodes ?</H4>
 					<Body>
-						C'est un language déclaratif développé par beta.gouv.fr et l'Urssaf
-						pour encoder des algorithmes d'intérêt public.
-						<br />
-						Toutes nos règles de calculs sont donc écrites dans ce language.
-						<br />
-						<a href="https://publi.codes">En savoir plus sur publicodes</a>
+						Publicodes est un language déclaratif développé par beta.gouv.fr et
+						l'Urssaf pour encoder des algorithmes d'intérêt public. Toutes nos
+						règles de calculs sont implémentées dans ce language.
+					</Body>
+					<Body>
+						<Link href="https://publi.codes">
+							En savoir plus sur publicodes
+						</Link>
 					</Body>
 				</Message>
 
