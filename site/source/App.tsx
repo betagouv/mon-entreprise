@@ -27,7 +27,6 @@ import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
-import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
 import Gérer from './pages/gerer'
 import Iframes from './pages/Iframes'
@@ -136,7 +135,6 @@ const App = () => {
 					<Route path={sitePaths.budget} component={Budget} />
 					<Route path={sitePaths.accessibilité} component={Accessibilité} />
 
-					<Route exact path="/dev/sitemap" component={Sitemap} />
 					<Route
 						exact
 						path="/dev/integration-test"
