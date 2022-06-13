@@ -1,0 +1,21 @@
+name: Check links validity
+on:
+  schedule:
+    # https://crontab.guru/#0_11_*_*_2
+    - cron: '0 11 * * 2'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/install
+      - name: Install RipGrep
+        run: sudo apt install -y ripgrep
+      - id: invalid_links
+        run: node ./scripts/check-links-validity.js --ci
+        timeout-minutes: 15
+      - if: steps.invalid_links.outputs.comment
+        uses: ./.github/actions/reopen-issue-with-comment
+        with:
+          issue-number: 2165
+          comment: ${{ steps.invalid_links.outputs.comment }}
