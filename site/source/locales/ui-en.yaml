@@ -945,6 +945,10 @@ gérer:
     majoritaire: Majority director
     minoritaire: Minority director
   ressources:
+    annuaire-entreprises:
+      body: Find all public information about your company on
+      cta: Visit the site
+      title: See your public data
     autoEntrepreneur:
       body: You will be able to declare your turnover, pay your contributions, and
         more generally find all the information relating to the status of
@@ -960,18 +964,6 @@ gérer:
       body: The form to apply for international mobility (secondment or multi-job)
       cta: Fill in the form
       title: Exporting your business to Europe
-    kbis:
-      body: The Kbis is a document to justify the registration of the company at the
-        <2>RCS</2> and to prove its legal existence. This document can be
-        retrieved free of charge for your company via the MonIdeNum website.
-      cta: Go to monIdeNum.fr
-      title: Get a Kbis extract
-    kbis-autoentrepreneur:
-      body: Sole proprietorships and auto-entrepreneurs do not have a Kbis. However,
-        they can get and present a K extract. See the service-public website for
-        more information.
-      cta: Visit the site
-      title: How to get a Kbis extract?
     sécuritéSociale:
       body: What are social security contributions for? An update on the social
         protection system from which all workers in France benefit.
