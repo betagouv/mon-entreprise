@@ -15,17 +15,19 @@ type Context = Koa.DefaultContext
 const app = new Koa<State, Context>()
 const router = new Router<State, Context>()
 
-app.use(requestHandler)
-app.use(tracingMiddleWare)
+if (process.env.NODE_ENV === 'production') {
+	app.use(requestHandler)
+	app.use(tracingMiddleWare)
 
-app.on('error', (err, ctx: RouterContext) => {
-	Sentry.withScope((scope) => {
-		scope.addEventProcessor((event) => {
-			return Sentry.Handlers.parseRequest(event, ctx.request)
+	app.on('error', (err, ctx: RouterContext) => {
+		Sentry.withScope((scope) => {
+			scope.addEventProcessor((event) => {
+				return Sentry.Handlers.parseRequest(event, ctx.request)
+			})
+			Sentry.captureException(err)
 		})
-		Sentry.captureException(err)
 	})
-})
+}
 
 app.use(cors())
 
