@@ -236,7 +236,13 @@ export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
-const deepReduce = (fn: any, initialValue?: any, object?: any): any =>
+type Obj = { [k: string]: string | Obj }
+
+const deepReduce = (
+	fn: (acc: string[], val: string, key: string) => string[],
+	initialValue: string[],
+	object: Obj
+): string[] =>
 	Object.entries(object).reduce(
 		(acc, [key, value]) =>
 			typeof value === 'object'
@@ -249,33 +255,36 @@ type SiteMap = Array<string>
 
 export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 	deepReduce(
-		(paths: Array<string>, path: string) => [...paths, ...[path]],
+		(paths: Array<string>, path: string) =>
+			/\/:/.test(path) ? paths : [...paths, ...[path]],
 		[],
 		sitePaths
 	)
 
-const basePathFr =
-	import.meta.env.DEV && typeof window !== 'undefined'
-		? `http://${window.location.host}/mon-entreprise`
-		: import.meta.env.VITE_FR_BASE_URL ?? ''
+export const alternateLinks = () => {
+	const basePathFr =
+		import.meta.env.DEV && typeof window !== 'undefined'
+			? `http://${window.location.host}/mon-entreprise`
+			: import.meta.env.VITE_FR_BASE_URL ?? ''
 
-const basePathEn =
-	import.meta.env.DEV && typeof window !== 'undefined'
-		? `http://${window.location.host}/infrance`
-		: import.meta.env.VITE_EN_BASE_URL ?? ''
+	const basePathEn =
+		import.meta.env.DEV && typeof window !== 'undefined'
+			? `http://${window.location.host}/infrance`
+			: import.meta.env.VITE_EN_BASE_URL ?? ''
 
-const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
-	(path) => basePathEn + path
-)
-const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
-	(path) => basePathFr + path
-)
+	const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
+		(path) => basePathEn + path
+	)
+	const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
+		(path) => basePathFr + path
+	)
 
-export const hrefLangLink = {
-	en: Object.fromEntries(
-		enSiteMap.map((key, i) => [key, { href: frSiteMap[i], hrefLang: 'fr' }])
-	),
-	fr: Object.fromEntries(
-		frSiteMap.map((key, i) => [key, { href: enSiteMap[i], hrefLang: 'en' }])
-	),
+	return {
+		en: Object.fromEntries(
+			enSiteMap.map((key, i) => [key, { href: frSiteMap[i], hrefLang: 'fr' }])
+		),
+		fr: Object.fromEntries(
+			frSiteMap.map((key, i) => [key, { href: enSiteMap[i], hrefLang: 'en' }])
+		),
+	}
 }

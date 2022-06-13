@@ -11,10 +11,12 @@ import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeProvider } from 'styled-components'
-import { hrefLangLink } from '@/sitePaths'
+import { alternateLinks } from '@/sitePaths'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 import { useShowFeedback } from './useShowFeedback'
+
+const hrefLangLink = alternateLinks()
 
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
