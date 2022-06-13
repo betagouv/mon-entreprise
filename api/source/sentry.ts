@@ -12,6 +12,10 @@ Sentry.init({
 	// of transactions for performance monitoring.
 	// We recommend adjusting this value in production
 	tracesSampleRate: 0.5,
+	release:
+		(process.env.APP ?? '') +
+		'-' +
+		(process.env.CONTAINER_VERSION ?? '').substring(0, 7),
 })
 
 export default Sentry
