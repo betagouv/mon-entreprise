@@ -54,11 +54,11 @@ import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Embaucher from './embaucher'
 import SocialSecurity from './sécurité-sociale'
+import { AnnuaireEntreprises } from './_components/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from './_components/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './_components/DemarcheEmbauche'
 import forms from './_components/forms.svg'
 import growth from './_components/growth.svg'
-import { KbisCard } from './_components/KBISCard'
 import { MobiliteCard } from './_components/MobiliteCard'
 import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
 
@@ -408,7 +408,7 @@ function Home() {
 					<SecuriteSocialeCard />
 				</Grid>
 				<Grid item sm={12} md={4}>
-					<KbisCard />
+					<AnnuaireEntreprises />
 				</Grid>
 			</Grid>
 		</>

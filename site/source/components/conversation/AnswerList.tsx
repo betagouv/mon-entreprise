@@ -19,7 +19,7 @@ import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import { useCallback, useMemo } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Value from '../EngineValue'
@@ -32,6 +32,7 @@ type AnswerListProps = {
 }
 
 export default function AnswerList({ onClose, children }: AnswerListProps) {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
@@ -62,6 +63,8 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 				.sort((a, b) => (a.title < b.title ? -1 : 1)),
 		[engine, companySituation]
 	)
+
+	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
 
 	return (
 		<div className="answer-list">
@@ -101,10 +104,21 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					<H3>
 						<Trans>Mon entreprise</Trans>
 					</H3>
-
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing md />
 					<div className="print-hidden">
+						<Body css={{ marginTop: 0 }}>
+							{t(
+								'gérer.ressources.annuaire-entreprises.body',
+								'Retrouvez toutes les informations publiques concernant votre entreprise sur'
+							)}{' '}
+							<Link
+								href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
+							>
+								Annuaire des Entreprises.
+							</Link>
+						</Body>
+
 						<Message type="info" border={false}>
 							<Body>
 								Les réponses liées à l'entreprise sont automatiquement

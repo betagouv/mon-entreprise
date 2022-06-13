@@ -719,6 +719,11 @@ gérer:
     majoritaire: Dirigeant majoritaire
     minoritaire: Dirigeant minoritaire
   ressources:
+    annuaire-entreprises:
+      body: Retrouvez toutes les informations publiques concernant votre entreprise
+        sur
+      cta: Visiter le site
+      title: Voir vos données publiques
     autoEntrepreneur:
       body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
         cotisations, et plus largement trouver toutes les informations relatives
@@ -735,19 +740,6 @@ gérer:
         (détachement ou pluriactivité)
       cta: Remplir le formulaire
       title: Exporter son activité en Europe
-    kbis:
-      body: Le Kbis est un document permettant de justifier de l'enregistrement de
-        l'entreprise au <2>RCS</2> et de prouver son existence légale. Ce
-        document peut être récupéré gratuitement pour votre entreprise via le
-        site MonIdeNum.
-      cta: Aller sur monIdeNum.fr
-      title: Récupérer un extrait de Kbis
-    kbis-autoentrepreneur:
-      body: Les entreprises individuelles et les auto-entrepreneurs n'ont pas de Kbis.
-        Ils peuvent cependant récupérer et présenter un extrait K. Voir le site
-        du service-public pour plus d'informations.
-      cta: Visiter le site
-      title: Récupérer un extrait de Kbis?
     sécuritéSociale:
       body: A quoi servent les cotisations sociales ? Le point sur le système de
         protection sociale dont bénéficient tous les travailleurs en France.
