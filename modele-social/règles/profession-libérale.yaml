@@ -133,8 +133,6 @@ dirigeant . indépendant . PL . option régime général:
   références:
     fiche information droit d'option (PDF CIPAV): https://www.lacipav.fr/sites/default/files/2019-03/Fiche%20pratique%20droit%20d%27option.pdf
     bpi-france: https://bpifrance-creation.fr/entrepreneur/actualites/nouvelle-liste-activites-liberales-non-reglementees-relevant-cipav
-    sécu-indépendant.fr: https://www.secu-independants.fr/creation-entreprise/professions-liberales/professions-de-sante/definir-son-concept/choisir-son-activite/
-
   par défaut: non
 
 dirigeant . indépendant . PL . régime général:
@@ -356,7 +354,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
     - rubrique « Demander à cotiser en classe supérieure ».
   par défaut: non
   références:
-    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide pratique 2022 - Professionnels libéraux - La Cipav_0.pdf#page=15
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=15
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
   titre: Classe avec l'option surcotisation
@@ -1096,7 +1094,7 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
       - (- participation CPAM)
     arrondi: oui
   références:
-    Taux 2020: http://www.carpimko.com/cotisations/cotisations_cas_general
+    Taux Carpimko: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
   titre: Participation CPAM à l'avantage social vieillesse
@@ -1108,9 +1106,6 @@ dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
           taux: 2 / 3
         arrondi: oui
       - 60% * proportionnelle
-
-  références:
-    Prise en charge CPAM: http://www.carpimko.com/cotisations/cotisations_cas_general
 
 dirigeant . indépendant . PL . CARMF:
   formule: oui
@@ -1271,7 +1266,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
       - cotisation forfaitaire
       - cotisation proportionnelle
   références:
-    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
   formule:
@@ -1321,7 +1316,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
   unité: '%'
   formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
   références:
-    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   applicable si: métier = 'santé . chirurgien-dentiste'
@@ -1361,7 +1356,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
         taux: 0.725 %
       unité: €/an
       références:
-        Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+        Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   titre: Participation CPAM à la prestation complémentaire vieillesse
@@ -1370,7 +1365,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participat
       - 2 * forfaitaire
       - proportionnelle
   références:
-    Guide CARCDSF (PDF, page 6): http://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
+    Guide CARCDSF (PDF, page 6): https://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification
@@ -1379,7 +1374,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
     faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   formule: 23 €/consultation
@@ -1409,7 +1404,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
       - si: classe = 'C'
         alors: 273 €/an
   références:
-    Montant des cotisations: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Montant des cotisations: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
   titre: Classe de cotisation
@@ -1445,7 +1440,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     valeur: 780 €/an
     abattement [ref participation CPAM]: 520 €/an
   références:
-    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |
     Une dispense peut être accordée lorsque les revenus professionnels sont
     inférieurs ou égaux à 3120 €.
@@ -1464,7 +1459,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
     faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
 dirigeant . indépendant . PL . CNBF:
   formule: oui

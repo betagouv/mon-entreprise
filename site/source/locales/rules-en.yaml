@@ -320,7 +320,7 @@ DRI . informations complémentaires . rémunération dirigeant:
 
 
     Si vous ne la connaissez pas, vous pouvez vous renseigner auprès de votre expert-comptable.
-  question.en: '[automatic] '
+  question.en: '[automatic] [object Object]'
   question.fr:
     texte:
       Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise
@@ -943,21 +943,21 @@ contrat salarié . ATMP . taux collectif ATMP:
   titre.fr: Taux collectif ATMP
 contrat salarié . ATMP . taux connu:
   description.en: >
-    [automatic] The rate of the occupational accident and illness contribution
-    varies according to the company's activity, to reflect the level of risk to
-    which their employees are exposed.
+    [automatic] The rate of the occupational injury and disease contribution
+    varies according to the activity of the company, to reflect the level of
+    risk to which their employees are exposed.
 
 
-    Companies with fewer than 20 employees are subject to this collective rate common to their entire branch.
+    Companies with less than 20 employees are subject to this collective rate common to their entire branch.
 
 
-    From 150 employees upwards, the rate is individualized according to the company's actual records of occupational accidents and illnesses.
+    From 150 employees onwards, the rate is individualized according to the company's actual records of occupational accidents and diseases.
 
 
-    Between the two, the rate is modulated.
+    In between, the rate is modulated.
 
 
-    This rate has no impact on the net because it is a contribution payable by the employer.
+    This rate has no influence on the net amount because it is a contribution paid by the employer.
   description.fr: >
     Le taux de la cotisation Accident du Travail et Maladie Professionnel varie
     selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels
@@ -967,13 +967,13 @@ contrat salarié . ATMP . taux connu:
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
 
 
-    A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
+    A partir de 150 employés, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
 
 
     Entre les deux, le taux est modulé.
 
 
-    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
+    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation payée par l'employeur.
   question.en: '[automatic] Do you know the AT/MP rate applicable to your company?'
   question.fr: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
   titre.en: '[automatic] known rate'
@@ -2210,10 +2210,10 @@ contrat salarié . convention collective . optique:
   titre.fr: Optique
 contrat salarié . convention collective . optique . coefficient:
   description.en: "[automatic] Refer to the [grid provided by the collective
-    agreement](http://opticiensreunis.org/storage/pdf/D4AciCiqHMr9mgqlTgjW0hvfP\
-    yE4w6ZxGTCihzYy.pdf#page=27)."
+    agreement](https://www.optometrie-aof.com/images/telecharger/convention_col\
+    lective.pdf#page=45)."
   description.fr: Se référer à la [grille fournie par la convention
-    collective](http://opticiensreunis.org/storage/pdf/D4AciCiqHMr9mgqlTgjW0hvfPyE4w6ZxGTCihzYy.pdf#page=27).
+    collective](https://www.optometrie-aof.com/images/telecharger/convention_collective.pdf#page=45).
   question.en: "[automatic] What is the coefficient corresponding to the
     employee's position?"
   question.fr: Quel est le coefficient correspondant au poste du salarié ?
@@ -3424,17 +3424,17 @@ contrat salarié . réduction générale . plafond avec application de la DFS:
 contrat salarié . régime alsace moselle:
   description.en: >
     [automatic] We consider that an employee is affiliated to the Alsace-Moselle
-    scheme when the establishment in which he works is located in these
+    scheme when the establishment in which he/she works is located in these
     departments.
 
 
-    Warning: this is a **simplification**: membership is more complicated than that, see the exact conditions [on the plan's website](http://regime-local.fr/salaries/).
+    Attention: this is a **simplification**: the affiliation is more complicated than that, see the exact conditions [on the website of the scheme](https://regime-local.fr/affiliation/).
   description.fr: >
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand
     l'établissement dans lequel il travaille est situé dans ces départements.
 
 
-    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
 contrat salarié . régime des impatriés:
@@ -4041,7 +4041,7 @@ contrat salarié . statut JEI:
 
 
     Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
-  question.en: '[automatic] '
+  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:
@@ -4826,28 +4826,23 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
     Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
   titre.en: '[automatic] Supplementary old-age benefit (CARCDSF dental surgeon)'
   titre.fr: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
-  titre.en: '[automatic] lump sum'
-  titre.fr: forfaitaire
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   titre.en: '[automatic] CPAM participation in the supplementary old-age benefit'
   titre.fr: Participation CPAM à la prestation complémentaire vieillesse
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
-  titre.en: '[automatic] proportional'
-  titre.fr: proportionnelle
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre.en: '[automatic] disability and death (CARCDSF Dental Surgeon)'
   titre.fr: invalidité et décès (CARCDSF chirurgien-dentiste)
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
-  description.en: "[automatic] You have the option of taking a full contribution
-    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
-    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
-    isations)"
+  description.en: "[automatic] You have the possibility to benefit from a total
+    exemption of contribution for the complementary old age benefit (PCV) if you
+    ask for it. [Read
+    more](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisatio\
+    ns)"
   description.fr:
     Vous avez la possibilité de bénéficier d'une exonération totale
     de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
     en faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   titre.en: '[automatic] PCV exemption'
   titre.fr: exonération PCV
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
@@ -5020,15 +5015,16 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . C:
   titre.en: '[automatic] class C'
   titre.fr: classe C
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
-  description.en: "[automatic] You have the option of taking a full contribution
-    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
-    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
-    isations)"
+  description.en: "[automatic] You have the possibility to benefit from a total
+    exemption of contribution for the complementary old age benefit (PCV) if you
+    ask for it. [Read
+    more](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisatio\
+    ns)"
   description.fr:
     Vous avez la possibilité de bénéficier d'une exonération totale
     de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
     en faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   titre.en: '[automatic] PCV exemption'
   titre.fr: exonération PCV
 dirigeant . indépendant . PL . CARMF:
@@ -5784,7 +5780,7 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     Les practicien et auxiliaire médical exerçant une activité de remplacement
     ne sont pas redevables de la contribution aux unions régionales des
     professionnels de santé (CURPS)
-  question.en: '[automatic] '
+  question.en: '[automatic] [object Object]'
   question.fr:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
       exclusivement en tant que remplaçant ?
@@ -6305,9 +6301,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités jo
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
   titre.en: '[automatic] disability and death (collaborating spouse)'
   titre.fr: invalidité et décès (conjoint collaborateur)
-dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
-  titre.en: '[automatic] disability and death base'
-  titre.fr: assiette invalidité et décès
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
@@ -6448,9 +6441,6 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     Sécurité sociale).
   titre.en: '[automatic] Flat-rate contributions at the beginning of the activity'
   titre.fr: Cotisations forfaitaires de début d'activité
-dirigeant . indépendant . cotisations et contributions . début activité . assiette forfaitaire:
-  titre.en: '[automatic] lump-sum basis'
-  titre.fr: assiette forfaitaire
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
   description.en: >
     [automatic] If you work as a tobacconist in addition to your commercial
@@ -7054,7 +7044,7 @@ déclaration charge sociales:
     to be reported in the income tax return of the self-employed and in the
     income tax returns.'
   description.fr: Ces règles calculent les montants des charges sociales à
-    reporter dans la déclaration de revenu  des indépendants et dans les
+    reporter dans la déclaration de revenu des indépendants et dans les
     déclaration de résultats.
   titre.en: '[automatic] social security declaration'
   titre.fr: déclaration charge sociales
@@ -8473,13 +8463,13 @@ impôt . dividendes . montant en sus des autres revenus imposables:
     revenus imposables
 impôt . domiciliation étranger non implémentée:
   description.en: >
-    [automatic] Non-resident withholding tax is not yet implemented. For more
-    information, please refer to the [tax
-    documentation](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en).
+    [automatic] Withholding tax for non-residents is not yet implemented. For
+    more information, please refer to the [tax
+    documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
   description.fr: >
     La retenue à la source pour les non-résident n'est pas encore implémentée.
     Pour en savoir plus, se référer à la [documentation
-    fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
+    fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
   titre.en: '[automatic] foreign domiciliation not implemented'
   titre.fr: domiciliation étranger non implémentée
 impôt . foyer fiscal:
@@ -8573,7 +8563,7 @@ impôt . foyer fiscal . nombre de parts . rattachées:
   titre.en: '[automatic] related'
   titre.fr: rattachées
 impôt . foyer fiscal . parent isolé:
-  question.en: '[automatic] '
+  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:
@@ -8812,24 +8802,24 @@ protection sociale:
   titre.fr: protection sociale
 protection sociale . accidents du travail et maladies professionnelles:
   description.en: >
-    Occupational injury and disease insurance (AT/MP) is the oldest branch of
-    social security: it is based on principles dating back to 1898 and which
-    were incorporated into the law of 31 December 1946.
+    [automatic] Occupational injury and disease insurance is the oldest branch
+    of Social Security: it is based on principles dating back to 1898 and
+    included in the law of December 31, 1946.
 
 
-    [🎞️ See video [fr]](https://www.youtube.com/watch?v=NaGI_deZJD8)
+    [🎞️ See the video](https://www.youtube.com/watch?v=NaGI_deZJD8 )
 
 
-    The AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees covered by the general scheme.
+    The AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees under the general scheme.
 
 
-    This contribution is mandatory and is the sole responsibility of the employer.
+    This contribution is compulsory and is paid exclusively by the employer.
 
 
-    To find out about occupational risks and set up preventive actions, the [AT/MP account [fr]](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) is a service open to all companies in the general social security system
+    In order to know the occupational risks and to set up prevention actions, the [AT/MP account](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) is a service open to all companies of the general Social Security system.
 
 
-    In the case of accidents at work, medical and surgical care is reimbursed at 100% on the basis of social security reimbursement (BRSS) within the limits of the Social Security rates.
+    In the event of an occupational injury, medical and surgical care is fully reimbursed within the limits of the Social Security rates.
   description.fr: >
     L’assurance AT/MP (accident du travail et maladie professionnelle) est la
     plus ancienne branche de la Sécurité sociale : elle relève de principes qui
@@ -8846,7 +8836,7 @@ protection sociale . accidents du travail et maladies professionnelles:
     Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
 
 
-    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
+    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
@@ -9398,7 +9388,7 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
 
     Une cotisation maladie majorée de 14,5% sera en revanche applicable.
-  question.en: '[automatic] '
+  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:

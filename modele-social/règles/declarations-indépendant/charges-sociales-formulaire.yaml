@@ -1,6 +1,6 @@
 déclaration charge sociales:
   description: >-
-    Ces règles calculent les montants des charges sociales à reporter dans la déclaration de revenu 
+    Ces règles calculent les montants des charges sociales à reporter dans la déclaration de revenu
     des indépendants et dans les déclaration de résultats.
   formule: non
   remplace:
@@ -129,7 +129,7 @@ déclaration charge sociales . nature de l'activité . libérale:
     1er janvier 2021.
 
   références:
-    fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
+    fiche Wikipedia: https://fr.wikipedia.org/wiki/Profession_lib%C3%A9rale
 
 déclaration charge sociales . nature de l'activité . commerciale:
   formule: nature de l'activité = 'commerciale'

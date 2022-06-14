@@ -548,7 +548,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					<Grid item xs={12} sm={6} lg={4}>
 						<Article
 							title={<h3>Guide pratique Urssaf</h3>}
-							href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf"
+							href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf"
 							ctaLabel="Consulter le guide"
 						>
 							Des conseils pour les auto-entrepreneurs : comment préparer son

@@ -47,7 +47,7 @@ impôt . méthode de calcul:
         - taux personnalisé
         - barème standard
   références:
-    différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
+    différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
     calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
 
 impôt . méthode de calcul . taux neutre:
@@ -617,7 +617,7 @@ impôt . domiciliation étranger non implémentée:
   type: notification
   niveau: avertissement
   description: |
-    La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
+    La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
 
 impôt . dividendes:
   valeur: oui
