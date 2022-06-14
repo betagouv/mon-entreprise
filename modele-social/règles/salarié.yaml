@@ -354,7 +354,7 @@ contrat salarié . activité partielle:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
 
 contrat salarié . activité partielle . rémunération mensuelle minimale:
   acronyme: RMM
@@ -420,7 +420,7 @@ contrat salarié . activité partielle . indemnités:
       - complémentaire
       - conventionnelle
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
 
 contrat salarié . activité partielle . indemnités . base:
   titre: indemnités d'activité partielle de base
@@ -489,7 +489,7 @@ contrat salarié . activité partielle . indemnités . conventionnelle . part so
       - valeur: activité partielle . indemnités - 3.15 * SMIC
         plafond: activité partielle . indemnités . conventionnelle
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html
     Ordonnance du 22 avril 2020, article 5: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041814597/#JORFARTI000041814602
 
 contrat salarié . activité partielle . retrait absence:
@@ -693,7 +693,7 @@ contrat salarié . déduction forfaitaire spécifique . profession . pilote de l
 contrat salarié . CDD . CPF:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
   cotisation:
-    destinataire: OPCA
+    destinataire: OPCO
     dû par: employeur
     branche: formation
   non applicable si:
@@ -900,7 +900,7 @@ contrat salarié . ATMP . taux réduit:
   applicable si: entreprise . effectif <= 150
   par défaut: non
   références:
-    fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
+    fiche ameli.fr: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
 
 contrat salarié . ATMP . taux connu:
   question: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
@@ -910,13 +910,13 @@ contrat salarié . ATMP . taux connu:
 
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
 
-    A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
+    A partir de 150 employés, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
 
     Entre les deux, le taux est modulé.
 
-    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
+    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation payée par l'employeur.
   références:
-    Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
+    Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp
     Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
 
 contrat salarié . ATMP . taux personnalisé:
@@ -2511,7 +2511,7 @@ contrat salarié . contribution d'équilibre général:
               plafond: 8
 
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    calcul des cotisations: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
 
 contrat salarié . contribution d'équilibre technique:
   acronyme: CET
@@ -2532,7 +2532,7 @@ contrat salarié . contribution d'équilibre technique:
             nom: salarié
           taux: 0.14%
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    calcul des cotisations: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
 
 contrat salarié . retraite complémentaire:
   cotisation:
@@ -2562,7 +2562,7 @@ contrat salarié . retraite complémentaire:
             - taux [ref taux tranche 2]: 8.64%
               plafond: 8
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    calcul des cotisations: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
     régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
 
 contrat salarié . retraite supplémentaire:
@@ -2666,7 +2666,6 @@ contrat salarié . chômage:
   références:
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
-    changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
   formule:
     produit:
       assiette: cotisations . assiette
@@ -2777,7 +2776,7 @@ contrat salarié . régime alsace moselle:
   description: |
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
 
-    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
   formule:
     une de ces conditions:
       - établissement . localisation . département = 'Bas-Rhin'
@@ -3060,7 +3059,6 @@ contrat salarié . maladie:
   références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
-    Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
   formule:
     produit:
       assiette: cotisations . assiette
@@ -3155,8 +3153,6 @@ contrat salarié . prévoyance obligatoire cadre:
   cotisation:
     dû par: employeur
     branche: santé
-  références:
-    minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   applicable si: statut cadre
   formule:
     produit:
@@ -3166,6 +3162,8 @@ contrat salarié . prévoyance obligatoire cadre:
       # TODO attention : il semblerait que ce 1.5% englobe aussi la
       # complémentaire santé ! La confusion serait entretenue par les organismes
       # de prévoyance...
+  références:
+    minimum: https://www.ag2rlamondiale.fr/culture-branches/mise-en-place-d-un-accord/le-1-50-cadre
 
 contrat salarié . prévoyance . exonération fiscale:
   titre: prévoyance exonérée d'impôt
@@ -3190,8 +3188,7 @@ contrat salarié . taxe d'apprentissage:
       - entreprise . effectif > 10
       - apprentissage = non
   références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
-    csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
+    service-public.fr: https://entreprendre.service-public.fr/vosdroits/F22574
 
   note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
   formule:
@@ -3662,7 +3659,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
-    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane
+    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/la-notion-de-plafond/le-calcul-du-plafond/salarie-a-temps-partiel.html
 
 contrat salarié . cotisations . assiette forfaitaire . minimum:
   description: >

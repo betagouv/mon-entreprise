@@ -159,7 +159,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					explanations={
 						<Body>
 							<a
-								href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep"
+								href="https://www.espace-entreprise.services-retraite.fr/prod-simape-cmc-ihm/#/connaitre-ma-caisse"
 								className="ui__ button"
 								target="_blank"
 								rel="noreferrer"

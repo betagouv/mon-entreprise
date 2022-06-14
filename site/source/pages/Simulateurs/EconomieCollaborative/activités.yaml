@@ -24,7 +24,7 @@
             principale qui n’excèdent pas 760 € par an sont exonérées et ne sont
             pas à déclarer à l’impôt sur le revenu. Au-delà de ce montant, les
             revenus doivent être déclarés à l’impôt sur le revenu.
-        - &location-résidence-principale-meublée # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
+        - &location-résidence-principale-meublée
           titre: |
             Je loue une pièce de ma résidence principale à une personne dont
             c'est la résidence principale ou temporaire avec un loyer raisonnable

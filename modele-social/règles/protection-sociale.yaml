@@ -430,7 +430,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
             taux: 50%
           plafond: 55.51 €/jour
   reférences:
-    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+    - secu-independants.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
 
 protection sociale . santé . indemnités journalières . indépendant:
   applicable si: dirigeant . indépendant
@@ -442,7 +442,7 @@ protection sociale . santé . indemnités journalières . indépendant:
     plancher: 21 €/jour
     plafond: 55.51 €/jour
   reférences:
-    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+    - secu-independants.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
 
 protection sociale . santé . indemnités journalières . salarié:
   unité: €/jour
@@ -499,7 +499,7 @@ protection sociale . famille:
       - **75 %** des mères avec un enfant à charge travaillent (dont 70% à temps plein)
 
   références:
-    CAF: https://www.caf.fr/sites/default/files/plaquette branche famille francais.pdf
+    CAF: https://www.caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/qui%20sommes%20nous/plaquette%20branche%20Famille.pdf
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F12242
 
 protection sociale . accidents du travail et maladies professionnelles:
@@ -514,7 +514,7 @@ protection sociale . accidents du travail et maladies professionnelles:
 
     Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
 
-    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
+    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
 
@@ -532,7 +532,7 @@ protection sociale . accidents du travail et maladies professionnelles:
   note: |
     Le taux est de 80% à partir du 29e jour d'arrêt.
   références:
-    ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
+    ameli.fr: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
     service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
     service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
     Calcul de l'indemnité: https://www.service-public.fr/particuliers/vosdroits/F32148

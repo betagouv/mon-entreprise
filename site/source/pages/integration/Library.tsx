@@ -40,11 +40,7 @@ export default function Library() {
 				</pre>
 				<em>
 					Pour plus de détails sur l'installation, se référer à la{' '}
-					<Link
-						href="https://publi.codes/documentation/se-lancer"
-						target="_blank"
-						rel="noreferrer"
-					>
+					<Link href="https://publi.codes" target="_blank" rel="noreferrer">
 						documentation dédiée
 					</Link>
 				</em>

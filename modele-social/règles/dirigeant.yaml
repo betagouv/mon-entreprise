@@ -134,7 +134,7 @@ dirigeant . assimilé salarié:
     - contrat salarié . rémunération . contrôle smic
     - entreprise . association non lucrative
   références:
-    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
+    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-assimiles-salarie.html
   note: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
 
 dirigeant . assimilé salarié . réduction ACRE:
@@ -154,7 +154,7 @@ dirigeant . assimilé salarié . réduction ACRE:
           taux: (plafond sécurité sociale temps plein - contrat salarié . cotisations . assiette) / (25% * plafond sécurité sociale temps plein)
 
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/laccre/quelles-exonerations.html#FilAriane
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/laccre/quelles-exonerations-pour-2022.html
 
 dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
   recalcul:
@@ -341,7 +341,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           valeur: 12.8%
 
   références:
-    guide urssaf (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf
+    guide urssaf (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-charges-sociales
     actualité urssaf.fr (2019): https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/nouveautes-2019--ce-qui-change-e.html
@@ -400,7 +400,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
       alors: 12.10%
     - sinon: taux ACRE * taux prestation de service
   références:
-    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf
+    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
 
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   formule: entreprise . ACRE
@@ -1229,7 +1229,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
               taux: 3.8%
 
   références:
-    fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
     IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
     Article 154 quiquies du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836652/
@@ -1288,8 +1288,7 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
 
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
-    fiche Urssaf: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
-    brève Urssaf pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-indépendant/transfert-du-recouvrement-de-la.html
+    fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   produit:

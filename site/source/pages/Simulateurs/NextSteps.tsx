@@ -68,7 +68,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 
 const guidesUrssaf = [
 	{
-		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_Medecins.pdf',
+		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/PAM/Diaporama_Medecins.pdf',
 		associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
 		title: 'Guide Urssaf pour les médecins libéraux',
 	},
@@ -78,7 +78,7 @@ const guidesUrssaf = [
 		title: 'Guide Urssaf pour les professions libérales réglementées',
 	},
 	{
-		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/Presentation_AE.pdf',
+		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf',
 		associatedRule: 'dirigeant . auto-entrepreneur',
 		title: 'Guide Urssaf pour les auto-entrepreneurs',
 	},

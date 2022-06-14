@@ -26,7 +26,6 @@ import Iframes from '../Iframes'
 import Simulateurs from '../Simulateurs'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import './iframe.css'
-import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
@@ -239,15 +238,6 @@ export default function Integration() {
 							ctaLabel="Voir l'intégration"
 						>
 							<Logo src={cciLogo} alt="Les-aides.fr" />
-						</Article>
-					</Grid>
-					<Grid item xs={12} md={6} xl={4}>
-						<Article
-							title="APEC"
-							href="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche"
-							ctaLabel="Voir le simulateur"
-						>
-							<Logo src={apecLogo} alt="Agence pour l'emploi des cadres" />
 						</Article>
 					</Grid>
 					<Grid item xs={12} md={6} xl={4}>
