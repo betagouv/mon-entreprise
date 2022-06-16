@@ -4,6 +4,7 @@ import { koaMiddleware as publicodesAPI } from '@publicodes/api'
 import Koa from 'koa'
 import rules from 'modele-social'
 import Engine from 'publicodes'
+import { catchErrors } from './errors.js'
 import openapi from './openapi.json' assert { type: 'json' }
 import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
@@ -28,6 +29,8 @@ if (process.env.NODE_ENV === 'production') {
 		})
 	})
 }
+
+app.use(catchErrors())
 
 app.use(cors())
 
