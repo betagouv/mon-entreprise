@@ -2,7 +2,7 @@ import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from '@/types/companyTypes'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom-v5-compat'
 import { Action } from './actions'
 
 export type CompanyStatusAction = ReturnType<
@@ -17,12 +17,12 @@ export type CompanyStatusAction = ReturnType<
 // This feels hacky, we should express this "dispatch and navigate" in another way
 export const useDispatchAndGoToNextQuestion = () => {
 	const dispatch = useDispatch()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const nextQuestion = useNextQuestionUrl()
 	const [dispatched, setDispatched] = useState(false)
 	useEffect(() => {
 		if (dispatched) {
-			history.push(nextQuestion)
+			navigate(nextQuestion)
 		}
 	}, [dispatched])
 

@@ -5,7 +5,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
 import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom-v5-compat'
 import Home from './Home'
 import useSimulatorsData from './metadata'
 import SimulateurPage from '../../components/PageData'
@@ -33,7 +33,7 @@ export default function Simulateurs() {
 					<Route
 						key={s.path}
 						path={s.path}
-						render={() => <SimulateurPage {...s} />}
+						element={<SimulateurPage {...s} />}
 					/>
 				)),
 		[simulatorsData, sitePaths]
@@ -59,10 +59,10 @@ export default function Simulateurs() {
 						</Link>
 					)
 				) : null)}
-			<Switch>
-				<Route exact path={sitePaths.simulateurs.index} component={Home} />
+			<Routes>
+				<Route path={sitePaths.simulateurs.index} element={<Home />} />
 				{simulatorRoutes}
-			</Switch>
+			</Routes>
 		</>
 	)
 }

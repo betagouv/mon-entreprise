@@ -12,7 +12,7 @@ import { H1 } from '@/design-system/typography/heading'
 import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useContext, useEffect, useMemo, useState } from 'react'
-import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
+import { Navigate, useMatch, useNavigate } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 
@@ -37,10 +37,9 @@ export default function Nouveautés() {
 				console.error(err)
 			)
 	}, [])
-	const history = useHistory()
+	const navigate = useNavigate()
 	const sitePaths = useContext(SitePathsContext)
-	const slug = useRouteMatch<{ slug: string }>(`${sitePaths.nouveautés}/:slug`)
-		?.params?.slug
+	const slug = useMatch(`${sitePaths.nouveautés}/:slug`)?.params?.slug
 	useEffect(hideNewsBanner, [])
 
 	const releasesWithId = useMemo(
@@ -58,7 +57,7 @@ export default function Nouveautés() {
 		`${sitePaths.nouveautés}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Redirect to={getPath(0)} />
+		return <Navigate to={getPath(0)} />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
@@ -96,7 +95,7 @@ export default function Nouveautés() {
 							value={selectedRelease}
 							items={releasesWithId}
 							onSelectionChange={(id) => {
-								history.push(getPath(Number(id)))
+								navigate(getPath(Number(id)))
 							}}
 						>
 							{(release) => (

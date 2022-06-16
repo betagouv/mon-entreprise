@@ -6,7 +6,7 @@ import { Banner, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom-v5-compat'
 import { TrackChapter } from '../../ATInternetTracking'
 import API from './API'
 import Iframe from './Iframe'
@@ -50,16 +50,16 @@ export default function Integration() {
 					</InnerBanner>
 				</Banner>
 			)}
-			<Switch>
-				<Route exact path={sitePaths.développeur.index} component={Options} />
-				<Route path={sitePaths.développeur.iframe} component={Iframe} />
-				<Route path={sitePaths.développeur.library} component={Library} />
-				<Route path={sitePaths.développeur.api} component={API} />
+			<Routes>
+				<Route path={sitePaths.développeur.index} element={<Options />} />
+				<Route path={sitePaths.développeur.iframe} element={<Iframe />} />
+				<Route path={sitePaths.développeur.library} element={<Library />} />
+				<Route path={sitePaths.développeur.api} element={<API />} />
 				<Route
 					path={sitePaths.développeur.spreadsheet}
-					component={Spreadsheet}
+					element={<Spreadsheet />}
 				/>
-			</Switch>
+			</Routes>
 		</TrackChapter>
 	)
 }
