@@ -108,4 +108,21 @@ describe('e2e test mon-entreprise api', () => {
 			"
 		`)
 	})
+
+	it('Test json mal formaté', async () => {
+		await expect(
+			chai
+				.request(server)
+				.post('/api/v1/evaluate')
+				.set('Content-Type', 'application/json')
+				.send('{ x: bad json }')
+				.then((res) => {
+					expect(res.status).toMatchInlineSnapshot('400')
+
+					return res.text
+				})
+		).resolves.toMatchInlineSnapshot(
+			'"Unexpected token x in JSON at position 2"'
+		)
+	})
 })
