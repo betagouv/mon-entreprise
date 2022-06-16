@@ -97,6 +97,7 @@
 		"react-redux": "^7.2.8",
 		"react-router": "^5.2.1",
 		"react-router-dom": "^5.3.0",
+		"react-router-dom-v5-compat": "^6.3.0",
 		"react-signature-pad-wrapper": "^1.2.11",
 		"react-spring": "^9.3.1",
 		"react-use-measure": "^2.0.4",

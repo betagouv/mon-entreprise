@@ -13826,7 +13826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:^5.2.0":
+"history@npm:^5.2.0, history@npm:^5.3.0":
   version: 5.3.0
   resolution: "history@npm:5.3.0"
   dependencies:
@@ -18928,6 +18928,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom-v5-compat@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "react-router-dom-v5-compat@npm:6.3.0"
+  dependencies:
+    history: ^5.3.0
+    react-router: 6.3.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+    react-router-dom: 4 || 5
+  checksum: ee82b48078bac91cea3b8c499954cbf13f9261daef87e5032695946652b594b2f0590d279448ac59dd26a1c0d208a7c53d3aef2e97dcd0335f4af82df228f197
+  languageName: node
+  linkType: hard
+
 "react-router-dom@npm:^5.3.0":
   version: 5.3.0
   resolution: "react-router-dom@npm:5.3.0"
@@ -20393,6 +20407,7 @@ __metadata:
     react-redux: ^7.2.8
     react-router: ^5.2.1
     react-router-dom: ^5.3.0
+    react-router-dom-v5-compat: ^6.3.0
     react-signature-pad-wrapper: ^1.2.11
     react-spring: ^9.3.1
     react-use-measure: ^2.0.4
