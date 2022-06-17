@@ -66,7 +66,7 @@ const simulateurURL = url.toString()
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
 	Retrouvez ce simulateur et bien d'autres sur
-	<a href="${simulateurURL}">
+	<a href="${simulateurURL}" target="_blank" rel="noopener">
 		mon-entreprise.urssaf.fr
 	</a>
 	</div>
