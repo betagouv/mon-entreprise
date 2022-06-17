@@ -184,12 +184,13 @@ export default function PaySlip() {
 						className="payslip__total"
 					/>
 				</div>
-
-				<Value
-					expression="contrat salarié . cotisations . salariales"
-					displayedUnit="€"
-					className="payslip__total"
-				/>
+				<div>
+					<Value
+						expression="contrat salarié . cotisations . salariales"
+						displayedUnit="€"
+						className="payslip__total"
+					/>
+				</div>
 				{/* Salaire chargé */}
 				<Line rule="contrat salarié . rémunération . total" />
 				<span />
