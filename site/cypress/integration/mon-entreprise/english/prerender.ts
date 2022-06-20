@@ -1,17 +1,20 @@
 import { fr } from '../../../support/utils'
-// @ts-ignore
-import prerenderPaths from '../../../prerender-paths.json'
 
 describe('Test prerender', function () {
-	const paths = (
-		prerenderPaths as { 'mon-entreprise': string[]; infrance: string[] }
-	)[fr ? 'mon-entreprise' : 'infrance']
+	const tests = {
+		'mon-entreprise': [
+			'/simulateurs/salaire-brut-net',
+			'/simulateurs/indépendant',
+			'/iframes/simulateur-embauche',
+		],
+		infrance: ['', '/calculators/salary', '/iframes/simulateur-embauche'],
+	}
 
-	paths.forEach((path) => {
+	tests[fr ? 'mon-entreprise' : 'infrance'].forEach((path) => {
 		it(`should show the pre-render of ${fr ? 'fr' : 'en'} ${
 			path || '/'
 		}`, function () {
-			cy.visit(encodeURI(path || '/'), { script: false })
+			cy.visit(path || '/', { script: false })
 				.get('#loading', { timeout: 200 })
 				.should('not.exist')
 		})

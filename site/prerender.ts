@@ -1,4 +1,6 @@
-import { writeFileSync } from 'node:fs'
+import { readFileSync, statSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { argv } from 'node:process'
 import Tinypool from 'tinypool'
 import { constructLocalizedSitePath } from './source/sitePaths.js'
 
@@ -33,21 +35,52 @@ export const pagesToPrerender: {
 	],
 }
 
-if (process.env.GENERATE_PRERENDER_PATHS_JSON) {
-	// This json file is used in e2e cypress test
-	writeFileSync(
-		'cypress/prerender-paths.json',
-		JSON.stringify(pagesToPrerender)
-	)
-	console.log('cypress/prerender-paths.json was generated!')
+const dev = argv.findIndex((val) => val === '--dev') > -1
 
-	process.exit()
-}
-
-await Promise.all(
+const redirects = await Promise.all(
 	Object.entries(pagesToPrerender).flatMap(([site, urls]) =>
 		urls.map((url) =>
-			pool.run({ site, url, lang: site === 'mon-entreprise' ? 'fr' : 'en' })
+			pool
+				.run({
+					site,
+					url,
+					lang: site === 'mon-entreprise' ? 'fr' : 'en',
+				})
+				.then((path: string) => {
+					return `
+[[redirects]]
+	from = ":SITE_${site === 'mon-entreprise' ? 'FR' : 'EN'}${
+						dev ? url : encodeURI(url)
+					}"
+	to = "/${path}"
+	status = 200
+${dev ? '  force = true\n' : ''}`
+				})
 		)
 	)
 )
+
+// Replace the #[prerender]# tag in netlify.toml if --netlify-toml-path is specified
+
+const index = argv.findIndex((val) => val === '--netlify-toml-path')
+
+if (index > -1 && argv[index + 1]) {
+	const netlifyTomlPath = resolve(argv[index + 1])
+
+	if (statSync(netlifyTomlPath).isFile()) {
+		const data = readFileSync(netlifyTomlPath, { encoding: 'utf8' })
+
+		if (/#\[prerender\]#/g.test(data)) {
+			writeFileSync(
+				netlifyTomlPath,
+				data.replace(/#\[prerender\]#/g, redirects.join(''))
+			)
+
+			console.log('Redirects added to ' + netlifyTomlPath)
+		} else {
+			throw new Error('tag #[prerender]# not found in ' + netlifyTomlPath)
+		}
+	} else {
+		throw new Error('this path is not a file' + netlifyTomlPath)
+	}
+}

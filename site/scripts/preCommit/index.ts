@@ -13,10 +13,6 @@ const results = await execOnFileChange({
 			],
 			run: 'yarn build:yaml-to-dts',
 		},
-		{
-			paths: ['./prerender.ts'],
-			run: 'GENERATE_PRERENDER_PATHS_JSON=true yarn build:prerender',
-		},
 	],
 })
 
