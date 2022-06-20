@@ -5,4 +5,5 @@ cypress/videos
 cypress/screenshots
 cypress/downloads
 .deps.json
+netlify.dev.toml
 source/public/sitemap.*.txt
