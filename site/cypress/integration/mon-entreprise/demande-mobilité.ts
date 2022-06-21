@@ -1,4 +1,4 @@
-const fr = Cypress.env('language') === 'fr'
+import { fr } from '../../support/utils'
 
 const FIXTURES_FOLDER = 'cypress/fixtures'
 const DEMANDE_MOBILITE_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/demande-mobilité`
@@ -27,6 +27,7 @@ describe(`Formulaire demande mobilité (${
 		cy.clearLocalStorage() // Try to avoid flaky tests
 		cy.visit(encodeURI('/gérer/demande-mobilité'))
 	})
+
 	after(function () {
 		cy.writeInterceptResponses(
 			pendingRequests,
@@ -34,9 +35,18 @@ describe(`Formulaire demande mobilité (${
 			DEMANDE_MOBILITE_FIXTURES_FOLDER
 		)
 	})
+
 	it('should allow to select salarié', function () {
+		cy.intercept({
+			method: 'GET',
+			hostname: 'geo.api.gouv.fr',
+			url: '/communes*',
+		}).as('communes')
+
 		cy.contains('Employeur adhérent au TESE ou au CEA').click()
+
 		cy.contains('Informations concernant le salarié')
+
 		cy.contains('Êtes-vous adhérent au TESE ou au CEA')
 			.parent()
 			.next()
@@ -44,8 +54,10 @@ describe(`Formulaire demande mobilité (${
 			.click()
 
 		// "coordonnées" section
-		cy.contains('Nom').click({ force: true })
-		cy.focused()
+		cy.contains('Nom')
+			.parent()
+			.click()
+			.focused()
 			.type('Deaux')
 			.tab()
 			.type('Jean Bernard')
@@ -55,20 +67,21 @@ describe(`Formulaire demande mobilité (${
 			.type('Française')
 			.tab()
 			.type('1991-07-25')
-		cy.contains('Non').click().wait(250)
-		cy.focused()
-			.tab()
-			.type('Pouts', { force: true })
-			.wait(500)
-			.type('{enter}')
-			.wait(500)
 
-		cy.tab().type('{downarrow}').wait(500)
-		cy.focused()
+		cy.contains('Non')
+			.click()
+			.focused()
 			.tab()
-			.type('Brest')
-			.wait(500)
+			.type('Pouts')
+			.wait('@communes')
+			.focused()
+		cy.contains('65100').type('{enter}').focused().tab().type('{downarrow}')
+
+		cy.focused().tab().type('Brest').wait('@communes')
+
+		cy.contains('29200')
 			.type('{enter}')
+			.focused()
 			.tab()
 			.type('3 rue de la Rhumerie')
 			.tab()
@@ -81,9 +94,9 @@ describe(`Formulaire demande mobilité (${
 			.type('14 chemin des Docks')
 			.tab()
 			.type('Bre')
-			.wait(500)
-		cy.contains('29200').click()
-		cy.focused()
+		cy.contains('29200')
+			.click()
+			.focused()
 			.tab()
 			.type('Deaux')
 			.tab()
@@ -99,9 +112,11 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().type('2020-11-06').tab().type('2021-04-09').tab()
 		cy.focused().type('Argen{enter}')
 
-		cy.contains('Agent contractuel').click().wait(250)
-		cy.focused()
-			.tab()
+		cy.contains('Agent contractuel').click()
+		cy.contains("Nom de l'entreprise")
+			.parent()
+			.click()
+			.focused()
 			.type('Haldithet Docks')
 			.tab()
 			.type('64E45 12-654')
@@ -118,16 +133,10 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().tab().type('{downarrow}{downarrow}')
 
 		cy.focused().tab().type('{downarrow}')
-		cy.focused()
-			.tab()
-
-			.type('{downarrow}')
 		cy.focused().tab().type('{downarrow}')
 		cy.focused().tab().type('{downarrow}')
-		cy.focused()
-			.tab()
-
-			.type('{downarrow}')
+		cy.focused().tab().type('{downarrow}')
+		cy.focused().tab().type('{downarrow}')
 		cy.focused().tab().type('{downarrow}')
 		cy.focused().tab()
 
@@ -139,8 +148,7 @@ describe(`Formulaire demande mobilité (${
 			.next()
 			.contains('Oui')
 			.click()
-		cy.contains("Combien d'ayants droits partiront")
-		cy.focused().tab().type(1)
+		cy.contains("Combien d'ayants droits partiront").parent().next().type('1')
 		cy.contains('Ayant droit n°1')
 		cy.focused()
 			.tab()

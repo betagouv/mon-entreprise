@@ -24,16 +24,16 @@ jobs:
       - run: node site/scripts/get-cypress-packages.js | xargs npm i --legacy-peer-deps
 
       - name: Test external integration
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           working-directory: site
           record: true
           tag: external-integration
-          config: integrationFolder=cypress/integration/external,baseUrl=https://mon-entreprise.urssaf.fr
+          config: specPattern=cypress/integration/external/**/*.{js,jsx,ts,tsx},baseUrl=https://mon-entreprise.urssaf.fr
 
       - name: e2e tests with external API calls
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           working-directory: site
@@ -43,5 +43,5 @@ jobs:
             cypress/integration/mon-entreprise/demande-mobilité.js
           record: true
           tag: external-mon-entreprise-e2e
-          config: integrationFolder=cypress/integration/mon-entreprise,baseUrl=https://mon-entreprise.urssaf.fr
+          config: specPattern=cypress/integration/mon-entreprise/**/*.{js,jsx,ts,tsx},baseUrl=https://mon-entreprise.urssaf.fr
           env: language=fr,record_http= # prevent stubbing

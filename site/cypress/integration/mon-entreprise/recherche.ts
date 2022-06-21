@@ -1,7 +1,7 @@
-const fr = Cypress.env('language') === 'fr'
+import { fr } from '../../support/utils'
 
 describe('Recherche globales', function () {
-	if (!fr || Cypress.config().baseUrl != 'https://mon-entreprise.urssaf.fr') {
+	if (!fr) {
 		return
 	}
 
@@ -10,10 +10,8 @@ describe('Recherche globales', function () {
 
 		cy.contains('Rechercher').click()
 
-		cy.wait(30)
 		cy.focused().should('have.attr', 'type', 'search')
 
-		cy.wait(100)
 		cy.contains('Simulateurs')
 			.next()
 			.find('[role="button"]')
@@ -22,7 +20,6 @@ describe('Recherche globales', function () {
 
 		cy.focused().type('avocat')
 
-		cy.wait(100)
 		cy.contains('Simulateurs')
 			.next()
 			.find('[role="button"]')

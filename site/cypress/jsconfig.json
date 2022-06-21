@@ -1,4 +1,0 @@
-// Support IntelliSense for Cypress
-{
-	"include": ["../../node_modules/cypress", "./integration/**/*.js"]
-}
