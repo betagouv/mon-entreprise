@@ -55,6 +55,7 @@ export const runSimulations = (
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
+			// eslint-disable-next-line jest/no-standalone-expect
 			expect(
 				JSON.stringify(roundResult(res as number[])) +
 					snapshotedDisplayedNotifications

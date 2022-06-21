@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-undef
+const tsconfigRootDir = __dirname
+
 module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
@@ -44,9 +47,8 @@ module.exports = {
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
-				// eslint-disable-next-line no-undef
-				tsconfigRootDir: __dirname,
-				project: ['./**/tsconfig.json'],
+				tsconfigRootDir,
+				project: ['*/tsconfig.json'],
 			},
 			extends: [
 				'eslint:recommended',
@@ -104,28 +106,36 @@ module.exports = {
 				],
 			},
 		},
+		// Cypress rules
 		{
-			files: ['**/*.test.{js,ts}', 'site/cypress/**/*.js'],
-			env: {
-				mocha: true,
+			files: ['site/cypress/**/*.ts'],
+			parser: '@typescript-eslint/parser',
+			parserOptions: {
+				tsconfigRootDir,
+				project: ['site/cypress/tsconfig.json'],
 			},
-			extends: [
-				'eslint:recommended',
-				'plugin:cypress/recommended',
-				'plugin:mocha/recommended',
-				'prettier',
-			],
-			plugins: ['cypress', 'mocha'],
+			extends: ['eslint:recommended', 'plugin:cypress/recommended', 'prettier'],
+			plugins: ['@typescript-eslint', 'cypress'],
+			rules: {},
+		},
+		{
+			files: ['site/cypress/**/*.js'],
+			extends: ['eslint:recommended', 'plugin:cypress/recommended', 'prettier'],
+			plugins: ['@typescript-eslint', 'cypress'],
+			rules: {},
+		},
+		// Jest rules (for Vitest)
+		{
+			files: ['site/test/**/*.{js,ts}'],
+			settings: { jest: { version: 28 } },
+			extends: ['eslint:recommended', 'plugin:jest/recommended', 'prettier'],
+			plugins: ['@typescript-eslint', 'jest'],
 			rules: {
-				'cypress/no-unnecessary-waiting': 'warn',
-
-				'mocha/no-exclusive-tests': 'error',
-				'mocha/no-skipped-tests': 'warn',
-				'mocha/no-mocha-arrows': 'warn',
-				'mocha/no-setup-in-describe': 'warn',
-				'mocha/max-top-level-suites': 'warn',
-				'mocha/no-global-tests': 'warn',
-				'mocha/no-exports': 'warn',
+				'jest/valid-expect': 'off',
+				'jest/no-standalone-expect': [
+					'error',
+					{ additionalTestBlockFunctions: ['it', 'it.skip'] },
+				],
 			},
 		},
 	],

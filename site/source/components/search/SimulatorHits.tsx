@@ -68,12 +68,14 @@ export const SimulatorHits = connectHits<
 							<Grid item key={hit.objectID} xs={12} lg={6}>
 								<SimulateurCardHit
 									hit={hit}
-									path={hit.pathId
-										.split('.')
-										.reduce<ExtractFromSimuData<'path'>>(
-											(acc, curr) => acc[curr as any],
-											sitePaths as any
-										)}
+									path={
+										hit.pathId
+											.split('.')
+											.reduce<unknown>(
+												(acc, curr) => (acc as Record<string, unknown>)[curr],
+												sitePaths
+											) as ExtractFromSimuData<'path'>
+									}
 								/>
 							</Grid>
 						)
