@@ -200,38 +200,47 @@ const checkedSitePathsFr: RequiredPath & typeof rawSitePathsFr = rawSitePathsFr
 // If there is a type error here, check rawSitePathsEn object matches the metadata-src.ts pathId
 const checkedSitePathsEn: RequiredPath & typeof rawSitePathsEn = rawSitePathsEn
 
-type SitePathObject<T> = {
-	[K in keyof T]: T[K] extends string ? string : SitePathObject<T[K]>
-} & {
-	index: string
+type SitePathsFr = typeof checkedSitePathsFr
+type SitePathsEn = typeof checkedSitePathsEn
+
+type SitePath = { [key: string]: string | SitePath } & { index: string }
+
+type SitePathBuilt<T extends SitePath, Root extends string = ''> = {
+	[K in keyof T]: T[K] extends string
+		? K extends 'index'
+			? `${Root}${T[K]}`
+			: T extends { index: string }
+			? `${Root}${T['index']}${T[K]}`
+			: `${Root}${T[K]}`
+		: SitePathBuilt<
+				T[K] extends SitePath ? T[K] : never,
+				T extends { index: string } ? `${Root}${T['index']}` : `${Root}`
+		  >
 }
 
-function constructSitePaths<T>(
-	root: string,
-	{ index, ...sitePaths }: SitePathObject<T>
-): SitePathObject<T> {
-	const entries = Object.entries(sitePaths) as [
-		string,
-		string | SitePathObject<T>
-	][]
+function constructSitePaths<T extends SitePath>(
+	obj: SitePath,
+	root = ''
+): SitePathBuilt<T> {
+	const { index } = obj
+	const entries = Object.entries(obj)
 
-	return {
-		index: root + index,
-		...Object.fromEntries(
-			entries.map(([k, value]) => [
-				k,
-				typeof value === 'string'
-					? root + index + value
-					: constructSitePaths(root + index, value),
-			])
-		),
-	} as SitePathObject<T>
+	return Object.fromEntries(
+		entries.map(([k, value]) => [
+			k,
+			typeof value === 'string'
+				? root + (k === 'index' ? value : index + value)
+				: constructSitePaths(value, root + index),
+		])
+	) as SitePathBuilt<T>
 }
 
-export const constructLocalizedSitePath = (language: 'en' | 'fr') => {
-	const sitePaths = language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
-
-	return constructSitePaths<typeof sitePaths>('', sitePaths)
+export const constructLocalizedSitePath = <T extends 'fr' | 'en'>(
+	language: T
+) => {
+	return constructSitePaths<T extends 'fr' ? SitePathsFr : SitePathsEn>(
+		language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
+	)
 }
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>

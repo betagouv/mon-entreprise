@@ -148,8 +148,8 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   status = 200
 
 [[redirects]]
-  from = ":SITE_FR/simulateurs/dirigeant-sasu"
-  to = "/prerender/mon-entreprise/simulateurs/dirigeant-sasu/index.html"
+  from = ":SITE_FR/simulateurs/sasu"
+  to = "/prerender/mon-entreprise/simulateurs/sasu/index.html"
   status = 200
 
 [[redirects]]
