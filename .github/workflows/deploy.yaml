@@ -265,7 +265,6 @@ jobs:
           config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser }}
-          headless: true
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
@@ -321,7 +320,6 @@ jobs:
           config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser }}
-          headless: true
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
