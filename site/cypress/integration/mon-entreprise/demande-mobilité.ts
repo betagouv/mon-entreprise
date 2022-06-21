@@ -1,8 +1,5 @@
 import { fr } from '../../support/utils'
 
-const FIXTURES_FOLDER = 'cypress/fixtures'
-const DEMANDE_MOBILITE_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/demande-mobilité`
-
 const writeFixtures = Cypress.env('record_http') !== undefined
 
 describe(`Formulaire demande mobilité (${
@@ -11,6 +8,9 @@ describe(`Formulaire demande mobilité (${
 	if (!fr) {
 		return
 	}
+	const FIXTURES_FOLDER = 'cypress/fixtures'
+	const DEMANDE_MOBILITE_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/demande-mobilité`
+
 	let pendingRequests = new Set()
 	let responses = {}
 	const hostnamesToRecord = ['geo.api.gouv.fr']

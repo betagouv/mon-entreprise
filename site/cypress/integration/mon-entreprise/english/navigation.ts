@@ -1,8 +1,5 @@
 const fr = Cypress.env('language') === 'fr'
 
-const FIXTURES_FOLDER = 'cypress/fixtures'
-const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
-
 const writeFixtures = Cypress.env('record_http') !== undefined
 
 describe('General navigation', function () {
@@ -27,12 +24,16 @@ describe('General navigation', function () {
 describe(`Navigation to income simulator using company name (${
 	writeFixtures ? 'record mode' : 'stubbed mode'
 })`, function () {
+	const FIXTURES_FOLDER = 'cypress/fixtures'
+	const GERER_FIXTURES_FOLDER = `${FIXTURES_FOLDER}/gérer`
+
 	let pendingRequests = new Set()
 	let responses = {}
 	const hostnamesToRecord = [
 		'api.recherche-entreprises.fabrique.social.gouv.fr',
 		'geo.api.gouv.fr',
 	]
+
 	beforeEach(function () {
 		pendingRequests = new Set()
 		responses = {}
@@ -45,6 +46,7 @@ describe(`Navigation to income simulator using company name (${
 		cy.clearLocalStorage() // Try to avoid flaky tests
 		cy.visit('/')
 	})
+
 	afterEach(function () {
 		cy.writeInterceptResponses(
 			pendingRequests,
@@ -52,22 +54,40 @@ describe(`Navigation to income simulator using company name (${
 			GERER_FIXTURES_FOLDER
 		)
 	})
+
 	it('should allow to retrieve company and show link corresponding to the legal status', function () {
+		cy.intercept({
+			method: 'GET',
+			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
+			url: '/api/v1/search*',
+		}).as('search')
+
 		cy.contains(
 			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
 		).click()
-		cy.get('input').first().type('menoz')
+
+		cy.get('input').first().type('menoz').wait('@search')
+
 		cy.contains('834364291').click()
 		cy.contains('SAS(U)').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/sasu$/)
 		})
 	})
+
 	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
+		cy.intercept({
+			method: 'GET',
+			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
+			url: '/api/v1/search*',
+		}).as('search')
+
 		cy.contains(
 			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
 		).click()
-		cy.get('input').first().type('johan girod')
+
+		cy.get('input').first().type('johan girod').wait('@search')
+
 		cy.contains('834825614').click()
 		// ask if auto-entrepreneur
 		cy.contains(
