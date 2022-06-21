@@ -16,7 +16,7 @@ export function render(url: string, lang: 'fr' | 'en') {
 		console.error(err)
 	)
 
-	const html = ReactDOMServer.renderToString(
+	const element = (
 		<HelmetProvider context={helmetContext}>
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
@@ -27,6 +27,11 @@ export function render(url: string, lang: 'fr' | 'en') {
 			</SSRProvider>
 		</HelmetProvider>
 	)
+
+	// first render
+	ReactDOMServer.renderToString(element)
+	// second render with the configured engine
+	const html = ReactDOMServer.renderToString(element)
 
 	const styleTags = sheet.getStyleTags()
 

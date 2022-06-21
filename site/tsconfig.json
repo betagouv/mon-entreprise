@@ -27,6 +27,7 @@
 		"scripts",
 		"test/**/*.ts",
 		"vite.config.ts",
-		"vite-iframe-script.config.ts"
+		"vite-iframe-script.config.ts",
+		"prerender.ts"
 	]
 }
