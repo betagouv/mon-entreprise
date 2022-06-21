@@ -11,11 +11,6 @@ import { defineConfig, Plugin } from 'vite'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import serveStatic from 'serve-static'
 
-const buildYamlToDts = [
-	'Simulateurs/EconomieCollaborative/activités.yaml',
-	'Simulateurs/EconomieCollaborative/activités.en.yaml',
-]
-
 export default defineConfig(({ command }) => ({
 	resolve: {
 		alias: { '@': path.resolve('./source') },

@@ -9,7 +9,7 @@ export const useShowFeedback = () => {
 	const simulators = useSimulatorsData()
 
 	const blacklisted = [
-		sitePath.gérer.déclarationIndépendant.cotisations,
+		sitePath.gérer.déclarationIndépendant.cotisations as string,
 	].includes(currentPath)
 
 	if (blacklisted) {
@@ -22,7 +22,7 @@ export const useShowFeedback = () => {
 			simulators['comparaison-statuts'],
 			simulators['demande-mobilité'],
 		]
-			.map((s) => s.path)
+			.map((s) => s.path as string)
 			.includes(currentPath)
 	) {
 		return true

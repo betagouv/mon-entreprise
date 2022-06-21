@@ -6,7 +6,7 @@ export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 
 export const objectifsSelector = (state: RootState) => {
 	const config = configSelector(state)
-	const primaryObjectifs = (config.objectifs ?? ([] as any))
+	const primaryObjectifs = (config.objectifs ?? [])
 		.map((obj: DottedName | { objectifs: Array<DottedName> }) =>
 			typeof obj === 'string' ? [obj] : obj.objectifs
 		)
@@ -14,7 +14,7 @@ export const objectifsSelector = (state: RootState) => {
 
 	const objectifs = [...primaryObjectifs, ...(config['objectifs cachés'] ?? [])]
 
-	return objectifs as Array<DottedName>
+	return objectifs
 }
 
 const emptySituation: Situation = {}
