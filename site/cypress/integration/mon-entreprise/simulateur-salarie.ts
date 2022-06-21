@@ -1,9 +1,10 @@
-const fr = Cypress.env('language') === 'fr'
+import { fr } from '../../support/utils'
 
 describe('Simulateur salarié', function () {
 	if (!fr) {
 		return
 	}
+
 	before(function () {
 		return cy.visit(encodeURI('/simulateurs/salarié'))
 	})
@@ -19,7 +20,6 @@ describe('Simulateur salarié', function () {
 				.click()
 
 			cy.get('div[role="dialog"]').contains('Oui').click()
-			cy.wait(300)
 			cy.get('div[role="dialog"]').contains('Continuer').click()
 			cy.get('div[role="dialog"]').contains('Fermer').click()
 		})
@@ -28,9 +28,11 @@ describe('Simulateur salarié', function () {
 			cy.get(
 				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ brut\\ de\\ base'
 			).should(($input) => {
-				expect(+$input.val().replace(/[\s,.€]/g, ''))
-					.to.be.above(1300)
-					.and.to.be.below(1600)
+				const val = $input
+					.val()
+					.toString()
+					.replace(/[\s,.€]/g, '')
+				expect(parseInt(val)).to.be.above(1300).and.to.be.below(1600)
 			})
 		})
 
@@ -42,14 +44,17 @@ describe('Simulateur salarié', function () {
 				.next()
 				.find('button')
 				.click()
-			cy.focused().type(25)
-			cy.wait(500)
+			cy.focused().type('25')
 			cy.contains('Fermer').click()
 
 			cy.get(
 				'#contrat\\ salarié\\ \\.\\ rémunération\\ \\.\\ net\\ après\\ impôt'
 			).should(($input) => {
-				expect(+$input.val().replace(/[\s,.€]/g, '')).to.be.below(1000)
+				const val = $input
+					.val()
+					.toString()
+					.replace(/[\s,.€]/g, '')
+				expect(parseInt(val)).to.be.below(1000)
 			})
 		})
 	})

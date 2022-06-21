@@ -225,20 +225,20 @@ jobs:
       fail-fast: false
       matrix:
         site: ['fr', 'en']
-        browser: [electron] # Firefox is very slow…
+        browser: [chrome] # Firefox is very slow…
         viewport: [default]
         container: [1, 2, 3, 4]
         include:
           - site: fr
-            integrationFolder: mon-entreprise
+            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
           - site: fr
-            integrationFolder: mon-entreprise
+            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
           - site: en
-            integrationFolder: mon-entreprise/english
+            specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
             language: en
         exclude:
@@ -256,13 +256,13 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           working-directory: site
           record: true
           tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
-          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
+          config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser }}
           headless: true
@@ -290,11 +290,11 @@ jobs:
         container: [1, 2, 3, 4]
         include:
           - site: fr
-            integrationFolder: mon-entreprise
+            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
         #   - site: en
-        #     integrationFolder: mon-entreprise/english
+        #     specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
         #     baseUrl: ${{ needs.deploy-context.outputs.en_url }}
         #     language: en
         # exclude:
@@ -312,13 +312,13 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           working-directory: site
           record: true
           tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
-          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
+          config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser }}
           headless: true

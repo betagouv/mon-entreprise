@@ -1,11 +1,13 @@
-const fr = Cypress.env('language') === 'fr'
-const inputSelector =
-	'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
+import { fr } from '../../support/utils'
 
 describe('Simulateur auto-entrepreneur', function () {
 	if (!fr) {
 		return
 	}
+
+	const inputSelector =
+		'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
+
 	before(function () {
 		return cy.visit('/simulateurs/auto-entrepreneur')
 	})
@@ -17,14 +19,17 @@ describe('Simulateur auto-entrepreneur', function () {
 		cy.contains('Début 2022').click()
 		cy.contains('ACRE')
 	})
+
 	it('should not have negative value', function () {
 		cy.contains('Mensuel').click()
-		cy.wait(100)
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).should(($i) => {
-				const val = +$i.val().replace(/[\s,.€]/g, '')
-				expect(val).not.to.be.below(4000)
+				const val = $i
+					.val()
+					.toString()
+					.replace(/[\s,.€]/g, '')
+				expect(parseInt(val)).not.to.be.below(4000)
 			})
 		})
 	})

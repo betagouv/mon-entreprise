@@ -23,12 +23,17 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-Cypress.Commands.add('iframe', { prevSubject: 'element' }, ($iframe) => {
+
+import 'cypress-wait-until'
+
+Cypress.Commands.add('iframe', { prevSubject: ['element'] }, ($iframe) => {
+	// eslint-disable-next-line
 	return new Cypress.Promise((resolve) => {
+		// eslint-disable-next-line
 		setTimeout(() => resolve($iframe.contents().find('body')), 6000)
 	})
 })
-import 'cypress-wait-until'
+
 Cypress.Commands.add(
 	'setInterceptResponses',
 	(pendingRequests, responses, hostnames, specFixturesFolder) => {
@@ -43,11 +48,13 @@ Cypress.Commands.add(
 				pendingRequests.add(req.url)
 				req.on('after:response', (res) => {
 					pendingRequests.delete(req.url)
+					// @ts-ignore
+					// eslint-disable-next-line
 					responses[res.url] = res.body
 				})
 			})
 		} else if (stubFixtures) {
-			const urlOfFilepath = (filename) => {
+			const urlOfFilepath = (filename: string) => {
 				return atob(filename.slice(0, -'.json'.length))
 			}
 			cy.exec(`find ${specFixturesFolder} -type f`)
@@ -66,6 +73,7 @@ Cypress.Commands.add(
 		}
 	}
 )
+
 Cypress.Commands.add(
 	'writeInterceptResponses',
 	(pendingRequests, responses, specFixturesFolder) => {
@@ -75,9 +83,11 @@ Cypress.Commands.add(
 			// We need to wait on all catched requests to be fulfilled and recorded,
 			// otherwise the stubbed cy run might error when a request is not stubbed.
 			// Caveat: we assume request.url to be unique amongst recorded requests.
+
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 			cy.waitUntil(() => pendingRequests.size === 0)
-			Object.keys(responses).map((url) => {
-				if (responses[url] === undefined) return
+			Object.keys(responses).forEach((url) => {
+				if (responses[url] === undefined) return undefined
 				cy.writeFile(
 					`${specFixturesFolder}/${btoa(url)}.json`,
 					JSON.stringify(responses[url], null, 2)
@@ -86,3 +96,85 @@ Cypress.Commands.add(
 		}
 	}
 )
+
+/**
+ * Add option to disable javascript with { script: false }
+ */
+Cypress.Commands.overwrite('visit', (orig, url, options = {}) => {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+	const window = cy.state('window') as Cypress.AUTWindow
+	const parentDocument = window.parent.document
+	const iframe = parentDocument.querySelector('main iframe')
+
+	if (!iframe) {
+		// @ts-ignore
+		return orig(url, options)
+	}
+
+	if (options.script === false) {
+		if (Cypress.config('chromeWebSecurity') !== false) {
+			throw new TypeError(
+				"When you disable script you also have to set 'chromeWebSecurity' in your config to 'false'"
+			)
+		}
+		// @ts-ignore
+		iframe.sandbox = ''
+	} else {
+		// In case it was added by a visit before, the attribute has to be removed from the iframe
+		iframe.removeAttribute('sandbox')
+	}
+
+	// @ts-ignore
+	return orig(url, options)
+})
+
+// Types
+
+/// <reference types="cypress" />
+declare global {
+	/* eslint-disable no-unused-vars */
+	// eslint-disable-next-line @typescript-eslint/no-namespace
+	namespace Cypress {
+		interface Chainable {
+			/**
+			 * @param pendingRequests
+			 * @param responses
+			 * @param hostnames
+			 * @param specFixturesFolder
+			 */
+			setInterceptResponses(
+				pendingRequests: Set<unknown>,
+				responses: Record<string, unknown>,
+				hostnames: string[],
+				specFixturesFolder: string
+			): Chainable<Element>
+
+			/**
+			 * @param pendingRequests
+			 * @param responses
+			 * @param specFixturesFolder
+			 */
+			writeInterceptResponses(
+				pendingRequests: Set<unknown>,
+				responses: Record<string, unknown>,
+				specFixturesFolder: string
+			): Chainable<Element>
+
+			/**
+			 */
+			iframe(): Chainable<Element>
+
+			visit(
+				url: string,
+				options?: Partial<Cypress.VisitOptions> & { script?: boolean }
+			): Chainable<Cypress.AUTWindow>
+			visit(
+				options: Partial<Cypress.VisitOptions> & {
+					url: string
+					script?: boolean
+				}
+			): Chainable<Cypress.AUTWindow>
+		}
+	}
+	/* eslint-enable no-unused-vars */
+}

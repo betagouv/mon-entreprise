@@ -1,4 +1,4 @@
-const fr = Cypress.env('language') === 'fr'
+import { fr } from '../../support/utils'
 
 describe('Secondary pages', function () {
 	if (!fr) {
@@ -10,9 +10,9 @@ describe('Secondary pages', function () {
 		cy.contains('Statistiques détaillées')
 	})
 
-	it.skip('navigate in the news section', function () {
+	it('navigate in the news section', function () {
 		cy.visit('/nouveautés')
 		cy.contains('←').click()
-		cy.url().should('match', /\/nouveautés\/[^/]*$/)
+		cy.url({ decode: true }).should('match', /\/nouveautés\/[^/]*$/)
 	})
 })

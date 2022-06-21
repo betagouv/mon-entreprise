@@ -33,6 +33,12 @@ describe('Landing page', function () {
 			FIXTURES_FOLDER
 		)
 
+		cy.intercept({
+			method: 'GET',
+			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
+			url: '/api/v1/search*',
+		}).as('entreprises')
+
 		cy.visit('/')
 
 		cy.get(currentCompanyPath).should('not.exist')
@@ -41,7 +47,7 @@ describe('Landing page', function () {
 		cy.get(searchInputPath).invoke('attr', 'type').should('equal', 'search')
 		cy.get(searchInputPath).focus().type('noima')
 
-		cy.wait(100)
+		cy.wait('@entreprises')
 
 		cy.get(searchResultsPath).children().should('have.length', 6)
 		cy.get(searchResultsPath).children().first().click()
