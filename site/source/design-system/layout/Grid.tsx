@@ -89,19 +89,16 @@ type GridContainerProps = {
 	spacing?: number
 	columnSpacing?: number
 	rowSpacing?: number
-	className?: string
-	id?: string
 	children: React.ReactNode
-}
+} & React.ComponentPropsWithoutRef<'div'>
 
 function GridContainer({
 	columns = 12,
 	spacing = 0,
 	columnSpacing,
 	rowSpacing,
-	className,
-	id,
 	children,
+	...otherProps
 }: GridContainerProps) {
 	return (
 		<GridContainerContext.Provider
@@ -114,8 +111,7 @@ function GridContainer({
 			<StyledGridContainer
 				columnSpacing={columnSpacing ?? spacing}
 				rowSpacing={rowSpacing ?? spacing}
-				className={className}
-				id={id}
+				{...otherProps}
 			>
 				{children}
 			</StyledGridContainer>
@@ -126,15 +122,23 @@ function GridContainer({
 type GridItemProps = {
 	children?: React.ReactNode
 	className?: string
-} & Partial<Record<SpacingKey | 'xs', BreakpointConfig>>
+} & Partial<Record<SpacingKey | 'xs', BreakpointConfig>> &
+	React.ComponentPropsWithoutRef<'div'>
 
-function GridItem({ xs, sm, md, lg, xl, className, children }: GridItemProps) {
+function GridItem({
+	xs,
+	sm,
+	md,
+	lg,
+	xl,
+	children,
+	...otherProps
+}: GridItemProps) {
 	const containerContext = useContext(GridContainerContext)
 
 	return (
 		<StyledGridItem
-			{...{ xs, sm, md, lg, xl, ...containerContext }}
-			className={className}
+			{...{ xs, sm, md, lg, xl, ...containerContext, ...otherProps }}
 		>
 			{children}
 		</StyledGridItem>
