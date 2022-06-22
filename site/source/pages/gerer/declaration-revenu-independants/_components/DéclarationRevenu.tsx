@@ -9,11 +9,12 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
+import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { Rule, RuleNode } from 'publicodes'
 import { Fragment, useCallback, useContext } from 'react'
@@ -123,10 +124,8 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 				<Grid
 					container
 					spacing={3}
-					css={`
-						align-items: stretch;
-						flex-wrap: wrap-reverse;
-					`}
+					alignItems="stretch"
+					flexWrap="wrap-reverse"
 				>
 					<Grid
 						item
@@ -142,11 +141,9 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 						<Message border={false}>
 							<Grid
 								container
-								css={`
-									align-items: center;
-									justify-content: space-between;
-								`}
+								alignItems="center"
 								spacing={1}
+								justifyContent="space-between"
 							>
 								<SimpleField dottedName="DRI . déclarant" />
 								<DéclarationRevenu editable={déclarationRevenusManuel} />

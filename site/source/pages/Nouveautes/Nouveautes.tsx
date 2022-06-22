@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { determinant, hideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Emoji from '@/components/utils/Emoji'
@@ -6,7 +7,7 @@ import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Item, Select } from '@/design-system/field/Select'
-import { Container, Grid } from '@/design-system/layout'
+import { Container } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -88,7 +89,7 @@ export default function Nouveautés() {
 				</Body>
 
 				<Grid container spacing={2}>
-					<MobileGridItem>
+					<Grid item xs={12} sx={{ display: { xs: 'block', lg: 'none' } }}>
 						<Select
 							label="Date de la newsletter"
 							value={selectedRelease}
@@ -101,8 +102,8 @@ export default function Nouveautés() {
 								<Item textValue={release.name}>{release.name}</Item>
 							)}
 						</Select>
-					</MobileGridItem>
-					<DesktopGridItem>
+					</Grid>
+					<Grid item lg={3} sx={{ display: { xs: 'none', lg: 'block' } }}>
 						<Sidebar>
 							{data.map(({ name }, index) => (
 								<li key={name}>
@@ -110,7 +111,7 @@ export default function Nouveautés() {
 								</li>
 							))}
 						</Sidebar>
-					</DesktopGridItem>
+					</Grid>
 					<Grid item xs={12} lg={9}>
 						<MainBlock>
 							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
@@ -147,19 +148,13 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<Emoji emoji={removeGithubIssuesReferences(children)} />
 )
 
-const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
-	display: block;
+const NewsSection = styled.section`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		display: none;
-	}
-`
-
-const DesktopGridItem = styled(Grid).attrs({ item: true, lg: 3 })`
-	display: none;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		display: block;
+	@media (min-width: 1250px) {
+		margin-left: -175px;
 	}
 `
 

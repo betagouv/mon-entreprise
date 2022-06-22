@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/layout'
+import { Grid } from '@mui/material'
 import { H1 } from '@/design-system/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'

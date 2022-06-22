@@ -1,9 +1,10 @@
 import Value from '@/components/EngineValue'
 import { Radio, ToggleGroup } from '@/design-system/field'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { Evaluation, PublicodesExpression } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
@@ -124,13 +125,7 @@ export const FormulaireS2 = ({
 								</Trans>
 							</Grid>
 
-							<Grid
-								item
-								xs="auto"
-								css={`
-									align-self: end;
-								`}
-							>
+							<Grid item xs="auto" alignSelf={'end'}>
 								<Total>
 									<Value
 										engine={engine}
@@ -163,13 +158,7 @@ export const FormulaireS2 = ({
 								</Trans>
 							</Grid>
 
-							<Grid
-								item
-								xs="auto"
-								css={`
-									align-self: end;
-								`}
-							>
+							<Grid item xs="auto" alignSelf={'end'}>
 								<Total>
 									<Value
 										engine={engine}

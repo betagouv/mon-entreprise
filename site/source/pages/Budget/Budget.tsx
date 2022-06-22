@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/layout'
+import { Grid } from '@mui/material'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'

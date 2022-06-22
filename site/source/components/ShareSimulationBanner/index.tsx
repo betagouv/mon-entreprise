@@ -1,11 +1,12 @@
 import Emoji from '@/components/utils/Emoji'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -82,9 +83,7 @@ export default function ShareOrSaveSimulationBanner({
 				container
 				className=" print-hidden"
 				spacing={4}
-				css={`
-					justify-content: center;
-				`}
+				justifyContent="center"
 			>
 				{share && (
 					<Grid item xs={12} sm="auto">

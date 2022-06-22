@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export { default as Container } from './Container'
-export { default as Grid } from './Grid'
 
 export const Spacing = styled.div<
 	| { xxl: true }

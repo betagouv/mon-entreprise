@@ -1,5 +1,6 @@
+import { Grid } from '@mui/material'
 import Emoji from '@/components/utils/Emoji'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { useTranslation } from 'react-i18next'
 import { SatisfactionStyle } from './SatisfactionChart'

@@ -1,18 +1,17 @@
+import { Grid } from '@mui/material'
 import PagesChart from '@/components/charts/PagesCharts'
 import InfoBulle from '@/components/ui/InfoBulle'
 import Emoji from '@/components/utils/Emoji'
 import { useScrollToHash } from '@/components/utils/markdown'
-import statsJson from '@/data/stats.json'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Item, Select } from '@/design-system/field/Select'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom-v5-compat'
-import styled from 'styled-components'
 import { toAtString } from '../../ATInternetTracking'
+import statsJson from '@/data/stats.json'
 import { debounce, groupBy } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
@@ -22,6 +21,7 @@ import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
+import { useSearchParams } from 'react-router-dom-v5-compat'
 
 const stats = statsJson as unknown as StatsStruct
 
@@ -186,12 +186,13 @@ const StatsDetail = () => {
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
-			<Indicators>
-				<div
-					css={`
-						flex-basis: 50%;
-					`}
-				>
+			<Grid
+				container
+				spacing={2}
+				justifyContent="space-between"
+				alignItems="flex-end"
+			>
+				<Grid item xs={12} sm={6} md={4}>
 					<SimulateursChoice
 						onChange={setChapter2}
 						value={chapter2}
@@ -201,8 +202,8 @@ const StatsDetail = () => {
 					<Grid container columns={4}>
 						<SelectedSimulator chapter2={chapter2} />
 					</Grid>
-				</div>
-				<div>
+				</Grid>
+				<Grid item>
 					<ToggleGroup onChange={setPeriod as any} defaultValue={period}>
 						<Radio value="jours">
 							<Trans>jours</Trans>
@@ -211,8 +212,8 @@ const StatsDetail = () => {
 							<Trans>mois</Trans>
 						</Radio>
 					</ToggleGroup>
-				</div>
-			</Indicators>
+				</Grid>
+			</Grid>
 
 			<Spacing lg />
 
@@ -287,18 +288,6 @@ const StatsDetail = () => {
 		</>
 	)
 }
-
-const Indicators = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 12px;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		flex-direction: row;
-		align-items: flex-end;
-	}
-`
 
 export default function Stats() {
 	return (

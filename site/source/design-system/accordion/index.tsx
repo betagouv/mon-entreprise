@@ -116,8 +116,11 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<{
 		`}
 `
 
-const StyledContent: any = styled(animated.div)`
+const StyledContent = styled(animated.div)`
 	overflow: hidden;
+	${({ theme }) => css`
+		/* border-top: 1px solid ${theme.colors.bases.primary[400]}; */
+	`}
 	> div {
 		margin: ${({ theme }) => theme.spacings.lg};
 	}

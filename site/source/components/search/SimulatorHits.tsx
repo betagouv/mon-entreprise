@@ -1,4 +1,4 @@
-import { Grid } from '@/design-system/layout'
+import { Grid } from '@mui/material'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { SmallCard } from '@/design-system/card'
