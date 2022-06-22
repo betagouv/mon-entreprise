@@ -20,7 +20,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -30,6 +30,7 @@ import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
+import { Grid } from '@mui/material'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
@@ -266,13 +267,7 @@ function Home() {
 					<FormsImage src={forms} alt="" />
 					<Spacing xs />
 					<H2>Simulateurs pour votre entreprise</H2>
-					<Grid
-						container
-						spacing={3}
-						css={`
-							position: relative;
-						`}
-					>
+					<Grid container spacing={3} position="relative">
 						{dirigeantSimulateur ? (
 							<SimulateurCard fromGérer {...simulateurs[dirigeantSimulateur]} />
 						) : (
@@ -307,15 +302,7 @@ function Home() {
 							/>
 						</WhenApplicable>
 						<Condition expression="entreprise . imposition . IS">
-							<Grid
-								item
-								xs={12}
-								md={6}
-								lg={4}
-								css={`
-									align-self: flex-end;
-								`}
-							>
+							<Grid item xs={12} md={6} lg={4} alignSelf="flex-end">
 								<Grid container spacing={3} columns={2}>
 									<SimulateurCard fromGérer {...simulateurs.is} small />
 									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
@@ -345,17 +332,35 @@ function Home() {
 				</H2>
 				<Body as="div">
 					<span>Vous souhaitez :</span>
-					<UlInColumns>
-						<li>recruter, former vos salariés</li>
-						<li>financer vos projets d'investissement</li>
-						<li>résoudre un problème de trésorerie</li>
-						<li>être conseillé(e) en droit du travail</li>
-						<li>développer votre activité commerciale</li>
-						<li>vendre sur internet</li>
-						<li>vendre ou reprendre une entreprise</li>
-						<li>améliorer la santé et sécurité au travail</li>
-						<li>entrer dans une démarche de transition écologique & RSE</li>
-					</UlInColumns>
+					<Grid component={Ul} container>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							recruter, former vos salariés
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							financer vos projets d'investissement
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							résoudre un problème de trésorerie
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							être conseillé(e) en droit du travail
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							développer votre activité commerciale
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							vendre sur internet
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							vendre ou reprendre une entreprise
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							améliorer la santé et sécurité au travail
+						</Grid>
+						<Grid component={Li} item xs={12} md={6} lg={4}>
+							entrer dans une démarche de transition écologique & RSE
+						</Grid>
+					</Grid>
 				</Body>
 				<Body>
 					<Strong>
@@ -422,15 +427,6 @@ const companyDetailsConfig = {
 		'entreprise . imposition',
 	] as DottedName[],
 }
-
-const UlInColumns = styled.ul`
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		columns: 2;
-	}
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		columns: 3;
-	}
-`
 
 export const AskCompanyMissingDetails = () => {
 	const sitePaths = useContext(SitePathsContext)
@@ -506,13 +502,7 @@ const PopoverOverwriteSituation = ({
 						l'écraser ?
 					</Body>
 				</Message>
-				<Grid
-					container
-					css={`
-						justify-content: end;
-					`}
-					spacing={2}
-				>
+				<Grid container justifyContent="end" spacing={2}>
 					<Grid item>
 						<Button
 							size="XS"
