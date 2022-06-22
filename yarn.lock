@@ -15095,6 +15095,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isbot@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "isbot@npm:3.5.0"
+  checksum: aaf272768531e5bf146ba61c16ee542d786e6a51241a075d3bb471cd299f24d43a55ca3d2e87065e6b847f72f13ea3c52c922ccbc51aaf439f9f495d5668467f
+  languageName: node
+  linkType: hard
+
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -20401,6 +20408,7 @@ __metadata:
     fuse.js: ^6.4.6
     i18next-parser: ^6.0.0
     iframe-resizer: ^4.3.2
+    isbot: ^3.5.0
     isomorphic-fetch: ^2.2.1
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
