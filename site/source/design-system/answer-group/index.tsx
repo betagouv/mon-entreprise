@@ -1,21 +1,22 @@
-import { Children, FunctionComponent, ReactNode } from 'react'
+import { Grid } from '@mui/material'
+import { Children, ComponentProps, FunctionComponent, ReactNode } from 'react'
 
 type AnswerGroupProps = {
 	children: ReactNode
-}
+} & ComponentProps<typeof Grid>
 
-const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({ children }) => {
+const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
+	children,
+	...props
+}) => {
 	return (
-		<div
-			css={`
-				display: flex;
-				gap: 18px;
-			`}
-		>
+		<Grid container spacing={3} {...props}>
 			{Children.map(children, (c, i) => (
-				<div key={`answerGroup-${i}`}>{c}</div>
+				<Grid key={`answerGroup-${i}`} item sm={12} md="auto">
+					{c}
+				</Grid>
 			))}
-		</div>
+		</Grid>
 	)
 }
 

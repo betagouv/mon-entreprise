@@ -1,10 +1,11 @@
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value from '@/components/EngineValue'
 import { Situation } from '@/components/utils/SituationContext'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, {
 	EvaluatedNode,
@@ -160,13 +161,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid
-						item
-						xs="auto"
-						css={`
-							align-self: end;
-						`}
-					>
+					<Grid item xs="auto" alignSelf={'end'}>
 						<Total>
 							<Value
 								engine={engine}
@@ -185,13 +180,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid
-						item
-						xs="auto"
-						css={`
-							align-self: end;
-						`}
-					>
+					<Grid item xs="auto" alignSelf={'end'}>
 						<Total>
 							<Value
 								engine={engine}
@@ -216,13 +205,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid
-						item
-						xs="auto"
-						css={`
-							align-self: end;
-						`}
-					>
+					<Grid item xs="auto" alignSelf={'end'}>
 						<Total>
 							<Value
 								engine={engine}
@@ -254,13 +237,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						</Trans>
 					</Grid>
 
-					<Grid
-						item
-						xs="auto"
-						css={`
-							align-self: end;
-						`}
-					>
+					<Grid item xs="auto" alignSelf={'end'}>
 						<Total>
 							<Value
 								engine={engine}

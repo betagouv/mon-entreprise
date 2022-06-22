@@ -1,6 +1,6 @@
-import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled, { css, ThemeProvider } from 'styled-components'
@@ -88,16 +88,15 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	const inIframe = useIsEmbedded()
 
 	return (
-		<Section>
+		<Grid container justifyContent="space-between" gap={1}>
 			{inIframe && (
 				<Grid
 					item
 					xs={12}
 					sm="auto"
-					css={`
-						justify-content: center;
-						align-items: flex-end;
-					`}
+					container
+					alignItems="flex-end"
+					justifyContent="center"
 				>
 					<LogoContainer
 						href={import.meta.env.VITE_FR_BASE_URL}
@@ -113,14 +112,9 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 					<ToggleSection>{toggles}</ToggleSection>
 				</Grid>
 			)}
-		</Section>
+		</Grid>
 	)
 }
-
-const Section = styled(Grid).attrs({ container: true })`
-	justify-content: space-between;
-	gap: ${({ theme }) => theme.spacings.xs};
-`
 
 const ToggleSection = styled.div`
 	padding: ${({ theme }) => theme.spacings.sm} 0;

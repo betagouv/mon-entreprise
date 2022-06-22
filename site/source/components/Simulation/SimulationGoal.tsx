@@ -1,7 +1,7 @@
 import { updateSituation } from '@/actions/actions'
-import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
@@ -66,11 +66,9 @@ export function SimulationGoal({
 			<StyledGoal>
 				<Grid
 					container
-					css={`
-						align-items: baseline;
-						justify-content: space-between;
-					`}
+					alignItems="baseline"
 					spacing={2}
+					justifyContent="space-between"
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
@@ -87,9 +85,13 @@ export function SimulationGoal({
 							</SmallBody>
 						</StyledGoalHeader>
 					</Grid>
-					<StyledGuideLectureContainer>
+					<Grid
+						item
+						md
+						sx={{ display: { sm: 'none', xs: 'none', md: 'block' } }}
+					>
 						<StyledGuideLecture small={small} />
-					</StyledGuideLectureContainer>
+					</Grid>
 					{editable ? (
 						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
 							{!isFocused && !small && (
@@ -130,18 +132,6 @@ export function SimulationGoal({
 		</Appear>
 	)
 }
-
-const StyledGuideLectureContainer = styled(Grid).attrs({
-	item: true,
-	md: true,
-})`
-	display: none;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		display: block;
-	}
-`
-
 const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	small: boolean
 }>`

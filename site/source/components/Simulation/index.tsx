@@ -2,16 +2,16 @@ import { ConversationProps } from '@/components/conversation/Conversation'
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,
 	firstStepCompletedSelector,
 } from '@/selectors/simulationSelectors'
+import { Grid, styled } from '@mui/material'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'
@@ -58,13 +58,7 @@ export default function Simulation({
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
-			<Grid
-				container
-				spacing={2}
-				css={`
-					justify-content: center;
-				`}
-			>
+			<Grid container spacing={2} justifyContent="center">
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
 					{children}

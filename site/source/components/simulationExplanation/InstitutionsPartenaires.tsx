@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import Value, {
 	Condition,
 	WhenApplicable,
@@ -7,19 +8,18 @@ import RuleLink from '@/components/RuleLink'
 import { FromBottom } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Grid } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import assuranceMaladieSrc from '@/images/assurance-maladie.svg'
 import dgfipSrc from '@/images/logo-dgfip.svg'
 import * as logosSrc from '@/images/logos-caisses-retraite'
 import urssafSrc from '@/images/Urssaf.svg'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
+import { Message } from '@/design-system'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)

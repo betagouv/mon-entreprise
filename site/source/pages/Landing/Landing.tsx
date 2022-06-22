@@ -4,13 +4,13 @@ import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Grid } from '@mui/material'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData from '../Simulateurs/metadata'
@@ -69,10 +69,8 @@ export default function Landing() {
 				<Grid
 					container
 					spacing={4}
-					css={`
-						align-items: stretch;
-						justify-content: center;
-					`}
+					alignItems="stretch"
+					justifyContent="center"
 				>
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
@@ -103,13 +101,13 @@ export default function Landing() {
 			</Container>
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<Spacing lg />
-				<Grid
-					container
-					css={`
-						align-items: flex-end;
-					`}
-				>
-					<HideOnMobile item xs={2} md={2}>
+				<Grid container alignItems="flex-end">
+					<Grid
+						item
+						xs={2}
+						md={2}
+						sx={{ display: { xs: 'none', md: 'block' } }}
+					>
 						<img
 							src={illustration2Svg}
 							css={`
@@ -118,7 +116,7 @@ export default function Landing() {
 								padding-bottom: 1rem;
 							`}
 						/>
-					</HideOnMobile>
+					</Grid>
 					<Grid item md={10}>
 						<Trans i18nKey="landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
@@ -157,11 +155,3 @@ export default function Landing() {
 		</>
 	)
 }
-
-const HideOnMobile = styled(Grid)`
-	display: none;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		display: block;
-	}
-`
