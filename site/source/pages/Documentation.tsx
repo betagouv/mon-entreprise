@@ -20,7 +20,7 @@ import { ComponentType, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, Route, useLocation } from 'react-router-dom'
+import { Redirect, Route, useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../ATInternetTracking'
 import RuleLink from '../components/RuleLink'
@@ -33,7 +33,6 @@ export default function MonEntrepriseRulePage() {
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -57,31 +56,37 @@ export default function MonEntrepriseRulePage() {
 			<Grid item md={10}>
 				<BackToSimulation />
 				<Spacing xl />
-				<Route
-					path={documentationPath + '/:name+'}
-					render={({ match }) =>
-						match.params.name && (
-							<StyledDocumentation>
-								<RulePage
-									language={i18n.language as 'fr' | 'en'}
-									rulePath={match.params.name}
-									engine={engine}
-									documentationPath={documentationPath}
-									renderers={{
-										Head: Helmet,
-										Link: Link as ComponentType<{
-											to: string
-										}>,
-										Text: Markdown,
-										References,
-									}}
-								/>
-							</StyledDocumentation>
-						)
-					}
-				/>
+				<Route path={documentationPath + '/:name+'}>
+					<DocumentationPageBody />
+				</Route>
 			</Grid>
 		</FromBottom>
+	)
+}
+
+function DocumentationPageBody() {
+	const engine = useEngine()
+	const documentationPath = useContext(SitePathsContext).documentation.index
+	const { i18n } = useTranslation()
+	const params = useParams<{ name: string }>()
+
+	return (
+		<StyledDocumentation>
+			<RulePage
+				language={i18n.language as 'fr' | 'en'}
+				rulePath={params.name}
+				engine={engine}
+				documentationPath={documentationPath}
+				renderers={{
+					Head: Helmet,
+					Link: Link as ComponentType<{
+						to: string
+					}>,
+					Text: Markdown,
+					References,
+				}}
+			/>
+		</StyledDocumentation>
 	)
 }
 

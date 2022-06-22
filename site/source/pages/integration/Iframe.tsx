@@ -15,7 +15,7 @@ import { Grid } from '@mui/material'
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
-import { MemoryRouter, useHistory, useLocation } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
@@ -29,6 +29,7 @@ import './iframe.css'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
+import { useSearchParams } from 'react-router-dom-v5-compat'
 
 const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
@@ -46,13 +47,11 @@ const getFromSimu = <S extends SimulatorData, T extends string>(
 		: undefined
 
 function IntegrationCustomizer() {
-	const { search } = useLocation()
 	const simulatorsData = useSimulatorsData()
 	const sitePaths = useContext(SitePathsContext)
-	const history = useHistory()
+	const [searchParams, setSearchParams] = useSearchParams()
 
-	const defaultModuleFromUrl =
-		new URLSearchParams(search ?? '').get('module') ?? ''
+	const defaultModuleFromUrl = searchParams.get('module') ?? ''
 
 	const [currentModule, setCurrentModule] = useState(
 		getFromSimu(simulatorsData, defaultModuleFromUrl)
@@ -61,8 +60,8 @@ function IntegrationCustomizer() {
 	)
 
 	useEffect(() => {
-		history.replace({ search: `?module=${currentModule}` })
-	}, [currentModule, history])
+		setSearchParams({ module: currentModule }, { replace: true })
+	}, [currentModule, setSearchParams])
 
 	const [color, setColor] = useState<string | undefined>()
 

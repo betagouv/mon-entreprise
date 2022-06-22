@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
-import { useHistory } from 'react-router'
-import { useSearchParams } from '@/components/utils/useSearchParams'
+import { useLocation, useSearchParams } from 'react-router-dom-v5-compat'
 import { useEngine } from '@/components/utils/EngineContext'
 import { configSelector } from '@/selectors/simulationSelectors'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
@@ -18,7 +17,7 @@ export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const config = useSelector(configSelector)
 	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
-	const currentUrl = useHistory().location.pathname
+	const currentUrl = useLocation().pathname
 	const dispatch = useDispatch()
 	const engine = useEngine()
 

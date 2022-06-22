@@ -19,7 +19,7 @@ import { Grid } from '@mui/material'
 import { useCallback, useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { generatePath, useHistory } from 'react-router-dom'
+import { generatePath, useNavigate } from 'react-router-dom-v5-compat'
 
 export default function SearchOrCreate() {
 	const sitePaths = useContext(SitePathsContext)
@@ -81,7 +81,7 @@ export default function SearchOrCreate() {
 }
 
 function useHandleCompanySubmit() {
-	const history = useHistory()
+	const navigate = useNavigate()
 	const sitePaths = useContext(SitePathsContext)
 	const setEntreprise = useSetEntreprise()
 
@@ -93,9 +93,9 @@ function useHandleCompanySubmit() {
 			setEntreprise(établissement)
 			const entreprise = établissement.siren
 			const path = generatePath(sitePaths.gérer.entreprise, { entreprise })
-			history.push(path)
+			navigate(path)
 		},
-		[history, setEntreprise, sitePaths.gérer.entreprise]
+		[navigate, setEntreprise, sitePaths.gérer.entreprise]
 	)
 
 	return handleCompanySubmit

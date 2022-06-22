@@ -1,5 +1,3 @@
-import { OverlayProvider } from '@react-aria/overlays'
-import { ErrorBoundary } from '@sentry/react'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
@@ -13,18 +11,20 @@ import DesignSystemThemeProvider from '@/design-system/root'
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { createBrowserHistory } from 'history'
-import i18next from 'i18next'
-import logo from '@/images/logo-monentreprise.svg'
 import { useIframeResizer } from '@/hooks/useIframeResizer'
-import { createContext, ReactNode, useMemo } from 'react'
+import logo from '@/images/logo-monentreprise.svg'
+import { OverlayProvider } from '@react-aria/overlays'
+import { ErrorBoundary } from '@sentry/react'
+import i18next from 'i18next'
+import { createContext, ReactNode } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
-import { Router } from 'react-router-dom'
-import { inIframe } from './utils'
-import { store } from './store'
+import { BrowserRouter } from 'react-router-dom'
+import { CompatRouter } from 'react-router-dom-v5-compat'
 import * as safeLocalStorage from './storage/safeLocalStorage'
+import { store } from './store'
+import { inIframe } from './utils'
 
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
@@ -135,14 +135,6 @@ function BrowserRouterProvider({
 	if (import.meta.env.SSR) {
 		return <>{children}</>
 	}
-	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const history = useMemo(
-		() =>
-			createBrowserHistory({
-				basename: import.meta.env.MODE === 'production' ? '' : basename,
-			}),
-		[basename]
-	)
 
 	const ATTracker = createTracker(
 		import.meta.env.VITE_AT_INTERNET_SITE_ID,
@@ -159,9 +151,11 @@ function BrowserRouterProvider({
 					})
 				}
 			>
-				<Router history={history}>
-					<>{children}</>
-				</Router>
+				<BrowserRouter
+					basename={import.meta.env.MODE === 'production' ? '' : basename}
+				>
+					<CompatRouter>{children}</CompatRouter>
+				</BrowserRouter>
 			</TrackingContext.Provider>
 		</HelmetProvider>
 	)

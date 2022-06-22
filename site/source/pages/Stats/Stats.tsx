@@ -10,7 +10,6 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
-import { useHistory, useLocation } from 'react-router-dom'
 import { toAtString } from '../../ATInternetTracking'
 import statsJson from '@/data/stats.json'
 import { debounce, groupBy } from '../../utils'
@@ -22,6 +21,7 @@ import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
+import { useSearchParams } from 'react-router-dom-v5-compat'
 
 const stats = statsJson as unknown as StatsStruct
 
@@ -117,30 +117,23 @@ interface BrushStartEndIndex {
 
 const StatsDetail = () => {
 	const defaultPeriod = 'mois'
-	const history = useHistory()
-	const location = useLocation()
+	const [searchParams, setSearchParams] = useSearchParams()
 	useScrollToHash()
-	const urlParams = new URLSearchParams(location.search ?? '')
 
 	const [period, setPeriod] = useState<Period>(
-		(urlParams.get('periode') as Period) ?? defaultPeriod
+		(searchParams.get('periode') as Period) ?? defaultPeriod
 	)
 	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
-		(urlParams.get('module') as Chapter2) ?? ''
+		(searchParams.get('module') as Chapter2) ?? ''
 	)
 
-	// The logic to persist some state in query parameters in the URL could be
-	// abstracted in a dedicated React hook.
 	useEffect(() => {
-		const queryParams = [
-			period !== defaultPeriod && `periode=${period}`,
-			chapter2 && `module=${chapter2}`,
-		].filter(Boolean)
-		history.replace({
-			search: `?${queryParams.join('&')}`,
-			hash: location.hash,
-		})
-	}, [period, chapter2])
+		const paramsEntries = [
+			['periode', period !== defaultPeriod ? period : ''],
+			['module', chapter2],
+		] as [string, string][]
+		setSearchParams(paramsEntries.filter(([, val]) => val !== ''))
+	}, [period, chapter2, setSearchParams])
 
 	const visites = useMemo(() => {
 		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois

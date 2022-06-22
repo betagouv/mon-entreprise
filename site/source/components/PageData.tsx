@@ -1,16 +1,13 @@
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import Meta from '@/components/utils/Meta'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/selectors/simulationSelectors'
-import { ComponentPropsWithoutRef, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { ComponentPropsWithoutRef } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { TrackChapter } from '../ATInternetTracking'
 import {
 	CurrentSimulatorDataProvider,

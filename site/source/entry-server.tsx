@@ -6,6 +6,7 @@ import { AppFr } from './entry-fr'
 import { AppEn } from './entry-en'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
+import { CompatRouter } from 'react-router-dom-v5-compat'
 
 export function render(url: string, lang: 'fr' | 'en') {
 	const sheet = new ServerStyleSheet()
@@ -21,7 +22,9 @@ export function render(url: string, lang: 'fr' | 'en') {
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						<App />
+						<CompatRouter>
+							<App />
+						</CompatRouter>
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>
