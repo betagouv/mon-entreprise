@@ -8,7 +8,6 @@ import {
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { PropsOf } from '@emotion/react'
 import React, { ReactHTML, useRef } from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
 
@@ -22,7 +21,7 @@ type CardProps = GenericCardProps & {
 	ctaLabel?: React.ReactNode
 	children: React.ReactNode
 	compact?: boolean
-	bodyAs?: PropsOf<typeof Body>['as']
+	bodyAs?: React.ComponentProps<typeof Body>['as']
 }
 
 export function Card({

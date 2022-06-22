@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
@@ -8,8 +8,6 @@ const Illustration = styled.img<{ titre: ReactNode }>`
 	width: 100%;
 	vertical-align: bottom;
 	padding-top: ${({ theme }) => theme.spacings.xl};
-	/* transform-origin: center right;
-	transform: scale(1.25); */
 `
 
 export default function PageHeader({
@@ -22,7 +20,13 @@ export default function PageHeader({
 	picture?: string
 }) {
 	return (
-		<Grid container spacing={3} alignItems="center">
+		<Grid
+			container
+			spacing={3}
+			css={`
+				align-items: center;
+			`}
+		>
 			<Grid
 				item
 				sm={12}
@@ -39,17 +43,20 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<Grid
-					item
-					className="hide-mobile"
-					md={3}
-					lg={4}
-					alignSelf="flex-end"
-					sx={{ zIndex: '-1', display: { xs: 'none', md: 'block' } }}
-				>
+				<InnerGrid item className="hide-mobile" md={3} lg={4}>
 					<Illustration className="hide-mobile" titre={titre} src={picture} />
-				</Grid>
+				</InnerGrid>
 			)}
 		</Grid>
 	)
 }
+
+const InnerGrid = styled(Grid)`
+	align-self: flex-end;
+	z-index: -1;
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: block;
+	}
+`

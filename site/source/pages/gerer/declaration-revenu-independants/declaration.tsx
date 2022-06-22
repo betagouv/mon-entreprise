@@ -6,14 +6,13 @@ import { Markdown } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
 import Accordion from '@/design-system/accordion'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
-import { Grid } from '@mui/material'
 import { Item } from '@react-stately/collections'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
@@ -62,7 +61,13 @@ export default function Déclaration() {
 		<>
 			<Condition expression="DRI . déclaration revenus manuelle = non">
 				<TrackPage name="declaration_resultat">
-					<Grid container spacing={2} alignItems="flex-end">
+					<Grid
+						container
+						spacing={2}
+						css={`
+							align-items: flex-end;
+						`}
+					>
 						<Grid item lg={10} xl={8}>
 							<FromTop>
 								<Trans i18nKey="assistant-DRI.declaration.intro">

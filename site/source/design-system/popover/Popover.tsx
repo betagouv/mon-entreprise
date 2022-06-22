@@ -1,5 +1,5 @@
+import { Grid } from '@/design-system/layout'
 import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
-import { Grid } from '@mui/material'
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
 import { FocusScope } from '@react-aria/focus'
@@ -73,8 +73,20 @@ export default function Popover(
 			<OverlayContainer>
 				<Underlay {...underlayProps} $offsetTop={offsetTop}>
 					<Container>
-						<Grid container justifyContent="center">
-							<Grid item sm={small ? 10 : 12} md={small ? 8 : 12} zeroMinWidth>
+						<Grid
+							container
+							css={`
+								justify-content: center;
+							`}
+						>
+							<Grid
+								item
+								sm={small ? 10 : 12}
+								md={small ? 8 : 12}
+								css={`
+									min-width: 0;
+								`}
+							>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
