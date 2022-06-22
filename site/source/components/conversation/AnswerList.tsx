@@ -5,7 +5,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -15,7 +15,6 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { Grid } from '@mui/material'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import { useCallback, useMemo } from 'react'
@@ -161,13 +160,7 @@ function StepsTable({
 			{rules
 				.filter((rule) => rule.nodeValue !== null)
 				.map((rule) => (
-					<StyledAnswerList
-						container
-						alignItems={'baseline'}
-						justifyContent="flex-end"
-						key={rule.dottedName}
-						gap={2}
-					>
+					<StyledAnswerList container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
 							<ExplicableRule light dottedName={rule.dottedName} />
@@ -241,6 +234,9 @@ const StyledAnswer = styled(Grid)`
 `
 const StyledAnswerList = styled(Grid)`
 	margin: ${({ theme }) => `${theme.spacings.md} 0`};
+	align-items: baseline;
+	justify-content: flex-end;
+	gap: ${({ theme }) => theme.spacings.sm};
 
 	font-family: ${({ theme }) => theme.fonts.main};
 	:nth-child(2n) {

@@ -1,9 +1,10 @@
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
 import { useContext } from 'react'
+import styled from 'styled-components'
 import notHandled from './undraw_access_denied_re_awnf.svg'
 
 export default function NotHandledCase({
@@ -15,8 +16,15 @@ export default function NotHandledCase({
 
 	return (
 		<Message type="info">
-			<Grid container justifyContent="center" spacing={3} alignItems="center">
-				<Grid item xs={6} md={3} sx={{ order: { md: 0, xs: 1, sm: 1 } }}>
+			<Grid
+				container
+				css={`
+					justify-content: center;
+					align-items: center;
+				`}
+				spacing={3}
+			>
+				<ReverseOrderOnMobile item xs={6} md={3}>
 					<img
 						src={notHandled}
 						alt=""
@@ -25,7 +33,7 @@ export default function NotHandledCase({
 							padding: 1rem;
 						`}
 					/>
-				</Grid>
+				</ReverseOrderOnMobile>
 				<Grid item md={9}>
 					{children}
 				</Grid>
@@ -46,3 +54,11 @@ export default function NotHandledCase({
 		</Message>
 	)
 }
+
+const ReverseOrderOnMobile = styled(Grid)`
+	order: 1;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		order: 0;
+	}
+`

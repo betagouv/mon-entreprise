@@ -15,7 +15,7 @@
 			"@/*": ["*"]
 		},
 		"types": ["vite/client"],
-		"typeRoots": ["./types/", "./node_modules/@types"],
+		"typeRoots": ["./node_modules/@types", "./types/"],
 		"noEmit": true,
 		"strict": true
 	},

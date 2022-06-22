@@ -1,9 +1,8 @@
 import { Message } from '@/design-system'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Grid } from '@mui/material'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
@@ -18,8 +17,10 @@ export function CompanyDetails({
 		<StyledCompanyContainer>
 			<Grid
 				container
-				alignItems={'flex-end'}
-				justifyContent={'center'}
+				css={`
+					align-items: flex-end;
+					justify-content: center;
+				`}
 				spacing={3}
 			>
 				<Grid item xs={12} lg>

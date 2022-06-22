@@ -1,11 +1,11 @@
+import { Palette, SmallPalette } from '@/types/styled'
 import React from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
-import baseIcon from './baseIcon.svg'
-import infoIcon from './infoIcon.svg'
-import errorIcon from './errorIcon.svg'
-import successIcon from './successIcon.svg'
 import { Body } from '../typography/paragraphs'
-import { Palette, SmallPalette } from '../styled'
+import baseIcon from './baseIcon.svg'
+import errorIcon from './errorIcon.svg'
+import infoIcon from './infoIcon.svg'
+import successIcon from './successIcon.svg'
 
 type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {

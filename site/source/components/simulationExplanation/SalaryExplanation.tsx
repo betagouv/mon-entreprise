@@ -1,11 +1,10 @@
-import { Grid } from '@mui/material'
 import Distribution from '@/components/Distribution'
 import PaySlip from '@/components/PaySlip'
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { useInversionFail } from '@/components/utils/EngineContext'
-import { Container, Spacing } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
@@ -36,7 +35,12 @@ export default function SalaryExplanation() {
 
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<div ref={payslipRef} />
-				<Grid container justifyContent="center">
+				<Grid
+					container
+					css={`
+						justify-content: center;
+					`}
+				>
 					<Grid item xl={9} lg={10}>
 						<H2>
 							<Trans>Fiche de paie</Trans>

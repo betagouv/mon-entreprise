@@ -11,7 +11,7 @@ import Emoji from '@/components/utils/Emoji'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import {
@@ -19,7 +19,6 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { Grid } from '@mui/material'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -136,7 +135,14 @@ export default function Conversation({
 										→
 									</Button>
 								</Grid>
-								<Grid container item xs={12} sm justifyContent="flex-end">
+								<Grid
+									item
+									xs={12}
+									sm
+									css={`
+										justify-content: flex-end;
+									`}
+								>
 									<SeeAnswersButton>
 										{customSituationVisualisation}
 									</SeeAnswersButton>
@@ -171,7 +177,14 @@ export default function Conversation({
 									</Button>
 								</Grid>
 							)}
-							<Grid container item xs={6} sm justifyContent="flex-end">
+							<Grid
+								item
+								xs={6}
+								sm
+								css={`
+									justify-content: flex-end;
+								`}
+							>
 								<SeeAnswersButton>
 									{customSituationVisualisation}
 								</SeeAnswersButton>
