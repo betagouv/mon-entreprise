@@ -1225,7 +1225,8 @@ dirigeant . indépendant . PL . CARMF . ASV:
     par les Caisses maladie.
   non applicable si: métier . secteur médecin = 'non conventionné'
   formule:
-    valeur [ref assiette]:
+    valeur:
+      nom: assiette
       somme:
         - 5325 €/an
         - produit:
@@ -1438,7 +1439,9 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
 
   formule:
     valeur: 780 €/an
-    abattement [ref participation CPAM]: 520 €/an
+    abattement:
+      nom: participation CPAM
+      valeur: 520 €/an
   références:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |

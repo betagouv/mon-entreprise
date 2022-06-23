@@ -1,7 +1,7 @@
 import { resetSimulation, updateSituation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
-import { useEngine } from '@/components/utils/EngineContext'
+import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
@@ -17,7 +17,6 @@ import {
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode } from 'publicodes'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,17 +51,22 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined
 				)
-				.map((dottedName) => engine.evaluate(engine.getRule(dottedName))),
+				.map(
+					(dottedName) =>
+						engine.evaluate(engine.getRule(dottedName)) as EvaluatedRule
+				),
 		[engine, passedQuestions, situation, companySituation]
 	)
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
-	)
+	) as Array<EvaluatedRule>
 	const companyQuestions = useMemo(
 		() =>
-			(Object.keys(companySituation) as DottedName[])
-				.map((dottedName) => engine.evaluate(engine.getRule(dottedName)))
-				.sort((a, b) => (a.title < b.title ? -1 : 1)),
+			(
+				(Object.keys(companySituation) as DottedName[]).map((dottedName) =>
+					engine.evaluate(engine.getRule(dottedName))
+				) as Array<EvaluatedRule>
+			).sort((a, b) => (a.title < b.title ? -1 : 1)),
 		[engine, companySituation]
 	)
 
@@ -168,7 +172,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 function StepsTable({
 	rules,
 }: {
-	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
+	rules: Array<EvaluatedRule>
 	onClose: () => void
 }) {
 	return (
@@ -190,9 +194,7 @@ function StepsTable({
 	)
 }
 
-function AnswerElement(
-	rule: EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }
-) {
+function AnswerElement(rule: EvaluatedRule) {
 	const dispatch = useDispatch()
 
 	const dottedName = rule.dottedName

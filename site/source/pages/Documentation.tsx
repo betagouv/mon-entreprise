@@ -15,7 +15,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { ComponentType, useContext, useMemo } from 'react'
+import React, { ComponentType, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -77,9 +77,12 @@ function DocumentationPageBody() {
 				engine={engine}
 				documentationPath={documentationPath}
 				renderers={{
-					Head: Helmet,
+					Head: Helmet as ComponentType<{
+						children: React.ReactNode
+					}>,
 					Link: Link as ComponentType<{
 						to: string
+						children: React.ReactNode
 					}>,
 					Text: Markdown,
 					References,

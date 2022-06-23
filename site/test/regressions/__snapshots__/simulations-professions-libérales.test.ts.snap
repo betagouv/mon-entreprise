@@ -15,17 +15,17 @@ Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . 
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"[90334,0,30334,60000,12657,47343,180,4,533]
+"[90332,0,30332,60000,12657,47343,180,4,533]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"[90012,0,30012,60000,12654,47346,180,4,708]
+"[90010,0,30010,60000,12654,47346,180,4,708]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"[92076,0,32076,60000,12671,47329,180,4,533]
+"[92073,0,32073,60000,12671,47329,180,4,533]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
