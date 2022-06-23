@@ -54,6 +54,7 @@ export function getCotisationsBySection(
 					node.nodeKind === 'reference' &&
 					node.dottedName !== 'contrat salarié . cotisations' &&
 					node.dottedName?.startsWith('contrat salarié . ') &&
+					!node.dottedName?.endsWith('$SITUATION') &&
 					node.dottedName !==
 						'contrat salarié . cotisations . patronales . réductions de cotisations'
 				) {

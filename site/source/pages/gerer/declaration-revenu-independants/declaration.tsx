@@ -49,7 +49,6 @@ export function useObjectifs(): Array<DottedName> {
 }
 export default function Déclaration() {
 	const engine = useEngine()
-	console.log(useApplicableFields(/^DRI \. liasse \. [^.]*$/))
 	const liasseDottedName = useApplicableFields(
 		/^DRI \. liasse \. [^.]*$/
 	)[0]?.[0]

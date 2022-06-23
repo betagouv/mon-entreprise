@@ -321,7 +321,6 @@ DRI . imposition cas exclus:
     {{ textes . désolé }}
 
 DRI . liasse:
-  valeur: oui
   applicable si:
     une de ces conditions:
       - réel simplifié
@@ -329,8 +328,7 @@ DRI . liasse:
       - déclaration contrôlée
 
 DRI . liasse . réel simplifié:
-  applicable si: entreprise . imposition . régime . réel simplifié
-  valeur: oui
+  valeur: entreprise . imposition . régime . réel simplifié
   title: Liasse fiscale du régime réel simplifié
   meta:
     formulaire: Formulaire 2033-SD
@@ -419,15 +417,13 @@ DRI . liasse . réel simplifié . c596:
   résumé: Court terme
 
 DRI . liasse . réel normal:
-  applicable si: entreprise . imposition . régime . réel normal
-  valeur: oui
+  valeur: entreprise . imposition . régime . réel normal
   title: Liasse fiscale du régime réel normal
   meta:
     formulaire: Formulaire 2052-SD et 2053-SD
 
 DRI . liasse . déclaration contrôlée:
-  applicable si: entreprise . imposition . régime . déclaration contrôlée
-  valeur: oui
+  valeur: entreprise . imposition . régime . déclaration contrôlée
   title: Déclaration contrôlée
   meta:
     formulaire: Formulaire 2035-SD
@@ -573,7 +569,6 @@ DRI . déclaration revenus:
 
 DRI . déclaration revenus . traitements et salaire:
   applicable si: entreprise . imposition . IS
-  valeur: oui
   meta:
     section: oui
 
@@ -587,7 +582,6 @@ DRI . déclaration revenus . traitements et salaire . revenus des associés et g
 DRI . déclaration revenus . BNC:
   applicable si: entreprise . imposition . IR . type de bénéfices . BNC
   titre: Revenus non commerciaux professionnels
-  valeur: oui
   meta:
     section: oui
 
@@ -603,7 +597,6 @@ DRI . déclaration revenus . BNC . durée de l'exercice:
 
 DRI . déclaration revenus . BNC . régime de la déclaration contrôlée:
   applicable si: entreprise . imposition . régime . déclaration contrôlée
-  valeur: oui
   meta:
     section: oui
 
@@ -703,7 +696,6 @@ DRI . déclaration revenus . BIC:
   applicable si: entreprise . imposition . IR . type de bénéfices . BIC
   titre: Revenus industriels et commerciaux professionnels
   résumé: Y compris locations meublées professionnelles
-  valeur: oui
   meta:
     section: oui
 
@@ -719,7 +711,6 @@ DRI . déclaration revenus . BIC . durée de l'exercice:
 
 DRI . déclaration revenus . BIC . Régime du bénéfice réel:
   non applicable si: entreprise . imposition . régime . micro-entreprise
-  valeur: oui
   meta:
     section: oui
     requis: oui
@@ -795,7 +786,6 @@ DRI . déclaration revenus . BIC . déficits:
 DRI . déclaration revenus . indépendant:
   titre: Données complémentaires de la déclaration de revenu des indépendants
 
-  valeur: oui
   meta:
     section: oui
 

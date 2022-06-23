@@ -1,8 +1,13 @@
-import { describe, it, expect } from 'vitest'
 import rules from 'modele-social'
 import { utils } from 'publicodes'
+import { describe, expect, it } from 'vitest'
 
-describe('DottedNames graph', () => {
+// We skip static cycle test, as it does not separates applicability dependencies from value dependencies.
+// The previous version was not handling cycle from applicability at all
+// We may need a better algorithm for static cycle detection. But it's not a priority as there is a now a
+// functionning cycle detection at runtime
+
+describe.skip('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
 		const [cyclesDependencies, dotGraphs] = utils.cyclicDependencies(rules)
 

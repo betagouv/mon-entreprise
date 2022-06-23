@@ -1,7 +1,12 @@
 import { deleteFromSituation } from '@/actions/actions'
 import { omit } from '@/utils'
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression, Rule } from 'publicodes'
+import Engine, {
+	EvaluatedNode,
+	PublicodesExpression,
+	Rule,
+	RuleNode,
+} from 'publicodes'
 import { createContext, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import i18n from '../../locales/i18n'
@@ -86,3 +91,6 @@ export function SituationProvider<Names extends string = DottedName>({
 export function useInversionFail() {
 	return useContext(EngineContext).inversionFail()
 }
+
+export type EvaluatedRule = EvaluatedNode &
+	RuleNode & { dottedName: DottedName }

@@ -862,7 +862,8 @@ contrat salarié . ATMP:
   formule:
     produit:
       assiette: cotisations . assiette
-      taux [ref]:
+      taux:
+        nom: taux
         variations:
           - si: taux connu
             alors: taux personnalisé
@@ -1702,7 +1703,9 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   unité: €/mois
   formule:
     produit:
-      assiette [ref repas forfaitaire]: 4.85 €/repas
+      assiette:
+        nom: repas forfaitaire
+        valeur: 4.85 €/repas
       facteur: repas par mois
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
@@ -2497,7 +2500,9 @@ contrat salarié . contribution d'équilibre général:
         - attributs:
             nom: employeur
           tranches:
-            - taux [ref taux tranche 1]: 1.29%
+            - taux:
+                nom: taux tranche 1
+                valeur: 1.29%
               plafond: 1
             - taux: 1.62%
               plafond: 8
@@ -2527,7 +2532,9 @@ contrat salarié . contribution d'équilibre technique:
       composantes:
         - attributs:
             nom: employeur
-          taux [ref]: 0.21%
+          taux:
+            nom: taux
+            valeur: 0.21%
         - attributs:
             nom: salarié
           taux: 0.14%
@@ -2549,17 +2556,25 @@ contrat salarié . retraite complémentaire:
         - attributs:
             nom: employeur
           tranches:
-            - taux [ref taux tranche 1]: 4.72%
+            - taux:
+                nom: taux tranche 1
+                valeur: 4.72%
               plafond: 1
-            - taux [ref taux tranche 2]: 12.95%
+            - taux:
+                nom: taux tranche 2
+                valeur: 12.95%
               plafond: 8
         - attributs:
             nom: salarié
           assiette: cotisations . assiette . salariale
           tranches:
-            - taux [ref taux tranche 1]: 3.15%
+            - taux:
+                nom: taux tranche 1
+                valeur: 3.15%
               plafond: 1
-            - taux [ref taux tranche 2]: 8.64%
+            - taux:
+                nom: taux tranche 2
+                valeur: 8.64%
               plafond: 8
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
@@ -2617,7 +2632,8 @@ contrat salarié . allocations familiales:
   formule:
     produit:
       assiette: cotisations . assiette
-      taux [ref]:
+      taux:
+        nom: taux
         variations:
           - si: taux réduit
             alors: 3.45%
@@ -2673,10 +2689,14 @@ contrat salarié . chômage:
       composantes:
         - attributs:
             nom: salarié
-          taux [ref]: 0%
+          taux:
+            nom: taux
+            valeur: 0%
         - attributs:
             nom: employeur
-          taux [ref]: 4.05%
+          taux:
+            nom: taux
+            valeur: 4.05%
   exemples:
     - nom: SMIC
       situation:
@@ -2957,7 +2977,8 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
   produit:
     assiette: CSG et CRDS . assiette revenu remplacements
     taux: 3.8%
-  plafond [ref]:
+  plafond:
+    nom: plafond
     somme:
       - rémunération . net de cotisations
       - rémunération . revenus de remplacement
@@ -2970,7 +2991,8 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   produit:
     assiette: CSG et CRDS . assiette revenu remplacements
     taux: CSG . non déductible . taux
-  plafond [ref]:
+  plafond:
+    nom: plafond
     valeur: CSG déductible . plafond - CSG déductible
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
@@ -2998,7 +3020,8 @@ contrat salarié . FNAL:
         plafond:
           applicable si: éligible taux réduit
           valeur: plafond sécurité sociale
-      taux [ref]:
+      taux:
+        nom: taux
         variations:
           - si: éligible taux réduit
             alors: 0.1%
@@ -3397,20 +3420,28 @@ contrat salarié . vieillesse:
           composantes:
             - attributs:
                 nom: déplafonnée
-              taux [ref]: 0.4%
+              taux:
+                nom: taux
+                valeur: 0.4%
             - attributs:
                 nom: plafonnée
-              taux [ref]: 6.90%
+              taux:
+                nom: taux
+                valeur: 6.90%
               plafond: plafond sécurité sociale
         - attributs:
             nom: employeur
           composantes:
             - attributs:
                 nom: déplafonnée
-              taux [ref]: 1.9%
+              taux:
+                nom: taux
+                valeur: 1.9%
             - attributs:
                 nom: plafonnée
-              taux [ref]: 8.55%
+              taux:
+                nom: taux
+                valeur: 8.55%
               plafond: plafond sécurité sociale
 
   exemples:

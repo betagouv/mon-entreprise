@@ -1,7 +1,6 @@
 import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
-import { useMemo } from 'react'
 
 export function useProgress(objectifs: DottedName[]): number {
 	const engine = useEngine()
@@ -27,20 +26,18 @@ export function useApplicableFields(
 	dottedNameOrRegexp: DottedName | RegExp
 ): Array<[DottedName, RuleNode]> {
 	const engine = useEngine()
-	const fields = useMemo(
-		() =>
-			(Object.entries(engine.getParsedRules()) as Array<[DottedName, RuleNode]>)
-				.filter(([dottedName]) =>
-					typeof dottedNameOrRegexp === 'string'
-						? dottedName.startsWith(dottedNameOrRegexp)
-						: dottedName.match(dottedNameOrRegexp)
-				)
-				.filter(
-					([dottedName]) =>
-						engine.evaluate({ 'est applicable': dottedName }).nodeValue === true
-				),
-		[engine.parsedSituation]
+	const fields = (
+		Object.entries(engine.getParsedRules()) as Array<[DottedName, RuleNode]>
 	)
+		.filter(([dottedName]) =>
+			typeof dottedNameOrRegexp === 'string'
+				? dottedName.startsWith(dottedNameOrRegexp)
+				: dottedName.match(dottedNameOrRegexp)
+		)
+		.filter(
+			([dottedName]) =>
+				engine.evaluate({ 'est applicable': dottedName }).nodeValue === true
+		)
 
 	return fields
 }
