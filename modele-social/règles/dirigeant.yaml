@@ -1121,6 +1121,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
     versé.
   produit:
     assiette:
+      nom: assiette sociale
       valeur: assiette des cotisations
       plancher: assiette minimale . maladie
       plafond: 5 * plafond sécurité sociale

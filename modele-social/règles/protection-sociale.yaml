@@ -412,37 +412,40 @@ protection sociale . santé . indemnités journalières:
     site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
   formule:
     somme:
-      - indemnités journalières . auto-entrepreneur
-      - indemnités journalières . indépendant
+      - indemnités journalières . TNS
       - indemnités journalières . salarié
 
-protection sociale . santé . indemnités journalières . auto-entrepreneur:
-  applicable si: dirigeant . auto-entrepreneur
-  unité: €/jour
+protection sociale . santé . indemnités journalières . raam:
+  titre: Revenu d’activité annuel moyen
+  formule: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette sociale
 
-  formule:
+protection sociale . santé . indemnités journalières . TNS:
+  unité: €/jour
+  valeur:
     variations:
-      - si: revenu moyen < 3919.20 €/an
-        alors: 0 €/jour
-      - sinon:
-          produit:
-            assiette: revenu moyen
-            taux: 50%
-          plafond: 55.51 €/jour
+      - si: dirigeant . indépendant . PL
+        alors: raam * 1 / 730
+      - si:
+          une de ces conditions:
+            - dirigeant . indépendant
+            - dirigeant . auto-entrepreneur
+        alors:
+          condition:
+            si: raam < 10 % * plafond sécurité sociale temps plein
+            alors: 0 €/jour
+            sinon: raam * 1 / 730
+  plafond:
+    variations:
+      - si: dirigeant . indépendant . PL
+        alors: 3 * plafond sécurité sociale temps plein
+      - si:
+          une de ces conditions:
+            - dirigeant . indépendant
+            - dirigeant . auto-entrepreneur
+        alors: plafond sécurité sociale temps plein
   reférences:
-    - secu-independants.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
-
-protection sociale . santé . indemnités journalières . indépendant:
-  applicable si: dirigeant . indépendant
-  unité: €/jour
-  formule:
-    produit:
-      assiette: revenu moyen
-      taux: 50%
-    plancher: 21 €/jour
-    plafond: 55.51 €/jour
-  reférences:
-    - secu-independants.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    - ameli.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
+    - ameli.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
 
 protection sociale . santé . indemnités journalières . salarié:
   unité: €/jour
