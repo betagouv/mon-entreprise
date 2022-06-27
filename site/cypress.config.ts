@@ -12,4 +12,12 @@ export default defineConfig({
 		baseUrl: 'http://localhost:8888',
 		specPattern: 'cypress/integration/mon-entreprise/**/*.{js,jsx,ts,tsx}',
 	},
+	retries: {
+		// Configure retry attempts for `cypress run`
+		// Default is 0
+		runMode: 2,
+		// Configure retry attempts for `cypress open`
+		// Default is 0
+		openMode: 0,
+	},
 })
