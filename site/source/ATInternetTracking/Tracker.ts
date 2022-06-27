@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './smarttag.js'
 
 // Ci-dessous les indicateurs personnalisés de site et de page
