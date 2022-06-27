@@ -227,12 +227,8 @@ jobs:
         site: ['fr', 'en']
         browser: [chrome] # Firefox is very slow…
         viewport: [default]
-        container: [1, 2, 3, 4]
+        container: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         include:
-          - site: fr
-            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
-            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
-            language: fr
           - site: fr
             specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
@@ -241,7 +237,10 @@ jobs:
             specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
             language: en
+        # Use 4 containers for 'en' and 10 for 'fr'
         exclude:
+          - site: en
+            container: 1
           - site: en
             container: 2
           - site: en
@@ -249,7 +248,17 @@ jobs:
           - site: en
             container: 4
           - site: en
-            viewport: small
+            container: 5
+          - site: en
+            container: 6
+          - site: en
+            container: 7
+          - site: en
+            container: 8
+          - site: en
+            container: 9
+          - site: en
+            container: 10
 
     steps:
       - name: Checkout
@@ -282,29 +291,41 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # site: ['fr', 'en']
-        site: ['fr']
+        site: ['fr', 'en']
         browser: [chrome] # Firefox is very slow…
         viewport: [default, small]
-        container: [1, 2, 3, 4]
+        container: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         include:
           - site: fr
             specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-        #   - site: en
-        #     specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
-        #     baseUrl: ${{ needs.deploy-context.outputs.en_url }}
-        #     language: en
-        # exclude:
-        #   - site: en
-        #     container: 2
-        #   - site: en
-        #     container: 3
-        #   - site: en
-        #     container: 4
-        #   - site: en
-        #     viewport: small
+          - site: en
+            specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
+            baseUrl: ${{ needs.deploy-context.outputs.en_url }}
+            language: en
+        # Use 4 containers for 'en' and 10 for 'fr'
+        exclude:
+          - site: en
+            container: 1
+          - site: en
+            container: 2
+          - site: en
+            container: 3
+          - site: en
+            container: 4
+          - site: en
+            container: 5
+          - site: en
+            container: 6
+          - site: en
+            container: 7
+          - site: en
+            container: 8
+          - site: en
+            container: 9
+          - site: en
+            container: 10
 
     steps:
       - name: Checkout
