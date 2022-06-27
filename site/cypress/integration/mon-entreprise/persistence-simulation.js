@@ -12,8 +12,6 @@ describe('Persistence (simulateur salarié)', function () {
 	})
 
 	it('should persist the current simulation (persistSimulation)', function () {
-		console.log(inputSelector)
-
 		cy.get(inputSelector).first().type('{selectall}42')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()

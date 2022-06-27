@@ -76,6 +76,7 @@ if (index > -1 && argv[index + 1]) {
 				data.replace(/#\[prerender\]#/g, redirects.join(''))
 			)
 
+			// eslint-disable-next-line no-console
 			console.log('Redirects added to ' + netlifyTomlPath)
 		} else {
 			throw new Error('tag #[prerender]# not found in ' + netlifyTomlPath)

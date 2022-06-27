@@ -6,7 +6,7 @@ export default defineConfig({
 			entry: './source/iframe-integration-script.js',
 			name: 'monEntrepriseIframe',
 			formats: ['iife'],
-			fileName: (f) => 'simulateur-iframe-integration.js',
+			fileName: () => 'simulateur-iframe-integration.js',
 		},
 		emptyOutDir: false,
 	},

@@ -17,6 +17,7 @@ const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
 export const engine = engineFactory(rules, {
 	logger: {
 		warn: () => undefined,
+		// eslint-disable-next-line no-console
 		error: (m: string) => console.error(m),
 		log: () => undefined,
 	},
