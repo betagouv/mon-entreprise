@@ -81,8 +81,8 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 # FR | intégration -> développeur
 [[redirects]]
-  from=":SITE_FR/intégration/*"
-  to=":SITE_FR/développeur/:splat"
+  from=":SITE_FR/int%C3%A9gration/*"
+  to=":SITE_FR/d%C3%A9veloppeur/:splat"
   status = 301
 
 # EN | integration -> developer
