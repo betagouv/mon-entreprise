@@ -1,5 +1,5 @@
-import { theme as urssafTheme } from '@/design-system/theme'
 import isbot from 'isbot'
+import urssafTheme from '@/design-system/theme'
 import { ReactNode } from 'react'
 import { StyleSheetManager, ThemeProvider } from 'styled-components'
 

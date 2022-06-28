@@ -1,15 +1,15 @@
-import { Grid } from '@mui/material'
 import { Condition } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
+import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
 import { FAQAutoEntrepreneurArticle } from '@/pages/Creer/CreationChecklist'
 import { GuideURSSAFCard } from '@/pages/Simulateurs/cards/GuideURSSAFCard'
-import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
 import { IframeIntegrationCard } from '@/pages/Simulateurs/cards/IframeIntegrationCard'
+import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 interface NextStepsProps {
 	iframePath: ExtractFromSimuData<'iframePath'>

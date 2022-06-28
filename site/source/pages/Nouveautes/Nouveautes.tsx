@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { determinant, hideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Emoji from '@/components/utils/Emoji'
@@ -7,7 +6,7 @@ import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Item, Select } from '@/design-system/field/Select'
-import { Container } from '@/design-system/layout'
+import { Container, Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -89,7 +88,7 @@ export default function Nouveautés() {
 				</Body>
 
 				<Grid container spacing={2}>
-					<Grid item xs={12} sx={{ display: { xs: 'block', lg: 'none' } }}>
+					<MobileGridItem>
 						<Select
 							label="Date de la newsletter"
 							value={selectedRelease}
@@ -102,8 +101,8 @@ export default function Nouveautés() {
 								<Item textValue={release.name}>{release.name}</Item>
 							)}
 						</Select>
-					</Grid>
-					<Grid item lg={3} sx={{ display: { xs: 'none', lg: 'block' } }}>
+					</MobileGridItem>
+					<DesktopGridItem>
 						<Sidebar>
 							{data.map(({ name }, index) => (
 								<li key={name}>
@@ -111,7 +110,7 @@ export default function Nouveautés() {
 								</li>
 							))}
 						</Sidebar>
-					</Grid>
+					</DesktopGridItem>
 					<Grid item xs={12} lg={9}>
 						<MainBlock>
 							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
@@ -148,13 +147,19 @@ const TextRenderer = ({ children }: { children: string }) => (
 	<Emoji emoji={removeGithubIssuesReferences(children)} />
 )
 
-const NewsSection = styled.section`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
+	display: block;
 
-	@media (min-width: 1250px) {
-		margin-left: -175px;
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		display: none;
+	}
+`
+
+const DesktopGridItem = styled(Grid).attrs({ item: true, lg: 3 })`
+	display: none;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		display: block;
 	}
 `
 
