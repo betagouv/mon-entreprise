@@ -162,19 +162,21 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 					}
 				/>
 
-				<Grid item lg={12}>
-					<Indicator
-						subTitle="Satisfaction utilisateurs"
-						main={
-							<>
-								<RetoursAsProgress
-									percentages={currentMonthSatisfaction.percentages}
-								/>{' '}
-							</>
-						}
-						footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
-					/>
-				</Grid>
+				{currentMonthSatisfaction.total > 0 && (
+					<Grid item lg={12}>
+						<Indicator
+							subTitle="Satisfaction utilisateurs"
+							main={
+								<>
+									<RetoursAsProgress
+										percentages={currentMonthSatisfaction.percentages}
+									/>{' '}
+								</>
+							}
+							footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
+						/>
+					</Grid>
+				)}
 			</Grid>
 			<Spacing md />
 			<Grid container spacing={2}>
