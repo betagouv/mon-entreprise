@@ -29,7 +29,7 @@ type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM'
 
 const chapters2: Chapter2[] = [
-	...new Set(stats.visitesMois.pages.map((p) => p.page_chapter2)),
+	...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
 	'PAM',
 ]
 
@@ -301,10 +301,18 @@ const Indicators = styled.div`
 `
 
 export default function Stats() {
+	const statsAvailable = stats.visitesMois !== undefined
+
 	return (
 		<>
-			<GlobalStats stats={stats} />
-			<StatsDetail />
+			{statsAvailable ? (
+				<>
+					<StatsDetail />
+					<GlobalStats stats={stats} />
+				</>
+			) : (
+				<p>Statistiques indisponibles.</p>
+			)}
 
 			<DemandeUtilisateurs />
 		</>

@@ -275,11 +275,6 @@ async function main() {
 	// token isn't valid) we fallback to some fake data -- it would be better to
 	// have a static ressource accessible without authentification.
 	writeInDataDir('stats.json', {
-		visitesJours: [],
-		visitesMois: {
-			pages: [],
-		},
-		satisfaction: [],
 		retoursUtilisateurs: {
 			open: [],
 			closed: [],

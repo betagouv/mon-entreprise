@@ -2,11 +2,11 @@ import algoliasearch from 'algoliasearch/lite'
 import { Spacing } from '@/design-system/layout'
 import { useEffect } from 'react'
 import { Configure, Index } from 'react-instantsearch-dom'
-import { useHistory } from 'react-router'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
 import { SimulatorHits } from './SimulatorHits'
+import { useLocation } from 'react-router-dom-v5-compat'
 
 const ALGOLIA_APP_ID = import.meta.env.VITE_ALGOLIA_APP_ID || ''
 const ALGOLIA_SEARCH_KEY = import.meta.env.VITE_ALGOLIA_SEARCH_KEY || ''
@@ -19,13 +19,8 @@ interface Props {
 }
 
 export default function SearchRulesAndSimulators({ closePopover }: Props) {
-	const history = useHistory()
-
-	useEffect(() => {
-		const unlisten = history.listen(closePopover)
-
-		return unlisten
-	}, [closePopover, history])
+	const location = useLocation()
+	useEffect(() => closePopover(), [location])
 
 	return (
 		<SearchRoot

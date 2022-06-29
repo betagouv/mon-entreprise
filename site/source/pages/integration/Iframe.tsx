@@ -14,7 +14,7 @@ import urssafLogo from '@/images/Urssaf.svg'
 import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route } from 'react-router'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, useSearchParams } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
 import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 import { hexToHSL } from '../../hexToHSL'
@@ -28,7 +28,6 @@ import './iframe.css'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
-import { useSearchParams } from 'react-router-dom-v5-compat'
 
 const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
