@@ -21,7 +21,7 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { CompatRoute, useLocation } from 'react-router-dom-v5-compat'
+import { CompatRoute } from 'react-router-dom-v5-compat'
 import styled, { css } from 'styled-components'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -37,7 +37,6 @@ import Nouveautés from './pages/Nouveautes/Nouveautes'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
-import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
 type RootProps = {
@@ -100,7 +99,6 @@ const Router = () => {
 						<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
 					)}
 				/>
-				{redirects}
 				<Route path="/iframes" component={Iframes} />
 				<Route component={App} />
 			</Switch>
