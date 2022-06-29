@@ -6,12 +6,13 @@ import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
 import fs from 'fs/promises'
 import path from 'path'
-import toml from 'rollup-plugin-toml'
-import { defineConfig, Plugin } from 'vite'
-import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import serveStatic from 'serve-static'
+import { defineConfig, loadEnv, Plugin } from 'vite'
+import shimReactPdf from 'vite-plugin-shim-react-pdf'
 
-export default defineConfig(({ command }) => ({
+const env = (mode: string) => loadEnv(mode, process.cwd(), '')
+
+export default defineConfig(({ command, mode }) => ({
 	resolve: {
 		alias: { '@': path.resolve('./source') },
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
@@ -30,7 +31,6 @@ export default defineConfig(({ command }) => ({
 			babel: { plugins: ['babel-plugin-styled-components'] },
 		}),
 		yaml(),
-		toml,
 		shimReactPdf(),
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
@@ -62,6 +62,12 @@ export default defineConfig(({ command }) => ({
 		}),
 	],
 	server: {
+		hmr: {
+			clientPort:
+				typeof env(mode).HMR_CLIENT_PORT !== 'undefined'
+					? parseInt(env(mode).HMR_CLIENT_PORT)
+					: undefined,
+		},
 		// Keep watching changes in the publicodes package to support live reload
 		// when we iterate on publicodes logic.
 		// https://vitejs.dev/config/#server-watch
@@ -73,6 +79,11 @@ export default defineConfig(({ command }) => ({
 		},
 		proxy: {
 			'/api': 'http://localhost:3004',
+			'/twemoji': {
+				target: 'https://twemoji.maxcdn.com',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/twemoji/, ''),
+			},
 		},
 	},
 	optimizeDeps: {
@@ -119,7 +130,8 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			)
 			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			vite.middlewares.use(async (req, res, next) => {
-				const url = req.originalUrl
+				const url = req.originalUrl?.replace(/^\/%2F/, '/')
+
 				const firstLevelDir = url?.slice(1).split('/')[0]
 
 				if (url && /\?.*html-proxy/.test(url)) {
@@ -127,8 +139,20 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 				}
 
 				if (url === '/') {
-					res.writeHead(302, { Location: '/' + options.defaultSite })
-					res.end()
+					res.writeHead(302, { Location: '/' + options.defaultSite }).end()
+				} else if (
+					firstLevelDir &&
+					url &&
+					Object.keys(options.sites)
+						.map((site) => `/${site}.html`)
+						.includes(url)
+				) {
+					const siteName = firstLevelDir.replace('.html', '')
+					const content = await vite.transformIndexHtml(
+						'/' + siteName,
+						await fillTemplate(siteName)
+					)
+					res.end(content)
 				} else if (
 					firstLevelDir &&
 					Object.keys(options.sites).some((name) => firstLevelDir === name)
