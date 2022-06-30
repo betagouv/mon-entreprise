@@ -65,7 +65,7 @@ jobs:
           yarn workspace site build:prerender --netlify-toml-path ./netlify.base.toml
       - name: Replace site placeholders in netlify.toml redirection file
         run: |
-          cp netlify.base.toml netlify.toml
+          cp site/netlify.base.toml site/netlify.toml;
           sed -i "s|:API_URL|$API_BASE_URL|g" site/netlify.toml;
           sed -i "s|:SITE_FR|$VITE_FR_BASE_URL|g" site/netlify.toml;
           sed -i "s|:SITE_EN|$VITE_EN_BASE_URL|g" site/netlify.toml;
