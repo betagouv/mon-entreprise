@@ -7,3 +7,4 @@ cypress/downloads
 .deps.json
 netlify*.toml
 source/public/sitemap.*.txt
+dev-dist

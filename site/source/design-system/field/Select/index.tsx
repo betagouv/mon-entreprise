@@ -35,6 +35,7 @@ export const Label = styled.label`
 			}
 		`}
 `
+
 interface ButtonProps {
 	isFocusVisible?: boolean
 }
