@@ -4,9 +4,7 @@ const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
 const couleur =
 	script.dataset.couleur &&
-	encodeURIComponent(
-		JSON.stringify(hexToHSL(script.dataset.couleur.toUpperCase()))
-	)
+	encodeURIComponent(JSON.stringify(hexToHSL(script.dataset.couleur)))
 
 const lang = script.dataset.lang || 'fr'
 

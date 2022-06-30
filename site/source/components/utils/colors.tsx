@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import { hexToHSL } from '@/hexToHSL'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { useIsEmbedded } from './embeddedContext'
 
@@ -27,17 +28,21 @@ const rawIframeColor = new URLSearchParams(
 const IFRAME_COLOR = rawIframeColor
 	? (JSON.parse(decodeURIComponent(rawIframeColor)) as number[])
 	: DEFAULT_COLOR_HS
-
 // Note that the iframeColor is first set in the index.html file, but without
 // the full palette generation that happen here. This is to prevent a UI
 // flash, cf. #1786.
 
-export function ThemeColorsProvider({ color, children }: ProviderProps) {
+export function ThemeColorsProvider({ children }: ProviderProps) {
 	const divRef = useRef<HTMLDivElement>(null)
-	const [hue, saturation] = useMemo(
-		() => (color ? color.slice(0, 2) : IFRAME_COLOR),
-		[color]
-	)
+	const [themeColor, setThemeColor] = useState(IFRAME_COLOR)
+	useEffect(() => {
+		window.addEventListener('message', (evt: MessageEvent) => {
+			if (evt.data.kind === 'change-theme-color') {
+				setThemeColor(hexToHSL(evt.data.value))
+			}
+		})
+	}, [])
+	const [hue, saturation] = themeColor
 	useEffect(() => {
 		const root = document.querySelector(':root') as HTMLElement | undefined
 		root?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, `${hue}deg`)
@@ -48,7 +53,7 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	}, [hue, saturation])
 	const isEmbedded = useIsEmbedded()
 
-	if (!color && !isEmbedded) {
+	if (!themeColor && !isEmbedded) {
 		return <>{children}</>
 	}
 
