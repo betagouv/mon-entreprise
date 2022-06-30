@@ -64,6 +64,7 @@ export default defineConfig(({ command, mode }) => ({
 		}),
 		VitePWA({
 			registerType: 'prompt',
+			strategies: 'generateSW',
 			workbox: {
 				cleanupOutdatedCaches: true,
 				clientsClaim: true,
@@ -77,38 +78,17 @@ export default defineConfig(({ command, mode }) => ({
 									options.sameOrigin &&
 									options.url.pathname.startsWith('/twemoji/')
 								) &&
-								!(
-									options.sameOrigin &&
-									options.url.pathname.startsWith('/twemoji/')
-								)
+								!(!options.sameOrigin && options.url.hostname === 'polyfill.io')
 							) {
 								console.log('=>', options.url.pathname)
 							}
 
 							return (
-								options.sameOrigin && options.url.pathname.startsWith('/fonts/')
-							)
-						},
-						handler: 'CacheFirst',
-						options: {
-							cacheName: 'fonts-cache',
-							expiration: {
-								maxEntries: 10,
-								maxAgeSeconds: 1 * YEAR,
-							},
-							cacheableResponse: {
-								statuses: [0, 200],
-							},
-						},
-					},
-					{
-						urlPattern: (options) => {
-							return (
 								options.sameOrigin &&
 								options.url.pathname.startsWith('/twemoji/')
 							)
 						},
-						handler: 'CacheFirst',
+						handler: 'StaleWhileRevalidate',
 						options: {
 							cacheName: 'twemoji-cache',
 							expiration: {
@@ -121,12 +101,9 @@ export default defineConfig(({ command, mode }) => ({
 						},
 					},
 					{
-						urlPattern: (options) => {
-							return (
-								!options.sameOrigin && options.url.hostname === 'polyfill.io'
-							)
-						},
-						handler: 'CacheFirst',
+						urlPattern: (options) =>
+							!options.sameOrigin && options.url.hostname === 'polyfill.io',
+						handler: 'NetworkFirst',
 						options: {
 							cacheName: 'external-cache',
 							expiration: {
@@ -140,34 +117,29 @@ export default defineConfig(({ command, mode }) => ({
 					},
 				],
 			},
-			srcDir: 'public/favicon',
-			includeAssets: [
-				'favicon.svg',
-				'favicon.ico',
-				'robots.txt',
-				'apple-touch-icon.png',
-			],
+			includeAssets: ['fonts/*.{woff,woff2}', 'favicon/*.{ico,png,svg,xml}'],
 			manifest: {
+				start_url: '/',
 				name: 'Mon entreprise',
 				short_name: 'Mon entreprise',
 				description: "L'assistant officiel du créateur d'entreprise",
 				lang: 'fr',
 				orientation: 'portrait-primary',
+				display: 'minimal-ui',
+				theme_color: '#2975d1',
+				background_color: 'none',
 				icons: [
 					{
-						src: '/favicon/android-chrome-192x192.png?v=1.0',
+						src: '/favicon/android-chrome-192x192-shadow.png?v=1.0',
 						sizes: '192x192',
 						type: 'image/png',
 					},
 					{
-						src: '/favicon/android-chrome-512x512.png?v=1.0',
+						src: '/favicon/android-chrome-512x512-shadow.png?v=1.0',
 						sizes: '512x512',
 						type: 'image/png',
 					},
 				],
-				theme_color: '#ffffff',
-				background_color: '#ffffff',
-				display: 'standalone',
 			},
 		}),
 		legacy({
