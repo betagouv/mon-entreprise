@@ -7066,12 +7066,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/got@npm:^8":
-  version: 8.3.6
-  resolution: "@types/got@npm:8.3.6"
+"@types/got@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@types/got@npm:8.3.1"
   dependencies:
     "@types/node": "*"
-  checksum: dd2eaa7cbe3ec1ac9898981472e896fda774004e278b5f4c43b7cdfd8e91d06af2a3be18105494864223426754907c6eab80432c866bc0656b832c3898360e3e
+  checksum: 983a0c2689950450712d1ae1d1594a5abd479a7171a166ba506f8019d9a6c498637d9f0203ab46f886cbffaa8fc184dee437fd094190f581f7ede1a3b55c57ee
+  languageName: node
+  linkType: hard
+
+"@types/got@npm:^9":
+  version: 9.6.12
+  resolution: "@types/got@npm:9.6.12"
+  dependencies:
+    "@types/node": "*"
+    "@types/tough-cookie": "*"
+    form-data: ^2.5.0
+  checksum: e6c17cf49107064bc0c4371efaef6855d4753b0e17b615da1a9ab7dcd10c6208c48620c7309e96861a4ea1a0d8b9e7cdda67316b4075d4ba2aff4d7400f92f53
   languageName: node
   linkType: hard
 
@@ -7641,6 +7652,13 @@ __metadata:
   version: 1.0.8
   resolution: "@types/tapable@npm:1.0.8"
   checksum: b4b754dd0822c407b8f29ef6b766490721c276880f9e976d92ee2b3ef915f11a05a2442ae36c8978bcd872ad6bc833b0a2c4d267f2d611590668a366bad50652
+  languageName: node
+  linkType: hard
+
+"@types/tough-cookie@npm:*":
+  version: 4.0.2
+  resolution: "@types/tough-cookie@npm:4.0.2"
+  checksum: e055556ffdaa39ad85ede0af192c93f93f986f4bd9e9426efdc2948e3e2632db3a4a584d4937dbf6d7620527419bc99e6182d3daf2b08685e710f2eda5291905
   languageName: node
   linkType: hard
 
@@ -14888,7 +14906,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^2.3.1":
+"form-data@npm:^2.3.1, form-data@npm:^2.5.0":
   version: 2.5.1
   resolution: "form-data@npm:2.5.1"
   dependencies:
@@ -23574,6 +23592,7 @@ __metadata:
   dependencies:
     "@actions/core": ^1.9.0
     "@actions/github": ^5.0.3
+    "@types/got": ^9
     "@typescript-eslint/eslint-plugin": ^5.25.0
     "@typescript-eslint/parser": ^5.25.0
     eslint: ^8.16.0
