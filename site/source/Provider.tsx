@@ -22,6 +22,7 @@ import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { CompatRouter } from 'react-router-dom-v5-compat'
+import { ServiceWorker } from './ServiceWorker'
 import * as safeLocalStorage from './storage/safeLocalStorage'
 import { store } from './store'
 import { inIframe } from './utils'
@@ -29,26 +30,6 @@ import { inIframe } from './utils'
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-
-if (
-	!import.meta.env.SSR &&
-	import.meta.env.MODE === 'production' &&
-	'serviceWorker' in navigator &&
-	!inIframe()
-) {
-	window.addEventListener('load', () => {
-		navigator.serviceWorker
-			.register('/sw.js')
-			.then((registration) => {
-				// eslint-disable-next-line no-console
-				console.log('SW registered: ', registration)
-			})
-			.catch((registrationError) => {
-				// eslint-disable-next-line no-console
-				console.log('SW registration failed: ', registrationError)
-			})
-	})
-}
 
 type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
@@ -100,6 +81,10 @@ export default function Provider({
 					</Container>
 				}
 			>
+				{!import.meta.env.SSR &&
+					import.meta.env.MODE === 'production' &&
+					'serviceWorker' in navigator &&
+					!inIframe() && <ServiceWorker />}
 				<OverlayProvider>
 					<ReduxProvider store={store}>
 						<IsEmbeddedProvider>

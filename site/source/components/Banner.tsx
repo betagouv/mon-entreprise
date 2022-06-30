@@ -39,7 +39,9 @@ export default function Banner({
 		<FadeIn>
 			<Container className={className}>
 				<Emoji emoji={icon} />
-				<Content>{children}</Content>
+				<Content as={typeof children === 'string' ? undefined : 'div'}>
+					{children}
+				</Content>
 			</Container>
 		</FadeIn>
 	) : null

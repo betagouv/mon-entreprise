@@ -7,7 +7,7 @@ import { wrapperDebounceEvents } from '@/utils'
 import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
-type Size = 'XL' | 'MD' | 'XS'
+type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
 type ButtonProps = GenericButtonOrLinkProps & {
@@ -68,6 +68,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		}
 		if ($size === 'XS') {
 			return '0.5rem 2rem'
+		}
+		if ($size === 'XXS') {
+			return '0.25rem 1rem'
 		}
 	}};
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {

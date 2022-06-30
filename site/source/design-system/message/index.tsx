@@ -14,6 +14,7 @@ type MessageProps = {
 	border?: boolean
 	type?: MessageType
 	light?: boolean
+	className?: string
 }
 
 export function Message({
@@ -22,6 +23,7 @@ export function Message({
 	border = true,
 	light = false,
 	children,
+	className,
 }: MessageProps) {
 	if (typeof children !== 'object') {
 		children = <Body>{children}</Body>
@@ -29,7 +31,12 @@ export function Message({
 
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
-			<StyledMessage type={type} border={border} light={light}>
+			<StyledMessage
+				className={className}
+				type={type}
+				border={border}
+				light={light}
+			>
 				{icon &&
 					(type === 'success' ? (
 						<StyledIcon
@@ -56,13 +63,7 @@ export function Message({
 							alt="icône signalant un texte informatif"
 						/>
 					))}
-				<div
-					css={`
-						flex: 1;
-					`}
-				>
-					{children}
-				</div>
+				<Wrapper>{children}</Wrapper>
 			</StyledMessage>
 		</ThemeProvider>
 	)
@@ -111,3 +112,9 @@ const StyledIcon = styled.img`
 					margin-top: calc(${theme.spacings.lg});
 			  `}
 `
+
+const Wrapper = styled.div`
+	flex: 1;
+`
+
+Message.Wrapper = Wrapper

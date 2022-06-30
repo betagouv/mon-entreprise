@@ -8,7 +8,12 @@ import fs from 'fs/promises'
 import path from 'path'
 import serveStatic from 'serve-static'
 import { defineConfig, loadEnv, Plugin } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
+
+const HOUR = 60 * 60
+const DAY = HOUR * 24
+const YEAR = DAY * 365
 
 const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
@@ -57,10 +62,121 @@ export default defineConfig(({ command, mode }) => ({
 				},
 			},
 		}),
+		VitePWA({
+			registerType: 'prompt',
+			workbox: {
+				cleanupOutdatedCaches: true,
+				clientsClaim: true,
+				skipWaiting: true,
+				sourcemap: true,
+				runtimeCaching: [
+					{
+						urlPattern: (options) => {
+							if (
+								!(
+									options.sameOrigin &&
+									options.url.pathname.startsWith('/twemoji/')
+								) &&
+								!(
+									options.sameOrigin &&
+									options.url.pathname.startsWith('/twemoji/')
+								)
+							) {
+								console.log('=>', options.url.pathname)
+							}
+
+							return (
+								options.sameOrigin && options.url.pathname.startsWith('/fonts/')
+							)
+						},
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'fonts-cache',
+							expiration: {
+								maxEntries: 10,
+								maxAgeSeconds: 1 * YEAR,
+							},
+							cacheableResponse: {
+								statuses: [0, 200],
+							},
+						},
+					},
+					{
+						urlPattern: (options) => {
+							return (
+								options.sameOrigin &&
+								options.url.pathname.startsWith('/twemoji/')
+							)
+						},
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'twemoji-cache',
+							expiration: {
+								maxEntries: 10,
+								maxAgeSeconds: 1 * YEAR,
+							},
+							cacheableResponse: {
+								statuses: [0, 200],
+							},
+						},
+					},
+					{
+						urlPattern: (options) => {
+							return (
+								!options.sameOrigin && options.url.hostname === 'polyfill.io'
+							)
+						},
+						handler: 'CacheFirst',
+						options: {
+							cacheName: 'external-cache',
+							expiration: {
+								maxEntries: 10,
+								maxAgeSeconds: 1 * DAY,
+							},
+							cacheableResponse: {
+								statuses: [0, 200],
+							},
+						},
+					},
+				],
+			},
+			srcDir: 'public/favicon',
+			includeAssets: [
+				'favicon.svg',
+				'favicon.ico',
+				'robots.txt',
+				'apple-touch-icon.png',
+			],
+			manifest: {
+				name: 'Mon entreprise',
+				short_name: 'Mon entreprise',
+				description: "L'assistant officiel du créateur d'entreprise",
+				lang: 'fr',
+				orientation: 'portrait-primary',
+				icons: [
+					{
+						src: '/favicon/android-chrome-192x192.png?v=1.0',
+						sizes: '192x192',
+						type: 'image/png',
+					},
+					{
+						src: '/favicon/android-chrome-512x512.png?v=1.0',
+						sizes: '512x512',
+						type: 'image/png',
+					},
+				],
+				theme_color: '#ffffff',
+				background_color: '#ffffff',
+				display: 'standalone',
+			},
+		}),
 		legacy({
 			targets: ['defaults', 'not IE 11'],
 		}),
 	],
+	esbuild: {
+		logOverride: { 'this-is-undefined-in-esm': 'silent' }, // will be fixed in next version of @vitejs/plugin-react (actualy 1.3.2), issue https://github.com/vitejs/vite/pull/8674
+	},
 	server: {
 		hmr: {
 			clientPort:
@@ -138,7 +254,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 					return next()
 				}
 
-				if (url === '/') {
+				if (url && ['/', '/index.html'].includes(url)) {
 					res.writeHead(302, { Location: '/' + options.defaultSite }).end()
 				} else if (
 					firstLevelDir &&
