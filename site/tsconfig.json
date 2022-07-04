@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"lib": ["ESNext", "DOM", "WebWorker"],
 		"baseUrl": "source",
 		"moduleResolution": "node",
 		"module": "esnext",
