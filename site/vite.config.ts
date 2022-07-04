@@ -84,7 +84,7 @@ export default defineConfig(({ command, mode }) => ({
 				orientation: 'portrait-primary',
 				display: 'minimal-ui',
 				theme_color: '#2975d1',
-				background_color: 'none',
+				background_color: '#ffffff',
 				icons: [
 					{
 						src: '/favicon/android-chrome-192x192-shadow.png?v=1.0',
