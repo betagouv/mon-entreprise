@@ -82,7 +82,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle salaire
 exports[`calculate simulations-salarié > aides 3`] = `"[1966,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié > aides 4`] = `
-"[2573,0,2000,1720,1656]
+"[2573,0,2000,1720,1667]
 Notifications affichées : contrat salarié . CDD . information"
 `;
 
@@ -102,7 +102,7 @@ exports[`calculate simulations-salarié > avantages 1`] = `"[2571,0,2000,1540,14
 
 exports[`calculate simulations-salarié > avantages 2`] = `"[2581,0,2000,1539,1489]"`;
 
-exports[`calculate simulations-salarié > avantages 3`] = `"[2491,0,2000,1549,1500]"`;
+exports[`calculate simulations-salarié > avantages 3`] = `"[2491,0,2000,1549,1514]"`;
 
 exports[`calculate simulations-salarié > cadre 1`] = `"[4116,0,3000,2348,2160]"`;
 
@@ -147,15 +147,15 @@ exports[`calculate simulations-salarié > frais pro - DFS 1`] = `"[2105,0,2000,1
 
 exports[`calculate simulations-salarié > frais pro - DFS 2`] = `"[2212,0,2000,1584,1549]"`;
 
-exports[`calculate simulations-salarié > frais pro - DFS 3`] = `"[2158,0,2000,1601,1553]"`;
+exports[`calculate simulations-salarié > frais pro - DFS 3`] = `"[2158,0,2000,1601,1566]"`;
 
-exports[`calculate simulations-salarié > frais pro - DFS 4`] = `"[2158,0,2000,1601,1553]"`;
+exports[`calculate simulations-salarié > frais pro - DFS 4`] = `"[2158,0,2000,1601,1566]"`;
 
 exports[`calculate simulations-salarié > frais pro - DFS 5`] = `"[2383,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié > frais pro - DFS 6`] = `"[1765,0,1700,1354,1354]"`;
 
-exports[`calculate simulations-salarié > frais pro - DFS 7`] = `"[3258,0,2600,2125,2092]"`;
+exports[`calculate simulations-salarié > frais pro - DFS 7`] = `"[3258,0,2600,2125,2105]"`;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `"[4382,0,3200,2553,2356]"`;
 
@@ -216,7 +216,7 @@ Notifications affichées : contrat salarié . temps de travail . contrôle heure
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 8`] = `
-"[3279,2286,2000,1889,1856]
+"[3279,2286,2000,1889,1869]
 Notifications affichées : contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents"
 `;
 
@@ -269,7 +269,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu 5`] = `
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
-exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `"[4070,0,3000,2626,2485]"`;
+exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `"[4070,0,3000,2626,2517]"`;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
 "[41833,0,30000,26966,16655]
@@ -345,7 +345,7 @@ exports[`calculate simulations-salarié > taux spécifiques retraite complément
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
-exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 4`] = `"[3306,0,2500,1938,1830]"`;
+exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 4`] = `"[3306,0,2500,1938,1854]"`;
 
 exports[`calculate simulations-salarié > temps partiel 1`] = `"[2503,2188,2000,1561,1527]"`;
 
@@ -405,7 +405,7 @@ exports[`calculate simulations-salarié > échelle de salaires 10`] = `"[4070,0,
 
 exports[`calculate simulations-salarié > échelle de salaires 11`] = `"[5428,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié > échelle de salaires 12`] = `"[7079,0,5000,3948,3298]"`;
+exports[`calculate simulations-salarié > échelle de salaires 12`] = `"[7079,0,5000,3948,3381]"`;
 
 exports[`calculate simulations-salarié > échelle de salaires 13`] = `
 "[14315,0,10000,7958,6099]

@@ -585,7 +585,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     {
       "missingVariables": {
         "entreprise . activité . mixte": 100.0178,
-        "établissement . localisation": 7.0008,
+        "établissement . localisation": 7.0009999999999994,
       },
       "nodeValue": 1469,
       "traversedVariables": [
@@ -598,11 +598,14 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt",
         "dirigeant . auto-entrepreneur",
         "impôt . méthode de calcul",
-        "impôt . taux neutre d'impôt sur le revenu",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "établissement . localisation . outre-mer . Guadeloupe Réunion Martinique",
         "établissement",
         "établissement . localisation . département",
         "établissement . localisation",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
+        "impôt . taux neutre d'impôt sur le revenu",
+        "date",
         "impôt . revenu imposable",
         "dirigeant . rémunération . imposable",
         "dirigeant . assimilé salarié",
@@ -647,7 +650,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     {
       "missingVariables": {
         "entreprise . activité . mixte": 124.02199999999999,
-        "établissement . localisation": 7.0008,
+        "établissement . localisation": 7.0009999999999994,
       },
       "nodeValue": 31207,
       "traversedVariables": [
@@ -710,11 +713,13 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt . versement libératoire",
         "dirigeant . auto-entrepreneur . impôt",
         "impôt . méthode de calcul",
-        "impôt . taux neutre d'impôt sur le revenu",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "établissement . localisation . outre-mer . Guadeloupe Réunion Martinique",
         "établissement",
         "établissement . localisation . département",
         "établissement . localisation",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
+        "impôt . taux neutre d'impôt sur le revenu",
         "impôt . revenu imposable",
         "dirigeant . rémunération . imposable",
         "dirigeant . assimilé salarié",
