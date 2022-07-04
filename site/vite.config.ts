@@ -64,60 +64,17 @@ export default defineConfig(({ command, mode }) => ({
 		}),
 		VitePWA({
 			registerType: 'prompt',
-			strategies: 'generateSW',
-			workbox: {
-				cleanupOutdatedCaches: true,
-				clientsClaim: true,
-				skipWaiting: true,
-				sourcemap: true,
-				runtimeCaching: [
-					{
-						urlPattern: (options) => {
-							if (
-								!(
-									options.sameOrigin &&
-									options.url.pathname.startsWith('/twemoji/')
-								) &&
-								!(!options.sameOrigin && options.url.hostname === 'polyfill.io')
-							) {
-								console.log('=>', options.url.pathname)
-							}
-
-							return (
-								options.sameOrigin &&
-								options.url.pathname.startsWith('/twemoji/')
-							)
-						},
-						handler: 'StaleWhileRevalidate',
-						options: {
-							cacheName: 'twemoji-cache',
-							expiration: {
-								maxEntries: 10,
-								maxAgeSeconds: 1 * YEAR,
-							},
-							cacheableResponse: {
-								statuses: [0, 200],
-							},
-						},
-					},
-					{
-						urlPattern: (options) =>
-							!options.sameOrigin && options.url.hostname === 'polyfill.io',
-						handler: 'NetworkFirst',
-						options: {
-							cacheName: 'external-cache',
-							expiration: {
-								maxEntries: 10,
-								maxAgeSeconds: 1 * DAY,
-							},
-							cacheableResponse: {
-								statuses: [0, 200],
-							},
-						},
-					},
-				],
+			strategies: 'injectManifest',
+			srcDir: 'source',
+			filename: 'sw.ts',
+			injectManifest: {
+				maximumFileSizeToCacheInBytes: 3000000,
 			},
-			includeAssets: ['fonts/*.{woff,woff2}', 'favicon/*.{ico,png,svg,xml}'],
+			includeAssets: [
+				'logo-*.png',
+				'fonts/*.{woff,woff2}',
+				'références-images/*.{jpg,png,svg}',
+			],
 			manifest: {
 				start_url: '/',
 				name: 'Mon entreprise',

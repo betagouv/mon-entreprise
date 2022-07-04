@@ -25422,10 +25422,14 @@ __metadata:
     ts-node: ^10.8.0
     typescript: ^4.7.2
     vite: ^2.9.13
-    vite-plugin-pwa: ^0.12.1
+    vite-plugin-pwa: ^0.12.2
     vite-plugin-shim-react-pdf: ^1.0.5
     vitest: ^0.9.4
     whatwg-fetch: ^3.0.0
+    workbox-navigation-preload: ^6.5.3
+    workbox-precaching: ^6.5.3
+    workbox-routing: ^6.5.3
+    workbox-strategies: ^6.5.3
     workbox-window: ^6.5.3
     xml2js: ^0.4.23
     yaml: ^1.9.2
@@ -28089,9 +28093,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "vite-plugin-pwa@npm:0.12.1"
+"vite-plugin-pwa@npm:^0.12.2":
+  version: 0.12.2
+  resolution: "vite-plugin-pwa@npm:0.12.2"
   dependencies:
     debug: ^4.3.4
     fast-glob: ^3.2.11
@@ -28103,7 +28107,7 @@ __metadata:
     vite: ^2.0.0 || ^3.0.0-0
     workbox-build: ^6.4.0
     workbox-window: ^6.4.0
-  checksum: 5f1a60ed2a02f5aaeb7f7a130612e45585547d27aa0c51f484ccbca4b74a3392a6245f8bc6c735fecda4a759682b2bd7a846c4bf6a0febe2dfcdae6ec789318b
+  checksum: 4bddb8d9dff2ff777adeef864ea5f3145a9c14807a6912f1d6aaa17c785724f84100ec4a7a55c1e9bd8644d42b6707f49faa6c1070d47800e4383013cc34716f
   languageName: node
   linkType: hard
 
@@ -28774,7 +28778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-navigation-preload@npm:6.5.3":
+"workbox-navigation-preload@npm:6.5.3, workbox-navigation-preload@npm:^6.5.3":
   version: 6.5.3
   resolution: "workbox-navigation-preload@npm:6.5.3"
   dependencies:
@@ -28783,7 +28787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-precaching@npm:6.5.3":
+"workbox-precaching@npm:6.5.3, workbox-precaching@npm:^6.5.3":
   version: 6.5.3
   resolution: "workbox-precaching@npm:6.5.3"
   dependencies:
@@ -28817,7 +28821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-routing@npm:6.5.3":
+"workbox-routing@npm:6.5.3, workbox-routing@npm:^6.5.3":
   version: 6.5.3
   resolution: "workbox-routing@npm:6.5.3"
   dependencies:
@@ -28826,7 +28830,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-strategies@npm:6.5.3":
+"workbox-strategies@npm:6.5.3, workbox-strategies@npm:^6.5.3":
   version: 6.5.3
   resolution: "workbox-strategies@npm:6.5.3"
   dependencies:
