@@ -108,45 +108,45 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
       assiette: revenu imposable
       tranches:
         - montant: 0%
-          plafond: 1626 €/mois
+          plafond: 1652 €/mois
         - montant: 0.5%
-          plafond: 1724 €/mois
+          plafond: 1752 €/mois
         - montant: 1.3%
-          plafond: 1900 €/mois
+          plafond: 1931 €/mois
         - montant: 2.1%
-          plafond: 2075 €/mois
+          plafond: 2108 €/mois
         - montant: 2.9%
-          plafond: 2292 €/mois
+          plafond: 2328 €/mois
         - montant: 3.5%
-          plafond: 2417 €/mois
+          plafond: 2455 €/mois
         - montant: 4.1%
-          plafond: 2500 €/mois
+          plafond: 2540 €/mois
         - montant: 5.3%
-          plafond: 2750 €/mois
+          plafond: 2794 €/mois
         - montant: 7.5%
-          plafond: 3400 €/mois
+          plafond: 3454 €/mois
         - montant: 9.9%
-          plafond: 4350 €/mois
+          plafond: 4420 €/mois
         - montant: 11.9%
-          plafond: 4942 €/mois
+          plafond: 5021 €/mois
         - montant: 13.8%
-          plafond: 5725 €/mois
+          plafond: 5816 €/mois
         - montant: 15.8%
-          plafond: 6858 €/mois
+          plafond: 6968 €/mois
         - montant: 17.9%
-          plafond: 7625 €/mois
+          plafond: 7747 €/mois
         - montant: 20%
-          plafond: 8667 €/mois
+          plafond: 8805 €/mois
         - montant: 24%
-          plafond: 11917 €/mois
+          plafond: 12107 €/mois
         - montant: 28%
-          plafond: 15833 €/mois
+          plafond: 16087 €/mois
         - montant: 33%
-          plafond: 24167 €/mois
+          plafond: 24554 €/mois
         - montant: 38%
-          plafond: 52825 €/mois
+          plafond: 53670 €/mois
         - montant: 43%
-  note: Ce barème n'a pas été revalorisé en 2021.
+  note: Ce barème a été revalorisé en 2022.
 
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
   icônes: 🇬🇾 🇾🇹
@@ -155,45 +155,45 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
       assiette: revenu imposable
       tranches:
         - montant: 0%
-          plafond: 1741 €/mois
+          plafond: 1769 €/mois
         - montant: 0.5%
-          plafond: 1883 €/mois
+          plafond: 1913 €/mois
         - montant: 1.3%
-          plafond: 2100 €/mois
+          plafond: 2133 €/mois
         - montant: 2.1%
-          plafond: 2367 €/mois
+          plafond: 2404 €/mois
         - montant: 2.9%
-          plafond: 2458 €/mois
+          plafond: 2497 €/mois
         - montant: 3.5%
-          plafond: 2542 €/mois
+          plafond: 2583 €/mois
         - montant: 4.1%
-          plafond: 2625 €/mois
+          plafond: 2667 €/mois
         - montant: 5.3%
-          plafond: 2917 €/mois
+          plafond: 2963 €/mois
         - montant: 7.5%
-          plafond: 4025 €/mois
+          plafond: 4089 €/mois
         - montant: 9.9%
-          plafond: 5208 €/mois
+          plafond: 5292 €/mois
         - montant: 11.9%
-          plafond: 5875 €/mois
+          plafond: 5969 €/mois
         - montant: 13.8%
-          plafond: 6817 €/mois
+          plafond: 6926 €/mois
         - montant: 15.8%
-          plafond: 7500 €/mois
+          plafond: 7620 €/mois
         - montant: 17.9%
-          plafond: 8308 €/mois
+          plafond: 8441 €/mois
         - montant: 20%
-          plafond: 9642 €/mois
+          plafond: 9796 €/mois
         - montant: 24%
-          plafond: 12971 €/mois
+          plafond: 13179 €/mois
         - montant: 28%
-          plafond: 16500 €/mois
+          plafond: 16764 €/mois
         - montant: 33%
-          plafond: 26443 €/mois
+          plafond: 26866 €/mois
         - montant: 38%
-          plafond: 55815 €/mois
+          plafond: 56708 €/mois
         - montant: 43%
-  note: Ce barème n'a pas été revalorisé en 2021.
+  note: Ce barème a été revalorisé en 2022.
 
 impôt . taux neutre d'impôt sur le revenu:
   description: >
@@ -214,47 +214,47 @@ impôt . taux neutre d'impôt sur le revenu:
             assiette: revenu imposable
             tranches:
               - montant: 0%
-                plafond: 1420 €/mois
+                plafond: 1440 €/mois
               - montant: 0.5%
-                plafond: 1475 €/mois
+                plafond: 1496 €/mois
               - montant: 1.3%
-                plafond: 1570 €/mois
+                plafond: 1592 €/mois
               - montant: 2.1%
-                plafond: 1676 €/mois
+                plafond: 1699 €/mois
               - montant: 2.9%
-                plafond: 1791 €/mois
+                plafond: 1816 €/mois
               - montant: 3.5%
-                plafond: 1887 €/mois
+                plafond: 1913 €/mois
               - montant: 4.1%
-                plafond: 2012 €/mois
+                plafond: 2040 €/mois
               - montant: 5.3%
-                plafond: 2381 €/mois
+                plafond: 2414 €/mois
               - montant: 7.5%
-                plafond: 2725 €/mois
+                plafond: 2763 €/mois
               - montant: 9.9%
-                plafond: 3104 €/mois
+                plafond: 3147 €/mois
               - montant: 11.9%
-                plafond: 3494 €/mois
+                plafond: 3543 €/mois
               - montant: 13.8%
-                plafond: 4077 €/mois
+                plafond: 4134 €/mois
               - montant: 15.8%
-                plafond: 4888 €/mois
+                plafond: 4956 €/mois
               - montant: 17.9%
-                plafond: 6116 €/mois
+                plafond: 6202 €/mois
               - montant: 20%
-                plafond: 7640 €/mois
+                plafond: 7747 €/mois
               - montant: 24%
-                plafond: 10604 €/mois
+                plafond: 10752 €/mois
               - montant: 28%
-                plafond: 14362 €/mois
+                plafond: 14563 €/mois
               - montant: 33%
-                plafond: 22545 €/mois
+                plafond: 22860 €/mois
               - montant: 38%
-                plafond: 48292 €/mois
+                plafond: 48967 €/mois
               - montant: 43%
   références:
     Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
-    BOFIP: http://bofip.impots.gouv.fr/bofip/11255-PGP.html
+    BOFIP: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
 
 impôt . taux personnalisé:
   question: Quel est votre taux de prélèvement à la source ?

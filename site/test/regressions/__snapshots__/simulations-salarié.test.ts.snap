@@ -405,7 +405,7 @@ exports[`calculate simulations-salarié > échelle de salaires 10`] = `"[4070,0,
 
 exports[`calculate simulations-salarié > échelle de salaires 11`] = `"[5428,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié > échelle de salaires 12`] = `"[7079,0,5000,3948,3298]"`;
+exports[`calculate simulations-salarié > échelle de salaires 12`] = `"[7079,0,5000,3948,3381]"`;
 
 exports[`calculate simulations-salarié > échelle de salaires 13`] = `
 "[14315,0,10000,7958,6099]
