@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch/lite'
 import { Spacing } from '@/design-system/layout'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
@@ -20,7 +20,13 @@ interface Props {
 
 export default function SearchRulesAndSimulators({ closePopover }: Props) {
 	const location = useLocation()
-	useEffect(() => closePopover(), [location])
+	const prevLocation = useRef(location)
+	useEffect(() => {
+		if (prevLocation.current !== location) {
+			prevLocation.current = location
+			closePopover()
+		}
+	}, [closePopover, location])
 
 	return (
 		<SearchRoot
