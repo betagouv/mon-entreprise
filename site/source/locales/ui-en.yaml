@@ -985,8 +985,6 @@ inférieurs à: lower than
 jour: day
 jours: days
 landing:
-  titre: MyCompanyInFrance
-  description: The official tools for entrepreneurs
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
     <2>team</2> within the<5>Urssaf</5>. We are committed to being close to your
     needs in order to constantly improve this site in accordance with the
@@ -1010,6 +1008,7 @@ landing:
   choices:
     continue: Continue with the company
   covid19: "Covid-19: Calculating the impact of short-time work"
+  description: The official tools for entrepreneurs
   outils: <0>The tools at your disposal</0><1>We provide you with assistants and
     simulators to help you manage your business, anticipate levies and plan your
     cash flow accordingly.</1>
@@ -1017,6 +1016,7 @@ landing:
   seeSimulators: See the simulators list
   subtitle: The resources needed to develop your business, from legal status to hiring.
   title: The official tools for entrepreneurs
+  titre: MyCompanyInFrance
 legalNotice:
   contact:
     content: |
@@ -1751,15 +1751,15 @@ pages:
         of benefits in kind (telephone, company car, etc.), as well as the
         mandatory health insurance.</7><8>There are <2>deferred</2> hiring
         <2>aids</2> that are not all taken into account by our simulator. You
-        can find them on <6>the official portal</6>.</8><9>Discuss your
-        recruitment project with a consultant</9><10>You want :<1><0>Be advised
+        can find them on <6>the official portal</6>.</8><9><0>Discuss your
+        recruitment project with a consultant</0><1>You want :<1><0>Be advised
         on the hiring aids available for your recruitment</0><1>Find out about
         apprenticeships, professionalization contracts, free jobs in priority
         neighborhoods, the <2>VTE</2>, etc.</1><2>Find
         candidates</2><3>Recruiting a person with a disability</3></1><2>Simple
         and fast public service: you are called back by the advisor who can help
-        you.</2></10><11>Mobilized partners: Pôle emploi, APEC, Cap Emploi,
-        local missions...</11><12></12>"
+        you.</2></1><2>Mobilized partners: Pôle emploi, APEC, Cap Emploi, local
+        missions...</2><3></3></9>"
       shortname: Employee
       title: Employee income simulator
       title-employeur: Hiring Cost Simulator
