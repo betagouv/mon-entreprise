@@ -20,4 +20,6 @@ export default defineConfig({
 		// Default is 0
 		openMode: 0,
 	},
+	videoCompression: 30,
+	videoUploadOnPasses: false,
 })
