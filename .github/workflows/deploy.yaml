@@ -276,6 +276,7 @@ jobs:
           browser: ${{ matrix.browser }}
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
+          ci-build-id: '${{ github.sha }}-${{ github.event_name }}-${{ github.run_id }}-${{ github.run_attempt }}'
         env:
           COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
 
@@ -343,5 +344,6 @@ jobs:
           browser: ${{ matrix.browser }}
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
+          ci-build-id: '${{ github.sha }}-${{ github.event_name }}-${{ github.run_id }}-${{ github.run_attempt }}'
         env:
           COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
