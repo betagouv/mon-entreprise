@@ -14,17 +14,19 @@ export default function PreviousSimulationBanner() {
 	const dispatch = useDispatch()
 
 	return (
-		<Banner hidden={!previousSimulation || newSimulationStarted} icon="💾">
-			<div className="print-hidden">
-				<Trans i18nKey="previousSimulationBanner.info">
-					Votre précédente simulation a été sauvegardée :
-				</Trans>{' '}
-				<Link onPress={() => dispatch(loadPreviousSimulation())}>
-					<Trans i18nKey="previousSimulationBanner.retrieveButton">
-						Retrouver ma simulation
-					</Trans>
-				</Link>
-			</div>
+		<Banner
+			className="print-hidden"
+			hidden={!previousSimulation || newSimulationStarted}
+			icon="💾"
+		>
+			<Trans i18nKey="previousSimulationBanner.info">
+				Votre précédente simulation a été sauvegardée :
+			</Trans>{' '}
+			<Link onPress={() => dispatch(loadPreviousSimulation())}>
+				<Trans i18nKey="previousSimulationBanner.retrieveButton">
+					Retrouver ma simulation
+				</Trans>
+			</Link>
 		</Banner>
 	)
 }

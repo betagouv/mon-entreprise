@@ -36,8 +36,8 @@ export default function Banner({
 	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
 
 	return !hidden ? (
-		<FadeIn className={className}>
-			<Container>
+		<FadeIn>
+			<Container className={className}>
 				<Emoji emoji={icon} />
 				<Content>{children}</Content>
 			</Container>
