@@ -25,6 +25,7 @@ export function FromBottom({
 	config = configPresets.stiff,
 	style: inheritedStyle = {},
 	delay = 0,
+	className,
 }: Props) {
 	const trail = useTrail(React.Children.count(children), {
 		delay,
@@ -47,6 +48,7 @@ export function FromBottom({
 						...style,
 						position: 'relative',
 					}}
+					className={className}
 				>
 					{childrenArray[i]}
 				</AnimatedDiv>
@@ -60,6 +62,7 @@ export function FromTop({
 	config = configPresets.stiff,
 	style: inheritedStyle = {},
 	delay = 0,
+	className,
 }: Props) {
 	const trail = useTrail(React.Children.count(children), {
 		delay,
@@ -82,6 +85,7 @@ export function FromTop({
 						...style,
 						position: 'relative',
 					}}
+					className={className}
 				>
 					{childrenArray[i]}
 				</AnimatedDiv>
@@ -94,6 +98,7 @@ export const FadeIn = ({
 	children,
 	config = configPresets.default,
 	delay = 0,
+	className,
 }: Props) => {
 	const style = useSpring({
 		delay,
@@ -105,7 +110,11 @@ export const FadeIn = ({
 		return <>{children}</>
 	}
 
-	return <animated.div style={style}>{children}</animated.div>
+	return (
+		<animated.div className={className} style={style}>
+			{children}
+		</animated.div>
+	)
 }
 
 export function Appear({
