@@ -41,7 +41,14 @@ export default function SalaryExplanation() {
 						justify-content: center;
 					`}
 				>
-					<Grid item xl={9} lg={10}>
+					<Grid
+						item
+						xl={9}
+						lg={10}
+						css={`
+							overflow: auto;
+						`}
+					>
 						<H2>
 							<Trans>Fiche de paie</Trans>
 						</H2>

@@ -278,7 +278,7 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 
 const InstitutionLogo = styled.a`
 	img {
-		max-width: 100%;
+		max-width: 110px;
 		max-height: 50px;
 	}
 `
@@ -287,8 +287,8 @@ const InstitutionLine = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: ${({ theme }) => theme.spacings.md};
-	flex-wrap: wrap;
+	padding: ${({ theme }) => theme.spacings.md} 0;
+	flex-wrap: nowrap;
 
 	> ${InstitutionLogo} {
 		display: block;
@@ -297,25 +297,29 @@ const InstitutionLine = styled.div`
 	}
 
 	> :nth-child(2) {
-		flex: 1;
-		padding: 0 4rem 0 2rem;
+		flex: 1 1 0%;
 		margin: 0;
-	}
-
-	> :nth-child(3) {
-		font-weight: bold;
-		text-align: right;
+		padding: 0 4rem 0 2rem;
 	}
 
 	@media (max-width: 680px) {
-		> :nth-child(3) {
-			flex-grow: 9;
+		flex-wrap: wrap;
+
+		> :nth-child(1) {
+			flex-basis: 50%;
+			display: flex;
 		}
 
 		> :nth-child(2) {
 			order: 3;
-			padding: 0;
-			min-width: 80vw;
+			padding: 0.5rem 0 0 0;
+		}
+
+		> :nth-child(3) {
+			order: 2;
+			flex-basis: 50%;
+			display: flex;
+			justify-content: flex-end;
 		}
 	}
 `

@@ -38,6 +38,7 @@ const breakPointCss = (
 		return css`
 			flex-basis: ${(breakPointConfig / nbColumns) * 100}%;
 			flex-grow: 0;
+			max-width: ${(breakPointConfig / nbColumns) * 100}%;
 		`
 	}
 }
@@ -65,6 +66,7 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	flex-direction: row;
 	margin-left: -${({ theme, columnSpacing }) => theme.spacing[columnSpacing ?? 0]};
 	margin-top: -${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
+	width: calc(100% + 0.75rem);
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
