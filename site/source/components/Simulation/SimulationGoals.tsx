@@ -132,6 +132,9 @@ const ToggleSection = styled.div`
 	white-space: nowrap;
 	gap: ${({ theme }) => theme.spacings.sm};
 
+	> * {
+		flex-basis: 100%;
+	}
 	> *:last-child {
 		flex: 1;
 	}
@@ -139,6 +142,15 @@ const ToggleSection = styled.div`
 		white-space: normal;
 		justify-content: center;
 		text-align: center;
+
+		> * > * {
+			justify-content: center;
+		}
+	}
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		> * {
+			flex-basis: initial;
+		}
 	}
 `
 
