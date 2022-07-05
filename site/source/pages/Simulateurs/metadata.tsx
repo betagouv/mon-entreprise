@@ -140,34 +140,38 @@ function getSimulatorsData({
 						</Link>
 						.
 					</Body>
-					<H2>Échanger avec un conseiller pour votre projet de recrutement</H2>
-					<Body as="div">
-						Vous souhaitez :
-						<Ul>
-							<Li>
-								Être conseillé(e) sur les aides à l'embauche mobilisables pour
-								votre recrutement
-							</Li>
-							<Li>
-								Vous informer sur l'apprentissage, le contrat de
-								professionnalisation, les emplois francs en quartiers
-								prioritaires, le{' '}
-								<abbr title="Volontariat Territorial en Entreprise">VTE</abbr>
-								...
-							</Li>
-							<Li>Trouver des candidats</Li>
-							<Li>Recruter une personne en situation de handicap</Li>
-						</Ul>
-						<Strong>
-							Service public simple et rapide : vous êtes rappelé(e) par le
-							conseiller qui peut vous aider.
-						</Strong>
-					</Body>
-					<Body>
-						Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
-						locales...
-					</Body>
-					<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					<div className="print-hidden">
+						<H2>
+							Échanger avec un conseiller pour votre projet de recrutement
+						</H2>
+						<Body as="div">
+							Vous souhaitez :
+							<Ul>
+								<Li>
+									Être conseillé(e) sur les aides à l'embauche mobilisables pour
+									votre recrutement
+								</Li>
+								<Li>
+									Vous informer sur l'apprentissage, le contrat de
+									professionnalisation, les emplois francs en quartiers
+									prioritaires, le{' '}
+									<abbr title="Volontariat Territorial en Entreprise">VTE</abbr>
+									...
+								</Li>
+								<Li>Trouver des candidats</Li>
+								<Li>Recruter une personne en situation de handicap</Li>
+							</Ul>
+							<Strong>
+								Service public simple et rapide : vous êtes rappelé(e) par le
+								conseiller qui peut vous aider.
+							</Strong>
+						</Body>
+						<Body>
+							Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
+							locales...
+						</Body>
+						<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+					</div>
 				</Trans>
 			),
 		},
