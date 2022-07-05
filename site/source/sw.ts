@@ -1,3 +1,4 @@
+import { ExpirationPlugin } from 'workbox-expiration'
 import {
 	cleanupOutdatedCaches,
 	createHandlerBoundToURL,
@@ -30,25 +31,67 @@ registerRoute(
 	)
 )
 
-// StaleWhileRevalidate runtime cache
-const staleWhileRevalidate = new Route(({ request, sameOrigin, url }) => {
-	return (
-		sameOrigin &&
-		(url.pathname.startsWith('/twemoji/') || request.destination === 'image')
-	)
-}, new StaleWhileRevalidate({ cacheName: 'images' }))
+const HOUR = 60 * 60
+const DAY = HOUR * 24
+const YEAR = DAY * 365
+
+const staleWhileRevalidate = new Route(
+	({ request, sameOrigin, url }) => {
+		return (
+			sameOrigin &&
+			(url.pathname.startsWith('/twemoji/') || request.destination === 'image')
+		)
+	},
+	new StaleWhileRevalidate({
+		cacheName: 'images',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 1 * YEAR,
+				maxEntries: 150,
+				purgeOnQuotaError: true,
+			}),
+		],
+	})
+)
 
 registerRoute(staleWhileRevalidate)
 
-// NetworkFirst runtime cache
-const networkFirst = new Route(({ sameOrigin, url }) => {
-	return (
-		!sameOrigin &&
-		[
-			'polyfill.io',
-			'api.recherche-entreprises.fabrique.social.gouv.fr',
-		].includes(url.hostname)
-	)
-}, new NetworkFirst({ cacheName: 'external' }))
+const networkFirstPolyfill = new Route(
+	({ sameOrigin, url }) => {
+		return !sameOrigin && url.hostname === 'polyfill.io'
+	},
+	new NetworkFirst({
+		cacheName: 'external-polyfill',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 1 * YEAR,
+				maxEntries: 5,
+			}),
+		],
+	})
+)
 
-registerRoute(networkFirst)
+registerRoute(networkFirstPolyfill)
+
+const networkFirstAPI = new Route(
+	({ sameOrigin, url }) => {
+		return (
+			!sameOrigin &&
+			[
+				'api.recherche-entreprises.fabrique.social.gouv.fr',
+				'geo.api.gouv.fr',
+			].includes(url.hostname)
+		)
+	},
+	new NetworkFirst({
+		cacheName: 'external-api',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 7 * DAY,
+				maxEntries: 40,
+			}),
+		],
+	})
+)
+
+registerRoute(networkFirstAPI)
