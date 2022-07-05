@@ -321,31 +321,29 @@ export default function SchemeComparaison({
 							</Trans>
 						</>
 					) : (
-						<Grid container columns={8}>
-							<Simulation
-								hideDetails
-								customEndMessages={
-									<>
-										<SmallBody>
-											Vous pouvez consulter les différentes estimations dans le
-											tableau ci-dessous
-										</SmallBody>
+						<Simulation
+							hideDetails
+							customEndMessages={
+								<>
+									<SmallBody>
+										Vous pouvez consulter les différentes estimations dans le
+										tableau ci-dessous
+									</SmallBody>
 
-										<SeeAnswersButton />
-									</>
+									<SeeAnswersButton />
+								</>
+							}
+						>
+							<SimulationGoals
+								toggles={<PeriodSwitch />}
+								legend={
+									'Estimations sur votre rémunération brute et vos charges'
 								}
 							>
-								<SimulationGoals
-									toggles={<PeriodSwitch />}
-									legend={
-										'Estimations sur votre rémunération brute et vos charges'
-									}
-								>
-									<SimulationGoal dottedName="dirigeant . rémunération . totale" />
-									<SimulationGoal dottedName="entreprise . charges" />
-								</SimulationGoals>
-							</Simulation>
-						</Grid>
+								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
+								<SimulationGoal dottedName="entreprise . charges" />
+							</SimulationGoals>
+						</Simulation>
 					)}
 				</div>
 				{displayResult && (
