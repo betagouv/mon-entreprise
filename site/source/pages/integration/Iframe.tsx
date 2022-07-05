@@ -1,8 +1,4 @@
-import { Log } from '@/ATInternetTracking/Tracker'
-import { ThemeColorsProvider } from '@/components/utils/colors'
-import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { PopoverWithTrigger } from '@/design-system'
 import { Article } from '@/design-system/card'
 import { Item, Select } from '@/design-system/field/Select'
@@ -11,18 +7,11 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
-import { lazy, Suspense, useContext, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Route } from 'react-router'
-import { MemoryRouter, useSearchParams } from 'react-router-dom-v5-compat'
+import { useHref, useSearchParams } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
-import { TrackingContext, TrackPage } from '../../ATInternetTracking'
-import { hexToHSL } from '../../hexToHSL'
-import Créer from '../Creer'
-import Documentation from '../Documentation'
-import AssistantDéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
-import Iframes from '../Iframes'
-import Simulateurs from '../Simulateurs'
+import { TrackPage } from '../../ATInternetTracking'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import './iframe.css'
 import cciLogo from './images/cci.png'
@@ -46,7 +35,6 @@ const getFromSimu = <S extends SimulatorData, T extends string>(
 
 function IntegrationCustomizer() {
 	const simulatorsData = useSimulatorsData()
-	const sitePaths = useContext(SitePathsContext)
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const defaultModuleFromUrl = searchParams.get('module') ?? ''
@@ -70,6 +58,27 @@ function IntegrationCustomizer() {
 			'iframePath' in currentSimulator &&
 			currentSimulator.iframePath) ||
 		''
+
+	const iframeRef = useRef<HTMLIFrameElement>(null)
+	const iframeSrc = useHref(`/iframes/${currentIframePath}?iframe`)
+
+	useEffect(() => {
+		window.addEventListener(
+			'message',
+			function (evt: MessageEvent<{ kind: string; value: string }>) {
+				if (iframeRef.current && evt.data.kind === 'resize-height') {
+					iframeRef.current.style.height = evt.data.value + 'px'
+				}
+			}
+		)
+	}, [iframeRef])
+
+	useEffect(() => {
+		iframeRef.current?.contentWindow?.postMessage({
+			kind: 'change-theme-color',
+			value: color,
+		})
+	}, [iframeRef, color])
 
 	return (
 		<>
@@ -143,50 +152,25 @@ function IntegrationCustomizer() {
 					</H3>
 
 					<PrevisualisationContainer>
-						<Previsualisation>
-							<TrackingContext.Provider value={DummyTracker}>
-								<MemoryRouter
-									key={currentModule}
-									initialEntries={[`/iframes/${currentIframePath}`]}
-								>
-									<ThemeColorsProvider
-										color={color == null ? color : hexToHSL(color)}
-									>
-										<IsEmbeddedProvider isEmbeded>
-											<Route
-												path={sitePaths.simulateurs.index}
-												component={Simulateurs}
-											/>
-											<Route path={sitePaths.créer.index} component={Créer} />
-											<Route
-												path={sitePaths.gérer.déclarationIndépendant.beta}
-												component={AssistantDéclarationRevenuIndépendant}
-											/>
-											<Route
-												path={sitePaths.documentation.index}
-												component={Documentation}
-											/>
-											<Iframes />
-										</IsEmbeddedProvider>
-									</ThemeColorsProvider>
-								</MemoryRouter>
-							</TrackingContext.Provider>
-						</Previsualisation>
+						<PreviewIframe src={iframeSrc} ref={iframeRef} />
 					</PrevisualisationContainer>
 				</Grid>
 			</Grid>
 		</>
 	)
 }
-const DummyTracker = new Log()
 
-const Previsualisation = styled.div`
-	background-color: white;
-	margin-top: 2rem;
-	overflow: hidden;
+const PreviewIframe = styled.iframe`
+	width: 100%;
+	height: 700px;
+	border: 0px;
 `
+
 const PrevisualisationContainer = styled.div`
 	outline: 2px solid ${({ theme }) => theme.colors.extended.grey[300]};
+	margin-top: 2rem;
+	overflow: hidden;
+	background-color: white;
 	outline-offset: 1rem;
 `
 
