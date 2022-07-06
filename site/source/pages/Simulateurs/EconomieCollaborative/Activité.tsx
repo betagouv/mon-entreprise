@@ -6,10 +6,12 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Radio, RadioGroup } from '@/design-system/field'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { getValueFrom } from '@/utils'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Redirect } from 'react-router-dom'
+import { useParams } from 'react-router-dom-v5-compat'
 import { TrackPage } from '../../../ATInternetTracking'
 import { selectSeuilRevenus } from './actions'
 import { getTranslatedActivité } from './activitésData'
@@ -18,22 +20,14 @@ import Exonérations from './Exonérations'
 import NextButton from './NextButton'
 import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
-import { getValueFrom } from '@/utils'
 
 export type Activity = {
 	titre: string
 	explication: string
 }
 
-interface Props {
-	match: { params: { title: string } }
-}
-
-export default function Activité({
-	match: {
-		params: { title },
-	},
-}: Props) {
+export default function Activité() {
+	const { title = '' } = useParams()
 	const { language } = useTranslation().i18n
 	const sitePaths = useContext(SitePathsContext)
 	const { state, dispatch } = useContext(StoreContext)

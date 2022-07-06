@@ -21,7 +21,7 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { CompatRoute } from 'react-router-dom-v5-compat'
+import { CompatRoute, useLocation } from 'react-router-dom-v5-compat'
 import styled, { css } from 'styled-components'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -132,7 +132,7 @@ const App = () => {
 					/>
 					<Route path={sitePaths.développeur.index} component={Integration} />
 					<Route path={sitePaths.nouveautés} component={Nouveautés} />
-					<Route path={sitePaths.stats} component={Stats} />
+					<CompatRoute path={sitePaths.stats} component={Stats} />
 					<Route path={sitePaths.budget} component={Budget} />
 					<Route path={sitePaths.accessibilité} component={Accessibilité} />
 

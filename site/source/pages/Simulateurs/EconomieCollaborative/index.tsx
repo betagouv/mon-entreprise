@@ -3,7 +3,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom-v5-compat'
 import { TrackChapter } from '../../../ATInternetTracking'
 import useSimulatorsData from '../metadata'
 import Activité from './Activité'
@@ -19,6 +19,8 @@ export default function ÉconomieCollaborative() {
 		? '/iframes/' + iframePath
 		: sitePaths.simulateurs.économieCollaborative.index
 
+	const relative = (path: string) => path.replace(/.*\//, '/')
+
 	return (
 		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
 			<div css="transform: translateY(2rem)">
@@ -30,17 +32,16 @@ export default function ÉconomieCollaborative() {
 				</Link>
 			</div>
 			<StoreProvider localStorageKey="app::économie-collaborative:v1">
-				<Switch>
-					<Route exact path={indexPath} component={ActivitésSelection} />
+				<Routes>
+					<Route path={'/'} element={<ActivitésSelection />} />
 					<Route
-						path={sitePaths.simulateurs.économieCollaborative.votreSituation}
-						component={VotreSituation}
+						path={relative(
+							sitePaths.simulateurs.économieCollaborative.votreSituation
+						)}
+						element={<VotreSituation />}
 					/>
-					<Route
-						path={sitePaths.simulateurs.économieCollaborative.index + '/:title'}
-						component={Activité}
-					/>
-				</Switch>
+					<Route path={':title'} element={<Activité />} />
+				</Routes>
 			</StoreProvider>
 		</TrackChapter>
 	)

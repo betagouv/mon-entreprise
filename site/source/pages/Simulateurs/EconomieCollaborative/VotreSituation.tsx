@@ -12,7 +12,7 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom-v5-compat'
 import { TrackPage } from '../../../ATInternetTracking'
 import { ActiviteCard } from './ActiviteCard'
 import illustration from './images/multitasking.svg'
@@ -28,9 +28,11 @@ export default function VotreSituation() {
 	const sitePaths = useContext(SitePathsContext)
 	const { state } = useContext(StoreContext)
 	const { t } = useTranslation()
+
 	if (!activitésEffectuéesSelector(state).length) {
-		return <Redirect to={sitePaths.simulateurs.économieCollaborative.index} />
+		return <Navigate to={'..'} replace />
 	}
+
 	const titre = t(
 		'économieCollaborative.obligations.titre',
 		'Que dois-je faire pour être en règle ?'
@@ -38,13 +40,7 @@ export default function VotreSituation() {
 
 	const nextActivité = nextActivitéSelector(state)
 	if (nextActivité) {
-		return (
-			<Redirect
-				to={
-					sitePaths.simulateurs.économieCollaborative.index + '/' + nextActivité
-				}
-			/>
-		)
+		return <Navigate to={'../' + nextActivité} replace />
 	}
 
 	const déclarations = déclarationsSelector(state)

@@ -10,7 +10,7 @@ import {
 import { Body } from '@/design-system/typography/paragraphs'
 import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
 import { GenericCardProps, getTitleProps } from './Card'
 
@@ -27,12 +27,8 @@ export function Article({
 	icon,
 	...ariaButtonProps
 }: ArticleProps) {
-	const elementType: 'a' | 'div' | typeof RouterLink =
-		'href' in ariaButtonProps
-			? 'a'
-			: 'to' in ariaButtonProps
-			? RouterLink
-			: 'div'
+	const elementType: 'a' | 'div' | typeof Link =
+		'href' in ariaButtonProps ? 'a' : 'to' in ariaButtonProps ? Link : 'div'
 
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
 	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
