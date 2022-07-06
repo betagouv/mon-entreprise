@@ -161,6 +161,7 @@ export default function VisitsChart({
 							/>
 						) : (
 							<Line
+								key={k}
 								type="monotone"
 								dataKey={k}
 								name={formatLegend(k)}

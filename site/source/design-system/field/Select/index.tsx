@@ -1,10 +1,10 @@
+import { CarretDown } from '@/design-system/icons/carret-down'
 import { useButton } from '@react-aria/button'
 import { useFocusRing } from '@react-aria/focus'
 import { HiddenSelect, useSelect } from '@react-aria/select'
 import { mergeProps } from '@react-aria/utils'
 import { useSelectState } from '@react-stately/select'
 import type { AriaSelectProps } from '@react-types/select'
-import { CarretDown } from '@/design-system/icons/carret-down'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
@@ -35,10 +35,11 @@ export const Label = styled.label`
 			}
 		`}
 `
-
-const Button = styled.button<{
+interface ButtonProps {
 	isFocusVisible?: boolean
-}>`
+}
+
+const Button = styled.button<ButtonProps>`
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
@@ -75,12 +76,14 @@ const StyledIcon = styled(CarretDown)`
 	margin: 0 4px;
 `
 
-export const Wrapper = styled.div<{
+interface WrapperProps {
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
 	isOpen?: boolean
-}>`
+}
+
+export const Wrapper = styled.div<WrapperProps>`
 	display: flex;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>

@@ -13,18 +13,10 @@ export function Indicator({ main, subTitle, footnote }: IndicatorProps) {
 	return (
 		<StyledIndicator>
 			<H4 as="h2">{subTitle}</H4>
-			<Intro>
+			<Intro as="div">
 				<Strong>{main}</Strong>
 			</Intro>
-			{footnote && (
-				<SmallBody
-					css={`
-						margin-top: -1rem;
-					`}
-				>
-					{footnote}
-				</SmallBody>
-			)}
+			{footnote && <SmallBody>{footnote}</SmallBody>}
 		</StyledIndicator>
 	)
 }
