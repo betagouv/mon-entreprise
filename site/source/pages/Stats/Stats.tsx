@@ -131,8 +131,9 @@ const StatsDetail = () => {
 		const paramsEntries = [
 			['periode', period !== defaultPeriod ? period : ''],
 			['module', chapter2],
-		] as [string, string][]
-		setSearchParams(paramsEntries.filter(([, val]) => val !== ''))
+		].filter(([, val]) => val !== '') as [string, string][]
+
+		setSearchParams(paramsEntries, { replace: true })
 	}, [period, chapter2, setSearchParams])
 
 	const visites = useMemo(() => {
@@ -203,7 +204,10 @@ const StatsDetail = () => {
 					</Grid>
 				</div>
 				<div>
-					<ToggleGroup onChange={setPeriod as any} defaultValue={period}>
+					<ToggleGroup
+						onChange={(val) => setPeriod(val as Period)}
+						defaultValue={period}
+					>
 						<Radio value="jours">
 							<Trans>jours</Trans>
 						</Radio>
@@ -332,9 +336,16 @@ function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 
 	return toAtString(chapter2) as typeof chapter2
 }
+
 function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
 	const simulateur = Object.values(useSimulatorsData()).find(
-		(s) => getChapter2(s) === props.chapter2 && !(s.tracking as any).chapter3
+		(s) =>
+			getChapter2(s) === props.chapter2 &&
+			!(
+				typeof s.tracking === 'object' &&
+				'chapter3' in s.tracking &&
+				s.tracking.chapter3
+			)
 	)
 	if (!simulateur) {
 		return null
@@ -355,24 +366,34 @@ function SimulateursChoice(props: {
 			return (
 				chapter2 &&
 				props.possibleValues.includes(chapter2) &&
-				!(s.tracking as any).chapter3
+				!(
+					typeof s.tracking === 'object' &&
+					'chapter3' in s.tracking &&
+					s.tracking.chapter3
+				)
 			)
 		})
 		.sort((a, b) => (a.shortName < b.shortName ? -1 : 1))
 
 	return (
 		<Select
-			onSelectionChange={props.onChange as any}
+			onSelectionChange={(val) => {
+				props.onChange(
+					typeof val === 'string' && val.length
+						? getChapter2(simulateurs[parseInt(val)])
+						: ''
+				)
+			}}
 			defaultSelectedKey={props.value}
 			label={'Sélectionner la fonctionnalité'}
 		>
-			<Item key={''} textValue="Tout le site">
-				<Emoji emoji="🌍" />
-				Tout le site
-			</Item>
-			{
-				simulateurs.map((s) => (
-					<Item key={getChapter2(s)} textValue={s.shortName}>
+			{[
+				<Item key={''} textValue="Tout le site">
+					<Emoji emoji="🌍" />
+					Tout le site
+				</Item>,
+				...simulateurs.map((s, i) => (
+					<Item key={i} textValue={s.shortName}>
 						{s.icône && (
 							<>
 								<Emoji emoji={s.icône} />
@@ -381,8 +402,8 @@ function SimulateursChoice(props: {
 						)}
 						{s.shortName}
 					</Item>
-				)) as any
-			}
+				)),
+			]}
 		</Select>
 	)
 }
