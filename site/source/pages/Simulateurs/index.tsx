@@ -32,7 +32,7 @@ export default function Simulateurs() {
 				.map((s) => (
 					<Route
 						key={s.path}
-						path={s.path}
+						path={s.path + '/*'}
 						element={<SimulateurPage {...s} />}
 					/>
 				)),

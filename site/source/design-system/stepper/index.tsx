@@ -5,7 +5,7 @@ import { AriaButtonProps } from '@react-types/button'
 
 import styled, { css } from 'styled-components'
 import { Link } from '../typography/link'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom-v5-compat'
 import { useRouteMatch } from 'react-router'
 
 import { ComponentPropsWithRef } from 'react'

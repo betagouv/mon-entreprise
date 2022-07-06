@@ -3,11 +3,12 @@ import { FromBottom } from '@/components/ui/animate'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { RootState } from '@/reducers/rootReducer'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch, useLocation } from 'react-router-dom'
-import { RootState } from '@/reducers/rootReducer'
+import { Navigate } from 'react-router-dom-v5-compat'
 import { TrackChapter } from '../../../ATInternetTracking'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import DirectorStatus from './DirectorStatus'
@@ -85,6 +86,9 @@ export default function Créer() {
 						</Route>
 						<Route path={sitePaths.créer.guideStatut.liste}>
 							<PickLegalStatus />
+						</Route>
+						<Route path={sitePaths.créer.guideStatut.index}>
+							<Navigate to={sitePaths.créer.guideStatut.liste} replace />
 						</Route>
 					</Switch>
 				</FromBottom>

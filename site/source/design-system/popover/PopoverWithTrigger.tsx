@@ -10,7 +10,7 @@ import React, {
 	useMemo,
 	useRef,
 } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom-v5-compat'
 import Popover from './Popover'
 import { Link } from '../typography/link'
 
