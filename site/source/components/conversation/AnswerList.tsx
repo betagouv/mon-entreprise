@@ -9,6 +9,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import {
 	answeredQuestionsSelector,
 	companySituationSelector,
@@ -17,11 +18,12 @@ import {
 import { evaluateQuestion } from '@/utils'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Value from '../EngineValue'
+import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
 
@@ -32,6 +34,7 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const { t } = useTranslation()
+	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
@@ -98,6 +101,19 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					</div>
 				</>
 			)}
+
+			{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
+				<div
+					className="print-hidden"
+					css={`
+						text-align: center;
+					`}
+				>
+					<Spacing md />
+					<JeDonneMonAvis />
+				</div>
+			)}
+
 			{companyQuestions.length > 0 && (
 				<>
 					<H3>

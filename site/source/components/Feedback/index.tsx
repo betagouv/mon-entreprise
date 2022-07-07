@@ -1,16 +1,18 @@
 import Emoji from '@/components/utils/Emoji'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import Popover from '@/design-system/popover/Popover'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
+import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
 import './Feedback.css'
 import Form from './FeedbackForm'
@@ -48,6 +50,7 @@ const Container = styled.div`
 
 export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 	const url = useLocation().pathname
+	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 	const [display, setDisplay] = useState(askFeedback(url))
 	const [state, setState] = useState({
 		showForm: false,
@@ -166,9 +169,26 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 			) : (
 				<>
 					<Spacing md />
-					<Button onPress={openSuggestionForm} color="tertiary" size="XS" light>
-						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
-					</Button>
+					<Grid container spacing={2} css={{ justifyContent: 'center' }}>
+						{currentSimulatorData?.pathId === 'simulateurs.salarié' ? (
+							<Grid item>
+								<JeDonneMonAvis />
+							</Grid>
+						) : (
+							<Grid item>
+								<Button
+									onPress={openSuggestionForm}
+									color="tertiary"
+									size="XS"
+									light
+								>
+									<Trans i18nKey="feedback.reportError">
+										Faire une suggestion
+									</Trans>
+								</Button>
+							</Grid>
+						)}
+					</Grid>
 				</>
 			)}
 		</Container>
