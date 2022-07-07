@@ -185,7 +185,9 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 
 				if (url && ['/', '/index.html'].includes(url)) {
 					res.writeHead(302, { Location: '/' + options.defaultSite }).end()
-				} else if (
+				}
+				// this condition is for the start:netlify script to match /mon-entreprise or /infrance
+				else if (
 					firstLevelDir &&
 					url &&
 					Object.keys(options.sites)
