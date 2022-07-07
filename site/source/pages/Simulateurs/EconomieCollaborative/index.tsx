@@ -12,14 +12,12 @@ import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
-	const sitePaths = useContext(SitePathsContext)
+	const { économieCollaborative } = useContext(SitePathsContext).simulateurs
 	const iframePath =
 		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()
 		? '/iframes/' + iframePath
-		: sitePaths.simulateurs.économieCollaborative.index
-
-	const relative = (path: string) => path.replace(/.*\//, '/')
+		: économieCollaborative.index
 
 	return (
 		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
@@ -35,8 +33,10 @@ export default function ÉconomieCollaborative() {
 				<Routes>
 					<Route path={'/'} element={<ActivitésSelection />} />
 					<Route
-						path={relative(
-							sitePaths.simulateurs.économieCollaborative.votreSituation
+						// TODO: react-router 6 use relative path now, we need to get relative path from sitepath instead of this replace
+						path={économieCollaborative.votreSituation.replace(
+							économieCollaborative.index,
+							''
 						)}
 						element={<VotreSituation />}
 					/>
