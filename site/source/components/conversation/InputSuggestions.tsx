@@ -54,4 +54,5 @@ const StyledInputSuggestion = styled(SmallBody)`
 		white-space: nowrap;
 	}
 	gap: ${({ theme }) => theme.spacings.sm};
+	flex-wrap: wrap;
 `
