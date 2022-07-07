@@ -17,7 +17,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Link } from '@/design-system/typography/link'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { ASTNode, reduceAST } from 'publicodes'
@@ -26,7 +26,8 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.span`
+	display: block;
 	margin: 2rem 1rem;
 `
 
@@ -38,7 +39,7 @@ export default function SalariéSimulation() {
 			<Simulation
 				explanations={<SalaryExplanation />}
 				customEndMessages={
-					<Body>
+					<>
 						<Trans i18nKey="simulation-end.hiring.text">
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
@@ -49,7 +50,7 @@ export default function SalariéSimulation() {
 								</Trans>
 							</Button>
 						</ButtonContainer>
-					</Body>
+					</>
 				}
 				afterQuestionsSlot={
 					<BrowserOnly>
