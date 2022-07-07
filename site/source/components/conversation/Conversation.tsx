@@ -184,6 +184,7 @@ export default function Conversation({
 								sm
 								css={`
 									justify-content: flex-end;
+									display: flex;
 								`}
 							>
 								<SeeAnswersButton>
