@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
@@ -53,25 +54,16 @@ export const ServiceWorker = () => {
 		},
 	})
 
+	useEffect(() => {
+		if (offlineReady) {
+			setOfflineReady(false)
+			// eslint-disable-next-line no-console
+			console.log('App is ready to work offline.')
+		}
+	}, [offlineReady, setOfflineReady])
+
 	return (
 		<PromptContainer>
-			{offlineReady && (
-				<StyledMessage type="info">
-					<StyledSmallBody>
-						<Trans>L'application est prête à fonctionner hors ligne.</Trans>
-					</StyledSmallBody>
-
-					<StyledHideButton>
-						<HideButton
-							onClick={() => setOfflineReady(false)}
-							aria-label={t('Fermer')}
-						>
-							&times;
-						</HideButton>
-					</StyledHideButton>
-				</StyledMessage>
-			)}
-
 			{needRefresh && (
 				<StyledMessage type="info">
 					<StyledSmallBody>
