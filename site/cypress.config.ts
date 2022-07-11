@@ -9,7 +9,7 @@ export default defineConfig({
 	e2e: {
 		// eslint-disable-next-line
 		setupNodeEvents(on, config) {},
-		baseUrl: 'http://localhost:8888',
+		baseUrl: 'http://localhost:3000/mon-entreprise',
 		specPattern: 'cypress/integration/mon-entreprise/**/*.{js,jsx,ts,tsx}',
 	},
 	retries: {

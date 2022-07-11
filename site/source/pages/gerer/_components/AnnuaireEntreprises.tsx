@@ -6,7 +6,7 @@ export function AnnuaireEntreprises() {
 	const { t } = useTranslation()
 	const engine = useEngine()
 
-	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
+	const siren = engine.evaluate('entreprise . SIREN').nodeValue as string
 
 	return (
 		<>
@@ -15,7 +15,7 @@ export function AnnuaireEntreprises() {
 					'gérer.ressources.annuaire-entreprises.title',
 					'Voir vos données publiques'
 				)}
-				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
+				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siren}`}
 				ctaLabel={t(
 					'gérer.ressources.annuaire-entreprises.cta',
 					'Visiter le site'
