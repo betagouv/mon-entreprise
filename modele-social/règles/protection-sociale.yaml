@@ -415,37 +415,31 @@ protection sociale . santé . indemnités journalières:
       - indemnités journalières . TNS
       - indemnités journalières . salarié
 
-protection sociale . santé . indemnités journalières . raam:
-  titre: Revenu d’activité annuel moyen
-  formule: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette sociale
-
 protection sociale . santé . indemnités journalières . TNS:
+  applicable si:
+    une de ces conditions:
+      - dirigeant . indépendant
+      - dirigeant . auto-entrepreneur
   unité: €/jour
-  valeur:
-    variations:
-      - si: dirigeant . indépendant . PL
-        alors: raam * 1 / 730
-      - si:
-          une de ces conditions:
-            - dirigeant . indépendant
-            - dirigeant . auto-entrepreneur
-        alors:
-          condition:
-            si: raam < 10 % * plafond sécurité sociale temps plein
-            alors: 0 €/jour
-            sinon: raam * 1 / 730
-  plafond:
-    variations:
-      - si: dirigeant . indépendant . PL
-        alors: 3 * plafond sécurité sociale temps plein
-      - si:
-          une de ces conditions:
-            - dirigeant . indépendant
-            - dirigeant . auto-entrepreneur
-        alors: plafond sécurité sociale temps plein
+  produit:
+    assiette: raam
+    facteur: 1 an / 730 jour
+  avec:
+    raam:
+      titre: Revenu d’activité annuel moyen
+      valeur:
+        variations:
+          - si: dirigeant . indépendant
+            alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
+          - si: dirigeant . auto-entrepreneur
+            alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
+      plafond:
+        nom: plafond
+        valeur: plafond sécurité sociale
+
   reférences:
-    - ameli.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
-    - ameli.fr: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
 
 protection sociale . santé . indemnités journalières . salarié:
   unité: €/jour
