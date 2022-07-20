@@ -1,8 +1,9 @@
 import 'isomorphic-fetch'
 import { writeInDataDir } from './utils.js'
 
+const CURRENT_YEAR = 2022
 const CSV_URL =
-	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20220103.csv'
+	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20220720.csv'
 
 const INDEX = {
 	TAUX: 2,
@@ -18,7 +19,9 @@ const INDEX = {
 		.slice(1, -1)
 		.map((row) => row.split(';'))
 		.filter((r) => r[INDEX.TAUX] !== '0')
-		.filter((r) => !r[INDEX.DATE_EFFET].startsWith('2023'))
+		.filter(
+			(r) => !r[INDEX.DATE_EFFET].startsWith((CURRENT_YEAR + 1).toString())
+		)
 		.map((r) => {
 			r[INDEX.CODE_COMMUNE] = r[INDEX.CODE_COMMUNE].slice(1, -1) // Remove single quote ''
 			return r
