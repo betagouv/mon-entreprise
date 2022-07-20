@@ -31,7 +31,7 @@ export default async ({ site, url, lang }) => {
 		.replace('<!--app-style-->', styleTags)
 		.replace(regexHelmet, helmet.title.toString() + helmet.meta.toString())
 
-	const dir = path.join(dirname, 'dist/prerender', site, url)
+	const dir = path.join(dirname, 'dist/prerender', site, decodeURI(url))
 
 	await fs.mkdir(dir, { recursive: true })
 	await fs.writeFile(path.join(dir, 'index.html'), page)

@@ -28,9 +28,10 @@ export function render(url: string, lang: 'fr' | 'en') {
 		</HelmetProvider>
 	)
 
-	// first render
+	// Render to initialize redux store (via useSimulationConfig)
 	ReactDOMServer.renderToString(element)
-	// second render with the configured engine
+
+	// Render with redux store configured
 	const html = ReactDOMServer.renderToString(element)
 
 	const styleTags = sheet.getStyleTags()
