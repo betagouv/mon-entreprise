@@ -28,7 +28,7 @@ export default function RuleLink(
 	return (
 		<EngineRuleLink
 			{...props}
-			linkComponent={Link as typeof NavLink}
+			linkComponent={Link as React.ComponentType<{ to: string }>}
 			engine={engine}
 			documentationPath={sitePaths.documentation.index}
 		/>
