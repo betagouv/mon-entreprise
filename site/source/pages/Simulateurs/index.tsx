@@ -10,17 +10,22 @@ import SimulateurPage from '../../components/PageData'
 import Home from './Home'
 import useSimulatorsData from './metadata'
 
+type State = {
+	fromGérer?: boolean
+	fromCréer?: boolean
+	fromSimulateurs?: boolean
+}
+
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
 	const { state, pathname } = useLocation()
-	const [lastState, setLastState] = usePersistingState<{
-		fromGérer?: boolean
-		fromCréer?: boolean
-		fromSimulateurs?: boolean
-	}>('navigation::simulateurs::locationState::v2', {})
+	const [lastState, setLastState] = usePersistingState<State>(
+		'navigation::simulateurs::locationState::v2',
+		{}
+	)
 	useEffect(() => {
 		if (state) {
-			setLastState(state)
+			setLastState(state as State)
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()
