@@ -17,7 +17,6 @@ export const pagesToPrerender: {
 	'mon-entreprise': [
 		sitePathFr.index,
 		sitePathFr.créer.index,
-		sitePathFr.gérer.index,
 		sitePathFr.simulateurs.index,
 		sitePathFr.simulateurs.salarié,
 		sitePathFr.simulateurs['chômage-partiel'],
@@ -27,12 +26,12 @@ export const pagesToPrerender: {
 		sitePathFr.simulateurs['artiste-auteur'],
 		'/iframes/simulateur-embauche',
 		'/iframes/pamc',
-	].map((url) => decodeURI(url)),
+	],
 	infrance: [
 		sitePathEn.index,
 		sitePathEn.simulateurs.salarié,
 		'/iframes/simulateur-embauche',
-	].map((url) => decodeURI(url)),
+	],
 }
 
 const dev = argv.findIndex((val) => val === '--dev') > -1
@@ -50,7 +49,7 @@ const redirects = await Promise.all(
 					return `
 [[redirects]]
 	from = ":SITE_${site === 'mon-entreprise' ? 'FR' : 'EN'}${
-						dev ? url : encodeURI(url)
+						dev ? decodeURI(url) : url
 					}"
 	to = "/${path}"
 	status = 200

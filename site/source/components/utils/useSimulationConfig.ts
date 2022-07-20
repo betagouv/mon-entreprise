@@ -13,6 +13,11 @@ export default function useSimulationConfig(
 ) {
 	const dispatch = useDispatch()
 
+	// Initialize redux store for SSR
+	if (import.meta.env.SSR) {
+		dispatch(setSimulationConfig(config ?? {}, path))
+	}
+
 	const lastConfig = useSelector(configSelector)
 	useEffect(() => {
 		if (config && lastConfig !== config) {
