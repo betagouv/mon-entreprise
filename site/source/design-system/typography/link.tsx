@@ -2,8 +2,8 @@ import { FocusStyle } from '@/design-system/global-style'
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
 import React, {
+	ComponentProps,
 	ComponentPropsWithRef,
-	CSSProperties,
 	ForwardedRef,
 	useCallback,
 	useRef,
@@ -59,7 +59,7 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 
 export const Link = React.forwardRef<
 	HTMLAnchorElement | HTMLButtonElement,
-	GenericButtonOrLinkProps & {
+	GenericButtonOrNavLinkProps & {
 		children: React.ReactNode
 		isDisabled?: boolean
 	}
@@ -111,22 +111,56 @@ export function useExternalLinkProps({
 	}
 }
 
-export type GenericButtonOrLinkProps = (
+const CustomNavLink = React.forwardRef(function CustomNavLink(
+	props: ComponentProps<typeof NavLink> & {
+		_style?: ComponentProps<typeof NavLink>['style']
+		_className?: ComponentProps<typeof NavLink>['className']
+	},
+	forwardedRef: ForwardedRef<HTMLAnchorElement | null>
+) {
+	const navLinkProps = { ...props }
+	delete navLinkProps._style
+	delete navLinkProps._className
+
+	return (
+		<NavLink
+			{...navLinkProps}
+			style={(...p) => ({
+				...props.style,
+				...(typeof props._style === 'function' && props._style(...p)),
+			})}
+			className={(...p) => {
+				const styledClass =
+					(typeof props.className === 'function'
+						? props.className(...p)
+						: props.className) ?? ''
+
+				const originalClass =
+					(typeof props._className === 'function'
+						? props._className(...p)
+						: props._className) ?? ''
+
+				return styledClass + ' ' + originalClass
+			}}
+			ref={forwardedRef}
+		/>
+	)
+})
+
+export type GenericButtonOrNavLinkProps = (
 	| AriaButtonProps<'a'>
 	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true
-	className?: string
-	style?: CSSProperties
 }
 
 export function useButtonOrLink(
-	props: GenericButtonOrLinkProps,
+	props: GenericButtonOrNavLinkProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
-	const elementType: 'a' | 'button' | typeof NavLink =
-		'href' in props ? 'a' : 'to' in props ? NavLink : 'button'
+	const elementType: 'a' | 'button' | typeof CustomNavLink =
+		'href' in props ? 'a' : 'to' in props ? CustomNavLink : 'button'
 
 	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
 	const { buttonProps } = useButton({ elementType, ...props }, defaultRef)
@@ -157,10 +191,24 @@ export function useButtonOrLink(
 		)
 	)
 
+	// resolve conflict between styled-component and NavLink style props
+	const styleProps =
+		'to' in props && typeof props.style === 'function'
+			? { _style: props.style, style: undefined }
+			: {}
+
+	// resolve conflict between styled-component and NavLink classname props
+	const classNameProps =
+		'to' in props && typeof props.className === 'function'
+			? { _className: props.className, className: undefined }
+			: {}
+
 	const buttonOrLinkProps = {
 		...initialProps,
 		...buttonProps,
 		...useExternalLinkProps(props),
+		...classNameProps,
+		...styleProps,
 		as: elementType,
 		ref,
 	}

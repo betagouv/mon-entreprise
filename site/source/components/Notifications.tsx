@@ -2,7 +2,7 @@ import { hideNotification } from '@/actions/actions'
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { GenericButtonOrLinkProps } from '@/design-system/typography/link'
+import { GenericButtonOrNavLinkProps } from '@/design-system/typography/link'
 import { RootState } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
@@ -95,7 +95,7 @@ export default function Notifications() {
 	)
 }
 
-const HideButton = styled(Button)<GenericButtonOrLinkProps>`
+const HideButton = styled(Button)<GenericButtonOrNavLinkProps>`
 	&& {
 		display: flex;
 		align-items: center;

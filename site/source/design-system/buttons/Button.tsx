@@ -1,6 +1,6 @@
 import { FocusStyle } from '@/design-system/global-style'
 import {
-	GenericButtonOrLinkProps,
+	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
 import { wrapperDebounceEvents } from '@/utils'
@@ -10,7 +10,7 @@ import styled, { css } from 'styled-components'
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
-type ButtonProps = GenericButtonOrLinkProps & {
+type ButtonProps = GenericButtonOrNavLinkProps & {
 	color?: Color
 	children: React.ReactNode
 	size?: Size
@@ -22,7 +22,6 @@ export const Button = forwardRef(function Button(
 		size = 'MD',
 		light = false,
 		color = 'primary' as const,
-		className,
 		isDisabled,
 		...ariaButtonProps
 	}: ButtonProps,
@@ -36,7 +35,6 @@ export const Button = forwardRef(function Button(
 	return (
 		<StyledButton
 			{...buttonOrLinkProps}
-			className={className}
 			$size={size}
 			$light={light}
 			$color={color}

@@ -8,7 +8,10 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Item, Select } from '@/design-system/field/Select'
 import { Container, Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
-import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
+import {
+	GenericButtonOrNavLinkProps,
+	Link,
+} from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useContext, useMemo } from 'react'
@@ -156,7 +159,7 @@ const DesktopGridItem = styled(Grid).attrs({ item: true, lg: 3 })`
 	}
 `
 
-const SidebarLink = styled(Link)<GenericButtonOrLinkProps>`
+const SidebarLink = styled(Link)<GenericButtonOrNavLinkProps>`
 	display: block;
 	border-radius: 0;
 	padding: 0.5rem 1rem;
