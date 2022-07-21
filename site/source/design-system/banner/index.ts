@@ -1,5 +1,5 @@
 import { Button } from '@/design-system/buttons'
-import { GenericButtonOrLinkProps } from '@/design-system/typography/link'
+import { GenericButtonOrNavLinkProps } from '@/design-system/typography/link'
 import styled from 'styled-components'
 
 export const Banner = styled.div`
@@ -23,7 +23,7 @@ export const InnerBanner = styled.div`
 	border-radius: 0.375rem;
 `
 
-export const HideButton = styled(Button)<GenericButtonOrLinkProps>`
+export const HideButton = styled(Button)<GenericButtonOrNavLinkProps>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
