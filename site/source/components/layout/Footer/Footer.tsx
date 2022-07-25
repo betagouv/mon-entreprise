@@ -29,7 +29,7 @@ export default function Footer() {
 		(currentEnv === 'production' || currentEnv === 'development'
 			? `${window.location.protocol}//${window.location.host}`
 			: '') + window.location.pathname
-	const uri = decodeURIComponent(encodedUri || '').replace(/\/$/, '')
+	const uri = (encodedUri || '').replace(/\/$/, '')
 	const hrefLink = hrefLangLink[language][uri]
 
 	return (

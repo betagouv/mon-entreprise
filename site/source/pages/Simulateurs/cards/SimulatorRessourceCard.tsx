@@ -25,10 +25,8 @@ export function SimulatorRessourceCard({
 					Accéder au simulateur
 				</Trans>
 			}
-			to={{
-				pathname: simulator.path,
-				state: { fromSimulateurs: true },
-			}}
+			to={{ pathname: simulator.path }}
+			state={{ fromSimulateurs: true }}
 		>
 			{simulator.meta?.description}
 		</Article>

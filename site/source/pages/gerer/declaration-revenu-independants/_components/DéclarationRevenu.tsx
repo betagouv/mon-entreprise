@@ -170,7 +170,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								<Button
 									size="XL"
 									isDisabled={progress !== 1}
-									to={sitePaths.gérer.déclarationIndépendant.cotisations}
+									to={sitePaths.gérer.déclarationIndépendant.beta.cotisations}
 								>
 									Continuer vers l'estimation des cotisations pour 2022
 								</Button>

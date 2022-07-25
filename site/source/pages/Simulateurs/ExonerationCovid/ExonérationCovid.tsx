@@ -12,7 +12,11 @@ import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { useLocation } from 'react-router'
+import {
+	createSearchParams,
+	useLocation,
+	useSearchParams,
+} from 'react-router-dom'
 import { useExoCovidEngine } from '.'
 import { FormulaireS1S1Bis } from './FormulaireS1S1Bis'
 import { FormulaireS2 } from './FormulaireS2'
@@ -25,7 +29,7 @@ const rootDottedNames = [
 
 export const ExonérationCovid = () => {
 	const location = useLocation()
-	const searchParams = new URLSearchParams(location.search)
+	const [searchParams] = useSearchParams()
 	const params = Object.fromEntries(searchParams.entries()) as {
 		[key in typeof rootDottedNames[number]]?: string
 	}
@@ -133,18 +137,18 @@ export const ExonérationCovid = () => {
 							isDisabled={!rootDottedNames.every((names) => situation[names])}
 							{...(rootDottedNames.every((names) => situation[names])
 								? {
-										to: () => {
-											rootDottedNames.forEach((key) =>
-												searchParams.append(
-													key,
-													situation[key]?.toString() ?? ''
+										to: {
+											pathname: location.pathname,
+											search: createSearchParams(
+												Object.fromEntries(
+													rootDottedNames
+														.filter((key) => situation[key])
+														.map((key) => [
+															key,
+															situation[key]?.toString() ?? '',
+														])
 												)
-											)
-
-											return {
-												pathname: location.pathname,
-												search: searchParams.toString(),
-											}
+											).toString(),
 										},
 								  }
 								: null)}

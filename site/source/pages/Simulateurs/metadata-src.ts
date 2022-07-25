@@ -429,7 +429,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 					'Assistant à la déclaration de revenu pour les indépendants'
 				),
 			},
-			pathId: 'gérer.déclarationIndépendant.beta',
+			pathId: 'gérer.déclarationIndépendant.beta.index',
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
 				'Assistant déclaration de revenu [beta]'

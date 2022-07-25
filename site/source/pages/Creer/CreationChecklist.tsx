@@ -454,10 +454,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{
-								pathname: sitePaths.simulateurs['auto-entrepreneur'],
-								state: { fromCréer: true },
-							}}
+							to={{ pathname: sitePaths.simulateurs['auto-entrepreneur'] }}
+							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.autoEntrepreneur.cta',
 								'Simuler les revenus'
@@ -481,10 +479,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{
-								pathname: sitePaths.simulateurs.indépendant,
-								state: { fromCréer: true },
-							}}
+							to={{ pathname: sitePaths.simulateurs.indépendant }}
+							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.indépendant.cta',
 								'Simuler les cotisations'
@@ -508,10 +504,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{
-								pathname: sitePaths.simulateurs.sasu,
-								state: { fromCréer: true },
-							}}
+							to={{ pathname: sitePaths.simulateurs.sasu }}
+							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.assimilé.cta',
 								'Simuler la rémunération'

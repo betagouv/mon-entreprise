@@ -10,8 +10,7 @@ import { getValueFrom } from '@/utils'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Redirect } from 'react-router-dom'
-import { useParams } from 'react-router-dom-v5-compat'
+import { Navigate, useParams } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
 import { selectSeuilRevenus } from './actions'
 import { getTranslatedActivité } from './activitésData'
@@ -33,7 +32,7 @@ export default function Activité() {
 	const { state, dispatch } = useContext(StoreContext)
 	const activité = getTranslatedActivité(title, language)
 	if (state && !(title in state)) {
-		return <Redirect to={sitePaths.simulateurs.économieCollaborative.index} />
+		return <Navigate to={sitePaths.simulateurs.économieCollaborative.index} />
 	}
 
 	if (getValueFrom(activité, 'activités')) {

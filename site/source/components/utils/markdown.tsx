@@ -1,3 +1,4 @@
+import { Message } from '@/design-system'
 import { Strong, U } from '@/design-system/typography'
 import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -5,11 +6,10 @@ import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
-import { useLocation } from 'react-router-dom-v5-compat'
-import { isIterable } from '../../utils'
+import { useLocation } from 'react-router-dom'
 import { SiteNameContext } from '../../Provider'
+import { isIterable } from '../../utils'
 import Emoji from './Emoji'
-import { Message } from '@/design-system'
 
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',

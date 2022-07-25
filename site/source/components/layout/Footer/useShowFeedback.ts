@@ -9,7 +9,7 @@ export const useShowFeedback = () => {
 	const simulators = useSimulatorsData()
 
 	const blacklisted = [
-		sitePath.gérer.déclarationIndépendant.cotisations as string,
+		sitePath.gérer.déclarationIndépendant.beta.cotisations as string,
 	].includes(currentPath)
 
 	if (blacklisted) {

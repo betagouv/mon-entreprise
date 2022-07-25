@@ -172,7 +172,7 @@ export default function Accueil() {
 									<Spacing lg />
 									<Button
 										size="XL"
-										to={sitePaths.gérer.déclarationIndépendant.imposition}
+										to={sitePaths.gérer.déclarationIndépendant.beta.imposition}
 									>
 										Continuer avec cette entreprise
 									</Button>

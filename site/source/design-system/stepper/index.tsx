@@ -1,14 +1,11 @@
 import { useProgressBar } from '@react-aria/progress'
 import { useSSRSafeId } from '@react-aria/ssr'
-import { Trans } from 'react-i18next'
 import { AriaButtonProps } from '@react-types/button'
-
+import { ComponentPropsWithRef } from 'react'
+import { Trans } from 'react-i18next'
+import { Link as RouterLink, useMatch } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { Link } from '../typography/link'
-import { Link as RouterLink } from 'react-router-dom-v5-compat'
-import { useRouteMatch } from 'react-router'
-
-import { ComponentPropsWithRef } from 'react'
 
 type Props = {
 	isDisabled?: boolean
@@ -27,7 +24,7 @@ export function Step({
 	if (import.meta.env.DEV && (progress > 1 || progress < 0)) {
 		throw new TypeError('`progress` should be a number between 0 and 1')
 	}
-	const active = !!useRouteMatch({ path: props.to, exact: true })
+	const active = !!useMatch({ path: props.to })
 	const propsBar = {
 		'aria-labelledby': labelId,
 		minValue: 0,

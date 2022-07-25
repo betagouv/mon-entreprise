@@ -168,12 +168,8 @@ export function SimulateurCard({
 				<Grid item xs={12} sm={6} md={6} lg={4}>
 					<SmallCard
 						icon={<Emoji emoji={icône} />}
-						to={{
-							state: fromGérer
-								? { fromGérer: true }
-								: { fromSimulateurs: true },
-							pathname: (isIframe && iframePath) || path,
-						}}
+						to={{ pathname: (isIframe && iframePath) || path }}
+						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						title={
 							<h4>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
@@ -187,12 +183,8 @@ export function SimulateurCard({
 						title={shortName}
 						icon={<Emoji emoji={icône} />}
 						ctaLabel={t('.cta', 'Lancer le simulateur')}
-						to={{
-							state: fromGérer
-								? { fromGérer: true }
-								: { fromSimulateurs: true },
-							pathname: (isIframe && iframePath) || path,
-						}}
+						to={{ pathname: (isIframe && iframePath) || path }}
+						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 					>
 						{meta?.description}
 					</Card>

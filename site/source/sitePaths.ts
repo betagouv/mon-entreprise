@@ -1,5 +1,6 @@
 import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { useTranslation } from 'react-i18next'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'EI',
@@ -13,85 +14,89 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SA',
 ]
 
+const status = Object.fromEntries(
+	LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, statut])
+) as { [statut in LegalStatus]: statut }
+
 const rawSitePathsFr = {
 	index: '',
 	créer: {
-		index: '/créer',
-		...(Object.fromEntries(
-			LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, `/${statut}`])
-		) as { [statut in LegalStatus]: string }),
-		après: '/après-la-création',
+		index: 'créer',
+		...status,
+		après: 'après-la-création',
 		guideStatut: {
-			index: '/statut-juridique',
-			liste: '/liste',
-			soleProprietorship: '/responsabilité',
-			directorStatus: '/dirigeant',
-			autoEntrepreneur: '/auto-entrepreneur-ou-entreprise-individuelle',
-			multipleAssociates: '/nombre-associés',
-			minorityDirector: '/gérant-majoritaire-ou-minoritaire',
+			index: 'statut-juridique',
+			liste: 'liste',
+			soleProprietorship: 'responsabilité',
+			directorStatus: 'dirigeant',
+			autoEntrepreneur: 'auto-entrepreneur-ou-entreprise-individuelle',
+			multipleAssociates: 'nombre-associés',
+			minorityDirector: 'gérant-majoritaire-ou-minoritaire',
 		},
 	},
 	gérer: {
-		index: '/gérer',
-		entreprise: '/:entreprise',
-		embaucher: '/embaucher',
-		sécuritéSociale: '/sécurité-sociale',
+		index: 'gérer',
+		entreprise: ':entreprise',
+		embaucher: 'embaucher',
+		sécuritéSociale: 'sécurité-sociale',
 		'déclaration-charges-sociales-indépendant':
-			'/declaration-charges-sociales-independant',
+			'declaration-charges-sociales-independant',
 		déclarationIndépendant: {
-			index: '/aide-declaration-independants',
-			beta: '/beta',
-			entreprise: '/beta/entreprise',
-			imposition: '/beta/imposition',
-			déclaration: '/beta/declaration',
-			cotisations: '/beta/cotisations',
+			index: 'aide-declaration-independants',
+			beta: {
+				index: 'beta',
+				entreprise: 'entreprise',
+				imposition: 'imposition',
+				déclaration: 'declaration',
+				cotisations: 'cotisations',
+			},
 		},
-		formulaireMobilité: '/demande-mobilité',
+		formulaireMobilité: 'demande-mobilité',
 	},
 	simulateurs: {
-		index: '/simulateurs',
-		'auto-entrepreneur': '/auto-entrepreneur',
-		'entreprise-individuelle': '/entreprise-individuelle',
-		eirl: '/eirl',
-		sasu: '/sasu',
-		eurl: '/eurl',
-		indépendant: '/indépendant',
-		comparaison: '/comparaison-régimes-sociaux',
-		pamc: '/pamc',
-		salarié: '/salaire-brut-net',
-		'artiste-auteur': '/artiste-auteur',
+		index: 'simulateurs',
+		'auto-entrepreneur': 'auto-entrepreneur',
+		'entreprise-individuelle': 'entreprise-individuelle',
+		eirl: 'eirl',
+		sasu: 'sasu',
+		eurl: 'eurl',
+		indépendant: 'indépendant',
+		comparaison: 'comparaison-régimes-sociaux',
+		pamc: 'pamc',
+		salarié: 'salaire-brut-net',
+		'artiste-auteur': 'artiste-auteur',
 		'profession-libérale': {
-			index: '/profession-liberale',
-			médecin: '/medecin',
-			pharmacien: '/pharmacien',
-			auxiliaire: '/auxiliaire-medical',
-			'chirurgien-dentiste': '/chirurgien-dentiste',
-			'sage-femme': '/sage-femme',
-			avocat: '/avocat',
-			'expert-comptable': '/expert-comptable',
+			index: 'profession-liberale',
+			médecin: 'medecin',
+			pharmacien: 'pharmacien',
+			auxiliaire: 'auxiliaire-medical',
+			'chirurgien-dentiste': 'chirurgien-dentiste',
+			'sage-femme': 'sage-femme',
+			avocat: 'avocat',
+			'expert-comptable': 'expert-comptable',
 		},
-		'chômage-partiel': '/chômage-partiel',
+		'chômage-partiel': 'chômage-partiel',
 		économieCollaborative: {
-			index: '/économie-collaborative',
-			votreSituation: '/votre-situation',
+			index: 'économie-collaborative',
+			votreSituation: 'votre-situation',
 		},
-		is: '/impot-societe',
-		dividendes: '/dividendes',
-		'exonération-covid': '/exonération-covid',
+		is: 'impot-societe',
+		dividendes: 'dividendes',
+		'exonération-covid': 'exonération-covid',
 	},
-	nouveautés: '/nouveautés',
-	stats: '/stats',
-	accessibilité: '/accessibilité',
-	budget: '/budget',
+	nouveautés: 'nouveautés',
+	stats: 'stats',
+	accessibilité: 'accessibilité',
+	budget: 'budget',
 	développeur: {
-		index: '/développeur',
-		iframe: '/iframe',
-		library: '/bibliothèque-de-calcul',
-		api: '/api',
-		spreadsheet: '/tableur',
+		index: 'développeur',
+		iframe: 'iframe',
+		library: 'bibliothèque-de-calcul',
+		api: 'api',
+		spreadsheet: 'tableur',
 	},
 	documentation: {
-		index: '/documentation',
+		index: 'documentation',
 	},
 } as const
 
@@ -99,80 +104,83 @@ const rawSitePathsEn = {
 	...rawSitePathsFr,
 	créer: {
 		...rawSitePathsFr.créer,
-		index: '/create',
-		après: '/after-registration',
+		index: 'create',
+		après: 'after-registration',
 		guideStatut: {
-			index: '/legal-status',
-			liste: '/list',
-			soleProprietorship: '/liability',
-			directorStatus: '/director',
-			autoEntrepreneur: '/auto-entrepreneur',
-			multipleAssociates: '/multiple-associates',
-			minorityDirector: '/chairman-or-managing-director',
+			index: 'legal-status',
+			liste: 'list',
+			soleProprietorship: 'liability',
+			directorStatus: 'director',
+			autoEntrepreneur: 'auto-entrepreneur',
+			multipleAssociates: 'multiple-associates',
+			minorityDirector: 'chairman-or-managing-director',
 		},
 	},
 	gérer: {
-		index: '/manage',
-		entreprise: '/:entreprise',
-		embaucher: '/hiring',
-		sécuritéSociale: '/social-security',
+		index: 'manage',
+		entreprise: ':entreprise',
+		embaucher: 'hiring',
+		sécuritéSociale: 'social-security',
 		'déclaration-charges-sociales-indépendant':
-			'/declaration-social-charges-independent',
+			'declaration-social-charges-independent',
 		déclarationIndépendant: {
-			index: '/declaration-aid-independent',
-			beta: '/beta',
-			imposition: '/beta/taxation',
-			entreprise: '/beta/company',
-			déclaration: '/beta/declaration',
-			cotisations: '/beta/contributions',
+			index: 'declaration-aid-independent',
+			beta: {
+				index: 'beta',
+				imposition: 'taxation',
+				entreprise: 'company',
+				déclaration: 'declaration',
+				cotisations: 'contributions',
+			},
 		},
-		formulaireMobilité: '/posting-demand',
+		formulaireMobilité: 'posting-demand',
 	},
 	simulateurs: {
-		index: '/calculators',
-		indépendant: '/independant',
-		'entreprise-individuelle': '/sole-proprietorship',
-		'auto-entrepreneur': '/auto-entrepreneur',
-		eirl: '/eirl',
-		sasu: '/sasu',
-		eurl: '/eurl',
-		pamc: '/pamc',
-		comparaison: '/social-scheme-comparaison',
-		salarié: '/salary',
-		'artiste-auteur': '/artist-author',
-		'chômage-partiel': '/partial-unemployement',
+		index: 'calculators',
+		indépendant: 'independant',
+		'entreprise-individuelle': 'sole-proprietorship',
+		'auto-entrepreneur': 'auto-entrepreneur',
+		eirl: 'eirl',
+		sasu: 'sasu',
+		eurl: 'eurl',
+		pamc: 'pamc',
+		comparaison: 'social-scheme-comparaison',
+		salarié: 'salary',
+		'artiste-auteur': 'artist-author',
+		'chômage-partiel': 'partial-unemployement',
 		'profession-libérale': {
-			index: '/liberal-profession',
-			médecin: '/doctor',
-			pharmacien: '/pharmacist',
-			auxiliaire: '/medical-auxiliary',
-			'chirurgien-dentiste': '/dental-surgeon',
-			'sage-femme': '/midwife',
-			avocat: '/lawyer',
-			'expert-comptable': '/accountant',
+			index: 'liberal-profession',
+			médecin: 'doctor',
+			pharmacien: 'pharmacist',
+			auxiliaire: 'medical-auxiliary',
+			'chirurgien-dentiste': 'dental-surgeon',
+			'sage-femme': 'midwife',
+			avocat: 'lawyer',
+			'expert-comptable': 'accountant',
 		},
 		économieCollaborative: {
-			index: '/sharing-economy',
-			votreSituation: '/your-situation',
+			index: 'sharing-economy',
+			votreSituation: 'your-situation',
 		},
-		is: '/corporate-tax',
-		dividendes: '/dividends',
-		'exonération-covid': '/exoneration-covid',
+		is: 'corporate-tax',
+		dividendes: 'dividends',
+		'exonération-covid': 'exoneration-covid',
 	},
-	nouveautés: '/news',
-	accessibilité: '/accessibility',
+	nouveautés: 'news',
+	accessibilité: 'accessibility',
 	développeur: {
 		...rawSitePathsFr.développeur,
-		index: '/developer',
-		library: '/library',
-		api: '/api',
-		spreadsheet: '/spreadsheet',
+		index: 'developer',
+		library: 'library',
+		api: 'api',
+		spreadsheet: 'spreadsheet',
+		spreadsheetx: 'spreadsheet',
 	},
 } as const
 
 /**
  * Le but des types suivants est d'obtenir un typage statique des chaînes de caractères
- * comme "simulateurs.auto-entrepreneur" utilisés comme identifiants des routes (via les pathId dans metadat-src.ts).
+ * comme "simulateurs.auto-entrepreneur" utilisés comme identifiants des routes (via les pathId dans metadata-src.ts).
  * Cela permet de ne pas avoir de faute dans les clés comme 'aide-embauche' au lieu de 'aides-embauche'
  */
 
@@ -203,18 +211,47 @@ const checkedSitePathsEn: RequiredPath & typeof rawSitePathsEn = rawSitePathsEn
 type SitePathsFr = typeof checkedSitePathsFr
 type SitePathsEn = typeof checkedSitePathsEn
 
+type GenericSitePath = { [key: string]: string | GenericSitePath }
+
+const encodeRelativeSitePaths = <T extends GenericSitePath>(base: T): T => {
+	const sitepaths = Object.entries(base).reduce(
+		(obj, [key, val]) => ({
+			...obj,
+			[key]:
+				typeof val === 'string' ? encodeURI(val) : encodeRelativeSitePaths(val),
+		}),
+		{} as T
+	)
+
+	return sitepaths
+}
+
+const encodedRelativeSitePaths = encodeRelativeSitePaths({
+	fr: rawSitePathsFr,
+	en: rawSitePathsEn,
+})
+
+export const useRelativeSitePaths = () => {
+	const { language } = useTranslation().i18n
+
+	return encodedRelativeSitePaths[language as 'fr' | 'en']
+}
+export type RelativeSitePath = ReturnType<typeof useRelativeSitePaths>
+
 type SitePath = { [key: string]: string | SitePath } & { index: string }
 
 type SitePathBuilt<T extends SitePath, Root extends string = ''> = {
 	[K in keyof T]: T[K] extends string
 		? K extends 'index'
-			? `${Root}${T[K]}`
+			? `${Root}${T[K]}` extends ''
+				? '/'
+				: `${Root}${T[K]}`
 			: T extends { index: string }
-			? `${Root}${T['index']}${T[K]}`
+			? `${Root}${T['index']}/${T[K]}`
 			: `${Root}${T[K]}`
 		: SitePathBuilt<
 				T[K] extends SitePath ? T[K] : never,
-				T extends { index: string } ? `${Root}${T['index']}` : `${Root}`
+				T extends { index: string } ? `${Root}${T['index']}/` : `${Root}`
 		  >
 }
 
@@ -229,8 +266,8 @@ function constructSitePaths<T extends SitePath>(
 		entries.map(([k, value]) => [
 			k,
 			typeof value === 'string'
-				? root + (k === 'index' ? value : index + value)
-				: constructSitePaths(value, root + index),
+				? encodeURI(root + (k === 'index' ? value : index + '/' + value)) || '/'
+				: constructSitePaths(value, root + index + '/'),
 		])
 	) as SitePathBuilt<T>
 }

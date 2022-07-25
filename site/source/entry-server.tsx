@@ -1,8 +1,7 @@
 import { SSRProvider } from '@react-aria/ssr'
 import ReactDOMServer from 'react-dom/server'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
-import { StaticRouter } from 'react-router-dom'
-import { CompatRouter } from 'react-router-dom-v5-compat'
+import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
@@ -22,9 +21,7 @@ export function render(url: string, lang: 'fr' | 'en') {
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						<CompatRouter>
-							<App />
-						</CompatRouter>
+						<App />
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>
