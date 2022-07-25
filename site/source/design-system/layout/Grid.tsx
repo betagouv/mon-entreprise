@@ -66,7 +66,9 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	flex-direction: row;
 	margin-left: -${({ theme, columnSpacing }) => theme.spacing[columnSpacing ?? 0]};
 	margin-top: -${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
-	width: calc(100% + 0.75rem);
+	width: calc(
+		100% + ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]}
+	);
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
