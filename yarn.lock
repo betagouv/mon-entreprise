@@ -4680,9 +4680,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.45":
-  version: 1.0.0-beta.45
-  resolution: "@publicodes/api@npm:1.0.0-beta.45"
+"@publicodes/api@npm:^1.0.0-beta.46":
+  version: 1.0.0-beta.46
+  resolution: "@publicodes/api@npm:1.0.0-beta.46"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -4690,8 +4690,8 @@ __metadata:
     koa-body: ^5.0.0
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
-    publicodes: ^1.0.0-beta.45
-  checksum: c8917407748d325ca32bcf7f860ec13c9fe6e10eeb23c05d93784cb3aedcc65013c1936ba2c5c890809946efc55d97cbd1bf430dc6993961bcc1d372b8bc98a6
+    publicodes: ^1.0.0-beta.46
+  checksum: 0131f39efae7a484ae4188c88c33c10c7a362b46acb199e2211961b5fe1f6601aa22a5685dce8d02d5d64fe19f3c2522f8a239e862039b5a36c989ebe906201f
   languageName: node
   linkType: hard
 
@@ -9998,7 +9998,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.45
+    "@publicodes/api": ^1.0.0-beta.46
     "@sentry/node": ^7.1.1
     "@sentry/tracing": ^7.1.1
     "@types/koa": ^2.13.4
@@ -10013,7 +10013,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.45
+    publicodes: ^1.0.0-beta.46
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
     ts-node: ^10.8.0
@@ -15311,9 +15311,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: =1.0.0-beta.45
+    publicodes: =1.0.0-beta.46
   peerDependencies:
-    publicodes: ^1.0.0-beta.45
+    publicodes: ^1.0.0-beta.46
   languageName: unknown
   linkType: soft
 
@@ -20874,9 +20874,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.45
+    publicodes: ^1.0.0-beta.46
   peerDependencies:
-    publicodes: ^1.0.0-beta.45
+    publicodes: ^1.0.0-beta.46
   languageName: unknown
   linkType: soft
 
@@ -23240,28 +23240,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.45":
-  version: 1.0.0-beta.45
-  resolution: "publicodes-react@npm:1.0.0-beta.45"
+"publicodes-react@npm:^1.0.0-beta.46":
+  version: 1.0.0-beta.46
+  resolution: "publicodes-react@npm:1.0.0-beta.46"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
-  checksum: d91452f4f78332ad84e59ffde8c2e566dbbf748d368c34375efb5a9c93c27a4b0fb86329d430c0feb9472f52225fcd8eac816ef779b2a56c32d43e29b7e4c93f
+  checksum: c335ef34060d333756fdff39eebe8827141edbe87ba097d380faeeda6f00c948f49cfd4961a249d417460001261933013cfc3ea2bfcaeb8bac79a81be807abf7
   languageName: node
   linkType: hard
 
-"publicodes@npm:=1.0.0-beta.45, publicodes@npm:^1.0.0-beta.45":
-  version: 1.0.0-beta.45
-  resolution: "publicodes@npm:1.0.0-beta.45"
+"publicodes@npm:=1.0.0-beta.46, publicodes@npm:^1.0.0-beta.46":
+  version: 1.0.0-beta.46
+  resolution: "publicodes@npm:1.0.0-beta.46"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
     yaml: ^1.9.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 6958ba25a41b738eb71194110cec62e3664461d211b02ae9af90538a00c8c98fcf76d58be1ae795165d82412929bb076dd2021338127d63324c65676f38348d7
+  checksum: 22bfcf1ed871a3005c2d2622a991c836531e449288d77c9d9dc900bf30932ea443a638c29bdf813b6fcea51586380808f48cdadcc81976f95e850a32685ef91b
   languageName: node
   linkType: hard
 
@@ -25366,8 +25366,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^10.6.3
-    publicodes: ^1.0.0-beta.45
-    publicodes-react: ^1.0.0-beta.45
+    publicodes: ^1.0.0-beta.46
+    publicodes-react: ^1.0.0-beta.46
     react: ^17.0.0
     react-color: ^2.14.0
     react-dom: ^17.0.0
