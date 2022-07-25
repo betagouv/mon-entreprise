@@ -17,8 +17,6 @@ export default function MoreInfosOnUs() {
 		return null
 	}
 
-	console.log(pathname, sitePaths.nouveautés)
-
 	return (
 		<>
 			<H2>Plus d'infos sur mon-entreprise</H2>
