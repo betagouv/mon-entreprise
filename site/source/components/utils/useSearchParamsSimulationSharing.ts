@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
-import { useLocation, useSearchParams } from 'react-router-dom-v5-compat'
+import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
+import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
 import { configSelector } from '@/selectors/simulationSelectors'
-import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
-import { setActiveTarget, batchUpdateSituation } from '@/actions/actions'
+import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
+import { useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string

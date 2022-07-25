@@ -14,12 +14,16 @@ export default function useSimulationConfig(
 	const dispatch = useDispatch()
 
 	const lastConfig = useSelector(configSelector)
-	if (config && lastConfig !== config) {
-		dispatch(setSimulationConfig(config ?? {}, path))
-	}
+	useEffect(() => {
+		if (config && lastConfig !== config) {
+			dispatch(setSimulationConfig(config ?? {}, path))
+		}
+	}, [config, dispatch, lastConfig, path])
+
 	useEffect(() => {
 		if (autoloadLastSimulation) {
 			dispatch(loadPreviousSimulation())
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 }

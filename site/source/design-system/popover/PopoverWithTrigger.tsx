@@ -1,7 +1,7 @@
+import { Button } from '@/design-system/buttons'
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
-import { Button } from '@/design-system/buttons'
 import React, {
 	ReactElement,
 	Ref,
@@ -10,9 +10,9 @@ import React, {
 	useMemo,
 	useRef,
 } from 'react'
-import { useLocation } from 'react-router-dom-v5-compat'
-import Popover from './Popover'
+import { useLocation } from 'react-router-dom'
 import { Link } from '../typography/link'
+import Popover from './Popover'
 
 type ButtonBuilderProps = AriaButtonProps & {
 	ref: Ref<HTMLButtonElement>

@@ -22,8 +22,7 @@ import { ComponentProps, StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { CompatRoute } from 'react-router-dom-v5-compat'
+import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -91,20 +90,11 @@ const Router = () => {
 
 	return (
 		<SituationProvider situation={situation}>
-			<Switch>
-				<Route exact path="/" component={Landing} />
-				{/* Removes trailing slashes */}
-				<Route
-					path={'/:url*(/+)'}
-					exact
-					strict
-					render={({ location }) => (
-						<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
-					)}
-				/>
-				<Route path="/iframes" component={Iframes} />
-				<Route component={App} />
-			</Switch>
+			<Routes>
+				<Route index element={<Landing />} />
+				<Route path="/iframes/*" element={<Iframes />} />
+				<Route path="*" element={<App />} />
+			</Routes>
 		</SituationProvider>
 	)
 }
@@ -131,30 +121,34 @@ const App = () => {
 
 			<Container>
 				<ErrorBoundary fallback={CatchOffline}>
-					{/* Passing location down to prevent update blocking */}
-					<Switch>
-						<Route path={sitePaths.créer.index} component={Créer} />
-						<Route path={sitePaths.gérer.index} component={Gérer} />
-						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
+					<Routes>
+						<Route path={sitePaths.créer.index + '/*'} element={<Créer />} />
+						<Route path={sitePaths.gérer.index + '/*'} element={<Gérer />} />
 						<Route
-							path={sitePaths.documentation.index}
-							component={Documentation}
+							path={sitePaths.simulateurs.index + '/*'}
+							element={<Simulateurs />}
 						/>
-						<Route path={sitePaths.développeur.index} component={Integration} />
-						<Route path={sitePaths.nouveautés} component={Nouveautés} />
-						<CompatRoute path={sitePaths.stats} component={Stats} />
-						<Route path={sitePaths.budget} component={Budget} />
-						<Route path={sitePaths.accessibilité} component={Accessibilité} />
-
 						<Route
-							exact
-							path="/dev/integration-test"
-							component={IntegrationTest}
+							path={sitePaths.documentation.index + '/*'}
+							element={<Documentation />}
 						/>
-						<Route exact path="/dev/personas" component={Personas} />
+						<Route
+							path={sitePaths.développeur.index + '/*'}
+							element={<Integration />}
+						/>
+						<Route
+							path={sitePaths.nouveautés + '/*'}
+							element={<Nouveautés />}
+						/>
+						<Route path={sitePaths.stats} element={<Stats />} />
+						<Route path={sitePaths.budget} element={<Budget />} />
+						<Route path={sitePaths.accessibilité} element={<Accessibilité />} />
 
-						<Route component={Route404} />
-					</Switch>
+						<Route path="/dev/integration-test" element={<IntegrationTest />} />
+						<Route path="/dev/personas" element={<Personas />} />
+
+						<Route path="*" element={<Route404 />} />
+					</Routes>
 					<Spacing xxl />
 				</ErrorBoundary>
 			</Container>

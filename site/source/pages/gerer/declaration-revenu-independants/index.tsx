@@ -10,10 +10,11 @@ import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { useRelativeSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Redirect, Route, Switch } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Cotisations from './cotisations'
 import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
@@ -24,7 +25,7 @@ import config from './_config.yaml'
 export default function AideDéclarationIndépendant() {
 	const sitePaths = useContext(SitePathsContext)
 	useSimulationConfig(config, {
-		path: sitePaths.gérer.déclarationIndépendant.beta,
+		path: sitePaths.gérer.déclarationIndépendant.beta.index,
 		autoloadLastSimulation: true,
 	})
 	const steps = useSteps()
@@ -62,21 +63,20 @@ export default function AideDéclarationIndépendant() {
 						))}
 					</Stepper>
 				</div>
-				<Switch>
+				<Routes>
 					{steps.map(
 						(step) =>
-							step.page &&
 							!step.isDisabled && (
-								<Route
-									key={step.to}
-									path={step.to}
-									exact
-									component={step.page}
-								/>
+								<Route key={step.to} path={step.to} element={<step.page />} />
 							)
 					)}
-					{defaultCurrentStep && <Redirect to={defaultCurrentStep.to} />}
-				</Switch>
+					<Route
+						path="*"
+						element={
+							<Navigate to={(defaultCurrentStep || steps[0]).to} replace />
+						}
+					/>
+				</Routes>
 				<Spacing xl />
 			</Condition>
 		</>
@@ -84,7 +84,7 @@ export default function AideDéclarationIndépendant() {
 }
 
 function useSteps() {
-	const sitePaths = useContext(SitePathsContext).gérer.déclarationIndépendant
+	const sitePaths = useRelativeSitePaths().gérer.déclarationIndépendant.beta
 	const { t } = useTranslation()
 	const step1Progress = useProgress(Step1Objectifs)
 	const step2Progress = useProgress(Step2Objectifs)

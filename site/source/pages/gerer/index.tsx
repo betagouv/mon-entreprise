@@ -10,6 +10,7 @@ import {
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
+import PageData from '@/components/PageData'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
@@ -24,11 +25,11 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { companySituationSelector } from '@/selectors/simulationSelectors'
+import { useRelativeSitePaths } from '@/sitePaths'
 import { evaluateQuestion } from '@/utils'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
@@ -39,16 +40,14 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	generatePath,
-	Redirect,
+	Navigate,
 	Route,
-	Switch,
+	Routes,
 	useLocation,
 	useParams,
-	useRouteMatch,
-} from 'react-router'
+} from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackChapter, TrackPage } from '../../ATInternetTracking'
-import PageData from '../../components/PageData'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import Embaucher from './embaucher'
@@ -63,29 +62,42 @@ import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
 
 export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
+	const relativeSitePaths = useRelativeSitePaths()
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
-	const showLink = !useRouteMatch({
-		path: [sitePaths.gérer.index, sitePaths.gérer.entreprise],
-		exact: true,
-	})
+
+	const back = (
+		<Link to={sitePaths.gérer.index}>
+			← <Trans>Retour à mon activité</Trans>
+		</Link>
+	)
 
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
-			{showLink && (
-				<Link to={sitePaths.gérer.index}>
-					← <Trans>Retour à mon activité</Trans>
-				</Link>
-			)}
 
 			<TrackChapter chapter1="gerer">
-				<Switch>
+				<Routes>
+					<Route index element={<Home />} />
+					<Route path={relativeSitePaths.gérer.entreprise} element={<Home />} />
 					<Route
-						path={sitePaths.gérer.sécuritéSociale}
-						component={SocialSecurity}
+						path={relativeSitePaths.gérer.sécuritéSociale}
+						element={
+							<>
+								{back}
+								<SocialSecurity />
+							</>
+						}
 					/>
-					<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
+					<Route
+						path={relativeSitePaths.gérer.embaucher}
+						element={
+							<>
+								{back}
+								<Embaucher />
+							</>
+						}
+					/>
 					{[
 						simulateurs['déclaration-charges-sociales-indépendant'],
 						simulateurs['déclaration-revenu-indépendant-beta'],
@@ -94,16 +106,16 @@ export default function Gérer() {
 					].map((p) => (
 						<Route
 							key={p.shortName}
-							path={p.path}
-							render={() => <PageData {...p} />}
+							path={p.path.replace(sitePaths.gérer.index, '') + '/*'}
+							element={
+								<>
+									{back}
+									<PageData {...p} />
+								</>
+							}
 						/>
 					))}
-					<Route
-						exact
-						path={[sitePaths.gérer.index, sitePaths.gérer.entreprise]}
-						component={Home}
-					/>
-				</Switch>
+				</Routes>
 			</TrackChapter>
 		</>
 	)
@@ -208,7 +220,7 @@ function Home() {
 		gérerPath &&
 		(param == null || (entreprise?.siren && entreprise.siren !== param))
 	) {
-		return <Redirect to={gérerPath} />
+		return <Navigate to={gérerPath} />
 	}
 
 	if (
@@ -216,7 +228,7 @@ function Home() {
 		(param && entrepriseNotFound) ||
 		(entreprise && !overwrite && !engineSiren)
 	) {
-		return <Redirect to={sitePaths.index} />
+		return <Navigate to={sitePaths.index} />
 	}
 
 	return (

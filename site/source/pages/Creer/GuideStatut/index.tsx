@@ -4,11 +4,11 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { RootState } from '@/reducers/rootReducer'
+import { useRelativeSitePaths } from '@/sitePaths'
 import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Route, Switch, useLocation } from 'react-router-dom'
-import { Navigate } from 'react-router-dom-v5-compat'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import DirectorStatus from './DirectorStatus'
@@ -52,6 +52,7 @@ const useResetFollowingAnswers = () => {
 
 export default function Créer() {
 	const sitePaths = useContext(SitePathsContext)
+	const relativeSitePaths = useRelativeSitePaths()
 	const location = useLocation()
 	useResetFollowingAnswers()
 
@@ -68,29 +69,38 @@ export default function Créer() {
 				</H1>
 				<PreviousAnswers />
 				<FromBottom key={location.pathname}>
-					<Switch>
-						<Route path={sitePaths.créer.guideStatut.soleProprietorship}>
-							<SoleProprietorship />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.directorStatus}>
-							<DirectorStatus />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.autoEntrepreneur}>
-							<AutoEntrepreneur />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.multipleAssociates}>
-							<NumberOfAssociate />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.minorityDirector}>
-							<MinorityDirector />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.liste}>
-							<PickLegalStatus />
-						</Route>
-						<Route path={sitePaths.créer.guideStatut.index}>
-							<Navigate to={sitePaths.créer.guideStatut.liste} replace />
-						</Route>
-					</Switch>
+					<Routes>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.soleProprietorship}
+							element={<SoleProprietorship />}
+						/>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.directorStatus}
+							element={<DirectorStatus />}
+						/>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.autoEntrepreneur}
+							element={<AutoEntrepreneur />}
+						/>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.multipleAssociates}
+							element={<NumberOfAssociate />}
+						/>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.minorityDirector}
+							element={<MinorityDirector />}
+						/>
+						<Route
+							path={relativeSitePaths.créer.guideStatut.liste}
+							element={<PickLegalStatus />}
+						/>
+						<Route
+							index
+							element={
+								<Navigate to={sitePaths.créer.guideStatut.liste} replace />
+							}
+						/>
+					</Routes>
 				</FromBottom>
 			</TrackChapter>
 		</>

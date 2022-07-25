@@ -12,7 +12,7 @@ import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useContext, useMemo } from 'react'
-import { Navigate, useMatch, useNavigate } from 'react-router-dom-v5-compat'
+import { Navigate, useMatch, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 
@@ -47,7 +47,7 @@ export default function Nouveautés() {
 		`${sitePaths.nouveautés}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Navigate to={getPath(0)} />
+		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
@@ -85,7 +85,9 @@ export default function Nouveautés() {
 							value={selectedRelease}
 							items={releasesWithId}
 							onSelectionChange={(id) => {
-								navigate(getPath(Number(id)))
+								if (id !== selectedRelease) {
+									navigate(getPath(Number(id)))
+								}
 							}}
 						>
 							{(release) => (

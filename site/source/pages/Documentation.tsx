@@ -19,7 +19,13 @@ import React, { ComponentType, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Redirect, Route, useLocation, useParams } from 'react-router-dom'
+import {
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+	useParams,
+} from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../ATInternetTracking'
 import RuleLink from '../components/RuleLink'
@@ -27,39 +33,39 @@ import RuleLink from '../components/RuleLink'
 export default function MonEntrepriseRulePage() {
 	const engine = useEngine()
 	const documentationPath = useContext(SitePathsContext).documentation.index
-	const { pathname } = useLocation()
+	const location = useLocation()
+	const pathname = decodeURI(location?.pathname ?? '')
 	const documentationSitePaths = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
 
-	if (pathname === '/documentation') {
-		return <DocumentationLanding />
-	}
-
-	if (pathname === '/documentation/dev') {
-		return <DocumentationRulesList />
-	}
-
-	if (!documentationSitePaths[pathname]) {
-		return <Redirect to="/404" />
-	}
-
 	return (
-		<FromBottom>
-			<TrackPage
-				chapter1="documentation"
-				name={documentationSitePaths[pathname]}
+		<Routes>
+			<Route index element={<DocumentationLanding />} />
+			<Route path="dev" element={<DocumentationRulesList />} />
+			<Route
+				path="*"
+				element={
+					!documentationSitePaths[pathname] ? (
+						<Navigate to="/404" replace />
+					) : (
+						<FromBottom>
+							<TrackPage
+								chapter1="documentation"
+								name={documentationSitePaths[pathname]}
+							/>
+							<ScrollToTop key={pathname} />
+							<Grid item md={10}>
+								<BackToSimulation />
+								<Spacing xl />
+								<DocumentationPageBody />
+							</Grid>
+						</FromBottom>
+					)
+				}
 			/>
-			<ScrollToTop key={pathname} />
-			<Grid item md={10}>
-				<BackToSimulation />
-				<Spacing xl />
-				<Route path={documentationPath + '/:name+'}>
-					<DocumentationPageBody />
-				</Route>
-			</Grid>
-		</FromBottom>
+		</Routes>
 	)
 }
 
@@ -67,13 +73,13 @@ function DocumentationPageBody() {
 	const engine = useEngine()
 	const documentationPath = useContext(SitePathsContext).documentation.index
 	const { i18n } = useTranslation()
-	const params = useParams<{ name: string }>()
+	const params = useParams<{ '*': string }>()
 
 	return (
 		<StyledDocumentation>
 			<RulePage
 				language={i18n.language as 'fr' | 'en'}
-				rulePath={params.name}
+				rulePath={params['*'] ?? ''}
 				engine={engine}
 				documentationPath={documentationPath}
 				renderers={{

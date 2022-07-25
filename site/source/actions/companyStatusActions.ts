@@ -2,7 +2,7 @@ import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from '@/types/companyTypes'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom-v5-compat'
+import { useNavigate } from 'react-router-dom'
 import { Action } from './actions'
 
 export type CompanyStatusAction = ReturnType<

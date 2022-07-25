@@ -21,7 +21,6 @@ import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { CompatRouter } from 'react-router-dom-v5-compat'
 import { ServiceWorker } from './ServiceWorker'
 import * as safeLocalStorage from './storage/safeLocalStorage'
 import { store } from './store'
@@ -94,7 +93,7 @@ export default function Provider({
 										<SitePathProvider value={sitePaths}>
 											<I18nextProvider i18n={i18next}>
 												<BrowserRouterProvider basename={basename}>
-													<>{children}</>
+													{children}
 												</BrowserRouterProvider>
 											</I18nextProvider>
 										</SitePathProvider>
@@ -116,7 +115,7 @@ function BrowserRouterProvider({
 	children: ReactNode
 	basename: string
 }) {
-	// The server rouer is only provided in the entry-server file
+	// The server router is only provided in the entry-server file
 	if (import.meta.env.SSR) {
 		return <>{children}</>
 	}
@@ -139,7 +138,7 @@ function BrowserRouterProvider({
 				<BrowserRouter
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 				>
-					<CompatRouter>{children}</CompatRouter>
+					{children}
 				</BrowserRouter>
 			</TrackingContext.Provider>
 		</HelmetProvider>

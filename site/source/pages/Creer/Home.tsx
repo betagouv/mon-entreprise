@@ -95,10 +95,8 @@ export default function Créer() {
 							'créer.ressources.comparaison.title',
 							'Comparateur de régimes'
 						)}
-						to={{
-							pathname: sitePaths.simulateurs.comparaison,
-							state: { fromCréer: true },
-						}}
+						to={{ pathname: sitePaths.simulateurs.comparaison }}
+						state={{ fromCréer: true }}
 						ctaLabel={t('créer.ressources.comparaison.cta', 'Comparer')}
 					>
 						<Trans i18nKey="créer.ressources.comparaison.body">

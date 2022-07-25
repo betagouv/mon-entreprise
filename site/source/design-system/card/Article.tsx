@@ -10,7 +10,7 @@ import {
 import { Body } from '@/design-system/typography/paragraphs'
 import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
-import { Link } from 'react-router-dom-v5-compat'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GenericCardProps, getTitleProps } from './Card'
 

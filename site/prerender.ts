@@ -27,12 +27,12 @@ export const pagesToPrerender: {
 		sitePathFr.simulateurs['artiste-auteur'],
 		'/iframes/simulateur-embauche',
 		'/iframes/pamc',
-	],
+	].map((url) => decodeURI(url)),
 	infrance: [
 		sitePathEn.index,
 		sitePathEn.simulateurs.salarié,
 		'/iframes/simulateur-embauche',
-	],
+	].map((url) => decodeURI(url)),
 }
 
 const dev = argv.findIndex((val) => val === '--dev') > -1

@@ -3,7 +3,7 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Routes } from 'react-router-dom-v5-compat'
+import { Route, Routes } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
 import useSimulatorsData from '../metadata'
 import Activité from './Activité'
@@ -22,7 +22,10 @@ export default function ÉconomieCollaborative() {
 	return (
 		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
 			<div css="transform: translateY(2rem)">
-				<Link exact activeStyle={{ display: 'none' }} to={indexPath}>
+				<Link
+					style={({ isActive }) => (isActive ? { display: 'none' } : {})}
+					to={indexPath}
+				>
 					←{' '}
 					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités

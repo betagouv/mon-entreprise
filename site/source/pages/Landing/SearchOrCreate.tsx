@@ -18,7 +18,7 @@ import { getCookieValue } from '@/storage/readCookie'
 import { useCallback, useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { generatePath, useNavigate } from 'react-router-dom-v5-compat'
+import { generatePath, useNavigate } from 'react-router-dom'
 
 export default function SearchOrCreate() {
 	const sitePaths = useContext(SitePathsContext)

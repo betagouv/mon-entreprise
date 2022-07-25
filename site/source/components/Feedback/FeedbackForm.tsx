@@ -1,7 +1,7 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom-v5-compat'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 declare global {

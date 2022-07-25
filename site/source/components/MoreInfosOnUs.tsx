@@ -1,9 +1,9 @@
-import { Grid } from '@/design-system/layout'
 import { SmallCard } from '@/design-system/card'
+import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom-v5-compat'
+import { useLocation } from 'react-router-dom'
 import { icons } from './ui/SocialIcon'
 import Emoji from './utils/Emoji'
 import { SitePathsContext } from './utils/SitePathsContext'
@@ -16,6 +16,8 @@ export default function MoreInfosOnUs() {
 	if (language !== 'fr') {
 		return null
 	}
+
+	console.log(pathname, sitePaths.nouveautés)
 
 	return (
 		<>

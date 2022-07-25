@@ -1,8 +1,8 @@
-import { Grid } from '@/design-system/layout'
 import Emoji from '@/components/utils/Emoji'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { SmallCard } from '@/design-system/card'
 import InfoBulle from '@/design-system/InfoBulle'
+import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
@@ -34,10 +34,8 @@ const SimulateurCardHit = ({
 	return (
 		<SmallCard
 			icon={<Emoji emoji={hit.icône} />}
-			to={{
-				state: { fromSimulateurs: true },
-				pathname: path,
-			}}
+			to={{ pathname: path }}
+			state={{ fromSimulateurs: true }}
 			title={
 				<h4>
 					<Highlight hit={hit} attribute="title" />{' '}

@@ -1,4 +1,3 @@
-import { TrackingContext } from '@/ATInternetTracking'
 import React, {
 	createContext,
 	ReactNode,
@@ -47,7 +46,10 @@ export function useIsEmbedded() {
 
 export function IsEmbeded({ children }: { children: React.ReactNode }) {
 	const setEmbedded = useContext(IsEmbeddedContext)[1]
-	setEmbedded(true)
+
+	useEffect(() => {
+		setEmbedded(true)
+	}, [setEmbedded])
 
 	return <IsEmbeddedProvider isEmbeded>{children}</IsEmbeddedProvider>
 }

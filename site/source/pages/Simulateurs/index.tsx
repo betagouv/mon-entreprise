@@ -5,10 +5,10 @@ import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
 import { useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Routes, useLocation } from 'react-router-dom-v5-compat'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import SimulateurPage from '../../components/PageData'
 import Home from './Home'
 import useSimulatorsData from './metadata'
-import SimulateurPage from '../../components/PageData'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
@@ -20,7 +20,7 @@ export default function Simulateurs() {
 	}>('navigation::simulateurs::locationState::v2', {})
 	useEffect(() => {
 		if (state) {
-			setLastState(state as any)
+			setLastState(state)
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()
@@ -32,7 +32,7 @@ export default function Simulateurs() {
 				.map((s) => (
 					<Route
 						key={s.path}
-						path={s.path + '/*'}
+						path={s.path.replace(sitePaths.simulateurs.index, '') + '/*'}
 						element={<SimulateurPage {...s} />}
 					/>
 				)),
@@ -60,7 +60,7 @@ export default function Simulateurs() {
 					)
 				) : null)}
 			<Routes>
-				<Route path={sitePaths.simulateurs.index} element={<Home />} />
+				<Route index element={<Home />} />
 				{simulatorRoutes}
 			</Routes>
 		</>

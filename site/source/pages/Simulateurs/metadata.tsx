@@ -12,8 +12,8 @@ import { createContext, useContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
 import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
-import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
 import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
+import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
 import FormulaireMobilitéIndépendant from '../gerer/demande-mobilité'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
@@ -541,7 +541,7 @@ function getSimulatorsData({
 		'déclaration-revenu-indépendant-beta': {
 			...pureSimulatorsData['déclaration-revenu-indépendant-beta'],
 			component: DéclarationRevenuIndépendant,
-			path: sitePaths.gérer.déclarationIndépendant.beta,
+			path: sitePaths.gérer.déclarationIndépendant.beta.index,
 		},
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],
