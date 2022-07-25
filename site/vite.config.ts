@@ -10,6 +10,7 @@ import serveStatic from 'serve-static'
 import { defineConfig, loadEnv, Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
+import { runScriptOnFileChange } from './scripts/runScriptOnFileChange'
 
 const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
@@ -23,6 +24,15 @@ export default defineConfig(({ command, mode }) => ({
 		sourcemap: true,
 	},
 	plugins: [
+		{
+			name: 'run-script-on-file-change',
+			apply: 'serve',
+			buildStart() {
+				if (mode === 'development') {
+					void runScriptOnFileChange()
+				}
+			},
+		},
 		command === 'build' &&
 			replace({
 				__SENTRY_DEBUG__: false,
