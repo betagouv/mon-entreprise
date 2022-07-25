@@ -18,7 +18,6 @@
 		"not ie < 11"
 	],
 	"scripts": {
-		"pre-commit": "ts-node-esm scripts/preCommit/index.ts",
 		"build:yaml-to-dts": "ts-node-esm scripts/build-yaml-to-dts.ts",
 		"postinstall": "node scripts/prepare.js",
 		"start": "vite dev",
