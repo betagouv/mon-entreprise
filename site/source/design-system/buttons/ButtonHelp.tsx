@@ -10,6 +10,7 @@ type ButtonHelpProps = {
 	children: React.ReactNode
 	light?: boolean
 	bigPopover?: boolean
+	className?: string
 }
 
 export default function ButtonHelp({
@@ -18,11 +19,12 @@ export default function ButtonHelp({
 	type,
 	light,
 	bigPopover,
+	className,
 }: ButtonHelpProps) {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<StyledButton $light={light} {...buttonProps}>
+				<StyledButton $light={light} className={className} {...buttonProps}>
 					<CircleIcon
 						aria-hidden="true"
 						width="24"
