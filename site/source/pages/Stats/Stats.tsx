@@ -11,6 +11,7 @@ import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom-v5-compat'
+import { BrushProps } from 'recharts'
 import styled from 'styled-components'
 import { toAtString } from '../../ATInternetTracking'
 import { debounce, groupBy } from '../../utils'
@@ -168,15 +169,15 @@ const StatsDetail = () => {
 		setSlicedVisits(visites)
 	}, [visites])
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const handleDateChange = useCallback(
-		() =>
-			debounce(1000, ({ startIndex, endIndex }: BrushStartEndIndex) => {
-				if (startIndex && endIndex) {
-					setDateIndex([startIndex, endIndex])
-					setSlicedVisits(visites.slice(startIndex, endIndex + 1))
-				}
-			})(),
-		[setDateIndex, visites]
+		debounce(1000, ({ startIndex, endIndex }) => {
+			if (startIndex != null && endIndex != null) {
+				setDateIndex([startIndex, endIndex])
+				setSlicedVisits(visites.slice(startIndex, endIndex + 1))
+			}
+		}) as NonNullable<BrushProps['onChange']>,
+		[visites]
 	)
 
 	const totals: number | Record<string, number> = useMemo(
@@ -218,8 +219,6 @@ const StatsDetail = () => {
 				</div>
 			</Indicators>
 
-			<Spacing lg />
-
 			<H3>Visites</H3>
 
 			<Chart
@@ -242,6 +241,7 @@ const StatsDetail = () => {
 							? ` à ${formatMonth(slicedVisits[slicedVisits.length - 1].date)}`
 							: '')}
 			</H3>
+
 			<Grid container spacing={2}>
 				<BigIndicator
 					main={formatValue(
@@ -275,6 +275,7 @@ const StatsDetail = () => {
 					</>
 				)}
 			</Grid>
+
 			{period === 'mois' && !!satisfaction.length && (
 				<>
 					<H3>Satisfaction</H3>

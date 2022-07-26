@@ -82,9 +82,6 @@ export default function VisitsChart({
 		? data.map((d) => ({ ...d, ...d.nombre }))
 		: data
 
-	const AxeA = layout === 'horizontal' ? XAxis : YAxis
-	const AxeB = layout === 'horizontal' ? YAxis : XAxis
-
 	function getColor(i: number): string {
 		if (!colored) {
 			return [
@@ -98,7 +95,8 @@ export default function VisitsChart({
 	}
 
 	return (
-		<div
+		<Body
+			as="div"
 			css={`
 				svg {
 					overflow: visible;
@@ -122,13 +120,18 @@ export default function VisitsChart({
 					)}
 					{grid && <CartesianGrid />}
 					<Legend />
-					<AxeA
+
+					<XAxis
 						dataKey="date"
 						type="category"
 						tickFormatter={period === 'jours' ? formatDay : formatMonth}
+						angle={-45}
+						textAnchor="end"
+						height={60}
+						minTickGap={-8}
 					/>
 
-					<AxeB
+					<YAxis
 						dataKey={dataKeys[0]}
 						tickFormatter={(val: number) => formatValue(val) as string}
 						type="number"
@@ -173,7 +176,7 @@ export default function VisitsChart({
 					)}
 				</ComposedChart>
 			</ResponsiveContainer>
-		</div>
+		</Body>
 	)
 }
 

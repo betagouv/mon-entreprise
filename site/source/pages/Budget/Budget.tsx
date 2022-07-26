@@ -13,6 +13,7 @@ import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import prose from './budget.md?raw'
 import budget from './budget.yaml'
+import { Body } from '@/design-system/typography/paragraphs'
 
 // Splitting the markdown file to insert React components in-between is a bit
 // arcane, we may consider MDX in the future https://github.com/mdx-js/mdx.
@@ -80,7 +81,9 @@ export default function Budget() {
 				</Select>
 			</Grid>
 
-			<Markdown>{ressources[selectedYear]}</Markdown>
+			<Body as="div">
+				<Markdown>{ressources[selectedYear]}</Markdown>
+			</Body>
 			{selectedYear !== '2019' && (
 				<>
 					<div

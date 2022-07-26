@@ -48,42 +48,52 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 	const flattenedData = (data as any).map((d: any) => ({ ...d, ...d.nombre }))
 
 	return (
-		<ResponsiveContainer
-			width="100%"
-			height={500}
-			css={`
-				svg {
-					overflow: visible;
-				}
-			`}
-		>
-			<ComposedChart
-				layout="horizontal"
-				data={flattenedData}
-				syncId={sync ? '1' : undefined}
+		<Body as="div">
+			<ResponsiveContainer
+				width="100%"
+				height={500}
+				css={`
+					svg {
+						overflow: visible;
+					}
+				`}
 			>
-				<Legend />
-				<XAxis dataKey="date" type="category" tickFormatter={formatMonth} />
-
-				<YAxis
-					tickFormatter={(x) => formatValue(x)}
-					domain={['0', 'auto']}
-					type="number"
-				/>
-
-				<Tooltip content={<CustomTooltip />} />
-
-				{dataKeys.map((k, i) => (
-					<Bar
-						key={k}
-						dataKey={k}
-						name={formatLegend(k)}
-						fill={getColor(i)}
-						stackId={1}
+				<ComposedChart
+					layout="horizontal"
+					data={flattenedData}
+					syncId={sync ? '1' : undefined}
+				>
+					<Legend />
+					<XAxis
+						dataKey="date"
+						type="category"
+						tickFormatter={formatMonth}
+						angle={-45}
+						textAnchor="end"
+						height={60}
+						minTickGap={-8}
 					/>
-				))}
-			</ComposedChart>
-		</ResponsiveContainer>
+
+					<YAxis
+						tickFormatter={(x) => formatValue(x)}
+						domain={['0', 'auto']}
+						type="number"
+					/>
+
+					<Tooltip content={<CustomTooltip />} />
+
+					{dataKeys.map((k, i) => (
+						<Bar
+							key={k}
+							dataKey={k}
+							name={formatLegend(k)}
+							fill={getColor(i)}
+							stackId={1}
+						/>
+					))}
+				</ComposedChart>
+			</ResponsiveContainer>
+		</Body>
 	)
 }
 
