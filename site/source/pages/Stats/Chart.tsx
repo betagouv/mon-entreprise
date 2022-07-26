@@ -3,7 +3,7 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { formatValue } from 'publicodes'
-import { useContext } from 'react'
+import { ComponentProps, useContext } from 'react'
 import {
 	Area,
 	Bar,
@@ -103,7 +103,7 @@ export default function VisitsChart({
 				}
 			`}
 		>
-			<ResponsiveContainer width="100%" height={500}>
+			<RealResponsiveContainer width="100%" height={500}>
 				<ComposedChart
 					layout={layout}
 					data={flattenData}
@@ -175,10 +175,35 @@ export default function VisitsChart({
 						)
 					)}
 				</ComposedChart>
-			</ResponsiveContainer>
+			</RealResponsiveContainer>
 		</Body>
 	)
 }
+
+export const RealResponsiveContainer = (
+	props: ComponentProps<typeof ResponsiveContainer>
+) => (
+	<div
+		style={{
+			width: props.width,
+			height: props.height,
+			overflow: 'hidden',
+			position: 'relative',
+		}}
+	>
+		<div
+			style={{
+				width: '100%',
+				height: '100%',
+				position: 'absolute',
+				top: 0,
+				left: 0,
+			}}
+		>
+			<ResponsiveContainer {...props} width="100%" height="100%" />
+		</div>
+	</div>
+)
 
 function formatDay(date: string | Date) {
 	return new Date(date).toLocaleString('default', {
