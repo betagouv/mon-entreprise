@@ -92,6 +92,7 @@ type PagerButtonProps = {
 }
 
 const PagerButton = styled.button<PagerButtonProps>`
+	font-family: ${({ theme }) => theme.fonts.main};
 	padding: 0.375rem 0.5rem;
 	border: 1px solid
 		${({ theme, currentPage }) =>

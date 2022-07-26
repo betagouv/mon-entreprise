@@ -163,7 +163,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 				/>
 
 				{currentMonthSatisfaction.total > 0 && (
-					<Grid item lg={12}>
+					<Grid item xs={12} md={8} lg={12}>
 						<Indicator
 							subTitle="Satisfaction utilisateurs"
 							main={
@@ -178,7 +178,9 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 					</Grid>
 				)}
 			</Grid>
+
 			<Spacing md />
+
 			<Grid container spacing={2}>
 				<BigIndicator
 					main={totalVisits}
