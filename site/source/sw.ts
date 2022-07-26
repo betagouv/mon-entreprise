@@ -27,7 +27,8 @@ registerRoute(
 			location.href.startsWith(import.meta.env.VITE_FR_BASE_URL)
 				? 'mon-entreprise.html'
 				: 'infrance.html'
-		)
+		),
+		{ denylist: [/^\/api\/.*/] }
 	)
 )
 
