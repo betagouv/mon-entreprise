@@ -1,12 +1,12 @@
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { RealResponsiveContainer } from '@/pages/Stats/Chart'
 import { formatValue } from 'publicodes'
 import {
 	Bar,
 	ComposedChart,
 	Legend,
-	ResponsiveContainer,
 	Tooltip,
 	TooltipProps,
 	XAxis,
@@ -49,7 +49,7 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 
 	return (
 		<Body as="div">
-			<ResponsiveContainer
+			<RealResponsiveContainer
 				width="100%"
 				height={500}
 				css={`
@@ -92,7 +92,7 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 						/>
 					))}
 				</ComposedChart>
-			</ResponsiveContainer>
+			</RealResponsiveContainer>
 		</Body>
 	)
 }

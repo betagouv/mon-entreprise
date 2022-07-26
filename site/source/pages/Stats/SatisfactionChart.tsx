@@ -3,14 +3,8 @@ import Emoji from '@/components/utils/Emoji'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import {
-	Bar,
-	BarChart,
-	LabelList,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-} from 'recharts'
+import { Bar, BarChart, LabelList, Tooltip, XAxis } from 'recharts'
+import { RealResponsiveContainer } from './Chart'
 import { SatisfactionLevel } from './types'
 
 export const SatisfactionStyle: [
@@ -51,7 +45,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 
 	return (
 		<Body as="div">
-			<ResponsiveContainer width="100%" height={400}>
+			<RealResponsiveContainer width="100%" height={400}>
 				<BarChart data={flattenData}>
 					<XAxis
 						dataKey="date"
@@ -78,7 +72,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 						</Bar>
 					))}
 				</BarChart>
-			</ResponsiveContainer>
+			</RealResponsiveContainer>
 		</Body>
 	)
 }
