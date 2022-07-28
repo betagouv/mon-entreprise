@@ -7,7 +7,6 @@ import { FromBottom } from '@/components/ui/animate'
 import { CheckItem, Checklist } from '@/components/ui/Checklist'
 import Emoji from '@/components/utils/Emoji'
 import Scroll from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Article } from '@/design-system/card'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -17,7 +16,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,7 +29,7 @@ type CreateCompanyProps = {
 
 export default function CreateCompany({ statut }: CreateCompanyProps) {
 	const { t, i18n } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const companyCreationChecklist = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyCreationChecklist
 	)
@@ -83,7 +82,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			</Helmet>
 			<Scroll.toTop />
 			<Link
-				to={sitePaths.créer.index}
+				to={absoluteSitePaths.créer.index}
 				onPress={() => {
 					dispatch(resetCompanyStatusChoice())
 				}}
@@ -454,7 +453,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{ pathname: sitePaths.simulateurs['auto-entrepreneur'] }}
+							to={{
+								pathname: absoluteSitePaths.simulateurs['auto-entrepreneur'],
+							}}
 							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.autoEntrepreneur.cta',
@@ -479,7 +480,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{ pathname: sitePaths.simulateurs.indépendant }}
+							to={{ pathname: absoluteSitePaths.simulateurs.indépendant }}
 							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.indépendant.cta',
@@ -504,7 +505,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									)}
 								</h3>
 							}
-							to={{ pathname: sitePaths.simulateurs.sasu }}
+							to={{ pathname: absoluteSitePaths.simulateurs.sasu }}
 							state={{ fromCréer: true }}
 							ctaLabel={t(
 								'entreprise.ressources.simu.assimilé.cta',
@@ -527,7 +528,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								</Trans>
 							</h3>
 						}
-						to={sitePaths.créer.après}
+						to={absoluteSitePaths.créer.après}
 						ctaLabel={t('entreprise.ressources.après.cta', 'Voir le glossaire')}
 					>
 						<Trans i18nKey="entreprise.ressources.après.body">

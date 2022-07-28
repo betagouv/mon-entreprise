@@ -2,13 +2,13 @@ import PageFeedback from '@/components/Feedback'
 import { FromBottom } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -25,7 +25,7 @@ import {
 import { StoreContext } from './StoreContext'
 
 export default function VotreSituation() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { state } = useContext(StoreContext)
 	const { t } = useTranslation()
 
@@ -81,7 +81,7 @@ export default function VotreSituation() {
 								concernées (et le changer si besoin). Sinon, vous aurez à créer
 								une nouvelle entreprise.
 							</Body>
-							<Button to={sitePaths.créer.index} light>
+							<Button to={absoluteSitePaths.créer.index} light>
 								Créer une entreprise
 							</Button>
 						</Trans>

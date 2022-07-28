@@ -1,11 +1,9 @@
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Banner, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useRelativeSitePaths } from '@/sitePaths'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
@@ -22,8 +20,7 @@ type JobOffer = {
 }
 
 export default function Integration() {
-	const sitePaths = useContext(SitePathsContext)
-	const relativeSitePaths = useRelativeSitePaths()
+	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const { pathname } = useLocation()
 	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
 	const openJobOffer = jobOffers?.[0]
@@ -32,10 +29,10 @@ export default function Integration() {
 		<TrackChapter chapter1="integration">
 			<ScrollToTop />
 
-			{pathname !== sitePaths.développeur.index && (
+			{pathname !== absoluteSitePaths.développeur.index && (
 				<Link
 					className="ui__ simple small push-left button"
-					to={sitePaths.développeur.index}
+					to={absoluteSitePaths.développeur.index}
 				>
 					← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 				</Link>

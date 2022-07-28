@@ -1,9 +1,9 @@
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
-import { useContext, useEffect, useMemo } from 'react'
+import { useSitePaths } from '@/sitePaths'
+import { useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import SimulateurPage from '../../components/PageData'
@@ -17,7 +17,7 @@ type State = {
 }
 
 export default function Simulateurs() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { state, pathname } = useLocation()
 	const [lastState, setLastState] = usePersistingState<State>(
 		'navigation::simulateurs::locationState::v2',
@@ -33,33 +33,40 @@ export default function Simulateurs() {
 	const simulatorRoutes = useMemo(
 		() =>
 			Object.values(simulatorsData)
-				.filter(({ path }) => path?.startsWith(sitePaths.simulateurs.index))
+				.filter(({ path }) =>
+					path?.startsWith(absoluteSitePaths.simulateurs.index)
+				)
 				.map((s) => (
 					<Route
 						key={s.path}
-						path={s.path.replace(sitePaths.simulateurs.index, '') + '/*'}
+						path={
+							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
+						}
 						element={<SimulateurPage {...s} />}
 					/>
 				)),
-		[simulatorsData, sitePaths]
+		[simulatorsData, absoluteSitePaths]
 	)
 
 	return (
 		<>
 			<ScrollToTop key={pathname} />
 
-			{pathname !== sitePaths.simulateurs.index &&
+			{pathname !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link to={sitePaths.gérer.index}>
+					<Link to={absoluteSitePaths.gérer.index}>
 						← <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (
-					<Link to={sitePaths.créer.index}>
+					<Link to={absoluteSitePaths.créer.index}>
 						← <Trans>Retour à la création</Trans>
 					</Link>
 				) : !isEmbedded ? (
 					(!lastState || lastState?.fromSimulateurs) && (
-						<Link className="print-hidden" to={sitePaths.simulateurs.index}>
+						<Link
+							className="print-hidden"
+							to={absoluteSitePaths.simulateurs.index}
+						>
 							← <Trans>Voir les autres simulateurs</Trans>
 						</Link>
 					)

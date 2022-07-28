@@ -1,16 +1,15 @@
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
-import { createContext, useContext, useMemo } from 'react'
+import { AbsoluteSitePaths, useSitePaths } from '@/sitePaths'
+import { createContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
-import { constructLocalizedSitePath, SitePathsType } from '../../sitePaths'
 import Créer from '../Creer/Home'
 import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
 import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
@@ -38,7 +37,7 @@ import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import ISSimulation from './ImpôtSociété'
 import IndépendantSimulation, {
 	EntrepriseIndividuelle,
-	IndépendantPLSimulation,
+	IndépendantPLSimulation
 } from './Indépendant'
 import getData from './metadata-src.js'
 import PAMCHome from './PAMCHome'
@@ -47,16 +46,12 @@ import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
 
 interface SimulatorsDataParams {
-	t?: TFunction<'translation', string>
-	sitePaths?: SitePathsType
-	language?: string
+	t: TFunction<'translation', string>
+	sitePaths: AbsoluteSitePaths
+	language: string
 }
 
-function getSimulatorsData({
-	t = (_, text) => text,
-	sitePaths = constructLocalizedSitePath('fr'),
-	language = 'fr',
-}: SimulatorsDataParams = {}) {
+function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 	const pureSimulatorsData = getData(t)
 
 	return {
@@ -720,11 +715,16 @@ export type ExtractFromSimuData<T extends string> = ExtractOrUndefined<
 
 export default function useSimulatorsData(): SimulatorData {
 	const { t, i18n } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return useMemo(
-		() => getSimulatorsData({ t, sitePaths, language: i18n.language }),
-		[t, sitePaths, i18n.language]
+		() =>
+			getSimulatorsData({
+				t,
+				sitePaths: absoluteSitePaths,
+				language: i18n.language,
+			}),
+		[t, absoluteSitePaths, i18n.language]
 	)
 }
 

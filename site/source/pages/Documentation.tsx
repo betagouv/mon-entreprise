@@ -5,7 +5,6 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
@@ -13,9 +12,10 @@ import { Link, StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
+import { useSitePaths } from '@/sitePaths'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import React, { ComponentType, useContext, useMemo } from 'react'
+import React, { ComponentType, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -32,7 +32,8 @@ import RuleLink from '../components/RuleLink'
 
 export default function MonEntrepriseRulePage() {
 	const engine = useEngine()
-	const documentationPath = useContext(SitePathsContext).documentation.index
+	const { absoluteSitePaths } = useSitePaths()
+	const documentationPath = absoluteSitePaths.documentation.index
 	const location = useLocation()
 	const pathname = decodeURI(location?.pathname ?? '')
 	const documentationSitePaths = useMemo(
@@ -71,7 +72,8 @@ export default function MonEntrepriseRulePage() {
 
 function DocumentationPageBody() {
 	const engine = useEngine()
-	const documentationPath = useContext(SitePathsContext).documentation.index
+	const { absoluteSitePaths } = useSitePaths()
+	const documentationPath = absoluteSitePaths.documentation.index
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
 

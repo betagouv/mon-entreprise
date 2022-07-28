@@ -1,15 +1,14 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { useContext } from 'react'
-import { useLocation } from 'react-router-dom'
 import useSimulatorsData from '@/pages/Simulateurs/metadata'
+import { useSitePaths } from '@/sitePaths'
+import { useLocation } from 'react-router-dom'
 
 export const useShowFeedback = () => {
 	const currentPath = useLocation().pathname
-	const sitePath = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const simulators = useSimulatorsData()
 
 	const blacklisted = [
-		sitePath.gérer.déclarationIndépendant.beta.cotisations as string,
+		absoluteSitePaths.gérer.déclarationIndépendant.beta.cotisations as string,
 	].includes(currentPath)
 
 	if (blacklisted) {
@@ -29,7 +28,7 @@ export const useShowFeedback = () => {
 	}
 
 	return ![
-		sitePath.index,
+		absoluteSitePaths.index,
 		...Object.values(simulators).map((s) => s.path),
 		'',
 		'/',

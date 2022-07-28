@@ -1,7 +1,6 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import { useContext } from 'react'
-import { useSelector } from 'react-redux'
 import { RootState } from '@/reducers/rootReducer'
+import { useSitePaths } from '@/sitePaths'
+import { useSelector } from 'react-redux'
 import { LegalStatusRequirements, State } from '../types/companyTypes'
 
 const LEGAL_STATUS_DETAILS = {
@@ -182,10 +181,10 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 
 export const useNextQuestionUrl = () => {
 	const nextQuestion = useSelector(nextQuestionSelector)
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	if (!nextQuestion) {
-		return sitePaths.créer.guideStatut.liste
+		return absoluteSitePaths.créer.guideStatut.liste
 	}
 
-	return sitePaths.créer.guideStatut[nextQuestion]
+	return absoluteSitePaths.créer.guideStatut[nextQuestion]
 }

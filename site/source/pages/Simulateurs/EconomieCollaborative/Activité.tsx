@@ -2,10 +2,10 @@ import { FromBottom } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Radio, RadioGroup } from '@/design-system/field'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import { getValueFrom } from '@/utils'
 import { formatValue } from 'publicodes'
 import { useContext } from 'react'
@@ -28,11 +28,15 @@ export type Activity = {
 export default function Activité() {
 	const { title = '' } = useParams()
 	const { language } = useTranslation().i18n
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { state, dispatch } = useContext(StoreContext)
 	const activité = getTranslatedActivité(title, language)
 	if (state && !(title in state)) {
-		return <Navigate to={sitePaths.simulateurs.économieCollaborative.index} />
+		return (
+			<Navigate
+				to={absoluteSitePaths.simulateurs.économieCollaborative.index}
+			/>
+		)
 	}
 
 	if (getValueFrom(activité, 'activités')) {

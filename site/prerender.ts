@@ -2,13 +2,13 @@ import { readFileSync, statSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { argv } from 'node:process'
 import Tinypool from 'tinypool'
-import { constructLocalizedSitePath } from './source/sitePaths.js'
+import { absoluteSitePaths } from './source/sitePaths.js'
 
 const filename = new URL('./prerender-worker.js', import.meta.url).href
 const pool = new Tinypool({ filename })
 
-const sitePathFr = constructLocalizedSitePath('fr')
-const sitePathEn = constructLocalizedSitePath('en')
+const sitePathFr = absoluteSitePaths.fr
+const sitePathEn = absoluteSitePaths.en
 
 export const pagesToPrerender: {
 	'mon-entreprise': string[]

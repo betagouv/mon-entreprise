@@ -17,7 +17,6 @@ import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
@@ -29,12 +28,12 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { companySituationSelector } from '@/selectors/simulationSelectors'
-import { useRelativeSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/sitePaths'
 import { evaluateQuestion } from '@/utils'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -61,13 +60,12 @@ import { MobiliteCard } from './_components/MobiliteCard'
 import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
 
 export default function Gérer() {
-	const sitePaths = useContext(SitePathsContext)
-	const relativeSitePaths = useRelativeSitePaths()
+	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
 
 	const back = (
-		<Link to={sitePaths.gérer.index}>
+		<Link to={absoluteSitePaths.gérer.index}>
 			← <Trans>Retour à mon activité</Trans>
 		</Link>
 	)
@@ -106,7 +104,7 @@ export default function Gérer() {
 					].map((p) => (
 						<Route
 							key={p.shortName}
-							path={p.path.replace(sitePaths.gérer.index, '') + '/*'}
+							path={p.path.replace(absoluteSitePaths.gérer.index, '') + '/*'}
 							element={
 								<>
 									{back}
@@ -191,7 +189,7 @@ function Home() {
 	const { t, i18n } = useTranslation()
 	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
 	const simulateurs = useSimulatorsData()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
@@ -228,7 +226,7 @@ function Home() {
 		(param && entrepriseNotFound) ||
 		(entreprise && !overwrite && !engineSiren)
 	) {
-		return <Navigate to={sitePaths.index} />
+		return <Navigate to={absoluteSitePaths.index} />
 	}
 
 	return (
@@ -445,8 +443,10 @@ const UlInColumns = styled.ul`
 `
 
 export const AskCompanyMissingDetails = () => {
-	const sitePaths = useContext(SitePathsContext)
-	useSimulationConfig(companyDetailsConfig, { path: sitePaths.gérer.index })
+	const { absoluteSitePaths } = useSitePaths()
+	useSimulationConfig(companyDetailsConfig, {
+		path: absoluteSitePaths.gérer.index,
+	})
 
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
@@ -554,13 +554,15 @@ const PopoverOverwriteSituation = ({
 }
 
 const useGérerPath = () => {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const company = useSelector(companySituationSelector)
 
 	if (company['entreprise . SIREN']) {
 		const siren = (company['entreprise . SIREN'] as string).replace(/'/g, '')
 
-		return generatePath(sitePaths.gérer.entreprise, { entreprise: siren })
+		return generatePath(absoluteSitePaths.gérer.entreprise, {
+			entreprise: siren,
+		})
 	}
 
 	return null

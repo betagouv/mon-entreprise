@@ -4,7 +4,6 @@ import Emoji from '@/components/utils/Emoji'
 import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Item, Select } from '@/design-system/field/Select'
 import { Container, Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
@@ -14,7 +13,8 @@ import {
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useContext, useMemo } from 'react'
+import { useSitePaths } from '@/sitePaths'
+import { useMemo } from 'react'
 import { Navigate, useMatch, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -31,8 +31,8 @@ type Releases = typeof import('@/public/data/releases.json')
 export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
 	const navigate = useNavigate()
-	const sitePaths = useContext(SitePathsContext)
-	const slug = useMatch(`${sitePaths.nouveautés}/:slug`)?.params?.slug
+	const { absoluteSitePaths } = useSitePaths()
+	const slug = useMatch(`${absoluteSitePaths.nouveautés}/:slug`)?.params?.slug
 	useHideNewsBanner()
 
 	const releasesWithId = useMemo(
@@ -47,7 +47,7 @@ export default function Nouveautés() {
 	const selectedRelease = data.findIndex(({ name }) => slugify(name) === slug)
 
 	const getPath = (index: number) =>
-		`${sitePaths.nouveautés}/${slugify(data[index].name)}`
+		`${absoluteSitePaths.nouveautés}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
 		return <Navigate to={getPath(0)} replace />
@@ -71,7 +71,7 @@ export default function Nouveautés() {
 				</H1>
 				<Body>
 					Nous améliorons le site en continu à partir de{' '}
-					<Link to={sitePaths.stats + '#demandes-utilisateurs'}>
+					<Link to={absoluteSitePaths.stats + '#demandes-utilisateurs'}>
 						vos retours
 					</Link>
 					. Découvrez les{' '}

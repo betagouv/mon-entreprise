@@ -1,12 +1,11 @@
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { SmallCard } from '@/design-system/card'
 import InfoBulle from '@/design-system/InfoBulle'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import { Hit } from 'react-instantsearch-core'
 import { connectHits } from 'react-instantsearch-dom'
@@ -50,7 +49,7 @@ export const SimulatorHits = connectHits<
 	{ hits: AlgoliaSimulatorHit[] },
 	AlgoliaSimulatorHit
 >(({ hits }: SimulatorHitsProps) => {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
@@ -71,7 +70,7 @@ export const SimulatorHits = connectHits<
 											.split('.')
 											.reduce<unknown>(
 												(acc, curr) => (acc as Record<string, unknown>)[curr],
-												sitePaths
+												absoluteSitePaths
 											) as ExtractFromSimuData<'path'>
 									}
 								/>

@@ -14,14 +14,13 @@ import { FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { useSitePaths } from '@/sitePaths'
 import { DottedName } from 'modele-social'
 import { ASTNode, reduceAST } from 'publicodes'
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -32,7 +31,7 @@ const ButtonContainer = styled.span`
 `
 
 export default function SalariéSimulation() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
@@ -44,7 +43,7 @@ export default function SalariéSimulation() {
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
 						<ButtonContainer>
-							<Button to={sitePaths.gérer.embaucher}>
+							<Button to={absoluteSitePaths.gérer.embaucher}>
 								<Trans i18nKey="simulation-end.cta">
 									Connaître les démarches
 								</Trans>
@@ -62,7 +61,7 @@ export default function SalariéSimulation() {
 									<Banner icon={'👨‍✈️'}>
 										<Trans>
 											Vous êtes dirigeant d'une SAS(U) ?{' '}
-											<Link to={sitePaths.simulateurs.sasu}>
+											<Link to={absoluteSitePaths.simulateurs.sasu}>
 												Accéder au simulateur de revenu dédié
 											</Link>
 										</Trans>

@@ -1,6 +1,5 @@
 import { Condition } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { FAQAutoEntrepreneurArticle } from '@/pages/Creer/CreationChecklist'
@@ -8,7 +7,7 @@ import { GuideURSSAFCard } from '@/pages/Simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/Simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 
 interface NextStepsProps {
@@ -17,7 +16,7 @@ interface NextStepsProps {
 }
 
 export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
 	const engine = useEngine()
 
@@ -57,7 +56,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 					<Grid item xs={12} sm={6} lg={4}>
 						<IframeIntegrationCard
 							iframePath={iframePath}
-							sitePaths={sitePaths}
+							sitePaths={absoluteSitePaths}
 						/>
 					</Grid>
 				)}

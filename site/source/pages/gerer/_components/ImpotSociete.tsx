@@ -1,11 +1,10 @@
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 
 export function ImpotSocieteCard() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -16,7 +15,7 @@ export function ImpotSocieteCard() {
 			)}
 			icon={<Emoji emoji="🧾" />}
 			ctaLabel={t('gérer.choix.is.cta', 'Lancer le simulateur')}
-			to={{ pathname: sitePaths.simulateurs.is }}
+			to={{ pathname: absoluteSitePaths.simulateurs.is }}
 			state={{ fromGérer: true }}
 		>
 			<Trans i18nKey="gérer.choix.is.body">

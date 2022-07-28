@@ -1,10 +1,6 @@
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
-import {
-	SitePathProvider,
-	SitePaths,
-} from '@/components/utils/SitePathsContext'
 import { GlobalStyle } from '@/design-system/global-style'
 import { Container } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
@@ -37,13 +33,11 @@ export const SiteNameContext = createContext<SiteName | null>(null)
 export type ProviderProps = {
 	basename: SiteName
 	children: ReactNode
-	sitePaths?: SitePaths
 }
 
 export default function Provider({
 	basename,
 	children,
-	sitePaths = {} as SitePaths,
 }: ProviderProps): JSX.Element {
 	useIframeResizer()
 
@@ -54,7 +48,7 @@ export default function Provider({
 				showDialog
 				fallback={
 					<Container>
-						<Link href={sitePaths.index}>
+						<Link href="/">
 							<img
 								src={logo}
 								alt="logo service mon-entreprise urssaf"
@@ -90,13 +84,11 @@ export default function Provider({
 							<ThemeColorsProvider>
 								<DisableAnimationOnPrintProvider>
 									<SiteNameContext.Provider value={basename}>
-										<SitePathProvider value={sitePaths}>
-											<I18nextProvider i18n={i18next}>
-												<BrowserRouterProvider basename={basename}>
-													{children}
-												</BrowserRouterProvider>
-											</I18nextProvider>
-										</SitePathProvider>
+										<I18nextProvider i18n={i18next}>
+											<BrowserRouterProvider basename={basename}>
+												{children}
+											</BrowserRouterProvider>
+										</I18nextProvider>
 									</SiteNameContext.Provider>
 								</DisableAnimationOnPrintProvider>
 							</ThemeColorsProvider>

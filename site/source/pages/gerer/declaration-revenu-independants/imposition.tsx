@@ -11,7 +11,6 @@ import { RuleReferences } from '@/components/References'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import Accordion from '@/design-system/accordion'
 import { Button } from '@/design-system/buttons'
@@ -21,10 +20,11 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import { getMeta } from '@/utils'
 import { Item } from '@react-stately/collections'
 import { formatValue } from 'publicodes'
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
@@ -285,7 +285,7 @@ function ModifyInformation(props: {
 }
 
 function ResultSection() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const engine = useEngine()
 	const dispatch = useDispatch()
 
@@ -341,7 +341,10 @@ function ResultSection() {
 									`}
 								>
 									<Button
-										to={sitePaths.gérer.déclarationIndépendant.beta.déclaration}
+										to={
+											absoluteSitePaths.gérer.déclarationIndépendant.beta
+												.déclaration
+										}
 										onPress={() => {
 											dispatchValue('non', 'DRI . déclaration revenus manuelle')
 										}}
@@ -380,7 +383,7 @@ function ResultSection() {
 												size="XS"
 												color="tertiary"
 												to={
-													sitePaths.gérer[
+													absoluteSitePaths.gérer[
 														'déclaration-charges-sociales-indépendant'
 													]
 												}
@@ -414,7 +417,10 @@ function ResultSection() {
 									<Button
 										light
 										size="XS"
-										to={sitePaths.gérer.déclarationIndépendant.beta.déclaration}
+										to={
+											absoluteSitePaths.gérer.déclarationIndépendant.beta
+												.déclaration
+										}
 										onPress={() => {
 											dispatchValue('oui', 'DRI . déclaration revenus manuelle')
 										}}
@@ -464,7 +470,7 @@ function ResultSection() {
 										light
 										size="XS"
 										to={
-											sitePaths.gérer[
+											absoluteSitePaths.gérer[
 												'déclaration-charges-sociales-indépendant'
 											]
 										}

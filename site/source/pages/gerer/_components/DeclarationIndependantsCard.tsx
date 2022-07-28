@@ -1,10 +1,9 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 
 export function DeclarationIndedependantsCard() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -14,7 +13,7 @@ export function DeclarationIndedependantsCard() {
 				'Déclaration de revenus (indépendants)'
 			)}
 			ctaLabel={t('gérer.choix.déclaration.cta', 'Remplir ma déclaration')}
-			to={sitePaths.gérer.déclarationIndépendant.index}
+			to={absoluteSitePaths.gérer.déclarationIndépendant.index}
 		>
 			<Trans i18nKey="gérer.choix.déclaration.body">
 				Calculez facilement les montants des charges sociales à reporter dans

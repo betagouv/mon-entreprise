@@ -11,8 +11,8 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import revenusSVG from '@/images/revenus.svg'
 import { situationSelector } from '@/selectors/simulationSelectors'
-import { Grid } from '@/design-system/layout'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import { useSitePaths } from '@/sitePaths'
+import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
@@ -22,7 +22,6 @@ import PeriodSwitch from './PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from './Simulation'
 import Emoji from './utils/Emoji'
 import { useEngine } from './utils/EngineContext'
-import { SitePathsContext } from './utils/SitePathsContext'
 import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
@@ -34,9 +33,9 @@ export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
-	const sitePath = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig(dirigeantComparaison, {
-		path: sitePath.simulateurs.comparaison,
+		path: absoluteSitePaths.simulateurs.comparaison,
 	})
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()

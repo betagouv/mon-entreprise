@@ -1,7 +1,6 @@
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Card } from '@/design-system/card'
 import { Grid } from '@/design-system/layout'
@@ -9,7 +8,7 @@ import { H2 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -18,7 +17,7 @@ import créerSvg from './créer.svg'
 
 export default function Créer() {
 	const { t } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const nextQuestionUrl = useNextQuestionUrl()
 	const guideAlreadyStarted = useSelector(
 		(state: RootState) =>
@@ -54,7 +53,7 @@ export default function Créer() {
 					to={
 						guideAlreadyStarted && nextQuestionUrl
 							? nextQuestionUrl
-							: sitePaths.créer.guideStatut.multipleAssociates
+							: absoluteSitePaths.créer.guideStatut.multipleAssociates
 					}
 				>
 					{!guideAlreadyStarted
@@ -80,7 +79,7 @@ export default function Créer() {
 							'créer.ressources.listeStatuts.title',
 							'Liste des statuts juridiques'
 						)}
-						to={sitePaths.créer.guideStatut.liste}
+						to={absoluteSitePaths.créer.guideStatut.liste}
 						ctaLabel={t('créer.ressources.listeStatuts.cta', 'Voir la liste')}
 					>
 						<Trans i18nKey="créer.ressources.listeStatuts.body">
@@ -95,7 +94,7 @@ export default function Créer() {
 							'créer.ressources.comparaison.title',
 							'Comparateur de régimes'
 						)}
-						to={{ pathname: sitePaths.simulateurs.comparaison }}
+						to={{ pathname: absoluteSitePaths.simulateurs.comparaison }}
 						state={{ fromCréer: true }}
 						ctaLabel={t('créer.ressources.comparaison.cta', 'Comparer')}
 					>
@@ -111,7 +110,7 @@ export default function Créer() {
 							'créer.ressources.autoEntrepreneur.title',
 							'Démarche auto-entrepreneur'
 						)}
-						to={sitePaths.créer['auto-entrepreneur']}
+						to={absoluteSitePaths.créer['auto-entrepreneur']}
 						ctaLabel={t(
 							'créer.ressources.autoEntrepreneur.cta',
 							'Consulter les démarches'

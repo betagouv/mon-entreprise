@@ -1,11 +1,10 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
-import { useContext } from 'react'
+import { RootState } from '@/reducers/rootReducer'
+import { useSitePaths } from '@/sitePaths'
+import { LegalStatusRequirements } from '@/types/companyTypes'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
 import styled from 'styled-components'
-import { LegalStatusRequirements } from '@/types/companyTypes'
 
 const requirementToText = (
 	key: keyof LegalStatusRequirements,
@@ -64,7 +63,7 @@ const PreviousAnswersItem = styled.li`
 `
 
 export default function PreviousAnswers() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const legalStatus = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyLegalStatus
 	)
@@ -80,7 +79,9 @@ export default function PreviousAnswers() {
 						<PreviousAnswersItem key={key}>
 							<Link
 								to={
-									sitePaths.créer.guideStatut[key as keyof typeof legalStatus]
+									absoluteSitePaths.créer.guideStatut[
+										key as keyof typeof legalStatus
+									]
 								}
 							>
 								{requirementToText(key as any, value as any)}

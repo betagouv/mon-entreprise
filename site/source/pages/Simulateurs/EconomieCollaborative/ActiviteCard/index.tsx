@@ -1,6 +1,4 @@
-import { useButton } from '@react-aria/button'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { CardContainer } from '@/design-system/card/Card'
@@ -9,10 +7,12 @@ import { Spacing } from '@/design-system/layout'
 import { Tag } from '@/design-system/tag'
 import { H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
+import { debounce } from '@/utils'
+import { useButton } from '@react-aria/button'
 import React, { useCallback, useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { debounce } from '@/utils'
 import { toggleActivité } from '../actions'
 import { getTranslatedActivité } from '../activitésData'
 import { StoreContext } from '../StoreContext'
@@ -33,7 +33,7 @@ export const ActiviteCard = ({
 	answered,
 	label,
 }: ActiviteCardProps) => {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { dispatch } = useContext(StoreContext)
 	const { language } = useTranslation().i18n
 	const toggle = useCallback(
@@ -100,7 +100,11 @@ export const ActiviteCard = ({
 						size="XS"
 						light
 						onClick={(e) => e.stopPropagation()}
-						to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
+						to={
+							absoluteSitePaths.simulateurs.économieCollaborative.index +
+							'/' +
+							title
+						}
 					>
 						<Trans>Modifier</Trans>
 					</Button>

@@ -6,17 +6,17 @@ import Value, { Condition } from '@/components/EngineValue'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import { Rule, RuleNode } from 'publicodes'
-import { Fragment, useCallback, useContext } from 'react'
+import { Fragment, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../../_components/Fields'
@@ -91,7 +91,7 @@ function getAllCases(rule: RuleNode): string[] {
 }
 
 export function DéclarationRevenuSection({ progress }: { progress: number }) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const engine = useEngine()
 
 	const déclarationRevenusManuel = engine.evaluate(
@@ -170,7 +170,10 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 								<Button
 									size="XL"
 									isDisabled={progress !== 1}
-									to={sitePaths.gérer.déclarationIndépendant.beta.cotisations}
+									to={
+										absoluteSitePaths.gérer.déclarationIndépendant.beta
+											.cotisations
+									}
 								>
 									Continuer vers l'estimation des cotisations pour 2022
 								</Button>

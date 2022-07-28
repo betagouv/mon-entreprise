@@ -1,16 +1,15 @@
 import { Logo } from '@/components/Logo'
 import SearchButton from '@/components/SearchButton'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Container } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
 
 export default function Header() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const {
 		i18n: { language },
 	} = useTranslation()
@@ -18,7 +17,7 @@ export default function Header() {
 	return (
 		<Container>
 			<StyledHeader>
-				<Link to={sitePaths.index}>
+				<Link to={absoluteSitePaths.index}>
 					<StyledLogo>
 						<Logo />
 					</StyledLogo>
