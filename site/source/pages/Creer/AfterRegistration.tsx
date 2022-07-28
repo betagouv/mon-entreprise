@@ -1,18 +1,17 @@
 import { FromBottom } from '@/components/ui/animate'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { RootState } from '@/reducers/rootReducer'
+import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
 import { TrackPage } from '../../ATInternetTracking'
 import siret from './siret.jpg'
 
 export default function AfterRegistration() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const statutChoisi = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	)
@@ -23,7 +22,7 @@ export default function AfterRegistration() {
 		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
-			<Link to={sitePaths.créer.index}>
+			<Link to={absoluteSitePaths.créer.index}>
 				← <Trans>Retour à la création</Trans>
 			</Link>
 			<H1>

@@ -1,5 +1,5 @@
-import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { MetadataSrc } from 'pages/Simulateurs/metadata-src'
 import { useTranslation } from 'react-i18next'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -174,7 +174,6 @@ const rawSitePathsEn = {
 		library: 'library',
 		api: 'api',
 		spreadsheet: 'spreadsheet',
-		spreadsheetx: 'spreadsheet',
 	},
 } as const
 
@@ -231,12 +230,28 @@ const encodedRelativeSitePaths = encodeRelativeSitePaths({
 	en: rawSitePathsEn,
 })
 
-export const useRelativeSitePaths = () => {
-	const { language } = useTranslation().i18n
-
-	return encodedRelativeSitePaths[language as 'fr' | 'en']
+const encodedAbsoluteSitePaths = {
+	fr: constructAbsoluteSitePaths(rawSitePathsFr),
+	en: constructAbsoluteSitePaths(rawSitePathsEn),
 }
-export type RelativeSitePath = ReturnType<typeof useRelativeSitePaths>
+
+export const relativeSitePaths = encodedRelativeSitePaths
+export const absoluteSitePaths = encodedAbsoluteSitePaths
+
+export type RelativeSitePaths =
+	typeof relativeSitePaths[keyof typeof relativeSitePaths]
+export type AbsoluteSitePaths =
+	typeof absoluteSitePaths[keyof typeof absoluteSitePaths]
+
+export const useSitePaths = <T extends 'fr' | 'en'>(lang?: T) => {
+	const { language } = useTranslation().i18n
+	lang ??= language as T
+
+	return {
+		relativeSitePaths: relativeSitePaths[lang],
+		absoluteSitePaths: absoluteSitePaths[lang],
+	}
+}
 
 type SitePath = { [key: string]: string | SitePath } & { index: string }
 
@@ -255,8 +270,8 @@ type SitePathBuilt<T extends SitePath, Root extends string = ''> = {
 		  >
 }
 
-function constructSitePaths<T extends SitePath>(
-	obj: SitePath,
+function constructAbsoluteSitePaths<T extends SitePath>(
+	obj: T,
 	root = ''
 ): SitePathBuilt<T> {
 	const { index } = obj
@@ -267,20 +282,10 @@ function constructSitePaths<T extends SitePath>(
 			k,
 			typeof value === 'string'
 				? encodeURI(root + (k === 'index' ? value : index + '/' + value)) || '/'
-				: constructSitePaths(value, root + index + '/'),
+				: constructAbsoluteSitePaths(value, root + index + '/'),
 		])
 	) as SitePathBuilt<T>
 }
-
-export const constructLocalizedSitePath = <T extends 'fr' | 'en'>(
-	language: T
-) => {
-	return constructSitePaths<T extends 'fr' ? SitePathsFr : SitePathsEn>(
-		language === 'fr' ? checkedSitePathsFr : checkedSitePathsEn
-	)
-}
-
-export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
 type Obj = { [k: string]: string | Obj }
 
@@ -299,7 +304,7 @@ const deepReduce = (
 
 type SiteMap = Array<string>
 
-export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
+export const generateSiteMap = (sitePaths: AbsoluteSitePaths): SiteMap =>
 	deepReduce(
 		(paths: Array<string>, path: string) =>
 			/\/:/.test(path) ? paths : [...paths, ...[path]],
@@ -318,10 +323,10 @@ export const alternateLinks = () => {
 			? `http://${window.location.host}/infrance`
 			: import.meta.env.VITE_EN_BASE_URL ?? ''
 
-	const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(
+	const enSiteMap = generateSiteMap(absoluteSitePaths.en).map(
 		(path) => basePathEn + path
 	)
-	const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(
+	const frSiteMap = generateSiteMap(absoluteSitePaths.fr).map(
 		(path) => basePathFr + path
 	)
 

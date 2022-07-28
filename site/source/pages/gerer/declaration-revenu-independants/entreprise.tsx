@@ -14,7 +14,6 @@ import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -24,7 +23,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { SimpleField } from '../_components/Fields'
@@ -41,7 +40,7 @@ export const OBJECTIFS: DottedName[] = [
 
 export default function Accueil() {
 	const setEntreprise = useSetEntreprise()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const progress = useProgress(OBJECTIFS)
@@ -172,7 +171,10 @@ export default function Accueil() {
 									<Spacing lg />
 									<Button
 										size="XL"
-										to={sitePaths.gérer.déclarationIndépendant.beta.imposition}
+										to={
+											absoluteSitePaths.gérer.déclarationIndépendant.beta
+												.imposition
+										}
 									>
 										Continuer avec cette entreprise
 									</Button>

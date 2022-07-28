@@ -2,7 +2,6 @@ import PageHeader from '@/components/PageHeader'
 import InfoBulle from '@/components/ui/InfoBulle'
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
 import { SmallCard } from '@/design-system/card/SmallCard'
 import { Grid } from '@/design-system/layout'
@@ -11,7 +10,7 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeProvider } from 'styled-components'
@@ -22,7 +21,7 @@ import useSimulatorsData, { ExtractFromSimuData } from './metadata'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const simulators = useSimulatorsData()
 	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
 
@@ -131,7 +130,10 @@ export default function Simulateurs() {
 						<Li>
 							<Strong>Intégrables facilement et gratuitement</Strong> sur
 							n'importe quel site internet.{' '}
-							<Link to={sitePaths.développeur.iframe}>En savoir plus</Link>.
+							<Link to={absoluteSitePaths.développeur.iframe}>
+								En savoir plus
+							</Link>
+							.
 						</Li>
 					</Ul>
 				</Trans>

@@ -1,9 +1,8 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import styled from 'styled-components'
 import notHandled from './undraw_access_denied_re_awnf.svg'
 
@@ -12,7 +11,7 @@ export default function NotHandledCase({
 }: {
 	children: React.ReactNode
 }) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<Message type="info">
@@ -39,7 +38,7 @@ export default function NotHandledCase({
 				</Grid>
 				<Grid item lg={2} />
 				<Grid item md="auto">
-					<Button color="tertiary" to={sitePaths.gérer.index}>
+					<Button color="tertiary" to={absoluteSitePaths.gérer.index}>
 						Découvrir les simulateur et assistant pour mon entreprise
 					</Button>
 				</Grid>

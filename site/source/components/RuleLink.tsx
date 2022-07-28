@@ -1,9 +1,9 @@
 import { Link } from '@/design-system/typography/link'
+import { useSitePaths } from '@/sitePaths'
 import { DottedName } from 'modele-social'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { useContext } from 'react'
 import { EngineContext } from './utils/EngineContext'
-import { SitePathsContext } from './utils/SitePathsContext'
 
 export default function RuleLink(
 	props: {
@@ -12,7 +12,7 @@ export default function RuleLink(
 		children?: React.ReactNode
 	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const engine = useContext(EngineContext)
 
 	try {
@@ -29,7 +29,7 @@ export default function RuleLink(
 			{...props}
 			linkComponent={Link as React.ComponentType<{ to: string }>}
 			engine={engine}
-			documentationPath={sitePaths.documentation.index}
+			documentationPath={absoluteSitePaths.documentation.index}
 		/>
 	)
 }

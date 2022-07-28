@@ -7,21 +7,21 @@ import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { RootState } from '@/reducers/rootReducer'
+import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
 export default function SearchOrCreate() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const statutChoisi = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	)
@@ -40,7 +40,7 @@ export default function SearchOrCreate() {
 						<Spacing md />
 						<AnswerGroup>
 							<Button
-								to={generatePath(sitePaths.gérer.entreprise, {
+								to={generatePath(absoluteSitePaths.gérer.entreprise, {
 									entreprise: companySIREN as string,
 								})}
 							>
@@ -63,8 +63,8 @@ export default function SearchOrCreate() {
 							size="XL"
 							to={
 								statutChoisi
-									? sitePaths.créer[statutChoisi]
-									: sitePaths.créer.index
+									? absoluteSitePaths.créer[statutChoisi]
+									: absoluteSitePaths.créer.index
 							}
 						>
 							<Emoji emoji="💡" />{' '}
@@ -81,7 +81,7 @@ export default function SearchOrCreate() {
 
 function useHandleCompanySubmit() {
 	const navigate = useNavigate()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const setEntreprise = useSetEntreprise()
 
 	const handleCompanySubmit = useCallback(
@@ -91,10 +91,12 @@ function useHandleCompanySubmit() {
 			}
 			setEntreprise(établissement)
 			const entreprise = établissement.siren
-			const path = generatePath(sitePaths.gérer.entreprise, { entreprise })
+			const path = generatePath(absoluteSitePaths.gérer.entreprise, {
+				entreprise,
+			})
 			navigate(path)
 		},
-		[navigate, setEntreprise, sitePaths.gérer.entreprise]
+		[navigate, setEntreprise, absoluteSitePaths.gérer.entreprise]
 	)
 
 	return handleCompanySubmit

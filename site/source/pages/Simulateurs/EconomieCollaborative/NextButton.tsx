@@ -1,5 +1,5 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
+import { useSitePaths } from '@/sitePaths'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { activitéVue } from './actions'
@@ -12,12 +12,14 @@ type NextButtonProps = {
 }
 
 export default function NextButton({ activité, disabled }: NextButtonProps) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { state, dispatch } = useContext(StoreContext)
 	const nextActivité = nextActivitéSelector(state, activité)
 	const nextTo = nextActivité
-		? sitePaths.simulateurs.économieCollaborative.index + '/' + nextActivité
-		: sitePaths.simulateurs.économieCollaborative.votreSituation
+		? absoluteSitePaths.simulateurs.économieCollaborative.index +
+		  '/' +
+		  nextActivité
+		: absoluteSitePaths.simulateurs.économieCollaborative.votreSituation
 
 	return (
 		<p css="text-align: center">

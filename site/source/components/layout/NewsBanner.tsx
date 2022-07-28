@@ -1,9 +1,9 @@
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Banner, HideButton, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useContext, useEffect, useState } from 'react'
+import { useSitePaths } from '@/sitePaths'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getItem, setItem } from '../../storage/safeLocalStorage'
 
@@ -27,7 +27,7 @@ export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 	const lastViewedRelease = getItem(localStorageKey)
 	const [showBanner, setShowBanner] = useState(
@@ -53,7 +53,7 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 				<span>
 					<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
 					{determinant(lastRelease.name)}
-					<Link to={sitePaths.nouveautés}>
+					<Link to={absoluteSitePaths.nouveautés}>
 						{lastRelease.name.toLowerCase()}
 					</Link>
 				</span>

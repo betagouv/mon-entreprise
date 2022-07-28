@@ -1,14 +1,14 @@
 import Warning from '@/components/ui/WarningBlock'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
+import { AbsoluteSitePaths } from '@/sitePaths'
 import { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { EngineContext } from './utils/EngineContext'
-import { SitePaths } from './utils/SitePathsContext'
 
 type SimulateurWarningProps = {
-	simulateur: Exclude<keyof SitePaths['simulateurs'], 'index'>
+	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
 }
 
 export default function SimulateurWarning({

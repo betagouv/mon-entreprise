@@ -5,12 +5,11 @@ import Notifications from '@/components/Notifications'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { situationSelector } from '@/selectors/simulationSelectors'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -26,9 +25,9 @@ const ISConfig = {
 } as SimulationConfig
 
 export default function ISSimulation() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
-	useSimulationConfig(ISConfig, { path: sitePaths.simulateurs.is })
+	useSimulationConfig(ISConfig, { path: absoluteSitePaths.simulateurs.is })
 
 	return (
 		<>

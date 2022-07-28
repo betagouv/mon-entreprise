@@ -1,17 +1,16 @@
 import PageHeader from '@/components/PageHeader'
 import { icons } from '@/components/ui/SocialIcon'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Card } from '@/design-system/card'
 import { Grid } from '@/design-system/layout'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import illustration from './illustration.png'
 
 export default function Options() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -47,7 +46,7 @@ export default function Options() {
 							'pages.développeur.home.choice.iframe.title',
 							'Intégrer un simulateur'
 						)}
-						to={sitePaths.développeur.iframe}
+						to={absoluteSitePaths.développeur.iframe}
 						ctaLabel={t(
 							'pages.développeur.home.choice.iframe.cta',
 							'Commencer'
@@ -69,7 +68,7 @@ export default function Options() {
 							'pages.développeur.home.choice.api.title',
 							'Utiliser notre API REST'
 						)}
-						to={sitePaths.développeur.api}
+						to={absoluteSitePaths.développeur.api}
 						ctaLabel={t('pages.développeur.home.choice.api.cta', 'Commencer')}
 					>
 						<Body>
@@ -88,7 +87,7 @@ export default function Options() {
 							'pages.développeur.home.choice.spreadsheet.title',
 							'Utiliser avec un tableur'
 						)}
-						to={sitePaths.développeur.spreadsheet}
+						to={absoluteSitePaths.développeur.spreadsheet}
 						ctaLabel={t(
 							'pages.développeur.home.choice.spreadsheet.cta',
 							'Commencer'
@@ -109,7 +108,7 @@ export default function Options() {
 							'pages.développeur.choice.library.title',
 							'Libraire de calcul'
 						)}
-						to={sitePaths.développeur.library}
+						to={absoluteSitePaths.développeur.library}
 						ctaLabel={t('pages.développeur.choice.library.cta', 'Commencer')}
 					>
 						<Trans i18nKey="pages.développeur.choice.library.body">

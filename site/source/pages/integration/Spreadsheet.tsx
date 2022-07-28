@@ -1,13 +1,12 @@
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 
 export default function Spreadsheet() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
@@ -17,7 +16,7 @@ export default function Spreadsheet() {
 				<Body>
 					Vous souhaitez utiliser un simulateur dans une feuille Google Sheets
 					ou Excel ? C'est possible grâce à notre{' '}
-					<Link to={sitePaths.développeur.api}>API REST</Link> !
+					<Link to={absoluteSitePaths.développeur.api}>API REST</Link> !
 				</Body>
 
 				<H2>Intégrer un simulateur dans Excel/Sheets</H2>

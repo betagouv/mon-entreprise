@@ -8,7 +8,6 @@ import {
 	Rules,
 	SituationProvider,
 } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Container, Spacing } from '@/design-system/layout'
 import {
 	companySituationSelector,
@@ -18,7 +17,7 @@ import {
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
-import { ComponentProps, StrictMode, useContext, useMemo } from 'react'
+import { ComponentProps, StrictMode, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -39,7 +38,7 @@ import Offline from './pages/Offline'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
-import { constructLocalizedSitePath } from './sitePaths'
+import { useSitePaths } from './sitePaths'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -50,8 +49,6 @@ export default function Root({
 	basename,
 	rulesPreTransform = (r) => r,
 }: RootProps) {
-	const { language } = useTranslation().i18n
-	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
 	const engine = useMemo(
 		() => engineFactory(rulesPreTransform(rules)),
 
@@ -65,7 +62,7 @@ export default function Root({
 
 	return (
 		<StrictMode>
-			<Provider basename={basename} sitePaths={paths}>
+			<Provider basename={basename}>
 				<EngineProvider value={engine}>
 					<Router />
 				</EngineProvider>
@@ -109,7 +106,7 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 
 const App = () => {
 	const { t } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { relativeSitePaths } = useSitePaths()
 	const isEmbedded = useIsEmbedded()
 
 	return (
@@ -122,27 +119,36 @@ const App = () => {
 			<Container>
 				<ErrorBoundary fallback={CatchOffline}>
 					<Routes>
-						<Route path={sitePaths.créer.index + '/*'} element={<Créer />} />
-						<Route path={sitePaths.gérer.index + '/*'} element={<Gérer />} />
 						<Route
-							path={sitePaths.simulateurs.index + '/*'}
+							path={relativeSitePaths.créer.index + '/*'}
+							element={<Créer />}
+						/>
+						<Route
+							path={relativeSitePaths.gérer.index + '/*'}
+							element={<Gérer />}
+						/>
+						<Route
+							path={relativeSitePaths.simulateurs.index + '/*'}
 							element={<Simulateurs />}
 						/>
 						<Route
-							path={sitePaths.documentation.index + '/*'}
+							path={relativeSitePaths.documentation.index + '/*'}
 							element={<Documentation />}
 						/>
 						<Route
-							path={sitePaths.développeur.index + '/*'}
+							path={relativeSitePaths.développeur.index + '/*'}
 							element={<Integration />}
 						/>
 						<Route
-							path={sitePaths.nouveautés + '/*'}
+							path={relativeSitePaths.nouveautés + '/*'}
 							element={<Nouveautés />}
 						/>
-						<Route path={sitePaths.stats} element={<Stats />} />
-						<Route path={sitePaths.budget} element={<Budget />} />
-						<Route path={sitePaths.accessibilité} element={<Accessibilité />} />
+						<Route path={relativeSitePaths.stats} element={<Stats />} />
+						<Route path={relativeSitePaths.budget} element={<Budget />} />
+						<Route
+							path={relativeSitePaths.accessibilité}
+							element={<Accessibilité />}
+						/>
 
 						<Route path="/dev/integration-test" element={<IntegrationTest />} />
 						<Route path="/dev/personas" element={<Personas />} />

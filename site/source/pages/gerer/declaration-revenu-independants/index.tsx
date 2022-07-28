@@ -2,7 +2,6 @@ import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Step, Stepper } from '@/design-system'
@@ -10,9 +9,8 @@ import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useRelativeSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Cotisations from './cotisations'
@@ -23,9 +21,9 @@ import { useProgress } from './_components/hooks'
 import config from './_config.yaml'
 
 export default function AideDéclarationIndépendant() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig(config, {
-		path: sitePaths.gérer.déclarationIndépendant.beta.index,
+		path: absoluteSitePaths.gérer.déclarationIndépendant.beta.index,
 		autoloadLastSimulation: true,
 	})
 	const steps = useSteps()
@@ -84,7 +82,8 @@ export default function AideDéclarationIndépendant() {
 }
 
 function useSteps() {
-	const sitePaths = useRelativeSitePaths().gérer.déclarationIndépendant.beta
+	const sitePaths =
+		useSitePaths().relativeSitePaths.gérer.déclarationIndépendant.beta
 	const { t } = useTranslation()
 	const step1Progress = useProgress(Step1Objectifs)
 	const step2Progress = useProgress(Step2Objectifs)

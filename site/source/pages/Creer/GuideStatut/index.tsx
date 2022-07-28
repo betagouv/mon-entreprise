@@ -1,11 +1,10 @@
 import { resetCompanyStatusChoice } from '@/actions/companyStatusActions'
 import { FromBottom } from '@/components/ui/animate'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { RootState } from '@/reducers/rootReducer'
-import { useRelativeSitePaths } from '@/sitePaths'
-import { useContext, useEffect } from 'react'
+import { useSitePaths } from '@/sitePaths'
+import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
@@ -20,7 +19,7 @@ import SoleProprietorship from './SoleProprietorship'
 
 const useResetFollowingAnswers = () => {
 	const dispatch = useDispatch()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const location = useLocation()
 	const answeredQuestion = useSelector(
 		(state: RootState) =>
@@ -30,7 +29,7 @@ const useResetFollowingAnswers = () => {
 	)
 	useEffect(() => {
 		const companyStatusCurrentQuestionName = (Object.entries(
-			sitePaths.créer.guideStatut
+			absoluteSitePaths.créer.guideStatut
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		if (!companyStatusCurrentQuestionName) {
 			return
@@ -47,18 +46,17 @@ const useResetFollowingAnswers = () => {
 				)
 			)
 		}
-	}, [location.pathname, dispatch, sitePaths.créer.guideStatut])
+	}, [location.pathname, dispatch, absoluteSitePaths.créer.guideStatut])
 }
 
 export default function Créer() {
-	const sitePaths = useContext(SitePathsContext)
-	const relativeSitePaths = useRelativeSitePaths()
+	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const location = useLocation()
 	useResetFollowingAnswers()
 
 	return (
 		<>
-			<Link to={sitePaths.créer.index}>
+			<Link to={absoluteSitePaths.créer.index}>
 				← <Trans>Retour</Trans>
 			</Link>
 			<TrackChapter chapter2="guide">
@@ -97,7 +95,10 @@ export default function Créer() {
 						<Route
 							index
 							element={
-								<Navigate to={sitePaths.créer.guideStatut.liste} replace />
+								<Navigate
+									to={absoluteSitePaths.créer.guideStatut.liste}
+									replace
+								/>
 							}
 						/>
 					</Routes>

@@ -1,8 +1,6 @@
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Link } from '@/design-system/typography/link'
-import { useRelativeSitePaths } from '@/sitePaths'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { TrackChapter } from '../../../ATInternetTracking'
@@ -13,8 +11,8 @@ import { StoreProvider } from './StoreContext'
 import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
-	const relativeSitePaths = useRelativeSitePaths()
-	const { économieCollaborative } = useContext(SitePathsContext).simulateurs
+	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
+	const { économieCollaborative } = absoluteSitePaths.simulateurs
 	const iframePath =
 		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()

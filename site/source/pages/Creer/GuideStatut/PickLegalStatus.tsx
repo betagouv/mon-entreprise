@@ -1,15 +1,15 @@
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Fragment, useContext } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import {
 	LegalStatus,
 	possibleStatusSelector,
 } from '@/selectors/companyStatusSelectors'
+import { useSitePaths } from '@/sitePaths'
+import { Fragment } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { TrackPage } from '../../../ATInternetTracking'
 import StatutDescription from '../StatutDescription'
 
@@ -18,11 +18,11 @@ type StatutButtonProps = {
 }
 
 const StatutButton = ({ statut }: StatutButtonProps) => {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
-		<Button to={sitePaths.créer[statut]} light size="XS">
+		<Button to={absoluteSitePaths.créer[statut]} light size="XS">
 			<>
 				{statut.includes('auto-entrepreneur') ? (
 					<Trans>Devenir</Trans>

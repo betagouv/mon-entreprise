@@ -2,13 +2,12 @@ import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -20,7 +19,7 @@ import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
 	const simulators = useSimulatorsData()
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
@@ -87,7 +86,7 @@ export default function Landing() {
 					>
 						<Button
 							size="XL"
-							to={sitePaths.simulateurs.index}
+							to={absoluteSitePaths.simulateurs.index}
 							css={`
 								white-space: no-wrap;
 								margin: auto;

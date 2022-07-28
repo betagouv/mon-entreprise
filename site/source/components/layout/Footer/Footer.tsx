@@ -1,17 +1,15 @@
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import Emoji from '@/components/utils/Emoji'
-import { SitePathsContext } from '@/components/utils/SitePathsContext'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
 import { Container } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
+import { alternateLinks, useSitePaths } from '@/sitePaths'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeProvider } from 'styled-components'
-import { alternateLinks } from '@/sitePaths'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 import { useShowFeedback } from './useShowFeedback'
@@ -19,7 +17,7 @@ import { useShowFeedback } from './useShowFeedback'
 const hrefLangLink = alternateLinks()
 
 export default function Footer() {
-	const sitePaths = useContext(SitePathsContext)
+	const { absoluteSitePaths } = useSitePaths()
 	const showFeedback = useShowFeedback()
 	const language = useTranslation().i18n.language as 'fr' | 'en'
 
@@ -70,17 +68,17 @@ export default function Footer() {
 								{language === 'fr' && (
 									<ul>
 										<li>
-											<Link to={sitePaths.nouveautés}>
+											<Link to={absoluteSitePaths.nouveautés}>
 												Nouveautés <Emoji emoji="✨" />
 											</Link>
 										</li>
 										<li>
-											<Link to={sitePaths.stats}>
+											<Link to={absoluteSitePaths.stats}>
 												Stats <Emoji emoji="📊" />
 											</Link>
 										</li>
 										<li>
-											<Link to={sitePaths.budget}>
+											<Link to={absoluteSitePaths.budget}>
 												Budget <Emoji emoji="💶" />
 											</Link>
 										</li>
@@ -90,7 +88,7 @@ export default function Footer() {
 							<FooterColumn>
 								<ul>
 									<li>
-										<Link to={sitePaths.développeur.index}>
+										<Link to={absoluteSitePaths.développeur.index}>
 											<Trans>Intégrer nos simulateurs</Trans>
 										</Link>
 									</li>
@@ -129,7 +127,7 @@ export default function Footer() {
 									</li>
 									{language === 'fr' && (
 										<li>
-											<Link to={sitePaths.accessibilité}>
+											<Link to={absoluteSitePaths.accessibilité}>
 												<Trans i18nKey="footer.accessibilité">
 													Accessibilité : non conforme
 												</Trans>
