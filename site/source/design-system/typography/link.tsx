@@ -111,6 +111,12 @@ export function useExternalLinkProps({
 	}
 }
 
+/**
+ * This component resolve a conflict beetween styled-component and NavLink,
+ * styled-component overwrite the functions in style or className props so we can't use NavLink isActive.
+ * To get around that we rename style/className props in useButtonOrLink if
+ * they are functions and we pass them to NavLink here
+ */
 const CustomNavLink = React.forwardRef(function CustomNavLink(
 	props: ComponentProps<typeof NavLink> & {
 		_style?: ComponentProps<typeof NavLink>['style']
@@ -191,13 +197,13 @@ export function useButtonOrLink(
 		)
 	)
 
-	// resolve conflict between styled-component and NavLink style props
+	// Rename style if it is a function, see CustomNavLink
 	const styleProps =
 		'to' in props && typeof props.style === 'function'
 			? { _style: props.style, style: undefined }
 			: {}
 
-	// resolve conflict between styled-component and NavLink classname props
+	// Rename classname if it is a function, see CustomNavLink
 	const classNameProps =
 		'to' in props && typeof props.className === 'function'
 			? { _className: props.className, className: undefined }
