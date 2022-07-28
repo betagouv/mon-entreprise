@@ -37,7 +37,7 @@ import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import ISSimulation from './ImpôtSociété'
 import IndépendantSimulation, {
 	EntrepriseIndividuelle,
-	IndépendantPLSimulation
+	IndépendantPLSimulation,
 } from './Indépendant'
 import getData from './metadata-src.js'
 import PAMCHome from './PAMCHome'
