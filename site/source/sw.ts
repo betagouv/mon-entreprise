@@ -28,7 +28,7 @@ registerRoute(
 				? 'mon-entreprise.html'
 				: 'infrance.html'
 		),
-		{ denylist: [/^\/api\/.*/] }
+		{ denylist: [/^\/api\/.*/, /^\/twemoji\/.*/, /^\/dev\/storybook\/.*/] }
 	)
 )
 
