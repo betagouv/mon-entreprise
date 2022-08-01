@@ -23319,15 +23319,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.46":
+"publicodes-react@betagouv/publicodes#head=add-rules-tree-nav&workspace=publicodes-react":
   version: 1.0.0-beta.46
-  resolution: "publicodes-react@npm:1.0.0-beta.46"
+  resolution: "publicodes-react@https://github.com/betagouv/publicodes.git#workspace=publicodes-react&commit=a6b3689ddf1842c5de9b9e3324e7d2adfa26f621"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
-  checksum: c335ef34060d333756fdff39eebe8827141edbe87ba097d380faeeda6f00c948f49cfd4961a249d417460001261933013cfc3ea2bfcaeb8bac79a81be807abf7
+  checksum: 4f510360b0c9d65b214ab90d9a42a78cc1219917a615f347da775334c12592acfa6911626ab97f2f192b7c9436967475730dc6a5730e8f6d521dbc60ba2ade80
   languageName: node
   linkType: hard
 

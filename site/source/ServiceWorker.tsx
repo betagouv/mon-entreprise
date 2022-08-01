@@ -81,7 +81,7 @@ export const ServiceWorker = () => {
 
 		onRegisterError: (error) => {
 			// eslint-disable-next-line no-console
-			console.log('SW registration error', error)
+			console.error('SW registration error', error)
 		},
 	})
 
