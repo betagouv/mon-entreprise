@@ -19,6 +19,7 @@ export default function Emoji({ emoji, alt, title }: PropType) {
 
 	return emojiFn(emoji, {
 		baseUrl: '/twemoji/2/',
+		protocol: '' as 'https', // Hack to use relative path
 		ext: '.png',
 		props: {
 			alt,
