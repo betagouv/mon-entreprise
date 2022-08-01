@@ -1,4 +1,4 @@
-date: 01/05/2022
+date: 01/08/2022
 période: oui
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
@@ -57,6 +57,8 @@ SMIC horaire:
       - si: établissement . localisation . département = 'Mayotte'
         alors:
           variations:
+            - si: date >= 01/08/2022
+              alors: 8.35 €/heure
             - si: date >= 01/05/2022
               alors: 8.19 €/heure
             - si: date >= 01/2022
@@ -67,6 +69,8 @@ SMIC horaire:
               alors: 7.74 €/heure
       - sinon:
           variations:
+            - si: date >= 01/08/2022
+              alors: 11.07 €/heure
             - si: date >= 01/05/2022
               alors: 10.85 €/heure
             - si: date >= 01/2022
@@ -81,7 +85,7 @@ SMIC horaire:
     d'année si l'indice des prix de référence a augmenté de 2% ou plus depuis la
     dernière revalorisation du SMIC.
   références:
-    décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126026
+    décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046113517
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
 
 SMIC temps plein:
