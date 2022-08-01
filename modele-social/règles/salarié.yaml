@@ -1366,7 +1366,7 @@ contrat salarié . rémunération . brut de base:
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   unité: €/mois
   suggestions:
-    salaire médian: 2300 €/mois
+    salaire médian: 2500 €/mois
     SMIC: SMIC contractuel
   formule:
     inversion numérique:
