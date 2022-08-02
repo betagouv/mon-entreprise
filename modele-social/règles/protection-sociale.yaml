@@ -336,7 +336,6 @@ protection sociale . retraite . complémentaire indépendants:
         - si: date >= 01/01/2019
           alors: 1.191 €/an/point
   références:
-    secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
     cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
     barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
 

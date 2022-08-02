@@ -30,10 +30,11 @@ contrat salarié . convention collective . HCR . prévoyance conventionnelle:
       - attributs:
           nom: employeur
           remplace: prévoyance . employeur
-        taux: 0.40%
+        taux: 0.90%
       - attributs:
           nom: salarié
           remplace: prévoyance . salarié
-        taux: 0.40%
+        taux: 0.47%
+  note: Taux spécifiques pour les salariés relevant du régime local Alsace-Moselle
   références:
-    Prévoyance HCR: https://www.hcrprevoyance.fr/contenu/documents/modalites_pratiques/HCR%20027_21%20Fiche%20Garantie%20Conventionnelle%20Prevoyance.pdf
+    Prévoyance HCR: https://www.hcrprevoyance.fr/Employeur/faq/employeur

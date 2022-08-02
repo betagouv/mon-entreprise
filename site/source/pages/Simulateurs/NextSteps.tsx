@@ -83,11 +83,6 @@ const guidesUrssaf = [
 		title: 'Guide Urssaf pour les auto-entrepreneurs',
 	},
 	{
-		url: 'http://www.secu-artistes-auteurs.fr/sites/default/files/pdf/Guide%20pratique%20de%20d%C3%A9but%20d%27activit%C3%A9.pdf',
-		associatedRule: "dirigeant = 'artiste-auteur'",
-		title: 'Guide Urssaf pour les artistes-auteurs',
-	},
-	{
 		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
 		associatedRule: 'dirigeant',
 		title: 'Guide Urssaf pour les indépendants',
