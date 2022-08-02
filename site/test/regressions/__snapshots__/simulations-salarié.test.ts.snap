@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
-"[3470,0,2500,2005,1894]
+"[3500,0,2500,2013,1902]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -102,7 +102,7 @@ exports[`calculate simulations-salarié > avantages 1`] = `"[2543,0,2000,1540,14
 
 exports[`calculate simulations-salarié > avantages 2`] = `"[2553,0,2000,1539,1489]"`;
 
-exports[`calculate simulations-salarié > avantages 3`] = `"[2462,0,2000,1549,1514]"`;
+exports[`calculate simulations-salarié > avantages 3`] = `"[2465,0,2000,1549,1514]"`;
 
 exports[`calculate simulations-salarié > cadre 1`] = `"[4116,0,3000,2348,2160]"`;
 
@@ -196,12 +196,12 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2524,0,2000,1636,1601]"`;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 4`] = `
-"[2451,0,2000,1632,1598]
+"[2470,0,2000,1639,1605]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 5`] = `
-"[2419,0,2000,1606,1572]
+"[2437,0,2000,1613,1579]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 

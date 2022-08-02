@@ -24,7 +24,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "dirigeant . gérant minoritaire": 3691471.7408000007,
         "entreprise . catégorie juridique": 70128347.52400002,
         "situation personnelle . domiciliation fiscale à l'étranger": 60.00589999999998,
-        "établissement . localisation": 138.0059,
+        "établissement . localisation": 138.0089,
       },
       "nodeValue": 2744.60805,
       "traversedVariables": [

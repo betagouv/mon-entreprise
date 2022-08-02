@@ -1705,7 +1705,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
     produit:
       assiette:
         nom: repas forfaitaire
-        valeur: 4.85 €/repas
+        valeur: 5 €/repas
       facteur: repas par mois
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
