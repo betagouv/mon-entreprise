@@ -3119,11 +3119,16 @@ contrat salarié . maladie . taux employeur . taux réduit:
   formule: cotisations . assiette < plafond de réduction employeur
 
 contrat salarié . maladie . taux salarié:
-  formule:
-    variations:
-      - si: régime alsace moselle
-        alors: 1.5%
-      - sinon: 0%
+  description: |
+    Les salariés exerçant leur activité en Alsace Moselle sont redevable d’une cotisation supplémentaire pour financer le régime local d’assurance maladie.
+  applicable si: régime alsace moselle
+  variations:
+    - si: date >= 01/04/2022
+      alors: 1.3%
+    - sinon: 1.5%
+  références:
+    Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit/cas-particuliers.html
+    Régime local: https://regime-local.fr
 
 contrat salarié . maladie . plafond de réduction employeur:
   formule: 2.5 * SMIC
