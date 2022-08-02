@@ -103,20 +103,20 @@ exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > médecin 1`] = `"[50000,0,14385,35615,5011,30604,0,4,476]"`;
+exports[`calculate simulations-professions-libérales > médecin 1`] = `"[50000,0,14395,35605,5008,30597,0,4,476]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 2`] = `"[50000,0,22059,27941,2710,25231,0,4,378]"`;
+exports[`calculate simulations-professions-libérales > médecin 2`] = `"[50000,0,21965,28035,2738,25297,0,4,379]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 3`] = `"[300000,0,87915,212085,78409,133676,0,4,550]"`;
+exports[`calculate simulations-professions-libérales > médecin 3`] = `"[300000,0,88005,211995,78368,133627,0,4,550]"`;
 
-exports[`calculate simulations-professions-libérales > médecin 4`] = `"[400000,0,108031,291969,117164,174805,0,4,550]"`;
+exports[`calculate simulations-professions-libérales > médecin 4`] = `"[400000,0,108116,291884,117122,174762,0,4,550]"`;
 
 exports[`calculate simulations-professions-libérales > médecin 5`] = `
-"[120000,0,36415,83585,21327,62258,0,4,536]
+"[120000,0,36559,83441,21268,62173,0,4,536]
 Notifications affichées : entreprise . chiffre d'affaires . franchise de TVA . dépassement"
 `;
 
-exports[`calculate simulations-professions-libérales > médecin 6`] = `"[50000,0,14385,35615,5011,30604,0,4,476]"`;
+exports[`calculate simulations-professions-libérales > médecin 6`] = `"[50000,0,14395,35605,5008,30597,0,4,476]"`;
 
 exports[`calculate simulations-professions-libérales > sage-femme 1`] = `"[50000,0,12479,37521,5584,31937,0,4,501]"`;
 
