@@ -3249,6 +3249,12 @@ contrat salarié . maladie . taux employeur . taux réduit:
   titre.en: reduced rate
   titre.fr: taux réduit
 contrat salarié . maladie . taux salarié:
+  description.en: >
+    [automatic] Employees working in Alsace Moselle are liable for an additional
+    contribution to finance the local health insurance scheme.
+  description.fr: >
+    Les salariés exerçant leur activité en Alsace Moselle sont redevable d’une
+    cotisation supplémentaire pour financer le régime local d’assurance maladie.
   titre.en: employee rate
   titre.fr: taux salarié
 contrat salarié . maladie . taux solidarité autonomie:
@@ -8744,13 +8750,9 @@ impôt . taux neutre d'impôt sur le revenu:
   titre.en: neutral income tax rate
   titre.fr: taux neutre d'impôt sur le revenu
 impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
-  note.en: '[automatic] This scale was not upgraded in 2021.'
-  note.fr: Ce barème n'a pas été revalorisé en 2021.
   titre.en: Guadeloupe Reunion Island Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
-  note.en: '[automatic] This scale was not upgraded in 2021.'
-  note.fr: Ce barème n'a pas été revalorisé en 2021.
   titre.en: Guyana Mayotte scale
   titre.fr: barème Guyane Mayotte
 impôt . taux personnalisé:
