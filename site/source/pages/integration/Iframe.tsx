@@ -7,7 +7,8 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { HexColorPicker } from 'react-colorful'
 import { Trans, useTranslation } from 'react-i18next'
 import { useHref, useSearchParams } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
@@ -17,8 +18,6 @@ import './iframe.css'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
-
-const LazyColorPicker = lazy(() => import('../Dev/ColorPicker'))
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
@@ -49,7 +48,7 @@ function IntegrationCustomizer() {
 		setSearchParams({ module: currentModule }, { replace: true })
 	}, [currentModule, setSearchParams])
 
-	const [color, setColor] = useState<string | undefined>()
+	const [color, setColor] = useState<string>('#005aa1')
 
 	const currentSimulator = getFromSimu(simulatorsData, currentModule)
 
@@ -128,9 +127,7 @@ function IntegrationCustomizer() {
 						<Trans i18nKey="pages.développeur.couleur">Quelle couleur ? </Trans>
 						<Emoji emoji="🎨" />
 					</H3>
-					<Suspense fallback={<div>Chargement...</div>}>
-						<LazyColorPicker color={color} onChange={setColor} />
-					</Suspense>
+					<HexColorPicker color={color} onChange={setColor} />
 				</Grid>
 				<Grid item xs>
 					<H3>
