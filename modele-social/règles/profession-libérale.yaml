@@ -1176,7 +1176,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
         produit:
           assiette: assiette des cotisations
           plafond: 3.5 * plafond sécurité sociale temps plein
-          taux: 9.80%
+          taux: 10%
   unité: €/an
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
@@ -1228,7 +1228,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     valeur:
       nom: assiette
       somme:
-        - 5325 €/an
+        - 5136 €/an
         - produit:
             assiette: PAMC . revenus activité conventionnée
             plafond: 5 * plafond sécurité sociale temps plein
@@ -1237,7 +1237,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     abattement: participation CPAM
     arrondi: oui
   références:
-    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
+    Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre: Participation CPAM aux allocations supplémentaires de vieillesse
