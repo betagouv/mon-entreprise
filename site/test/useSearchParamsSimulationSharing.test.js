@@ -48,7 +48,7 @@ rule without:
 				).toString()
 			)
 		})
-		it.skip('builds search params with object', () => {
+		it('builds search params with object', () => {
 			expect(
 				getSearchParamsFromSituation(
 					engine,
