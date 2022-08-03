@@ -1,6 +1,6 @@
 .env
-source/data/*
-!source/data/versement-mobilité.json
+source/public/data/*
+!source/public/data/versement-mobilité.json
 cypress/videos
 cypress/screenshots
 cypress/downloads

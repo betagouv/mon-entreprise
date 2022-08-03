@@ -1,4 +1,4 @@
-import { determinant, hideNewsBanner } from '@/components/layout/NewsBanner'
+import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Emoji from '@/components/utils/Emoji'
 import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
@@ -10,7 +10,8 @@ import { Container, Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { GenericButtonOrLinkProps, Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useFetchData } from '@/hooks/useFetchData'
+import { useContext, useMemo } from 'react'
 import { Navigate, useMatch, useNavigate } from 'react-router-dom-v5-compat'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -22,31 +23,21 @@ type ReleasesData = Array<{
 	description: string
 }>
 
+type Releases = typeof import('@/public/data/releases.json')
+
 export default function Nouveautés() {
-	// The release.json file may be big, we don't want to include it in the main
-	// bundle, that's why we only fetch it on this page.
-	const [data, setData] = useState<ReleasesData>([])
-	useEffect(() => {
-		import('@/data/releases.json')
-			.then(({ default: data }) => {
-				setData(data)
-			})
-			.catch((err) =>
-				// eslint-disable-next-line no-console
-				console.error(err)
-			)
-	}, [])
+	const { data } = useFetchData<Releases>('/data/releases.json')
 	const navigate = useNavigate()
 	const sitePaths = useContext(SitePathsContext)
 	const slug = useMatch(`${sitePaths.nouveautés}/:slug`)?.params?.slug
-	useEffect(hideNewsBanner, [])
+	useHideNewsBanner()
 
 	const releasesWithId = useMemo(
-		() => data && data.map((v, id) => ({ ...v, id })),
+		() => (data && data.map((v, id) => ({ ...v, id }))) ?? [],
 		[data]
 	)
 
-	if (data.length === 0) {
+	if (!data?.length) {
 		return null
 	}
 

@@ -2,11 +2,12 @@ import PagesChart from '@/components/charts/PagesCharts'
 import InfoBulle from '@/components/ui/InfoBulle'
 import Emoji from '@/components/utils/Emoji'
 import { useScrollToHash } from '@/components/utils/markdown'
-import statsJson from '@/data/stats.json'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Item, Select } from '@/design-system/field/Select'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { useFetchData } from '@/hooks/useFetchData'
 import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -24,15 +25,8 @@ import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
 
-const stats = statsJson as unknown as StatsStruct
-
 type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM'
-
-const chapters2: Chapter2[] = [
-	...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
-	'PAM',
-]
 
 type Pageish = Page | PageSatisfaction
 
@@ -116,7 +110,11 @@ interface BrushStartEndIndex {
 	endIndex?: number
 }
 
-const StatsDetail = () => {
+interface StatsDetailProps {
+	stats: StatsStruct
+}
+
+const StatsDetail = ({ stats }: StatsDetailProps) => {
 	const defaultPeriod = 'mois'
 	const [searchParams, setSearchParams] = useSearchParams()
 	useScrollToHash()
@@ -184,6 +182,11 @@ const StatsDetail = () => {
 		() => computeTotals(slicedVisits),
 		[slicedVisits]
 	)
+
+	const chapters2: Chapter2[] = [
+		...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
+		'PAM',
+	]
 
 	return (
 		<>
@@ -306,17 +309,21 @@ const Indicators = styled.div`
 `
 
 export default function Stats() {
-	const statsAvailable = stats.visitesMois !== undefined
+	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
+
+	const statsAvailable = stats?.visitesMois != null
 
 	return (
 		<>
 			{statsAvailable ? (
 				<>
-					<StatsDetail />
+					<StatsDetail stats={stats} />
 					<GlobalStats stats={stats} />
 				</>
+			) : loading ? (
+				<Intro>Chargement des statistiques...</Intro>
 			) : (
-				<p>Statistiques indisponibles.</p>
+				<Body>Statistiques indisponibles.</Body>
 			)}
 
 			<DemandeUtilisateurs />

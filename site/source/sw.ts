@@ -36,6 +36,24 @@ const HOUR = 60 * 60
 const DAY = HOUR * 24
 const YEAR = DAY * 365
 
+const networkFirstJS = new Route(
+	({ sameOrigin, url }) => {
+		return sameOrigin && /assets\/.*\.js$/.test(url.pathname)
+	},
+	new NetworkFirst({
+		cacheName: 'js-cache',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 30 * DAY,
+				maxEntries: 40,
+			}),
+		],
+		fetchOptions: {},
+	})
+)
+
+registerRoute(networkFirstJS)
+
 const staleWhileRevalidate = new Route(
 	({ request, sameOrigin, url }) => {
 		return (
@@ -77,11 +95,12 @@ registerRoute(networkFirstPolyfill)
 const networkFirstAPI = new Route(
 	({ sameOrigin, url }) => {
 		return (
-			!sameOrigin &&
-			[
-				'api.recherche-entreprises.fabrique.social.gouv.fr',
-				'geo.api.gouv.fr',
-			].includes(url.hostname)
+			(!sameOrigin &&
+				[
+					'api.recherche-entreprises.fabrique.social.gouv.fr',
+					'geo.api.gouv.fr',
+				].includes(url.hostname)) ||
+			(sameOrigin && /data\/.*\.json$/.test(url.pathname))
 		)
 	},
 	new NetworkFirst({

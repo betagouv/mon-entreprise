@@ -29,6 +29,7 @@
 		"test/**/*.ts",
 		"vite.config.ts",
 		"vite-iframe-script.config.ts",
-		"prerender.ts"
+		"prerender.ts",
+		"vite-pwa-options.ts"
 	]
 }

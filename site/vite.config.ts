@@ -11,6 +11,7 @@ import { defineConfig, loadEnv, Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
 import { runScriptOnFileChange } from './scripts/runScriptOnFileChange'
+import { pwaOptions } from './vite-pwa-options'
 
 const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
@@ -21,7 +22,18 @@ export default defineConfig(({ command, mode }) => ({
 	},
 	publicDir: 'source/public',
 	build: {
-		sourcemap: true,
+		sourcemap: !true,
+		rollupOptions: {
+			output: {
+				chunkFileNames: (chunkInfo) => {
+					if (chunkInfo.isDynamicEntry) {
+						return 'assets/lazy_[name].[hash].js'
+					}
+
+					return 'assets/[name].[hash].js'
+				},
+			},
+		},
 	},
 	plugins: [
 		{
@@ -54,7 +66,7 @@ export default defineConfig(({ command, mode }) => ({
 						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
 					description:
 						'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-					shareImage: 'https://mon-entreprise.urssaf.fr/logo-share.png',
+					shareImage: '/logo-share.png',
 				},
 				infrance: {
 					lang: 'en',
@@ -63,48 +75,11 @@ export default defineConfig(({ command, mode }) => ({
 						'My company in France: A step-by-step guide to start a business in France',
 					description:
 						'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
-					shareImage:
-						'https://mon-entreprise.urssaf.fr/logo-mycompany-share.png',
+					shareImage: '/logo-mycompany-share.png',
 				},
 			},
 		}),
-		VitePWA({
-			registerType: 'prompt',
-			strategies: 'injectManifest',
-			srcDir: 'source',
-			filename: 'sw.ts',
-			injectManifest: {
-				maximumFileSizeToCacheInBytes: 3000000,
-			},
-			includeAssets: [
-				'logo-*.png',
-				'fonts/*.{woff,woff2}',
-				'références-images/*.{jpg,png,svg}',
-			],
-			manifest: {
-				start_url: '/',
-				name: 'Mon entreprise',
-				short_name: 'Mon entreprise',
-				description: "L'assistant officiel du créateur d'entreprise",
-				lang: 'fr',
-				orientation: 'portrait-primary',
-				display: 'minimal-ui',
-				theme_color: '#2975d1',
-				background_color: '#ffffff',
-				icons: [
-					{
-						src: '/favicon/android-chrome-192x192-shadow.png?v=2.0',
-						sizes: '192x192',
-						type: 'image/png',
-					},
-					{
-						src: '/favicon/android-chrome-512x512-shadow.png?v=2.0',
-						sizes: '512x512',
-						type: 'image/png',
-					},
-				],
-			},
-		}),
+		VitePWA(pwaOptions),
 		legacy({
 			targets: ['defaults', 'not IE 11'],
 		}),
@@ -227,6 +202,7 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 				config.build = {
 					...config.build,
 					rollupOptions: {
+						...config.build?.rollupOptions,
 						input: Object.fromEntries(
 							Object.keys(options.sites).map((name) => [
 								name,

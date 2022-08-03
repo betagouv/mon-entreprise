@@ -2,11 +2,14 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useFetchData } from '@/hooks/useFetchData'
 import { useState } from 'react'
 import styled from 'styled-components'
-import stats from '@/data/stats.json'
+import { StatsStruct } from './types'
 
 export default function DemandeUtilisateurs() {
+	const { data: stats } = useFetchData<StatsStruct>('/data/stats.json')
+
 	return (
 		<section>
 			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
@@ -22,10 +25,10 @@ export default function DemandeUtilisateurs() {
 			</Body>
 
 			<H3>En attente d'implémentation</H3>
-			<Pagination items={stats.retoursUtilisateurs.open} />
+			<Pagination items={stats?.retoursUtilisateurs.open ?? []} />
 
 			<H3>Réalisées</H3>
-			<Pagination items={stats.retoursUtilisateurs.closed} />
+			<Pagination items={stats?.retoursUtilisateurs.closed ?? []} />
 		</section>
 	)
 }
