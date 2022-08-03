@@ -15,7 +15,7 @@ export function AnnuaireEntreprises() {
 					'gérer.ressources.annuaire-entreprises.title',
 					'Voir vos données publiques'
 				)}
-				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siren}`}
+				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siren}?mtm_campaign=mon-entreprise`}
 				ctaLabel={t(
 					'gérer.ressources.annuaire-entreprises.cta',
 					'Visiter le site'
