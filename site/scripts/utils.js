@@ -7,6 +7,7 @@ const dataDir = join(
 	'..',
 	'..',
 	'source',
+	'public',
 	'data'
 )
 

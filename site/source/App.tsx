@@ -15,8 +15,10 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { ErrorBoundary } from '@sentry/react'
+import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
-import { StrictMode, useContext, useMemo } from 'react'
+import { ComponentProps, StrictMode, useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -34,6 +36,7 @@ import Iframes from './pages/Iframes'
 import Integration from './pages/integration/index'
 import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautes/Nouveautes'
+import Offline from './pages/Offline'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
@@ -106,6 +109,14 @@ const Router = () => {
 	)
 }
 
+const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
+	if (error.message.includes('Failed to fetch dynamically imported module')) {
+		return <Offline />
+	} else {
+		throw error
+	}
+}
+
 const App = () => {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
@@ -119,32 +130,35 @@ const App = () => {
 			/>
 
 			<Container>
-				{/* Passing location down to prevent update blocking */}
-				<Switch>
-					<Route path={sitePaths.créer.index} component={Créer} />
-					<Route path={sitePaths.gérer.index} component={Gérer} />
-					<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
-					<Route
-						path={sitePaths.documentation.index}
-						component={Documentation}
-					/>
-					<Route path={sitePaths.développeur.index} component={Integration} />
-					<Route path={sitePaths.nouveautés} component={Nouveautés} />
-					<CompatRoute path={sitePaths.stats} component={Stats} />
-					<Route path={sitePaths.budget} component={Budget} />
-					<Route path={sitePaths.accessibilité} component={Accessibilité} />
+				<ErrorBoundary fallback={CatchOffline}>
+					{/* Passing location down to prevent update blocking */}
+					<Switch>
+						<Route path={sitePaths.créer.index} component={Créer} />
+						<Route path={sitePaths.gérer.index} component={Gérer} />
+						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
+						<Route
+							path={sitePaths.documentation.index}
+							component={Documentation}
+						/>
+						<Route path={sitePaths.développeur.index} component={Integration} />
+						<Route path={sitePaths.nouveautés} component={Nouveautés} />
+						<CompatRoute path={sitePaths.stats} component={Stats} />
+						<Route path={sitePaths.budget} component={Budget} />
+						<Route path={sitePaths.accessibilité} component={Accessibilité} />
 
-					<Route
-						exact
-						path="/dev/integration-test"
-						component={IntegrationTest}
-					/>
-					<Route exact path="/dev/personas" component={Personas} />
+						<Route
+							exact
+							path="/dev/integration-test"
+							component={IntegrationTest}
+						/>
+						<Route exact path="/dev/personas" component={Personas} />
 
-					<Route component={Route404} />
-				</Switch>
-				<Spacing xxl />
+						<Route component={Route404} />
+					</Switch>
+					<Spacing xxl />
+				</ErrorBoundary>
 			</Container>
+
 			{!isEmbedded && <Footer />}
 		</StyledLayout>
 	)

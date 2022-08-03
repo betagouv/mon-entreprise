@@ -1,12 +1,12 @@
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { SitePathsContext } from '@/components/utils/SitePathsContext'
-import jobOffers from '@/data/job-offers.json'
 import { Banner, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
+import { useFetchData } from '@/hooks/useFetchData'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { Routes, Route, useLocation } from 'react-router-dom-v5-compat'
+import { Route, Routes, useLocation } from 'react-router-dom-v5-compat'
 import { TrackChapter } from '../../ATInternetTracking'
 import API from './API'
 import Iframe from './Iframe'
@@ -23,7 +23,8 @@ type JobOffer = {
 export default function Integration() {
 	const sitePaths = useContext(SitePathsContext)
 	const { pathname } = useLocation()
-	const openJobOffer = (jobOffers as Array<JobOffer>)[0]
+	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
+	const openJobOffer = jobOffers?.[0]
 
 	return (
 		<TrackChapter chapter1="integration">

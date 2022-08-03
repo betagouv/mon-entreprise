@@ -96,7 +96,15 @@ async function tauxVersementTransport(
 		codeCommune = '132' + commune.codePostal.slice(-2)
 	}
 	// 2. On récupère le versement transport associé
-	const json = (await import('@/data/versement-mobilité.json')).default
+	const response = await fetch('/data/versement-mobilité.json')
+	if (!response.ok) {
+		// eslint-disable-next-line no-console
+		console.error(response)
+
+		return 0
+	}
+	const json =
+		(await response.json()) as typeof import('@/public/data/versement-mobilité.json')
 
 	return json[codeCommune as keyof typeof json] ?? 0
 }
