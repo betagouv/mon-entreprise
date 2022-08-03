@@ -22,7 +22,7 @@ export default defineConfig(({ command, mode }) => ({
 	},
 	publicDir: 'source/public',
 	build: {
-		sourcemap: !true,
+		sourcemap: true,
 		rollupOptions: {
 			output: {
 				chunkFileNames: (chunkInfo) => {
