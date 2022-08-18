@@ -27,7 +27,7 @@ type ClickHit = {
 
 export interface ATTracker {
 	setProp(prop: 'env_language', value: 'fr' | 'en', persistant: true): void
-	setProp(prop: 'simulateur_embarque', value: 1 | 0, persistant: true): void
+	setProp(prop: 'n:simulateur_embarque', value: 1 | 0, persistant: true): void
 	setProp(
 		prop: 'evenement_type',
 		value: 'telechargement',
@@ -91,7 +91,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 
 			this.setProp('env_language', options.language, true)
 			this.setProp(
-				'simulateur_embarque',
+				'n:simulateur_embarque',
 				document.location.pathname.includes('/iframes/') ? 1 : 0,
 				true
 			)
