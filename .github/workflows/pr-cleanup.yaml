@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy-context:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     outputs:
       env-name: ${{ steps.deploy-env.outputs.name }}
     steps:
@@ -14,7 +14,7 @@ jobs:
 
   algolia-rm-temp-index:
     needs: deploy-context
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
