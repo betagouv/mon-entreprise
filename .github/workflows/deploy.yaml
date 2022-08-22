@@ -18,7 +18,7 @@ on:
 
 jobs:
   deploy-context:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     outputs:
       env-name: ${{ steps.deploy-env.outputs.name }}
       api_url: ${{ steps.base-urls.outputs.api }}
@@ -39,7 +39,7 @@ jobs:
       API_BASE_URL: ${{ needs.deploy-context.outputs.api_url }}
       VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
@@ -89,7 +89,7 @@ jobs:
     env:
       VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
@@ -109,7 +109,7 @@ jobs:
           if-no-files-found: error
 
   build-api:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
@@ -124,7 +124,7 @@ jobs:
 
   deploy-preview:
     needs: [build, build-storybook, deploy-context]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     if: needs.deploy-context.outputs.env-name != 'master'
     strategy:
       matrix:
@@ -160,7 +160,7 @@ jobs:
 
   deploy-prod:
     needs: [build, build-storybook, deploy-context]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
       - uses: actions/checkout@v3
@@ -188,7 +188,7 @@ jobs:
         timeout-minutes: 1
 
   post-comment:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     if: github.event_name == 'pull_request'
     needs: [deploy-preview, deploy-context]
     steps:
@@ -217,7 +217,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-preview.result == 'success'
     needs: [deploy-context, deploy-preview]
@@ -285,7 +285,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-prod.result == 'success'
     needs: [deploy-context, deploy-prod]
