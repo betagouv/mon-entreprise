@@ -24611,7 +24611,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.43.1, rollup@npm:^2.59.0, rollup@npm:^2.75.5":
+"rollup@npm:^2.43.1, rollup@npm:^2.59.0":
   version: 2.75.7
   resolution: "rollup@npm:2.75.7"
   dependencies:
@@ -24622,6 +24622,20 @@ __metadata:
   bin:
     rollup: dist/bin/rollup
   checksum: a6331d46b01062b184efdcb42ce12caf2e1575f989963944534b02f5855f6f3bc239ed0c1a18893572d7695af6d83166f3aef59dbd0365084e1531cb67824674
+  languageName: node
+  linkType: hard
+
+"rollup@npm:^2.75.7":
+  version: 2.78.1
+  resolution: "rollup@npm:2.78.1"
+  dependencies:
+    fsevents: ~2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    rollup: dist/bin/rollup
+  checksum: 9034814383ca5bdb4bea6d499270aeb31cdb0bb884f81b0c6a1d19c63cc973f040e6ee09b7af8a7169dd231c090f4b44ef8b99c4bfdf884aceeb3dcefb8cfa14
   languageName: node
   linkType: hard
 
@@ -25212,7 +25226,7 @@ __metadata:
     ts-node: ^10.8.0
     typescript: ^4.7.2
     vite: ^2.9.13
-    vite-plugin-pwa: ^0.12.2
+    vite-plugin-pwa: ^0.12.3
     vite-plugin-shim-react-pdf: ^1.0.5
     vitest: ^0.9.4
     whatwg-fetch: ^3.0.0
@@ -27849,21 +27863,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.12.2":
-  version: 0.12.2
-  resolution: "vite-plugin-pwa@npm:0.12.2"
+"vite-plugin-pwa@npm:^0.12.3":
+  version: 0.12.3
+  resolution: "vite-plugin-pwa@npm:0.12.3"
   dependencies:
     debug: ^4.3.4
     fast-glob: ^3.2.11
     pretty-bytes: ^6.0.0
-    rollup: ^2.75.5
+    rollup: ^2.75.7
     workbox-build: ^6.5.3
     workbox-window: ^6.5.3
   peerDependencies:
     vite: ^2.0.0 || ^3.0.0-0
     workbox-build: ^6.4.0
     workbox-window: ^6.4.0
-  checksum: 4bddb8d9dff2ff777adeef864ea5f3145a9c14807a6912f1d6aaa17c785724f84100ec4a7a55c1e9bd8644d42b6707f49faa6c1070d47800e4383013cc34716f
+  checksum: 95cb06de0f4f9025462423fbaa7839f0197616082276d3ec4fd57fa3cc3b2bf47347a186c964594f18e230b2f07fcd18a065fc98f3b7be9a8980c3ca5abfe513
   languageName: node
   linkType: hard
 

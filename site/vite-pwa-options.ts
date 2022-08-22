@@ -1,6 +1,7 @@
 import { Options } from 'vite-plugin-pwa'
 
 export const pwaOptions: Partial<Options> = {
+	selfDestroying: true, // Unregister PWA
 	registerType: 'prompt',
 	strategies: 'injectManifest',
 	srcDir: 'source',
