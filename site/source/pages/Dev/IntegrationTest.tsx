@@ -1,9 +1,8 @@
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { HexColorPicker } from 'react-colorful'
 import useSimulatorsData from '../Simulateurs/metadata'
-
-const LazyColorPicker = lazy(() => import('./ColorPicker'))
 
 export default function IntegrationTest() {
 	const simulators = useSimulatorsData()
@@ -43,9 +42,7 @@ export default function IntegrationTest() {
 			</select>
 
 			<H2>Quelle couleur ?</H2>
-			<Suspense fallback={<div>Chargement...</div>}>
-				<LazyColorPicker color={color} onChange={setColor} />
-			</Suspense>
+			<HexColorPicker color={color} onChange={setColor} />
 
 			<Button onPress={() => setVersion(version + 1)}>
 				{!version ? 'Visualiser le module' : 'Valider les changements'}
