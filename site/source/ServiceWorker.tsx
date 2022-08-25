@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
@@ -36,35 +37,57 @@ const StyledHideButton = styled.div`
 	right: 0.375rem;
 `
 
+const pwaPromptDelayKey = 'update-pwa-prompt-delay'
+
 export const ServiceWorker = () => {
 	const { t } = useTranslation()
+	const [showPrompt, setShowPrompt] = useState(false)
 
 	const {
-		offlineReady: [offlineReady, setOfflineReady],
 		needRefresh: [needRefresh, setNeedRefresh],
 		updateServiceWorker,
 	} = useRegisterSW({
+		immediate: true,
 		onRegistered: (r) => {
 			// eslint-disable-next-line no-console
 			console.log('=> SW Registered: ', r)
+
+			// If no service worker is waiting, delete the old prompt delay
+			if (!r?.waiting) {
+				removeItem(pwaPromptDelayKey)
+			}
 		},
+
+		onNeedRefresh() {
+			const promptDelay = parseInt(getItem(pwaPromptDelayKey) ?? '0')
+
+			// If we need a refresh and there is no prompt delay, create one in 3 days
+			if (promptDelay === 0) {
+				setItem(
+					pwaPromptDelayKey,
+					(Date.now() + 3 * 24 * 60 * 60 * 1000).toString()
+				)
+			}
+			// If we need a refresh and the prompt delay has passed, show the prompt
+			if (promptDelay > 0 && promptDelay < Date.now()) {
+				setShowPrompt(true)
+			}
+		},
+
+		onOfflineReady() {
+			// eslint-disable-next-line no-console
+			console.log('App is ready to work offline.')
+		},
+
 		onRegisterError: (error) => {
 			// eslint-disable-next-line no-console
 			console.log('SW registration error', error)
 		},
 	})
 
-	useEffect(() => {
-		if (offlineReady) {
-			setOfflineReady(false)
-			// eslint-disable-next-line no-console
-			console.log('App is ready to work offline.')
-		}
-	}, [offlineReady, setOfflineReady])
-
 	return (
 		<PromptContainer>
-			{needRefresh && (
+			{needRefresh && showPrompt && (
 				<StyledMessage type="info">
 					<StyledSmallBody>
 						<Trans>
