@@ -46,7 +46,6 @@ offlineFallback({
 setDefaultHandler(
 	new NetworkFirst({
 		cacheName: 'default-network-first',
-		networkTimeoutSeconds: 1,
 		plugins: [
 			new ExpirationPlugin({
 				maxAgeSeconds: 3 * MONTH,
