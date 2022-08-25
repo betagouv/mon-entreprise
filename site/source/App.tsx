@@ -97,7 +97,7 @@ const Router = () => {
 }
 
 const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
-	if (error.message.includes('Failed to fetch dynamically imported module')) {
+	if (error.message.includes('dynamically imported module')) {
 		return <Offline />
 	} else {
 		throw error
