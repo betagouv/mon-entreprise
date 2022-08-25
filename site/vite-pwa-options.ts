@@ -1,7 +1,7 @@
 import { Options } from 'vite-plugin-pwa'
 
 export const pwaOptions: Partial<Options> = {
-	selfDestroying: true, // Unregister PWA
+	// selfDestroying: true, // Unregister PWA
 	registerType: 'prompt',
 	strategies: 'injectManifest',
 	srcDir: 'source',
@@ -11,18 +11,18 @@ export const pwaOptions: Partial<Options> = {
 		manifestTransforms: [
 			(entries) => {
 				const manifest = entries.filter(
-					(entry) => !/assets\/.*(-legacy|lazy_)/.test(entry.url)
+					(entry) =>
+						!/assets\/.*(-legacy|lazy_)/.test(entry.url) &&
+						(entry.url.endsWith('.html')
+							? /(infrance|mon-entreprise)\.html/.test(entry.url)
+							: true)
 				)
 
 				return { manifest }
 			},
 		],
 	},
-	includeAssets: [
-		'logo-*.png',
-		'fonts/*.{woff,woff2}',
-		'références-images/*.{jpg,png,svg}',
-	],
+	includeAssets: ['logo-*.png'],
 	manifest: {
 		start_url: '/',
 		name: 'Mon entreprise',

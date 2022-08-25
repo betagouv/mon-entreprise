@@ -1,13 +1,15 @@
 import { ExpirationPlugin } from 'workbox-expiration'
-import {
-	cleanupOutdatedCaches,
-	createHandlerBoundToURL,
-	precacheAndRoute,
-} from 'workbox-precaching'
-import { NavigationRoute, registerRoute, Route } from 'workbox-routing'
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
+import { offlineFallback } from 'workbox-recipes'
+import { registerRoute, Route, setDefaultHandler } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 
 declare let self: ServiceWorkerGlobalScope
+
+const HOUR = 60 * 60
+const DAY = 24 * HOUR
+const YEAR = 365 * DAY
+const MONTH = YEAR / 12
 
 self.addEventListener('message', (event) => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -18,23 +20,41 @@ self.addEventListener('message', (event) => {
 
 cleanupOutdatedCaches()
 
-precacheAndRoute(self.__WB_MANIFEST)
-
-// Allow work offline
-registerRoute(
-	new NavigationRoute(
-		createHandlerBoundToURL(
+// Filter EN files on the FR app and vice versa
+const precache = self.__WB_MANIFEST.filter(
+	(entry) =>
+		typeof entry !== 'string' &&
+		!entry.url.includes(
 			location.href.startsWith(import.meta.env.VITE_FR_BASE_URL)
-				? 'mon-entreprise.html'
-				: 'infrance.html'
-		),
-		{ denylist: [/^\/api\/.*/, /^\/twemoji\/.*/, /^\/dev\/storybook\/.*/] }
-	)
+				? 'infrance'
+				: 'mon-entreprise'
+		)
 )
 
-const HOUR = 60 * 60
-const DAY = HOUR * 24
-const YEAR = DAY * 365
+precacheAndRoute(precache)
+
+// Allow work offline
+offlineFallback({
+	// When the user is offline and loads a page that is not cached, we return the French/English index file.
+	pageFallback: location.href.startsWith(import.meta.env.VITE_FR_BASE_URL)
+		? '/mon-entreprise.html'
+		: '/infrance.html',
+})
+
+// Set the default handler with network first so that every requests (css, js, html, image, etc.)
+// goes through the service worker and will be cache
+setDefaultHandler(
+	new NetworkFirst({
+		cacheName: 'default-network-first',
+		networkTimeoutSeconds: 1,
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 3 * MONTH,
+				maxEntries: 40,
+			}),
+		],
+	})
+)
 
 const networkFirstJS = new Route(
 	({ sameOrigin, url }) => {
@@ -44,11 +64,10 @@ const networkFirstJS = new Route(
 		cacheName: 'js-cache',
 		plugins: [
 			new ExpirationPlugin({
-				maxAgeSeconds: 30 * DAY,
+				maxAgeSeconds: 1 * MONTH,
 				maxEntries: 40,
 			}),
 		],
-		fetchOptions: {},
 	})
 )
 
@@ -58,11 +77,13 @@ const staleWhileRevalidate = new Route(
 	({ request, sameOrigin, url }) => {
 		return (
 			sameOrigin &&
-			(url.pathname.startsWith('/twemoji/') || request.destination === 'image')
+			(url.pathname.startsWith('/twemoji/') ||
+				request.destination === 'image' ||
+				request.destination === 'font')
 		)
 	},
 	new StaleWhileRevalidate({
-		cacheName: 'images',
+		cacheName: 'media',
 		plugins: [
 			new ExpirationPlugin({
 				maxAgeSeconds: 1 * YEAR,
@@ -83,7 +104,7 @@ const networkFirstPolyfill = new Route(
 		cacheName: 'external-polyfill',
 		plugins: [
 			new ExpirationPlugin({
-				maxAgeSeconds: 1 * YEAR,
+				maxAgeSeconds: 3 * MONTH,
 				maxEntries: 5,
 			}),
 		],
