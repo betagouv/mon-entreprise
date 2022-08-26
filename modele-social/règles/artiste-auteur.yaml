@@ -79,13 +79,20 @@ artiste-auteur . cotisations . option surcotisation:
     de vos droits sociaux. Vous pouvez choisir de surcotiser sur l'année entière
     pour augmenter vos droits.
 
-    Dans ce cas, vos cotisations vieillesse seront calculées sur la base de 900 Smic
+    Dans ce cas, vos cotisations vieillesse seront calculées sur la base de 600 Smic
     horaire dans l’année.
   par défaut: non
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
-artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
+artiste-auteur . cotisations . assiette surcotisation:
+  produit:
+    assiette: SMIC horaire
+    facteur:
+      variations:
+        - si: date >= 01/01/2019
+          alors: 600 heures/an * SMIC horaire
+        - sinon: 900 heures/an * SMIC horaire
 
 artiste-auteur . cotisations . avertissement trimestres retraite:
   type: notification
