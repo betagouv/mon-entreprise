@@ -59,13 +59,17 @@ function IntegrationCustomizer() {
 		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
-	const iframeSrc = useHref(`/iframes/${currentIframePath}?iframe`)
+	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
 
 	useEffect(() => {
 		window.addEventListener(
 			'message',
 			function (evt: MessageEvent<{ kind: string; value: string }>) {
-				if (iframeRef.current && evt.data.kind === 'resize-height') {
+				if (
+					iframeRef.current &&
+					evt.data.kind === 'resize-height' &&
+					iframeRef.current.contentDocument?.readyState === 'complete'
+				) {
 					iframeRef.current.style.height = evt.data.value + 'px'
 				}
 			}

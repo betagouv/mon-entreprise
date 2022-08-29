@@ -25,7 +25,7 @@ export default function Iframes() {
 							s.iframePath && (
 								<Route
 									key={s.iframePath}
-									path={s.iframePath + '/*'}
+									path={'/' + encodeURI(s.iframePath) + '/*'}
 									element={
 										<>
 											<Helmet>

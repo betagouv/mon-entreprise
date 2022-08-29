@@ -171,7 +171,8 @@ export function SimulateurCard({
 					<SmallCard
 						icon={<Emoji emoji={icône} />}
 						to={{
-							pathname: (isIframe && `/iframes/${iframePath ?? ''}`) || path,
+							pathname:
+								(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 						}}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						title={

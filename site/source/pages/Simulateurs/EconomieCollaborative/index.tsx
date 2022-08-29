@@ -16,7 +16,7 @@ export default function ÉconomieCollaborative() {
 	const iframePath =
 		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()
-		? `/iframes/${iframePath}`
+		? encodeURI(`/iframes/${iframePath}`)
 		: économieCollaborative.index
 
 	return (
