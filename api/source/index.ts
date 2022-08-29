@@ -6,6 +6,7 @@ import rules from 'modele-social'
 import Engine from 'publicodes'
 import { catchErrors } from './errors.js'
 import openapi from './openapi.json' assert { type: 'json' }
+import { rateLimiterMiddleware } from './rate-limiter.js'
 import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
 import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
@@ -17,6 +18,8 @@ const app = new Koa<State, Context>()
 const router = new Router<State, Context>()
 
 if (process.env.NODE_ENV === 'production') {
+	app.proxy = true // Trust X-Forwarded-For proxy header
+
 	app.use(requestHandler)
 	app.use(tracingMiddleWare)
 
@@ -33,6 +36,8 @@ if (process.env.NODE_ENV === 'production') {
 app.use(catchErrors())
 
 app.use(cors())
+
+app.use(rateLimiterMiddleware)
 
 const apiRoutes = publicodesAPI(new Engine(rules))
 
