@@ -33,12 +33,14 @@
 		"@publicodes/api": "^1.0.0-beta.46",
 		"@sentry/node": "^7.1.1",
 		"@sentry/tracing": "^7.1.1",
+		"ioredis": "^5.2.3",
 		"koa": "^2.13.4",
 		"koa-body": "^5.0.0",
 		"koa-static": "^5.0.0",
 		"modele-social": "workspace:^",
 		"nodemon": "^2.0.16",
 		"publicodes": "^1.0.0-beta.46",
+		"rate-limiter-flexible": "^2.3.8",
 		"swagger-ui-dist": "^4.11.1"
 	},
 	"devDependencies": {
