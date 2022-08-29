@@ -170,7 +170,9 @@ export function SimulateurCard({
 				<Grid item xs={12} sm={6} md={6} lg={4}>
 					<SmallCard
 						icon={<Emoji emoji={icône} />}
-						to={{ pathname: (isIframe && iframePath) || path }}
+						to={{
+							pathname: (isIframe && `/iframes/${iframePath ?? ''}`) || path,
+						}}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						title={
 							<h4>
