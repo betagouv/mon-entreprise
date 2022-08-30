@@ -1,10 +1,22 @@
 import { useEffect } from 'react'
 
+function isIframe() {
+	try {
+		return window.self !== window.top
+	} catch (e) {
+		return true
+	}
+}
+
 export function useIframeResizer() {
 	useEffect(() => {
 		// The code below communicate with the iframe.js script on a host site
 		// to automatically resize the iframe when its inner content height
 		// change.
+
+		if (!isIframe()) {
+			return
+		}
 
 		const minHeight = 700 // Also used in iframe.js
 		const observer = new ResizeObserver(([entry]) => {
