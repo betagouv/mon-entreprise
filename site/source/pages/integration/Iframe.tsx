@@ -65,11 +65,7 @@ function IntegrationCustomizer() {
 		window.addEventListener(
 			'message',
 			function (evt: MessageEvent<{ kind: string; value: string }>) {
-				if (
-					iframeRef.current &&
-					evt.data.kind === 'resize-height' &&
-					iframeRef.current.contentDocument?.readyState === 'complete'
-				) {
+				if (iframeRef.current && evt.data.kind === 'resize-height') {
 					iframeRef.current.style.height = evt.data.value + 'px'
 				}
 			}
