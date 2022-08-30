@@ -5,6 +5,11 @@ import * as Tracing from '@sentry/tracing'
 import Domains from 'domain'
 import { Context, Next } from 'koa'
 
+const release =
+	(process.env.APP ?? '') +
+	'-' +
+	(process.env.CONTAINER_VERSION ?? '').substring(0, 7)
+
 Sentry.init({
 	dsn: 'https://21ddaba2424b46b4b14185dba51b1288@sentry.incubateur.net/42',
 
@@ -12,10 +17,8 @@ Sentry.init({
 	// of transactions for performance monitoring.
 	// We recommend adjusting this value in production
 	tracesSampleRate: 0.5,
-	release:
-		(process.env.APP ?? '') +
-		'-' +
-		(process.env.CONTAINER_VERSION ?? '').substring(0, 7),
+	release,
+	environment: release.includes('api-pr') ? 'test' : 'production',
 })
 
 export default Sentry
