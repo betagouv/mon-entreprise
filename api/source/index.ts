@@ -37,11 +37,13 @@ app.use(catchErrors())
 
 app.use(cors())
 
-app.use(rateLimiterMiddleware)
+router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
+
+router.use(rateLimiterMiddleware)
 
 const apiRoutes = publicodesAPI(new Engine(rules))
 
-router.use('/api/v1', apiRoutes, docRoutes(), openapiRoutes(openapi))
+router.use('/api/v1', apiRoutes)
 
 app.use(router.routes())
 app.use(router.allowedMethods())
