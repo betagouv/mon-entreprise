@@ -27,4 +27,16 @@ export const useSaveScrollPosition = ({
 		previousPathname.current = location.pathname
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname])
+
+	const removeSessionStorageItem = () => {
+		sessionStorage.removeItem(location.pathname)
+	}
+
+	useEffect(() => {
+		window.addEventListener('beforeunload', removeSessionStorageItem)
+
+		return () => {
+			window.removeEventListener('beforeunload', removeSessionStorageItem)
+		}
+	}, [])
 }
