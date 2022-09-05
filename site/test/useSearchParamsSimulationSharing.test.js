@@ -1,11 +1,12 @@
-import { describe, beforeEach, it, expect, vi } from 'vitest'
-import Engine, { parsePublicodes } from 'publicodes'
 import rules from 'modele-social'
+import Engine, { parsePublicodes } from 'publicodes'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import yaml from 'yaml'
 import {
+	cleanSearchParams,
+	getRulesParamNames,
 	getSearchParamsFromSituation,
 	getSituationFromSearchParams,
-	getRulesParamNames,
-	cleanSearchParams,
 } from '../source/components/utils/useSearchParamsSimulationSharing'
 
 describe('identifiant court', () => {
@@ -25,13 +26,15 @@ describe('identifiant court', () => {
 })
 
 describe('useSearchParamsSimulationSharing', () => {
-	const engine = new Engine(`
+	const engine = new Engine(
+		yaml.parse(`
 rule with:
-	identifiant court: panta
-	formule: 0
+  identifiant court: panta
+  formule: 0
 rule without:
-	formule: 0
-	`)
+  formule: 0
+`)
+	)
 	const dottedNameParamName = getRulesParamNames(engine.getParsedRules())
 
 	describe('getSearchParamsFromSituation', () => {
@@ -90,13 +93,17 @@ rule without:
 })
 
 describe('useSearchParamsSimulationSharing hook', () => {
-	const { parsedRules } = parsePublicodes(`
+	const { parsedRules } = parsePublicodes(
+		yaml.parse(
+			`
 rule with:
-	identifiant court: panta
-	formule: 0
+  identifiant court: panta
+  formule: 0
 rule without:
-	formule: 0
-	`)
+  formule: 0
+`
+		)
+	)
 
 	const dottedNameParamName = getRulesParamNames(parsedRules)
 	let setSearchParams
