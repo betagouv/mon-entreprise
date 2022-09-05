@@ -5,6 +5,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
+import { Accordion } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
@@ -12,7 +13,9 @@ import { Link, StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
+import { Item } from '@react-stately/collections'
 import rules, { DottedName } from 'modele-social'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
 import { ComponentProps, useMemo, useRef } from 'react'
@@ -70,18 +73,52 @@ export default function MonEntrepriseRulePage() {
 	)
 }
 
+const Pre = styled.pre`
+	overflow: auto;
+	padding: 0.5rem;
+	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	border-radius: 0.25rem;
+`
+
+const StyledAccordion = styled(Accordion)`
+	margin: 1.5rem 0;
+
+	${Accordion.StyledTitle} {
+		margin: 0;
+		& span {
+			font-weight: bold;
+		}
+	}
+`
+
+type Renderers = ComponentProps<typeof RulePage>['renderers']
+type AccordionProps = ComponentProps<NonNullable<Renderers['Accordion']>>
+
+const CustomAccordion = ({ items }: AccordionProps) => (
+	<StyledAccordion>
+		{items.map(({ title, id, children }) => (
+			<Item title={title} key={id} hasChildItems={false}>
+				{children}
+			</Item>
+		))}
+	</StyledAccordion>
+)
+
 function DocumentationPageBody() {
 	const engine = useEngine()
 	const { absoluteSitePaths } = useSitePaths()
 	const documentationPath = absoluteSitePaths.documentation.index
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
+	const situation = useSelector(situationSelector)
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
+		Pre,
 		References,
+		Accordion: CustomAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
 
 	return (
@@ -90,6 +127,7 @@ function DocumentationPageBody() {
 				language={i18n.language as 'fr' | 'en'}
 				rulePath={params['*'] ?? ''}
 				engine={engine}
+				situation={situation}
 				documentationPath={documentationPath}
 				renderers={renderers}
 			/>

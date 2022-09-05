@@ -9,9 +9,7 @@ import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
 import chevronImg from './chevron.svg'
 
-export default function Accordion<T extends object>(
-	props: AriaAccordionProps<T>
-) {
+export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
@@ -64,7 +62,10 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 					<ChevronRightMedium aria-hidden="true" $isOpen={isOpen} />
 				</StyledButton>
 			</StyledTitle>
-			<StyledContent {...regionProps} style={animatedStyle}>
+			<StyledContent
+				{...(regionProps as Omit<typeof regionProps, 'css'>)}
+				style={animatedStyle}
+			>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
 		</StyledAccordionItem>
@@ -74,11 +75,13 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 const StyledTitle = styled.h3`
 	margin: 0;
 `
+
 const StyledAccordionItem = styled.div`
 	:not(:first-child) {
 		border-top: 1px solid ${({ theme }) => theme.colors.bases.primary[400]};
 	}
 `
+
 const StyledButton = styled.button`
 	display: flex;
 	width: 100%;
@@ -105,9 +108,12 @@ const StyledButton = styled.button`
 		${FocusStyle}
 	}
 `
-const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<{
+
+interface Chevron {
 	$isOpen: boolean
-}>`
+}
+
+const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 	transition: transform 0.3s;
 	${({ $isOpen }) =>
 		$isOpen &&
@@ -116,9 +122,11 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<{
 		`}
 `
 
-const StyledContent: any = styled(animated.div)`
+const StyledContent = styled(animated.div)`
 	overflow: hidden;
 	> div {
 		margin: ${({ theme }) => theme.spacings.lg};
 	}
 `
+
+Accordion.StyledTitle = StyledTitle

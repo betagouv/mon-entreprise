@@ -66,7 +66,7 @@ const StyledSwitch = styled.span<StyledProps>`
 					? ''
 					: checked
 					? theme.colors.bases.primary[700]
-					: theme.colors.extended.grey[500]}42;
+					: theme.colors.extended.grey[500]}42; // 42 is alpha
 	}
 	${({ disabled, theme }) =>
 		disabled
