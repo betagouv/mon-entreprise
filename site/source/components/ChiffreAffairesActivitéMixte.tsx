@@ -143,6 +143,7 @@ function ActivitéMixte() {
 const StyledActivitéMixteContainer = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		text-align: right;
@@ -150,7 +151,6 @@ const StyledActivitéMixteContainer = styled.div`
 		position: relative;
 		z-index: 2;
 		display: flex;
-		justify-content: flex-end;
 		align-items: center;
 	}
 `
