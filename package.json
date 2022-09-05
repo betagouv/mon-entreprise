@@ -33,7 +33,8 @@
 	},
 	"resolutions": {
 		"@types/download/@types/got": "8.3.1",
-		"publicodes-react": "betagouv/publicodes#head=add-rules-tree-nav&workspace=publicodes-react"
+		"publicodes": "betagouv/publicodes#head=refacto-documentation-for-dev&workspace=publicodes",
+		"publicodes-react": "betagouv/publicodes#head=refacto-documentation-for-dev&workspace=publicodes-react"
 	},
 	"//": "@types/got:^9 is a hack to do a conflict with @types/download/@types/got and fix type error in download package https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/58929",
 	"devDependencies": {
