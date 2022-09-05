@@ -86,4 +86,16 @@ const guidesUrssaf = [
 		associatedRule: 'dirigeant',
 		title: 'Guide Urssaf pour les indépendants',
 	},
+	{
+		url: 'https://www.urssaf.fr/portail/home/employeur/employer-du-personnel/nouvel-employeur.html',
+		title: "Nouvel employeur : l'Urssaf vous accompagne",
+		description:
+			'Vous employez votre premier salarié et vous vous posez des questions sur les démarches à effectuer ? Ce guide est fait pour vous.',
+		associatedRule: {
+			'toutes ces conditions': [
+				'contrat salarié',
+				{ 'est non défini': 'artiste-auteur' },
+			],
+		},
+	},
 ]
