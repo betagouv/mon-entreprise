@@ -23321,26 +23321,26 @@ __metadata:
 
 "publicodes-react@betagouv/publicodes#head=refacto-documentation-for-dev&workspace=publicodes-react":
   version: 1.0.0-beta.48
-  resolution: "publicodes-react@https://github.com/betagouv/publicodes.git#workspace=publicodes-react&commit=6e19191c3405963770f5a0bb3fef26428ba8be82"
+  resolution: "publicodes-react@https://github.com/betagouv/publicodes.git#workspace=publicodes-react&commit=27e8d519d9c6289c0ed9c5a3c129d51736580b16"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: dc64ca8b554297dac87231d37927c8e2323c3ccb8ce1af1ec183da605abe87ca2b6f25bd1e8428119c22a140f25292d09f3c545399a19bc04a13df9eef124967
+  checksum: aecca788981108be06ba370317a4e5d98b895f90d7a23baeca25f65f829e4813b97c5dccc69cba75d4c42953e031cfe3dacefd66512bd462a880e57abd166dd7
   languageName: node
   linkType: hard
 
 "publicodes@betagouv/publicodes#head=refacto-documentation-for-dev&workspace=publicodes":
   version: 1.0.0-beta.48
-  resolution: "publicodes@https://github.com/betagouv/publicodes.git#workspace=publicodes&commit=6e19191c3405963770f5a0bb3fef26428ba8be82"
+  resolution: "publicodes@https://github.com/betagouv/publicodes.git#workspace=publicodes&commit=27e8d519d9c6289c0ed9c5a3c129d51736580b16"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: c9e84e815e55bbea987e77986d280c59bbf6af408e26c676508c5bbd91decbc82944baafc46ee0c5f3a03389cd4ca25b4714eea4c15b0f4f169c7e37b85fc2e3
+  checksum: cc9affbc0a732fd2d91f94fe72315f17118db85749d9ee9f6fcb18119d4accc95982b4652d2b848a26465fa154531c36deebaacc4a7c5007f760c6f2b3b6465e
   languageName: node
   linkType: hard
 
