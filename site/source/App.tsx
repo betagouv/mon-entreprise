@@ -6,21 +6,16 @@ import {
 	engineFactory,
 	EngineProvider,
 	Rules,
-	SituationProvider,
+	useEngine,
+	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
 import { Container, Spacing } from '@/design-system/layout'
-import {
-	companySituationSelector,
-	configSituationSelector,
-	situationSelector,
-} from '@/selectors/simulationSelectors'
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, StrictMode, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
@@ -74,27 +69,16 @@ export default function Root({
 }
 
 const Router = () => {
-	const simulatorSituation = useSelector(situationSelector)
-	const configSituation = useSelector(configSituationSelector)
-	const companySituation = useSelector(companySituationSelector)
+	const engine = useEngine()
 
-	const situation = useMemo(
-		() => ({
-			...companySituation,
-			...configSituation,
-			...simulatorSituation,
-		}),
-		[configSituation, simulatorSituation, companySituation]
-	)
+	useSetupSafeSituation(engine)
 
 	return (
-		<SituationProvider situation={situation}>
-			<Routes>
-				<Route index element={<Landing />} />
-				<Route path="/iframes/*" element={<Iframes />} />
-				<Route path="*" element={<App />} />
-			</Routes>
-		</SituationProvider>
+		<Routes>
+			<Route index element={<Landing />} />
+			<Route path="/iframes/*" element={<Iframes />} />
+			<Route path="*" element={<App />} />
+		</Routes>
 	)
 }
 

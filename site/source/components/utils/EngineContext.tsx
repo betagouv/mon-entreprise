@@ -1,5 +1,9 @@
 import { deleteFromSituation } from '@/actions/actions'
-import { omit } from '@/utils'
+import {
+	companySituationSelector,
+	configSituationSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import Engine, {
 	EvaluatedNode,
@@ -7,8 +11,8 @@ import Engine, {
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext } from 'react'
-import { useDispatch } from 'react-redux'
+import { createContext, useContext, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>
@@ -37,17 +41,26 @@ export function useEngine() {
 	return useContext(EngineContext) as Engine<DottedName>
 }
 
-type SituationProviderProps<Names extends string> = {
-	children: React.ReactNode
-	situation: Partial<Record<Names, PublicodesExpression>>
+export const useRawSituation = () => {
+	const simulatorSituation = useSelector(situationSelector)
+	const configSituation = useSelector(configSituationSelector)
+	const companySituation = useSelector(companySituationSelector)
+
+	const situation: Partial<Record<DottedName, PublicodesExpression>> = useMemo(
+		() => ({
+			...companySituation,
+			...configSituation,
+			...simulatorSituation,
+		}),
+		[configSituation, simulatorSituation, companySituation]
+	)
+
+	return situation
 }
 
-export function SituationProvider<Names extends string = DottedName>({
-	children,
-	situation,
-}: SituationProviderProps<Names>) {
-	const engine = useContext(EngineContext)
+export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	const dispatch = useDispatch()
+	const situation = useRawSituation()
 
 	let loop = true
 	while (loop) {
@@ -72,20 +85,11 @@ export function SituationProvider<Names extends string = DottedName>({
 					error
 				)
 
-				// Hack: Omit faultyDottedName from situation
-				situation = omit(
-					situation,
-					faultyDottedName as Names
-				) as typeof situation
 				// Delete faultyDottedName from redux store
 				dispatch(deleteFromSituation(faultyDottedName as DottedName))
 			}
 		}
 	}
-
-	return (
-		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
-	)
 }
 
 export function useInversionFail() {
