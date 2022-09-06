@@ -1,7 +1,7 @@
 import { References } from '@/components/References'
 import SearchRules from '@/components/search/SearchRules'
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
+import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -13,7 +13,6 @@ import { Link, StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { Item } from '@react-stately/collections'
 import rules, { DottedName } from 'modele-social'
@@ -73,13 +72,6 @@ export default function MonEntrepriseRulePage() {
 	)
 }
 
-const Pre = styled.pre`
-	overflow: auto;
-	padding: 0.5rem;
-	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
-	border-radius: 0.25rem;
-`
-
 const StyledAccordion = styled(Accordion)`
 	margin: 1.5rem 0;
 
@@ -110,13 +102,12 @@ function DocumentationPageBody() {
 	const documentationPath = absoluteSitePaths.documentation.index
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
-	const situation = useSelector(situationSelector)
+	const situation = useRawSituation()
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
-		Pre,
 		References,
 		Accordion: CustomAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
@@ -130,6 +121,8 @@ function DocumentationPageBody() {
 				situation={situation}
 				documentationPath={documentationPath}
 				renderers={renderers}
+				apiDocumentationUrl={absoluteSitePaths.développeur.api}
+				apiExampleUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
 			/>
 		</StyledDocumentation>
 	)
