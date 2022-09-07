@@ -12,7 +12,7 @@ import logo from '@/images/logo-monentreprise.svg'
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
-import { createContext, ReactNode, useLayoutEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -111,7 +111,7 @@ export const CustomRouter = ({ ...props }) => {
 		scrollY: 0,
 	})
 
-	useLayoutEffect(
+	useEffect(
 		() =>
 			history.listen((stateValue) => {
 				setState({ ...stateValue, scrollY: window.scrollY })
