@@ -138,5 +138,11 @@ module.exports = {
 				],
 			},
 		},
+		// Accessibility rules on /site
+		{
+			files: ['site/**/*.{jsx,js,tsx,ts}'],
+			plugins: ['jsx-a11y'],
+			extends: ['plugin:jsx-a11y/strict'],
+		},
 	],
 }
