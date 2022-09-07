@@ -44,7 +44,7 @@ export const rateLimiterMiddleware = async (ctx: BaseContext, next: Next) => {
 		return
 	}
 
-	await next()
+	return (await next()) as unknown
 }
 
 const isRateLimiterRes = (val: unknown): val is RateLimiterRes => {

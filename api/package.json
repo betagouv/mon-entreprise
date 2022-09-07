@@ -33,6 +33,7 @@
 		"@publicodes/api": "^1.0.0-beta.52",
 		"@sentry/node": "^7.1.1",
 		"@sentry/tracing": "^7.1.1",
+		"got": "^12.4.1",
 		"ioredis": "^5.2.3",
 		"koa": "^2.13.4",
 		"koa-body": "^5.0.0",
