@@ -14,6 +14,7 @@ export const useSaveScrollPosition = ({
 }) => {
 	const previousPathname = useRef(location.pathname)
 
+	// Scroll to position previously saved
 	useEffect(() => {
 		const scrollPosition = sessionStorage.getItem(location.pathname)
 
@@ -22,21 +23,10 @@ export const useSaveScrollPosition = ({
 		}
 	}, [location, action, scrollY])
 
+	// Save scroll position on location change
 	useEffect(() => {
 		sessionStorage.setItem(previousPathname.current, String(scrollY))
 		previousPathname.current = location.pathname
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname])
-
-	const removeSessionStorageItem = () => {
-		sessionStorage.removeItem(location.pathname)
-	}
-
-	useEffect(() => {
-		window.addEventListener('beforeunload', removeSessionStorageItem)
-
-		return () => {
-			window.removeEventListener('beforeunload', removeSessionStorageItem)
-		}
-	}, [])
 }
