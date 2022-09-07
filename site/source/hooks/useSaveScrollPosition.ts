@@ -1,30 +1,30 @@
-import { Action, Location } from 'history'
-import { useEffect, useRef } from 'react'
+import { debounce } from '@/utils'
+import { useEffect } from 'react'
+import { useLocation, useNavigationType } from 'react-router-dom'
 
 const POP_ACTION_LABEL = 'POP'
 
-export const useSaveScrollPosition = ({
-	location,
-	action,
-	scrollY,
-}: {
-	location: Location
-	action: Action
-	scrollY: number
-}) => {
-	const previousPathname = useRef(location.pathname)
+export const useSaveScrollPosition = () => {
+	const location = useLocation()
+	const navigationType = useNavigationType()
 
 	useEffect(() => {
 		const scrollPosition = sessionStorage.getItem(location.pathname)
 
-		if (scrollPosition && action === POP_ACTION_LABEL) {
+		if (scrollPosition && navigationType === POP_ACTION_LABEL) {
 			window.scrollTo(0, parseInt(scrollPosition))
 		}
-	}, [location, action, scrollY])
+	}, [location, navigationType])
 
 	useEffect(() => {
-		sessionStorage.setItem(previousPathname.current, String(scrollY))
-		previousPathname.current = location.pathname
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		const saveScrollYPosition = debounce(100, () => {
+			sessionStorage.setItem(location.pathname, String(window.scrollY))
+		}) as (this: Window, ev: Event) => any
+
+		window.addEventListener('scroll', saveScrollYPosition)
+
+		return () => {
+			window.removeEventListener('scroll', saveScrollYPosition)
+		}
 	}, [location.pathname])
 }

@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+import { useSaveScrollPosition } from './hooks/useSaveScrollPosition'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
@@ -108,6 +109,8 @@ const App = () => {
 	const { t } = useTranslation()
 	const { relativeSitePaths } = useSitePaths()
 	const isEmbedded = useIsEmbedded()
+
+	useSaveScrollPosition()
 
 	return (
 		<StyledLayout isEmbeded={isEmbedded}>

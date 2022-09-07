@@ -12,11 +12,11 @@ import logo from '@/images/logo-monentreprise.svg'
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
-import { Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { ServiceWorker } from './ServiceWorker'
 import * as safeLocalStorage from './storage/safeLocalStorage'
 import { store } from './store'
@@ -25,8 +25,6 @@ import { inIframe } from './utils'
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
-import { createBrowserHistory } from 'history'
-import { useSaveScrollPosition } from './hooks/useSaveScrollPosition'
 
 type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
@@ -102,35 +100,6 @@ export default function Provider({
 	)
 }
 
-const history = createBrowserHistory()
-
-export const CustomRouter = ({ ...props }) => {
-	const [state, setState] = useState({
-		action: history.action,
-		location: history.location,
-		scrollY: 0,
-	})
-
-	useEffect(
-		() =>
-			history.listen((stateValue) => {
-				setState({ ...stateValue, scrollY: window.scrollY })
-			}),
-		[]
-	)
-
-	useSaveScrollPosition(state)
-
-	return (
-		<Router
-			{...props}
-			location={state.location}
-			navigationType={state.action}
-			navigator={history}
-		/>
-	)
-}
-
 function BrowserRouterProvider({
 	children,
 	basename,
@@ -158,11 +127,11 @@ function BrowserRouterProvider({
 					})
 				}
 			>
-				<CustomRouter
+				<BrowserRouter
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 				>
 					{children}
-				</CustomRouter>
+				</BrowserRouter>
 			</TrackingContext.Provider>
 		</HelmetProvider>
 	)
