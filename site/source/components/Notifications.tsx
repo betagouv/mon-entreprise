@@ -83,8 +83,8 @@ export default function Notifications() {
 						)}
 						<HideButton
 							className="hide"
-							aria-label="close"
-							onClick={() => dispatch(hideNotification(dottedName))}
+							aria-label={t('Fermer')}
+							onPress={() => dispatch(hideNotification(dottedName))}
 						>
 							×
 						</HideButton>
