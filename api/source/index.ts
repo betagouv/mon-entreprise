@@ -6,6 +6,7 @@ import rules from 'modele-social'
 import Engine from 'publicodes'
 import { catchErrors } from './errors.js'
 import openapi from './openapi.json' assert { type: 'json' }
+import { plausibleMiddleware } from './plausible.js'
 import { rateLimiterMiddleware } from './rate-limiter.js'
 import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
@@ -39,11 +40,9 @@ app.use(cors())
 
 router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
 
-router.use(rateLimiterMiddleware)
-
 const apiRoutes = publicodesAPI(new Engine(rules))
 
-router.use('/api/v1', apiRoutes)
+router.use('/api/v1', plausibleMiddleware, rateLimiterMiddleware, apiRoutes)
 
 app.use(router.routes())
 app.use(router.allowedMethods())

@@ -1,6 +1,7 @@
 import Router from '@koa/router'
-import { Context } from 'koa'
 import { openapi as publicodesOpenapi } from '@publicodes/api'
+import { Context } from 'koa'
+import { plausibleMiddleware } from '../plausible.js'
 import { mergeDeep } from '../utils.js'
 
 /**
@@ -13,7 +14,7 @@ export const openapiRoutes = (customOpenapi: Record<string, unknown>) => {
 
 	const mergedOpenapi = mergeDeep(publicodesOpenapi, customOpenapi)
 
-	router.get('/openapi.json', (ctx: Context) => {
+	router.get('/openapi.json', plausibleMiddleware, (ctx: Context) => {
 		ctx.type = 'application/json'
 		ctx.body = mergedOpenapi
 	})
