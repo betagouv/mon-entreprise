@@ -4,7 +4,7 @@ import { useLocation, useNavigationType } from 'react-router-dom'
 
 const POP_ACTION_LABEL = 'POP'
 
-export const useSaveScrollPosition = () => {
+export const useSaveAndRestoreScrollPosition = () => {
 	const location = useLocation()
 	const navigationType = useNavigationType()
 
