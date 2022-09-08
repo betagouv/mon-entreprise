@@ -2,6 +2,12 @@ import 'dotenv/config.js'
 import 'isomorphic-fetch'
 
 const fetchApiStats = async (page, start, end, interval) => {
+	if (!process.env.PLAUSIBLE_API_KEY) {
+		throw new Error(
+			"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
+		)
+	}
+
 	const url =
 		'https://plausible.io/api/v1/stats/timeseries?' +
 		Object.entries({
