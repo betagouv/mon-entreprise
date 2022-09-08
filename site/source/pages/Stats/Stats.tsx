@@ -26,7 +26,7 @@ import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
 
 type Period = 'mois' | 'jours'
-type Chapter2 = PageChapter2 | 'PAM'
+type Chapter2 = PageChapter2 | 'PAM' | 'api-rest'
 
 type Pageish = Page | PageSatisfaction
 
@@ -105,11 +105,6 @@ const computeTotals = (
 		: data.map((d) => d.nombre).reduce((a, b) => a + b, 0)
 }
 
-interface BrushStartEndIndex {
-	startIndex?: number
-	endIndex?: number
-}
-
 interface StatsDetailProps {
 	stats: StatsStruct
 }
@@ -139,6 +134,9 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
 		if (!chapter2) {
 			return rawData.site
+		}
+		if (chapter2 === 'api-rest') {
+			return rawData.api.map(({ date, ...nombre }) => ({ date, nombre }))
 		}
 
 		return filterByChapter2(rawData.pages as Pageish[], chapter2)
@@ -233,17 +231,21 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 				endIndex={endDateIndex}
 			/>
 
-			<H3>
-				Cumuls pour la période{' '}
-				{period === 'jours'
-					? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
-							slicedVisits[slicedVisits.length - 1].date
-					  )}`
-					: `de ${formatMonth(slicedVisits[0].date)}` +
-					  (slicedVisits.length > 1
-							? ` à ${formatMonth(slicedVisits[slicedVisits.length - 1].date)}`
-							: '')}
-			</H3>
+			{slicedVisits.length > 0 && (
+				<H3>
+					Cumuls pour la période{' '}
+					{period === 'jours'
+						? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
+								slicedVisits[slicedVisits.length - 1].date
+						  )}`
+						: `de ${formatMonth(slicedVisits[0].date)}` +
+						  (slicedVisits.length > 1
+								? ` à ${formatMonth(
+										slicedVisits[slicedVisits.length - 1].date
+								  )}`
+								: '')}
+				</H3>
+			)}
 
 			<Grid container spacing={2}>
 				<BigIndicator
@@ -387,8 +389,10 @@ function SimulateursChoice(props: {
 		<Select
 			onSelectionChange={(val) => {
 				props.onChange(
-					typeof val === 'string' && val.length
+					typeof val === 'string' && val.length && !isNaN(parseInt(val))
 						? getChapter2(simulateurs[parseInt(val)])
+						: val === 'api-rest'
+						? val
 						: ''
 				)
 			}}
@@ -398,7 +402,11 @@ function SimulateursChoice(props: {
 			{[
 				<Item key={''} textValue="Tout le site">
 					<Emoji emoji="🌍" />
-					Tout le site
+					&nbsp;Tout le site
+				</Item>,
+				<Item key={'api-rest'} textValue="API REST">
+					<Emoji emoji="👩‍💻" />
+					&nbsp;API REST
 				</Item>,
 				...simulateurs.map((s, i) => (
 					<Item key={i} textValue={s.shortName}>
