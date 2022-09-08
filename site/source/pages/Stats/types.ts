@@ -39,14 +39,22 @@ export enum SatisfactionLevel {
 	TrèsBien = 'très bien',
 }
 
-export interface Visites {
+interface Visites {
 	pages: Page[]
 	site: Site[]
+	api: API[]
 }
 
-export interface Site {
+interface Site {
 	date: string
 	nombre: number
+}
+
+interface API {
+	date: string
+	evaluate: number
+	rules: number
+	rule: number
 }
 
 export enum PageChapter2 {

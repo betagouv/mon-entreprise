@@ -3,6 +3,7 @@ import 'isomorphic-fetch'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { apiStats } from './fetch-api-stats.js'
 import { createDataDir, writeInDataDir } from './utils.js'
 
 const matomoSiteVisitsHistory = JSON.parse(
@@ -180,7 +181,9 @@ async function fetchDailyVisits() {
 		(await fetchApi(buildSiteQuery(last60days, 'D')))[0].Rows
 	)
 
-	return { pages, site }
+	const { start, end } = last60days
+
+	return { pages, site, api: await apiStats(start, end, 'date') }
 }
 
 async function fetchMonthlyVisits() {
@@ -198,7 +201,9 @@ async function fetchMonthlyVisits() {
 		),
 	]
 
-	return { pages, site }
+	const { start, end } = last36Months
+
+	return { pages, site, api: await apiStats(start, end, 'month') }
 }
 
 async function fetchUserAnswersStats() {
@@ -292,20 +297,29 @@ async function main() {
 			)
 			return
 		}
-		const visitesJours = await fetchDailyVisits()
-		const visitesMois = await fetchMonthlyVisits()
-		const satisfaction = uniformiseData(
-			flattenPage(await fetchApi(buildSatisfactionQuery()))
-		).map((page) => {
-			// eslint-disable-next-line no-unused-vars
-			const { date, ...satisfactionPage } = {
-				month: new Date(new Date(page.date).setDate(1)),
-				...page,
+		const [
+			visitesJours,
+			visitesMois,
+			rawSatisfaction,
+			retoursUtilisateurs,
+			nbAnswersLast30days,
+		] = await Promise.all([
+			fetchDailyVisits(),
+			fetchMonthlyVisits(),
+			fetchApi(buildSatisfactionQuery()),
+			fetchUserFeedbackIssues(),
+			fetchUserAnswersStats(),
+		])
+		const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
+			(page) => {
+				// eslint-disable-next-line no-unused-vars
+				const { date, ...satisfactionPage } = {
+					month: new Date(new Date(page.date).setDate(1)),
+					...page,
+				}
+				return satisfactionPage
 			}
-			return satisfactionPage
-		})
-		const retoursUtilisateurs = await fetchUserFeedbackIssues()
-		const nbAnswersLast30days = await fetchUserAnswersStats()
+		)
 		writeInDataDir('stats.json', {
 			visitesJours,
 			visitesMois,
@@ -314,7 +328,7 @@ async function main() {
 			nbAnswersLast30days,
 		})
 	} catch (e) {
-		console.log(e)
+		console.error(e)
 	}
 }
 main()
