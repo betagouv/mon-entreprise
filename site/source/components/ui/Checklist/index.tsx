@@ -116,6 +116,7 @@ export function Checklist({
 			}
 
 			return React.cloneElement(child, {
+				// @ts-ignore
 				onChange: (isSelected: boolean) =>
 					onItemCheck?.(child.props.name, isSelected),
 				defaultChecked:
@@ -124,12 +125,14 @@ export function Checklist({
 		})
 
 	useEffect(() => {
+		// @ts-ignore
 		onInitialization?.(checklist.map((child) => child.props.name))
 	}, [])
 
 	return (
 		<StyledList>
 			{checklist.map((checkItem) => (
+				// @ts-ignore
 				<StyledListItem key={checkItem.props.name}>{checkItem}</StyledListItem>
 			))}
 		</StyledList>
