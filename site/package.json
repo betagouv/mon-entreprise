@@ -21,6 +21,7 @@
 		"build:yaml-to-dts": "ts-node-esm scripts/build-yaml-to-dts.ts",
 		"postinstall": "node scripts/prepare.js",
 		"start": "vite dev",
+		"start:axe-debugging": "VITE_AXE_CORE_ENABLED=true vite dev",
 		"start:netlify": "sed 's|:SITE_EN|/infrance|g' netlify.base.toml | sed 's|:SITE_FR|/mon-entreprise|g' | sed 's|:API_URL|http://localhost:3004|g' | sed 's|\\[\\[redirects\\]\\]|\\[\\[redirects\\]\\]\\n  force = true|g' > netlify.toml && HMR_CLIENT_PORT=8888 netlify dev",
 		"build": "NODE_OPTIONS='--max-old-space-size=6144'; yarn build:sitemap && vite build && yarn build:iframe-script",
 		"build:ssr": "NODE_OPTIONS='--max-old-space-size=4096'; vite build --ssr ./source/entry-server.tsx --outDir ./dist/server --emptyOutDir && echo '{\"module\": \"commonjs\"}' > dist/package.json",

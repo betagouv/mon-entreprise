@@ -12,8 +12,8 @@ export const useAxeCoreAnalysis = () => {
 	// useEffect déclenché à chaque re-render du composant ou des enfants du composant
 	// où il est placé
 	useEffect(() => {
-		// Ne se lance qu'en mode "development"
-		if (process.env.NODE_ENV === 'production') return
+		// Ne se lance qu'en mode "development" avec le script "start:axe-debugging"
+		if (import.meta.env.PROD || !import.meta.env.VITE_AXE_CORE_ENABLED) return
 
 		const triggerAxeCoreAnalysis = async () => {
 			// On importe les packages requis uniquement si nécessaire
