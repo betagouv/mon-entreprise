@@ -47,6 +47,7 @@
 		"build:storybook": "build-storybook"
 	},
 	"dependencies": {
+		"@axe-core/react": "^4.4.4",
 		"@internationalized/number": "^3.0.3",
 		"@react-aria/accordion": "^3.0.0-alpha.5",
 		"@react-aria/button": "^3.4.1",
