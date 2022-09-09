@@ -10,13 +10,11 @@ export default function TextInput({
 	description,
 	title,
 	missing,
-	autoFocus,
 }: InputProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
 		<TextField
-			autoFocus={autoFocus}
 			type="text"
 			label={title}
 			onChange={(value) => {

@@ -116,6 +116,7 @@ export default function Landing() {
 								padding-right: 2rem;
 								padding-bottom: 1rem;
 							`}
+							alt=""
 						/>
 					</HideOnMobile>
 					<Grid item md={10}>

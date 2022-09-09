@@ -41,7 +41,6 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 						inputRef={inputRef}
 						onFocus={selectInput}
 						value={url}
-						autoFocus
 						aria-label="URL de votre simulation"
 					/>
 				</Grid>

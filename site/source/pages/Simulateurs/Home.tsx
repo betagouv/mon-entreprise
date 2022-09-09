@@ -1,5 +1,5 @@
 import PageHeader from '@/components/PageHeader'
-import InfoBulle from '@/components/ui/InfoBulle'
+import InfoBulle from '@/design-system/InfoBulle'
 import { useIsEmbedded } from '@/components/utils/embeddedContext'
 import Emoji from '@/components/utils/Emoji'
 import { Card } from '@/design-system/card'

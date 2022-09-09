@@ -85,6 +85,7 @@ export default function API() {
 					<iframe
 						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
 						src="https://stackblitz.com/edit/api-mon-entreprise?ctl=1&embed=1&file=main.js"
+						title="Exemple d'intégration dans un éditeur de code en ligne"
 					></iframe>
 				</div>
 			</Trans>

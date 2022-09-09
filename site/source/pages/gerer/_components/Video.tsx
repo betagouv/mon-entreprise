@@ -21,10 +21,15 @@ export default function Video() {
 				}}
 				src={`https://www.youtube-nocookie.com/embed/${
 					i18n.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
-				}?rel=0&amp;showinfo=0`}
+				}?rel=0&amp;showinfo=0;disablekb=1`}
 				frameBorder="0"
 				allow="autoplay; encrypted-media"
 				allowFullScreen
+				title={
+					i18n.language === 'fr'
+						? '3 minutes pour comprendre la Sécurité Sociale'
+						: '3 minutes to understand the French Social Security system'
+				}
 			/>
 		</div>
 	)

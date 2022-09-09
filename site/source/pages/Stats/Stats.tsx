@@ -1,5 +1,5 @@
 import PagesChart from '@/components/charts/PagesCharts'
-import InfoBulle from '@/components/ui/InfoBulle'
+import InfoBulle from '@/design-system/InfoBulle'
 import Emoji from '@/components/utils/Emoji'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Radio, ToggleGroup } from '@/design-system/field'

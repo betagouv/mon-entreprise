@@ -57,7 +57,7 @@ export default function VotreSituation() {
 			</Helmet>
 			<H1>{titre}</H1>
 			<div css="text-align: center">
-				<img css="height: 200px" src={illustration} />
+				<img css="height: 200px" src={illustration} alt="" />
 			</div>
 			<section>
 				{déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE.length > 0 && (
