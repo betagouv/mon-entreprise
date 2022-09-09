@@ -21,7 +21,7 @@ export default function Route404() {
 			</p>
 			<Link to="/">
 				{/* TODO: credits for the image to add: https://thenounproject.com/term/treasure-map/96666/ */}
-				<img style={{ margin: '3%' }} width="100%" src={image} />
+				<img style={{ margin: '3%' }} width="100%" src={image} alt="" />
 				<em>
 					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
 				</em>

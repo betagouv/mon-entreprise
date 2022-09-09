@@ -313,7 +313,7 @@ export default function SchemeComparaison({
 								<H3>
 									Comparer mes revenus, pension de retraite et indemnité maladie
 								</H3>
-								<img src={revenusSVG} css="height: 8rem" />
+								<img src={revenusSVG} css="height: 8rem" alt="" />
 								<Button onPress={startConversation}>
 									Lancer la simulation
 								</Button>

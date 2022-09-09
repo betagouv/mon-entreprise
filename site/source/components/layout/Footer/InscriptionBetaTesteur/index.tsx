@@ -23,6 +23,7 @@ export default function InscriptionBetaTesteur() {
 					max-width: 25rem;
 					padding-top: 2rem;
 				`}
+				alt=""
 			/>
 			<Intro>
 				Inscrivez-vous pour accéder aux nouveautés en avant-première et donner

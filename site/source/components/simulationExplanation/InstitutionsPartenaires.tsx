@@ -50,7 +50,11 @@ export default function InstitutionsPartenaires() {
 										target="_blank"
 										rel="noreferrer"
 									>
-										<img src={assuranceMaladieSrc} title="Logo CPAM" />
+										<img
+											src={assuranceMaladieSrc}
+											title="Logo CPAM"
+											alt="CPAM"
+										/>
 									</InstitutionLogo>
 									<Body>
 										<Trans i18nKey="simulateurs.explanation.institutions.cpam">
@@ -106,7 +110,7 @@ export function CotisationsUrssaf({
 				target="_blank"
 				rel="noreferrer"
 			>
-				<img src={urssafSrc} title="logo Urssaf" />
+				<img src={urssafSrc} title="logo Urssaf" alt="Urssaf" />
 			</InstitutionLogo>
 			<Body>
 				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
@@ -132,7 +136,7 @@ export function ImpôtsDGFIP() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					<img src={dgfipSrc} title="logo DGFiP" />
+					<img src={dgfipSrc} title="logo DGFiP" alt="DGFiP" />
 				</InstitutionLogo>
 				<Body>
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
@@ -181,7 +185,11 @@ function CaisseRetraite() {
 								target="_blank"
 								rel="noreferrer"
 							>
-								<img src={logosSrc[caisse]} title={`logo ${caisse}`} />
+								<img
+									src={logosSrc[caisse]}
+									title={`logo ${caisse}`}
+									alt={caisse}
+								/>
 							</InstitutionLogo>
 							<Body>
 								{description}{' '}
@@ -237,7 +245,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<img src={logosSrc.IRCEC} title="logo IRCEC" />
+									<img src={logosSrc.IRCEC} title="logo IRCEC" alt="IRCEC" />
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value
