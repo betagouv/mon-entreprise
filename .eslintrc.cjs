@@ -143,6 +143,14 @@ module.exports = {
 			files: ['site/**/*.{jsx,js,tsx,ts}'],
 			plugins: ['jsx-a11y'],
 			extends: ['plugin:jsx-a11y/strict'],
+			rules: {
+				'jsx-a11y/no-autofocus': 'warn',
+				'jsx-a11y/alt-text': 'warn',
+				'jsx-a11y/no-noninteractive-tabindex': 'warn',
+				'jsx-a11y/iframe-has-title': 'warn',
+				'jsx-a11y/click-events-have-key-events': 'warn',
+				'jsx-a11y/no-static-element-interactions': 'warn',
+			},
 		},
 	],
 }
