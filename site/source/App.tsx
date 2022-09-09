@@ -24,6 +24,7 @@ import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
+import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
@@ -111,6 +112,11 @@ const App = () => {
 	const isEmbedded = useIsEmbedded()
 
 	useSaveAndRestoreScrollPosition()
+
+	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		useAxeCoreAnalysis()
+	}
 
 	return (
 		<StyledLayout isEmbeded={isEmbedded}>
