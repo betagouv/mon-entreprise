@@ -52,7 +52,7 @@ export type InputProps<Name extends string = string> = Omit<
 	Props<Name>,
 	'onChange'
 > &
-	Pick<RuleNode, 'title' | 'suggestions'> & {
+	Pick<RuleNode, 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
@@ -102,7 +102,6 @@ export default function RuleInput<Names extends string = DottedName>({
 			(!showDefaultDateValue && dottedName in evaluation.missingVariables),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
-		title: rule.title,
 		onSubmit,
 		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
@@ -172,6 +171,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	return (
 		<NumberInput
 			{...commonProps}
+			title=""
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>

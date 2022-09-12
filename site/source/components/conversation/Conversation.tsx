@@ -99,7 +99,7 @@ export default function Conversation({
 									align-items: baseline;
 								`}
 							>
-								<H3>
+								<H3 id="questionHeader">
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
 									<ExplicableRule light dottedName={currentQuestion} />
 								</H3>
@@ -110,6 +110,7 @@ export default function Conversation({
 									onChange={onChange}
 									key={currentQuestion}
 									onSubmit={goToNextQuestion}
+									aria-labelledby="questionHeader"
 								/>
 							</fieldset>
 							<Spacing md />
