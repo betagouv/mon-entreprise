@@ -2,6 +2,7 @@ import {
 	deleteFromSituation,
 	goToQuestion,
 	stepAction,
+	updateShouldFocusField,
 	updateSituation,
 } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -52,7 +53,10 @@ export default function Conversation({
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-	const goToNextQuestion = () => dispatch(stepAction(currentQuestion))
+	const goToNextQuestion = () => {
+		dispatch(updateShouldFocusField(true))
+		dispatch(stepAction(currentQuestion))
+	}
 
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
@@ -104,7 +108,6 @@ export default function Conversation({
 								<RuleInput
 									dottedName={currentQuestion}
 									onChange={onChange}
-									autoFocus
 									key={currentQuestion}
 									onSubmit={goToNextQuestion}
 								/>
