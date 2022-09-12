@@ -1,6 +1,8 @@
+import { updateShouldFocusField } from '@/actions/actions'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { shouldFocusFieldSelector } from '@/selectors/simulationSelectors'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
@@ -11,7 +13,8 @@ import Engine, {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
@@ -80,6 +83,17 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
+	const dispatch = useDispatch()
+	const shouldFocusField = useSelector(shouldFocusFieldSelector)
+
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(updateShouldFocusField(false))
+		}, 0)
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
@@ -94,9 +108,11 @@ export default function RuleInput<Names extends string = DottedName>({
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
+		autoFocus: shouldFocusField,
 		...props,
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
+
 	if (getVariant(engine.getRule(dottedName))) {
 		const type =
 			inputType ??
