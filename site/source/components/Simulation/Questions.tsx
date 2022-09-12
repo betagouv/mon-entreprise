@@ -27,14 +27,14 @@ export function Questions({
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']
 }) {
-	const progress = useSimulationProgress()
+	const { numberCurrentStep, numberSteps } = useSimulationProgress()
 
 	return (
 		<>
-			<Progress progress={progress} />
+			<Progress progress={numberCurrentStep} maxValue={numberSteps} />
 			<QuestionsContainer>
 				<div className="print-hidden">
-					{progress < 1 && (
+					{numberCurrentStep < numberSteps && (
 						<Notice>
 							<Trans i18nKey="simulateurs.précision.défaut">
 								Améliorez votre simulation en répondant aux questions :

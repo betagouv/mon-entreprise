@@ -88,7 +88,7 @@ function useSteps() {
 	const step1Progress = useProgress(Step1Objectifs)
 	const step2Progress = useProgress(Step2Objectifs)
 	const step3Progress = useProgress(useStep3Objectifs())
-	const step4Progress = useSimulationProgress()
+	const { progressRatio: step4Progress } = useSimulationProgress()
 	const casExcluStep1 = useEngine().evaluate('DRI . cas exclus ')
 		.nodeValue as boolean
 	const casExcluStep2 = useEngine().evaluate('DRI . imposition cas exclus')

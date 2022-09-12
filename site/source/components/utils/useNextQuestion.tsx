@@ -173,9 +173,18 @@ export const useNextQuestions = function (): Array<DottedName> {
 	return nextQuestions
 }
 
-export function useSimulationProgress(): number {
+export function useSimulationProgress(): {
+	progressRatio: number
+	numberCurrentStep: number
+	numberSteps: number
+} {
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
 
-	return numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft)
+	return {
+		progressRatio:
+			numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft),
+		numberCurrentStep: numberQuestionAnswered,
+		numberSteps: numberQuestionAnswered + numberQuestionLeft,
+	}
 }

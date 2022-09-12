@@ -3,28 +3,40 @@ import styled from 'styled-components'
 
 type ProgressProps = {
 	progress: number
+	minValue?: number
+	maxValue?: number
+	step?: number
 }
 
-export default function Progress({ progress }: ProgressProps) {
+export default function Progress({
+	progress,
+	minValue = 0,
+	maxValue = 1,
+	step = 1,
+}: ProgressProps) {
 	const propsBar = {
 		showValueLabel: false,
-		label: 'Précision de votre simulation',
-		minValue: 0,
-		maxValue: 1,
+		label: 'Précisions concernant votre simulation',
+		minValue,
+		maxValue,
 		value: progress,
 	}
+
+	const a11yPrefixLabel = `Étape ${progress + step} sur ${String(maxValue)}, `
 
 	const { progressBarProps, labelProps } = useProgressBar(propsBar)
 
 	return (
-		<>
-			<span {...labelProps} className="sr-only">
-				{propsBar.label}
+		<div aria-live="polite">
+			<span {...labelProps} className="sr-only" aria-hidden>
+				{`${a11yPrefixLabel} ${propsBar.label}`}
 			</span>
 			<ProgressContainer {...progressBarProps}>
-				<ProgressBar style={{ width: `${progress * 100}%` }} />
+				<ProgressBar
+					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}
+				/>
 			</ProgressContainer>
-		</>
+		</div>
 	)
 }
 
