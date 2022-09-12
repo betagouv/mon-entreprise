@@ -16,7 +16,7 @@ export default function Progress({
 }: ProgressProps) {
 	const propsBar = {
 		showValueLabel: false,
-		label: 'Précisions concernant votre simulation',
+		label: 'Questions répondues pour améliorer la précision de la simulation',
 		minValue,
 		maxValue,
 		value: progress,
