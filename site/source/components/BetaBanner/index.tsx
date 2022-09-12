@@ -17,7 +17,11 @@ export default function BetaBanner({
 				`}
 			>
 				<Grid item sm={3}>
-					<img src={wipSvg} style={{ width: '100%', padding: '0.25rem' }} />
+					<img
+						src={wipSvg}
+						alt=""
+						style={{ width: '100%', padding: '0.25rem' }}
+					/>
 				</Grid>
 				<Grid item sm={9}>
 					{children}
