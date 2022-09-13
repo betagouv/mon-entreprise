@@ -106,6 +106,7 @@ export function SimulationGoal({
 										  }
 										: undefined
 								}
+								aria-label={engine.getRule(dottedName)?.title || ''}
 								aria-labelledby={`${dottedName}-label`}
 								aria-describedby={`${dottedName}-description`}
 								displayedUnit="€"
