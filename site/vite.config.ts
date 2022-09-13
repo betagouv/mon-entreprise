@@ -109,6 +109,7 @@ export default defineConfig(({ command, mode }) => ({
 				target: 'https://twemoji.maxcdn.com',
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/twemoji/, ''),
+				timeout: 3 * 1000,
 			},
 		},
 	},
