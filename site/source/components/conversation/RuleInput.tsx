@@ -170,7 +170,6 @@ export default function RuleInput<Names extends string = DottedName>({
 	return (
 		<NumberInput
 			{...commonProps}
-			title=""
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>
