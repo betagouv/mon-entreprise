@@ -60,6 +60,7 @@ export function SimulationGoal({
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
+	console.log(dottedName)
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -106,7 +107,6 @@ export function SimulationGoal({
 										  }
 										: undefined
 								}
-								aria-label={engine.getRule(dottedName)?.title || ''}
 								aria-labelledby={`${dottedName}-label`}
 								aria-describedby={`${dottedName}-description`}
 								displayedUnit="€"
