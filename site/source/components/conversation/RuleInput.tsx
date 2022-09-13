@@ -90,7 +90,6 @@ export default function RuleInput<Names extends string = DottedName>({
 		setTimeout(() => {
 			dispatch(updateShouldFocusField(false))
 		}, 0)
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 

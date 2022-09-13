@@ -53,13 +53,16 @@ export default function Conversation({
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
+
 	const goToNextQuestion = () => {
 		dispatch(updateShouldFocusField(true))
 		dispatch(stepAction(currentQuestion))
 	}
 
-	const goToPrevious = () =>
+	const goToPrevious = () => {
+		dispatch(updateShouldFocusField(true))
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
+	}
 
 	const onChange = (value: PublicodesExpression | undefined) => {
 		dispatch(

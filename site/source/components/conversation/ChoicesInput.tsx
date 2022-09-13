@@ -103,6 +103,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 				{choice.children.map((node) => (
 					<Fragment key={node.dottedName}>
 						<RadioCard
+							// eslint-disable-next-line jsx-a11y/no-autofocus
 							autoFocus={
 								defaultValue ===
 								`'${relativeDottedName(props.dottedName, node.dottedName)}'`
@@ -130,6 +131,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 			aria-labelledby={props['aria-labelledby'] || undefined}
 		>
 			<RadioChoice
+				// eslint-disable-next-line jsx-a11y/no-autofocus
 				autoFocus={props.autoFocus ? defaultValue : undefined}
 				choice={choice}
 				rootDottedName={props.dottedName}
@@ -181,6 +183,7 @@ function RadioChoice<Names extends string = DottedName>({
 					) : (
 						<span>
 							<Radio
+								// eslint-disable-next-line jsx-a11y/no-autofocus
 								autoFocus={
 									autoFocus ===
 									`'${relativeDottedName(rootDottedName, node.dottedName)}'`
@@ -239,9 +242,11 @@ export function OuiNonInput<Names extends string = DottedName>(
 			value={currentSelection ?? undefined}
 			aria-labelledby={props['aria-labelledby'] || undefined}
 		>
+			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
 			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
 				<Trans>Oui</Trans>
 			</Radio>
+			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
 			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
 				<Trans>Non</Trans>
 			</Radio>
