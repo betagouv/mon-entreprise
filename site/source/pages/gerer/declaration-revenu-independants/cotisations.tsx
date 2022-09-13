@@ -16,7 +16,7 @@ import { SimpleField } from '../_components/Fields'
 import { DéclarationRevenu } from './_components/DéclarationRevenu'
 
 export default function Cotisations() {
-	const progress = useSimulationProgress()
+	const { numberCurrentStep, numberSteps } = useSimulationProgress()
 	const engine = useEngine()
 
 	return (
@@ -100,7 +100,10 @@ export default function Cotisations() {
 													margin: 0 -1.5rem;
 												`}
 											>
-												<Progress progress={progress} />
+												<Progress
+													progress={numberCurrentStep}
+													maxValue={numberSteps}
+												/>
 											</div>
 										</div>
 									</Message>

@@ -60,6 +60,7 @@ export function SimulationGoal({
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
+	console.log(dottedName)
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -74,7 +75,9 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<RuleLink dottedName={dottedName}>{label}</RuleLink>
+							<RuleLink id={`${dottedName}-label`} dottedName={dottedName}>
+								{label}
+							</RuleLink>
 
 							<SmallBody
 								css={`

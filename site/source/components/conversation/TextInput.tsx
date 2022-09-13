@@ -10,6 +10,7 @@ export default function TextInput({
 	description,
 	title,
 	missing,
+	autoFocus,
 }: InputProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
@@ -17,6 +18,8 @@ export default function TextInput({
 		<TextField
 			type="text"
 			label={title}
+			// eslint-disable-next-line jsx-a11y/no-autofocus
+			autoFocus={autoFocus}
 			onChange={(value) => {
 				debouncedOnChange(`'${value}'`)
 			}}
