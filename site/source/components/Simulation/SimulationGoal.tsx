@@ -74,7 +74,9 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<RuleLink dottedName={dottedName}>{label}</RuleLink>
+							<RuleLink id={dottedName} dottedName={dottedName}>
+								{label}
+							</RuleLink>
 
 							<SmallBody
 								css={`
