@@ -43,7 +43,7 @@ export function SimulationGoals({
 				aria-live="polite"
 			>
 				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-					<div className="sr-only" id="simulator-legend">
+					<div className="sr-only" aria-hidden="true" id="simulator-legend">
 						{legend}
 					</div>
 					{children}

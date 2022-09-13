@@ -127,7 +127,7 @@ export default function Conversation({
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
 										<Button light onPress={goToPrevious} size="XS">
-											← <Trans>Précédent</Trans>
+											<span aria-hidden="true">←</span> <Trans>Précédent</Trans>
 										</Button>
 									</Grid>
 								)}
@@ -142,7 +142,7 @@ export default function Conversation({
 										) : (
 											<Trans>Passer</Trans>
 										)}{' '}
-										→
+										<span aria-hidden="true">→</span>
 									</Button>
 								</Grid>
 								<Grid
