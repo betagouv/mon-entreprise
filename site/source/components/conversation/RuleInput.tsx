@@ -159,10 +159,13 @@ export default function RuleInput<Names extends string = DottedName>({
 		)
 	}
 
+	// Pas de title sur NumberInput pour avoir une bonne expérience avec
+	// lecteur d'écran
+	delete commonProps.title
+
 	return (
 		<NumberInput
 			{...commonProps}
-			title={undefined}
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>

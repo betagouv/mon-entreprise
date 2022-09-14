@@ -163,7 +163,7 @@ function RadioChoice<Names extends string = DottedName>({
 
 	return (
 		<>
-			{choice.children.map((node, index) => (
+			{choice.children.map((node) => (
 				<Fragment key={node.dottedName}>
 					{' '}
 					{hiddenOptions.includes(
@@ -202,8 +202,8 @@ function RadioChoice<Names extends string = DottedName>({
 												node.dottedName
 											)}'` &&
 										autoFocus) ||
-									// Sinon doit autoFocus premier élément
-									(autoFocus && index === 0)
+									// Sinon doit autoFocus automatiquement
+									autoFocus
 								}
 								value={`'${relativeDottedName(
 									rootDottedName,
