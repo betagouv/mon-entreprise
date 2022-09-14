@@ -39,6 +39,7 @@ export function SimulationGoals({
 				isFirstStepCompleted={isFirstStepCompleted}
 				publique={publique}
 				role="group"
+				id="simulator-legend"
 				aria-labelledby="simulator-legend"
 				aria-live="polite"
 			>
