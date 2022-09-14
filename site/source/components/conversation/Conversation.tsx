@@ -114,6 +114,10 @@ export default function Conversation({
 									key={currentQuestion}
 									onSubmit={goToNextQuestion}
 									aria-labelledby="questionHeader"
+									aria-label={evaluateQuestion(
+										engine,
+										engine.getRule(currentQuestion)
+									)}
 								/>
 							</fieldset>
 							<Spacing md />

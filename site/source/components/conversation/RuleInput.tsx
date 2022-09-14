@@ -2,6 +2,7 @@ import { updateShouldFocusField } from '@/actions/actions'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { useShouldFocusField } from '@/hooks/useShouldFocusField'
 import { shouldFocusFieldSelector } from '@/selectors/simulationSelectors'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
@@ -83,15 +84,8 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
-	const dispatch = useDispatch()
-	const shouldFocusField = useSelector(shouldFocusFieldSelector)
 
-	useEffect(() => {
-		setTimeout(() => {
-			dispatch(updateShouldFocusField(false))
-		}, 0)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	const shouldFocusField = useShouldFocusField()
 
 	const commonProps: InputProps<Names> = {
 		dottedName,
