@@ -107,6 +107,6 @@ export const explainVariable = (variableName: DottedName | null = null) =>
 
 export const updateShouldFocusField = (shouldFocusField: boolean) =>
 	({
-		type: 'UPDATE_SHOULDFOCUSFIELD',
+		type: 'UPDATE_SHOULD_FOCUS_FIELD',
 		shouldFocusField,
 	} as const)

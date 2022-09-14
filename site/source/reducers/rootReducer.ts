@@ -173,7 +173,7 @@ function simulation(
 				targetUnit: action.targetUnit,
 			}
 
-		case 'UPDATE_SHOULDFOCUSFIELD':
+		case 'UPDATE_SHOULD_FOCUS_FIELD':
 			return {
 				...state,
 				shouldFocusField: action.shouldFocusField,
