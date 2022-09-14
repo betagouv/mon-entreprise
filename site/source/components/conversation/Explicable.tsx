@@ -10,6 +10,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
 	light,
 	bigPopover,
+	...props
 }: {
 	dottedName: Names
 	light?: boolean
@@ -37,6 +38,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 			light={light}
 			bigPopover={bigPopover}
 			className="print-hidden"
+			{...props}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 			{rule.rawNode.références && (

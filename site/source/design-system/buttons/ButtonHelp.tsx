@@ -20,11 +20,17 @@ export default function ButtonHelp({
 	light,
 	bigPopover,
 	className,
+	...props
 }: ButtonHelpProps) {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<StyledButton $light={light} className={className} {...buttonProps}>
+				<StyledButton
+					$light={light}
+					className={className}
+					{...buttonProps}
+					{...props}
+				>
 					<CircleIcon
 						aria-hidden="true"
 						width="24"

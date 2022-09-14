@@ -40,11 +40,15 @@ export function SimulationGoals({
 				publique={publique}
 				role="group"
 				id="simulator-legend"
-				aria-labelledby="simulator-legend"
+				aria-labelledby="simulator-legend-label"
 				aria-live="polite"
 			>
 				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-					<div className="sr-only" aria-hidden="true" id="simulator-legend">
+					<div
+						className="sr-only"
+						aria-hidden="true"
+						id="simulator-legendlabel"
+					>
 						{legend}
 					</div>
 					{children}

@@ -73,11 +73,6 @@ export default function Conversation({
 		)
 	}
 
-	const questionLabel = evaluateQuestion(
-		engine,
-		engine.getRule(currentQuestion)
-	)
-
 	return (
 		<>
 			<div className="print-only">
@@ -107,9 +102,13 @@ export default function Conversation({
 									align-items: baseline;
 								`}
 							>
-								<H3>
-									{questionLabel}
-									<ExplicableRule light dottedName={currentQuestion} />
+								<H3 id="questionHeader">
+									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
+									<ExplicableRule
+										aria-label="En savoir plus"
+										light
+										dottedName={currentQuestion}
+									/>
 								</H3>
 							</div>
 							<fieldset>
@@ -118,7 +117,7 @@ export default function Conversation({
 									onChange={onChange}
 									key={currentQuestion}
 									onSubmit={goToNextQuestion}
-									aria-label={questionLabel}
+									aria-labelledby="questionHeader"
 								/>
 							</fieldset>
 							<Spacing md />
