@@ -24,6 +24,7 @@ import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
+import { Message } from '@/design-system'
 
 type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM' | 'api-rest'
@@ -136,7 +137,10 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 			return rawData.site
 		}
 		if (chapter2 === 'api-rest') {
-			return rawData.api.map(({ date, ...nombre }) => ({ date, nombre }))
+			return (rawData.api ?? []).map(({ date, ...nombre }) => ({
+				date,
+				nombre,
+			}))
 		}
 
 		return filterByChapter2(rawData.pages as Pageish[], chapter2)
@@ -186,6 +190,21 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 		'PAM',
 	]
 
+	type ApiData = {
+		date: string
+		nombre: { evaluate: number; rules: number; rule: number }
+	}
+	const apiCumul =
+		chapter2 === 'api-rest' &&
+		(slicedVisits as ApiData[]).reduce(
+			(acc, { nombre }) => ({
+				evaluate: acc.evaluate + nombre.evaluate,
+				rules: acc.rules + nombre.rules,
+				rule: acc.rule + nombre.rule,
+			}),
+			{ evaluate: 0, rules: 0, rule: 0 }
+		)
+
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
@@ -222,14 +241,18 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 
 			<H3>Visites</H3>
 
-			<Chart
-				key={period + visites.length.toString()}
-				period={period}
-				data={visites}
-				onDateChange={handleDateChange}
-				startIndex={startDateIndex}
-				endIndex={endDateIndex}
-			/>
+			{visites.length ? (
+				<Chart
+					key={period + visites.length.toString()}
+					period={period}
+					data={visites}
+					onDateChange={handleDateChange}
+					startIndex={startDateIndex}
+					endIndex={endDateIndex}
+				/>
+			) : (
+				<Message type="info">Aucune donnée disponible.</Message>
+			)}
 
 			{slicedVisits.length > 0 && (
 				<H3>
@@ -248,12 +271,24 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 			)}
 
 			<Grid container spacing={2}>
-				<BigIndicator
-					main={formatValue(
-						typeof totals === 'number' ? totals : totals.accueil
-					)}
-					subTitle="Visites"
-				/>
+				{apiCumul ? (
+					<>
+						<BigIndicator
+							main={apiCumul.evaluate}
+							subTitle="Appel à /evaluate"
+						/>
+						<BigIndicator main={apiCumul.rules} subTitle="Appel à /rules" />
+						<BigIndicator main={apiCumul.rule} subTitle="Appel à /rule/*" />
+					</>
+				) : (
+					<BigIndicator
+						main={formatValue(
+							typeof totals === 'number' ? totals : totals.accueil
+						)}
+						subTitle="Visites"
+					/>
+				)}
+
 				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
 					<>
 						{' '}
@@ -320,6 +355,8 @@ export default function Stats() {
 			{statsAvailable ? (
 				<>
 					<StatsDetail stats={stats} />
+
+					<H2>Statistiques globales</H2>
 					<GlobalStats stats={stats} />
 				</>
 			) : loading ? (
