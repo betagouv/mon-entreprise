@@ -1,9 +1,7 @@
-import { updateShouldFocusField } from '@/actions/actions'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { useShouldFocusField } from '@/hooks/useShouldFocusField'
-import { shouldFocusFieldSelector } from '@/selectors/simulationSelectors'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
@@ -14,8 +12,7 @@ import Engine, {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useContext } from 'react'
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
