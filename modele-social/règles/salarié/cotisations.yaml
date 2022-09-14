@@ -1,8 +1,8 @@
 salarié . cotisations:
-  description: Total des cotisations employeur
+  description: Total des cotisations et contributions à la sécurité sociales versées pour ce salarié. Il comprends une part employeur et une part employé.
   somme:
     - nom: employeur
-      titre: Cotisations employeur
+      titre: part employeur
       somme:
         - maladie . employeur
         - CSA
@@ -27,7 +27,7 @@ salarié . cotisations:
       abattement: exonérations . employeur
 
     - nom: salarié
-      titre: Cotisations salarié
+      titre: part salarié
       somme:
         - vieillesse . salarié
         - maladie . salarié
@@ -41,10 +41,11 @@ salarié . cotisations:
       abattement: exonérations . salarié
 
 salarié . cotisations . exonérations:
-  titre: Réductions et exonérations de cotisations
+  titre: Réductions et exonérations
   formule:
     somme:
       - nom: employeur
+        titre: part employeur
         description: >-
           À l'exception de la déduction heure supplémentaire, les
           dispositifs de réduction de cotisations patronales sont
@@ -61,6 +62,7 @@ salarié . cotisations . exonérations:
           urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
 
       - nom: salarié
+        titre: part salarié
         valeur: heures supplémentaires . salarié
 
 salarié . cotisations . exonérations . heures supplémentaires:
@@ -170,7 +172,6 @@ salarié . cotisations . exonérations . lodeom:
 
 salarié . cotisations . exonérations . lodeom . montant:
   rend non applicable: réduction générale
-  titre: Réduction de cotisations dite « Lodeom »
   références:
     Estimateur Urssaf: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
 
@@ -189,9 +190,9 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 1.7 * T * (3.5 * temps de travail . SMIC / cotisations . assiette - 1)
       plancher: 0%
       arrondi: 4 décimales
-    références:
-      urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
-      Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
+      références:
+        urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
+        Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
 
     imputation sécurité sociale:
       privé: oui
@@ -319,7 +320,6 @@ salarié . cotisations . exonérations . T:
 
   avec:
     sécurité sociale et chômage:
-      titre: Coefficient T sécurité sociale et chômage
       somme:
         - maladie . employeur . taux
         - allocations familiales . taux
@@ -331,7 +331,6 @@ salarié . cotisations . exonérations . T:
         - chômage . employeur . taux
 
 salarié . cotisations . assiette:
-  titre: Assiette des cotisations sociales
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   références:
@@ -345,20 +344,6 @@ salarié . cotisations . assiette:
           - rémunération . frais professionnels . déductible
           - contrat . stage . gratification minimale
     - prévoyances . employeur . non déductible socialement
-
-salarié . cotisations . assiette . salariale:
-  titre: Assiette des cotisations sociales
-  description: |
-    Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
-  références:
-    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
-  formule:
-    variations:
-      - si: contrat . apprentissage
-        alors:
-          valeur: cotisations . assiette
-          abattement: 79% * SMIC
-      - sinon: cotisations . assiette
 
 salarié . cotisations . CPF CDD:
   description: Contribution au financement du compte personnel de formation (CPF) spécifique aux CDD.
@@ -391,6 +376,7 @@ salarié . cotisations . CEG:
     composantes:
       - attributs:
           nom: employeur
+          titre: part employeur
         tranches:
           - taux:
               valeur: 1.29%
@@ -400,7 +386,7 @@ salarié . cotisations . CEG:
             plafond: 8
       - attributs:
           nom: salarié
-        assiette: cotisations . assiette . salariale
+          titre: part salarié
         tranches:
           - taux: 0.86%
             plafond: 1
@@ -422,11 +408,13 @@ salarié . cotisations . CET:
     composantes:
       - attributs:
           nom: employeur
+          titre: part employeur
         taux:
           nom: taux
           valeur: 0.21%
       - attributs:
           nom: salarié
+          titre: part salarié
         taux: 0.14%
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -442,6 +430,7 @@ salarié . cotisations . retraite complémentaire:
     composantes:
       - attributs:
           nom: employeur
+          titre: part employeur
         tranches:
           - taux:
               valeur: 4.72%
@@ -453,7 +442,7 @@ salarié . cotisations . retraite complémentaire:
             plafond: 8
       - attributs:
           nom: salarié
-        assiette: cotisations . assiette . salariale
+          titre: part salarié
         tranches:
           - taux:
               valeur: 3.15%
@@ -472,8 +461,10 @@ salarié . cotisations . retraite complémentaire:
 #   par défaut: non
 #   somme:
 #     - nom: employeur
+# titre: part employeur
 #       valeur: 0€/mois
 #     - nom: salarié
+# titre: part salarié
 #       valeur: 0€/mois
 #   avec:
 #     déductible:
@@ -539,9 +530,11 @@ salarié . cotisations . APEC:
     composantes:
       - attributs:
           nom: employeur
+          titre: part employeur
         taux: 0.036%
       - attributs:
           nom: salarié
+          titre: part salarié
         taux: 0.024%
 
 salarié . cotisations . chômage:
@@ -558,11 +551,13 @@ salarié . cotisations . chômage:
     composantes:
       - attributs:
           nom: salarié
+          titre: part salarié
         taux:
           nom: taux
           valeur: 0%
       - attributs:
           nom: employeur
+          titre: part employeur
         taux:
           nom: taux
           valeur: 4.05%
@@ -895,6 +890,7 @@ salarié . cotisations . maladie:
     composantes:
       - attributs:
           nom: employeur
+          titre: part employeur
           avec:
             taux réduit: cotisations . assiette < 2.5 * temps de travail . SMIC
         taux:
@@ -906,6 +902,7 @@ salarié . cotisations . maladie:
 
       - attributs:
           nom: salarié
+          titre: part salarié
         taux:
           nom: taux
           variations:
@@ -957,6 +954,7 @@ salarié . cotisations . prévoyances:
     branche: santé
   somme:
     - nom: employeur
+      titre: part employeur
       somme:
         - santé . employeur
         - conventionnelle . employeur
@@ -984,6 +982,7 @@ salarié . cotisations . prévoyances:
         # TODO: autre
 
     - nom: salarié
+      titre: part salarié
       somme:
         - santé . salarié
         - conventionnelle . salarié
@@ -1005,8 +1004,10 @@ salarié . cotisations . prévoyances:
     conventionnelle:
       somme:
         - nom: employeur
+          titre: part employeur
           non applicable si: oui
         - nom: salarié
+          titre: part salarié
           non applicable si: oui
 
 salarié . cotisations . prévoyances . santé:
@@ -1057,7 +1058,7 @@ salarié . cotisations . vieillesse:
     composantes:
       - attributs:
           nom: salarié
-        assiette: cotisations . assiette . salariale
+          titre: part salarié
         composantes:
           - attributs:
               nom: déplafonnée
@@ -1072,6 +1073,7 @@ salarié . cotisations . vieillesse:
             plafond: temps de travail . plafond sécurité sociale
       - attributs:
           nom: employeur
+          titre: part employeur
         composantes:
           - attributs:
               nom: déplafonnée
@@ -1217,10 +1219,7 @@ salarié . cotisations . assiette forfaitaire:
             - CEG
             - CET
             - convention collective
-            # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
-            - assiette . salariale
-        - règle: assiette . salariale
-          dans: vieillesse
+            - vieillesse
         - règle: CSG-CRDS . assiette de base . assiette abattue
         - règle: temps de travail . plafond sécurité sociale
           par: plafond sécurité sociale
@@ -1230,8 +1229,7 @@ salarié . cotisations . assiette forfaitaire:
             - CEG
             - CET
             - convention collective
-            # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
-            - assiette . salariale
+
       valeur: assiette forfaitaire
       plancher:
         applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale

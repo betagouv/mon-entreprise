@@ -32,7 +32,10 @@
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
 	"resolutions": {
-		"@types/download/@types/got": "8.3.1"
+		"@types/download/@types/got": "8.3.1",
+		"@publicodes/api": "portal:/home/johan/Projets/publicodes/packages/api",
+		"publicodes": "portal:/home/johan/Projets/publicodes/packages/core",
+		"publicodes-react": "portal:/home/johan/Projets/publicodes/packages/react-ui"
 	},
 	"//": "@types/got:^9 is a hack to do a conflict with @types/download/@types/got and fix type error in download package https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/58929",
 	"devDependencies": {

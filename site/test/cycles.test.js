@@ -28,11 +28,11 @@ describe.skip('DottedNames graph', () => {
 				.join('\n\t- ')}\n\n`
 		).to.deep.equal([
 			[
-				'dirigeant . rémunération . imposable',
+				'dirigeant . rémunération . net . imposable',
 				'dirigeant . auto-entrepreneur . impôt . revenu imposable',
 				"entreprise . chiffre d'affaires",
-				'dirigeant . rémunération . net après impôt',
-				'dirigeant . rémunération . nette',
+				'dirigeant . rémunération . net . après impôt',
+				'dirigeant . rémunération . net',
 				'dirigeant . rémunération . totale',
 				'impôt . montant',
 				'impôt . revenu imposable',

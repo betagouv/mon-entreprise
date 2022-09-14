@@ -7,7 +7,7 @@ import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Accordion } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -59,11 +59,9 @@ export default function MonEntrepriseRulePage() {
 								name={documentationSitePaths[pathname]}
 							/>
 							<ScrollToTop key={pathname} />
-							<Grid item xs={12}>
-								<BackToSimulation />
-								<Spacing xl />
-								<DocumentationPageBody />
-							</Grid>
+							<BackToSimulation />
+							<Spacing xl />
+							<DocumentationPageBody />
 						</FromBottom>
 					)
 				}

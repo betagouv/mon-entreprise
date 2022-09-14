@@ -21,7 +21,8 @@ entreprise . imposition:
 
 entreprise . imposition . IR:
   valeur: imposition = 'IR'
-  titre: Impôt sur le revenu (IR)
+  titre: Impôt sur le revenu
+  acronyme: IR
   description: |
     Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme les autres revenus de
     votre foyer.
@@ -80,7 +81,8 @@ entreprise . imposition . IR . information sur le report de déficit:
 
 entreprise . imposition . IS:
   valeur: imposition = 'IS'
-  titre: Impôt sur les sociétés (IS)
+  titre: Impôt sur les sociétés
+  acronyme: IS
   description: |-
 
     Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
@@ -235,7 +237,6 @@ entreprise . imposition . régime:
     Les différents régimes d'imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
 
 entreprise . imposition . régime . micro-entreprise:
-  titre: Régime de la micro-entreprise
   non applicable si: entreprise . imposition . IS
   valeur: régime = 'micro-entreprise'
   par défaut: non
@@ -334,7 +335,7 @@ entreprise . imposition . régime . déclaration contrôlée:
     Qu’est-ce que le régime de la déclaration contrôlée ?: https://www.economie.gouv.fr/entreprises/regime-declaration-controlee
 
 entreprise . imposition . régime . réel normal:
-  titre: Régime réel normal d'imposition
+  titre: réel normal d'imposition
   acronyme: RN
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel normal'
@@ -342,7 +343,7 @@ entreprise . imposition . régime . réel normal:
     Qu'est-ce que le régime réel normal ?: https://www.economie.gouv.fr/entreprises/regime-reel-normal-imposition
 
 entreprise . imposition . régime . réel simplifié:
-  titre: Régime réel simplifié d'imposition
+  titre: réel simplifié d'imposition
   acronyme: RSI
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel simplifié'

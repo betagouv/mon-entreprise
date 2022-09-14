@@ -124,7 +124,7 @@ function TitreRestaurant() {
 
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const dottedName = 'salarié . aides employeur' as DottedName
+	const dottedName = 'salarié . coût total employeur . aides' as DottedName
 	const engine = useEngine()
 	const aides = engine.getRule(dottedName)
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous

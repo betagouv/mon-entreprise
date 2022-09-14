@@ -83,7 +83,7 @@ conjoint collaborateur:
 IJSS (indemnité sécurité sociale):
   - <<: *base
     dirigeant . indépendant . IJSS: oui
-    dirigeant . indépendant . IJSS . total: 10000 €/an
+    dirigeant . indépendant . IJSS . montant: 10000 €/an
     dirigeant . indépendant . IJSS . imposable: 8000 €/an
     dirigeant . rémunération . totale: 50000 €/an
 

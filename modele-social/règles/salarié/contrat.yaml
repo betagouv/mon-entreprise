@@ -156,6 +156,19 @@ salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
     La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
     travailleur handicapé est reconnue à l'apprenti.
 
+salarié . contrat . apprentissage . assiette réduite apprentissage:
+  description: Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
+  références:
+    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+  remplace:
+    règle: cotisations . assiette
+    dans:
+      - cotisations . CEG . salarié
+      - cotisations . retraite complémentaire . salarié
+      - cotisations . vieillesse . salarié
+  valeur: cotisations . assiette
+  abattement: 79% * SMIC
+
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t'il moins de 30 ans ?
   par défaut: oui
@@ -199,7 +212,6 @@ salarié . contrat . CDD . motif:
         Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
       avec:
         saisonnier:
-          titre: Saisonnier
           valeur: salarié . contrat . CDD . motif = 'classique . saisonnier'
           description: Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter chaque année selon une périodicité à peu près fixe, en fonction du rythme des saisons ou des modes de vie collectifs.
 
@@ -393,8 +405,6 @@ salarié . contrat . salaire brut:
     salaire médian: 2500 €/mois
     SMIC: temps de travail . SMIC
   inversion numérique:
-    question: Quel est le salaire ?
-    titre: salaire
     avec:
       - coût total employeur
       - rémunération . net . à payer avant impôt

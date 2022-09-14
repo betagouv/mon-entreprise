@@ -159,5 +159,5 @@ déclaration charge sociales . cotisations obligatoires déductibles:
 déclaration charge sociales . rémunération déductible:
   variations:
     - si: entreprise . imposition . IS
-      alors: dirigeant . rémunération . nette
+      alors: dirigeant . rémunération . net
     - sinon: 0€

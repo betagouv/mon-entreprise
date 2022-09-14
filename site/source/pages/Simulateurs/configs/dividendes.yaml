@@ -14,4 +14,4 @@ situation:
   bénéficiaire: oui
   entreprise . imposition: "'IS'"
   impôt . méthode de calcul: "'PFU'"
-  dirigeant . rémunération . imposable: 0 €/an
+  dirigeant . rémunération . net . imposable: 0 €/an

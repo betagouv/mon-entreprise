@@ -125,7 +125,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 					</Body>
 					<Body>
 						Il existe des{' '}
-						<RuleLink dottedName="salarié . aides employeur">
+						<RuleLink dottedName="salarié . coût total employeur . aides">
 							aides différées
 						</RuleLink>{' '}
 						à l'embauche qui ne sont pas toutes prises en compte par notre

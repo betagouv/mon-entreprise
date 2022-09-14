@@ -9,7 +9,7 @@ questions:
   à l'affiche:
     Type de contrat: salarié
     Temps partiel: salarié . contrat . temps de travail . temps partiel
-    Emploi franc: salarié . aides employeur . emploi franc . éligible
+    Emploi franc: salarié . coût total employeur . aides . emploi franc . éligible
     Cadre: salarié . contrat . statut cadre
     Heures supplémentaires: salarié . temps de travail . heures supplémentaires
     Titres-restaurant: salarié . rémunération . frais professionnels . titres-restaurant

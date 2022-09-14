@@ -40,7 +40,6 @@ entreprise . catégorie juridique . SARL . unipersonnelle:
   par défaut: oui
 
 entreprise . catégorie juridique . SELARL:
-  titre: 'SELARL'
   valeur: catégorie juridique = 'SELARL'
   remplace:
     - règle: entreprise . activité
@@ -49,7 +48,6 @@ entreprise . catégorie juridique . SELARL:
       par: oui
 
 entreprise . catégorie juridique . SELAS:
-  titre: 'SELARL'
   valeur: catégorie juridique = 'SELAS'
   remplace:
     - règle: entreprise . activité

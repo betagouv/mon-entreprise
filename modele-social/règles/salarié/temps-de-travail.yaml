@@ -22,6 +22,7 @@ salarié . temps de travail:
       références:
         Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
     plafond sécurité sociale:
+      titre: plafond sécurité sociale proratisé
       acronyme: PSS
       unité: €/mois
       valeur:

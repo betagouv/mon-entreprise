@@ -1,19 +1,19 @@
 échelle de revenus:
-  - dirigeant . rémunération . nette: 500 €/an
-  - dirigeant . rémunération . nette: 1000 €/an
-  - dirigeant . rémunération . nette: 1500 €/an
-  - dirigeant . rémunération . nette: 2000 €/an
-  - dirigeant . rémunération . nette: 5000 €/an
-  - dirigeant . rémunération . nette: 10000 €/an
-  - dirigeant . rémunération . nette: 100000 €/an
-  - dirigeant . rémunération . nette: 1000000 €/an
+  - dirigeant . rémunération . net: 500 €/an
+  - dirigeant . rémunération . net: 1000 €/an
+  - dirigeant . rémunération . net: 1500 €/an
+  - dirigeant . rémunération . net: 2000 €/an
+  - dirigeant . rémunération . net: 5000 €/an
+  - dirigeant . rémunération . net: 10000 €/an
+  - dirigeant . rémunération . net: 100000 €/an
+  - dirigeant . rémunération . net: 1000000 €/an
 
 inversions:
   - dirigeant . rémunération . totale: 2000 €/an
   - dirigeant . rémunération . totale: 50000 €/an
-  - dirigeant . rémunération . net après impôt: 10000 €/an
-  - dirigeant . rémunération . net après impôt: 40000 €/an
-  - dirigeant . rémunération . net après impôt: 10000 €/an
+  - dirigeant . rémunération . net . après impôt: 10000 €/an
+  - dirigeant . rémunération . net . après impôt: 40000 €/an
+  - dirigeant . rémunération . net . après impôt: 10000 €/an
     entreprise . charges: 1000 €/an
   - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
@@ -21,33 +21,33 @@ inversions:
     entreprise . charges: 2000 €/an
 
 cotisations minimales:
-  - dirigeant . rémunération . nette: 100 €/an
-  - dirigeant . rémunération . nette: 100 €/an
+  - dirigeant . rémunération . net: 100 €/an
+  - dirigeant . rémunération . net: 100 €/an
     situation personnelle . RSA: oui
 
 activité:
-  - dirigeant . rémunération . nette: 20000 €/an
+  - dirigeant . rémunération . net: 20000 €/an
     entreprise . activité: "'libérale'"
-  - dirigeant . rémunération . nette: 20000 €/an
+  - dirigeant . rémunération . net: 20000 €/an
     entreprise . activité: "'artisanale'"
 
 acre:
-  - dirigeant . rémunération . nette: 50000 €/an
+  - dirigeant . rémunération . net: 50000 €/an
     entreprise . date de création: 01/01/2022
     entreprise . exonérations . ACRE: oui
 
 impôt sur le revenu:
-  - dirigeant . rémunération . nette: 20000 €/an
+  - dirigeant . rémunération . net: 20000 €/an
     impôt . méthode de calcul: "'taux neutre'"
-  - dirigeant . rémunération . nette: 50000 €/an
+  - dirigeant . rémunération . net: 50000 €/an
     impôt . méthode de calcul: "'taux neutre'"
-  - dirigeant . rémunération . nette: 20000 €/an
+  - dirigeant . rémunération . net: 20000 €/an
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%
 
 conjoint collaborateur:
   - &conjoint-collab
-    dirigeant . rémunération . nette: 50000 €/an
+    dirigeant . rémunération . net: 50000 €/an
     dirigeant . indépendant . conjoint collaborateur: oui
   - <<: *conjoint-collab
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
@@ -60,13 +60,13 @@ conjoint collaborateur:
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
     dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
   - <<: *conjoint-collab
-    dirigeant . rémunération . nette: 500000 €/an
+    dirigeant . rémunération . net: 500000 €/an
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
 
 exonération covid:
   - &exoneration-covid
     date: 01/01/2021
-    dirigeant . rémunération . nette: 50000 €/an
+    dirigeant . rémunération . net: 50000 €/an
     dirigeant . indépendant . cotisations et contributions . exonérations . covid: oui
     dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant: 1500
   - <<: *exoneration-covid

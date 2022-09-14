@@ -51,7 +51,7 @@ describe('e2e test mon-entreprise api', () => {
 							unité: '€/an',
 						},
 						'dirigeant . rémunération . impôt',
-						'dirigeant . auto-entrepreneur . net après impôt',
+						'dirigeant . auto-entrepreneur . revenu net . après impôt',
 					],
 				})
 				.then((res) => {

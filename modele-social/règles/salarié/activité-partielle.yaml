@@ -98,7 +98,6 @@ salarié . activité partielle . heures travaillées . contrôle temps de travai
     à celui inscrit dans le contrat de travail.
 
 salarié . activité partielle . indemnités:
-  titre: indemnités activité partielle
   description: >-
     La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
     l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
@@ -120,24 +119,21 @@ salarié . activité partielle . indemnités:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
 
 salarié . activité partielle . indemnités . base:
-  titre: indemnités d'activité partielle de base
-  formule:
-    multiplication:
-      assiette: retrait absence
-      # Historique:
-      # - avant le 01/07/2021: 70%
-      # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
-      taux:
-        valeur:
-          variations:
-            - si: secteur d'activité restreint
-              alors: 70%
-              # Historique 60% jusqu'au 31 octobre 2021, 70% après
-            - sinon: 60%
-        nom: taux
+  multiplication:
+    assiette: retrait absence
+    # Historique:
+    # - avant le 01/07/2021: 70%
+    # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
+    taux:
+      valeur:
+        variations:
+          - si: secteur d'activité restreint
+            alors: 70%
+            # Historique 60% jusqu'au 31 octobre 2021, 70% après
+          - sinon: 60%
+      nom: taux
 
 salarié . activité partielle . indemnités . complémentaire:
-  titre: indemnité complémentaire
   description: >-
     L'indemnité complémentaire de chômage partielle est une indemnité versée par
     l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
@@ -153,14 +149,12 @@ salarié . activité partielle . indemnités . complémentaire:
         - indemnités . base
 
 salarié . activité partielle . retrait absence:
-  titre: retrait activité partielle
-  formule:
-    multiplication:
-      assiette: rémunération . taux horaire
-      facteur: heures chômées
+  multiplication:
+    assiette: rémunération . taux horaire
+    facteur: heures chômées
 
 salarié . activité partielle . indemnisation entreprise:
-  titre: Remboursement de l'indemnité d'activité partielle
+  titre: Remboursement de l'indemnité
   description: >-
     Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
     l'indemnité de chômage partiel pour les commerces fermés sera prise à
