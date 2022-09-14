@@ -1,6 +1,7 @@
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { useShouldFocusField } from '@/hooks/useShouldFocusField'
 import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
@@ -49,7 +50,7 @@ export type InputProps<Name extends string = string> = Omit<
 	Props<Name>,
 	'onChange'
 > &
-	Pick<RuleNode, 'title' | 'suggestions'> & {
+	Pick<RuleNode, 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
@@ -80,6 +81,9 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
+
+	const shouldFocusField = useShouldFocusField()
+
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
@@ -88,15 +92,17 @@ export default function RuleInput<Names extends string = DottedName>({
 			(!showDefaultDateValue && dottedName in evaluation.missingVariables),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
-		title: rule.title,
 		onSubmit,
+		title: rule.title,
 		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
+		autoFocus: shouldFocusField,
 		...props,
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
+
 	if (getVariant(engine.getRule(dottedName))) {
 		const type =
 			inputType ??

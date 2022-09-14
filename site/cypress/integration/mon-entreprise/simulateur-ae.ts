@@ -5,8 +5,7 @@ describe('Simulateur auto-entrepreneur', function () {
 		return
 	}
 
-	const inputSelector =
-		'div[aria-labelledby="simulator-legend"] input[inputmode="numeric"]'
+	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 
 	before(function () {
 		return cy.visit('/simulateurs/auto-entrepreneur')

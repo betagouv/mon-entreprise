@@ -2,6 +2,7 @@ import {
 	deleteFromSituation,
 	goToQuestion,
 	stepAction,
+	updateShouldFocusField,
 	updateSituation,
 } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -52,10 +53,16 @@ export default function Conversation({
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-	const goToNextQuestion = () => dispatch(stepAction(currentQuestion))
 
-	const goToPrevious = () =>
+	const goToNextQuestion = () => {
+		dispatch(updateShouldFocusField(true))
+		dispatch(stepAction(currentQuestion))
+	}
+
+	const goToPrevious = () => {
+		dispatch(updateShouldFocusField(true))
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
+	}
 
 	const onChange = (value: PublicodesExpression | undefined) => {
 		dispatch(
@@ -65,6 +72,11 @@ export default function Conversation({
 			)
 		)
 	}
+
+	const questionLabel = evaluateQuestion(
+		engine,
+		engine.getRule(currentQuestion)
+	)
 
 	return (
 		<>
@@ -96,7 +108,7 @@ export default function Conversation({
 								`}
 							>
 								<H3>
-									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
+									{questionLabel}
 									<ExplicableRule light dottedName={currentQuestion} />
 								</H3>
 							</div>
@@ -104,9 +116,9 @@ export default function Conversation({
 								<RuleInput
 									dottedName={currentQuestion}
 									onChange={onChange}
-									autoFocus
 									key={currentQuestion}
 									onSubmit={goToNextQuestion}
+									aria-label={questionLabel}
 								/>
 							</fieldset>
 							<Spacing md />
@@ -120,7 +132,7 @@ export default function Conversation({
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
 										<Button light onPress={goToPrevious} size="XS">
-											← <Trans>Précédent</Trans>
+											<span aria-hidden="true">←</span> <Trans>Précédent</Trans>
 										</Button>
 									</Grid>
 								)}
@@ -135,7 +147,7 @@ export default function Conversation({
 										) : (
 											<Trans>Passer</Trans>
 										)}{' '}
-										→
+										<span aria-hidden="true">→</span>
 									</Button>
 								</Grid>
 								<Grid

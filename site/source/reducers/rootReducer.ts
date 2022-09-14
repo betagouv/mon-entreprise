@@ -73,6 +73,7 @@ export type Simulation = {
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
+	shouldFocusField: boolean
 }
 
 function simulation(
@@ -90,6 +91,7 @@ function simulation(
 			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: [],
 			unfoldedStep: null,
+			shouldFocusField: false,
 		}
 	}
 
@@ -169,6 +171,12 @@ function simulation(
 			return {
 				...state,
 				targetUnit: action.targetUnit,
+			}
+
+		case 'UPDATE_SHOULD_FOCUS_FIELD':
+			return {
+				...state,
+				shouldFocusField: action.shouldFocusField,
 			}
 	}
 

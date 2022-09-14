@@ -32,6 +32,7 @@ const initialSimulation: Simulation = {
 	targetUnit: '€/mois',
 	foldedSteps: ['somestep' as DottedName],
 	unfoldedStep: null,
+	shouldFocusField: false,
 }
 
 describe('[persistence] When simulation persistence is setup', () => {

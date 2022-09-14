@@ -47,3 +47,6 @@ export const currentQuestionSelector = (state: RootState) =>
 
 export const answeredQuestionsSelector = (state: RootState) =>
 	state.simulation?.foldedSteps ?? []
+
+export const shouldFocusFieldSelector = (state: RootState) =>
+	state.simulation?.shouldFocusField ?? false

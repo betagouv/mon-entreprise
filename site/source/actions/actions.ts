@@ -20,6 +20,7 @@ export type Action =
 			| typeof deleteFromSituation
 			| typeof updateUnit
 			| typeof batchUpdateSituation
+			| typeof updateShouldFocusField
 	  >
 	| CompanyCreationAction
 	| CompanyStatusAction
@@ -102,4 +103,10 @@ export const explainVariable = (variableName: DottedName | null = null) =>
 	({
 		type: 'EXPLAIN_VARIABLE',
 		variableName,
+	} as const)
+
+export const updateShouldFocusField = (shouldFocusField: boolean) =>
+	({
+		type: 'UPDATE_SHOULD_FOCUS_FIELD',
+		shouldFocusField,
 	} as const)
