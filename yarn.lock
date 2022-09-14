@@ -4707,9 +4707,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.46":
-  version: 1.0.0-beta.46
-  resolution: "@publicodes/api@npm:1.0.0-beta.46"
+"@publicodes/api@npm:^1.0.0-beta.49":
+  version: 1.0.0-beta.49
+  resolution: "@publicodes/api@npm:1.0.0-beta.49"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -4717,8 +4717,8 @@ __metadata:
     koa-body: ^5.0.0
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
-    publicodes: ^1.0.0-beta.46
-  checksum: 0131f39efae7a484ae4188c88c33c10c7a362b46acb199e2211961b5fe1f6601aa22a5685dce8d02d5d64fe19f3c2522f8a239e862039b5a36c989ebe906201f
+    publicodes: ^1.0.0-beta.47
+  checksum: 6568025f2e9b75b5040c23fa4c9a5a8d99b7352489b42f2ca5837823421674fdfdd514734ae607d691cdf72365b440afc8f6e88bb4fe4a28b36c3b49326db75b
   languageName: node
   linkType: hard
 
@@ -9997,7 +9997,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.46
+    "@publicodes/api": ^1.0.0-beta.49
     "@sentry/node": ^7.1.1
     "@sentry/tracing": ^7.1.1
     "@types/koa": ^2.13.4
@@ -10013,7 +10013,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.46
+    publicodes: ^1.0.0-beta.49
     rate-limiter-flexible: ^2.3.8
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
@@ -15394,9 +15394,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: =1.0.0-beta.46
+    publicodes: =1.0.0-beta.49
   peerDependencies:
-    publicodes: ^1.0.0-beta.46
+    publicodes: ^1.0.0-beta.49
   languageName: unknown
   linkType: soft
 
@@ -20950,9 +20950,9 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.46
+    publicodes: ^1.0.0-beta.49
   peerDependencies:
-    publicodes: ^1.0.0-beta.46
+    publicodes: ^1.0.0-beta.49
   languageName: unknown
   linkType: soft
 
@@ -25414,8 +25414,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^10.6.3
-    publicodes: ^1.0.0-beta.46
-    publicodes-react: ^1.0.0-beta.46
+    publicodes: ^1.0.0-beta.49
+    publicodes-react: ^1.0.0-beta.49
     react: ^17.0.0
     react-colorful: ^5.5.1
     react-dom: ^17.0.0
