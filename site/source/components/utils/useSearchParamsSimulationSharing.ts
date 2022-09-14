@@ -113,7 +113,7 @@ export const cleanSearchParams = (
 	setSearchParams(searchParams.toString(), { replace: true })
 }
 
-export const getRulesParamNames = (
+const getRulesParamNames = (
 	parsedRules: ParsedRules<DottedName>
 ): [DottedName, ParamName][] =>
 	(
@@ -126,7 +126,7 @@ export const getRulesParamNames = (
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])
 
-export function getSearchParamsFromSituation(
+function getSearchParamsFromSituation(
 	engine: Engine,
 	situation: Situation,
 	dottedNameParamName: [DottedName, ParamName][]
@@ -136,12 +136,17 @@ export function getSearchParamsFromSituation(
 
 	Object.entries(situation).forEach(([dottedName, value]) => {
 		const paramName = dottedNameParamNameMapping[dottedName]
-		const serializedValue = serializeEvaluation(engine.evaluate(value))
+		try {
+			const serializedValue = serializeEvaluation(engine.evaluate(value))
 
-		if (typeof serializedValue !== 'undefined') {
-			searchParams.set(paramName, serializedValue)
-		} else if (typeof value === 'object') {
-			searchParams.set(paramName, JSON.stringify(value))
+			if (typeof serializedValue !== 'undefined') {
+				searchParams.set(paramName, serializedValue)
+			} else if (typeof value === 'object') {
+				searchParams.set(paramName, JSON.stringify(value))
+			}
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(error)
 		}
 	})
 	searchParams.sort()

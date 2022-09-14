@@ -4,14 +4,22 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { omit } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
 	EvaluatedNode,
+	isPublicodesError,
 	PublicodesExpression,
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext, useMemo } from 'react'
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useMemo,
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import i18n from '../../locales/i18n'
 
@@ -60,36 +68,39 @@ export const useRawSituation = () => {
 
 export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	const dispatch = useDispatch()
-	const situation = useRawSituation()
+	const rawSituation = useRawSituation()
 
-	let loop = true
-	while (loop) {
+	// Try to set situation and delete all rules with syntax error
+	let situationError = false
+	let maxLoopCount = 1000
+	let situation = { ...rawSituation } as typeof rawSituation
+	do {
 		try {
 			engine.setSituation(situation)
-			loop = false
+			situationError = false
 		} catch (error) {
-			const errorStr = (error as Error).toString()
-			const faultyDottedName = ((/Erreur syntaxique/.test(errorStr) &&
-				errorStr.match(/"[^"[]*\[([^"\]]*)\][^"\]]*"/)) ||
-				null)?.[1]
+			situationError = true
+			maxLoopCount--
 
-			if (faultyDottedName == null) {
-				loop = false
-				// eslint-disable-next-line no-console
-				console.error(error)
-			} else {
+			if (isPublicodesError(error, 'SyntaxError')) {
+				const faultyDottedName = error.info.dottedName as DottedName
+
 				// eslint-disable-next-line no-console
 				console.error(
-					'Key omit from situation:',
-					`"${faultyDottedName}"\n\n`,
+					`Key omit from situation: "${faultyDottedName}"\n\n`,
 					error
 				)
 
-				// Delete faultyDottedName from redux store
-				dispatch(deleteFromSituation(faultyDottedName as DottedName))
+				// Hack: Omit faultyDottedName from situation for next loop
+				situation = omit(situation, faultyDottedName)
+
+				dispatch(deleteFromSituation(faultyDottedName))
+			} else {
+				// eslint-disable-next-line no-console
+				console.error('safeSituationCatch', error)
 			}
 		}
-	}
+	} while (situationError && maxLoopCount > 0)
 }
 
 export function useInversionFail() {
