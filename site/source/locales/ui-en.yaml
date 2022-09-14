@@ -446,7 +446,7 @@ checklist:
     open: Hide details
 cible: target
 clickexample: Click on a situation to see the result
-cliquez pour insérer cette suggestion: click to insert this suggestion
+Insérer la suggestion: Insert the suggestion
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
     and 4 quarters <2>(subject to eligibility requirements)</2></2>
