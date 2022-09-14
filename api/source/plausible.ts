@@ -35,35 +35,26 @@ export const plausibleEvent = (
 }
 
 export const plausibleMiddleware = async (ctx: BaseContext, next: Next) => {
-	const xxx = Date.now().toString()
-	console.time('requestA-' + xxx)
-	void plausibleEvent(ctx, { eventName: 'pageview' })
-		.catch((err) => {
-			const error = err as RequestError
-			console.error(error.code, error.message)
-		})
-		.then(() => {
-			console.timeEnd('requestA-' + xxx)
-		})
-	console.timeLog('requestA-' + xxx)
+	if (process.env.NODE_ENV !== 'production') {
+		return
+	}
+
+	void plausibleEvent(ctx, { eventName: 'pageview' }).catch((err) => {
+		const error = err as RequestError
+		console.error(error.code, error.message)
+	})
 
 	const result = (await next()) as unknown
 
-	console.time('requestB-' + xxx)
 	void plausibleEvent(ctx, {
 		eventName: 'status',
 		props: {
 			status: ctx.status,
 		},
+	}).catch((err) => {
+		const error = err as RequestError
+		console.error(error.code, error.message)
 	})
-		.catch((err) => {
-			const error = err as RequestError
-			console.error(error.code, error.message)
-		})
-		.then(() => {
-			console.timeEnd('requestB-' + xxx)
-		})
-	console.timeLog('requestB-' + xxx)
 
 	return result
 }
