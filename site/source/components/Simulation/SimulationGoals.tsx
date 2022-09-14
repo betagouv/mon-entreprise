@@ -47,7 +47,7 @@ export function SimulationGoals({
 					<div
 						className="sr-only"
 						aria-hidden="true"
-						id="simulator-legendlabel"
+						id="simulator-legend-label"
 					>
 						{legend}
 					</div>
