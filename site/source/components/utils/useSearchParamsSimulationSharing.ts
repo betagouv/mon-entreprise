@@ -113,7 +113,7 @@ export const cleanSearchParams = (
 	setSearchParams(searchParams.toString(), { replace: true })
 }
 
-const getRulesParamNames = (
+export const getRulesParamNames = (
 	parsedRules: ParsedRules<DottedName>
 ): [DottedName, ParamName][] =>
 	(
@@ -126,7 +126,7 @@ const getRulesParamNames = (
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])
 
-function getSearchParamsFromSituation(
+export function getSearchParamsFromSituation(
 	engine: Engine,
 	situation: Situation,
 	dottedNameParamName: [DottedName, ParamName][]
