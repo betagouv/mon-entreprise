@@ -30,7 +30,7 @@ export type Data<T = number | Record<string, number>> = {
 export type DataStacked = Data<Record<string, number>>
 
 export const isDataStacked = (data: Data): data is DataStacked =>
-	typeof data[0].nombre !== 'number'
+	typeof data[0]?.nombre !== 'number'
 
 export interface VisitsChartProps {
 	period: Period
