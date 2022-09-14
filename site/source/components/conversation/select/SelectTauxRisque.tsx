@@ -63,6 +63,7 @@ function SelectComponent({
 			<TextField
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
+				// eslint-disable-next-line jsx-a11y/no-autofocus
 				autoFocus={autoFocus}
 				errorMessage={
 					searchResults &&
@@ -161,7 +162,5 @@ export default function SelectAtmp(
 			)
 	}, [])
 
-	if (!options) return null
-
-	return <SelectComponent {...props} options={options} />
+	return <SelectComponent {...props} options={options || []} />
 }
