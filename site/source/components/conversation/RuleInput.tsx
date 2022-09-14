@@ -93,6 +93,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		onSubmit,
+		title: rule.title,
 		description: rule.rawNode.description,
 		id: props.id ?? dottedName,
 		question: rule.rawNode.question,
