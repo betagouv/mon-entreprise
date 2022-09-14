@@ -86,7 +86,6 @@ bénéficiaire . dividendes . cotisations et contributions:
       - attributs:
           nom: prélèvement de solidarité
         taux: 7.5%
-  titre: Cotisations et contributions sur dividendes
   note: La CSG sur les revenus soumis au PFU n'est jamais déductible
   références:
     Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/les-revenus-mobiliers

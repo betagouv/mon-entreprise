@@ -17,7 +17,7 @@ it('calculate simulations-auto-entrepreneur', () => {
 					...autoentrepreneurConfig.situation,
 					"dirigeant . auto-entrepreneur . chiffre d'affaires": '30000 €/an',
 				})
-				.evaluate('dirigeant . auto-entrepreneur . net après impôt')
+				.evaluate('dirigeant . auto-entrepreneur . revenu net . après impôt')
 		)
 	).toMatchInlineSnapshot(`
 		[

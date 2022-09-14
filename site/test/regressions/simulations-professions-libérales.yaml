@@ -74,30 +74,30 @@ expert-comptable:
     dirigeant . rémunération . totale: 50000 €/an
 
 CIPAV échelle de revenu:
-  - dirigeant . rémunération . nette: 500 €/an
-  - dirigeant . rémunération . nette: 1000 €/an
-  - dirigeant . rémunération . nette: 1500 €/an
-  - dirigeant . rémunération . nette: 2000 €/an
-  - dirigeant . rémunération . nette: 5000 €/an
-  - dirigeant . rémunération . nette: 10000 €/an
-  - dirigeant . rémunération . nette: 100000 €/an
-  - dirigeant . rémunération . nette: 1000000 €/an
+  - dirigeant . rémunération . net: 500 €/an
+  - dirigeant . rémunération . net: 1000 €/an
+  - dirigeant . rémunération . net: 1500 €/an
+  - dirigeant . rémunération . net: 2000 €/an
+  - dirigeant . rémunération . net: 5000 €/an
+  - dirigeant . rémunération . net: 10000 €/an
+  - dirigeant . rémunération . net: 100000 €/an
+  - dirigeant . rémunération . net: 1000000 €/an
 
 CIPAV réduction et surcotisation:
-  - dirigeant . rémunération . nette: 10000 €/an
+  - dirigeant . rémunération . net: 10000 €/an
     dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
-  - dirigeant . rémunération . nette: 50000 €/an
+  - dirigeant . rémunération . net: 50000 €/an
     dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
-  - dirigeant . rémunération . nette: 100000 €/an
+  - dirigeant . rémunération . net: 100000 €/an
     dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
 
 CIPAV exonération incapacité:
-  - dirigeant . rémunération . nette: 40000 €/an
+  - dirigeant . rémunération . net: 40000 €/an
     dirigeant . indépendant . PL . CNAVPL . exonération incapacité: oui
 
 CIPAV conjoint collaborateur:
   - &CNAVPL-conjoint-collaborateur
-    dirigeant . rémunération . nette: 60000 €/an
+    dirigeant . rémunération . net: 60000 €/an
     dirigeant . indépendant . conjoint collaborateur: oui
   - <<: *CNAVPL-conjoint-collaborateur
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
@@ -111,17 +111,17 @@ CIPAV conjoint collaborateur:
     dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
-    dirigeant . rémunération . nette: 1000 €/an
+    dirigeant . rémunération . net: 1000 €/an
     dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
     dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion: "'moitié'"
 
 CIPAV ACRE:
   - &CNAVPL-ACRE
-    dirigeant . rémunération . nette: 5000 €/an
+    dirigeant . rémunération . net: 5000 €/an
     entreprise . exonérations . ACRE: oui
     entreprise . date de création: 11/11/2021
   - <<: *CNAVPL-ACRE
-    dirigeant . rémunération . nette: 20000 €/an
+    dirigeant . rémunération . net: 20000 €/an
   - <<: *CNAVPL-ACRE
-    dirigeant . rémunération . nette: 50000 €/an
+    dirigeant . rémunération . net: 50000 €/an

@@ -8,10 +8,10 @@ it('calculate simulations-indépendant', () => {
 	const objectifs = [
 		'dirigeant . rémunération . totale',
 		'dirigeant . rémunération . cotisations',
-		'dirigeant . rémunération . nette',
+		'dirigeant . rémunération . net',
 		'dirigeant . indépendant . revenu professionnel',
 		'impôt . montant',
-		'dirigeant . rémunération . net après impôt',
+		'dirigeant . rémunération . net . après impôt',
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
 		'dirigeant . indépendant . cotisations et contributions . début activité',

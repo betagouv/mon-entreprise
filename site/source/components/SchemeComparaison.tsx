@@ -374,7 +374,7 @@ export default function SchemeComparaison({
 								engine={assimiléEngine}
 								precision={0}
 								unit="€/an"
-								expression="dirigeant . rémunération . nette"
+								expression="dirigeant . rémunération . net"
 							/>
 						</div>
 						<div className="indep">
@@ -382,7 +382,7 @@ export default function SchemeComparaison({
 								linkToRule={false}
 								engine={indépendantEngine}
 								precision={0}
-								expression="dirigeant . rémunération . nette"
+								expression="dirigeant . rémunération . net"
 							/>
 						</div>
 						<div className="auto">
@@ -394,7 +394,7 @@ export default function SchemeComparaison({
 									precision={0}
 									className={''}
 									unit="€/an"
-									expression="dirigeant . rémunération . nette - entreprise . charges"
+									expression="dirigeant . rémunération . net - entreprise . charges"
 								/>
 							</>
 						</div>

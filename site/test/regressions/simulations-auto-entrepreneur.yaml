@@ -1,40 +1,40 @@
 échelle de revenus:
-  - dirigeant . auto-entrepreneur . net de cotisations: 500 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 1000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 2000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 5000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 10000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 50000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 70000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 100000 €/an
-  - dirigeant . auto-entrepreneur . net de cotisations: 1000000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 500 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 1000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 2000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 5000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 10000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 50000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 70000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 100000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 1000000 €/an
 
 aides:
-  - dirigeant . auto-entrepreneur . net de cotisations: 5000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 5000 €/an
     entreprise . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . net de cotisations: 50000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 50000 €/an
     entreprise . exonérations . ACRE: oui
 
 impôt sur le revenu:
-  - dirigeant . auto-entrepreneur . net de cotisations: 25000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 25000 €/an
     entreprise . activité: "'libérale'"
     dirigeant . auto-entrepreneur . impôt . versement libératoire: oui
 
 ACRE:
-  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2021
     entreprise . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2020
     entreprise . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . net de cotisations: 30000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 30000 €/an
     entreprise . date de création: 01/06/2021
     entreprise . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . net de cotisations: 40000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 40000 €/an
     entreprise . date de création: 01/06/2020
     entreprise . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
+  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2022
     entreprise . exonérations . ACRE: oui
 

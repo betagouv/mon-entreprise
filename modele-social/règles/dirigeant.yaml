@@ -40,7 +40,7 @@ dirigeant . rémunération . totale:
   question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
     C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
-  titre: Rémunération totale
+  titre global: Rémunération totale dirigeant
   unité: €/an
   résumé: Incluant les cotisations et contributions
   variations:
@@ -49,14 +49,14 @@ dirigeant . rémunération . totale:
     - si: entreprise . imposition . IS
       alors:
         somme:
-          - net après impôt
+          - net . après impôt
           - impôt . montant
           - cotisations
         par défaut: entreprise . chiffre d'affaires - entreprise . charges
         plancher: cotisations
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
 
-dirigeant . rémunération . nette:
+dirigeant . rémunération . net:
   titre: revenu net
   question: Quelle est votre revenu net ?
   résumé: Après déduction des cotisations, contributions et charges
@@ -73,7 +73,7 @@ dirigeant . rémunération . cotisations:
     - si: auto-entrepreneur
       alors: auto-entrepreneur . cotisations et contributions
 
-dirigeant . rémunération . imposable:
+dirigeant . rémunération . net . imposable:
   titre: revenu imposable
   variations:
     - si: assimilé salarié
@@ -88,12 +88,12 @@ dirigeant . rémunération . impôt:
   titre: impôt sur le revenu
   somme:
     - produit:
-        assiette: imposable
+        assiette: net . imposable
         taux: impôt . taux d'imposition
     - auto-entrepreneur . impôt . versement libératoire . montant
   arrondi: oui
 
-dirigeant . rémunération . net après impôt:
+dirigeant . rémunération . net . après impôt:
   titre: Revenu après impôt
   unité: €/an
   arrondi: oui
@@ -101,7 +101,7 @@ dirigeant . rémunération . net après impôt:
   description: >-
     Le revenu net après déduction de l'impôt
     sur le revenu et des cotisations sociales.
-  valeur: rémunération . nette - impôt . montant
+  valeur: rémunération . net - impôt . montant
   résumé: Ce que vous rapporte cette activité
 
 dirigeant . assimilé salarié:
@@ -182,11 +182,10 @@ dirigeant . auto-entrepreneur:
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
-dirigeant . auto-entrepreneur . net de cotisations:
-  titre: Revenu net de cotisations
+dirigeant . auto-entrepreneur . revenu net:
   arrondi: oui
   unité: €/an
-  remplace: rémunération . nette
+  remplace: rémunération . net
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -215,7 +214,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
     - métiers
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
-  titre: taxe pour frais de chambre de commerce
   applicable si: entreprise . activité = 'commerciale'
   produit:
     composantes:
@@ -234,7 +232,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   unité: €/mois
-  titre: taxe pour frais de chambre des métiers
   applicable si: entreprise . activité = 'artisanale'
   produit:
     composantes:
@@ -351,7 +348,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   privé: oui
-  titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . exonérations . ACRE
   remplace:
     règle: taux vente restauration hébergement
@@ -474,12 +470,11 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
       - assiette: entreprise . chiffre d'affaires . service BNC
         taux: 2.2%
 
-dirigeant . auto-entrepreneur . net après impôt:
-  titre: revenu net après impôt
+dirigeant . auto-entrepreneur . revenu net . après impôt:
   identifiant court: auto-entrepreneur-net-apres-impot
   résumé: Avant déduction des dépenses liées à l'activité
   unité: €/an
-  remplace: rémunération . net après impôt
+  remplace: rémunération . net . après impôt
   arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
@@ -500,7 +495,7 @@ dirigeant . auto-entrepreneur . net après impôt:
     - La location d'un local
 
     - etc...
-  valeur: net de cotisations - rémunération . impôt
+  valeur: revenu net - rémunération . impôt
 
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires ?
@@ -509,8 +504,8 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
   inversion numérique:
     avec:
       - rémunération . totale
-      - net après impôt
-      - net de cotisations
+      - revenu net . après impôt
+      - revenu net
 
 dirigeant . indépendant:
   applicable si: régime social = 'indépendant'
@@ -525,7 +520,7 @@ dirigeant . indépendant . revenu professionnel:
     - si: entreprise . imposition = 'IS'
       alors:
         somme:
-          - rémunération . nette
+          - rémunération . net
           - cotisations et contributions . non déductibles
     - sinon: entreprise . résultat fiscal
 
@@ -540,7 +535,7 @@ dirigeant . indépendant . assiette des cotisations:
   plancher: 0
 
 dirigeant . indépendant . cotisations et contributions . non déductibles:
-  titre: Cotisations et contributions non déductibles fiscalement
+  titre: Part non déductibles fiscalement
   somme:
     - CSG-CRDS . non déductible
     - cotisations facultatives . non déductibles
@@ -623,7 +618,7 @@ dirigeant . indépendant . conjoint collaborateur:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
 
 dirigeant . indépendant . conjoint collaborateur . assiette:
-  titre: Choix assiette (conjoint collaborateur)
+  titre: Choix assiette
   question: Sur quelle base le conjoint cotise-t'il ?
   description: |
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
@@ -641,7 +636,6 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         - revenu avec partage
 
 dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
-  titre: assiette forfaitaire
   description: |
     Le conjoint collaborateur paiera des cotisations équivalentes à un revenu
     professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale,
@@ -656,7 +650,6 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
   formule: assiette = 'revenu avec partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage . assiette gérant:
-  titre: assiette (partagée avec le conjoint collaborateur)
   valeur: assiette des cotisations - cotisations . assiette
   remplace:
     règle: assiette des cotisations
@@ -671,7 +664,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans parta
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
-  titre: Proportion revenu (conjoint collaborateur)
+  titre: Proportion revenu
   question: À quelle proportion du revenu le conjoint cotise-t'il ?
   par défaut: "'tiers'"
   formule:
@@ -690,7 +683,6 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moi
   titre: '1/2'
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
-  titre: assiette conjoint collaborateur
   unité: €/an
   produit:
     assiette: assiette des cotisations
@@ -705,7 +697,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
       - sinon: {}
 
 dirigeant . indépendant . conjoint collaborateur . cotisations:
-  titre: Cotisations conjoint collaborateur
   formule:
     somme:
       - retraite de base
@@ -744,7 +735,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
   arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
-  titre: assiette retraite complémentaire
   unité: €/an
   valeur: assiette retraite
   plafond:
@@ -754,7 +744,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
       - sinon: 3 * plafond sécurité sociale
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
-  titre: invalidité et décès (conjoint collaborateur)
   produit:
     assiette:
       unité: €/an
@@ -765,7 +754,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
   arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
-  titre: indemnités journalières maladie (conjoint collaborateur)
   produit:
     assiette:
       unité: €/an
@@ -788,7 +776,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
       - (- exonérations)
 
 dirigeant . indépendant . cotisations et contributions:
-  titre: cotisations et contributions sociales
   description: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires ainsi qu'au titre de ses cotisations facultatives
@@ -797,7 +784,7 @@ dirigeant . indépendant . cotisations et contributions:
   somme:
     - cotisations et contributions . cotisations
     - conjoint collaborateur . cotisations
-    - cotisations facultatives . total
+    - cotisations facultatives . montant
     - CSG-CRDS
     - contributions spéciales
     - formation professionnelle
@@ -818,7 +805,6 @@ dirigeant . indépendant . assiette minimale:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . assiette minimale . maladie:
-  titre: assiette minimale maladie
   description: |
     Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
   produit:
@@ -830,7 +816,6 @@ dirigeant . indépendant . assiette minimale . maladie:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . assiette minimale . retraite:
-  titre: assiette minimale retraite
   description: La cotisation minimale de retraite de base permet de valider 3 trimestres de retraite, quel que soit le revenu.
   produit:
     assiette: plafond sécurité sociale
@@ -893,14 +878,13 @@ dirigeant . indépendant . cotisations facultatives:
     Contrats Madelin: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
     PER: https://www.economie.gouv.fr/PER-epargne-retraite
 
-dirigeant . indépendant . cotisations facultatives . total:
-  titre: Total des cotisations facultatives
+dirigeant . indépendant . cotisations facultatives . montant:
   somme:
     - contrats madelin
     - PER
 
 dirigeant . indépendant . cotisations facultatives . déductibles:
-  titre: Part des cotisations facultatives déductible fiscalement
+  titre: Part déductible fiscalement
   formule:
     somme:
       - valeur: contrats madelin . prévoyance
@@ -911,8 +895,8 @@ dirigeant . indépendant . cotisations facultatives . déductibles:
         plafond: plafond retraite complémentaire
 
 dirigeant . indépendant . cotisations facultatives . non déductibles:
-  titre: Part des cotisations facultatives non déductible fiscalement
-  formule: total - déductibles
+  titre: Part non déductible fiscalement
+  formule: montant - déductibles
 
 dirigeant . indépendant . cotisations facultatives . PER:
   description: Le PER individuel est ouvert à tous. Vous pouvez le souscrire auprès d'un établissement financier ou d'un organisme d'assurance. Ce nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus proposés à partir du 1er octobre 2020. Votre épargne accumulée sur le Perp et le Madelin peut être à votre demande transférée sur le PER individuel. Ce contrat donne droit à des avantages fiscaux et vos droits sont transférables vers les autres PER. Il y a des cas de déblocage anticipé.
@@ -925,13 +909,13 @@ dirigeant . indépendant . cotisations facultatives . PER:
     Fiche economie.gouv.fr: https://www.economie.gouv.fr/PER-epargne-retraite
 
 dirigeant . indépendant . cotisations facultatives . contrats madelin:
-  titre: Somme des cotisations à contrats Madelin
+  titre: contrats Madelin
   somme:
     - prévoyance
     - retraite
 
 dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
-  titre: Souscription à un contrat de prévoyance complémentaire Madelin
+  titre: Prévoyance complémentaire
   question: Quel est le montant que vous versez pour vos contrats Madelin de prévoyance complémentaire (santé, perte d'emploi subie) ?
   unité: €/an
   description: |
@@ -964,7 +948,6 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
   note: |
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
 dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
-  titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez pour votre contrat Madelin retraite complémentaire ?
   description: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
@@ -1020,7 +1003,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
     la première et de la deuxième année d’activité (à l’exception de la cotisation Maladie
     et indemnités journalières pour lesquelles l’assiette forfaitaire est égale à 40% du
     plafond annuel de la Sécurité sociale).
-  applicable si: entreprise . date de création >= 01/2020
+  applicable si: entreprise . date de création >= période . début d'année
   unité: €/an
   recalcul:
     règle: cotisations et contributions
@@ -1176,7 +1159,7 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
         plafond:
           nom: plafond
           acronyme: PRCI
-          titre: plafond retraite complémentaire des indépendants
+          titre global: plafond retraite complémentaire des indépendants
           valeur:
             variations:
               - si: date >= 01/2022
@@ -1217,7 +1200,7 @@ dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
                 valeur: 2.9%
             - attributs:
                 nom: revenus de remplacement
-              assiette: dirigeant . indépendant . IJSS . total
+              assiette: dirigeant . indépendant . IJSS . montant
               taux: non déductible . taux
         - attributs:
             nom: déductible
@@ -1229,7 +1212,7 @@ dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
                 valeur: 6.8%
             - attributs:
                 nom: revenus de remplacement
-              assiette: dirigeant . indépendant . IJSS . total
+              assiette: dirigeant . indépendant . IJSS . montant
               taux: 3.8%
 
   références:
@@ -1367,43 +1350,41 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
-  titre: taux exonération ZFU
-  formule:
-    taux progressif:
-      assiette: entreprise . durée d'activité . en fin d'année
-      retourne seulement le taux: oui
-      variations:
-        - si: entreprise . salariés . effectif < 5
-          alors:
-            tranches:
-              - plafond: 5 ans
-                taux: 100%
-              - plafond: 6 ans
-                taux: 60%
-              - plafond: 10 ans
-                taux: 60%
-              - plafond: 11 ans
-                taux: 40%
-              - plafond: 12 ans
-                taux: 40%
-              - plafond: 13 ans
-                taux: 20%
-              - plafond: 14 ans
-                taux: 20%
-              - plafond: 15 ans
-                taux: 0%
-        - sinon:
-            tranches:
-              - plafond: 5 ans
-                taux: 100%
-              - plafond: 6 ans
-                taux: 60%
-              - plafond: 7 ans
-                taux: 40%
-              - plafond: 8 ans
-                taux: 20%
-              - plafond: 9 ans
-                taux: 0%
+  taux progressif:
+    assiette: entreprise . durée d'activité . en fin d'année
+    retourne seulement le taux: oui
+    variations:
+      - si: entreprise . salariés . effectif < 5
+        alors:
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 10 ans
+              taux: 60%
+            - plafond: 11 ans
+              taux: 40%
+            - plafond: 12 ans
+              taux: 40%
+            - plafond: 13 ans
+              taux: 20%
+            - plafond: 14 ans
+              taux: 20%
+            - plafond: 15 ans
+              taux: 0%
+      - sinon:
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 7 ans
+              taux: 40%
+            - plafond: 8 ans
+              taux: 20%
+            - plafond: 9 ans
+              taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   applicable si:
@@ -1462,7 +1443,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
     Pour connaître le montant de l'exonération, vous pouvez utiliser le simulateur d'exonération COVID.
 
     [Accéder au simulateur](/simulateurs/exonération-covid "Nouvelle fenêtre")
-  titre: Réduction Covid
   par défaut: 0 €/an
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur:
@@ -1475,7 +1455,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
   valeur: montant
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . total:
-  titre: Réduction Covid
   description: Intégrée dans le montant des cotisations affiché ci-dessus
   somme:
     - montant
@@ -1541,8 +1520,8 @@ dirigeant . indépendant . IJSS:
   question: Avez-vous perçu des indemnités journalières ou allocations de sécurité sociale au titre de votre activité indépendante (maladie, maternité, paternité, adoption) ?
   par défaut: non
 
-dirigeant . indépendant . IJSS . total:
-  titre: Montant total des allocations et indemnités journalières
+dirigeant . indépendant . IJSS . montant:
+  titre: Montant total
   question: Quel est le montant brut total de vos allocations et indemnités journalières de sécurité sociale ?
   description: |
     Indiquez le montant total brut de vos allocations et indemnités journalières perçues, imposables et non imposables, qui figure sur le relevé de prestations fourni par votre caisse primaire d’assurance maladie.
@@ -1557,7 +1536,7 @@ dirigeant . indépendant . IJSS . total:
   par défaut: 0 €/an
 
 dirigeant . indépendant . IJSS . imposable:
-  titre: Allocations et indemnités journalières imposables
+  titre: part imposable
   résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
   question: Quel est le montant brut imposable de vos allocations et indemnités journalières de sécurité sociale ?
   description: |

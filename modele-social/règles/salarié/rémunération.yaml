@@ -87,7 +87,6 @@ salarié . rémunération . net . à payer avant impôt:
     - (- frais professionnels . titres-restaurant . montant)
 
 salarié . rémunération . net:
-  titre: rémunération nette
   description: C'est la rémunération nette de cotisations. Elle inclut le salaire net, mais également des éléments de rémunération en nature comme les avantages en nature, les titres restaurants ou les prévoyances payées par employeur.
   somme:
     - nom: sans revenus de remplacement
@@ -327,7 +326,6 @@ salarié . rémunération . brut:
   abattement: activité partielle . retrait absence
 
 salarié . rémunération . heures supplémentaires:
-  titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
   produit:
     assiette: taux horaire . heures supplémentaires
@@ -337,7 +335,6 @@ salarié . rémunération . heures supplémentaires:
         - temps de travail . heures supplémentaires . majoration
 
 salarié . rémunération . heures complémentaires:
-  titre: rémunération heures complémentaires
   description: La rémunération relative aux heures complémentaires
   produit:
     assiette: taux horaire . heures supplémentaires
@@ -373,7 +370,7 @@ salarié . rémunération . frais professionnels:
     - trajets domicile travail . employeur
 
 salarié . rémunération . frais professionnels . déductible:
-  titre: Frais professionnels déductibles
+  titre: Part déductibles
   description: >-
     Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
     de l'impôt sur le revenu.
@@ -485,7 +482,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
         # TODO : [Prime de 4€](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-de-la-prime-de-transpo.html)
       abattement: abattement temps partiel
     déductible:
-      titre: Trajets domicile travail déductibles
+      titre: Part déductible
       valeur:
         somme:
           - transports publics . employeur
@@ -515,7 +512,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
   icônes: 🚍
   avec:
     montant:
-      titre: Abonnement aux transports publics
+      titre: Montant abonnement
       question: Quel montant le salarié dépense-t-il en abonnement aux transports publics pour se rendre sur son lieu de travail ?
       unité: €/mois
       par défaut: 0 €/mois
@@ -542,7 +539,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
 
     employeur:
       applicable si: montant > 0
-      titre: Montant de l'abonnement aux transports publics prise en charge par l'employeur. Elle est déductible de cotisations et d'impôts.
+      titre: Part employeur
+      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur. Elle est déductible de cotisations et d'impôts.
       unité: €/mois
       produit:
         assiette: montant
@@ -589,7 +587,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
 
     déductible:
       applicable si: montant > 0
-      titre: Prime de transport (part déductible)
+      titre: Part déductible
       description: Part déductible de la prise en charge du carburant
       valeur: montant
       plafond:
@@ -604,7 +602,6 @@ salarié . rémunération . frais professionnels . trajets domicile travail . fo
   icônes: 🚲️
   avec:
     montant:
-      titre: Prise en charge des frais de transports forfait mobilités durables
       question: Quel montant des frais de transports de mobilité durable (vélo, covoiturage, mobilité partagée) est pris en charge par l'employeur ?
       unité: €/an
       par défaut: 0 €/an

@@ -4707,9 +4707,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.52":
-  version: 1.0.0-beta.52
-  resolution: "@publicodes/api@npm:1.0.0-beta.52"
+"@publicodes/api@portal:/home/johan/Projets/publicodes/packages/api::locator=root%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@publicodes/api@portal:/home/johan/Projets/publicodes/packages/api::locator=root%40workspace%3A."
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -4718,9 +4718,8 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: d8c5526c2ecb859ddaba33e56c1aa8590d20989fb1c17d31bccd53a16edceb8f57c296855b6b73990fb77d745aed7adb771f5df4d35b54b333c8d2a312a41ae4
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@react-aria/accordion@npm:^3.0.0-alpha.5":
   version: 3.0.0-nightly.3190
@@ -23319,30 +23318,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.52":
-  version: 1.0.0-beta.52
-  resolution: "publicodes-react@npm:1.0.0-beta.52"
+"publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A."
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 9dc99dfb7deaffa95dc1114f80394605f4a7e589950e7ce0a715bad486eca2536fd38a30bd3a55b38eb5c6ee128126d1ca7814858b2e95e6efdb20f9919b66c5
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"publicodes@npm:=1.0.0-beta.52, publicodes@npm:^1.0.0-beta.52":
-  version: 1.0.0-beta.52
-  resolution: "publicodes@npm:1.0.0-beta.52"
+"publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A."
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 0dbb2045dc54d6d24674f0b263d48e863ffee69ba260ed98bd3465b441316de8ca5425ddefd95a95954c59bfc7945a7b5b1a2f76ddd5f464fb544407e4c14f0a
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "pump@npm:^1.0.0":
   version: 1.0.3

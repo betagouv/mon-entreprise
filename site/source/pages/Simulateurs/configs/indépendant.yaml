@@ -1,8 +1,8 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - dirigeant . rémunération . totale
-  - dirigeant . rémunération . nette
-  - dirigeant . rémunération . net après impôt
+  - dirigeant . rémunération . net
+  - dirigeant . rémunération . net . après impôt
 
 questions:
   à l'affiche:

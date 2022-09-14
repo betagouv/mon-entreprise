@@ -37,13 +37,13 @@ export default function IndépendantExplanation() {
 					<CotisationsRégularisation />
 				</WhenNotApplicable>
 			</section>
-			<Condition expression="dirigeant . rémunération . net après impôt > 0 €/an">
+			<Condition expression="dirigeant . rémunération . net . après impôt > 0 €/an">
 				<section>
 					<H3 as="h2">Répartition du revenu</H3>
 					<StackedBarChart
 						data={[
 							{
-								dottedName: 'dirigeant . rémunération . net après impôt',
+								dottedName: 'dirigeant . rémunération . net . après impôt',
 								title: t('Revenu disponible'),
 								color: colors.bases.primary[600],
 							},

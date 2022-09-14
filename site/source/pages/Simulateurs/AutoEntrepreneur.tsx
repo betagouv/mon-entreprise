@@ -1,6 +1,7 @@
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
+import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
@@ -12,7 +13,6 @@ import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeContext } from 'styled-components'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 
 export default function AutoEntrepreneur() {
 	return (
@@ -32,7 +32,7 @@ export default function AutoEntrepreneur() {
 						editable={false}
 						dottedName="dirigeant . auto-entrepreneur . cotisations et contributions"
 					/>
-					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net de cotisations" />
+					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . revenu net" />
 					<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 						<SimulationGoal
 							small
@@ -40,7 +40,7 @@ export default function AutoEntrepreneur() {
 							dottedName="dirigeant . rémunération . impôt"
 						/>
 					</WhenAlreadyDefined>
-					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . net après impôt" />
+					<SimulationGoal dottedName="dirigeant . auto-entrepreneur . revenu net . après impôt" />
 				</SimulationGoals>
 			</Simulation>
 		</>
@@ -58,7 +58,8 @@ function Explanation() {
 			<StackedBarChart
 				data={[
 					{
-						dottedName: 'dirigeant . auto-entrepreneur . net après impôt',
+						dottedName:
+							'dirigeant . auto-entrepreneur . revenu net . après impôt',
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: colors.bases.primary[600],
 					},

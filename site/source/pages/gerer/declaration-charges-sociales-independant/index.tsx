@@ -236,7 +236,7 @@ function ImpositionSection() {
 							</H2>
 							<BigInput>
 								<RuleInput
-									dottedName="dirigeant . rémunération . nette"
+									dottedName="dirigeant . rémunération . net"
 									onChange={setSituation}
 									autoFocus
 								/>

@@ -149,7 +149,6 @@ dirigeant . indépendant . PL . régime général:
       - entreprise . activité . libérale . réglementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
-  titre: taux spécifique profession libérale non reglementée
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
   par défaut: non
   description: |
@@ -162,7 +161,6 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
     Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
-  titre: retraite complémentaire (taux PLNR)
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     barème:
@@ -176,7 +174,6 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
     arrondi: oui
 
 dirigeant . indépendant . PL . maladie:
-  titre: maladie (taux PLR)
   non applicable si:
     une de ces conditions:
       - régime général
@@ -250,7 +247,6 @@ dirigeant . indépendant . PL . CIPAV:
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   non applicable si: exonération incapacité
-  titre: retraite complémentaire (CIPAV)
   unité: €/an
   variations:
     - si: date >= 01/2022
@@ -357,7 +353,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
     Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=15
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
-  titre: Classe avec l'option surcotisation
   variations:
     - si: classe = 'Classe A'
       alors: "'Classe B'"
@@ -376,7 +371,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
-  titre: invalidité et décès (CIPAV)
   formule:
     variations:
       - si: classe de cotisation = 'A'
@@ -426,14 +420,12 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
   valeur: oui
 
 dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . retraite complémentaire:
-  titre: retraite complémentaire (conjoint collaborateur CIPAV)
   remplace: conjoint collaborateur . cotisations . retraite complémentaire
   produit:
     assiette: retraite complémentaire
     taux: pourcentage
   arrondi: oui
 dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . invalidité et décès:
-  titre: invalidité et décès (conjoint collaborateur CIPAV)
   remplace: conjoint collaborateur . cotisations . invalidité et décès
   produit:
     assiette: invalidité et décès
@@ -478,7 +470,7 @@ dirigeant . indépendant . PL . CNAVPL:
 
 dirigeant . indépendant . PL . CNAVPL . retraite:
   non applicable si: exonération incapacité
-  titre: retraite de base (CNAVPL)
+  titre: retraite de base
   description: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
@@ -506,7 +498,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
-  titre: retraite de base (CNAVPL)
+  titre: retraite de base
   non applicable si:
     une de ces conditions:
       - PL . CNBF
@@ -517,7 +509,6 @@ dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
   valeur: oui
 
 dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
-  titre: indemnités journalières maladie (profession libérale)
   description: |
     Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
     la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
@@ -575,7 +566,6 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . m
   titre: '50 %'
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
-  titre: assiette conjoint collaborateur
   remplace: conjoint collaborateur . cotisations . assiette
   unité: €/an
   arrondi: oui
@@ -592,7 +582,6 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
       - sinon: {}
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
-  titre: Retraite de base (conjoint collaborateur CNAVPL)
   remplace: dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
   recalcul:
     règle: CNAVPL . retraite
@@ -605,7 +594,6 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
         plancher: assiette minimale . retraite
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
-  titre: indemnités journalières maladie (conjoint collaborateur CNAVPL)
   non applicable si: date < 01/01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   recalcul:
@@ -775,7 +763,6 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
   non applicable si: métier . secteur médecin = 'S2'
-  titre: Participation CPAM à la maladie
   formule:
     produit:
       assiette: assiette participation CPAM
@@ -802,7 +789,6 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
 dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
-  titre: Participation CPAM aux allocations familiales
   formule:
     produit:
       assiette: cotisations et contributions . allocations familiales
@@ -938,7 +924,6 @@ dirigeant . indépendant . PL . CAVP . cotisation de référence:
 
 dirigeant . indépendant . PL . CAVP . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-  titre: retraite complémentaire (CAVP)
   formule: part géré par répartition + part géré par capitalisation
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
@@ -982,7 +967,7 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré pa
     Legifrance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
 
 dirigeant . indépendant . PL . CAVP . invalidité et décès:
-  titre: invalidité et décès (CAVP)
+  titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   formule: 608 €/an
   références:
@@ -1041,7 +1026,6 @@ dirigeant . indépendant . PL . CARPIMKO:
 
 dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-  titre: retraite complémentaire (CARPIMKO)
   formule:
     somme:
       - variations:
@@ -1066,7 +1050,7 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
 dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
-  titre: invalidité et décès (CARPIMKO)
+  titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   variations:
     - si: date >= 01/2022
@@ -1077,7 +1061,7 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
 dirigeant . indépendant . PL . CARPIMKO . ASV:
-  titre: Avantage social vieillesse (CARPIMKO)
+  titre: Avantage social vieillesse
   remplace: cotisations et contributions . PCV
   formule:
     somme:
@@ -1097,7 +1081,6 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
     Taux Carpimko: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
-  titre: Participation CPAM à l'avantage social vieillesse
   applicable si: PAMC
   formule:
     somme:
@@ -1136,7 +1119,6 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
-  titre: participation CPAM à la retraite de base
   unité: €/an
   produit:
     assiette: assiette des cotisations
@@ -1167,7 +1149,6 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     activité libérale. Dans ce cas, la cotisation est proportionnelle
     aux revenus nets d'activité indépendante de 2018 plafonnés, sans
     régularisation ultérieure, avec une cotisation maximale de 14 110 €.
-  titre: retraite complémentaire (CARMF)
   arrondi: oui
   variations:
     - si: entreprise . durée d'activité . en fin d'année < 2 ans
@@ -1182,7 +1163,6 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
 dirigeant . indépendant . PL . CARMF . invalidité décès:
-  titre: invalidité et décès (CARMF)
   remplace: cotisations et contributions . invalidité et décès
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
@@ -1212,7 +1192,7 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
 
 dirigeant . indépendant . PL . CARMF . ASV:
-  titre: Allocations supplémentaires de vieillesse (CARMF)
+  titre: Allocations supplémentaires de vieillesse
   remplace: cotisations et contributions . PCV
   description: >-
     Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
@@ -1241,7 +1221,6 @@ dirigeant . indépendant . PL . CARMF . ASV:
     Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
-  titre: Participation CPAM aux allocations supplémentaires de vieillesse
   applicable si: métier . secteur médecin = 'S1'
   formule:
     produit:
@@ -1261,7 +1240,6 @@ dirigeant . indépendant . PL . CARCDSF:
     Site Web: http://www.carcdsf.fr
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
-  titre: retraite complémentaire (CARCDSF)
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     somme:
@@ -1325,12 +1303,12 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   formule: oui
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
-  titre: invalidité et décès (CARCDSF chirurgien-dentiste)
+  titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   formule: 1078 €/an
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
-  titre: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
+  titre: Prestation complémentaire vieillesse
   remplace: cotisations et contributions . PCV
   non applicable si: exonération PCV
   note:
@@ -1361,7 +1339,6 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
         Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
-  titre: Participation CPAM à la prestation complémentaire vieillesse
   formule:
     somme:
       - 2 * forfaitaire
@@ -1386,7 +1363,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme:
   formule: oui
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
-  titre: invalidité et décès (CARCDSF sage-femme)
+  titre: invalidité et décès
   description: |
     Il existe classes de cotisations aux choix, correspondant à des cotisations
     et des degrés d'indemnisations différents.
@@ -1536,7 +1513,6 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
 
 dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-  titre: retraite complémentaire (CNBF)
   barème:
     assiette: assiette des cotisations
     multiplicateur:
@@ -1590,7 +1566,7 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
 
 dirigeant . indépendant . PL . CNBF . RID:
-  titre: invalidité et décès (CNBF avocat)
+  titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   formule:
     variations:
@@ -1623,7 +1599,6 @@ dirigeant . indépendant . PL . CAVEC:
     Site CAVEC: https://www.cavec.fr
 
 dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
-  titre: retraite complémentaire (CAVEC)
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     grille:
@@ -1689,7 +1664,7 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
     Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
 
 dirigeant . indépendant . PL . CAVEC . invalidité et décès:
-  titre: invalidité et décès (CAVEC)
+  titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   formule:
     grille:

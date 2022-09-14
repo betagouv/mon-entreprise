@@ -1098,7 +1098,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
     application d’un taux spécifique en fonction de votre activité
   titre.en: '[automatic] payment in full discharge auto-entrepreneur'
   titre.fr: versement libératoire auto-entrepreneur
-dirigeant . auto-entrepreneur . net après impôt:
+dirigeant . auto-entrepreneur . revenu net . après impôt:
   description.en: >-
     [automatic] The net income of the auto-entrepreneur after
     deduction of income tax and social contributions.
@@ -1137,7 +1137,7 @@ dirigeant . auto-entrepreneur . net après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   titre.en: '[automatic] net income after tax'
   titre.fr: revenu net après impôt
-dirigeant . auto-entrepreneur . net de cotisations:
+dirigeant . auto-entrepreneur . revenu net:
   description.en:
     '[automatic] This is income after deductions for contributions,
     before payment of income tax.'
@@ -1254,7 +1254,7 @@ dirigeant . indépendant . IJSS . imposable:
   résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
   titre.en: '[automatic] Taxable allowances and per diems'
   titre.fr: Allocations et indemnités journalières imposables
-dirigeant . indépendant . IJSS . total:
+dirigeant . indépendant . IJSS . montant:
   description.en: >
     [automatic] Indicate the total gross amount of your taxable and
     non-taxable daily allowances and benefits received, as shown on the
@@ -3448,7 +3448,7 @@ dirigeant . indépendant . cotisations facultatives . plafond retraite compléme
     un cycle.
   titre.en: '[automatic] complementary pension ceiling'
   titre.fr: plafond retraite complémentaire
-dirigeant . indépendant . cotisations facultatives . total:
+dirigeant . indépendant . cotisations facultatives . montant:
   titre.en: '[automatic] Total optional contributions'
   titre.fr: Total des cotisations facultatives
 dirigeant . indépendant . revenu professionnel:
@@ -3517,20 +3517,20 @@ dirigeant . rémunération:
 dirigeant . rémunération . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-dirigeant . rémunération . imposable:
+dirigeant . rémunération . net . imposable:
   titre.en: '[automatic] taxable income'
   titre.fr: revenu imposable
 dirigeant . rémunération . impôt:
   titre.en: '[automatic] income tax'
   titre.fr: impôt sur le revenu
-dirigeant . rémunération . nette:
+dirigeant . rémunération . net:
   question.en: '[automatic] What is your net income?'
   question.fr: Quelle est votre revenu net ?
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
   titre.en: '[automatic] net income'
   titre.fr: revenu net
-dirigeant . rémunération . nette après impôt:
+dirigeant . rémunération . net après impôt:
   description.en: '[automatic] The net income after deduction of income tax and
     social security contributions.'
   description.fr: Le revenu net après déduction de l'impôt sur le revenu et des
@@ -6040,7 +6040,7 @@ salarié . activité partielle . secteur d'activité restreint:
 salarié . activité partielle . total employeur habituel:
   titre.en: '[automatic] total usual employer'
   titre.fr: total employeur habituel
-salarié . aides employeur:
+salarié . coût total employeur . aides:
   description.en: >
     [automatic] These aids are called deferred because they do not
     consist of a simple reduction in monthly contributions: they will come into
@@ -6059,7 +6059,7 @@ salarié . aides employeur:
   résumé.fr: Pour l'employeur, différées dans le temps
   titre.en: "[automatic] employer's aid"
   titre.fr: aides employeur
-salarié . aides employeur . aide à l'embauche d'apprentis:
+salarié . coût total employeur . aides . aide à l'embauche d'apprentis:
   description.en: >
     [automatic] Since 2019 a single hiring aid replaces four
     previous schemes. The amount of aid depends on the length of the contract.
@@ -6075,7 +6075,7 @@ salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: '[automatic] aid for the hiring of apprentices'
   titre.fr: aide à l'embauche d'apprentis
-salarié . aides employeur . aide à l'embauche senior professionnalisation:
+salarié . coût total employeur . aides . aide à l'embauche senior professionnalisation:
   description.en: >
     [automatic] Employers can obtain €2,000 in aid for the hiring of
     a job seeker over 45 years old
@@ -6086,7 +6086,7 @@ salarié . aides employeur . aide à l'embauche senior professionnalisation:
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
   titre.en: '[automatic] hiring aid for senior citizens professionalisation'
   titre.fr: aide à l'embauche senior professionnalisation
-salarié . aides employeur . aides à l'embauche:
+salarié . coût total employeur . aides . aides à l'embauche:
   description.en: >
     [automatic] The State provides aid to encourage the hiring of
     certain priority groups. These aids cannot be combined.
@@ -6095,7 +6095,7 @@ salarié . aides employeur . aides à l'embauche:
     certains publics prioritaires. Ces aides sont non cumulables entre elles.
   titre.en: '[automatic] hiring aids'
   titre.fr: aides à l'embauche
-salarié . aides employeur . emploi franc:
+salarié . coût total employeur . aides . emploi franc:
   description.en: >
     [automatic] Deferred assistance paid by Pôle emploi for the
     hiring of a job seeker
@@ -6128,7 +6128,7 @@ salarié . aides employeur . emploi franc:
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   titre.en: '[automatic] free employment'
   titre.fr: emploi franc
-salarié . aides employeur . emploi franc . éligible:
+salarié . coût total employeur . aides . emploi franc . éligible:
   description.en: >
     [automatic] Conditions:
 

@@ -890,7 +890,7 @@ DRI . cotisations . dûes en 2021:
   recalcul:
     règle: dirigeant . indépendant . cotisations et contributions
     avec:
-      dirigeant . indépendant . cotisations facultatives . total: 0
+      dirigeant . indépendant . cotisations facultatives . montant: 0
       date: 01/01/2021
 
 DRI . cotisations . appelées en 2021:

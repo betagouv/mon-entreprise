@@ -43,25 +43,20 @@ entreprise . date de création . contrôle date passée:
   description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
 entreprise . durée d'activité:
-  formule:
-    durée:
-      depuis: date de création
+  durée:
+    depuis: date de création
 
 entreprise . durée d'activité . en fin d'année:
-  titre: durée d'activité à la fin de l'année
-  formule:
-    somme:
-      - durée:
-          depuis: date de création
-          jusqu'à: période . fin d'année
-      - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: période . fin d'année
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
-  titre: durée d'activité au début de l'année
-  formule:
-    durée:
-      depuis: date de création
-      jusqu'à: période . début d'année
+  durée:
+    depuis: date de création
+    jusqu'à: période . début d'année
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
@@ -69,7 +64,7 @@ entreprise . chiffre d'affaires:
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   somme:
-    - dirigeant . rémunération . net après impôt
+    - dirigeant . rémunération . net . après impôt
     - dirigeant . rémunération . impôt
     - dirigeant . rémunération . cotisations
     - charges
@@ -236,7 +231,19 @@ entreprise . résultat fiscal:
   somme:
     - chiffre d'affaires
     - (- charges)
-    - (- charges . dirigeant)
+    - (- rémunération dirigeant déductible)
+
+entreprise . résultat fiscal . rémunération dirigeant déductible:
+  description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
+  variations:
+    - si: imposition . IS
+      alors: dirigeant . rémunération . totale
+    # Note : le cas de dirigeant AS à l'IR n'est pas géré
+    # - si: dirigeant . assimilé salarié
+    #   alors: 0€/an
+    - sinon: # TNS dans entreprise à l'IR
+        valeur: dirigeant . indépendant . cotisations et contributions
+        abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
 
 entreprise . exercice:
   avec:
@@ -300,19 +307,6 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
-
-entreprise . charges . dirigeant:
-  titre: Charges déductibles dirigeant
-  description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
-  variations:
-    - si: imposition . IS
-      alors: dirigeant . rémunération . totale
-    # Note : le cas de dirigeant AS à l'IR n'est pas géré
-    # - si: dirigeant . assimilé salarié
-    #   alors: 0€/an
-    - sinon: # TNS dans entreprise à l'IR
-        valeur: dirigeant . indépendant . cotisations et contributions
-        abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
 
 # on ne prend en compte pour l'instant que le cas entreprise unipersonnelle
 entreprise . dividendes: bénéficiaire . dividendes . bruts

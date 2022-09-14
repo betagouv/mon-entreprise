@@ -1,5 +1,4 @@
-salarié . aides employeur:
-  titre: aides employeur
+salarié . coût total employeur . aides:
   résumé: Pour l'employeur, différées dans le temps
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous la forme d’un crédit d'impôt.
@@ -7,18 +6,20 @@ salarié . aides employeur:
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
     somme:
-      - aides à l'embauche
+      - embauche
+      - emploi franc
       - activité partielle . indemnisation entreprise
 
-salarié . aides employeur . aides à l'embauche:
+salarié . coût total employeur . aides . embauche:
+  titre: aides à l'embauche
   description: |
     L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
   le maximum de:
-    - aide à l'embauche d'apprentis
-    - aide à l'embauche senior professionnalisation
+    - apprentis
+    - senior professionnalisation
     - emploi franc
 
-salarié . aides employeur . aide à l'embauche d'apprentis:
+salarié . coût total employeur . aides . embauche . apprentis:
   description: |
     Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
 
@@ -38,21 +39,20 @@ salarié . aides employeur . aide à l'embauche d'apprentis:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
-salarié . aides employeur . aide à l'embauche senior professionnalisation:
+salarié . coût total employeur . aides . embauche . senior professionnalisation:
   description: |
     Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
   applicable si: contrat . professionnalisation . salarié de 45 ans et plus
-  formule:
-    produit:
-      assiette: 2000 €/an
-      facteur: temps de travail . effectif . quotité
-    arrondi: oui
+  produit:
+    assiette: 2000 €/an
+    facteur: temps de travail . effectif . quotité
+  arrondi: oui
   références:
     Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
     Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 
-salarié . aides employeur . emploi franc:
+salarié . coût total employeur . aides . emploi franc:
   description: |
     Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
     inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
@@ -75,8 +75,7 @@ salarié . aides employeur . emploi franc:
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
-salarié . aides employeur . emploi franc . éligible:
-  titre: éligibilité à l'aide emploi franc
+salarié . coût total employeur . aides . emploi franc . éligible:
   applicable si:
     une de ces conditions:
       - contrat . CDI

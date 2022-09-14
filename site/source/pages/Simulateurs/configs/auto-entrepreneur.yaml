@@ -1,9 +1,9 @@
 objectifs:
   - dirigeant . auto-entrepreneur . chiffre d'affaires
   - dirigeant . auto-entrepreneur . cotisations et contributions
-  - dirigeant . auto-entrepreneur . net de cotisations
+  - dirigeant . auto-entrepreneur . revenu net
   - dirigeant . rémunération . impôt
-  - dirigeant . auto-entrepreneur . net après impôt
+  - dirigeant . auto-entrepreneur . revenu net . après impôt
 
 questions:
   à l'affiche:

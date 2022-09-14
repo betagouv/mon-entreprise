@@ -2,9 +2,9 @@ objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - dirigeant . indépendant . cotisations et contributions
-  - dirigeant . rémunération . nette
+  - dirigeant . rémunération . net
   - impôt . montant
-  - dirigeant . rémunération . net après impôt
+  - dirigeant . rémunération . net . après impôt
   - protection sociale . retraite . complémentaire indépendants . points acquis
   - protection sociale . retraite . base . trimestres . indépendant
   - protection sociale . retraite . CNAVPL
