@@ -122,7 +122,8 @@ function DocumentationPageBody() {
 				documentationPath={documentationPath}
 				renderers={renderers}
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}
-				apiExampleUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
+				apiEvaluateUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
+				npmPackage="modele-social"
 			/>
 		</StyledDocumentation>
 	)
