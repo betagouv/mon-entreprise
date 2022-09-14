@@ -1,4 +1,4 @@
-const inputSelector = 'div[aria-labelledby="simulator-legend"] input'
+const inputSelector = 'div[id="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
 
 describe('Simulateur dividendes', function () {
