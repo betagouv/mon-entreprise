@@ -1,5 +1,5 @@
 import got, { RequestError } from 'got'
-import { BaseContext, Next } from 'koa'
+import { BaseContext } from 'koa'
 
 interface PlausibleEvent {
 	eventName: string
@@ -34,9 +34,12 @@ export const plausibleEvent = (
 	})
 }
 
-export const plausibleMiddleware = async (ctx: BaseContext, next: Next) => {
+export const plausibleMiddleware = async (
+	ctx: BaseContext,
+	next: () => Promise<unknown>
+) => {
 	if (process.env.NODE_ENV !== 'production') {
-		return
+		return await next()
 	}
 
 	void plausibleEvent(ctx, { eventName: 'pageview' }).catch((err) => {
@@ -44,7 +47,7 @@ export const plausibleMiddleware = async (ctx: BaseContext, next: Next) => {
 		console.error(error.code, error.message)
 	})
 
-	const result = (await next()) as unknown
+	const result = await next()
 
 	void plausibleEvent(ctx, {
 		eventName: 'status',
