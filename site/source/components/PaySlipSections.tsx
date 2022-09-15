@@ -48,7 +48,7 @@ export const SalaireNetSection = () => {
 					],
 				}}
 			>
-				<Line rule="salarié . rémunération . net" />
+				<Line rule="salarié . rémunération . net . à payer avant impôt" />
 			</Condition>
 			<Line
 				negative

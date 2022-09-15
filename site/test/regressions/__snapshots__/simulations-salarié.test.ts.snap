@@ -71,10 +71,10 @@ exports[`calculate simulations-salarié > aides 2`] = `
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
-exports[`calculate simulations-salarié > aides 3`] = `"[1938,0,2000,1561,1527]"`;
+exports[`calculate simulations-salarié > aides 3`] = `"[1521,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié > aides 4`] = `
-"[2545,0,2000,1720,1667]
+"[2336,0,2000,1720,1667]
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 

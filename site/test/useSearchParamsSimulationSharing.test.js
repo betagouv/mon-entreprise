@@ -6,7 +6,7 @@ import {
 	cleanSearchParams,
 	getRulesParamNames,
 	getSearchParamsFromSituation,
-	getSituationFromSearchParams
+	getSituationFromSearchParams,
 } from '../source/components/utils/useSearchParamsSimulationSharing'
 
 describe('identifiant court', () => {

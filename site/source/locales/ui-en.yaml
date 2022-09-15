@@ -149,6 +149,7 @@ Impôts: Taxes
 "Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
 Indépendant: Indépendant
 Indépendants et dirigeants: Self-employed and executives
+Insérer la suggestion: Insert the suggestion
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
@@ -444,7 +445,6 @@ checklist:
     open: Hide details
 cible: target
 clickexample: Click on a situation to see the result
-Insérer la suggestion: Insert the suggestion
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
     and 4 quarters <2>(subject to eligibility requirements)</2></2>
@@ -1146,51 +1146,63 @@ pages:
       about publicodes</0></2></6><7>Example</7><8>Here is an example of how to
       use the different routes, you can explore their code in the
       <1>example</1>folder</8><9><0></0></9>"
-    bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
-      website or service would benefit from displaying salary calculations, for
-      example switching from gross to net salary, good news: all the tax and
-      contribution calculations behind mycompanyinfrance are free and easily
-      reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
-      this library?</2><3>All our calculation rules are written in `publicodes`,
+    bibliothèque: '<0><0>You can reuse the calculations of my-company on your site
+      or service very easily thanks to the open-source JavaScript library
+      available on npm.</0></0><1>How to use this library
+      ?</1><2>Installation</2><3><0>npm install --save publicodes
+      modele-social</0></3><4><0>What does publicodes mean?</0><1>Publicodes is
       a declarative language developed by beta.gouv.fr and the Urssaf to encode
-      algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
-      perform your own calculations, you must install the publicodes
-      interpreter, download the rules used on mycompanyinfrance, call the
-      evaluation function.</4><5>Installation</5><6><0>npm install --save
-      publicodes modele-social</0></6><7>For more details on the installation,
-      please refer to the <2>dedicated documentation</2></7><8>Launch the
-      calculation</8><9>All you have to do is set up the engine with the rules
-      from the `social-modele` package and call the `evaluate` function on the
-      rule you want the value of. Here is an example for the gross/net
-      calculation</9><10><0></0></10><11>Setting up the calculation</11><12>As
-      you can see in the previous example, the recipe for a calculation is
-      simple: input variables (gross salary), one or more output variables (net
-      salary).</12><13>The calculation is however configurable with all the
-      possibilities allowed in the legislation.</13><14>All these variables are
-      listed and explained in the <2>online documentation</2>. This
-      documentation is auto-generated from the publicode rules files, so it is
-      constantly updated.</14><15>Let's run a calculation closer to a pay slip:
-      here is a description of the input situation with links to the
-      corresponding pages in the documentation:</15><16><0> An <3>executive</3>
-      earning <7>€3,400 gross</7>, who receives <11>meal vouchers</11> and works
-      in a company with <15>22 employees</15>.</0></16><17>Here is what the
-      calculation looks like for this more complete
-      example:</17><18><0></0></18><19><0></0>Note that in the previous example
-      we have to specify the rate of transport payment ourselves.</19><20>In the
-      <2>employee</2> simulator, however, you only have to enter the
-      municipality and the corresponding rate is automatically determined. This
-      is deliberate: to keep the library (and the site) light, we use two online
+      algorithms of public interest. <2>Learn more about publicodes</2></1><2>To
+      run your own calculations, you need to install the package
+      <2><0>publicodes</0></2> package containing the interpreter, as well as
+      the <6><0>modele-social</0></6>package, which contains the rules of the
+      my-company simulators.</2></4><5>Launch the calculation</5><6>All you have
+      to do is to set the engine with the rules of the `social-modele` package
+      and to call the `evaluate` function on the rule you want the value of.
+      Here is an example for the gross/net
+      calculation</6><7><0></0></7><8>Setting up the calculation</8><9>As you
+      can see in the previous example, the recipe for a calculation is simple:
+      input variables (the gross salary), one or more output variables (the net
+      salary).</9><10>However, the calculation can be parameterized with all the
+      possibilities allowed in the simulators of my-company!</10><11>All
+      available rules are listed and explained in the <2>online
+      documentation</2>. This documentation is auto-generated from the
+      publicodes rules files, and fed by the current simulation.</11><12>How to
+      replicate a calculation from a simulator?</12><13>To replicate a
+      calculation from a simulator of my-company in the library, here are the
+      steps to follow: </13><14><0><0>Choose the simulator according to the
+      calculation we are interested in</0><1></1>For example the <4>employee
+      simulator</4> to calculate a net from the gross.</0><1><0>Run a simulation
+      with the data you wish to reuse</0><1></1>For example, <4>a manager at
+      3400 € gross with meal vouchers</4>.</1><2>Go to<0>the documentation page
+      of the data to be calculated</0><1></1>For example by clicking on "Net
+      salary" in the simulator, or by searching for "Net salary" in the search
+      box on the top right.</2><3><0>Copy the customized code extract and
+      integrate it in your application</0><1></1>. You will find it by clicking
+      on the "Reuse this calculation" section.<3></3></3><4><0>(optional) Modify
+      the values of the situation to set the calculation according to your
+      needs</0><1></1> You can modify without hesitation the values of the
+      situation. They accept any <4>expression or publicodes
+      object.</4></4></14><15>Here is what the calculation gives with the
+      example quoted above:</15><16><0></0></16><17><0>The situation contains
+      the data of your simulation (executive with a salary of 3400 € gross), but
+      also the data relating to the parameterization of the
+      simulator.</0></17><18>Special case: the mobility payment
+      rate</18><19>Whereas in the <2>employee</2> simulator, all you have to do
+      is enter the commune and the corresponding rate is automatically
+      determined. This behavior is not present in the library. This is
+      deliberate: to keep the library (and the site) light, we use two online
       APIs. The<4>Geo - communes API</4> to go from the commune name to the
-      commune code. Then the<7>Transport Payment API</7>, developed and
-      maintained by us, which is not documented but its use is very simple and
-      understandable <10>in this React component that calls it</10>, component
-      that also calls the common API.</20><21>Making economic graphs
-      <1></1></21><22>It is also possible to use the library for economic or
-      political analysis calculations. Here, we plot the price of labor and the
-      net salary as a function of the gross.</22><23>We can see the
-      progressivity of the total wage, which is in percent lower for a minimum
-      wage than for a high income. In other words, high earners pay part of the
-      social contributions of low earners.</23><24><0></0></24>"
+      commune code. Then the<7>Mobility API</7>, developed and maintained by us,
+      which is not documented but its use is very simple and understandable
+      <10>in this React component that calls it</10>, component that also calls
+      the common API.</19><20>Making economic graphs <1></1></20><21>It is also
+      possible to use the library for economic or political analysis
+      calculations. Here, we plot the price of labor and the net wage as a
+      function of the gross wage.</21><22>One can see the progressivity of the
+      total wage, which is in percent lower for a minimum wage than for a high
+      wage. In other words, high earners pay part of the social contributions of
+      low earners.</22><23><0></0></23>'
     choice:
       github:
         body: The entire socio-fiscal calculation engine developed by the Urssaf, freely

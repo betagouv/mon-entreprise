@@ -15,7 +15,7 @@ describe('e2e test mon-entreprise api', () => {
 						'salarié . contrat . salaire brut': '3500 €',
 					},
 					expressions: [
-						'salarié . rémunération . net à payer avant impôt',
+						'salarié . rémunération . net . à payer avant impôt',
 						'salarié . coût total employeur',
 					],
 				})

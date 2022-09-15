@@ -907,54 +907,65 @@ pages:
       publicodes</0></2></6><7>Exemple</7><8>Voici un exemple d'utilisation des
       différentes routes, vous pouvez explorer leur code dans le dossier
       <1>example</1></8><9><0></0></9>"
-    bibliothèque: "<0>Intégrez notre bibliothèque de calcul</0><1>Si vous pensez que
-      votre site ou service gagnerait à afficher des calculs de salaire, par
-      exemple passer du salaire brut au salaire net, bonne nouvelle : tous les
-      calculs de cotisations et impôts qui sont derrière mon-entreprise sont
-      libres et facilement réutilisable grâce à la <2>bibliothèque NPM
-      publicodes</2>.</1><2>Comment utiliser cette librairie ?</2><3>Toutes nos
-      règles de calculs sont écrites en `publicodes`, un language déclaratif
-      développé par beta.gouv.fr et l'Urssaf pour encoder des algorithmes
-      d'intérêt public. <2>En savoir plus sur publicodes</2></3><4>Pour
-      effectuer vos propre calculs, vous devons donc installer l'interpréteur
-      publicodes, télécharger les règles utilisées sur mon-entreprise, appeler
-      la fonction d'évaluation.</4><5>Installation</5><6><0>npm install --save
-      publicodes modele-social</0></6><7>Pour plus de détails sur
-      l'installation, se référer à la <2>documentation dédiée</2></7><8>Lancer
-      le calcul</8><9>Il ne vous reste plus qu'à paramétrer le moteur avec les
-      règles du paquet `modele-social` et à appeler la fonction `evaluate` sur
-      la règle que dont vous souhaitez la valeur. Voici un exemple pour le
-      calcul brut / net</9><10><0></0></10><11>Paramétrer le calcul</11><12>Vous
-      l'aurez constaté dans l'exemple précédent, la recette d'un calcul est
-      simple : des variables d'entrée (le salaire brut), une ou plusieurs
-      variables de sorties (le salaire net).</12><13>Le calcul est cependant
-      paramétrable avec toutes les possibilités permise dans la
-      legislation.</13><14>Toutes ces variables sont listées et expliquées sur
-      la <2>documentation en ligne</2>. Cette documentation est auto-générée
-      depuis les fichiers de règles publicodes, elle est donc constamment à
-      jour.</14><15>Lançons un calcul plus proche d'une fiche de paie : voici
-      une description de la situation d'entrée annotée de liens vers les pages
-      correspondantes de la documentation :</15><16><0> Un <3>cadre</3> gagnant
-      <7>3 400€ bruts</7> , qui bénéficie de <11>titres-restaurant</11> et qui
-      travaille dans une entreprise de <15>22 salariés</15>.</0></16><17>Voici
-      ce que donne le calcul pour cet exemple plus complet
-      :</17><18><0></0></18><19><0></0>Notez que dans l'exemple précédent nous
-      devons spécifier nous-même le taux de versement mobilité.</19><20>Alors
-      que dans le simulateur <2>salarié</2>, il suffit de renseigner la commune
-      et le taux correspondant est automatiquement déterminé. C'est voulu : pour
-      garder la bibliothèque (et le site) légers, nous utilisons deux API en
-      ligne. L'<4>API Géo - communes</4> pour passer du nom de la commune au
-      code commune. Puis l'<7>API versement mobilité</7>, développé et maintenu
-      par nos soins, qui n'est pas documenté mais son utilisation est très
-      simple et compréhensible <10>dans ce composant React qui l'appelle</10>,
-      composant qui fait aussi appel à l'API commune.</20><21>Faire des
-      graphiques économiques <1></1></21><22>Il est aussi possible d'utiliser la
-      bibliothèque pour des calculs d'analyse économique ou politique. Ici, on
-      trace le prix du travail et le salaire net en fonction du brut.</22><23>On
-      peut constater la progressivité du salaire total, qui est en pourcent plus
-      faible pour un SMIC que pour un haut revenu. Autrement dit, les hauts
-      salaires paient une partie des cotisations sociales des bas
-      salaires.</23><24><0></0></24>"
+    bibliothèque: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur
+      votre site ou service très facilement grâce à la bibliothèque JavaScript
+      open-source disponible sur npm.</0></0><1>Comment utiliser cette librairie
+      ?</1><2>Installation</2><3><0>npm install --save publicodes
+      modele-social</0></3><4><0>Que signifie publicodes ?</0><1>Publicodes est
+      un language déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder
+      des algorithmes d'intérêt public. <2>En savoir plus sur
+      publicodes</2></1><2>Pour lancer vos propre calculs, vous devons donc
+      installer le paquet <2><0>publicodes</0></2> contenant l'intepreteur,
+      ainsi que le paquet <6><0>modele-social</0></6>, qui contient les règles
+      des simulateurs mon-entreprise.</2></4><5>Lancer le calcul</5><6>Il ne
+      vous reste plus qu'à paramétrer le moteur avec les règles du paquet
+      `modele-social` et à appeler la fonction `evaluate` sur la règle que dont
+      vous souhaitez la valeur. Voici un exemple pour le calcul brut /
+      net</6><7><0></0></7><8>Paramétrer le calcul</8><9>Vous l'aurez constaté
+      dans l'exemple précédent, la recette d'un calcul est simple : des
+      variables d'entrée (le salaire brut), une ou plusieurs variables de
+      sorties (le salaire net).</9><10>Le calcul est cependant paramétrable avec
+      toutes les possibilités permises dans les simulateurs de mon-entreprise
+      !</10><11>Toutes les règles disponibles sont listées et expliquées sur la
+      <2>documentation en ligne</2>. Cette documentation est auto-générée depuis
+      les fichiers de règles publicodes, et alimentée par la simulation en
+      cours.</11><12>Comment reproduire un calcul d'un simulateur ?</12><13>Pour
+      répliquer un calcul d'un simulateur de mon-entreprise dans la
+      bibliothèque, voici la marche à suivre : </13><14><0><0>Choisir le
+      simulateur en fonction du calcul qui nous intéresse</0><1></1>Par exemple
+      le <4>simulateur salarié</4> pour calculer un net à partir du
+      brut.</0><1><0>Effectuer une simulation avec les données que l'on souhaite
+      réutiliser</0><1></1>Par exemple <4>un cadre à 3400 € brut avec des
+      titres-restaurants</4>.</1><2><0>Aller sur la page de documentation de la
+      donnée à calculer</0><1></1>Par exemple en cliquant sur « Salaire net »
+      dans le simulateur, ou en recherchant « Salaire net » dans la recherche en
+      haut à droite.</2><3><0>Copiez l'extrait de code personalisé et
+      intégrez-le dans votre application</0><1></1>Vous le trouverez en cliquant
+      sur la section « Réutiliser ce calcul ».<3></3></3><4><0>(facultatif)
+      Modifiez les valeur de la situation pour paramétrer le calcul selon vos
+      besoin</0><1></1> Vous pouvez modifier sans hésiter les valeurs de la
+      situation. Ces dernières acceptent n'importe quelle <4>expression ou objet
+      publicodes.</4></4></14><15>Voici ce que donne le calcul avec l'exemple
+      cité ci-dessus :</15><16><0></0></16><17><0>La situation contient les
+      données de votre simulation (cadre avec salaire à 3400 € brut), mais
+      également les données relative au paramétrage du
+      simulateur.</0></17><18>Cas particulier : le taux versement
+      mobilité</18><19>Alors que dans le simulateur <2>salarié</2>, il suffit de
+      renseigner la commune et le taux correspondant est automatiquement
+      déterminé. Ce comportement n'est pas présent dans la librairie. C'est
+      voulu : pour garder la bibliothèque (et le site) légers, nous utilisons
+      deux API en ligne. L'<4>API Géo - communes</4> pour passer du nom de la
+      commune au code commune. Puis l'<7>API versement mobilité</7>, développé
+      et maintenu par nos soins, qui n'est pas documenté mais son utilisation
+      est très simple et compréhensible <10>dans ce composant React qui
+      l'appelle</10>, composant qui fait aussi appel à l'API
+      commune.</19><20>Faire des graphiques économiques <1></1></20><21>Il est
+      aussi possible d'utiliser la bibliothèque pour des calculs d'analyse
+      économique ou politique. Ici, on trace le prix du travail et le salaire
+      net en fonction du brut.</21><22>On peut constater la progressivité du
+      salaire total, qui est en pourcent plus faible pour un SMIC que pour un
+      haut revenu. Autrement dit, les hauts salaires paient une partie des
+      cotisations sociales des bas salaires.</22><23><0></0></23>"
     choice:
       github:
         body: Tous nos outils sont ouverts et développés publiquement sur GitHub.

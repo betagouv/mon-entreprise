@@ -28,7 +28,7 @@ paths:
                         'salarié . contrat': "'CDI'",
                       },
                     'expressions':
-                      ['salarié . rémunération . net à payer avant impôt'],
+                      ['salarié . rémunération . net . à payer avant impôt'],
                   }
               MicroEntreprise:
                 value:
@@ -58,6 +58,6 @@ paths:
       parameters:
         - examples:
             SalaireNet:
-              value: 'salarié . rémunération . net à payer avant impôt'
+              value: 'salarié . rémunération . net . à payer avant impôt'
             Impot:
               value: 'impôt . méthode de calcul'

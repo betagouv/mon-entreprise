@@ -5,7 +5,8 @@ type Obj = Record<string, { test: (cy: cyType) => unknown; path: string }[]>
 
 const coutTotalSelector = 'input[id="salarié . coût total employeur"]'
 const salaireBrutSelector = 'input[id="salarié . contrat . salaire brut"]'
-const salaireNetSelector = 'input[id="salarié . rémunération . net"]'
+const salaireNetSelector =
+	'input[id="salarié . rémunération . net . à payer avant impôt"]'
 const salaireNetApresImpot =
 	'input[id="salarié . rémunération . net . payé après impôt"]'
 
@@ -55,8 +56,8 @@ describe('Test prerender', function () {
 			},
 			{
 				test: (cy) => {
-					cy.contains('Impôt sur le revenu (IR)')
-					cy.contains('Impôt sur les sociétés (IS)')
+					cy.contains('Impôt sur le revenu')
+					cy.contains('Impôt sur les sociétés')
 
 					cy.contains('Mensuel')
 					cy.contains('Annuel')
@@ -72,7 +73,7 @@ describe('Test prerender', function () {
 
 					cy.contains('Revenu après impôt')
 					cy.get(
-						'input[id="dirigeant . rémunération . net après impôt"]'
+						'input[id="dirigeant . rémunération . net . après impôt"]'
 					).should('exist')
 				},
 				path: '/simulateurs/indépendant',
