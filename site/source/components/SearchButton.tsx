@@ -34,7 +34,10 @@ export default function SearchButton() {
 			small
 		>
 			{(closePopover) => (
-				<SearchRulesAndSimulators closePopover={closePopover} />
+				<SearchRulesAndSimulators
+					aria-label={t('Que cherchez-vous ?')}
+					closePopover={closePopover}
+				/>
 			)}
 		</PopoverWithTrigger>
 	)

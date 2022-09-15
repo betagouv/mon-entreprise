@@ -18,7 +18,10 @@ interface Props {
 	closePopover: () => void
 }
 
-export default function SearchRulesAndSimulators({ closePopover }: Props) {
+export default function SearchRulesAndSimulators({
+	closePopover,
+	...searchProps
+}: Props) {
 	const location = useLocation()
 	const prevLocation = useRef(location)
 	useEffect(() => {
@@ -33,7 +36,7 @@ export default function SearchRulesAndSimulators({ closePopover }: Props) {
 			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
 			searchClient={searchClient}
 		>
-			<SearchBox />
+			<SearchBox {...searchProps} />
 
 			<Index indexName={`${ALGOLIA_INDEX_PREFIX}simulateurs`}>
 				<Configure hitsPerPage={6} />

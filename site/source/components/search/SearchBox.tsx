@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { connectSearchBox } from 'react-instantsearch-dom'
 
 export const SearchBox = connectSearchBox(
-	({ currentRefinement, isSearchStalled, refine }) => {
+	({ currentRefinement, isSearchStalled, refine, ...props }) => {
 		const { t } = useTranslation()
 
 		return (
@@ -19,6 +19,7 @@ export const SearchBox = connectSearchBox(
 						'Mot-clé ou acronyme (ex : CSG)'
 					)}
 					isSearchStalled={isSearchStalled}
+					{...props}
 				/>
 			</form>
 		)
