@@ -64,6 +64,7 @@ export default function MoreInfosOnUs() {
 									margin: 0,
 								}}
 								aria-hidden="true"
+								role="img"
 							>
 								<g>
 									<path d={icons.github.icon} />
