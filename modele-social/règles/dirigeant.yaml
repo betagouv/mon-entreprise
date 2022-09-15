@@ -37,6 +37,7 @@ dirigeant . régime social:
 
 dirigeant . rémunération: oui
 dirigeant . rémunération . totale:
+  titre: Rémunération totale
   question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
     C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.

@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.0.0-beta.1
 
 -   Passage du paquet en semver (voir le README)
 -   Sépare le fichier salarié en plusieurs fichiers séparés
