@@ -44,6 +44,7 @@ export const plausibleMiddleware = async (
 
 	void plausibleEvent(ctx, { eventName: 'pageview' }).catch((err) => {
 		const error = err as RequestError
+		// eslint-disable-next-line no-console
 		console.error(error.code, error.message)
 	})
 
@@ -56,6 +57,7 @@ export const plausibleMiddleware = async (
 		},
 	}).catch((err) => {
 		const error = err as RequestError
+		// eslint-disable-next-line no-console
 		console.error(error.code, error.message)
 	})
 
