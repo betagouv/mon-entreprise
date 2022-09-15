@@ -11,7 +11,11 @@ export default function Exonération({
 	exceptionsExonération,
 	exonération,
 	activité,
-}: any) {
+}: {
+	exceptionsExonération?: Readonly<Readonly<Activity>[]>
+	exonération?: Readonly<Readonly<Activity>[]>
+	activité: string
+}) {
 	const { state, dispatch } = useContext(StoreContext)
 	if (!exceptionsExonération && !exonération) {
 		return null
@@ -34,11 +38,11 @@ export default function Exonération({
 				}}
 				defaultChecked={defaultChecked}
 			>
-				{(exceptionsExonération || exonération).map(
-					({ titre, explication }: Activity, index: string) => (
+				{(exceptionsExonération ?? exonération ?? []).map(
+					({ titre, explication }, index) => (
 						<CheckItem
 							key={index}
-							name={index}
+							name={index.toString()}
 							title={titre}
 							explanations={<SmallBody>{explication}</SmallBody>}
 						/>
