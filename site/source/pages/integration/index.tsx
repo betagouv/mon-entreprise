@@ -34,7 +34,8 @@ export default function Integration() {
 					className="ui__ simple small push-left button"
 					to={absoluteSitePaths.développeur.index}
 				>
-					← <Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
+					<span aria-hidden="true">←</span>{' '}
+					<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
 				</Link>
 			)}
 			{openJobOffer && (

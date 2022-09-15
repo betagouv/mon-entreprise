@@ -66,7 +66,7 @@ export default function Gérer() {
 
 	const back = (
 		<Link to={absoluteSitePaths.gérer.index}>
-			← <Trans>Retour à mon activité</Trans>
+			<span aria-hidden="true">←</span> <Trans>Retour à mon activité</Trans>
 		</Link>
 	)
 

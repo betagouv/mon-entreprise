@@ -57,7 +57,7 @@ export default function Créer() {
 	return (
 		<>
 			<Link to={absoluteSitePaths.créer.index}>
-				← <Trans>Retour</Trans>
+				<span aria-hidden="true">←</span> <Trans>Retour</Trans>
 			</Link>
 			<TrackChapter chapter2="guide">
 				<H1>
