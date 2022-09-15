@@ -38,7 +38,7 @@ export default function InputSuggestions({
 								onSecondClick && onSecondClick(value)
 							}
 						}}
-						title={t('cliquez pour insérer cette suggestion')}
+						aria-label={`${t('Insérer la suggestion')} : ${text}`}
 					>
 						{text}
 					</Link>

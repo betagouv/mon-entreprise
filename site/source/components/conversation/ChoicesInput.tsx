@@ -81,6 +81,8 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 				onSelectionChange={handleChange}
 				defaultSelectedKey={defaultValue}
 				selectedKey={currentSelection}
+				// eslint-disable-next-line jsx-a11y/no-autofocus
+				autoFocus={props.autoFocus}
 			>
 				{choice.children.map((node) => (
 					<Item
@@ -98,16 +100,17 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 			<RadioCardGroup
 				onChange={handleChange}
 				value={currentSelection ?? undefined}
-				aria-labelledby={props['aria-labelledby'] || undefined}
 			>
 				{choice.children.map((node) => (
 					<Fragment key={node.dottedName}>
 						<RadioCard
 							// eslint-disable-next-line jsx-a11y/no-autofocus
 							autoFocus={
+								props.autoFocus &&
 								defaultValue ===
-								`'${relativeDottedName(props.dottedName, node.dottedName)}'`
+									`'${relativeDottedName(props.dottedName, node.dottedName)}'`
 							}
+							aria-labelledby={props['aria-labelledby'] || undefined}
 							value={`'${relativeDottedName(
 								props.dottedName,
 								node.dottedName
@@ -132,7 +135,8 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 		>
 			<RadioChoice
 				// eslint-disable-next-line jsx-a11y/no-autofocus
-				autoFocus={props.autoFocus ? defaultValue : undefined}
+				autoFocus={props.autoFocus}
+				defaultValue={defaultValue}
 				choice={choice}
 				rootDottedName={props.dottedName}
 				type={type}
@@ -143,12 +147,14 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 
 function RadioChoice<Names extends string = DottedName>({
 	choice,
+	defaultValue,
 	autoFocus,
 	rootDottedName,
 	type,
 }: {
 	choice: Choice
-	autoFocus?: string
+	defaultValue?: string
+	autoFocus?: boolean
 	rootDottedName: Names
 	type: 'radio' | 'toggle'
 }) {
@@ -165,7 +171,7 @@ function RadioChoice<Names extends string = DottedName>({
 					) ? null : 'children' in node ? (
 						<div
 							role="group"
-							aria-describedby={node.dottedName + '-legend'}
+							aria-labelledby={node.dottedName + '-legend'}
 							css={`
 								margin-top: -1rem;
 							`}
@@ -174,6 +180,9 @@ function RadioChoice<Names extends string = DottedName>({
 							<Spacing lg />
 							<StyledSubRadioGroup>
 								<RadioChoice
+									// eslint-disable-next-line jsx-a11y/no-autofocus
+									autoFocus={autoFocus}
+									defaultValue={defaultValue}
 									choice={node}
 									rootDottedName={rootDottedName}
 									type={type}
@@ -185,8 +194,16 @@ function RadioChoice<Names extends string = DottedName>({
 							<Radio
 								// eslint-disable-next-line jsx-a11y/no-autofocus
 								autoFocus={
-									autoFocus ===
-									`'${relativeDottedName(rootDottedName, node.dottedName)}'`
+									// Doit autoFocus si correspond à la valeur par défaut
+									(defaultValue &&
+										defaultValue ===
+											`'${relativeDottedName(
+												rootDottedName,
+												node.dottedName
+											)}'` &&
+										autoFocus) ||
+									// Sinon doit autoFocus automatiquement
+									autoFocus
 								}
 								value={`'${relativeDottedName(
 									rootDottedName,
@@ -200,6 +217,7 @@ function RadioChoice<Names extends string = DottedName>({
 								<ExplicableRule
 									light
 									dottedName={node.dottedName as DottedName}
+									aria-label={`En savoir plus sur ${node.title}`}
 								/>
 							)}
 						</span>
