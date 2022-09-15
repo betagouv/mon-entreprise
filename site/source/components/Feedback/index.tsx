@@ -7,7 +7,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import React, { useCallback, useContext, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackingContext } from '../../ATInternetTracking'
@@ -57,6 +57,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 		showThanks: false,
 	})
 	const tag = useContext(TrackingContext)
+	const { t } = useTranslation()
 
 	const handleFeedback = useCallback(
 		(rating: 'mauvais' | 'moyen' | 'bien' | 'très bien') => {
@@ -133,7 +134,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							opacity: 0.8;
 						}
 					`}
-					aria-label="close"
+					aria-label={t('Fermer')}
 				>
 					<small>×</small>
 				</button>
