@@ -245,11 +245,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<img
-										src={logosSrc.IRCEC}
-										aria-label="logo IRCEC"
-										alt="IRCEC"
-									/>
+									<img src={logosSrc.IRCEC} alt="logo IRCEC" />
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value
