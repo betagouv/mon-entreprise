@@ -50,6 +50,7 @@ export default function SearchField(
 	props: AriaSearchFieldProps & {
 		state?: SearchFieldState
 		isSearchStalled?: boolean
+		removeAriaLabelledby?: boolean
 	}
 ) {
 	const innerState = useSearchFieldState(props)
@@ -65,6 +66,10 @@ export default function SearchField(
 	} = useSearchField(props, state, ref)
 	const { buttonProps } = useButton(clearButtonProps, buttonRef)
 
+	if (props.removeAriaLabelledby) {
+		delete inputProps['aria-labelledby']
+	}
+
 	return (
 		<StyledContainer>
 			<SearchInputContainer
@@ -72,7 +77,11 @@ export default function SearchField(
 				hasLabel={!!props.label}
 			>
 				<IconContainer hasLabel={!!props.label}>
-					{props.isSearchStalled ? <Loader /> : <SearchIcon />}
+					{props.isSearchStalled ? (
+						<Loader />
+					) : (
+						<SearchIcon aria-hidden="true" />
+					)}
 				</IconContainer>
 				<SearchInput
 					{...inputProps}
