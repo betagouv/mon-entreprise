@@ -110,7 +110,7 @@ export function CotisationsUrssaf({
 				target="_blank"
 				rel="noreferrer"
 			>
-				<img src={urssafSrc} title="logo Urssaf" alt="Urssaf" />
+				<img src={urssafSrc} aria-label="logo Urssaf" alt="Urssaf" />
 			</InstitutionLogo>
 			<Body>
 				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
@@ -245,7 +245,11 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<img src={logosSrc.IRCEC} title="logo IRCEC" alt="IRCEC" />
+									<img
+										src={logosSrc.IRCEC}
+										aria-label="logo IRCEC"
+										alt="IRCEC"
+									/>
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value
