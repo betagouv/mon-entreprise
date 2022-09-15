@@ -239,7 +239,7 @@ export default function Integration() {
 							href="https://entreprise.pole-emploi.fr/cout-salarie/"
 							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={poleEmploiLogo} alt="Pôle Emploi" />
+							<Logo src={poleEmploiLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid item xs={12} md={6} xl={4}>

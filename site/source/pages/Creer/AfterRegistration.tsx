@@ -51,11 +51,7 @@ export default function AfterRegistration() {
 					d'établissement (NIC).
 				</Trans>
 				<br />
-				<img
-					src={siret}
-					alt="SIRET and SIREN number"
-					style={{ maxWidth: '100%' }}
-				/>
+				<img src={siret} alt="" style={{ maxWidth: '100%' }} />
 			</Body>
 			<H2>
 				<Trans i18nKey="après.ape.titre">Le code APE</Trans>
