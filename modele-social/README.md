@@ -27,3 +27,5 @@ console.log(formatValue(net))
 ```
 
 👉 **[Voir le tutoriel complet](https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul)**
+
+👉 **[Voir toutes les règles de mon-entreprise](https://mon-entreprise.urssaf.fr/documentation)**
