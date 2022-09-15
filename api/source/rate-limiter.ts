@@ -1,5 +1,5 @@
 import IORedis from 'ioredis'
-import { BaseContext, Next } from 'koa'
+import { BaseContext } from 'koa'
 import {
 	RateLimiterMemory,
 	RateLimiterRedis,
@@ -23,7 +23,10 @@ const rateLimiter =
 				duration: 1, // per 1 seconds
 		  })
 
-export const rateLimiterMiddleware = async (ctx: BaseContext, next: Next) => {
+export const rateLimiterMiddleware = async (
+	ctx: BaseContext,
+	next: () => Promise<unknown>
+) => {
 	try {
 		await rateLimiter.consume(ctx.ip)
 	} catch (rejRes) {
@@ -44,7 +47,7 @@ export const rateLimiterMiddleware = async (ctx: BaseContext, next: Next) => {
 		return
 	}
 
-	return (await next()) as unknown
+	return await next()
 }
 
 const isRateLimiterRes = (val: unknown): val is RateLimiterRes => {
