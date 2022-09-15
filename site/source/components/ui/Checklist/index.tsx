@@ -102,21 +102,22 @@ export type ChecklistProps = {
 	onInitialization?: (arg: Array<string>) => void
 	defaultChecked?: { [key: string]: boolean }
 }
+
 export function Checklist({
 	children,
 	onItemCheck,
 	onInitialization,
 	defaultChecked,
 }: ChecklistProps) {
-	const checklist = React.Children.toArray(children)
+	const checklist = (React.Children.map(children, (x) => x) ?? [])
 		.filter(Boolean)
 		.map((child) => {
 			if (!React.isValidElement(child)) {
 				throw new Error('Invalid child passed to Checklist')
 			}
 
-			return React.cloneElement(child, {
-				// @ts-ignore
+			// @ts-ignore
+			return React.cloneElement<{ name: string }>(child, {
 				onChange: (isSelected: boolean) =>
 					onItemCheck?.(child.props.name, isSelected),
 				defaultChecked:
@@ -125,14 +126,12 @@ export function Checklist({
 		})
 
 	useEffect(() => {
-		// @ts-ignore
 		onInitialization?.(checklist.map((child) => child.props.name))
 	}, [])
 
 	return (
 		<StyledList>
 			{checklist.map((checkItem) => (
-				// @ts-ignore
 				<StyledListItem key={checkItem.props.name}>{checkItem}</StyledListItem>
 			))}
 		</StyledList>
