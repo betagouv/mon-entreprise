@@ -89,7 +89,9 @@ export default function SearchField(
 					ref={ref}
 				/>
 				{props.label && (
-					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+					<StyledLabel aria-hidden {...labelProps}>
+						{props.label}
+					</StyledLabel>
 				)}
 				{state.value !== '' && (
 					<StyledClearButton {...buttonProps} ref={buttonRef}>

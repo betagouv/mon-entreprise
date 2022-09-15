@@ -40,6 +40,7 @@ export default function SearchOrCreate() {
 						<Spacing md />
 						<AnswerGroup>
 							<Button
+								role="link"
 								to={generatePath(absoluteSitePaths.gérer.entreprise, {
 									entreprise: companySIREN as string,
 								})}
@@ -61,6 +62,7 @@ export default function SearchOrCreate() {
 
 						<Button
 							size="XL"
+							role="link"
 							to={
 								statutChoisi
 									? absoluteSitePaths.créer[statutChoisi]
