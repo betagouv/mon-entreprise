@@ -22,7 +22,7 @@
 		"publicodes": "=1.0.0-beta.49"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.0-beta.49"
+		"publicodes": "^1.0.0-beta.52"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",

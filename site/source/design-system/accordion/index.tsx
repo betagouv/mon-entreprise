@@ -25,6 +25,7 @@ export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
 
 const StyledAccordionGroup = styled.div`
 	overflow: hidden;
+	max-width: 100%;
 	${({ theme }) =>
 		css`
 			border-radius: ${theme.box.borderRadius};
