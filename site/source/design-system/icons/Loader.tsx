@@ -1,6 +1,11 @@
 export function Loader() {
 	return (
-		<svg width={24} height={24} xmlns="http://www.w3.org/2000/svg">
+		<svg
+			aria-label="Chargement en cours"
+			width={24}
+			height={24}
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<defs>
 				<linearGradient
 					x1="8.042%"

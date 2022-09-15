@@ -70,6 +70,7 @@ export const Link = React.forwardRef<
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
+			role="link"
 			$isDisabled={isDisabled}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}

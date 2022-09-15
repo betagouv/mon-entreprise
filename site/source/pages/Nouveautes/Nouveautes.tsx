@@ -71,7 +71,10 @@ export default function Nouveautés() {
 				</H1>
 				<Body>
 					Nous améliorons le site en continu à partir de{' '}
-					<Link to={absoluteSitePaths.stats + '#demandes-utilisateurs'}>
+					<Link
+						aria-label="vos retours, accéder aux statistiques d'utilisation"
+						to={absoluteSitePaths.stats + '#demandes-utilisateurs'}
+					>
 						vos retours
 					</Link>
 					. Découvrez les{' '}
