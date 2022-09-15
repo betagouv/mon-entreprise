@@ -5,7 +5,7 @@ import { Store } from 'redux'
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
 
-const VERSION = 2
+const VERSION = 3
 
 const LOCAL_STORAGE_KEY = `mon-entreprise::companySituation::v${VERSION}`
 
