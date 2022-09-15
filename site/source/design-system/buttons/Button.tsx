@@ -15,6 +15,7 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	children: React.ReactNode
 	size?: Size
 	light?: boolean
+	role?: string
 }
 
 export const Button = forwardRef(function Button(
@@ -23,6 +24,7 @@ export const Button = forwardRef(function Button(
 		light = false,
 		color = 'primary' as const,
 		isDisabled,
+		role,
 		...ariaButtonProps
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
@@ -39,6 +41,7 @@ export const Button = forwardRef(function Button(
 			$light={light}
 			$color={color}
 			$isDisabled={isDisabled}
+			role={role}
 		/>
 	)
 })

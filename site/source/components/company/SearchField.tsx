@@ -39,7 +39,7 @@ export function CompanySearchField(props: {
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',
-			'Café de la gare ou 40123778000127'
+			'Ex : Café de la gare ou 40123778000127'
 		),
 	}
 

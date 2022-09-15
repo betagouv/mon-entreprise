@@ -72,7 +72,11 @@ export default function SearchField(
 				hasLabel={!!props.label}
 			>
 				<IconContainer hasLabel={!!props.label}>
-					{props.isSearchStalled ? <Loader /> : <SearchIcon />}
+					{props.isSearchStalled ? (
+						<Loader />
+					) : (
+						<SearchIcon aria-hidden="true" />
+					)}
 				</IconContainer>
 				<SearchInput
 					{...inputProps}
@@ -80,7 +84,9 @@ export default function SearchField(
 					ref={ref}
 				/>
 				{props.label && (
-					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+					<StyledLabel aria-hidden {...labelProps}>
+						{props.label}
+					</StyledLabel>
 				)}
 				{state.value !== '' && (
 					<StyledClearButton {...buttonProps} ref={buttonRef}>
