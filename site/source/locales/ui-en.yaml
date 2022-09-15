@@ -82,7 +82,7 @@ CompanySearchField:
   description: "The Siret number is a 14 digit number unique to each company. Ex:
     40123778000127"
   label: Company name, SIREN or SIRET
-  placeholder: Café de la gare or 40123778000127
+  placeholder: "Ex: Café de la gare or 40123778000127"
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
@@ -989,8 +989,8 @@ jour: day
 jours: days
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
-    <2>team</2> within the<5>Urssaf</5>. We are committed to being close to your
-    needs in order to constantly improve this site in accordance with the
+    <2>team</2> within <5>the Urssaf</5>. We are committed to being close to
+    your needs in order to constantly improve this site in accordance with the
     <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to assist
     entrepreneurs in the development of their business.</2><3>Our objective is
     to remove all uncertainties with regard to the administration so that you

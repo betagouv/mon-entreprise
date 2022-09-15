@@ -67,7 +67,7 @@ CompanySearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Ex : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
-  placeholder: Café de la gare ou 40123778000127
+  placeholder: "Ex : Café de la gare ou 40123778000127"
 Continuer: Continuer
 Cotisations sociales: Cotisations sociales
 Crée le: Crée le
@@ -755,9 +755,9 @@ inférieurs à: inférieurs à
 jours: jours
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
-    autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
+    autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
-    conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
+    conformément à l'approche <9>beta.gouv.fr</9>.</1><2>Nous avons développé ce
     site pour accompagner les créateurs d’entreprise dans le développement de
     leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
