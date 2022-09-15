@@ -39,12 +39,8 @@ export function CompanySearchField(props: {
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',
-			'Café de la gare ou 40123778000127'
+			'Ex : Café de la gare ou 40123778000127'
 		),
-		'aria-label': `${t(
-			'CompanySearchField.label',
-			"Nom de l'entreprise, SIREN ou SIRET"
-		)}, par exemple :`,
 	}
 
 	const state = useSearchFieldState(searchFieldProps)
@@ -69,7 +65,6 @@ export function CompanySearchField(props: {
 					state={state}
 					isSearchStalled={searchPending}
 					onClear={onClear}
-					removeAriaLabelledby
 					{...searchFieldProps}
 				/>
 			</Grid>

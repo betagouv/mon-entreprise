@@ -125,14 +125,25 @@ export default function Landing() {
 
 							<Body>
 								Nous sommes une petite{' '}
-								<Link href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe">
+								<Link
+									aria-label="équipe, accéder à notre page de présentation d'équipe"
+									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
+								>
 									équipe
 								</Link>{' '}
-								autonome et pluridisciplinaire au sein de l’
-								<Link href="https://www.urssaf.fr">Urssaf</Link>. Nous avons à
-								cœur d’être au près de vos besoins afin d’améliorer en
-								permanence ce site conformément à l'approche{' '}
-								<Link href="https://beta.gouv.fr/approche/manifeste">
+								autonome et pluridisciplinaire au sein de{' '}
+								<Link
+									href="https://www.urssaf.fr"
+									aria-label="l'URSSAF, accéder au site urssaf.fr"
+								>
+									l’Urssaf
+								</Link>
+								. Nous avons à cœur d’être au près de vos besoins afin
+								d’améliorer en permanence ce site conformément à l'approche{' '}
+								<Link
+									href="https://beta.gouv.fr/approche/manifeste"
+									aria-label="beta.gouv.fr, accéder au site beta.gouv.fr "
+								>
 									beta.gouv.fr
 								</Link>
 								.
