@@ -504,6 +504,31 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       },
     },
   ],
+  "warnings": [
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"salarié . contrat . salaire brut\\"
+⚠️  Erreur lors de la conversion d'unité explicite
+ℹ️  
+[ EngineError ]
+✖️  Impossible de convertir l'unité '€' en '€ / mois'",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"salarié . temps de travail . heures supplémentaires . majoration\\"
+⚠️  L'unité du plafond de la tranche n°1  n'est pas compatible avec celle l'assiette
+ℹ️  
+[ EngineError ]
+✖️  Impossible de convertir l'unité 'heures / mois' en 'heure / mois'",
+    },
+    {
+      "message": "
+[ Avertissement ]
+⚠️  Dans l'expression '+', la partie gauche (unité: heures / mois) n'est pas compatible avec la partie droite (unité: heure / mois)",
+    },
+  ],
 }
 `;
 
@@ -725,6 +750,40 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
       },
     },
   ],
+  "warnings": [
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"impôt . méthode de calcul\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"impôt . méthode de calcul\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"impôt\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+⚠️  Dans l'expression '<', la partie gauche (unité: jour) n'est pas compatible avec la partie droite (unité: ans)",
+    },
+  ],
 }
 `;
 
@@ -774,20 +833,18 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
                       },
                       "type": "object",
                     },
-                    {
-                      "properties": {
-                        "error": {
-                          "properties": {
-                            "message": {
-                              "type": "string",
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
                   ],
+                },
+                "type": "array",
+              },
+              "warnings": {
+                "items": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
                 },
                 "type": "array",
               },
@@ -803,6 +860,30 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
                   },
                 },
                 "type": "object",
+              },
+            },
+            "type": "object",
+          },
+          {
+            "properties": {
+              "error": {
+                "properties": {
+                  "message": {
+                    "type": "string",
+                  },
+                },
+                "type": "object",
+              },
+              "warnings": {
+                "items": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+                "type": "array",
               },
             },
             "type": "object",
