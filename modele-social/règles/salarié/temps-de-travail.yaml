@@ -52,9 +52,9 @@ salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   non applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées ?
-  par défaut: 0 heure/mois
+  par défaut: 0 heures/mois
   suggestions:
-    aucune: 0 heure/mois
+    aucune: 0 heures/mois
     39h / semaine: 17.33 heures/mois
     42h / semaine: 30.33 heures/mois
   références:
@@ -82,7 +82,7 @@ salarié . temps de travail . heures supplémentaires . majoration:
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
   note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
-  unité: heure/mois
+  unité: heures/mois
   formule:
     barème:
       assiette: heures supplémentaires
@@ -100,7 +100,7 @@ salarié . temps de travail . heures complémentaires:
     durée légale ou conventionnelle du travail.
   applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées ?
-  par défaut: 0 heure/mois
+  par défaut: 0 heures/mois
   avec:
     contrôle heures complémentaires 10 pourcents:
       type: notification

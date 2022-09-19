@@ -375,6 +375,7 @@ entreprise . exonérations . ACRE:
               - entreprise . date de création > 31/12/2019
       valeur: oui
 
+entreprise . salariés:
 entreprise . salariés . effectif:
   unité: employés
   formule:
