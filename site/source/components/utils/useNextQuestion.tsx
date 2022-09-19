@@ -72,7 +72,7 @@ export function getNextQuestions(
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
 		const differenceCoeff = questionDifference(
 			question,
-			answeredQuestions.at(-1)
+			answeredQuestions.slice(-1)[0]
 		)
 
 		return indexList + indexNotPriority + differenceCoeff
