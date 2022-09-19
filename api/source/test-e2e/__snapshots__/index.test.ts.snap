@@ -514,20 +514,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
 [ EngineError ]
 ✖️  Impossible de convertir l'unité '€' en '€ / mois'",
     },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"salarié . temps de travail . heures supplémentaires . majoration\\"
-⚠️  L'unité du plafond de la tranche n°1  n'est pas compatible avec celle l'assiette
-ℹ️  
-[ EngineError ]
-✖️  Impossible de convertir l'unité 'heures / mois' en 'heure / mois'",
-    },
-    {
-      "message": "
-[ Avertissement ]
-⚠️  Dans l'expression '+', la partie gauche (unité: heures / mois) n'est pas compatible avec la partie droite (unité: heure / mois)",
-    },
   ],
 }
 `;
