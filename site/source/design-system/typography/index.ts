@@ -11,3 +11,8 @@ export const Strong = styled.strong`
 export const U = styled.u`
 	text-decoration: underline;
 `
+export const Code = styled.code`
+	background-color: #eee;
+	padding: 0.25rem;
+	border-radius: 0.25rem;
+`

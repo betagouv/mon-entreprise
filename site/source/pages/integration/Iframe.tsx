@@ -15,9 +15,9 @@ import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import './iframe.css'
-import cciLogo from './images/cci.png'
-import minTraLogo from './images/min-tra.jpg'
-import poleEmploiLogo from './images/pole-emploi.png'
+import cciLogo from './_images/cci.png'
+import minTraLogo from './_images/min-tra.jpg'
+import poleEmploiLogo from './_images/pole-emploi.png'
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)

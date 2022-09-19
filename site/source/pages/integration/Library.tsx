@@ -2,14 +2,15 @@ import PageHeader from '@/components/PageHeader'
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Message } from '@/design-system'
-import { Strong } from '@/design-system/typography'
+import { Code, Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'
-import illustration from './illustration_library.svg'
+import { CasParticuliers } from './_components/CasParticuliers'
+import StepByStep from './_components/StepByStep'
+import illustration from './_images/illustration_library.svg'
 
 export default function Library() {
 	return (
@@ -31,35 +32,39 @@ export default function Library() {
 
 				<H3>Installation</H3>
 				<pre>
-					<code>npm install --save publicodes modele-social</code>
+					<Code>npm install --save publicodes modele-social</Code>
 				</pre>
+				<Body>
+					Pour lancer vos propres calculs, vous devez installer le paquet{' '}
+					<Link href="https://www.npmjs.com/package/publicodes">
+						<Code>publicodes</Code>
+					</Link>{' '}
+					contenant l'interpréteur publicodes, ainsi que le paquet{' '}
+					<Link href="https://www.npmjs.com/package/modele-social">
+						<Code>modele-social</Code>
+					</Link>
+					, qui contient les règles des simulateurs mon-entreprise.
+				</Body>
 				<Message icon>
-					<H4>Que signifie publicodes ?</H4>
+					<H4>Qu'est-ce que publicodes ?</H4>
 					<Body>
-						Publicodes est un language déclaratif développé par beta.gouv.fr et
-						l'Urssaf pour encoder des algorithmes d'intérêt public.{' '}
+						Publicodes est un langage déclaratif développé par beta.gouv.fr et
+						l'Urssaf pour encoder des algorithmes d'intérêt public. C'est le
+						langage qui propulse tous les calculs des simulateurs de
+						mon-entreprise.
+					</Body>
+					<Body>
 						<Link href="https://publi.codes">
 							En savoir plus sur publicodes
 						</Link>
 					</Body>
-					<Body>
-						Pour lancer vos propre calculs, vous devons donc installer le paquet{' '}
-						<Link href="https://www.npmjs.com/package/publicodes">
-							<code>publicodes</code>
-						</Link>{' '}
-						contenant l'intepreteur, ainsi que le paquet{' '}
-						<Link href="https://www.npmjs.com/package/modele-social">
-							<code>modele-social</code>
-						</Link>
-						, qui contient les règles des simulateurs mon-entreprise.
-					</Body>
 				</Message>
 				<H3>Lancer le calcul</H3>
 				<Body>
-					Il ne vous reste plus qu'à paramétrer le moteur avec les règles du
-					paquet `modele-social` et à appeler la fonction `evaluate` sur la
-					règle que dont vous souhaitez la valeur. Voici un exemple pour le
-					calcul brut / net
+					Pour lancer le calcul, il vous faut paramétrer le moteur avec les
+					règles du paquet <Code>modele-social</Code> et à appeler la fonction{' '}
+					<Code>evaluate</Code> avec la règle dont vous souhaitez calculer la
+					valeur. Voici un exemple pour le calcul brut / net
 				</Body>
 				<div
 					className="ui__ full-width"
@@ -98,46 +103,10 @@ export default function Library() {
 					bibliothèque, voici la marche à suivre :{' '}
 				</Body>
 				<Ol>
+					<StepByStep />
 					<Li>
 						<Strong>
-							Choisir le simulateur en fonction du calcul qui nous intéresse
-						</Strong>
-						<br />
-						Par exemple le{' '}
-						<Link to={useSitePaths().absoluteSitePaths.simulateurs.salarié}>
-							simulateur salarié
-						</Link>{' '}
-						pour calculer un net à partir du brut.
-					</Li>
-					<Li>
-						<Strong>
-							Effectuer une simulation avec les données que l'on souhaite
-							réutiliser
-						</Strong>
-						<br />
-						Par exemple{' '}
-						<Link
-							to={{
-								pathname: useSitePaths().absoluteSitePaths.simulateurs.salarié,
-								search:
-									'salaire-brut=3400%E2%82%AC%2Fmois&salari%C3%A9+.+contrat=%27CDI%27&salari%C3%A9+.+contrat+.+statut+cadre=oui&salari%C3%A9+.+r%C3%A9mun%C3%A9ration+.+frais+professionnels+.+titres-restaurant=oui',
-							}}
-						>
-							un cadre à 3400 € brut avec des titres-restaurants
-						</Link>
-						.
-					</Li>
-					<Li>
-						<Strong>
-							Aller sur la page de documentation de la donnée à calculer
-						</Strong>
-						<br />
-						Par exemple en cliquant sur « Salaire net » dans le simulateur, ou
-						en recherchant « Salaire net » dans la recherche en haut à droite.
-					</Li>
-					<Li>
-						<Strong>
-							Copiez l'extrait de code personalisé et intégrez-le dans votre
+							Copiez l'extrait de code personnalisé et intégrez-le dans votre
 							application
 						</Strong>
 						<br />
@@ -147,8 +116,8 @@ export default function Library() {
 					</Li>
 					<Li>
 						<Strong>
-							(facultatif) Modifiez les valeur de la situation pour paramétrer
-							le calcul selon vos besoin
+							(facultatif) Modifiez les valeurs de la situation pour paramétrer
+							le calcul selon vos besoins
 						</Strong>
 						<br /> Vous pouvez modifier sans hésiter les valeurs de la
 						situation. Ces dernières acceptent n'importe quelle{' '}
@@ -171,33 +140,11 @@ export default function Library() {
 				<Message type="info" icon>
 					<Body>
 						La situation contient les données de votre simulation (cadre avec
-						salaire à 3400 € brut), mais également les données relative au
+						salaire à 3400 € brut), mais également les données relatives au
 						paramétrage du simulateur.
 					</Body>
 				</Message>
-				<H4>Cas particulier : le taux versement mobilité</H4>
-
-				<Body>
-					Alors que dans le simulateur{' '}
-					<Link href="https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net">
-						salarié
-					</Link>
-					, il suffit de renseigner la commune et le taux correspondant est
-					automatiquement déterminé. Ce comportement n'est pas présent dans la
-					librairie. C'est voulu : pour garder la bibliothèque (et le site)
-					légers, nous utilisons deux API en ligne. L'
-					<Link href="https://api.gouv.fr/api/api-geo.html#doc_tech">
-						API Géo - communes
-					</Link>{' '}
-					pour passer du nom de la commune au code commune. Puis l'
-					<Link href="">API versement mobilité</Link>, développé et maintenu par
-					nos soins, qui n'est pas documenté mais son utilisation est très
-					simple et compréhensible{' '}
-					<Link href="https://github.com/betagouv/mon-entreprise/blob/f3e79f42516c0822e8c6d8f6e9fc5646c82fd018/source/components/conversation/select/SelectGéo.js#L7-L14">
-						dans ce composant React qui l'appelle
-					</Link>
-					, composant qui fait aussi appel à l'API commune.
-				</Body>
+				<CasParticuliers />
 
 				<H2>
 					Faire des graphiques économiques <Emoji emoji="📈" />

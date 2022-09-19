@@ -1,18 +1,15 @@
-import BetaBanner from '@/components/BetaBanner'
+import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { H1, H2, H3, H4 } from '@/design-system/typography/heading'
+import { Code, Strong } from '@/design-system/typography'
+import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
-
-const InlineCode = styled.code`
-	background-color: #eee;
-	padding: 0.25rem;
-	border-radius: 0.25rem;
-`
+import { CasParticuliers } from './_components/CasParticuliers'
+import StepByStep from './_components/StepByStep'
+import illustration from './_images/API_illustration.svg'
 
 export default function API() {
 	return (
@@ -20,60 +17,63 @@ export default function API() {
 			<ScrollToTop />
 
 			<Trans i18nKey="pages.développeur.api">
-				<H1>Utiliser notre API REST </H1>
-				<BetaBanner>
-					<H3 as="h1">API en version beta</H3>
+				<PageHeader titre="API REST de simulation" picture={illustration}>
 					<Intro>
-						Des changements cassants sont succeptibles d'être apportés dans les
-						prochaines semaine.
+						Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
+						ou service très facilement grâce à notre API REST ouverte et sans
+						authentification.
 					</Intro>
-					<Body>
-						N'hésitez pas à faire des retours sur son utilisation directement
-						sur Github.
-					</Body>
-				</BetaBanner>
-				<Intro>
-					Si votre site ou service requiert de faire des calculs sur des
-					salaires, par exemple passer du salaire brut au salaire net, bonne
-					nouvelle : tous les calculs de cotisations et impôts de mon-entreprise
-					sont libres et utilisable via notre API REST.
-				</Intro>
-				<Body>
 					<Button size="XL" href="/api/v1/doc">
-						Essayer l'API
+						Accéder au Swagger
 					</Button>
-				</Body>
-				<H2>Comment utiliser cette API ?</H2>
-
+				</PageHeader>
+				<H2>Comment effectuer un calcul via l'API ?</H2>
 				<Body>
-					L'api mon-entreprise est totalement ouverte et sans authentification,
-					elle se compose de 3 routes qui s'inspirent des méthodes de
-					l'interpréteur <Link href="https://publi.codes">Publicodes</Link> :{' '}
-					<InlineCode>/evaluate</InlineCode>, <InlineCode>/rules</InlineCode> et{' '}
-					<InlineCode>/rules/:rule</InlineCode>. Retrouvez plus d'informations
-					sur notre{' '}
-					<Link href="/api/v1/doc/#/publicodes-api/evaluate">Swagger UI</Link>.
-					<br />
+					Pour effectuer un calcul, il vous suffit de faire un <Code>POST</Code>{' '}
+					sur la route <Code>/evaluate</Code> avec les paramètres suivants :
+				</Body>
+				<Ul>
+					<Li>
+						<Code>expressions</Code> : le nom des règles dont vous voulez
+						calculer la valeur
+					</Li>
+					<Li>
+						<Code>situation</Code> : la situation pour le paramétrage du calcul
+					</Li>
+				</Ul>
+				<Body>
+					<Link to="/api/v1/doc/#/publicodes-api/evaluate">
+						Voir l'exemple dans le Swagger
+					</Link>
 				</Body>
 
-				<Message>
-					<H4 as="h3">Qu'est ce que Publicodes ?</H4>
+				<H3>Comment reproduire un calcul d'un simulateur ?</H3>
+				<Body>
 					<Body>
-						Publicodes est un language déclaratif développé par beta.gouv.fr et
-						l'Urssaf pour encoder des algorithmes d'intérêt public. Toutes nos
-						règles de calculs sont implémentées dans ce language.
+						Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
+						bibliothèque, voici la marche à suivre :{' '}
 					</Body>
-					<Body>
-						<Link href="https://publi.codes">
-							En savoir plus sur publicodes
-						</Link>
-					</Body>
-				</Message>
-
+				</Body>
+				<Ol>
+					<StepByStep />
+					<Li>
+						<Strong>
+							Dans la section « Règle et situation », vous trouverez le nom de
+							la règle et la situation à utiliser comme paramètres d'appel à
+							<Code>/evaluate</Code>.
+						</Strong>
+						<br />
+						Vous pouvez également retrouver la requête API à copier-coller sous
+						forme d'appel <Code>curl</Code> ou de <Code>fetch</Code>
+						JavaScript dans la section « Réutiliser ce calcul ».
+						<br />
+					</Li>
+				</Ol>
+				<CasParticuliers />
 				<H2>Exemple</H2>
 				<Body>
 					Voici un exemple d'utilisation des différentes routes, vous pouvez
-					explorer leur code dans le dossier <InlineCode>example</InlineCode>
+					explorer leur code dans le dossier <Code>example</Code>
 				</Body>
 
 				<div

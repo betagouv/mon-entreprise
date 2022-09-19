@@ -888,84 +888,69 @@ pages:
         cta: Consulter l'aide
         title: Comment déclarer son revenu aux impôts ?
   développeur:
-    api: "<0>Utiliser notre API REST </0><1><0>API en version beta</0><1>Des
-      changements cassants sont succeptibles d'être apportés dans les prochaines
-      semaine.</1><2>N'hésitez pas à faire des retours sur son utilisation
-      directement sur Github.</2></1><2>Si votre site ou service requiert de
-      faire des calculs sur des salaires, par exemple passer du salaire brut au
-      salaire net, bonne nouvelle : tous les calculs de cotisations et impôts de
-      mon-entreprise sont libres et utilisable via notre API
-      REST.</2><3><0>Essayer l'API</0></3><4>Comment utiliser cette API
-      ?</4><5>L'api mon-entreprise est totalement ouverte et sans
-      authentification, elle se compose de 3 routes qui s'inspirent des méthodes
-      de l'interpréteur <1>Publicodes</1> : <4>/evaluate</4>, <6>/rules</6> et
-      <9>/rules/:rule</9>. Retrouvez plus d'informations sur notre <12>Swagger
-      UI</12>.<14></14></5><6><0>Qu'est ce que Publicodes ?</0><1>Publicodes est
-      un language déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder
-      des algorithmes d'intérêt public. Toutes nos règles de calculs sont
-      implémentées dans ce language.</1><2><0>En savoir plus sur
-      publicodes</0></2></6><7>Exemple</7><8>Voici un exemple d'utilisation des
-      différentes routes, vous pouvez explorer leur code dans le dossier
-      <1>example</1></8><9><0></0></9>"
+    api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
+      ou service très facilement grâce à notre API REST ouverte et sans
+      authentification.</0><1>Accéder au Swagger</1></0><1>Comment effectuer un
+      calcul via l'API ?</1><2>Pour effectuer un calcul, il vous suffit de faire
+      un <1>POST</1> sur la route <4>/evaluate</4> avec les paramètres suivants
+      :</2><3><0><0>expressions</0> : le nom des règles dont vous voulez
+      calculer la valeur</0><1><0>situation</0> : la situation pour le
+      paramétrage du calcul</1></3><4><0>Voir l'exemple dans le
+      Swagger</0></4><5>Comment reproduire un calcul d'un simulateur
+      ?</5><6><0>Pour répliquer un calcul d'un simulateur de mon-entreprise dans
+      la bibliothèque, voici la marche à suivre : </0></6><7><0></0><1><0>Dans
+      la section « Règle et situation », vous trouverez le nom de la règle et la
+      situation à utiliser comme paramètres d'appel
+      à<1>/evaluate</1>.</0><1></1>Vous pouvez également retrouver la requête
+      API à copier-coller sous forme d'appel <3>curl</3> ou de
+      <5>fetch</5>JavaScript dans la section « Réutiliser ce calcul
+      ».<7></7></1></7><8></8><9>Exemple</9><10>Voici un exemple d'utilisation
+      des différentes routes, vous pouvez explorer leur code dans le dossier
+      <1>example</1></10><11><0></0></11>"
     bibliothèque: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur
       votre site ou service très facilement grâce à la bibliothèque JavaScript
       open-source disponible sur npm.</0></0><1>Comment utiliser cette librairie
       ?</1><2>Installation</2><3><0>npm install --save publicodes
-      modele-social</0></3><4><0>Que signifie publicodes ?</0><1>Publicodes est
-      un language déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder
-      des algorithmes d'intérêt public. <2>En savoir plus sur
-      publicodes</2></1><2>Pour lancer vos propre calculs, vous devons donc
-      installer le paquet <2><0>publicodes</0></2> contenant l'intepreteur,
-      ainsi que le paquet <6><0>modele-social</0></6>, qui contient les règles
-      des simulateurs mon-entreprise.</2></4><5>Lancer le calcul</5><6>Il ne
-      vous reste plus qu'à paramétrer le moteur avec les règles du paquet
-      `modele-social` et à appeler la fonction `evaluate` sur la règle que dont
-      vous souhaitez la valeur. Voici un exemple pour le calcul brut /
-      net</6><7><0></0></7><8>Paramétrer le calcul</8><9>Vous l'aurez constaté
-      dans l'exemple précédent, la recette d'un calcul est simple : des
-      variables d'entrée (le salaire brut), une ou plusieurs variables de
-      sorties (le salaire net).</9><10>Le calcul est cependant paramétrable avec
-      toutes les possibilités permises dans les simulateurs de mon-entreprise
-      !</10><11>Toutes les règles disponibles sont listées et expliquées sur la
-      <2>documentation en ligne</2>. Cette documentation est auto-générée depuis
-      les fichiers de règles publicodes, et alimentée par la simulation en
-      cours.</11><12>Comment reproduire un calcul d'un simulateur ?</12><13>Pour
-      répliquer un calcul d'un simulateur de mon-entreprise dans la
-      bibliothèque, voici la marche à suivre : </13><14><0><0>Choisir le
-      simulateur en fonction du calcul qui nous intéresse</0><1></1>Par exemple
-      le <4>simulateur salarié</4> pour calculer un net à partir du
-      brut.</0><1><0>Effectuer une simulation avec les données que l'on souhaite
-      réutiliser</0><1></1>Par exemple <4>un cadre à 3400 € brut avec des
-      titres-restaurants</4>.</1><2><0>Aller sur la page de documentation de la
-      donnée à calculer</0><1></1>Par exemple en cliquant sur « Salaire net »
-      dans le simulateur, ou en recherchant « Salaire net » dans la recherche en
-      haut à droite.</2><3><0>Copiez l'extrait de code personalisé et
-      intégrez-le dans votre application</0><1></1>Vous le trouverez en cliquant
-      sur la section « Réutiliser ce calcul ».<3></3></3><4><0>(facultatif)
-      Modifiez les valeur de la situation pour paramétrer le calcul selon vos
-      besoin</0><1></1> Vous pouvez modifier sans hésiter les valeurs de la
-      situation. Ces dernières acceptent n'importe quelle <4>expression ou objet
-      publicodes.</4></4></14><15>Voici ce que donne le calcul avec l'exemple
-      cité ci-dessus :</15><16><0></0></16><17><0>La situation contient les
+      modele-social</0></3><4>Pour lancer vos propres calculs, vous devez
+      installer le paquet <2><0>publicodes</0></2> contenant l'interpréteur
+      publicodes, ainsi que le paquet <6><0>modele-social</0></6>, qui contient
+      les règles des simulateurs mon-entreprise.</4><5><0>Qu'est-ce que
+      publicodes ?</0><1>Publicodes est un langage déclaratif développé par
+      beta.gouv.fr et l'Urssaf pour encoder des algorithmes d'intérêt public.
+      C'est le langage qui propulse tous les calculs des simulateurs de
+      mon-entreprise.</1><2><0>En savoir plus sur
+      publicodes</0></2></5><6>Lancer le calcul</6><7>Pour lancer le calcul, il
+      vous faut paramétrer le moteur avec les règles du paquet
+      <1>modele-social</1> et à appeler la fonction <4>evaluate</4> avec la
+      règle dont vous souhaitez calculer la valeur. Voici un exemple pour le
+      calcul brut / net</7><8><0></0></8><9>Paramétrer le calcul</9><10>Vous
+      l'aurez constaté dans l'exemple précédent, la recette d'un calcul est
+      simple : des variables d'entrée (le salaire brut), une ou plusieurs
+      variables de sorties (le salaire net).</10><11>Le calcul est cependant
+      paramétrable avec toutes les possibilités permises dans les simulateurs de
+      mon-entreprise !</11><12>Toutes les règles disponibles sont listées et
+      expliquées sur la <2>documentation en ligne</2>. Cette documentation est
+      auto-générée depuis les fichiers de règles publicodes, et alimentée par la
+      simulation en cours.</12><13>Comment reproduire un calcul d'un simulateur
+      ?</13><14>Pour répliquer un calcul d'un simulateur de mon-entreprise dans
+      la bibliothèque, voici la marche à suivre : </14><15><0></0><1><0>Copiez
+      l'extrait de code personnalisé et intégrez-le dans votre
+      application</0><1></1>Vous le trouverez en cliquant sur la section «
+      Réutiliser ce calcul ».<3></3></1><2><0>(facultatif) Modifiez les valeurs
+      de la situation pour paramétrer le calcul selon vos besoins</0><1></1>
+      Vous pouvez modifier sans hésiter les valeurs de la situation. Ces
+      dernières acceptent n'importe quelle <4>expression ou objet
+      publicodes.</4></2></15><16>Voici ce que donne le calcul avec l'exemple
+      cité ci-dessus :</16><17><0></0></17><18><0>La situation contient les
       données de votre simulation (cadre avec salaire à 3400 € brut), mais
-      également les données relative au paramétrage du
-      simulateur.</0></17><18>Cas particulier : le taux versement
-      mobilité</18><19>Alors que dans le simulateur <2>salarié</2>, il suffit de
-      renseigner la commune et le taux correspondant est automatiquement
-      déterminé. Ce comportement n'est pas présent dans la librairie. C'est
-      voulu : pour garder la bibliothèque (et le site) légers, nous utilisons
-      deux API en ligne. L'<4>API Géo - communes</4> pour passer du nom de la
-      commune au code commune. Puis l'<7>API versement mobilité</7>, développé
-      et maintenu par nos soins, qui n'est pas documenté mais son utilisation
-      est très simple et compréhensible <10>dans ce composant React qui
-      l'appelle</10>, composant qui fait aussi appel à l'API
-      commune.</19><20>Faire des graphiques économiques <1></1></20><21>Il est
-      aussi possible d'utiliser la bibliothèque pour des calculs d'analyse
-      économique ou politique. Ici, on trace le prix du travail et le salaire
-      net en fonction du brut.</21><22>On peut constater la progressivité du
-      salaire total, qui est en pourcent plus faible pour un SMIC que pour un
-      haut revenu. Autrement dit, les hauts salaires paient une partie des
-      cotisations sociales des bas salaires.</22><23><0></0></23>"
+      également les données relatives au paramétrage du
+      simulateur.</0></18><19></19><20>Faire des graphiques économiques
+      <1></1></20><21>Il est aussi possible d'utiliser la bibliothèque pour des
+      calculs d'analyse économique ou politique. Ici, on trace le prix du
+      travail et le salaire net en fonction du brut.</21><22>On peut constater
+      la progressivité du salaire total, qui est en pourcent plus faible pour un
+      SMIC que pour un haut revenu. Autrement dit, les hauts salaires paient une
+      partie des cotisations sociales des bas salaires.</22><23><0></0></23>"
     choice:
       github:
         body: Tous nos outils sont ouverts et développés publiquement sur GitHub.
@@ -984,6 +969,57 @@ pages:
     code:
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
+    components:
+      CasParticuliers: "<0>En savoir plus sur...</0><1><0>Les
+        <1>MissingVariables</1></0><1>En retour de votre appel à
+        <1>evaluate</1>, vous obtiendrez un objet <3>missingVariables</3>. Ce
+        dernier contient la liste de toutes les règles utilisées pour le calcul
+        dont la valeur est absente dans la situation en entrée. C'est une
+        <6>valeur par défaut</6> qui a été utilisée à la place.</1><2>Pour
+        personnaliser encore plus votre simulation, vous pouvez renseigner leur
+        valeur.</2><3><0>Le nombre qui leur est associé correspond à
+        l'importance de la règle pour le calcul : plus il est élevé, plus la
+        règle a été utilisée par d'autres règles lors du
+        calcul.</0></3></1><2><0>Les règles taguées comme
+        <1>experimentale</1></0><1>Nos API suivent une <2>gestion sémantique de
+        version</2>. Cela veut dire que toutes les modifications apportées sont
+        rétrocompatibles, sauf lors de changements de version majeure.</1><2>Les
+        règles taguées comme experimentales n'obéissent pas à cette
+        spécification. Cela veut dire qu'elles peuvent être supprimées,
+        modifiées, déplacées, de manière invisible pour l'utilisateur de
+        l'API.</2><3><0>Nous vous conseillons donc d'être très prudent dans
+        l'utilisation de ces règles, et de toujours bien vérifier leur existence
+        avant de les inclure dans votre code applicatif.</0></3><4><0>Comment
+        savoir si une règle est expérimentale ?</0><1>Vous pouvez savoir si vous
+        utilisez une règle expérimentale en consultant l'objet <1>warnings</1>
+        fourni en retour de votre appel à <3>evaluate</3></1><2>Les règles
+        expérimentales contiennent également un avertissement dans la section «
+        Réutiliser ce calcul » de la documentation.</2></4></2><3><0>Réutiliser
+        une donnée provenant d'API externes</0><1>Certaines données des
+        simulateurs de mon-entreprise proviennent d'API externes. Il vous faudra
+        ainsi changer leur valeur par vous-même dans la situation donnée en
+        entrée.</1><2>Le versement mobilité</2><3><0><0>établissement .
+        versement mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il
+        suffit de renseigner la commune et le taux du versement mobilité
+        correspondant est automatiquement déterminé.</4><5>Il vous faudra
+        préciser le taux vous-même pour refaire le calcul. Vous pouvez le
+        retrouver :<1><0>En saisissant votre commune dans un simulateur, puis en
+        recherchant la règle « versement mobilité » avec le bouton « rechercher
+        » en haut à droite</0><1>Grâce au <2>service dédié sur
+        urssaf.fr</2></1></1></5><6>Le taux collectif AT/MP</6><7><0><0>salarié
+        . cotisations . ATMP . taux collectif</0></0></7><8>Ce taux collectif
+        doit être retrouvé manuellement. Vous pouvez utiliser :<1><0><0>Un
+        export csv</0> du tableau des taux nets collectifs paru au Journal
+        Officiel</0><1>Le service <2>Compte AT/MP</2> de
+        net-entreprise</1></1></8></3>"
+      StepByStep: <0><0>Choisir le simulateur en fonction du calcul qui nous
+        intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
+        calculer un net à partir du brut.</0><1><0>Effectuer une simulation avec
+        les données que l'on souhaite réutiliser</0><1></1>Par exemple <4>un
+        cadre à 3400 € brut avec des titres-restaurants</4>.</1><2><0>Aller sur
+        la page de documentation de la donnée à calculer</0><1></1>Par exemple
+        en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
+        Salaire net » dans la recherche en haut à droite.</2>
     couleur: "Quelle couleur ? "
     home:
       choice:

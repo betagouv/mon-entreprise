@@ -38,7 +38,11 @@ export default function PageHeader({
 					align-items: flex-start;
 				`}
 			>
-				{titre && <H1>{titre}</H1>}
+				{titre && (
+					<>
+						<H1>{titre}</H1>
+					</>
+				)}
 				<div>{children}</div>
 			</Grid>
 
