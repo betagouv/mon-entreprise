@@ -1129,77 +1129,63 @@ pages:
         cta: See the help
         title: How to declare your income to the tax authorities?
   développeur:
-    api: "<0>Use our REST API </0><1><0>API in beta version</0><1>Some breaking
-      changes are likely to be made in the coming weeks.</1><2>Feel free to give
-      feedback on its use directly on Github.</2></1><2>If your site or service
-      requires to make calculations on salaries, for example to pass from gross
-      salary to net salary, good news: all calculations of contributions and
-      taxes of my-company are free and usable via our REST API.</2><3><0>Try the
-      API</0></3><4>How to use this API?</4><5>The my-company api is totally
-      open and without authentication, it is composed of 3 routes inspired by
-      the methods of the <1>Publicodes</1> interpreter: <4>/evaluate</4>,
-      <6>/rules</6> and <9>/rules/:rule</9>. Find more information on our
-      <12>Swagger UI</12>.<14></14></5><6><0>What is
-      Publicodes?</0><1>Publicodes is a declarative language developed by
-      beta.gouv.fr and Urssaf to encode public interest algorithms. All our
-      calculation rules are implemented in this language.</1><2><0>Learn more
-      about publicodes</0></2></6><7>Example</7><8>Here is an example of how to
-      use the different routes, you can explore their code in the
-      <1>example</1>folder</8><9><0></0></9>"
+    api: '<0><0>You can reuse the calculations of my-company on your site or service
+      very easily thanks to our open REST API and without
+      authentication.</0><1>Access the Swagger</1></0><1>How to perform a
+      calculation via the API?</1><2>To perform a calculation, you just have to
+      make a <1>POST</1> on the <4>/evaluate</4> route with the following
+      parameters:</2><3><0><0>expressions</0>: the name of the rules whose value
+      you want to calculate</0><1><0>situation</0>: the situation for the
+      calculation</1></3><4><0>See the example in the Swagger</0></4><5>How to
+      replicate a calculation of a simulator ?</5><6><0>To replicate a
+      calculation from a simulator in my-company in the library, here is the
+      procedure: </0></6><7><0></0><1><0>In the "Rule and situation" section,
+      you will find the name of the rule and the situation to use as parameters
+      for calling/evaluate.</0><1></1>You can also find the API request to copy
+      and paste as a <3>curl</3> call or <5>fetchJavaScript</5>in the "Reuse
+      this calculation" section.<7></7></1></7><8></8><9>Example</9><10>Here is
+      an example of how to use the different routes, you can explore their code
+      in the <1>example</1> folder</10><11><0></0></11>'
     bibliothèque: '<0><0>You can reuse the calculations of my-company on your site
       or service very easily thanks to the open-source JavaScript library
       available on npm.</0></0><1>How to use this library
       ?</1><2>Installation</2><3><0>npm install --save publicodes
-      modele-social</0></3><4><0>What does publicodes mean?</0><1>Publicodes is
-      a declarative language developed by beta.gouv.fr and the Urssaf to encode
-      algorithms of public interest. <2>Learn more about publicodes</2></1><2>To
-      run your own calculations, you need to install the package
-      <2><0>publicodes</0></2> package containing the interpreter, as well as
-      the <6><0>modele-social</0></6>package, which contains the rules of the
-      my-company simulators.</2></4><5>Launch the calculation</5><6>All you have
-      to do is to set the engine with the rules of the `social-modele` package
-      and to call the `evaluate` function on the rule you want the value of.
-      Here is an example for the gross/net
-      calculation</6><7><0></0></7><8>Setting up the calculation</8><9>As you
+      modele-social</0></3><4>To run your own calculations, you need to install
+      the package <2><0>publicodes</0></2> package containing the publicodes
+      interpreter, and the <6><0>modele-social</0></6>package, which contains
+      the rules of the my-company simulators.</4><5><0>What is publicodes
+      ?</0><1>Publicodes is a declarative language developed by beta.gouv.fr and
+      the Urssaf to encode algorithms of public interest. It is the language
+      that powers all the calculations of the mon-entreprise
+      simulators.</1><2><0>Learn more about publicodes</0></2></5><6>Launch the
+      calculation</6><7>To launch the calculation, you need to set up the engine
+      with the rules of the <1>social-model</1> package and to call the
+      <4>evaluate</4> function with the rule whose value you want to calculate.
+      Here is an example for the gross / net
+      calculation</7><8><0></0></8><9>Setting up the calculation</9><10>As you
       can see in the previous example, the recipe for a calculation is simple:
-      input variables (the gross salary), one or more output variables (the net
-      salary).</9><10>However, the calculation can be parameterized with all the
-      possibilities allowed in the simulators of my-company!</10><11>All
+      input variables (gross salary), one or more output variables (net
+      salary).</10><11>However, the calculation can be parameterized with all
+      the possibilities allowed in the simulators of my-company!</11><12>All
       available rules are listed and explained in the <2>online
       documentation</2>. This documentation is auto-generated from the
-      publicodes rules files, and fed by the current simulation.</11><12>How to
-      replicate a calculation from a simulator?</12><13>To replicate a
+      publicodes rules files, and fed by the current simulation.</12><13>How to
+      replicate a calculation from a simulator?</13><14>To replicate a
       calculation from a simulator of my-company in the library, here are the
-      steps to follow: </13><14><0><0>Choose the simulator according to the
-      calculation we are interested in</0><1></1>For example the <4>employee
-      simulator</4> to calculate a net from the gross.</0><1><0>Run a simulation
-      with the data you wish to reuse</0><1></1>For example, <4>a manager at
-      3400 € gross with meal vouchers</4>.</1><2>Go to<0>the documentation page
-      of the data to be calculated</0><1></1>For example by clicking on "Net
-      salary" in the simulator, or by searching for "Net salary" in the search
-      box on the top right.</2><3><0>Copy the customized code extract and
-      integrate it in your application</0><1></1>. You will find it by clicking
-      on the "Reuse this calculation" section.<3></3></3><4><0>(optional) Modify
-      the values of the situation to set the calculation according to your
-      needs</0><1></1> You can modify without hesitation the values of the
-      situation. They accept any <4>expression or publicodes
-      object.</4></4></14><15>Here is what the calculation gives with the
-      example quoted above:</15><16><0></0></16><17><0>The situation contains
-      the data of your simulation (executive with a salary of 3400 € gross), but
-      also the data relating to the parameterization of the
-      simulator.</0></17><18>Special case: the mobility payment
-      rate</18><19>Whereas in the <2>employee</2> simulator, all you have to do
-      is enter the commune and the corresponding rate is automatically
-      determined. This behavior is not present in the library. This is
-      deliberate: to keep the library (and the site) light, we use two online
-      APIs. The<4>Geo - communes API</4> to go from the commune name to the
-      commune code. Then the<7>Mobility API</7>, developed and maintained by us,
-      which is not documented but its use is very simple and understandable
-      <10>in this React component that calls it</10>, component that also calls
-      the common API.</19><20>Making economic graphs <1></1></20><21>It is also
-      possible to use the library for economic or political analysis
-      calculations. Here, we plot the price of labor and the net wage as a
-      function of the gross wage.</21><22>One can see the progressivity of the
+      steps to follow: </14><15><0></0><1><0>Copy the custom code snippet and
+      integrate it into your application</0><1></1>You can find it by clicking
+      on the "Reuse this calculation" section.<3></3></1><2><0>(optional) Modify
+      the values of the situation to set up the calculation according to your
+      needs</0><1></1> You can modify the values of the situation without
+      hesitation. These values accept any <4>expression or publicodes
+      object.</4></2></15><16>Here is what the calculation gives with the
+      example quoted above:</16><17><0></0></17><18><0>The situation contains
+      the data of your simulation (executive with salary at 3400 € gross), but
+      also the data related to the parameterization of the
+      simulator.</0></18><19></19><20>Making economic graphs <1></1></20><21>It
+      is also possible to use the library for economic or political analysis
+      calculations. Here, we plot the price of work and the net salary as a
+      function of the gross salary.</21><22>We can see the progressivity of the
       total wage, which is in percent lower for a minimum wage than for a high
       wage. In other words, high earners pay part of the social contributions of
       low earners.</22><23><0></0></23>'
@@ -1222,6 +1208,54 @@ pages:
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
+    components:
+      CasParticuliers: '<0>Learn more about...</0><1><0>The
+        <1>MissingVariables</1></0><1>In return of your call to <1>evaluate</1>,
+        you will get a <3>missingVariables</3> object. This object contains the
+        list of all the rules used for the calculation whose value is missing in
+        the input situation. It is a <6>default value</6> that has been used
+        instead.</1><2>To further customize your simulation, you can enter their
+        value.</2><3><0>The number associated with them corresponds to the
+        importance of the rule for the calculation: the higher it is, the more
+        the rule was used by other rules during the
+        calculation.</0></3></1><2><0>Rules tagged as
+        <1>experimental</1></0><1>Our APIs follow a <2>semantic version
+        management</2>. This means that all changes made are backwards
+        compatible, except for major version changes.</1><2>Rules tagged as
+        experimental do not obey this specification. This means that they can be
+        deleted, modified, moved, invisibly for the API user.</2><3><0>We
+        therefore advise you to be very careful when using these rules, and to
+        always check their existence before including them in your application
+        code.</0></3><4><0>How to know if a rule is experimental?</0><1>You can
+        know if you are using an experimental rule by looking at the
+        <1>warnings</1> object provided in return of your call to
+        <3>evaluate</3></1><2>Experimental rules also contain a warning in the
+        "Reuse this calculation" section of the
+        documentation.</2></4></2><3><0>Reusing data from external
+        APIs</0><1>Some data in the my-company simulators come from external
+        APIs. You will have to change their value by yourself in the given input
+        situation.</1><2>The mobility payment</2><3><0><0>establishment .
+        mobility payment</0></0></3><4>In the <2>employee</2> simulator, all you
+        have to do is enter the municipality and the corresponding mobility
+        payment rate is automatically determined.</4><5>You will have to specify
+        the rate yourself to redo the calculation. You can find it
+        again:<1><0>By entering your municipality in a simulator, then searching
+        for the "mobility payment" rule with the "search" button at the top
+        right</0><1>Using the <2>dedicated service on
+        urssaf.fr</2></1></1></5><6>The collective AT/MP
+        rate</6><7><0><0>employee . contributions . ATMP . collective
+        rate</0></0></7><8>This collective rate must be found manually. You can
+        use :<1><0><0>A csv export</0> of the table of collective net rates
+        published in the Official Journal</0><1>The service <2>Account AT/MP</2>
+        of net-entreprise</1></1></8></3>'
+      StepByStep: <0><0>Choose the simulator according to the calculation we are
+        interested in</0><1></1>For example the <4>employee simulator</4> to
+        calculate a net amount from the gross amount.</0><1><0>Run a simulation
+        with the data you wish to reuse</0><1></1>For example, <4>a manager at
+        3400 € gross with meal vouchers</4>.</1><2><0>Go to the documentation
+        page of the data to be calculated</0><1></1>For example by clicking on
+        "Net salary" in the simulator, or by searching for "Net salary" in the
+        search box at the top right.</2>
     couleur: "What color? "
     home:
       choice:

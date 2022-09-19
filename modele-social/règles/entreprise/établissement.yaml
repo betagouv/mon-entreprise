@@ -5,6 +5,7 @@
   applicable si: entreprise . SIREN
 
 établissement . localisation:
+  experimental: oui
   icônes: 🌍
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
@@ -54,6 +55,7 @@
         - département = 'La Réunion'
 
 établissement . versement mobilité:
+  experimental: oui
   unité: '%'
   par défaut: oui
   synchronisation:

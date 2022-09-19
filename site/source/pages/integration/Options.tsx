@@ -7,7 +7,7 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
-import illustration from './illustration.png'
+import illustration from './_images/illustration.png'
 
 export default function Options() {
 	const { absoluteSitePaths } = useSitePaths()

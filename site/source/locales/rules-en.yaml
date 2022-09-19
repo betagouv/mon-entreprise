@@ -3553,8 +3553,8 @@ dirigeant . rémunération . totale:
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
   résumé.en: '[automatic] Including dues and contributions'
   résumé.fr: Incluant les cotisations et contributions
-  titre.en: '[automatic] total'
-  titre.fr: totale
+  titre.en: '[automatic] Total compensation'
+  titre.fr: Rémunération totale
 déclaration charge sociales:
   description.en:
     '[automatic] These rules calculate the amounts of social charges
@@ -4823,6 +4823,9 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
     déductibles d'impôt.
   titre.en: '[automatic] deductible executive compensation'
   titre.fr: rémunération dirigeant déductible
+entreprise . salariés:
+  titre.en: '[automatic] employees'
+  titre.fr: salariés
 entreprise . salariés . effectif:
   titre.en: '[automatic] workforce'
   titre.fr: effectif
