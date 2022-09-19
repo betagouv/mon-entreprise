@@ -90,10 +90,10 @@ const guidesUrssaf = [
 		url: 'https://www.urssaf.fr/portail/home/employeur/employer-du-personnel/nouvel-employeur.html',
 		title: "Nouvel employeur : l'Urssaf vous accompagne",
 		description:
-			'Vous employez votre premier salarié et vous vous posez des questions sur les démarches à effectuer ? Ce guide est fait pour vous.',
+			'Vous créez votre premier emploi ? Découvrez le service Urssaf Première Embauche, un accompagnement personnalisé et entièrement gratuit pendant un an.',
 		associatedRule: {
 			'toutes ces conditions': [
-				'salarié',
+				'dirigeant = non',
 				{ 'est non défini': 'artiste-auteur' },
 			],
 		},
