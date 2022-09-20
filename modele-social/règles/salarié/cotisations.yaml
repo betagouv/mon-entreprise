@@ -564,26 +564,18 @@ salarié . cotisations . chômage:
 
 salarié . cotisations . ATMP:
   experimental: oui
-  titre: Cotisation Accidents du Travail et Maladies Professionnelles
+  titre: Accidents du Travail et Maladies Professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
-  cotisation:
-    dû par: employeur
-    branche: accidents du travail et maladies professionnelles
-    destinataire: Urssaf
-    responsable: CARSAT
-  formule:
-    produit:
-      assiette: cotisations . assiette
-      taux:
-        nom: taux
-        variations:
-          - si: taux connu
-            alors: taux personnalisé
-          - si: taux réduit
-            alors: 0.8%
-          - sinon: taux collectif
+  produit:
+    assiette: cotisations . assiette
+    taux:
+      nom: taux
+      variations:
+        - si: taux fonctions support
+          alors: taux fonctions support . montant
+        - sinon: établissement . taux ATMP
   références:
-    taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+    Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665#:~:text=La%20cotisation%20AT%2FMP%20couvre,Activit%C3%A9%20principale
 
   avec:
     taux minimum:
@@ -597,60 +589,36 @@ salarié . cotisations . ATMP:
           alors: 0.70 %
       références:
         Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041460928&cidTexte=LEGITEXT000006073189&dateTexte=20200101
-        Mise à jour 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044793102
 
     taux moyen:
-      valeur: 2.24%
+      valeur: 2.23%
       références:
-        Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+        Article 2 de l'arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044616004
 
-    taux réduit:
-      titre: taux réduit pour activité sans risque
-      question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
+    taux fonctions support:
+      applicable si: entreprise . salariés . effectif < seuil taux mixte ou individuel
       description: |
-        Ce taux correspond :
-        - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
-        - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit.
-      applicable si: entreprise . salariés . effectif <= 150
+        Le taux « fonctions support » permet à l’employeur qui le demande de bénéficier d’un taux de cotisation AT/MP réduit pour les salariés non exposés au risque principal de l’établissement. Il est réservé aux salariés occupant à titre principal une fonction support de nature administrative.
+
+        Sont considérées comme fonctions supports de nature administrative :
+
+        - le secrétariat ;
+        - l’accueil ;
+        - la comptabilité ;
+        - les affaires juridiques ;
+        - la gestion financière ;
+        - les ressources humaines.
+      question: Le salarié occupe-t-il une fonction support de nature administrative ?
       par défaut: non
       références:
-        fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
+        Taux fonctions support: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp/calcul-taux-atmp-tpe-moins-20-salaries#text_66210
+        'Comprendre et expliquer : le taux fonctions support (PDF)': https://cramif.fr/sites/default/files/inline-files/comprendre-expliquer-le-taux-fonctions-supports-VDEF.pdf
+        Annexe 2 de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616026
 
-    taux connu:
-      question: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
-      par défaut: non
-      description: |
-        Le taux de la cotisation Accident du Travail et Maladie Professionnel varie selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels sont exposé leur salariés.
+      avec:
+        montant: 0.83%
 
-        Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
-
-        A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
-
-        Entre les deux, le taux est modulé.
-
-        Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
-      références:
-        Description compte ATMP: https://www.ameli.fr/entreprise/votre-entreprise/compte-accidents-du-travail-et-maladies-professionnelles/mp/teleservice-compte-atmp
-        Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
-
-    taux personnalisé:
-      question: Quel est le taux AT/MP de l'entreprise ?
-      description: >
-        Les entreprises de plus de 20 salariés ont un taux individualisé. L'entreprise peut consulter son taux effectif directement sur espace net-entreprise.
-      références:
-        Accès compte ATMP (entreprise): https://www.net-entreprises.fr/declaration/compte-atmp/
-      par défaut: taux moyen
-
-    taux collectif:
-      titre: Taux collectif ATMP
-      non applicable si: taux connu
-      question: De quel domaine d'activité dépend votre entreprise ?
-      description: |
-        Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
-        ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
-      par défaut: taux moyen
-      references:
-        Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+    seuil taux mixte ou individuel: 20 employés
 
 salarié . cotisations . contribution au dialogue social:
   description: |

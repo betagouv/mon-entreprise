@@ -134,7 +134,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		throw new Error("Les seules API implémentées sont 'commune'")
 	}
 
-	if (rule.dottedName === 'salarié . cotisations . ATMP . taux collectif') {
+	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {
 		return <SelectAtmp {...commonProps} />
 	}
 

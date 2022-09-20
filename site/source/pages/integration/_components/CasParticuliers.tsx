@@ -120,8 +120,8 @@ export function CasParticuliers() {
 				<H4>Le taux collectif AT/MP</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="salarié . cotisations . ATMP . taux collectif">
-							salarié . cotisations . ATMP . taux collectif
+						<RuleLink dottedName="établissement . taux ATMP . taux collectif">
+							établissement . taux ATMP . taux collectif
 						</RuleLink>
 					</Code>
 				</Body>

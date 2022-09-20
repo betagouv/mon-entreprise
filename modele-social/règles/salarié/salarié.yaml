@@ -44,6 +44,17 @@ salarié . régimes spécifiques . alsace moselle:
     - établissement . localisation . département = 'Haut-Rhin'
     - établissement . localisation . département = 'Moselle'
 
+salarié . régimes spécifiques . alsace moselle . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      remplace: cotisations . ATMP . seuil taux mixte ou individuel
+      valeur: 50 employés
+    taux fonctions support:
+      référence:
+        Annexe de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616039
+      remplace: cotisations . ATMP . taux fonctions support . montant
+      valeur: 0.86%
+
 salarié . régimes spécifiques . impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
   non applicable si: situation personnelle . domiciliation fiscale à l'étranger
