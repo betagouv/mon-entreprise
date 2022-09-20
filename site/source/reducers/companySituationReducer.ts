@@ -5,21 +5,26 @@ import { omit } from '@/utils'
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [
-	'salarié . ATMP',
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
-	'entreprise . exonérations . ACRE',
 	'entreprise . activité',
 	'entreprise . catégorie juridique',
 	'entreprise . date de création',
-	'entreprise . salariés . effectif',
+	'entreprise . salariés',
+	'entreprise . exercice',
+	'entreprise . exonérations',
 	'entreprise . TVA',
+	'entreprise . association non lucrative',
 	'entreprise . imposition',
 	'entreprise . SIREN',
 	'entreprise . nom',
-	'établissement . adresse',
-	'établissement . localisation',
-	'entreprise . activité . principale',
+	'établissement',
+	'salarié . convention collective',
+	// Titre restaurant
+	'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire',
+	'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur',
+	// Mutuelle
+	'salarié . cotisations . prévoyances . santé',
 ] as Array<DottedName>
 
 export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>

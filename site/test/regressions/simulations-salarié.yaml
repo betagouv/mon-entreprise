@@ -84,7 +84,7 @@ cdd:
 
 atmp:
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . cotisations . ATMP . taux collectif: 5%
+    établissement . taux ATMP . taux collectif: 5%
 
 aides:
   - salarié . contrat . salaire brut: 2000 €/mois

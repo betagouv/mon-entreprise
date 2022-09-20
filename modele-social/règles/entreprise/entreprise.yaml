@@ -378,22 +378,21 @@ entreprise . exonérations . ACRE:
 entreprise . salariés:
 entreprise . salariés . effectif:
   unité: employés
-  formule:
-    variations:
-      - si: seuil = 'moins de 5'
-        alors: 4 employés
-      - si: seuil = 'moins de 11'
-        alors: 10 employés
-      - si: seuil = 'moins de 20'
-        alors: 19 employés
-      - si: seuil = 'moins de 50'
-        alors: 49 employés
-      - si: seuil = 'moins de 150'
-        alors: 149 employés
-      - si: seuil = 'moins de 250'
-        alors: 250 employés
-      - si: seuil = 'plus de 250'
-        alors: 251 employés
+  variations:
+    - si: seuil = 'moins de 5'
+      alors: 4 employés
+    - si: seuil = 'moins de 11'
+      alors: 10 employés
+    - si: seuil = 'moins de 20'
+      alors: 19 employés
+    - si: seuil = 'moins de 50'
+      alors: 49 employés
+    - si: seuil = 'moins de 150'
+      alors: 149 employés
+    - si: seuil = 'moins de 250'
+      alors: 250 employés
+    - si: seuil = 'plus de 250'
+      alors: 251 employés
 
   avec:
     seuil:
@@ -415,6 +414,7 @@ entreprise . salariés . effectif:
           - moins de 150
           - moins de 250
           - plus de 250
+
       par défaut: "'moins de 5'"
       avec:
         moins de 5:

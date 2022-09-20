@@ -1011,12 +1011,12 @@ pages:
         retrouver :<1><0>En saisissant votre commune dans un simulateur, puis en
         recherchant la règle « versement mobilité » avec le bouton « rechercher
         » en haut à droite</0><1>Grâce au <2>service dédié sur
-        urssaf.fr</2></1></1></5><6>Le taux collectif AT/MP</6><7><0><0>salarié
-        . cotisations . ATMP . taux collectif</0></0></7><8>Ce taux collectif
-        doit être retrouvé manuellement. Vous pouvez utiliser :<1><0><0>Un
-        export csv</0> du tableau des taux nets collectifs paru au Journal
-        Officiel</0><1>Le service <2>Compte AT/MP</2> de
-        net-entreprise</1></1></8></3>"
+        urssaf.fr</2></1></1></5><6>Le taux collectif
+        AT/MP</6><7><0><0>établissement . taux ATMP . taux
+        collectif</0></0></7><8>Ce taux collectif doit être retrouvé
+        manuellement. Vous pouvez utiliser :<1><0><0>Un export csv</0> du
+        tableau des taux nets collectifs paru au Journal Officiel</0><1>Le
+        service <2>Compte AT/MP</2> de net-entreprise</1></1></8></3>"
       StepByStep: <0><0>Choisir le simulateur en fonction du calcul qui nous
         intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
         calculer un net à partir du brut.</0><1><0>Effectuer une simulation avec

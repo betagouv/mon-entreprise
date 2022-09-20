@@ -6289,6 +6289,9 @@ salarié . convention collective . BTP . congés intempéries . caisse de rattac
 salarié . convention collective . BTP . cotisations employeur:
   titre.en: '[automatic] employer contributions'
   titre.fr: cotisations employeur
+salarié . convention collective . BTP . taux ATMP fonctions support:
+  titre.en: '[automatic] ATMP rate for support functions'
+  titre.fr: taux ATMP fonctions support
 salarié . convention collective . HCR:
   description.en: '[automatic] The business is a hotel, café, restaurant or similar.'
   description.fr: L'entreprise est un hôtel, café, restaurant ou assimilé.
@@ -6569,8 +6572,8 @@ salarié . cotisations . ATMP:
     and occupational diseases.'
   description.fr: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
-  titre.en: '[automatic] Workplace accidents and occupational diseases contribution'
-  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
+  titre.en: '[automatic] Workplace accidents and occupational diseases'
+  titre.fr: Accidents du Travail et Maladies Professionnelles
 salarié . cotisations . CEG:
   description.en: '[automatic] This contribution, created in 2019, both offsets
     the burdens resulting from retirements before age 67 and honors the pension
@@ -7111,6 +7114,9 @@ salarié . régimes spécifiques . alsace moselle:
     Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
+salarié . régimes spécifiques . alsace moselle . ATMP:
+  titre.en: '[automatic] ATMP'
+  titre.fr: ATMP
 salarié . régimes spécifiques . impatriés:
   description.en: >
     [automatic] If you are an employee or a manager with tax status,
@@ -7727,6 +7733,42 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   titre.en: localisation
   titre.fr: localisation
+établissement . taux ATMP:
+  description.en: >
+    [automatic] The rate of the AT/MP contribution is determined for
+    each establishment according to the following elements:
+
+
+    - Main activity
+
+    - Size of the establishment
+
+    - Sector of activity
+
+    - Frequency and severity of accidents (work-related accidents, occupational diseases)
+
+
+    If you do not know the rate of the establishment, click on "Skip".
+  description.fr: >
+    Le taux de la cotisation AT/MP est déterminé pour chaque
+    établissement en fonction des éléments suivants :
+
+
+    - Activité principale
+
+    - Taille de l'établissement
+
+    - Secteur d'activité
+
+    - Fréquence et la gravité des sinistres (accidents du travail, maladies professionnelles) survenus
+
+
+    Si vous ne connaissez pas le taux de l'établissement, cliquez sur « Passer  ».
+  question.en: '[automatic] What is the rate of the AT/MP contribution for the
+    establishment?'
+  question.fr: Quel est le taux de la cotisation AT/MP pour l'établissement ?
+  titre.en: '[automatic] ATMP rate'
+  titre.fr: taux ATMP
 établissement . versement mobilité:
   titre.en: '[automatic] mobility payment'
   titre.fr: versement mobilité

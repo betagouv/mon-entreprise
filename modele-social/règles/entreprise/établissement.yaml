@@ -73,3 +73,36 @@
     durée:
       depuis: entreprise . date de création
       jusqu'à: 31/12/2019
+
+établissement . taux ATMP:
+  description: |
+    Le taux de la cotisation AT/MP est déterminé pour chaque établissement en fonction des éléments suivants :
+
+    - Activité principale
+    - Taille de l'établissement
+    - Secteur d'activité
+    - Fréquence et la gravité des sinistres (accidents du travail, maladies professionnelles) survenus
+
+    Si vous ne connaissez pas le taux de l'établissement, cliquez sur « Passer  ».
+  question: Quel est le taux de la cotisation AT/MP pour l'établissement ?
+  unité: '%'
+  par défaut: taux collectif
+  références:
+    Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
+    Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
+
+  avec:
+    taux collectif:
+      question: De quel domaine d'activité dépend votre entreprise ?
+      par défaut: salarié . cotisations . ATMP . taux moyen
+      unité: '%'
+      note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas implémentés
+
+      # TODO : cette ligne n'est utile que pour déprioriser cette question par rapport à celle sur de `taux ATMP`.
+      # Il y a peut-être un bug dans publicodes : on s'attendrait à ce soit déjà le cas.
+
+    avertissement taux minimum:
+      type: notification
+      si: taux ATMP < salarié . cotisations . ATMP . taux minimum
+      niveau: avertissement
+      description: Le taux renseigné est inférieur au taux minimum légal
