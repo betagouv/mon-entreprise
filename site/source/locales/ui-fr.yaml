@@ -1428,8 +1428,8 @@ pages:
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
-      alt-image1: Salaire net (perçu par le salarié) = Salaire brut (inscrit dans le
-        contrat de travail) - cotisations salariales (retraite, csg, etc)
+      alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit dans le
+        contrat de travail) moins cotisations salariales (retraite, csg, etc)
       meta:
         description: Calcul du salaire net, net après impôt et coût total employeur.
           Beaucoup d'options disponibles (cadre, stage, apprentissage, heures

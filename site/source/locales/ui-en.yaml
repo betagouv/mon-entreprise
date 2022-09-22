@@ -1739,8 +1739,8 @@ pages:
       shortname: Midwife
       title: Income simulator for private midwives
     salarié:
-      alt-image1: Net salary (received by the employee) = Gross salary (written in the
-        employment contract) - employee contributions (pension, social security,
+      alt-image1: Net salary (received by the employee) equals Gross salary (written in the
+        employment contract) minus employee contributions (pension, social security,
         etc.)
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount

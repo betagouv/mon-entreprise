@@ -91,7 +91,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						}
 						alt={t(
 							'pages.simulateurs.salarié.alt-image1',
-							'Salaire net (perçu par le salarié) = Salaire brut (inscrit dans le contrat de travail) - cotisations salariales (retraite, csg, etc)'
+							'Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit dans le contrat de travail) moins cotisations salariales (retraite, csg, etc)'
 						)}
 						css={`
 							width: 100%;
