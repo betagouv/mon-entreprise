@@ -39,29 +39,13 @@ export function Message({
 			>
 				{icon &&
 					(type === 'success' ? (
-						<StyledIcon
-							src={successIcon}
-							title="succès"
-							alt="icône signalant une alerte sur un succès"
-						/>
+						<StyledIcon src={successIcon} title="succès" alt="" />
 					) : type === 'error' ? (
-						<StyledIcon
-							src={errorIcon}
-							title="error"
-							alt="icône signalant une alerte sur une erreur"
-						/>
+						<StyledIcon src={errorIcon} title="error" alt="" />
 					) : type === 'info' ? (
-						<StyledIcon
-							src={infoIcon}
-							title="info"
-							alt="icône signalant une alerte sur une information"
-						/>
+						<StyledIcon src={infoIcon} title="info" alt="" />
 					) : (
-						<StyledIcon
-							src={baseIcon}
-							title="paragraph"
-							alt="icône signalant un texte informatif"
-						/>
+						<StyledIcon src={baseIcon} title="paragraph" alt="" />
 					))}
 				<Wrapper>{children}</Wrapper>
 			</StyledMessage>

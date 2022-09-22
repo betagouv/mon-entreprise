@@ -50,11 +50,7 @@ export default function InstitutionsPartenaires() {
 										target="_blank"
 										rel="noreferrer"
 									>
-										<img
-											src={assuranceMaladieSrc}
-											title="Logo CPAM"
-											alt="CPAM"
-										/>
+										<img src={assuranceMaladieSrc} alt="Logo CPAM" />
 									</InstitutionLogo>
 									<Body>
 										<Trans i18nKey="simulateurs.explanation.institutions.cpam">
@@ -110,7 +106,7 @@ export function CotisationsUrssaf({
 				target="_blank"
 				rel="noreferrer"
 			>
-				<img src={urssafSrc} aria-label="logo Urssaf" alt="Urssaf" />
+				<img src={urssafSrc} alt="Logo Urssaf" />
 			</InstitutionLogo>
 			<Body>
 				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
@@ -136,7 +132,7 @@ export function ImpôtsDGFIP() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					<img src={dgfipSrc} title="logo DGFiP" alt="DGFiP" />
+					<img src={dgfipSrc} alt="Logo DGFiP" />
 				</InstitutionLogo>
 				<Body>
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
@@ -245,7 +241,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									target="_blank"
 									rel="noreferrer"
 								>
-									<img src={logosSrc.IRCEC} alt="logo IRCEC" />
+									<img src={logosSrc.IRCEC} alt="Logo IRCEC" />
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value
