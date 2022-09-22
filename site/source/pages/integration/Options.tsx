@@ -143,7 +143,7 @@ export default function Options() {
 									height: '1rem',
 									margin: 0,
 								}}
-								aria-hidden="true"
+								aria-hidden
 								role="img"
 							>
 								<g style={{ fill: '#030303' }}>

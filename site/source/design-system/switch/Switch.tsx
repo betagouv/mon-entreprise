@@ -124,7 +124,7 @@ export const Switch = (props: SwitchProps) => {
 				<StyledSpan
 					light={light}
 					size={size}
-					aria-hidden="true"
+					aria-hidden
 					checked={isSelected}
 					disabled={isDisabled}
 				/>

@@ -55,13 +55,11 @@ export default function Simulateurs() {
 			{pathname !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
 					<Link to={absoluteSitePaths.gérer.index}>
-						<span aria-hidden="true">←</span>{' '}
-						<Trans>Retour à mon activité</Trans>
+						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (
 					<Link to={absoluteSitePaths.créer.index}>
-						<span aria-hidden="true">←</span>{' '}
-						<Trans>Retour à la création</Trans>
+						<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 					</Link>
 				) : !isEmbedded ? (
 					(!lastState || lastState?.fromSimulateurs) && (
@@ -69,7 +67,7 @@ export default function Simulateurs() {
 							className="print-hidden"
 							to={absoluteSitePaths.simulateurs.index}
 						>
-							<span aria-hidden="true">←</span>{' '}
+							<span aria-hidden>←</span>{' '}
 							<Trans>Voir les autres simulateurs</Trans>
 						</Link>
 					)

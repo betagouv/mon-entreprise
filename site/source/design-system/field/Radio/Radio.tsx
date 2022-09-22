@@ -44,7 +44,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 }
 
 export const RadioPoint = ({ className }: { className?: string }) => (
-	<RadioButton aria-hidden="true" className={className}>
+	<RadioButton aria-hidden className={className}>
 		<OutsideCircle />
 		<InsideCircle />
 	</RadioButton>

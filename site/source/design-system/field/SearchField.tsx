@@ -72,11 +72,7 @@ export default function SearchField(
 				hasLabel={!!props.label}
 			>
 				<IconContainer hasLabel={!!props.label}>
-					{props.isSearchStalled ? (
-						<Loader />
-					) : (
-						<SearchIcon aria-hidden="true" />
-					)}
+					{props.isSearchStalled ? <Loader /> : <SearchIcon aria-hidden />}
 				</IconContainer>
 				<SearchInput
 					{...inputProps}

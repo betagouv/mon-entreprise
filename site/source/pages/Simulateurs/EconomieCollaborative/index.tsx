@@ -27,7 +27,7 @@ export default function ÉconomieCollaborative() {
 					end
 					style={({ isActive }) => (isActive ? { display: 'none' } : {})}
 				>
-					<span aria-hidden="true">←</span>{' '}
+					<span aria-hidden>←</span>{' '}
 					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités
 					</Trans>

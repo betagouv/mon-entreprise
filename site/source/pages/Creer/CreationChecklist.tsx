@@ -87,7 +87,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					dispatch(resetCompanyStatusChoice())
 				}}
 			>
-				<span aria-hidden="true">←</span>
+				<span aria-hidden>←</span>
 				<Trans i18nKey="entreprise.retour">Choisir un autre statut</Trans>
 			</Link>
 
