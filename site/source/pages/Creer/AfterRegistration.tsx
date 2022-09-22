@@ -23,7 +23,7 @@ export default function AfterRegistration() {
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
 			<Link to={absoluteSitePaths.créer.index}>
-				← <Trans>Retour à la création</Trans>
+				<span aria-hidden="true">←</span> <Trans>Retour à la création</Trans>
 			</Link>
 			<H1>
 				<Trans i18nKey="après.titre">Après la création</Trans>

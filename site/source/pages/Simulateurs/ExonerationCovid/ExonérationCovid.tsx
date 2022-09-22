@@ -129,7 +129,7 @@ export const ExonérationCovid = () => {
 							}}
 							onClick={setStep1Situation}
 						>
-							← <Trans>Précédent</Trans>
+							<span aria-hidden="true">←</span> <Trans>Précédent</Trans>
 						</Button>
 					) : (
 						<Button
@@ -153,7 +153,7 @@ export const ExonérationCovid = () => {
 								  }
 								: null)}
 						>
-							<Trans>Suivant</Trans> →
+							<Trans>Suivant</Trans> <span aria-hidden="true">→</span>
 						</Button>
 					)}
 				</Grid>

@@ -491,7 +491,7 @@ entreprise:
           business plan.
         cta: Simuler les cotisations
         title: Simulateur de cotisations indépendant
-  retour: ← Choisir un autre statut
+  retour: Choisir un autre statut
   tâches:
     adresse:
       description: <0><0>L'adresse</0> est l'espace physique où votre entreprise sera

@@ -21,11 +21,6 @@ import { TrackPage } from '../../ATInternetTracking'
 
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
-type ReleasesData = Array<{
-	name: string
-	description: string
-}>
-
 type Releases = typeof import('@/public/data/releases.json')
 
 export default function Nouveautés() {
@@ -119,14 +114,16 @@ export default function Nouveautés() {
 							<NavigationButtons>
 								{selectedRelease + 1 < data.length ? (
 									<Link to={getPath(selectedRelease + 1)}>
-										← {data[selectedRelease + 1].name}
+										<span aria-hidden="true">←</span>{' '}
+										{data[selectedRelease + 1].name}
 									</Link>
 								) : (
 									<span /> // For spacing
 								)}
 								{selectedRelease > 0 && (
 									<Link to={getPath(selectedRelease - 1)}>
-										{data[selectedRelease - 1].name} →
+										{data[selectedRelease - 1].name}{' '}
+										<span aria-hidden="true">→</span>
 									</Link>
 								)}
 							</NavigationButtons>

@@ -137,7 +137,8 @@ function BackToSimulation() {
 		<>
 			<Spacing lg />
 			<Button to={url}>
-				← <Trans i18nKey="back">Retourner à la simulation</Trans>
+				<span aria-hidden="true">←</span>{' '}
+				<Trans i18nKey="back">Retourner à la simulation</Trans>
 			</Button>
 		</>
 	)
