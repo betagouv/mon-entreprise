@@ -13,7 +13,7 @@ export function Logo() {
 	return language === 'fr' ? (
 		<StyledLogo alt="Logo Mon-entreprise, site Urssaf" src={logoSvgFR} />
 	) : (
-		<StyledLogo alt="Logo Mycompanyinfrance by Urssaf" src={logoSvgEN} />
+		<StyledLogo alt="Logo My company in France by Urssaf" src={logoSvgEN} />
 	)
 }
 
