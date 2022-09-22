@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   role="img"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -53,8 +54,6 @@
     <style
        id="style2">.cls-1{fill:#1e286e;}.cls-2{fill:#4b508c;}.cls-3{fill:#fad750;}.cls-4{fill:#f5c328;}.cls-5{fill:#cd0a5a;}.cls-6{fill:#ff2d96;}.cls-7{fill:#1ea0f5;}.cls-8{fill:#197dbe;}.cls-9{fill:#46dcc3;}.cls-10{fill:#91ebc3;}</style>
   </defs>
-  <title
-     id="title6">mon-entreprise_logo</title>
   <g
      id="mon-entrerpise_logo"
      transform="translate(-39.23,-24.797057)">

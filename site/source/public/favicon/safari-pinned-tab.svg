@@ -1,6 +1,5 @@
-<svg width="512px" height="512px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+<svg role="img" width="512px" height="512px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
   <defs></defs>
-  <title>favicon</title>
   <g>
     <ellipse style="stroke-width: 0px; fill: rgb(30, 202, 211);" cx="128" cy="128" rx="128" ry="128"></ellipse>
     <path d="M 256 256 L 512 256 L 512 0 C 371 0 256 115 256 256 Z" style="fill: rgb(0, 113, 206);"></path>

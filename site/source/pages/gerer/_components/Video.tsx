@@ -27,8 +27,8 @@ export default function Video() {
 				allowFullScreen
 				title={
 					i18n.language === 'fr'
-						? '3 minutes pour comprendre la Sécurité Sociale'
-						: '3 minutes to understand the French Social Security system'
+						? 'Vidéo Youtube : 3 minutes pour comprendre la Sécurité Sociale'
+						: 'Youtube video : 3 minutes to understand the French Social Security system'
 				}
 			/>
 		</div>

@@ -42,6 +42,7 @@ export default function SocialIcon({ media }: { media: keyof typeof icons }) {
 				margin: '0.6rem',
 				fillRule: 'evenodd',
 			}}
+			role="img"
 		>
 			<FilledG>
 				<path d={icons[media].icon} />

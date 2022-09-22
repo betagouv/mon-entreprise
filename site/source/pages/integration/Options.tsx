@@ -144,6 +144,7 @@ export default function Options() {
 									margin: 0,
 								}}
 								aria-hidden="true"
+								role="img"
 							>
 								<g style={{ fill: '#030303' }}>
 									<path d={icons.github.icon} />

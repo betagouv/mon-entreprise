@@ -37,7 +37,7 @@ export default function ISSimulation() {
 				<Body>
 					<Trans i18nKey="impotSociété.warning">
 						Ce simulateur s’adresse aux{' '}
-						<abbr title="Très Petite Entreprises">TPE</abbr> : il prend en
+						<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
 						compte les taux réduits de l’impôt sur les sociétés.
 					</Trans>
 				</Body>

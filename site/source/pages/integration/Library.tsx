@@ -75,7 +75,7 @@ export default function Library() {
 					<iframe
 						src="https://codesandbox.io/embed/zen-keller-2dpct?fontsize=14&hidenavigation=1&theme=dark"
 						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-						title="mon-entreprise (exemple 1)"
+						title="Exemple d'intégration sur codesandbox.io : lancement d'un calcul"
 					></iframe>
 				</div>
 				<H2>Paramétrer le calcul</H2>
@@ -134,7 +134,7 @@ export default function Library() {
 					<iframe
 						src="https://codesandbox.io/embed/mon-entreprise-exemple-2-cev02?fontsize=14&hidenavigation=1&theme=dark"
 						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-						title="mon-entreprise (exemple 2)"
+						title="Exemple d'intégration sur codesandbox.io : paramétrage du calcul"
 					></iframe>
 				</div>
 				<Message type="info" icon>
@@ -169,7 +169,7 @@ export default function Library() {
 					<iframe
 						src="https://codesandbox.io/embed/mon-entreprise-exemple-3-4j11c?fontsize=14&hidenavigation=1&theme=dark"
 						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-						title="mon-entreprise (exemple 3)"
+						title="Exemple d'intégration sur codesandbox.io : association avec d'autres librairies"
 					></iframe>
 				</div>
 			</Trans>

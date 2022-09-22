@@ -59,7 +59,7 @@ Gamma](https://beta.gouv.fr/approche/acceleration) financé par la
 
 ---
 
-En 2022 le projet mieux intégré au sein de l'[Urssaf Caisse Nationale](https://www.acoss.fr).
+En 2022 le projet devient mieux intégré au sein de l'[Urssaf Caisse Nationale](https://www.acoss.fr).
 
 En complément du financement apporté par l'Urssaf, le projet bénéficie du programme [France Relance](https://france-relance.transformation.gouv.fr/).
 

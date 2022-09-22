@@ -1,4 +1,4 @@
-<svg width="1120" height="960" viewBox="0 0 1120 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" width="1120" height="960" viewBox="0 0 1120 960" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M640 320C640 298.989 635.861 278.183 627.821 258.771C619.78 239.359 607.994 221.72 593.137 206.863C578.28 192.006 560.641 180.22 541.229 172.179C521.817 164.139 501.012 160 480 160L480 320L640 320Z" fill="#F66775"/>
 <rect x="320" y="480" width="320" height="320" fill="#DBE7FF"/>
 <circle cx="480" cy="640" r="160" fill="#2E5FB6"/>
