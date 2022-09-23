@@ -36,16 +36,18 @@ export function Message({
 				type={type}
 				border={border}
 				light={light}
+				role="alert"
+				aria-atomic
 			>
 				{icon &&
 					(type === 'success' ? (
-						<StyledIcon src={successIcon} title="succès" alt="" />
+						<StyledIcon src={successIcon} alt="" />
 					) : type === 'error' ? (
-						<StyledIcon src={errorIcon} title="error" alt="" />
+						<StyledIcon src={errorIcon} alt="" />
 					) : type === 'info' ? (
-						<StyledIcon src={infoIcon} title="info" alt="" />
+						<StyledIcon src={infoIcon} alt="" />
 					) : (
-						<StyledIcon src={baseIcon} title="paragraph" alt="" />
+						<StyledIcon src={baseIcon} alt="" />
 					))}
 				<Wrapper>{children}</Wrapper>
 			</StyledMessage>
