@@ -595,13 +595,13 @@ est un SIREN non diffusible: est un SIREN non diffusible
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>
-  big_smile: Très satisfait
-  neutral: Moyennement satisfait
+  big_smile: Très satisfait, envoyer cette réponse
+  neutral: Moyennement satisfait, envoyer cette réponse
   question: Êtes-vous satisfait de cette page ?
   reportError: Faire une suggestion
-  sad: Pas satisfait
+  sad: Pas satisfait, envoyer cette réponse
   simulator: Êtes-vous satisfait de ce simulateur&nbsp;?
-  slight_smile: Plutôt satisfait
+  slight_smile: Plutôt satisfait, envoyer cette réponse
   thanks: Merci de votre retour !
 fieldRequired: Champ requis
 footer:

@@ -830,13 +830,13 @@ feedback:
         site. What should we work on to better meet your expectations?
   beta-testeur: To continue to give your opinion and access to the new products in
     preview, register on the <2>list of beta-testers</2>
-  big_smile: Very satisfactory
-  neutral: O.K.
+  big_smile: Very satisfactory, send this feedback
+  neutral: O.K., send this feedback
   question: Was this page useful to you?
   reportError: Make a suggestion
-  sad: Not satisfactory
+  sad: Not satisfactory, send this feedback
   simulator: Do you like this simulator ?
-  slight_smile: Rather satisfactory
+  slight_smile: Rather satisfactory, send this feedback
   thanks: Thank for your feedback! You can contact us directly at <1>
     </1><2>contact@mon-entreprise.beta.gouv.fr</2>
 fieldRequired: Required field

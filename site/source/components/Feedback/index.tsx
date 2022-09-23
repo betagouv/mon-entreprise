@@ -105,14 +105,14 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							<EmojiButton onClick={() => handleFeedback('mauvais')}>
 								<Emoji
 									emoji="🙁"
-									aria-label="Pas satisfait"
+									aria-label="Pas satisfait, envoyer cette réponse"
 									aria-hidden={false}
 								/>
 							</EmojiButton>
 							<EmojiButton onClick={() => handleFeedback('moyen')}>
 								<Emoji
 									emoji="😐"
-									aria-label="Moyennement satisfait"
+									aria-label="Moyennement satisfait, envoyer cette réponse"
 									aria-hidden={false}
 								/>
 							</EmojiButton>
@@ -121,14 +121,14 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							<EmojiButton onClick={() => handleFeedback('bien')}>
 								<Emoji
 									emoji="🙂"
-									aria-label="Plutôt satisfait"
+									aria-label="Plutôt satisfait, envoyer cette réponse"
 									aria-hidden={false}
 								/>
 							</EmojiButton>
 							<EmojiButton onClick={() => handleFeedback('très bien')}>
 								<Emoji
 									emoji="😀"
-									aria-label="Très satisfait"
+									aria-label="Très satisfait, envoyer cette réponse"
 									aria-hidden={false}
 								/>
 							</EmojiButton>
