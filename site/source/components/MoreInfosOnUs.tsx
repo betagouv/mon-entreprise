@@ -63,7 +63,7 @@ export default function MoreInfosOnUs() {
 									height: '3rem',
 									margin: 0,
 								}}
-								aria-hidden="true"
+								aria-hidden
 								role="img"
 							>
 								<g>

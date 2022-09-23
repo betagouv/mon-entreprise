@@ -53,7 +53,7 @@ export default function AnimatedTargetValue({
 	return (
 		<div
 			className="print-hidden"
-			aria-hidden="true"
+			aria-hidden
 			key={difference}
 			css={`
 				position: relative;

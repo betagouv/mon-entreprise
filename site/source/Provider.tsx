@@ -51,7 +51,7 @@ export default function Provider({
 						<Link href="/">
 							<img
 								src={logo}
-								alt="logo service mon-entreprise urssaf"
+								alt="Logo mon-entreprise"
 								style={{
 									maxWidth: '200px',
 									width: '100%',

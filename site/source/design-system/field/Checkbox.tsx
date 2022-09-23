@@ -29,7 +29,7 @@ export default function Checkbox(
 		<CheckboxContainer>
 			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
 			<VisibleContainer>
-				<CheckboxVisualContainer aria-hidden="true">
+				<CheckboxVisualContainer aria-hidden>
 					<CheckboxVisual viewBox="0 0 18 18">
 						<polyline points="1 9 7 14 15 4" />
 					</CheckboxVisual>

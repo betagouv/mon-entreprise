@@ -103,18 +103,34 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 					>
 						<div>
 							<EmojiButton onClick={() => handleFeedback('mauvais')}>
-								<Emoji emoji="🙁" />
+								<Emoji
+									emoji="🙁"
+									aria-label="Pas satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
 							</EmojiButton>
 							<EmojiButton onClick={() => handleFeedback('moyen')}>
-								<Emoji emoji="😐" />
+								<Emoji
+									emoji="😐"
+									aria-label="Moyennement satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
 							</EmojiButton>
 						</div>
 						<div>
 							<EmojiButton onClick={() => handleFeedback('bien')}>
-								<Emoji emoji="🙂" />
+								<Emoji
+									emoji="🙂"
+									aria-label="Plutôt satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
 							</EmojiButton>
 							<EmojiButton onClick={() => handleFeedback('très bien')}>
-								<Emoji emoji="😀" />
+								<Emoji
+									emoji="😀"
+									aria-label="Très satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
 							</EmojiButton>
 						</div>
 					</div>

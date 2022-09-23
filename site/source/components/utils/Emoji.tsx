@@ -4,24 +4,20 @@ type PropType = {
 	emoji: string | undefined
 	alt?: string
 	title?: string
-	ariaHidden?: boolean
+	'aria-hidden'?: boolean
 }
 
 // This custom component has several advantages over the direct use of the
 // `emojiFn` provided by `react-easy-emoji` :
 // - allow to configure the URL to self host twemoji images in production
 // - using a real React component works better with the translation scripts
-export default function Emoji({
-	emoji,
-	alt,
-	title,
-	ariaHidden = true,
-}: PropType) {
+export default function Emoji({ emoji, alt, title, ...props }: PropType) {
 	alt ??= emoji
 
 	if (!emoji) {
 		return null
 	}
+	console.log(props)
 
 	return emojiFn(emoji, {
 		baseUrl: '/twemoji/2/',
@@ -30,7 +26,8 @@ export default function Emoji({
 		props: {
 			alt,
 			title,
-			'aria-hidden': ariaHidden,
+			'aria-hidden': props['aria-hidden'] ?? 'true',
+			...props,
 		},
 	})
 }

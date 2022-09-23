@@ -60,7 +60,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 			<StyledTitle>
 				<StyledButton {...buttonProps} ref={ref}>
 					<span>{item.props.title}</span>
-					<ChevronRightMedium aria-hidden="true" $isOpen={isOpen} />
+					<ChevronRightMedium aria-hidden $isOpen={isOpen} />
 				</StyledButton>
 			</StyledTitle>
 			<StyledContent

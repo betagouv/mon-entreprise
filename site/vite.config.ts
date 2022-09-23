@@ -67,6 +67,7 @@ export default defineConfig(({ command, mode }) => ({
 					description:
 						'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 					shareImage: '/logo-share.png',
+					shareImageAlt: 'Logo mon-entreprise, site Urssaf',
 				},
 				infrance: {
 					lang: 'en',
@@ -76,6 +77,7 @@ export default defineConfig(({ command, mode }) => ({
 					description:
 						'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 					shareImage: '/logo-mycompany-share.png',
+					shareImageAlt: 'Logo My company in France by Urssaf',
 				},
 			},
 		}),

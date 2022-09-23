@@ -131,7 +131,7 @@ export default function Conversation({
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
 										<Button light onPress={goToPrevious} size="XS">
-											<span aria-hidden="true">←</span> <Trans>Précédent</Trans>
+											<span aria-hidden>←</span> <Trans>Précédent</Trans>
 										</Button>
 									</Grid>
 								)}
@@ -146,7 +146,7 @@ export default function Conversation({
 										) : (
 											<Trans>Passer</Trans>
 										)}{' '}
-										<span aria-hidden="true">→</span>
+										<span aria-hidden>→</span>
 									</Button>
 								</Grid>
 								<Grid
@@ -194,7 +194,7 @@ export default function Conversation({
 							{previousAnswers.length > 0 && (
 								<Grid item xs={6} sm="auto">
 									<Button light onPress={goToPrevious} size="XS">
-										<span aria-hidden="true">←</span> <Trans>Précédent</Trans>
+										<span aria-hidden>←</span> <Trans>Précédent</Trans>
 									</Button>
 								</Grid>
 							)}

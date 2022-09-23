@@ -212,7 +212,7 @@ export default function Integration() {
 							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
 							ctaLabel="Voir l'intégration"
 						>
-							<Logo src={urssafLogo} alt="urssaf.fr" />
+							<Logo src={urssafLogo} alt="Logo urssaf.fr" />
 						</Article>
 					</Grid>
 					<Grid item xs={12} md={6} xl={4}>
@@ -221,7 +221,7 @@ export default function Integration() {
 							href="http://les-aides.fr/embauche"
 							ctaLabel="Voir l'intégration"
 						>
-							<Logo src={cciLogo} alt="Les-aides.fr" />
+							<Logo src={cciLogo} alt="Logo Les-aides.fr" />
 						</Article>
 					</Grid>
 					<Grid item xs={12} md={6} xl={4}>
@@ -230,7 +230,7 @@ export default function Integration() {
 							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
 							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={minTraLogo} alt="Ministère du travail" />
+							<Logo src={minTraLogo} alt="Logo Ministère du travail" />
 						</Article>
 					</Grid>
 					<Grid item xs={12} md={6} xl={4}>
