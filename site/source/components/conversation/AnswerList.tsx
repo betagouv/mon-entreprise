@@ -213,7 +213,7 @@ function AnswerElement(rule: EvaluatedRule) {
 				<Link {...buttonProps} role="button" title="Modifier">
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
 					<span className="print-hidden">
-						<Emoji emoji="✏" alt="Modifier" ariaHidden={false} />
+						<Emoji emoji="✏" alt="Modifier" aria-hidden={false} />
 					</span>
 				</Link>
 			)}
