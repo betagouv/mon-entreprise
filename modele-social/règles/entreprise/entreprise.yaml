@@ -189,7 +189,7 @@ entreprise . TVA . franchise de TVA: oui
 
 entreprise . TVA . franchise de TVA . seuil vente:
   variations:
-    - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
       alors: 110000 €/an
     - sinon: 94300 €/an
   références:
@@ -197,7 +197,7 @@ entreprise . TVA . franchise de TVA . seuil vente:
 
 entreprise . TVA . franchise de TVA . seuil service:
   variations:
-    - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
     - si: dirigeant . indépendant . PL . métier = 'avocat'
       alors: 44500 €

@@ -81,14 +81,14 @@ export function CasParticuliers() {
 				<H3>Réutiliser une donnée provenant d'API externes</H3>
 				<Body>
 					Certaines données des simulateurs de mon-entreprise proviennent d'API
-					externes. Il vous faudra ainsi changer leur valeur par vous-même dans
-					la situation donnée en entrée.
+					externes. Il vous faudra ainsi récuperer leur valeur par vous-même
+					pour la saisir dans la situation donnée en entrée.
 				</Body>
 				<H4>Le versement mobilité</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="établissement . versement mobilité">
-							établissement . versement mobilité
+						<RuleLink dottedName="établissement . commune . taux versement mobilité">
+							établissement . commune . taux versement mobilité
 						</RuleLink>
 					</Code>
 				</Body>
@@ -97,7 +97,7 @@ export function CasParticuliers() {
 					<Link to={useSitePaths().absoluteSitePaths.simulateurs.salarié}>
 						salarié
 					</Link>
-					, il suffit de renseigner la commune et le taux du versement mobilité
+					, il suffit de renseigner la commune et le taux versement mobilité
 					correspondant est automatiquement déterminé.
 				</Body>
 				<Body>

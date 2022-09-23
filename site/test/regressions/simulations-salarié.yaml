@@ -45,6 +45,14 @@ apprentissage:
     salarié . contrat . apprentissage . diplôme préparé: "'niveau bac ou moins'"
     salarié . contrat . apprentissage . ancienneté: "'moins de deux ans'"
 
+ATMP:
+  - salarié . contrat . salaire brut: 2000 €/mois
+    établissement . taux ATMP: '3 %'
+  - salarié . contrat . salaire brut: 2000 €/mois
+    établissement . taux ATMP: '0.1 %'
+  - salarié . contrat . salaire brut: 2000 €/mois
+    salarié . cotisations . ATMP . taux fonctions support: oui
+
 contrat pro:
   - salarié . contrat: "'professionnalisation'"
     salarié . contrat . date d'embauche: 01/10/2020
@@ -132,16 +140,16 @@ impôt sur le revenu:
     impôt . méthode de calcul: "'taux neutre'"
   - salarié . contrat . salaire brut: 3000 €/mois
     impôt . méthode de calcul: "'taux neutre'"
-    établissement . localisation . département: "'Guadeloupe'"
+    établissement . commune . département: "'Guadeloupe'"
   - salarié . contrat . salaire brut: 30000 €/mois
     impôt . méthode de calcul: "'taux neutre'"
-    établissement . localisation . département: "'Guadeloupe'"
+    établissement . commune . département: "'Guadeloupe'"
   - salarié . contrat . salaire brut: 3000 €/mois
     impôt . méthode de calcul: "'taux neutre'"
-    établissement . localisation . département: "'Mayotte'"
+    établissement . commune . département: "'Mayotte'"
   - salarié . contrat . salaire brut: 30000 €/mois
     impôt . méthode de calcul: "'taux neutre'"
-    établissement . localisation . département: "'Mayotte'"
+    établissement . commune . département: "'Mayotte'"
   - salarié . contrat . salaire brut: 3000 €/mois
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%

@@ -260,9 +260,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
       par: 0.65%
     - règle: taux vente
       par: 0.29%
+  par défaut: non
   une de ces conditions:
-    - établissement . localisation . département = 'Bas-Rhin'
-    - établissement . localisation . département = 'Haut-Rhin'
+    - établissement . commune . département = 'Bas-Rhin'
+    - établissement . commune . département = 'Haut-Rhin'
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
@@ -272,7 +273,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
       par: 0.83%
     - règle: taux vente
       par: 0.37%
-  valeur: établissement . localisation . département = 'Moselle'
+  par défaut: non
+  valeur: établissement . commune . département = 'Moselle'
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 

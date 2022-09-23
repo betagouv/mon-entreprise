@@ -1,4 +1,4 @@
-import { resetSimulation, updateSituation } from '@/actions/actions'
+import { answerQuestion, resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
 import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
@@ -10,6 +10,8 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { utils } from 'publicodes'
+
 import {
 	answeredQuestionsSelector,
 	companySituationSelector,
@@ -196,17 +198,23 @@ function StepsTable({
 
 function AnswerElement(rule: EvaluatedRule) {
 	const dispatch = useDispatch()
-
-	const dottedName = rule.dottedName
-	const handleChange = useCallback(
-		(value) => {
-			dispatch(updateSituation(dottedName, value))
-		},
-		[dispatch, dottedName]
-	)
 	const engine = useEngine()
 
-	return rule.rawNode.question ? (
+	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
+	const questionDottedName = rule.rawNode.question
+		? rule.dottedName
+		: parentDottedName && engine.getRule(parentDottedName).rawNode.API
+		? parentDottedName
+		: undefined
+
+	const handleChange = useCallback(
+		(value) => {
+			questionDottedName && dispatch(answerQuestion(questionDottedName, value))
+		},
+		[dispatch, questionDottedName]
+	)
+
+	return questionDottedName ? (
 		<PopoverWithTrigger
 			small
 			trigger={(buttonProps) => (
@@ -222,11 +230,11 @@ function AnswerElement(rule: EvaluatedRule) {
 				<>
 					<form onSubmit={onClose}>
 						<H3>
-							{evaluateQuestion(engine, engine.getRule(rule.dottedName))}
-							<ExplicableRule light dottedName={rule.dottedName} />
+							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
+							<ExplicableRule light dottedName={questionDottedName} />
 						</H3>
 						<RuleInput
-							dottedName={rule.dottedName}
+							dottedName={questionDottedName}
 							onChange={handleChange}
 							autoFocus
 							showSuggestions={false}

@@ -1002,15 +1002,16 @@ pages:
         Réutiliser ce calcul » de la documentation.</2></4></2><3><0>Réutiliser
         une donnée provenant d'API externes</0><1>Certaines données des
         simulateurs de mon-entreprise proviennent d'API externes. Il vous faudra
-        ainsi changer leur valeur par vous-même dans la situation donnée en
-        entrée.</1><2>Le versement mobilité</2><3><0><0>établissement .
-        versement mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il
-        suffit de renseigner la commune et le taux du versement mobilité
-        correspondant est automatiquement déterminé.</4><5>Il vous faudra
-        préciser le taux vous-même pour refaire le calcul. Vous pouvez le
-        retrouver :<1><0>En saisissant votre commune dans un simulateur, puis en
-        recherchant la règle « versement mobilité » avec le bouton « rechercher
-        » en haut à droite</0><1>Grâce au <2>service dédié sur
+        ainsi récuperer leur valeur par vous-même pour la saisir dans la
+        situation donnée en entrée.</1><2>Le versement
+        mobilité</2><3><0><0>établissement . commune . taux versement
+        mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il suffit de
+        renseigner la commune et le taux versement mobilité correspondant est
+        automatiquement déterminé.</4><5>Il vous faudra préciser le taux
+        vous-même pour refaire le calcul. Vous pouvez le retrouver :<1><0>En
+        saisissant votre commune dans un simulateur, puis en recherchant la
+        règle « versement mobilité » avec le bouton « rechercher » en haut à
+        droite</0><1>Grâce au <2>service dédié sur
         urssaf.fr</2></1></1></5><6>Le taux collectif
         AT/MP</6><7><0><0>établissement . taux ATMP . taux
         collectif</0></0></7><8>Ce taux collectif doit être retrouvé

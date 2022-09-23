@@ -3,7 +3,7 @@ import {
 	answeredQuestionsSelector,
 	configSelector,
 	currentQuestionSelector,
-	objectifsSelector,
+	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { useContext, useMemo } from 'react'
@@ -11,27 +11,6 @@ import { useSelector } from 'react-redux'
 import { EngineContext } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
-
-export function getNextSteps(
-	missingVariables: Array<MissingVariables>
-): Array<DottedName> {
-	const missingByTotalScore = missingVariables.reduce<Record<string, number>>(
-		(acc, mv) => ({
-			...acc,
-			...Object.fromEntries(
-				Object.entries(mv).map(([name, score]) => [
-					name,
-					(acc[name] || 0) + score,
-				])
-			),
-		}),
-		{}
-	)
-
-	return Object.entries(missingByTotalScore)
-		.sort(([, a], [, b]) => b - a)
-		.map(([a]) => a) as Array<DottedName>
-}
 
 // Max : 1
 // Min -> 0
@@ -46,7 +25,7 @@ const questionDifference = (ruleA = '', ruleB = '') => {
 }
 
 export function getNextQuestions(
-	missingVariables: Array<MissingVariables>,
+	missingVariables: MissingVariables,
 	questionConfig: SimulationConfig['questions'] = {},
 	answeredQuestions: Array<DottedName> = []
 ): Array<DottedName> {
@@ -56,7 +35,9 @@ export function getNextQuestions(
 		'liste noire': blacklist = [],
 	} = questionConfig
 
-	const nextSteps = getNextSteps(missingVariables)
+	const nextSteps = Object.entries(missingVariables)
+		.sort(([, a], [, b]) => b - a)
+		.map(([a]) => a as DottedName)
 		.filter((name) => !answeredQuestions.includes(name))
 		.filter(
 			(step) =>
@@ -82,14 +63,11 @@ export function getNextQuestions(
 }
 
 export const useNextQuestions = function (): Array<DottedName> {
-	const objectifs = useSelector(objectifsSelector)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions
 	const engine = useContext(EngineContext)
-	const missingVariables = objectifs.map(
-		(objectif) => engine.evaluate(objectif).missingVariables ?? {}
-	)
+	const missingVariables = useMissingVariables()
 	const nextQuestions = useMemo(() => {
 		let next = getNextQuestions(
 			missingVariables,

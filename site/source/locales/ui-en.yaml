@@ -1237,15 +1237,16 @@ pages:
         <3>evaluate</3></1><2>Experimental rules also contain a warning in the
         "Reuse this calculation" section of the
         documentation.</2></4></2><3><0>Reusing data from external
-        APIs</0><1>Some data in the my-company simulators come from external
-        APIs. You will have to change their value by yourself in the given input
-        situation.</1><2>The mobility payment</2><3><0><0>establishment .
-        mobility payment</0></0></3><4>In the <2>employee</2> simulator, all you
-        have to do is enter the municipality and the corresponding mobility
-        payment rate is automatically determined.</4><5>You will have to specify
-        the rate yourself to redo the calculation. You can find it
-        again:<1><0>By entering your municipality in a simulator, then searching
-        for the "mobility payment" rule with the "search" button at the top
+        APIs</0><1>Some of the data in the my-company simulators come from
+        external APIs. You will have to retrieve their value yourself to enter
+        it in the input situation.</1><2>The mobility
+        payment</2><3><0><0>establishment . municipality . mobility payment
+        rate</0></0></3><4>In the <2>employee</2> simulator, all you have to do
+        is enter the municipality and the corresponding mobility payment rate is
+        automatically determined.</4><5>You will have to specify the rate
+        yourself to redo the calculation. You can find it again:<1><0>By
+        entering your municipality in a simulator, then searching for the
+        "mobility payment" rule with the "search" button at the top
         right</0><1>Using the <2>dedicated service on
         urssaf.fr</2></1></1></5><6>The collective AT/MP
         rate</6><7><0><0>establishment . ATMP rate . collective

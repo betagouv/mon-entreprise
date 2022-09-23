@@ -14,7 +14,7 @@ questions:
     Heures supplémentaires: salarié . temps de travail . heures supplémentaires
     Titres-restaurant: salarié . rémunération . frais professionnels . titres-restaurant
     Impôt: impôt . méthode de calcul
-    Commune: établissement . localisation
+    Commune: établissement . commune
   non prioritaires:
     - salarié . régimes spécifiques . DFS
     - entreprise . association non lucrative

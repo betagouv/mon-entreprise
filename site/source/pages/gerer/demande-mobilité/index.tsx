@@ -8,10 +8,16 @@ import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Button } from '@/design-system/buttons'
-import { Spacing, Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import { evaluateQuestion, getMeta, hash, omit } from '@/utils'
+import {
+	buildSituationFromObject,
+	evaluateQuestion,
+	getMeta,
+	hash,
+	omit,
+} from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
@@ -80,6 +86,15 @@ function FormulairePublicodes() {
 		(dottedName, value) => {
 			if (value === undefined) {
 				setSituation((situation) => omit(situation, dottedName))
+			} else if (engine.getRule(dottedName).rawNode.API === 'commune') {
+				const commune = {
+					nom: value.batchUpdate.nom,
+					'code postal': value.batchUpdate['code postal'],
+				}
+				setSituation((situation) => ({
+					...buildSituationFromObject(dottedName, commune),
+					...situation,
+				}))
 			} else {
 				setSituation((situation) => ({
 					...situation,

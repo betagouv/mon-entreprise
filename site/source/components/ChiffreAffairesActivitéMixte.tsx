@@ -1,18 +1,16 @@
 import { batchUpdateSituation } from '@/actions/actions'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import { Switch } from '@/design-system/switch'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
+import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './Simulation'
 import { useEngine } from './utils/EngineContext'
-import { Markdown } from './utils/markdown'
-import { Switch } from '@/design-system/switch'
-import { ExplicableRule } from './conversation/Explicable'
 
 const proportions = {
 	'entreprise . activité . mixte . proportions . service BIC':

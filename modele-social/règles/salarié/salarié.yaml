@@ -38,11 +38,11 @@ salarié . régimes spécifiques . alsace moselle:
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
 
     Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
-
+  par défaut: non
   une de ces conditions:
-    - établissement . localisation . département = 'Bas-Rhin'
-    - établissement . localisation . département = 'Haut-Rhin'
-    - établissement . localisation . département = 'Moselle'
+    - établissement . commune . département = 'Bas-Rhin'
+    - établissement . commune . département = 'Haut-Rhin'
+    - établissement . commune . département = 'Moselle'
 
 salarié . régimes spécifiques . alsace moselle . ATMP:
   avec:
@@ -188,8 +188,8 @@ salarié . régimes spécifiques . DFS . profession . journaliste . réduction d
 
     - règle: cotisations . allocations familiales . taux
       par: cotisations . allocations familiales . taux * réduction de taux
-    - règle: établissement . versement mobilité
-      par: établissement . versement mobilité * réduction de taux
+    - règle: cotisations . versement mobilité
+      par: cotisations . versement mobilité * réduction de taux
     - règle: cotisations . ATMP . taux
       par: cotisations . ATMP . taux * réduction de taux
     - règle: cotisations . ATMP . taux minimum

@@ -8,7 +8,7 @@ objectifs:
 questions:
   à l'affiche:
     ACRE: entreprise . exonérations . ACRE
-    Commune: établissement . localisation
+    Commune: établissement . commune
     Avantages en nature: salarié . rémunération . avantages en nature
     Impôt sur le revenu: impôt . méthode de calcul
 
@@ -19,7 +19,7 @@ questions:
     - entreprise . association non lucrative
   non prioritaires:
     - entreprise . TVA
-    - établissement . localisation
+    - établissement . commune
     - situation personnelle . domiciliation fiscale à l'étranger
     - salarié . régimes spécifiques . impatriés
 

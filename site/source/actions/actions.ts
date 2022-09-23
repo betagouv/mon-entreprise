@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/reducers/rootReducer'
+import { buildSituationFromObject } from '@/utils'
 import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import { CompanyActions } from './companyActions'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'
@@ -110,3 +111,25 @@ export const updateShouldFocusField = (shouldFocusField: boolean) =>
 		type: 'UPDATE_SHOULD_FOCUS_FIELD',
 		shouldFocusField,
 	} as const)
+
+export const answerQuestion = (
+	dottedName: DottedName,
+	value:
+		| PublicodesExpression
+		| undefined
+		| { batchUpdate: Record<string, PublicodesExpression> }
+) => {
+	if (value && typeof value === 'object' && 'batchUpdate' in value) {
+		return batchUpdateSituation(
+			buildSituationFromObject(
+				dottedName,
+				value.batchUpdate as Record<string, PublicodesExpression>
+			)
+		)
+	}
+
+	return (value == null ? deleteFromSituation : updateSituation)(
+		dottedName,
+		value
+	)
+}

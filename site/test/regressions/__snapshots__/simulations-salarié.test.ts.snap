@@ -1,5 +1,11 @@
 // Vitest Snapshot v1
 
+exports[`calculate simulations-salarié > ATMP 1`] = `"[2370,0,2000,1561,1527]"`;
+
+exports[`calculate simulations-salarié > ATMP 2`] = `"[2312,0,2000,1561,1527]"`;
+
+exports[`calculate simulations-salarié > ATMP 3`] = `"[2326,0,2000,1561,1527]"`;
+
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "[3480,0,2500,1983,1872]
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -131,11 +137,11 @@ exports[`calculate simulations-salarié > contrat pro 2`] = `"[1566,0,1500,1165,
 
 exports[`calculate simulations-salarié > effectif 1`] = `"[2354,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié > effectif 2`] = `"[2401,0,2000,1561,1527]"`;
+exports[`calculate simulations-salarié > effectif 2`] = `"[2365,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié > effectif 3`] = `"[2413,0,2000,1561,1527]"`;
+exports[`calculate simulations-salarié > effectif 3`] = `"[2377,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié > effectif 4`] = `"[2413,0,2000,1561,1527]"`;
+exports[`calculate simulations-salarié > effectif 4`] = `"[2377,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié > frais pro - DFS 1`] = `"[2078,0,2000,1622,1622]"`;
 
@@ -187,7 +193,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 2`] = `"[2415,0,2000,1606,1572]"`;
 
-exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2524,0,2000,1636,1601]"`;
+exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2486,0,2000,1636,1601]"`;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 4`] = `
 "[2454,0,2000,1616,1581]
