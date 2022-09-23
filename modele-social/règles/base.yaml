@@ -45,7 +45,7 @@ SMIC . net imposable:
 SMIC . horaire:
   titre global: SMIC horaire
   variations:
-    - si: établissement . localisation . département = 'Mayotte'
+    - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
           - si: date >= 01/08/2022

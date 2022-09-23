@@ -184,8 +184,8 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . réduc
       par: cotisations . vieillesse . salarié . déplafonnée . taux * réduction de taux
     - règle: cotisations . allocations familiales . taux
       par: cotisations . allocations familiales . taux * réduction de taux
-    - règle: établissement . versement mobilité
-      par: établissement . versement mobilité * réduction de taux
+    - règle: cotisations . versement mobilité
+      par: cotisations . versement mobilité * réduction de taux
     - règle: cotisations . FNAL . taux
       par: cotisations . FNAL . taux * réduction de taux
   formule: 70%

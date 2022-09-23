@@ -97,7 +97,7 @@ impôt . revenu imposable . abattement contrat court:
 
 impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
   icônes: 🇬🇵🇷🇪 🇲🇶
-  applicable si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+  applicable si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
   remplace: taux neutre d'impôt sur le revenu
   grille:
     assiette: revenu imposable
@@ -189,9 +189,10 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
   icônes: 🇬🇾 🇾🇹
   applicable si:
+    par défaut: non
     une de ces conditions:
-      - établissement . localisation . département = 'Guyane'
-      - établissement . localisation . département = 'Mayotte'
+      - établissement . commune . département = 'Guyane'
+      - établissement . commune . département = 'Mayotte'
   remplace: taux neutre d'impôt sur le revenu
   grille:
     assiette: revenu imposable

@@ -1,10 +1,7 @@
 import rules from 'modele-social'
 import Engine from 'publicodes'
 import { describe, expect, it } from 'vitest'
-import {
-	getNextQuestions,
-	getNextSteps,
-} from '../source/components/utils/useNextQuestion'
+import { getNextQuestions } from '../source/components/utils/useNextQuestion'
 
 describe('conversation', function () {
 	it('should start with the first missing variable', function () {
@@ -15,7 +12,7 @@ describe('conversation', function () {
 			'top . a': { question: '?', titre: 'a', unité: '€' },
 			'top . b': { question: '?', titre: 'b', unité: '€' },
 		}).evaluate('top . startHere').missingVariables
-		expect(getNextQuestions([missingVariables])[0]).to.equal('top . a')
+		expect(getNextQuestions(missingVariables)[0]).to.equal('top . a')
 	})
 	it('should first ask for questions without defaults, then those with defaults', function () {
 		const engine = new Engine({
@@ -46,12 +43,11 @@ describe('conversation', function () {
 			},
 			cadre: {
 				question: 'Est-ce un cadre ?',
-				'par défaut': 'non',
 			},
 		})
 
 		expect(
-			getNextQuestions([engine.evaluate('net').missingVariables])[0]
+			getNextQuestions(engine.evaluate('net').missingVariables)[0]
 		).to.equal('brut')
 
 		engine.setSituation({
@@ -59,7 +55,7 @@ describe('conversation', function () {
 		})
 
 		expect(
-			getNextQuestions([engine.evaluate('net').missingVariables])[0]
+			getNextQuestions(engine.evaluate('net').missingVariables)[0]
 		).to.equal('cadre')
 	})
 
@@ -76,25 +72,5 @@ describe('conversation', function () {
 		)
 
 		expect(result).to.include('salarié . contrat . CDD . motif')
-	})
-})
-
-describe('getNextSteps', function () {
-	it('should give priority to questions by total weight when advancing the same target count', function () {
-		let missingVariablesByTarget = [
-			{
-				effectif: 24.01,
-				cadre: 30,
-			},
-			{
-				effectif: 24.01,
-				cadre: 10.1,
-			},
-			{},
-		]
-
-		let result = getNextSteps(missingVariablesByTarget)
-
-		expect(result[0]).to.equal('effectif')
 	})
 })

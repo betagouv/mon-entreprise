@@ -7720,19 +7720,11 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . ZFU . durée d'implantation en fin d'année:
   titre.en: '[automatic] duration of implementation at the end of the year'
   titre.fr: durée d'implantation en fin d'année
-établissement . localisation:
-  description.en: |-
-    When a company has more than one establishment, certain contributions are
-    calculated at the establishment level and are based on local regulations.
-  description.fr: >
-    Lorsqu'une entreprise dispose de plusieurs établissements,
-    certaines cotisations sont
-
-    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+établissement . commune:
   question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
-  titre.en: localisation
-  titre.fr: localisation
+  titre.en: '[automatic] '
+  titre.fr: commune
 établissement . taux ATMP:
   description.en: >
     [automatic] The rate of the AT/MP contribution is determined for
@@ -7769,6 +7761,3 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Quel est le taux de la cotisation AT/MP pour l'établissement ?
   titre.en: '[automatic] ATMP rate'
   titre.fr: taux ATMP
-établissement . versement mobilité:
-  titre.en: '[automatic] mobility payment'
-  titre.fr: versement mobilité

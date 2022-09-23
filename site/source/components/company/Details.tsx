@@ -41,7 +41,7 @@ export function CompanyDetails({
 							et domiciliée à{' '}
 							<Strong>
 								<Value
-									expression="établissement . localisation"
+									expression="établissement . commune"
 									linkToRule={false}
 								/>
 							</Strong>

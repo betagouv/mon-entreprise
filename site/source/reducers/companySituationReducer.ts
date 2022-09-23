@@ -1,7 +1,7 @@
 import { DottedName } from '@/../../modele-social'
 import { Action } from '@/actions/actions'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { omit } from '@/utils'
+import { buildSituationFromObject, omit } from '@/utils'
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [
@@ -53,7 +53,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 		case 'COMPANY::ADD_COMMUNE_DETAILS':
 			return {
 				...state,
-				'établissement . localisation': { objet: action.details },
+				...buildSituationFromObject('établissement . commune', action.details),
 			}
 		case 'COMPANY::SET_BÉNÉFICE_TYPE':
 			return {

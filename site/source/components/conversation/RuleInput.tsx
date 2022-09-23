@@ -119,9 +119,17 @@ export default function RuleInput<Names extends string = DottedName>({
 			/>
 		)
 	}
+
 	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
-		return <SelectCommune {...commonProps} />
+		return (
+			<SelectCommune
+				{...commonProps}
+				onChange={(c) => commonProps.onChange({ batchUpdate: c })}
+				value={value as Evaluation<string>}
+			/>
+		)
 	}
+
 	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
 		return (
 			<SelectPaysDétachement
@@ -131,7 +139,9 @@ export default function RuleInput<Names extends string = DottedName>({
 		)
 	}
 	if (rule.rawNode.API) {
-		throw new Error("Les seules API implémentées sont 'commune'")
+		throw new Error(
+			"Les seules API implémentées sont 'commune' et 'pays détachement'"
+		)
 	}
 
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {

@@ -29,7 +29,7 @@ salarié . rémunération . revenus de remplacement:
         assiette: revenus de remplacement
         taux:
           variations:
-            - si: établissement . localisation . département = 'Mayotte'
+            - si: établissement . commune . département . outre-mer . Mayotte
               alors: 2.35%
             - si: régimes spécifiques . alsace moselle
               alors: 1.5%

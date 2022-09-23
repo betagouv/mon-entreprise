@@ -99,18 +99,18 @@ salarié . cotisations . exonérations . heures supplémentaires:
         urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
 
 salarié . cotisations . exonérations . lodeom:
-  beta: oui
-  valeur: oui
+  experimental: oui
   applicable si:
+    par défaut: non
     nom: zone un
     titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
     références:
       fiche Urssaf: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe.html
     une de ces conditions:
-      - établissement . localisation . département = 'Guadeloupe'
-      - établissement . localisation . département = 'La Réunion'
-      - établissement . localisation . département = 'Martinique'
-      - établissement . localisation . département = 'Guyane'
+      - établissement . commune . département = 'Guadeloupe'
+      - établissement . commune . département = 'La Réunion'
+      - établissement . commune . département = 'Martinique'
+      - établissement . commune . département = 'Guyane'
     # TODO : ajouter la zone 2
   description: |
     Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer.
@@ -697,7 +697,7 @@ salarié . cotisations . CSG-CRDS . non déductible:
       - revenus de remplacement . CRDS
 
 salarié . cotisations . CSG-CRDS . CSG:
-  non applicable si: établissement . localisation . département = 'Mayotte'
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   description: >-
     La contribution sociale généralisée (CSG) est un impôt destiné à participer
     au financement de la protection sociale.
@@ -1092,7 +1092,7 @@ salarié . cotisations . taxe d'apprentissage:
             valeur: cotisations . assiette
             abattement:
               variations:
-                - si: établissement . localisation . outre-mer
+                - si: établissement . commune . département . outre-mer
                   alors: 20% * temps de travail . SMIC
                 - sinon: 11% * temps de travail . SMIC
         - sinon: cotisations . assiette
@@ -1142,7 +1142,7 @@ salarié . cotisations . versement mobilité:
     branche: transport
   produit:
     assiette: cotisations . assiette
-    taux: établissement . versement mobilité
+    taux: établissement . commune . taux versement mobilité
 
   références:
     Recherchez le taux de versement mobilité applicable dans votre ville: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html

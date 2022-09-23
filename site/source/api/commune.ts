@@ -14,13 +14,14 @@ export type ApiCommuneJson = {
 }
 
 export type SearchCommune = {
-	code: string
-	codePostal: string
+	'code commune': string
+	'code postal': string
 	nom: string
+	département: string
 }
 
-export type Commune = SearchCommune & {
-	'taux du versement mobilité': number
+export type Commune = Omit<SearchCommune, 'code commune'> & {
+	'taux versement mobilité': number
 }
 
 export async function searchCommunes(
@@ -42,8 +43,15 @@ export async function searchCommunes(
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
 				.sort()
-				.map((codePostal) => ({ ...commune, codePostal }))
-				.filter(({ codePostal }) => codePostal.startsWith(number))
+				.map((codePostal) => ({
+					'code commune': commune.code,
+					nom: commune.nom,
+					'code postal': codePostal,
+					département: commune.departement.nom,
+				}))
+				.filter(({ 'code postal': codePostal }) =>
+					codePostal.startsWith(number)
+				)
 		)
 		.slice(0, 10)
 }
@@ -64,36 +72,38 @@ export async function fetchCommuneDetails(
 			'Le code postal et le code commune fournis sont incompatibles'
 		)
 	}
-	const commune: SearchCommune = { ...apiCommune, codePostal }
-	const taux = await tauxVersementTransport(commune)
+
+	const taux = await tauxVersementTransport(apiCommune.code, codePostal)
 	if (taux === null) {
 		return null
 	}
 
 	return {
-		...commune,
-		'taux du versement mobilité': taux,
+		'taux versement mobilité': taux,
+		nom: apiCommune.nom,
+		'code postal': codePostal,
+		département: apiCommune.departement.nom,
 	}
 }
 
 async function tauxVersementTransport(
-	commune: SearchCommune
+	codeCommune: string,
+	codePostal: string
 ): Promise<number | null> {
-	let codeCommune = commune.code
 	// 1. Si c'est une commune à arrondissement, on récupère le bon code correspondant à l'arrondissement.
 	//    Comme il n'y a pas d'API facile pour faire ça, on le fait à la mano
 
 	// 1. a : PARIS
 	if (codeCommune === '75056') {
-		codeCommune = '751' + commune.codePostal.slice(-2)
+		codeCommune = '751' + codePostal.slice(-2)
 	}
 	// 1. b : LYON
 	if (codeCommune === '69123') {
-		codeCommune = '6938' + commune.codePostal.slice(-1)
+		codeCommune = '6938' + codePostal.slice(-1)
 	}
 	// 1. c : MARSEILLE
 	if (codeCommune === '13055') {
-		codeCommune = '132' + commune.codePostal.slice(-2)
+		codeCommune = '132' + codePostal.slice(-2)
 	}
 	// 2. On récupère le versement transport associé
 	const response = await fetch('/data/versement-mobilité.json')

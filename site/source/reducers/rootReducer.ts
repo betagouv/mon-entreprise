@@ -1,7 +1,7 @@
 import { Action } from '@/actions/actions'
-import { Commune } from '@/api/commune'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { objectifsSelector } from '../selectors/simulationSelectors'
@@ -56,9 +56,8 @@ type Overwrite<T, U> = { [P in keyof Omit<T, keyof U>]: T[P] } & U
 
 export type Situation = Partial<
 	Overwrite<
-		Record<DottedName, string | number | { valeur: number; unité: string }>,
+		Record<DottedName, PublicodesExpression>,
 		{
-			'établissement . localisation': { objet: Commune }
 			'entreprise . imposition': string
 			année: number
 		}

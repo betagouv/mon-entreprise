@@ -29,6 +29,7 @@ it('calculate simulations-salarié', () => {
 		  "salarié . cotisations . prévoyances . santé . montant",
 		  "salarié . cotisations . prévoyances . santé . taux employeur",
 		  "salarié . régimes spécifiques . DFS",
+		  "salarié . régimes spécifiques . alsace moselle",
 		  "salarié . régimes spécifiques . impatriés",
 		  "salarié . rémunération . avantages en nature",
 		  "salarié . rémunération . frais professionnels . titres-restaurant",
@@ -39,7 +40,8 @@ it('calculate simulations-salarié', () => {
 		  "salarié . rémunération . primes . fin d'année",
 		  "salarié . temps de travail . heures supplémentaires",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
-		  "établissement . localisation",
+		  "établissement . commune . département",
+		  "établissement . commune . département . outre-mer",
 		]
 	`)
 })

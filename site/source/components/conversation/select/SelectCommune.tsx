@@ -10,10 +10,17 @@ import { debounce } from '@/utils'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import { InputProps } from '../RuleInput'
 
 function formatCommune(value: SearchCommune) {
-	return value && `${value.nom} (${value.codePostal})`
+	return value && `${value.nom} (${value['code postal']})`
+}
+
+type SelectCommuneProps = {
+	onChange: (c: Commune) => void
+	value: string | undefined | null
+	missing?: boolean
+	id?: string
+	autoFocus?: boolean
 }
 
 export default function Select({
@@ -22,10 +29,8 @@ export default function Select({
 	id,
 	missing,
 	autoFocus,
-}: InputProps) {
-	const [name, setName] = useState(
-		missing ? '' : formatCommune(value as Commune)
-	)
+}: SelectCommuneProps) {
+	const [name, setName] = useState(missing ? '' : value ?? undefined)
 	const [searchResults, setSearchResults] =
 		useState<null | Array<SearchCommune>>(null)
 	const { t } = useTranslation()
@@ -51,15 +56,13 @@ export default function Select({
 			setName(formatCommune(commune))
 			try {
 				const communeWithDetails = await fetchCommuneDetails(
-					commune.code,
-					commune.codePostal
+					commune['code commune'],
+					commune['code postal']
 				)
 				if (!communeWithDetails) {
 					return
 				}
-				onChange({
-					objet: communeWithDetails,
-				})
+				onChange(communeWithDetails)
 			} catch (error) {
 				// eslint-disable-next-line no-console
 				console.warn(

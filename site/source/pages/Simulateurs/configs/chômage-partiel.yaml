@@ -9,7 +9,7 @@ questions:
   liste:
     - salarié . activité partielle
     - salarié . temps de travail
-    - établissement . localisation
+    - établissement . commune
 
 unité par défaut: €/mois
 

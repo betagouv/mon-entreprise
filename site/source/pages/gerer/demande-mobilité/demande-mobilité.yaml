@@ -221,6 +221,18 @@ données assuré:
           titre: Commune
           non applicable si: étranger
           API: commune
+          condition:
+            si:
+              est non défini: nom
+            alors: nom
+            sinon:
+              texte: |
+                {{nom}} ({{code postal}})
+          avec:
+            nom:
+              titre: Commune
+            code postal:
+
         commune étranger:
           applicable si: étranger
           type: texte
@@ -281,6 +293,17 @@ entreprise france . adresse:
   type: texte
 entreprise france . commune:
   API: commune
+  condition:
+    si:
+      est non défini: nom
+    alors: nom
+    sinon:
+      texte: |
+        {{nom}} ({{code postal}})
+  avec:
+    nom:
+      titre: Commune
+    code postal:
   note: 4.4.3 / 4.4.4
 
 entreprise france . organisme urssaf:

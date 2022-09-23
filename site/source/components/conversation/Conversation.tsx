@@ -1,9 +1,8 @@
 import {
-	deleteFromSituation,
+	answerQuestion,
 	goToQuestion,
 	stepAction,
 	updateShouldFocusField,
-	updateSituation,
 } from '@/actions/actions'
 import RuleInput from '@/components/conversation/RuleInput'
 import Notifications from '@/components/Notifications'
@@ -19,6 +18,7 @@ import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
+	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 import { PublicodesExpression } from 'publicodes'
@@ -46,7 +46,7 @@ export default function Conversation({
 	const engine = useContext(EngineContext)
 	const currentQuestion = useNextQuestions()[0]
 	const situation = useSelector(situationSelector)
-	const currentQuestionIsAnswered = situation[currentQuestion] != null
+	const currentQuestionIsAnswered = !(currentQuestion in useMissingVariables())
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	useEffect(() => {
 		if (currentQuestion) {
@@ -65,12 +65,7 @@ export default function Conversation({
 	}
 
 	const onChange = (value: PublicodesExpression | undefined) => {
-		dispatch(
-			(value == null ? deleteFromSituation : updateSituation)(
-				currentQuestion,
-				value
-			)
-		)
+		dispatch(answerQuestion(currentQuestion, value))
 	}
 
 	return (

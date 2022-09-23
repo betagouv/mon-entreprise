@@ -1,5 +1,5 @@
-import PDFElement from '@react-pdf/renderer'
 import { EngineContext } from '@/components/utils/EngineContext'
+import PDFElement from '@react-pdf/renderer'
 import { formatValue, RuleNode } from 'publicodes'
 import { useContext } from 'react'
 
@@ -33,18 +33,7 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 								</Text>
 
 								<Text style={styles.value}>
-									{`${formatValue(engine.evaluate(dottedName)) as string}${
-										API === 'commune'
-											? ` (${
-													(
-														engine.evaluate(dottedName).nodeValue as Record<
-															string,
-															unknown
-														>
-													)?.codePostal as string
-											  })`
-											: ''
-									} `}
+									{formatValue(engine.evaluate(dottedName)) as string}
 								</Text>
 							</>
 						)}

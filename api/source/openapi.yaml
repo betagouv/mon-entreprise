@@ -1,12 +1,12 @@
-openapi: 3.0.0
+openapi: 3.1.0
 
 info:
   title: Mon-entreprise API
-  version: beta
+  version: v1
   description: |
-    Cet API expose les règles Publicodes de [mon-entreprise](https://mon-entreprise.urssaf.fr/).
+    Cet API expose les calculs des simulateurs de [mon-entreprise](https://mon-entreprise.urssaf.fr/).
 
-    Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api).
+    **[📒 Voir la documentation](https://mon-entreprise.urssaf.fr/d%C3%A9veloppeur/api)**
 
 servers:
   - url: /api/v1/
@@ -18,7 +18,7 @@ paths:
         content:
           application/json:
             examples:
-              SalaireBrutEnNet:
+              'Salaire brut en net':
                 value:
                   {
                     'situation':
@@ -30,7 +30,7 @@ paths:
                     'expressions':
                       ['salarié . rémunération . net . à payer avant impôt'],
                   }
-              MicroEntreprise:
+              'Auto-entrepreneur':
                 value:
                   {
                     situation:
@@ -57,7 +57,7 @@ paths:
     get:
       parameters:
         - examples:
-            SalaireNet:
+            'Salaire net':
               value: 'salarié . rémunération . net . à payer avant impôt'
             Impot:
               value: 'impôt . méthode de calcul'

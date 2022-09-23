@@ -18,7 +18,7 @@ questions:
     - établissement
     - situation personnelle
   non prioritaires:
-    - établissement . localisation
+    - établissement . commune
   liste noire:
     - entreprise . charges
     - entreprise . chiffre d'affaires

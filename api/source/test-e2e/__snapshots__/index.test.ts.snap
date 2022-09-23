@@ -15,6 +15,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . prévoyances . santé . montant": 2320,
         "salarié . cotisations . prévoyances . santé . taux employeur": 2320,
         "salarié . régimes spécifiques . DFS": 1624,
+        "salarié . régimes spécifiques . alsace moselle": 352,
         "salarié . rémunération . avantages en nature": 23027,
         "salarié . rémunération . frais professionnels . titres-restaurant": 25347,
         "salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant": 59450,
@@ -24,7 +25,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . rémunération . primes . fin d'année": 23026,
         "salarié . temps de travail . heures supplémentaires": 46922,
         "situation personnelle . domiciliation fiscale à l'étranger": 580,
-        "établissement . localisation": 880,
+        "établissement . commune . département": 2458,
+        "établissement . commune . département . outre-mer": 992,
       },
       "nodeValue": 2749.50805,
       "traversedVariables": [
@@ -154,8 +156,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . maladie . salarié",
         "salarié . cotisations . maladie . salarié . taux",
         "salarié . régimes spécifiques . alsace moselle",
-        "établissement . localisation . département",
-        "établissement . localisation",
+        "établissement . commune . département",
         "salarié . cotisations . retraite complémentaire . salarié",
         "salarié . cotisations . retraite complémentaire",
         "salarié . cotisations . retraite complémentaire . employeur",
@@ -178,6 +179,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . chômage . employeur . taux",
         "salarié . cotisations . CSG-CRDS",
         "salarié . cotisations . CSG-CRDS . CSG",
+        "établissement . commune . département . outre-mer . Mayotte",
+        "établissement . commune . département . outre-mer",
         "salarié . cotisations . CSG-CRDS . CSG . déductible",
         "salarié . cotisations . CSG-CRDS . CSG . déductible . taux",
         "salarié . cotisations . CSG-CRDS . assiette de base",
@@ -257,32 +260,34 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
     },
     {
       "missingVariables": {
-        "dirigeant . gérant minoritaire": 814757,
+        "dirigeant . gérant minoritaire": 798729,
         "entreprise . TVA": 5,
         "entreprise . association non lucrative": 11,
-        "entreprise . catégorie juridique": 5865649,
+        "entreprise . catégorie juridique": 5750669,
         "entreprise . salariés . effectif . seuil": 515,
-        "salarié . activité partielle": 24705,
-        "salarié . contrat": 197257,
+        "salarié . activité partielle": 24153,
+        "salarié . contrat": 193409,
         "salarié . contrat . statut cadre": 811,
-        "salarié . contrat . temps de travail . temps partiel": 41573,
-        "salarié . convention collective": 49065,
+        "salarié . contrat . temps de travail . temps partiel": 40733,
+        "salarié . convention collective": 47961,
         "salarié . cotisations . ATMP . taux fonctions support": 11,
-        "salarié . cotisations . exonérations . JEI": 611,
-        "salarié . cotisations . exonérations . lodeom": 111,
+        "salarié . cotisations . exonérations . JEI": 539,
+        "salarié . cotisations . exonérations . lodeom . zone un": 111,
         "salarié . cotisations . prévoyances . santé . montant": 591,
         "salarié . cotisations . prévoyances . santé . taux employeur": 591,
         "salarié . coût total employeur . aides . emploi franc . éligible": 45,
-        "salarié . régimes spécifiques . DFS": 1051,
-        "salarié . rémunération . avantages en nature": 5121,
-        "salarié . rémunération . frais professionnels . titres-restaurant": 5537,
-        "salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant": 12537,
-        "salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant": 14201,
-        "salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant": 36865,
-        "salarié . rémunération . primes . activité . base": 5121,
-        "salarié . rémunération . primes . fin d'année": 5121,
-        "salarié . temps de travail . heures supplémentaires": 7821,
-        "établissement . localisation": 631,
+        "salarié . régimes spécifiques . DFS": 1059,
+        "salarié . régimes spécifiques . alsace moselle": 27,
+        "salarié . rémunération . avantages en nature": 4953,
+        "salarié . rémunération . frais professionnels . titres-restaurant": 5369,
+        "salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant": 12273,
+        "salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant": 13937,
+        "salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant": 36313,
+        "salarié . rémunération . primes . activité . base": 4953,
+        "salarié . rémunération . primes . fin d'année": 4953,
+        "salarié . temps de travail . heures supplémentaires": 7605,
+        "établissement . commune . département": 2023,
+        "établissement . commune . département . outre-mer": 967,
         "établissement . taux ATMP": 11,
         "établissement . taux ATMP . taux collectif": 7,
       },
@@ -441,8 +446,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . association non lucrative",
         "salarié . cotisations . taxe d'apprentissage",
         "salarié . régimes spécifiques . alsace moselle",
-        "établissement . localisation . département",
-        "établissement . localisation",
+        "établissement . commune . département",
         "salarié . cotisations . CPF CDD",
         "salarié . cotisations . forfait social",
         "salarié . cotisations . exonérations . employeur",
@@ -457,6 +461,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . maladie . employeur . taux réduit",
         "salarié . temps de travail . SMIC",
         "SMIC . horaire",
+        "établissement . commune . département . outre-mer . Mayotte",
+        "établissement . commune . département . outre-mer",
         "date",
         "salarié . cotisations . allocations familiales . taux",
         "salarié . cotisations . allocations familiales . taux réduit",
@@ -592,7 +598,8 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     {
       "missingVariables": {
         "entreprise . activité . mixte": 278,
-        "établissement . localisation": 12,
+        "établissement . commune . département": 18,
+        "établissement . commune . département . outre-mer": 7,
       },
       "nodeValue": 1469,
       "traversedVariables": [
@@ -607,9 +614,10 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "impôt . méthode de calcul",
         "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
-        "établissement . localisation . outre-mer . Guadeloupe Réunion Martinique",
-        "établissement . localisation . département",
-        "établissement . localisation",
+        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
+        "établissement . commune . département . outre-mer",
+        "établissement . commune . département",
+        "établissement . commune . département . outre-mer . Mayotte",
         "impôt . taux neutre d'impôt sur le revenu",
         "date",
         "impôt . revenu imposable",
@@ -655,7 +663,8 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     {
       "missingVariables": {
         "entreprise . activité . mixte": 344,
-        "établissement . localisation": 12,
+        "établissement . commune . département": 18,
+        "établissement . commune . département . outre-mer": 7,
       },
       "nodeValue": 31207,
       "traversedVariables": [
@@ -718,9 +727,10 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "impôt . méthode de calcul",
         "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
-        "établissement . localisation . outre-mer . Guadeloupe Réunion Martinique",
-        "établissement . localisation . département",
-        "établissement . localisation",
+        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
+        "établissement . commune . département . outre-mer",
+        "établissement . commune . département",
+        "établissement . commune . département . outre-mer . Mayotte",
         "impôt . taux neutre d'impôt sur le revenu",
         "impôt . revenu imposable",
         "dirigeant . rémunération . net . imposable",
@@ -741,6 +751,60 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
   ],
   "warnings": [
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
     {
       "message": "
 [ Avertissement ]
@@ -987,14 +1051,14 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
     },
   },
   "info": {
-    "description": "Cet API expose les règles Publicodes de [mon-entreprise](https://mon-entreprise.urssaf.fr/).
+    "description": "Cet API expose les calculs des simulateurs de [mon-entreprise](https://mon-entreprise.urssaf.fr/).
 
-Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api).
+**[📒 Voir la documentation](https://mon-entreprise.urssaf.fr/d%C3%A9veloppeur/api)**
 ",
     "title": "Mon-entreprise API",
-    "version": "beta",
+    "version": "v1",
   },
-  "openapi": "3.0.0",
+  "openapi": "3.1.0",
   "paths": {
     "/evaluate": {
       "post": {
@@ -1003,7 +1067,7 @@ Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api)
           "content": {
             "application/json": {
               "examples": {
-                "MicroEntreprise": {
+                "Auto-entrepreneur": {
                   "value": {
                     "expressions": [
                       {
@@ -1024,7 +1088,7 @@ Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api)
                     },
                   },
                 },
-                "SalaireBrutEnNet": {
+                "Salaire brut en net": {
                   "value": {
                     "expressions": [
                       "salarié . rémunération . net . à payer avant impôt",
@@ -1115,7 +1179,7 @@ Pour plus d'informations, consultez [notre documentation](/d%C3%A9veloppeur/api)
               "Impot": {
                 "value": "impôt . méthode de calcul",
               },
-              "SalaireNet": {
+              "Salaire net": {
                 "value": "salarié . rémunération . net . à payer avant impôt",
               },
             },

@@ -4,75 +4,40 @@
   type: texte
   applicable si: entreprise . SIREN
 
-établissement . localisation:
-  experimental: oui
-  icônes: 🌍
-  description: |
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
-    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+établissement . commune:
+  icônes: 📍
   question: Dans quelle commune l'établissement est-il implanté ?
   API: commune
-  # TODO : transform to texte
-  par défaut:
-    objet:
-      code: 29019
-      nom: Non renseignée
-      departement:
-        nom: Non renseigné
-      taux du versement mobilité: 1.8
+  variations:
+    - si:
+        est défini: nom
+      alors:
+        texte: '{{ nom }} ({{ code postal }})'
+    - sinon: nom
   avec:
-    code commune:
-      synchronisation:
-        data: localisation
-        chemin: code
-
-    commune:
-      description: |
-        Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
-        calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-      synchronisation:
-        data: localisation
-        chemin: nom
-
+    nom:
+    taux versement mobilité:
+      par défaut: 0
+      unité: '%'
+    code postal:
     département:
-      synchronisation:
-        data: localisation
-        chemin: departement . nom
+      avec:
+        outre-mer:
+          par défaut: non
+          une de ces conditions:
+            - département = 'Guadeloupe'
+            - département = 'Martinique'
+            - département = 'Guyane'
+            - département = 'La Réunion'
+            - département . outre-mer . Mayotte
 
-    outre-mer:
-      applicable si:
-        une de ces conditions:
-          - département = 'Guadeloupe'
-          - département = 'Martinique'
-          - département = 'Guyane'
-          - département = 'La Réunion'
-          - département = 'Mayotte'
-
-    outre-mer . Guadeloupe Réunion Martinique:
-      une de ces conditions:
-        - département = 'Guadeloupe'
-        - département = 'Martinique'
-        - département = 'La Réunion'
-
-établissement . versement mobilité:
-  experimental: oui
-  unité: '%'
-  par défaut: oui
-  synchronisation:
-    data: localisation
-    chemin: taux du versement mobilité
-
-établissement . ZFU:
-  experimental: oui
-  applicable si: entreprise . date de création < 01/2015
-  question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
-  par défaut: non
-
-établissement . ZFU . durée d'implantation en fin d'année:
-  formule:
-    durée:
-      depuis: entreprise . date de création
-      jusqu'à: 31/12/2019
+          avec:
+            Guadeloupe Réunion Martinique:
+              une de ces conditions:
+                - département = 'Guadeloupe'
+                - département = 'Martinique'
+                - département = 'La Réunion'
+            Mayotte: département = 'Mayotte'
 
 établissement . taux ATMP:
   description: |
@@ -106,3 +71,15 @@
       si: taux ATMP < salarié . cotisations . ATMP . taux minimum
       niveau: avertissement
       description: Le taux renseigné est inférieur au taux minimum légal
+
+établissement . ZFU:
+  experimental: oui
+  applicable si: entreprise . date de création < 01/2015
+  question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
+  par défaut: non
+
+établissement . ZFU . durée d'implantation en fin d'année:
+  formule:
+    durée:
+      depuis: entreprise . date de création
+      jusqu'à: 31/12/2019

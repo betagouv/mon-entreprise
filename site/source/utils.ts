@@ -1,9 +1,11 @@
+import { DottedName } from 'modele-social'
 import Engine, {
 	formatValue,
 	PublicodesExpression,
 	Rule,
 	RuleNode,
 } from 'publicodes'
+import { Situation } from './reducers/rootReducer'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
@@ -239,4 +241,18 @@ export function evaluateQuestion(
 	}
 
 	return question
+}
+
+export function buildSituationFromObject<Names extends string = DottedName>(
+	contextDottedName: Names,
+	situationObject: Record<string, PublicodesExpression>
+): Situation {
+	return Object.fromEntries(
+		Object.entries(situationObject).map(
+			([key, value]: [string, PublicodesExpression]) => [
+				`${contextDottedName} . ${key}` as Names,
+				typeof value === 'string' ? `'${value}'` : value,
+			]
+		)
+	)
 }
