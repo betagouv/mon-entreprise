@@ -416,6 +416,8 @@ salarié . rémunération . frais professionnels . titres-restaurant:
             nom: plafond unitaire
             valeur:
               variations:
+                - si: date >= 09/2022
+                  alors: 5.92 €/titres-restaurant
                 - si: date >= 01/2022
                   alors: 5.69 €/titres-restaurant
                 - si: date >= 01/2021
