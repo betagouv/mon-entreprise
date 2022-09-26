@@ -477,7 +477,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
   avec:
     employeur:
       somme:
-        - transports publics . employeur
+        - transports publics . déductible employeur
         - forfait mobilités durables . montant
         - prime de transport . montant
         # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
@@ -487,14 +487,14 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
       titre: Part déductible
       valeur:
         somme:
-          - transports publics . employeur
+          - transports publics . déductible employeur
           - forfait mobilités durables . montant
           - prime de transport . déductible
         plafond:
           variations:
             - si: cumul forfait mobilité durable et transports publics
-              alors: 600€/an
-            - sinon: 500€/an
+              alors: 800€/an
+            - sinon: 700€/an
         plancher: transports publics . employeur
       abattement: abattement temps partiel
 
@@ -524,7 +524,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
         L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
         Sont également concernés les services publics de location de vélos.
 
-        Cette prise en charge (dans la limite des 50% du montant) est exonérée de cotisations sociales et d'impôt sur le revenu.
+        L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
 
         Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
       références:
@@ -542,14 +542,30 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
     employeur:
       applicable si: montant > 0
       titre: Part employeur
-      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur. Elle est déductible de cotisations et d'impôts.
+      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur.
       unité: €/mois
       produit:
         assiette: montant
         taux: taux employeur
+
+    déductible employeur:
+      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur et déductible de cotisations et d'impôts.
+      produit:
+        assiette: montant
+        taux: taux employeur déductible
+
     taux employeur:
+      question: Quel est le taux de prise en charge par l’employeur aux frais de transports du salarié ?
+      par défaut: 50%
+      suggestions:
+        Minimum obligatoire (50%): 50%
+        Maximum déductible (75%): 75%
+        Totale (100%): 100%
+
+    taux employeur déductible:
       privé: oui
-      valeur: 50%
+      valeur: taux employeur
+      plafond: 75%
 
 salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
   icônes: 🚗
