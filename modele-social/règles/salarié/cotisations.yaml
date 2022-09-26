@@ -89,7 +89,7 @@ salarié . cotisations . exonérations . heures supplémentaires:
         Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
     - nom: employeur
-      applicable si: entreprise . salariés . effectif < 20
+      applicable si: entreprise . salariés . effectif < 250
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         assiette: temps de travail . heures supplémentaires
