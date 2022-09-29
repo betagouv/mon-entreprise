@@ -1120,6 +1120,7 @@ pages:
         you best with this wizard"
       title: Help in choosing the legal status
     shortname: Legal status assistant
+    title: Legal status choice assistant
   common:
     ressources-auto-entrepreneur:
       FAQ:

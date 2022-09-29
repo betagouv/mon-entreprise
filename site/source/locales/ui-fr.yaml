@@ -878,6 +878,7 @@ pages:
         vous convient le mieux grâce à cet assistant"
       title: Aide au choix du statut juridique
     shortname: Assistant statut juridique
+    title: Assistant au choix du statut juridique
   common:
     ressources-auto-entrepreneur:
       FAQ:
