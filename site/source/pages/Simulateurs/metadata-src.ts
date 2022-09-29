@@ -25,7 +25,7 @@ import {
 	iframeProfessionLiberalePath,
 	iframeRevenuIndependant,
 	iframeSageFemmePath,
-} from '@/constants/iframePaths'
+} from '../../constants/iframePaths'
 import { TFunction } from 'react-i18next'
 
 /**
