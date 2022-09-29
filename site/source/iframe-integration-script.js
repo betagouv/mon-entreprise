@@ -1,7 +1,76 @@
+import {
+	iframeAEPath,
+	iframeArtisteAuteurPath,
+	iframeAssimileSalariePath,
+	iframeChoixStatutPath,
+	iframeChomagePartielPath,
+	iframeEconomieCollaborativePath,
+	iframeEIPath,
+	iframeEIRLPath,
+	iframeEmbauchePath,
+	iframeEURLPath,
+	iframeIndependantPath,
+	iframeAuxiliaireMedicalPath,
+	iframeAvocatPath,
+	iframeChargeSocialesPath,
+	iframeChirurgienDentistePath,
+	iframeDemandeMobilitePath,
+	iframeDividendePath,
+	iframeExonerationCovid,
+	iframeExpertComptable,
+	iframeImpotSocietePath,
+	iframeMedecinPath,
+	iframePAMCPath,
+	iframePharmacienPath,
+	iframeProfessionLiberalePath,
+	iframeRevenuIndependant,
+	iframeSageFemmePath,
+} from './constants/iframePaths'
 import { hexToHSL } from './hexToHSL'
+
+const iframeTitles = {
+	[iframeEmbauchePath]: 'Simulateur de revenus pour salarié',
+	[iframeEIPath]: 'Simulateur de revenus pour entreprise individuelle',
+	[iframeEIRLPath]: "Simulateur de revenus re d'EIRL",
+	[iframeAssimileSalariePath]: 'Simulateur de revenus pour dirigeant SASU',
+	[iframeEURLPath]: 'Simulateur de revenus pour dirigeant EURL',
+	[iframeAEPath]: 'Simulateur de revenus pour auto-entrepreneur',
+	[iframeIndependantPath]: 'Simulateur de revenus pour indépendant',
+	[iframeArtisteAuteurPath]: 'Simulateurs de cotisations d’artiste-auteur',
+	[iframeChomagePartielPath]:
+		"Simulateur du calcul de l'indemnité chômage partiel",
+	[iframeEconomieCollaborativePath]:
+		'Assistant à la déclaration des revenus des plateformes en ligne',
+	[iframeChoixStatutPath]: 'Assistant au choix du statut juridique',
+	[iframeChargeSocialesPath]:
+		'Assistant à la détermination des charges sociales déductibles',
+	[iframeRevenuIndependant]:
+		'Assistant à la détermination des charges sociales déductibles',
+	[iframeDemandeMobilitePath]: 'Simulateur de demande de mobilité',
+	[iframePharmacienPath]: 'Simulateur de revenus pour pharmacien en libéral',
+	[iframeMedecinPath]: 'Simulateur de revenus pour médecin en libéral',
+	[iframeChirurgienDentistePath]:
+		'Simulateur de revenus pour chirurgien-dentiste en libéral',
+	[iframeSageFemmePath]: 'Simulateur de revenus pour sage-femme en libéral',
+	[iframeAuxiliaireMedicalPath]:
+		'Simulateur de revenus pour auxiliaire médical en libéral',
+	[iframeAvocatPath]: 'Simulateur de revenus pour avocat en libéral',
+	[iframeExpertComptable]:
+		'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral',
+	[iframeProfessionLiberalePath]:
+		'Simulateur de revenus pour profession libérale',
+	[iframePAMCPath]: 'Simulateurs de cotisations et de revenu pour les PAMC',
+	[iframeImpotSocietePath]: "Simulateur d'impôt sur les sociétés",
+	[iframeDividendePath]: 'Simulateur de versement de dividendes',
+	[iframeExonerationCovid]:
+		'Simulateur d’exonération de cotisations Covid pour indépendant',
+}
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
+
+const moduleIframeTitle = iframeTitles[moduleName]
+
 const couleur =
 	script.dataset.couleur &&
 	encodeURIComponent(JSON.stringify(hexToHSL(script.dataset.couleur)))
@@ -35,6 +104,7 @@ const iframeAttributes = {
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
+	title: moduleIframeTitle,
 }
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])

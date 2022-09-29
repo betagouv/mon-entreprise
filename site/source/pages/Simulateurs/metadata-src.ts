@@ -1,3 +1,31 @@
+import {
+	iframeAEPath,
+	iframeArtisteAuteurPath,
+	iframeAssimileSalariePath,
+	iframeChoixStatutPath,
+	iframeChomagePartielPath,
+	iframeEconomieCollaborativePath,
+	iframeEIPath,
+	iframeEIRLPath,
+	iframeEmbauchePath,
+	iframeEURLPath,
+	iframeIndependantPath,
+	iframeAuxiliaireMedicalPath,
+	iframeAvocatPath,
+	iframeChargeSocialesPath,
+	iframeChirurgienDentistePath,
+	iframeDemandeMobilitePath,
+	iframeDividendePath,
+	iframeExonerationCovid,
+	iframeExpertComptable,
+	iframeImpotSocietePath,
+	iframeMedecinPath,
+	iframePAMCPath,
+	iframePharmacienPath,
+	iframeProfessionLiberalePath,
+	iframeRevenuIndependant,
+	iframeSageFemmePath,
+} from '@/constants/iframePaths'
 import { TFunction } from 'react-i18next'
 
 /**
@@ -14,7 +42,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.simulateurs.salarié.title',
 				'Simulateur de revenus pour salarié'
 			),
-			iframePath: 'simulateur-embauche',
+			iframePath: iframeEmbauchePath,
 			meta: {
 				description: t(
 					'pages.simulateurs.salarié.meta.description',
@@ -42,7 +70,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter2: 'statut_entreprise',
 				chapter3: 'EI',
 			},
-			iframePath: 'simulateur-EI',
+			iframePath: iframeEIPath,
 			icône: '🚶‍♀️',
 			meta: {
 				description: t(
@@ -77,7 +105,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter3: 'EIRL',
 			},
 			icône: '🚶',
-			iframePath: 'simulateur-EIRL',
+			iframePath: iframeEIRLPath,
 			meta: {
 				description: t(
 					'pages.simulateurs.eirl.meta.description',
@@ -108,7 +136,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter3: 'SASU',
 			},
 			icône: '📘',
-			iframePath: 'simulateur-assimilesalarie',
+			iframePath: iframeAssimileSalariePath,
 			meta: {
 				description: t(
 					'pages.simulateurs.sasu.meta.description',
@@ -138,7 +166,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter3: 'EURL',
 			},
 			icône: '📕',
-			iframePath: 'simulateur-eurl',
+			iframePath: iframeEURLPath,
 			meta: {
 				description: t(
 					'pages.simulateurs.eurl.meta.description',
@@ -169,7 +197,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		'auto-entrepreneur': {
 			tracking: 'auto_entrepreneur',
 			icône: '🚶‍♂️',
-			iframePath: 'simulateur-autoentrepreneur',
+			iframePath: iframeAEPath,
 			meta: {
 				description: t(
 					'pages.simulateurs.auto-entrepreneur.meta.description',
@@ -202,7 +230,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		indépendant: {
 			tracking: 'independant',
 			icône: '🏃',
-			iframePath: 'simulateur-independant',
+			iframePath: iframeIndependantPath,
 			pathId: 'simulateurs.indépendant',
 			shortName: t('pages.simulateurs.indépendant.shortname', 'Indépendant'),
 			title: t(
@@ -229,7 +257,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		'artiste-auteur': {
 			icône: '👩‍🎨',
 			tracking: 'artiste-auteur',
-			iframePath: 'simulateur-artiste-auteur',
+			iframePath: iframeArtisteAuteurPath,
 			meta: {
 				title: t(
 					'pages.simulateurs.artiste-auteur.meta.title',
@@ -257,7 +285,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			tracking: 'chomage_partiel',
 			pathId: 'simulateurs.chômage-partiel',
 			icône: '😷',
-			iframePath: 'simulateur-chomage-partiel',
+			iframePath: iframeChomagePartielPath,
 			meta: {
 				description: t(
 					'pages.simulateurs.chômage-partiel.meta.description',
@@ -324,7 +352,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			icône: '🙋',
 			pathId: 'simulateurs.économieCollaborative.index',
-			iframePath: 'economie-collaborative',
+			iframePath: iframeEconomieCollaborativePath,
 			shortName: t(
 				'pages.économie-collaborative.shortname',
 				'Assistant économie collaborative'
@@ -347,7 +375,11 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			icône: '📚',
 			pathId: 'créer.guideStatut.index',
-			iframePath: 'choix-statut-juridique',
+			title: t(
+				'pages.choix-statut.title',
+				'Assistant au choix du statut juridique'
+			),
+			iframePath: iframeChoixStatutPath,
 			shortName: t(
 				'pages.choix-statut.shortname',
 				'Assistant statut juridique'
@@ -374,7 +406,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 				'Détermination des charges sociales déductibles'
 			),
-			iframePath: 'déclaration-charges-sociales-indépendant',
+			iframePath: iframeChargeSocialesPath,
 			title: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
@@ -404,7 +436,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 				'Détermination des charges sociales déductibles'
 			),
-			iframePath: 'déclaration-charges-sociales-indépendant',
+			iframePath: iframeRevenuIndependant,
 			title: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
@@ -464,8 +496,9 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.demande-mobilité.shortname',
 				'Demande de mobilité internationale'
 			),
+			title: 'Simulateur de demande de mobilité',
 			private: true,
-			iframePath: 'demande-mobilite',
+			iframePath: iframeDemandeMobilitePath,
 		},
 		pharmacien: {
 			tracking: {
@@ -483,7 +516,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 			},
 			icône: '⚕️',
-			iframePath: 'pharmacien',
+			iframePath: iframePharmacienPath,
 			pathId: 'simulateurs.profession-libérale.pharmacien',
 			shortName: t('pages.simulateurs.pharmacien.shortname', 'Pharmacien'),
 			title: t(
@@ -507,7 +540,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				),
 			},
 			icône: '🩺',
-			iframePath: 'médecin',
+			iframePath: iframeMedecinPath,
 			pathId: 'simulateurs.profession-libérale.médecin',
 			shortName: t('pages.simulateurs.médecin.shortname', 'Médecin'),
 			title: t(
@@ -531,7 +564,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter2: 'profession_liberale',
 				chapter3: 'chirurgien_dentiste',
 			},
-			iframePath: 'chirurgien-dentiste',
+			iframePath: iframeChirurgienDentistePath,
 			pathId: 'simulateurs.profession-libérale.chirurgien-dentiste',
 			shortName: t(
 				'pages.simulateurs.chirurgien-dentiste.shortname',
@@ -558,7 +591,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 					'Calcul du revenu net après cotisations à partir du total des recettes.'
 				),
 			},
-			iframePath: 'sage-femme',
+			iframePath: iframeSageFemmePath,
 			pathId: 'simulateurs.profession-libérale.sage-femme',
 			shortName: t('pages.simulateurs.sage-femme.shortname', 'Sage-femme'),
 			title: t(
@@ -576,7 +609,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
 			),
 			icône: '🩹',
-			iframePath: 'auxiliaire-medical',
+			iframePath: iframeAuxiliaireMedicalPath,
 			pathId: 'simulateurs.profession-libérale.auxiliaire',
 			shortName: t(
 				'pages.simulateurs.auxiliaire.shortname',
@@ -603,7 +636,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter3: 'avocat',
 			},
 			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
-			iframePath: 'avocat',
+			iframePath: iframeAvocatPath,
 			pathId: 'simulateurs.profession-libérale.avocat',
 			shortName: t('pages.simulateurs.avocat.shortname', 'Avocat'),
 			title: t(
@@ -627,7 +660,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				chapter3: 'expert_comptable',
 			},
 			icône: '🧮',
-			iframePath: 'expert-comptable',
+			iframePath: iframeExpertComptable,
 			pathId: 'simulateurs.profession-libérale.expert-comptable',
 			shortName: t(
 				'pages.simulateurs.expert-comptable.shortname',
@@ -663,7 +696,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 					"Calcul du revenu net pour les indépendants en libéral à l'impôt sur le revenu (IR, BNC)"
 				),
 			},
-			iframePath: 'profession-liberale',
+			iframePath: iframeProfessionLiberalePath,
 			pathId: 'simulateurs.profession-libérale.index',
 			shortName: t(
 				'pages.simulateurs.profession-libérale.shortname',
@@ -676,7 +709,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		},
 		pamc: {
 			private: true,
-			iframePath: 'pamc',
+			iframePath: iframePAMCPath,
 			tracking: {},
 			title: t(
 				'pages.simulateurs.pamc.title',
@@ -701,7 +734,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			icône: '🗓',
 			tracking: 'impot-societe',
 			pathId: 'simulateurs.is',
-			iframePath: 'impot-societe',
+			iframePath: iframeImpotSocietePath,
 			meta: {
 				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
 				description: t(
@@ -721,7 +754,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		dividendes: {
 			icône: '🎩',
 			tracking: 'dividendes',
-			iframePath: 'dividendes',
+			iframePath: iframeDividendePath,
 			pathId: 'simulateurs.dividendes',
 			meta: {
 				title: t('pages.simulateurs.dividendes.meta.title', 'Dividendes'),
@@ -742,7 +775,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 		'exonération-covid': {
 			icône: '😷',
 			tracking: 'exoneration_covid',
-			iframePath: 'exoneration-covid',
+			iframePath: iframeExonerationCovid,
 			pathId: 'simulateurs.exonération-covid',
 			meta: {
 				title: t(
