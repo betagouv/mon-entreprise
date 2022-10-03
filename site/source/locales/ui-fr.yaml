@@ -1123,7 +1123,7 @@ pages:
           pour atteindre un certain revenu."
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
-        titre: "Simulateur de revenus pour auto-entrepreneur"
+        titre: "Auto-entrepreneurs : simulateur de revenus"
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1227,14 +1227,14 @@ pages:
         à une contribution maladie dans certains cas. Pour en savoir plus, voir
         la page explicative sur <2>le site de l'Urssaf</2>.</13>"
       shortname: Chômage partiel
-      title: "Simulateur du calcul de l'indemnité chômage partiel (Covid-19)"
+      title: Simulateur du calcul de l'indemnité chômage partiel (Covid-19)
     comparaison:
       meta:
         description: Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce
           comparatif, trouvez le régime qui vous correspond le mieux
         title: "Création d'entreprise : le comparatif des régimes sociaux"
       shortname: Comparaison des statuts
-      title: "Assistant au choix du statut juridique"
+      title: Assistant au choix du statut juridique
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les
@@ -1405,7 +1405,7 @@ pages:
           (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
         title: Simulateurs régime PAMC
       shortname: PAMC
-      title: "Simulateur de cotisations et de revenu pour les PAMC"
+      title: Simulateur de cotisations et de revenu pour les PAMC
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du

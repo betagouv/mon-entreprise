@@ -1388,7 +1388,8 @@ pages:
           certain income."
         ogTitle: "Auto-entrepreneur: quickly calculate your net income from sales and
           vice versa"
-        title: "Income simulator for auto-entrepreneurs"
+        title: Income simulator for auto-entrepreneurs
+        titre: Income simulator for auto-entrepreneurs
       seo explanation: <0>How to calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social
         contributions to the administration. These contributions are used to
@@ -1528,14 +1529,14 @@ pages:
         cases. To find out more, see the explanatory page on <2>the Urssaf
         website</2>.</13>"
       shortname: Partial unemployment
-      title: "Allowance for short-time work simulator (Covid-19)"
+      title: Allowance for short-time work simulator (Covid-19)
     comparaison:
       meta:
         description: Self-employed, self-employed or similarly employed? With this
           comparison, find the plan that suits you best
         title: "Starting a business: a comparison of social schemes"
       shortname: Status Comparison
-      title: "Legal form choice assistant"
+      title: Legal form choice assistant
     dirigean sasu:
       explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
@@ -1716,7 +1717,7 @@ pages:
           dentists, midwives and paramedics)
         title: PAMC diet simulators
       shortname: PAMC
-      title: "Contribution and income simulators for PAMC"
+      title: Contribution and income simulators for PAMC
     pharmacien:
       meta:
         description: Calculation of net income after deduction of contributions from
