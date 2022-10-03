@@ -252,7 +252,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.artiste-auteur',
 			title: t(
 				'pages.simulateurs.artiste-auteur.title',
-				'Simulateurs de cotisations d’artiste-auteur'
+				'Simulateur de cotisations d’artiste-auteur'
 			),
 			shortName: t(
 				'pages.simulateurs.artiste-auteur.shortname',
@@ -699,7 +699,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			title: t(
 				'pages.simulateurs.pamc.title',
 
-				'Simulateurs de cotisations et de revenu pour les PAMC'
+				'Simulateur de cotisations et de revenu pour les PAMC'
 			),
 			pathId: 'simulateurs.pamc',
 			icône: '🏥',

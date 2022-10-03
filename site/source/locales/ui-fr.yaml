@@ -1111,7 +1111,7 @@ pages:
           revenu BNC
         title: "Artiste-auteur: calcul des cotisations Urssaf"
       shortname: Artiste-auteur
-      title: Simulateurs de cotisations d’artiste-auteur
+      title: Simulateur de cotisations d’artiste-auteur
     auto-entrepreneur:
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
@@ -1405,7 +1405,7 @@ pages:
           (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
         title: Simulateurs régime PAMC
       shortname: PAMC
-      title: "Simulateurs de cotisations et de revenu pour les PAMC"
+      title: "Simulateur de cotisations et de revenu pour les PAMC"
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
