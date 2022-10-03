@@ -5,7 +5,6 @@ import useSimulatorsData from './metadata'
 
 export default function SalariéSimulation() {
 	const simulators = useSimulatorsData()
-	console.log(simulators)
 
 	return (
 		<>
