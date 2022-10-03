@@ -513,6 +513,7 @@ dirigeant . indépendant:
   valeur: oui
 
 dirigeant . indépendant . revenu professionnel:
+  question: Quel est votre revenu professionnel ?
   description: rémunération du dirigeant au régime des indépendant
   unité: €/an
   arrondi: oui

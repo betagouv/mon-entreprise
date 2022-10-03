@@ -273,7 +273,8 @@ function RowLabel({ dottedName }: { dottedName: DottedName }) {
 	)
 }
 
-const ResultTable = styled.table`
+// Utilisé aussi sur cipav-2023
+export const ResultTable = styled.table`
 	font-family: ${({ theme }) => theme.fonts.main};
 	width: 100%;
 	border-collapse: collapse;

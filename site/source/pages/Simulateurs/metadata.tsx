@@ -44,6 +44,7 @@ import PAMCHome from './PAMCHome'
 import SalariéSimulation from './Salarié'
 import { SASUSimulation } from './SASU'
 import SchemeComparaisonPage from './SchemeComparaison'
+import Cipav2023 from './Cipav2023'
 
 interface SimulatorsDataParams {
 	t: TFunction<'translation', string>
@@ -693,6 +694,18 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 			...pureSimulatorsData['exonération-covid'],
 			path: sitePaths.simulateurs['exonération-covid'],
 			component: ExonérationCovid,
+		},
+		'cipav-2023': {
+			...pureSimulatorsData['cipav-2023'],
+			path: sitePaths.simulateurs['cipav-2023'],
+			component: Cipav2023,
+			config: {
+				situation: {
+					'dirigeant . régime social': "'indépendant'",
+					'entreprise . activité': "'libérale'",
+					'dirigeant . indépendant . PL . CIPAV': 'oui',
+				},
+			},
 		},
 	} as const
 }

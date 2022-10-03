@@ -280,7 +280,7 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 	)
 }
 
-const InstitutionLogo = styled.a`
+export const InstitutionLogo = styled.a`
 	img {
 		max-width: 110px;
 		max-height: 50px;

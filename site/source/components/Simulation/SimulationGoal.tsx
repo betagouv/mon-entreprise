@@ -17,6 +17,7 @@ import { useInitialRender } from '../utils/useInitialRender'
 type SimulationGoalProps = {
 	dottedName: DottedName
 	label?: React.ReactNode
+	résumé?: React.ReactNode
 	small?: boolean
 	appear?: boolean
 	editable?: boolean
@@ -31,6 +32,7 @@ type SimulationGoalProps = {
 export function SimulationGoal({
 	dottedName,
 	label,
+	résumé,
 	small = false,
 	onUpdateSituation,
 	appear = true,
@@ -85,7 +87,7 @@ export function SimulationGoal({
 								className={small ? 'sr-only' : ''}
 								id={`${dottedName}-description`}
 							>
-								{rule.rawNode.résumé}
+								{résumé ?? rule.rawNode.résumé}
 							</SmallBody>
 						</StyledGoalHeader>
 					</Grid>

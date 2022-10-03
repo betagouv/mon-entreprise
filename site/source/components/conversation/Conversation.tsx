@@ -73,6 +73,10 @@ export default function Conversation({
 		)
 	}
 
+	if (!currentQuestion && Object.keys(previousAnswers).length === 0) {
+		return null
+	}
+
 	return (
 		<>
 			<div className="print-only">

@@ -457,6 +457,32 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . pourcentage:
     - si: proportion . moitié
       alors: 50 %
 
+dirigeant . indépendant . PL . CIPAV . cotisation 2023:
+  somme:
+    - CNAVPL . retraite
+    - retraite complémentaire
+    - invalidité et décès
+  références:
+    Actu Urssaf: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
+
+dirigeant . indépendant . PL . CIPAV . cotisation 2023 . retraite complémentaire:
+  barème:
+    assiette: assiette des cotisations
+    multiplicateur: plafond sécurité sociale
+    tranches:
+      - taux: 9%
+        plafond: 1
+      - taux: 22%
+        plafond: 3
+
+dirigeant . indépendant . PL . CIPAV . cotisation 2023 . invalidité et décès:
+  produit:
+    assiette:
+      valeur: assiette des cotisations
+      plafond: 1.85 * plafond sécurité sociale
+      plancher: 37% * plafond sécurité sociale
+    taux: 0.5%
+
 dirigeant . indépendant . PL . CNAVPL:
   description: |
     La caisse nationale d'assurance vieillesse des professions libérales est

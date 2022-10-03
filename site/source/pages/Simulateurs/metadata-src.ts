@@ -765,6 +765,25 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 
 			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
+		'cipav-2023': {
+			tracking: 'cipav-2023',
+			pathId: 'simulateurs.cipav-2023',
+			iframePath: 'cipav-2023',
+			meta: {
+				title: t(
+					'pages.simulateurs.cipav-2023.meta.title',
+					'Nouvelle cotisation Cipav en 2023'
+				),
+				description: t(
+					'pages.simulateurs.cipav-2023.meta.description',
+					'Calculez la nouvelle cotisation Cipav à applicable à compter du 1er janvier 2023'
+				),
+			},
+			title: t(
+				'pages.simulateurs.cipav-2023.title',
+				'Nouvelle cotisation Cipav en 2023'
+			),
+		},
 	} as const
 
 	return data
