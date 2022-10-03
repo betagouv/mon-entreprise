@@ -1,11 +1,10 @@
-import { iframeEmbauchePath } from './constants/iframePaths'
 import { hexToHSL } from './hexToHSL'
 import getSimulationData from './pages/Simulateurs/metadata-src'
 
 const simulationData = getSimulationData((_, text) => text)
 
 const script = document.currentScript
-const moduleName = script.dataset.module || iframeEmbauchePath
+const moduleName = script.dataset.module || 'simulateur-embauche'
 
 const moduleData = simulationData[moduleName]
 
