@@ -25,7 +25,7 @@ export interface PageDataProps {
 	seoExplanations?: ExtractFromSimuData<'seoExplanations'>
 	nextSteps?: ExtractFromSimuData<'nextSteps'>
 	path: ExtractFromSimuData<'path'>
-	title: string
+	title: ExtractFromSimuData<'title'>
 	private?: ExtractFromSimuData<'private'>
 	component: ExtractFromSimuData<'component'>
 	icône: ExtractFromSimuData<'icône'>
