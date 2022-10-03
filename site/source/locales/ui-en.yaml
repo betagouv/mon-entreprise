@@ -1388,7 +1388,7 @@ pages:
           certain income."
         ogTitle: "Auto-entrepreneur: quickly calculate your net income from sales and
           vice versa"
-        titre: "Income simulator for auto-entrepreneurs"
+        title: "Income simulator for auto-entrepreneurs"
       seo explanation: <0>How to calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social
         contributions to the administration. These contributions are used to
@@ -1855,6 +1855,7 @@ pages:
         in your declarations
       title: "Online platform income tax return: interactive guide"
     shortname: Collaborative Economy Assistant
+    title: Collaborative economy income declaration assistant
 par: per
 par an: per year
 par mois: per month
