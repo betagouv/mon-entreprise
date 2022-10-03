@@ -31,17 +31,17 @@ import { hexToHSL } from './hexToHSL'
 const iframeTitles = {
 	[iframeEmbauchePath]: 'Simulateur de revenus pour salarié',
 	[iframeEIPath]: 'Simulateur de revenus pour entreprise individuelle',
-	[iframeEIRLPath]: "Simulateur de revenus re d'EIRL",
-	[iframeAssimileSalariePath]: 'Simulateur de revenus pour dirigeant SASU',
-	[iframeEURLPath]: 'Simulateur de revenus pour dirigeant EURL',
+	[iframeEIRLPath]: 'Simulateur de revenus pour EIRL',
+	[iframeAssimileSalariePath]: 'Simulateur de revenus pour dirigeant de SASU',
+	[iframeEURLPath]: "Simulateur de revenus pour dirigeant d'EURL",
 	[iframeAEPath]: 'Simulateur de revenus pour auto-entrepreneur',
 	[iframeIndependantPath]: 'Simulateur de revenus pour indépendant',
 	[iframeArtisteAuteurPath]: 'Simulateurs de cotisations d’artiste-auteur',
 	[iframeChomagePartielPath]:
-		"Simulateur du calcul de l'indemnité chômage partiel",
+		"Simulateur du calcul de l'indemnité chômage partiel (Covid-19)",
+	[iframeChoixStatutPath]: 'Assistant au choix du statut juridique',
 	[iframeEconomieCollaborativePath]:
 		'Assistant à la déclaration des revenus des plateformes en ligne',
-	[iframeChoixStatutPath]: 'Assistant au choix du statut juridique',
 	[iframeChargeSocialesPath]:
 		'Assistant à la détermination des charges sociales déductibles',
 	[iframeRevenuIndependant]:

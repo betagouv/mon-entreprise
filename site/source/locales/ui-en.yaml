@@ -1318,7 +1318,7 @@ pages:
           reported on your 2021 income tax return
         title: Determination of deductible social charges
       shortname: Determination of deductible social charges
-      title: Assistance in determining deductible social charges
+      title: Deductible social charges assistant
     declaration_revenu_indépendant:
       meta:
         description: Find out which amounts to fill in and get an estimate of your 2022 dues
@@ -1330,6 +1330,7 @@ pages:
         description: Interactive form to be filled in if you work abroad
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
+      title: Mobility request simulator
   simulateurs:
     EI:
       meta:
@@ -1375,7 +1376,7 @@ pages:
         description: Estimate social contributions on copyright and BNC income
         title: "Artist-author: calculation of Urssaf membership fees"
       shortname: Artist-author
-      title: Estimate my artist/author dues
+      title: Income simulator for artist/author
     auto-entrepreneur:
       meta:
         description: Calculation of your income based on turnover, after deduction of
@@ -1387,7 +1388,7 @@ pages:
           certain income."
         ogTitle: "Auto-entrepreneur: quickly calculate your net income from sales and
           vice versa"
-        titre: "Auto-entrepreneurs: income simulator"
+        titre: "Income simulator for auto-entrepreneurs"
       seo explanation: <0>How to calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social
         contributions to the administration. These contributions are used to
@@ -1527,15 +1528,14 @@ pages:
         cases. To find out more, see the explanatory page on <2>the Urssaf
         website</2>.</13>"
       shortname: Partial unemployment
-      title: "Covid-19: Short-time work simulator"
+      title: "Allowance for short-time work simulator (Covid-19)"
     comparaison:
       meta:
         description: Self-employed, self-employed or similarly employed? With this
           comparison, find the plan that suits you best
         title: "Starting a business: a comparison of social schemes"
       shortname: Status Comparison
-      title: "Self-employed, assimilated employee or auto-entrepreneur: which plan to
-        choose?"
+      title: "Legal form choice assistant"
     dirigean sasu:
       explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
@@ -1631,7 +1631,7 @@ pages:
           vice versa"
         titre: "EIRL : income simulator for managers"
       shortname: EIRL
-      title: EIRL Simulator
+      title: EIRL income simulator
     eurl:
       meta:
         description: Calculation of the net salary from the total allocated to
@@ -1640,9 +1640,9 @@ pages:
           your net income after tax from the total allocated to your
           remuneration.
         ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
-        titre: "EURL : income simulator for managers"
+        titre: "EURL : income simulator for executives"
       shortname: EURL
-      title: EURL Simulator
+      title: EURL income simulator for executives
     exo-covid:
       meta:
         description: Determine the elements to be declared to benefit from the Covid
@@ -1716,7 +1716,7 @@ pages:
           dentists, midwives and paramedics)
         title: PAMC diet simulators
       shortname: PAMC
-      title: "PAMC: contribution and income simulators"
+      title: "Contribution and income simulators for PAMC"
     pharmacien:
       meta:
         description: Calculation of net income after deduction of contributions from

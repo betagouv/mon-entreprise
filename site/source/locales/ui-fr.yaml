@@ -1099,6 +1099,7 @@ pages:
           professionnelle à l'étranger
         title: "Travailleur indépendant : demande de mobilité en Europe"
       shortname: Demande de mobilité internationale
+      title: Simulateur de demande de mobilité
   simulateurs:
     accueil:
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les
@@ -1110,7 +1111,7 @@ pages:
           revenu BNC
         title: "Artiste-auteur: calcul des cotisations Urssaf"
       shortname: Artiste-auteur
-      title: Estimer mes cotisations d’artiste-auteur
+      title: Simulateurs de cotisations d’artiste-auteur
     auto-entrepreneur:
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
@@ -1122,7 +1123,7 @@ pages:
           pour atteindre un certain revenu."
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
-        titre: "Auto-entrepreneurs : simulateur de revenus"
+        titre: "Simulateur de revenus pour auto-entrepreneur"
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1226,15 +1227,14 @@ pages:
         à une contribution maladie dans certains cas. Pour en savoir plus, voir
         la page explicative sur <2>le site de l'Urssaf</2>.</13>"
       shortname: Chômage partiel
-      title: "Covid-19 : Simulateur de chômage partiel"
+      title: "Simulateur du calcul de l'indemnité chômage partiel (Covid-19)"
     comparaison:
       meta:
         description: Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce
           comparatif, trouvez le régime qui vous correspond le mieux
         title: "Création d'entreprise : le comparatif des régimes sociaux"
       shortname: Comparaison des statuts
-      title: "Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir
-        ?"
+      title: "Assistant au choix du statut juridique"
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les
@@ -1317,7 +1317,7 @@ pages:
           et vice-versa"
         titre: "EIRL : simulateur de revenus pour dirigeant"
       shortname: EIRL
-      title: Simulateur d'EIRL
+      title: Simulateur de revenus pour EIRL
     eurl:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
@@ -1329,7 +1329,7 @@ pages:
           salaire net"
         titre: "EURL : simulateur de revenus pour dirigeant"
       shortname: EURL
-      title: Simulateur d'EURL
+      title: Simulateur de revenus pour dirigeant d'EURL
     exo-covid:
       meta:
         description: Déterminez les éléments à déclarer pour bénéficier de l’exonération
@@ -1405,7 +1405,7 @@ pages:
           (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
         title: Simulateurs régime PAMC
       shortname: PAMC
-      title: "PAMC : simulateurs de cotisations et de revenu"
+      title: "Simulateurs de cotisations et de revenu pour les PAMC"
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
@@ -1515,7 +1515,7 @@ pages:
         le montant total alloué dans la case \"total chargé\". La simulation
         peut ensuite être affinée en répondant aux différentes questions.</4>"
       shortname: SAS(U)
-      title: Simulateur de SAS(U)
+      title: Simulateur de revenus pour dirigeant de SASU
     select-year:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
@@ -1527,6 +1527,7 @@ pages:
         règle dans vos déclarations
       title: "Déclaration des revenus des plateforme en ligne : guide intéractif"
     shortname: Assistant économie collaborative
+    title: Assistant à la déclaration des revenus des plateformes en ligne
 payslip:
   disclaimer: Il ne prend pour l'instant pas en compte les accords et conventions
     collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention

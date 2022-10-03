@@ -157,7 +157,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.sasu',
 			shortName: t('pages.simulateurs.sasu.shortname', 'SAS(U)'),
-			title: t('pages.simulateurs.sasu.title', 'Simulateur de SAS(U)'),
+			title: t(
+				'pages.simulateurs.sasu.title',
+				'Simulateur de revenus pour dirigeant de SASU'
+			),
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		eurl: {
@@ -187,7 +190,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.eurl',
 			shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
-			title: t('pages.simulateurs.eurl.title', "Simulateur d'EURL"),
+			title: t(
+				'pages.simulateurs.eurl.title',
+				"Simulateur de revenus pour dirigeant d'EURL"
+			),
 			nextSteps: [
 				'déclaration-revenu-indépendant-beta',
 				'is',
@@ -274,7 +280,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.artiste-auteur',
 			title: t(
 				'pages.simulateurs.artiste-auteur.title',
-				'Estimer mes cotisations d’artiste-auteur'
+				'Simulateurs de cotisations d’artiste-auteur'
 			),
 			shortName: t(
 				'pages.simulateurs.artiste-auteur.shortname',
@@ -310,7 +316,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			),
 			title: t(
 				'pages.simulateurs.chômage-partiel.title',
-				'Covid-19 : Simulateur de chômage partiel'
+				"Simulateur du calcul de l'indemnité chômage partiel (Covid-19)"
 			),
 
 			nextSteps: ['salarié'],
@@ -321,7 +327,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.comparaison',
 			title: t(
 				'pages.simulateurs.comparaison.title',
-				'Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir ?'
+				'Assistant au choix du statut juridique'
 			),
 			meta: {
 				description: t(
@@ -356,6 +362,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			shortName: t(
 				'pages.économie-collaborative.shortname',
 				'Assistant économie collaborative'
+			),
+			title: t(
+				'pages.économie-collaborative.title',
+				'Assistant à la déclaration des revenus des plateformes en ligne'
 			),
 		},
 		'choix-statut': {
@@ -496,7 +506,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.demande-mobilité.shortname',
 				'Demande de mobilité internationale'
 			),
-			title: 'Simulateur de demande de mobilité',
+			title: t(
+				'pages.gérer.demande-mobilité.title',
+				'Simulateur de demande de mobilité'
+			),
 			private: true,
 			iframePath: iframeDemandeMobilitePath,
 		},
@@ -714,7 +727,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			title: t(
 				'pages.simulateurs.pamc.title',
 
-				'PAMC : simulateurs de cotisations et de revenu'
+				'Simulateurs de cotisations et de revenu pour les PAMC'
 			),
 			pathId: 'simulateurs.pamc',
 			icône: '🏥',
