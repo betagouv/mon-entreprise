@@ -1,8 +1,10 @@
 import { FromBottom } from '@/components/ui/animate'
+import { AccompanyingMessage } from '@/design-system/message/index.stories'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Video from './_components/Video'
 
@@ -41,7 +43,7 @@ export default function SocialSecurity() {
 
 					<Video />
 				</section>
-				<section>
+				<StyledAccompagnyingMessage>
 					<Trans i18nKey="sécu.transcript">
 						<H2>Transcription de la vidéo</H2>
 						<Body>
@@ -108,8 +110,12 @@ export default function SocialSecurity() {
 							pour construire les services qui correspondent à leurs besoins.
 						</Body>
 					</Trans>
-				</section>
+				</StyledAccompagnyingMessage>
 			</FromBottom>
 		</>
 	)
 }
+
+const StyledAccompagnyingMessage = styled(AccompanyingMessage)`
+	margin-top: 2rem;
+`
