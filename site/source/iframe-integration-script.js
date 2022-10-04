@@ -8,7 +8,7 @@ const moduleName = script.dataset.module || 'simulateur-embauche'
 
 const moduleData = simulationData[moduleName]
 
-const moduleIframeTitle = moduleData.title
+const moduleIframeTitle = moduleData?.title || ''
 
 const couleur =
 	script.dataset.couleur &&
