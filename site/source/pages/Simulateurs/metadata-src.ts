@@ -98,7 +98,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.eirl',
 			shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
-			title: t('pages.simulateurs.eirl.title', "Simulateur d'EIRL"),
+			title: t(
+				'pages.simulateurs.eirl.title',
+				'Simulateur de revenus pour EIRL'
+			),
 
 			nextSteps: ['déclaration-revenu-indépendant-beta', 'comparaison-statuts'],
 		},
@@ -129,7 +132,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.sasu',
 			shortName: t('pages.simulateurs.sasu.shortname', 'SAS(U)'),
-			title: t('pages.simulateurs.sasu.title', 'Simulateur de SAS(U)'),
+			title: t(
+				'pages.simulateurs.sasu.title',
+				'Simulateur de revenus pour dirigeant de SASU'
+			),
 			nextSteps: ['is', 'comparaison-statuts'],
 		},
 		eurl: {
@@ -159,7 +165,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			pathId: 'simulateurs.eurl',
 			shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
-			title: t('pages.simulateurs.eurl.title', "Simulateur d'EURL"),
+			title: t(
+				'pages.simulateurs.eurl.title',
+				"Simulateur de revenus pour dirigeant d'EURL"
+			),
 			nextSteps: [
 				'déclaration-revenu-indépendant-beta',
 				'is',
@@ -246,7 +255,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.artiste-auteur',
 			title: t(
 				'pages.simulateurs.artiste-auteur.title',
-				'Estimer mes cotisations d’artiste-auteur'
+				'Simulateur de cotisations d’artiste-auteur'
 			),
 			shortName: t(
 				'pages.simulateurs.artiste-auteur.shortname',
@@ -282,7 +291,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			),
 			title: t(
 				'pages.simulateurs.chômage-partiel.title',
-				'Covid-19 : Simulateur de chômage partiel'
+				"Simulateur du calcul de l'indemnité chômage partiel (Covid-19)"
 			),
 
 			nextSteps: ['salarié'],
@@ -293,7 +302,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.comparaison',
 			title: t(
 				'pages.simulateurs.comparaison.title',
-				'Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir ?'
+				'Assistant au choix du statut juridique'
 			),
 			meta: {
 				description: t(
@@ -329,6 +338,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.économie-collaborative.shortname',
 				'Assistant économie collaborative'
 			),
+			title: t(
+				'pages.économie-collaborative.title',
+				'Assistant à la déclaration des revenus des plateformes en ligne'
+			),
 		},
 		'choix-statut': {
 			tracking: {
@@ -347,6 +360,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			},
 			icône: '📚',
 			pathId: 'créer.guideStatut.index',
+			title: t(
+				'pages.choix-statut.title',
+				'Assistant au choix du statut juridique'
+			),
 			iframePath: 'choix-statut-juridique',
 			shortName: t(
 				'pages.choix-statut.shortname',
@@ -404,7 +421,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 				'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 				'Détermination des charges sociales déductibles'
 			),
-			iframePath: 'déclaration-charges-sociales-indépendant',
+			iframePath: 'déclaration-revenu-indépendant',
 			title: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.title',
 				'Assistant à la détermination des charges sociales déductibles'
@@ -463,6 +480,10 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			shortName: t(
 				'pages.gérer.demande-mobilité.shortname',
 				'Demande de mobilité internationale'
+			),
+			title: t(
+				'pages.gérer.demande-mobilité.title',
+				'Simulateur de demande de mobilité'
 			),
 			private: true,
 			iframePath: 'demande-mobilite',
@@ -681,7 +702,7 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 			title: t(
 				'pages.simulateurs.pamc.title',
 
-				'PAMC : simulateurs de cotisations et de revenu'
+				'Simulateur de cotisations et de revenu pour les PAMC'
 			),
 			pathId: 'simulateurs.pamc',
 			icône: '🏥',

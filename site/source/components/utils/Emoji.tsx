@@ -17,7 +17,6 @@ export default function Emoji({ emoji, alt, title, ...props }: PropType) {
 	if (!emoji) {
 		return null
 	}
-	console.log(props)
 
 	return emojiFn(emoji, {
 		baseUrl: '/twemoji/2/',

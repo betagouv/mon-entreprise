@@ -1,7 +1,15 @@
 import { hexToHSL } from './hexToHSL'
+import getSimulationData from './pages/Simulateurs/metadata-src'
+
+const simulationData = getSimulationData((_, text) => text)
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
+
+const moduleData = simulationData[moduleName]
+
+const moduleIframeTitle = moduleData?.title || ''
+
 const couleur =
 	script.dataset.couleur &&
 	encodeURIComponent(JSON.stringify(hexToHSL(script.dataset.couleur)))
@@ -35,6 +43,7 @@ const iframeAttributes = {
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
+	title: moduleIframeTitle,
 }
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])

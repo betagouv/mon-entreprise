@@ -57,6 +57,11 @@ function IntegrationCustomizer() {
 			'iframePath' in currentSimulator &&
 			currentSimulator.iframePath) ||
 		''
+	const currentIframeTitle =
+		(currentSimulator &&
+			'title' in currentSimulator &&
+			currentSimulator.title) ||
+		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
@@ -149,7 +154,11 @@ function IntegrationCustomizer() {
 					</H3>
 
 					<PrevisualisationContainer>
-						<PreviewIframe src={iframeSrc} ref={iframeRef} />
+						<PreviewIframe
+							src={iframeSrc}
+							ref={iframeRef}
+							title={currentIframeTitle}
+						/>
 					</PrevisualisationContainer>
 				</Grid>
 			</Grid>
