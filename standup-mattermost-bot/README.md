@@ -8,5 +8,5 @@ Et peut-être plus à venir...
 
 # Détail technique
 
-Le bot peut être installé facilement sur Scalingo, vous pouvez aller dans le `Procfile` à la racine du projet.
+Le bot peut être installé facilement sur Scalingo, vous pouvez aller voir le `Procfile` à la racine du projet.
 Il nécessite une base de données Mongodb pour stocker les token d'authentification et la liste des animateurs de la semaine.
