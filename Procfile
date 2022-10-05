@@ -1,2 +1,1 @@
-web: node -v ; yarn -v ; echo "$PORT" ; yarn workspace api run start:prod
-bot: node -v ; yarn -v ; echo "$PORT" ; yarn workspace standup-mattermost-bot run start:prod
+web: node -v ; yarn -v ; echo "APP_DIR: $APP_DIR" ; echo "PORT: $PORT" ; yarn workspace "$APP_DIR" run start:prod

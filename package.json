@@ -14,8 +14,8 @@
 		"standup-mattermost-bot"
 	],
 	"scripts": {
-		"scalingo-postbuild": "CI=true ; yarn test:type && yarn build:api && yarn build:standup-mattermost-bot && yarn workspaces focus --all && yarn test && yarn workspaces focus standup-mattermost-bot api --production",
-		"build:api": "yarn workspaces focus api && yarn workspace api run build",
+		"scalingo-postbuild": "yarn run ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
+		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
 		"build:standup-mattermost-bot": "yarn workspaces focus standup-mattermost-bot && yarn workspace standup-mattermost-bot run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
