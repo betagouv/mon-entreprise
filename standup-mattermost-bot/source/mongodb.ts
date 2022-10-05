@@ -10,10 +10,6 @@ interface MemberIds {
 }
 
 export const initMongodb = async () => {
-	if (!MONGO_URL) {
-		throw new Error('MONGO_URL env var is empty')
-	}
-
 	const client = new MongoClient(MONGO_URL)
 	await client.connect()
 

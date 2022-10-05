@@ -1,13 +1,21 @@
 import type { MattermostSendMessage } from './mattermost.js'
 
+if (!process.env.MONGO_URL) {
+	throw new Error('MONGO_URL env var is empty')
+}
+
+if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
+	throw new Error('Empty env var CLIENT_ID or CLIENT_SECRET')
+}
+
 export const PORT = process.env.PORT || 4000
 export const ORIGIN = process.env.ORIGIN || 'http://localhost:4000'
 export const MONGO_URL = process.env.MONGO_URL
 export const NODE_ENV = process.env.NODE_ENV
 
 export const serverUrl = 'https://mattermost.incubateur.net'
-export const clientSecret = 'pgnch7w643yfdkdjnnjcxhpsoe'
-export const clientId = 'wbkot91tjbd6byn4fbmrtu8h6o'
+export const clientId = process.env.CLIENT_ID
+export const clientSecret = process.env.CLIENT_SECRET
 export const redirectUri = `${ORIGIN}/oauth`
 
 const days = [
