@@ -1,0 +1,39 @@
+{
+	"name": "standup-mattermost-bot",
+	"license": "MIT",
+	"version": "2.0.0",
+	"description": "Code source du standup-mattermost-bot",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "standup-mattermost-bot"
+	},
+	"private": true,
+	"engines": {
+		"node": "^16"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "yarn tsc",
+		"start": "nodemon -e \"js,ts\" -x 'NODE_OPTIONS=\"--loader ts-node/esm\" node ./source/index.ts'",
+		"start:prod": "NODE_ENV=production nodemon -d 500ms -w ./dist/index.js -x 'node ./dist/index.js || touch ./dist/index.js'"
+	},
+	"dependencies": {
+		"@breejs/later": "^4.1.0",
+		"@koa/cors": "^3.4.1",
+		"@koa/router": "^12.0.0",
+		"bree": "^9.1.2",
+		"dotenv": "^16.0.3",
+		"got": "^12.5.1",
+		"koa": "^2.13.4",
+		"mongodb": "^4.10.0",
+		"nodemon": "^2.0.20"
+	},
+	"devDependencies": {
+		"@types/koa": "^2.13.5",
+		"@types/koa__cors": "^3.3.0",
+		"@types/koa__router": "^12.0.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.8.4"
+	}
+}
