@@ -1,4 +1,5 @@
 import { FromBottom } from '@/components/ui/animate'
+import FoldingMessage from '@/components/ui/FoldingMessage'
 import { AccompanyingMessage } from '@/design-system/message/index.stories'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -33,7 +34,6 @@ export default function SocialSecurity() {
 						la maladie, les accidents du travail, chômage ou encore la retraite.
 					</Body>
 				</Trans>
-
 				<section style={{ marginTop: '2rem' }}>
 					<Trans i18nKey="sécu.videoTitle">
 						<H2>
@@ -43,9 +43,11 @@ export default function SocialSecurity() {
 
 					<Video />
 				</section>
-				<StyledAccompagnyingMessage>
+				<StyledFoldingMessage
+					title="Transcription de la vidéo"
+					unfoldButtonLabel="Afficher la transcription"
+				>
 					<Trans i18nKey="sécu.transcript">
-						<H2>Transcription de la vidéo</H2>
 						<Body>
 							Trois minutes pour comprendre les enjeux de la sécurité sociale.
 						</Body>
@@ -110,12 +112,12 @@ export default function SocialSecurity() {
 							pour construire les services qui correspondent à leurs besoins.
 						</Body>
 					</Trans>
-				</StyledAccompagnyingMessage>
+				</StyledFoldingMessage>
 			</FromBottom>
 		</>
 	)
 }
 
-const StyledAccompagnyingMessage = styled(AccompanyingMessage)`
+const StyledFoldingMessage = styled(FoldingMessage)`
 	margin-top: 2rem;
 `
