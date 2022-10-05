@@ -1,6 +1,7 @@
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Li, Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 export const StyledTable = styled.table`
@@ -15,13 +16,16 @@ export const StyledTable = styled.table`
 		background: var(--lightestColor);
 	}
 
-	td {
+	td,
+	th {
 		padding: 0.5rem;
 		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
 	}
 `
 
 export function ExplicationsResultatFiscal() {
+	const { t } = useTranslation()
+
 	return (
 		<ButtonHelp title="Quelles exonérations inclure ?" type="aide" bigPopover>
 			<Body>
@@ -43,29 +47,35 @@ export function ExplicationsResultatFiscal() {
 					Ajoutez les exonérations <strong>(2)</strong>
 				</Li>
 			</Ul>
-			<StyledTable>
+			<StyledTable
+				role="table"
+				summary={t(
+					'explications.table-summary',
+					'La première colonne affiche les différents types de régimes (BIC, BNC). La deuxième colonne indique les lignes de votre liasse fiscale qui vous permettent de déterminer votre résultat fiscal, et ce pour chaque régime. Les autres colonnes affichent les exonérations en place ainsi que les lignes de liasse fiscale ou ajouter vos exonérations et ce pour chaque régime.'
+				)}
+			>
 				<tr>
-					<td></td>
-					<td></td>
-					<td className="ui__ light-bg" colSpan={4}>
+					<th></th>
+					<th></th>
+					<th className="ui__ light-bg" colSpan={4}>
 						Exonérations <strong>(2)</strong>
-					</td>
+					</th>
 				</tr>
 				<tr>
-					<td></td>
-					<td className="ui__ light-bg">
+					<th></th>
+					<th className="ui__ light-bg">
 						Résultat fiscal <strong>(1)</strong>
-					</td>
-					<td className="ui__ light-bg notice">
+					</th>
+					<th className="ui__ light-bg notice">
 						Exonérations liées aux zones / activités
-					</td>
-					<td className="ui__ light-bg notice">
+					</th>
+					<th className="ui__ light-bg notice">
 						Exonérations Madelin et plan d’épargne retraite
-					</td>
-					<td className="ui__ light-bg notice">
+					</th>
+					<th className="ui__ light-bg notice">
 						Exonérations de plus-values à court terme
-					</td>
-					<td className="ui__ light-bg notice">Suramortissement productif</td>
+					</th>
+					<th className="ui__ light-bg notice">Suramortissement productif</th>
 				</tr>
 				<tr>
 					<td>BIC réel normal</td>

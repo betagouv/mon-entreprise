@@ -100,14 +100,15 @@ export default function Budget() {
 									year: String(selectedYear),
 								}
 							)}
+							role="table"
 						>
 							<thead>
 								<tr>
-									<td>{selectedYear}</td>
+									<th>{selectedYear}</th>
 									{quarters.map((q) => (
-										<td key={q}>{q}</td>
+										<th key={q}>{q}</th>
 									))}
-									<td>Total</td>
+									<th>Total</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -231,12 +232,14 @@ export default function Budget() {
 const RessourcesAllocationTable = styled.table`
 	width: 100%;
 	text-align: left;
-	td {
+	td,
+	th {
 		padding: 6px;
 		font-family: ${({ theme }) => theme.fonts.main};
 	}
 
-	td:not(:first-child) {
+	td:not(:first-child),
+	th:not(:first-child) {
 		width: 100px;
 		text-align: right;
 	}
