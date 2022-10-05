@@ -30,10 +30,7 @@
 		"resolveJsonModule": true,
 
 		/* Advanced Options */
-		"forceConsistentCasingInFileNames": true,
-
-		// temporary disable lib check waiting a fix for https://github.com/sindresorhus/got/issues/2051
-		"skipLibCheck": true
+		"forceConsistentCasingInFileNames": true
 	},
 	"ts-node": {
 		"esm": true
