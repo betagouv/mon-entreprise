@@ -3,6 +3,7 @@ const { loadConfigFromFile, mergeConfig } = require('vite')
 const reactPlugin = require('@vitejs/plugin-react')
 const path = require('path')
 const VitePWA = require('vite-plugin-pwa').VitePWA
+const yaml = require('@rollup/plugin-yaml')
 
 module.exports = {
 	stories: [
@@ -57,7 +58,8 @@ module.exports = {
 					// Do not treat story files as HMR boundaries, storybook itself needs to handle them.
 					exclude: [/\.stories\.([tj])sx?$/, /node_modules/],
 				}),
-				VitePWA({}),
+				yaml(),
+				VitePWA({ disable: true }),
 			],
 		})
 
