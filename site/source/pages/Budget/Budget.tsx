@@ -48,8 +48,9 @@ export default function Budget() {
 				.reduce((acc, curr) => [...acc, ...curr], [])
 		),
 	]
+	const { t, i18n } = useTranslation()
 
-	const { language } = useTranslation().i18n
+	const { language } = i18n
 
 	return (
 		<>
@@ -91,7 +92,15 @@ export default function Budget() {
 							overflow: auto;
 						`}
 					>
-						<RessourcesAllocationTable>
+						<RessourcesAllocationTable
+							summary={t(
+								'budget.table-summary',
+								"La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
+								{
+									year: String(selectedYear),
+								}
+							)}
+						>
 							<thead>
 								<tr>
 									<td>{selectedYear}</td>
