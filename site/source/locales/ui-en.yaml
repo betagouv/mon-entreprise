@@ -2060,42 +2060,42 @@ sécu:
   page:
     titre: Social Security
   titre: Social security in France
-  videoTitle: <0>Explanatory video "3 minutes to understand the French Social Security system"</0>
-  transcript: "<0>Video Transcript</0><1>Three minutes to
-    understand the challenges of social security.</1><2>The purpose of social
-    security is to protect people living in France when certain events occur
-    during their lives.</2><3>It's budget consists of expenses mainly in the
-    form of benefits and of income, financed partly by contributions. Income is
-    managed by the collection branch made up of the URSSAF agencies. Regarding
-    expenses, there are four branches. The health insurance branch covers
-    hospital costs, medecine and consultations. The retirement pension branch
-    registers on each person's old-age account their income received throughout
-    their working life using companies online declarations in order to calculate
-    and pay pensions. the occupational risks branch covers the costs related to 
-    occupational diseases and accidents at work. the family branch provides various
-    benefits regarding birth and child care and allowances for education and housing
-    for example.
-    These four branches form the general scheme of the Social Security system.
-    Besides the general scheme there are specific organizations such as the MSA
-    for farmers and special schemes.</3><4>All people living in France help to fund
-    the Social Security system which in  return provides cover for all of them.
-    The principle is that of a \"common pot\" which works through solidarity each
-    person pays contributions based on their income rather than on their risks.</4>
-    <5>The Social Security system by providing pensions and paying for medical care has
-    extended life expectancy in France by three months every year in the past 20 years.
-    This progress leads to financing difficulties: longer life
-    expectancy implies more pensions and higher health expenses which
-    unbalance the system. To restore its balance, measures are being taken
-    especially by extending the contributions duration.</5><6>The Social Security system is also
-    increasing its services such as childcare capacity for children aged up to three so their
-    parents can keep working. It is also developing preventive
-    actions, running immunization campaigns programs for the
-    early screening of certain diseases, actions for post Hospital support at
-    home, and information about fall danger
-    among the elderly.</6><7>Founded seventy years ago, the French Social 
-    Security system has not only enabled the French to live longer but also better it
-    will continue evolving to build the services that meet their needs
-    you.</7>"
+  transcript-NO_AUTO_TRANSLATION: "<0>Three minutes to understand the challenges
+    of social security.</0><1>The purpose of social security is to protect
+    people living in France when certain events occur during their
+    lives.</1><2>Its budget consists of expenses mainly in the form of benefits
+    and of income, financed partly by contributions. Income is managed by the
+    collection branch made up of the URSSAF agencies. Regarding expenses, there
+    are four branches. The health insurance branch covers hospital costs,
+    medecine and consultations. The retirement pension branch registers on each
+    person's old-age account their income received throughout their working life
+    using companies online declarations in order to calculate and pay pensions.
+    the occupational risks branch covers the costs related to occupational
+    diseases and accidents at work. the family branch provides various benefits
+    regarding birth and child care and allowances for education and housing for
+    example. These four branches form the general scheme of the Social Security
+    system. Besides the general scheme there are specific organizations such as
+    the MSA for farmers and special schemes.</2><3>All people living in France
+    help to fund the Social Security system which in  return provides cover for
+    all of them. The principle is that of a \"common pot\" which works through
+    solidarity each person pays contributions based on their income rather than
+    on their risks.</3><4>The Social Security system by providing pensions and
+    paying for medical care has extended life expectancy in France by three
+    months every year in the past 20 years. This progress leads to financing
+    difficulties: longer life expectancy implies more pensions and higher health
+    expenses which unbalance the system. To restore its balance, measures are
+    being taken especially by extending the contributions duration.</4><5>The
+    Social Security system is also increasing its services such as childcare
+    capacity for children aged up to three so their parents can keep working. It
+    is also developing preventive actions, running immunization campaigns
+    programs for the early screening of certain diseases, actions for post
+    Hospital support at home, and information about fall danger among the
+    elderly.</5><6>Founded seventy years ago, the French Social Security system
+    has not only enabled the French to live longer but also better it will
+    continue evolving to build the services that meet their needs you.</6>"
+  videoTitle: <0>Explanatory video "3 minutes to understand the French Social
+    Security system"</0>
+  videoTranscriptTitle: Transcript of the video
 taux: rate
 taxe: tax
 tous les 6 mois: every 6 months

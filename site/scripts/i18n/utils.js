@@ -97,7 +97,11 @@ export const getUiMissingTranslations = () => {
 
 	const missingTranslations = Object.entries(staticKeys)
 		.filter(([key, valueInSource]) => {
-			if (key.match(/^\{.*\}$/) || valueInSource === 'NO_TRANSLATION') {
+			if (
+				key.match(/^\{.*\}$/) ||
+				valueInSource === 'NO_TRANSLATION' ||
+				key.includes('NO_AUTO_TRANSLATION')
+			) {
 				return false
 			}
 			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)

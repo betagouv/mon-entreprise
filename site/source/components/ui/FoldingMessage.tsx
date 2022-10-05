@@ -51,7 +51,7 @@ export default function FoldingMessage({
 								aria-expanded
 								aria-controls="warning-text"
 								light
-								color="tertiary"
+								color="primary"
 								onPress={() => setIsFolded(true)}
 							>
 								<Trans>Fermer</Trans>

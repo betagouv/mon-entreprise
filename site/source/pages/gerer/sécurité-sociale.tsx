@@ -1,6 +1,5 @@
 import { FromBottom } from '@/components/ui/animate'
 import FoldingMessage from '@/components/ui/FoldingMessage'
-import { AccompanyingMessage } from '@/design-system/message/index.stories'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Helmet } from 'react-helmet-async'
@@ -44,10 +43,10 @@ export default function SocialSecurity() {
 					<Video />
 				</section>
 				<StyledFoldingMessage
-					title="Transcription de la vidéo"
+					title={t('sécu.videoTranscriptTitle', 'Transcription de la vidéo')}
 					unfoldButtonLabel="Afficher la transcription"
 				>
-					<Trans i18nKey="sécu.transcript">
+					<Trans i18nKey="sécu.transcript-NO_AUTO_TRANSLATION">
 						<Body>
 							Trois minutes pour comprendre les enjeux de la sécurité sociale.
 						</Body>
