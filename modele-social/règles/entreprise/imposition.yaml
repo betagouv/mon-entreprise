@@ -288,6 +288,7 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
 
 entreprise . chiffre d'affaires . seuil micro dépassé:
+  experimental: oui
   applicable si: imposition . IR
   description: |
     Le statut de micro-entreprise s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise.
