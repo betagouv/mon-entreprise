@@ -13,13 +13,7 @@ import Engine, {
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import {
-	createContext,
-	useContext,
-	useEffect,
-	useLayoutEffect,
-	useMemo,
-} from 'react'
+import { createContext, useContext, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import i18n from '../../locales/i18n'
 
@@ -66,24 +60,51 @@ export const useRawSituation = () => {
 	return situation
 }
 
-export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
-	const dispatch = useDispatch()
-	const rawSituation = useRawSituation()
-
-	// Try to set situation and delete all rules with syntax error
+/**
+ * Try to set situation and delete all rules with syntax/evaluation error
+ */
+export const safeSetSituation = <Names extends string>(
+	engine: Engine<Names>,
+	rawSituation: Partial<Record<Names, PublicodesExpression>>,
+	onError: (data: {
+		situation: Partial<Record<Names, PublicodesExpression>>
+		faultyDottedName?: Names
+	}) => void
+) => {
 	let situationError = false
-	let maxLoopCount = 1000
-	let situation = { ...rawSituation } as typeof rawSituation
+	const errors: Error[] = []
+	let situation = { ...rawSituation }
 	do {
 		try {
+			// Try to set situation
 			engine.setSituation(situation)
 			situationError = false
 		} catch (error) {
 			situationError = true
-			maxLoopCount--
 
-			if (isPublicodesError(error, 'SyntaxError')) {
-				const faultyDottedName = error.info.dottedName as DottedName
+			// Clears the situation to avoid an infinite loop
+			// if the error is already known
+			if (
+				errors.some(
+					(err) =>
+						err.name === (error as Error).name &&
+						err.message === (error as Error).message
+				)
+			) {
+				engine.setSituation({})
+				onError({ situation: {} })
+
+				break
+			}
+			errors.push(error as Error)
+
+			// If it's a Publicodes syntax/evaluation error
+			if (
+				(isPublicodesError(error, 'SyntaxError') ||
+					isPublicodesError(error, 'EvaluationError')) &&
+				error.info.dottedName
+			) {
+				const faultyDottedName = error.info.dottedName as Names
 
 				// eslint-disable-next-line no-console
 				console.error(
@@ -91,16 +112,28 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 					error
 				)
 
-				// Hack: Omit faultyDottedName from situation for next loop
-				situation = omit(situation, faultyDottedName)
+				// Omit faultyDottedName from situation for next loop
+				situation = omit(situation, faultyDottedName) as typeof rawSituation
 
-				dispatch(deleteFromSituation(faultyDottedName))
+				onError({ faultyDottedName, situation })
 			} else {
 				// eslint-disable-next-line no-console
 				console.error('safeSituationCatch', error)
 			}
 		}
-	} while (situationError && maxLoopCount > 0)
+	} while (situationError && errors.length < 1000)
+}
+
+export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
+	const dispatch = useDispatch()
+	const rawSituation = useRawSituation()
+
+	safeSetSituation(
+		engine,
+		rawSituation,
+		({ faultyDottedName }) =>
+			faultyDottedName && dispatch(deleteFromSituation(faultyDottedName))
+	)
 }
 
 export function useInversionFail() {
