@@ -28,6 +28,7 @@ const nextDayStandup = nextDayMember
 
 const now = new Date()
 	.toLocaleTimeString('fr', {
+		timeZone: 'Europe/Paris',
 		hour: '2-digit',
 		minute: '2-digit',
 	})
