@@ -35,6 +35,7 @@ if (badJob >= 0) {
 const bree = new Bree({
 	root: join(__dirname, 'jobs'),
 	defaultExtension: NODE_ENV === 'production' ? 'js' : 'ts',
+	timezone: 'Europe/Paris',
 	jobs,
 })
 
