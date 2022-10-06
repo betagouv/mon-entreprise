@@ -7,6 +7,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import { SiteNameContext } from '../../Provider'
 import { isIterable } from '../../utils'
 import Emoji from './Emoji'
@@ -74,33 +75,26 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	renderers?: Record<string, unknown>
 }
 
-const CodeBlock = ({
-	children,
-	className,
-}: {
-	children: string
-	className?: string
-}) => (
-	<div
-		css={`
-			position: relative;
-		`}
-	>
-		<pre className="ui__ code">
-			<code>{children}</code>
-		</pre>
-		{className?.includes('lang-yaml') && (
-			<a
-				href={`https://publi.codes/studio?code=${encodeURIComponent(children)}`}
-				target="_blank"
-				rel="noreferrer"
-				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
-			>
-				<Emoji emoji="⚡" /> Lancer le calcul
-			</a>
-		)}
-	</div>
-)
+const Code = styled.code`
+	overflow: auto;
+	padding: 0.25rem;
+	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	border-radius: 0.25rem;
+`
+
+const Pre = styled.pre`
+	overflow: auto;
+	padding: 0.5rem;
+	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	border-radius: 0.25rem;
+
+	& ${Code} {
+		overflow: initial;
+		padding: 0;
+		background-color: initial;
+		border-radius: initial;
+	}
+`
 
 export const Markdown = ({
 	children,
@@ -126,7 +120,8 @@ export const Markdown = ({
 				ul: Ul,
 				ol: Ol,
 				li: Li,
-				code: CodeBlock,
+				code: Code,
+				pre: Pre,
 				span: TextRenderer,
 				blockquote: (props) => (
 					<Message type="info" border={false} icon {...props} />
