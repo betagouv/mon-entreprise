@@ -9,6 +9,7 @@ import {
 	redirectUri,
 	serverUrl,
 } from './config.js'
+import { bree } from './jobs.js'
 import { initMongodb } from './mongodb.js'
 import { getAccessToken } from './oauth.js'
 import { snakeToCamelCaseKeys } from './utils.js'
@@ -70,6 +71,11 @@ router.get('/oauth', async (ctx) => {
 
 		ctx.status = 400
 	}
+})
+
+router.get('/run-all', async (ctx) => {
+	await bree.run()
+	ctx.status = 200
 })
 
 app.use(router.routes())

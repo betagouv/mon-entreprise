@@ -39,3 +39,5 @@ const bree = new Bree({
 })
 
 await bree.start()
+
+export { bree }
