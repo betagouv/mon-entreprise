@@ -183,8 +183,8 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<caption className="visually-hidden">{captionText}</caption>
 				<thead>
 					<tr>
-						<th></th>
-						<th>
+						<th id="emptyTh1"></th>
+						<th role="columnheader" scope="col">
 							<select
 								onChange={(evt) =>
 									setCurrentColumnIndex(Number(evt.target.value))
@@ -203,7 +203,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<th>
+							<th role="rowheader" scope="row">
 								<RowLabel {...label} />
 							</th>
 							<td>
@@ -215,15 +215,19 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 			</ResultTable>
 			<ResultTable>
 				<caption className="visually-hidden">{captionText}</caption>
-				<tbody>
+				<thead>
 					<tr>
 						{head.map((label, i) => (
-							<th key={i}>{label}</th>
+							<th key={i} role="columnheader" scope="column">
+								{label}
+							</th>
 						))}
 					</tr>
+				</thead>
+				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<th>
+							<th role="rowheader" scope="row">
 								<RowLabel {...label} />
 							</th>
 							{line.map((cell, j) => (

@@ -107,9 +107,14 @@ export default function Budget() {
 							</caption>
 							<thead>
 								<tr>
-									<th>{selectedYear}</th>
+									<th id="selectedYearTh">{selectedYear}</th>
 									{quarters.map((q) => (
-										<th key={q.label} aria-label={q['aria-label']}>
+										<th
+											role="columnheader"
+											scope="col"
+											key={q.label}
+											aria-label={q['aria-label']}
+										>
 											{q.label}
 										</th>
 									))}
@@ -119,7 +124,9 @@ export default function Budget() {
 							<tbody>
 								{categories.map((label) => (
 									<tr key={label}>
-										<th>{label}</th>
+										<th role="rowheader" scope="row">
+											{label}
+										</th>
 										{quarters.map((q) => {
 											const value = budget[selectedYear]?.[q.label]?.[label]
 
