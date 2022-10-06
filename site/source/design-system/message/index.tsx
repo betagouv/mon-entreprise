@@ -7,7 +7,7 @@ import errorIcon from './errorIcon.svg'
 import infoIcon from './infoIcon.svg'
 import successIcon from './successIcon.svg'
 
-type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
+export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
 	children: React.ReactNode
 	icon?: boolean
