@@ -25,20 +25,21 @@ const router = new Router<KoaState, KoaContext>()
 app.use(cors())
 
 router.get('/connect', (ctx) => {
+	const { state = '' } = ctx.query
 	const url =
 		`${serverUrl}/oauth/authorize?` +
 		[
 			`client_id=${clientId}`,
 			`redirect_uri=${redirectUri}`,
 			`response_type=code`,
-			`state=`,
+			`state=${state?.toString()}`,
 		].join('&')
 
 	ctx.redirect(url)
 })
 
 router.get('/oauth', async (ctx) => {
-	const { code, error } = ctx.query
+	const { code, error, state } = ctx.query
 
 	if (error) {
 		ctx.status = 400
@@ -64,6 +65,10 @@ router.get('/oauth', async (ctx) => {
 
 		await mongo.saveOAuth(snakeToCamelCaseKeys(body))
 
+		if (state === 'run-all') {
+			await bree.run()
+		}
+
 		ctx.status = 200
 	} catch (err) {
 		// eslint-disable-next-line no-console
@@ -71,11 +76,6 @@ router.get('/oauth', async (ctx) => {
 
 		ctx.status = 400
 	}
-})
-
-router.get('/run-all', async (ctx) => {
-	await bree.run()
-	ctx.status = 200
 })
 
 app.use(router.routes())
