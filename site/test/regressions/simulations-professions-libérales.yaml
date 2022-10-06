@@ -4,23 +4,23 @@ médecin:
   - # Secteur 2 dépassement honoraire
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération . totale: 50000 €/an
-    dirigeant . indépendant . PL . métier . secteur médecin: "'S2'"
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
     dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 20%
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération . totale: 300000 €/an
-    dirigeant . indépendant . PL . métier . secteur médecin: "'S2'"
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
     dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération . totale: 400000 €/an
-    dirigeant . indépendant . PL . métier . secteur médecin: "'S2'"
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
     dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
     dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée: 40%
   - # Non conventionné
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération . totale: 120000 €/an
-    dirigeant . indépendant . PL . métier . secteur médecin: "'non conventionné'"
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
     entreprise . date de création: 01/01/2021
     dirigeant . indépendant . PL . métier: "'santé . médecin'"

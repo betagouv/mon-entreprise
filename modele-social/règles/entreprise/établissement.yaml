@@ -16,6 +16,7 @@
     - sinon: nom
   avec:
     nom:
+      titre: Commune
     taux versement mobilité:
       par défaut: 0
       unité: '%'

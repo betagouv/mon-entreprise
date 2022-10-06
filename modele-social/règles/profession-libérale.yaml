@@ -79,7 +79,7 @@ dirigeant . indépendant . PL . métier . santé . sage-femme:
 #     Cela consiste en un taux unique de cotisations à 13,30%
 #   références: https://www.calcul.urssaf.fr/medecin_remplacant.html
 dirigeant . indépendant . PL . métier . santé . médecin:
-dirigeant . indépendant . PL . métier . secteur médecin:
+dirigeant . indépendant . PL . métier . santé . médecin . secteur:
   applicable si: métier = 'santé . médecin'
   question: Sur quel secteur êtes-vous conventionné ?
   description: |
@@ -93,12 +93,12 @@ dirigeant . indépendant . PL . métier . secteur médecin:
         - 'S1'
         - 'S2'
         - 'non conventionné'
-
-dirigeant . indépendant . PL . métier . secteur médecin . S1:
-  titre: Secteur 1
-dirigeant . indépendant . PL . métier . secteur médecin . S2:
-  titre: Secteur 2
-dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:
+  avec:
+    S1:
+      titre: Secteur 1
+    S2:
+      titre: Secteur 2
+    non conventionné:
 
 dirigeant . indépendant . PL . métier . avocat:
   description: |
@@ -606,7 +606,7 @@ dirigeant . indépendant . PL . PAMC:
     une de ces conditions:
       - toutes ces conditions:
           - métier = 'santé . médecin'
-          - métier . secteur médecin != 'non conventionné'
+          - métier . santé . médecin . secteur != 'non conventionné'
       - métier = 'santé . sage-femme'
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . auxiliaire médical'
@@ -678,7 +678,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
       - revenu professionnel > 0
   non applicable si:
     une de ces conditions:
-      - métier . secteur médecin = 'non conventionné'
+      - métier . santé . médecin . secteur = 'non conventionné'
       - remplaçant
   formule:
     produit:
@@ -709,7 +709,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
       - (- participation CPAM)
 
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
-  non applicable si: métier . secteur médecin = 'S1'
+  non applicable si: métier . santé . médecin . secteur = 'S1'
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
@@ -762,7 +762,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
 
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
-  non applicable si: métier . secteur médecin = 'S2'
+  non applicable si: métier . santé . médecin . secteur = 'S2'
   formule:
     produit:
       assiette: assiette participation CPAM
@@ -777,7 +777,7 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
     arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
-  applicable si: métier . secteur médecin = 'S1'
+  applicable si: métier . santé . médecin . secteur = 'S1'
   titre: allocations familiales (après participation CPAM)
   remplace:
     règle: cotisations et contributions . allocations familiales
@@ -1108,7 +1108,7 @@ dirigeant . indépendant . PL . CARMF:
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   titre: retraite de base CNAVPL (après participation CPAM)
-  applicable si: métier . secteur médecin = 'S1'
+  applicable si: métier . santé . médecin . secteur = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   remplace: cotisations et contributions . retraite de base
@@ -1203,7 +1203,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
     Les deux tiers de la cotisation des médecins en secteur 1 sont financés
     par les Caisses maladie.
-  non applicable si: métier . secteur médecin = 'non conventionné'
+  non applicable si: métier . santé . médecin . secteur = 'non conventionné'
   formule:
     valeur:
       nom: assiette
@@ -1221,7 +1221,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
-  applicable si: métier . secteur médecin = 'S1'
+  applicable si: métier . santé . médecin . secteur = 'S1'
   formule:
     produit:
       assiette: assiette
