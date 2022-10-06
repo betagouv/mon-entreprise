@@ -100,13 +100,12 @@ export default function Budget() {
 						<RessourcesAllocationTable
 							summary={t(
 								'budget.table-summary',
-								"La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
+								"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
 								{
 									year: String(selectedYear),
 								}
 							)}
 							role="table"
-							aria-label={`Tableau affichant le bugdet de l'année ${selectedYear} par poste de dépenses.`}
 						>
 							<thead>
 								<tr>
