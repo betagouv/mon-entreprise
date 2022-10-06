@@ -119,7 +119,7 @@ CIPAV conjoint collaborateur:
 CIPAV ACRE:
   - &CNAVPL-ACRE
     dirigeant . rémunération . net: 5000 €/an
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
     entreprise . date de création: 11/11/2021
   - <<: *CNAVPL-ACRE
     dirigeant . rémunération . net: 20000 €/an

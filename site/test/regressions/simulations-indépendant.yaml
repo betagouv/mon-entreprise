@@ -34,7 +34,7 @@ activité:
 acre:
   - dirigeant . rémunération . net: 50000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . rémunération . net: 20000 €/an

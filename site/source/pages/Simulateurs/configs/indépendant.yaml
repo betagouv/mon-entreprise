@@ -9,12 +9,13 @@ questions:
     Type d'activité: entreprise . activité
     Micro-fiscal: entreprise . imposition . régime . micro-entreprise
     Date de création: entreprise . date de création
-    ACRE: entreprise . exonérations . ACRE
+    ACRE: dirigeant . exonérations . ACRE
     Contrats Madelins: dirigeant . indépendant . cotisations facultatives
     Conjoint collaborateur: dirigeant . indépendant . conjoint collaborateur
     Impôt sur le revenu: impôt . méthode de calcul
   liste noire:
     - entreprise . charges
+    - entreprise . chiffre d'affaires
     - entreprise . exercice . début
     - entreprise . exercice . fin
     - entreprise . catégorie juridique

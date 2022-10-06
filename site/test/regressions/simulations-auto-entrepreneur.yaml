@@ -12,9 +12,9 @@
 
 aides:
   - dirigeant . auto-entrepreneur . revenu net: 5000 €/an
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 50000 €/an
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . auto-entrepreneur . revenu net: 25000 €/an
@@ -24,19 +24,19 @@ impôt sur le revenu:
 ACRE:
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2021
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2020
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 30000 €/an
     entreprise . date de création: 01/06/2021
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 40000 €/an
     entreprise . date de création: 01/06/2020
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
     entreprise . date de création: 01/01/2022
-    entreprise . exonérations . ACRE: oui
+    dirigeant . exonérations . ACRE: oui
 
 activités:
   - dirigeant . rémunération . totale: 20000 €/an
