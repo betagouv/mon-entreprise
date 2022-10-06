@@ -7,6 +7,7 @@ import {
 	useRef,
 	useState,
 } from 'react'
+import { safeSetSituation } from './EngineContext'
 
 export type Situation<Names extends string> = Partial<
 	Record<Names, PublicodesExpression | undefined>
@@ -37,7 +38,10 @@ export const useSynchronizedSituationState = <Names extends string>(
 
 	if (prevSituation.current !== localSituation) {
 		prevSituation.current = localSituation
-		engine.setSituation(localSituation)
+
+		safeSetSituation(engine, localSituation, ({ situation }) =>
+			setLocalSituation(situation)
+		)
 	}
 
 	return { situation: localSituation, setSituation: setLocalSituation }
