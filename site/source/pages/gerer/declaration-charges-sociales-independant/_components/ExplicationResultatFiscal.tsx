@@ -50,7 +50,7 @@ export function ExplicationsResultatFiscal() {
 
 			<StyledTable role="table">
 				<caption className="visually-hidden">
-					<Trans i18nKey="explications.table-caption">
+					<Trans i18nKey="explications.tableCaption">
 						Tableau affichant les lignes de votre liasse fiscale associées aux
 						exonérations fiscales en place pour chaque type d'activité. La
 						première colonne affiche les différents types d'activité (BIC, BNC).

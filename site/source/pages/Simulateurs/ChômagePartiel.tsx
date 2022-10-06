@@ -11,7 +11,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 declare global {
@@ -170,9 +170,17 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 		columns.length - 1
 	)
 
+	const captionText = (
+		<Trans i18nKey="chomagePartiel.tableCaption">
+			Tableau indiquant le salaire net et le coût pour l'employeur avec ou sans
+			chômage partiel.
+		</Trans>
+	)
+
 	return (
 		<>
 			<ResultTable className="ui__ mobile-version">
+				<caption className="visually-hidden">{captionText}</caption>
 				<thead>
 					<tr>
 						<th></th>
@@ -206,6 +214,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				</tbody>
 			</ResultTable>
 			<ResultTable>
+				<caption className="visually-hidden">{captionText}</caption>
 				<tbody>
 					<tr>
 						{head.map((label, i) => (
