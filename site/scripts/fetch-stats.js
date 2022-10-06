@@ -22,6 +22,11 @@ const fetchApi = async function (query) {
 		body: JSON.stringify(query),
 	})
 	if (!response.ok) {
+		if (response.status === 429) {
+			return new Promise((resolve) =>
+				setTimeout(() => resolve(fetchApi(query)), 100)
+			)
+		}
 		const text = await response.text()
 		throw new Error(`Erreur de l'API (${text})`)
 	}
