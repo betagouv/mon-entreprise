@@ -51,7 +51,7 @@ export function ExplicationsResultatFiscal() {
 				role="table"
 				summary={t(
 					'explications.table-summary',
-					'La première colonne affiche les différents types de régimes (BIC, BNC). La deuxième colonne indique les lignes de votre liasse fiscale qui vous permettent de déterminer votre résultat fiscal, et ce pour chaque régime. Les autres colonnes affichent les exonérations en place ainsi que les lignes de liasse fiscale ou ajouter vos exonérations et ce pour chaque régime.'
+					'Tableau affichant les lignes de votre liasse fiscale associées aux exonérations fiscales en place. La première colonne affiche les différents types de régimes (BIC, BNC). La deuxième colonne indique les lignes de votre liasse fiscale qui vous permettent de déterminer votre résultat fiscal, et ce pour chaque régime. Les autres colonnes affichent les exonérations en place ainsi que les lignes de liasse fiscale ou ajouter vos exonérations et ce pour chaque régime.'
 				)}
 			>
 				<tr>

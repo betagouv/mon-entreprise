@@ -97,33 +97,76 @@ export default function Budget() {
 							overflow: auto;
 						`}
 					>
-						<RessourcesAllocationTable
-							summary={t(
-								'budget.table-summary',
-								"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
-								{
-									year: String(selectedYear),
-								}
-							)}
-							role="table"
-						>
-							<thead>
-								<tr>
-									<th>{selectedYear}</th>
-									{quarters.map((q) => (
-										<th key={q.label} aria-label={q['aria-label']}>
-											{q.label}
-										</th>
+						<figure>
+							<figcaption className="visually-hidden">
+								Tableau affichant le bugdet de l'année {selectedYear} par poste
+								de dépenses.
+							</figcaption>
+
+							<RessourcesAllocationTable
+								title=""
+								summary={t(
+									'budget.table-summary',
+									"La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
+									{
+										year: String(selectedYear),
+									}
+								)}
+								role="table"
+							>
+								<thead>
+									<tr>
+										<th>{selectedYear}</th>
+										{quarters.map((q) => (
+											<th key={q.label} aria-label={q['aria-label']}>
+												{q.label}
+											</th>
+										))}
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									{categories.map((label) => (
+										<tr key={label}>
+											<td>{label}</td>
+											{quarters.map((q) => {
+												const value = budget[selectedYear]?.[q.label]?.[label]
+
+												return (
+													<td key={q.label}>
+														{value
+															? formatValue(value, {
+																	displayedUnit: '€',
+																	language,
+															  })
+															: '-'}
+													</td>
+												)
+											})}
+											<td>
+												{formatValue(
+													arraySum(
+														quarters.map(
+															(q) =>
+																budget[selectedYear]?.[q.label]?.[label] ?? 0
+														)
+													),
+													{
+														displayedUnit: '€',
+														language,
+													}
+												)}
+											</td>
+										</tr>
 									))}
-									<th>Total</th>
-								</tr>
-							</thead>
-							<tbody>
-								{categories.map((label) => (
-									<tr key={label}>
-										<td>{label}</td>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td>Total HT</td>
 										{quarters.map((q) => {
-											const value = budget[selectedYear]?.[q.label]?.[label]
+											const value = arraySum(
+												Object.values(budget[selectedYear]?.[q.label] ?? {})
+											)
 
 											return (
 												<td key={q.label}>
@@ -139,8 +182,12 @@ export default function Budget() {
 										<td>
 											{formatValue(
 												arraySum(
-													quarters.map(
-														(q) => budget[selectedYear]?.[q.label]?.[label] ?? 0
+													quarters.map((q) =>
+														arraySum(
+															Object.values(
+																budget[selectedYear]?.[q.label] ?? {}
+															)
+														)
 													)
 												),
 												{
@@ -150,86 +197,50 @@ export default function Budget() {
 											)}
 										</td>
 									</tr>
-								))}
-							</tbody>
-							<tfoot>
-								<tr>
-									<td>Total HT</td>
-									{quarters.map((q) => {
-										const value = arraySum(
-											Object.values(budget[selectedYear]?.[q.label] ?? {})
-										)
-
-										return (
-											<td key={q.label}>
-												{value
-													? formatValue(value, {
-															displayedUnit: '€',
-															language,
-													  })
-													: '-'}
-											</td>
-										)
-									})}
-									<td>
-										{formatValue(
-											arraySum(
-												quarters.map((q) =>
-													arraySum(
-														Object.values(budget[selectedYear]?.[q.label] ?? {})
-													)
-												)
-											),
-											{
-												displayedUnit: '€',
-												language,
-											}
-										)}
-									</td>
-								</tr>
-								<tr>
-									<td>Total TTC</td>
-									{quarters.map((q) => {
-										const value = Math.round(
-											arraySum(
-												Object.values(budget[selectedYear]?.[q.label] ?? {})
-											) * 1.2
-										)
-
-										return (
-											<td key={q.label}>
-												{value
-													? formatValue(value, {
-															displayedUnit: '€',
-															language,
-													  })
-													: '-'}
-											</td>
-										)
-									})}
-									<td>
-										{formatValue(
-											Math.round(
+									<tr>
+										<td>Total TTC</td>
+										{quarters.map((q) => {
+											const value = Math.round(
 												arraySum(
-													quarters.map(
-														(q) =>
-															arraySum(
-																Object.values(
-																	budget[selectedYear]?.[q.label] ?? {}
-																)
-															) * 1.2
+													Object.values(budget[selectedYear]?.[q.label] ?? {})
+												) * 1.2
+											)
+
+											return (
+												<td key={q.label}>
+													{value
+														? formatValue(value, {
+																displayedUnit: '€',
+																language,
+														  })
+														: '-'}
+												</td>
+											)
+										})}
+										<td>
+											{formatValue(
+												Math.round(
+													arraySum(
+														quarters.map(
+															(q) =>
+																arraySum(
+																	Object.values(
+																		budget[selectedYear]?.[q.label] ?? {}
+																	)
+																) * 1.2
+														)
 													)
-												)
-											),
-											{
-												displayedUnit: '€',
-												language,
-											}
-										)}
-									</td>
-								</tr>
-							</tfoot>
-						</RessourcesAllocationTable>
+												),
+												{
+													displayedUnit: '€',
+													language,
+												}
+											)}
+										</td>
+									</tr>
+								</tfoot>
+							</RessourcesAllocationTable>
+						</figure>
 					</div>
 					<Markdown>{ressourcesDescription}</Markdown>
 				</>
