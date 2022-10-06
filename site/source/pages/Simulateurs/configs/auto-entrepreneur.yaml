@@ -7,7 +7,7 @@ objectifs:
 
 questions:
   à l'affiche:
-    Type d'activité: entreprise . activité
+    Type d'activité: entreprise . activité . nature
     Versement libératoire: dirigeant . auto-entrepreneur . impôt . versement libératoire
     Impôt sur le revenu: impôt . méthode de calcul
     ACRE: dirigeant . exonérations . ACRE

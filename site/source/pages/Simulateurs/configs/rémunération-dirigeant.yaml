@@ -12,9 +12,9 @@ objectifs:
 questions:
   liste noire:
     - entreprise . charges
-    - entreprise . activité . libérale . réglementée
+    - entreprise . activité . nature . libérale . réglementée
   liste:
-    - entreprise . activité
+    - entreprise . activité . nature
 unité par défaut: €/an
 situation:
   dirigeant . régime social: "'auto-entrepreneur'"

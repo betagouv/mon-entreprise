@@ -1,4 +1,11 @@
 entreprise . activité:
+  titre: activité principale
+  type: texte
+  références:
+    "Activité de votre entreprise : code APE, code NAF, qu'est-ce que c'est ?": https://www.economie.gouv.fr/entreprises/activite-entreprise-code-ape-code-naf
+    'À quoi correspond le code APE (code NAF) ?': https://entreprendre.service-public.fr/vosdroits/F33050
+
+entreprise . activité . nature:
   titre: nature de l'activité
   question: Quelle est la nature de votre activité principale ?
   description: Votre type d'activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
@@ -12,46 +19,50 @@ entreprise . activité:
         - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
-    Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
-entreprise . activité . libérale:
+entreprise . activité . nature . libérale:
   question: Votre activité est-elle une profession libérale ?
   valeur: activité = 'libérale'
   description: |
-    Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
+    Une activité libérale consiste en des prestations de services de nature principalement intellectuelles.
 
-    Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
-      - de nature généralement civile,
-      - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
+    Vous rendez un service payant.
+
+    Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+
   références:
+    Comment savoir si votre entreprise est libérale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-3situation1
     fiche Wikipedia: https://fr.wikipedia.org/wiki/Profession_lib%C3%A9rale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . activité . commerciale:
+entreprise . activité . nature . commerciale:
   valeur: activité = 'commerciale'
   description: |
-    ### Activité commerciale
-    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
-    - Vente de prestations de service commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
+    Votre activité est commerciale si vous êtes dans l'un des cas suivants :
 
-    ### Activité industrielle
+    - Vous achetez des biens ou des marchandises pour les revendre dans un but lucratif : Qui rapporte de l'argent, du profit, des bénéfices
+    - Vous vendez des services dans les domaines de l'hôtellerie, la restauration, les transports, les spectacles, la sécurité, l'informatique, le design, etc.
+    - Vous avez une activité de location de biens, de marchandises ou de services
 
-    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+  références:
+    Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
 
-entreprise . activité . artisanale:
+entreprise . activité . nature . artisanale:
   valeur: activité = 'artisanale'
   description: |
-    C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
+    Pour être artisan, vous devez répondre aux 3 critères suivants :
 
-    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
-
-    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
-    - Les activités artisanales sont répertoriées par un décret
+    - Votre activité doit faire partie de la liste officielle des métiers de l'artisanat ou de la liste officielle des métiers d'artisanat d'art
+    - Votre entreprise doit compter moins de 11 salariés à sa création
+    - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme (CAP, BEP, etc.) ou une qualification professionnelle
   références:
+    Comment savoir si votre activité est artisanale ?: 'https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-2situation1'
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
 entreprise . activité . service ou vente:
+  experimental: oui
   non applicable si: mixte
   applicable si:
     une de ces conditions:
@@ -87,7 +98,7 @@ entreprise . activité . service ou vente . service:
 entreprise . activité . mixte:
   experimental: oui
   titre: Activités mixtes
-  applicable si: entreprise . imposition . régime . micro-entreprise
+  applicable si: imposition . régime . micro-entreprise
   question: Votre entreprise a-t-elle plusieurs types d'activités ?
   par défaut: non
   description: |
@@ -129,7 +140,7 @@ entreprise . activité . mixte . proportions:
         - sinon: 50%
   note: Il appartient à l'utilisateur de bien vérifier que la somme des trois pourcentages renseignés vaut 100%.
 
-entreprise . activité . libérale . réglementée:
+entreprise . activité . nature . libérale . réglementée:
   question: Est-ce une activité libérale réglementée ?
   par défaut: non
   description: |

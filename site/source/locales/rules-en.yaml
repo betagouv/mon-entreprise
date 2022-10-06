@@ -1160,6 +1160,68 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   titre.en: '[automatic] after tax'
   titre.fr: après impôt
+dirigeant . exonérations:
+  titre.en: '[automatic] exemptions'
+  titre.fr: exonérations
+dirigeant . exonérations . ACRE:
+  description.en: >-
+    [automatic] The aid for creating or taking over a business
+    (Acre) consists of a partial exemption from social security charges, known
+    as the start-up exemption, for 12 months.
+
+
+    It is **automatic** for **companies and sole proprietorships** (under certain conditions, such as not having benefited from it in the last three years).
+
+
+    For **self-employed** entrepreneurs, however, it must be requested and is reserved for the following beneficiaries
+
+    - Jobseekers (whether or not they receive compensation but have been registered with the Pôle Emploi for at least 6 months during the last 18 months).
+
+    - Recipients of social assistance (RSA, ASS, ATA)
+
+    - Young people between 18 and 25 years old (up to 29 years old for people recognized as disabled)
+
+    - People creating a micro-enterprise in a priority district of the city (QPPV)
+
+
+    &gt; *Historical*:
+
+    - For auto-businesses created from January 1, 2020, the exemption is again subject to conditions.
+
+    - For businesses created between January 1, 2019 and December 31, 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the previous three years
+
+    - For companies created before January 1, 2019, the exemption of contribution called ACCRE was subject to conditions and was not automatic: you had to apply.
+  description.fr: >-
+    L'aide à la création ou à la reprise d'une entreprise (Acre)
+    consiste en une exonération partielle de charges sociales, dite exonération
+    de début d'activité pendant 12 mois.
+
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+
+
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
+
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+
+    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+
+    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+
+
+    > *Historique*:
+
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est de nouveau soumise à condition.
+
+    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
+
+    - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+  question.en: '[automatic] Did you benefit from the ACRE?'
+  question.fr: Bénéficiez-vous de l'ACRE ?
+  titre.en: '[automatic] ACRE'
+  titre.fr: ACRE
 dirigeant . gérant minoritaire:
   question.en: '[automatic] Are you a minority or equal shareholder of your company?'
   question.fr: Êtes-vous gérant minoritaire ou égalitaire de votre entreprise ?
@@ -3905,25 +3967,26 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
   titre.fr: seuils dépassés
 entreprise . activité:
   description.en: '[automatic] Your type of activity will determine a large part
-    of the contribution, contribution and tax calculations.'
+    of the calculations of contributions and taxes.'
   description.fr: Votre type d'activité va déterminer une grande partie des
     calculs de cotisations, contributions et impôt.
   question.en: '[automatic] What is the nature of your main activity?'
   question.fr: Quelle est la nature de votre activité principale ?
-  titre.en: '[automatic] nature of business'
+  titre.en: '[automatic] nature of the activity'
   titre.fr: nature de l'activité
 entreprise . activité . artisanale:
   description.en: >
-    It is an activity of service, production, processing, or by a
-    qualified professional, and which requires specific skills and know-how.
+    [automatic] It is an activity of service, production,
+    transformation, or repair carried out by a qualified professional, and which
+    requires specific skills and know-how.
 
 
-    > For example: works, building activities, repairs of products provided by the customer, hairdressers....
+    &gt; For example: works, building activities, repair of products provided by the customer, hairdressers...
 
 
-    - The company must not employ more than 10 employees (the activity becomes commercial beyond)
+    - The company must not employ more than 10 employees (the activity becomes commercial beyond that number)
 
-    - Craft activities are listed by decree
+    - The craft activities are listed by a decree
   description.fr: >
     C'est une activité de service, de production, de transformation,
     ou de réparation exercée par un professionnel qualifié, et qui nécessite des
@@ -3936,21 +3999,21 @@ entreprise . activité . artisanale:
     - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
 
     - Les activités artisanales sont répertoriées par un décret
-  titre.en: Craft
+  titre.en: '[automatic] artisanal'
   titre.fr: artisanale
 entreprise . activité . commerciale:
   description.en: >
     [automatic] ### Commercial activity
 
-    - Purchases of goods for resale in the same condition (wholesale or retail)
+    - Purchase of goods for resale as is (wholesale or retail trade)
 
-    - Sale of commercial services (equipment rental, transport, real estate agency, hotel and catering, entertainment business, private security activity, rental, etc.).
+    - Sale of commercial services (equipment rental, transportation, real estate agency, hotel and restaurant business, entertainment business, private security business, rental, etc.)
 
 
     ### Industrial activity
 
 
-    Production or processing activity through the use of industrial tools, extraction, mining, handling, storage and warehousing
+    Production or transformation activity through the use of industrial tools, extraction, mining, handling, warehousing and storage
   description.fr: >
     ### Activité commerciale
 
@@ -3963,22 +4026,23 @@ entreprise . activité . commerciale:
 
 
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
-  titre.en: commercial or industrial
+  titre.en: '[automatic] commercial'
   titre.fr: commerciale
 entreprise . activité . débit de tabac:
-  question.en: '[automatic] Do you engage in tobacco sales?'
+  question.en: '[automatic] Do you sell tobacco products?'
   question.fr: Exercez-vous une activité de vente de tabac ?
-  titre.en: tobacco shop
+  titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
 entreprise . activité . libérale:
   description.en: >
-    These are the "intellectual" professions: doctors, midwife,
-    physiotherapist, lawyer, but also consultant, developer, designer...
+    [automatic] These are the "intellectual" professions: doctors,
+    midwives, physiotherapists, lawyers, but also consultants, developers,
+    designers...
 
 
-    According to the law, these are persons who habitually practice in a way that independent and under their responsibility, an activity:
+    According to the law, these are people who carry out on a regular basis, independently and under their responsibility, an activity :
       - of a generally civil nature,
-      - the purpose of which is to provide mainly intellectual, technical or care services, carried out by means of appropriate professional qualifications and in compliance with ethical principles or professional ethics.
+      - whose purpose is to provide services mainly intellectual, technical or care, implemented by means of appropriate professional qualifications and in compliance with ethical principles or a professional code of conduct.
   description.fr: >
     Ce sont les professions "intellectuelles" : médecins,
     sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
@@ -3989,7 +4053,7 @@ entreprise . activité . libérale:
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
   question.en: '[automatic] Is your activity a liberal profession?'
   question.fr: Votre activité est-elle une profession libérale ?
-  titre.en: liberal
+  titre.en: '[automatic] liberal'
   titre.fr: libérale
 entreprise . activité . libérale . réglementée:
   description.en: >
@@ -4027,20 +4091,26 @@ entreprise . activité . libérale . réglementée:
 entreprise . activité . mixte:
   description.en: >
     [automatic] It is possible to have several activities with
-    different types of income for the same company.
+    different types of income for the same
+
+    for the same company.
 
 
-    For example, a plumbing company that charges for the purchase and installation of a faucet has a part of its turnover in sale of material (the faucet) and a part in service provision (the installation).
+    For example, a plumbing company that charges for the purchase and installation of a faucet
+
+    faucet has a part of its turnover in sale of material (the faucet) and a part in service
+
+    and a part in service provision (the installation).
 
 
     There are three categories with different standard expense allowance rates:
 
 
-    - [Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% deduction)
+    - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% allowance)
 
-    - [Commercial or artisanal services (BIC)](/documentation/company/turnover/service-BIC) (50% deduction)
+    - Commercial or artisanal services (BIC)](/documentation/company/turnover/service-BIC) (50% deduction)
 
-    - [Other services and liberal activities (BNC)](/documentation/company/turnover/service-BNC) (34% deduction)
+    - Other services and liberal activities (BNC)](/documentation/company/turnover/service-BNC) (34% deduction)
 
 
     If your company has activities corresponding to several categories of income, answer yes to this
@@ -4078,41 +4148,42 @@ entreprise . activité . mixte:
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
 entreprise . activité . mixte . proportions:
-  description.en: '[automatic] Share of the various activities in turnover'
+  description.en: '[automatic] Share of the different activities in the turnover'
   description.fr: Part des différentes activités dans le chiffre d'affaires
   note.en: '[automatic] It is up to the user to check that the sum of the three
     percentages is 100%.'
   note.fr: Il appartient à l'utilisateur de bien vérifier que la somme des trois
     pourcentages renseignés vaut 100%.
-  titre.en: '[automatic] activity proportion'
+  titre.en: '[automatic] proportion activity'
   titre.fr: proportion activité
 entreprise . activité . principale:
   titre.en: '[automatic] main activity'
   titre.fr: activité principale
 entreprise . activité . service ou vente:
-  question.en: '[automatic] What is the type of activity of the company?'
+  question.en: '[automatic] What type of business is the company in?'
   question.fr: Quelle est le type d'activité de l'entreprise ?
-  titre.en: service or sale
+  titre.en: '[automatic] service or sale'
   titre.fr: service ou vente
 entreprise . activité . service ou vente . service:
   description.en: >
-    [automatic] This is any transaction that does not involve a
-    transfer of ownership of
+    [automatic] This is any transaction that does not involve the
+    transfer of ownership of tangible
 
-    tangible property (i.e. having a material existence).
+    tangible goods (i.e. having a material existence).
   description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle).
-  titre.en: service provision
+  titre.en: '[automatic] service delivery'
   titre.fr: prestation de service
 entreprise . activité . service ou vente . vente:
   description.en: >
-    [automatic] This is any transaction involving the transfer of
-    ownership of property
+    [automatic] It is any transaction involving the transfer of
+    ownership of a tangible asset (i.e., an asset with a physical existence), as
+    well as any transaction
 
-    corporeal (i.e., property having a material existence), as well as
+    property (i.e. property with a physical existence), as well as all
 
-    all food and accommodation activities.
+    all catering and accommodation activities.
   description.fr: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien
     corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
@@ -4520,73 +4591,6 @@ entreprise . durée d'activité . en fin d'année:
 entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
-entreprise . exonérations:
-  titre.en: '[automatic] exemptions'
-  titre.fr: exonérations
-entreprise . exonérations . ACRE:
-  description.en: >-
-    [automatic] The aid for creating or taking over a business
-    (Acre) consists of a partial exemption from social security charges, known
-    as the start-up exemption, for 12 months.
-
-
-    It is **automatic** for **companies and sole proprietorships** (under certain conditions, such as not having benefited from it in the last three years).
-
-
-    For **self-employed** entrepreneurs, however, it must be requested and is reserved for the following beneficiaries
-
-    - Jobseekers (whether or not they receive compensation but have been registered with the Pôle Emploi for at least 6 months during the last 18 months).
-
-    - Recipients of social assistance (RSA, ASS, ATA)
-
-    - Young people between 18 and 25 years old (up to 29 years old for people recognized as disabled)
-
-    - People creating a micro-enterprise in a priority district of the city (QPPV)
-
-
-    &gt; *Historical*:
-
-    - For auto-businesses created from January 1, 2020, the exemption is again subject to conditions.
-
-    - For businesses created between January 1, 2019 and December 31, 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the previous three years
-
-    - For companies created before January 1, 2019, the exemption of contribution called ACCRE was subject to conditions and was not automatic: you had to apply.
-  description.fr: >-
-    L'aide à la création ou à la reprise d'une entreprise (Acre)
-    consiste en une exonération partielle de charges sociales, dite exonération
-    de début d'activité pendant 12 mois.
-
-
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
-
-
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
-
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
-
-    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
-
-    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
-
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
-
-
-    > *Historique*:
-
-    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est de nouveau soumise à condition.
-
-    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
-
-    - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
-  note.en: '[automatic] The auto-enterprises created between January 1 and
-    December 31, 2019 benefit from a more favorable system, active for 3 years.'
-  note.fr:
-    Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019
-    bénéficient d'un dispositif plus favorable, actif pendant 3 années.
-  question.en: '[automatic] Does your company benefit from ACRE?'
-  question.fr: Votre entreprise bénéficie-t-elle de l'ACRE ?
-  titre.en: '[automatic] ACRE'
-  titre.fr: ACRE
 entreprise . imposition:
   question.en: "[automatic] What is your company's **type of taxation**?"
   question.fr: Quel est le **type d'imposition** de votre entreprise ?

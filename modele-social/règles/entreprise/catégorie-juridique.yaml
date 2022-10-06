@@ -42,17 +42,17 @@ entreprise . catégorie juridique . SARL . unipersonnelle:
 entreprise . catégorie juridique . SELARL:
   valeur: catégorie juridique = 'SELARL'
   remplace:
-    - règle: entreprise . activité
+    - règle: entreprise . activité . nature
       par: "'libérale'"
-    - règle: entreprise . activité . libérale . réglementée
+    - règle: entreprise . activité . nature . libérale . réglementée
       par: oui
 
 entreprise . catégorie juridique . SELAS:
   valeur: catégorie juridique = 'SELAS'
   remplace:
-    - règle: entreprise . activité
+    - règle: entreprise . activité . nature
       par: "'libérale'"
-    - règle: entreprise . activité . libérale . réglementée
+    - règle: entreprise . activité . nature . libérale . réglementée
       par: oui
 
 entreprise . catégorie juridique . SAS:

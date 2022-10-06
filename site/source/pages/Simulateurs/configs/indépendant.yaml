@@ -6,7 +6,7 @@ objectifs:
 
 questions:
   à l'affiche:
-    Type d'activité: entreprise . activité
+    Type d'activité: entreprise . activité . nature
     Micro-fiscal: entreprise . imposition . régime . micro-entreprise
     Date de création: entreprise . date de création
     ACRE: dirigeant . exonérations . ACRE

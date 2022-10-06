@@ -35,8 +35,8 @@ describe('e2e test mon-entreprise api', () => {
 				.post('/api/v1/evaluate')
 				.send({
 					situation: {
-						'entreprise . activité': "'libérale'",
-						'entreprise . activité . libérale . réglementée': 'non',
+						'entreprise . activité . nature': "'libérale'",
+						'entreprise . activité . nature . libérale . réglementée': 'non',
 						'entreprise . date de création': '03/05/2019',
 						'entreprise . catégorie juridique': "'EI'",
 						'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
