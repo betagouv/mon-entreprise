@@ -25,6 +25,12 @@ const Td = styled.td`
 	margin: 0.5rem 0;
 `
 
+const ThRow = styled.th`
+	flex: 2;
+	word-break: break-word;
+	margin: 0.5rem 0;
+`
+
 export const Tr = styled.tr`
 	display: flex;
 	flex-direction: column;
@@ -189,7 +195,7 @@ export const Row = ({
 
 	return (
 		<Tr>
-			<Td>{title}</Td>
+			<ThRow>{title}</ThRow>
 			<Td>
 				{items.length > 0 ? (
 					<Select

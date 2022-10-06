@@ -119,18 +119,20 @@ export default function Budget() {
 							<tbody>
 								{categories.map((label) => (
 									<tr key={label}>
-										<td>{label}</td>
+										<th>{label}</th>
 										{quarters.map((q) => {
 											const value = budget[selectedYear]?.[q.label]?.[label]
 
 											return (
 												<td key={q.label}>
-													{value
-														? formatValue(value, {
-																displayedUnit: '€',
-																language,
-														  })
-														: '-'}
+													{value ? (
+														formatValue(value, {
+															displayedUnit: '€',
+															language,
+														})
+													) : (
+														<span aria-label="Pas de budget alloué">-</span>
+													)}
 												</td>
 											)
 										})}
