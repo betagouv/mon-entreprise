@@ -1,100 +1,124 @@
 // Vitest Snapshot v1
 
-exports[`calculate simulations-indépendant > acre 1`] = `"[null,null,50000,null,null,null,0,null,null]"`;
+exports[`calculate simulations-indépendant > acre 1`] = `"[73019,23019,50000,51980,9516,40484,0,73019,1408]"`;
 
-exports[`calculate simulations-indépendant > activité 1`] = `"[null,null,20000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > activité 1`] = `"[29086,9086,20000,20787,898,19102,0,29086,0]"`;
 
-exports[`calculate simulations-indépendant > activité 2`] = `"[null,null,20000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > activité 2`] = `"[29102,9102,20000,20787,898,19102,0,29102,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `"[77175,27175,50000,52092,9550,40450,0,77175,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 2`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 2`] = `"[78236,28236,50000,52121,9558,40442,0,78236,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 3`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 3`] = `"[80757,30757,50000,52189,9579,40421,0,80757,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 4`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 4`] = `"[75298,25298,50000,52041,9534,40466,0,75298,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 5`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 5`] = `"[75297,25297,50000,52041,9534,40466,0,75297,0]"`;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 6`] = `"[null,null,500000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > conjoint collaborateur 6`] = `
+"[652221,152221,500000,517706,220485,279515,0,652221,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > contrats madelin 1`] = `"[30000,null,null,null,null,null,10000,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 1`] = `"[30000,13181,16819,17881,433,16386,10000,40000,0]"`;
 
-exports[`calculate simulations-indépendant > contrats madelin 2`] = `"[30000,null,null,null,null,null,10000,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 2`] = `"[30000,14381,15619,17881,433,15186,10000,40000,0]"`;
 
-exports[`calculate simulations-indépendant > contrats madelin 3`] = `"[30000,null,null,null,null,null,10000,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 3`] = `"[30000,10381,19619,20431,841,18778,10000,40000,0]"`;
 
-exports[`calculate simulations-indépendant > contrats madelin 4`] = `"[20000,null,null,null,null,null,1000,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 4`] = `"[20000,6732,13268,13809,0,13268,1000,21000,0]"`;
 
-exports[`calculate simulations-indépendant > contrats madelin 5`] = `"[300000,null,null,null,null,null,15000,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 5`] = `
+"[300000,79617,220383,228526,82145,138238,15000,315000,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > contrats madelin 6`] = `"[20000,null,null,null,null,null,500,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 6`] = `"[20000,6832,13168,13709,0,13168,500,20500,0]"`;
 
-exports[`calculate simulations-indépendant > contrats madelin 7`] = `"[20000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > contrats madelin 7`] = `"[20000,13132,6868,9695,0,6868,0,20000,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `"[30000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `"[30000,13181,16819,17881,433,16386,0,30000,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 2`] = `"[30000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 2`] = `"[30000,14381,15619,17881,433,15186,0,30000,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 3`] = `"[30000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 3`] = `"[30000,10381,19619,20431,841,18778,0,30000,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 4`] = `"[20000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 4`] = `"[20000,6732,13268,13809,0,13268,0,20000,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 5`] = `"[300000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 5`] = `
+"[300000,79617,220383,228526,82145,138238,0,300000,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 6`] = `"[300000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations facultatives 6`] = `
+"[300000,83117,216883,225026,80570,136313,0,300000,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > cotisations minimales 1`] = `"[null,null,100,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations minimales 1`] = `"[1375,1275,100,135,0,100,0,1375,0]"`;
 
-exports[`calculate simulations-indépendant > cotisations minimales 2`] = `"[null,null,100,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > cotisations minimales 2`] = `"[244,144,100,104,0,100,0,244,0]"`;
 
-exports[`calculate simulations-indépendant > exonération covid 1`] = `"[null,null,50000,null,null,null,0,null,null]"`;
+exports[`calculate simulations-indépendant > exonération covid 1`] = `"[71347,21347,50000,51815,9550,40450,0,71347,2059]"`;
 
-exports[`calculate simulations-indépendant > exonération covid 2`] = `"[500,null,50000,null,null,null,0,null,null]"`;
+exports[`calculate simulations-indépendant > exonération covid 2`] = `"[500,12977,50000,51032,9315,40685,0,62977,103]"`;
 
-exports[`calculate simulations-indépendant > exonération covid 3`] = `"[50000,null,50000,null,null,null,0,null,null]"`;
+exports[`calculate simulations-indépendant > exonération covid 3`] = `"[50000,17475,50000,51440,9438,40562,0,67475,141]"`;
 
 exports[`calculate simulations-indépendant > exonération pension invalidité 1`] = `
-"[45000,null,null,null,null,null,0,null,0]
+"[45000,10908,34092,35311,4515,29577,0,45000,0]
 Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité"
 `;
 
-exports[`calculate simulations-indépendant > imposition à l'IS 1`] = `"[null,null,null,null,null,null,0,100000,0]"`;
+exports[`calculate simulations-indépendant > imposition à l'IS 1`] = `
+"[100000,30100,69900,72612,13527,56373,0,100000,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > imposition à l'IS 2`] = `"[null,null,null,null,null,null,0,100000,0]"`;
+exports[`calculate simulations-indépendant > imposition à l'IS 2`] = `
+"[100000,30100,69900,72612,13527,56373,0,100000,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > impôt sur le revenu 1`] = `"[null,null,20000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > impôt sur le revenu 1`] = `"[29086,9086,20000,20787,603,19397,0,29086,0]"`;
 
-exports[`calculate simulations-indépendant > impôt sur le revenu 2`] = `"[null,null,50000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > impôt sur le revenu 2`] = `"[73019,23019,50000,51980,8213,41787,0,73019,0]"`;
 
-exports[`calculate simulations-indépendant > impôt sur le revenu 3`] = `"[null,null,20000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > impôt sur le revenu 3`] = `"[29086,9086,20000,20787,2079,17921,0,29086,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 1`] = `"[2000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > inversions 1`] = `"[2000,1386,614,666,0,614,0,2000,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 2`] = `"[50000,null,null,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > inversions 2`] = `"[50000,16004,33996,35351,4527,29469,0,50000,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 3`] = `"[null,null,null,null,null,10000,0,null,0]"`;
+exports[`calculate simulations-indépendant > inversions 3`] = `"[14597,4597,10000,10394,0,10000,0,14597,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 4`] = `"[null,null,null,null,null,40000,0,null,0]"`;
+exports[`calculate simulations-indépendant > inversions 4`] = `"[72000,22703,49297,51249,9297,40000,0,72000,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 5`] = `"[null,null,null,null,null,10000,1000,null,0]"`;
+exports[`calculate simulations-indépendant > inversions 5`] = `"[14597,4597,10000,10394,0,10000,1000,15597,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 6`] = `"[19000,null,null,null,null,null,1000,20000,0]"`;
+exports[`calculate simulations-indépendant > inversions 6`] = `"[19000,5929,13071,13584,0,13071,1000,20000,0]"`;
 
-exports[`calculate simulations-indépendant > inversions 7`] = `"[18000,null,null,null,null,null,2000,20000,0]"`;
+exports[`calculate simulations-indépendant > inversions 7`] = `"[18000,5627,12373,12860,0,12373,2000,20000,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 1`] = `"[null,null,500,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 1`] = `"[1861,1361,500,548,0,500,0,1861,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 2`] = `"[null,null,1000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 2`] = `"[2466,1466,1000,1064,0,1000,0,2466,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 3`] = `"[null,null,1500,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 3`] = `"[3075,1575,1500,1581,0,1500,0,3075,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 4`] = `"[null,null,2000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 4`] = `"[3683,1683,2000,2097,0,2000,0,3683,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 5`] = `"[null,null,5000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 5`] = `"[7428,2428,5000,5199,0,5000,0,7428,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 6`] = `"[null,null,10000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 6`] = `"[14597,4597,10000,10394,0,10000,0,14597,0]"`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 7`] = `"[null,null,100000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 7`] = `
+"[139589,39589,100000,103788,28275,71725,0,139589,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;
 
-exports[`calculate simulations-indépendant > échelle de revenus 8`] = `"[null,null,1000000,null,null,null,0,null,0]"`;
+exports[`calculate simulations-indépendant > échelle de revenus 8`] = `
+"[1239948,239948,1000000,1033666,473305,526695,0,1239948,0]
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;

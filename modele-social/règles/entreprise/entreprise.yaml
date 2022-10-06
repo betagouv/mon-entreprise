@@ -157,7 +157,7 @@ entreprise . chiffre d'affaires . service BNC:
           assiette: chiffre d'affaires
           taux: activité . mixte . proportions . service BNC
     - sinon:
-        applicable si: activité = 'libérale'
+        applicable si: activité . nature = 'libérale'
         valeur: chiffre d'affaires
 
   références:
