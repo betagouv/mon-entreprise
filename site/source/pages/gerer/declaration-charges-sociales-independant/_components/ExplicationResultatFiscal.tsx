@@ -85,7 +85,7 @@ export function ExplicationsResultatFiscal() {
 					<th className="ui__ light-bg notice">Suramortissement productif</th>
 				</tr>
 				<tr>
-					<td>BIC réel normal</td>
+					<th>BIC réel normal</th>
 					<td>
 						<strong>2058-A-SD</strong>
 						<br />
@@ -113,7 +113,7 @@ export function ExplicationsResultatFiscal() {
 					</td>
 				</tr>
 				<tr>
-					<td>BIC réel simplifié</td>
+					<th>BIC réel simplifié</th>
 					<td>
 						<strong>2033-B-SD</strong>
 						<br />
@@ -141,7 +141,7 @@ export function ExplicationsResultatFiscal() {
 					</td>
 				</tr>
 				<tr>
-					<td>BNC déclaration contrôlée</td>
+					<th>BNC déclaration contrôlée</th>
 					<td>
 						<strong>2035-B-SD</strong>
 						<br />

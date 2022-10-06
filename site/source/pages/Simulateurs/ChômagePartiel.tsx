@@ -203,9 +203,9 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<td>
+							<th>
 								<RowLabel {...label} />
-							</td>
+							</th>
 							<td>
 								<ValueWithLink {...line[currentColumnIndex]} />
 							</td>
@@ -223,9 +223,9 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 					</tr>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<td>
+							<th>
 								<RowLabel {...label} />
-							</td>
+							</th>
 							{line.map((cell, j) => (
 								<td key={j}>
 									<ValueWithLink {...cell} />
