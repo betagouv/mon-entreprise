@@ -7,7 +7,7 @@ import { Situation } from './rootReducer'
 const SAVED_NAMESPACES = [
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
-	'entreprise . activité',
+	'entreprise . activité . nature',
 	'entreprise . catégorie juridique',
 	'entreprise . date de création',
 	'entreprise . salariés',
@@ -90,7 +90,7 @@ export function getCompanySituation(company: Company): Situation {
 		'entreprise . SIREN': `'${company.siren}'`,
 		'entreprise . nom': `'${company.label}'`,
 		'établissement . SIRET': `'${company.firstMatchingEtablissement.siret}'`,
-		'entreprise . activité . principale': `'${company.activitePrincipale}'`,
+		'entreprise . activité': `'${company.activitePrincipale}'`,
 	}
 }
 

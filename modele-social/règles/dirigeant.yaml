@@ -270,7 +270,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
     - métiers
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
-  applicable si: entreprise . activité = 'commerciale'
+  applicable si: entreprise . activité . nature = 'commerciale'
   produit:
     composantes:
       - assiette: entreprise . chiffre d'affaires . service BIC
@@ -288,7 +288,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   unité: €/mois
-  applicable si: entreprise . activité = 'artisanale'
+  applicable si: entreprise . activité . nature = 'artisanale'
   produit:
     composantes:
       - assiette: entreprise . chiffre d'affaires . service BIC
@@ -356,7 +356,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
         assiette: entreprise . chiffre d'affaires . BIC
         taux:
           variations:
-            - si: entreprise . activité = 'artisanale'
+            - si: entreprise . activité . nature = 'artisanale'
               alors: 0.3%
             - sinon: 0.1%
       - attributs:
@@ -366,10 +366,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
           variations:
             - si:
                 une de ces conditions:
-                  - entreprise . activité . libérale . réglementée
+                  - entreprise . activité . nature . libérale . réglementée
                   - toutes ces conditions:
                       - date >= 01/2022
-                      - entreprise . activité = 'libérale'
+                      - entreprise . activité . nature = 'libérale'
               alors: 0.2%
             - sinon: 0.1%
 
@@ -390,7 +390,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             taux prestation de service
             # Historique : avant le 01/07/21 : 22%
           variations:
-            - si: entreprise . activité . libérale . réglementée
+            - si: entreprise . activité . nature . libérale . réglementée
               alors: 22.20%
             - sinon: 22%
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
@@ -453,7 +453,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
   variations:
     - si:
         toutes ces conditions:
-          - entreprise . activité . libérale . réglementée
+          - entreprise . activité . nature . libérale . réglementée
           - entreprise . date de création >= 01/04/2020
       alors: 12.10%
     - sinon: taux ACRE * taux prestation de service
@@ -797,7 +797,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
   valeur: assiette retraite
   plafond:
     variations:
-      - si: entreprise . activité = 'artisanale'
+      - si: entreprise . activité . nature = 'artisanale'
         alors: 4 * plafond sécurité sociale
       - sinon: 3 * plafond sécurité sociale
 
@@ -1322,7 +1322,7 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
     assiette: plafond sécurité sociale
     taux:
       variations:
-        - si: entreprise . activité = 'artisanale'
+        - si: entreprise . activité . nature = 'artisanale'
           alors: 0.29%
         - si: conjoint collaborateur
           alors: 0.34%

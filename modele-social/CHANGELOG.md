@@ -1,3 +1,10 @@
+## 1.0.0
+
+-   Déplace la question ACRE sur le dirigeant plutôt que l’entreprise
+-   Sépare `activité` et `activité . nature`
+
+
+
 ## 1.0.0-beta.2
 
 -   Réecrit les règles de la cotisation AT/MP

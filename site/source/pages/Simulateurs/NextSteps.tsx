@@ -73,7 +73,7 @@ const guidesUrssaf = [
 	},
 	{
 		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
-		associatedRule: 'entreprise . activité . libérale . réglementée',
+		associatedRule: 'entreprise . activité . nature . libérale . réglementée',
 		title: 'Guide Urssaf pour les professions libérales réglementées',
 	},
 	{

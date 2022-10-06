@@ -159,7 +159,7 @@ DRI . accompagnement imposition . type . exceptions:
 DRI . accompagnement imposition . bénéfice:
   texte: |-
     L'activité principale de votre entreprise est
-    « **{{ entreprise . activité . principale }}** ».
+    « **{{ entreprise . activité }}** ».
     {{situation}}
 DRI . accompagnement imposition . bénéfice . situation:
   variations:

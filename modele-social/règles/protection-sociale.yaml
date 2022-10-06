@@ -402,7 +402,7 @@ protection sociale . santé . indemnités journalières:
     brut et versées tous les 14 jours en moyenne.
   non applicable si:
     toutes ces conditions:
-      - entreprise . activité . libérale . réglementée
+      - entreprise . activité . nature . libérale . réglementée
       - dirigeant . indépendant . PL . régime général = non
   unité: €/jour
   note: |

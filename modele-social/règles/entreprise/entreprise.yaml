@@ -8,10 +8,6 @@ entreprise . SIREN:
 entreprise . nom:
   type: texte
 
-entreprise . activité . principale:
-  titre: activité principale
-  type: texte
-
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
   par défaut: 01/01/2021

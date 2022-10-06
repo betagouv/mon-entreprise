@@ -111,7 +111,9 @@ function ActivitéMixte() {
 				batchUpdateSituation(
 					Object.values(proportions).reduce(
 						(acc, dottedName) => ({ ...acc, [dottedName]: undefined }),
-						{ 'entreprise . activité . mixte': checked ? 'oui' : 'non' }
+						{
+							'entreprise . activité . mixte': checked ? 'oui' : 'non',
+						}
 					)
 				)
 			)

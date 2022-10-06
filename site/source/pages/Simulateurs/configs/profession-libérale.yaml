@@ -14,7 +14,7 @@ questions:
     - entreprise . charges
     - entreprise . imposition . régime
   liste:
-    - entreprise . activité
+    - entreprise . activité . nature
     - dirigeant . indépendant . PL . métier
     - '' # Toutes les autres questions
   non prioritaires:
@@ -26,7 +26,7 @@ questions:
 
 unité par défaut: €/an
 situation:
-  entreprise . activité: "'libérale'"
+  entreprise . activité . nature: "'libérale'"
   entreprise . catégorie juridique: "'EI'"
   entreprise . imposition: "'IR'"
   entreprise . catégorie juridique . EI . auto-entrepreneur: non

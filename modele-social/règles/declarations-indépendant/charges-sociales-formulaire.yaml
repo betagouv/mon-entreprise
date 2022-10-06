@@ -61,12 +61,12 @@ déclaration charge sociales . cotisations payées . cotisations sociales:
 
 déclaration charge sociales . nature de l'activité:
   remplace:
-    - entreprise . activité
-    - règle: entreprise . activité . libérale
+    - entreprise . activité . nature
+    - règle: entreprise . activité . nature . libérale
       par: libérale
-    - règle: entreprise . activité . artisanale
+    - règle: entreprise . activité . nature . artisanale
       par: artisanale
-    - règle: entreprise . activité . commerciale
+    - règle: entreprise . activité . nature . commerciale
       par: commerciale
   question: Quelle est la nature de votre activité ?
   par défaut: "'artisanale'"

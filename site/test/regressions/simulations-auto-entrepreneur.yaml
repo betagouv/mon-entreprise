@@ -18,7 +18,7 @@ aides:
 
 impôt sur le revenu:
   - dirigeant . auto-entrepreneur . revenu net: 25000 €/an
-    entreprise . activité: "'libérale'"
+    entreprise . activité . nature: "'libérale'"
     dirigeant . auto-entrepreneur . impôt . versement libératoire: oui
 
 ACRE:
@@ -40,21 +40,21 @@ ACRE:
 
 activités:
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'libérale'"
+    entreprise . activité . nature: "'libérale'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'libérale'"
-    entreprise . activité . libérale . réglementée: oui
+    entreprise . activité . nature: "'libérale'"
+    entreprise . activité . nature . libérale . réglementée: oui
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'artisanale'"
+    entreprise . activité . nature: "'artisanale'"
     entreprise . activité . service ou vente: "'vente'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'artisanale'"
+    entreprise . activité . nature: "'artisanale'"
     entreprise . activité . service ou vente: "'service'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'commerciale'"
+    entreprise . activité . nature: "'commerciale'"
     entreprise . activité . service ou vente: "'vente'"
   - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . activité: "'commerciale'"
+    entreprise . activité . nature: "'commerciale'"
     entreprise . activité . service ou vente: "'service'"
 
 activité mixte:
@@ -62,10 +62,10 @@ activité mixte:
     entreprise . activité . mixte: oui
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
-    entreprise . activité: "'libérale'"
+    entreprise . activité . nature: "'libérale'"
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . mixte: oui
-    entreprise . activité: "'artisanale'"
+    entreprise . activité . nature: "'artisanale'"
   - entreprise . chiffre d'affaires . service BIC: 20000 €/an
     entreprise . chiffre d'affaires . service BNC: 10000 €/an
     entreprise . chiffre d'affaires . vente restauration hébergement: 15000 €/an
@@ -73,4 +73,4 @@ activité mixte:
     entreprise . activité . mixte . proportions . service BNC: 22.22%
     entreprise . activité . mixte . proportions . vente restauration hébergement: 33.33%
     entreprise . activité . mixte: oui
-    entreprise . activité: "'commerciale'"
+    entreprise . activité . nature: "'commerciale'"
