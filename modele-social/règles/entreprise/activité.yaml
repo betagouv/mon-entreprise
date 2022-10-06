@@ -24,7 +24,7 @@ entreprise . activité . nature:
 
 entreprise . activité . nature . libérale:
   question: Votre activité est-elle une profession libérale ?
-  valeur: activité = 'libérale'
+  valeur: activité . nature = 'libérale'
   description: |
     Une activité libérale consiste en des prestations de services de nature principalement intellectuelles.
 
@@ -38,7 +38,7 @@ entreprise . activité . nature . libérale:
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . activité . nature . commerciale:
-  valeur: activité = 'commerciale'
+  valeur: activité . nature = 'commerciale'
   description: |
     Votre activité est commerciale si vous êtes dans l'un des cas suivants :
 
@@ -50,7 +50,7 @@ entreprise . activité . nature . commerciale:
     Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
 
 entreprise . activité . nature . artisanale:
-  valeur: activité = 'artisanale'
+  valeur: activité . nature = 'artisanale'
   description: |
     Pour être artisan, vous devez répondre aux 3 critères suivants :
 
@@ -66,8 +66,8 @@ entreprise . activité . service ou vente:
   non applicable si: mixte
   applicable si:
     une de ces conditions:
-      - activité = 'artisanale'
-      - activité = 'commerciale'
+      - activité . nature = 'artisanale'
+      - activité . nature = 'commerciale'
   question: Quelle est le type d'activité de l'entreprise ?
   formule:
     une possibilité:
@@ -125,17 +125,17 @@ entreprise . activité . mixte . proportions:
   somme:
     - nom: service BIC
       variations:
-        - si: activité = 'libérale'
+        - si: activité . nature = 'libérale'
           alors: 0%
         - sinon: 50%
     - nom: service BNC
       variations:
-        - si: activité = 'libérale'
+        - si: activité . nature = 'libérale'
           alors: 2 / 3
         - sinon: 0%
     - nom: vente restauration hébergement
       variations:
-        - si: activité = 'libérale'
+        - si: activité . nature = 'libérale'
           alors: 1 / 3
         - sinon: 50%
   note: Il appartient à l'utilisateur de bien vérifier que la somme des trois pourcentages renseignés vaut 100%.
@@ -156,6 +156,6 @@ entreprise . activité . nature . libérale . réglementée:
 
 entreprise . activité . débit de tabac:
   experimental: oui
-  applicable si: activité = 'commerciale'
+  applicable si: activité . nature = 'commerciale'
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non

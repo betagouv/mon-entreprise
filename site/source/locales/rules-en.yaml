@@ -2572,12 +2572,6 @@ dirigeant . indépendant . PL . métier . santé . chirurgien-dentiste:
 dirigeant . indépendant . PL . métier . santé . médecin:
   titre.en: '[automatic] doctor'
   titre.fr: médecin
-dirigeant . indépendant . PL . métier . santé . pharmacien:
-  titre.en: '[automatic] pharmacist'
-  titre.fr: pharmacien
-dirigeant . indépendant . PL . métier . santé . sage-femme:
-  titre.en: '[automatic] midwife'
-  titre.fr: sage-femme
 dirigeant . indépendant . PL . métier . santé . médecin . secteur:
   description.en: |
     [automatic] The rates of contributions and CPAM refunds are not the same in
@@ -2587,17 +2581,14 @@ dirigeant . indépendant . PL . métier . santé . médecin . secteur:
     fonction du régime de tarification choisie par le praticien.
   question.en: '[automatic] What sector are you contracted to?'
   question.fr: Sur quel secteur êtes-vous conventionné ?
-  titre.en: '[automatic] medical sector'
-  titre.fr: santé . médecin . secteur
-dirigeant . indépendant . PL . métier . santé . médecin . secteur . S1:
-  titre.en: '[automatic] Sector 1'
-  titre.fr: Secteur 1
-dirigeant . indépendant . PL . métier . santé . médecin . secteur . S2:
-  titre.en: '[automatic] Sector 2'
-  titre.fr: Secteur 2
-dirigeant . indépendant . PL . métier . santé . médecin . secteur . non conventionné:
-  titre.en: '[automatic] non-treaty'
-  titre.fr: non conventionné
+  titre.en: '[automatic] sector'
+  titre.fr: secteur
+dirigeant . indépendant . PL . métier . santé . pharmacien:
+  titre.en: '[automatic] pharmacist'
+  titre.fr: pharmacien
+dirigeant . indépendant . PL . métier . santé . sage-femme:
+  titre.en: '[automatic] midwife'
+  titre.fr: sage-femme
 dirigeant . indépendant . PL . option régime général:
   description.en: >
     [automatic] Persons already practising an unregulated liberal
@@ -3966,128 +3957,13 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
   titre.en: '[automatic] thresholds exceeded'
   titre.fr: seuils dépassés
 entreprise . activité:
-  description.en: '[automatic] Your type of activity will determine a large part
-    of the calculations of contributions and taxes.'
-  description.fr: Votre type d'activité va déterminer une grande partie des
-    calculs de cotisations, contributions et impôt.
-  question.en: '[automatic] What is the nature of your main activity?'
-  question.fr: Quelle est la nature de votre activité principale ?
-  titre.en: '[automatic] nature of the activity'
-  titre.fr: nature de l'activité
-entreprise . activité . artisanale:
-  description.en: >
-    [automatic] It is an activity of service, production,
-    transformation, or repair carried out by a qualified professional, and which
-    requires specific skills and know-how.
-
-
-    &gt; For example: works, building activities, repair of products provided by the customer, hairdressers...
-
-
-    - The company must not employ more than 10 employees (the activity becomes commercial beyond that number)
-
-    - The craft activities are listed by a decree
-  description.fr: >
-    C'est une activité de service, de production, de transformation,
-    ou de réparation exercée par un professionnel qualifié, et qui nécessite des
-    compétences et un savoir-faire spécifiques.
-
-
-    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
-
-
-    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
-
-    - Les activités artisanales sont répertoriées par un décret
-  titre.en: '[automatic] artisanal'
-  titre.fr: artisanale
-entreprise . activité . commerciale:
-  description.en: >
-    [automatic] ### Commercial activity
-
-    - Purchase of goods for resale as is (wholesale or retail trade)
-
-    - Sale of commercial services (equipment rental, transportation, real estate agency, hotel and restaurant business, entertainment business, private security business, rental, etc.)
-
-
-    ### Industrial activity
-
-
-    Production or transformation activity through the use of industrial tools, extraction, mining, handling, warehousing and storage
-  description.fr: >
-    ### Activité commerciale
-
-    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
-
-    - Vente de prestations de service commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
-
-
-    ### Activité industrielle
-
-
-    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
-  titre.en: '[automatic] commercial'
-  titre.fr: commerciale
+  titre.en: '[automatic] main activity'
+  titre.fr: activité principale
 entreprise . activité . débit de tabac:
   question.en: '[automatic] Do you sell tobacco products?'
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
-entreprise . activité . libérale:
-  description.en: >
-    [automatic] These are the "intellectual" professions: doctors,
-    midwives, physiotherapists, lawyers, but also consultants, developers,
-    designers...
-
-
-    According to the law, these are people who carry out on a regular basis, independently and under their responsibility, an activity :
-      - of a generally civil nature,
-      - whose purpose is to provide services mainly intellectual, technical or care, implemented by means of appropriate professional qualifications and in compliance with ethical principles or a professional code of conduct.
-  description.fr: >
-    Ce sont les professions "intellectuelles" : médecins,
-    sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
-
-
-    Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
-      - de nature généralement civile,
-      - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
-  question.en: '[automatic] Is your activity a liberal profession?'
-  question.fr: Votre activité est-elle une profession libérale ?
-  titre.en: '[automatic] liberal'
-  titre.fr: libérale
-entreprise . activité . libérale . réglementée:
-  description.en: >
-    [automatic] Some liberal professions have been classified as
-    liberal by law and their title is protected. Their members must respect
-    strict ethical rules and are subject to the control of their professional
-    bodies (order, chamber, or union).
-
-
-    &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
-
-
-    These are other people who practice a science or an art and whose intellectual activity plays the main role. Their income must represent the remuneration of a personal work, without subordination, while engaging their technical and moral responsibility.
-
-
-    &gt; Examples of non-regulated professions: developer, historian, urban planner...
-  description.fr: >
-    Certaines professions libérales ont été classées dans le domaine
-    libéral par la loi et leur titre est protégé. Leurs membres doivent
-    respecter des règles déontologiques strictes et sont soumis au contrôle de
-    leurs instances professionnelles (ordre, chambre, ou syndicat).
-
-
-    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
-
-
-    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
-
-
-    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
-  question.en: '[automatic] Is it a regulated liberal activity?'
-  question.fr: Est-ce une activité libérale réglementée ?
-  titre.en: '[automatic] regulated'
-  titre.fr: réglementée
 entreprise . activité . mixte:
   description.en: >
     [automatic] It is possible to have several activities with
@@ -4156,9 +4032,116 @@ entreprise . activité . mixte . proportions:
     pourcentages renseignés vaut 100%.
   titre.en: '[automatic] proportion activity'
   titre.fr: proportion activité
-entreprise . activité . principale:
-  titre.en: '[automatic] main activity'
-  titre.fr: activité principale
+entreprise . activité . nature:
+  description.en: '[automatic] Your type of activity will determine a large part
+    of the calculations of contributions and taxes.'
+  description.fr: Votre type d'activité va déterminer une grande partie des
+    calculs de cotisations, contributions et impôt.
+  question.en: '[automatic] What is the nature of your main activity?'
+  question.fr: Quelle est la nature de votre activité principale ?
+  titre.en: '[automatic] nature of the activity'
+  titre.fr: nature de l'activité
+entreprise . activité . nature . artisanale:
+  description.en: >
+    [automatic] To be a craftsman, you must meet the following 3
+    criteria:
+
+
+    - Your activity must be part of the official list of crafts or the official list of arts and crafts
+
+    - Your company must have less than 11 employees at its creation
+
+    - You must have a specific know-how and prove it by a diploma (CAP, BEP, etc.) or a professional qualification
+  description.fr: >
+    Pour être artisan, vous devez répondre aux 3 critères suivants :
+
+
+    - Votre activité doit faire partie de la liste officielle des métiers de l'artisanat ou de la liste officielle des métiers d'artisanat d'art
+
+    - Votre entreprise doit compter moins de 11 salariés à sa création
+
+    - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme (CAP, BEP, etc.) ou une qualification professionnelle
+  titre.en: '[automatic] artisanal'
+  titre.fr: artisanale
+entreprise . activité . nature . commerciale:
+  description.en: >
+    [automatic] Your activity is commercial if you are in one of the
+    following cases:
+
+
+    - You buy goods or merchandise to resell them for profit: that brings in money, profit, or earnings
+
+    - You sell services in the fields of hotels, restaurants, transportation, entertainment, security, computers, design, etc.
+
+    - You have an activity of renting goods, merchandise or services
+  description.fr: >
+    Votre activité est commerciale si vous êtes dans l'un des cas
+    suivants :
+
+
+    - Vous achetez des biens ou des marchandises pour les revendre dans un but lucratif : Qui rapporte de l'argent, du profit, des bénéfices
+
+    - Vous vendez des services dans les domaines de l'hôtellerie, la restauration, les transports, les spectacles, la sécurité, l'informatique, le design, etc.
+
+    - Vous avez une activité de location de biens, de marchandises ou de services
+  titre.en: '[automatic] commercial'
+  titre.fr: commerciale
+entreprise . activité . nature . libérale:
+  description.en: >
+    [automatic] A liberal activity consists of services of a mainly
+    intellectual nature.
+
+
+    You render a paid service.
+
+
+    You must have a diploma or a professional qualification in the field.
+  description.fr: >
+    Une activité libérale consiste en des prestations de services de
+    nature principalement intellectuelles.
+
+
+    Vous rendez un service payant.
+
+
+    Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+  question.en: '[automatic] Is your activity a liberal profession?'
+  question.fr: Votre activité est-elle une profession libérale ?
+  titre.en: '[automatic] liberal'
+  titre.fr: libérale
+entreprise . activité . nature . libérale . réglementée:
+  description.en: >
+    [automatic] Some liberal professions have been classified as
+    liberal by law and their title is protected. Their members must respect
+    strict ethical rules and are subject to the control of their professional
+    bodies (order, chamber, or union).
+
+
+    &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+
+
+    These are other people who practice a science or an art and whose intellectual activity plays the main role. Their income must represent the remuneration of a personal work, without subordination, while engaging their technical and moral responsibility.
+
+
+    &gt; Examples of non-regulated professions: developer, historian, urban planner...
+  description.fr: >
+    Certaines professions libérales ont été classées dans le domaine
+    libéral par la loi et leur titre est protégé. Leurs membres doivent
+    respecter des règles déontologiques strictes et sont soumis au contrôle de
+    leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+
+    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+
+
+    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+
+    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+  question.en: '[automatic] Is it a regulated liberal activity?'
+  question.fr: Est-ce une activité libérale réglementée ?
+  titre.en: '[automatic] regulated'
+  titre.fr: réglementée
 entreprise . activité . service ou vente:
   question.en: '[automatic] What type of business is the company in?'
   question.fr: Quelle est le type d'activité de l'entreprise ?
