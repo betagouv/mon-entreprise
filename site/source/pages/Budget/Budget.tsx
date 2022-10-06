@@ -37,14 +37,19 @@ const arraySum = (arr: number[]) => arr.reduce((a, b) => a + b, 0)
 
 export default function Budget() {
 	const years = ['2019', '2020', '2021', '2022'] as const
-	const quarters = ['T1', 'T2', 'T3', 'T4']
+	const quarters = [
+		{ label: 'T1', 'aria-label': 'Trimestre 1' },
+		{ label: 'T2', 'aria-label': 'Trimestre 2' },
+		{ label: 'T3', 'aria-label': 'Trimestre 3' },
+		{ label: 'T4', 'aria-label': 'Trimestre 4' },
+	]
 	const [selectedYear, setSelectedYear] = useState<typeof years[number]>(
 		years[years.length - 1]
 	)
 	const categories = [
 		...new Set(
 			quarters
-				.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
+				.map((q) => Object.keys(budget[selectedYear]?.[q.label] ?? {}))
 				.reduce((acc, curr) => [...acc, ...curr], [])
 		),
 	]
@@ -101,12 +106,15 @@ export default function Budget() {
 								}
 							)}
 							role="table"
+							aria-label={`Tableau affichant le bugdet de l'année ${selectedYear} par poste de dépenses.`}
 						>
 							<thead>
 								<tr>
 									<th>{selectedYear}</th>
 									{quarters.map((q) => (
-										<th key={q}>{q}</th>
+										<th key={q.label} aria-label={q['aria-label']}>
+											{q.label}
+										</th>
 									))}
 									<th>Total</th>
 								</tr>
@@ -116,10 +124,10 @@ export default function Budget() {
 									<tr key={label}>
 										<td>{label}</td>
 										{quarters.map((q) => {
-											const value = budget[selectedYear]?.[q]?.[label]
+											const value = budget[selectedYear]?.[q.label]?.[label]
 
 											return (
-												<td key={q}>
+												<td key={q.label}>
 													{value
 														? formatValue(value, {
 																displayedUnit: '€',
@@ -133,7 +141,7 @@ export default function Budget() {
 											{formatValue(
 												arraySum(
 													quarters.map(
-														(q) => budget[selectedYear]?.[q]?.[label] ?? 0
+														(q) => budget[selectedYear]?.[q.label]?.[label] ?? 0
 													)
 												),
 												{
@@ -150,11 +158,11 @@ export default function Budget() {
 									<td>Total HT</td>
 									{quarters.map((q) => {
 										const value = arraySum(
-											Object.values(budget[selectedYear]?.[q] ?? {})
+											Object.values(budget[selectedYear]?.[q.label] ?? {})
 										)
 
 										return (
-											<td key={q}>
+											<td key={q.label}>
 												{value
 													? formatValue(value, {
 															displayedUnit: '€',
@@ -169,7 +177,7 @@ export default function Budget() {
 											arraySum(
 												quarters.map((q) =>
 													arraySum(
-														Object.values(budget[selectedYear]?.[q] ?? {})
+														Object.values(budget[selectedYear]?.[q.label] ?? {})
 													)
 												)
 											),
@@ -184,12 +192,13 @@ export default function Budget() {
 									<td>Total TTC</td>
 									{quarters.map((q) => {
 										const value = Math.round(
-											arraySum(Object.values(budget[selectedYear]?.[q] ?? {})) *
-												1.2
+											arraySum(
+												Object.values(budget[selectedYear]?.[q.label] ?? {})
+											) * 1.2
 										)
 
 										return (
-											<td key={q}>
+											<td key={q.label}>
 												{value
 													? formatValue(value, {
 															displayedUnit: '€',
@@ -206,7 +215,9 @@ export default function Budget() {
 													quarters.map(
 														(q) =>
 															arraySum(
-																Object.values(budget[selectedYear]?.[q] ?? {})
+																Object.values(
+																	budget[selectedYear]?.[q.label] ?? {}
+																)
 															) * 1.2
 													)
 												)
