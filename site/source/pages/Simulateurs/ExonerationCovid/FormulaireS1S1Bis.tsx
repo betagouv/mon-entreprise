@@ -93,6 +93,13 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 				<ExplicableRule dottedName="secteur . S1 ou S1bis" light bigPopover />
 			</H3>
 			<Table>
+				<caption className="visually-hidden">
+					<Trans>
+						Tableau affichant pour chaque mois de la période précédemment
+						sélectionnée le montant de réductions pour la situation
+						sélectionnée.
+					</Trans>
+				</caption>
 				<Thead>
 					<Tr>
 						<Trans>
