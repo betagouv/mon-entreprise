@@ -434,11 +434,11 @@ autoentrepreneur:
 back: Return to the simulation
 barème: scale
 budget:
-  table-summary: Table showing the budget for the year {{year}} by expense item.
-    The first column shows the current year ({{year}}) on the first line, then
-    the expense items and finally the total before and after tax. The other
-    columns show the expenses for each quarter. The last column shows the totals
-    for each expense item as well as the aggregate totals.
+  table-summary: The first column shows the current year ({{year}}) on the first
+    line, then the expense items and finally the total before and after tax. The
+    other columns show the expenses for each quarter. The last column shows the
+    totals for each expense item as well as the aggregate totals.
+  table-title: Table displaying the {selectedYear} budget by expense item.
 calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on
@@ -827,11 +827,13 @@ est un SIREN non diffusible: is a non-distributable SIREN
 examples: Examples
 expected: the expected result was
 explications:
-  table-summary: The first column displays the different types of regimes (BIC,
+  table-summary: The first column shows the different types of activity (BIC,
     BNC). The second column shows the lines of your tax return that allow you to
-    determine your tax result, for each regime. The other columns display the
-    exemptions in place as well as the lines of the tax return where you can add
-    your exemptions for each regime.
+    determine your tax result, for each type of activity. The other columns
+    display the exemptions in place as well as the lines of the tax return or
+    add your exemptions for each type of activity.
+  table-title: Table displaying the lines of your tax return associated with the
+    tax exemptions in place for each type of activity.
 facteur: multiplier
 fail: This test failed
 feedback:

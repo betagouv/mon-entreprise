@@ -315,12 +315,12 @@ autoentrepreneur:
   titre: Entreprise individuelle ou auto-entrepreneur
 back: Retourner à la simulation
 budget:
-  table-summary: Tableau affichant le bugdet de l'année {{year}} par poste de
-    dépenses. La première colonne affiche l'année en cours ({{year}}) sur la
+  table-summary: La première colonne affiche l'année en cours ({{year}}) sur la
     première ligne puis les postes de dépenses et pour finir le total HT et
     total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre.
     La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi
     que les totaux agrégés.
+  table-title: Tableau affichant le bugdet de l'année {selectedYear} par poste de dépenses.
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -600,12 +600,14 @@ entreprise:
     titre2: Recommandé avant le début de l'activité
 est un SIREN non diffusible: est un SIREN non diffusible
 explications:
-  table-summary: La première colonne affiche les différents types de régimes (BIC,
+  table-summary: La première colonne affiche les différents types d'activité (BIC,
     BNC). La deuxième colonne indique les lignes de votre liasse fiscale qui
-    vous permettent de déterminer votre résultat fiscal, et ce pour chaque
-    régime. Les autres colonnes affichent les exonérations en place ainsi que
-    les lignes de liasse fiscale ou ajouter vos exonérations et ce pour chaque
-    régime.
+    vous permettent de déterminer votre résultat fiscal, et ce pour chaque type
+    d'activité. Les autres colonnes affichent les exonérations en place ainsi
+    que les lignes de liasse fiscale ou ajouter vos exonérations et ce pour
+    chaque type d'activité.
+  table-title: Tableau affichant les lignes de votre liasse fiscale associées aux
+    exonérations fiscales en place pour chaque type d'activité.
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>

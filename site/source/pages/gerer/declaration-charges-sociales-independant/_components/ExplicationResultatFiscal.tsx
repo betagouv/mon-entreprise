@@ -1,7 +1,7 @@
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Li, Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 export const StyledTable = styled.table`
@@ -47,13 +47,20 @@ export function ExplicationsResultatFiscal() {
 					Ajoutez les exonérations <strong>(2)</strong>
 				</Li>
 			</Ul>
-			<StyledTable
-				role="table"
-				summary={t(
-					'explications.table-summary',
-					'Tableau affichant les lignes de votre liasse fiscale associées aux exonérations fiscales en place. La première colonne affiche les différents types de régimes (BIC, BNC). La deuxième colonne indique les lignes de votre liasse fiscale qui vous permettent de déterminer votre résultat fiscal, et ce pour chaque régime. Les autres colonnes affichent les exonérations en place ainsi que les lignes de liasse fiscale ou ajouter vos exonérations et ce pour chaque régime.'
-				)}
-			>
+
+			<StyledTable role="table">
+				<caption className="visually-hidden">
+					<Trans i18nKey="explications.table-caption">
+						Tableau affichant les lignes de votre liasse fiscale associées aux
+						exonérations fiscales en place pour chaque type d'activité. La
+						première colonne affiche les différents types d'activité (BIC, BNC).
+						La deuxième colonne indique les lignes de votre liasse fiscale qui
+						vous permettent de déterminer votre résultat fiscal, et ce pour
+						chaque type d'activité. Les autres colonnes affichent les
+						exonérations en place ainsi que les lignes de liasse fiscale ou
+						ajouter vos exonérations et ce pour chaque type d'activité.
+					</Trans>
+				</caption>
 				<tr>
 					<th></th>
 					<th></th>
