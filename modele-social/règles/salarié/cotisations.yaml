@@ -93,10 +93,17 @@ salarié . cotisations . exonérations . heures supplémentaires:
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         assiette: temps de travail . heures supplémentaires
-        facteur: 1.50 €/heures
+        facteur:
+          variations:
+            - si: entreprise . salariés . effectif >= 20
+              alors:
+                applicable si: date >= 10/2022
+                valeur: 0.50 €/heures
+            - sinon: 1.50 €/heures
       note: La déduction ne s’applique pas aux heures complémentaires
       références:
-        urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
+        La déduction forfaitaire patronale pour heures supplémentaires: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
+        'Heures supplémentaires : une nouvelle exonération pour les entreprises de 20 à 249 salariés': https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/heures-supplementaires--une-nouv.html
 
 salarié . cotisations . exonérations . lodeom:
   experimental: oui

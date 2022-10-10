@@ -477,7 +477,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
   avec:
     employeur:
       somme:
-        - transports publics . déductible employeur
+        - transports publics . employeur
         - forfait mobilités durables . montant
         - prime de transport . montant
         # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
@@ -487,15 +487,31 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
       titre: Part déductible
       valeur:
         somme:
-          - transports publics . déductible employeur
+          - transports publics . déductible
           - forfait mobilités durables . montant
-          - prime de transport . déductible
+          - valeur: prime de transport . déductible
+            plafond: plafond hors cumul
         plafond:
           variations:
+            - si:
+                toutes ces conditions:
+                  - date >= 01/2021
+                  - établissement . commune . département . outre-mer
+              alors: 900 €/an
             - si: cumul forfait mobilité durable et transports publics
-              alors: 800€/an
-            - sinon: 700€/an
-        plancher: transports publics . employeur
+              alors:
+                variations:
+                  - si: date < 01/2022
+                    alors: 600€/an
+                  - sinon: 800€/an
+            - sinon:
+                nom: plafond hors cumul
+                privé: oui
+                variations:
+                  - si: date < 01/2022
+                    alors: 500€/an
+                  - sinon: 700€/an
+        plancher: transports publics . déductible
       abattement: abattement temps partiel
 
     abattement temps partiel:
@@ -548,31 +564,35 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
         assiette: montant
         taux: taux employeur
 
-    déductible employeur:
+    déductible:
       description: Montant de l'abonnement aux transports publics prise en charge par l'employeur et déductible de cotisations et d'impôts.
       produit:
         assiette: montant
-        taux: taux employeur déductible
+        taux:
+          valeur: taux employeur
+          plafond:
+            variations:
+              - si: date < 01/2022
+                alors: 50%
+              - sinon: 75%
 
     taux employeur:
       question: Quel est le taux de prise en charge par l’employeur aux frais de transports du salarié ?
       par défaut: 50%
+      plancher: 50%
       suggestions:
-        Minimum obligatoire (50%): 50%
+        Minimum (50%): 50%
         Maximum déductible (75%): 75%
         Totale (100%): 100%
-
-    taux employeur déductible:
-      privé: oui
-      valeur: taux employeur
-      plafond: 75%
 
 salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
   icônes: 🚗
   avec:
     montant:
       titre: Prime de transport
-      non applicable si: transports publics . montant > 0
+      non applicable si:
+        applicable si: date < 01/2022
+        valeur: transports publics . montant > 0
       question: Quel montant des frais de carburants / alimentation du véhicule dépensés par le salarié pour se rendre au travail est pris en charge par l'employeur ?
       unité: €/an
       par défaut: 0 €/an
@@ -610,7 +630,12 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
       valeur: montant
       plafond:
         non applicable si: véhicule electrique hybride hydrogène
-        valeur: 200 €/an
+        variations:
+          - si: date < 01/2022
+            alors: 200 €/an
+          - si: établissement . commune . département . outre-mer
+            alors: 600 €/an
+          - sinon: 400 €/an
     véhicule electrique hybride hydrogène:
       question: Le salarié utilise-t'il un véhicules électriques, hybrides rechargeables ou à hydrogène ?
       par défaut: non
@@ -641,6 +666,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . fo
 
       références:
         Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
+        'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
         'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
         Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
         Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
