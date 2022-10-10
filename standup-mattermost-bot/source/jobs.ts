@@ -6,6 +6,7 @@ import { NODE_ENV } from './config.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Doc for interval : https://breejs.github.io/later/parsers.html#text
 const jobs: BreeOptions['jobs'] = [
 	{
 		name: 'refresh-token',
