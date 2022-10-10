@@ -91,10 +91,7 @@ export const safeSetSituation = <Names extends string>(
 						err.message === (error as Error).message
 				)
 			) {
-				engine.setSituation({})
-				onError({ situation: {} })
-
-				break
+				throw error
 			}
 			errors.push(error as Error)
 
@@ -128,12 +125,37 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	const dispatch = useDispatch()
 	const rawSituation = useRawSituation()
 
-	safeSetSituation(
-		engine,
-		rawSituation,
-		({ faultyDottedName }) =>
-			faultyDottedName && dispatch(deleteFromSituation(faultyDottedName))
-	)
+	const simulatorSituation = useSelector(situationSelector)
+	const configSituation = useSelector(configSituationSelector)
+	const companySituation = useSelector(companySituationSelector)
+
+	try {
+		safeSetSituation(engine, rawSituation, ({ faultyDottedName }) => {
+			if (!faultyDottedName) {
+				throw new Error('Bad empty faultyDottedName')
+			}
+
+			if (faultyDottedName in simulatorSituation) {
+				dispatch(deleteFromSituation(faultyDottedName))
+			} else {
+				throw new Error(
+					'Bad ' +
+						(faultyDottedName in configSituation
+							? 'config'
+							: faultyDottedName in companySituation
+							? 'company'
+							: 'unknow') +
+						' situation : ' +
+						JSON.stringify(faultyDottedName)
+				)
+			}
+		})
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error(error)
+
+		engine.setSituation()
+	}
 }
 
 export function useInversionFail() {
