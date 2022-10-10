@@ -40,20 +40,14 @@ export default function Library() {
 					Pour lancer vos propres calculs, vous devez installer le paquet{' '}
 					<Link
 						href="https://www.npmjs.com/package/publicodes"
-						aria-label={t(
-							'pages.développeur.bibliothèque.publicodesAriaLabel',
-							'publicodes, voir la page npm de la librairie publicodes'
-						)}
+						aria-label="publicodes, voir la page npm de la librairie publicodes"
 					>
 						<Code>publicodes</Code>
 					</Link>{' '}
 					contenant l'interpréteur publicodes, ainsi que le paquet{' '}
 					<Link
 						href="https://www.npmjs.com/package/modele-social"
-						aria-label={t(
-							'pages.développeur.bibliothèque.mmodèleAriaLabel',
-							'modèle-social, voir la page npm de la librairie modèle-social'
-						)}
+						aria-label="modèle-social, voir la page npm de la librairie modèle-social"
 					>
 						<Code>modele-social</Code>
 					</Link>
@@ -108,10 +102,7 @@ export default function Library() {
 						target="_blank"
 						rel="noreferrer"
 						href="/documentation"
-						aria-label={t(
-							'pages.développeur.doc',
-							'documentation en ligne, voir la documentation en ligne'
-						)}
+						aria-label="documentation en ligne, voir la documentation en ligne"
 					>
 						documentation en ligne
 					</Link>
@@ -145,10 +136,7 @@ export default function Library() {
 						situation. Ces dernières acceptent n'importe quelle{' '}
 						<Link
 							href="https://publi.codes/docs/principes-de-base"
-							aria-label={t(
-								'pages.développeur.bibliothèque.publicodes.basePrincipe',
-								'expression ou objet publicodes, voir la page de documentation portant sur les principes de bases de publicodes'
-							)}
+							aria-label="expression ou objet publicodes, voir la page de documentation portant sur les principes de bases de publicodes"
 						>
 							expression ou objet publicodes.
 						</Link>

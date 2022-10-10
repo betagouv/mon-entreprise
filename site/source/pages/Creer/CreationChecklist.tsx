@@ -272,10 +272,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									compte bloqué auprès d'une banque ou de la{' '}
 									<Link
 										href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social"
-										aria-label={t(
-											'entreprise.tâches.capital.description.caisseAriaLabel',
-											'Caisse des dépôts et consignations, en savoir plus sur le site consignations.caissedesdepots.fr'
-										)}
+										aria-label="Caisse des dépôts et consignations, en savoir plus sur le site consignations.caissedesdepots.fr"
 									>
 										Caisse des dépôts et consignations
 									</Link>{' '}
@@ -412,10 +409,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									La gestion d'une entreprise impose un certain nombre d'
 									<Link
 										href="https://www.economie.gouv.fr/entreprises/obligations-comptables"
-										aria-label={t(
-											'entreprise.tâches.comptable.ariaLabel',
-											'obligations comptables, voir le détail sur economie.gouv.fr'
-										)}
+										aria-label="obligations comptables, voir le détail sur economie.gouv.fr"
 									>
 										obligations comptables
 									</Link>

@@ -74,10 +74,7 @@ export default function SalaryExplanation() {
 								Trouvez votre convention collective{' '}
 								<Link
 									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-									aria-label={t(
-										'payslip.disclaimer.ariaLabel',
-										'ici, trouvez votre convention collective sur code.travail.gouv.fr'
-									)}
+									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr"
 								>
 									ici
 								</Link>
