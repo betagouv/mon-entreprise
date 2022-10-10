@@ -1,31 +1,28 @@
-import image from '@/images/map-directions.png'
+import image from '@/images/road-sign.svg'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import Emoji from './utils/Emoji'
+import { Button } from '@/design-system/buttons'
+import { Container } from '@/design-system/layout'
+import PageHeader from '@/components/PageHeader'
 
 export default function Route404() {
 	return (
-		<div
-			style={{
-				color: '#333350',
-				margin: '15% auto',
-				width: '15em',
-				textAlign: 'center',
-			}}
-		>
-			<p>
-				<Trans i18nKey="404.message">
-					Cette page n'existe pas ou n'existe plus
-				</Trans>
-				<Emoji emoji=" 🙅" />
-			</p>
-			<Link to="/">
-				{/* TODO: credits for the image to add: https://thenounproject.com/term/treasure-map/96666/ */}
-				<img style={{ margin: '3%' }} width="100%" src={image} alt="" />
-				<em>
-					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
-				</em>
-			</Link>
-		</div>
+		<Container>
+			<PageHeader
+				titre={
+					<Trans i18nKey='404.message'>
+						Cette page n'existe pas ou n'existe plus
+					</Trans>
+				}
+				picture={image}
+			>
+				<Button
+					size='XL'
+					role='link'
+					to={'/'}
+				>
+					<Trans i18nKey='404.action'>Revenir en lieu sûr</Trans>
+				</Button>
+			</PageHeader>
+		</Container>
 	)
 }
