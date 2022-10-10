@@ -291,6 +291,7 @@ async function main() {
 		},
 		nbAnswersLast30days: 0,
 	})
+
 	try {
 		if (
 			!process.env.ATINTERNET_API_ACCESS_KEY ||
