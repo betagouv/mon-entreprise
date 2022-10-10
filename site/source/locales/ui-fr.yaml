@@ -437,22 +437,28 @@ domiciliation inconnue: domiciliation inconnue
 domiciliée à: domiciliée à
 d’aides: d’aides
 embauche:
+  cesuAriaLabel: chèque emploi associatif (CEA), voir plus d'informations sur cesu.urssaf.fr
   chaque mois: <0>Tous les mois</0><1><0>Utiliser un logiciel de paie pour
     calculer les cotisations sociales et les transmettre via la déclaration
     sociale nominative (DSN).<1></1>Certaines offres de service de l’Urssaf
     comme le <4>titre emploi service entreprise (Tese)</4> ou le <8>chèque
     emploi associatif (CEA)</8> gèrent automatiquement la transmission de la DSN
     pour vous.</0><1>Remettre la fiche de paie à votre employé</1></1>
+  teseAriaLabel: titre emploi service entreprise (Tese), voir plus d'informations
+    sur letese.urssaf.fr
   tâches:
     contrat:
       titre: Signer un contrat de travail avec votre employé
     description: Toutes les étapes nécessaires à l'embauche de votre premier employé.
     dpae:
+      ariaLabel: être effectué en ligne, accéder au site de l'URSSAF vous permettant
+        de réaliser votre déclaration préalable à l'embauche
       description: Ceci peut être fait par le biais du formulaire appelé DPAE, doit
         être complété dans les 8 jours avant toute embauche, et peut <2>être
         effectué en ligne</2>.
       titre: Déclarer l'embauche à l'administration sociale
     logiciel de paie:
+      ariaLabel: logiciel de paie privé, voir des exemples sur dsn-info.fr
       description: Les fiches de paie et les déclarations peuvent être traitées en
         ligne gratuitement par le <2>Tese</2>. Vous pouvez aussi utiliser un
         <5>logiciel de paie privé.</5>

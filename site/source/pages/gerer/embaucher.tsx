@@ -93,6 +93,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									href="https://www.due.urssaf.fr"
 									target="_blank"
 									rel="noreferrer"
+									aria-label={t(
+										'embauche.tâches.dpae.ariaLabel',
+										"être effectué en ligne, accéder au site de l'URSSAF vous permettant de réaliser votre déclaration préalable à l'embauche"
+									)}
 								>
 									être effectué en ligne
 								</a>
@@ -124,6 +128,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									href="http://www.dsn-info.fr/convention-charte.htm"
 									target="_blank"
 									rel="noreferrer"
+									aria-label={t(
+										'embauche.tâches.logiciel de paie.ariaLabel',
+										'logiciel de paie privé, voir des exemples sur dsn-info.fr'
+									)}
 								>
 									logiciel de paie privé.
 								</a>
@@ -220,6 +228,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							href="https://www.letese.urssaf.fr"
 							target="_blank"
 							rel="noreferrer"
+							aria-label={t(
+								'embauche.teseAriaLabel',
+								"titre emploi service entreprise (Tese), voir plus d'informations sur letese.urssaf.fr"
+							)}
 						>
 							titre emploi service entreprise (Tese)
 						</Link>{' '}
@@ -228,6 +240,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							href="https://www.cesu.urssaf.fr"
 							target="_blank"
 							rel="noreferrer"
+							aria-label={t(
+								'embauche.cesuAriaLabel',
+								"chèque emploi associatif (CEA), voir plus d'informations sur cesu.urssaf.fr"
+							)}
 						>
 							chèque emploi associatif (CEA)
 						</Link>{' '}

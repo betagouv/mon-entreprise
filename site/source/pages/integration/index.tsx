@@ -44,7 +44,12 @@ export default function Integration() {
 						<span>
 							<Emoji emoji="📯" />{' '}
 							<strong>
-								<a href={openJobOffer.link}>Mon-entreprise recrute !</a>
+								<a
+									href={openJobOffer.link}
+									aria-label="Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise.urssaf.fr"
+								>
+									Mon-entreprise recrute !
+								</a>
 							</strong>{' '}
 							<small>{openJobOffer.title}</small>
 						</span>

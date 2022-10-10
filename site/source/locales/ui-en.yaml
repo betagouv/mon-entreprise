@@ -626,22 +626,28 @@ déplier: show more
 dû par: owed by
 d’aides: aids
 embauche:
+  cesuAriaLabel: chèque emploi associatif (CEA), see more information on cesu.urssaf.fr
   chaque mois: >
     <0>Then each month</0> <1>
       <0>Compute the individual social contributions (using the chosen payslip software)</0>
       <1>Declare the contributions through the DSN, the new online declaration system</1>
       <2>Deliver the standardised payslip to your employee</2>
     </1> <2>Get an example payslip</2>
+  teseAriaLabel: titre emploi service entreprise (Tese), see more information on
+    letese.urssaf.fr
   tâches:
     contrat:
       titre: Sign an employment contract with your employee
     description: All the necessary steps to hire your first employee.
     dpae:
+      ariaLabel: be done online, accessing the URSSAF website allowing you to make
+        your pre-employment declaration
       description: >
         This can be done through the form called DPAE, must be completed
         within 8 days before any hiring, and can <2>be done online (Fr)</2>
       titre: Declare your hiring t  o the social administration
     logiciel de paie:
+      ariaLabel: private payroll software, see examples on dsn-info.fr
       description: >
         With fewer than 20 employees, payslips and declarations can be
         handled online by the <2> Tese (Fr)</2>, a tool developped by the french
