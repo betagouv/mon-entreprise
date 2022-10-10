@@ -1058,7 +1058,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
     "title": "Mon-entreprise API",
     "version": "v1",
   },
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "paths": {
     "/evaluate": {
       "post": {
