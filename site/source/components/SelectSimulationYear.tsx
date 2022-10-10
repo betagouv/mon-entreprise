@@ -38,10 +38,6 @@ export const SelectSimulationYear = () => {
 								onPress={() =>
 									dispatch(updateSituation('date', `01/01/${year}`))
 								}
-								title={t(
-									'pages.simulateurs.select-year.click-to-change-year',
-									"Cliquez pour changer d'année"
-								)}
 							>
 								{actualYear === 2022 ? (
 									<Trans i18nKey="pages.simulateurs.select-year.access">

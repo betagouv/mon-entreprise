@@ -2,6 +2,7 @@ import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { Logo } from '../Logo'
@@ -89,6 +90,8 @@ const StyledSimulationGoals = styled.div<
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	const inIframe = useIsEmbedded()
 
+	const { t } = useTranslation()
+
 	return (
 		<Section>
 			{inIframe && (
@@ -103,6 +106,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 						href={import.meta.env.VITE_FR_BASE_URL}
 						target="_blank"
 						rel="noreferrer"
+						aria-label={t("Accéder à la page d'accueil")}
 					>
 						<Logo />
 					</LogoContainer>

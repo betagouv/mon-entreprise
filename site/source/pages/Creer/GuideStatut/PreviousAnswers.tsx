@@ -2,9 +2,15 @@ import { Link } from '@/design-system/typography/link'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { LegalStatusRequirements } from '@/types/companyTypes'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+interface RequirementToTextType {
+	props: {
+		children: string
+	}
+}
 
 const requirementToText = (
 	key: keyof LegalStatusRequirements,
@@ -67,14 +73,22 @@ export default function PreviousAnswers() {
 	const legalStatus = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyLegalStatus
 	)
+
+	const { t } = useTranslation()
+
 	if (Object.values(legalStatus).length < 1) {
 		return null
 	}
 
 	return (
 		<PreviousAnswersList>
-			{Object.entries(legalStatus).map(
-				([key, value]) =>
+			{Object.entries(legalStatus).map(([key, value]) => {
+				const textObject = requirementToText(
+					key as any,
+					value as any
+				) as RequirementToTextType
+
+				return (
 					value !== undefined && (
 						<PreviousAnswersItem key={key}>
 							<Link
@@ -83,12 +97,16 @@ export default function PreviousAnswers() {
 										key as keyof typeof legalStatus
 									]
 								}
+								aria-label={t("Revenir à l'étape {{step}}", {
+									step: textObject?.props?.children || '',
+								})}
 							>
-								{requirementToText(key as any, value as any)}
+								{textObject}
 							</Link>
 						</PreviousAnswersItem>
 					)
-			)}
+				)
+			})}
 		</PreviousAnswersList>
 	)
 }
