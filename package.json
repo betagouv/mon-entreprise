@@ -14,7 +14,7 @@
 		"standup-mattermost-bot"
 	],
 	"scripts": {
-		"scalingo-postbuild": "yarn run ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
+		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
 		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
 		"build:standup-mattermost-bot": "yarn workspaces focus standup-mattermost-bot && yarn workspace standup-mattermost-bot run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
@@ -34,10 +34,13 @@
 		"i18n:check": "yarn workspace site i18n:check",
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
+	"//": "Resolve conflicts with @types/... in api and standup-mattermost-bot",
 	"resolutions": {
-		"@types/download/@types/got": "8.3.1"
+		"@types/cacheable-request": "8.3.1",
+		"@types/responselike": "^1.0.0",
+		"@types/styled-components": "^5.1.26",
+		"@types/chai": "^4.3.3"
 	},
-	"//": "@types/got:^9 is a hack to do a conflict with @types/download/@types/got and fix type error in download package https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/58929",
 	"devDependencies": {
 		"@actions/core": "^1.9.0",
 		"@actions/github": "^5.0.3",
