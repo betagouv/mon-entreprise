@@ -441,7 +441,7 @@ budget:
     The first column shows the current year ({{year}}) on the first line, then
     the expense items and finally the total before and after tax. The other
     columns show the expenses for each quarter. The last column shows the totals
-    for each expense item as well as the aggregate totals.
+    for each expense item as well as the aggregated total before and after tax.
 calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on

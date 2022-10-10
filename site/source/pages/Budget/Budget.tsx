@@ -101,13 +101,13 @@ export default function Budget() {
 							<caption className="visually-hidden">
 								{t(
 									'budget.tableCaption',
-									"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux agrégés.",
+									"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux HT et TTC agrégés.",
 									{ year: selectedYear }
 								)}
 							</caption>
 							<thead>
 								<tr>
-									<th id="selectedYearTh">{selectedYear}</th>
+									<td>{selectedYear}</td>
 									{quarters.map((q) => (
 										<th
 											role="columnheader"
@@ -138,7 +138,9 @@ export default function Budget() {
 															language,
 														})
 													) : (
-														<span aria-label="Pas de budget alloué">-</span>
+														<span aria-label="Pas de budget alloué">
+															<span aria-hidden>-</span>
+														</span>
 													)}
 												</td>
 											)
@@ -161,7 +163,9 @@ export default function Budget() {
 							</tbody>
 							<tfoot>
 								<tr>
-									<td>Total HT</td>
+									<th role="rowheader" scope="row">
+										Total HT
+									</th>
 									{quarters.map((q) => {
 										const value = arraySum(
 											Object.values(budget[selectedYear]?.[q.label] ?? {})
@@ -195,7 +199,9 @@ export default function Budget() {
 									</td>
 								</tr>
 								<tr>
-									<td>Total TTC</td>
+									<th role="rowheader" scope="row">
+										Total TTC
+									</th>
 									{quarters.map((q) => {
 										const value = Math.round(
 											arraySum(
