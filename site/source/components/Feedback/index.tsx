@@ -75,7 +75,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 
 	return (
 		<Container>
-			{(state.showThanks || !askFeedback(url)) ? (
+			{state.showThanks || !askFeedback(url) ? (
 				<>
 					<Body>
 						<Strong>
@@ -105,7 +105,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 						style={{
 							display: 'flex',
 							flexWrap: 'wrap',
-							justifyContent: 'center'
+							justifyContent: 'center',
 						}}
 					>
 						<EmojiButton onClick={() => handleFeedback('mauvais')}>
@@ -162,9 +162,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							size="XS"
 							light
 						>
-							<Trans i18nKey="feedback.reportError">
-								Faire une suggestion
-							</Trans>
+							<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 						</Button>
 					)}
 				</Grid>
