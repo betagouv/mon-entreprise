@@ -122,11 +122,7 @@ Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > cdd 4`] = `
-<<<<<<< HEAD
-"[4276,0,2200,2292,2108]
-=======
-"[4271,0,2200,2296,2112]
->>>>>>> dfc8e59c9 (🔨 Frais de transports déductibles jusqu'à 75%)
+"[4406,0,2200,2375,2185]
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -161,15 +157,11 @@ exports[`calculate simulations-salarié > frais pro - DFS 6`] = `"[1765,0,1700,1
 
 exports[`calculate simulations-salarié > frais pro - DFS 7`] = `"[3221,0,2600,2125,2105]"`;
 
-exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `"[4373,0,3200,2545,2348]"`;
+exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `"[4381,0,3200,2553,2356]"`;
 
-<<<<<<< HEAD
-exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 2`] = `"[4896,0,3200,2856,2566]"`;
-=======
-exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 2`] = `"[4891,0,3200,2859,2571]"`;
->>>>>>> dfc8e59c9 (🔨 Frais de transports déductibles jusqu'à 75%)
+exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 2`] = `"[5003,0,3200,2926,2631]"`;
 
-exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 3`] = `"[4665,0,3200,2823,2624]"`;
+exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 3`] = `"[4687,0,3200,2836,2637]"`;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 1`] = `"[4380,0,3200,2551,2354]"`;
 
@@ -179,9 +171,13 @@ exports[`calculate simulations-salarié > frais pro - abonnement transports publ
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 4`] = `"[4356,0,3200,2527,2330]"`;
 
+exports[`calculate simulations-salarié > frais pro - outre-mer 1`] = `"[4187,0,3200,2586,2479]"`;
+
+exports[`calculate simulations-salarié > frais pro - outre-mer 2`] = `"[4200,0,3200,2583,2475]"`;
+
 exports[`calculate simulations-salarié > frais pro - titres restaurant 1`] = `"[2394,0,2000,1521,1487]"`;
 
-exports[`calculate simulations-salarié > frais pro - titres restaurant 2`] = `"[4300,0,3000,2135,1945]"`;
+exports[`calculate simulations-salarié > frais pro - titres restaurant 2`] = `"[4298,0,3000,2136,1946]"`;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 3`] = `"[2438,0,2000,1493,1458]"`;
 
@@ -189,11 +185,7 @@ exports[`calculate simulations-salarié > frais pro - transports personnels seul
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 2`] = `"[4381,0,3200,2553,2356]"`;
 
-<<<<<<< HEAD
-exports[`calculate simulations-salarié > frais pro - transports personnels seul 3`] = `"[5007,0,3200,2918,2621]"`;
-=======
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 3`] = `"[5002,0,3200,2922,2626]"`;
->>>>>>> dfc8e59c9 (🔨 Frais de transports déductibles jusqu'à 75%)
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 4`] = `"[4381,0,3200,2553,2356]"`;
 
@@ -205,11 +197,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 2`] = `"[2415,0,2000,1606,1572]"`;
 
-<<<<<<< HEAD
-exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2486,0,2000,1636,1601]"`;
-=======
-exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2516,0,2000,1636,1601]"`;
->>>>>>> dfc8e59c9 (🔨 Frais de transports déductibles jusqu'à 75%)
+exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `"[2484,0,2000,1636,1601]"`;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 4`] = `
 "[2454,0,2000,1616,1581]

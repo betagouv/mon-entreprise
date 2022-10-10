@@ -304,6 +304,17 @@ frais pro - abo transports + transports personnels:
     salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 200€/an
     salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
 
+frais pro - outre-mer:
+  - salarié . contrat . salaire brut: 3200 €/mois
+    établissement . commune . département: "'Guyane'"
+    salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant: 400€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 400€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 300€/an
+  - salarié . contrat . salaire brut: 3200 €/mois
+    établissement . commune . département: "'Guyane'"
+    salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant: 800€/an
+    salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant: 100€/an
+
 frais pro - DFS:
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . régimes spécifiques . DFS: oui
