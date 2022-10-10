@@ -177,6 +177,8 @@ function StepsTable({
 	rules: Array<EvaluatedRule>
 	onClose: () => void
 }) {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			{rules
@@ -185,7 +187,11 @@ function StepsTable({
 					<StyledAnswerList container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
-							<ExplicableRule light dottedName={rule.dottedName} />
+							<ExplicableRule
+								aria-label={t('En savoir plus')}
+								light
+								dottedName={rule.dottedName}
+							/>
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />
@@ -199,6 +205,8 @@ function StepsTable({
 function AnswerElement(rule: EvaluatedRule) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+
+	const { t } = useTranslation()
 
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
@@ -231,7 +239,11 @@ function AnswerElement(rule: EvaluatedRule) {
 					<form onSubmit={onClose}>
 						<H3>
 							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
-							<ExplicableRule light dottedName={questionDottedName} />
+							<ExplicableRule
+								light
+								dottedName={questionDottedName}
+								aria-label={t('En savoir plus')}
+							/>
 						</H3>
 						<RuleInput
 							dottedName={questionDottedName}

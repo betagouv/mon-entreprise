@@ -6,9 +6,11 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export function CasParticuliers() {
+	const { t } = useTranslation()
+
 	return (
 		<Trans i18nKey="pages.développeur.components.CasParticuliers">
 			<H2>En savoir plus sur...</H2>
@@ -55,7 +57,10 @@ export function CasParticuliers() {
 				</H3>
 				<Body>
 					Nos API suivent une{' '}
-					<Link href="https://semver.org/lang/fr/">
+					<Link
+						href="https://semver.org/lang/fr/"
+						aria-label={t('gestion sémantique de version, en savoir plus')}
+					>
 						gestion sémantique de version
 					</Link>
 					. Cela veut dire que toutes les modifications apportées sont
@@ -106,7 +111,10 @@ export function CasParticuliers() {
 				</Body>
 				<Body>
 					Dans le simulateur{' '}
-					<Link to={useSitePaths().absoluteSitePaths.simulateurs.salarié}>
+					<Link
+						to={useSitePaths().absoluteSitePaths.simulateurs.salarié}
+						aria-label={t('salarié, accéder au simulateur salarié')}
+					>
 						salarié
 					</Link>
 					, il suffit de renseigner la commune et le taux versement mobilité
@@ -142,14 +150,22 @@ export function CasParticuliers() {
 					utiliser :
 					<Ul>
 						<Li>
-							<Link href="https://github.com/betagouv/taux-collectifs-cotisation-atmp">
+							<Link
+								href="https://github.com/betagouv/taux-collectifs-cotisation-atmp"
+								aria-label={t("un export CSV, accéder à l'export")}
+							>
 								Un export csv
 							</Link>{' '}
 							du tableau des taux nets collectifs paru au Journal Officiel
 						</Li>
 						<Li>
 							Le service{' '}
-							<Link href="https://www.net-entreprises.fr/declaration/compte-atmp/">
+							<Link
+								href="https://www.net-entreprises.fr/declaration/compte-atmp/"
+								aria-label={t(
+									'Compte AT/MP, voir le service en ligne de déclaration pour ATMP'
+								)}
+							>
 								Compte AT/MP
 							</Link>{' '}
 							de net-entreprise

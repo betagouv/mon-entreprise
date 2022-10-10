@@ -14,7 +14,7 @@ import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
 import { createContext, ReactNode } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
-import { I18nextProvider } from 'react-i18next'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { ServiceWorker } from './ServiceWorker'
@@ -41,6 +41,8 @@ export default function Provider({
 }: ProviderProps): JSX.Element {
 	useIframeResizer()
 
+	const { t } = useTranslation()
+
 	return (
 		<DesignSystemThemeProvider>
 			<GlobalStyle />
@@ -48,7 +50,7 @@ export default function Provider({
 				showDialog
 				fallback={
 					<Container>
-						<Link href="/">
+						<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
 							<img
 								src={logo}
 								alt="Logo mon-entreprise"

@@ -16,6 +16,8 @@ import { ThemeContext } from 'styled-components'
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
 
+	const { t } = useTranslation()
+
 	if (useInversionFail()) {
 		return null
 	}
@@ -70,7 +72,13 @@ export default function SalaryExplanation() {
 								Il ne prend pour l'instant pas en compte les accords et
 								conventions collectives, ni la myriade d'aides aux entreprises.
 								Trouvez votre convention collective{' '}
-								<Link href="https://code.travail.gouv.fr/outils/convention-collective#entreprise">
+								<Link
+									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+									aria-label={t(
+										'payslip.disclaimer.ariaLabel',
+										'ici, trouvez votre convention collective sur code.travail.gouv.fr'
+									)}
+								>
 									ici
 								</Link>
 								, et explorez les aides sur&nbsp;

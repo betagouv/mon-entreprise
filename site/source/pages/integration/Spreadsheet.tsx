@@ -3,10 +3,12 @@ import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function Spreadsheet() {
 	const { absoluteSitePaths } = useSitePaths()
+
+	const { t } = useTranslation()
 
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
@@ -16,7 +18,13 @@ export default function Spreadsheet() {
 				<Body>
 					Vous souhaitez utiliser un simulateur dans une feuille Google Sheets
 					ou Excel ? C'est possible grâce à notre{' '}
-					<Link to={absoluteSitePaths.développeur.api}>API REST</Link> !
+					<Link
+						to={absoluteSitePaths.développeur.api}
+						aria-label={t("API REST, en savoir plus sur l'API REST")}
+					>
+						API REST
+					</Link>{' '}
+					!
 				</Body>
 
 				<H2>Intégrer un simulateur dans Excel/Sheets</H2>

@@ -15,6 +15,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Navigate, useMatch, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -29,6 +30,8 @@ export default function Nouveautés() {
 	const { absoluteSitePaths } = useSitePaths()
 	const slug = useMatch(`${absoluteSitePaths.nouveautés}/:slug`)?.params?.slug
 	useHideNewsBanner()
+
+	const { t } = useTranslation()
 
 	const releasesWithId = useMemo(
 		() => (data && data.map((v, id) => ({ ...v, id }))) ?? [],
@@ -67,7 +70,9 @@ export default function Nouveautés() {
 				<Body>
 					Nous améliorons le site en continu à partir de{' '}
 					<Link
-						aria-label="vos retours, accéder aux statistiques d'utilisation"
+						aria-label={t(
+							"vos retours, accéder aux statistiques d'utilisation"
+						)}
 						to={absoluteSitePaths.stats + '#demandes-utilisateurs'}
 					>
 						vos retours

@@ -17,6 +17,7 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -92,6 +93,8 @@ export function SimpleField({
 		[dispatch]
 	)
 
+	const { t } = useTranslation()
+
 	let displayedQuestion =
 		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
 
@@ -120,7 +123,10 @@ export function SimpleField({
 			{displayedQuestion ? (
 				<StyledQuestion id={labelId}>
 					<Markdown components={{ p: Intro }}>{displayedQuestion}</Markdown>
-					<ExplicableRule dottedName={dottedName} />
+					<ExplicableRule
+						dottedName={dottedName}
+						aria-label={t('En savoir plus')}
+					/>
 				</StyledQuestion>
 			) : (
 				<Spacing sm />

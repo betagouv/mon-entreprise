@@ -90,7 +90,12 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 		<>
 			<H3>
 				{engine.getRule('secteur . S1 ou S1bis').rawNode.question}
-				<ExplicableRule dottedName="secteur . S1 ou S1bis" light bigPopover />
+				<ExplicableRule
+					aria-label={t('En savoir plus')}
+					dottedName="secteur . S1 ou S1bis"
+					light
+					bigPopover
+				/>
 			</H3>
 			<Table>
 				<caption className="visually-hidden">

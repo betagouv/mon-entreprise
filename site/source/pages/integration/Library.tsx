@@ -7,12 +7,14 @@ import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { CasParticuliers } from './_components/CasParticuliers'
 import StepByStep from './_components/StepByStep'
 import illustration from './_images/illustration_library.svg'
 
 export default function Library() {
+	const { t } = useTranslation()
+
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
@@ -36,11 +38,23 @@ export default function Library() {
 				</pre>
 				<Body>
 					Pour lancer vos propres calculs, vous devez installer le paquet{' '}
-					<Link href="https://www.npmjs.com/package/publicodes">
+					<Link
+						href="https://www.npmjs.com/package/publicodes"
+						aria-label={t(
+							'pages.développeur.bibliothèque.publicodesAriaLabel',
+							'publicodes, voir la page npm de la librairie publicodes'
+						)}
+					>
 						<Code>publicodes</Code>
 					</Link>{' '}
 					contenant l'interpréteur publicodes, ainsi que le paquet{' '}
-					<Link href="https://www.npmjs.com/package/modele-social">
+					<Link
+						href="https://www.npmjs.com/package/modele-social"
+						aria-label={t(
+							'pages.développeur.bibliothèque.mmodèleAriaLabel',
+							'modèle-social, voir la page npm de la librairie modèle-social'
+						)}
+					>
 						<Code>modele-social</Code>
 					</Link>
 					, qui contient les règles des simulateurs mon-entreprise.
@@ -90,7 +104,15 @@ export default function Library() {
 				</Body>
 				<Body>
 					Toutes les règles disponibles sont listées et expliquées sur la{' '}
-					<Link target="_blank" rel="noreferrer" href="/documentation">
+					<Link
+						target="_blank"
+						rel="noreferrer"
+						href="/documentation"
+						aria-label={t(
+							'pages.développeur.doc',
+							'documentation en ligne, voir la documentation en ligne'
+						)}
+					>
 						documentation en ligne
 					</Link>
 					. Cette documentation est auto-générée depuis les fichiers de règles
@@ -121,7 +143,13 @@ export default function Library() {
 						</Strong>
 						<br /> Vous pouvez modifier sans hésiter les valeurs de la
 						situation. Ces dernières acceptent n'importe quelle{' '}
-						<Link href="https://publi.codes/docs/principes-de-base">
+						<Link
+							href="https://publi.codes/docs/principes-de-base"
+							aria-label={t(
+								'pages.développeur.bibliothèque.publicodes.basePrincipe',
+								'expression ou objet publicodes, voir la page de documentation portant sur les principes de bases de publicodes'
+							)}
+						>
 							expression ou objet publicodes.
 						</Link>
 					</Li>

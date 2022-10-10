@@ -12,12 +12,16 @@ export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
 	const {
 		i18n: { language },
+		t,
 	} = useTranslation()
 
 	return (
 		<Container>
 			<StyledHeader>
-				<Link to={absoluteSitePaths.index}>
+				<Link
+					to={absoluteSitePaths.index}
+					aria-label={t("Aller à la page d'accueil")}
+				>
 					<StyledLogo>
 						<Logo />
 					</StyledLogo>

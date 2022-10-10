@@ -4,11 +4,13 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { StatsStruct } from './types'
 
 export default function DemandeUtilisateurs() {
 	const { data: stats } = useFetchData<StatsStruct>('/data/stats.json')
+	const { t } = useTranslation()
 
 	return (
 		<section>
@@ -19,6 +21,9 @@ export default function DemandeUtilisateurs() {
 				<Link
 					href="https://github.com/betagouv/mon-entreprise/blob/master/CONTRIBUTING.md#retours-utilisateurs"
 					target="_blank"
+					aria-label={t(
+						'Comment ça marche ? Voir la page explicative sur la page du dépôt github'
+					)}
 				>
 					Comment ça marche ?
 				</Link>
@@ -70,11 +75,14 @@ function Pagination({ items }: PaginationProps) {
 }
 
 function Issue({ title, number, count, closedAt }: IssueProps) {
+	const { t } = useTranslation()
+
 	return (
 		<Li>
 			{count > 1 && <span>{count} demandes</span>}{' '}
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
+				aria-label={t('{{title}}, voir la demande sur github.com')}
 			>
 				{title}
 			</Link>{' '}

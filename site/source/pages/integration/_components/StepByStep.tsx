@@ -2,9 +2,11 @@ import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li } from '@/design-system/typography/list'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function StepByStep() {
+	const { t } = useTranslation()
+
 	return (
 		<Trans i18nKey="pages.développeur.components.StepByStep">
 			<Li>
@@ -13,7 +15,13 @@ export default function StepByStep() {
 				</Strong>
 				<br />
 				Par exemple le{' '}
-				<Link to={useSitePaths().absoluteSitePaths.simulateurs.salarié}>
+				<Link
+					to={useSitePaths().absoluteSitePaths.simulateurs.salarié}
+					aria-label={t(
+						'pages.développeur.components.StepByStep.salariéAriaLabel',
+						'simulateur salarié, accéder au simulateur salarié'
+					)}
+				>
 					simulateur salarié
 				</Link>{' '}
 				pour calculer un net à partir du brut.
@@ -30,6 +38,10 @@ export default function StepByStep() {
 						search:
 							'salaire-brut=3400%E2%82%AC%2Fmois&salari%C3%A9+.+contrat=%27CDI%27&salari%C3%A9+.+contrat+.+statut+cadre=oui&salari%C3%A9+.+r%C3%A9mun%C3%A9ration+.+frais+professionnels+.+titres-restaurant=oui',
 					}}
+					aria-label={t(
+						'pages.développeur.components.StepByStep.salariéAriaLabel',
+						'un cadre à 3400 € brut avec des titres-restaurants, accéder au simulateur salarié avec les données pré-remplies pour un cadre à 3400 € brut avec des titres-restaurants'
+					)}
 				>
 					un cadre à 3400 € brut avec des titres-restaurants
 				</Link>

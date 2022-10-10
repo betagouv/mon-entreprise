@@ -270,7 +270,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								<SmallBody>
 									Le dépôt consiste en un transfert d'une somme d'argent sur un
 									compte bloqué auprès d'une banque ou de la{' '}
-									<Link href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+									<Link
+										href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social"
+										aria-label={t(
+											'entreprise.tâches.capital.description.caisseAriaLabel',
+											'Caisse des dépôts et consignations, en savoir plus sur le site consignations.caissedesdepots.fr'
+										)}
+									>
 										Caisse des dépôts et consignations
 									</Link>{' '}
 									ou d'un notaire, qui doit alors fournir un certificat de dépôt
@@ -404,7 +410,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.comptable.description">
 									La gestion d'une entreprise impose un certain nombre d'
-									<Link href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
+									<Link
+										href="https://www.economie.gouv.fr/entreprises/obligations-comptables"
+										aria-label={t(
+											'entreprise.tâches.comptable.ariaLabel',
+											'obligations comptables, voir le détail sur economie.gouv.fr'
+										)}
+									>
 										obligations comptables
 									</Link>
 									. Il est conseillé de faire appel aux services d'un

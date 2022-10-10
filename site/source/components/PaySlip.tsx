@@ -100,6 +100,8 @@ export default function PaySlip() {
 	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
+	const { t } = useTranslation()
+
 	return (
 		<div
 			className="payslip__container"
@@ -144,7 +146,11 @@ export default function PaySlip() {
 						<Fragment key={section.dottedName}>
 							<H5 className="payslip__cotisationTitle">
 								{section.title}
-								<ExplicableRule light dottedName={section.dottedName} />
+								<ExplicableRule
+									light
+									dottedName={section.dottedName}
+									aria-label={t('En savoir plus')}
+								/>
 							</H5>
 							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />

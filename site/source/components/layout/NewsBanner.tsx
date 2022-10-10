@@ -53,7 +53,13 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 				<span>
 					<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
 					{determinant(lastRelease.name)}
-					<Link to={absoluteSitePaths.nouveautés}>
+					<Link
+						to={absoluteSitePaths.nouveautés}
+						aria-label={t(
+							'Voir les nouveautés apportées par la version {{release}}',
+							{ release: lastRelease.name.toLowerCase() }
+						)}
+					>
 						{lastRelease.name.toLowerCase()}
 					</Link>
 				</span>

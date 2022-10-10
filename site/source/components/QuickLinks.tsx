@@ -2,7 +2,7 @@ import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/reducers/rootReducer'
 import {
@@ -20,6 +20,8 @@ export default function QuickLinks() {
 	)
 	const quickLinksToHide = useSelector(answeredQuestionsSelector)
 	const dispatch = useDispatch()
+
+	const { t } = useTranslation()
 
 	if (!quickLinks) {
 		return <Spacing sm />
@@ -41,6 +43,9 @@ export default function QuickLinks() {
 					key={dottedName}
 					underline={dottedName === currentQuestion}
 					onPress={() => dispatch(goToQuestion(dottedName))}
+					aria-label={t('{{question}}, aller à la question : {{question}}', {
+						question: label,
+					})}
 				>
 					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
 				</StyledLink>
