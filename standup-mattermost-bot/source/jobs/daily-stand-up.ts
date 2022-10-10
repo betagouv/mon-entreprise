@@ -1,6 +1,7 @@
 import { botConfig, serverUrl } from '../config.js'
-import { getUserChannels, sendMessage } from '../mattermost.js'
+import { getUser, getUserChannels, sendMessage } from '../mattermost.js'
 import { initMongodb } from '../mongodb.js'
+import { snakeToCamelCaseKeys } from '../utils.js'
 
 const mongo = await initMongodb()
 
@@ -20,10 +21,24 @@ if (!standupChannel) {
 	throw new Error('Standup channel not found')
 }
 
-const index = new Date().getDay() - 1
-const nextDayMember = (await mongo.getWeeklyTeamOrder())?.memberIds[index]
+const day = new Date().getDay()
+const nextWorkingDay = day >= 4 ? 1 : day + 1
+const nextDayMemberId = (await mongo.getWeeklyTeamOrder())?.memberIds[
+	nextWorkingDay - 1
+]
+
+const nextDayMember =
+	typeof nextDayMemberId === 'string' &&
+	(await getUser({
+		serverUrl,
+		accessToken,
+		userId: nextDayMemberId,
+	}).then(({ body }) => snakeToCamelCaseKeys(body)))
+
 const nextDayStandup = nextDayMember
-	? `:arrow_forward: Demain, c'est ${nextDayMember} qui anime le stand-up.`
+	? `:arrow_forward: ${nextWorkingDay === 1 ? 'Lundi' : 'Demain'}, c'est @${
+			nextDayMember.username
+	  } qui anime le stand-up.`
 	: ''
 
 const now = new Date()
