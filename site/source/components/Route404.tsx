@@ -9,18 +9,14 @@ export default function Route404() {
 		<Container>
 			<PageHeader
 				titre={
-					<Trans i18nKey='404.message'>
+					<Trans i18nKey="404.message">
 						Cette page n'existe pas ou n'existe plus
 					</Trans>
 				}
 				picture={image}
 			>
-				<Button
-					size='XL'
-					role='link'
-					to={'/'}
-				>
-					<Trans i18nKey='404.action'>Revenir en lieu sûr</Trans>
+				<Button size="XL" role="link" to={'/'}>
+					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
 				</Button>
 			</PageHeader>
 		</Container>
