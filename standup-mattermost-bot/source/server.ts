@@ -65,8 +65,11 @@ router.get('/oauth', async (ctx) => {
 
 		await mongo.saveOAuth(snakeToCamelCaseKeys(body))
 
-		if (state === 'run-all') {
-			await bree.run()
+		if (
+			typeof state === 'string' &&
+			['run-all', ...bree.config.jobs.map(({ name }) => name)].includes(state)
+		) {
+			await (state === 'run-all' ? bree.run() : bree.run(state))
 		}
 
 		ctx.status = 200
