@@ -41,9 +41,15 @@ export default function Privacy({ label }: { label?: string }) {
 					Nous recueillons des statistiques anonymes sur l'utilisation du site,
 					que nous utilisons dans le seul but d'améliorer le service,
 					conformément aux{' '}
-					<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
+					<Link
+						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
+						aria-label={t(
+							'privacyContent.recommandationsAriaLabel',
+							"recommandations de la CNIL, voir plus d'informations à ce sujet sur le site de la CNIL"
+						)}
+					>
 						recommandations de la CNIL
-					</a>{' '}
+					</Link>{' '}
 					et au règlement RGPD. Ce sont les seules données qui quittent votre
 					navigateur.
 				</Body>
@@ -76,7 +82,13 @@ export default function Privacy({ label }: { label?: string }) {
 					afin que vous puissiez facilement les retrouver lors d'une prochaine
 					visite sur le site. Si vous ne souhaitez pas que ce soit le cas, nous
 					vous conseillons d'utiliser la{' '}
-					<Link href="https://www.cnil.fr/fr/la-navigation-privee-pour-limiter-les-risques-de-piratage-de-vos-comptes-en-ligne">
+					<Link
+						href="https://www.cnil.fr/fr/la-navigation-privee-pour-limiter-les-risques-de-piratage-de-vos-comptes-en-ligne"
+						aria-label={t(
+							'privacyContent.privateNavAriaLabel',
+							"navigation privée, voir plus d'informations à ce sujet sur le site de la CNIL"
+						)}
+					>
 						navigation privée
 					</Link>
 					.

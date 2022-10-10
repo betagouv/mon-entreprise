@@ -1906,6 +1906,9 @@ privacyContent:
     you can easily retrieve it the next time you visit the site. If you do not
     wish this to be the case, we advise you to use <2>private browsing</2>.</0>
   ok: Your preferences have been saved
+  privateNavAriaLabel: private navigation, see more information on this subject on the CNIL website
+  recommandationsAriaLabel: recommendations of the CNIL, see more information on
+    this subject on the CNIL website
   texte: <0></0><1>We collect anonymous statistics on the use of the site, which
     we use for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only

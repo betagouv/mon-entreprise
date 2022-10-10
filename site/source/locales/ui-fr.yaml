@@ -1576,6 +1576,9 @@ privacyContent:
     prochaine visite sur le site. Si vous ne souhaitez pas que ce soit le cas,
     nous vous conseillons d'utiliser la <2>navigation privée</2>.</0>
   ok: Vos préférences ont bien été enregistrées
+  privateNavAriaLabel: navigation privée, voir plus d'informations à ce sujet sur le site de la CNIL
+  recommandationsAriaLabel: recommandations de la CNIL, voir plus d'informations à
+    ce sujet sur le site de la CNIL
   texte: <0></0><1>Nous recueillons des statistiques anonymes sur l'utilisation du
     site, que nous utilisons dans le seul but d'améliorer le service,
     conformément aux <2>recommandations de la CNIL</2> et au règlement RGPD. Ce
