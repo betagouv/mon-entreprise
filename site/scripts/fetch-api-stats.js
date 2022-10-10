@@ -27,7 +27,7 @@ const fetchApiStats = async (page, start, end, interval) => {
 		}),
 	})
 
-	return result.json()
+	return await result.json()
 }
 
 export const apiStats = async (start, end, interval) => {
@@ -40,6 +40,7 @@ export const apiStats = async (start, end, interval) => {
 				fetchApiStats('/api/v1/rules/*', start, end, interval),
 			])
 		)
+			.filter((x) => !!x)
 			.flatMap(({ results }, i) =>
 				results.map(({ date, pageviews }) => ({ date, [names[i]]: pageviews }))
 			)
