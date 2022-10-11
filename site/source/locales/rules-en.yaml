@@ -5728,12 +5728,9 @@ protection sociale . santé . indemnités journalières:
     site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
   titre.en: Daily allowances
   titre.fr: indemnités journalières
-protection sociale . santé . indemnités journalières . auto-entrepreneur:
-  titre.en: auto-entrepreneur
-  titre.fr: auto-entrepreneur
-protection sociale . santé . indemnités journalières . indépendant:
-  titre.en: self employed
-  titre.fr: indépendant
+protection sociale . santé . indemnités journalières . TNS:
+  titre.en: '[automatic] TNS'
+  titre.fr: TNS
 protection sociale . santé . indemnités journalières . salarié:
   titre.en: employee
   titre.fr: salarié

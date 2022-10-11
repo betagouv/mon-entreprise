@@ -1,42 +1,50 @@
+# Journal des modifications
+
+## 1.1.0
+
+### Loi du 16 août 2022 portant mesures d’urgence pour la protection du pouvoir d’achat
+
+- Ajoute la possibilité de spécifier un taux de participation employeur pour le remboursement des frais d’abonnement de transport en commun. La participation employeur est déductible jusqu’à 75% maintenant
+- Augmente les plafonds de déductibilité de remboursement des frais de trajet domicile/travail
+- Augmente le plafond de déductibilité des titres-restaurants
+- Ajoute l’extension de la déduction forfaitaire pour heures supplémentaires aux entreprises de plus de 20 salariés
+
 ## 1.0.0
 
--   Déplace la question ACRE sur le dirigeant plutôt que l’entreprise
--   Sépare `activité` et `activité . nature`
-
-
+- Déplace la question ACRE sur le dirigeant plutôt que l’entreprise
+- Sépare `activité` et `activité . nature`
 
 ## 1.0.0-beta.2
 
--   Réecrit les règles de la cotisation AT/MP
--   Supprime le recours au mécanisme synchronisation pour la localisation de l’établissement
--   Ajoute le tag experimental à de nouvelles règles
-
+- Réécrit les règles de la cotisation AT/MP
+- Supprime le recours au mécanisme synchronisation pour la localisation de l’établissement
+- Ajoute le tag `experimental` à de nouvelles règles
 
 ## 1.0.0-beta.1
 
--   Passage du paquet en semver (voir le README)
--   Sépare le fichier salarié en plusieurs fichiers séparés
--   Ajoute un tag experimental sur les règles susceptible de casser
+- Passage du paquet en semver (voir le README)
+- Sépare le fichier salarié en plusieurs fichiers séparés
+- Ajoute un tag experimental sur les règles susceptible de casser
 
 Les changements suivants sont cassants :
 
--   renomme l’espace de nom `contrat salarié` en `salarié`
--   réécrit les règles liées au remboursement des frais domicile/travail
--   réécrit les règles liées aux CDD
--   déplace les éléments relatif au contrat dans `salarié . contrat`. Il s’agit de `temps partiel`, `salaire brut` ou encore le `statut cadre`
--   tous les éléments relatifs à la rémunération sont déplacés dans `salarié . rémunération`
--   `salarié . régimes spécifiques` : les règles liées aux régimes spéciaux (DFS, cadre, impatriés, etc)
--   `plafond sécurité sociale temps plein` devient `plafond sécurité sociale`
--   toutes les cotisations sont déplacées dans l’espace de nom `salarié . cotisations`, et utilisent les acronymes comme nom tant que possible.
+- renomme l’espace de nom `contrat salarié` en `salarié`
+- réécrit les règles liées au remboursement des frais domicile/travail
+- réécrit les règles liées aux CDD
+- déplace les éléments relatif au contrat dans `salarié . contrat`. Il s’agit de `temps partiel`, `salaire brut` ou encore le `statut cadre`
+- tous les éléments relatifs à la rémunération sont déplacés dans `salarié . rémunération`
+- `salarié . régimes spécifiques` : les règles liées aux régimes spéciaux (DFS, cadre, impatriés, etc)
+- `plafond sécurité sociale temps plein` devient `plafond sécurité sociale`
+- toutes les cotisations sont déplacées dans l’espace de nom `salarié . cotisations`, et utilisent les acronymes comme nom tant que possible.
 
 **Corrections de bugs**
 
--   Ajoute la limite de déduction sur la part employeur des prévoyances
--   Enlève la CSA de l’exonération JEI
--   Réecrit les règles de déductions des frais de transport domicile / travail pour coller à la réglementation
--   Réecrit les règles sur le CDD pour une meilleure expérience question par question
--   Précise le calcul de l’assiette de la CSG
--   Corrige le calcul de la rémunération brut avec prévoyance
+- Ajoute la limite de déduction sur la part employeur des prévoyances
+- Enlève la CSA de l’exonération JEI
+- Réecrit les règles de déductions des frais de transport domicile / travail pour coller à la réglementation
+- Réecrit les règles sur le CDD pour une meilleure expérience question par question
+- Précise le calcul de l’assiette de la CSG
+- Corrige le calcul de la rémunération brut avec prévoyance
 
 **Note sur l’upgrade**
 Pour les utilisateur des version précédente, la mise à jour risque d’être longue et fastidieuse. Nous nous en excusons. Le but de cette refacto est de prévenir les changement cassants au maximum à l’avenir.

@@ -12,7 +12,19 @@ export function CasParticuliers() {
 	return (
 		<Trans i18nKey="pages.développeur.components.CasParticuliers">
 			<H2>En savoir plus sur...</H2>
-
+			<section>
+				<H3>Comment faire une simulation dans le passé ?</H3>
+				<Body>
+					Depuis fin 2021, les règles de calculs des simulateurs sont
+					historisées. Cela veut dire que l'on peut effectuer une simulation
+					avec la législation effective à une date antérieure. Pour cela, il
+					vous suffit de renseigner le paramètre{' '}
+					<RuleLink dottedName="date">
+						<Code>date</Code>
+					</RuleLink>{' '}
+					dans la situation.
+				</Body>
+			</section>
 			<section>
 				<H3>
 					Les <Code>MissingVariables</Code>
