@@ -1,5 +1,4 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -16,62 +15,22 @@ export default function FeedbackForm() {
 	// const tracker = useContext(TrackerContext)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
-	const isSimulateur = pathname.includes('simulateurs')
 	const lang = useTranslation().i18n.language
 
-	useEffect(() => {
-		const script = document.createElement('script')
-		script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
-
-		document.body.appendChild(script)
-		setTimeout(() => {
-			const script = document.createElement('script')
-			script.id = 'zammad_form_script'
-			script.async = true
-			script.onload = () => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-				$('#feedback-form').ZammadForm({
-					messageTitle: `Remarque sur ${
-						isSimulateur ? 'le simulateur' : 'la page'
-					} ${page}`,
-					messageSubmit: 'Envoyer',
-					messageThankYou: 'Merci de votre retour !',
-					lang,
-					attributes: [
-						{
-							display:
-								"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)",
-							name: 'body',
-							tag: 'textarea',
-							placeholder: 'Your Message...',
-							defaultValue: '',
-							rows: 7,
-						},
-						{
-							display: 'Nom',
-							name: 'name',
-							tag: 'input',
-							type: 'text',
-							defaultValue: '-',
-						},
-						{
-							display: 'Email (pour recevoir une réponse)',
-							name: 'email',
-							tag: 'input',
-							type: 'email',
-							placeholder: 'Your Email',
-						},
-					],
-				})
-			}
-			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'
-			document.body.appendChild(script)
-		}, 100)
-	}, [])
+	const { t } = useTranslation()
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
 			<StyledFeedback id="feedback-form"></StyledFeedback>
+			<iframe
+				title={t('Formulaire de contact pour faire une suggestion')}
+				src={`https://plugins.crisp.chat/urn:crisp.im:contact-form:0/contact/d8247abb-cac5-4db6-acb2-cea0c00d8524?locale=${lang}&page=${page}`}
+				referrerPolicy="origin"
+				sandbox="allow-forms allow-popups allow-scripts"
+				width="100%"
+				height="440px"
+				frameBorder="0"
+			></iframe>
 		</ScrollToElement>
 	)
 }
