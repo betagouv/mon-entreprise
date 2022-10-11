@@ -57,7 +57,7 @@ const buildSimulateursQuery = (period, granularity) => ({
 			filter: {
 				property: {
 					page_chapter1: {
-						$in: ['gerer', 'simulateurs'],
+						$in: ['creer', 'gerer', 'simulateurs'],
 					},
 				},
 			},
