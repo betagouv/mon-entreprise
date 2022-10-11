@@ -121,7 +121,7 @@
 		"@types/react-dom": "^17.0.9",
 		"@types/react-instantsearch-dom": "^6.10.1",
 		"@types/react-redux": "^7.1.23",
-		"@types/recharts": "^1.8.16",
+		"@types/recharts": "^1.8.23",
 		"@types/serve-static": "^1.13.10",
 		"@types/styled-components": "^5.1.24",
 		"@vitejs/plugin-legacy": "^1.8.2",
