@@ -975,17 +975,21 @@ pages:
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
     components:
-      CasParticuliers: "<0>En savoir plus sur...</0><1><0>Les
-        <1>MissingVariables</1></0><1>En retour de votre appel à
-        <1>evaluate</1>, vous obtiendrez un objet <3>missingVariables</3>. Ce
-        dernier contient la liste de toutes les règles utilisées pour le calcul
-        dont la valeur est absente dans la situation en entrée. C'est une
-        <6>valeur par défaut</6> qui a été utilisée à la place.</1><2>Pour
-        personnaliser encore plus votre simulation, vous pouvez renseigner leur
-        valeur.</2><3><0>Le nombre qui leur est associé correspond à
-        l'importance de la règle pour le calcul : plus il est élevé, plus la
-        règle a été utilisée par d'autres règles lors du
-        calcul.</0></3></1><2><0>Les règles taguées comme
+      CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
+        dans le passé ?</0><1>Depuis fin 2021, les règles de calculs des
+        simulateurs sont historisées. Cela veut dire que l'on peut effectuer une
+        simulation avec la législation effective à une date antérieure. Pour
+        cela, il vous suffit de renseigner le paramètre <2><0>date</0></2> dans
+        la situation.</1></1><2><0>Les <1>MissingVariables</1></0><1>En retour
+        de votre appel à <1>evaluate</1>, vous obtiendrez un objet
+        <3>missingVariables</3>. Ce dernier contient la liste de toutes les
+        règles utilisées pour le calcul dont la valeur est absente dans la
+        situation en entrée. C'est une <6>valeur par défaut</6> qui a été
+        utilisée à la place.</1><2>Pour personnaliser encore plus votre
+        simulation, vous pouvez renseigner leur valeur.</2><3><0>Le nombre qui
+        leur est associé correspond à l'importance de la règle pour le calcul :
+        plus il est élevé, plus la règle a été utilisée par d'autres règles lors
+        du calcul.</0></3></2><3><0>Les règles taguées comme
         <1>experimentale</1></0><1>Nos API suivent une <2>gestion sémantique de
         version</2>. Cela veut dire que toutes les modifications apportées sont
         rétrocompatibles, sauf lors de changements de version majeure.</1><2>Les
@@ -999,7 +1003,7 @@ pages:
         utilisez une règle expérimentale en consultant l'objet <1>warnings</1>
         fourni en retour de votre appel à <3>evaluate</3></1><2>Les règles
         expérimentales contiennent également un avertissement dans la section «
-        Réutiliser ce calcul » de la documentation.</2></4></2><3><0>Réutiliser
+        Réutiliser ce calcul » de la documentation.</2></4></3><4><0>Réutiliser
         une donnée provenant d'API externes</0><1>Certaines données des
         simulateurs de mon-entreprise proviennent d'API externes. Il vous faudra
         ainsi récuperer leur valeur par vous-même pour la saisir dans la
@@ -1017,7 +1021,7 @@ pages:
         collectif</0></0></7><8>Ce taux collectif doit être retrouvé
         manuellement. Vous pouvez utiliser :<1><0><0>Un export csv</0> du
         tableau des taux nets collectifs paru au Journal Officiel</0><1>Le
-        service <2>Compte AT/MP</2> de net-entreprise</1></1></8></3>"
+        service <2>Compte AT/MP</2> de net-entreprise</1></1></8></4>"
       StepByStep: <0><0>Choisir le simulateur en fonction du calcul qui nous
         intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
         calculer un net à partir du brut.</0><1><0>Effectuer une simulation avec

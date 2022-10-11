@@ -1214,16 +1214,20 @@ pages:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
     components:
-      CasParticuliers: '<0>Learn more about...</0><1><0>The
-        <1>MissingVariables</1></0><1>In return of your call to <1>evaluate</1>,
-        you will get a <3>missingVariables</3> object. This object contains the
-        list of all the rules used for the calculation whose value is missing in
-        the input situation. It is a <6>default value</6> that has been used
-        instead.</1><2>To further customize your simulation, you can enter their
-        value.</2><3><0>The number associated with them corresponds to the
-        importance of the rule for the calculation: the higher it is, the more
-        the rule was used by other rules during the
-        calculation.</0></3></1><2><0>Rules tagged as
+      CasParticuliers: '<0>Learn more about...</0><1><0>How to make a simulation in
+        the past?</0><1>Since the end of 2021, the calculation rules of the
+        simulators are historicized. This means that you can run a simulation
+        with the legislation in force at a previous date. To do so, you just
+        have to fill in the parameter <2><0>date</0></2> in the
+        situation.</1></1><2><0>The <1>MissingVariables</1></0><1>In return of
+        your call to <1>evaluate</1>, you will get a <3>missingVariables</3>
+        object. This object contains the list of all the rules used for the
+        calculation whose value is missing in the input situation. It is a
+        <6>default value</6> that has been used instead.</1><2>To further
+        customize your simulation, you can enter their value.</2><3><0>The
+        number associated with them corresponds to the importance of the rule
+        for the calculation: the higher it is, the more the rule was used by
+        other rules during the calculation.</0></3></2><3><0>Rules tagged as
         <1>experimental</1></0><1>Our APIs follow a <2>semantic version
         management</2>. This means that all changes made are backwards
         compatible, except for major version changes.</1><2>Rules tagged as
@@ -1236,13 +1240,13 @@ pages:
         <1>warnings</1> object provided in return of your call to
         <3>evaluate</3></1><2>Experimental rules also contain a warning in the
         "Reuse this calculation" section of the
-        documentation.</2></4></2><3><0>Reusing data from external
+        documentation.</2></4></3><4><0>Reusing data from external
         APIs</0><1>Some of the data in the my-company simulators come from
         external APIs. You will have to retrieve their value yourself to enter
         it in the input situation.</1><2>The mobility
         payment</2><3><0><0>establishment . municipality . mobility payment
-        rate</0></0></3><4>In the <2>employee</2> simulator, all you have to do
-        is enter the municipality and the corresponding mobility payment rate is
+        rate</0></0></3><4>In the <2>employee</2> simulator, you just have to
+        enter the municipality and the corresponding mobility payment rate is
         automatically determined.</4><5>You will have to specify the rate
         yourself to redo the calculation. You can find it again:<1><0>By
         entering your municipality in a simulator, then searching for the
@@ -1253,7 +1257,7 @@ pages:
         rate</0></0></7><8>This collective rate must be found manually. You can
         use :<1><0><0>A csv export</0> of the table of collective net rates
         published in the Official Journal</0><1>The service <2>Account AT/MP</2>
-        of net-entreprise</1></1></8></3>'
+        of net-entreprise</1></1></8></4>'
       StepByStep: <0><0>Choose the simulator according to the calculation we are
         interested in</0><1></1>For example the <4>employee simulator</4> to
         calculate a net amount from the gross amount.</0><1><0>Run a simulation
