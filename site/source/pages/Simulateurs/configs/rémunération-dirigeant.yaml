@@ -19,4 +19,4 @@ unité par défaut: €/an
 situation:
   dirigeant . régime social: "'auto-entrepreneur'"
   entreprise . activité . mixte: non
-  salarié . ATMP . taux réduit: oui
+  salarié . cotisations . ATMP . taux fonctions support: oui
