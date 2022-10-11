@@ -1,0 +1,20 @@
+name: '💻 Amélioration technique'
+description: Signaler un retour utilisateur.
+title: '💻 <title>'
+labels: ['💻 technique']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 'Description de la proposition technique'
+      description: Une description claire et concise de la proposition.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 'Contexte supplémentaire'
+      description: Ajoutez ici tout autre contexte ou capture d'écran concernant le ticket.
+      render: bash
+    validations:
+      required: false
