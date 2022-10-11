@@ -1,0 +1,82 @@
+name: '🐛 Rapport de bug'
+description: Signaler un bug reproductible.
+title: '🐛 <title>'
+labels: ['🐛 bug']
+body:
+  - type: markdown
+    attributes:
+      value: Merci de lire et de suivre les instructions avant de soumettre un ticket
+  - type: markdown
+    attributes:
+      value: |
+        - Lisez toute notre documentation, en particulier le [README](https://github.com/betagouv/mon-entreprise/blob/master/README.md). Elles peuvent contenir des informations qui vous aideront à résoudre votre problème.
+        - Soyez sure que votre ticket n'est pas déjà [rapporté](https://github.com/betagouv/mon-entreprise/issues?utf8=%E2%9C%93&q=is%3Aissue).
+  - type: textarea
+    id: description
+    attributes:
+      label: 'Description du problème'
+      description: Une description claire et concise du bug.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: 'URL de la page'
+      description: Liens vers la page où le bug a été rencontré.
+    validations:
+      required: false
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 'Reproduction du problème'
+      description: Étapes pour reproduire le problème.
+      placeholder: |
+        1. Aller sur '...'
+        2. Cliquer sur '....'
+        3. Défiler jusqu'à '....'
+        4. Voir l'erreur
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: 'Attendu'
+      description: Une description claire et concise de ce que vous attendiez.
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Navigateur"
+      description: Sur quel navigateur avez-vous rencontré le problème ?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: Quel système d'exploitation avez-vous utilisé ?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 'Contexte supplémentaire'
+      description: Ajoutez ici tout autre contexte ou capture d'écran concernant le ticket.
+      render: bash
+    validations:
+      required: false
+
