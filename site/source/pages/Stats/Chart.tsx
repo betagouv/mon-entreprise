@@ -132,7 +132,6 @@ export default function VisitsChart({
 					/>
 
 					<YAxis
-						dataKey={dataKeys[0]}
 						tickFormatter={(val: number) => formatValue(val) as string}
 						type="number"
 					/>
