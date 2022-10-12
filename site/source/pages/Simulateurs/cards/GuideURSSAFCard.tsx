@@ -7,6 +7,7 @@ type GuideURSSAFCardProps = {
 		title: string
 		url: string
 		description?: string
+		ctaLabel?: string
 	}
 }
 
@@ -25,7 +26,7 @@ export function GuideURSSAFCard({ guideUrssaf }: GuideURSSAFCardProps) {
 		<Article
 			title={guideUrssaf.title}
 			icon={<Emoji emoji="📖" />}
-			ctaLabel={'Voir le guide'}
+			ctaLabel={guideUrssaf.ctaLabel ?? 'Voir le guide'}
 			href={guideUrssaf.url}
 		>
 			{guideUrssaf.description ?? DEFAULT_DESCRIPTION}
