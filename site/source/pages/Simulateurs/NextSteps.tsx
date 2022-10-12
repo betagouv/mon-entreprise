@@ -97,5 +97,6 @@ const guidesUrssaf = [
 				{ 'est non défini': 'artiste-auteur' },
 			],
 		},
+		ctaLabel: 'En savoir plus',
 	},
 ]
