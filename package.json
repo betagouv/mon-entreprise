@@ -11,7 +11,8 @@
 		"exoneration-covid",
 		"api",
 		"site",
-		"standup-mattermost-bot"
+		"standup-mattermost-bot",
+		"serverless-functions"
 	],
 	"scripts": {
 		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",

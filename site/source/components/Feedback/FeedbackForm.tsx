@@ -2,6 +2,7 @@ import { ScrollToElement } from '@/components/utils/Scroll'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { sendMessageToCrisp } from '../../../../serverless-functions/functions/sendMessageToCrisp'
 
 declare global {
 	interface JQuery {
@@ -19,9 +20,23 @@ export default function FeedbackForm() {
 
 	const { t } = useTranslation()
 
+	const sendMessage = async () => {
+		await fetch('/.netlify/functions/sendMessageToCrisp', {
+			method: 'post',
+			body: JSON.stringify({
+				message: 'tutut',
+				email: 'test@test.com',
+			}),
+		})
+	}
+
 	return (
 		<ScrollToElement onlyIfNotVisible>
 			<StyledFeedback id="feedback-form"></StyledFeedback>
+			{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+			<button onClick={sendMessage} type="button">
+				Clikc
+			</button>
 			<iframe
 				title={t('Formulaire de contact pour faire une suggestion')}
 				src={`https://plugins.crisp.chat/urn:crisp.im:contact-form:0/contact/d8247abb-cac5-4db6-acb2-cea0c00d8524?locale=${lang}&page=${page}`}
