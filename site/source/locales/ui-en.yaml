@@ -1213,6 +1213,7 @@ pages:
     code:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
+      copy-code: Copy the code
     components:
       CasParticuliers: '<0>Learn more about...</0><1><0>How to make a simulation in
         the past?</0><1>Since the end of 2021, the calculation rules of the

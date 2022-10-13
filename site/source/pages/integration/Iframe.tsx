@@ -18,6 +18,7 @@ import './iframe.css'
 import cciLogo from './_images/cci.png'
 import minTraLogo from './_images/min-tra.jpg'
 import poleEmploiLogo from './_images/pole-emploi.png'
+import { Button } from '@/design-system/buttons'
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
@@ -317,32 +318,27 @@ function IntegrationCode({
 	module = 'simulateur-embauche',
 	color,
 }: IntegrationCodeProps) {
+	const { t } = useTranslation()
+
 	const codeRef = useRef<HTMLDivElement>(null)
-	const [secondClick, setSecondClick] = useState(false)
-	const selectAllCode = () => {
-		if (codeRef.current && !secondClick) {
-			const range = document.createRange()
-			range.selectNode(codeRef.current)
-			window.getSelection()?.removeAllRanges()
-			window.getSelection()?.addRange(range)
-			setSecondClick(true)
-		}
-		if (secondClick) {
-			setSecondClick(false)
-		}
+	const [copied, setCopied] = useState(false)
+
+	const copyCodeToClipboard = (): void => {
+		navigator.clipboard
+			.writeText(codeRef.current?.innerText || '')
+			.then(() => setCopied(true))
+			.catch(() => setCopied(false))
 	}
 
 	return (
-		<code
-			ref={codeRef}
-			onClick={selectAllCode}
+		<div
 			css={`
 				display: block;
+				position: relative;
 				font-size: 80%;
 				padding: 1em;
+				margin: auto auto 1em;
 				background: #f8f8f8;
-				margin: auto;
-				margin-bottom: 1em;
 				overflow: auto;
 				line-height: 1.6em;
 				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
@@ -354,27 +350,53 @@ function IntegrationCode({
 				}
 			`}
 		>
-			<span>{'<'}</span>
-			<em>script</em>
-			<br />
-			<em>data-module</em>="
-			<span>{module}</span>"
-			{color ? (
-				<>
-					<br />
-					<em>data-couleur</em>="
-					<span id="scriptColor">{color}</span>"
-				</>
-			) : (
-				''
-			)}
-			<br />
-			<em>src</em>
-			="https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"{'>'}
-			<span>{'<'}</span>
-			<span>/</span>
-			<em>script</em>
-			<span>{'>'}</span>
-		</code>
+			<code ref={codeRef}>
+				<span>{'<'}</span>
+				<em>script</em>
+				<br />
+				<em>data-module</em>="
+				<span>{module}</span>"
+				{color ? (
+					<>
+						<br />
+						<em>data-couleur</em>="
+						<span id="scriptColor">{color}</span>"
+					</>
+				) : (
+					''
+				)}
+				<br />
+				<em>src</em>
+				="https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"
+				{'>'}
+				<span>{'<'}</span>
+				<span>/</span>
+				<em>script</em>
+				<span>{'>'}</span>
+			</code>
+			<div
+				css={`
+					display: block;
+					right: 0;
+					top: 0;
+					position: absolute;
+					margin: 8px;
+				`}
+			>
+				<Button
+					size="XXS"
+					type="button"
+					title={
+						copied
+							? t('copied', 'Copié')
+							: t('pages.développeur.code.copy-code', 'Copier le code')
+					}
+					color={copied ? 'secondary' : 'primary'}
+					onPress={copyCodeToClipboard}
+				>
+					<Emoji emoji={copied ? '✔️' : '📑'} />
+				</Button>
+			</div>
+		</div>
 	)
 }
