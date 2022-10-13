@@ -974,6 +974,7 @@ pages:
     code:
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
+      copy-code: Copier le code
     components:
       CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
         dans le passé ?</0><1>Depuis fin 2021, les règles de calculs des
