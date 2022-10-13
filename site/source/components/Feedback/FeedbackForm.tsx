@@ -1,7 +1,11 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
+import { TextField } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import ParagrapheInput from '../conversation/ParagrapheInput'
 
 declare global {
 	interface JQuery {
@@ -12,43 +16,80 @@ declare global {
 // TODO: we could implement the form logic ourselves to avoid including
 // https://mon-entreprise.zammad.com and https://code.jquery.com scripts
 export default function FeedbackForm() {
-	// const tracker = useContext(TrackerContext)
+	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
-	const lang = useTranslation().i18n.language
 
 	const { t } = useTranslation()
 
 	const sendMessage = async () => {
-		await fetch(`http://localhost:4000/send-crisp-message`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				subject: `Suggestion sur la page : ${page}`,
-				message: 'Coucou',
-				email: 'test@test.com',
-			}),
-		})
+		setIsLoading(true)
+		const messageValue = (
+			document.getElementById('message') as HTMLTextAreaElement
+		)?.value
+		const emailValue = (document.getElementById('email') as HTMLInputElement)
+			?.value
+
+		try {
+			await fetch(`http://localhost:4000/send-crisp-message`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					subject: `Suggestion sur la page : ${page}`,
+					message: messageValue,
+					email: emailValue,
+				}),
+			})
+			setIsSubmittedSuccessfully(true)
+		} catch (e) {
+			// Show error message
+		}
 	}
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			<StyledFeedback id="feedback-form"></StyledFeedback>
-			{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-			<button onClick={sendMessage} type="button">
-				Clikc
-			</button>
-			<iframe
-				title={t('Formulaire de contact pour faire une suggestion')}
-				src={`https://plugins.crisp.chat/urn:crisp.im:contact-form:0/contact/d8247abb-cac5-4db6-acb2-cea0c00d8524?locale=${lang}&page=${page}`}
-				referrerPolicy="origin"
-				sandbox="allow-forms allow-popups allow-scripts"
-				width="100%"
-				height="440px"
-				frameBorder="0"
-			></iframe>
+			{isSubmittedSuccessfully && <StyledP>Merci de votre retour !</StyledP>}
+			{!isSubmittedSuccessfully && (
+				<StyledFeedback>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault()
+							void sendMessage()
+						}}
+					>
+						<div>
+							<label>
+								{t(
+									"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)"
+								)}
+							</label>
+							<StyledTextArea
+								name="message"
+								id="message"
+								placeholder={t('Votre message')}
+								rows={7}
+							/>
+						</div>
+						<div>
+							<label htmlFor="name">
+								{t('E-mail (pour recevoir une réponse)')}
+							</label>
+							<input
+								id="email"
+								name="email"
+								type="email"
+								placeholder={t('Votre adresse e-mail')}
+							/>
+						</div>
+						<StyledButton isDisabled={isLoading} type="submit">
+							{t('Envoyer')}
+						</StyledButton>
+					</form>
+				</StyledFeedback>
+			)}
 		</ScrollToElement>
 	)
 }
@@ -70,4 +111,25 @@ const StyledFeedback = styled.div`
 		border-radius: ${({ theme }) => theme.box.borderRadius};
 		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
 	}
+`
+
+const StyledTextArea = styled.textarea`
+	width: 100%;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: ${({ theme }) => theme.spacings.sm};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+const StyledButton = styled(Button)`
+	margin-top: 1rem;
+`
+
+const StyledP = styled.p`
+	font-size: 1.25rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+	text-align: center;
+	padding: 1rem 0;
 `
