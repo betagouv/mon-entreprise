@@ -1,12 +1,12 @@
 {
-	"name": "standup-mattermost-bot",
+	"name": "server",
 	"license": "MIT",
 	"version": "2.0.0",
-	"description": "Code source du standup-mattermost-bot",
+	"description": "Code source du serveur backend mon-entreprise",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "standup-mattermost-bot"
+		"directory": "server"
 	},
 	"private": true,
 	"type": "module",
@@ -20,9 +20,11 @@
 		"@koa/cors": "^3.4.1",
 		"@koa/router": "^12.0.0",
 		"bree": "^9.1.2",
+		"crisp-api": "^6.3.1",
 		"dotenv": "^16.0.3",
 		"got": "^12.5.1",
 		"koa": "^2.13.4",
+		"koa-body": "^5.0.0",
 		"mongodb": "^4.10.0",
 		"nodemon": "^2.0.20"
 	},

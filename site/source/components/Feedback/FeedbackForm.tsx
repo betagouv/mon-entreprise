@@ -2,7 +2,6 @@ import { ScrollToElement } from '@/components/utils/Scroll'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { sendMessageToCrisp } from '../../../../serverless-functions/functions/sendMessageToCrisp'
 
 declare global {
 	interface JQuery {
@@ -21,10 +20,14 @@ export default function FeedbackForm() {
 	const { t } = useTranslation()
 
 	const sendMessage = async () => {
-		await fetch('/.netlify/functions/sendMessageToCrisp', {
-			method: 'post',
+		await fetch(`http://localhost:4000/send-crisp-message`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({
-				message: 'tutut',
+				subject: `Suggestion sur la page : ${page}`,
+				message: 'Coucou',
 				email: 'test@test.com',
 			}),
 		})

@@ -2,6 +2,7 @@ import cors from '@koa/cors'
 import Router from '@koa/router'
 import 'dotenv/config'
 import Koa from 'koa'
+import koaBody from 'koa-body'
 import {
 	clientId,
 	clientSecret,
@@ -9,6 +10,7 @@ import {
 	redirectUri,
 	serverUrl,
 } from './config.js'
+import { BodyType, sendCrispMessage } from './functions/send-crisp-message.js'
 import { bree } from './jobs.js'
 import { initMongodb } from './mongodb.js'
 import { getAccessToken } from './oauth.js'
@@ -71,6 +73,20 @@ router.get('/oauth', async (ctx) => {
 		) {
 			await (state === 'run-all' ? bree.run() : bree.run(state))
 		}
+
+		ctx.status = 200
+	} catch (err) {
+		// eslint-disable-next-line no-console
+		console.error(err)
+
+		ctx.status = 400
+	}
+})
+
+router.post('/send-crisp-message', koaBody(), async (ctx) => {
+	try {
+		const body = ctx.request.body as unknown as BodyType
+		await sendCrispMessage(body)
 
 		ctx.status = 200
 	} catch (err) {
