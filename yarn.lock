@@ -12997,6 +12997,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crisp-api@npm:6.3.0":
+  version: 6.3.0
+  resolution: "crisp-api@npm:6.3.0"
+  dependencies:
+    fbemitter: 3.0.0
+    got: 9.6.0
+    socket.io-client: 4.4.1
+  checksum: 684000db238933c59f752aed87833ca27f1da7a3fe23b1f46d9c8b166cd8a7f99f35417d5fa48bb3aa23f39206527de91b26568d5147ccbe238419189de99cb3
+  languageName: node
+  linkType: hard
+
 "crisp-api@npm:^6.3.1":
   version: 6.3.1
   resolution: "crisp-api@npm:6.3.1"
@@ -16184,6 +16195,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fbemitter@npm:3.0.0":
+  version: 3.0.0
+  resolution: "fbemitter@npm:3.0.0"
+  dependencies:
+    fbjs: ^3.0.0
+  checksum: 069690b8cdff3521ade3c9beb92ba0a38d818a86ef36dff8690e66749aef58809db4ac0d6938eb1cacea2dbef5f2a508952d455669590264cdc146bbe839f605
+  languageName: node
+  linkType: hard
+
 "fbjs-css-vars@npm:^1.0.0":
   version: 1.0.2
   resolution: "fbjs-css-vars@npm:1.0.2"
@@ -16191,7 +16211,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fbjs@npm:3.0.4":
+"fbjs@npm:3.0.4, fbjs@npm:^3.0.0":
   version: 3.0.4
   resolution: "fbjs@npm:3.0.4"
   dependencies:
@@ -17457,6 +17477,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"got@npm:9.6.0, got@npm:^9.6.0":
+  version: 9.6.0
+  resolution: "got@npm:9.6.0"
+  dependencies:
+    "@sindresorhus/is": ^0.14.0
+    "@szmarczak/http-timer": ^1.1.2
+    cacheable-request: ^6.0.0
+    decompress-response: ^3.3.0
+    duplexer3: ^0.1.4
+    get-stream: ^4.1.0
+    lowercase-keys: ^1.0.1
+    mimic-response: ^1.0.1
+    p-cancelable: ^1.0.0
+    to-readable-stream: ^1.0.0
+    url-parse-lax: ^3.0.0
+  checksum: 941807bd9704bacf5eb401f0cc1212ffa1f67c6642f2d028fd75900471c221b1da2b8527f4553d2558f3faeda62ea1cf31665f8b002c6137f5de8732f07370b0
+  languageName: node
+  linkType: hard
+
 "got@npm:^10.0.0, got@npm:^10.7.0":
   version: 10.7.0
   resolution: "got@npm:10.7.0"
@@ -17521,25 +17560,6 @@ __metadata:
     url-parse-lax: ^3.0.0
     url-to-options: ^1.0.1
   checksum: ab05bfcb6de86dc0c3fba8d25cc51cb2b09851ff3f6f899c86cde8c63b30269f8823d69dbbc6d03f7c58bb069f55a3c5f60aba74aad6721938652d8f35fd3165
-  languageName: node
-  linkType: hard
-
-"got@npm:^9.6.0":
-  version: 9.6.0
-  resolution: "got@npm:9.6.0"
-  dependencies:
-    "@sindresorhus/is": ^0.14.0
-    "@szmarczak/http-timer": ^1.1.2
-    cacheable-request: ^6.0.0
-    decompress-response: ^3.3.0
-    duplexer3: ^0.1.4
-    get-stream: ^4.1.0
-    lowercase-keys: ^1.0.1
-    mimic-response: ^1.0.1
-    p-cancelable: ^1.0.0
-    to-readable-stream: ^1.0.0
-    url-parse-lax: ^3.0.0
-  checksum: 941807bd9704bacf5eb401f0cc1212ffa1f67c6642f2d028fd75900471c221b1da2b8527f4553d2558f3faeda62ea1cf31665f8b002c6137f5de8732f07370b0
   languageName: node
   linkType: hard
 
@@ -26133,7 +26153,7 @@ __metadata:
     "@types/node": ^18.8.3
     "@types/safe-timers": ^1.1.0
     bree: ^9.1.2
-    crisp-api: ^6.3.1
+    crisp-api: 6.3.0
     dotenv: ^16.0.3
     got: ^12.5.1
     koa: ^2.13.4

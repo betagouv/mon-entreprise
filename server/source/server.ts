@@ -4,19 +4,19 @@ import 'dotenv/config'
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import {
-	clientId,
-	clientSecret,
+	// clientId,
+	// clientSecret,
 	PORT,
-	redirectUri,
-	serverUrl,
+	// redirectUri,
+	// serverUrl,
 } from './config.js'
 import { BodyType, sendCrispMessage } from './functions/send-crisp-message.js'
-import { bree } from './jobs.js'
-import { initMongodb } from './mongodb.js'
-import { getAccessToken } from './oauth.js'
-import { snakeToCamelCaseKeys } from './utils.js'
+// import { bree } from './jobs.js'
+// import { initMongodb } from './mongodb.js'
+// import { getAccessToken } from './oauth.js'
+// import { snakeToCamelCaseKeys } from './utils.js'
 
-const mongo = await initMongodb()
+// const mongo = await initMongodb()
 
 type KoaState = Koa.DefaultState
 type KoaContext = Koa.DefaultContext
@@ -25,7 +25,7 @@ const app = new Koa<KoaState, KoaContext>()
 const router = new Router<KoaState, KoaContext>()
 
 app.use(cors())
-
+/*
 router.get('/connect', (ctx) => {
 	const { state = '' } = ctx.query
 	const url =
@@ -82,7 +82,7 @@ router.get('/oauth', async (ctx) => {
 		ctx.status = 400
 	}
 })
-
+*/
 router.post('/send-crisp-message', koaBody(), async (ctx) => {
 	try {
 		const body = ctx.request.body as unknown as BodyType
