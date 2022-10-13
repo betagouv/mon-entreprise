@@ -18,7 +18,7 @@ const jobs: BreeOptions['jobs'] = [
 	},
 	{
 		name: 'weekly-randomizer',
-		interval: 'on Thursday at 17:42',
+		interval: 'on Thursday at 16:40',
 	},
 ]
 
