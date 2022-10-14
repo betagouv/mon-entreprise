@@ -9,7 +9,6 @@ body:
   - type: markdown
     attributes:
       value: |
-        - Lisez toute notre documentation, en particulier le [README](https://github.com/betagouv/mon-entreprise/blob/master/README.md). Elles peuvent contenir des informations qui vous aideront à résoudre votre problème.
         - Soyez sure que votre ticket n'est pas déjà [rapporté](https://github.com/betagouv/mon-entreprise/issues?utf8=%E2%9C%93&q=is%3Aissue).
   - type: textarea
     id: description
@@ -45,30 +44,11 @@ body:
       description: Une description claire et concise de ce que vous attendiez.
     validations:
       required: false
-  - type: dropdown
-    id: browsers
+  - type: input
+    id: browser
     attributes:
-      label: "Navigateur"
-      description: Sur quel navigateur avez-vous rencontré le problème ?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-        - Opera
-    validations:
-      required: false
-  - type: dropdown
-    id: os
-    attributes:
-      label: "OS"
-      description: Quel système d'exploitation avez-vous utilisé ?
-      multiple: true
-      options:
-        - Windows
-        - Linux
-        - Mac
+      label: 'Informations sur le navigateur, OS, ...'
+      description: Merci de mettre un lien de [whatsmybrowser](https://www.whatsmybrowser.org/)
     validations:
       required: false
   - type: textarea
