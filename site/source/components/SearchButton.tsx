@@ -12,7 +12,15 @@ export default function SearchButton() {
 		<PopoverWithTrigger
 			title={t('Que cherchez-vous ?')}
 			trigger={(buttonProps) => (
-				<StyledButton className="print-hidden" light {...buttonProps}>
+				<StyledButton
+					className="print-hidden"
+					light
+					{...buttonProps}
+					aria-haspopup="dialog"
+					aria-label={t(
+						'Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.'
+					)}
+				>
 					<StyledIcon
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
