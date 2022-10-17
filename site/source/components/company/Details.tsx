@@ -50,7 +50,7 @@ export function CompanyDetails({
 				</Grid>
 				{showSituation && (
 					<Grid item xs={12} sm="auto">
-						<SeeAnswersButton label={<Trans>Voir ma situation</Trans>} />
+						<SeeAnswersButton label={<Trans>Afficher le détail</Trans>} />
 						<Spacing sm />
 					</Grid>
 				)}

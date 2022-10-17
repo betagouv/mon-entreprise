@@ -47,10 +47,10 @@ export default function SearchOrCreate() {
 									entreprise: companySIREN as string,
 								})}
 							>
-								Continuer avec cette entreprise
+								Voir ma situation
 							</Button>
 							<Button light onPress={() => dispatch(resetCompany())}>
-								Supprimer ma situation
+								Réinitialiser
 							</Button>
 						</AnswerGroup>
 					</>
