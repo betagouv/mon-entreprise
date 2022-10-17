@@ -9,6 +9,8 @@ exports[`calculate simulations-artiste-auteur > bnc 3`] = `
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
+exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `"[466]"`;
+
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
 "[160]
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"

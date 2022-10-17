@@ -91,8 +91,8 @@ artiste-auteur . cotisations . assiette surcotisation:
     facteur:
       variations:
         - si: date >= 01/01/2019
-          alors: 600 heures/an * SMIC . horaire
-        - sinon: 900 heures/an * SMIC . horaire
+          alors: 600 heures/an
+        - sinon: 900 heures/an
 
 artiste-auteur . cotisations . avertissement trimestres retraite:
   type: notification
