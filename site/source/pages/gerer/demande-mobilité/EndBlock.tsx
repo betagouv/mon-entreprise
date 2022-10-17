@@ -49,7 +49,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 				<PopoverWithTrigger
 					title="Champs manquants"
 					trigger={(props) => (
-						<Button {...props} light size="XS">
+						<Button {...props} light size="XS" aria-haspopup="dialog">
 							Voir les champs manquants
 						</Button>
 					)}

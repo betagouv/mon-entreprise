@@ -64,7 +64,7 @@ export default function Imposition() {
 							<Accordion>
 								<Item
 									key="explications"
-									title={t("Qu'est ce que ça veut dire ?")}
+									title={t("Qu'est-ce que ça veut dire ?")}
 									hasChildItems={false}
 								>
 									<Condition expression="entreprise . imposition . IR">
@@ -124,7 +124,7 @@ export default function Imposition() {
 								<Accordion>
 									<Item
 										key="explications"
-										title={t("Qu'est ce que ça veut dire ?")}
+										title={t("Qu'est-ce que ça veut dire ?")}
 										hasChildItems={false}
 									>
 										<Markdown>
@@ -216,7 +216,7 @@ export default function Imposition() {
 								<Accordion>
 									<Item
 										key="explications"
-										title={t("Qu'est ce que ça veut dire ?")}
+										title={t("Qu'est-ce que ça veut dire ?")}
 										hasChildItems={false}
 									>
 										<Markdown>
