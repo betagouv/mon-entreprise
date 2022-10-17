@@ -87,7 +87,7 @@ artiste-auteur . cotisations . option surcotisation:
 
 artiste-auteur . cotisations . assiette surcotisation:
   produit:
-    assiette: SMIC . horaire
+    assiette: SMIC . horaire . début d'année
     facteur:
       variations:
         - si: date >= 01/01/2019
@@ -100,7 +100,7 @@ artiste-auteur . cotisations . avertissement trimestres retraite:
   formule:
     toutes ces conditions:
       - assiette > 0 €/an
-      - assiette < 600 heures/an * SMIC . horaire
+      - assiette < 600 heures/an * SMIC . horaire . début d'année
       - option surcotisation = non
   description: |
     Vos revenus ne vous permettent pas de valider 4 trimestres pour la retraite
