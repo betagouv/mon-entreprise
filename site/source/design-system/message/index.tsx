@@ -24,6 +24,7 @@ export function Message({
 	light = false,
 	children,
 	className,
+	...props
 }: MessageProps) {
 	if (typeof children !== 'object') {
 		children = <Body>{children}</Body>
@@ -37,6 +38,7 @@ export function Message({
 				border={border}
 				light={light}
 				aria-atomic
+				{...props}
 			>
 				{icon &&
 					(type === 'success' ? (
