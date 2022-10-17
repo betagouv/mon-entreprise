@@ -16,7 +16,7 @@ import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { useCallback, useEffect } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
@@ -29,6 +29,8 @@ export default function SearchOrCreate() {
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
 	const dispatch = useDispatch()
+
+	const { t } = useTranslation()
 
 	return (
 		<Grid container spacing={3}>
@@ -68,6 +70,10 @@ export default function SearchOrCreate() {
 									? absoluteSitePaths.créer[statutChoisi]
 									: absoluteSitePaths.créer.index
 							}
+							aria-label={t(
+								'landing.choice.create.aria-label',
+								"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
+							)}
 						>
 							<Emoji emoji="💡" />{' '}
 							<Trans i18nKey="landing.choice.create.title">
