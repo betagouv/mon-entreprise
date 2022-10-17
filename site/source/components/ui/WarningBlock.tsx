@@ -18,7 +18,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 
 	return (
 		<>
-			<Message type="info" role="alert">
+			<Message type="info">
 				<div className="print-hidden">
 					<Intro as="h2">
 						<Trans i18nKey="simulateurs.warning.titre">
