@@ -57,7 +57,7 @@ const buildSimulateursQuery = (period, granularity) => ({
 			filter: {
 				property: {
 					page_chapter1: {
-						$in: ['creer', 'gerer', 'simulateurs'],
+						$in: ['gerer', 'simulateurs'],
 					},
 				},
 			},
@@ -67,6 +67,196 @@ const buildSimulateursQuery = (period, granularity) => ({
 		ignore_null_properties: true,
 	},
 })
+
+const buildCreerQuery = (period, granularity) => ({
+	columns: [
+		'page',
+		'page_chapter1',
+		'page_chapter2',
+		'page_chapter3',
+		'm_visits',
+	],
+	space: {
+		s: [617190, 617189],
+	},
+	period: {
+		p1: [period],
+	},
+	evo: {
+		granularity,
+		top: {
+			'page-num': 1,
+			'max-results': 500,
+			sort: ['-m_visits'],
+			filter: {
+				property: {
+					$AND: [
+						{
+							page: {
+								$eq: 'accueil',
+							},
+						},
+						{
+							page_chapter1: {
+								$eq: 'creer',
+							},
+						},
+					],
+				},
+			},
+		},
+	},
+	options: {
+		ignore_null_properties: true,
+	},
+})
+
+const buildCreerSegmentQuery = (period, granularity) => ({
+	columns: [
+		'page',
+		'page_chapter1',
+		'page_chapter2',
+		'page_chapter3',
+		'm_visits',
+	],
+	segment: {
+		section: {
+			scope: 'visit_id',
+			category: 'property',
+			coverage: 'at_least_one_visit',
+			content: {
+				and: [
+					{
+						condition: {
+							filter: {
+								page_chapter1: {
+									$eq: 'creer',
+								},
+							},
+						},
+					},
+					{
+						condition: {
+							filter: {
+								page: {
+									$eq: 'accueil',
+								},
+							},
+							// filter: {
+							// 	page_chapter2: {
+							// 		$eq: 'guide',
+							// 	},
+							// },
+						},
+					},
+				],
+			},
+			mode: 'include',
+		},
+	},
+	space: {
+		s: [617190],
+	},
+	period: {
+		p1: [period],
+	},
+	evo: {
+		granularity,
+		top: {
+			'page-num': 1,
+			'max-results': 500,
+			sort: ['-m_visits'],
+			filter: {
+				property: {
+					// $AND: [
+					// {
+					// 	page: {
+					// 		$neq: 'liste',
+					// 	},
+					// },
+					// {
+					page_chapter1: {
+						$eq: 'creer',
+					},
+					// },
+					// {
+					// 	page_chapter2: {
+					// 		$eq: 'statut',
+					// 	},
+					// },
+					// ],
+				},
+			},
+		},
+	},
+	options: {
+		ignore_null_properties: true,
+	},
+})
+
+// 	{
+// 	columns: [
+// 		'page',
+// 		'page_chapter1',
+// 		'page_chapter2',
+// 		'page_chapter3',
+// 		'm_visits',
+// 	],
+// 	segment: {
+// 		section: {
+// 			scope: 'visit_id',
+// 			category: 'property',
+// 			coverage: 'at_least_one_visit',
+// 			content: {
+// 				and: [
+// 					{
+// 						condition: {
+// 							filter: {
+// 								page_chapter1: {
+// 									$eq: 'creer',
+// 								},
+// 							},
+// 						},
+// 					},
+// 					{
+// 						condition: {
+// 							filter: {
+// 								page_chapter2: {
+// 									$eq: 'guide',
+// 								},
+// 							},
+// 						},
+// 					},
+// 				],
+// 			},
+// 			mode: 'include',
+// 		},
+// 	},
+// 	space: {
+// 		s: [617190],
+// 	},
+// 	period: {
+// 		p1: [period],
+// 	},
+// 	evo: {
+// 		granularity,
+// 		top: {
+// 			'page-num': 1,
+// 			'max-results': 500,
+// 			sort: ['-m_visits'],
+// 			filter: {
+// 				property: {
+// 					page_chapter1: {
+// 						$eq: 'creer',
+// 					},
+// 				},
+// 			},
+// 		},
+// 	},
+// 	options: {
+// 		ignore_null_properties: true,
+// 	},
+// }
 
 const buildSatisfactionQuery = () => ({
 	columns: [
@@ -172,29 +362,44 @@ const uniformiseData = (data) =>
 		// It seems to only by one per month thought... This hacks resolves it
 		.filter(({ m_visits }) => m_visits === undefined || m_visits > 2)
 
-const flattenPage = (list) =>
-	list
-		.filter((p) => p.page_chapter2 !== 'N/A') // Remove simulateur landing page
+const flattenPage = (list) => {
+	// console.log('=>', JSON.stringify(list, null, 2))
+	return list
+		.filter(
+			(p) => p && (p.page_chapter2 !== 'N/A' || p.page_chapter1 === 'creer')
+		) // Remove simulateur landing page
 		.map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r })))
 		.flat()
+}
 
 async function fetchDailyVisits() {
-	const pages = uniformiseData(
-		flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D')))
-	)
+	const pages = uniformiseData([
+		...flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D'))),
+		...flattenPage(await fetchApi(buildCreerQuery(last60days, 'D'))),
+	])
 	const site = uniformiseData(
 		(await fetchApi(buildSiteQuery(last60days, 'D')))[0].Rows
 	)
 
 	const { start, end } = last60days
 
-	return { pages, site, api: await apiStats(start, end, 'date') }
+	return {
+		pages,
+		site,
+		creer: uniformiseData([
+			// ...flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D'))),
+			...flattenPage(await fetchApi(buildCreerSegmentQuery(last60days, 'D'))),
+		]),
+		api: await apiStats(start, end, 'date'),
+	}
 }
 
 async function fetchMonthlyVisits() {
-	const pages = uniformiseData(
-		flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M')))
-	)
+	console.log('fetchMonthlyVisits')
+	const pages = uniformiseData([
+		...flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M'))),
+		...flattenPage(await fetchApi(buildCreerQuery(last36Months, 'M'))),
+	])
 
 	const site = [
 		...matomoSiteVisitsHistory.map(({ date, visites }) => ({
@@ -208,8 +413,18 @@ async function fetchMonthlyVisits() {
 
 	const { start, end } = last36Months
 
-	return { pages, site, api: await apiStats(start, end, 'month') }
+	return {
+		pages,
+		site,
+		creer: uniformiseData([
+			// ...flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M'))),
+			...flattenPage(await fetchApi(buildCreerSegmentQuery(last36Months, 'M'))),
+		]),
+		api: await apiStats(start, end, 'month'),
+	}
 }
+
+// https://api.atinternet.io/v3/data/getData?param=%7B%22columns%22:%5B%22page%22,%22page_chapter1%22,%22page_chapter2%22,%22page_chapter3%22,%22m_unique_visitors%22%5D,%22sort%22:%5B%22-m_unique_visitors%22%5D,%22filter%22:%7B%22property%22:%7B%22$AND%22:%5B%7B%22page%22:%7B%22$neq%22:%22liste%22%7D%7D,%7B%22page_chapter1%22:%7B%22$eq%22:%22creer%22%7D%7D,%7B%22page_chapter2%22:%7B%22$eq%22:%22statut%22%7D%7D%5D%7D%7D,%22segment%22:%7B%22section%22:%7B%22scope%22:%22visit_id%22,%22category%22:%22property%22,%22coverage%22:%22at_least_one_visit%22,%22content%22:%7B%22and%22:%5B%7B%22condition%22:%7B%22filter%22:%7B%22page_chapter1%22:%7B%22$eq%22:%22creer%22%7D%7D%7D%7D,%7B%22condition%22:%7B%22filter%22:%7B%22page_chapter2%22:%7B%22$eq%22:%22guide%22%7D%7D%7D%7D%5D%7D,%22mode%22:%22include%22%7D%7D,%22space%22:%7B%22s%22:%5B617190%5D%7D,%22period%22:%7B%22p1%22:%5B%7B%22type%22:%22D%22,%22start%22:%222020-01-01%22,%22end%22:%222022-10-11%22%7D%5D%7D,%22max-results%22:50,%22page-num%22:1,%22options%22:%7B%22ignore_null_properties%22:true,%22eco_mode%22:true%7D%7D
 
 async function fetchUserAnswersStats() {
 	const ticketLists = await fetch(
@@ -316,6 +531,7 @@ async function main() {
 			fetchUserFeedbackIssues(),
 			fetchUserAnswersStats(),
 		])
+		console.log('rawSatisfaction')
 		const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
 			(page) => {
 				// eslint-disable-next-line no-unused-vars

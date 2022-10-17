@@ -40,6 +40,7 @@ export enum SatisfactionLevel {
 }
 
 interface Visites {
+	creer: Page[]
 	pages: Page[]
 	site: Site[]
 	api: API[]
