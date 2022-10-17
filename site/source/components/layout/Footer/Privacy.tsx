@@ -29,7 +29,7 @@ export default function Privacy({ label }: { label?: string }) {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps}>
+				<Link {...buttonProps} aria-haspopup="dialog">
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
 				</Link>
 			)}

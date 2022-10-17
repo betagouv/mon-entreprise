@@ -268,7 +268,7 @@ function ModifyInformation(props: {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Button light {...buttonProps}>
+				<Button light {...buttonProps} aria-haspopup="dialog">
 					{props.children}
 				</Button>
 			)}

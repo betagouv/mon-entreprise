@@ -10,7 +10,7 @@ export default function LegalNotice() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps}>
+				<Link {...buttonProps} aria-haspopup="dialog">
 					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
 				</Link>
 			)}
