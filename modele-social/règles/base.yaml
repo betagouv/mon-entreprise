@@ -78,3 +78,10 @@ SMIC . horaire:
   références:
     décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046113517
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
+  avec:
+    début d'année:
+      titre: en début d'année
+      recalcul:
+        règle: SMIC . horaire
+        avec:
+          date: période . début d'année
