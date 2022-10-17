@@ -38,6 +38,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 			light={light}
 			bigPopover={bigPopover}
 			className="print-hidden"
+			aria-haspopup="dialog"
 			{...props}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
