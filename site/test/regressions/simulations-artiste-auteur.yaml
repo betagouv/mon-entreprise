@@ -10,3 +10,8 @@ bnc:
   - artiste-auteur . revenus . BNC . recettes: 10000 €/an
     artiste-auteur . revenus . BNC . micro-bnc: non
     artiste-auteur . revenus . BNC . frais réels: 5000 €/an
+
+option surcotisation:
+  - artiste-auteur . revenus . BNC . recettes: 100 €/an
+    artiste-auteur . revenus . traitements et salaires: 500 €/an
+    artiste-auteur . cotisations . option surcotisation: oui
