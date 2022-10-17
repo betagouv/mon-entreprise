@@ -62,6 +62,9 @@ export default function MinorityDirector() {
 					onPress={() => {
 						dispatch(directorIsInAMinority(false))
 					}}
+					aria-label={t(
+						"Gérant majoritaire, sélectionner l'option et passer à l'étape suivante"
+					)}
 				>
 					<Trans>Gérant majoritaire</Trans>
 				</Button>
@@ -70,6 +73,9 @@ export default function MinorityDirector() {
 					onPress={() => {
 						dispatch(directorIsInAMinority(true))
 					}}
+					aria-label={t(
+						"Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante"
+					)}
 				>
 					<Trans>Gérant minoritaire ou égalitaire</Trans>
 				</Button>
