@@ -61,7 +61,7 @@ export default function FeedbackForm() {
 						}}
 					>
 						<div>
-							<label>
+							<label htmlFor="message">
 								{t(
 									"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)"
 								)}
@@ -74,7 +74,7 @@ export default function FeedbackForm() {
 							/>
 						</div>
 						<div>
-							<label htmlFor="name">
+							<label htmlFor="email">
 								{t('E-mail (pour recevoir une réponse)')}
 							</label>
 							<input
