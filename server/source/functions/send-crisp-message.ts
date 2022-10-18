@@ -57,7 +57,7 @@ export const sendCrispMessage = async (body: BodyType) => {
 
 		// eslint-disable-next-line camelcase
 		const { session_id } = result
-		console.log(message, email, subject)
+
 		// eslint-disable-next-line camelcase, @typescript-eslint/await-thenable
 		await CrispClient.website.updateConversationMetas(WEBSITE_ID, session_id, {
 			email,
