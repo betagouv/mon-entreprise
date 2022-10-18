@@ -1,17 +1,9 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
-import { TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import ParagrapheInput from '../conversation/ParagrapheInput'
-
-declare global {
-	interface JQuery {
-		ZammadForm(options: any): void
-	}
-}
 
 // TODO: we could implement the form logic ourselves to avoid including
 // https://mon-entreprise.zammad.com and https://code.jquery.com scripts
@@ -32,7 +24,7 @@ export default function FeedbackForm() {
 			?.value
 
 		try {
-			await fetch(`http://localhost:4000/send-crisp-message`, {
+			await fetch(`/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

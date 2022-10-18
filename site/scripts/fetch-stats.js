@@ -341,7 +341,81 @@ async function fetchMonthlyVisits() {
 	}
 }
 
-async function fetchUserAnswersStats() {
+const getISODatesStartEndPreviousMonth = () => {
+	const dateFirstDayPreviousMonth = new Date()
+	// On prend le premier jour du mois dernier
+	dateFirstDayPreviousMonth.setMonth(dateFirstDayPreviousMonth.getMonth() - 1) // comment line to test locally
+	dateFirstDayPreviousMonth.setDate(1)
+	dateFirstDayPreviousMonth.setUTCHours(0, 0, 0, 0)
+	const dateLastDayPreviousMonth = new Date(dateFirstDayPreviousMonth)
+	// Ici l'index 0 permet de récupérer le dernier jour du mois précédent
+	// dateLastDayPreviousMonth.setMonth(dateLastDayPreviousMonth.getMonth() + 1) // uncomment to test locally
+	dateLastDayPreviousMonth.setDate(0)
+	dateLastDayPreviousMonth.setUTCHours(23, 59, 59, 999)
+
+	return {
+		startISODatePreviousMonth: dateFirstDayPreviousMonth.toISOString(),
+		endISODatePreviousMonth: dateLastDayPreviousMonth.toISOString(),
+	}
+}
+
+async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
+	const response = await fetch(
+		`https://api.crisp.chat/v1/website/d8247abb-cac5-4db6-acb2-cea0c00d8524/conversations/${pageNumber}${
+			urlParams ? `?${urlParams}` : ''
+		}`,
+		{
+			method: 'get',
+			headers: {
+				'X-Crisp-Tier': 'plugin',
+				'Content-Type': 'application/json',
+			},
+		}
+	)
+
+	const result = await response.json()
+
+	return result?.data
+}
+
+async function fetchCrispPaginatedAnsweredConversations(params) {
+	try {
+		let isEndPagination = false
+		let pageCount = 1
+		const dataConversations = []
+
+		while (!isEndPagination) {
+			const paginatedData = await fetchPaginatedCrispConversations(
+				pageCount,
+				params
+			)
+
+			// Array vide : plus rien à fetch de plus
+			if (paginatedData.length === 0) {
+				isEndPagination = true
+			}
+
+			dataConversations.push(...paginatedData)
+			pageCount++
+		}
+
+		return dataConversations
+	} catch (e) {
+		console.log('error', e)
+	}
+}
+
+async function fetchCrispAnsweredConversationsLastMonth() {
+	const { startISODatePreviousMonth, endISODatePreviousMonth } =
+		getISODatesStartEndPreviousMonth()
+
+	const conversations = await fetchCrispPaginatedAnsweredConversations(
+		`filter_resolved=1&filter_date_start=${startISODatePreviousMonth}&filter_date_end=${endISODatePreviousMonth}`
+	)
+	return conversations.length
+}
+
+async function fetchZammadUserAnswersStats() {
 	const ticketLists = await fetch(
 		'https://mon-entreprise.zammad.com/api/v1/ticket_overviews?view=tickets_repondus_le_mois_dernier',
 		{
@@ -354,20 +428,16 @@ async function fetchUserAnswersStats() {
 	return answer.index.count
 }
 
-async function fetchUserFeedbackIssues() {
-	const tags = await fetch(
-		'https://mon-entreprise.zammad.com/api/v1/tag_list',
-		{
-			headers: new Headers({
-				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
-			}),
-		}
-	).then((r) => r.json())
-	const sortedTags = tags
-		.sort((t1, t2) => t2.count - t1.count)
-		.filter(({ name }) => /#[\d]+/.exec(name))
+async function getAllUserAnswerStats() {
+	const zammadAnswersCount = await fetchZammadUserAnswersStats()
+	const cripsAnswersCount = await fetchCrispAnsweredConversationsLastMonth()
+
+	return zammadAnswersCount + cripsAnswersCount
+}
+
+async function fetchGithubIssuesFromTags(tags) {
 	const query = `query {
-			repository(owner:"betagouv", name:"mon-entreprise") {${sortedTags
+			repository(owner:"betagouv", name:"mon-entreprise") {${tags
 				.map(
 					({ name, count }, i) =>
 						`
@@ -402,13 +472,79 @@ async function fetchUserFeedbackIssues() {
 		.filter(([, value]) => !!value)
 		.map(([k, value]) => ({ ...value, count: +/[\d]+$/.exec(k)[0] }))
 
+	return issues
+}
+
+async function fetchCrispUserFeedbackIssues() {
+	const conversationsResolved = await fetchCrispPaginatedAnsweredConversations(
+		'filter_resolved=1&search_query=issue&search_type=segment'
+	)
+
+	const sortedSegments = conversationsResolved
+		.reduce((acc, conversation) => {
+			const newAcc = [...acc]
+			const conversationSegments = conversation.meta.segments
+
+			conversationSegments
+				.filter((segment) => /#[\d]+/.exec(segment))
+				.forEach((segment) => {
+					const segmentObjectIndex = newAcc.findIndex(
+						(segmentObject) => segmentObject.name === segment
+					)
+					if (segmentObjectIndex < 0) {
+						newAcc.push({ name: segment, count: 1 })
+					} else {
+						newAcc[segmentObjectIndex].count += 1
+					}
+				})
+			return newAcc
+		}, [])
+		.sort((t1, t2) => t2.count - t1.count)
+
+	return fetchGithubIssuesFromTags(sortedSegments)
+}
+
+async function fetchUserFeedbackIssues() {
+	const tags = await fetch(
+		'https://mon-entreprise.zammad.com/api/v1/tag_list',
+		{
+			headers: new Headers({
+				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
+			}),
+		}
+	).then((r) => r.json())
+	const sortedTags = tags
+		.sort((t1, t2) => t2.count - t1.count)
+		.filter(({ name }) => /#[\d]+/.exec(name))
+
+	return fetchGithubIssuesFromTags(sortedTags)
+}
+
+async function fetchAllUserFeedbackIssues() {
+	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
+	const zammadFeedbackIssues = await fetchUserFeedbackIssues()
+
+	const allIssues = [...crispFeedbackIssues]
+
+	zammadFeedbackIssues.forEach((zammadIssue) => {
+		const issueIndex = allIssues.findIndex(
+			(issue) => issue.number === zammadIssue.number
+		)
+		if (issueIndex > 0) {
+			allIssues[issueIndex].count += zammadIssue.count
+		} else {
+			allIssues.push(zammadIssue)
+		}
+	})
+
 	return {
-		open: issues.filter((s) => !s.closedAt),
-		closed: issues
+		open: allIssues.filter((s) => !s.closedAt),
+		closed: allIssues
 			.filter((s) => s.closedAt)
 			.sort((i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)),
 	}
 }
+
 async function main() {
 	createDataDir()
 	// In case we cannot fetch the release (the API is down or the Authorization
@@ -443,8 +579,8 @@ async function main() {
 			fetchDailyVisits(),
 			fetchMonthlyVisits(),
 			fetchApi(buildSatisfactionQuery()),
-			fetchUserFeedbackIssues(),
-			fetchUserAnswersStats(),
+			fetchAllUserFeedbackIssues(),
+			getAllUserAnswerStats(),
 		])
 		const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
 			(page) => {
