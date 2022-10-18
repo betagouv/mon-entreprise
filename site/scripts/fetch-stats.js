@@ -504,7 +504,7 @@ async function fetchCrispUserFeedbackIssues() {
 	return fetchGithubIssuesFromTags(sortedSegments)
 }
 
-async function fetchUserFeedbackIssues() {
+async function fetchZammadUserFeedbackIssues() {
 	const tags = await fetch(
 		'https://mon-entreprise.zammad.com/api/v1/tag_list',
 		{
@@ -522,7 +522,7 @@ async function fetchUserFeedbackIssues() {
 
 async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
-	const zammadFeedbackIssues = await fetchUserFeedbackIssues()
+	const zammadFeedbackIssues = await fetchZammadUserFeedbackIssues()
 
 	const allIssues = [...crispFeedbackIssues]
 
