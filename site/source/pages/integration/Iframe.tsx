@@ -330,6 +330,21 @@ function IntegrationCode({
 			.catch(() => setCopied(false))
 	}
 
+	useEffect(() => {
+		// Réinitialise l'état de la copie après 3 secondes
+		let timeout: NodeJS.Timeout
+		if (copied) {
+			timeout = setTimeout(() => setCopied(false), 3000)
+		}
+
+		return () => clearTimeout(timeout)
+	}, [copied])
+
+	useEffect(() => {
+		// Si le code change, on réinitialise l'état de la copie
+		setCopied(false)
+	}, [module, color])
+
 	return (
 		<div
 			css={`
