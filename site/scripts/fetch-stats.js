@@ -367,6 +367,9 @@ async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
 		{
 			method: 'get',
 			headers: {
+				Authorization: `Basic ${btoa(
+					`${process.env.CRISP_API_IDENTIFIER}:${process.env.CRISP_API_KEY}`
+				)}`,
 				'X-Crisp-Tier': 'plugin',
 				'Content-Type': 'application/json',
 			},
@@ -428,7 +431,7 @@ async function fetchZammadUserAnswersStats() {
 	return answer.index.count
 }
 
-async function getAllUserAnswerStats() {
+async function fetchAllUserAnswerStats() {
 	const zammadAnswersCount = await fetchZammadUserAnswersStats()
 	const cripsAnswersCount = await fetchCrispAnsweredConversationsLastMonth()
 
@@ -580,7 +583,7 @@ async function main() {
 			fetchMonthlyVisits(),
 			fetchApi(buildSatisfactionQuery()),
 			fetchAllUserFeedbackIssues(),
-			getAllUserAnswerStats(),
+			fetchAllUserAnswerStats(),
 		])
 		const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
 			(page) => {

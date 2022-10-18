@@ -21,7 +21,11 @@ type ConversationMetaType = {
 }
 
 type CrispType = {
-	authenticateTier: (type: string, identifier: string, key: string) => void
+	authenticateTier: (
+		type: string,
+		identifier: string | undefined,
+		key: string | undefined
+	) => void
 	website: {
 		createNewConversation: (id: string) => { session_id: string }
 		sendMessageInConversation: (
@@ -37,11 +41,6 @@ type CrispType = {
 	}
 }
 
-const TOKEN = {
-	identifier: '41a6f139-d5c0-400c-b24a-807433e96403',
-	key: '02a17e3a1612be8b3727879c8b65691c76eacea1581620fd9fe5435b8fbb1ba0',
-}
-
 const WEBSITE_ID = 'd8247abb-cac5-4db6-acb2-cea0c00d8524'
 
 export const sendCrispMessage = async (body: BodyType) => {
@@ -50,7 +49,11 @@ export const sendCrispMessage = async (body: BodyType) => {
 
 		const CrispClient = new Crisp() as unknown as CrispType
 
-		CrispClient.authenticateTier('plugin', TOKEN.identifier, TOKEN.key)
+		CrispClient.authenticateTier(
+			'plugin',
+			process.env.CRISP_API_IDENTIFIER,
+			process.env.CRISP_API_KEY
+		)
 
 		// eslint-disable-next-line camelcase, @typescript-eslint/await-thenable
 		const result = await CrispClient.website.createNewConversation(WEBSITE_ID)
