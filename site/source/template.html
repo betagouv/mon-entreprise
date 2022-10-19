@@ -196,11 +196,20 @@
 		<script>
 			// Set the main colors from the provided customization in the URL We do it
 			// before loading the whole JS bundle to avoid a UI flash. cf. #1786
+			const parseColor = (rawColor) => {
+				try {
+					return JSON.parse(decodeURIComponent(rawColor))
+				} catch (error) {
+					console.error(error)
+
+					return null
+				}
+			}
 			try {
 				let rawColor = new URLSearchParams(
 					document.location.search.substring(1)
 				).get('couleur')
-				let iframeColor = rawColor && JSON.parse(decodeURIComponent(rawColor))
+				let iframeColor = rawColor && parseColor(rawColor)
 				;[
 					document.documentElement,
 					...document.querySelectorAll('[data-js-color-element]'),

@@ -1,5 +1,5 @@
 import { hexToHSL } from '@/hexToHSL'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { useIsEmbedded } from './embeddedContext'
 
@@ -25,9 +25,18 @@ const PALETTE = {
 const rawIframeColor = new URLSearchParams(
 	import.meta.env.SSR ? '' : document.location.search.substring(1)
 ).get('couleur')
-const IFRAME_COLOR = rawIframeColor
-	? (JSON.parse(decodeURIComponent(rawIframeColor)) as number[])
-	: DEFAULT_COLOR_HS
+
+let iframeColor = DEFAULT_COLOR_HS
+try {
+	if (rawIframeColor) {
+		iframeColor = JSON.parse(decodeURIComponent(rawIframeColor)) as number[]
+	}
+} catch (error) {
+	// eslint-disable-next-line no-console
+	console.error(error)
+}
+const IFRAME_COLOR = iframeColor
+
 // Note that the iframeColor is first set in the index.html file, but without
 // the full palette generation that happen here. This is to prevent a UI
 // flash, cf. #1786.
