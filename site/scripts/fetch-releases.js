@@ -14,15 +14,20 @@ import { createDataDir, writeInDataDir } from './utils.js'
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/
 const githubAuthToken = process.env.GITHUB_API_SECRET
-const cursorOfV1Release = 'Y3Vyc29yOnYyOpHOARHb8g=='
-const query = `query {
+const queryLastRelease = (after) => `query {
 	repository(owner:"betagouv", name:"mon-entreprise") {
-		releases(after:"${cursorOfV1Release}", last:100) {
-			nodes {
-				name
+		releases(after: ${after}, first: 25, orderBy: { field: CREATED_AT, direction: DESC }) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        createdAt
+        name
+        tagName
 				description
-			}
-		}
+      }
+    }
 	}
 }`
 
@@ -58,7 +63,7 @@ async function main() {
 	writeInDataDir('last-release.json', { name: releases[0].name })
 }
 
-async function fetchReleases() {
+async function fetchReleases(after = 'null') {
 	if (!githubAuthToken) {
 		return fakeData
 	}
@@ -66,16 +71,28 @@ async function fetchReleases() {
 		const response = await fetch('https://api.github.com/graphql', {
 			method: 'post',
 			headers: new Headers({ Authorization: `bearer ${githubAuthToken}` }),
-			body: JSON.stringify({ query }),
+			body: JSON.stringify({ query: queryLastRelease(after) }),
 		})
 		const {
 			data: {
 				repository: {
-					releases: { nodes: releases },
+					releases: { nodes: releases, pageInfo },
 				},
 			},
 		} = await response.json()
-		return releases.filter(Boolean).reverse()
+		let concat = []
+		const indexOfV1InReleases = releases.findIndex(
+			({ tagName }) => tagName === 'v1.0.0'
+		)
+		if (indexOfV1InReleases >= 0) {
+			// remove releases before v1.0.0 tagName
+			releases.splice(indexOfV1InReleases + 1, releases.length - 1)
+		}
+		if (pageInfo.hasNextPage && indexOfV1InReleases === -1) {
+			concat = await fetchReleases(`"${pageInfo.endCursor}"`)
+		}
+
+		return [...releases.filter(Boolean), ...concat]
 	} catch (e) {
 		return fakeData
 	}
