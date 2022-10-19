@@ -1,7 +1,7 @@
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Li, Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 export const StyledTable = styled.table`
@@ -21,6 +21,9 @@ export const StyledTable = styled.table`
 		padding: 0.5rem;
 		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
 	}
+	th {
+		font-weight: initial;
+	}
 `
 
 const exonerationsHeader = 'exonerationsHeader'
@@ -31,8 +34,6 @@ const plusValueHeader = 'plusValueHeader'
 const suramortissementHeader = 'suramortissementHeader'
 
 export function ExplicationsResultatFiscal() {
-	const { t } = useTranslation()
-
 	return (
 		<ButtonHelp title="Quelles exonérations inclure ?" type="aide" bigPopover>
 			<Body>
