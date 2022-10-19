@@ -1,4 +1,5 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
+import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -65,17 +66,17 @@ export default function FeedbackForm() {
 								rows={7}
 							/>
 						</div>
-						<div>
+						<StyledDiv>
 							<label htmlFor="email">
 								{t('E-mail (pour recevoir une réponse)')}
 							</label>
-							<input
+							<StyledTextField
 								id="email"
 								name="email"
 								type="email"
 								placeholder={t('Votre adresse e-mail')}
 							/>
-						</div>
+						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">
 							{t('Envoyer')}
 						</StyledButton>
@@ -92,26 +93,25 @@ const StyledFeedback = styled.div`
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: left;
 
-	textarea,
-	input {
-		width: 100%;
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		padding: ${({ theme }) => theme.spacings.sm};
-		margin-top: ${({ theme }) => theme.spacings.xs};
-		border-radius: ${({ theme }) => theme.box.borderRadius};
-		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	label {
+		margin-bottom: 0.5rem;
+		display: block;
 	}
 `
 
-const StyledTextArea = styled.textarea`
+const StyledTextArea = styled(TextAreaField)`
 	width: 100%;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	padding: ${({ theme }) => theme.spacings.sm};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+const StyledTextField = styled(TextField)`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: ${({ theme }) => theme.spacings.sm};
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
@@ -124,4 +124,8 @@ const StyledP = styled.p`
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: center;
 	padding: 1rem 0;
+`
+
+const StyledDiv = styled.div`
+	margin-top: 1rem;
 `
