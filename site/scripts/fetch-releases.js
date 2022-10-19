@@ -26,6 +26,7 @@ const queryLastRelease = (after) => `query {
         name
         tagName
 				description
+				isDraft
       }
     }
 	}
@@ -92,7 +93,7 @@ async function fetchReleases(after = 'null') {
 			concat = await fetchReleases(`"${pageInfo.endCursor}"`)
 		}
 
-		return [...releases.filter(Boolean), ...concat]
+		return [...releases.filter(({ isDraft }) => !isDraft), ...concat]
 	} catch (e) {
 		return fakeData
 	}
