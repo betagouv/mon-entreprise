@@ -29,6 +29,10 @@ const ThRow = styled.th`
 	flex: 2;
 	word-break: break-word;
 	margin: 0.5rem 0;
+
+	&:first-child {
+		flex: 1 1 0%;
+	}
 `
 
 export const Tr = styled.tr`
