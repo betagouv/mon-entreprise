@@ -11,8 +11,7 @@
 		"exoneration-covid",
 		"api",
 		"site",
-		"server",
-		"serverless-functions"
+		"server"
 	],
 	"scripts": {
 		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
