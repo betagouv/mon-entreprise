@@ -344,12 +344,11 @@ async function fetchMonthlyVisits() {
 const getISODatesStartEndPreviousMonth = () => {
 	const dateFirstDayPreviousMonth = new Date()
 	// On prend le premier jour du mois dernier
-	dateFirstDayPreviousMonth.setMonth(dateFirstDayPreviousMonth.getMonth() - 1) // comment line to test locally
+	dateFirstDayPreviousMonth.setMonth(dateFirstDayPreviousMonth.getMonth() - 1)
 	dateFirstDayPreviousMonth.setDate(1)
 	dateFirstDayPreviousMonth.setUTCHours(0, 0, 0, 0)
 	const dateLastDayPreviousMonth = new Date(dateFirstDayPreviousMonth)
 	// Ici l'index 0 permet de récupérer le dernier jour du mois précédent
-	// dateLastDayPreviousMonth.setMonth(dateLastDayPreviousMonth.getMonth() + 1) // uncomment to test locally
 	dateLastDayPreviousMonth.setDate(0)
 	dateLastDayPreviousMonth.setUTCHours(23, 59, 59, 999)
 
