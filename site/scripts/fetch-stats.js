@@ -380,7 +380,7 @@ async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
 	return result?.data
 }
 
-async function fetchAllCrispConversations(params) {
+async function fetchAllCrispConversations({ urlParams }) {
 	try {
 		let isEndPagination = false
 		let pageCount = 1
@@ -389,7 +389,7 @@ async function fetchAllCrispConversations(params) {
 		while (!isEndPagination) {
 			const paginatedData = await fetchPaginatedCrispConversations(
 				pageCount,
-				params
+				urlParams
 			)
 
 			// Array vide : plus rien à fetch de plus
@@ -411,9 +411,9 @@ async function fetchCrispAnsweredConversationsLastMonth() {
 	const { startISODatePreviousMonth, endISODatePreviousMonth } =
 		getISODatesStartEndPreviousMonth()
 
-	const conversations = await fetchAllCrispConversations(
-		`filter_resolved=1&filter_date_start=${startISODatePreviousMonth}&filter_date_end=${endISODatePreviousMonth}`
-	)
+	const conversations = await fetchAllCrispConversations({
+		urlParams: `filter_resolved=1&filter_date_start=${startISODatePreviousMonth}&filter_date_end=${endISODatePreviousMonth}`,
+	})
 	return conversations.length
 }
 
@@ -478,9 +478,9 @@ async function fetchGithubIssuesFromTags(tags) {
 }
 
 async function fetchCrispUserFeedbackIssues() {
-	const conversationsResolved = await fetchAllCrispConversations(
-		'filter_resolved=1&search_query=issue&search_type=segment'
-	)
+	const conversationsResolved = await fetchAllCrispConversations({
+		urlParams: 'filter_resolved=1&search_query=issue&search_type=segment',
+	})
 
 	const sortedSegments = conversationsResolved
 		.reduce((acc, conversation) => {
