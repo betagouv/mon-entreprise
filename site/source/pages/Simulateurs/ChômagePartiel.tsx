@@ -291,12 +291,17 @@ const ResultTable = styled.table`
 	width: 100%;
 	border-collapse: collapse;
 
+	th {
+		font-weight: initial;
+	}
+
 	&.ui__.mobile-version {
 		display: none;
 		@media (max-width: 660px) {
 			display: table;
 		}
-		td {
+		td,
+		th {
 			text-align: center;
 		}
 	}
@@ -307,22 +312,29 @@ const ResultTable = styled.table`
 			display: table;
 		}
 
-		td:nth-child(2) {
+		td:nth-child(2),
+		th:nth-child(2) {
 			font-size: 1em;
 			opacity: 0.8;
 		}
-		td {
+		td,
+		th {
 			vertical-align: top;
 			text-align: right;
 		}
 	}
 
-	td {
+	tbody tr {
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	td,
+	th {
 		padding: 0.8rem 1rem 0;
 	}
 
-	td:first-child {
+	td:first-child,
+	th:first-child {
 		text-align: left;
 		p {
 			margin-top: 0.2rem;
@@ -341,7 +353,9 @@ const ResultTable = styled.table`
 		text-align: left;
 	}
 
-	td:nth-child(3) {
+	td:nth-child(3),
+	th:nth-child(2),
+	th:nth-child(3) {
 		font-weight: bold;
 		p {
 			font-weight: initial;
