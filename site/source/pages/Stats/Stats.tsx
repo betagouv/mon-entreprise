@@ -65,6 +65,53 @@ const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
 	}))
 }
 
+const statsCreer = (pages: Pageish[], creer: Pageish[]) => {
+	const accueil = groupBy(
+		pages.filter(
+			(p) =>
+				'page' in p &&
+				p.page === 'accueil' &&
+				p.page_chapter1 === 'creer' &&
+				true
+		),
+		(p) => ('date' in p ? p.date : p.month)
+	)
+
+	const commencee = groupBy(
+		creer.filter(
+			(p) =>
+				'page' in p &&
+				p.page === 'accueil' &&
+				p.page_chapter1 === 'creer' &&
+				true
+		),
+		(p) => ('date' in p ? p.date : p.month)
+	)
+	const terminee = groupBy(
+		creer.filter(
+			(p) =>
+				'page' in p &&
+				p.page !== 'liste' &&
+				p.page_chapter1 === 'creer' &&
+				(p.page_chapter2 as string) === 'statut' &&
+				true
+		),
+		(p) => ('date' in p ? p.date : p.month)
+	)
+
+	return Object.entries(commencee).map(([date, values]) => ({
+		date,
+		nombre: {
+			accueil: accueil[date]?.reduce((acc, p) => acc + p.nombre, 0),
+			simulation_commencee: values.reduce((acc, p) => acc + p.nombre, 0),
+			simulation_terminee: terminee[date]?.reduce(
+				(acc, p) => acc + p.nombre,
+				0
+			),
+		},
+	}))
+}
+
 function groupByDate(data: Pageish[]) {
 	return Object.entries(
 		groupBy(
@@ -143,54 +190,10 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 			}))
 		}
 		if (chapter2 === 'guide') {
-			const creer = rawData.creer as Pageish[]
 			const pages = rawData.pages as Pageish[]
+			const creer = rawData.creer as Pageish[]
 
-			const accueil = groupBy(
-				pages.filter(
-					(p) =>
-						'page' in p &&
-						p.page === 'accueil' &&
-						p.page_chapter1 === 'creer' &&
-						true
-				),
-				(p) => ('date' in p ? p.date : p.month)
-			)
-
-			const commencee = groupBy(
-				creer.filter(
-					(p) =>
-						'page' in p &&
-						p.page === 'accueil' &&
-						p.page_chapter1 === 'creer' &&
-						true
-				),
-				(p) => ('date' in p ? p.date : p.month)
-			)
-			const terminee = groupBy(
-				creer.filter(
-					(p) =>
-						'page' in p &&
-						p.page !== 'liste' &&
-						// p.page === 'accueil' &&
-						p.page_chapter1 === 'creer' &&
-						(p.page_chapter2 as string) === 'statut' &&
-						true
-				),
-				(p) => ('date' in p ? p.date : p.month)
-			)
-
-			return Object.entries(commencee).map(([date, values]) => ({
-				date,
-				nombre: {
-					accueil: accueil[date]?.reduce((acc, p) => acc + p.nombre, 0),
-					simulation_commencee: values.reduce((acc, p) => acc + p.nombre, 0),
-					simulation_terminee: terminee[date]?.reduce(
-						(acc, p) => acc + p.nombre,
-						0
-					),
-				},
-			}))
+			return statsCreer(pages, creer)
 		}
 
 		return filterByChapter2(rawData.pages as Pageish[], chapter2)
