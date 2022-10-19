@@ -75,7 +75,7 @@ async function fetchReleases() {
 				},
 			},
 		} = await response.json()
-		return releases.filter(Boolean).reverse()
+		return releases.filter(Boolean)
 	} catch (e) {
 		return fakeData
 	}
