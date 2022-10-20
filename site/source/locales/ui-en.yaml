@@ -383,9 +383,9 @@ assistant-DRI:
         below.</1>"
       nombre-déclarations: This is your {{nthDeclaration}} tax return since the
         creation of your company.
-  intro: <0><0>We propose you a help to fill in the income from your professional
+  intro: <0><0>We offer you a help to fill in the income from your professional
     activity in your <2>income tax return of 2021</2> on
-    <5>impot.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
+    <5>impots.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
     you will have :</1><2><0>The forms that concern you</0><1>The list of the
     boxes that concern you with the amount to be filled</1><2>An estimate of the
     social security contributions to be paid to the Urssaf in 2022</2></2></0>
@@ -394,7 +394,7 @@ assistant-DRI:
     know the <2>amount of social security contributions to be paid in
     2022</2></0><1>This tool is <1>100% confidential</1>: all the information
     you enter will remain in your browser.</1><2>To make your income tax return,
-    you will have to connect to <2>impot.gouv.fr</2>.</2></1>"
+    you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Alone
   choix2: Several partners
@@ -626,7 +626,8 @@ déplier: show more
 dû par: owed by
 d’aides: aids
 embauche:
-  cesuAriaLabel: chèque emploi associatif (CEA), see more information on cesu.urssaf.fr
+  cesuAriaLabel: chèque emploi associatif (CEA), see more information on
+    cesu.urssaf.fr, new window
   chaque mois: >
     <0>Then each month</0> <1>
       <0>Compute the individual social contributions (using the chosen payslip software)</0>
@@ -634,20 +635,19 @@ embauche:
       <2>Deliver the standardised payslip to your employee</2>
     </1> <2>Get an example payslip</2>
   teseAriaLabel: titre emploi service entreprise (Tese), see more information on
-    letese.urssaf.fr
+    letese.urssaf.fr, new window
   tâches:
     contrat:
       titre: Sign an employment contract with your employee
     description: All the necessary steps to hire your first employee.
     dpae:
-      ariaLabel: be done online, accessing the URSSAF website allowing you to make
-        your pre-employment declaration
+      ariaLabel: be done online, access the URSSAF website, new window
       description: >
         This can be done through the form called DPAE, must be completed
         within 8 days before any hiring, and can <2>be done online (Fr)</2>
       titre: Declare your hiring t  o the social administration
     logiciel de paie:
-      ariaLabel: private payroll software, see examples on dsn-info.fr
+      ariaLabel: private payroll software, see examples on dsn-info.fr, new window
       description: >
         With fewer than 20 employees, payslips and declarations can be
         handled online by the <2> Tese (Fr)</2>, a tool developped by the french
@@ -661,6 +661,7 @@ embauche:
       description: All the necessary steps to hire your first employee in France.
       titre: The formalities for hiring
     pension:
+      aria-label: Find my pension fund, new window
       description: Find your pension institute (Fr)
       titre: Contact the compulsory supplementary pension institution assigned to you
     prévoyance . santé:
@@ -827,6 +828,7 @@ entreprise:
         main activity run. A secondary activity can be registered.
       titre: Write the corporate purpose of the company
     statuts:
+      aria-label: Status examples for your {{status}}, new window
       description: The company's articles of association ( "les statuts"), is an
         official document written in French, describing the status choice,
         naming the associate(s) and the contributed capital. <2>For more than
@@ -981,6 +983,7 @@ gérer:
     minoritaire: Minority director
   ressources:
     annuaire-entreprises:
+      aria-label: Company Directory, new window
       body: Find all public information about your company on
       cta: Visit the site
       title: See your public data
@@ -1243,7 +1246,50 @@ pages:
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
     components:
-      CasParticuliers: ""
+      CasParticuliers: '<0>Learn more about...</0><1><0>How to make a simulation in
+        the past?</0><1>Since the end of 2021, the calculation rules of the
+        simulators are historicized. This means that you can run a simulation
+        with the legislation in force at a previous date. To do so, you just
+        have to fill in the parameter <2><0>date</0></2> in the
+        situation.</1></1><2><0>The <1>MissingVariables</1></0><1>In return of
+        your call to <1>evaluate</1>, you will get a <3>missingVariables</3>
+        object. This object contains the list of all the rules used for the
+        calculation whose value is missing in the input situation. It is a
+        <6>default value</6> that has been used instead.</1><2>To further
+        customize your simulation, you can enter their value.</2><3><0>The
+        number associated with them corresponds to the importance of the rule
+        for the calculation: the higher it is, the more the rule was used by
+        other rules during the calculation.</0></3></2><3><0>Rules tagged as
+        <1>experimental</1></0><1>Our APIs follow a <2>semantic version
+        management</2>. This means that all changes made are backwards
+        compatible, except for major version changes.</1><2>Rules tagged as
+        experimental do not obey this specification. This means that they can be
+        deleted, modified, moved, invisibly for the API user.</2><3><0>We
+        therefore advise you to be very careful when using these rules, and to
+        always check their existence before including them in your application
+        code.</0></3><4><0>How to know if a rule is experimental?</0><1>You can
+        know if you are using an experimental rule by looking at the
+        <1>warnings</1> object provided in return of your call to
+        <3>evaluate</3></1><2>Experimental rules also contain a warning in the
+        "Reuse this calculation" section of the
+        documentation.</2></4></3><4><0>Reusing data from external
+        APIs</0><1>Some of the data in the my-company simulators come from
+        external APIs. You will have to retrieve their value yourself to enter
+        it in the input situation.</1><2>The mobility
+        payment</2><3><0><0>establishment . municipality . mobility payment
+        rate</0></0></3><4>In the <2>employee</2> simulator, you just have to
+        enter the municipality and the corresponding mobility payment rate is
+        automatically determined.</4><5>You will have to specify the rate
+        yourself to redo the calculation. You can find it again:<1><0>By
+        entering your municipality in a simulator, then searching for the
+        "mobility payment" rule with the "search" button at the top
+        right</0><1>Using the <2>dedicated service on
+        urssaf.fr</2></1></1></5><6>The collective AT/MP
+        rate</6><7><0><0>establishment . ATMP rate . collective
+        rate</0></0></7><8>This collective rate must be found manually. You can
+        use :<1><0><0>A csv export</0> of the table of collective net rates
+        published in the Official Journal</0><1>The service <2>Account AT/MP</2>
+        of net-entreprise</1></1></8></4>'
       StepByStep: <0><0>Choose the simulator according to the calculation we are
         interested in</0><1></1>For example the <4>employee simulator</4> to
         calculate a net amount from the gross amount.</0><1><0>Run a simulation
@@ -1872,9 +1918,10 @@ privacyContent:
     you can easily retrieve it the next time you visit the site. If you do not
     wish this to be the case, we advise you to use <2>private browsing</2>.</0>
   ok: Your preferences have been saved
-  privateNavAriaLabel: private navigation, see more information on this subject on the CNIL website
+  privateNavAriaLabel: private navigation, see more information on this subject on
+    the CNIL website, new window
   recommandationsAriaLabel: recommendations of the CNIL, see more information on
-    this subject on the CNIL website
+    this subject on the CNIL website, new window
   texte: <0></0><1>We collect anonymous statistics on the use of the site, which
     we use for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only
