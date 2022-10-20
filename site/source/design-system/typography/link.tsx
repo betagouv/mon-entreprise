@@ -8,7 +8,6 @@ import React, {
 	useCallback,
 	useRef,
 } from 'react'
-import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -82,14 +81,11 @@ export function useExternalLinkProps({
 	href,
 	children,
 	openInSameWindow,
-	...props
 }: {
 	href?: string
 	children?: React.ReactNode
 	openInSameWindow?: true
-	'aria-label'?: string
 }) {
-	const { t } = useTranslation()
 	if (
 		openInSameWindow ||
 		!href ||
