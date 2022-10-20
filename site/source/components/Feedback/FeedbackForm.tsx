@@ -7,8 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-// TODO: we could implement the form logic ourselves to avoid including
-// https://mon-entreprise.zammad.com and https://code.jquery.com scripts
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
