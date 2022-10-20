@@ -14,7 +14,7 @@ import { BodyType, sendCrispMessage } from './functions/send-crisp-message.js'
 import { bree } from './jobs.js'
 import { initMongodb } from './mongodb.js'
 import { getAccessToken } from './oauth.js'
-import { snakeToCamelCaseKeys } from './utils.js'
+import { snakeToCamelCaseKeys, validateBody } from './utils.js'
 
 const mongo = await initMongodb()
 
@@ -85,7 +85,8 @@ router.get('/oauth', async (ctx) => {
 
 router.post('/send-crisp-message', koaBody(), async (ctx) => {
 	try {
-		const body = ctx.request.body as unknown as BodyType
+		const body = validateBody(ctx.request.body as BodyType)
+
 		await sendCrispMessage(body)
 
 		ctx.status = 200
