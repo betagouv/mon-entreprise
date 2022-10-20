@@ -58,7 +58,9 @@ export default function Footer() {
 							This website is provided by the{' '}
 							<Link
 								href="https://www.urssaf.fr"
-								aria-label={t('Urssaf, voir le site urssaf.fr')}
+								aria-label={t(
+									'Urssaf, voir le site urssaf.fr, nouvelle fenêtre'
+								)}
 							>
 								Urssaf
 							</Link>

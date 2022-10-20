@@ -191,7 +191,10 @@ export default function Imposition() {
 									vous transmette à nouveau ces informations.
 								</Body>
 								<Body>
-									<Link href="https://www.impots.gouv.fr/contacts">
+									<Link
+										href="https://www.impots.gouv.fr/contacts"
+										aria-label="Contacter le service des impôts sur impots.gouv.fr, nouvelle fenêtre"
+									>
 										Contacter le service des impôts
 									</Link>
 								</Body>
@@ -316,7 +319,7 @@ function ResultSection() {
 								sur{' '}
 								<Link
 									href="https://www.impots.gouv.fr/accueil"
-									aria-label="impot.gouv.fr, visiter impots.gouv.fr"
+									aria-label="impot.gouv.fr, nouvelle fenêtre"
 								>
 									impots.gouv.fr
 								</Link>

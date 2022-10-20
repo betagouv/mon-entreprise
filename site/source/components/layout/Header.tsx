@@ -20,7 +20,7 @@ export default function Header() {
 			<StyledHeader>
 				<Link
 					to={absoluteSitePaths.index}
-					aria-label={t("Aller à la page d'accueil")}
+					aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
 				>
 					<StyledLogo>
 						<Logo />

@@ -70,7 +70,6 @@ export const Link = React.forwardRef<
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
-			aria-label={props?.['aria-label']}
 			role={role}
 			$isDisabled={isDisabled}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
@@ -80,15 +79,15 @@ export const Link = React.forwardRef<
 })
 
 export function useExternalLinkProps({
-	title,
 	href,
 	children,
 	openInSameWindow,
+	...props
 }: {
-	title?: string | null
 	href?: string
 	children?: React.ReactNode
 	openInSameWindow?: true
+	'aria-label'?: string
 }) {
 	const { t } = useTranslation()
 	if (
@@ -100,7 +99,6 @@ export function useExternalLinkProps({
 	}
 
 	return {
-		title: (title ? `${title} - ` : '') + t('Nouvelle fenêtre'),
 		target: '_blank',
 		rel: 'noreferrer',
 		external: true,

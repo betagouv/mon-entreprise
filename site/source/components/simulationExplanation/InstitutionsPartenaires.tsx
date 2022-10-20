@@ -49,6 +49,7 @@ export default function InstitutionsPartenaires() {
 										href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
 										target="_blank"
 										rel="noreferrer"
+										aria-label="Logo CPAM, accéder à ameli.fr, nouvelle fenêtre"
 									>
 										<img src={assuranceMaladieSrc} alt="Logo CPAM" />
 									</InstitutionLogo>
@@ -105,6 +106,7 @@ export function CotisationsUrssaf({
 				href="https://www.urssaf.fr/portail/home.html"
 				target="_blank"
 				rel="noreferrer"
+				aria-label="Logo URSSAF, accéder à urssaf.fr, nouvelle fenêtre"
 			>
 				<img src={urssafSrc} alt="Logo Urssaf" />
 			</InstitutionLogo>
@@ -131,6 +133,7 @@ export function ImpôtsDGFIP() {
 					href="https://www.impots.gouv.fr"
 					target="_blank"
 					rel="noreferrer"
+					aria-label="Logo DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre"
 				>
 					<img src={dgfipSrc} alt="Logo DGFiP" />
 				</InstitutionLogo>
@@ -240,6 +243,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									href="http://www.ircec.fr/"
 									target="_blank"
 									rel="noreferrer"
+									aria-label="Logo IRCEC, accéder à ircec.fr, nouvelle fenêtre"
 								>
 									<img src={logosSrc.IRCEC} alt="Logo IRCEC" />
 								</InstitutionLogo>

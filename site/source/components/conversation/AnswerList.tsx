@@ -134,6 +134,10 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 								'Retrouvez toutes les informations publiques concernant votre entreprise sur'
 							)}{' '}
 							<Link
+								aria-label={t(
+									'gérer.ressources.annuaire-entreprises.aria-label',
+									'Annuaire des Entreprises, nouvelle fenêtre'
+								)}
 								href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
 							>
 								Annuaire des Entreprises.

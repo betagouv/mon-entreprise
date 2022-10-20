@@ -22,7 +22,7 @@ export default function DemandeUtilisateurs() {
 					href="https://github.com/betagouv/mon-entreprise/blob/master/CONTRIBUTING.md#retours-utilisateurs"
 					target="_blank"
 					aria-label={t(
-						'Comment ça marche ? Voir la page explicative sur la page du dépôt github'
+						'Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre'
 					)}
 				>
 					Comment ça marche ?
@@ -82,7 +82,9 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 			{count > 1 && <span>{count} demandes</span>}{' '}
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
-				aria-label={t('{{title}}, voir la demande sur github.com')}
+				aria-label={t(
+					'{{title}}, voir la demande sur github.com, nouvelle fenêtre'
+				)}
 			>
 				{title}
 			</Link>{' '}

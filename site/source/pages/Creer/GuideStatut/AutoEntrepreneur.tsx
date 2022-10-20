@@ -39,7 +39,7 @@ export default function Autoentrepreneur() {
 					(
 					<Link
 						href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions"
-						aria-label={t('voir la liste sur afecreation.fr')}
+						aria-label={t('voir la liste sur afecreation.fr, nouvelle fenêtre')}
 					>
 						{' '}
 						voir la liste
@@ -48,7 +48,7 @@ export default function Autoentrepreneur() {
 					expérience professionnelle (
 					<Link
 						href="https://www.afecreation.fr/pid316/activites-reglementees.html"
-						aria-label={t('voir la liste sur afecreation.fr')}
+						aria-label={t('voir la liste sur afecreation.fr, nouvelle fenêtre')}
 					>
 						voir la liste
 					</Link>

@@ -68,14 +68,20 @@ export default function Accessibilité() {
 			</Body>
 			<Body>
 				Cette déclaration d’accessibilité s’applique à{' '}
-				<Link href="https://mon-entreprise.urssaf.fr">
+				<Link
+					href="https://mon-entreprise.urssaf.fr"
+					aria-label="https://mon-entreprise.urssaf.fr, nouvelle fenêtre"
+				>
 					https://mon-entreprise.urssaf.fr
 				</Link>
 				.
 			</Body>
 			<H3>État de conformité</H3>
 			<Body>
-				<Link href="https://mon-entreprise.urssaf.fr">
+				<Link
+					href="https://mon-entreprise.urssaf.fr"
+					aria-label="https://mon-entreprise.urssaf.fr, nouvelle fenêtre"
+				>
 					https://mon-entreprise.urssaf.fr
 				</Link>{' '}
 				n’est actuellement pas en conformité avec le{' '}

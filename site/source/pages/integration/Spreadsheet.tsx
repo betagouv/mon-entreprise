@@ -39,7 +39,10 @@ export default function Spreadsheet() {
 				<H2>Exemple</H2>
 				<Body>
 					Vous pouvez trouver un exemple complet avec{' '}
-					<Link href="https://docs.google.com/spreadsheets/d/1wbfxRdmEbUBgsXbGVc0Q6uqAV4IfLvux6oUJXJLhlaU/copy">
+					<Link
+						href="https://docs.google.com/spreadsheets/d/1wbfxRdmEbUBgsXbGVc0Q6uqAV4IfLvux6oUJXJLhlaU/copy"
+						aria-label="Google Sheets, accéder au document d'exemple, nouvelle fenêtre"
+					>
 						Google Sheets
 					</Link>
 					, cliquez sur "Créer une copie" (vous pouvez vérifier les scripts avec

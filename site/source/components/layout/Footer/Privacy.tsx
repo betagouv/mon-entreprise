@@ -45,7 +45,7 @@ export default function Privacy({ label }: { label?: string }) {
 						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
 						aria-label={t(
 							'privacyContent.recommandationsAriaLabel',
-							"recommandations de la CNIL, voir plus d'informations à ce sujet sur le site de la CNIL"
+							"recommandations de la CNIL, voir plus d'informations à ce sujet sur le site de la CNIL, nouvelle fenêtre"
 						)}
 					>
 						recommandations de la CNIL
@@ -86,7 +86,7 @@ export default function Privacy({ label }: { label?: string }) {
 						href="https://www.cnil.fr/fr/la-navigation-privee-pour-limiter-les-risques-de-piratage-de-vos-comptes-en-ligne"
 						aria-label={t(
 							'privacyContent.privateNavAriaLabel',
-							"navigation privée, voir plus d'informations à ce sujet sur le site de la CNIL"
+							"navigation privée, voir plus d'informations à ce sujet sur le site de la CNIL, nouvelle fenêtre"
 						)}
 					>
 						navigation privée

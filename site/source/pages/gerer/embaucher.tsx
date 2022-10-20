@@ -71,6 +71,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 								target="_blank"
 								rel="noreferrer"
+								aria-label="Plus d'informations sur service-public.fr, nouvelle fenêtre"
 							>
 								{' '}
 								<Trans>Plus d'informations</Trans>
@@ -95,7 +96,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									rel="noreferrer"
 									aria-label={t(
 										'embauche.tâches.dpae.ariaLabel',
-										"être effectué en ligne, accéder au site de l'URSSAF vous permettant de réaliser votre déclaration préalable à l'embauche"
+										"être effectué en ligne, accéder au site de l'URSSAF, nouvelle fenêtre"
 									)}
 								>
 									être effectué en ligne
@@ -130,7 +131,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 									rel="noreferrer"
 									aria-label={t(
 										'embauche.tâches.logiciel de paie.ariaLabel',
-										'logiciel de paie privé, voir des exemples sur dsn-info.fr'
+										'logiciel de paie privé, voir des exemples sur dsn-info.fr, nouvelle fenêtre'
 									)}
 								>
 									logiciel de paie privé.
@@ -152,6 +153,9 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								target="_blank"
 								rel="noreferrer"
+								aria-label={t(
+									"Plus d'informations sur service-public.fr, nouvelle fenêtre"
+								)}
 							>
 								<Trans>Plus d'informations</Trans>
 							</a>
@@ -171,6 +175,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								target="_blank"
 								rel="noreferrer"
+								aria-label={t(
+									'embauche.tâches.pension.aria-label',
+									'Trouver mon institution de prévoyance, nouvelle fenêtre'
+								)}
 							>
 								<Trans i18nKey="embauche.tâches.pension.description">
 									Trouver mon institution de prévoyance
@@ -230,7 +238,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							rel="noreferrer"
 							aria-label={t(
 								'embauche.teseAriaLabel',
-								"titre emploi service entreprise (Tese), voir plus d'informations sur letese.urssaf.fr"
+								"titre emploi service entreprise (Tese), voir plus d'informations sur letese.urssaf.fr, nouvelle fenêtre"
 							)}
 						>
 							titre emploi service entreprise (Tese)
@@ -242,7 +250,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 							rel="noreferrer"
 							aria-label={t(
 								'embauche.cesuAriaLabel',
-								"chèque emploi associatif (CEA), voir plus d'informations sur cesu.urssaf.fr"
+								"chèque emploi associatif (CEA), voir plus d'informations sur cesu.urssaf.fr, nouvelle fenêtre"
 							)}
 						>
 							chèque emploi associatif (CEA)

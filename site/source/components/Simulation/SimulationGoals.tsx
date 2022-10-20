@@ -106,7 +106,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 						href={import.meta.env.VITE_FR_BASE_URL}
 						target="_blank"
 						rel="noreferrer"
-						aria-label={t("Accéder à la page d'accueil")}
+						aria-label={t("Accéder à la page d'accueil, nouvelle fenêtre")}
 					>
 						<Logo />
 					</LogoContainer>

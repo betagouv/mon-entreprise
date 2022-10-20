@@ -126,7 +126,7 @@ export default function Landing() {
 							<Body>
 								Nous sommes une petite{' '}
 								<Link
-									aria-label="équipe, accéder à notre page de présentation d'équipe"
+									aria-label="équipe, accéder à notre page de présentation d'équipe, nouvelle fenêtre"
 									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
 								>
 									équipe
@@ -134,7 +134,7 @@ export default function Landing() {
 								autonome et pluridisciplinaire au sein de{' '}
 								<Link
 									href="https://www.urssaf.fr"
-									aria-label="l'URSSAF, accéder au site urssaf.fr"
+									aria-label="l'URSSAF, accéder au site urssaf.fr, nouvelle fenêtre"
 								>
 									l’Urssaf
 								</Link>
@@ -142,7 +142,7 @@ export default function Landing() {
 								d’améliorer en permanence ce site conformément à l'approche{' '}
 								<Link
 									href="https://beta.gouv.fr/approche/manifeste"
-									aria-label="beta.gouv.fr, accéder au site beta.gouv.fr "
+									aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
 								>
 									beta.gouv.fr
 								</Link>

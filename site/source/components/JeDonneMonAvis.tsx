@@ -9,7 +9,9 @@ export const JeDonneMonAvis = () => {
 	return (
 		<Link
 			href={href}
-			aria-label={t('Donner mon avis sur jedonnemonavis.numerique.gouv.fr')}
+			aria-label={t(
+				'Je donne mon avis, donner mon avis sur jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre'
+			)}
 		>
 			<img
 				src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-blanc.svg"

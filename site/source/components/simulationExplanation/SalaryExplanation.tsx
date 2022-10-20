@@ -61,7 +61,10 @@ export default function SalaryExplanation() {
 								Le simulateur vous aide à comprendre votre bulletin de paie,
 								sans lui être opposable. Pour plus d&apos;informations, rendez
 								vous sur&nbsp;
-								<Link href="https://www.service-public.fr/particuliers/vosdroits/F559">
+								<Link
+									href="https://www.service-public.fr/particuliers/vosdroits/F559"
+									aria-label="service-public.fr, nouvelle fenêtre"
+								>
 									service-public.fr
 								</Link>
 								.
@@ -74,12 +77,15 @@ export default function SalaryExplanation() {
 								Trouvez votre convention collective{' '}
 								<Link
 									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr"
+									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
 								>
 									ici
 								</Link>
 								, et explorez les aides sur&nbsp;
-								<Link href="https://www.aides-entreprises.fr">
+								<Link
+									href="https://www.aides-entreprises.fr"
+									aria-label="aides-entreprises.fr, nouvelle fenêtre"
+								>
 									aides-entreprises.fr
 								</Link>
 								.
@@ -152,7 +158,10 @@ export const DistributionSection = ({
 		<SmallBody>
 			<Trans>
 				Pour en savoir plus, rendez-vous sur le site{' '}
-				<Link href="https://www.aquoiserventlescotisations.urssaf.fr/">
+				<Link
+					href="https://www.aquoiserventlescotisations.urssaf.fr/"
+					aria-label="aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre"
+				>
 					aquoiserventlescotisations.urssaf.fr
 				</Link>
 			</Trans>

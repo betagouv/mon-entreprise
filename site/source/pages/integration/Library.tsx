@@ -40,14 +40,14 @@ export default function Library() {
 					Pour lancer vos propres calculs, vous devez installer le paquet{' '}
 					<Link
 						href="https://www.npmjs.com/package/publicodes"
-						aria-label="publicodes, voir la page npm de la librairie publicodes"
+						aria-label="publicodes, voir la page npm de la librairie publicodes, nouvelle fenêtre"
 					>
 						<Code>publicodes</Code>
 					</Link>{' '}
 					contenant l'interpréteur publicodes, ainsi que le paquet{' '}
 					<Link
 						href="https://www.npmjs.com/package/modele-social"
-						aria-label="modèle-social, voir la page npm de la librairie modèle-social"
+						aria-label="modèle-social, voir la page npm de la librairie modèle-social, nouvelle fenêtre"
 					>
 						<Code>modele-social</Code>
 					</Link>
@@ -62,7 +62,10 @@ export default function Library() {
 						mon-entreprise.
 					</Body>
 					<Body>
-						<Link href="https://publi.codes">
+						<Link
+							href="https://publi.codes"
+							aria-label="En savoir plus sur publicodes, nouvelle fenêtre"
+						>
 							En savoir plus sur publicodes
 						</Link>
 					</Body>
@@ -102,7 +105,7 @@ export default function Library() {
 						target="_blank"
 						rel="noreferrer"
 						href="/documentation"
-						aria-label="documentation en ligne, voir la documentation en ligne"
+						aria-label="documentation en ligne, voir la documentation en ligne, nouvelle fenêtre"
 					>
 						documentation en ligne
 					</Link>
@@ -136,7 +139,7 @@ export default function Library() {
 						situation. Ces dernières acceptent n'importe quelle{' '}
 						<Link
 							href="https://publi.codes/docs/principes-de-base"
-							aria-label="expression ou objet publicodes, voir la page de documentation portant sur les principes de bases de publicodes"
+							aria-label="expression ou objet publicodes, en savoir plus sur publi.codes, nouvelle fenêtre"
 						>
 							expression ou objet publicodes.
 						</Link>

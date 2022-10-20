@@ -59,7 +59,9 @@ export function CasParticuliers() {
 					Nos API suivent une{' '}
 					<Link
 						href="https://semver.org/lang/fr/"
-						aria-label={t('gestion sémantique de version, en savoir plus')}
+						aria-label={t(
+							'gestion sémantique de version, en savoir plus, nouvelle fenêtre'
+						)}
 					>
 						gestion sémantique de version
 					</Link>
@@ -131,7 +133,10 @@ export function CasParticuliers() {
 						</Li>
 						<Li>
 							Grâce au{' '}
-							<Link href="https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html">
+							<Link
+								href="https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html"
+								aria-label="service dédié sur urssaf.fr, nouvelle fenêtre"
+							>
 								service dédié sur urssaf.fr
 							</Link>
 						</Li>
@@ -152,7 +157,7 @@ export function CasParticuliers() {
 						<Li>
 							<Link
 								href="https://github.com/betagouv/taux-collectifs-cotisation-atmp"
-								aria-label={t("un export CSV, accéder à l'export")}
+								aria-label="un export CSV, accéder à l'export, nouvelle fenêtre"
 							>
 								Un export csv
 							</Link>{' '}
@@ -162,9 +167,7 @@ export function CasParticuliers() {
 							Le service{' '}
 							<Link
 								href="https://www.net-entreprises.fr/declaration/compte-atmp/"
-								aria-label={t(
-									'Compte AT/MP, voir le service en ligne de déclaration pour ATMP'
-								)}
+								aria-label="Compte AT/MP, voir le service en ligne de déclaration pour ATMP, nouvelle fenêtre"
 							>
 								Compte AT/MP
 							</Link>{' '}
