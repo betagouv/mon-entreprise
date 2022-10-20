@@ -7,6 +7,10 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
+const serverURL = process.env.development
+	? 'http://localhost:4000'
+	: 'scalingo url'
+
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +28,7 @@ export default function FeedbackForm() {
 			?.value
 
 		try {
-			await fetch(`/send-crisp-message`, {
+			await fetch(`http://localhost:4000/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
