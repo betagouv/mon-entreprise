@@ -11,13 +11,21 @@ protection sociale . retraite:
   résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
 
   description: |
-    Tous les travailleurs en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
+    ### Un système obligatoire …
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
-    Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
+    ###… par répartition
+    Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
 
-    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+    ###… principalement contributif
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+  références:
+    Panorama des régimes de retraites: https://travail-emploi.gouv.fr/retraite/le-systeme-de-retraite-actuel/
 
 protection sociale . retraite . trimestres:
   titre: trimestres validés
@@ -49,8 +57,7 @@ protection sociale . retraite . base cotisée:
       alors: revenu indépendant
     - si: dirigeant . auto-entrepreneur
       alors: revenu auto-entrepreneur
-    - si: salarié
-      alors: revenu salarié
+    - sinon: revenu salarié
   plafond: plafond sécurité sociale
   avec:
     revenu salarié:

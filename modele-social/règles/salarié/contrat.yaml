@@ -128,6 +128,33 @@ salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au b
   formule: diplôme préparé = 'niveau supérieur au bac'
   description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
 
+salarié . contrat . apprentissage . durée:
+  icônes: ⏳
+  titre: durée du contrat
+  question: Quelle est la durée du contrat ?
+  plancher: 6 mois
+  plafond: 3 ans # TODO 4 ans les travailleurs handicapé
+  description: |
+    Le contrat d'apprentissage est un contrat écrit de droit privé.
+
+    Il peut être à durée limitée (CDL) d'une durée de 6 mois au minimum à 3 ans au maximum
+  références:
+    Contrat d'apprentissage: https://www.service-public.fr/particuliers/vosdroits/F2918/personnalisation/resultat?lang=&quest0=0&quest=
+  suggestions:
+    3 ans: 3 ans
+    2 ans: 2 ans
+    1 an: 1 an
+    6 mois: 6 mois
+  par défaut: 2 ans
+
+salarié . contrat . apprentissage . trimestres validés pour la retraite:
+  remplace: protection sociale . retraite . trimestres
+  valeur: salarié . contrat . apprentissage . durée * 4 trimestres validés/an - 0.5
+  arrondi: oui
+  reference:
+    Site réglementaire de la retraite du régime général: https://www.legislation.cnav.fr/Pages/expose.aspx?Nom=cotisation_salaire_type_activite_apprenti_ex
+  note: On arrondi à l'unité inférieur, d'où la soustraction de 0.5
+
 salarié . contrat . apprentissage . ancienneté:
   question: Depuis combien de temps l'apprenti est-il employé ?
   formule:
