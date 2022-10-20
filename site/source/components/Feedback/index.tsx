@@ -145,7 +145,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 			{state.showForm && (
 				<Popover
 					isOpen
-					title="Votre avis nous interesse"
+					title="Votre avis nous intéresse"
 					isDismissable
 					onClose={() => setState({ showThanks: true, showForm: false })}
 					small

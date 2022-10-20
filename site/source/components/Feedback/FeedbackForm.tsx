@@ -1,6 +1,7 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -44,7 +45,9 @@ export default function FeedbackForm() {
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			{isSubmittedSuccessfully && <StyledP>Merci de votre retour !</StyledP>}
+			{isSubmittedSuccessfully && (
+				<StyledBody>Merci de votre retour !</StyledBody>
+			)}
 			{!isSubmittedSuccessfully && (
 				<StyledFeedback>
 					<form
@@ -53,28 +56,27 @@ export default function FeedbackForm() {
 							void sendMessage()
 						}}
 					>
-						<div>
-							<label htmlFor="message">
-								{t(
-									"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)"
-								)}
-							</label>
-							<StyledTextArea
-								name="message"
-								id="message"
-								placeholder={t('Votre message')}
-								rows={7}
-							/>
-						</div>
+						<Body>
+							Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+						</Body>
+						<StyledTextArea
+							name="message"
+							label={t('Votre message')}
+							description={t(
+								'Éviter de communiquer des informations personnelles'
+							)}
+							id="message"
+							rows={7}
+						/>
 						<StyledDiv>
-							<label htmlFor="email">
-								{t('E-mail (pour recevoir une réponse)')}
-							</label>
 							<StyledTextField
 								id="email"
 								name="email"
 								type="email"
-								placeholder={t('Votre adresse e-mail')}
+								label={t('Votre adresse e-mail')}
+								description={t(
+									'Renseigner une adresse e-mail pour recevoir une réponse'
+								)}
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">
@@ -119,7 +121,7 @@ const StyledButton = styled(Button)`
 	margin-top: 1rem;
 `
 
-const StyledP = styled.p`
+const StyledBody = styled(Body)`
 	font-size: 1.25rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: center;
