@@ -7,9 +7,11 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-const serverURL = process.env.development
+const SERVER_URL = import.meta.env.DEV
 	? 'http://localhost:4000'
-	: 'scalingo url'
+	: 'https://mon-entreprise-server.osc-fr1.scalingo.io'
+
+const MESSAGE_MAX_LENGTH = 2000
 
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
@@ -28,7 +30,7 @@ export default function FeedbackForm() {
 			?.value
 
 		try {
-			await fetch(`http://localhost:4000/send-crisp-message`, {
+			await fetch(`${SERVER_URL}/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -69,6 +71,8 @@ export default function FeedbackForm() {
 							)}
 							id="message"
 							rows={7}
+							maxLength={MESSAGE_MAX_LENGTH}
+							isDisabled={isLoading}
 						/>
 						<StyledDiv>
 							<StyledTextField
@@ -79,6 +83,7 @@ export default function FeedbackForm() {
 								description={t(
 									'Renseigner une adresse e-mail pour recevoir une réponse'
 								)}
+								isDisabled={isLoading}
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">

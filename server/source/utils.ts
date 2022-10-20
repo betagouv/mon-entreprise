@@ -39,12 +39,16 @@ export const shuffleArray = <T>(array: T[]) => {
 const isStringAndNotEmpty = (value: string) =>
 	value !== undefined && value !== '' && typeof value === 'string'
 
-export const validateBody = (body: BodyType): BodyType => {
+const SHORT_MAX_LENGTH = 254
+
+export const validateCrispBody = (body: BodyType): BodyType => {
 	const { subject, message, email } = body || {}
 	if (
 		isStringAndNotEmpty(subject) &&
+		subject.length <= SHORT_MAX_LENGTH &&
 		isStringAndNotEmpty(message) &&
-		isStringAndNotEmpty(email)
+		isStringAndNotEmpty(email) &&
+		email.length <= SHORT_MAX_LENGTH
 	) {
 		return body
 	}
