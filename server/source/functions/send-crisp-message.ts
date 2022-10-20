@@ -27,7 +27,7 @@ type CrispType = {
 		key: string | undefined
 	) => void
 	website: {
-		createNewConversation: (id: string) => { session_id: string }
+		createNewConversation: (id: string) => Promise<{ session_id: string }>
 		sendMessageInConversation: (
 			website_id: string,
 			session_id: string,
@@ -37,7 +37,7 @@ type CrispType = {
 			website_id: string,
 			session_id: string,
 			meta: ConversationMetaType
-		) => void
+		) => Promise<void>
 	}
 }
 
@@ -47,6 +47,7 @@ export const sendCrispMessage = async (body: BodyType) => {
 	try {
 		const { message, email, subject } = body || {}
 
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 		const CrispClient = new Crisp() as unknown as CrispType
 
 		CrispClient.authenticateTier(
@@ -55,14 +56,11 @@ export const sendCrispMessage = async (body: BodyType) => {
 			process.env.CRISP_API_KEY
 		)
 
-		// eslint-disable-next-line camelcase, @typescript-eslint/await-thenable
 		const result = await CrispClient.website.createNewConversation(WEBSITE_ID)
 
-		// eslint-disable-next-line camelcase
-		const { session_id } = result
+		const { session_id: sessionId } = result
 
-		// eslint-disable-next-line camelcase, @typescript-eslint/await-thenable
-		await CrispClient.website.updateConversationMetas(WEBSITE_ID, session_id, {
+		await CrispClient.website.updateConversationMetas(WEBSITE_ID, sessionId, {
 			email,
 			nickname: email,
 			subject,
@@ -70,7 +68,7 @@ export const sendCrispMessage = async (body: BodyType) => {
 
 		CrispClient.website.sendMessageInConversation(
 			WEBSITE_ID,
-			session_id,
+			sessionId,
 
 			{
 				type: 'text',
@@ -81,6 +79,7 @@ export const sendCrispMessage = async (body: BodyType) => {
 			}
 		)
 	} catch (e) {
-		console.log('error', e)
+		// eslint-disable-next-line no-console
+		console.error(e)
 	}
 }
