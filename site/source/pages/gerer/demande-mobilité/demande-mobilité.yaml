@@ -12,6 +12,7 @@ situation:
         artiste-auteur,
         salarié,
         salarié 2,
+        dirigeants,
         intermittent,
         non actif,
         autres,
@@ -50,6 +51,10 @@ situation . salarié 2:
   titre: salarié
   valeur: situation = 'salarié 2'
 
+situation . dirigeants:
+  titre: dirigeant de société
+  valeur: situation = 'dirigeants'
+
 situation . intermittent:
   titre: intermittent du spectacle
   valeur: situation = 'intermittent'
@@ -65,6 +70,7 @@ situation . autres:
 situation . TNS:
   une de ces conditions:
     - situation . PAM
+    - situation . dirigeants
     - situation . artiste-auteur
 
 situation . notification:
@@ -282,7 +288,15 @@ entreprise france:
       - situation . non actif = non
       - situation . autres = non
 
+entreprise france . SIRET connu:
+  applicable si: situation . dirigeants
+  question: Connaissez-vous votre SIRET ?
+
 entreprise france . SIRET:
+  applicable si:
+    une de ces conditions:
+      - situation . dirigeants = non
+      - SIRET connu
   type: texte
 
 entreprise france . raison sociale:
@@ -315,10 +329,18 @@ entreprise france . organisme urssaf:
 
 entreprise france . nature de l'activité:
   applicable si: situation . TNS
+  non applicable si: situation . dirigeants
   titre: Votre activité en France
   type: texte
   description: >-
     Saisissez une courte description de votre activité en France (ex: plombier, coach sportif, aménagement intérieur)
+
+entreprise france . nature de l'activité 2:
+  applicable si: situation . dirigeants
+  titre: Votre activité en France
+  type: texte
+  description: >-
+    Saisissez une courte description de votre activité en France (ex: Gérant majoritaire de SARL, dirigeants de SAS, Gérant et directeur technique ou commercial, Président de SA)
 
 contact:
   applicable si:
@@ -358,8 +380,15 @@ demande . PAM:
   valeur: oui
 
 demande . PAM . pays unique:
-  question: >
-    Allez-vous exercer une activité non salariée dans un seul et unique pays ?
+  question:
+    variations:
+      - si: situation . dirigeants
+        alors:
+          texte: >
+            Allez-vous exercer une activité dans un seul et unique pays ?
+      - sinon:
+          texte: >
+            Allez-vous exercer une activité non salariée dans un seul et unique pays ?
 
 demande . PAM . infrastructure sauvegardée:
   applicable si: pays unique
@@ -500,7 +529,7 @@ détachement . nature de l'activité:
   description: >-
     Saisissez une courte description de l'activité effectuée pendant le détachement (ex: plombier, coach sportif, aménagement intérieur)
 
-détachement . pays hors UE:
+détachement . pays hors UE: &pays-hors-UE
   une de ces conditions:
     - pays = 'Autre'
     - pays = 'Andorre'
@@ -919,8 +948,6 @@ pluriactivité . nombre:
   plancher: 1
   plafond: 4
 
-pluriactivité . pays hors UE: non
-
 pluriactivité . pays n°1: &pluriactivité
   valeur: oui
   type: groupe
@@ -930,11 +957,23 @@ pluriactivité . pays n°1: &pluriactivité
       titre: Pays
       API: pays détachement
       par défaut: non
+    pays hors UE:
+      titre: Ce pays est en dehors de l'Union Européenne
+      type: groupe
+      non applicable si: situation . dirigeants = non
+      applicable si: *pays-hors-UE
+      description: |
+
+        Il y a lieu de préciser que la convention bilatérale signée entre la France et le pays choisi autorise uniquement la mobilité professionnelle au titre d’un détachement.
+
+        Pour tout renseignement complémentaire, contactez un conseiller par email mobilite-internationale@urssaf.fr ou par téléphone au +33(0) 806 804 213 du lundi au vendredi de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).*
+      par défaut: non
     pays . autre:
       applicable si: pays = 'Autre'
       titre: Nom du pays
       type: texte
     statut:
+      non applicable si: pays hors UE
       question:
         variations:
           - si: situation . salarié
@@ -966,10 +1005,12 @@ pluriactivité . pays n°1: &pluriactivité
       titre: autre
       valeur: statut = 'autre'
     profession exercée:
+      non applicable si: pays hors UE
       titre: profession exercée
       type: texte
 
     entreprise:
+      non applicable si: pays hors UE
       titre: Coordonnée du lieu d'exercice
       <<: *entreprise-étranger
 
